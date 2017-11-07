@@ -1,3 +1,5 @@
+description = "the translation data for the Archie library"
+
 dependencies {
 
 }

@@ -1,55 +1,99 @@
 apply plugin: 'maven'
-
-install {
-	repositories.mavenInstaller {
-		customizePom(pom, project)
-	}
+if(gradle.ext.shouldSign) {
+  apply plugin: 'signing'
 }
 
+install {
+  repositories.mavenInstaller {
+    customizePom(pom, project)
+  }
+}
+
+if(gradle.ext.shouldSign) {
+  signing {
+      sign configurations.archives
+  }
+}
+
+//upload to sonatype configuration
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      if(gradle.ext.shouldSign) {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+      }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: gradle.ext.ossrhUsernameSafe, password: gradle.ext.ossrhPasswordSafe)
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: gradle.ext.ossrhUsernameSafe, password: gradle.ext.ossrhPasswordSafe)
+      }
+      customizePom(pom, project)
+      pom.whenConfigured { generatedPom ->
+        if(gradle.ext.isParallel) {
+          logger.error('build error: this build file cannot yet upload to maven central with parallel builds enabled')
+          throw new InvalidUserDataException('build error: this build file cannot yet upload to maven central with parallel builds enabled')
+        }
+      }
+    }
+  }
+}
+
+
+
 def customizePom(pom, gradleProject) {
-	pom.whenConfigured { generatedPom ->
-		// eliminate test-scoped dependencies (no need in maven central poms)
-		generatedPom.dependencies.removeAll { dep ->
-			dep.scope == "test"
-		}
+  pom.whenConfigured { generatedPom ->
 
-		// sort to make pom dependencies order consistent to ease comparison of older poms
-		generatedPom.dependencies = generatedPom.dependencies.sort { dep ->
-			"$dep.scope:$dep.groupId:$dep.artifactId"
-		}
+    //description is required for publishing, so enforce it
+    if(gradleProject.description == null || gradleProject.description == '') {
+      logger.error('build error: description required for release to maven central, but not set for subproject ' + gradleProject.name)
+      throw new InvalidUserDataException('build error: description required for release to maven central, but not set for subproject ' + gradleProject.name)
+    }
 
-		// add all items necessary for maven central publication
-		generatedPom.project {
-			name = gradleProject.description
-			description = gradleProject.description
-			url = "https://github.com/nedap/archie"
-			organization {
-				name = "Nedap Healthcare"
-				url = "http://www.nedap-healthcare.com"
-			}
-			licenses {
-				license {
-					name "Apache License, Version 2.0"
-					url "http://www.apache.org/licenses/LICENSE-2.0"
-					distribution "repo"
-				}
-			}
-			scm {
-				url = "https://github.com/nedap/archie"
-				connection = "scm:git:git://github.com/nedap/archie"
-				developerConnection = "scm:git:git://github.com/nedap/archie"
-			}
-			developers {
-				developer {
-					id = "pieterbos"
-					name = "Pieter Bos"
-					email = "pieter.bos@nedap.com"
-				}
-			}
-			issueManagement {
-				system = "Github"
-				url = "https://github.com/nedap/archie/issues"
-			}
-		}
-	}
+    // eliminate test-scoped dependencies (no need in maven central poms)
+    generatedPom.dependencies.removeAll { dep ->
+      dep.scope == "test"
+    }
+
+    // sort to make pom dependencies order consistent to ease comparison of older poms
+    generatedPom.dependencies = generatedPom.dependencies.sort { dep ->
+      "$dep.scope:$dep.groupId:$dep.artifactId"
+    } 
+
+    // add all items necessary for maven central publication
+    generatedPom.project {
+      name = gradleProject.name
+      description = gradleProject.description
+      url = "https://github.com/nedap/archie"
+      organization {
+        name = "Nedap Healthcare"
+        url = "http://www.nedap-healthcare.com"
+      }
+      licenses {
+        license {
+          name "Apache License, Version 2.0"
+          url "http://www.apache.org/licenses/LICENSE-2.0"
+          distribution "repo"
+        }
+      }
+      scm {
+        url = "https://github.com/nedap/archie"
+        connection = "scm:git:git://github.com/nedap/archie"
+        developerConnection = "scm:git:git://github.com/nedap/archie"
+      }
+      developers {
+        developer {
+          id = "pieterbos"
+          name = "Pieter Bos"
+          email = "pieter.bos@nedap.com"
+        }
+      }
+      issueManagement {
+        system = "Github"
+        url = "https://github.com/nedap/archie/issues"
+      }
+    }
+  }
 }

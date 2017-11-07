@@ -1,0 +1,28 @@
+apply plugin: 'jacoco'
+
+  
+def generatedSources = ["**/com/nedap/archie/adlparser/antlr**"]
+
+test {
+  jacoco {
+    excludes = generatedSources
+  }
+   testLogging {
+      events "failed"
+      exceptionFormat "full"
+  }
+}
+
+jacocoTestReport {
+    doFirst {
+          classDirectories = fileTree(dir: "${buildDir}/classes/main/").exclude(generatedSources)
+    }
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    sourceSets sourceSets.main
+    //do not check the generated source 
+}
+
+check.dependsOn jacocoTestReport

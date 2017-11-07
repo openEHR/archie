@@ -1,3 +1,5 @@
+description = "Tool to generate documentation from BMM models"
+
 dependencies {
 	compile project(':bmm')
 	compile project(':utils')

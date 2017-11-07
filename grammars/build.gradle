@@ -1,6 +1,7 @@
-
+description = "grammars for parsing ADL, ODIN and xpath"
 apply plugin: 'antlr'
 
+ext.antlrVersion = '4.5.3'
 
 generateGrammarSource { //antlr4
   outputDirectory = new File("${project.buildDir}/generated-src/antlr/main/com/nedap/archie/adlparser/antlr".toString())
@@ -11,15 +12,6 @@ classes {
   dependsOn generateGrammarSource
 }
 
-def generatedSources = ["**/com/nedap/archie/adlparser/antlr**"]
-
-test {
-  jacoco {
-    excludes = generatedSources
-  }
-}
-
-ext.antlrVersion = '4.5.3'
 
 dependencies {
   antlr "org.antlr:antlr4:${antlrVersion}"
