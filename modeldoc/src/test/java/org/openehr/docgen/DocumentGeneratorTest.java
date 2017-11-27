@@ -1,6 +1,7 @@
 package org.openehr.docgen;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openehr.bmm.rmaccess.ReferenceModelAccess;
 
@@ -28,6 +29,7 @@ import static org.junit.Assert.*;
  * Created by cnanjo on 3/7/17.
  */
 
+@Ignore
 public class DocumentGeneratorTest {
 
     private ReferenceModelAccess access;

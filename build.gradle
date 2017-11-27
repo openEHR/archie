@@ -3,7 +3,6 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.1"
     classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
     classpath 'ch.raffael.pegdown-doclet:pegdown-doclet:1.3'
     classpath 'org.owasp:dependency-check-gradle:1.4.5.1'
@@ -14,11 +13,10 @@ repositories {
   mavenCentral()
 }
 
-apply plugin: 'maven-publish'
-apply plugin: "com.jfrog.artifactory"
-apply plugin: 'ch.raffael.pegdown-doclet'
-apply plugin: 'jacoco'
-apply plugin: 'org.owasp.dependencycheck'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.3'
+}
 
 allprojects {
   version = '0.4.0-rc1'
@@ -27,32 +25,25 @@ allprojects {
   //archivesBaseName = 'archie'
 }
 
+gradle.ext.ossrhUsernameSafe = hasProperty('ossrhUsername') ? ossrhUsername : ""
+gradle.ext.ossrhPasswordSafe = hasProperty('ossrhPassword') ? ossrhPassword : ""
+gradle.ext.shouldSign = hasProperty('signing.keyId')
+gradle.ext.isParallel = hasProperty('org.gradle.parallel') ? project.property('org.gradle.parallel') == 'true' : false
+
+
 subprojects {
   apply plugin: 'java'
+  apply plugin: 'ch.raffael.pegdown-doclet'
+  apply plugin: 'org.owasp.dependencycheck'
+ // apply from: "${gradleScriptDir}/jacoco.gradle"  
   apply from: "${gradleScriptDir}/publish-maven.gradle"  
+
  // plugins {
    //   id 'com.github.ben-manes.versions' version '0.13.0'
  // }
 
   sourceCompatibility = '1.8'
   targetCompatibility = '1.8'
-
-
-  def artifactoryUserMethod = hasProperty('artifactoryUser') ? artifactoryUser : ""
-  def artifactoryPasswordMethod = hasProperty('artifactoryPassword') ? artifactoryPassword : ""
-  def ossrhUsernameSafe = hasProperty('ossrhUsername') ? ossrhUsername : ""
-  def ossrhPasswordSafe = hasProperty('ossrhPassword') ? ossrhPassword : ""
-
-  apply plugin: 'maven-publish'
-  apply plugin: "com.jfrog.artifactory"
-  apply plugin: 'ch.raffael.pegdown-doclet'
-  apply plugin: 'jacoco'
-  apply plugin: 'org.owasp.dependencycheck'
-
-  if(hasProperty('signing.keyId')) {
-    apply plugin: 'signing'
-  }
-
 
   repositories {
       mavenCentral()
@@ -82,13 +73,15 @@ subprojects {
     testCompile 'org.slf4j:slf4j-simple:1.7.25'
   }
 
-  task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-  }
 
   javadoc {
       options.encoding = 'UTF-8'
+  }
+
+  //configure the jar files: sources and javaod
+  task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
   }
 
   task sourcesJar(type: Jar) {
@@ -99,120 +92,6 @@ subprojects {
   artifacts {
       archives javadocJar, sourcesJar
   }
-
-  if(hasProperty('signing.keyId')) {
-    signing {
-        sign configurations.archives
-    }
-  }
-
-  def generatedSources = ["**/com/nedap/archie/adlparser/antlr**"]
-
-  test {
-    jacoco {
-      excludes = generatedSources
-    }
-     testLogging {
-        events "failed"
-        exceptionFormat "full"
-    }
-  }
-
-  jacocoTestReport {
-      doFirst {
-            classDirectories = fileTree(dir: "${buildDir}/classes/main/").exclude(generatedSources)
-      }
-      reports {
-          xml.enabled = true
-          html.enabled = true
-      }
-      sourceSets sourceSets.main
-      //do not check the generated source 
-  }
-
-  check.dependsOn jacocoTestReport
-  uploadArchives {
-    repositories {
-      mavenDeployer {
-      if(hasProperty('signing.keyId')) {
-          beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-        }
-
-        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-          authentication(userName: ossrhUsernameSafe, password: ossrhPasswordSafe)
-        }
-
-        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-          authentication(userName: ossrhUsernameSafe, password: ossrhPasswordSafe)
-        }
-
-/*        pom.project {
-          name 'Archie'
-          packaging 'jar'
-          // optionally artifactId can be defined here 
-          description 'An openEHR library, supporting ADL 2'
-          url 'https://github.com/nedap/archie'        
-
-          scm {
-              connection 'scm:git:https://github.com/nedap/archie.git'
-              developerConnection 'scm:git:git@github.com:nedap/archie.git'
-              url 'https://github.com/nedap/archie.git'
-          }
-
-          licenses {
-            license {
-              name 'The Apache License, Version 2.0'
-              url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-              distribution 'repo'
-            }
-          }
-
-          developers {
-            developer {
-              id 'pieterbos'
-              name 'Pieter Bos'
-              email 'pieterbos@nedap.com'
-              organization 'nedap'
-              organizationUrl 'http://www.nedap.com'
-            }
-          }
-        }*/
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-      }
-    }
-  }
-
-  //nexusStaging {  
-  //    username = ossrhUserSafe
-  //    password = ossrhPasswordSafe
-  //}
-
-
-  publishing {
-      publications {
-          mavenJava(MavenPublication) {
-              from components.java
-          }
-      }
-  }
-
-  artifactory {
-    //sorry about the private repository. Once we release a version, this will change to something public
-      contextUrl = 'https://nedap.artifactoryonline.com/nedap/'
-      publish {
-          repository {
-              repoKey = 'libs-snapshots-local'
-              username = "${artifactoryUserMethod}"
-              password = "${artifactoryPasswordMethod}"
-              maven = true
-
-          }       
-          defaults {
-              publications ('mavenJava')
-          }
-      }
-  }
-  artifactoryPublish.dependsOn 'generatePomFileForMavenJavaPublication', 'build'
 
 }
 

@@ -1,3 +1,5 @@
+description = "Utils for the Archie OpenEHR library"
+
 dependencies {
 	compile project(':base')
 	compile project(':aom')

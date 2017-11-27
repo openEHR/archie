@@ -22,6 +22,7 @@ package org.openehr.bmm.persistence.deserializer;
  */
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmGenericClass;
@@ -37,6 +38,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
+@Ignore
 public class BmmSchemaDeserializerTest1 {
 
 
