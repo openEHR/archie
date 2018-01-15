@@ -24,7 +24,7 @@ import static org.openehr.bmm.persistence.validation.BmmDefinitions.typeNameToCl
  * MetaModel class that provides some opertaions for archetype validation and flattener that is either based on
  * an implementation-derived model (ModelInfoLookup) or BMM
  */
-public class MetaModels {
+public class MetaModels implements MetaModelInterface{
 
     private final ReferenceModels models;
     private final ReferenceModelAccess bmmModels;
@@ -99,6 +99,11 @@ public class MetaModels {
     public boolean attributeExists(String rmTypeName, String propertyName) {
         return selectedModel == null ? false : selectedModel.attributeExists(rmTypeName, propertyName);
    }
+
+    @Override
+    public boolean isNullable(String typeId, String attributeName) {
+        return selectedModel == null ? false : selectedModel.isNullable(typeId, attributeName);
+    }
 
 
     public boolean typeConformant(String rmTypeName, String rmAttributeName, String childConstraintTypeName) {

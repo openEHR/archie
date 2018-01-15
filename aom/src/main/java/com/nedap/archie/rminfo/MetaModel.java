@@ -20,7 +20,7 @@ import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MetaModel {
+public class MetaModel implements MetaModelInterface {
 
     private ModelInfoLookup selectedModel;
     private BmmModel selectedBmmModel;
@@ -48,6 +48,7 @@ public class MetaModel {
         return selectedAomProfile;
     }
 
+    @Override
     public boolean isMultiple(String typeName, String attributeName) {
         if(getSelectedBmmModel() != null) {
             BmmClass classDefinition = getSelectedBmmModel().getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
@@ -74,6 +75,7 @@ public class MetaModel {
         }
     }
 
+    @Override
     public boolean rmTypesConformant(String childTypeName, String parentTypeName) {
         if(getSelectedBmmModel() != null) {
             BmmModel selectedBmmModel = getSelectedBmmModel();
@@ -95,6 +97,7 @@ public class MetaModel {
         }
     }
 
+    @Override
     public boolean typeNameExists(String typeName) {
         if(getSelectedBmmModel() != null) {
             return selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName)) != null;
@@ -103,6 +106,7 @@ public class MetaModel {
         }
     }
 
+    @Override
     public boolean attributeExists(String rmTypeName, String propertyName) {
         if(selectedBmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(rmTypeName);
@@ -116,6 +120,7 @@ public class MetaModel {
         }
     }
 
+    @Override
     public boolean isNullable(String typeId, String attributeName) {
         if(selectedBmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(typeId);
@@ -141,6 +146,7 @@ public class MetaModel {
      * @param childConstraintTypeName
      * @return
      */
+    @Override
     public boolean typeConformant(String rmTypeName, String rmAttributeName, String childConstraintTypeName) {
         if(getSelectedBmmModel() != null) {
             String propertyType = selectedBmmModel.effectivePropertyType(rmTypeName, rmAttributeName);
@@ -176,6 +182,7 @@ public class MetaModel {
         }
     }
 
+    @Override
     public boolean hasReferenceModelPath(String rmTypeName, String path) {
         if (!path.startsWith("/")) {
             return false;
@@ -214,6 +221,7 @@ public class MetaModel {
         }
     }
 
+    @Override
     public MultiplicityInterval referenceModelPropMultiplicity(String rmTypeName, String rmAttributeName) {
         if(selectedBmmModel != null) {
             BmmClass classDefinition = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
@@ -241,6 +249,7 @@ public class MetaModel {
         }
     }
 
+    @Override
     public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject) {
         if(selectedAomProfile == null) {
             return selectedModel.validatePrimitiveType(rmTypeName, rmAttributeName, cObject);
