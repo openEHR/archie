@@ -33,15 +33,13 @@ We are splitting Archie into separate modules. This causes a few API incompatibi
 - ModelInfoLookup now also returns computed attributes, with isComputed() returning true. This can break lots of RM processing tools!
 
 
-This README is out of date for this branch, but will be updated soon. It is up to date for the production version.
-
 ## dependency
 
-In gradle, include this dependency in your build.gradle:
+You can depend on parts of Archie, or the entire library at once. If you want the entire library, including the Archetype Object Model, ADL parser, all tools and OpenEHR reference model implementation, you can do in gradle:
 
 ```gradle
 dependencies {
-    compile 'com.nedap.healthcare:archie:0.3.15'
+    compile 'com.nedap.healthcare.archie:archie-utils:0.4.0'
 }
 ```
 
@@ -49,11 +47,31 @@ or if you use maven, in your pom.xml
 
 ```xml
 <dependency>
-    <groupId>com.nedap.healthcare</groupId>
-    <artifactId>archie</artifactId>
-    <version>0.3.15</version>
+    <groupId>com.nedap.healthcare.archie</groupId>
+    <artifactId>archie-utils</artifactId>
+    <version>0.4.0</version>
 </dependency>
 ```
+
+If you use an alternative reference model such as CIMI, and do not want to depend on the OpenEHR Reference model, you can depend just on the AOM, ADL and BMM plus tools to be able to run the Flattener and Validation tools. Or to add your own reference model implementation. You can depend on:
+
+```gradle
+dependencies {
+    compile 'com.nedap.healthcare.archie:tools:0.4.0'
+}
+```
+
+or if you use maven, in your pom.xml
+
+```xml
+<dependency>
+    <groupId>com.nedap.healthcare.archie</groupId>
+    <artifactId>tools</artifactId>
+    <version>0.4.0</version>
+</dependency>
+```
+
+
 
 ## Build
 
@@ -115,35 +133,92 @@ if(!parser.getErrors().hasNoErrors()) {
 The second round of checks comes after parsing, in the form of running the ArchetypeValidator:
 
 ```
-List<ValidationMessage> messages = new ArchetypeValidator().validate(archetype);
+ReferenceModels models = new ReferenceModels(ArchieRMInfoLookup.getInstance());
+MetaModels metaModels = new MetaModels(models, null);
+ValidationResult validationResult = new ArchetypeValidator(metaModels).validate(archetype);
 ```
 
-This runs some basic checks agains the archetype, such as id-code uniqueness, completeness of translations and existence of constrained properties in the reference model. It does not yet check specialization.
+This runs all the implemented archetype validation and returns a result. This result contains the validation results, the validation results of any template overlays and a flattened version of the input archetype.
+
+Note that it requires a MetaModels class. This contains the Metadata of the reference models used. 
+
+### Reference Model Metadata
+
+Archetype tools require metadata about the used reference model to operate. This can be the OpenEHR reference model, but it can also be something else. Archie has two concepts to define this metadata: Reflection based metadata and BMM metadata.
+
+The MetaModels class is an abstraction over these two types of models. Construct this, and it will automatically select the available metadata model. Note that if a BMM model is present for your archetype, it will use that if possible.
+
+Reflection based metadata bases its metadata on an actual reference model implementation in Java. Two are included, the ArchieRMInfoLookup, for the OpenEHR Reference Model, and the TestRMInfoLookup, for the openEHR Test models. You can register these on a ReferenceModels class, see the code in the previous paragraph for an example
+
+The BMM model is not based on an actual implementation, but on a file containing the metadata. The specifications of BMM are part of OpenEHR and can be found at http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html.
+
+To use, include your BMM files and point the code to the correct directory:
+
+```
+List<String> schemaDirectories = new ArrayList<>();
+schemaDirectories.add("/myBmmDirectory");
+ReferenceModelAccess access = new ReferenceModelAccess();
+access.initializeAll(schemaDirectories);
+MetaModels models = new MetaModels(new ReferenceModels(ArchieRMInfoLookup.getInstance()), access);
+//now parse the AOM profiles
+String[] resourceNames = {"first aom profile", "second aom profile"};
+for(String resource:resourceNames) {
+    try(InputStream odin = TestUtil.class.getResourceAsStream(resource)){
+        models.getAomProfiles().add(odin);
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+}        
+```
+
+This instantiates a MetaModels class that has both the archie reference model implementation, the BMM models and AOM profiles. The BMM models and AOM profileswill be used for the flattener and archetype validator, the other models for tools that work on reference models.
+
+A next version of archie will likely include BMM profiles and an easy way to obtain these models, as well as AOM profiles. See the ```TestUtilgetBMMReferenceModels()``` class for how the tests currently do this.
 
 ### Serializing
 
-Archetype models can be serialized to ADL thanks the the serializer written by @markopi64. To use:
+Archetype models can be serialized to ADL thanks the the serializer written by @markopi64 from Marand Labs. To use:
 
 ```java
 String serialized = ADLArchetypeSerializer.serialize(archetype);
 ```
 
-### Flattener and Operational Template creation
+### Archetype repositories
 
-First, create an ArchetypeRepository - create your own or use the supplied in memory SimpleArchetypeRespository. You need it to contain all Archetypes that are to be used, in parsed form. Then do:
+The previous examples show how to validate a single standalone archetype. But archetypes are usually not single standalone artifacts - they can specialize or link to others. To do that, create a FullArchetypeRepository. The easiest way to do so is the InMemoryFullArchetypeRepository:
 
-```java
-SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
+```
+InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
 for(Archetype archetype:allArchetypes) {
     repository.addArchetype(archetype);
 }
-
-
-Archetype flattened = new Flattener(repository).createOperationalTemplate(true).flatten(archetypeToBeFlattened);
+...
 ```
 
-You will get a flattened copy of the original archetypes. This means all specalizations in your archetype will be merged with any parent archetypes.
-If you opted to create an operational template, also the occurrences of use_archetype and use_node will have been replaced with a copy of the contents of the specified archetype and node, and the component terminologies will have been added to the operational template.
+Now you can compile the repository:
+
+```
+repository.compile(metaModels);
+List<ValidationResult> allValidationResults = getAllValidationResults();
+```
+
+This will validate and flatten all archetypes, giving you access to the results. 
+
+
+### Flattener and Operational Template creation
+
+The FullArchetypeRepository already flattens archetypes on the compile operation, but it does not yet create OperationTemplates. To do so, you can use the Flattener manually:
+
+```java
+Archetype flattened = new Flattener(yourArchetypeRepository)
+    .createOperationalTemplate(true)
+    .flatten(yourArchetypeRepository.getArchetype("openEHR-EHR-COMPOSITION.your_archetype.v1"));
+```
+
+Pass the original archetype, NOT the flattened variant.
+
+You will get a flattened operational template of the original archetype. The original archetype will not be changed, the result is a copy.
+If you opted to create an operational template, the occurrences of use_archetype and use_node will have been replaced with a copy of the contents of the specified archetype and node, and the component terminologies will have been added to the operational template.
 
 ### Terminology: texts and descriptions for your archetypes
 
@@ -187,6 +262,7 @@ or
 archetype.getTerm(cTerminologyCode, "at15", "en");
 ```
 
+//TODO: old documentation starts below
 ### Default constraints from the reference model
 
 An archetype constrains instances of the reference model. But a reference model also has some default constraints. For example, an observation has a data field, which is a single field - not a list or set. This has implications for default cardinality and existence constraints, and for example the ```isMultiple()``` and ```isSingle()``` methods. You can apply these constraints so you get them set explicitly in the resulting archetype-object. To do so:
