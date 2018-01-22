@@ -223,7 +223,7 @@ public class ArchetypeValidator {
 
     private Archetype cloneAndPreprocess(MetaModels models, Archetype archetype) {
         Archetype preprocessed = archetype.clone();
-        new ReflectionConstraintImposer(models.getSelectedModel()).setSingleOrMultiple(preprocessed.getDefinition());
+        new ReflectionConstraintImposer(models).setSingleOrMultiple(preprocessed.getDefinition());
         return preprocessed;
     }
 

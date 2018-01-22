@@ -93,7 +93,7 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
             if (!combinedModels.attributeExists(owningObject.getRmTypeName(), cAttribute.getRmAttributeName())) {
                 addMessageWithPath(ErrorType.VCARM, cAttribute.getPath(), cAttribute.getRmAttributeName() + " is not a known attribute of " + owningObject.getRmTypeName() + " or it is has not been implemented in Archie");
             } else {
-                CAttribute defaultAttribute = new ReflectionConstraintImposer(combinedModels.getSelectedModel()).getDefaultAttribute(owningObject.getRmTypeName(), cAttribute.getRmAttributeName());
+                CAttribute defaultAttribute = new ReflectionConstraintImposer(combinedModels).getDefaultAttribute(owningObject.getRmTypeName(), cAttribute.getRmAttributeName());
                 if(defaultAttribute != null) {
                     if(cAttribute.getExistence() != null) {
                         if(!defaultAttribute.getExistence().contains(cAttribute.getExistence())) {

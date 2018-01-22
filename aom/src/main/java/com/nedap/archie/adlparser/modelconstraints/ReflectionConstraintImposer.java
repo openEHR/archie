@@ -4,6 +4,7 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelInterface;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 
@@ -19,13 +20,13 @@ public class ReflectionConstraintImposer implements ModelConstraintImposer {
 
     /** Contains complex object structure of the specified model. Attributes NEVER will have children. Sorry bout that :)*/
 
-    private MetaModel lookup;
+    private MetaModelInterface lookup;
 
     public ReflectionConstraintImposer(ModelInfoLookup classLookup) {
         this.lookup = new MetaModel(classLookup, null);
     }
 
-    public ReflectionConstraintImposer(MetaModel metaModel) {
+    public ReflectionConstraintImposer(MetaModelInterface metaModel) {
         this.lookup = metaModel;
     }
 
