@@ -77,7 +77,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
     }
 
     @Test
-    public void flattened() throws Exception {
+    public void operationalTemplate() throws Exception {
 
         // reportresult specializes report.
         // blood pressure composition specializes report result.
