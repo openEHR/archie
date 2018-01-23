@@ -9,9 +9,9 @@ It uses the ANTLR adl-grammar written by Thomas Beale at https://github.com/open
 It is licensed under the Apache license.
 
 
-# NOTE: THIS IS A DEVELOPMENT BRANCH
+## Migrating from the previous 0.3 version of archie
 
-We are splitting Archie into separate modules. This causes a few API incompatibilities, which is not limited to the following list:
+Archie has been recently changed to support many new features, such as BMM and an archetype validator. This causes a few API incompatibilities. The following list is a number fo changes you 
 
 - Cardinality was moved to the om.nedap.archie.base package
 - APathQuery is now changed into AOMPathQuery and RMPathQuery. If you used itemAtPath and itemsAtPath this will not affect your code.
