@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The result of a validation: validation messages, if any,
- * the unprocessed source archetype, and the flattened archetype, if flattening is possible
+ * The result of a validation. Contains:
+ * - validation messages, if any,
+ * - the unprocessed source archetype
+ * - the flattened archetype, if flattening is possible
  */
 public class ValidationResult {
 
@@ -26,6 +28,10 @@ public class ValidationResult {
         this.archetypeId = archetype.getArchetypeId().toString();
     }
 
+    /**
+     * Get all the validation errors for this archetype
+     * @return
+     */
     public List<ValidationMessage> getErrors() {
         return errors;
     }
@@ -34,6 +40,10 @@ public class ValidationResult {
         this.errors = errors;
     }
 
+    /**
+     * Get the source archetype of this validation result
+     * @return
+     */
     public Archetype getSourceArchetype() {
         return sourceArchetype;
     }
@@ -42,6 +52,12 @@ public class ValidationResult {
         this.sourceArchetype = sourceArchetype;
     }
 
+    /**
+     * Get the flattened form of the source archetype. Can return null, if the archetype could not be flattened due to
+     * validation errors
+     *
+     * @return
+     */
     public Archetype getFlattened() {
         return flattened;
     }
@@ -54,10 +70,19 @@ public class ValidationResult {
         return archetypeId;
     }
 
+    /**
+     * Returns true if the archetype has warnings or errors
+     * @return
+     */
     public boolean hasWarningsOrErrors() {
         return !errors.isEmpty();
     }
 
+
+    /**
+     * Returns true if the archetype has no errors. Warnings are ok.
+     * @return
+     */
     public boolean passes() {
         for(ValidationMessage message:getErrors()) {
             if(!message.isWarning()) {
@@ -75,6 +100,12 @@ public class ValidationResult {
         this.overlayValidations = overlayValidations;
     }
 
+    /**
+     * If the source archetype was a Template, it can have template overlays, which are separate archetypes within a template
+     * get the validation results for the overlays. If there are errors, there will also be an error saying that
+     * there are errors in the overlays in the result of getErrors()
+     * @return
+     */
     public List<ValidationResult> getOverlayValidations() {
         return overlayValidations;
     }

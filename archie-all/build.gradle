@@ -1,0 +1,8 @@
+description = "Combined dependency for the entire archie library"
+
+dependencies {
+	compile project(':aom')
+  	compile project(':openehr-rm')
+  	compile project(':archie-utils')
+  	compile project(':i18n')
+}
