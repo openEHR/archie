@@ -59,6 +59,10 @@ To install to your local maven repository for use in other gradle or maven proje
 
 ## Usage
 
+## Archetypes
+
+The base of OpenEHR are archetypes. Archie allows you to work with them, and defines tools to create and validate them.
+
 ### Parsing and Archetype queries
 
 ```java
