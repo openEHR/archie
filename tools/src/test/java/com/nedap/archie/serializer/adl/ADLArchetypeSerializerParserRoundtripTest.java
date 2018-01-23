@@ -5,19 +5,29 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.flattener.Flattener;
+import com.nedap.archie.flattener.FlattenerTest;
+import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.URI;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author markopi
  */
 public class ADLArchetypeSerializerParserRoundtripTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(ADLArchetypeSerializer.class);
+
     @Test
     public void basic() throws Exception {
         Archetype basic = loadRoot("basic.adl");
@@ -49,7 +59,13 @@ public class ADLArchetypeSerializerParserRoundtripTest {
 
     private Archetype roundtrip(Archetype archetype) throws IOException {
         String serialized = ADLArchetypeSerializer.serialize(archetype);
-        return new ADLParser().parse(serialized);
+        logger.info(serialized);
+
+        ADLParser parser = new ADLParser();
+        Archetype result = parser.parse(serialized);
+
+        assertTrue("roundtrip parsing should never cause errors: " + parser.getErrors().toString(), parser.getErrors().hasNoErrors());
+        return result;
     }
 
     private Archetype load(String resourceName) throws IOException {
@@ -58,6 +74,41 @@ public class ADLArchetypeSerializerParserRoundtripTest {
 
     private Archetype loadRoot(String resourceName) throws IOException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
+    }
+
+    @Test
+    public void operationalTemplate() throws Exception {
+
+        // reportresult specializes report.
+        // blood pressure composition specializes report result.
+
+        // it adds a blood pressure observation
+        // it also adds a device
+        // it contains specific template overlays for both blood pressure observation and device
+        Archetype report = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.report.v1.adls"));
+        Archetype reportResult = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.report-result.v1.adls"));
+        Archetype device = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-CLUSTER.device.v1.adls"));
+
+        Archetype bloodPressureObservation = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.blood_pressure.v1.adls"));
+        Archetype bloodPressureComposition = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.blood_pressure.v1.0.0.adlt"));
+
+
+        Archetype height = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.height.v1.adls"));
+        Archetype heightTemplate = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.length.v1.0.0.adlt"));
+
+        SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
+        repository.addArchetype(report);
+        repository.addArchetype(device);
+        repository.addArchetype(bloodPressureComposition);
+        repository.addArchetype(bloodPressureObservation);
+        repository.addArchetype(reportResult);
+        repository.addArchetype(height);
+        repository.addArchetype(heightTemplate);
+
+        Flattener flattener = new Flattener(repository, TestUtil.getReferenceModels()).createOperationalTemplate(true);
+        Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
+        Archetype parsed = roundtrip(operationalTemplate);
+        TestUtil.assertCObjectEquals(operationalTemplate.getDefinition(), parsed.getDefinition());
     }
 
 }

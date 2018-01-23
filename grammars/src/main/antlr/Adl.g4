@@ -51,6 +51,7 @@ template_overlay:
 operational_template: 
     SYM_OPERATIONAL_TEMPLATE meta_data? 
     ARCHETYPE_HRID
+    specialization_section?
     language_section
     description_section
     definition_section
