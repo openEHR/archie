@@ -11,29 +11,9 @@ It is licensed under the Apache license.
 
 ## Migrating from the previous 0.3 version of archie
 
-Archie has been recently changed to support many new features, such as BMM and an archetype validator. This causes a few API incompatibilities. The following list is a number fo changes you 
+See https://github.com/openEHR/archie/wiki/Migration-from-Archie-0.3.x on how to migrate from archie version 0.3.x.
 
-- Cardinality was moved to the om.nedap.archie.base package
-- APathQuery is now changed into AOMPathQuery and RMPathQuery. If you used itemAtPath and itemsAtPath this will not affect your code.
-- The default AOM methods no longer use ArchieRMInfoLookup by default. You need to supply it by hand. List of a few cases where this happens:
-    - CAttributeTuple.isValidValue()
-    - CAttributeTuple.isValid()
-    - Flattener
-    - ArchetypeValidator
-    - RMQueries
-    - RuleEvaluation
-    - RMQueryContext
-    - ... probably more
-- RMQueryContext now needs a JAXBContext for the RM to function. You can use JAXBUtil.getArchieJaxbContext() for the openehr-rm 
-- The ArchetypeRepository interface now has a getAll() method. It's likely this interface will be renamed or removed in the future in favor of what is now the FullArchetypeRepository
-- OverridingArchetypeRepository.addArchetype has been renamed to addExtraArchetype
-- ADLPArser.withConstrainsImposer has been removed. You can still do new ADLPArser(new RMConstraintsImposer()) if you want, or use it manually. 
-- all datetime parsers are now located in com.nedap.archie.datetime.DateTimeParsers
-- CObject is now an abstract class, as it should be according to specs
-- ModelInfoLookup now also returns computed attributes, with isComputed() returning true. This can break lots of RM processing tools!
-
-
-## dependency
+## Dependency
 
 You can depend on parts of Archie, or the entire library at once. If you want the entire library, including the Archetype Object Model, ADL parser, all tools and OpenEHR reference model implementation, you can do in gradle:
 
@@ -449,11 +429,6 @@ Archie uses its own reference model by default, but it can use any reference mod
 
 - ModelNamingStrategy
 - ModelInfoLookup
-
-
-
-
-
 
 ## Status
 
