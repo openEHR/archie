@@ -4,14 +4,13 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 
-import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.rules.*;
 
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -32,7 +31,7 @@ public class RulesFlattenerTest {
 
     @Before
     public void setup() throws Exception {
-        models = TestUtil.getReferenceModels();
+        models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 
         withRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.with_rules.v1.adls"));
         specializedRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.specialized_rules.v1.adls"));

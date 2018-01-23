@@ -8,6 +8,7 @@ import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -92,7 +93,7 @@ public class JAXBAOMRoundTripTest {
         repository.addArchetype(height);
         repository.addArchetype(heightTemplate);
 
-        Flattener flattener = new Flattener(repository, TestUtil.getReferenceModels()).createOperationalTemplate(true);
+        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).createOperationalTemplate(true);
         Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
         String xml = marshal(operationalTemplate);
         System.out.println(xml);

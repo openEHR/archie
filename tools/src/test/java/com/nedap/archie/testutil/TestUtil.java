@@ -8,21 +8,14 @@ import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.creation.RMObjectCreator;
-import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.rminfo.ReferenceModels;
-import org.openehr.bmm.rmaccess.ReferenceModelAccess;
-import org.reflections.Reflections;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -34,33 +27,6 @@ import static org.junit.Assert.*;
 public class TestUtil {
 
     private RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
-
-    public static MetaModels getBMMReferenceModels() {
-        List<String> schemaDirectories = new ArrayList<>();
-        String path = TestUtil.class.getResource("/bmm/placeholder.txt").getFile();
-        path = path.substring(0, path.lastIndexOf('/'));
-        schemaDirectories.add(path);
-        ReferenceModelAccess access = new ReferenceModelAccess();
-        access.initializeAll(schemaDirectories);
-        MetaModels models = new MetaModels(getReferenceModels(), access);
-
-        //now parse the AOM profiles
-        String[] resourceNames = {"/aom_profiles/openehr_aom_profile.arp",
-                "/aom_profiles/cdisc_aom_profile.arp",
-                "/aom_profiles/cimi_aom_profile.arp",
-                "/aom_profiles/fhir_aom_profile.arp",
-                "/aom_profiles/iso13606_aom_profile.arp",
-        };
-        for(String resource:resourceNames) {
-            try(InputStream odin = TestUtil.class.getResourceAsStream(resource)){
-                models.getAomProfiles().add(odin);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        return models;
-    }
 
     /**
      * Creates an empty RM Object, fully nested, one object per CObject found.
@@ -175,10 +141,4 @@ public class TestUtil {
         }
     }
 
-    public static ReferenceModels getReferenceModels() {
-        ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
-        models.registerModel(TestRMInfoLookup.getInstance());
-        return models;
-    }
 }

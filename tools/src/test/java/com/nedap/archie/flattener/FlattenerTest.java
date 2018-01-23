@@ -10,16 +10,12 @@ import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
-import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
 import java.util.Stack;
@@ -53,7 +49,7 @@ public class FlattenerTest {
     @Before
     public void setup() throws Exception {
 
-        models = TestUtil.getReferenceModels();
+        models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 
         // reportresult specializes report.
         // blood pressure composition specializes report result.
