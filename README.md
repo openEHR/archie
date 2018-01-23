@@ -88,7 +88,7 @@ CAttribute attribute = archetype.getDefinition()
 
 The parser is setup to continue parsing even if there are errors. This means you will manually have to check for parse errors in your code, after parsing each file:
 
-```
+```java
 if(!parser.getErrors().hasNoErrors()) {
     parser.getErrors().logToLogger();
 }
@@ -98,7 +98,7 @@ if(!parser.getErrors().hasNoErrors()) {
 
 A single archetype can be useful, but archetypes often are related to other archetypes: They specialize a parent archetype, or link to another archetype. To easily use archetypes, you can create an ArchetypeRepository:
 
-```
+```java
 InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
 for(Archetype archetype:allArchetypes) {
     repository.addArchetype(archetype);
@@ -125,7 +125,7 @@ You can create operational templates of your archetypes. Think of operational te
 
 To create an Operational Template:
 
-```
+```java
 Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
 OperationalTemplate template = (OperationalTemplate) flattener.flatten(sourceArchetype);
 ```
@@ -215,14 +215,14 @@ Archetype parsedArchetype = (Archetype) unmarshaller.unmarshal(new StringReader(
 
 ODIN is a JSON/YAML like notation used as part of ADL, for meta-data, terminologies and annotations. See https://github.com/openehr/odin for what more it can do. To our knowledge it's not used widely outside of ADL/openEHR. Archie can map ODIN data directly to Java-objects using Jackson. 
 
-```
+```java
     YourType type = OdinObjectParser.convert(odinText, YourType.class);
 ```
 
 It works by first converting to JSON, then binding that to objects with Jackson.
 This means you can also convert ODIN to JSON. 
 
-```
+```java
     String json = new OdinToJsonConverter().convert(odinText);
 ```
 
@@ -371,7 +371,7 @@ if(!parser.getErrors().hasNoErrors()) {
 
 The second round of checks comes after parsing, in the form of running the ArchetypeValidator:
 
-```
+```java
 ReferenceModels models = new ReferenceModels(ArchieRMInfoLookup.getInstance());
 MetaModels metaModels = new MetaModels(models, null);
 ValidationResult validationResult = new ArchetypeValidator(metaModels).validate(archetype);
@@ -393,7 +393,7 @@ The BMM model is not based on an actual implementation, but on a file containing
 
 To use, include your BMM files and point the code to the correct directory, then load the AOM Profiles.
 
-```
+```java
 List<String> schemaDirectories = new ArrayList<>();
 schemaDirectories.add("/myBmmDirectory");
 ReferenceModelAccess access = new ReferenceModelAccess();
