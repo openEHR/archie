@@ -370,8 +370,8 @@ public class PersistedBmmClass extends PersistedBmmModelElement implements Seria
                     }
                 });
             }
-        } else if (!this.getName().equalsIgnoreCase(BmmDefinitions.ANY_TYPE)) {
-        //    throw new RuntimeException("The class " + getName() + " is null. It may have been defined as a class or a primitive but not included in a package");
+        } else {
+            throw new RuntimeException("The class " + getName() + " is null. It may have been defined as a class or a primitive but not included in a package");
         }
     }
 

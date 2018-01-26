@@ -446,8 +446,7 @@ public class BmmClass extends BmmClassifier implements Serializable {
 
     protected void handleFlattenedProperty(BmmProperty property, BmmClass target) {
         if (target.hasPropertyWithName(property.getName())) {
-            //this is fine, it has been validated to be conformant and just overrides the od property
-            //throw new RuntimeException("Property with name " + property.getName() + " already defined in type " + target.getName() + " or one of its ancestors");
+            //this is fine, it has been validated to be conformant and just overrides the old property
         } else {
             target.addProperty(property);
         }

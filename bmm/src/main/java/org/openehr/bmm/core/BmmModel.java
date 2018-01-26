@@ -4,8 +4,11 @@ import org.openehr.bmm.persistence.validation.BasicDefinitions;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.io.Serializable;
-import java.lang.instrument.ClassDefinition;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Copyright 2017 Cognitive Medical Systems, Inc (http://www.cognitivemedicine.com).
