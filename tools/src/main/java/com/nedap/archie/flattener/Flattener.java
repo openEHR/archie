@@ -11,15 +11,12 @@ import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
-import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.query.ComplexObjectProxyReplacement;
 import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.rules.Assertion;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;

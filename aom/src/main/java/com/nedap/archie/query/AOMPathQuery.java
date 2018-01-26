@@ -25,11 +25,20 @@ import java.util.stream.Collectors;
  */
 public class AOMPathQuery {
 
-    private List<PathSegment> pathSegments = new ArrayList<>();
+    private final List<PathSegment> pathSegments;
+
+    /** If true, extend the search through C_COMPLEX_OBJECT_PROXY objects by looking up the replacement first.*/
+    private final boolean findThroughCComplexObjectProxies;
 
     public AOMPathQuery(String query) {
         APathQuery apathQuery = new APathQuery(query);
         this.pathSegments = apathQuery.getPathSegments();
+        findThroughCComplexObjectProxies = false;
+    }
+
+    private AOMPathQuery(List<PathSegment> pathSegments, boolean findThroughCComplexObjectProxies) {
+        this.pathSegments = pathSegments;
+        this.findThroughCComplexObjectProxies = findThroughCComplexObjectProxies;
     }
 
     public <T extends ArchetypeModelObject> T find(CComplexObject root) {
@@ -41,6 +50,14 @@ public class AOMPathQuery {
         } else {
             throw new UnsupportedOperationException("cannot find without list with more than 1 element");
         }
+    }
+
+    /**
+     * Return a new AOMPathQuery with the same query, but that finds through CComplexObjectProxy replacements as well
+     * @return
+     */
+    public AOMPathQuery findThroughCComplexObjectProxies() {
+        return new AOMPathQuery(pathSegments, true);
     }
 
     public <T extends ArchetypeModelObject> List<T> findList(CComplexObject root) {
@@ -69,7 +86,15 @@ public class AOMPathQuery {
             }
 
         }
-        for(ArchetypeModelObject object:preProcessedObjects) {
+        for(ArchetypeModelObject objectToCheck:preProcessedObjects) {
+            ArchetypeModelObject object = objectToCheck;
+            if(findThroughCComplexObjectProxies && object instanceof CComplexObjectProxy) {
+                //use the complex object proxy replacement for further queries instead of the original
+                ComplexObjectProxyReplacement complexObjectProxyReplacement = ComplexObjectProxyReplacement.getComplexObjectProxyReplacement((CComplexObjectProxy) object);
+                if(complexObjectProxyReplacement != null && complexObjectProxyReplacement.getReplacement() != null) {
+                    object = complexObjectProxyReplacement.getReplacement();
+                }
+            }
             if(object instanceof CObject) {
                 CObject cobject = (CObject) object;
                 CAttribute attribute = cobject.getAttribute(pathSegment.getNodeName());

@@ -90,6 +90,13 @@ public class CAttribute extends ArchetypeConstraint {
                 if (((CArchetypeRoot) child).getArchetypeRef().equals(nodeId)) {
                     return child;
                 }
+            } else if(child instanceof CComplexObjectProxy) {
+                String targetPath = ((CComplexObjectProxy) child).getTargetPath();
+                APathQuery aPathQuery = new APathQuery(targetPath);
+                PathSegment lastPathSegment = aPathQuery.getPathSegments().get(aPathQuery.getPathSegments().size() - 1);
+                if(lastPathSegment.hasIdCode() && lastPathSegment.getNodeId().equals(nodeId)) {
+                    return child;
+                }
             }
         }
         return null;

@@ -44,6 +44,7 @@ public class CKMArchetypeValidatorTest {
         archetypesWithKnownErrors.add("openEHR-EHR-OBSERVATION.visual_acuity.v0.0.1-alpha");
         archetypesWithKnownErrors.add("openEHR-EHR-OBSERVATION.substance_use-caffeine.v1.0.0");
         archetypesWithKnownErrors.add("openEHR-DEMOGRAPHIC-PARTY_IDENTITY.person_name-individual_provider.v1.0.0");
+        //archetypesWithKnownErrors.add("openEHR-EHR-OBSERVATION.apgar.v1.0.1-alpha");//not sure if this is wrong, don't have ADL workbench currently running, but it does use_node and in paths does not replace the node id with the new one.
     }
 
 

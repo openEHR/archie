@@ -1,11 +1,10 @@
-package com.nedap.archie.flattener;
+package com.nedap.archie.query;
 
 import com.nedap.archie.aom.CArchetypeRoot;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.query.AOMPathQuery;
 
 /**
  * little class used for a CompelxObjectProxyReplacement because we cannot replace in a collection
