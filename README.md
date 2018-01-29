@@ -154,7 +154,9 @@ The reflection based metadata contains ModelInfoLookup classes. They are derived
 
 ### Operational templates
 
-You can create operational templates of your archetypes. Think of operational templates as something you generate from an archetype or template, to more easily work with. While a source archetype or even a flattened archetype can still contain 'use_node' for example, these have all been replaced. And all use_archetype c_archetype_roots have been replaced with the structure of the arhetype. See the OpenEHR OPT2 specification for what it does. 
+You can create operational templates of your archetypes. Think of operational templates as something you generate from an archetype or template to more easily work with it. 
+OpenEHR Archetypes allow you to reuse structures inside your archetypes at several places. It also allows to embed other archetypes inside your archetype. Without operational templates, you would need to build support for these structures into all of your tools. Operational templates fix this for you, by replacing the proxies for structure and embedded archetypes in the archetype with a copy of the actual embedded structure. For more information about operational templates, see (the documentation at the OpenEHR website)[http://openehr.org/releases/AM/latest/docs/OPT2/OPT2.html].
+Note that ADL 2 operational templates is fundamentally different from the ADL 1.4 OET/OPT format. What you used to achieve with OET/OPT is now built into ADL 2 as templates in combination with the operational template creation. See (the OpenEHR specification on templates)[http://openehr.org/releases/AM/latest/docs/ADL2/ADL2.html#_templates] on how to work with them.
 
 To create an Operational Template:
 
@@ -443,7 +445,7 @@ for(String resource:resourceNames) {
 }        
 ```
 
-This instantiates a MetaModels class that has both the archie reference model implementation, the BMM models and AOM profiles. The BMM models and AOM profileswill be used for the flattener and archetype validator, the other models for tools that work on reference models.
+This instantiates a MetaModels class that has both the archie reference model implementation, the BMM models and AOM profiles. The BMM models and AOM profiles will be used for the flattener and archetype validator, the other models for tools that work on reference models.
 
 ### Default constraints from the reference model
 
