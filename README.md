@@ -57,6 +57,35 @@ To install to your local maven repository for use in other gradle or maven proje
 ./gradlew install
 ```
 
+## Contents
+
+- [Usage](#usage)
+  * [Archetypes](#archetypes)
+    + [Parsing and Archetype queries](#parsing-and-archetype-queries)
+    + [Checking for parse errors](#checking-for-parse-errors)
+    + [Creating an Archetype Repository](#creating-an-archetype-repository)
+    + [Reference model metadata](#reference-model-metadata)
+    + [Operational templates](#operational-templates)
+    + [Terminology: texts, term bindings and descriptions for your archetypes](#terminology-texts-term-bindings-and-descriptions-for-your-archetypes)
+    + [Serializing to ADL](#serializing-to-adl)
+    + [JSON and XML (de)serialization](#json-and-xml-deserialization)
+    + [ODIN](#odin)
+    + [Intervals and primitive objects](#intervals-and-primitive-objects)
+    + [Archetype tree walking for openEHR reference models](#archetype-tree-walking-for-openehr-reference-models)
+  * [Reference Model tools](#reference-model-tools)
+    + [Reference model object creation](#reference-model-object-creation)
+    + [Reference model APath queries](#reference-model-apath-queries)
+  * [Full XPath support on reference model](#full-xpath-support-on-reference-model)
+  * [Rule evaluation](#rule-evaluation)
+  * [Lower level APIs](#lower-level-apis)
+    + [Archetype Validation](#archetype-validation)
+    + [Reference Model Metadata](#reference-model-metadata)
+    + [Default constraints from the reference model](#default-constraints-from-the-reference-model)
+    + [Use a different reference model implementation](#use-a-different-reference-model-implementation)
+  * [Status](#status)
+  * [Contributions](#contributions)
+  * [License](#license)
+
 ## Usage
 
 ## Archetypes
