@@ -10,8 +10,7 @@ It is licensed under the Apache license.
 
 
 ## Migrating from the previous 0.3 version of archie
-
-See https://github.com/openEHR/archie/wiki/Migration-from-Archie-0.3.x on how to migrate from archie version 0.3.x.
+Version 0.4 of archie is a major update that requires changes in your code to upgrade. See https://github.com/openEHR/archie/wiki/Migration-from-Archie-0.3.x on how to migrate from archie version 0.3.x.
 
 ## Dependency
 
