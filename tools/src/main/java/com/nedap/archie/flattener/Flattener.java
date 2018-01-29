@@ -24,9 +24,6 @@ import java.util.Stack;
 /**
  * Flattener. For single use only, create a new flattener for every flatten-action you want to do!
  *
- * TODO: the parent/child naming is very confusing. Make a new name. Original/specialized? Root/specialized? something else? Check the specs!
-
- *
  * Created by pieter.bos on 21/10/15.
  */
 public class Flattener {

@@ -8,9 +8,8 @@ import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
-import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
-import org.openehr.bmm.rmaccess.ReferenceModelAccess;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 
@@ -62,7 +61,7 @@ public class CKMArchetypeValidatorTest {
 
     @Test
     public void fullCKMTestBmm() {
-        MetaModels bmmReferenceModels = TestUtil.getBMMReferenceModels();
+        MetaModels bmmReferenceModels = BuiltinReferenceModels.getMetaModels();
 
         FullArchetypeRepository repository = parseCKM();
         repository.compile(bmmReferenceModels);

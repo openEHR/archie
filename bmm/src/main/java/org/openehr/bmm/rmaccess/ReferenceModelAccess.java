@@ -36,6 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -341,16 +342,21 @@ public class ReferenceModelAccess {
         reloadSchemas();
     }
 
+
     /**
      * Method clears model cache and reloads all schemas located in the schema directories (files with .bmm extensions only)
      */
     public void reloadSchemas() {
-        validator.reset();
+        resetValidator();
         loadSchemaDescriptors();
         if (validator.hasNoErrors()) {
             //log an error here
         }
         loadSchemas();
+    }
+
+    public void resetValidator() {
+        validator.reset();
     }
 
     /**
@@ -363,8 +369,11 @@ public class ReferenceModelAccess {
                 allSchemas.clear();
                 for(String directory:schemaDirectories) {
                     File directoryFile = new File(directory);
-                    if (!directoryFile.exists() || !directoryFile.isDirectory() || !directoryFile.canRead()) {
+                    if (!directoryFile.exists() || !directoryFile.canRead()) {
                         validator.addError(BmmMessageIds.ec_bmm_schema_dir_not_valid, directory);
+                    } else if (!directoryFile.isDirectory()) {
+                        //it's a direct path to a file instead of a directory. Just parse it
+                        processSchemaFile(directoryFile);
                     } else if (!(directoryFile.listFiles().length > 0)) {
                         validator.addError(BmmMessageIds.ec_bmm_schema_dir_contains_no_schemas, directory);
                     } else {
@@ -392,19 +401,30 @@ public class ReferenceModelAccess {
         }
     }
 
+    public void addSchemaInputStream(InputStream inputStream, String fileName) {
+        log.info("loading {}", fileName);
+        SchemaDescriptor schemaDescriptor = new SchemaDescriptor(inputStream, fileName);
+        processSchemaDescriptor(schemaDescriptor);
+
+    }
+
     protected void processSchemaFile(File bmmFile) {
         log.info("loading {}", bmmFile);
         SchemaDescriptor schemaDescriptor = new SchemaDescriptor(bmmFile);
+        processSchemaDescriptor(schemaDescriptor);
+    }
+
+    private void processSchemaDescriptor(SchemaDescriptor schemaDescriptor) {
         schemaDescriptor.initialize();
         //check for two schema files purporting to be the exact same schema (including release)
         if (schemaDescriptor.getSchemaValidator().hasErrors()) {
             validator.addError(BmmMessageIds.ec_bmm_schema_load_failure,
                     schemaDescriptor.getSchemaId(),
                     schemaDescriptor.getSchemaValidator().getErrorStrings());
-            log.warn("No schema descriptor created for " + bmmFile + ": Error loading schema");
+            log.warn("No schema descriptor created for " + schemaDescriptor.getSchemaPath() + ": Error loading schema");
         } else if (allSchemas.containsKey(schemaDescriptor.getSchemaId())) {
             validator.addWarning(BmmMessageIds.ec_bmm_schema_duplicate_schema_found, schemaDescriptor.getSchemaId(), schemaDescriptor.getSchemaPath());
-            log.warn("No schema descriptor created for " + bmmFile + ": Duplicate schema");
+            log.warn("No schema descriptor created for " + schemaDescriptor.getSchemaPath() + ": Duplicate schema");
         } else {
             addSchema(schemaDescriptor);
         }
@@ -450,7 +470,7 @@ public class ReferenceModelAccess {
      * Populate the rm_schemas table by reading in schemas either specified in the 'rm_schemas_load_list'
      * config variable, or by reading all schemas found in the schema directory
      */
-    protected void loadSchemas() {
+    public void loadSchemas() {
         try {
             //Populate the RM schema table first
             validModels.clear();

@@ -1,35 +1,20 @@
-package org.openehr.bmm.rm_access;
+package org.openehr.referencemodels;
 
 import com.google.common.collect.Sets;
-import org.junit.Before;
 import org.junit.Test;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.rmaccess.ReferenceModelAccess;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class FullReferenceModelAccessTest {
-
-    private List<String> schemaDirectories;
-
-    @Before
-    public void setup() {
-        schemaDirectories = new ArrayList<>();
-        String path = getClass().getResource("/bmm/placeholder.txt").getFile();
-        path = path.substring(0, path.lastIndexOf('/'));
-        schemaDirectories.add(path);
-    }
-
+public class BuiltInReferenceModelsTest {
     @Test
     public void getValidModels() throws Exception {
-        ReferenceModelAccess access = new ReferenceModelAccess();
-        access.initializeAll(schemaDirectories);
+
+        ReferenceModelAccess access = BuiltinReferenceModels.getBMMReferenceModels();
         Map<String, BmmModel> models = access.getValidModels();
         assertTrue(access.getValidator().hasErrors()); //hl7 fihr is missing the Signature type, so this results in an error
         assertEquals(1, access.getValidator().getMessageLogger().getErrorCodes().size());

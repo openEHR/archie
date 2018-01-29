@@ -236,7 +236,8 @@ public class ArchetypeValidator {
             } catch (Exception e) {
                 logger.error("error running validation processor", e);
                 e.printStackTrace();
-                messages.add(new ValidationMessage(ErrorType.OTHER, "unknown path", "error running validator : " + Joiner.on("\n").join(e.getStackTrace())));
+                messages.add(new ValidationMessage(ErrorType.OTHER, "unknown path", "error running validator : " + e.getClass().getSimpleName() +
+                        Joiner.on("\n").join(e.getStackTrace())));
             }
         }
         return messages;

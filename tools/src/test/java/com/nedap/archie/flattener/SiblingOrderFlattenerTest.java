@@ -3,17 +3,15 @@ package com.nedap.archie.flattener;
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +30,7 @@ public class SiblingOrderFlattenerTest {
     public void setup() throws Exception {
         repository = new InMemoryFullArchetypeRepository();
         parentArchetype = parse("openEHR-EHR-CLUSTER.order-parent.v1.0.0.adls");
-        ReferenceModels models = TestUtil.getReferenceModels();
+        ReferenceModels models = BuiltinReferenceModels.getAvailableModelInfoLookups();
         ValidationResult validationResult = new ArchetypeValidator(models).validate(parentArchetype, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
         repository.addArchetype(parentArchetype);
@@ -133,6 +131,6 @@ public class SiblingOrderFlattenerTest {
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
-        return new Flattener(repository, TestUtil.getReferenceModels()).flatten(parse(fileName));
+        return new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).flatten(parse(fileName));
     }
 }

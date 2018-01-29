@@ -33,6 +33,7 @@ import org.openehr.odin.loader.OdinLoaderImpl;
 import org.openehr.odin.utils.OdinSerializationUtils;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,9 +94,13 @@ public class SchemaDescriptor {
      */
     private boolean isBmmCompatible;
     /**
-     * Schema file (to ODIN file)
+     * Schema file (to ODIN file). If this is null, inputStream must be set
      */
     private File schemaFile;
+    /**
+     * InputStream to BMM file;
+     */
+    private InputStream inputStream;
     /**
      * The BMM Validator for this schema descriptor
      */
@@ -128,11 +133,27 @@ public class SchemaDescriptor {
         schemaFile = bmmSchemaFile;
     }
 
+    /**
+     * Constructor with an inputStream and a filename
+     *
+     * @param stream the input stream. must be closed by the caller!
+     * @param fileName the file name of the BMM file. Used for easier error messages
+     */
+    public SchemaDescriptor(InputStream stream, String fileName) {
+        this();
+        this.inputStream = stream;
+        //not a path, but a filename. Shouldn't matter at all
+        this.schemaPath = fileName;
+    }
+
+
     public void initialize() {
         if(schemaFile != null) {
             initializeWithSchemaFile();
         } else if(metadata != null) {
             initializeWithMetadata();
+        } else if(inputStream != null) {
+            initializeWithInputStream();
         } else {
             throw new IllegalStateException("Invalid schema descriptor state");
         }
@@ -142,6 +163,16 @@ public class SchemaDescriptor {
         schemaPath = schemaFile.getAbsolutePath();
         load();
         schemaAlreadyLoaded = true;
+        initializeFromLoadedSchema();
+    }
+
+    public void initializeWithInputStream() {
+        load();
+        schemaAlreadyLoaded = true;
+        initializeFromLoadedSchema();
+    }
+
+    private void initializeFromLoadedSchema() {
         this.metadata = new HashMap<>();
         metadata.put(BmmDefinitions.METADATA_BMM_VERSION, persistentSchema.getBmmVersion());
         metadata.put(BmmDefinitions.METADATA_RM_PUBLISHER, persistentSchema.getRmPublisher());
@@ -452,6 +483,15 @@ public class SchemaDescriptor {
      * @return
      */
     public PersistedBmmSchema loadPersistedSchema() {
+        if(schemaFile != null) {
+            return loadPersistedSchemaFromFile();
+        } else {
+            return loadPersistedSchemaFromInputStream();
+        }
+
+    }
+
+    private PersistedBmmSchema loadPersistedSchemaFromFile() {
         PersistedBmmSchema retVal = null;
         if (schemaFile == null || !schemaFile.exists()) {
             schemaValidator.addError(BmmMessageIds.ec_object_file_not_valid,
@@ -469,6 +509,29 @@ public class SchemaDescriptor {
                     schemaFile.getName(),
                     schemaFile.getAbsolutePath(),
                     e.getMessage());
+                e.printStackTrace();
+            }
+        }
+        return retVal;
+    }
+
+    private PersistedBmmSchema loadPersistedSchemaFromInputStream() {
+        PersistedBmmSchema retVal = null;
+        if (inputStream == null) {
+            schemaValidator.addError(BmmMessageIds.ec_object_file_not_valid,
+                    schemaPath, schemaPath);
+        } else {
+            try {
+                OdinLoaderImpl loader = new OdinLoaderImpl();
+                OdinVisitorImpl visitor = loader.loadOdinFile(inputStream);
+                CompositeOdinObject root = visitor.getAstRootNode();
+                BmmSchemaDeserializer deserializer = new BmmSchemaDeserializer();
+                retVal = deserializer.deserialize(root);
+            } catch (Exception e) { //TODO May not be best way to handle this.
+                schemaValidator.addError(BmmMessageIds.ec_bmm_schema_load_error,
+                        schemaFile.getName(),
+                        schemaFile.getAbsolutePath(),
+                        e.getMessage());
                 e.printStackTrace();
             }
         }

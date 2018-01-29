@@ -15,10 +15,9 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.rminfo.ReferenceModels;
-import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class FlattenerExamplesFromSpecTest {
     @Before
     public void setup() throws Exception {
         repository = new SimpleArchetypeRepository();
-        models = new MetaModels(TestUtil.getReferenceModels(), null);
+        models = new MetaModels(BuiltinReferenceModels.getAvailableModelInfoLookups(), null);
     }
 
     @Test

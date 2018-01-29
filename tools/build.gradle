@@ -11,4 +11,5 @@ dependencies {
   testCompile project(':archie-utils')
   testCompile project(':i18n')
   testCompile project(':test-rm')
+  testCompile project(':referencemodels')
 }
