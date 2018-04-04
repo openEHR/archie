@@ -12,7 +12,7 @@ dependencies {
 }
 
 run {
-    args = ['archetypes']//, '--outputFlat']
+    args = ['archetypes', '--lint']//, '--outputFlat']
 }
 
 mainClassName='com.nedap.archie.adlchecker.AdlChecker'

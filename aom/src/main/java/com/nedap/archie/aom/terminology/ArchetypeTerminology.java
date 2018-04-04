@@ -196,6 +196,22 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
         return AOMUtils.isIdCode(code) && hasCode(code);
     }
 
+    public boolean hasCodeInAllLanguages(String code) {
+        if(termDefinitions == null) {
+            return false;
+        }
+        for(String language:getTermDefinitions().keySet()) {
+            if(!getTermDefinitions().get(language).containsKey(code)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean hasIdCodeInAllLanguages(String code) {
+        return AOMUtils.isIdCode(code) && hasCodeInAllLanguages(code);
+    }
+
     public boolean hasValueSetCode(String code) {
         return AOMUtils.isValueSetCode(code) && hasCode(code);
     }
