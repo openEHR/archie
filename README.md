@@ -408,7 +408,7 @@ The second round of checks comes after parsing, in the form of running the Arche
 ```java
 ReferenceModels models = new ReferenceModels(ArchieRMInfoLookup.getInstance());
 MetaModels metaModels = new MetaModels(models, null);
-ValidationResult validationResult = new ArchetypeValidator(metaModels).validate(archetype);
+ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(metaModels).validate(archetype);
 ```
 
 This runs all the implemented archetype validation and returns a result. This result contains the validation results, the validation results of any template overlays and a flattened version of the input archetype.

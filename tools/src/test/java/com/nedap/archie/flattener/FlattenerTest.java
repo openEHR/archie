@@ -10,7 +10,7 @@ import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
-import com.nedap.archie.archetypevalidator.ValidationResult;
+import com.nedap.archie.archetypevalidator.ArchetypeValidationResult;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
@@ -272,7 +272,7 @@ data matches {
         models.registerModel(ArchieRMInfoLookup.getInstance());
         models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
         ((InMemoryFullArchetypeRepository) repository).compile(models);
-        for(ValidationResult result:((InMemoryFullArchetypeRepository) repository).getAllValidationResults()) {
+        for(ArchetypeValidationResult result:((InMemoryFullArchetypeRepository) repository).getAllValidationResults()) {
             assertTrue(result.getArchetypeId() + " had errors or warnings: " + result.getErrors(), result.passes());
         }
         System.out.println(repository);

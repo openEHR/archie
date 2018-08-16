@@ -6,13 +6,9 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.rminfo.RMAttributeInfo;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmProperty;
+import com.nedap.archie.archetypevalidator.ArchetypeValidatingVisitor;
 
-public class CodeValidation extends ValidatingVisitor {
+public class CodeValidation extends ArchetypeValidatingVisitor {
 
     public CodeValidation() {
         super();

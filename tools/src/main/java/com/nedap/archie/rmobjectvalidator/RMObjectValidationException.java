@@ -32,8 +32,8 @@ public class RMObjectValidationException extends Exception {
         this.humanPath = humanPath;
     }
 
-    public ValidationMessage getValidationMessage() {
-        return new ValidationMessage(this);
+    public RMObjectValidationMessage getValidationMessage() {
+        return new RMObjectValidationMessage(this);
 
     }
 }

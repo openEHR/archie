@@ -18,10 +18,10 @@ import java.util.List;
 /**
  * Created by pieter.bos on 31/03/2017.
  */
-public abstract class ValidatingVisitor extends ArchetypeValidationBase {
+public abstract class ArchetypeValidatingVisitor extends ArchetypeValidationBase {
 
 
-    public ValidatingVisitor() {
+    public ArchetypeValidatingVisitor() {
         super();
     }
 

@@ -3,14 +3,14 @@ package com.nedap.archie.archetypevalidator.validations;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.archetypevalidator.ArchetypeValidatingVisitor;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 
 /**
  * Phase 0 validator on existence
  */
-public class MultiplicitiesValidation extends ValidatingVisitor {
+public class MultiplicitiesValidation extends ArchetypeValidatingVisitor {
     public MultiplicitiesValidation() {
         super();
     }

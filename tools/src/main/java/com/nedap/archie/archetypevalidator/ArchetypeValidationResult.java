@@ -1,11 +1,9 @@
 package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.TemplateOverlay;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The result of a validation. Contains:
@@ -13,19 +11,19 @@ import java.util.Map;
  * - the unprocessed source archetype
  * - the flattened archetype, if flattening is possible
  */
-public class ValidationResult {
+public class ArchetypeValidationResult {
 
     private String archetypeId;//in case we do not even have an AOM because of a parse error
-    private List<ValidationMessage> errors = new ArrayList<>();
+    private List<ArchetypeValidationMessage> errors = new ArrayList<>();
     private Archetype sourceArchetype;
     private Archetype flattened;
-    private List<ValidationResult> overlayValidations;
+    private List<ArchetypeValidationResult> overlayValidations;
 
-    public ValidationResult(String archetypeId){
+    public ArchetypeValidationResult(String archetypeId){
         this.archetypeId = archetypeId;
     }
 
-    public ValidationResult(Archetype archetype) {
+    public ArchetypeValidationResult(Archetype archetype) {
         this.sourceArchetype = archetype;
         this.archetypeId = archetype.getArchetypeId().toString();
         this.overlayValidations = new ArrayList<>();
@@ -35,11 +33,11 @@ public class ValidationResult {
      * Get all the validation errors for this archetype
      * @return
      */
-    public List<ValidationMessage> getErrors() {
+    public List<ArchetypeValidationMessage> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<ValidationMessage> errors) {
+    public void setErrors(List<ArchetypeValidationMessage> errors) {
         this.errors = errors;
     }
 
@@ -87,7 +85,7 @@ public class ValidationResult {
      * @return
      */
     public boolean passes() {
-        for(ValidationMessage message:getErrors()) {
+        for(ArchetypeValidationMessage message:getErrors()) {
             if(!message.isWarning()) {
                 return false;
             }
@@ -99,7 +97,7 @@ public class ValidationResult {
      * Add validation results from template overlays defined in a template
      * @param overlayValidations
      */
-    public void addOverlayValidations(List<ValidationResult> overlayValidations) {
+    public void addOverlayValidations(List<ArchetypeValidationResult> overlayValidations) {
         this.overlayValidations = overlayValidations;
     }
 
@@ -109,7 +107,7 @@ public class ValidationResult {
      * there are errors in the overlays in the result of getErrors()
      * @return
      */
-    public List<ValidationResult> getOverlayValidations() {
+    public List<ArchetypeValidationResult> getOverlayValidations() {
         return overlayValidations;
     }
 
@@ -121,7 +119,7 @@ public class ValidationResult {
         result.append("\n");
         result.append("passes: " + passes());
         result.append("\n");
-        for(ValidationMessage message:errors) {
+        for(ArchetypeValidationMessage message:errors) {
             result.append(message);
             result.append("\n");
 

@@ -6,13 +6,13 @@ import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CArchetypeRoot;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.archetypevalidator.ArchetypeValidatingVisitor;
 import com.nedap.archie.flattener.ArchetypeRepository;
 import com.nedap.archie.rules.Assertion;
 
 import java.util.List;
 
-public class VariousStructureValidation extends ValidatingVisitor {
+public class VariousStructureValidation extends ArchetypeValidatingVisitor {
 
     public VariousStructureValidation() {
         super();

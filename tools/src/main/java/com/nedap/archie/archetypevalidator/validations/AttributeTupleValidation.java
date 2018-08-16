@@ -3,15 +3,13 @@ package com.nedap.archie.archetypevalidator.validations;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CAttributeTuple;
 import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveTuple;
-import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.archetypevalidator.ArchetypeValidatingVisitor;
 
 import java.util.List;
 
-public class AttributeTupleValidation extends ValidatingVisitor {
+public class AttributeTupleValidation extends ArchetypeValidatingVisitor {
 
     /**
      * Override for validation on complex objects

@@ -8,16 +8,14 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.rminfo.RMAttributeInfo;
-import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.archetypevalidator.ArchetypeValidatingVisitor;
 
 /**
  * TODO: check that enumeration type constraints use valid literal values (VCORMENV, VCORMENU, VCORMEN);
  * TODO: VCORM primtive types
  * Created by pieter.bos on 31/03/2017.
  */
-public class ValidateAgainstReferenceModel extends ValidatingVisitor {
+public class ValidateAgainstReferenceModel extends ArchetypeValidatingVisitor {
 
     public ValidateAgainstReferenceModel() {
         super();

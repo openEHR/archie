@@ -5,12 +5,12 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.aom.utils.RedefinitionStatus;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.archetypevalidator.ArchetypeValidatingVisitor;
 import com.nedap.archie.rules.Assertion;
 
 import java.util.List;
 
-public class SpecializedDefinitionValidation extends ValidatingVisitor {
+public class SpecializedDefinitionValidation extends ArchetypeValidatingVisitor {
     public SpecializedDefinitionValidation() {
         super();
     }

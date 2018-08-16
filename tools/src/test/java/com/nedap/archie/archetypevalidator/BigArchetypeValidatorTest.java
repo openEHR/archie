@@ -213,7 +213,7 @@ public class BigArchetypeValidatorTest {
 
         FullArchetypeRepository all = parseAll();
         for(Archetype archetype:repository.getAllArchetypes()) {
-            ValidationResult validation = validator.validate(archetype, all);
+            ArchetypeValidationResult validation = validator.validate(archetype, all);
             String regression = archetype.getDescription().getOtherDetails().get("regression");
             if(regression != null && !regression.equalsIgnoreCase("PASS")) {
                 if(!errorTypeImplemented(archetype, regression)) {
@@ -228,8 +228,8 @@ public class BigArchetypeValidatorTest {
                     } else {
                         boolean found = false;
                         Set<ErrorType> errorTypes = new LinkedHashSet<>();
-                        List<ValidationMessage> errors = validation.getErrors();
-                        for (ValidationMessage message : errors) {
+                        List<ArchetypeValidationMessage> errors = validation.getErrors();
+                        for (ArchetypeValidationMessage message : errors) {
                             errorTypes.add(message.getType());
                             if (errorMatches(message.getType(), regression)) {
                                 found = true;
@@ -299,8 +299,8 @@ public class BigArchetypeValidatorTest {
         return false;
     }
 
-    private void printErrors(ValidationResult result) {
-        for(ValidationMessage message:result.getErrors()) {
+    private void printErrors(ArchetypeValidationResult result) {
+        for(ArchetypeValidationMessage message:result.getErrors()) {
             log.error(message.toString());
         }
     }

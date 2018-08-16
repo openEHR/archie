@@ -35,20 +35,20 @@ public class ArchetypeValidatorTest {
     @Test
     public void validArchetype() throws Exception {
         archetype = parse("/basic.adl");
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         assertEquals(0, messages.size());
     }
 
     @Test
     public void VCARMNonExistantType() throws Exception {
         archetype = parse("/adl2-tests/validity/rm_checking/openEHR-EHR-EVALUATION.VCARM_rm_non_existent_attribute.v1.0.0.adls");
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         System.out.println(messages);
         assertEquals(1, messages.size());
         assertEquals(ErrorType.VCARM, messages.get(0).getType());
-        assertNull(validationResult.getFlattened());
+        assertNull(archetypeValidationResult.getFlattened());
     }
 
     @Test
@@ -59,19 +59,19 @@ public class ArchetypeValidatorTest {
         ArchetypeValidationSettings settings = new ArchetypeValidationSettings();
         settings.setAlwaysTryToFlatten(true);
         repository.setArchetypeValidationSettings(settings);
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype, repository);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype, repository);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         System.out.println(messages);
         assertEquals(1, messages.size());
         assertEquals(ErrorType.VCARM, messages.get(0).getType());
-        assertNotNull(validationResult.getFlattened());
+        assertNotNull(archetypeValidationResult.getFlattened());
     }
 
     @Test
     public void VCORMTNonConformingType2() throws Exception {
         archetype = parse("/adl2-tests/validity/rm_checking/openEHR-EHR-OBSERVATION.VCORMT_rm_non_conforming_type2.v1.0.0.adls");
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         System.out.println(messages);
         assertEquals(messages.toString(), 1, messages.size());
         assertEquals(ErrorType.VCORMT, messages.get(0).getType());
@@ -80,8 +80,8 @@ public class ArchetypeValidatorTest {
     @Test
     public void VACDFidCodeNotPresent() throws Exception {
         archetype = parse("/adl2-tests/validity/consistency/openEHR-TEST_PKG-ENTRY.VACDF_ac_code_in_definition_not_in_terminology.v1.0.0.adls");
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         System.out.println(messages);
         assertEquals(1, messages.size());
         assertEquals(ErrorType.VACDF, messages.get(0).getType());
@@ -91,8 +91,8 @@ public class ArchetypeValidatorTest {
     @Test
     public void VATDFatCodeNotPresent() throws Exception {
         archetype = parse("/adl2-tests/validity/consistency/openEHR-TEST_PKG-ENTRY.VATDF_at_code_in_ordinal_not_in_terminology.v1.0.0.adls");
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         System.out.println(messages);
         assertEquals(1, messages.size());
         assertEquals(ErrorType.VATDF, messages.get(0).getType());
@@ -102,8 +102,8 @@ public class ArchetypeValidatorTest {
     @Test
     public void tupleMemberSizeMismatch() throws Exception {
         archetype = parse("openEHR-EHR-CLUSTER.invalid_tuple_1.v1.0.0.adls");
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         System.out.println(messages);
         assertEquals(2, messages.size());
         assertEquals(ErrorType.OTHER, messages.get(0).getType());
@@ -113,8 +113,8 @@ public class ArchetypeValidatorTest {
     @Test
     public void tupleMemberTypeMismatch() throws Exception {
         archetype = parse("openEHR-EHR-CLUSTER.invalid_tuple_2.v1.0.0.adls");
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         System.out.println(messages);
         assertEquals(1, messages.size());
         assertEquals(ErrorType.VCARM, messages.get(0).getType());
@@ -123,8 +123,8 @@ public class ArchetypeValidatorTest {
     @Test
     public void tuplePrimitiveTypeMismatch() throws Exception {
         archetype = parse("openEHR-EHR-CLUSTER.invalid_tuple_3.v1.0.0.adls");
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        List<ValidationMessage> messages = validationResult.getErrors();
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ArchetypeValidationMessage> messages = archetypeValidationResult.getErrors();
         System.out.println(messages);
         assertEquals(1, messages.size());
         assertEquals(ErrorType.VCORMT, messages.get(0).getType());

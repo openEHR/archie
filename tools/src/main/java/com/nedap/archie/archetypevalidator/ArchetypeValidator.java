@@ -84,7 +84,7 @@ public class ArchetypeValidator {
 
     }
 
-    public ValidationResult validate(Archetype archetype) {
+    public ArchetypeValidationResult validate(Archetype archetype) {
         return validate(archetype, null);
     }
 
@@ -97,7 +97,7 @@ public class ArchetypeValidator {
      * Returns a validationResult that contains errors, warnings, the source archetype and the flattened form of the archetype.
      * If the parent of a specialized archetype did not validate, returns the validationResult
      * of the parent - because that is the error. Using classes must check if the actual archetype given in the argument
-     * or the parent archetype caused the error by inspecting ValidationResult.getArchetypeId().
+     * or the parent archetype caused the error by inspecting ArchetypeValidationResult.getArchetypeId().
      *
      * All results will be stored in the given FullArchetypeRepository
      *
@@ -105,7 +105,7 @@ public class ArchetypeValidator {
      * @param repository
      * @return
      */
-    public ValidationResult validate(Archetype archetype, FullArchetypeRepository repository) {
+    public ArchetypeValidationResult validate(Archetype archetype, FullArchetypeRepository repository) {
         ArchetypeValidationSettings settings = repository == null ? null : repository.getArchetypeValidationSettings();
         if(settings == null) {
             settings = new ArchetypeValidationSettings();
@@ -141,15 +141,15 @@ public class ArchetypeValidator {
         //we assume we always want a new validation to be run, for example because the archetype
         //has been updated. Therefore, do not retrieve the old result from the repository
         archetype = cloneAndPreprocess(combinedModels, archetype);//this clones the actual archetype so the source does not get changed
-        ValidationResult parentValidationResult = null;
+        ArchetypeValidationResult parentArchetypeValidationResult = null;
         Archetype flatParent = null;
         if(archetype.isSpecialized()) {
-            parentValidationResult = getParentValidationResult(archetype, repository);
-            if(parentValidationResult != null) {
-                if(parentValidationResult.passes()) {
-                    flatParent = parentValidationResult.getFlattened();
+            parentArchetypeValidationResult = getParentValidationResult(archetype, repository);
+            if(parentArchetypeValidationResult != null) {
+                if(parentArchetypeValidationResult.passes()) {
+                    flatParent = parentArchetypeValidationResult.getFlattened();
                 } else {
-                    return parentValidationResult;
+                    return parentArchetypeValidationResult;
                 }
             }
         }
@@ -157,8 +157,8 @@ public class ArchetypeValidator {
             repository = new InMemoryFullArchetypeRepository();
         }
 
-        List<ValidationMessage> messages = runValidations(archetype, repository, settings, flatParent, validationsPhase0);
-        ValidationResult result = new ValidationResult(archetype);
+        List<ArchetypeValidationMessage> messages = runValidations(archetype, repository, settings, flatParent, validationsPhase0);
+        ArchetypeValidationResult result = new ArchetypeValidationResult(archetype);
         result.setErrors(messages);
         if(result.passes()) {
             //continue running only if the basic phase 0 validation run, otherwise we get annoying exceptions
@@ -181,7 +181,7 @@ public class ArchetypeValidator {
                     messages.addAll(runValidations(flattened, repository, settings, flatParent, validationsPhase3));
                 }
             } catch (Exception e) {
-                messages.add(new ValidationMessage(ErrorType.OTHER, "flattening failed with exception " + e));
+                messages.add(new ArchetypeValidationMessage(ErrorType.OTHER, "flattening failed with exception " + e));
                 logger.error("error during validation", e);
             }
         }
@@ -189,9 +189,9 @@ public class ArchetypeValidator {
             OverridingInMemFullArchetypeRepository repositoryWithOverlays =  (OverridingInMemFullArchetypeRepository) repository;
             FullArchetypeRepository extraArchetypeRepository = repositoryWithOverlays.getExtraArchetypeRepository();
             result.addOverlayValidations(extraArchetypeRepository.getAllValidationResults());
-            for(ValidationResult subResult:extraArchetypeRepository.getAllValidationResults()) {
+            for(ArchetypeValidationResult subResult:extraArchetypeRepository.getAllValidationResults()) {
                 if(!subResult.passes()) {
-                    result.getErrors().add(new ValidationMessage(ErrorType.OTHER, MessageFormat.format("template overlay {0} had validation errors", subResult.getArchetypeId())));
+                    result.getErrors().add(new ArchetypeValidationMessage(ErrorType.OTHER, MessageFormat.format("template overlay {0} had validation errors", subResult.getArchetypeId())));
                 }
             }
         }
@@ -202,7 +202,7 @@ public class ArchetypeValidator {
         return result;
     }
 
-    private ValidationResult getParentValidationResult(Archetype archetype, FullArchetypeRepository repository) {
+    private ArchetypeValidationResult getParentValidationResult(Archetype archetype, FullArchetypeRepository repository) {
         if(!archetype.isSpecialized()) {
             return null; //no parent
         }
@@ -219,18 +219,18 @@ public class ArchetypeValidator {
      * @param repository
      * @return
      */
-    private ValidationResult getValidationResult(String archetypeId, FullArchetypeRepository repository) {
+    private ArchetypeValidationResult getValidationResult(String archetypeId, FullArchetypeRepository repository) {
         Archetype archetype = repository.getArchetype(archetypeId);
         if(archetype == null) {
             return null; //this situation will trigger the correct message later
         }
 
-        ValidationResult validationResult = repository.getValidationResult(archetypeId);
-        if(validationResult == null) {
+        ArchetypeValidationResult archetypeValidationResult = repository.getValidationResult(archetypeId);
+        if(archetypeValidationResult == null) {
             //archetype not yet validated. do it now.
-            validationResult = validate(archetype, repository);
+            archetypeValidationResult = validate(archetype, repository);
         }
-        return validationResult;
+        return archetypeValidationResult;
     }
 
     private Archetype cloneAndPreprocess(MetaModels models, Archetype archetype) {
@@ -239,16 +239,16 @@ public class ArchetypeValidator {
         return preprocessed;
     }
 
-    private List<ValidationMessage> runValidations(Archetype archetype, ArchetypeRepository repository, ArchetypeValidationSettings settings, Archetype flatParent, List<ArchetypeValidation> validations) {
+    private List<ArchetypeValidationMessage> runValidations(Archetype archetype, ArchetypeRepository repository, ArchetypeValidationSettings settings, Archetype flatParent, List<ArchetypeValidation> validations) {
 
-        List<ValidationMessage> messages = new ArrayList<>();
+        List<ArchetypeValidationMessage> messages = new ArrayList<>();
         for(ArchetypeValidation validation: validations) {
             try {
                 messages.addAll(validation.validate(combinedModels, archetype, flatParent, repository, settings));
             } catch (Exception e) {
                 logger.error("error running validation processor", e);
                 e.printStackTrace();
-                messages.add(new ValidationMessage(ErrorType.OTHER, "unknown path", "error running validator : " + e.getClass().getSimpleName() +
+                messages.add(new ArchetypeValidationMessage(ErrorType.OTHER, "unknown path", "error running validator : " + e.getClass().getSimpleName() +
                         Joiner.on("\n").join(e.getStackTrace())));
             }
         }

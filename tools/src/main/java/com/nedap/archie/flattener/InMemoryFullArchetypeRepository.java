@@ -3,8 +3,8 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.OperationalTemplate;
+import com.nedap.archie.archetypevalidator.ArchetypeValidationResult;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationSettings;
-import com.nedap.archie.archetypevalidator.ValidationResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryFullArchetypeRepository extends SimpleArchetypeRepository implements FullArchetypeRepository, MutableArchetypeRepository {
 
-    private Map<String, ValidationResult> validationResult = new ConcurrentHashMap<>();
+    private Map<String, ArchetypeValidationResult> validationResult = new ConcurrentHashMap<>();
 
     private Map<String, Archetype> flattenedArchetypes = new ConcurrentHashMap<>();
     private Map<String, Archetype> operationalTemplates = new ConcurrentHashMap<>();
@@ -25,12 +25,12 @@ public class InMemoryFullArchetypeRepository extends SimpleArchetypeRepository i
     }
 
     @Override
-    public ValidationResult getValidationResult(String archetypeId) {
+    public ArchetypeValidationResult getValidationResult(String archetypeId) {
         return validationResult.get(new ArchetypeHRID(archetypeId).getSemanticId());
     }
 
     @Override
-    public void setValidationResult(ValidationResult result) {
+    public void setValidationResult(ArchetypeValidationResult result) {
         validationResult.put(new ArchetypeHRID(result.getArchetypeId()).getSemanticId(), result);
     }
 
@@ -51,7 +51,7 @@ public class InMemoryFullArchetypeRepository extends SimpleArchetypeRepository i
     }
 
     @Override
-    public List<ValidationResult> getAllValidationResults() {
+    public List<ArchetypeValidationResult> getAllValidationResults() {
         return new ArrayList<>(validationResult.values());
     }
 

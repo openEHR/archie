@@ -5,7 +5,7 @@ import com.nedap.archie.aom.Archetype;
 
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
-import com.nedap.archie.archetypevalidator.ValidationResult;
+import com.nedap.archie.archetypevalidator.ArchetypeValidationResult;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
@@ -31,8 +31,8 @@ public class SiblingOrderFlattenerTest {
         repository = new InMemoryFullArchetypeRepository();
         parentArchetype = parse("openEHR-EHR-CLUSTER.order-parent.v1.0.0.adls");
         ReferenceModels models = BuiltinReferenceModels.getAvailableModelInfoLookups();
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(parentArchetype, repository);
-        assertTrue(validationResult.getErrors().toString(), validationResult.passes());
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(parentArchetype, repository);
+        assertTrue(archetypeValidationResult.getErrors().toString(), archetypeValidationResult.passes());
         repository.addArchetype(parentArchetype);
 
     }
@@ -128,8 +128,8 @@ public class SiblingOrderFlattenerTest {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());
-        ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
-        assertTrue(validationResult.getErrors().toString(), validationResult.passes());
+        ArchetypeValidationResult archetypeValidationResult = new ArchetypeValidator(models).validate(result, repository);
+        assertTrue(archetypeValidationResult.getErrors().toString(), archetypeValidationResult.passes());
 
         return new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).flatten(parse(fileName));
     }

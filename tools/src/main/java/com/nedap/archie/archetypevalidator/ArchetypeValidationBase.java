@@ -13,7 +13,7 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     protected Archetype archetype;
     protected Archetype flatParent;
     protected ArchetypeRepository repository;
-    protected List<ValidationMessage> messages;
+    protected List<ArchetypeValidationMessage> messages;
     protected ModelInfoLookup lookup;
     protected MetaModels combinedModels;
     protected ArchetypeValidationSettings settings;
@@ -22,7 +22,7 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     }
 
     @Override
-    public List<ValidationMessage> validate(MetaModels models, Archetype archetype, Archetype flatParent, ArchetypeRepository repository, ArchetypeValidationSettings settings) {
+    public List<ArchetypeValidationMessage> validate(MetaModels models, Archetype archetype, Archetype flatParent, ArchetypeRepository repository, ArchetypeValidationSettings settings) {
         this.archetype = archetype;
         this.flatParent = flatParent;
         this.repository = repository;
@@ -38,42 +38,42 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     public abstract void validate();
 
     public void addMessage(ErrorType errorType) {
-        messages.add(new ValidationMessage(errorType));
+        messages.add(new ArchetypeValidationMessage(errorType));
     }
 
     public void addMessageWithPath(ErrorType errorType, String path) {
-        messages.add(new ValidationMessage(errorType, path));
+        messages.add(new ArchetypeValidationMessage(errorType, path));
     }
 
     public void addMessageWithPath(ErrorType errorType, String path, String customMessage) {
-        messages.add(new ValidationMessage(errorType, path, customMessage));
+        messages.add(new ArchetypeValidationMessage(errorType, path, customMessage));
     }
 
     public void addMessage(ErrorType errorType, String customMessage) {
-        messages.add(new ValidationMessage(errorType, null, customMessage));
+        messages.add(new ArchetypeValidationMessage(errorType, null, customMessage));
     }
 
     public void addWarning(ErrorType errorType) {
-        ValidationMessage message = new ValidationMessage(errorType);
+        ArchetypeValidationMessage message = new ArchetypeValidationMessage(errorType);
         message.setWarning(true);
         messages.add(message);
 
     }
 
     public void addWarning(ErrorType errorType, String customMessage) {
-        ValidationMessage message = new ValidationMessage(errorType, null, customMessage);
+        ArchetypeValidationMessage message = new ArchetypeValidationMessage(errorType, null, customMessage);
         message.setWarning(true);
         messages.add(message);
     }
 
     public void addWarningWithPath(ErrorType errorType, String location) {
-        ValidationMessage message = new ValidationMessage(errorType, location);
+        ArchetypeValidationMessage message = new ArchetypeValidationMessage(errorType, location);
         message.setWarning(true);
         messages.add(message);
     }
 
     public void addWarningWithPath(ErrorType errorType, String location, String customMessage) {
-        ValidationMessage message = new ValidationMessage(errorType, location, customMessage);
+        ArchetypeValidationMessage message = new ArchetypeValidationMessage(errorType, location, customMessage);
         message.setWarning(true);
         messages.add(message);
     }
@@ -98,7 +98,7 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
         return repository;
     }
 
-    public List<ValidationMessage> getMessages() {
+    public List<ArchetypeValidationMessage> getMessages() {
         return messages;
     }
 

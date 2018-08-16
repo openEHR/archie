@@ -71,14 +71,14 @@ public class CKMArchetypeValidatorTest {
     }
 
     private void runTest(FullArchetypeRepository repository) {
-        List<ValidationResult> allValidationResults = repository.getAllValidationResults();
-        List<ValidationResult> resultWithErrors = allValidationResults.stream()
+        List<ArchetypeValidationResult> allArchetypeValidationResults = repository.getAllValidationResults();
+        List<ArchetypeValidationResult> resultWithErrors = allArchetypeValidationResults.stream()
                 .filter(r -> !r.passes())
                 .filter(r -> !archetypesWithKnownErrors.contains(r.getArchetypeId()))
                 .collect(Collectors.toList());
 
         StringBuilder error = new StringBuilder();
-        for(ValidationResult result:resultWithErrors) {
+        for(ArchetypeValidationResult result:resultWithErrors) {
             error.append(result);
             error.append("\n\n");
         }

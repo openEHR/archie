@@ -6,13 +6,13 @@ import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.archetypevalidator.ArchetypeValidatingVisitor;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 
 import java.util.List;
 
-public class DefinitionStructureValidation extends ValidatingVisitor {
+public class DefinitionStructureValidation extends ArchetypeValidatingVisitor {
 
 
     public DefinitionStructureValidation() {
