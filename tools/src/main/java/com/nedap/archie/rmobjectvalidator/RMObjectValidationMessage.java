@@ -14,24 +14,12 @@ public class RMObjectValidationMessage {
 
     private RMObjectValidationMessageType type;
 
-
-    // Constructors with default message validation type
-    public RMObjectValidationMessage(ArchetypeConstraint constraint, IDTreeElement object, String message) {
-        this(constraint, object, message, RMObjectValidationMessageType.DEFAULT);
-    }
-
     public RMObjectValidationMessage(ArchetypeConstraint constraint, AttributeTreeElement object, String message) {
         this(constraint, object, message, RMObjectValidationMessageType.DEFAULT);
     }
 
     public RMObjectValidationMessage(ArchetypeConstraint constraint, String actualPath, String message) {
         this(constraint, actualPath, message, RMObjectValidationMessageType.DEFAULT);
-    }
-
-
-    // Constructors with custom message validation type
-    public RMObjectValidationMessage(ArchetypeConstraint constraint, IDTreeElement object, String message, RMObjectValidationMessageType type) {
-        this(object.reconstructPath(), constraint.getPath(), constraint.getLogicalPath(), message, type);
     }
 
     public RMObjectValidationMessage(ArchetypeConstraint constraint, String actualPath, String message, RMObjectValidationMessageType type) {
