@@ -33,27 +33,13 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
     public List<RMObjectValidationMessage> validate(Archetype archetype, Object rmObject) {
         clearMessages();
-        //run the default validation steps for the reference model - for example non-null values
-        runJavaBeanValidations(rmObject);
         List<RMObjectWithPath> objects = Lists.newArrayList(new RMObjectWithPath(rmObject, ""));
         addAllMessages(runArchetypeValidations(objects, "", archetype.getDefinition()));
-
         return getMessages();
-    }
-
-    private void runJavaBeanValidations(Object rmObject) {
-//        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-//        Validator validator = factory.getValidator();
-//        Set<ConstraintViolation<Object>> constraintViolations = validator.validate(rmObject);
-//        for(ConstraintViolation<Object> violation:constraintViolations) {
-//            //TODO: get the path. Might still be possible with an RMObject!
-//            addMessage(new RMObjectValidationMessage(violation.getRootBeanClass().getSimpleName(), violation.getRootBeanClass().getSimpleName(), violation.getMessage()));
-//        }
     }
 
     private List<RMObjectValidationMessage> runArchetypeValidations(List<RMObjectWithPath> rmObjects, String path, CObject cobject) {
         List<RMObjectValidationMessage> result = new ArrayList<>(RMOccurrenceValidation.validate(rmObjects, path, cobject));
-
         if (rmObjects.isEmpty()) {
             //if this branch of the archetype tree is null in the reference model, we're done validating
             //this has to be done after validateOccurrences(), or required fields do not get validated
