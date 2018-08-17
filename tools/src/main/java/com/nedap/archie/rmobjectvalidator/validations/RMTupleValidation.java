@@ -11,21 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RMTupleValidation {
-    private final ModelInfoLookup lookup;
-    private final CObject cobject;
-    private final String pathSoFar;
-    private final List<RMObjectWithPath> rmObjects;
-    private final CAttributeTuple tuple;
-
-    public RMTupleValidation(ModelInfoLookup lookup, CObject cobject, String pathSoFar, List<RMObjectWithPath> rmObjects, CAttributeTuple tuple) {
-        this.lookup = lookup;
-        this.cobject = cobject;
-        this.pathSoFar = pathSoFar;
-        this.rmObjects = rmObjects;
-        this.tuple = tuple;
-    }
-
-    public List<RMObjectValidationMessage> validate() {
+    public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, CObject cobject, String pathSoFar, List<RMObjectWithPath> rmObjects, CAttributeTuple tuple) {
         List<RMObjectValidationMessage> result = new ArrayList<>();
         if (rmObjects.size() != 1) {
             String message = RMObjectValidationMessageIds.rm_TUPLE_CONSTRAINT.getMessage(cobject.toString(), rmObjects.toString());

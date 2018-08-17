@@ -11,18 +11,8 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMOccurenceValidation {
-    private final List<RMObjectWithPath> rmObjects;
-    private final String pathSoFar;
-    private final CObject cobject;
-
-    public RMOccurenceValidation(List<RMObjectWithPath> rmObjects, String pathSoFar, CObject cobject) {
-        this.rmObjects = rmObjects;
-        this.pathSoFar = pathSoFar;
-        this.cobject = cobject;
-    }
-
-    public List<RMObjectValidationMessage> validate() {
+public class RMOccurrenceValidation {
+    public static List<RMObjectValidationMessage> validate(List<RMObjectWithPath> rmObjects, String pathSoFar, CObject cobject) {
         if (cobject.getOccurrences() != null) {
             MultiplicityInterval occurrences = cobject.getOccurrences();
             if (!occurrences.has(rmObjects.size())) {

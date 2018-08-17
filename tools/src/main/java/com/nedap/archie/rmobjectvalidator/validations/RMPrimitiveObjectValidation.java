@@ -11,19 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class RMPrimitiveObjectValidation {
-    private final ModelInfoLookup lookup;
-    private final List<RMObjectWithPath> rmObjects;
-    private final String pathSoFar;
-    private final CPrimitiveObject cobject;
-
-    public RMPrimitiveObjectValidation(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject cobject) {
-        this.lookup = lookup;
-        this.rmObjects = rmObjects;
-        this.pathSoFar = pathSoFar;
-        this.cobject = cobject;
-    }
-
-    public List<RMObjectValidationMessage> validate() {
+    public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject cobject) {
         if (cobject.getSocParent() != null) {
             //validate the tuple, not the primitive object directly
             return Collections.emptyList();

@@ -4,20 +4,18 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
-import com.nedap.archie.base.Cardinality;
-import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
-import com.nedap.archie.rmobjectvalidator.validations.RMOccurenceValidation;
+import com.nedap.archie.rmobjectvalidator.validations.RMMultiplicityValidation;
+import com.nedap.archie.rmobjectvalidator.validations.RMOccurrenceValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMPrimitiveObjectValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMTupleValidation;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,8 +52,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
     private List<RMObjectValidationMessage> runArchetypeValidations(List<RMObjectWithPath> rmObjects, String path, CObject cobject) {
-        RMOccurenceValidation rmOccurenceValidation = new RMOccurenceValidation(rmObjects, path, cobject);
-        List<RMObjectValidationMessage> result = new ArrayList<>(rmOccurenceValidation.validate());
+        List<RMObjectValidationMessage> result = new ArrayList<>(RMOccurrenceValidation.validate(rmObjects, path, cobject));
 
         if (rmObjects.isEmpty()) {
             //if this branch of the archetype tree is null in the reference model, we're done validating
@@ -63,15 +60,13 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             return result;
         }
         if (cobject instanceof CPrimitiveObject) {
-            RMPrimitiveObjectValidation rmPrimitiveObjectValidation = new RMPrimitiveObjectValidation(lookup, rmObjects, path, (CPrimitiveObject) cobject);
-            result = rmPrimitiveObjectValidation.validate();
+            result = RMPrimitiveObjectValidation.validate(lookup, rmObjects, path, (CPrimitiveObject) cobject);
         } else {
             result = new ArrayList<>();
             if (cobject instanceof CComplexObject) {
                 CComplexObject cComplexObject = (CComplexObject) cobject;
                 for (CAttributeTuple tuple : cComplexObject.getAttributeTuples()) {
-                    RMTupleValidation tupleValidation = new RMTupleValidation(lookup, cobject, path, rmObjects, tuple);
-                    result.addAll(tupleValidation.validate());
+                    result.addAll(RMTupleValidation.validate(lookup, cobject, path, rmObjects, tuple));
                 }
             }
             for (RMObjectWithPath objectWithPath : rmObjects) {
@@ -102,7 +97,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                         result.addAll(emptyObservationErrors);
 
                         if (emptyObservationErrors.isEmpty()) {
-                            result.addAll(validateMultiplicity(attribute, pathSoFar + "/" + rmAttributeName, attributeValue));
+                            result.addAll(RMMultiplicityValidation.validate(attribute, pathSoFar + "/" + rmAttributeName, attributeValue));
                             if (attribute.isSingle()) {
                                 List<List<RMObjectValidationMessage>> subResults = new ArrayList<>();
                                 for (CObject childCObject : attribute.getChildren()) {
@@ -220,7 +215,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         return result;
     }
 
-
     private String stripLastPathSegment(String path) {
         if (path.equals("/")) {
             return "";
@@ -230,29 +224,5 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             return path;
         }
         return path.substring(0, lastSlashIndex);
-    }
-
-
-    private List<RMObjectValidationMessage> validateMultiplicity(CAttribute attribute, String pathSoFar, Object attributeValue) {
-        if (attributeValue instanceof Collection) {
-            Collection collectionValue = (Collection) attributeValue;
-            //validate multiplicity
-            Cardinality cardinality = attribute.getCardinality();
-            if (cardinality != null) {
-                if (!cardinality.getInterval().has(collectionValue.size())) {
-                    String message = RMObjectValidationMessageIds.rm_CARDINALITY_MISMATCH.getMessage(cardinality.getInterval().toString());
-                    return Lists.newArrayList(new RMObjectValidationMessage(attribute, pathSoFar, message));
-                }
-            }
-        } else {
-            MultiplicityInterval existence = attribute.getExistence();
-            if (existence != null) {
-                if (!existence.has(attributeValue == null ? 0 : 1)) {
-                    String message = RMObjectValidationMessageIds.rm_EXISTENCE_MISMATCH.getMessage(attribute.getRmAttributeName(), attribute.getParent().getRmTypeName(), existence.toString());
-                    return Lists.newArrayList((new RMObjectValidationMessage(attribute, pathSoFar, message, RMObjectValidationMessageType.REQUIRED)));
-                }
-            }
-        }
-        return new ArrayList<>();
     }
 }
