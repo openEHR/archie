@@ -12,6 +12,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.rmobjectvalidator.validations.RMOccurenceValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMPrimitiveObjectValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMTupleValidation;
 
@@ -53,9 +54,8 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
     private List<RMObjectValidationMessage> runArchetypeValidations(List<RMObjectWithPath> rmObjects, String path, CObject cobject) {
-        List<RMObjectValidationMessage> result = new ArrayList<>();
-
-        result.addAll(validateOccurrences(rmObjects, path, cobject));
+        RMOccurenceValidation rmOccurenceValidation = new RMOccurenceValidation(rmObjects, path, cobject);
+        List<RMObjectValidationMessage> result = new ArrayList<>(rmOccurenceValidation.validate());
 
         if (rmObjects.isEmpty()) {
             //if this branch of the archetype tree is null in the reference model, we're done validating
@@ -255,17 +255,4 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         }
         return new ArrayList<>();
     }
-
-    private List<RMObjectValidationMessage> validateOccurrences(List<RMObjectWithPath> rmObjects, String pathSoFar, CObject cobject) {
-        if (cobject.getOccurrences() != null) {
-            MultiplicityInterval occurrences = cobject.getOccurrences();
-            if (!occurrences.has(rmObjects.size())) {
-                String message = RMObjectValidationMessageIds.rm_OCCURRENCE_MISMATCH.getMessage(rmObjects.size(), occurrences.toString());
-                RMObjectValidationMessageType messageType = occurrences.isMandatory() ? RMObjectValidationMessageType.REQUIRED : RMObjectValidationMessageType.DEFAULT;
-                return Lists.newArrayList(new RMObjectValidationMessage(cobject, pathSoFar, message, messageType));
-            }
-        }
-        return new ArrayList<>();
-    }
-
 }
