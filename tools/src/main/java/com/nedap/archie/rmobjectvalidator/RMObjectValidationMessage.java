@@ -71,7 +71,6 @@ public class RMObjectValidationMessage {
     }
 
     public String toString() {
-        return "Message at " + humanReadableArchetypePath + " (" + path + "): " + message;
+        return RMObjectValidationMessageIds.rm_VALIDATION_MESSAGE_TO_STRING.getMessage(humanReadableArchetypePath, path, message);
     }
-
 }

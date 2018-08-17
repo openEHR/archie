@@ -77,7 +77,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                     result.add(new RMObjectValidationMessage(
                             cobject,
                             objectWithPath.getPath(),
-                            "Object should be type " + cobject.getRmTypeName() + ", but was " + objectWithPath.getObject().getClass().getSimpleName(),
+                            RMObjectValidationMessageIds.rm_INCORRECT_TYPE.getMessage(cobject.getRmTypeName(), objectWithPath.getObject().getClass().getSimpleName()),
                             RMObjectValidationMessageType.WRONG_TYPE)
                     );
                 } else {
@@ -229,13 +229,13 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private Collection<? extends RMObjectValidationMessage> validateTuple(CObject cobject, String pathSoFar, List<RMObjectWithPath> rmObjects, CAttributeTuple tuple) {
         List<RMObjectValidationMessage> result = new ArrayList<>();
         if (rmObjects.size() != 1) {
-            String message = "Multiple values for Tuple constraint " + cobject.toString() + ": " + rmObjects.toString();
+            String message = RMObjectValidationMessageIds.rm_TUPLE_CONSTRAINT.getMessage(cobject.toString(), rmObjects.toString());
             result.add(new RMObjectValidationMessage(cobject, pathSoFar, message));
             return result;
         }
         Object rmObject = rmObjects.get(0).getObject();
         if (!tuple.isValid(lookup, rmObject)) {
-            String message = "Object does not match tuple: " + tuple.toString();
+            String message = RMObjectValidationMessageIds.rm_TUPLE_MISMATCH.getMessage(tuple.toString());
             result.add(new RMObjectValidationMessage(cobject, pathSoFar, message));
         }
         return result;
@@ -248,13 +248,13 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         }
         List<RMObjectValidationMessage> result = new ArrayList<>();
         if (rmObjects.size() != 1) {
-            String message = "Multiple values for Primitive Object constraint " + cobject.toString() + ": " + rmObjects.toString();
+            String message = RMObjectValidationMessageIds.rm_PRIMITIVE_CONSTRAINT.getMessage(cobject.toString(), rmObjects.toString());
             result.add(new RMObjectValidationMessage(cobject, pathSoFar, message));
             return result;
         }
         Object rmObject = rmObjects.get(0).getObject();
         if (!cobject.isValidValue(lookup, rmObject)) {
-            String message = "Not a valid value for constraint " + cobject.toString() + ": " + rmObject.toString();
+            String message = RMObjectValidationMessageIds.rm_INVALID_FOR_CONSTRAINT.getMessage(cobject.toString(), rmObject.toString());
             result.add(new RMObjectValidationMessage(cobject, pathSoFar, message));
         }
         return result;
@@ -267,7 +267,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             Cardinality cardinality = attribute.getCardinality();
             if (cardinality != null) {
                 if (!cardinality.getInterval().has(collectionValue.size())) {
-                    String message = "Attribute does not match cardinality " + cardinality.getInterval().toString();
+                    String message = RMObjectValidationMessageIds.rm_CARDINALITY_MISMATCH.getMessage(cardinality.getInterval().toString());
                     return Lists.newArrayList(new RMObjectValidationMessage(attribute, pathSoFar, message));
                 }
             }
@@ -275,7 +275,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             MultiplicityInterval existence = attribute.getExistence();
             if (existence != null) {
                 if (!existence.has(attributeValue == null ? 0 : 1)) {
-                    String message = "Attribute " + attribute.getRmAttributeName() + " of class " + attribute.getParent().getRmTypeName() + " does not match existence " + existence.toString();
+                    String message = RMObjectValidationMessageIds.rm_EXISTENCE_MISMATCH.getMessage(attribute.getRmAttributeName(), attribute.getParent().getRmTypeName(), existence.toString());
                     return Lists.newArrayList((new RMObjectValidationMessage(attribute, pathSoFar, message, RMObjectValidationMessageType.REQUIRED)));
                 }
             }
@@ -284,14 +284,11 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
     private List<RMObjectValidationMessage> validateOccurrences(List<RMObjectWithPath> rmObjects, String pathSoFar, CObject cobject) {
-
         if (cobject.getOccurrences() != null) {
             MultiplicityInterval occurrences = cobject.getOccurrences();
             if (!occurrences.has(rmObjects.size())) {
-                String message = "Attribute has " + rmObjects.size() + " occurrences, but must be " + occurrences.toString();
-
+                String message = RMObjectValidationMessageIds.rm_OCCURRENCE_MISMATCH.getMessage(rmObjects.size(), occurrences.toString());
                 RMObjectValidationMessageType messageType = occurrences.isMandatory() ? RMObjectValidationMessageType.REQUIRED : RMObjectValidationMessageType.DEFAULT;
-
                 return Lists.newArrayList(new RMObjectValidationMessage(cobject, pathSoFar, message, messageType));
             }
         }
