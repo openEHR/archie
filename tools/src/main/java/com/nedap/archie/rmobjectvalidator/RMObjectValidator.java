@@ -12,6 +12,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.rmobjectvalidator.validations.RMTupleValidation;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -65,7 +66,8 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             if (cobject instanceof CComplexObject) {
                 CComplexObject cComplexObject = (CComplexObject) cobject;
                 for (CAttributeTuple tuple : cComplexObject.getAttributeTuples()) {
-                    result.addAll(validateTuple(cobject, path, rmObjects, tuple));
+                    RMTupleValidation tupleValidator = new RMTupleValidation(lookup, cobject, path, rmObjects, tuple);
+                    result.addAll(tupleValidator.validate());
                 }
             }
             for (RMObjectWithPath objectWithPath : rmObjects) {
@@ -224,21 +226,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             return path;
         }
         return path.substring(0, lastSlashIndex);
-    }
-
-    private Collection<? extends RMObjectValidationMessage> validateTuple(CObject cobject, String pathSoFar, List<RMObjectWithPath> rmObjects, CAttributeTuple tuple) {
-        List<RMObjectValidationMessage> result = new ArrayList<>();
-        if (rmObjects.size() != 1) {
-            String message = RMObjectValidationMessageIds.rm_TUPLE_CONSTRAINT.getMessage(cobject.toString(), rmObjects.toString());
-            result.add(new RMObjectValidationMessage(cobject, pathSoFar, message));
-            return result;
-        }
-        Object rmObject = rmObjects.get(0).getObject();
-        if (!tuple.isValid(lookup, rmObject)) {
-            String message = RMObjectValidationMessageIds.rm_TUPLE_MISMATCH.getMessage(tuple.toString());
-            result.add(new RMObjectValidationMessage(cobject, pathSoFar, message));
-        }
-        return result;
     }
 
     private List<RMObjectValidationMessage> validatePrimitiveObject(List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject cobject) {
