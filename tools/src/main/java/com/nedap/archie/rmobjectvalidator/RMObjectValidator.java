@@ -12,9 +12,13 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.rmobjectvalidator.validations.RMPrimitiveObjectValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMTupleValidation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -58,16 +62,16 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             //this has to be done after validateOccurrences(), or required fields do not get validated
             return result;
         }
-
         if (cobject instanceof CPrimitiveObject) {
-            result = validatePrimitiveObject(rmObjects, path, (CPrimitiveObject) cobject);
+            RMPrimitiveObjectValidation rmPrimitiveObjectValidation = new RMPrimitiveObjectValidation(lookup, rmObjects, path, (CPrimitiveObject) cobject);
+            result = rmPrimitiveObjectValidation.validate();
         } else {
             result = new ArrayList<>();
             if (cobject instanceof CComplexObject) {
                 CComplexObject cComplexObject = (CComplexObject) cobject;
                 for (CAttributeTuple tuple : cComplexObject.getAttributeTuples()) {
-                    RMTupleValidation tupleValidator = new RMTupleValidation(lookup, cobject, path, rmObjects, tuple);
-                    result.addAll(tupleValidator.validate());
+                    RMTupleValidation tupleValidation = new RMTupleValidation(lookup, cobject, path, rmObjects, tuple);
+                    result.addAll(tupleValidation.validate());
                 }
             }
             for (RMObjectWithPath objectWithPath : rmObjects) {
@@ -228,24 +232,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         return path.substring(0, lastSlashIndex);
     }
 
-    private List<RMObjectValidationMessage> validatePrimitiveObject(List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject cobject) {
-        if (cobject.getSocParent() != null) {
-            //validate the tuple, not the primitive object directly
-            return Collections.emptyList();
-        }
-        List<RMObjectValidationMessage> result = new ArrayList<>();
-        if (rmObjects.size() != 1) {
-            String message = RMObjectValidationMessageIds.rm_PRIMITIVE_CONSTRAINT.getMessage(cobject.toString(), rmObjects.toString());
-            result.add(new RMObjectValidationMessage(cobject, pathSoFar, message));
-            return result;
-        }
-        Object rmObject = rmObjects.get(0).getObject();
-        if (!cobject.isValidValue(lookup, rmObject)) {
-            String message = RMObjectValidationMessageIds.rm_INVALID_FOR_CONSTRAINT.getMessage(cobject.toString(), rmObject.toString());
-            result.add(new RMObjectValidationMessage(cobject, pathSoFar, message));
-        }
-        return result;
-    }
 
     private List<RMObjectValidationMessage> validateMultiplicity(CAttribute attribute, String pathSoFar, Object attributeValue) {
         if (attributeValue instanceof Collection) {
