@@ -70,7 +70,53 @@ public class RMTupleValidationTest {
 
         RMObjectValidationMessage unitsMessage = result.get(1);
         assertEquals("/path/so/far/units[id9999]", unitsMessage.getPath());
-        String unitsString = "The value wr/ong must be \"m/s\"";
+        String unitsString = "The value \"wr/ong\" must be \"m/s\"";
+        assertEquals(unitsString, unitsMessage.getMessage());
+    }
+
+
+    @Test
+    public void testValidateTupleWithNullValue() {
+        CComplexObject cObject = new CComplexObject();
+
+        // Attribute tuple
+        CAttributeTuple tuple = new CAttributeTuple();
+        cObject.addAttributeTuple(tuple);
+
+        CAttribute magnitudeAttr = new CAttribute("magnitude");
+        tuple.addMember(magnitudeAttr);
+
+        CAttribute unitsAttr = new CAttribute("units");
+        tuple.addMember(unitsAttr);
+
+        // Primitive tuple
+        CPrimitiveTuple primitiveTuple = new CPrimitiveTuple();
+        tuple.addTuple(primitiveTuple);
+
+        CReal magnitudeConstraint = new CReal();
+        primitiveTuple.addMember(magnitudeConstraint);
+        magnitudeConstraint.addConstraint(Interval.upperUnbounded(0.0, false));
+
+        CString unitsConstraint = new CString("m/s");
+        primitiveTuple.addMember(unitsConstraint);
+
+        // Set up quantity
+        DvQuantity quantity = new DvQuantity();
+        quantity.setMagnitude(15D);
+        quantity.setUnits(null);
+
+        List<RMObjectWithPath> rmObjects = new ArrayList<>();
+        rmObjects.add(new RMObjectWithPath(quantity, null));
+
+        // Run validation
+        List<RMObjectValidationMessage> result = RMTupleValidation.validate(lookup, cObject, "/path/so/far", rmObjects, tuple);
+
+        // Asserts
+        assertEquals(1, result.size());
+
+        RMObjectValidationMessage unitsMessage = result.get(0);
+        assertEquals("/path/so/far/units[id9999]", unitsMessage.getPath());
+        String unitsString = "The value \"\" must be \"m/s\"";
         assertEquals(unitsString, unitsMessage.getMessage());
     }
 
