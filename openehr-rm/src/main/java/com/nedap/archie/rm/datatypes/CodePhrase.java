@@ -72,4 +72,9 @@ public class CodePhrase extends RMObject {
     public void setCodeString(String codeString) {
         this.codeString = codeString;
     }
+
+    public String toString() {
+
+        return ( terminologyId == null ? "" : terminologyId.getValue() + "::" ) + codeString;
+    }
 }

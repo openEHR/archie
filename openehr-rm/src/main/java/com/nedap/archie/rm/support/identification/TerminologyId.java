@@ -1,5 +1,7 @@
 package com.nedap.archie.rm.support.identification;
 
+import com.nedap.archie.rm.RMObject;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -9,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TERMINOLOGY_ID")
-public class TerminologyId {
+public class TerminologyId extends RMObject {
     private String value;
 
     public TerminologyId() {

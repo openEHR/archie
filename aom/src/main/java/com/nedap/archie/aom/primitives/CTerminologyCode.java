@@ -69,8 +69,14 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
                     return true;
                 }
             } else if (constraint.startsWith("ac")) {
-                if(value.getTerminologyId() != null && value.getTerminologyId().equals(constraint)) {
-                    return true;
+                // Check if the terminologyId is set in the value, and if it matches the one in the constraint.
+                // If not, get the valueSet from the archetype and check if the value is included in it's members
+                if(value.getTerminologyId() != null) {
+                    return value.getTerminologyId().equals(constraint);
+                } else if(getArchetype() != null) {
+                    ArchetypeTerminology terminology = getArchetype().getTerminology(this);
+                    ValueSet valueSet = terminology.getValueSets().get(constraint);
+                    return valueSet.getMembers().contains(value.getCodeString());
                 }
             }
         }
