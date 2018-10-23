@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-19 12:53+0200\n"
+"POT-Creation-Date: 2018-10-23 12:02+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -390,6 +390,10 @@ msgstr "minimaal {0}"
 #, java-format
 msgid "at most {0}"
 msgstr "maximaal {0}"
+
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/validations/RMPrimitiveObjectValidation.java:55
+msgid "empty"
+msgstr "leeg"
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/ConstraintToStringUtil.java:50
 #, java-format

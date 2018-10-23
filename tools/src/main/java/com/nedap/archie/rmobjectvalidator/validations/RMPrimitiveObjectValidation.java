@@ -6,6 +6,7 @@ import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.ConstraintToStringUtil;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageIds;
+import org.openehr.utils.message.I18n;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,7 +51,7 @@ public class RMPrimitiveObjectValidation {
 
     private static String getValueString(Object value) {
         if(value == null) {
-            return "\"\"";
+            return I18n.t("empty");
         }
 
         return (value instanceof String) ? "\"" + value.toString() + "\"" : value.toString();
