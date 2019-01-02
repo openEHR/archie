@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 
 import javax.annotation.Nullable;
@@ -35,7 +36,7 @@ public class DvQuantity extends DvAmount<Double> {
     @Deprecated
     @JsonIgnore
     @Nullable
-    private transient DvCodedText property;
+    private transient CodePhrase property;
 
     @Nullable
     public Long getPrecision() {
@@ -64,12 +65,12 @@ public class DvQuantity extends DvAmount<Double> {
     }
 
     @Deprecated
-    public DvCodedText getProperty() {
+    public CodePhrase getProperty() {
         return property;
     }
 
     @Deprecated
-    public void setProperty(DvCodedText property) {
+    public void setProperty(CodePhrase property) {
         this.property = property;
     }
 }

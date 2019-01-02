@@ -4,6 +4,7 @@ import com.nedap.archie.rm.IsmTransition;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -28,6 +29,7 @@ public class Action extends CareEntry {
     @XmlElement(name="ism_transition")
     private IsmTransition ismTransition;
     @XmlElement(name="instruction_details")
+    @Nullable
     private InstructionDetails instructionDetails;
 
 

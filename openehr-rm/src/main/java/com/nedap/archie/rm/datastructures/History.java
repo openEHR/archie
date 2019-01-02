@@ -32,6 +32,7 @@ public final class History<Type extends ItemStructure> extends DataStructure {
     @Nullable
     private Type summary;
 
+    @Nullable
     private List<Event<Type>> events = new ArrayList<>();
 
     public DvDateTime getOrigin() {

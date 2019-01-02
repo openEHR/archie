@@ -12,24 +12,47 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "UID_BASED_ID")
 public abstract class UIDBasedId extends ObjectId {
 
-    private UID root;
-    @Nullable
-    private String extension;
+    public static final String UUID_REGEXP = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}";
 
     public UID getRoot() {
-        return root;
-    }
-
-    public void setRoot(UID root) {
-        this.root = root;
+        String value = getValue();
+        if(value == null) {
+            return null;
+        }
+        int index = value.indexOf("::");
+        String resultString = null;
+        if(index < 0) {
+            resultString = value;
+        } else {
+            resultString = value.substring(index);
+        }
+        if(resultString.matches(UUID_REGEXP)) {
+            UID result = new UUID();
+            result.setValue(resultString);
+            return result;
+        } else if (resultString.matches("([0-9]\\.?)+")) {
+            IsoOID result = new IsoOID();
+            result.setValue(resultString);
+            return result;
+        } else {
+            InternetId result = new InternetId();
+            result.setValue(resultString);
+            return result;
+        }
     }
 
     @Nullable
     public String getExtension() {
-        return extension;
+        String value = getValue();
+        if(value == null) {
+            return null;
+        }
+        int index = value.indexOf("::");
+        if(index < 0) {
+            return "";
+        } else {
+            return value.substring(index + 2);
+        }
     }
 
-    public void setExtension(@Nullable String extension) {
-        this.extension = extension;
-    }
 }

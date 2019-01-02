@@ -20,6 +20,7 @@ import java.util.List;
 @XmlType(name="CONTACT")
 public class Contact extends Locatable {
 
+    @Nullable
     private List<Address> addresses = new ArrayList<>();
 
     @Nullable

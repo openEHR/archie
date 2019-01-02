@@ -15,20 +15,20 @@ import java.util.List;
 @XmlType(name = "ITEM_SINGLE", propOrder = {
         "item"
 })
-public class ItemSingle extends ItemStructure<Item> {
+public class ItemSingle extends ItemStructure<Element> {
 
-    private Item item;
+    private Element item;
 
-    public Item getItem() {
+    public Element getItem() {
         return item;
     }
 
-    public void setITem(Item item) {
+    public void setITem(Element item) {
         this.item = item;
     }
 
     @Override
-    public List<Item> getItems() {
+    public List<Element> getItems() {
         return Lists.newArrayList(item);
     }
 }

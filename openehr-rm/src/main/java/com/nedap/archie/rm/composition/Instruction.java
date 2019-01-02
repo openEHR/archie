@@ -33,6 +33,7 @@ public class Instruction extends CareEntry {
     @Nullable
     @XmlElement(name = "wf_definition")
     private DvParsable wfDefinition;
+    @Nullable
     private List<Activity> activities = new ArrayList<>();
 
     public DvText getNarrative() {

@@ -50,7 +50,6 @@ public class DvMultimedia extends DvEncapsulated {
     @Nullable
     private DvMultimedia thumbnail;
 
-    @Nullable
     
     public String getAlternateText() {
         return alternateText;

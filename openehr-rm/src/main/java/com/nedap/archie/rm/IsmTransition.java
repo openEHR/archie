@@ -4,6 +4,7 @@ import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -25,11 +26,14 @@ public class IsmTransition extends Pathable {
 
     @XmlElement(name = "current_state")
     private DvCodedText currentState;
+    @Nullable
     private DvCodedText transition;
 
     @XmlElement(name = "careflow_step")
+    @Nullable
     private DvCodedText careflowStep;
 
+    @Nullable
     private List<DvText> reason = new ArrayList();
     
     public DvCodedText getCurrentState() {

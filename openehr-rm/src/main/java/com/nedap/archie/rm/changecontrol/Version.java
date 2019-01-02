@@ -6,6 +6,8 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.generic.AuditDetails;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
 
+import javax.annotation.Nullable;
+
 /**
  * Version class. You will need to create a subclass to make this work.
  *
@@ -13,6 +15,7 @@ import com.nedap.archie.rm.support.identification.ObjectVersionId;
  */
 public abstract class Version<Type> extends RMObject {
     private ObjectRef contribution;
+    @Nullable
     private String signature;
     private AuditDetails commitAudit;
 

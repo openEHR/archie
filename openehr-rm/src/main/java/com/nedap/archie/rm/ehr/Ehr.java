@@ -27,7 +27,6 @@ public class Ehr extends RMObject {
     private HierObjectId systemId;
     private HierObjectId ehrId;
 
-    @Nullable
     private List<ObjectRef> contributions = new ArrayList<>();
     private ObjectRef ehrStatus;
     private ObjectRef ehrAccess;

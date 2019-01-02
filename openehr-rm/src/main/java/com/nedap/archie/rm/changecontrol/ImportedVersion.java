@@ -39,4 +39,8 @@ public class ImportedVersion extends Version {
     public boolean isBranch() {
         return item == null ? null : item.isBranch();//TODO: this is probably not right
     }
+
+    public OriginalVersion getItem() {
+        return item;
+    }
 }

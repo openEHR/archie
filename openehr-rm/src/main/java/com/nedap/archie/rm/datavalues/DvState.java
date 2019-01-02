@@ -16,15 +16,15 @@ import javax.xml.bind.annotation.XmlType;
 public class DvState extends DataValue implements SingleValuedDataValue<DvCodedText> {
 
     @XmlElement(name = "is_terminal")
-    private boolean terminal;
+    private boolean isTerminal;
     private DvCodedText value;
     
     public boolean isTerminal() {
-        return terminal;
+        return isTerminal;
     }
 
     public void setTerminal(boolean terminal) {
-        this.terminal = terminal;
+        this.isTerminal = terminal;
     }
 
     public DvCodedText getValue() {

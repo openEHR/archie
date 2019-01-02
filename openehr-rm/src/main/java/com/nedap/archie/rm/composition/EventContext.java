@@ -46,6 +46,7 @@ public class EventContext extends Pathable {
     @XmlElement(name="health_care_facility")
     private PartyIdentified healthCareFacility;
 
+    @Nullable
     private List<Participation> participations = new ArrayList<>();
 
     public DvDateTime getStartTime() {

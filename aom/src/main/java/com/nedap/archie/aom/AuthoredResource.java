@@ -6,6 +6,7 @@ import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.xml.adapters.ResourceDescriptionAdapter;
 import com.nedap.archie.xml.adapters.TranslationDetailsAdapter;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -32,8 +33,10 @@ import java.util.Map;
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public abstract class AuthoredResource extends ArchetypeModelObject {
 
+    @Nullable
     private Boolean controlled;
     private String uid;
+    @Nullable
     private ResourceDescription description;
 
     private LanguageSection content = new LanguageSection();

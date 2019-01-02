@@ -1,5 +1,6 @@
 package com.nedap.archie.rm.archetyped;
 
+import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.DvEHRURI;
 import com.nedap.archie.rm.datavalues.DvText;
 
@@ -12,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "LINK")
-public class Link {
+public class Link extends RMObject {
 
     private DvText meaning;
     private DvText type;

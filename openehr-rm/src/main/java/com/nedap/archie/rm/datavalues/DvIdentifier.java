@@ -1,5 +1,6 @@
 package com.nedap.archie.rm.datavalues;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -16,9 +17,12 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class DvIdentifier extends DataValue {
 
+    @Nullable
     private String issuer;
+    @Nullable
     private String assigner;
     private String id;
+    @Nullable
     private String type;
 
     public String getIssuer() {

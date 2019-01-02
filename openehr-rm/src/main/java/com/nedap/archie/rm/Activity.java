@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Activity extends Locatable {
 
     private ItemStructure description;
+    @Nullable
     private DvParsable timing;
     @Nullable
     @XmlElement(name = "action_archetype_id", required = true)

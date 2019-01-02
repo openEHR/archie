@@ -2,6 +2,7 @@ package com.nedap.archie.rm.demographic;
 
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
+import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.LocatableRef;
 
 import javax.annotation.Nullable;
@@ -94,5 +95,12 @@ public abstract class Party extends Locatable {
     public void addRelationship(PartyRelationship relationship) {
         this.relationships.add(relationship);
         this.setThisAsParent(relationship, "relationships");
+    }
+
+    /**
+     * Type of party, such as PERSON, ORGANISATION, etc. Role name, e.g. general practitioner , nurse , private citizen . Taken from inherited name attribute.
+     */
+    public DvText getType() {
+        return getName();
     }
 }

@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.archetyped;
 
 import com.nedap.archie.aom.ArchetypeHRID;
+import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
 
 import javax.annotation.Nullable;
@@ -20,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
         "templateId",
         "rmVersion"
 })
-public class Archetyped {
+public class Archetyped extends RMObject {
 
     @XmlElement(name="archetype_id")
     private ArchetypeID archetypeId; //TODO: this is a different class in the RM. why?!

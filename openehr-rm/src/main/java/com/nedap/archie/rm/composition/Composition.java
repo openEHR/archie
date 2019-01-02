@@ -40,6 +40,7 @@ public class Composition extends Locatable {
     @Nullable
     private EventContext context;
 
+    @Nullable
     private List<ContentItem> content = new ArrayList<>();
 
     @JsonProperty

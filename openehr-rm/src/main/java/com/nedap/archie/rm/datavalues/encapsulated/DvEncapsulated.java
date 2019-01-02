@@ -3,6 +3,7 @@ package com.nedap.archie.rm.datavalues.encapsulated;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DataValue;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -16,7 +17,9 @@ import javax.xml.bind.annotation.XmlType;
         "language"
 })
 public abstract class DvEncapsulated extends DataValue {
+    @Nullable
     private CodePhrase charset;
+    @Nullable
     private CodePhrase language;
 
     public CodePhrase getCharset() {
