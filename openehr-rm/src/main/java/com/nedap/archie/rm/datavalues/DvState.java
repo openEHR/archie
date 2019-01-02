@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DV_STATE", propOrder = {
         "value",
-        "terminal"
+        "isTerminal"
 })
 public class DvState extends DataValue implements SingleValuedDataValue<DvCodedText> {
 

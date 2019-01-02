@@ -42,11 +42,11 @@ public class VersionedObject<Type> extends RMObject {
         this.ownerId = ownerId;
     }
 
-    public DvDateTime getTimeCreations() {
+    public DvDateTime getTimeCreated() {
         return timeCreated;
     }
 
-    public void setTimeCreations(DvDateTime timeCreated) {
+    public void setTimeCreated(DvDateTime timeCreated) {
         this.timeCreated = timeCreated;
     }
 }
