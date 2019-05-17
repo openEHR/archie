@@ -37,6 +37,15 @@ public class TermMapping extends RMObject {
     private DvCodedText purpose;
     private CodePhrase target;
 
+    public TermMapping() {
+    }
+
+    public TermMapping(CodePhrase target, Character match, @Nullable DvCodedText purpose) {
+        this.match = match;
+        this.purpose = purpose;
+        this.target = target;
+    }
+
     public char getMatch() {
         return match;
     }
@@ -60,5 +69,26 @@ public class TermMapping extends RMObject {
 
     public void setTarget(CodePhrase target) {
         this.target = target;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TermMapping that = (TermMapping) o;
+
+        if (match != null ? !match.equals(that.match) : that.match != null) return false;
+        if (purpose != null ? !purpose.equals(that.purpose) : that.purpose != null) return false;
+        return target != null ? target.equals(that.target) : that.target == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = match != null ? match.hashCode() : 0;
+        result = 31 * result + (purpose != null ? purpose.hashCode() : 0);
+        result = 31 * result + (target != null ? target.hashCode() : 0);
+        return result;
     }
 }

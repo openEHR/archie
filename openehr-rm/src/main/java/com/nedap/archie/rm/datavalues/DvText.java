@@ -45,6 +45,11 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
         this.value = value;
     }
 
+    public DvText(String value, @Nullable CodePhrase language, @Nullable CodePhrase encoding) {
+        this.value = value;
+        this.language = language;
+        this.encoding = encoding;
+    }
 
     public List<TermMapping> getMappings() {
         return mappings;
@@ -97,5 +102,32 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
 
     public void setEncoding(CodePhrase encoding) {
         this.encoding = encoding;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DvText dvText = (DvText) o;
+
+        if (value != null ? !value.equals(dvText.value) : dvText.value != null) return false;
+        if (hyperlink != null ? !hyperlink.equals(dvText.hyperlink) : dvText.hyperlink != null) return false;
+        if (formatting != null ? !formatting.equals(dvText.formatting) : dvText.formatting != null) return false;
+        if (mappings != null ? !mappings.equals(dvText.mappings) : dvText.mappings != null) return false;
+        if (language != null ? !language.equals(dvText.language) : dvText.language != null) return false;
+        return encoding != null ? encoding.equals(dvText.encoding) : dvText.encoding == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = value != null ? value.hashCode() : 0;
+        result = 31 * result + (hyperlink != null ? hyperlink.hashCode() : 0);
+        result = 31 * result + (formatting != null ? formatting.hashCode() : 0);
+        result = 31 * result + (mappings != null ? mappings.hashCode() : 0);
+        result = 31 * result + (language != null ? language.hashCode() : 0);
+        result = 31 * result + (encoding != null ? encoding.hashCode() : 0);
+        return result;
     }
 }

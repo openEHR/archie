@@ -1,7 +1,5 @@
 package com.nedap.archie.rm.support.identification;
 
-import com.nedap.archie.rm.RMObject;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -29,4 +27,13 @@ public class TerminologyId extends ObjectId {
         this(terminologyId, null);
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

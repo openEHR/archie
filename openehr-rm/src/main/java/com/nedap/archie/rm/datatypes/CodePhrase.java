@@ -30,6 +30,11 @@ public class CodePhrase extends RMObject {
 
     }
 
+    public CodePhrase(TerminologyId terminologyId, String codeString) {
+        this.terminologyId = terminologyId;
+        this.codeString = codeString;
+    }
+
     /**
      * Construct a code phrase in the form:
      * <br>
@@ -71,5 +76,25 @@ public class CodePhrase extends RMObject {
 
     public void setCodeString(String codeString) {
         this.codeString = codeString;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CodePhrase that = (CodePhrase) o;
+
+        if (terminologyId != null ? !terminologyId.equals(that.terminologyId) : that.terminologyId != null)
+            return false;
+        return codeString != null ? codeString.equals(that.codeString) : that.codeString == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = terminologyId != null ? terminologyId.hashCode() : 0;
+        result = 31 * result + (codeString != null ? codeString.hashCode() : 0);
+        return result;
     }
 }
