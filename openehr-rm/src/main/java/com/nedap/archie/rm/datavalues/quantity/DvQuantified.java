@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
 
+import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTemporal;
 
 import javax.annotation.Nullable;
@@ -9,6 +10,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
+import java.util.List;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -27,6 +29,14 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
     @XmlElement(name = "magnitude_status")
     private String magnitudeStatus;
 
+    public DvQuantified() {
+    }
+
+    public DvQuantified(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus) {
+        super(otherReferenceRanges, normalRange, normalStatus);
+        this.magnitudeStatus = magnitudeStatus;
+    }
+
     @Nullable
     public String getMagnitudeStatus() {
         return magnitudeStatus;
@@ -44,5 +54,21 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
     @Override
     public int compareTo(MagnitudeType other) {
         return getMagnitude().compareTo(other);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DvQuantified<?, ?> that = (DvQuantified<?, ?>) o;
+
+        return magnitudeStatus != null ? magnitudeStatus.equals(that.magnitudeStatus) : that.magnitudeStatus == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return magnitudeStatus != null ? magnitudeStatus.hashCode() : 0;
     }
 }

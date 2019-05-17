@@ -33,7 +33,22 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
     @XmlElement(name = "other_reference_ranges")
     private List<ReferenceRange> otherReferenceRanges = new ArrayList<>();
 
-    
+    public DvOrdered() {
+    }
+
+    public DvOrdered(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange) {
+        this.normalRange = normalRange;
+        this.otherReferenceRanges = otherReferenceRanges;
+    }
+
+    protected DvOrdered(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus) {
+        this.normalStatus = normalStatus;
+        this.normalRange = normalRange;
+        this.otherReferenceRanges = otherReferenceRanges;
+    }
+
+
+
     public DvInterval getNormalRange() {
         return normalRange;
     }
@@ -41,7 +56,7 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
     public void setNormalRange(DvInterval normalRange) {
         this.normalRange = normalRange;
     }
-    
+
     public List<ReferenceRange> getOtherReferenceRanges() {
         return otherReferenceRanges;
     }
@@ -62,4 +77,21 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
     public void setNormalStatus(@Nullable CodePhrase normalStatus) {
         this.normalStatus = normalStatus;
     }
+
+    public boolean isNormal() {
+
+        if (normalRange != null) {
+            return getNormalRange().has(this);
+        } else if (normalStatus != null) {
+            return normalStatus.getCodeString().equals("N");
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isSimple() {
+        return otherReferenceRanges == null;
+    }
+
+
 }

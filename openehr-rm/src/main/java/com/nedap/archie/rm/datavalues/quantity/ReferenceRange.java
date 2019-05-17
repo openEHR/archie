@@ -20,6 +20,14 @@ public class ReferenceRange<T extends DvOrdered> extends RMObject {
     private DvInterval<T> range;
     private DvText meaning;
 
+    public ReferenceRange() {
+    }
+
+    public ReferenceRange(DvText meaning, DvInterval<T> range) {
+        this.range = range;
+        this.meaning = meaning;
+    }
+
     public DvInterval<T> getRange() {
         return range;
     }
@@ -35,4 +43,7 @@ public class ReferenceRange<T extends DvOrdered> extends RMObject {
     public void setMeaning(DvText meaning) {
         this.meaning = meaning;
     }
+
+
+
 }
