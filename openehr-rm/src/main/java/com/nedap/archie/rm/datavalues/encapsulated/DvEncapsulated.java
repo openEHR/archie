@@ -22,6 +22,15 @@ public abstract class DvEncapsulated extends DataValue {
     @Nullable
     private CodePhrase language;
 
+
+	public DvEncapsulated() {
+	}
+
+	public DvEncapsulated(@Nullable CodePhrase charset, @Nullable CodePhrase language) {
+		this.charset = charset;
+		this.language = language;
+	}
+
     public CodePhrase getCharset() {
         return charset;
     }
@@ -37,4 +46,23 @@ public abstract class DvEncapsulated extends DataValue {
     public void setLanguage(CodePhrase language) {
         this.language = language;
     }
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		DvEncapsulated that = (DvEncapsulated) o;
+
+		if (charset != null ? !charset.equals(that.charset) : that.charset != null) return false;
+		return language != null ? language.equals(that.language) : that.language == null;
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = charset != null ? charset.hashCode() : 0;
+		result = 31 * result + (language != null ? language.hashCode() : 0);
+		return result;
+	}
 }
