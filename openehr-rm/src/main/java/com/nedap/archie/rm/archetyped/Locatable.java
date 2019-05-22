@@ -2,16 +2,12 @@ package com.nedap.archie.rm.archetyped;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +41,25 @@ public abstract class Locatable extends Pathable {
 
     @Nullable
     private List<Link> links = new ArrayList<>();
+
+
+    public Locatable() {
+    }
+
+    public Locatable(String archetypeNodeId, DvText name) {
+        this.name = name;
+        this.archetypeNodeId = archetypeNodeId;
+    }
+
+    public Locatable(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName) {
+        super(parent, parentAttributeName);
+        this.name = name;
+        this.archetypeNodeId = archetypeNodeId;
+        this.uid = uid;
+        this.archetypeDetails = archetypeDetails;
+        this.feederAudit = feederAudit;
+        this.links = links;
+    }
 
     public DvText getName() {
         return name;

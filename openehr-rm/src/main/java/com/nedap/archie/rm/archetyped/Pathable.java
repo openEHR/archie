@@ -3,17 +3,15 @@ package com.nedap.archie.rm.archetyped;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
-
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-
-import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
@@ -36,6 +34,14 @@ public abstract class Pathable extends RMObject {
     @XmlTransient
     @Nullable
     private String parentAttributeName;
+
+    public Pathable() {
+    }
+
+    public Pathable(@Nullable Pathable parent, @Nullable String parentAttributeName) {
+        this.parent = parent;
+        this.parentAttributeName = parentAttributeName;
+    }
 
     public Object itemAtPath(String s) {
         return new RMPathQuery(s).find(ArchieRMInfoLookup.getInstance(), this);
@@ -114,4 +120,20 @@ public abstract class Pathable extends RMObject {
         return PathUtil.getPath(getPathSegments());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pathable pathable = (Pathable) o;
+
+        if (parent != null ? !parent.equals(pathable.parent) : pathable.parent != null) return false;
+        return parentAttributeName != null ? parentAttributeName.equals(pathable.parentAttributeName) : pathable.parentAttributeName == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
