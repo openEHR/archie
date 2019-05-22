@@ -16,6 +16,23 @@ public class DvURI extends DataValue implements SingleValuedDataValue<URI> {
 
     private URI value; //supposed to be a string, but this is better. Legal to change this with type replacements.
 
+
+    public DvURI() {
+    }
+
+    public DvURI(URI value) {
+        this.value = value;
+    }
+
+    /**
+     * Creates a DVURI from a URI String representation
+     *
+     * @param uri
+     */
+    public DvURI(String uri) {
+        this.value = URI.create(uri);
+    }
+
     @Override
     public URI getValue() {
         return value;
@@ -24,5 +41,21 @@ public class DvURI extends DataValue implements SingleValuedDataValue<URI> {
     @Override
     public void setValue(URI value) {
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DvURI dvURI = (DvURI) o;
+
+        return value != null ? value.equals(dvURI.value) : dvURI.value == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return value != null ? value.hashCode() : 0;
     }
 }
