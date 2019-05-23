@@ -35,6 +35,18 @@ public class AuditDetails extends RMObject {
     private DvText description;
     private PartyProxy committer;
 
+    public AuditDetails() {
+    }
+
+
+    public AuditDetails(String systemId, PartyProxy committer, DvDateTime timeCommitted, DvCodedText changeType, @Nullable DvText description) {
+        this.systemId = systemId;
+        this.timeCommitted = timeCommitted;
+        this.changeType = changeType;
+        this.description = description;
+        this.committer = committer;
+    }
+
     public String getSystemId() {
         return systemId;
     }
@@ -75,5 +87,31 @@ public class AuditDetails extends RMObject {
 
     public void setCommitter(PartyProxy committer) {
         this.committer = committer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AuditDetails that = (AuditDetails) o;
+
+        if (systemId != null ? !systemId.equals(that.systemId) : that.systemId != null) return false;
+        if (timeCommitted != null ? !timeCommitted.equals(that.timeCommitted) : that.timeCommitted != null)
+            return false;
+        if (changeType != null ? !changeType.equals(that.changeType) : that.changeType != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        return committer != null ? committer.equals(that.committer) : that.committer == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = systemId != null ? systemId.hashCode() : 0;
+        result = 31 * result + (timeCommitted != null ? timeCommitted.hashCode() : 0);
+        result = 31 * result + (changeType != null ? changeType.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (committer != null ? committer.hashCode() : 0);
+        return result;
     }
 }

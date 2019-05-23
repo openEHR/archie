@@ -21,6 +21,14 @@ public class RevisionHistoryItem extends RMObject {
     private ObjectVersionId versionId;
     private List<AuditDetails> audits = new ArrayList<>();
 
+    public RevisionHistoryItem() {
+    }
+
+    public RevisionHistoryItem(ObjectVersionId versionId, List<AuditDetails> audits) {
+        this.versionId = versionId;
+        this.audits = audits;
+    }
+
     public ObjectVersionId getVersionId() {
         return versionId;
     }
@@ -41,4 +49,22 @@ public class RevisionHistoryItem extends RMObject {
         this.audits.add(audit);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RevisionHistoryItem that = (RevisionHistoryItem) o;
+
+        if (versionId != null ? !versionId.equals(that.versionId) : that.versionId != null) return false;
+        return audits != null ? audits.equals(that.audits) : that.audits == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = versionId != null ? versionId.hashCode() : 0;
+        result = 31 * result + (audits != null ? audits.hashCode() : 0);
+        return result;
+    }
 }
