@@ -19,6 +19,15 @@ public class Link extends RMObject {
     private DvText type;
     private DvEHRURI target;
 
+    public Link() {
+    }
+
+    public Link(DvText meaning, DvText type, DvEHRURI target) {
+        this.meaning = meaning;
+        this.type = type;
+        this.target = target;
+    }
+
     public DvText getMeaning() {
         return meaning;
     }
@@ -41,5 +50,26 @@ public class Link extends RMObject {
 
     public void setTarget(DvEHRURI target) {
         this.target = target;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Link link = (Link) o;
+
+        if (meaning != null ? !meaning.equals(link.meaning) : link.meaning != null) return false;
+        if (type != null ? !type.equals(link.type) : link.type != null) return false;
+        return target != null ? target.equals(link.target) : link.target == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = meaning != null ? meaning.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (target != null ? target.hashCode() : 0);
+        return result;
     }
 }

@@ -35,6 +35,17 @@ public class FeederAudit extends RMObject {
     @XmlElement(name = "feeder_system_audit")
     protected FeederAuditDetails feederSystemAudit;
 
+    public FeederAudit() {
+    }
+
+    public FeederAudit(FeederAuditDetails originatingSystemAudit, @Nullable List<DvIdentifier> originatingSystemItemIds, @Nullable FeederAuditDetails feederSystemAudit, @Nullable List<DvIdentifier> feederSystemItemIds, @Nullable DvEncapsulated originalContent) {
+        this.originatingSystemItemIds = originatingSystemItemIds;
+        this.feederSystemItemIds = feederSystemItemIds;
+        this.originalContent = originalContent;
+        this.originatingSystemAudit = originatingSystemAudit;
+        this.feederSystemAudit = feederSystemAudit;
+    }
+
     public List<DvIdentifier> getOriginatingSystemItemIds() {
         return originatingSystemItemIds;
     }
@@ -73,5 +84,34 @@ public class FeederAudit extends RMObject {
 
     public void setFeederSystemAudit(FeederAuditDetails feederSystemAudit) {
         this.feederSystemAudit = feederSystemAudit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FeederAudit that = (FeederAudit) o;
+
+        if (originatingSystemItemIds != null ? !originatingSystemItemIds.equals(that.originatingSystemItemIds) : that.originatingSystemItemIds != null)
+            return false;
+        if (feederSystemItemIds != null ? !feederSystemItemIds.equals(that.feederSystemItemIds) : that.feederSystemItemIds != null)
+            return false;
+        if (originalContent != null ? !originalContent.equals(that.originalContent) : that.originalContent != null)
+            return false;
+        if (originatingSystemAudit != null ? !originatingSystemAudit.equals(that.originatingSystemAudit) : that.originatingSystemAudit != null)
+            return false;
+        return feederSystemAudit != null ? feederSystemAudit.equals(that.feederSystemAudit) : that.feederSystemAudit == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = originatingSystemItemIds != null ? originatingSystemItemIds.hashCode() : 0;
+        result = 31 * result + (feederSystemItemIds != null ? feederSystemItemIds.hashCode() : 0);
+        result = 31 * result + (originalContent != null ? originalContent.hashCode() : 0);
+        result = 31 * result + (originatingSystemAudit != null ? originatingSystemAudit.hashCode() : 0);
+        result = 31 * result + (feederSystemAudit != null ? feederSystemAudit.hashCode() : 0);
+        return result;
     }
 }

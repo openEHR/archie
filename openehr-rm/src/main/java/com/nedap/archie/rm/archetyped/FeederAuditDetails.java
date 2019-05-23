@@ -32,6 +32,18 @@ public class FeederAuditDetails extends RMObject {
     @XmlElement(name = "version_id")
     protected String versionId;
 
+    public FeederAuditDetails() {
+    }
+
+    public FeederAuditDetails(String systemId, @Nullable PartyIdentified provider, @Nullable PartyIdentified location, @Nullable DvDateTime time, @Nullable PartyProxy subject, @Nullable String versionId) {
+        this.systemId = systemId;
+        this.location = location;
+        this.provider = provider;
+        this.subject = subject;
+        this.time = time;
+        this.versionId = versionId;
+    }
+
     public String getSystemId() {
         return systemId;
     }
