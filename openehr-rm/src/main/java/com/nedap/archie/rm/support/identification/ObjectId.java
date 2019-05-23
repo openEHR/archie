@@ -17,6 +17,13 @@ public abstract class ObjectId extends RMObject {
 
     private String value;
 
+    public ObjectId() {
+    }
+
+    public ObjectId(String value) {
+        this.value = value;
+    }
+
     public String getValue() {
         return value;
     }

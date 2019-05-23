@@ -20,6 +20,15 @@ public class ObjectRef<Idtype extends ObjectId> extends RMObject {
     private String type;
     private Idtype id;
 
+    public ObjectRef() {
+    }
+
+    public ObjectRef(Idtype id, String namespace, String type) {
+        this.namespace = namespace;
+        this.type = type;
+        this.id = id;
+    }
+
     public String getNamespace() {
         return namespace;
     }
@@ -42,5 +51,26 @@ public class ObjectRef<Idtype extends ObjectId> extends RMObject {
 
     public void setId(Idtype id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ObjectRef<?> objectRef = (ObjectRef<?>) o;
+
+        if (namespace != null ? !namespace.equals(objectRef.namespace) : objectRef.namespace != null) return false;
+        if (type != null ? !type.equals(objectRef.type) : objectRef.type != null) return false;
+        return id != null ? id.equals(objectRef.id) : objectRef.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = namespace != null ? namespace.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        return result;
     }
 }

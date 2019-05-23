@@ -14,6 +14,13 @@ public abstract class UIDBasedId extends ObjectId {
 
     public static final String UUID_REGEXP = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}";
 
+    public UIDBasedId() {
+    }
+
+    public UIDBasedId(String value) {
+        super(value);
+    }
+
     public UID getRoot() {
         String value = getValue();
         if(value == null) {

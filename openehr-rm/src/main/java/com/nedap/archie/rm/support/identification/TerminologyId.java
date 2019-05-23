@@ -27,13 +27,5 @@ public class TerminologyId extends ObjectId {
         this(terminologyId, null);
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 }

@@ -11,4 +11,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name="OBJECT_VERSION_ID")
 public class ObjectVersionId extends UIDBasedId {
 
+    public ObjectVersionId() {
+    }
+
+    public ObjectVersionId(String value) {
+        super(value);
+    }
 }
