@@ -1,16 +1,12 @@
 package com.nedap.archie.rm.ehr;
 
 import com.nedap.archie.rm.RMObject;
-import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.HierObjectId;
+import com.nedap.archie.rm.support.identification.ObjectRef;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +48,19 @@ public class Ehr extends RMObject {
     @XmlElement(name="time_created")
     private DvDateTime timeCreated;
 
+    public Ehr() {
+    }
+
+    public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef> contributions, ObjectRef ehrStatus, ObjectRef ehrAccess, @Nullable ObjectRef directory, @Nullable List<ObjectRef> compositions) {
+        this.systemId = systemId;
+        this.ehrId = ehrId;
+        this.contributions = contributions;
+        this.ehrStatus = ehrStatus;
+        this.ehrAccess = ehrAccess;
+        this.compositions = compositions;
+        this.directory = directory;
+        this.timeCreated = timeCreated;
+    }
 
     public HierObjectId getSystemId() {
         return systemId;
@@ -126,5 +135,36 @@ public class Ehr extends RMObject {
 
     public void setTimeCreated(DvDateTime timeCreated) {
         this.timeCreated = timeCreated;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ehr ehr = (Ehr) o;
+
+        if (systemId != null ? !systemId.equals(ehr.systemId) : ehr.systemId != null) return false;
+        if (ehrId != null ? !ehrId.equals(ehr.ehrId) : ehr.ehrId != null) return false;
+        if (contributions != null ? !contributions.equals(ehr.contributions) : ehr.contributions != null) return false;
+        if (ehrStatus != null ? !ehrStatus.equals(ehr.ehrStatus) : ehr.ehrStatus != null) return false;
+        if (ehrAccess != null ? !ehrAccess.equals(ehr.ehrAccess) : ehr.ehrAccess != null) return false;
+        if (compositions != null ? !compositions.equals(ehr.compositions) : ehr.compositions != null) return false;
+        if (directory != null ? !directory.equals(ehr.directory) : ehr.directory != null) return false;
+        return timeCreated != null ? timeCreated.equals(ehr.timeCreated) : ehr.timeCreated == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = systemId != null ? systemId.hashCode() : 0;
+        result = 31 * result + (ehrId != null ? ehrId.hashCode() : 0);
+        result = 31 * result + (contributions != null ? contributions.hashCode() : 0);
+        result = 31 * result + (ehrStatus != null ? ehrStatus.hashCode() : 0);
+        result = 31 * result + (ehrAccess != null ? ehrAccess.hashCode() : 0);
+        result = 31 * result + (compositions != null ? compositions.hashCode() : 0);
+        result = 31 * result + (directory != null ? directory.hashCode() : 0);
+        result = 31 * result + (timeCreated != null ? timeCreated.hashCode() : 0);
+        return result;
     }
 }

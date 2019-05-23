@@ -4,9 +4,11 @@ package com.nedap.archie.rm.ehr;
  * Created by pieter.bos on 08/07/16.
  */
 
-import com.nedap.archie.rm.archetyped.Locatable;
+import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datastructures.ItemStructure;
+import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.PartySelf;
+import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
@@ -14,6 +16,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="EHR_STATUS")
@@ -29,6 +32,26 @@ public class EhrStatus extends Locatable {
     @Nullable
     @XmlElement(name="other_details")
     private ItemStructure otherDetails;
+
+
+    public EhrStatus() {
+    }
+
+    public EhrStatus(String archetypeNodeId, DvText name, PartySelf subject, boolean isQueryable, boolean isModifiable, @Nullable ItemStructure otherDetails) {
+        super(archetypeNodeId, name);
+        this.subject = subject;
+        this.isQueryable = isQueryable;
+        this.isModifiable = isModifiable;
+        this.otherDetails = otherDetails;
+    }
+
+    public EhrStatus(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, PartySelf subject, boolean isQueryable, boolean isModifiable, @Nullable ItemStructure otherDetails) {
+        super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
+        this.subject = subject;
+        this.isQueryable = isQueryable;
+        this.isModifiable = isModifiable;
+        this.otherDetails = otherDetails;
+    }
 
     public PartySelf getSubject() {
         return subject;
@@ -62,5 +85,30 @@ public class EhrStatus extends Locatable {
     public void setOtherDetails(@Nullable ItemStructure otherDetails) {
         this.otherDetails = otherDetails;
         setThisAsParent(otherDetails, "other_details");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        EhrStatus ehrStatus = (EhrStatus) o;
+
+        if (isQueryable != ehrStatus.isQueryable) return false;
+        if (isModifiable != ehrStatus.isModifiable) return false;
+        if (subject != null ? !subject.equals(ehrStatus.subject) : ehrStatus.subject != null) return false;
+        return otherDetails != null ? otherDetails.equals(ehrStatus.otherDetails) : ehrStatus.otherDetails == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (subject != null ? subject.hashCode() : 0);
+        result = 31 * result + (isQueryable ? 1 : 0);
+        result = 31 * result + (isModifiable ? 1 : 0);
+        result = 31 * result + (otherDetails != null ? otherDetails.hashCode() : 0);
+        return result;
     }
 }
