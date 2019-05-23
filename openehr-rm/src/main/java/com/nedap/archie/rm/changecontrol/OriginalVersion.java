@@ -3,9 +3,10 @@ package com.nedap.archie.rm.changecontrol;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.generic.Attestation;
+import com.nedap.archie.rm.generic.AuditDetails;
+import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
 import com.nedap.archie.rminfo.RMProperty;
-
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlElement;
@@ -42,6 +43,19 @@ public class OriginalVersion<Type> extends Version<Type> {
     @Nullable
     private Type data;
 
+
+    public OriginalVersion() {
+    }
+
+    public OriginalVersion(ObjectVersionId uid, @Nullable ObjectVersionId precedingVersionUid, @Nullable Type data, DvCodedText lifecycleState, AuditDetails commitAudit, ObjectRef contribution, @Nullable String signature, @Nullable List<ObjectVersionId> otherInputVersionUids, @Nullable List<Attestation> attestations) {
+        super(commitAudit, contribution, signature);
+        this.uid = uid;
+        this.precedingVersionUid = precedingVersionUid;
+        this.otherInputVersionUids = otherInputVersionUids;
+        this.lifecycleState = lifecycleState;
+        this.attestations = attestations;
+        this.data = data;
+    }
 
     @Override
     public ObjectVersionId getUid() {
@@ -106,5 +120,37 @@ public class OriginalVersion<Type> extends Version<Type> {
 
     public void setData(Type data) {
         this.data = data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        OriginalVersion<?> that = (OriginalVersion<?>) o;
+
+        if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
+        if (precedingVersionUid != null ? !precedingVersionUid.equals(that.precedingVersionUid) : that.precedingVersionUid != null)
+            return false;
+        if (otherInputVersionUids != null ? !otherInputVersionUids.equals(that.otherInputVersionUids) : that.otherInputVersionUids != null)
+            return false;
+        if (lifecycleState != null ? !lifecycleState.equals(that.lifecycleState) : that.lifecycleState != null)
+            return false;
+        if (attestations != null ? !attestations.equals(that.attestations) : that.attestations != null) return false;
+        return data != null ? data.equals(that.data) : that.data == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (uid != null ? uid.hashCode() : 0);
+        result = 31 * result + (precedingVersionUid != null ? precedingVersionUid.hashCode() : 0);
+        result = 31 * result + (otherInputVersionUids != null ? otherInputVersionUids.hashCode() : 0);
+        result = 31 * result + (lifecycleState != null ? lifecycleState.hashCode() : 0);
+        result = 31 * result + (attestations != null ? attestations.hashCode() : 0);
+        result = 31 * result + (data != null ? data.hashCode() : 0);
+        return result;
     }
 }
