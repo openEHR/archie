@@ -2,16 +2,17 @@ package com.nedap.archie.rm.composition;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nedap.archie.rm.archetyped.Locatable;
+import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.generic.PartyProxy;
 import com.nedap.archie.rm.datavalues.DvCodedText;
+import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.generic.PartyProxy;
+import com.nedap.archie.rm.support.identification.UIDBasedId;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ import java.util.List;
         "context",
         "content"
 })
-@XmlRootElement(name="composition")
+@XmlRootElement(name = "composition")
 public class Composition extends Locatable {
 
     private CodePhrase language;
@@ -42,6 +43,29 @@ public class Composition extends Locatable {
 
     @Nullable
     private List<ContentItem> content = new ArrayList<>();
+
+    public Composition() {
+    }
+
+    public Composition(String archetypeNodeId, DvText name, @Nullable List<ContentItem> content, CodePhrase language, @Nullable EventContext context, PartyProxy composer, DvCodedText category, CodePhrase territory) {
+        super(archetypeNodeId, name);
+        this.language = language;
+        this.territory = territory;
+        this.category = category;
+        this.composer = composer;
+        this.context = context;
+        this.content = content;
+    }
+
+    public Composition(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ContentItem> content, CodePhrase language, @Nullable EventContext context, PartyProxy composer, DvCodedText category, CodePhrase territory) {
+        super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
+        this.language = language;
+        this.territory = territory;
+        this.category = category;
+        this.composer = composer;
+        this.context = context;
+        this.content = content;
+    }
 
     @JsonProperty
     public CodePhrase getLanguage() {
@@ -121,5 +145,32 @@ public class Composition extends Locatable {
         setThisAsParent(item, "content");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
+        Composition that = (Composition) o;
+
+        if (language != null ? !language.equals(that.language) : that.language != null) return false;
+        if (territory != null ? !territory.equals(that.territory) : that.territory != null) return false;
+        if (category != null ? !category.equals(that.category) : that.category != null) return false;
+        if (composer != null ? !composer.equals(that.composer) : that.composer != null) return false;
+        if (context != null ? !context.equals(that.context) : that.context != null) return false;
+        return content != null ? content.equals(that.content) : that.content == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (language != null ? language.hashCode() : 0);
+        result = 31 * result + (territory != null ? territory.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (composer != null ? composer.hashCode() : 0);
+        result = 31 * result + (context != null ? context.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        return result;
+    }
 }
