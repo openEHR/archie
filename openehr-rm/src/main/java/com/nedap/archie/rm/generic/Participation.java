@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="PARTICIPATION", propOrder = {
+@XmlType(name = "PARTICIPATION", propOrder = {
         "function",
         "mode",
         "time",

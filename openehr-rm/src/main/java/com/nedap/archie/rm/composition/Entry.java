@@ -77,7 +77,7 @@ public abstract class Entry extends ContentItem {
     public void setProvider(@Nullable PartyProxy provider) {
         this.provider = provider;
     }
-    
+
     public List<Participation> getOtherParticipations() {
         return otherParticipations;
     }

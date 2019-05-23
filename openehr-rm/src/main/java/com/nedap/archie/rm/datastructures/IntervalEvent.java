@@ -54,7 +54,7 @@ public class IntervalEvent<Type extends ItemStructure> extends Event<Type> {
         this.width = width;
     }
 
-    @Nullable    
+    @Nullable
     public Long getSampleCount() {
         return sampleCount;
     }
@@ -62,7 +62,7 @@ public class IntervalEvent<Type extends ItemStructure> extends Event<Type> {
     public void setSampleCount(@Nullable Long sampleCount) {
         this.sampleCount = sampleCount;
     }
-    
+
     public DvCodedText getMathFunction() {
         return mathFunction;
     }

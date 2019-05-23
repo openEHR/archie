@@ -22,7 +22,7 @@ import java.util.List;
  * Created by pieter.bos on 04/11/15.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="PATHABLE")
+@XmlType(name = "PATHABLE")
 public abstract class Pathable extends RMObject {
     //TODO: implement according to spec: pathExists(path), pathUnique(path), pathOfItem(pathable)
 
@@ -50,7 +50,7 @@ public abstract class Pathable extends RMObject {
     public List<Object> itemsAtPath(String s) {
         List<RMObjectWithPath> objects = new RMPathQuery(s).findList(ArchieRMInfoLookup.getInstance(), this);
         List<Object> result = new ArrayList<>();
-        for(RMObjectWithPath object:objects) {
+        for (RMObjectWithPath object : objects) {
             result.add(object.getObject());
         }
         return result;
@@ -70,11 +70,11 @@ public abstract class Pathable extends RMObject {
     }
 
     /**
-    * Utility method to set this object as the parent of the given child,
-    * if the child is not null
-    */
+     * Utility method to set this object as the parent of the given child,
+     * if the child is not null
+     */
     protected void setThisAsParent(Pathable child, String attributeName) {
-        if(child != null) {
+        if (child != null) {
             child.setParent(this);
             child.setParentAttributeName(attributeName);
         }
@@ -85,8 +85,8 @@ public abstract class Pathable extends RMObject {
      * if the child is not null
      */
     protected void setThisAsParent(Collection<? extends Pathable> children, String attributeName) {
-        if(children != null) {
-            for(Pathable child:children) {
+        if (children != null) {
+            for (Pathable child : children) {
                 this.setThisAsParent(child, attributeName);
             }
         }
@@ -99,7 +99,7 @@ public abstract class Pathable extends RMObject {
     @RMPropertyIgnore
     public List<PathSegment> getPathSegments() {
         Pathable parent = getParent();
-        if(parent == null) {
+        if (parent == null) {
             return new ArrayList<>();
         }
 
@@ -111,8 +111,9 @@ public abstract class Pathable extends RMObject {
     /**
      * Path from the toplevel-RM object. Not sure if this should be here, because the EHR and Folder objects are also in
      * the RM. But for now, it works because the most toplevel element is a Composition
-     *
+     * <p>
      * API subject to change in the future!
+     *
      * @return
      */
     @RMPropertyIgnore

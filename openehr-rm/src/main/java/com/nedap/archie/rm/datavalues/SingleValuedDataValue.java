@@ -6,6 +6,7 @@ package com.nedap.archie.rm.datavalues;
 public interface SingleValuedDataValue<Type> {
 
     Type getValue();
+
     void setValue(Type type);
 
 

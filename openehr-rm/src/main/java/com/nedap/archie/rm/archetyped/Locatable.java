@@ -69,12 +69,14 @@ public abstract class Locatable extends Pathable {
         this.name = name;
     }
 
-    /** convenience method*/
+    /**
+     * convenience method
+     */
     public void setNameAsString(String name) {
         this.name = new DvText(name);
     }
 
-    
+
     public String getArchetypeNodeId() {
         return archetypeNodeId;
     }
@@ -116,7 +118,7 @@ public abstract class Locatable extends Pathable {
     @RMPropertyIgnore
     public List<PathSegment> getPathSegments() {
         Pathable parent = getParent();
-        if(parent == null) {
+        if (parent == null) {
             return new ArrayList<>();
         }
 

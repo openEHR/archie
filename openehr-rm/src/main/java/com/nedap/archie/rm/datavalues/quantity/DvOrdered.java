@@ -48,7 +48,6 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
     }
 
 
-
     public DvInterval getNormalRange() {
         return normalRange;
     }

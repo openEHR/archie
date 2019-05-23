@@ -14,17 +14,17 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Version control object. To use this other than in data exchange purposed, you will need to create a subclass
  * and implement the methods
- *
+ * <p>
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="VERSIONED_OBJECT")
+@XmlType(name = "VERSIONED_OBJECT")
 public class VersionedObject<Type> extends RMObject {
     private HierObjectId uid;
-    @XmlElement(name="owner_id")
+    @XmlElement(name = "owner_id")
     private ObjectRef ownerId;
 
-    @XmlElement(name="time_created")
+    @XmlElement(name = "time_created")
     private DvDateTime timeCreated;
 
     public VersionedObject() {

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="AUDIT_DETAILS", propOrder = {
+@XmlType(name = "AUDIT_DETAILS", propOrder = {
         "systemId",
         "committer",
         "timeCommitted",
@@ -25,11 +25,11 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class AuditDetails extends RMObject {
 
-    @XmlElement(name="system_id")
+    @XmlElement(name = "system_id")
     private String systemId;
-    @XmlElement(name="time_committed")
+    @XmlElement(name = "time_committed")
     private DvDateTime timeCommitted;
-    @XmlElement(name="change_type")
+    @XmlElement(name = "change_type")
     private DvCodedText changeType;
     @Nullable
     private DvText description;

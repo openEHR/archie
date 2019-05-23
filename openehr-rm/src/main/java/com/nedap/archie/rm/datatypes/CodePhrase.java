@@ -43,8 +43,9 @@ public class CodePhrase extends RMObject {
      * or
      * <br>
      * terminologyId::codeString
-     *
+     * <p>
      * terminologyId can be just a a string, or contain a version as in  terminologyId(version)
+     *
      * @param phrase
      */
     public CodePhrase(String phrase) {
@@ -52,7 +53,7 @@ public class CodePhrase extends RMObject {
         Pattern pattern = Pattern.compile("\\[?(?<terminologyId>.+)(\\((?<terminologyVersion>.+)\\))?::(?<codeString>[^\\]]+)\\]?");
         Matcher matcher = pattern.matcher(phrase);
 
-        if(matcher.matches()) {
+        if (matcher.matches()) {
             terminologyId = new TerminologyId(matcher.group("terminologyId"), matcher.group("terminologyVersion"));
             codeString = matcher.group("codeString");
         } else {
@@ -69,7 +70,7 @@ public class CodePhrase extends RMObject {
     public void setTerminologyId(TerminologyId terminologyId) {
         this.terminologyId = terminologyId;
     }
-    
+
     public String getCodeString() {
         return codeString;
     }

@@ -12,20 +12,20 @@ import java.net.URI;
 @XmlType(name = "DV_EHR_URI")
 public class DvEHRURI extends DvURI {
 
-	public DvEHRURI() {
-	}
+    public DvEHRURI() {
+    }
 
-	public DvEHRURI(URI value) {
-		super(value);
-	}
+    public DvEHRURI(URI value) {
+        super(value);
+    }
 
 
-	/**
-	 * Creates a DvEHRURI from a URI String representation
-	 *
-	 * @param uri
-	 */
-	public DvEHRURI(String uri) {
-		super(uri);
-	}
+    /**
+     * Creates a DvEHRURI from a URI String representation
+     *
+     * @param uri
+     */
+    public DvEHRURI(String uri) {
+        super(uri);
+    }
 }

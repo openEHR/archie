@@ -22,12 +22,12 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Archetyped extends RMObject {
 
-    @XmlElement(name="archetype_id")
+    @XmlElement(name = "archetype_id")
     private ArchetypeID archetypeId;
-    @XmlElement(name="template_id")
+    @XmlElement(name = "template_id")
     @Nullable
     private TemplateId templateId;
-    @XmlElement(name="rm_version")
+    @XmlElement(name = "rm_version")
     private String rmVersion;
 
     public Archetyped() {
@@ -43,7 +43,6 @@ public class Archetyped extends RMObject {
         this.templateId = templateId;
         this.rmVersion = rmVersion;
     }
-
 
 
     public ArchetypeID getArchetypeId() {
@@ -62,7 +61,7 @@ public class Archetyped extends RMObject {
     public void setTemplateId(@Nullable TemplateId templateId) {
         this.templateId = templateId;
     }
-    
+
     public String getRmVersion() {
         return rmVersion;
     }

@@ -21,7 +21,7 @@ public class DvState extends DataValue implements SingleValuedDataValue<DvCodedT
     @RMProperty("is_terminal")
     private boolean isTerminal;
     private DvCodedText value;
-    
+
     public boolean isTerminal() {
         return isTerminal;
     }

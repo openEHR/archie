@@ -14,10 +14,10 @@ import java.util.List;
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="REVISION_HISTORY_ITEM")
+@XmlType(name = "REVISION_HISTORY_ITEM")
 public class RevisionHistoryItem extends RMObject {
 
-    @XmlElement(name="version_id")
+    @XmlElement(name = "version_id")
     private ObjectVersionId versionId;
     private List<AuditDetails> audits = new ArrayList<>();
 

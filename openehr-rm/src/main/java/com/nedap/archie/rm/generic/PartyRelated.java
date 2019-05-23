@@ -14,7 +14,7 @@ import java.util.List;
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="PARTY_RELATED")
+@XmlType(name = "PARTY_RELATED")
 public class PartyRelated extends PartyIdentified {
     private DvCodedText relationship;
 

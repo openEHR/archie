@@ -73,6 +73,7 @@ subprojects {
     }
     compile 'org.apache.commons:commons-text:1.6'
     compile 'org.apache.commons:commons-lang3:3.8.1'
+    compile 'commons-collections:commons-collections:3.2.2'
 
     //java 10 no longer has these included by default, so explicit dependency is needed.
     compile 'javax.xml.bind:jaxb-api:2.3.0'

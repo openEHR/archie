@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by pieter.bos on 08/07/16.
  */
-@XmlType(name="CONTRIBUTION", propOrder = {
+@XmlType(name = "CONTRIBUTION", propOrder = {
         "uid",
         "versions",
         "audit"

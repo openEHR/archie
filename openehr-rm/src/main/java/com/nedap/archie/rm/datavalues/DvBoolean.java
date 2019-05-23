@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DV_BOOLEAN", propOrder = {
         "value"
 })
-public class DvBoolean extends DataValue implements SingleValuedDataValue<Boolean>{
+public class DvBoolean extends DataValue implements SingleValuedDataValue<Boolean> {
 
     private Boolean value;
 

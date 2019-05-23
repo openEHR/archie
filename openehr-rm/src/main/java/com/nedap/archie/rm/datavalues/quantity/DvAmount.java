@@ -4,11 +4,7 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -25,7 +21,7 @@ import java.util.List;
         DvDuration.class,
         DvQuantity.class
 })
-public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuantified<Double, MagnitudeType>{
+public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuantified<Double, MagnitudeType> {
     @Nullable
     private Double accuracy;
     @Nullable

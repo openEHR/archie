@@ -45,7 +45,7 @@ public class InstructionDetails extends Pathable {
     public void setInstructionId(LocatableRef instructionId) {
         this.instructionId = instructionId;
     }
-    
+
     public String getActivityId() {
         return activityId;
     }
@@ -54,7 +54,7 @@ public class InstructionDetails extends Pathable {
         this.activityId = activityId;
     }
 
-    
+
     public ItemStructure getWfDetails() {
         return wfDetails;
     }

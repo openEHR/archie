@@ -61,7 +61,7 @@ public class Instruction extends CareEntry {
         this.narrative = narrative;
     }
 
-    @Nullable    
+    @Nullable
     public DvDateTime getExpiryTime() {
         return expiryTime;
     }
@@ -70,7 +70,7 @@ public class Instruction extends CareEntry {
         this.expiryTime = expiryTime;
     }
 
-    @Nullable    
+    @Nullable
     public DvParsable getWfDefinition() {
         return wfDefinition;
     }
@@ -85,7 +85,7 @@ public class Instruction extends CareEntry {
 
     public void setActivities(List<Activity> activities) {
         this.activities = activities;
-        for(Activity activity:activities) {
+        for (Activity activity : activities) {
             setThisAsParent(activity, "activity");
         }
     }

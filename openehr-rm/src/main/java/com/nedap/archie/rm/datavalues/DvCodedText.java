@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class DvCodedText extends DvText {
 
-	@XmlElement(name = "defining_code")
+    @XmlElement(name = "defining_code")
     private CodePhrase definingCode;
 
 

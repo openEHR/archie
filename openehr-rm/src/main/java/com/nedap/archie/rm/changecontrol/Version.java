@@ -15,11 +15,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Version class. You will need to create a subclass to make this work.
- *
+ * <p>
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="VERSION", propOrder = {
+@XmlType(name = "VERSION", propOrder = {
         "contribution",
         "commitAudit",
         "signature"
@@ -30,7 +30,7 @@ public abstract class Version<Type> extends RMObject {
     @Nullable
 
     private String signature;
-    @XmlElement(name="commit_audit")
+    @XmlElement(name = "commit_audit")
     private AuditDetails commitAudit;
 
     public Version() {

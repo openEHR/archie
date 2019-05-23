@@ -16,7 +16,7 @@ import java.util.List;
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="FEEDER_AUDIT")
+@XmlType(name = "FEEDER_AUDIT")
 public class FeederAudit extends RMObject {
 
     @Nullable

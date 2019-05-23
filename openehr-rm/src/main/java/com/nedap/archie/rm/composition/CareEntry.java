@@ -54,7 +54,7 @@ public abstract class CareEntry extends Entry {
         setThisAsParent(protocol, "protocol");
     }
 
-    @Nullable    
+    @Nullable
     public ObjectRef getGuidelineId() {
         return guidelineId;
     }

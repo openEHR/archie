@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Created by pieter.bos on 08/07/16.
  */
-@XmlType(name="IMPORTED_VERSION")
+@XmlType(name = "IMPORTED_VERSION")
 public class ImportedVersion<T> extends Version<T> {
 
     private OriginalVersion<T> item;

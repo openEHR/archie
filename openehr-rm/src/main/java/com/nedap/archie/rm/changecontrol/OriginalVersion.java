@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by pieter.bos on 08/07/16.
  */
-@XmlType(name="ORIGINAL_VERSION", propOrder = {
+@XmlType(name = "ORIGINAL_VERSION", propOrder = {
         "uid",
         "data",
         "precedingVersionUid",
@@ -30,13 +30,13 @@ public class OriginalVersion<Type> extends Version<Type> {
 
     private ObjectVersionId uid;
     @Nullable
-    @XmlElement(name="preceding_version_uid")
+    @XmlElement(name = "preceding_version_uid")
     private ObjectVersionId precedingVersionUid;
     @Nullable
-    @XmlElement(name="other_input_version_uids")
+    @XmlElement(name = "other_input_version_uids")
     private List<ObjectVersionId> otherInputVersionUids = new ArrayList<>();
 
-    @XmlElement(name="lifecycle_state")
+    @XmlElement(name = "lifecycle_state")
     private DvCodedText lifecycleState;
     @Nullable
     private List<Attestation> attestations = new ArrayList<>();
