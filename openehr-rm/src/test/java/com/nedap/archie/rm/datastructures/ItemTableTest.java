@@ -21,7 +21,7 @@ public class ItemTableTest {
 
 
         ItemTable itemTableOne = new ItemTable("itemTable", new DvText("Text2"), Arrays.asList(clusterOne, clusterTwo, clusterThree));
-        ItemTable itemTableTwo = new ItemTable("itemTable", new DvText("Text2"), Arrays.asList(clusterOne, clusterThree, clusterTwo));
+        ItemTable itemTableTwo = new ItemTable("itemTable", new DvText("Text2"), Arrays.asList(clusterOne, clusterTwo, clusterThree));
 
         assertEquals(itemTableOne, itemTableTwo);
     }

@@ -6,7 +6,6 @@ import com.nedap.archie.rm.archetyped.Link;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
-import org.apache.commons.collections.CollectionUtils;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -68,7 +67,7 @@ public class ItemList extends ItemStructure<Element> {
         if (items == null && itemList.items != null) return false;
 
         // Compering elements ignoring order
-        return CollectionUtils.isEqualCollection(items, itemList.items);
+        return items.equals(itemList.items);
 
     }
 

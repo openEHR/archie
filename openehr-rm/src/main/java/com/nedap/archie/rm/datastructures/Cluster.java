@@ -6,7 +6,6 @@ import com.nedap.archie.rm.archetyped.Link;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
-import org.apache.commons.collections.CollectionUtils;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -68,8 +67,7 @@ public class Cluster<Type extends Item> extends Item {
         if (items != null && cluster.items == null) return false;
         if (items == null && cluster.items != null) return false;
 
-        // Compering elements ignoring order
-        return CollectionUtils.isEqualCollection(items, cluster.items);
+        return items.equals(items);
 
     }
 
