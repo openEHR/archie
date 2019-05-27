@@ -77,20 +77,5 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
         this.normalStatus = normalStatus;
     }
 
-    public boolean isNormal() {
-
-        if (normalRange != null) {
-            return getNormalRange().has(this);
-        } else if (normalStatus != null) {
-            return normalStatus.getCodeString().equals("N");
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isSimple() {
-        return otherReferenceRanges == null;
-    }
-
 
 }
