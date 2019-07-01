@@ -304,6 +304,8 @@ public class RMPathQuery {
             } else {
                 if(equalsName(lookup.getNameFromRMObject(o), segment.getNodeId())) {
                     return o;
+                } else if (archetypeNodeId.equals(segment.getNodeId())) { //CCH: fails with simple AOM1.4 paths
+                    return o;
                 }
             }
         }
