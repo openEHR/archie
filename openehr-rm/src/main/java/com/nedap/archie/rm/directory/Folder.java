@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.directory;
 
 import com.nedap.archie.rm.archetyped.*;
+import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
@@ -8,6 +9,7 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,8 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "FOLDER", propOrder = {
         "folders",
-        "items"
+        "items",
+        "details"
 })
 public class Folder extends Locatable {
     @Nullable
@@ -26,19 +29,25 @@ public class Folder extends Locatable {
     @Nullable
     private List<Folder> folders = new ArrayList<>();
 
+    @Nullable
+    @XmlElement(name="details")
+    private ItemStructure details;
+
     public Folder() {
     }
 
-    public Folder(String archetypeNodeId, DvText name, @Nullable List<ObjectRef> items, @Nullable List<Folder> folders) {
+    public Folder(String archetypeNodeId, DvText name, ItemStructure details, @Nullable List<ObjectRef> items, @Nullable List<Folder> folders) {
         super(archetypeNodeId, name);
         this.items = items;
         this.folders = folders;
+        this.details = details;
     }
 
-    public Folder(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ObjectRef> items, @Nullable List<Folder> folders) {
+    public Folder(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, ItemStructure details, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ObjectRef> items, @Nullable List<Folder> folders) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
         this.items = items;
         this.folders = folders;
+        this.details = details;
     }
 
     @Nullable
@@ -69,6 +78,16 @@ public class Folder extends Locatable {
         this.setThisAsParent(folder, "folders");
     }
 
+    @Nullable
+    public ItemStructure getDetails() {
+        return details;
+    }
+
+    public void setDetails(@Nullable ItemStructure details) {
+        this.details = details;
+        setThisAsParent(details, "details");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,8 +96,10 @@ public class Folder extends Locatable {
 
         Folder folder = (Folder) o;
 
-        if (items != null ? !items.equals(folder.items) : folder.items != null) return false;
-        return folders != null ? folders.equals(folder.folders) : folder.folders == null;
+        return
+            (items != null ? items.equals(folder.items) : folder.items == null) &&
+                (folders != null ? folders.equals(folder.folders) : folder.folders == null) &&
+                    (details != null ? details.equals(folder.details) : folder.details == null);
 
     }
 
@@ -87,6 +108,7 @@ public class Folder extends Locatable {
         int result = super.hashCode();
         result = 31 * result + (items != null ? items.hashCode() : 0);
         result = 31 * result + (folders != null ? folders.hashCode() : 0);
+        result = 31 * result + (details != null ? details.hashCode() : 0);
         return result;
     }
 }
