@@ -121,16 +121,11 @@ public abstract class Pathable extends RMObject {
         return PathUtil.getPath(getPathSegments());
     }
 
+
+    //equals depends on subclass
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Pathable pathable = (Pathable) o;
-
-        if (parent != null ? !parent.equals(pathable.parent) : pathable.parent != null) return false;
-        return parentAttributeName != null ? parentAttributeName.equals(pathable.parentAttributeName) : pathable.parentAttributeName == null;
-
+    public boolean equals(Object obj) {
+        return true;
     }
 
     @Override
