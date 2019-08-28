@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
@@ -90,5 +91,23 @@ public class FeederAuditDetails extends RMObject {
 
     public void setVersionId(String versionId) {
         this.versionId = versionId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FeederAuditDetails that = (FeederAuditDetails) o;
+        return Objects.equals(systemId, that.systemId) &&
+                Objects.equals(location, that.location) &&
+                Objects.equals(provider, that.provider) &&
+                Objects.equals(subject, that.subject) &&
+                Objects.equals(time, that.time) &&
+                Objects.equals(versionId, that.versionId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(systemId, location, provider, subject, time, versionId);
     }
 }

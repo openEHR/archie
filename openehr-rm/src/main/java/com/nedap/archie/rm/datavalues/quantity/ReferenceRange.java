@@ -6,6 +6,7 @@ import com.nedap.archie.rm.datavalues.DvText;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -44,5 +45,17 @@ public class ReferenceRange<T extends DvOrdered> extends RMObject {
         this.meaning = meaning;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReferenceRange<?> that = (ReferenceRange<?>) o;
+        return Objects.equals(range, that.range) &&
+                Objects.equals(meaning, that.meaning);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(range, meaning);
+    }
 }

@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -140,6 +141,25 @@ public abstract class Locatable extends Pathable {
 
     public void setFeederAudit(@Nullable FeederAudit feederAudit) {
         this.feederAudit = feederAudit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Locatable locatable = (Locatable) o;
+        return Objects.equals(name, locatable.name) &&
+                Objects.equals(archetypeNodeId, locatable.archetypeNodeId) &&
+                Objects.equals(uid, locatable.uid) &&
+                Objects.equals(archetypeDetails, locatable.archetypeDetails) &&
+                Objects.equals(feederAudit, locatable.feederAudit) &&
+                Objects.equals(links, locatable.links);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, archetypeNodeId, uid, archetypeDetails, feederAudit, links);
     }
 }
 

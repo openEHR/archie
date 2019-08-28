@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -217,5 +218,26 @@ public class ArchetypeID extends ObjectId {
     @Override
     public String toString() {
         return getFullId();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ArchetypeID that = (ArchetypeID) o;
+        return Objects.equals(namespace, that.namespace) &&
+                Objects.equals(qualifiedRmEntity, that.qualifiedRmEntity) &&
+                Objects.equals(domainConcept, that.domainConcept) &&
+                Objects.equals(rmOriginator, that.rmOriginator) &&
+                Objects.equals(rmName, that.rmName) &&
+                Objects.equals(rmEntity, that.rmEntity) &&
+                Objects.equals(specialisation, that.specialisation) &&
+                Objects.equals(versionId, that.versionId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespace, qualifiedRmEntity, domainConcept, rmOriginator, rmName, rmEntity, specialisation, versionId);
     }
 }
