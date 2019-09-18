@@ -1,14 +1,6 @@
 package com.nedap.archie.flattener;
 
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.CPrimitiveTuple;
-import com.nedap.archie.aom.SiblingOrder;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.paths.PathSegment;
@@ -131,11 +123,21 @@ public class CAttributeFlattener {
                             //extension nodes should be added to the last position
                             attributeInParent.addChild(specializedObject);
                         } else {
-                            attributeInParent.addChild(specializedObject, SiblingOrder.createAfter(findLastSpecializedChildDirectlyAfter(attributeInParent, matchingParentObject)));
                             if(shouldRemoveParent(specializedChildCObject, matchingParentObject, attributeInSpecialization.getChildren())) {
-                                //we should remove the attributeInParent
-                                attributeInParent.removeChild(matchingParentObject.getNodeId());
+                                if(specializedChildCObject.getNodeId().equals(matchingParentObject)) {
+                                    //if exactly the same node id, replace it in exactly the same place.
+                                    attributeInParent.replaceChild(matchingParentObject.getNodeId(), specializedChildCObject);
+                                } else {
+                                    //if not exactly same node id, the last replacing child will remove the parent. The rest
+                                    //will be added after the original parent, so it should not be replaced, but rather added and removed.
+                                    //this is a bit hard to grasp. Luckily it is rather well covered by tests.
+                                    attributeInParent.addChild(specializedObject, SiblingOrder.createAfter(findLastSpecializedChildDirectlyAfter(attributeInParent, matchingParentObject)));
+                                    attributeInParent.removeChild(matchingParentObject.getNodeId());
+                                }
+                            } else {
+                                    attributeInParent.addChild(specializedObject, SiblingOrder.createAfter(findLastSpecializedChildDirectlyAfter(attributeInParent, matchingParentObject)));
                             }
+
                         }
                     }
                 }
@@ -266,9 +268,18 @@ public class CAttributeFlattener {
             }
 
         }
-        //the last matching child should possibly replace the parent, the rest should just add
-        //if there is just one child, that's fine, it should still work
-        if(allMatchingChildren.get(allMatchingChildren.size()-1).getNodeId().equalsIgnoreCase(specializedChildCObject.getNodeId())) {
+        boolean hasSameNodeIdInMatchingChildren = allMatchingChildren.stream().anyMatch(c -> c.getNodeId().equals(matchingParentObject.getNodeId()));
+        if(hasSameNodeIdInMatchingChildren) {
+            //if parent contains id2, and child as well, replace the exact same node with the exact child. Otherwise,
+            //add children and replace the last child.
+            if(specializedChildCObject.getNodeId().equalsIgnoreCase(matchingParentObject.getNodeId())) {
+                return shouldReplaceParent(matchingParentObject, allMatchingChildren);
+            } else {
+                return false;
+            }
+        } else if(allMatchingChildren.get(allMatchingChildren.size()-1).getNodeId().equalsIgnoreCase(specializedChildCObject.getNodeId())) {
+            //the last matching child should possibly replace the parent, the rest should just add
+            //if there is just one child, that's fine, it should still work
             return shouldReplaceParent(matchingParentObject, allMatchingChildren);
         }
         return false;

@@ -3,6 +3,7 @@ package com.nedap.archie.flattener;
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 
+import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
@@ -118,6 +119,28 @@ public class SiblingOrderFlattenerTest {
                 Lists.newArrayList("id0.6", "id3.1", "id0.5", "id0.7", "id2", "id4", "id5"),
                 nodeIds
         );
+    }
+
+    @Test
+    public void orderArchetypeSlotFilling() throws Exception {
+        repository = new InMemoryFullArchetypeRepository();
+        Archetype slotFillerTarget = parentArchetype;
+
+        parentArchetype = parse("openEHR-EHR-CLUSTER.archetype_slot_parent.v1.0.0.adls");
+        repository.addArchetype(slotFillerTarget);
+        repository.addArchetype(parentArchetype);
+
+        Archetype childArchetype = parseAndFlatten("openEHR-EHR-CLUSTER.archetype_slot_filled.v1.0.0.adls");
+
+        List<CObject> children = childArchetype.getDefinition().getAttributes().get(0).getChildren();
+        assertEquals(3, children.size());
+        assertEquals("id2", children.get(0).getNodeId());
+        assertEquals("id2.1", children.get(1).getNodeId());
+        assertEquals("id2.2", children.get(2).getNodeId());
+
+        assertTrue(((ArchetypeSlot) children.get(0)).isClosed());
+
+
     }
 
     private Archetype parse(String fileName) throws IOException {
