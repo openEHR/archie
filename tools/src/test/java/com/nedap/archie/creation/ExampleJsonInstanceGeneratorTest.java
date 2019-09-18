@@ -168,7 +168,7 @@ public class ExampleJsonInstanceGeneratorTest {
                         jsonSchemaValidationFailed++;
                         continue;
                     }
-                    logger.error("first validation ok for {}", result.getArchetypeId());
+                    logger.info("first validation ok for {}", result.getArchetypeId());
 
                     String serializedAgain = archieObjectMapper.writeValueAsString(parsed);
                     secondJsonSchemaValidationRan++;
