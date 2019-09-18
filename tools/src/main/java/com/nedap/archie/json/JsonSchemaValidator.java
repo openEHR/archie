@@ -46,7 +46,7 @@ public class JsonSchemaValidator {
 
     }
 
-    private ByteArrayInputStream createStringInputStream(String json) {
+    private ByteArrayInputStream createByteArrayInputStream(String json) {
         return new ByteArrayInputStream(json.getBytes(Charsets.UTF_8));
     }
 
