@@ -123,21 +123,10 @@ public class CAttributeFlattener {
                             //extension nodes should be added to the last position
                             attributeInParent.addChild(specializedObject);
                         } else {
+                            attributeInParent.addChild(specializedObject, SiblingOrder.createAfter(findLastSpecializedChildDirectlyAfter(attributeInParent, matchingParentObject)));
                             if(shouldRemoveParent(specializedChildCObject, matchingParentObject, attributeInSpecialization.getChildren())) {
-                                if(specializedChildCObject.getNodeId().equals(matchingParentObject)) {
-                                    //if exactly the same node id, replace it in exactly the same place.
-                                    attributeInParent.replaceChild(matchingParentObject.getNodeId(), specializedChildCObject);
-                                } else {
-                                    //if not exactly same node id, the last replacing child will remove the parent. The rest
-                                    //will be added after the original parent, so it should not be replaced, but rather added and removed.
-                                    //this is a bit hard to grasp. Luckily it is rather well covered by tests.
-                                    attributeInParent.addChild(specializedObject, SiblingOrder.createAfter(findLastSpecializedChildDirectlyAfter(attributeInParent, matchingParentObject)));
-                                    attributeInParent.removeChild(matchingParentObject.getNodeId());
-                                }
-                            } else {
-                                    attributeInParent.addChild(specializedObject, SiblingOrder.createAfter(findLastSpecializedChildDirectlyAfter(attributeInParent, matchingParentObject)));
+                                attributeInParent.removeChild(matchingParentObject.getNodeId());
                             }
-
                         }
                     }
                 }
@@ -273,25 +262,20 @@ public class CAttributeFlattener {
             //if parent contains id2, and child as well, replace the exact same node with the exact child. Otherwise,
             //add children and replace the last child.
             if(specializedChildCObject.getNodeId().equalsIgnoreCase(matchingParentObject.getNodeId())) {
-                return shouldReplaceParent(matchingParentObject, allMatchingChildren);
+                return true;//shouldReplaceParent(matchingParentObject, allMatchingChildren);
             } else {
                 return false;
             }
         } else if(allMatchingChildren.get(allMatchingChildren.size()-1).getNodeId().equalsIgnoreCase(specializedChildCObject.getNodeId())) {
             //the last matching child should possibly replace the parent, the rest should just add
             //if there is just one child, that's fine, it should still work
-            return shouldReplaceParent(matchingParentObject, allMatchingChildren);
+            return shouldReplaceSpecializedParent(matchingParentObject, allMatchingChildren);
         }
         return false;
     }
 
-    private boolean shouldReplaceParent(CObject parent, List<CObject> differentialNodes) {
-        for(CObject differentialNode: differentialNodes) {
-            if(differentialNode.getNodeId().equals(parent.getNodeId())) {
-                //same node id, so no specialization
-                return true;
-            }
-        }
+    private boolean shouldReplaceSpecializedParent(CObject parent, List<CObject> differentialNodes) {
+
         MultiplicityInterval occurrences = parent.effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity);
         //isSingle/isMultiple is tricky and not doable just in the parser. Don't use those
         if(isSingle(parent.getParent())) {

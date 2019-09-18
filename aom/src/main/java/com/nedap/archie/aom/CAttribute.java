@@ -217,6 +217,11 @@ public class CAttribute extends ArchetypeConstraint {
 
     }
 
+    /**
+     * Removes the child with a node id exactly the same as the given node id. In case multiple children match, removes
+     * only the first child
+     * @param nodeId
+     */
     public void removeChild(String nodeId) {
         int index = getIndexOfChildWithNodeId(nodeId);
         if(index > -1) {
