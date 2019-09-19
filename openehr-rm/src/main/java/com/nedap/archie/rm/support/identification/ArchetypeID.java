@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
  * Created by pieter.bos on 15/10/15.
  */
 public class ArchetypeID extends ObjectId {
@@ -36,9 +36,10 @@ public class ArchetypeID extends ObjectId {
 
     /**
      * Parse the Archetype id from a string
+     *
      * @param value
      */
-    @JsonCreator(mode= JsonCreator.Mode.DELEGATING)
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public ArchetypeID(String value) {
 
         parseValue(value);
@@ -50,7 +51,7 @@ public class ArchetypeID extends ObjectId {
         Pattern p = Pattern.compile("((?<namespace>.*)::)?(?<publisher>.*)-(?<package>.*)-(?<class>.*)\\.(?<concept>.*)(-(?<specialisation>.*))?\\.v(?<version>.*)");
         Matcher m = p.matcher(value);
 
-        if(!m.matches()) {
+        if (!m.matches()) {
             throw new IllegalArgumentException(value + " is not a valid archetype human readable id");
         }
         namespace = m.group("namespace");
@@ -71,6 +72,7 @@ public class ArchetypeID extends ObjectId {
 
     /**
      * Constructor for creating the archetype id based on all fields separate in json
+     *
      * @param qualifiedRmEntity
      * @param domainConcept
      * @param rmOriginator
@@ -81,14 +83,14 @@ public class ArchetypeID extends ObjectId {
      */
     @JsonCreator
     public ArchetypeID(@JsonProperty("qualified_rm_entity") String qualifiedRmEntity,
-                       @JsonProperty("domain_concept")String domainConcept,
+                       @JsonProperty("domain_concept") String domainConcept,
                        @JsonProperty("rm_originator") String rmOriginator,
                        @JsonProperty("rm_name") String rmName,
                        @JsonProperty("rm_entity") String rmEntity,
                        @JsonProperty("specialisation") String specialisation,
                        @JsonProperty("versionId") String versionId,
                        @JsonProperty("value") String value) {
-        if(value != null) {
+        if (value != null) {
             parseValue(value);
             setValue(value);
         } else {
@@ -122,7 +124,7 @@ public class ArchetypeID extends ObjectId {
             result.append("-");
             result.append(specialisation);
         }
-        if(versionId.startsWith("v")) {
+        if (versionId.startsWith("v")) {
             result.append(".");
         } else {
             result.append(".v");
@@ -216,5 +218,26 @@ public class ArchetypeID extends ObjectId {
     @Override
     public String toString() {
         return getFullId();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ArchetypeID that = (ArchetypeID) o;
+        return Objects.equals(namespace, that.namespace) &&
+                Objects.equals(qualifiedRmEntity, that.qualifiedRmEntity) &&
+                Objects.equals(domainConcept, that.domainConcept) &&
+                Objects.equals(rmOriginator, that.rmOriginator) &&
+                Objects.equals(rmName, that.rmName) &&
+                Objects.equals(rmEntity, that.rmEntity) &&
+                Objects.equals(specialisation, that.specialisation) &&
+                Objects.equals(versionId, that.versionId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespace, qualifiedRmEntity, domainConcept, rmOriginator, rmName, rmEntity, specialisation, versionId);
     }
 }

@@ -11,4 +11,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "HIER_OBJECT_ID")
 public class HierObjectId extends UIDBasedId {
+
+    public HierObjectId() {
+    }
+
+    public HierObjectId(String value) {
+        super(value);
+    }
 }

@@ -3,6 +3,7 @@ package com.nedap.archie.archetypevalidator;
 import com.google.common.base.Joiner;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.archetypevalidator.validations.*;
@@ -65,7 +66,6 @@ public class ArchetypeValidator {
         validationsPhase1.add(new BasicTerminologyValidation());
         validationsPhase1.add(new VariousStructureValidation());
         validationsPhase1.add(new CodeValidation());
-        validationsPhase1.add(new AnnotationsValidation());
         //TODO: validation annotations
 
         validationsPhase2 = new ArrayList<>();
@@ -74,6 +74,7 @@ public class ArchetypeValidator {
         validationsPhase2.add(new SpecializedDefinitionValidation());
 
         validationsPhase3 = new ArrayList<>();
+        validationsPhase3.add(new AnnotationsValidation());
         validationsPhase3.add(new FlatFormValidation());
 
     }
@@ -104,18 +105,20 @@ public class ArchetypeValidator {
         if(settings == null) {
             settings = new ArchetypeValidationSettings();
         }
+        OverridingInMemFullArchetypeRepository extraRepository = null;
+        if(repository == null) {
+            extraRepository = new OverridingInMemFullArchetypeRepository();
+        } else {
+            extraRepository = new OverridingInMemFullArchetypeRepository(repository);
+        }
+        repository = extraRepository;
         if(archetype instanceof Template) {
-            //in the case of a template, add a repository that can store the overlays separate from the rest of the archetypes
+            //in the case of a template store the overlays in the extraRepository separate from the rest of the archetypes
             //later they can be retrieved and handled as extra archetypes, that are not top level archetypes usable in other
             //archetypes that are not templates
             //TODO: can we specialize templates? In that case we need more work to get any template overlays defined in
             //the parent template in this repo as well
-            OverridingInMemFullArchetypeRepository extraRepository = null;
-            if(repository == null) {
-                extraRepository = new OverridingInMemFullArchetypeRepository();
-            } else {
-                extraRepository = new OverridingInMemFullArchetypeRepository(repository);
-            }
+
             for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
                 extraRepository.addExtraArchetype(overlay);
             }
@@ -123,7 +126,6 @@ public class ArchetypeValidator {
                 //validate the overlays first, but make sure to do that only once (so don't call this same method!)
                 getValidationResult(overlay.getArchetypeId().toString(), extraRepository);
             }
-            repository = extraRepository;
         }
 
 
@@ -170,6 +172,17 @@ public class ArchetypeValidator {
         if(result.passes() || settings.isAlwaysTryToFlatten()) {
             try {
                 Archetype flattened = new Flattener(repository, combinedModels).flatten(archetype);
+
+                try {
+                    OperationalTemplate operationalTemplate = (OperationalTemplate) new Flattener(repository, combinedModels).createOperationalTemplate(true).flatten(archetype);
+                    extraRepository.addExtraOperationalTemplate(operationalTemplate);
+                } catch (Exception e) {
+                    //this is probably an error in an included archetype, so ignore it here
+                    //the other archetype will not validate
+                    ValidationMessage message = new ValidationMessage(ErrorType.OTHER, "Error during Operational template creation. This does not necessarily mean the current archetype has a problem, but perhaps one that is included with use_archetype: " + e);
+                    message.setWarning(true);
+                    messages.add(message);
+                }
                 result.setFlattened(flattened);
                 if(result.passes()) {
                     messages.addAll(runValidations(flattened, repository, settings, flatParent, validationsPhase3));
@@ -233,7 +246,7 @@ public class ArchetypeValidator {
         return preprocessed;
     }
 
-    private List<ValidationMessage> runValidations(Archetype archetype, ArchetypeRepository repository, ArchetypeValidationSettings settings, Archetype flatParent, List<ArchetypeValidation> validations) {
+    private List<ValidationMessage> runValidations(Archetype archetype, FullArchetypeRepository repository, ArchetypeValidationSettings settings, Archetype flatParent, List<ArchetypeValidation> validations) {
 
         List<ValidationMessage> messages = new ArrayList<>();
         for(ArchetypeValidation validation: validations) {

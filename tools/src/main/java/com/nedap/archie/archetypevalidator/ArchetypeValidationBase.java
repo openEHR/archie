@@ -2,6 +2,7 @@ package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.ArchetypeRepository;
+import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 
@@ -12,7 +13,7 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
 
     protected Archetype archetype;
     protected Archetype flatParent;
-    protected ArchetypeRepository repository;
+    protected FullArchetypeRepository repository;
     protected List<ValidationMessage> messages;
     protected ModelInfoLookup lookup;
     protected MetaModels combinedModels;
@@ -22,7 +23,7 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     }
 
     @Override
-    public List<ValidationMessage> validate(MetaModels models, Archetype archetype, Archetype flatParent, ArchetypeRepository repository, ArchetypeValidationSettings settings) {
+    public List<ValidationMessage> validate(MetaModels models, Archetype archetype, Archetype flatParent, FullArchetypeRepository repository, ArchetypeValidationSettings settings) {
         this.archetype = archetype;
         this.flatParent = flatParent;
         this.repository = repository;

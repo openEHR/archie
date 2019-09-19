@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.util.function.BiFunction;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by pieter.bos on 20/04/16.
@@ -78,7 +79,7 @@ public class CObjectTest {
     }
 
     @Test
-    public void effectiveOccurrencesReturnsDefaultOccurrences() {
+    public void effectiveOccurrencesReturnsDefaultOccurrencesBounded() {
         CComplexObject parentCObject = new CComplexObject();
         parentCObject.setRmTypeName("COMPOSITION");
         CAttribute parentAttribute = new CAttribute();
@@ -88,10 +89,48 @@ public class CObjectTest {
         object.setRmTypeName("OBSERVATION");
         parentAttribute.addChild(object);
 
-        assertEquals(MultiplicityInterval.createBounded(1, 2), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
+        assertEquals(MultiplicityInterval.createBounded(0, 2), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
             @Override
             public MultiplicityInterval apply(String s, String s2) {
                 return new MultiplicityInterval(1,2);
+            }
+        }));
+    }
+
+    @Test
+    public void effectiveOccurrencesReturnsDefaultOccurrencesUnbounded() {
+        CComplexObject parentCObject = new CComplexObject();
+        parentCObject.setRmTypeName("COMPOSITION");
+        CAttribute parentAttribute = new CAttribute();
+        parentAttribute.setRmAttributeName("content");
+        parentCObject.addAttribute(parentAttribute);
+        CComplexObject object = new CComplexObject();
+        object.setRmTypeName("OBSERVATION");
+        parentAttribute.addChild(object);
+
+        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
+            @Override
+            public MultiplicityInterval apply(String s, String s2) {
+                return MultiplicityInterval.createUpperUnbounded(1);
+            }
+        }));
+    }
+
+    @Test
+    public void effectiveOccurrencesReturnsDefaultOccurrencesNull() {
+        CComplexObject parentCObject = new CComplexObject();
+        parentCObject.setRmTypeName("COMPOSITION");
+        CAttribute parentAttribute = new CAttribute();
+        parentAttribute.setRmAttributeName("content");
+        parentCObject.addAttribute(parentAttribute);
+        CComplexObject object = new CComplexObject();
+        object.setRmTypeName("OBSERVATION");
+        parentAttribute.addChild(object);
+
+        assertNull(object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
+            @Override
+            public MultiplicityInterval apply(String s, String s2) {
+                return null;
             }
         }));
     }
@@ -141,21 +180,11 @@ public class CObjectTest {
     }
     
     @Test
-    public void effectiveOccurrencesExistenceDefinesLower() {
-        CComplexObject parentCObject = new CComplexObject();
-        parentCObject.setRmTypeName("ELEMENT");
-        CAttribute parentAttribute = new CAttribute();
-        parentAttribute.setRmAttributeName("value");
-        Cardinality cardinality = new Cardinality();
-        cardinality.setInterval(MultiplicityInterval.createBounded(3, 4));
-        parentAttribute.setCardinality(cardinality);
-        parentCObject.addAttribute(parentAttribute);
-        parentAttribute.setExistence(MultiplicityInterval.createMandatory());
+    public void effectiveOccurrencesNoParent() {
         CComplexObject object = new CComplexObject();
         object.setRmTypeName("DV_CODED_TEXT");
-        parentAttribute.addChild(object);
 
-        assertEquals(MultiplicityInterval.createBounded(1, 4), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
+        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
             @Override
             public MultiplicityInterval apply(String s, String s2) {
                 return new MultiplicityInterval(0,5);
@@ -164,26 +193,21 @@ public class CObjectTest {
     }
 
     @Test
-    public void effectiveOccurrencesExistenceIgnoredWhenDefaultOccurrencesUsed() {
-        CComplexObject parentCObject = new CComplexObject();
-        parentCObject.setRmTypeName("ELEMENT");
+    public void effectiveOccurrencesNoParentParent() {
         CAttribute parentAttribute = new CAttribute();
         parentAttribute.setRmAttributeName("value");
 
-        parentCObject.addAttribute(parentAttribute);
-        parentAttribute.setExistence(MultiplicityInterval.createMandatory());
         CComplexObject object = new CComplexObject();
         object.setRmTypeName("DV_CODED_TEXT");
         parentAttribute.addChild(object);
 
-        assertEquals(MultiplicityInterval.createBounded(0, 5), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
+        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
             @Override
             public MultiplicityInterval apply(String s, String s2) {
                 return new MultiplicityInterval(0,5);
             }
         }));
     }
-
 
 
 }

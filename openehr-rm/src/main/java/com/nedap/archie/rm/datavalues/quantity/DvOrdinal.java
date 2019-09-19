@@ -3,9 +3,12 @@ package com.nedap.archie.rm.datavalues.quantity;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -19,6 +22,20 @@ public class DvOrdinal extends DvOrdered<DvOrdinal> implements SingleValuedDataV
 
     private DvCodedText symbol;
     private Long value;
+
+    public DvOrdinal() {
+    }
+
+    public DvOrdinal(Long value, DvCodedText symbol) {
+        this.symbol = symbol;
+        this.value = value;
+    }
+
+    public DvOrdinal(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, Long value, DvCodedText symbol) {
+        super(otherReferenceRanges, normalRange);
+        this.symbol = symbol;
+        this.value = value;
+    }
 
     @Override
     public Long getValue() {
@@ -35,11 +52,27 @@ public class DvOrdinal extends DvOrdered<DvOrdinal> implements SingleValuedDataV
         return value.compareTo(o.value);
     }
 
+
     public DvCodedText getSymbol() {
         return symbol;
     }
 
     public void setSymbol(DvCodedText symbol) {
         this.symbol = symbol;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DvOrdinal dvOrdinal = (DvOrdinal) o;
+        return Objects.equals(symbol, dvOrdinal.symbol) &&
+                Objects.equals(value, dvOrdinal.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), symbol, value);
     }
 }

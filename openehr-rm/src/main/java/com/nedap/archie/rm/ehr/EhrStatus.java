@@ -4,9 +4,14 @@ package com.nedap.archie.rm.ehr;
  * Created by pieter.bos on 08/07/16.
  */
 
-import com.nedap.archie.rm.archetyped.Locatable;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datastructures.ItemStructure;
+import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.PartySelf;
+import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
@@ -14,6 +19,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.List;
+import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="EHR_STATUS")
@@ -30,6 +37,26 @@ public class EhrStatus extends Locatable {
     @XmlElement(name="other_details")
     private ItemStructure otherDetails;
 
+
+    public EhrStatus() {
+    }
+
+    public EhrStatus(String archetypeNodeId, DvText name, PartySelf subject, boolean isQueryable, boolean isModifiable, @Nullable ItemStructure otherDetails) {
+        super(archetypeNodeId, name);
+        this.subject = subject;
+        this.isQueryable = isQueryable;
+        this.isModifiable = isModifiable;
+        this.otherDetails = otherDetails;
+    }
+
+    public EhrStatus(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, PartySelf subject, boolean isQueryable, boolean isModifiable, @Nullable ItemStructure otherDetails) {
+        super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
+        this.subject = subject;
+        this.isQueryable = isQueryable;
+        this.isModifiable = isModifiable;
+        this.otherDetails = otherDetails;
+    }
+
     public PartySelf getSubject() {
         return subject;
     }
@@ -38,6 +65,7 @@ public class EhrStatus extends Locatable {
         this.subject = subject;
     }
 
+    @JsonProperty(value = "is_queryable")
     public boolean isQueryable() {
         return isQueryable;
     }
@@ -46,6 +74,7 @@ public class EhrStatus extends Locatable {
         isQueryable = queryable;
     }
 
+    @JsonProperty(value = "is_modifiable")
     public boolean isModifiable() {
         return isModifiable;
     }
@@ -62,5 +91,22 @@ public class EhrStatus extends Locatable {
     public void setOtherDetails(@Nullable ItemStructure otherDetails) {
         this.otherDetails = otherDetails;
         setThisAsParent(otherDetails, "other_details");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        EhrStatus ehrStatus = (EhrStatus) o;
+        return isQueryable == ehrStatus.isQueryable &&
+                isModifiable == ehrStatus.isModifiable &&
+                Objects.equals(subject, ehrStatus.subject) &&
+                Objects.equals(otherDetails, ehrStatus.otherDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), subject, isQueryable, isModifiable, otherDetails);
     }
 }

@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -45,6 +46,11 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
         this.value = value;
     }
 
+    public DvText(String value, @Nullable CodePhrase language, @Nullable CodePhrase encoding) {
+        this.value = value;
+        this.language = language;
+        this.encoding = encoding;
+    }
 
     public List<TermMapping> getMappings() {
         return mappings;
@@ -97,5 +103,23 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
 
     public void setEncoding(CodePhrase encoding) {
         this.encoding = encoding;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DvText dvText = (DvText) o;
+        return Objects.equals(value, dvText.value) &&
+                Objects.equals(hyperlink, dvText.hyperlink) &&
+                Objects.equals(formatting, dvText.formatting) &&
+                Objects.equals(mappings, dvText.mappings) &&
+                Objects.equals(language, dvText.language) &&
+                Objects.equals(encoding, dvText.encoding);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, hyperlink, formatting, mappings, language, encoding);
     }
 }

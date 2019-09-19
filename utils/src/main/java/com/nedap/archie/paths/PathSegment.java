@@ -12,7 +12,7 @@ public class PathSegment {
     private final static Joiner expressionJoiner = Joiner.on(",").skipNulls();
 
     private static final Pattern archetypeRefPattern = Pattern.compile("(.*::)?.*-.*-.*\\..*\\.v.*");
-    private static final Pattern nodeIdPattern = Pattern.compile("id(\\.?\\d)+");
+    private static final Pattern nodeIdPattern = Pattern.compile("id(\\.?\\d)+|at(\\.?\\d)+");
 
     private String nodeName;
     private String nodeId;

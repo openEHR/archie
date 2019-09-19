@@ -11,12 +11,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="FEEDER_AUDIT")
+@XmlType(name = "FEEDER_AUDIT")
 public class FeederAudit extends RMObject {
 
     @Nullable
@@ -34,6 +35,17 @@ public class FeederAudit extends RMObject {
     @Nullable
     @XmlElement(name = "feeder_system_audit")
     protected FeederAuditDetails feederSystemAudit;
+
+    public FeederAudit() {
+    }
+
+    public FeederAudit(FeederAuditDetails originatingSystemAudit, @Nullable List<DvIdentifier> originatingSystemItemIds, @Nullable FeederAuditDetails feederSystemAudit, @Nullable List<DvIdentifier> feederSystemItemIds, @Nullable DvEncapsulated originalContent) {
+        this.originatingSystemItemIds = originatingSystemItemIds;
+        this.feederSystemItemIds = feederSystemItemIds;
+        this.originalContent = originalContent;
+        this.originatingSystemAudit = originatingSystemAudit;
+        this.feederSystemAudit = feederSystemAudit;
+    }
 
     public List<DvIdentifier> getOriginatingSystemItemIds() {
         return originatingSystemItemIds;
@@ -73,5 +85,25 @@ public class FeederAudit extends RMObject {
 
     public void setFeederSystemAudit(FeederAuditDetails feederSystemAudit) {
         this.feederSystemAudit = feederSystemAudit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FeederAudit that = (FeederAudit) o;
+
+        return Objects.equals(originatingSystemItemIds, that.originatingSystemItemIds) &&
+                Objects.equals(feederSystemItemIds, that.feederSystemItemIds) &&
+                Objects.equals(originalContent, that.originalContent) &&
+                Objects.equals(originatingSystemAudit, that.originatingSystemAudit) &&
+                Objects.equals(feederSystemAudit, that.feederSystemAudit);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(originatingSystemItemIds, feederSystemItemIds, originalContent, originatingSystemAudit, feederSystemAudit);
     }
 }

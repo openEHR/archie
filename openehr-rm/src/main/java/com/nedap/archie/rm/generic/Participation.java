@@ -10,12 +10,13 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="PARTICIPATION", propOrder = {
+@XmlType(name = "PARTICIPATION", propOrder = {
         "function",
         "mode",
         "time",
@@ -29,6 +30,16 @@ public class Participation extends RMObject {
     @Nullable
     private DvInterval<DvDateTime> time;
     private PartyProxy performer;
+
+    public Participation() {
+    }
+
+    public Participation(PartyProxy performer, DvText function, @Nullable DvCodedText mode, @Nullable DvInterval<DvDateTime> time) {
+        this.function = function;
+        this.mode = mode;
+        this.time = time;
+        this.performer = performer;
+    }
 
     public DvText getFunction() {
         return function;
@@ -62,5 +73,21 @@ public class Participation extends RMObject {
 
     public void setPerformer(PartyProxy performer) {
         this.performer = performer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participation that = (Participation) o;
+        return Objects.equals(function, that.function) &&
+                Objects.equals(mode, that.mode) &&
+                Objects.equals(time, that.time) &&
+                Objects.equals(performer, that.performer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(function, mode, time, performer);
     }
 }

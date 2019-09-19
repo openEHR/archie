@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
@@ -113,5 +114,23 @@ public abstract class Party extends Locatable {
     @XmlTransient
     public DvText getType() {
         return getName();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Party party = (Party) o;
+        return Objects.equals(identities, party.identities) &&
+                Objects.equals(contacts, party.contacts) &&
+                Objects.equals(details, party.details) &&
+                Objects.equals(reverseRelationships, party.reverseRelationships) &&
+                Objects.equals(relationships, party.relationships);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), identities, contacts, details, reverseRelationships, relationships);
     }
 }

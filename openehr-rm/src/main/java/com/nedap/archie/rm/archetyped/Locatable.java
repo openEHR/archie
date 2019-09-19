@@ -2,18 +2,15 @@ package com.nedap.archie.rm.archetyped;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -46,6 +43,25 @@ public abstract class Locatable extends Pathable {
     @Nullable
     private List<Link> links = new ArrayList<>();
 
+
+    public Locatable() {
+    }
+
+    public Locatable(String archetypeNodeId, DvText name) {
+        this.name = name;
+        this.archetypeNodeId = archetypeNodeId;
+    }
+
+    public Locatable(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName) {
+        super(parent, parentAttributeName);
+        this.name = name;
+        this.archetypeNodeId = archetypeNodeId;
+        this.uid = uid;
+        this.archetypeDetails = archetypeDetails;
+        this.feederAudit = feederAudit;
+        this.links = links;
+    }
+
     public DvText getName() {
         return name;
     }
@@ -54,12 +70,14 @@ public abstract class Locatable extends Pathable {
         this.name = name;
     }
 
-    /** convenience method*/
+    /**
+     * convenience method
+     */
     public void setNameAsString(String name) {
         this.name = new DvText(name);
     }
 
-    
+
     public String getArchetypeNodeId() {
         return archetypeNodeId;
     }
@@ -101,7 +119,7 @@ public abstract class Locatable extends Pathable {
     @RMPropertyIgnore
     public List<PathSegment> getPathSegments() {
         Pathable parent = getParent();
-        if(parent == null) {
+        if (parent == null) {
             return new ArrayList<>();
         }
 
@@ -124,5 +142,23 @@ public abstract class Locatable extends Pathable {
     public void setFeederAudit(@Nullable FeederAudit feederAudit) {
         this.feederAudit = feederAudit;
     }
-}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Locatable locatable = (Locatable) o;
+        return Objects.equals(name, locatable.name) &&
+                Objects.equals(archetypeNodeId, locatable.archetypeNodeId) &&
+                Objects.equals(uid, locatable.uid) &&
+                Objects.equals(archetypeDetails, locatable.archetypeDetails) &&
+                Objects.equals(feederAudit, locatable.feederAudit) &&
+                Objects.equals(links, locatable.links);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, archetypeNodeId, uid, archetypeDetails, feederAudit, links);
+    }
+}

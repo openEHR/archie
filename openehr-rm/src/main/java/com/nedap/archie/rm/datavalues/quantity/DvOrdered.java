@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -33,7 +34,21 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
     @XmlElement(name = "other_reference_ranges")
     private List<ReferenceRange> otherReferenceRanges = new ArrayList<>();
 
-    
+    public DvOrdered() {
+    }
+
+    public DvOrdered(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange) {
+        this.normalRange = normalRange;
+        this.otherReferenceRanges = otherReferenceRanges;
+    }
+
+    protected DvOrdered(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus) {
+        this.normalStatus = normalStatus;
+        this.normalRange = normalRange;
+        this.otherReferenceRanges = otherReferenceRanges;
+    }
+
+
     public DvInterval getNormalRange() {
         return normalRange;
     }
@@ -41,7 +56,7 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
     public void setNormalRange(DvInterval normalRange) {
         this.normalRange = normalRange;
     }
-    
+
     public List<ReferenceRange> getOtherReferenceRanges() {
         return otherReferenceRanges;
     }
@@ -61,5 +76,20 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
 
     public void setNormalStatus(@Nullable CodePhrase normalStatus) {
         this.normalStatus = normalStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DvOrdered<?> dvOrdered = (DvOrdered<?>) o;
+        return Objects.equals(normalStatus, dvOrdered.normalStatus) &&
+                Objects.equals(normalRange, dvOrdered.normalRange) &&
+                Objects.equals(otherReferenceRanges, dvOrdered.otherReferenceRanges);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(normalStatus, normalRange, otherReferenceRanges);
     }
 }

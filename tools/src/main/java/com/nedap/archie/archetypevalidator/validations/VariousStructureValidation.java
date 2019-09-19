@@ -8,6 +8,7 @@ import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
 import com.nedap.archie.flattener.ArchetypeRepository;
+import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.rules.Assertion;
 import org.openehr.utils.message.I18n;
 
@@ -19,7 +20,7 @@ public class VariousStructureValidation extends ValidatingVisitor {
         super();
     }
     
-    protected void beginValidation(Archetype archetype, Archetype flatParent, ArchetypeRepository repository) {
+    protected void beginValidation(Archetype archetype, Archetype flatParent, FullArchetypeRepository repository) {
         this.archetype = archetype;
         this.flatParent = flatParent;
         this.repository = repository;

@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
@@ -61,5 +62,22 @@ public class PartyRelationship extends Locatable {
 
     public void setTarget(PartyRef target) {
         this.target = target;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        PartyRelationship that = (PartyRelationship) o;
+        return Objects.equals(details, that.details) &&
+                Objects.equals(timeValidity, that.timeValidity) &&
+                Objects.equals(source, that.source) &&
+                Objects.equals(target, that.target);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), details, timeValidity, source, target);
     }
 }

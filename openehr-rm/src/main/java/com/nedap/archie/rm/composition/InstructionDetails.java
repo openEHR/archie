@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -28,7 +29,16 @@ public class InstructionDetails extends Pathable {
     @XmlElement(name = "wf_details")
     @Nullable
     private ItemStructure wfDetails;
-    
+
+    public InstructionDetails() {
+    }
+
+    public InstructionDetails(LocatableRef instructionId, String activityId, @Nullable ItemStructure wfDetails) {
+        this.instructionId = instructionId;
+        this.activityId = activityId;
+        this.wfDetails = wfDetails;
+    }
+
     public LocatableRef getInstructionId() {
         return instructionId;
     }
@@ -36,7 +46,7 @@ public class InstructionDetails extends Pathable {
     public void setInstructionId(LocatableRef instructionId) {
         this.instructionId = instructionId;
     }
-    
+
     public String getActivityId() {
         return activityId;
     }
@@ -45,7 +55,7 @@ public class InstructionDetails extends Pathable {
         this.activityId = activityId;
     }
 
-    
+
     public ItemStructure getWfDetails() {
         return wfDetails;
     }
@@ -53,5 +63,22 @@ public class InstructionDetails extends Pathable {
     public void setWfDetails(ItemStructure wfDetails) {
         this.wfDetails = wfDetails;
         setThisAsParent(wfDetails, "wf_details");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InstructionDetails that = (InstructionDetails) o;
+
+        return Objects.equals(instructionId, that.instructionId) &&
+                Objects.equals(activityId, that.activityId) &&
+                Objects.equals(wfDetails, that.wfDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(instructionId, activityId, wfDetails);
     }
 }

@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.time.Duration;
 import java.time.temporal.TemporalAmount;
@@ -12,12 +11,12 @@ import java.util.Objects;
 
 /**
  * Interval abstraction, featuring upper and lower limits that may be open or closed, included or not included. Interval of ordered items.
- *
+ * <p>
  * Created by pieter.bos on 15/10/15.
  */
-@XmlType(name="INTERVAL")
+@XmlType(name = "INTERVAL")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Interval<T>  extends OpenEHRBase {
+public class Interval<T> extends OpenEHRBase {
 
     /**
      * lower bound.
@@ -32,22 +31,22 @@ public class Interval<T>  extends OpenEHRBase {
     /**
      * lower boundary open (i.e. = -infinity)
      */
-    @XmlAttribute(name="lower_unbounded")
+	@XmlAttribute(name = "lower_unbounded")
     private boolean lowerUnbounded = false;
     /**
      * upper boundary open (i.e. = +infinity)
      */
-    @XmlAttribute(name="upper_unbounded")
+	@XmlAttribute(name = "upper_unbounded")
     private boolean upperUnbounded = false;
     /**
      * lower boundary value included in range if not lower_unbounded.
      */
-    @XmlAttribute(name="lower_included")
+	@XmlAttribute(name = "lower_included")
     private boolean lowerIncluded = true;
     /**
      * upper boundary value included in range if not upper_unbounded.
      */
-    @XmlAttribute(name="upper_included")
+	@XmlAttribute(name = "upper_included")
     private boolean upperIncluded = true;
 
     public Interval() {
@@ -55,13 +54,11 @@ public class Interval<T>  extends OpenEHRBase {
     }
 
     public Interval(T value) {
-        this.lower = value;
-        this.upper = value;
+		this(value, value);
     }
 
     public Interval(T lower, T upper) {
-        this.lower = lower;
-        this.upper = upper;
+		this(lower, upper, true, true);
     }
 
     public Interval(T lower, T upper, boolean lowerIncluded, boolean upperIncluded) {
@@ -69,16 +66,26 @@ public class Interval<T>  extends OpenEHRBase {
         this.upper = upper;
         this.lowerIncluded = lowerIncluded;
         this.upperIncluded = upperIncluded;
+
+		if (upper == null) {
+			this.upperUnbounded = true;
+			this.upperIncluded = false;
+		}
+		if (lower == null) {
+			this.lowerUnbounded = true;
+			this.lowerIncluded = false;
+		}
+
     }
 
     public static <T> Interval<T> lowerUnbounded(T upper, boolean upperIncluded) {
-        Interval<T> result = new Interval<>(null, upper, true, upperIncluded);
+        Interval<T> result = new Interval<>(null, upper, false, upperIncluded);
         result.setLowerUnbounded(true);
         return result;
     }
 
     public static <T> Interval<T> upperUnbounded(T lower, boolean lowerIncluded) {
-        Interval<T> result = new Interval<>(lower, null, lowerIncluded, true);
+        Interval<T> result = new Interval<>(lower, null, lowerIncluded, false);
         result.setUpperUnbounded(true);
         return result;
     }
@@ -122,7 +129,7 @@ public class Interval<T>  extends OpenEHRBase {
     public void setLowerIncluded(boolean lowerIncluded) {
         this.lowerIncluded = lowerIncluded;
     }
-    
+
     public boolean isUpperIncluded() {
         return upperIncluded;
     }
@@ -132,20 +139,19 @@ public class Interval<T>  extends OpenEHRBase {
     }
 
     public boolean has(T value) {
-        if(lowerUnbounded && upperUnbounded) {
+		if (lowerUnbounded && upperUnbounded) {
             return true;
         }
         //since TemporalAmount does not implement Comparable we have to do some magic here
         Comparable comparableValue;
         Comparable comparableLower;
         Comparable comparableUpper;
-        if(value instanceof TemporalAmount && !(value instanceof Comparable) && isNonComparableTemporalAmount(lower) && isNonComparableTemporalAmount(upper)) {
+		if (value instanceof TemporalAmount && !(value instanceof Comparable) && isNonComparableTemporalAmount(lower) && isNonComparableTemporalAmount(upper)) {
             //TemporalAmount is not comparable, but can always be converted to a duration that is comparable.
             comparableValue = value == null ? null : Duration.from((TemporalAmount) value);
             comparableLower = lower == null ? null : Duration.from((TemporalAmount) lower);
             comparableUpper = upper == null ? null : Duration.from((TemporalAmount) upper);
-        }
-        else if(!(isComparable(lower) && isComparable(upper) && isComparable(value))) {
+		} else if (!(isComparable(lower) && isComparable(upper) && isComparable(value))) {
             throw new UnsupportedOperationException("subclasses of interval not implementing comparable should implement their own has method");
         } else {
             comparableValue = (Comparable) value;
@@ -153,19 +159,19 @@ public class Interval<T>  extends OpenEHRBase {
             comparableUpper = (Comparable) upper;
         }
 
-        if(value == null) {
+		if (value == null) {
             //interval values are not concerned with cardinality, so return true if not set
             return true;
         }
 
-        if(!lowerUnbounded) {
+		if (!lowerUnbounded) {
             int comparedWithLower = comparableValue.compareTo(comparableLower);
             if (comparedWithLower < 0 || (!lowerIncluded && comparedWithLower == 0)) {
                 return false;
             }
         }
 
-        if(!upperUnbounded) {
+		if (!upperUnbounded) {
             int comparedWithUpper = comparableValue.compareTo(comparableUpper);
             if (comparedWithUpper > 0 || (!upperIncluded && comparedWithUpper == 0)) {
                 return false;
@@ -199,7 +205,6 @@ public class Interval<T>  extends OpenEHRBase {
     }
 
 
-
     /**
      * True if there is any overlap between intervals represented by Current and
      * `other'. True if at least one limit of other is strictly inside the limits
@@ -226,12 +231,12 @@ public class Interval<T>  extends OpenEHRBase {
     public Boolean contains(Interval<T> other) {
         boolean otherHasLower = false;
         boolean otherHasUpper = false;
-        if(other.lowerUnbounded) {
+		if (other.lowerUnbounded) {
             otherHasLower = this.lowerUnbounded;
         } else {
             otherHasLower = has(other.lower);
         }
-        if(other.upperUnbounded) {
+		if (other.upperUnbounded) {
             otherHasUpper = this.upperUnbounded;
         } else {
             otherHasUpper = has(other.upper);
@@ -255,50 +260,60 @@ public class Interval<T>  extends OpenEHRBase {
         if (o == null || getClass() != o.getClass()) return false;
 
         Interval<?> interval = (Interval<?>) o;
-        //TODO: 1..3 is equal to 1..<4. How to compare here?
+
         return (lowerUnbounded == interval.lowerUnbounded) &&
             (upperUnbounded == interval.upperUnbounded) &&
-            (lowerIncluded == interval.lowerIncluded) &&
-            (upperIncluded == interval.upperIncluded) &&
+            (lowerUnbounded || lowerIncluded == interval.lowerIncluded) &&
+            (upperUnbounded || upperIncluded == interval.upperIncluded) &&
                 (lowerUnbounded || Objects.equals(lower, interval.lower)) &&
                 (upperUnbounded || Objects.equals(upper, interval.upper));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lower,
-                upper,
+        return Objects.hash(
                 lowerUnbounded,
                 upperUnbounded,
-                lowerIncluded,
-                upperIncluded);
+                lowerUnbounded? false: lowerIncluded,
+                upperUnbounded? false: upperIncluded,
+                lowerUnbounded? null : lower,
+                upperUnbounded? null : upper);
     }
 
     @Override
     public String toString() {
 
-        if(lowerUnbounded) {
+		if (lowerUnbounded) {
             return "|" + (upperIncluded ? "<=" : "<") + upper + "|";
         }
-        if(upperUnbounded) {
+		if (upperUnbounded) {
             return "|" + (lowerIncluded ? ">=" : ">") + lower + "|";
         }
 
-        if(lower != null && upper != null && lower == upper) {
+		if (lower != null && upper != null && lower == upper) {
             return lower.toString();
         }
         StringBuilder result = new StringBuilder();
         result.append("|");
-        if(!lowerIncluded) {
+		if (!lowerIncluded) {
             result.append(">");
         }
         result.append(lower);
         result.append("..");
-        if(!upperIncluded) {
+		if (!upperIncluded) {
             result.append("<");
         }
         result.append(upper);
         result.append("|");
         return result.toString();
+    }
+
+    public void fixUnboundedIncluded() {
+        if (upperUnbounded) {
+            this.upperIncluded = false;
+        }
+        if (lowerUnbounded) {
+            this.lowerIncluded = false;
+        }
     }
 }

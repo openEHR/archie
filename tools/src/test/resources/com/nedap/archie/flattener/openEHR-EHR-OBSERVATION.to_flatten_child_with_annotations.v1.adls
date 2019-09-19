@@ -1,0 +1,67 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-OBSERVATION.to_flatten_child.v1.0.0
+
+specialize
+	openEHR-EHR-OBSERVATION.to_flatten_parent.v1
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			author = <
+				["name"] = <"Mona Saleh">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2012-12-11">
+	>
+	copyright = <"none">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"specialized rules test">
+			use = <"testing specialized rules">
+			keywords = <"test">
+			misuse = <"">
+		>
+	>
+
+definition
+	OBSERVATION[id1.1] 	-- blood pressure
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"blood pressure observation">
+				description = <"blood pressure observation">
+			>
+		>
+	>
+
+annotations
+	documentation = <
+		["en"] = <
+			["/subject"] = <
+				["design note"] = <"xxxxxx">
+			>
+			["/data[id2]/events[id3]/data[id4]/items[id5]"] = <
+				["design note"] = <"this is a design note on allergic reaction, with some extra information">
+				["requirements note"] = <"this is a requirements note on allergic reaction">
+				["medline ref"] = <"this is a medline ref on allergic reaction">
+			>
+			["/data[id2]/events[id3]/data[id4]/items[id7]"] = <
+				["design note"] = <"this is also a design note on intelerance">
+				["requirements note"] = <"this is a requirements note on intolerance">
+				["national data dictionary"] = <"NDD ref for intolerance">
+			>
+		>
+	>

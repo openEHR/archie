@@ -23,22 +23,23 @@ class OperationalTemplateCreator {
     }
 
     public static OperationalTemplate createOperationalTemplate(Archetype archetype) {
-        Archetype toClone = archetype.clone(); //clone so we do not overwrite the parent archetype. never
+        Archetype clone = archetype.clone(); //clone so we do not overwrite the parent archetype. never
         OperationalTemplate result = new OperationalTemplate();
         result.setArchetypeId((ArchetypeHRID) archetype.getArchetypeId().clone());
-        result.setDefinition(toClone.getDefinition());
+        result.setDefinition(clone.getDefinition());
         result.setDifferential(false);
 
-        result.setRmRelease(toClone.getRmRelease());
-        result.setAdlVersion(toClone.getAdlVersion());
-        result.setTerminology(toClone.getTerminology());
+        result.setRmRelease(clone.getRmRelease());
+        result.setAdlVersion(clone.getAdlVersion());
+        result.setTerminology(clone.getTerminology());
         result.setGenerated(true);
-        result.setOtherMetaData(toClone.getOtherMetaData());
-        result.setRules(toClone.getRules());
-        result.setBuildUid(toClone.getBuildUid());
-        result.setDescription(toClone.getDescription());
-        result.setOriginalLanguage(toClone.getOriginalLanguage());
-        result.setTranslations(toClone.getTranslations());
+        result.setOtherMetaData(clone.getOtherMetaData());
+        result.setRules(clone.getRules());
+        result.setBuildUid(clone.getBuildUid());
+        result.setDescription(clone.getDescription());
+        result.setOriginalLanguage(clone.getOriginalLanguage());
+        result.setTranslations(clone.getTranslations());
+        result.setAnnotations(clone.getAnnotations());
 
         return result;
     }
@@ -204,6 +205,7 @@ class OperationalTemplateCreator {
 
             String prefix = archetype.getArchetypeId().getConceptId() + "_";
             flattener.getRulesFlattener().combineRules(archetype, root.getArchetype(), prefix, prefix, rootToFill.getPath(), false);
+            flattener.getAnnotationsFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
             //todo: do we have to put something in the terminology extracts?
             //templateResult.addTerminologyExtract(child.getNodeId(), archetype.getTerminology().);
         }

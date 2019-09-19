@@ -1,18 +1,15 @@
 package com.nedap.archie.rm.ehr;
 
 import com.nedap.archie.rm.RMObject;
-import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.HierObjectId;
+import com.nedap.archie.rm.support.identification.ObjectRef;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * RM Object for an Ehr. Not entirely sure if it is useful in a library. Generally, this could be something you map yourself
@@ -52,6 +49,19 @@ public class Ehr extends RMObject {
     @XmlElement(name="time_created")
     private DvDateTime timeCreated;
 
+    public Ehr() {
+    }
+
+    public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef> contributions, ObjectRef ehrStatus, ObjectRef ehrAccess, @Nullable ObjectRef directory, @Nullable List<ObjectRef> compositions) {
+        this.systemId = systemId;
+        this.ehrId = ehrId;
+        this.contributions = contributions;
+        this.ehrStatus = ehrStatus;
+        this.ehrAccess = ehrAccess;
+        this.compositions = compositions;
+        this.directory = directory;
+        this.timeCreated = timeCreated;
+    }
 
     public HierObjectId getSystemId() {
         return systemId;
@@ -126,5 +136,25 @@ public class Ehr extends RMObject {
 
     public void setTimeCreated(DvDateTime timeCreated) {
         this.timeCreated = timeCreated;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ehr ehr = (Ehr) o;
+        return Objects.equals(systemId, ehr.systemId) &&
+                Objects.equals(ehrId, ehr.ehrId) &&
+                Objects.equals(contributions, ehr.contributions) &&
+                Objects.equals(ehrStatus, ehr.ehrStatus) &&
+                Objects.equals(ehrAccess, ehr.ehrAccess) &&
+                Objects.equals(compositions, ehr.compositions) &&
+                Objects.equals(directory, ehr.directory) &&
+                Objects.equals(timeCreated, ehr.timeCreated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(systemId, ehrId, contributions, ehrStatus, ehrAccess, compositions, directory, timeCreated);
     }
 }

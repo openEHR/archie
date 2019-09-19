@@ -85,6 +85,7 @@ public class TemporalConstraintParser extends BaseTreeWalker {
             if(context.SYM_LT() != null) {//'|a..<b|
                 interval.setUpperIncluded(false);
             }
+            interval.fixUnboundedIncluded();
         }
         return interval;
     }
@@ -108,6 +109,7 @@ public class TemporalConstraintParser extends BaseTreeWalker {
             default:
                 throw new RuntimeException("Unexpected operator: " + context.relop().getText());
         }
+        interval.fixUnboundedIncluded();
         return interval;
     }
 
@@ -195,6 +197,7 @@ public class TemporalConstraintParser extends BaseTreeWalker {
                 interval.setLower(datetime);
                 break;
         }
+        interval.fixUnboundedIncluded();
         return interval;
     }
 
@@ -282,6 +285,7 @@ public class TemporalConstraintParser extends BaseTreeWalker {
                 interval.setLower(datetime);
                 break;
         }
+        interval.fixUnboundedIncluded();
         return interval;
     }
 
@@ -370,6 +374,7 @@ public class TemporalConstraintParser extends BaseTreeWalker {
                 interval.setLower(duration);
                 break;
         }
+        interval.fixUnboundedIncluded();
         return interval;
     }
 

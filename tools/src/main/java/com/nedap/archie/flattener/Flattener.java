@@ -37,6 +37,7 @@ public class Flattener implements IAttributeFlattenerSupport {
     private String[] languagesToKeep = null;
 
     private RulesFlattener rulesFlattener = new RulesFlattener();
+    private AnnotationsFlattener annotationsFlattener = new AnnotationsFlattener();
 
     CAttributeFlattener cAttributeFlattener = new CAttributeFlattener(this);
     private TupleFlattener tupleFlattener = new TupleFlattener();
@@ -157,6 +158,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             result.setTerminology(clonedParent.getTerminology());
             result.setRules(clonedParent.getRules());
         }
+        new AnnotationsFlattener().flatten(parent, child, result);
 
         //1. redefine structure
         //2. fill archetype slots if we are creating an operational template
@@ -400,6 +402,8 @@ public class Flattener implements IAttributeFlattenerSupport {
     protected RulesFlattener getRulesFlattener() {
         return rulesFlattener;
     }
+
+    protected AnnotationsFlattener getAnnotationsFlattener() { return annotationsFlattener; }
 
     public OverridingArchetypeRepository getRepository() {
         return repository;

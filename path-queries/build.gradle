@@ -5,4 +5,5 @@ dependencies {
 	compile project(':grammars')
 	compile project(':base')
 	compile project(':aom') //modelInfoLookup is here and should be split and moved
+	testCompile project(':openehr-rm')
 }

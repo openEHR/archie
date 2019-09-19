@@ -2,10 +2,12 @@ package com.nedap.archie.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
+
 /**
  * Created by pieter.bos on 15/10/15.
  */
-public class MultiplicityInterval extends Interval<Integer> {
+public class MultiplicityInterval extends Interval<Integer> implements Serializable {
 
     /**
      * Marker to use in string form of interval between limits.
@@ -66,7 +68,7 @@ public class MultiplicityInterval extends Interval<Integer> {
      * @return the created interval
      */
     public static MultiplicityInterval createOpen() {
-        return new MultiplicityInterval(0, true, false, null, false, true);
+        return new MultiplicityInterval(0, true, false, null, true, true);
     }
 
     /**
@@ -109,13 +111,28 @@ public class MultiplicityInterval extends Interval<Integer> {
         return has(1) && !has(2);
     }
 
+    @Override
     public String toString() {
-        if(isOpen()) {
-            return getLower() + MULTIPLICITY_RANGE_MARKER + MULTIPLICITY_UNBOUNDED_MARKER;
+        Integer lower = getLower();
+        Integer upper = getUpper();
+        StringBuilder result = new StringBuilder();
+        if (isLowerUnbounded()) {
+            result.append(MULTIPLICITY_UNBOUNDED_MARKER);
         } else {
-            return getLower() + MULTIPLICITY_RANGE_MARKER + getUpper();
+            if (!isLowerIncluded()) {
+                result.append(">");
+            }
+            result.append(lower);
         }
+        result.append(MULTIPLICITY_RANGE_MARKER);
+        if (isUpperUnbounded()) {
+            result.append(MULTIPLICITY_UNBOUNDED_MARKER);
+        } else {
+            if(!isUpperIncluded()) {
+                result.append("<");
+            }
+            result.append(upper);
+        }
+        return result.toString();
     }
-
-
 }

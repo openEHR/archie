@@ -2,19 +2,21 @@ package com.nedap.archie.rm.composition;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nedap.archie.rm.archetyped.Locatable;
+import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.generic.PartyProxy;
 import com.nedap.archie.rm.datavalues.DvCodedText;
+import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.generic.PartyProxy;
+import com.nedap.archie.rm.support.identification.UIDBasedId;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 03/11/15.
@@ -28,7 +30,7 @@ import java.util.List;
         "context",
         "content"
 })
-@XmlRootElement(name="composition")
+@XmlRootElement(name = "composition")
 public class Composition extends Locatable {
 
     private CodePhrase language;
@@ -42,6 +44,29 @@ public class Composition extends Locatable {
 
     @Nullable
     private List<ContentItem> content = new ArrayList<>();
+
+    public Composition() {
+    }
+
+    public Composition(String archetypeNodeId, DvText name, @Nullable List<ContentItem> content, CodePhrase language, @Nullable EventContext context, PartyProxy composer, DvCodedText category, CodePhrase territory) {
+        super(archetypeNodeId, name);
+        this.language = language;
+        this.territory = territory;
+        this.category = category;
+        this.composer = composer;
+        this.context = context;
+        this.content = content;
+    }
+
+    public Composition(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ContentItem> content, CodePhrase language, @Nullable EventContext context, PartyProxy composer, DvCodedText category, CodePhrase territory) {
+        super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
+        this.language = language;
+        this.territory = territory;
+        this.category = category;
+        this.composer = composer;
+        this.context = context;
+        this.content = content;
+    }
 
     @JsonProperty
     public CodePhrase getLanguage() {
@@ -121,5 +146,22 @@ public class Composition extends Locatable {
         setThisAsParent(item, "content");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Composition that = (Composition) o;
+        return Objects.equals(language, that.language) &&
+                Objects.equals(territory, that.territory) &&
+                Objects.equals(category, that.category) &&
+                Objects.equals(composer, that.composer) &&
+                Objects.equals(context, that.context) &&
+                Objects.equals(content, that.content);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), language, territory, category, composer, context, content);
+    }
 }

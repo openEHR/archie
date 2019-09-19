@@ -312,6 +312,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
                 interval.setUpper(interval.getLower());
             }
         }
+        interval.fixUnboundedIncluded();
         return interval;
     }
 

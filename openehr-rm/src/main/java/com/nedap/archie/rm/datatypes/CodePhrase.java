@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +31,11 @@ public class CodePhrase extends RMObject {
 
     }
 
+    public CodePhrase(TerminologyId terminologyId, String codeString) {
+        this.terminologyId = terminologyId;
+        this.codeString = codeString;
+    }
+
     /**
      * Construct a code phrase in the form:
      * <br>
@@ -38,8 +44,9 @@ public class CodePhrase extends RMObject {
      * or
      * <br>
      * terminologyId::codeString
-     *
+     * <p>
      * terminologyId can be just a a string, or contain a version as in  terminologyId(version)
+     *
      * @param phrase
      */
     public CodePhrase(String phrase) {
@@ -47,7 +54,7 @@ public class CodePhrase extends RMObject {
         Pattern pattern = Pattern.compile("\\[?(?<terminologyId>.+)(\\((?<terminologyVersion>.+)\\))?::(?<codeString>[^\\]]+)\\]?");
         Matcher matcher = pattern.matcher(phrase);
 
-        if(matcher.matches()) {
+        if (matcher.matches()) {
             terminologyId = new TerminologyId(matcher.group("terminologyId"), matcher.group("terminologyVersion"));
             codeString = matcher.group("codeString");
         } else {
@@ -64,12 +71,26 @@ public class CodePhrase extends RMObject {
     public void setTerminologyId(TerminologyId terminologyId) {
         this.terminologyId = terminologyId;
     }
-    
+
     public String getCodeString() {
         return codeString;
     }
 
     public void setCodeString(String codeString) {
         this.codeString = codeString;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CodePhrase that = (CodePhrase) o;
+        return Objects.equals(terminologyId, that.terminologyId) &&
+                Objects.equals(codeString, that.codeString);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(terminologyId, codeString);
     }
 }

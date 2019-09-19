@@ -5,4 +5,5 @@ dependencies {
 	compile project(':aom') //modelInfoLookup depends on CPrimitiveObject to convert from AOM objects to RM objects. So we need this dependency, at least for now
 	compile project(':path-queries')
   	compile project(':utils')
+	testImplementation project(':archie-utils')
 }

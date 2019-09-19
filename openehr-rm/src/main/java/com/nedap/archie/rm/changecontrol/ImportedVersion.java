@@ -1,17 +1,29 @@
 package com.nedap.archie.rm.changecontrol;
 
 import com.nedap.archie.rm.datavalues.DvCodedText;
+import com.nedap.archie.rm.generic.AuditDetails;
+import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
  */
-@XmlType(name="IMPORTED_VERSION")
-public class ImportedVersion extends Version {
+@XmlType(name = "IMPORTED_VERSION")
+public class ImportedVersion<T> extends Version<T> {
 
-    private OriginalVersion item;
+    private OriginalVersion<T> item;
+
+    public ImportedVersion() {
+    }
+
+    public ImportedVersion(AuditDetails commitAudit, ObjectRef contribution, @Nullable String signature, OriginalVersion item) {
+        super(commitAudit, contribution, signature);
+        this.item = item;
+    }
 
     @Override
     public ObjectVersionId getUid() {
@@ -24,7 +36,7 @@ public class ImportedVersion extends Version {
     }
 
     @Override
-    public Object getData() {
+    public T getData() {
         return item == null ? null : item.getData();
     }
 
@@ -43,7 +55,24 @@ public class ImportedVersion extends Version {
         return item == null ? null : item.isBranch();//TODO: this is probably not right
     }
 
-    public OriginalVersion getItem() {
+    public OriginalVersion<T> getItem() {
         return item;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        ImportedVersion<?> that = (ImportedVersion<?>) o;
+
+        return Objects.equals(item, that.item);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), item);
     }
 }

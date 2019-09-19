@@ -133,6 +133,10 @@ public class OverridingInMemFullArchetypeRepository implements FullArchetypeRepo
         this.extraArchetypes.addArchetype(override);
     }
 
+    public void addExtraOperationalTemplate(OperationalTemplate override) {
+        this.extraArchetypes.setOperationalTemplate(override);
+    }
+
     public FullArchetypeRepository getExtraArchetypeRepository() {
         return extraArchetypes;
     }

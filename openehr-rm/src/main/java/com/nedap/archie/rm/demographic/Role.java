@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
@@ -59,5 +60,21 @@ public class Role extends Party {
     public void addCapability(Capability capability) {
         this.capabilities.add(capability);
         this.setThisAsParent(capability, "capabilities");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Role role = (Role) o;
+        return Objects.equals(timeValidity, role.timeValidity) &&
+                Objects.equals(performer, role.performer) &&
+                Objects.equals(capabilities, role.capabilities);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), timeValidity, performer, capabilities);
     }
 }

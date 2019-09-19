@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -55,5 +56,21 @@ public class DvIdentifier extends DataValue {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DvIdentifier that = (DvIdentifier) o;
+        return Objects.equals(issuer, that.issuer) &&
+                Objects.equals(assigner, that.assigner) &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(type, that.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(issuer, assigner, id, type);
     }
 }

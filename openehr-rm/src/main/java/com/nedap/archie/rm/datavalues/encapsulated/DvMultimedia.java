@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -50,7 +52,7 @@ public class DvMultimedia extends DvEncapsulated {
     @Nullable
     private DvMultimedia thumbnail;
 
-    
+
     public String getAlternateText() {
         return alternateText;
     }
@@ -128,5 +130,31 @@ public class DvMultimedia extends DvEncapsulated {
 
     public void setSize(Integer size) {
         this.size = size;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DvMultimedia that = (DvMultimedia) o;
+        return Objects.equals(alternateText, that.alternateText) &&
+                Objects.equals(uri, that.uri) &&
+                Arrays.equals(data, that.data) &&
+                Objects.equals(mediaType, that.mediaType) &&
+                Objects.equals(compressionAlgorithm, that.compressionAlgorithm) &&
+                Arrays.equals(integrityCheck, that.integrityCheck) &&
+                Objects.equals(integrityCheckAlgorithm, that.integrityCheckAlgorithm) &&
+                Objects.equals(size, that.size) &&
+                Objects.equals(thumbnail, that.thumbnail);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(super.hashCode(), alternateText, uri, mediaType, compressionAlgorithm, integrityCheckAlgorithm, size, thumbnail);
+        result = 31 * result + Arrays.hashCode(data);
+        result = 31 * result + Arrays.hashCode(integrityCheck);
+        return result;
     }
 }

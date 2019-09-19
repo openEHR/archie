@@ -718,6 +718,10 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
+            ["details"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"details">
+                type = <"ITEM_STRUCTURE">
+            >
 		>
 	>
 

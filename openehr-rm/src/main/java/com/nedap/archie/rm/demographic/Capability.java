@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
@@ -39,5 +40,20 @@ public class Capability extends Locatable {
 
     public void setTimeValidity(@Nullable DvInterval<DvDate> timeValidity) {
         this.timeValidity = timeValidity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Capability that = (Capability) o;
+        return Objects.equals(credentials, that.credentials) &&
+                Objects.equals(timeValidity, that.timeValidity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), credentials, timeValidity);
     }
 }

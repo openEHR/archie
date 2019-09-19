@@ -97,6 +97,7 @@ public class NumberConstraintParser extends BaseTreeWalker {
                 interval.setLower(integer);
                 break;
         }
+        interval.fixUnboundedIncluded();
         return interval;
     }
 
@@ -176,6 +177,7 @@ public class NumberConstraintParser extends BaseTreeWalker {
                 interval.setLower(real);
                 break;
         }
+        interval.fixUnboundedIncluded();
         return interval;
     }
 }

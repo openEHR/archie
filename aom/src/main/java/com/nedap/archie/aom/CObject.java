@@ -326,22 +326,25 @@ public abstract class CObject extends ArchetypeConstraint {
      * @return
      */
     public MultiplicityInterval getDefaultRMOccurrences(BiFunction<String, String, MultiplicityInterval> referenceModelPropMultiplicity) {
-        int occurrencesLower = 0;
         CAttribute parent = getParent();
         if(parent != null) {
-            if(parent.getExistence() != null) {
-                occurrencesLower = parent.getExistence().getLower();
-            }
             if(parent.getCardinality() != null && parent.getCardinality().getInterval() != null) { //technically a cardinality without interval is an error, but let's handle it correctly
                 if(parent.getCardinality().getInterval().isUpperUnbounded()) {
-                    return MultiplicityInterval.createUpperUnbounded(occurrencesLower);
+                    return MultiplicityInterval.createOpen();
                 } else {
-                    return MultiplicityInterval.createBounded(occurrencesLower, parent.getCardinality().getInterval().getUpper());
+                    return MultiplicityInterval.createBounded(0, parent.getCardinality().getInterval().getUpper());
                 }
             } else if(parent.getParent() != null) {
-                return referenceModelPropMultiplicity.apply(parent.getParent().getRmTypeName(), parent.getDifferentialPath() == null ? parent.getRmAttributeName() : parent.getDifferentialPath());
+                MultiplicityInterval multiplicity = referenceModelPropMultiplicity.apply(parent.getParent().getRmTypeName(), parent.getDifferentialPath() == null ? parent.getRmAttributeName() : parent.getDifferentialPath());
+                if(multiplicity == null) {
+                    return null;
+                } else if (multiplicity.isUpperUnbounded()) {
+                    return MultiplicityInterval.createOpen();
+                } else {
+                    return MultiplicityInterval.createBounded(0, multiplicity.getUpper());
+                }
             } else {
-                return MultiplicityInterval.createUpperUnbounded(occurrencesLower);
+                return MultiplicityInterval.createOpen();
             }
         } else {
             return MultiplicityInterval.createOpen();

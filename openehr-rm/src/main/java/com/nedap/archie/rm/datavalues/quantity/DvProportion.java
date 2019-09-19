@@ -1,12 +1,14 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nedap.archie.rm.datatypes.CodePhrase;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * TODO: This does not implement PROPORTION KIND, because multiple inheritance - won't work.
@@ -27,6 +29,23 @@ public class DvProportion extends DvAmount<Double> {
     private Long type;
     @Nullable
     private Long precision;
+
+    public DvProportion() {
+    }
+
+    public DvProportion(Double numerator, Double denominator, Long type) {
+        this.numerator = numerator;
+        this.denominator = denominator;
+        this.type = type;
+    }
+
+    public DvProportion(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Double numerator, Double denominator, Long type, @Nullable Long precision) {
+        super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
+        this.numerator = numerator;
+        this.denominator = denominator;
+        this.type = type;
+        this.precision = precision;
+    }
 
     public Double getNumerator() {
         return numerator;
@@ -70,12 +89,29 @@ public class DvProportion extends DvAmount<Double> {
     @Override
     @JsonIgnore
     public Double getMagnitude() {
-        if(numerator != null && denominator != null && denominator != 0.0d) {
+        if (numerator != null && denominator != null && denominator != 0.0d) {
             return numerator / denominator;
-        } else if(numerator == null) {
+        } else if (numerator == null) {
             return 0.0;
         } else {
             return Double.MAX_VALUE;//TODO: actually: infinity. Max Double value?
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DvProportion that = (DvProportion) o;
+        return Objects.equals(numerator, that.numerator) &&
+                Objects.equals(denominator, that.denominator) &&
+                Objects.equals(type, that.type) &&
+                Objects.equals(precision, that.precision);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), numerator, denominator, type, precision);
     }
 }

@@ -1,4 +1,4 @@
-package com.nedap.archie.rm;
+package com.nedap.archie.rm.composition;
 
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvCodedText;
@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -35,7 +36,17 @@ public class IsmTransition extends Pathable {
 
     @Nullable
     private List<DvText> reason = new ArrayList();
-    
+
+    public IsmTransition() {
+    }
+
+    public IsmTransition(DvCodedText currentState, @Nullable DvCodedText transition, @Nullable DvCodedText careflowStep, @Nullable List<DvText> reason) {
+        this.currentState = currentState;
+        this.transition = transition;
+        this.careflowStep = careflowStep;
+        this.reason = reason;
+    }
+
     public DvCodedText getCurrentState() {
         return currentState;
     }
@@ -51,7 +62,7 @@ public class IsmTransition extends Pathable {
     public void setTransition(DvCodedText transition) {
         this.transition = transition;
     }
-    
+
     public DvCodedText getCareflowStep() {
         return careflowStep;
     }
@@ -70,5 +81,21 @@ public class IsmTransition extends Pathable {
 
     public void addReason(DvText reason) {
         this.reason.add(reason);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IsmTransition that = (IsmTransition) o;
+        return Objects.equals(currentState, that.currentState) &&
+                Objects.equals(transition, that.transition) &&
+                Objects.equals(careflowStep, that.careflowStep) &&
+                Objects.equals(reason, that.reason);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(currentState, transition, careflowStep, reason);
     }
 }

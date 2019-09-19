@@ -17,8 +17,6 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.primitives.CTime;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import com.nedap.archie.rm.Activity;
-import com.nedap.archie.rm.IsmTransition;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.archetyped.FeederAudit;

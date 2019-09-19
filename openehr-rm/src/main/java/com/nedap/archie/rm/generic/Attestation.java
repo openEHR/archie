@@ -1,8 +1,10 @@
 package com.nedap.archie.rm.generic;
 
+import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvEHRURI;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
@@ -12,25 +14,38 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="ATTESTATION")
+@XmlType(name = "ATTESTATION")
 public class Attestation extends AuditDetails {
 
     @Nullable
-    @XmlElement(name="attested_view")
+    @XmlElement(name = "attested_view")
     private DvMultimedia attestedView;
     @Nullable
     private String proof;
     @Nullable
     private List<DvEHRURI> items = new ArrayList<>();
     private DvText reason;
-    @XmlElement(name="is_pending")
+    @XmlElement(name = "is_pending")
     @RMProperty("is_pending")
     private boolean isPending;
+
+    public Attestation() {
+    }
+
+    public Attestation(String systemId, PartyProxy committer, DvDateTime timeCommitted, DvCodedText changeType, @Nullable DvText description, @Nullable DvMultimedia attestedView, @Nullable String proof, @Nullable List<DvEHRURI> items, DvText reason, boolean isPending) {
+        super(systemId, committer, timeCommitted, changeType, description);
+        this.attestedView = attestedView;
+        this.proof = proof;
+        this.items = items;
+        this.reason = reason;
+        this.isPending = isPending;
+    }
 
     @Nullable
     public DvMultimedia getAttestedView() {
@@ -73,5 +88,23 @@ public class Attestation extends AuditDetails {
 
     public void setPending(boolean pending) {
         isPending = pending;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Attestation that = (Attestation) o;
+        return isPending == that.isPending &&
+                Objects.equals(attestedView, that.attestedView) &&
+                Objects.equals(proof, that.proof) &&
+                Objects.equals(items, that.items) &&
+                Objects.equals(reason, that.reason);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), attestedView, proof, items, reason, isPending);
     }
 }

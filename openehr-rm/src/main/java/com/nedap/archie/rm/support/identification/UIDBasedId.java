@@ -17,21 +17,28 @@ public abstract class UIDBasedId extends ObjectId {
 
     public static final String UUID_REGEXP = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}";
 
+    public UIDBasedId() {
+    }
+
+    public UIDBasedId(String value) {
+        super(value);
+    }
+
     @JsonIgnore
     @XmlTransient
     public UID getRoot() {
         String value = getValue();
-        if(value == null) {
+        if (value == null) {
             return null;
         }
         int index = value.indexOf("::");
         String resultString = null;
-        if(index < 0) {
+        if (index < 0) {
             resultString = value;
         } else {
             resultString = value.substring(index);
         }
-        if(resultString.matches(UUID_REGEXP)) {
+        if (resultString.matches(UUID_REGEXP)) {
             UID result = new UUID();
             result.setValue(resultString);
             return result;
@@ -51,11 +58,11 @@ public abstract class UIDBasedId extends ObjectId {
     @XmlTransient
     public String getExtension() {
         String value = getValue();
-        if(value == null) {
+        if (value == null) {
             return null;
         }
         int index = value.indexOf("::");
-        if(index < 0) {
+        if (index < 0) {
             return "";
         } else {
             return value.substring(index + 2);

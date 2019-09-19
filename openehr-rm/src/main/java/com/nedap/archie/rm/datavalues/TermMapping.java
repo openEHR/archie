@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -37,6 +38,15 @@ public class TermMapping extends RMObject {
     private DvCodedText purpose;
     private CodePhrase target;
 
+    public TermMapping() {
+    }
+
+    public TermMapping(CodePhrase target, Character match, @Nullable DvCodedText purpose) {
+        this.match = match;
+        this.purpose = purpose;
+        this.target = target;
+    }
+
     public char getMatch() {
         return match;
     }
@@ -60,5 +70,20 @@ public class TermMapping extends RMObject {
 
     public void setTarget(CodePhrase target) {
         this.target = target;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TermMapping that = (TermMapping) o;
+        return Objects.equals(match, that.match) &&
+                Objects.equals(purpose, that.purpose) &&
+                Objects.equals(target, that.target);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(match, purpose, target);
     }
 }

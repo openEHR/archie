@@ -1,0 +1,49 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-CLUSTER.cluster_with_annotations.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+
+definition
+	CLUSTER[id1] matches {
+		items matches {
+			ELEMENT[id3] ∈ {
+				value ∈ {
+					DV_QUANTITY[id4]
+					DV_INTERVAL<DV_QUANTITY>[id5]
+					DV_COUNT[id6]
+					DV_INTERVAL<DV_COUNT>[id7]
+				}
+			}
+		}
+	}
+
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"cluster">
+				description = <"cluster">
+			>
+			["id2"] = <
+				text = <"element">
+				description = <"element">
+			>
+		>
+	>
+
+annotations
+	documentation = <
+		["en"] = <
+			["/items[id3]/value[id4]"] = <
+				["design note"] = <"this is a design note for a cluster">
+			>
+			["/items[id3]/value[id5]"] = <
+				["design note"] = <"this is a design note for an element">
+			>
+		>
+	>

@@ -9,13 +9,7 @@ import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.validation.BmmRepository;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -50,7 +44,6 @@ public class RMComparedWithBmmTest {
 
         BmmRepository bmmRepository = BuiltinReferenceModels.getBmmRepository();
         BmmModel model = bmmRepository.getModel("openehr_rm_1.0.4").getModel();
-
 
         List<ModelDifference> compared = new BmmComparison(extraParams, typeMap, typeNamesOverride).compare(model, ArchieRMInfoLookup.getInstance());
 
@@ -154,8 +147,6 @@ public class RMComparedWithBmmTest {
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION", "data"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION", "preceding_version_uid"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION", "canonical_form"));
-        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION_TREE_ID", "extension"));
-        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION_TREE_ID", "root"));
 
         //System.out.println(Joiner.on("\n").join(compared));
         List<ModelDifference> foundErrors = new ArrayList<>();
