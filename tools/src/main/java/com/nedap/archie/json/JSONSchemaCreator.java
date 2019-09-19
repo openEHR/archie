@@ -32,7 +32,6 @@ public class JSONSchemaCreator {
     private List<String> rootTypes;
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
-    private final JsonGeneratorFactory jsonGenerator;
 
     private boolean allowAdditionalProperties;
 
@@ -76,7 +75,6 @@ public class JSONSchemaCreator {
         Map<String, Object> config = new HashMap();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
-        jsonGenerator = Json.createGeneratorFactory(config);
     }
 
     public JsonObject create(BmmModel bmm) {
@@ -236,7 +234,7 @@ public class JSONSchemaCreator {
 
             return jsonFactory.createObjectBuilder().add("allOf", array);
         } else {
-            return createReference(BmmDefinitions.typeNameToClassKey(type.getTypeName()));
+            return createReference(descendants.get(0));
         }
 
     }

@@ -42,7 +42,7 @@ public class JsonSchemaValidator {
         JsonObject schemaJson = new JSONSchemaCreator().allowAdditionalProperties(allowAdditionalProperties).create(bmmModel);
 
         JsonValidationService service = JsonValidationService.newInstance();
-        schema = service.readSchema(createStringInputStream(schemaJson.toString()));
+        schema = service.readSchema(createByteArrayInputStream(schemaJson.toString()));
 
     }
 
@@ -67,7 +67,7 @@ public class JsonSchemaValidator {
             }
         };
 
-        try (JsonReader reader = service.createReader(createStringInputStream(json), schema, problemHandler)) {
+        try (JsonReader reader = service.createReader(createByteArrayInputStream(json), schema, problemHandler)) {
             JsonStructure structure = reader.read();
             return allProblems;
         }
