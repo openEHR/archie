@@ -179,7 +179,7 @@ public class ExampleJsonInstanceGeneratorTest {
                         logger.error(Joiner.on("\n").join(secondProblems));
                         reserializedJsonSchemaValidationFailed++;
                     } else {
-                        logger.error("second validation ok for {}", result.getArchetypeId());
+                        logger.info("second validation ok for {}", result.getArchetypeId());
                     }
 
                 } catch (Exception e) {
