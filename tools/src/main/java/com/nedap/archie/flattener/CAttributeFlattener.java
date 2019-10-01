@@ -261,11 +261,7 @@ public class CAttributeFlattener {
         if(hasSameNodeIdInMatchingChildren) {
             //if parent contains id2, and child as well, replace the exact same node with the exact child. Otherwise,
             //add children and replace the last child.
-            if(specializedChildCObject.getNodeId().equalsIgnoreCase(matchingParentObject.getNodeId())) {
-                return true;//shouldReplaceParent(matchingParentObject, allMatchingChildren);
-            } else {
-                return false;
-            }
+            return specializedChildCObject.getNodeId().equalsIgnoreCase(matchingParentObject.getNodeId());
         } else if(allMatchingChildren.get(allMatchingChildren.size()-1).getNodeId().equalsIgnoreCase(specializedChildCObject.getNodeId())) {
             //the last matching child should possibly replace the parent, the rest should just add
             //if there is just one child, that's fine, it should still work
