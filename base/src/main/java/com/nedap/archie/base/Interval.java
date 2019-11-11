@@ -1,9 +1,13 @@
 package com.nedap.archie.base;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nedap.archie.rminfo.RMPropertyIgnore;
+
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.time.Duration;
 import java.time.temporal.TemporalAmount;
@@ -148,9 +152,9 @@ public class Interval<T> extends OpenEHRBase {
         Comparable comparableUpper;
 		if (value instanceof TemporalAmount && !(value instanceof Comparable) && isNonComparableTemporalAmount(lower) && isNonComparableTemporalAmount(upper)) {
             //TemporalAmount is not comparable, but can always be converted to a duration that is comparable.
-            comparableValue = value == null ? null : Duration.from((TemporalAmount) value);
-            comparableLower = lower == null ? null : Duration.from((TemporalAmount) lower);
-            comparableUpper = upper == null ? null : Duration.from((TemporalAmount) upper);
+            comparableValue = toComparable(value);
+            comparableLower = toComparable(lower);
+            comparableUpper = toComparable(upper);
 		} else if (!(isComparable(lower) && isComparable(upper) && isComparable(value))) {
             throw new UnsupportedOperationException("subclasses of interval not implementing comparable should implement their own has method");
         } else {
@@ -178,6 +182,43 @@ public class Interval<T> extends OpenEHRBase {
             }
         }
         return true;
+    }
+
+    /**
+     * Get the lower value as a comparable amount. Required because some temporal amounts are not always directly comparable
+     * @return
+     */
+    @JsonIgnore
+    @XmlTransient
+    @RMPropertyIgnore
+    public Comparable getComparableLower() {
+        return toComparable(lower);
+    }
+
+    /**
+     * Get the lower value as a comparable amount. Required because some temporal amounts are not always directly comparable
+     * @return
+     */
+    @JsonIgnore
+    @XmlTransient
+    @RMPropertyIgnore
+    public Comparable getComparableUpper() {
+        return toComparable(upper);
+    }
+
+    private Comparable toComparable(T value) {
+        if(lower == null) {
+            return null;
+        }
+        if (lower instanceof TemporalAmount && !(lower instanceof Comparable) && isNonComparableTemporalAmount(lower)) {
+            //TemporalAmount is not comparable, but can always be converted to a duration that is comparable.
+            return Duration.from((TemporalAmount) lower);
+
+        } else if (!isComparable(lower)) {
+            throw new UnsupportedOperationException("subclasses of interval not implementing comparable should implement their own has method");
+        } else {
+            return (Comparable) lower;
+        }
     }
 
     private int compareTo(T intervalValue, T value) {
