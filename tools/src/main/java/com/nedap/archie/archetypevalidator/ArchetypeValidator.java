@@ -52,6 +52,7 @@ public class ArchetypeValidator {
         //but there's no reason this cannot be parsed, so check them here
         validationsPhase0.add(new AttributeUniquenessValidation());
         validationsPhase0.add(new NodeIdValidation());
+        validationsPhase0.add(new BasicDefinitionObjectValidation());
 
         validationsPhase0.add(new AttributeTupleValidation());
 
