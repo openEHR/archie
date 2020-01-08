@@ -212,7 +212,7 @@ public class Interval<T> extends OpenEHRBase {
         }
         if (value instanceof TemporalAmount && !(value instanceof Comparable) && isNonComparableTemporalAmount(value)) {
             //TemporalAmount is not comparable, but can always be converted to a duration that is comparable.
-            return Duration.from((TemporalAmount) value);
+            return IntervalDurationConverter.from((TemporalAmount) value);
 
         } else if (!isComparable(value)) {
             throw new UnsupportedOperationException("subclasses of interval not implementing comparable should implement their own has method");
@@ -226,8 +226,8 @@ public class Interval<T> extends OpenEHRBase {
         Comparable comparableValue;
         if (value instanceof TemporalAmount && !(value instanceof Comparable) && isNonComparableTemporalAmount(intervalValue)) {
             //TemporalAmount is not comparable, but can always be converted to a duration that is comparable.
-            comparableValue = value == null ? null : Duration.from((TemporalAmount) value);
-            comparableIntervalValue = intervalValue == null ? null : Duration.from((TemporalAmount) intervalValue);
+            comparableValue = value == null ? null : IntervalDurationConverter.from((TemporalAmount) value);
+            comparableIntervalValue = intervalValue == null ? null : IntervalDurationConverter.from((TemporalAmount) intervalValue);
         } else if (!(isComparable(intervalValue) && isComparable(value))) {
             throw new UnsupportedOperationException("subclasses of interval not implementing comparable should implement their own has method");
         } else {

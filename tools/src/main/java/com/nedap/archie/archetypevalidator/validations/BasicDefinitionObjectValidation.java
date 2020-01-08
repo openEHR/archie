@@ -59,7 +59,6 @@ public class BasicDefinitionObjectValidation extends ValidatingVisitor {
 
     private boolean isValidInterval(Interval<? extends Comparable> interval) {
         if(interval.getUpper() != null && interval.getLower() != null &&
-            interval.getLower() instanceof Comparable && interval.getUpper() instanceof Comparable &&
             !interval.isLowerUnbounded() &&
             !interval.isUpperUnbounded()){
             if(interval.getComparableUpper().compareTo(interval.getComparableLower()) < 0){
