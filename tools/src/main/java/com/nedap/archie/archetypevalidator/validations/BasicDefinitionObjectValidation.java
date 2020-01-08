@@ -1,17 +1,11 @@
 package com.nedap.archie.archetypevalidator.validations;
 
-import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.primitives.COrdered;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.Interval;
-import com.nedap.archie.base.MultiplicityInterval;
 import org.openehr.utils.message.I18n;
 
 /**
@@ -51,7 +45,7 @@ public class BasicDefinitionObjectValidation extends ValidatingVisitor {
             if(!isValidInterval(cAttribute.getExistence())) {
                 this.addMessageWithPath(ErrorType.OTHER, cAttribute.path(), I18n.t("The existence interval has lower > upper, this is not allowed"));
             }
-            //TODO: check existence.lower and upper > 1? upperUnbounded false?
+            //TODO: check existence.lower and upper is either 0 or 1? upperUnbounded should be false?
         }
     }
 
