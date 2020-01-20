@@ -41,12 +41,6 @@ public class BasicDefinitionObjectValidation extends ValidatingVisitor {
             }
         }
 
-        if(cAttribute.getExistence() != null) {
-            if(!isValidInterval(cAttribute.getExistence())) {
-                this.addMessageWithPath(ErrorType.OTHER, cAttribute.path(), I18n.t("The existence interval has lower > upper, this is not allowed"));
-            }
-            //TODO: check existence.lower and upper is either 0 or 1? upperUnbounded should be false?
-        }
     }
 
 

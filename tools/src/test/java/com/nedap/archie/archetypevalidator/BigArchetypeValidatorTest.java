@@ -103,7 +103,7 @@ public class BigArchetypeValidatorTest {
         Reflections reflections = new Reflections("adl2-tests", new ResourcesScanner());
         List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
         for(String file:adlFiles) {
-            if (file.contains("legacy_adl_1.4")) {
+            if (file.contains("legacy_adl1.4")) {
                 continue;
             }
             Archetype archetype = null;
