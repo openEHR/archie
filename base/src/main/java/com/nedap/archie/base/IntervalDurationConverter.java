@@ -27,6 +27,12 @@ class IntervalDurationConverter {
 //    private final static long MAXIMUM_SECONDS_IN_WEEK = 7*MAXIMUM_SECONDS_IN_DAY;
 //    private final static long MAXIMUM_SECONDS_IN_MONTH = 28*MAXIMUM_SECONDS_IN_WEEK;
 
+    /**
+     * This is a literal copy of Duration.from, with the only change being that this supports adding
+     * estimate TemporalAmounts
+     * @param amount
+     * @return
+     */
     public static Duration from(TemporalAmount amount) {
         Objects.requireNonNull(amount, "amount");
         Duration duration = Duration.ofSeconds(0);
@@ -49,25 +55,11 @@ class IntervalDurationConverter {
      */
     private static Duration plus(Duration value, long amountToAdd, TemporalUnit unit) {
         Objects.requireNonNull(unit, "unit");
-        if (unit == DAYS) {
-            return value.plusDays(amountToAdd);
+        if (unit != DAYS && unit.isDurationEstimated()) {
+            Duration duration = unit.getDuration().multipliedBy(amountToAdd);
+            return value.plusSeconds(duration.getSeconds()).plusNanos(duration.getNano());
+        } else {
+            return value.plus(amountToAdd, unit);
         }
-//        if (unit.isDurationEstimated()) {
-//            throw new UnsupportedTemporalTypeException("Unit must not have an estimated duration");
-//        }
-        if (amountToAdd == 0) {
-            return value;
-        }
-        if (unit instanceof ChronoUnit) {
-            switch ((ChronoUnit) unit) {
-                case NANOS: return value.plusNanos(amountToAdd);
-                case MICROS: return value.plusSeconds((amountToAdd / (1000_000L * 1000)) * 1000).plusNanos((amountToAdd % (1000_000L * 1000)) * 1000);
-                case MILLIS: return value.plusMillis(amountToAdd);
-                case SECONDS: return value.plusSeconds(amountToAdd);
-            }
-            return value.plusSeconds(Math.multiplyExact(unit.getDuration().getSeconds(), amountToAdd));
-        }
-        Duration duration = unit.getDuration().multipliedBy(amountToAdd);
-        return value.plusSeconds(duration.getSeconds()).plusNanos(duration.getNano());
     }
 }

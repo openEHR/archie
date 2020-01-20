@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import java.time.Duration;
 import java.time.temporal.TemporalAmount;
 import java.util.Objects;
 
@@ -150,7 +149,7 @@ public class Interval<T> extends OpenEHRBase {
         Comparable comparableValue;
         Comparable comparableLower;
         Comparable comparableUpper;
-		if (value instanceof TemporalAmount && !(value instanceof Comparable) && isNonComparableTemporalAmount(lower) && isNonComparableTemporalAmount(upper)) {
+		if (value instanceof TemporalAmount && lower instanceof TemporalAmount && upper instanceof TemporalAmount) {
             //TemporalAmount is not comparable, but can always be converted to a duration that is comparable.
             comparableValue = toComparable(value);
             comparableLower = toComparable(lower);
