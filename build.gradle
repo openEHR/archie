@@ -41,7 +41,11 @@ subprojects {
   apply plugin: 'com.android.library'
 
   android {
+// Gradle automatically adds 'android.test.runner' as a dependency.
+    useLibrary 'android.test.runner'
 
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
 
     lintOptions {
       abortOnError false
@@ -66,7 +70,7 @@ subprojects {
       versionCode 1
       versionName "1.0"
 
-      testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+      testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -140,6 +144,9 @@ subprojects {
 
     testImplementation 'junit:junit:4.+'
     testImplementation 'org.slf4j:slf4j-simple:1.7.25'
+
+    androidTestImplementation 'junit:junit:4.+'
+    androidTestImplementation 'org.slf4j:slf4j-simple:1.7.25'
 
     api 'com.github.zafarkhaja:java-semver:0.9.0'
   }

@@ -2,17 +2,23 @@ description = "tools that operate on the archie reference models and archetype o
 
 dependencies {
 //  compile project(':grammars')
-  compile project(':base')
-  compile project(':aom')
-  compile project(':bmm') 
-  compile project(':path-queries')
-  compile project(':utils')
+  api project(':base')
+  api project(':aom')
+  api project(':bmm')
+  api project(':path-queries')
+  api project(':utils')
   testCompile project(':openehr-rm')//TODO: this is temporary, this module should not depend on openehr-rm
   testCompile project(':archie-utils')
   testCompile project(':i18n')
   testCompile project(':test-rm')
   testCompile project(':referencemodels')
 
-  compile 'org.leadpony.justify:justify:1.1.0'
-  compile 'org.glassfish:jakarta.json:1.1.5:module'
+  androidTestImplementation project(':openehr-rm')//TODO: this is temporary, this module should not depend on openehr-rm
+  androidTestImplementation project(':archie-utils')
+  androidTestImplementation project(':i18n')
+  androidTestImplementation project(':test-rm')
+  androidTestImplementation project(':referencemodels')
+
+  implementation 'org.leadpony.justify:justify:1.1.0'
+  implementation 'org.glassfish:jakarta.json:1.1.5:module'
 }
