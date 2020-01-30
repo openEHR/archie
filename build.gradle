@@ -70,7 +70,7 @@ subprojects {
       versionCode 1
       versionName "1.0"
 
-      testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+      testInstrumentationRunner "android.test.InstrumentationTestRunner"
 
     }
 
@@ -145,6 +145,9 @@ subprojects {
     testImplementation 'junit:junit:4.+'
     testImplementation 'org.slf4j:slf4j-simple:1.7.25'
 
+    // Required for instrumented tests
+    androidTestImplementation 'com.android.support:support-annotations:24.0.0'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'junit:junit:4.+'
     androidTestImplementation 'org.slf4j:slf4j-simple:1.7.25'
 
