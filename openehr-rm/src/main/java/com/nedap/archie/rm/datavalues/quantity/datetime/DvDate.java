@@ -16,15 +16,15 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.LocalDate;
-import java.time.temporal.ChronoField;
-import java.time.temporal.Temporal;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.temporal.ChronoField;
+import org.threeten.bp.temporal.Temporal;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * TODO: implement java.time.Temporal for this
- * TODO: implement java.time.Temporal for this
+ * TODO: implement org.threeten.bp.Temporal for this
+ * TODO: implement org.threeten.bp.Temporal for this
  * Created by pieter.bos on 04/11/15.
  */
 @XmlAccessorType(XmlAccessType.FIELD)

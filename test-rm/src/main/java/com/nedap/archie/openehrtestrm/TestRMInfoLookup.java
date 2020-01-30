@@ -12,8 +12,8 @@ import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMPackageId;
 import com.nedap.archie.rminfo.ReflectionModelInfoLookup;
 
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAccessor;
+import org.threeten.bp.temporal.Temporal;
+import org.threeten.bp.temporal.TemporalAccessor;
 import java.util.*;
 
 /**

@@ -5,8 +5,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-import java.time.Duration;
-import java.time.temporal.TemporalAmount;
+import org.threeten.bp.Duration;
+import org.threeten.bp.temporal.TemporalAmount;
 import java.util.Objects;
 
 /**

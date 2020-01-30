@@ -4,7 +4,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.time.temporal.Temporal;
+import org.threeten.bp.temporal.Temporal;
 import javax.annotation.Nullable;
 
 public class Whole extends TestRMBase {

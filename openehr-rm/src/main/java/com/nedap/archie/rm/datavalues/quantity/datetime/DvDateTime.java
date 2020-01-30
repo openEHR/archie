@@ -18,11 +18,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalQueries;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.ZoneOffset;
+import org.threeten.bp.ZonedDateTime;
+import org.threeten.bp.temporal.TemporalAccessor;
+import org.threeten.bp.temporal.TemporalQueries;
 import java.util.List;
 import java.util.Objects;
 

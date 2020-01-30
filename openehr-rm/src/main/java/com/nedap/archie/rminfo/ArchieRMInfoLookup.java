@@ -70,9 +70,9 @@ import com.nedap.archie.rm.support.identification.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalAmount;
+import org.threeten.bp.temporal.Temporal;
+import org.threeten.bp.temporal.TemporalAccessor;
+import org.threeten.bp.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

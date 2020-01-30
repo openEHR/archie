@@ -19,9 +19,9 @@ import org.junit.Test;
 import javax.xml.bind.Marshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalTime;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertEquals;

@@ -4,14 +4,14 @@ import com.nedap.archie.adlparser.treewalkers.TemporalConstraintParser;
 import com.nedap.archie.datetime.DateTimeParsers;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.OffsetDateTime;
-import java.time.OffsetTime;
-import java.time.Year;
-import java.time.YearMonth;
-import java.time.ZoneOffset;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalTime;
+import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.OffsetTime;
+import org.threeten.bp.Year;
+import org.threeten.bp.YearMonth;
+import org.threeten.bp.ZoneOffset;
 
 import static org.junit.Assert.assertEquals;
 

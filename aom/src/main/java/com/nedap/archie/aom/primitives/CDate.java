@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.temporal.Temporal;
+import org.threeten.bp.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
 
