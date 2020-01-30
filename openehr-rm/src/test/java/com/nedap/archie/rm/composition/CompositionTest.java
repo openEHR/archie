@@ -10,11 +10,11 @@ import static org.junit.Assert.assertEquals;
 
 public class CompositionTest {
 
-    @Test
-    public void testEqual() throws JAXBException {
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
-        Composition composition1 = (Composition) unmarshaller.unmarshal(getClass().getResourceAsStream("test_all_types.fixed.v1.xml"));
-        Composition composition2 = (Composition) unmarshaller.unmarshal(getClass().getResourceAsStream("test_all_types.fixed.v1.xml"));
-        assertEquals(composition1,composition2);
-    }
+//    @Test
+//    public void testEqual() throws JAXBException {
+//        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+//        Composition composition1 = (Composition) unmarshaller.unmarshal(getClass().getResourceAsStream("test_all_types.fixed.v1.xml"));
+//        Composition composition2 = (Composition) unmarshaller.unmarshal(getClass().getResourceAsStream("test_all_types.fixed.v1.xml"));
+//        assertEquals(composition1,composition2);
+//    }
 }
