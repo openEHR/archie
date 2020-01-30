@@ -1,10 +1,12 @@
 buildscript {
   repositories {
     jcenter()
+    google()
   }
   dependencies {
-    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
-    classpath 'org.owasp:dependency-check-gradle:1.4.5.1'
+    //classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
+    //classpath 'org.owasp:dependency-check-gradle:1.4.5.1'
+    classpath 'com.android.tools.build:gradle:3.5.2'
   }
 
 
@@ -12,6 +14,8 @@ buildscript {
 
 repositories {
   mavenCentral()
+  google()
+  jcenter()
 }
 
 
@@ -33,23 +37,46 @@ gradle.ext.shouldSign = hasProperty('signing.keyId')
 gradle.ext.isParallel = hasProperty('org.gradle.parallel') ? project.property('org.gradle.parallel') == 'true' : false
 
 subprojects {
-  apply plugin: 'java'
-  apply plugin: 'org.owasp.dependencycheck'
-  apply from: "${gradleScriptDir}/publish-maven.gradle"
 
- // plugins {
-   //   id 'com.github.ben-manes.versions' version '0.13.0'
- // }
+  apply plugin: 'com.android.library'
 
+  android {
+    compileSdkVersion 28
+
+    defaultConfig {
+      minSdkVersion 24
+      targetSdkVersion 28
+      versionCode 1
+      versionName "1.0"
+
+      testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    compileOptions {
+      sourceCompatibility JavaVersion.VERSION_1_8
+      targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+      release {
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      }
+    }
+
+  }
   sourceCompatibility = '1.8'
   targetCompatibility = '1.8'
 
-  compileJava.options.encoding = "UTF-8"
-  compileTestJava.options.encoding = "UTF-8"
+  //compileJava.options.encoding = "UTF-8"
+  //compileTestJava.options.encoding = "UTF-8"s
 
   repositories {
-      mavenCentral()
-      maven { url 'https://jitpack.io' }
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    jcenter()
+    google()
   }
 
   ext.reflectionsVersion = '0.9.11'
@@ -57,6 +84,7 @@ subprojects {
 
   dependencies {
     compile 'org.slf4j:slf4j-api:1.7.28'
+    compile 'com.nedap.healthcare.archie:grammars:0.10.0'
 
     compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
@@ -76,7 +104,7 @@ subprojects {
     //java 10 no longer has these included by default, so explicit dependency is needed.
     compile 'javax.xml.bind:jaxb-api:2.3.0'
     compile 'com.sun.xml.bind:jaxb-core:2.3.0'
-    runtime 'com.sun.xml.bind:jaxb-impl:2.3.0'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
     compile 'javax.activation:activation:1.1.1'
 
     testCompile 'junit:junit:4.+'
@@ -85,33 +113,45 @@ subprojects {
     compile 'com.github.zafarkhaja:java-semver:0.9.0'
   }
 
-
-  javadoc {
-      options.encoding = 'UTF-8'
-  }
-
-  //configure the jar files: sources and javaod
-  task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-  }
-
-  task sourcesJar(type: Jar) {
-      classifier = 'sources'
-      from sourceSets.main.allSource
-  }
-
-  artifacts {
-      archives javadocJar, sourcesJar
-  }
-
-  test {
-   testLogging {
-      events "failed"
-      exceptionFormat "full"
-    }
-  }
-
 }
 
-apply from: "${gradleScriptDir}/jacoco.gradle"
+//subprojects {
+  //apply plugin: 'org.owasp.dependencycheck'
+  //apply from: "${gradleScriptDir}/publish-maven.gradle"
+
+ // plugins {
+   //   id 'com.github.ben-manes.versions' version '0.13.0'
+ // }
+
+
+
+
+//  javadoc {
+//      options.encoding = 'UTF-8'
+//  }
+
+//  //configure the jar files: sources and javaod
+//  task javadocJar(type: Jar) {
+//    classifier = 'javadoc'
+//    from javadoc
+//  }
+
+//  task sourcesJar(type: Jar) {
+//      classifier = 'sources'
+//      from sourceSets.main.allSource
+//  }
+
+//  artifacts {
+//      archives javadocJar, sourcesJar
+//  }
+
+//  test {
+//   testLogging {
+//      events "failed"
+//      exceptionFormat "full"
+//    }
+//  }
+
+//}
+
+//apply from: "${gradleScriptDir}/jacoco.gradle"

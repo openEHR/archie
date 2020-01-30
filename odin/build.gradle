@@ -1,6 +1,6 @@
 description = "An odin implementation"
 
 dependencies {
-  compile project(':grammars')
+//  compile project(':grammars')
   compile project(':base')
 }

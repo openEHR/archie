@@ -1,7 +1,7 @@
 description = "An OpenEHR archetype object model implementation, plus parser"
 
 dependencies {
-  compile project(':grammars')
+  //compile project(':grammars')
   compile project(':base')
   compile project(':odin')
   compile project(':utils')
