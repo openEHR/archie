@@ -60,7 +60,9 @@ subprojects {
 
     compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    compile("com.github.joschi.jackson:jackson-datatype-threetenbp:${jacksonVersion}") {
+      exclude group: 'org.threeten', module: 'threetenbp'
+    }
 
     compile 'com.google.guava:guava:28.1-jre'
 
