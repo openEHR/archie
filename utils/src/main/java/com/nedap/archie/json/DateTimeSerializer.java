@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.nedap.archie.datetime.DateTimeSerializerFormatters;
 
 import java.io.IOException;
-import java.time.temporal.TemporalAccessor;
+import org.threeten.bp.temporal.TemporalAccessor;
 
 /**
  * Created by pieter.bos on 30/09/16.

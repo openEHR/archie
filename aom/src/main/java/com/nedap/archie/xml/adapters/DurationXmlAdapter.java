@@ -3,7 +3,7 @@ package com.nedap.archie.xml.adapters;
 import com.nedap.archie.datetime.DateTimeParsers;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
-import java.time.temporal.TemporalAmount;
+import org.threeten.bp.temporal.TemporalAmount;
 
 /**
  * Created by pieter.bos on 30/06/16.

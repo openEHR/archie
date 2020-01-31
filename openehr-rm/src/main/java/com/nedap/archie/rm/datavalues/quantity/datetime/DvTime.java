@@ -16,13 +16,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.LocalTime;
-import java.time.temporal.TemporalAccessor;
+import org.threeten.bp.LocalTime;
+import org.threeten.bp.temporal.TemporalAccessor;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * TODO: implement java.time.Temporal for this object?
+ * TODO: implement org.threeten.bp.Temporal for this object?
  * <p>
  * Deviation from the standard: the standard uses a String to represent a value here.
  * We do not, we use the java time types. Perhaps we will add a parser later.

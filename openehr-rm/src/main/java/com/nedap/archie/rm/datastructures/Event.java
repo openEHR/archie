@@ -11,8 +11,8 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
-import java.time.Duration;
-import java.time.OffsetDateTime;
+import org.threeten.bp.Duration;
+import org.threeten.bp.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
 

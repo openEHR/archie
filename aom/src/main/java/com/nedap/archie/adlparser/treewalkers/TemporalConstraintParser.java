@@ -8,9 +8,9 @@ import com.nedap.archie.aom.primitives.CDuration;
 import com.nedap.archie.aom.primitives.CTime;
 import com.nedap.archie.base.Interval;
 
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalAmount;
+import org.threeten.bp.temporal.Temporal;
+import org.threeten.bp.temporal.TemporalAccessor;
+import org.threeten.bp.temporal.TemporalAmount;
 import static com.nedap.archie.datetime.DateTimeParsers.*;
 
 /**

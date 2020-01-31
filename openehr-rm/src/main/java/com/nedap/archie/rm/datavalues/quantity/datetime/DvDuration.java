@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.temporal.TemporalAmount;
+import org.threeten.bp.temporal.TemporalAmount;
 import java.util.List;
 import java.util.Objects;
 

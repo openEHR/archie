@@ -148,7 +148,7 @@ public class ADLDefinitionSerializerTest {
 
     @Test
     public void serializeDuration() {
-        // java.time.Duration has no notion of weeks, so the value is always serialized in days.
+        // org.threeten.bp.Duration has no notion of weeks, so the value is always serialized in days.
         // relevant tests were commented out for now
 
         assertPrimitive("duration_attr1", "Pw");

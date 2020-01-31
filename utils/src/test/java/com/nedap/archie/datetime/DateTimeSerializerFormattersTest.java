@@ -2,8 +2,8 @@ package com.nedap.archie.datetime;
 
 import org.junit.Test;
 
-import java.time.*;
-import java.time.temporal.TemporalAccessor;
+import org.threeten.bp.*;
+import org.threeten.bp.temporal.TemporalAccessor;
 
 import static org.junit.Assert.assertEquals;
 

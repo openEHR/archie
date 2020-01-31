@@ -4,7 +4,7 @@ import com.nedap.archie.aom.primitives.CTime;
 import com.nedap.archie.base.Interval;
 import org.junit.Test;
 
-import java.time.LocalTime;
+import org.threeten.bp.LocalTime;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

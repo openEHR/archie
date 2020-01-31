@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.nedap.archie.datetime.DateTimeParsers;
 
 import java.io.IOException;
-import java.time.temporal.Temporal;
+import org.threeten.bp.temporal.Temporal;
 
 
 /**

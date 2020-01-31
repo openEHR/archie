@@ -4,10 +4,10 @@ import com.nedap.archie.datetime.DateTimeParsers;
 import com.nedap.archie.datetime.DateTimeSerializerFormatters;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
-import java.time.temporal.TemporalAccessor;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.ZonedDateTime;
+import org.threeten.bp.temporal.TemporalAccessor;
 
 /**
  * Created by pieter.bos on 24/06/16.

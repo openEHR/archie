@@ -6,10 +6,10 @@ import com.nedap.archie.base.Interval;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.Duration;
-import java.time.Period;
-import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalAmount;
+import org.threeten.bp.Duration;
+import org.threeten.bp.Period;
+import org.threeten.bp.temporal.ChronoField;
+import org.threeten.bp.temporal.TemporalAmount;
 import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;

@@ -13,6 +13,5 @@ dependencies {
   testCompile project(':test-rm')
   testCompile project(':referencemodels')
 
-  compile 'org.leadpony.justify:justify:1.1.0'
-  compile 'org.glassfish:jakarta.json:1.1.5:module'
+  compile 'org.leadpony.justify:justify:2.0.0'
 }

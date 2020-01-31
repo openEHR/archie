@@ -18,7 +18,7 @@ import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.base.OpenEHRBase;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.threetenbp.ThreeTenModule;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datastructures.History;
 import com.nedap.archie.rm.datatypes.CodePhrase;
@@ -106,7 +106,7 @@ public class JacksonUtil {
             objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         }
 
-        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.registerModule(new ThreeTenModule());
 
         SimpleModule module = new SimpleModule();
         if(!configuration.isAddExtraFieldsInArchetypeId()) {

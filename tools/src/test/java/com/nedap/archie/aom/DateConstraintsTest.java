@@ -4,8 +4,8 @@ import com.nedap.archie.aom.primitives.CDate;
 import com.nedap.archie.base.Interval;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.Month;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

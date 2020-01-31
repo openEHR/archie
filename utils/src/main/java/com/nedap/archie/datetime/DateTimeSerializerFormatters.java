@@ -1,9 +1,9 @@
 package com.nedap.archie.datetime;
 
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.DecimalStyle;
-import java.time.temporal.ChronoField;
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.DateTimeFormatterBuilder;
+import org.threeten.bp.format.DecimalStyle;
+import org.threeten.bp.temporal.ChronoField;
 
 public class DateTimeSerializerFormatters {
 

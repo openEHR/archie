@@ -1,18 +1,18 @@
 package com.nedap.archie.datetime;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.OffsetDateTime;
-import java.time.OffsetTime;
-import java.time.Period;
-import java.time.Year;
-import java.time.YearMonth;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalAmount;
+import org.threeten.bp.Duration;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalTime;
+import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.OffsetTime;
+import org.threeten.bp.Period;
+import org.threeten.bp.Year;
+import org.threeten.bp.YearMonth;
+import org.threeten.bp.format.DateTimeParseException;
+import org.threeten.bp.temporal.Temporal;
+import org.threeten.bp.temporal.TemporalAccessor;
+import org.threeten.bp.temporal.TemporalAmount;
 
 /**
  * ISO date time parsers
