@@ -56,7 +56,7 @@ subprojects {
   ext.jacksonVersion = '2.10.2'
 
   dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.28'
+    compile 'org.slf4j:slf4j-api:1.7.30'
 
     compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
