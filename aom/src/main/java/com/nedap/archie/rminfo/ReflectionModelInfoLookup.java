@@ -144,7 +144,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         //TODO: it's possible to constrain some method as well. should we do that here too?
         TypeToken typeToken = TypeToken.of(clazz);
 
-        Set<Field> allFields = ReflectionUtils.getAllFields(clazz,f -> true);
+        Set<Field> allFields = ReflectionUtils.getAllFields(clazz);
         Map<String, Field> fieldsByName = allFields.stream()
                 .filter( field -> !field.getName().startsWith("$")) //jacoco adds $ fields.. annoying :)
                 .collect(Collectors.toMap((field) -> field.getName(), (field) -> field,

@@ -52,7 +52,7 @@ subprojects {
       maven { url 'https://jitpack.io' }
   }
 
-  ext.reflectionsVersion = '0.9.11'
+  ext.reflectionsVersion = '0.9.12'
   ext.jacksonVersion = '2.9.10'
 
   dependencies {
