@@ -1,4 +1,4 @@
-rootProject.name = 'archie'
+rootProject.name = 'archie-mobile'
 
 include 'base', 'aom', 'grammars', 'tools', 'odin', 'openehr-rm', 'archie-utils'
 include 'path-queries', 'utils', 'bmm', 'referencemodels', 'modeldoc'

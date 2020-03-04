@@ -1,4 +1,6 @@
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.artifactory'
 if(gradle.ext.shouldSign) {
   apply plugin: 'signing'
 }
@@ -13,7 +15,36 @@ if(gradle.ext.shouldSign) {
   signing {
       useGpgCmd()
       sign configurations.archives
-  }  
+  }
+}
+
+ext {
+  propOrEnv = { name, envName ->
+    return project.hasProperty(name) ? project.getProperty(name) : System.getenv(envName)
+  }
+}
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+    }
+  }
+}
+
+artifactory {
+  publish {
+    contextUrl = "https://nedap.jfrog.io/nedap"
+    repository {
+      repoKey = project.version.endsWith("SNAPSHOT") ? "libs-snapshots-local" : "libs-releases-local"
+      username = ext.propOrEnv('artifactoryUser', "ARTIFACTORY_USER")
+      password = ext.propOrEnv('artifactoryPassword', "ARTIFACTORY_PASSWORD")
+    }
+
+    defaults {
+      publications('mavenJava')
+    }
+  }
 }
 
 //upload to sonatype configuration

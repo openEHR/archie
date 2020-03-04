@@ -5,9 +5,8 @@ buildscript {
   dependencies {
     classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
     classpath 'org.owasp:dependency-check-gradle:1.4.5.1'
+    classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.14.1'
   }
-
-
 }
 
 repositories {
@@ -21,10 +20,8 @@ wrapper {
 
 allprojects {
   version = '0.10.0'
-  group = 'com.nedap.healthcare.archie'
+  group = 'com.nedap.healthcare.archie-mobile'
   ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
-  //archivesBaseName = 'archie'
-
 }
 
 gradle.ext.ossrhUsernameSafe = hasProperty('ossrhUsername') ? ossrhUsername : ""
