@@ -8,7 +8,7 @@ blocks:
   - name: Gradle
     task:
       secrets:
-        - name: jfrog-maven
+        - name: android-jfrog-secrets
       jobs:
         - name: Java 8 build
           commands:
