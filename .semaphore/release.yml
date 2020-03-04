@@ -1,0 +1,26 @@
+version: v1.0
+name: Release
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Gradle
+    task:
+      secrets:
+        - name: jfrog-maven
+      jobs:
+        - name: Java 8 build
+          commands:
+            - sem-version java 1.8
+            - ./gradlew artifactoryPublish
+      prologue:
+        commands:
+          - checkout
+
+promotions:
+  - name: Create release
+    pipeline_file: release.yml
+    auto_promote:
+      # Match on any non-empty tag
+      when: "result = 'passed' and tag =~ '.'"
