@@ -1,21 +1,28 @@
 package com.nedap.archie.archetypevalidator.validations;
 
+import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
+import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationBase;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Expression;
+import com.nedap.archie.rules.ExpressionVariable;
 import com.nedap.archie.rules.ForAllStatement;
 import com.nedap.archie.rules.Function;
 import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.RuleStatement;
 import com.nedap.archie.rules.UnaryOperator;
+import org.openehr.utils.message.I18n;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +40,10 @@ public class RulesValidation extends ArchetypeValidationBase {
                 if(statement instanceof Assertion) {
                     Assertion toValidate = (Assertion) statement;
                     validate(toValidate);
+                } else if (statement instanceof ExpressionVariable) {
+                    ExpressionVariable variable = (ExpressionVariable) statement;
+                    validate(variable.getExpression());
+
                 }
             }
         }
@@ -67,7 +78,9 @@ public class RulesValidation extends ArchetypeValidationBase {
     }
 
     private void validate(ModelReference reference) {
-        validatePath(getPath(reference));
+        if(!validatePath(getPath(reference))) {
+            this.addWarning(ErrorType.VRRLPAR, reference.toString());
+        }
     }
 
     private void validate(Function function) {
@@ -90,7 +103,11 @@ public class RulesValidation extends ArchetypeValidationBase {
 
     private String getPath(ModelReference pathExpression) {
         if(pathExpression.getVariableReferencePrefix() != null && !pathExpression.getVariableReferencePrefix().isEmpty()) {
-            return pathExpression.getVariableReferencePrefix() + pathExpression.getPath();
+            if(variableToPathMap.containsKey(pathExpression.getVariableReferencePrefix())) {
+                return variableToPathMap.get(pathExpression.getVariableReferencePrefix()) + pathExpression.getPath();
+            } else {
+                addWarning(ErrorType.RULES_VARIABLE_NOT_DEFINED, I18n.t("Variable {0} used, but not defined", pathExpression.getVariableReferencePrefix()));
+            }
         }
         return pathExpression.getPath();
     }
@@ -100,8 +117,9 @@ public class RulesValidation extends ArchetypeValidationBase {
         List<PathSegment> pathSegments = new APathQuery(path).getPathSegments();
         int i = pathSegments.size() -1;
         List<ArchetypeModelObject> archetypeModelObjects = null;
+        String subPath = null;
         for(; i >= 0; i--) {
-            String subPath = joinPathUntil(pathSegments, i);
+            subPath = joinPathUntil(pathSegments, i);
             archetypeModelObjects = operationalTemplate.itemsAtPath(subPath);
             if(!archetypeModelObjects.isEmpty()) {
                 break;
@@ -110,11 +128,16 @@ public class RulesValidation extends ArchetypeValidationBase {
         if(archetypeModelObjects.isEmpty()) {
             return false;
         } else {
-            String restOfPath = PathUtil.getPath(pathSegments.subList(i, pathSegments.size()));
+            String restOfPath = i >= pathSegments.size() -1 ? "" : PathUtil.getPath(pathSegments.subList(i+1, pathSegments.size()));
+            if(restOfPath.isEmpty()) {
+                return true;
+            }
             for(ArchetypeModelObject object: archetypeModelObjects) {
-                String typeName = getTypeName(object);
-                if(typeName != null && this.combinedModels.hasReferenceModelPath(typeName, restOfPath)) {
-                    return true;
+                List<String> typeNames = getTypeNames(object);
+                for(String typeName:typeNames) {
+                    if (this.combinedModels.hasReferenceModelPath(typeName, restOfPath)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -122,11 +145,18 @@ public class RulesValidation extends ArchetypeValidationBase {
 
     }
 
-    private String getTypeName(ArchetypeModelObject object) {
+    private List<String> getTypeNames(ArchetypeModelObject object) {
         if(object instanceof CObject) {
-            return ((CObject) object).getRmTypeName();
+            return Lists.newArrayList(((CObject) object).getRmTypeName());
+        } else if (object instanceof CAttribute) {
+            CAttribute attribute = (CAttribute) object;
+            ArrayList<String> result= new ArrayList<>();
+            for(CObject child:attribute.getChildren()) {
+                result.addAll(getTypeNames(child));
+            }
+            return result;
         }
-        return null;
+        return Collections.emptyList();
     }
 
     private String joinPathUntil(List<PathSegment> pathSegments, int i) {

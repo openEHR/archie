@@ -1,5 +1,5 @@
 archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
-	openEHR-EHR-OBSERVATION.boolean_relops.v1.0.0
+	openEHR-EHR-OBSERVATION.boolean_operand_relops.v1.0.0
 
 language
 	original_language = <[ISO_639-1::en]>

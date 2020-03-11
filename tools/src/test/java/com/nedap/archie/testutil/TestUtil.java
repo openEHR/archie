@@ -181,4 +181,28 @@ public class TestUtil {
         return result;
     }
 
+    public static FullArchetypeRepository parseRuleExamples() {
+        InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
+        Reflections reflections = new Reflections("com/nedap/archie/rules/evaluation", new ResourcesScanner());
+        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        for(String file:adlFiles) {
+            Archetype archetype;
+            ANTLRParserErrors errors;
+            try (InputStream stream = TestUtil.class.getResourceAsStream("/" + file)) {
+                ADLParser parser = new ADLParser();
+                parser.setLogEnabled(false);
+                archetype = parser.parse(stream);
+                errors = parser.getErrors();
+                if (errors.hasNoErrors()) {
+                    result.addArchetype(archetype);
+                } else {
+                    logger.warn("error parsing archetype: {}", errors);
+                }
+            } catch (Exception e) {
+                logger.warn("exception parsing archetype {}", file, e);
+            }
+        }
+        return result;
+    }
+
 }
