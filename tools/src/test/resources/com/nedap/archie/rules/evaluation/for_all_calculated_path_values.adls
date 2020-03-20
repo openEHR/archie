@@ -1,5 +1,5 @@
 archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
-	openEHR-EHR-OBSERVATION.multiplicity.v1.0.0
+	openEHR-EHR-OBSERVATION.for_all_calculated_paths_and_values.v1.0.0
 
 language
 	original_language = <[ISO_639-1::en]>
@@ -77,9 +77,29 @@ terminology
 	term_definitions = <
 		["en"] = <
 			["id1"] = <
-				text = <"Blood Pressure">
-				description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
-			>
+                text = <"Blood Pressure">
+                description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
+            >
+            ["id3"] = <
+                text = <"Event">
+                description = <"Event">
+            >
+            ["id4"] = <
+                text = <"Data">
+                description = <"Data">
+            >
+            ["id5"] = <
+                text = <"element 1">
+                description = <"element 1">
+            >
+            ["id6"] = <
+                text = <"element 2">
+                description = <"element 2">
+            >
+            ["id7"] = <
+                text = <"element 3">
+                description = <"element 3">
+            >
 		>
     >
 

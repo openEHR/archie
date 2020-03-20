@@ -1,5 +1,5 @@
 archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
-	openEHR-EHR-OBSERVATION.matches.v1.0.0
+	openEHR-EHR-OBSERVATION.construct_only_necessary_structure.v1.0.0
 
 language
 	original_language = <[ISO_639-1::en]>
@@ -76,6 +76,22 @@ terminology
             ["at3"] = <
                 text = <"De patiënt heeft hulp van 2 of meer personen nodig">
                 description = <"De patiënt heeft hulp van 2 of meer personen nodig">
+            >
+            ["id3"] = <
+                text = <"Event">
+                description = <"Event">
+            >
+            ["id4"] = <
+                text = <"Data">
+                description = <"Data">
+            >
+            ["id5"] = <
+                text = <"element 1">
+                description = <"element 1">
+            >
+            ["id6"] = <
+                text = <"element 2">
+                description = <"element 2">
             >
 		>
     >

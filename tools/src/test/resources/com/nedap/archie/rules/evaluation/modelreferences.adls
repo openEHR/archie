@@ -33,7 +33,6 @@ definition
 									ELEMENT[id5] matches {	-- Body Mass Index
 										value matches {
 											DV_QUANTITY[id13] matches {
-												property matches {[at10]}
 												[magnitude, units, precision] matches {
 													[{|0.0..<1000.0|}, {"kg/m2"}, {1}],
 													[{|0.0..<1000.0|}, {"lb/in2"}, {1}]
@@ -64,6 +63,18 @@ terminology
 				text = <"Blood Pressure">
 				description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
 			>
+			["id3"] = <
+                text = <"Event">
+                description = <"Event">
+            >
+            ["id4"] = <
+                text = <"Data">
+                description = <"Data">
+            >
+            ["id5"] = <
+                text = <"Data">
+                description = <"Data">
+            >
 		>
     >
 
