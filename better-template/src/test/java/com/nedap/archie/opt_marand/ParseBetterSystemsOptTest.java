@@ -61,7 +61,12 @@ import static org.junit.Assert.assertTrue;
 
 public class ParseBetterSystemsOptTest {
 
+    public static final String OUTPUT_DIR = "/Users/pieter.bos/projects/openehr/covid/";
+
     public static final String OPT_JSON_ARCHETYPES = "/opt_json/Archetypes/";
+    public static final String TEMPLATE_LOCATION = "/opt_json/COVID-19-Screening_t.json";
+
+
     private String[] adl2Archetypes = {
             "openEHR-EHR-CLUSTER.symptom_sign.v1.0.0.adls"
     };
@@ -91,7 +96,7 @@ public class ParseBetterSystemsOptTest {
 
     @Test
     public void parseOpt() throws IOException {
-        try(InputStream stream = getClass().getResourceAsStream("/opt_json/COVID-19-Screening_t.json")) {
+        try(InputStream stream = getClass().getResourceAsStream(TEMPLATE_LOCATION)) {
             RMJacksonConfiguration config = new RMJacksonConfiguration();
             config.setFailOnUnknownProperties(true);
             ObjectMapper objectMapper = getObjectMapper(config);
@@ -237,7 +242,7 @@ public class ParseBetterSystemsOptTest {
             Flattener optCreator = new Flattener(adl2Repository, BuiltinReferenceModels.getMetaModels(), flattenerConfiguration);
 
             //System.out.println("\n\n\n==========================================\nOPT 2\n==================\n\n");
-            output(optCreator.flatten(foundTemplate), "opt_thingy");
+            output(optCreator.flatten(foundTemplate), "opt");
 
             ValidationResult validationResult = adl2Repository.getValidationResult("openEHR-EHR-COMPOSITION.t_encounter.v1.0.0");
             if(!validationResult.passes()) {
@@ -278,7 +283,7 @@ public class ParseBetterSystemsOptTest {
     }
 
     private void output(ADL2ConversionResultList converted) {
-        String outputDir = "/Users/pieter.bos/projects/openehr/covid/";
+        String outputDir = OUTPUT_DIR;
         for(ADL2ConversionResult result:converted.getConversionResults()) {
             String fileName = outputDir + result.getArchetypeId() + ".adls";
 
@@ -293,18 +298,18 @@ public class ParseBetterSystemsOptTest {
         }
     }
 
-    private void output(Archetype template) {
-        output(template, "");
+    private void output(Archetype archetype) {
+        output(archetype, "");
 
     }
 
-    private void output(Archetype template, String suffix) {
-        String outputDir = "/Users/pieter.bos/projects/openehr/covid/";
+    private void output(Archetype archetype, String extension) {
+        String outputDir = OUTPUT_DIR;
 
-        String fileName = outputDir + template.getArchetypeId().toString() + suffix + ".adls";
+        String fileName = outputDir + archetype.getArchetypeId().toString() + ((extension == null || extension.isEmpty()) ? ".adls" : extension);
 
         try(FileOutputStream stream = new FileOutputStream(fileName)) {
-            stream.write(ADLArchetypeSerializer.serialize(template).getBytes(Charsets.UTF_8));
+            stream.write(ADLArchetypeSerializer.serialize(archetype).getBytes(Charsets.UTF_8));
             stream.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
