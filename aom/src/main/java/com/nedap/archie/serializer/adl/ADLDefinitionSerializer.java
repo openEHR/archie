@@ -55,33 +55,7 @@ public class ADLDefinitionSerializer {
     }
 
     public String getTermText(CObject cobj) {
-        if(cobj == null) {
-            return null;
-        }
-        Archetype archetype = cobj.getArchetype();
-        String originalLanguage = ofNullable(cobj)
-                .flatMap(c -> ofNullable(archetype))
-                .flatMap(a -> ofNullable(a.getOriginalLanguage()))
-                .map(TerminologyCode::getCodeString)
-                .orElse(null);
-        if (originalLanguage == null) return null;
-
-        ArchetypeTerm term = cobj.getArchetype().getTerm(cobj, originalLanguage);
-        if (term == null) {
-            if(flatArchetypeProvider != null && archetype.getParentArchetypeId() != null) {
-                Archetype flatParent = flatArchetypeProvider.apply(archetype.getParentArchetypeId());
-                if(flatParent != null && flatParent.getTerminology() != null) {
-                    ArchetypeTerminology terminology = flatParent.getTerminology();
-                    String nodeId = AOMUtils.codeAtLevel(cobj.getNodeId(), flatParent.specializationDepth());
-                    term = terminology.getTermDefinition(originalLanguage, nodeId);
-                }
-            }
-
-        }
-        if(term == null) {
-            return null;
-        }
-        return term.getText();
+        return getTermText(cobj, null);
     }
 
     public String getTermText(CObject cobj, String code) {
@@ -96,7 +70,10 @@ public class ADLDefinitionSerializer {
                 .orElse(null);
         if (originalLanguage == null) return null;
 
-        ArchetypeTerm term = cobj.getArchetype().getTerm(cobj, code, originalLanguage);
+
+        ArchetypeTerm term = code == null ?
+                cobj.getArchetype().getTerm(cobj, originalLanguage) :
+                cobj.getArchetype().getTerm(cobj, code, originalLanguage);
         if (term == null) {
             if(flatArchetypeProvider != null && archetype.getParentArchetypeId() != null) {
                 Archetype flatParent = flatArchetypeProvider.apply(archetype.getParentArchetypeId());
