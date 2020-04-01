@@ -17,7 +17,7 @@ public class ADL14ConversionConfiguration {
     private boolean allowDuplicateFieldNames;
 
     /**
-     * Set ot false to skip the applying of the differential format. Use only when you know what you are doing, very nonstandard!
+     * Set to false to skip applying the differential format. Use only when you know what you are doing, very nonstandard!
      */
     private boolean applyDiff = true;
 
