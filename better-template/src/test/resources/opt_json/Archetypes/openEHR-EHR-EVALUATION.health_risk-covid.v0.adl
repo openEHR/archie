@@ -159,17 +159,17 @@ definition
 									}
 								}
 							}
-							ELEMENT[at0017.1] occurrences matches {0..1} matches {    -- Presence
-								value matches {
-									DV_CODED_TEXT matches {
-										defining_code matches {
-											[local::
-											at0018,    -- Present
-											at0019,    -- Absent
-											at0.15]    -- Unknown
-										}
-									}
-								}
+							ELEMENT[at0017.1] occurrences matches {0..1} matches { *    -- Presence
+							-- value matches {
+							-- 	DV_CODED_TEXT matches {
+							-- 		defining_code matches {
+							-- 			[local::
+							-- 			at0018,    -- Present
+							-- 			at0019,    -- Absent
+							-- 			at0.15]    -- Unknown
+							-- 		}
+							-- 	}
+							-- }
 							}
 							ELEMENT[at0014] occurrences matches {0..1} matches {    -- Description
 								value matches {
