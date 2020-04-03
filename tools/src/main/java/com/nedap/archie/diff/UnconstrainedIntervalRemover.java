@@ -38,7 +38,7 @@ public class UnconstrainedIntervalRemover {
     public static void removeUnconstrainedIntervals(CAttribute cAttribute) {
         List<CObject> cObjectsToRemove = new ArrayList<>();
         for(CObject cObject:cAttribute.getChildren()) {
-           if(cObject instanceof CComplexObject) {
+            if(cObject instanceof CComplexObject) {
                 removeUnconstrainedIntervals((CComplexObject) cObject);
             } else if (cObject instanceof CPrimitiveObject) {
                 CPrimitiveObject cPrimitiveObject = (CPrimitiveObject) cObject;

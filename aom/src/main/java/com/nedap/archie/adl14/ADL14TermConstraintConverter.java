@@ -273,7 +273,7 @@ public class ADL14TermConstraintConverter {
             valueSet.setId(converter.getIdCodeGenerator().generateNextValueSetCode());
         } else {
             valueSet.setId(this.converter.getIdCodeGenerator().generateNextSpecializedIdCode(idInparent));
-            //TODO: is adding this in teh conversionlog a good idea?
+            //TODO: is adding this in the conversionlog a good idea?
         }
 
         converter.addCreatedCode(valueSet.getId(), new CreatedCode(valueSet.getId(), ReasonForCodeCreation.CREATED_VALUE_SET));
