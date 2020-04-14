@@ -62,7 +62,7 @@ subprojects {
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
 
-    compile 'com.google.guava:guava:28.1-jre'
+    compile 'com.google.guava:guava:29.0-jre'
 
     compile "org.reflections:reflections:${reflectionsVersion}"
     compile 'com.esotericsoftware:kryo-shaded:4.0.2' //for easy and relatively fast object cloning
