@@ -107,7 +107,7 @@ public class OpenAPIModelCreator {
         JsonObjectBuilder definitions = jsonFactory.createObjectBuilder();
 
 
-        allOfArray.add(createRequiredArray("_type"));
+        allOfArray.add(createRequiredArray(typeNameProperty));
 
         //for every root type, if the type is right, check that type
         //anyof does more or less the same, but this is faster plus it gives MUCH less errors!
@@ -220,7 +220,7 @@ public class OpenAPIModelCreator {
         if(hasRequiredProperties) {
             definition.add("required", required);
         }
-        definition.add("properties", properties);
+
 
         if(!allowAdditionalProperties && atLeastOneProperty) {
             definition.add("additionalProperties", false);
@@ -243,6 +243,7 @@ public class OpenAPIModelCreator {
             }
         }
         if(addedAncestors) {
+            definition.add("properties", properties);
             polymorphicArray.add(definition);
             definitions.add(typeName, jsonFactory.createObjectBuilder().add("allOf", polymorphicArray).build());
         } else {
@@ -252,14 +253,16 @@ public class OpenAPIModelCreator {
                 Map<String, BmmClass> allDescendants = bmmModel.getAllDescendantClassObjects(bmmClass);
                 for(BmmClass descendant:allDescendants.values()) {
                     if(shouldClassBeIncluded(descendant)) {
-                        descendantsMappings.add(descendant.getClassKey(), createReference(descendant.getClassKey()));
+                        descendantsMappings.add(descendant.getClassKey(), createReferenceTarget(descendant.getClassKey()));
                     }
                 }
+                properties.add("_type", createType("string"));
                 definition.add("discriminator", jsonFactory.createObjectBuilder()
                         .add("propertyName", "_type")
-                        .add("mappings",descendantsMappings)
+                        .add("mapping",descendantsMappings)
                 );
             }
+            definition.add("properties", properties);
             definitions.add(typeName, definition);
         }
     }
@@ -397,7 +400,11 @@ public class OpenAPIModelCreator {
 //        if(rootType.equalsIgnoreCase("Any")) {
 //            return jsonFactory.createObjectBuilder().add("type", "object");
 //        }
-        return jsonFactory.createObjectBuilder().add("$ref", "#/components/schemas/" + convertTypeName(rootType));
+        return jsonFactory.createObjectBuilder().add("$ref", createReferenceTarget(rootType));
+    }
+
+    private String createReferenceTarget(String typeName) {
+        return "#/components/schemas/" + convertTypeName(typeName);
     }
 
     private boolean isJSPrimitive(String rootType) {
