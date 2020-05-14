@@ -398,6 +398,10 @@ public class BmmClass extends BmmClassifier implements Serializable {
         return name;
     }
 
+    public String getClassKey() {
+        return BmmDefinitions.typeNameToClassKey(getTypeName());
+    }
+
     public BmmPackage getBmmPackage() {
         return bmmPackage;
     }

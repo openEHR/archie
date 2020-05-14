@@ -1,6 +1,11 @@
 package com.nedap.archie.openapi;
 
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.google.common.base.CaseFormat;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import com.nedap.archie.rminfo.RMTypeInfo;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmContainerProperty;
 import org.openehr.bmm.core.BmmContainerType;
@@ -10,29 +15,33 @@ import org.openehr.bmm.core.BmmOpenType;
 import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.core.BmmSimpleType;
 import org.openehr.bmm.core.BmmType;
-import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.stream.JsonGenerator;
-import javax.json.stream.JsonGeneratorFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Supplier;
 
 public class OpenAPIModelCreator {
 
 
+    public static final PropertyNamingStrategy.UpperCamelCaseStrategy camelCaseStrategy = new PropertyNamingStrategy.UpperCamelCaseStrategy();
     private Map<String, Supplier<JsonObjectBuilder>> primitiveTypeMapping;
+    private Set<String> ignoredTypes;
+    private String baseType;//'any'
     private List<String> rootTypes;
+    private Map<String, List<String>> ancestorOverrides;
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
+    private String typeNameProperty = "_type";
 
     private boolean allowAdditionalProperties;
 
@@ -73,6 +82,17 @@ public class OpenAPIModelCreator {
         rootTypes.add("ORGANISATION");
         rootTypes.add("PARTY_IDENTITY");
         rootTypes.add("ITEM_TREE");
+
+        ancestorOverrides = new LinkedHashMap<>();
+        ancestorOverrides.put("DV_INTERVAL", Lists.newArrayList("DATA_VALUE", "INTERVAL"));
+
+        baseType = "Any";
+        ignoredTypes = Sets.newHashSet("ORDERED", "HASH", "CONTAINER", "SET", "ARRAY", "LIST",
+                "DATE_TIME", "DATE", "TIME", "ISO8601_TYPE", "TEMPORAL", "NUMERIC", "ORDERED_NUMERIC");
+
+
+
+
         Map<String, Object> config = new HashMap();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
@@ -105,7 +125,7 @@ public class OpenAPIModelCreator {
 //            allOfArray.add(ifObject);
 //        }
         for(BmmClass bmmClass: bmm.getClassDefinitions().values()) {
-            if (/*!bmmClass.isAbstract() &&*/ !primitiveTypeMapping.containsKey(bmmClass.getTypeName().toLowerCase())) {
+            if (!ignoredTypes.contains(bmmClass.getClassKey()) && !primitiveTypeMapping.containsKey(bmmClass.getTypeName().toLowerCase())) {
                 addClass(definitions, bmmClass);
             }
         }
@@ -151,7 +171,8 @@ public class OpenAPIModelCreator {
     }
 
     private void addClass(JsonObjectBuilder definitions, BmmClass bmmClass) {
-        String typeName = BmmDefinitions.typeNameToClassKey(bmmClass.getTypeName());
+        String originalTypeName = bmmClass.getClassKey();
+        String typeName = convertTypeName(originalTypeName);
 
         BmmClass flatBmmClass = bmmClass; //NO flattening!
         JsonArrayBuilder required = jsonFactory.createArrayBuilder();
@@ -189,7 +210,7 @@ public class OpenAPIModelCreator {
             }
         }
 
-        properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string"));//.add("pattern", "^" + typeName + "(<.*>)?$"));
+        //properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string"));//.add("pattern", "^" + typeName + "(<.*>)?$"));
         JsonObjectBuilder definition = jsonFactory.createObjectBuilder()
                 .add("type", "object");
         if(hasRequiredProperties) {
@@ -200,9 +221,27 @@ public class OpenAPIModelCreator {
         if(!allowAdditionalProperties && atLeastOneProperty) {
             definition.add("additionalProperties", false);
         }
-        if(bmmClass.getAncestors().isEmpty() ||
-                (bmmClass.getAncestors().size() == 1 && (bmmClass.getAncestors().values().iterator().next().getTypeName().equalsIgnoreCase("ANY")
-                        || isJSPrimitive(bmmClass.getAncestors().values().iterator().next())))) {
+        boolean addedAncestors = false;
+        JsonArrayBuilder polymorphicArray = jsonFactory.createArrayBuilder();
+        if(ancestorOverrides.containsKey(originalTypeName)) {
+            List<String> ancestors = ancestorOverrides.get(originalTypeName);
+            for (String ancestor : ancestors) {
+                //no ignore support for ancestor overrides, just do it right here
+                polymorphicArray.add(createReference(ancestor));
+                addedAncestors = true;
+            }
+        } else {
+            for (BmmClass ancestor : bmmClass.getAncestors().values()) {
+                if (!shouldAncestorBeIgnored(ancestor)) {
+                    polymorphicArray.add(createReference(ancestor.getClassKey()));
+                    addedAncestors = true;
+                }
+            }
+        }
+        if(addedAncestors) {
+            polymorphicArray.add(definition);
+            definitions.add(typeName, jsonFactory.createObjectBuilder().add("allOf", polymorphicArray).build());
+        } else {
             if(!bmmClass.getImmediateDescendants().isEmpty()) {
                 definition.add("discriminator", jsonFactory.createObjectBuilder()
                                 .add("propertyName", "_type")
@@ -210,16 +249,12 @@ public class OpenAPIModelCreator {
                 );
             }
             definitions.add(typeName, definition);
-        } else {
-            //bmmClass.getAncestors();
-            String firstType = BmmDefinitions.typeNameToClassKey(bmmClass.getAncestors().values().iterator().next().getTypeName());
-            JsonArray polymorphicArray = jsonFactory.createArrayBuilder()
-                    .add(createReference(firstType))
-                    .add(definition)
-                    .build();
-            definitions.add(typeName, jsonFactory.createObjectBuilder().add("allOf", polymorphicArray).build());
-            //
         }
+    }
+
+    private boolean shouldAncestorBeIgnored(BmmClass bmmClass) {
+        return bmmClass.getTypeName().equalsIgnoreCase(baseType)
+                || isJSPrimitive(bmmClass) || this.ignoredTypes.contains(bmmClass.getClassKey().toUpperCase());
     }
 
 
@@ -266,7 +301,7 @@ public class OpenAPIModelCreator {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
         if(!type.isAbstract()) {
-            descendants.add(BmmDefinitions.typeNameToClassKey(type.getTypeName()));
+            descendants.add(type.getClassKey());
         }
 
         if(descendants.isEmpty()) {
@@ -294,7 +329,7 @@ public class OpenAPIModelCreator {
 //
 //
 //            return jsonFactory.createObjectBuilder().add("allOf", array);
-            return createReference(BmmDefinitions.typeNameToClassKey(type.getTypeName()));
+            return createReference(type.getClassKey());
         } else {
             return createReference(descendants.get(0));
         }
@@ -309,7 +344,7 @@ public class OpenAPIModelCreator {
             if(!bmmClass.getTypeName().equalsIgnoreCase(desc)) {//TODO: fix getImmediateDescendants in BMM so this check is not required
                 BmmClass classDefinition = bmmModel.getClassDefinition(desc);
                 if (!classDefinition.isAbstract()) {
-                    result.add(BmmDefinitions.typeNameToClassKey(classDefinition.getTypeName()));
+                    result.add(classDefinition.getClassKey());
                 }
                 result.addAll(getAllNonAbstractDescendants(classDefinition));
             }
@@ -328,15 +363,6 @@ public class OpenAPIModelCreator {
 
     private JsonObjectBuilder getJSPrimitive(BmmType bmmType) {
         return primitiveTypeMapping.get(bmmType.getTypeName().toLowerCase()).get();
-    }
-
-    private JsonObjectBuilder createConstType(String rootType) {
-
-        return jsonFactory.createObjectBuilder()
-                .add("_type", jsonFactory.createObjectBuilder()
-                                .add("type", "string").add("pattern", "^" + rootType + "(<.*>)?$")
-                        //.add("const", rootType)
-                );
     }
 
     private JsonObjectBuilder createRequiredArray(String... requiredFields) {
@@ -359,7 +385,7 @@ public class OpenAPIModelCreator {
 //        if(rootType.equalsIgnoreCase("Any")) {
 //            return jsonFactory.createObjectBuilder().add("type", "object");
 //        }
-        return jsonFactory.createObjectBuilder().add("$ref", "#/components/schemas/" + rootType);
+        return jsonFactory.createObjectBuilder().add("$ref", "#/components/schemas/" + convertTypeName(rootType));
     }
 
     private boolean isJSPrimitive(String rootType) {
@@ -370,4 +396,21 @@ public class OpenAPIModelCreator {
         this.allowAdditionalProperties = allowAdditionalProperties;
         return this;
     }
+
+    /**
+     * Converts OpenEHR type naming to UpperCamelCase, as it should be for OpenAPI specs
+     * @param typeName
+     * @return
+     */
+    public String convertTypeName(String typeName) {
+        switch(typeName) {
+            case "DV_EHR_URI":
+                return "DvEHRURI";
+            case "UID_BASED_ID":
+                return "UIDBasedId";
+            default:
+                return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, typeName);
+        }
+    }
+
 }
