@@ -125,7 +125,7 @@ public class OpenAPIModelCreator {
 //            allOfArray.add(ifObject);
 //        }
         for(BmmClass bmmClass: bmm.getClassDefinitions().values()) {
-            if (!ignoredTypes.contains(bmmClass.getClassKey()) && !primitiveTypeMapping.containsKey(bmmClass.getTypeName().toLowerCase())) {
+            if (shouldClassBeIncluded(bmmClass)) {
                 addClass(definitions, bmmClass);
             }
         }
@@ -168,6 +168,10 @@ public class OpenAPIModelCreator {
 //                .add("allOf", allOfArray)
 //                .add("definitions", definitions)
 //                .build();
+    }
+
+    private boolean shouldClassBeIncluded(BmmClass bmmClass) {
+        return !ignoredTypes.contains(bmmClass.getClassKey()) && !primitiveTypeMapping.containsKey(bmmClass.getTypeName().toLowerCase());
     }
 
     private void addClass(JsonObjectBuilder definitions, BmmClass bmmClass) {
@@ -243,9 +247,17 @@ public class OpenAPIModelCreator {
             definitions.add(typeName, jsonFactory.createObjectBuilder().add("allOf", polymorphicArray).build());
         } else {
             if(!bmmClass.getImmediateDescendants().isEmpty()) {
+                JsonObjectBuilder descendantsMappings = jsonFactory.createObjectBuilder();
+
+                Map<String, BmmClass> allDescendants = bmmModel.getAllDescendantClassObjects(bmmClass);
+                for(BmmClass descendant:allDescendants.values()) {
+                    if(shouldClassBeIncluded(descendant)) {
+                        descendantsMappings.add(descendant.getClassKey(), createReference(descendant.getClassKey()));
+                    }
+                }
                 definition.add("discriminator", jsonFactory.createObjectBuilder()
-                                .add("propertyName", "_type")
-                        //.add();//TODO: mappings
+                        .add("propertyName", "_type")
+                        .add("mappings",descendantsMappings)
                 );
             }
             definitions.add(typeName, definition);
@@ -253,8 +265,8 @@ public class OpenAPIModelCreator {
     }
 
     private boolean shouldAncestorBeIgnored(BmmClass bmmClass) {
-        return bmmClass.getTypeName().equalsIgnoreCase(baseType)
-                || isJSPrimitive(bmmClass) || this.ignoredTypes.contains(bmmClass.getClassKey().toUpperCase());
+        return //bmmClass.getTypeName().equalsIgnoreCase(baseType)  ||
+                isJSPrimitive(bmmClass) || this.ignoredTypes.contains(bmmClass.getClassKey().toUpperCase());
     }
 
 
