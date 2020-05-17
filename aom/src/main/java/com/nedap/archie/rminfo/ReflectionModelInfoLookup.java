@@ -208,6 +208,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     typeInCollection,
                     this.namingStrategy.getTypeName(typeInCollection),
                     isNullable(clazz, getMethod, field),
+                    getMethod.getDeclaringClass().equals(clazz),
                     getMethod,
                     setMethod,
                     addMethod
@@ -271,6 +272,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         Class rawFieldType = fieldType.getRawType();
         Class typeInCollection = getTypeInCollection(fieldType);
         if (setMethod != null && (shouldAdd(setMethod) && shouldAdd(getMethod))) {
+
             RMAttributeInfo attributeInfo = new RMAttributeInfo(
                     attributeName,
                     field,
@@ -278,6 +280,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     typeInCollection,
                     namingStrategy.getTypeName(typeInCollection),
                     isNullable(clazz, getMethod, field),
+                    !setMethod.getDeclaringClass().equals(clazz),
                     getMethod,
                     setMethod,
                     addMethod

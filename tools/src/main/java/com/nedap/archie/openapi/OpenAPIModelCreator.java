@@ -5,16 +5,8 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.nedap.archie.rminfo.RMTypeInfo;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmContainerType;
-import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmOpenType;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmSimpleType;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.core.*;
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -202,7 +194,7 @@ public class OpenAPIModelCreator {
                 atLeastOneProperty = true;
             } else {
 
-                JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
+                JsonObjectBuilder propertyDef = createTypeDef(bmmProperty, bmmProperty.getType());
                 extendPropertyDef(propertyDef, bmmProperty);
                 properties.add(propertyName, propertyDef);
 
@@ -282,7 +274,7 @@ public class OpenAPIModelCreator {
         }
     }
 
-    private JsonObjectBuilder createPropertyDef(BmmType type) {
+    private JsonObjectBuilder createTypeDef(BmmProperty property, BmmType type) {
 
 
         if(type instanceof BmmOpenType) {
@@ -299,12 +291,25 @@ public class OpenAPIModelCreator {
             BmmContainerType containerType = (BmmContainerType) type;
             return jsonFactory.createObjectBuilder()
                     .add("type", "array")
-                    .add("items", createPropertyDef(containerType.getBaseType()));
+                    .add("items", createTypeDef(null, containerType.getBaseType()));
         } else if (type instanceof BmmGenericType) {
-            if(isJSPrimitive(type)) {
-                return getJSPrimitive(type);
+            if(property != null && property instanceof BmmGenericProperty && BmmDefinitions.typeNameToClassKey(type.getTypeName()).equalsIgnoreCase("HASH")) {
+                //a hash! Create an object with additionalProperties: type: whatever this thing points at
+                BmmGenericProperty genericProperty = (BmmGenericProperty) property;
+                if(genericProperty.getGenericTypeDef().getGenericParameters() != null &&
+                        genericProperty.getGenericTypeDef().getGenericParameters().size() >= 2) {
+                    BmmType hashValueType = genericProperty.getGenericTypeDef().getGenericParameters().get(1);
+                    return jsonFactory.createObjectBuilder()
+                            .add("type", "object")
+                            .add("additionalProperties", createTypeDef(property, hashValueType)
+                            );
+                }
             } else {
-                return createPolymorphicReference(type.getBaseClass());
+                if (isJSPrimitive(type)) {
+                    return getJSPrimitive(type);
+                } else {
+                    return createPolymorphicReference(type.getBaseClass());
+                }
             }
 
         }

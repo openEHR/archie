@@ -17,7 +17,7 @@ public class OpenAPIModelCreatorTest {
     @Test
     public void createSchema() {
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
-        JsonObject jsonObject = new OpenAPIModelCreator().create(model);
+        JsonObject jsonObject = new OpenAPIModelCreator().allowAdditionalProperties(true).create(model);
 
         Map<String, Object> config = new HashMap();
         config.put(JsonGenerator.PRETTY_PRINTING, true);

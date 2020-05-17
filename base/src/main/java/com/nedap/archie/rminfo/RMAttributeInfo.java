@@ -19,12 +19,14 @@ public class RMAttributeInfo {
     private final Method addMethod;
     private final boolean nullable;
     private final boolean computed;
+    private boolean fromAncestor;
 
-    public RMAttributeInfo(String name, Field field, Class type, Class typeInCollection, String typeNameInCollection, boolean nullable, Method getMethod, Method setMethod, Method addMethod) {
+    public RMAttributeInfo(String name, Field field, Class type, Class typeInCollection, String typeNameInCollection, boolean nullable, boolean fromAncestor, Method getMethod, Method setMethod, Method addMethod) {
         this.name = name;
         this.field = field;
         this.type = type;
         this.nullable = nullable;
+        this.fromAncestor = fromAncestor;
         this.getMethod = getMethod;
         this.setMethod = setMethod;
         this.addMethod = addMethod;
@@ -82,5 +84,9 @@ public class RMAttributeInfo {
 
     public String getTypeNameInCollection() {
         return typeNameInCollection;
+    }
+
+    public boolean isFromAncestor() {
+        return fromAncestor;
     }
 }
