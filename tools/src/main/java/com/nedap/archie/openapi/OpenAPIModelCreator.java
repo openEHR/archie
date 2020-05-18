@@ -194,7 +194,7 @@ public class OpenAPIModelCreator {
                 atLeastOneProperty = true;
             } else {
 
-                JsonObjectBuilder propertyDef = createTypeDef(bmmProperty, bmmProperty.getType());
+                JsonObjectBuilder propertyDef = createTypeDef(bmmProperty.getType());
                 extendPropertyDef(propertyDef, bmmProperty);
                 properties.add(propertyName, propertyDef);
 
@@ -274,7 +274,7 @@ public class OpenAPIModelCreator {
         }
     }
 
-    private JsonObjectBuilder createTypeDef(BmmProperty property, BmmType type) {
+    private JsonObjectBuilder createTypeDef(BmmType type) {
 
 
         if(type instanceof BmmOpenType) {
@@ -292,23 +292,26 @@ public class OpenAPIModelCreator {
             if(containerTypeName.equalsIgnoreCase("Hash")) {
                 return jsonFactory.createObjectBuilder()
                         .add("type", "object")
-                        .add("additionalProperties", createTypeDef(property,  containerType.getBaseType())
+                        .add("additionalProperties", createTypeDef(containerType.getBaseType())
                         );
             } else {
                 return jsonFactory.createObjectBuilder()
                         .add("type", "array")
-                        .add("items", createTypeDef(null, containerType.getBaseType()));
+                        .add("items", createTypeDef(containerType.getBaseType()));
             }
         } else if (type instanceof BmmGenericType) {
-            if(property != null && property instanceof BmmGenericProperty && BmmDefinitions.typeNameToClassKey(type.getTypeName()).equalsIgnoreCase("HASH")) {
+            BmmGenericType genericType = (BmmGenericType) type;
+            if(BmmDefinitions.typeNameToClassKey(type.getTypeName()).equalsIgnoreCase("HASH")) {
                 //a hash! Create an object with additionalProperties: type: whatever this thing points at
-                BmmGenericProperty genericProperty = (BmmGenericProperty) property;
-                if(genericProperty.getGenericTypeDef().getGenericParameters() != null &&
-                        genericProperty.getGenericTypeDef().getGenericParameters().size() >= 2) {
-                    BmmType hashValueType = genericProperty.getGenericTypeDef().getGenericParameters().get(1);
+
+                if(genericType.getGenericParameters() != null &&
+                        genericType.getGenericParameters().size() >= 2) {
+                    BmmType hashValueType = genericType.getGenericParameters().get(1);
+                    //TODO: if hashValueType is itself a BmmGenericType, need to use that as reference for the parameters
+                    //so the code here it not ok!
                     return jsonFactory.createObjectBuilder()
                             .add("type", "object")
-                            .add("additionalProperties", createTypeDef(property, hashValueType)
+                            .add("additionalProperties", createTypeDef(hashValueType)
                             );
                 }
             } else {

@@ -1,5 +1,6 @@
 package com.nedap.archie.openapi;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.json.flat.AttributeReference;
@@ -24,6 +25,15 @@ public class ModelInfoLookupToPBmmConverter {
 
     private ModelInfoLookup modelInfoLookup;
 
+    private boolean excludedJsonIgnoreFields;
+
+    public boolean isExcludedJsonIgnoreFields() {
+        return excludedJsonIgnoreFields;
+    }
+
+    public void setExcludedJsonIgnoreFields(boolean excludedJsonIgnoreFields) {
+        this.excludedJsonIgnoreFields = excludedJsonIgnoreFields;
+    }
 
     public PBmmSchema convert(ModelInfoLookup lookup, Set<AttributeReference> ignoredAttributes, BmmModel includedModel) {
         this.modelInfoLookup = lookup;
@@ -63,6 +73,9 @@ public class ModelInfoLookupToPBmmConverter {
                 if(attribute.isFromAncestor() || ignoredAttributes.contains(new AttributeReference(type.getRmName(), attribute.getRmName()))) {
                     continue;
                 }
+                if(hasJsonIgnoreAnnotation(attribute)) {
+                    continue;
+                }
                 if(attribute.getType().isEnum()) {
                     foundEnums.add(attribute.getType());
                 }
@@ -87,6 +100,29 @@ public class ModelInfoLookupToPBmmConverter {
         addEnums(foundEnums, pack, lookup, schema);
 
         return schema;
+    }
+
+    private boolean hasJsonIgnoreAnnotation(RMAttributeInfo attribute) {
+        if(!this.excludedJsonIgnoreFields) {
+            return false;
+        }
+
+        if(attribute.getGetMethod() != null) {
+            if(attribute.getGetMethod().getAnnotation(JsonIgnore.class) != null) {
+                return true;
+            }
+        }
+        if(attribute.getSetMethod() != null) {
+            if(attribute.getSetMethod().getAnnotation(JsonIgnore.class) != null) {
+                return true;
+            }
+        }
+        if(attribute.getField() != null) {
+            if(attribute.getField().getAnnotation(JsonIgnore.class) != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
