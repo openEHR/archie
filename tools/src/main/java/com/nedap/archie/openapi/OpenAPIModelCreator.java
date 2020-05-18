@@ -287,11 +287,18 @@ public class OpenAPIModelCreator {
                 return createPolymorphicReference(type.getBaseClass());
             }
         } else if (type instanceof BmmContainerType) {
-
             BmmContainerType containerType = (BmmContainerType) type;
-            return jsonFactory.createObjectBuilder()
-                    .add("type", "array")
-                    .add("items", createTypeDef(null, containerType.getBaseType()));
+            String containerTypeName = BmmDefinitions.typeNameToClassKey(containerType.getContainerType().getTypeName());
+            if(containerTypeName.equalsIgnoreCase("Hash")) {
+                return jsonFactory.createObjectBuilder()
+                        .add("type", "object")
+                        .add("additionalProperties", createTypeDef(property,  containerType.getBaseType())
+                        );
+            } else {
+                return jsonFactory.createObjectBuilder()
+                        .add("type", "array")
+                        .add("items", createTypeDef(null, containerType.getBaseType()));
+            }
         } else if (type instanceof BmmGenericType) {
             if(property != null && property instanceof BmmGenericProperty && BmmDefinitions.typeNameToClassKey(type.getTypeName()).equalsIgnoreCase("HASH")) {
                 //a hash! Create an object with additionalProperties: type: whatever this thing points at

@@ -306,6 +306,21 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     return (Class) ((java.lang.reflect.TypeVariable) actualTypeArguments[0]).getBounds()[0];
                 }
             }
+        } else if (Map.class.isAssignableFrom(rawFieldType)) {
+            Type[] actualTypeArguments = ((ParameterizedType) fieldType.getType()).getActualTypeArguments();
+            if (actualTypeArguments.length == 2) {
+                //the java reflection api is kind of tricky with types. This works for the archie RM, but may cause problems for other RMs. The fix is implementing more ways
+                //keytype is assumed to be string for everything for now
+                Type mapValueType = actualTypeArguments[1];
+                if (mapValueType instanceof Class) {
+                    return (Class) mapValueType;
+                } else if (mapValueType instanceof ParameterizedType) {
+                    ParameterizedType parameterizedTypeInCollection = (ParameterizedType) mapValueType;
+                    return (Class) parameterizedTypeInCollection.getRawType();
+                } else if (mapValueType instanceof java.lang.reflect.TypeVariable) {
+                    return (Class) ((java.lang.reflect.TypeVariable) mapValueType).getBounds()[0];
+                }
+            }
         } else if(rawFieldType.isArray()) {
            return rawFieldType.getComponentType();
         }
