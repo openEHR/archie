@@ -3,6 +3,7 @@ package com.nedap.archie.rminfo;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by pieter.bos on 25/03/16.
@@ -31,7 +32,7 @@ public class RMAttributeInfo {
         this.setMethod = setMethod;
         this.addMethod = addMethod;
         this.computed = this.setMethod == null && this.addMethod == null;
-        this.isMultipleValued = (type instanceof Class && Collection.class.isAssignableFrom(type)) || type.isArray();
+        this.isMultipleValued = type instanceof Class && (Collection.class.isAssignableFrom(type)) || type.isArray();
 
         this.typeInCollection = typeInCollection;
         this.typeNameInCollection = typeNameInCollection;

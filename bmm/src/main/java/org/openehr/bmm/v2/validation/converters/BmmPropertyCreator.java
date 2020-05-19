@@ -8,7 +8,6 @@ import org.openehr.bmm.core.BmmContainerType;
 import org.openehr.bmm.core.BmmGenericClass;
 import org.openehr.bmm.core.BmmGenericProperty;
 import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.core.BmmType;
 import org.openehr.bmm.v2.persistence.PBmmContainerProperty;
@@ -24,7 +23,7 @@ import java.util.List;
 
 public class BmmPropertyCreator {
 
-    public BmmProperty createBmmProperty(PBmmProperty property, BmmModel schema, BmmClass bmmClass) {
+    public BmmProperty createBmmProperty(PBmmProperty property, BmmClassProcessor schema, BmmClass bmmClass) {
         //getTypeDefinition().createBmmType(bmmSchema, classDefinition);
         BmmType type = new TypeCreator().createBmmType(property.getTypeRef(), schema, bmmClass);
 
@@ -61,7 +60,7 @@ public class BmmPropertyCreator {
         return bmmProperty;
     }
 
-    private BmmGenericProperty createGenericProperty(BmmModel schema, PBmmGenericProperty property, BmmGenericType typeDefinition, BmmClass bmmClass) {
+    private BmmGenericProperty createGenericProperty(BmmClassProcessor schema, PBmmGenericProperty property, BmmGenericType typeDefinition, BmmClass bmmClass) {
         BmmGenericProperty bmmProperty = new BmmGenericProperty(property.getName(), typeDefinition);
         setBasics(property, bmmProperty);
         PBmmGenericType pbmmType = property.getTypeRef();

@@ -59,15 +59,20 @@ public class BmmModelCreator {
         model.setArchetypeVisualizeDescendantsOf(schema.getArchetypeVisualizeDescendantsOf());
         model.setArchetypeRmClosurePackages(schema.getArchetypeRmClosurePackages() == null ? new ArrayList<>() : new ArrayList<>(schema.getArchetypeRmClosurePackages()));
 
-
+        //setup all classes, ancestors and generic parameters
+        BmmClassProcessor classSupplier = new BmmClassProcessor(model, schema, classCreator::populateBmmClass);
+        classSupplier.run();
+        //add all properties
+        BmmClassProcessor propertySupplier = new BmmClassProcessor(model, schema, classCreator::populateBmmClassProperties);
+        propertySupplier.run();
         // The basics have been created. Now populate the classes with properties
-        ProcessClassesInOrder processClassesInOrder = new ProcessClassesInOrder();
-        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> {
-            classCreator.populateBmmClass(bmmClass, model);
-        }, new ArrayList<>(schema.getPrimitiveTypes().values()));
-        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> {
-            classCreator.populateBmmClass(bmmClass, model);
-        }, new ArrayList<>(schema.getClassDefinitions().values()));
+//        ProcessClassesInOrder processClassesInOrder = new ProcessClassesInOrder();
+//        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> {
+//            classCreator.populateBmmClass(bmmClass, model);
+//        }, new ArrayList<>(schema.getPrimitiveTypes().values()));
+//        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> {
+//            classCreator.populateBmmClass(bmmClass, model);
+//        }, new ArrayList<>(schema.getClassDefinitions().values()));
 
         return model;
     }

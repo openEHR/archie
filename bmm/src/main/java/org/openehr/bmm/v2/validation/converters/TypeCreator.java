@@ -5,7 +5,6 @@ import org.openehr.bmm.core.BmmContainerType;
 import org.openehr.bmm.core.BmmGenericClass;
 import org.openehr.bmm.core.BmmGenericParameter;
 import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmOpenType;
 import org.openehr.bmm.core.BmmSimpleType;
 import org.openehr.bmm.core.BmmType;
@@ -17,7 +16,7 @@ import org.openehr.bmm.v2.persistence.PBmmType;
 
 public class TypeCreator {
 
-    public BmmType createBmmType(PBmmType typeDef, BmmModel schema, BmmClass bmmClass) {
+    public BmmType createBmmType(PBmmType typeDef, BmmClassProcessor schema, BmmClass bmmClass) {
         if(typeDef == null) {
             return null;
         }
@@ -34,7 +33,7 @@ public class TypeCreator {
         }
     }
 
-    private BmmType createOpenType(PBmmOpenType typeDef, BmmModel schema, BmmClass bmmClass) {
+    private BmmType createOpenType(PBmmOpenType typeDef, BmmClassProcessor schema, BmmClass bmmClass) {
         BmmGenericParameter genericParameter = ((BmmGenericClass) bmmClass).getGenericParameter(typeDef.getType());
         if(bmmClass instanceof BmmGenericClass && genericParameter != null) {
             BmmOpenType openType = new BmmOpenType();
@@ -45,7 +44,7 @@ public class TypeCreator {
         }
     }
 
-    private BmmType createContainerType(PBmmContainerType typeDef, BmmModel schema, BmmClass bmmClass) {
+    private BmmType createContainerType(PBmmContainerType typeDef, BmmClassProcessor schema, BmmClass bmmClass) {
         PBmmContainerType containerType = typeDef;
         BmmContainerType bmmContainerType = new BmmContainerType();
         BmmType containedType = createBmmType(containerType.getTypeRef(), schema, bmmClass);
@@ -61,7 +60,7 @@ public class TypeCreator {
 
     }
 
-    private BmmType createSimpleType(PBmmSimpleType typeDef, BmmModel schema) {
+    private BmmType createSimpleType(PBmmSimpleType typeDef, BmmClassProcessor schema) {
         BmmClass baseClass = schema.getClassDefinition(typeDef.getType());
         if(baseClass == null) {
             //Shouldn't happen: validation already tests this, so runtime exception is fine!
@@ -73,7 +72,7 @@ public class TypeCreator {
         }
     }
 
-    private BmmType createGenericType(PBmmGenericType typeDef, BmmModel schema) {
+    private BmmType createGenericType(PBmmGenericType typeDef, BmmClassProcessor schema) {
         PBmmGenericType pGenericType = typeDef;
         BmmGenericType genericType = new BmmGenericType();
         BmmClass classDefinition = schema.getClassDefinition(pGenericType.getRootType());

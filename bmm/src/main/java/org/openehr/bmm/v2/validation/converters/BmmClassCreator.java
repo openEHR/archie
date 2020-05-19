@@ -5,7 +5,6 @@ import org.openehr.bmm.core.BmmEnumerationInteger;
 import org.openehr.bmm.core.BmmEnumerationString;
 import org.openehr.bmm.core.BmmGenericClass;
 import org.openehr.bmm.core.BmmGenericParameter;
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.v2.persistence.PBmmClass;
@@ -38,9 +37,9 @@ public class BmmClassCreator {
         return bmmClass;
     }
 
-    public void populateBmmClass(PBmmClass pBmmClass, BmmModel schema) {
+    public BmmClass populateBmmClass(PBmmClass pBmmClass, BmmClassProcessor schema) {
 
-        BmmClass bmmClass = schema.getClassDefinition(pBmmClass.getName());
+        BmmClass bmmClass = schema.getUnprocessedClassDefinition(pBmmClass.getName());
         if (bmmClass != null) {
 
             for (String ancestorTypeName : pBmmClass.getAncestorTypeNames()) {
@@ -60,12 +59,6 @@ public class BmmClassCreator {
                     ((BmmGenericClass) bmmClass).addGenericParameter(bmmGenericParameter);
                 }
             }
-            if (pBmmClass.getProperties() != null) {
-                for (PBmmProperty property : pBmmClass.getProperties().values()) {
-                    BmmProperty propertyDef = new BmmPropertyCreator().createBmmProperty(property, schema, bmmClass);
-                    bmmClass.addProperty(propertyDef);
-                }
-            }
         } else {
             throw new RuntimeException("The class " + pBmmClass.getName() + " is null. It may have been defined as a class or a primitive but not included in a package");
         }
@@ -77,6 +70,22 @@ public class BmmClassCreator {
 
             populateIntegerEnumeration((PBmmEnumerationInteger) pBmmClass, (BmmEnumerationInteger) bmmClass);
         }
+        return bmmClass;
+    }
+
+    public BmmClass populateBmmClassProperties(PBmmClass pBmmClass, BmmClassProcessor schema) {
+        BmmClass bmmClass = schema.getUnprocessedClassDefinition(pBmmClass.getName());
+        if (bmmClass != null) {
+            if (pBmmClass.getProperties() != null) {
+                for (PBmmProperty property : pBmmClass.getProperties().values()) {
+                    BmmProperty propertyDef = new BmmPropertyCreator().createBmmProperty(property, schema, bmmClass);
+                    bmmClass.addProperty(propertyDef);
+                }
+            }
+        } else {
+            throw new RuntimeException("The class " + pBmmClass.getName() + " is null. It may have been defined as a class or a primitive but not included in a package");
+        }
+        return bmmClass;
     }
 
     private void populateIntegerEnumeration(PBmmEnumerationInteger pBmmClass, BmmEnumerationInteger bmmClass) {
@@ -102,7 +111,7 @@ public class BmmClassCreator {
     }
 
 
-    private BmmGenericParameter createBmmGenericParameter(PBmmGenericParameter param, BmmModel bmmSchema) {
+    private BmmGenericParameter createBmmGenericParameter(PBmmGenericParameter param, BmmClassProcessor bmmSchema) {
         BmmGenericParameter bmmGenericParameter = new BmmGenericParameter();
         bmmGenericParameter.setName(param.getName());
         bmmGenericParameter.setDocumentation(param.getDocumentation());
