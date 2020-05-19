@@ -78,9 +78,9 @@ public class TypeCreator {
         BmmGenericType genericType = new BmmGenericType();
         BmmClass classDefinition = schema.getClassDefinition(pGenericType.getRootType());
         if(classDefinition != null && classDefinition instanceof BmmGenericClass) {
-            BmmGenericClass baseClass = (BmmGenericClass)schema.getClassDefinition(pGenericType.getRootType());
+            BmmGenericClass baseClass = (BmmGenericClass) classDefinition;
             genericType.setBaseClass(baseClass);
-            for(PBmmType param: pGenericType.getGenericParameterDefs().values()) {
+            for(PBmmType param: pGenericType.getGenericParameterRefs()) {
 
                 BmmType paramBmmType = createBmmType(param, schema, classDefinition);
                 genericType.addGenericParameter(paramBmmType);

@@ -30,7 +30,7 @@ import java.util.List;
  *
  * Created by cnanjo on 4/11/16.
  */
-public abstract class BmmType extends BmmTypeElement {
+public abstract class BmmType<T extends BmmClass> extends BmmTypeElement<T> {
 
     public static final String BMM_SIMPLE_TYPE = "BMM_SIMPLE_TYPE";
     public static final String BMM_SIMPLE_TYPE_OPEN = "BMM_SIMPLE_TYPE_OPEN";

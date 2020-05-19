@@ -2,8 +2,13 @@ package org.openehr.bmm.v2.validation.converters;
 
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.v2.persistence.PBmmClass;
+import org.openehr.bmm.v2.persistence.PBmmContainerType;
 import org.openehr.bmm.v2.persistence.PBmmGenericParameter;
+import org.openehr.bmm.v2.persistence.PBmmGenericType;
+import org.openehr.bmm.v2.persistence.PBmmOpenType;
+import org.openehr.bmm.v2.persistence.PBmmProperty;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
+import org.openehr.bmm.v2.persistence.PBmmType;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -40,6 +45,9 @@ public class ProcessClassesInOrder {
             }
             tries++;
         }
+        if(tries > attempts) {
+            throw new RuntimeException("Had to try too many times");
+        }
     }
 
     private void processClass(PBmmSchema schema, Consumer<PBmmClass> action, List<String> visitedClasses, Queue<PBmmClass> queue, PBmmClass bmmClass) {
@@ -65,6 +73,14 @@ public class ProcessClassesInOrder {
                     }
                 }
             }
+            for(PBmmProperty property:bmmClass.getProperties().values()) {
+                String missingDependecy = checkTypeRef(property.getTypeRef(), visitedClasses);
+                if(missingDependecy != null) {
+                    allAncestorsAndDependenciesVisited = false;
+                    PBmmClass dependency = schema.findClassOrPrimitiveDefinition(missingDependecy);
+                    queue.add(dependency);
+                }
+            }
             if (!allAncestorsAndDependenciesVisited) {
                 queue.add(bmmClass);
             } else {
@@ -72,5 +88,35 @@ public class ProcessClassesInOrder {
                 visitedClasses.add(bmmClass.getName().toUpperCase());
             }
         }
+    }
+
+    private String checkTypeRef(PBmmType typeRef, List<String> visitedClasses) {
+
+        if (typeRef instanceof PBmmOpenType) {
+            String type = ((PBmmOpenType) typeRef).getType();
+            if (!visitedClasses.contains(type.toUpperCase())) {
+                return type;
+            }
+        } else if (typeRef instanceof PBmmGenericType) {
+            List<PBmmType> genericParameterRefs = ((PBmmGenericType) typeRef).getGenericParameterRefs();
+            //TODO: basetype!
+            for(PBmmType subType:genericParameterRefs) {
+                if(subType instanceof PBmmOpenType) {
+
+                } else {
+                    String result = checkTypeRef(subType, visitedClasses);
+                    if(result != null) {
+                        return result;
+                    }
+                }
+            }
+        } else if (typeRef instanceof PBmmContainerType) {
+            PBmmContainerType containerType = (PBmmContainerType) typeRef;
+
+            //TODO:
+            containerType.getContainerType()
+            containerType.getTypeRef()
+        }
+        return null;
     }
 }

@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmGenericType extends BmmType implements Serializable {
+public class BmmGenericType extends BmmType<BmmGenericClass> implements Serializable {
 
     public BmmGenericType() {
         genericParameters = new ArrayList<>();
@@ -42,10 +42,6 @@ public class BmmGenericType extends BmmType implements Serializable {
      * formal generic parameter declarations.
      */
     public List<BmmType> genericParameters;
-    /**
-     * The base class of this type.
-     */
-    public BmmGenericClass baseClass;
 
     /**
      * Returns generic parameters of the root_type in this type specifier. The order must match the order of the owning
@@ -77,25 +73,6 @@ public class BmmGenericType extends BmmType implements Serializable {
     }
 
     /**
-     * Returns the base class of this type.
-     *
-     * @return
-     */
-    @Override
-    public BmmGenericClass getBaseClass() {
-        return baseClass;
-    }
-
-    /**
-     * Sets the base class of this type.
-     *
-     * @param baseClass
-     */
-    public void setBaseClass(BmmGenericClass baseClass) {
-        this.baseClass = baseClass;
-    }
-
-    /**
      * Return the full name of the type including generic parameters, e.g. 'DV_INTERVAL&lt;T&gt;', 'TABLE&lt;List&lt;THING&gt;,String&gt;'.
      *
      * @return
@@ -103,8 +80,8 @@ public class BmmGenericType extends BmmType implements Serializable {
     @Override
     public String getTypeName() {
         StringBuilder builder = new StringBuilder();
-        if(baseClass != null) {
-            builder.append(baseClass.getName());
+        if(getBaseClass() != null) {
+            builder.append(getBaseClass().getName());
             builder.append("<");
             builder.append(genericParameters.stream().map( t -> t.getTypeName()).collect(Collectors.joining(",")));
             builder.append(">");

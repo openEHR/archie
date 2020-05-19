@@ -28,7 +28,7 @@ import java.util.List;
  *
  * Created by cnanjo on 4/11/16.
  */
-public abstract class BmmClassifier extends BmmModelElement {
+public abstract class BmmClassifier<T extends BmmClass> extends BmmModelElement {
 
     /**
      * Formal string form of the type as per UML.
@@ -54,7 +54,7 @@ public abstract class BmmClassifier extends BmmModelElement {
     /**
      * Main design class for this type, from which properties etc can be extracted.
      */
-    private BmmClass baseClass;
+    private T baseClass;
     /**
      * Completely flattened list of type names, flattening out all generic parameters.
      */
@@ -145,7 +145,7 @@ public abstract class BmmClassifier extends BmmModelElement {
      *
      * @return
      */
-    public BmmClass getBaseClass() {
+    public T getBaseClass() {
         return baseClass;
     }
 
@@ -154,7 +154,7 @@ public abstract class BmmClassifier extends BmmModelElement {
      *
      * @param baseClass
      */
-    public void setBaseClass(BmmClass baseClass) {
+    public void setBaseClass(T baseClass) {
         this.baseClass = baseClass;
     }
 

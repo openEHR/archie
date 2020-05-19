@@ -51,7 +51,7 @@ public final class PBmmGenericType extends PBmmBaseType {
      * @return
      */
     @JsonIgnore
-    public List<PBmmType> getGenericParamaterRefs() {
+    public List<PBmmType> getGenericParameterRefs() {
         List<PBmmType> genericParameterReferences = new ArrayList<>();
         if(genericParameterDefs != null && genericParameterDefs.size() > 0) {
             genericParameterReferences.addAll(genericParameterDefs.values());
@@ -80,7 +80,7 @@ public final class PBmmGenericType extends PBmmBaseType {
     public String asTypeString() {
         StringBuilder builder = new StringBuilder();
         builder.append(rootType).append("<");
-        List<PBmmType> parameterReferences = getGenericParamaterRefs();
+        List<PBmmType> parameterReferences = getGenericParameterRefs();
         for(int i = 0; i < parameterReferences.size(); i++) {
             builder.append(parameterReferences.get(i).asTypeString());
             if(i < parameterReferences.size() - 1) {
@@ -94,7 +94,7 @@ public final class PBmmGenericType extends PBmmBaseType {
     @Override
     public List<String> flattenedTypeList() {
         List<String> retVal = new ArrayList<>();
-        getGenericParamaterRefs().forEach( item -> {
+        getGenericParameterRefs().forEach(item -> {
             retVal.addAll(item.flattenedTypeList());
         });
         return retVal;

@@ -58,9 +58,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      * @return
      */
     public List<BmmGenericParameter> getGenericParameters() {
-        List<BmmGenericParameter> parameters = new ArrayList<>();
-        parameters.addAll(genericParameters.values());
-        return parameters;
+        return new ArrayList<>(genericParameters.values());
     }
 
     /**

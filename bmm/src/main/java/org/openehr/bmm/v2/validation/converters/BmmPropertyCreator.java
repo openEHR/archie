@@ -5,6 +5,7 @@ import com.nedap.archie.base.MultiplicityInterval;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmContainerProperty;
 import org.openehr.bmm.core.BmmContainerType;
+import org.openehr.bmm.core.BmmGenericClass;
 import org.openehr.bmm.core.BmmGenericProperty;
 import org.openehr.bmm.core.BmmGenericType;
 import org.openehr.bmm.core.BmmModel;
@@ -65,10 +66,10 @@ public class BmmPropertyCreator {
         setBasics(property, bmmProperty);
         PBmmGenericType pbmmType = property.getTypeRef();
         BmmGenericType genericTypeDef = new BmmGenericType();
-        genericTypeDef.setBaseClass(schema.getClassDefinition(pbmmType.getRootType()));
+        genericTypeDef.setBaseClass((BmmGenericClass) schema.getClassDefinition(pbmmType.getRootType()));
         List<BmmType> genericParams = new ArrayList<>();
         TypeCreator typeCreator = new TypeCreator();
-        for(PBmmType genericParamType: pbmmType.getGenericParamaterRefs()) {
+        for(PBmmType genericParamType: pbmmType.getGenericParameterRefs()) {
             genericParams.add(typeCreator.createBmmType(genericParamType, schema, bmmClass));
         }
         genericTypeDef.setGenericParameters(genericParams);
