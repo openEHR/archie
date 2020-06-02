@@ -1,9 +1,12 @@
 package com.nedap.archie.aom;
 
 import com.esotericsoftware.kryo.Kryo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.OpenEHRBase;
+import com.nedap.archie.rminfo.RMPropertyIgnore;
 import com.nedap.archie.util.KryoUtil;
 
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 /**
@@ -12,6 +15,10 @@ import java.io.Serializable;
  */
 //@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class ArchetypeModelObject extends OpenEHRBase implements Serializable, Cloneable {
+
+    private Integer startLine;
+    private Integer startCharInLine;
+    private Integer tokenLength;
 
     public ArchetypeModelObject clone() {
         Kryo kryo = null;
@@ -23,4 +30,36 @@ public abstract class ArchetypeModelObject extends OpenEHRBase implements Serial
         }
     }
 
+    @JsonIgnore
+    @RMPropertyIgnore
+    @XmlTransient
+    public Integer getStartLine() {
+        return startLine;
+    }
+
+    public void setStartLine(Integer startLine) {
+        this.startLine = startLine;
+    }
+
+    @JsonIgnore
+    @RMPropertyIgnore
+    @XmlTransient
+    public Integer getStartCharInLine() {
+        return startCharInLine;
+    }
+
+    public void setStartCharInLine(Integer startCharInLine) {
+        this.startCharInLine = startCharInLine;
+    }
+
+    @JsonIgnore
+    @RMPropertyIgnore
+    @XmlTransient
+    public Integer getTokenLength() {
+        return tokenLength;
+    }
+
+    public void setTokenLength(Integer tokenLength) {
+        this.tokenLength = tokenLength;
+    }
 }
