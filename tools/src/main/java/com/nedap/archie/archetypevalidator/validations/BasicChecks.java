@@ -47,10 +47,16 @@ public class BasicChecks extends ArchetypeValidationBase {
     private void checkIdCodeSpecialisationLevel() {
         int depth = ValidationUtils.getSpecializationDepth(archetype, repository);
         if(depth != archetype.getDefinition().specialisationDepth()) {
-            addMessage(ErrorType.VARCN, I18n.t("Incorrect root node id {0}: it must match the specialization depth of the archetype, which is {1}", archetype.getDefinition().getNodeId(), depth));
+
+            addMessageWithPath(ErrorType.VARCN,
+                    I18n.t("Incorrect root node id {0}: it must match the specialization depth of the archetype, which is {1}", archetype.getDefinition().getNodeId(), depth),
+                    "/"
+            );
         }
         if(!archetype.getDefinition().getNodeId().matches("id1(.1)*")) {
-            addMessage(ErrorType.VARCN, I18n.t("The node id is not in the form id1.1....1: {0}", archetype.getDefinition().getNodeId()));
+            addMessageWithPath(ErrorType.VARCN,
+                    I18n.t("The node id is not in the form id1.1....1: {0}", archetype.getDefinition().getNodeId()),
+                    "/");
         }
     }
 
