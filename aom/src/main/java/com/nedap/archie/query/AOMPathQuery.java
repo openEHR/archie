@@ -12,6 +12,7 @@ import com.nedap.archie.paths.PathSegment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -225,6 +226,14 @@ public class AOMPathQuery {
      * Useful mainly when flattening, probably does not have many other uses
      */
     public CComplexObjectProxy findAnyInternalReference(CComplexObject root) {
+       return (CComplexObjectProxy) findMatchingPredicate(root, (o) -> o instanceof CComplexObjectProxy);
+    }
+
+    /**
+     * Find anything matching a specific predicate anywhere inside the APath query. Can be at the end of the full query, at the first matching CComplexObjectProxy or anywhere in between
+     * Useful mainly when flattening, probably does not have many other uses
+     */
+    public ArchetypeModelObject findMatchingPredicate(CComplexObject root, Predicate predicate) {
         List<ArchetypeModelObject> result = new ArrayList<>();
         result.add(root);
         for(PathSegment segment:this.pathSegments) {
@@ -232,8 +241,8 @@ public class AOMPathQuery {
                 return null;
             }
             result = findOneSegment(segment, result, false);
-            if(result.size() == 1 && result.get(0) instanceof CComplexObjectProxy) {
-                return (CComplexObjectProxy) result.get(0);
+            if(result.size() == 1 && predicate.test(result.get(0))) {
+                return result.get(0);
             }
         }
         return null;
