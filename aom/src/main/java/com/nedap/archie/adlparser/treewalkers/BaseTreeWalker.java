@@ -17,16 +17,8 @@ public class BaseTreeWalker {
         errors.addError(error);
     }
 
-    public void addError(String warning, int line, int charPositionInLine) {
-        errors.addError(warning, line, charPositionInLine);
-    }
-
     public void addWarning(String warning) {
         errors.addError(warning);
-    }
-
-    public void addWarning(String warning, int line, int charPositionInLine) {
-        errors.addWarning(warning, line, charPositionInLine);
     }
 
     public ANTLRParserErrors getErrors() {
