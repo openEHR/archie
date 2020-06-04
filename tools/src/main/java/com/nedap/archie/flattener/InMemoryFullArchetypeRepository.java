@@ -69,4 +69,13 @@ public class InMemoryFullArchetypeRepository extends SimpleArchetypeRepository i
     public void setArchetypeValidationSettings(ArchetypeValidationSettings settings) {
         this.archetypeValidationSettings = settings;
     }
+
+    @Override
+    public void removeArchetype(String archetypeId) {
+        super.removeArchetype(archetypeId);
+        this.flattenedArchetypes.remove(archetypeId);
+        this.operationalTemplates.remove(archetypeId);
+        this.validationResult.remove(archetypeId);
+    }
+
 }
