@@ -73,6 +73,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
 
         if (attributeDefContext.c_attribute() != null) {
             CAttribute attribute = new CAttribute();
+            FilePositionUtil.setFilePosition(attributeDefContext, attribute);
 
             C_attributeContext attributeContext = attributeDefContext.c_attribute();
             if(attributeContext.attribute_id() != null) {
@@ -204,6 +205,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
 
         for(Attribute_idContext idContext:attributeIdList) {
             CAttribute attribute = new CAttribute();
+            FilePositionUtil.setFilePosition(idContext.ALPHA_LC_ID(), attribute);
             String id = idContext.getText();//TODO? parse odin string value?
             attribute.setRmAttributeName(id);
             tuple.addMember(attribute);
