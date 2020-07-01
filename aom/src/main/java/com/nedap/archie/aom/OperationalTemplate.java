@@ -60,6 +60,11 @@ public class OperationalTemplate extends AuthoredArchetype {
         //getting the entire path
         List<PathSegment> pathSegments = object.getPathSegments();
         Collections.reverse(pathSegments);
+        if(pathSegments.size() > 1) {
+            //the first path segment can point to a archetype root. We do not want to include that
+            //but need the path from the parent archetype
+            pathSegments = pathSegments.subList(1, pathSegments.size());
+        }
         for(PathSegment segment:pathSegments) {
             if(segment.hasArchetypeRef()) {
                 //this is [archetypeId] instead of [idcode]
@@ -91,13 +96,6 @@ public class OperationalTemplate extends AuthoredArchetype {
             ArchetypeTerminology terminology = getComponentTerminologies().get(archetypeId);
             if(terminology != null) {
                 ArchetypeTerm term = terminology.getTermDefinition(language, code);
-                if(term == null && object instanceof CArchetypeRoot) {
-                    if(object.getParent() != null && object.getParent().getParent() != null) {
-                        ArchetypeTerm parentTerm = getTerm(object.getParent().getParent(), code, language);
-                        if(parentTerm != null) return parentTerm;
-                    }
-                    return terminology.getTermDefinition(language, ((CArchetypeRoot) object).getArchetypeRef());
-                }
                 return term;
             } else {
                 //TODO: check if we should do this or just return null
