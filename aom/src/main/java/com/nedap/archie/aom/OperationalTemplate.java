@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.paths.PathSegment;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -55,12 +56,20 @@ public class OperationalTemplate extends AuthoredArchetype {
         componentTerminologies.put(nodeId, terminology);
     }
 
-    private String getChildArchetypeId(CObject object) {
+    /**
+     * Get the last used archetype reference in the path of the given cObject.
+     * If stripLastPartOfPath == true, ignore the last pathsegment, usable for finding
+     * the id code of an archetype root
+     * @param object
+     * @param stripLastPartOfPath
+     * @return
+     */
+    private String getChildArchetypeId(CObject object, boolean stripLastPartOfPath) {
         //optimization possible: walk back the tree until you find a node used in an archetype, instead of
         //getting the entire path
         List<PathSegment> pathSegments = object.getPathSegments();
         Collections.reverse(pathSegments);
-        if(pathSegments.size() > 1) {
+        if(stripLastPartOfPath && pathSegments.size() > 1) {
             //the first path segment can point to a archetype root. We do not want to include that
             //but need the path from the parent archetype
             pathSegments = pathSegments.subList(1, pathSegments.size());
@@ -87,15 +96,24 @@ public class OperationalTemplate extends AuthoredArchetype {
         return getTerm(object, object.getNodeId(), language);
     }
 
+    /**
+     * Get the ArchetypeTerm for the given code in the context of the cObject.
+     * This gets the term from the ComponentTerminologies if required.
+     * @param object {@inheritDoc}
+     * @param language {@inheritDoc}
+     * @return {@inheritDoc}
+     */
     @Override
     public ArchetypeTerm getTerm(CObject object, String code, String language) {
-        String archetypeId = getChildArchetypeId(object);
+        boolean stripLastPartOfPath = object instanceof CArchetypeRoot && AOMUtils.isIdCode(code);
+        String archetypeId = getChildArchetypeId(object, stripLastPartOfPath);
+
         if(archetypeId == null) {
             return super.getTerm(object, code, language);
         } else {
             ArchetypeTerminology terminology = getComponentTerminologies().get(archetypeId);
             if(terminology != null) {
-                ArchetypeTerm term = terminology.getTermDefinition(language, code);
+                return terminology.getTermDefinition(language, code);
                 return term;
             } else {
                 //TODO: check if we should do this or just return null
@@ -106,7 +124,7 @@ public class OperationalTemplate extends AuthoredArchetype {
 
 
     public ArchetypeTerminology getTerminology(CObject object) {
-        String archetypeId = getChildArchetypeId(object);
+        String archetypeId = getChildArchetypeId(object, false);
         if(archetypeId == null) {
             return getTerminology();
         } else {
