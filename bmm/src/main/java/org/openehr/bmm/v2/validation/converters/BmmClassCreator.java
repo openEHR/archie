@@ -4,7 +4,7 @@ import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmEnumerationInteger;
 import org.openehr.bmm.core.BmmEnumerationString;
 import org.openehr.bmm.core.BmmGenericClass;
-import org.openehr.bmm.core.BmmGenericParameter;
+import org.openehr.bmm.core.BmmParameterType;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
@@ -56,8 +56,8 @@ public class BmmClassCreator {
 
             if (bmmClass instanceof BmmGenericClass && pBmmClass.getGenericParameterDefs() != null) {
                 for (PBmmGenericParameter param : pBmmClass.getGenericParameterDefs().values()) {
-                    BmmGenericParameter bmmGenericParameter = createBmmGenericParameter(param, schema);
-                    ((BmmGenericClass) bmmClass).addGenericParameter(bmmGenericParameter);
+                    BmmParameterType bmmParameterType = createBmmGenericParameter(param, schema);
+                    ((BmmGenericClass) bmmClass).addGenericParameter(bmmParameterType);
                 }
             }
             if (pBmmClass.getProperties() != null) {
@@ -102,22 +102,22 @@ public class BmmClassCreator {
     }
 
 
-    private BmmGenericParameter createBmmGenericParameter(PBmmGenericParameter param, BmmModel bmmSchema) {
-        BmmGenericParameter bmmGenericParameter = new BmmGenericParameter();
-        bmmGenericParameter.setName(param.getName());
-        bmmGenericParameter.setDocumentation(param.getDocumentation());
+    private BmmParameterType createBmmGenericParameter(PBmmGenericParameter param, BmmModel bmmSchema) {
+        BmmParameterType bmmParameterType = new BmmParameterType();
+        bmmParameterType.setName(param.getName());
+        bmmParameterType.setDocumentation(param.getDocumentation());
 
         if(param.getConformsToType() != null) {
             BmmClass conformsToTypeClass = bmmSchema.getClassDefinition(param.getConformsToType());
             if(conformsToTypeClass != null) {
-                bmmGenericParameter.setConformsToType(conformsToTypeClass);
+                bmmParameterType.setConformsToType(conformsToTypeClass);
             }
         } else {
-            bmmGenericParameter.setBaseClass(bmmSchema.getAnyClassDefinition());
-            bmmGenericParameter.setConformsToType(null);
+            bmmParameterType.setBaseClass(bmmSchema.getAnyClassDefinition());
+            bmmParameterType.setConformsToType(null);
         }
 
-        return bmmGenericParameter;
+        return bmmParameterType;
     }
 
 

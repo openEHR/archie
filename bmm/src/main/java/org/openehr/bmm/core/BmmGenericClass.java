@@ -39,7 +39,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      * List of generic parameter definitions, keyed by name of generic parameter; these are defined either directly on
      * this class or by the addition of an ancestor class which is generic.
      */
-    private Map<String, BmmGenericParameter> genericParameters;
+    private Map<String, BmmParameterType> genericParameters;
 
     public BmmGenericClass() {
         super();
@@ -57,8 +57,8 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      *
      * @return
      */
-    public List<BmmGenericParameter> getGenericParameters() {
-        List<BmmGenericParameter> parameters = new ArrayList<>();
+    public List<BmmParameterType> getGenericParameters() {
+        List<BmmParameterType> parameters = new ArrayList<>();
         parameters.addAll(genericParameters.values());
         return parameters;
     }
@@ -68,7 +68,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      *
      * @return
      */
-    public Map<String, BmmGenericParameter> getGenericParameterIndex() {
+    public Map<String, BmmParameterType> getGenericParameterIndex() {
         return genericParameters;
     }
 
@@ -79,7 +79,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      *
      * @param parameters
      */
-    public void setGenericParameters(List<BmmGenericParameter> parameters) {
+    public void setGenericParameters(List<BmmParameterType> parameters) {
         this.genericParameters.clear();
         parameters.forEach(param -> {
             this.genericParameters.put(param.getName().toUpperCase(), param);
@@ -91,7 +91,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      *
      * @param genericParameter
      */
-    public void addGenericParameter(BmmGenericParameter genericParameter) {
+    public void addGenericParameter(BmmParameterType genericParameter) {
         genericParameters.put(genericParameter.getName().toUpperCase(), genericParameter);
     }
 
@@ -100,7 +100,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      *
      * @param genericParameterName
      */
-    public BmmGenericParameter getGenericParameter(String genericParameterName) {
+    public BmmParameterType getGenericParameter(String genericParameterName) {
         return genericParameters.get(genericParameterName.toUpperCase());
     }
 
@@ -111,7 +111,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      * @param genericParameter
      * @return
      */
-    public BmmGenericParameter removeGenericParameter(BmmGenericParameter genericParameter) {
+    public BmmParameterType removeGenericParameter(BmmParameterType genericParameter) {
         return genericParameters.remove(genericParameter.getName().toUpperCase());
     }
 
@@ -122,7 +122,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      * @param parameterName
      * @return
      */
-    public BmmGenericParameter removeGenericParameter(String parameterName) {
+    public BmmParameterType removeGenericParameter(String parameterName) {
         return genericParameters.remove(parameterName.toUpperCase());
     }
 
@@ -153,7 +153,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      */
     @Override
     public String getTypeName() {
-        List<BmmGenericParameter> params = getGenericParameters();
+        List<BmmParameterType> params = getGenericParameters();
         String paramString = params.stream().map(i -> i.getName()).collect(Collectors.joining(", "));
         StringBuilder builder = new StringBuilder(getName()).append("<").append(paramString).append(">");
         return builder.toString();

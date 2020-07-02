@@ -3,7 +3,7 @@ package org.openehr.bmm.v2.validation.converters;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmContainerType;
 import org.openehr.bmm.core.BmmGenericClass;
-import org.openehr.bmm.core.BmmGenericParameter;
+import org.openehr.bmm.core.BmmParameterType;
 import org.openehr.bmm.core.BmmGenericType;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmOpenType;
@@ -35,7 +35,7 @@ public class TypeCreator {
     }
 
     private BmmType createOpenType(PBmmOpenType typeDef, BmmModel schema, BmmClass bmmClass) {
-        BmmGenericParameter genericParameter = ((BmmGenericClass) bmmClass).getGenericParameter(typeDef.getType());
+        BmmParameterType genericParameter = ((BmmGenericClass) bmmClass).getGenericParameter(typeDef.getType());
         if(bmmClass instanceof BmmGenericClass && genericParameter != null) {
             BmmOpenType openType = new BmmOpenType();
             openType.setGenericConstraint(genericParameter);

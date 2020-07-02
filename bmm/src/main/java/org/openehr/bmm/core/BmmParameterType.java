@@ -29,7 +29,7 @@ import java.io.Serializable;
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmGenericParameter extends BmmTypeElement implements Serializable {
+public class BmmParameterType extends BmmTypeElement implements Serializable {
 
     /**
      * Name of the parameter, e.g. 'T' etc.
@@ -42,7 +42,7 @@ public class BmmGenericParameter extends BmmTypeElement implements Serializable 
     /**
      * If set, is the corresponding generic parameter definition in an ancestor class.
      */
-    private BmmGenericParameter inheritancePrecursor;
+    private BmmParameterType inheritancePrecursor;
 
     /**
      * Returns the name of the parameter, e.g. 'T' etc.
@@ -85,7 +85,7 @@ public class BmmGenericParameter extends BmmTypeElement implements Serializable 
      *
      * @return
      */
-    public BmmGenericParameter getInheritancePrecursor() {
+    public BmmParameterType getInheritancePrecursor() {
         return inheritancePrecursor;
     }
 
@@ -94,7 +94,7 @@ public class BmmGenericParameter extends BmmTypeElement implements Serializable 
      *
      * @param inheritancePrecursor
      */
-    public void setInheritancePrecursor(BmmGenericParameter inheritancePrecursor) {
+    public void setInheritancePrecursor(BmmParameterType inheritancePrecursor) {
         this.inheritancePrecursor = inheritancePrecursor;
     }
 

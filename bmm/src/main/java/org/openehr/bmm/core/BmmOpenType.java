@@ -34,13 +34,13 @@ public class BmmOpenType extends BmmType implements Serializable {
     /**
      * The generic constraint, which will be 'Any' if nothing set in original model.
      */
-    private BmmGenericParameter genericConstraint;
+    private BmmParameterType genericConstraint;
 
     /**
      * Returns the generic constraint, or 'Any' if nothing set in original model.
      * @return
      */
-    public BmmGenericParameter getGenericConstraint() {
+    public BmmParameterType getGenericConstraint() {
         return genericConstraint;
     }
 
@@ -48,7 +48,7 @@ public class BmmOpenType extends BmmType implements Serializable {
      * Sets the generic constraint
      * @param genericConstraint
      */
-    public void setGenericConstraint(BmmGenericParameter genericConstraint) {
+    public void setGenericConstraint(BmmParameterType genericConstraint) {
         this.genericConstraint = genericConstraint;
     }
 
