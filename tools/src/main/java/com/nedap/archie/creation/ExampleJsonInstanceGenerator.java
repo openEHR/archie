@@ -237,7 +237,7 @@ public  class ExampleJsonInstanceGenerator {
                 BmmClass descendantClassDefinition = bmm.getClassDefinition(descendant);
                 if(!descendantClassDefinition.isAbstract()) {
                     //TODO: should we return generics here? for now left out
-                    return BmmDefinitions.typeNameToClassKey(descendantClassDefinition.getTypeName());
+                    return BmmDefinitions.typeNameToClassKey(descendantClassDefinition.getType().getTypeName());
                 }
 
             }
@@ -247,7 +247,7 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     private void addRequiredPropertiesFromBmm(Map<String, Object> result, BmmClass classDefinition) {
-        Map<String, BmmProperty> properties = classDefinition.flattenBmmClass().getProperties();
+        Map<String, BmmProperty> properties = classDefinition.getFlatProperties();
         //add all mandatory properties from the RM
         for (BmmProperty property : properties.values()) {
             if (property.getMandatory() && !result.containsKey(property.getName())) {
@@ -512,7 +512,7 @@ public  class ExampleJsonInstanceGenerator {
             if(classDefinition == null) {
                 return null;
             }
-            BmmProperty property = classDefinition.flattenBmmClass().getProperties().get(parentAttribute.getRmAttributeName());
+            BmmProperty property = classDefinition.getFlatProperties().get(parentAttribute.getRmAttributeName());
             if(property == null) {
                 return null;
             }
@@ -548,7 +548,7 @@ public  class ExampleJsonInstanceGenerator {
      */
     protected void addAdditionalPropertiesAtBegin(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
 
-        if (classDefinition.getTypeName().equalsIgnoreCase("LOCATABLE") || classDefinition.findAllAncestors().contains("LOCATABLE")) {
+        if (classDefinition.getType().getTypeName().equalsIgnoreCase("LOCATABLE") || classDefinition.findAllAncestors().contains("LOCATABLE")) {
 
             Map<String, Object> name = new LinkedHashMap<>();
             name.put(typePropertyName, "DV_TEXT");
@@ -586,7 +586,7 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     protected void addAdditionalPropertiesAtEnd(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
-        if(classDefinition.getTypeName().equalsIgnoreCase("DV_CODED_TEXT")) {
+        if(classDefinition.getType().getTypeName().equalsIgnoreCase("DV_CODED_TEXT")) {
             try {
                 Map<String, Object> definingCode = (Map<String, Object>) result.get("defining_code");
                 String codeString = (String) definingCode.get("code_string");//TODO: check terminology code to be local?

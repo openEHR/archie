@@ -22,11 +22,13 @@ package org.openehr.bmm;
  */
 
 
+import org.openehr.bmm.core.BmmSimpleType;
+
 /**
  * Created by cnanjo on 10/1/16.
  */
 public class BmmConstants {
-    public static final String BMM_VERSION = "2.1";
+    public static final String BMM_VERSION = "3.0";
     public static final String BMM_PROPERTY_VERSION = "bmm_version";
     public static final String BMM_PROPERTY_RM_PUBLISHER = "rm_publisher";
     public static final String BMM_PROPERTY_SCHEMA_NAME = "schema_name";
@@ -56,4 +58,5 @@ public class BmmConstants {
     public static final String BMM_PROPERTY_ITEM_VALUES = "item_values";
     public static final String BMM_CONFORMS_TO = "conforms_to_type";
     public static final String BMM_DOCUMENTATION = "documentation";
+
 }

@@ -31,7 +31,7 @@ import java.util.List;
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmEnumeration<T> extends BmmClass implements Serializable {
+public class BmmEnumeration<T> extends BmmSimpleClass implements Serializable {
 
     /**
      * The list of names of the enumeration. If no values are supplied, the integer values 0, 1, 2, …​ are assumed.
@@ -46,6 +46,10 @@ public class BmmEnumeration<T> extends BmmClass implements Serializable {
      * declared use of this type.
      */
     private String underlyingTypeName;
+
+    public BmmEnumeration(String aName, String aDocumentation, Boolean abstractFlag) {
+        super(aName, aDocumentation, abstractFlag);
+    }
 
     /**
      * Returns the list of names of the enumeration. If no values are supplied, the integer values 0, 1, 2, …​ are assumed.

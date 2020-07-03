@@ -281,7 +281,7 @@ public class AOMUtils {
     public static BmmProperty getPropertyAtPath(BmmModel bmmModel, String rmTypeName, String path) {
         if(!path.contains("/")) {
             BmmClass classDefinition = bmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
-            return classDefinition == null ? null : classDefinition.flattenBmmClass().getProperties().get(path);
+            return classDefinition == null ? null : classDefinition.getFlatProperties().get(path);
         } else if (path.equals("/")) {
             //this is not a path
             throw new IllegalArgumentException("cannot retrieve attribute information for path '/'");
@@ -295,10 +295,10 @@ public class AOMUtils {
             if (classDefinition == null) {
                 return null;
             }
-            property = classDefinition.flattenBmmClass().getProperties().get(segment.getNodeName());
+            property = classDefinition.getFlatProperties().get(segment.getNodeName());
             if(property == null) {
                 for(String descendant: classDefinition.findAllDescendants()) {
-                    BmmProperty bmmProperty = bmmModel.getClassDefinition(descendant).flattenBmmClass().getProperties().get(segment.getNodeName());
+                    BmmProperty bmmProperty = bmmModel.getClassDefinition(descendant).getFlatProperties().get(segment.getNodeName());
                     if(bmmProperty != null) {
                         property = bmmProperty;
                         break;

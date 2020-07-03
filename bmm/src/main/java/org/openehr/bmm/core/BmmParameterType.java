@@ -22,27 +22,48 @@ package org.openehr.bmm.core;
  */
 
 
+import org.openehr.bmm.persistence.validation.BasicDefinitions;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Definition of a generic parameter in a class definition of a generic type.
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmParameterType extends BmmTypeElement implements Serializable {
+public class BmmParameterType extends BmmUnitaryType implements Serializable {
 
     /**
      * Name of the parameter, e.g. 'T' etc.
      */
     private String name;
+
     /**
      * Optional conformance constraint that must be another valid class name.
      */
-    private BmmClass conformsToType;
+    private BmmDefinedType conformsToType;
+
     /**
      * If set, is the corresponding generic parameter definition in an ancestor class.
      */
     private BmmParameterType inheritancePrecursor;
+
+    /**
+     * set from constructor
+     */
+    private BmmDefinedType AnyTypeDefinition;
+
+    /**
+     * Return type_name.
+     *
+     * @return the type name
+     */
+    @Override
+    public String getTypeName() {
+        return this.name;
+    }
 
     /**
      * Returns the name of the parameter, e.g. 'T' etc.
@@ -67,7 +88,7 @@ public class BmmParameterType extends BmmTypeElement implements Serializable {
      *
      * @return
      */
-    public BmmClass getConformsToType() {
+    public BmmDefinedType getConformsToType() {
         return conformsToType;
     }
 
@@ -76,7 +97,7 @@ public class BmmParameterType extends BmmTypeElement implements Serializable {
      *
      * @param conformsToType
      */
-    public void setConformsToType(BmmClass conformsToType) {
+    public void setConformsToType(BmmDefinedType conformsToType) {
         this.conformsToType = conformsToType;
     }
 
@@ -103,26 +124,27 @@ public class BmmParameterType extends BmmTypeElement implements Serializable {
      *
      * @return
      */
-    public String flattenedConformsToType() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public BmmDefinedType flattenedConformsToType() {
+        if (conformsToType != null)
+            return conformsToType;
+        else if (inheritancePrecursor != null)
+            return inheritancePrecursor.flattenedConformsToType();
+        else
+            return null;
     }
 
     /**
-     * Generate ultimate conformance type, which is either from `conforms_to_type' or if not set, 'Any'.
+     * Return the effective conformance type, taking into account formal parameter types.
      *
      * @return
      */
-    public BmmClass effectiveConformsToType() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    /**
-     * Result is name of conformance type, else 'Any'.
-     *
-     * @return
-     */
-    public String getConformanceTypeName() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    @Override
+    public BmmDefinedType getConformanceType() {
+        BmmDefinedType confType = flattenedConformsToType();
+        if (confType != null)
+            return confType;
+        else
+            return AnyTypeDefinition;
     }
 
     /**
@@ -130,8 +152,36 @@ public class BmmParameterType extends BmmTypeElement implements Serializable {
      *
      * @return
      */
+    @Override
     public String getTypeSignature() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        StringBuilder builder = new StringBuilder();
+        builder.append(name);
+        BmmDefinedType confType = flattenedConformsToType();
+        if (confType != null) {
+            builder.append(":" + confType.getTypeName());
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Returns the completely flattened list of type names, flattening out all generic parameters.
+     *
+     * @return base class name
+     */
+    @Override
+    public List<String> getFlattenedTypeList() {
+        ArrayList<String> result = new ArrayList<>();
+        BmmDefinedType confType = flattenedConformsToType();
+        if (confType != null)
+            result.addAll(confType.getFlattenedTypeList());
+        else
+            result.add(BasicDefinitions.ANY_TYPE);
+        return result;
+    }
+
+    @Override
+    public String toDisplayString() {
+        return null;
     }
 }
 

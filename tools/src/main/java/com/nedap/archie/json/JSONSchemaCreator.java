@@ -1,15 +1,7 @@
 package com.nedap.archie.json;
 
 
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmContainerType;
-import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmOpenType;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmSimpleType;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import javax.json.Json;
@@ -104,7 +96,7 @@ public class JSONSchemaCreator {
             allOfArray.add(ifObject);
         }
         for(BmmClass bmmClass: bmm.getClassDefinitions().values()) {
-            if (!bmmClass.isAbstract() && !primitiveTypeMapping.containsKey(bmmClass.getTypeName().toLowerCase())) {
+            if (!bmmClass.isAbstract() && !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase())) {
                 addClass(definitions, bmmClass);
             }
         }
@@ -116,18 +108,18 @@ public class JSONSchemaCreator {
     }
 
     private void addClass(JsonObjectBuilder definitions, BmmClass bmmClass) {
-        String typeName = BmmDefinitions.typeNameToClassKey(bmmClass.getTypeName());
+        String typeName = BmmDefinitions.typeNameToClassKey(bmmClass.getName());
 
-        BmmClass flatBmmClass = bmmClass.flattenBmmClass();
         JsonArrayBuilder required = jsonFactory.createArrayBuilder();
         JsonObjectBuilder properties = jsonFactory.createObjectBuilder();
 
         boolean atLeastOneProperty = false;
-        for (String propertyName : flatBmmClass.getProperties().keySet()) {
-            BmmProperty bmmProperty = flatBmmClass.getProperties().get(propertyName);
+        Map<String, BmmProperty> flatProperties = bmmClass.getFlatProperties();
+        for (String propertyName : flatProperties.keySet()) {
+            BmmProperty bmmProperty = flatProperties.get(propertyName);
             if(bmmProperty.getComputed()) {
                 continue;//don't output this
-            } else if((bmmClass.getTypeName().startsWith("POINT_EVENT") || bmmClass.getTypeName().startsWith("INTERVAL_EVENT")) &&
+            } else if((bmmClass.getName().startsWith("POINT_EVENT") || bmmClass.getName().startsWith("INTERVAL_EVENT")) &&
                     propertyName.equalsIgnoreCase("data")) {
                 //we don't handle generics yet, and it's very tricky with the current BMM indeed. So, just manually hack this
                 JsonObjectBuilder propertyDef = createPolymorphicReference(bmmModel.getClassDefinition("ITEM_STRUCTURE"));
@@ -175,7 +167,7 @@ public class JSONSchemaCreator {
     private JsonObjectBuilder createPropertyDef(BmmType type) {
 
 
-        if(type instanceof BmmOpenType) {
+        if(type instanceof BmmParameterType) {
             return createType("object");
             //nothing more to be done
         } else if (type instanceof BmmSimpleType) {
@@ -206,7 +198,7 @@ public class JSONSchemaCreator {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
         if(!type.isAbstract()) {
-            descendants.add(BmmDefinitions.typeNameToClassKey(type.getTypeName()));
+            descendants.add(BmmDefinitions.typeNameToClassKey(type.getName()));
         }
 
         if(descendants.isEmpty()) {
@@ -244,10 +236,10 @@ public class JSONSchemaCreator {
         List<String> result = new ArrayList<>();
         List<String> descs = bmmClass.getImmediateDescendants();
         for(String desc:descs) {
-            if(!bmmClass.getTypeName().equalsIgnoreCase(desc)) {//TODO: fix getImmediateDescendants in BMM so this check is not required
+            if(!bmmClass.getName().equalsIgnoreCase(desc)) {//TODO: fix getImmediateDescendants in BMM so this check is not required
                 BmmClass classDefinition = bmmModel.getClassDefinition(desc);
                 if (!classDefinition.isAbstract()) {
-                    result.add(BmmDefinitions.typeNameToClassKey(classDefinition.getTypeName()));
+                    result.add(BmmDefinitions.typeNameToClassKey(classDefinition.getName()));
                 }
                 result.addAll(getAllNonAbstractDescendants(classDefinition));
             }

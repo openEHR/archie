@@ -209,7 +209,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
         if(getClassDefinition(BasicDefinitions.ANY_TYPE) != null) {
             return getClassDefinition(BasicDefinitions.ANY_TYPE);
         }
-        BmmClass result = new BmmClass(BasicDefinitions.ANY_TYPE);
+        BmmClass result = new BmmSimpleClass(BasicDefinitions.ANY_TYPE, null, false);
         result.setAbstract(true);
         result.setDocumentation("Root class of type system");
         return result;

@@ -16,8 +16,8 @@ public class PBmmClass extends PBmmBase {
     private List<String> ancestors;
     private Map<String, PBmmType> ancestorDefs;
     private Map<String, PBmmProperty> properties;
-    private Boolean isAbstract;
-    private Boolean isOverride;
+    private Boolean isAbstract = false;
+    private Boolean isOverride = false;
     private Map<String, PBmmGenericParameter> genericParameterDefs;
 
     private transient String sourceSchemaId;
@@ -39,9 +39,8 @@ public class PBmmClass extends PBmmBase {
     }
 
     public List<String> getAncestors() {
-        if(ancestors == null) {
+        if (ancestors == null)
             ancestors = new ArrayList<>();
-        }
         return ancestors;
     }
 
@@ -53,13 +52,12 @@ public class PBmmClass extends PBmmBase {
      */
     @JsonIgnore
     public List<String> getAncestorTypeNames() {
-        if(ancestorDefs != null && !ancestorDefs.isEmpty()) {
+        if (ancestorDefs != null && !ancestorDefs.isEmpty())
             return ancestorDefs.values().stream().map(type -> type.asTypeString()).collect(Collectors.toList());
-        } else if (ancestors != null) {
+        else if (ancestors != null)
             return ancestors;
-        } else {
+        else
             return new ArrayList<>();
-        }
     }
 
     public void setAncestors(List<String> ancestors) {
@@ -67,9 +65,8 @@ public class PBmmClass extends PBmmBase {
     }
 
     public Map<String, PBmmProperty> getProperties() {
-        if(properties == null) {
+        if (properties == null)
             properties = new LinkedHashMap<>();
-        }
         return properties;
     }
 
@@ -96,9 +93,8 @@ public class PBmmClass extends PBmmBase {
     }
 
     public Map<String, PBmmGenericParameter> getGenericParameterDefs() {
-        if(genericParameterDefs == null) {
+        if (genericParameterDefs == null)
             genericParameterDefs = new LinkedHashMap<>();
-        }
         return genericParameterDefs;
     }
 

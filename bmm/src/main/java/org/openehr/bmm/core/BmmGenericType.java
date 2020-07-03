@@ -31,9 +31,10 @@ import java.util.stream.Collectors;
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmGenericType extends BmmType implements Serializable {
+public class BmmGenericType extends BmmDefinedType implements Serializable {
 
-    public BmmGenericType() {
+    public BmmGenericType(BmmGenericClass aBaseClass) {
+        baseClass = aBaseClass;
         genericParameters = new ArrayList<>();
     }
 
@@ -42,10 +43,11 @@ public class BmmGenericType extends BmmType implements Serializable {
      * formal generic parameter declarations.
      */
     public List<BmmType> genericParameters;
+
     /**
      * The base class of this type.
      */
-    public BmmGenericClass baseClass;
+    protected BmmGenericClass baseClass;
 
     /**
      * Returns generic parameters of the root_type in this type specifier. The order must match the order of the owning
@@ -102,18 +104,37 @@ public class BmmGenericType extends BmmType implements Serializable {
      */
     @Override
     public String getTypeName() {
-        StringBuilder builder = new StringBuilder();
-        if(baseClass != null) {
-            builder.append(baseClass.getName());
-            builder.append("<");
-            builder.append(genericParameters.stream().map( t -> t.getTypeName()).collect(Collectors.joining(",")));
-            builder.append(">");
-        } else {
-            builder.append("No base class defined for type");
-        }
-        return builder.toString();
+        return baseClass.getName() +
+                "<" +
+                genericParameters.stream().map(t -> t.getTypeName()).collect(Collectors.joining(",")) +
+                ">";
     }
 
+    /**
+     * Signature form of the open type, including constrainer type if there is one, e.g. 'T:Ordered'.
+     *
+     * @return
+     */
+    public String getTypeSignature() {
+        return baseClass.getName() +
+                "<" +
+                genericParameters.stream().map(t -> t.getTypeSignature()).collect(Collectors.joining(",")) +
+                ">";
+    }
+
+    /**
+     * Returns the completely flattened list of type names, flattening out all generic parameters.
+     *
+     * @return
+     */
+    @Override
+    public List<String> getFlattenedTypeList() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add(baseClass.getName());
+        for (BmmType g : genericParameters)
+            result.addAll (g.getFlattenedTypeList());
+        return result;
+    }
 
     @Override
     public String toDisplayString() {return getTypeName();}

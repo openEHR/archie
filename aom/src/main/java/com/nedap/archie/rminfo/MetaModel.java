@@ -129,42 +129,40 @@ public class MetaModel implements MetaModelInterface {
 
     @Override
     public boolean typeNameExists(String typeName) {
-        if(getSelectedBmmModel() != null) {
+        if (getSelectedBmmModel() != null)
             return selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName)) != null;
-        } else {
+        else
             return selectedModel.getTypeInfo(typeName) != null;
-        }
+
     }
 
     @Override
     public boolean attributeExists(String rmTypeName, String propertyName) {
-        if(selectedBmmModel != null) {
+        if (selectedBmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(rmTypeName);
             BmmClass classDefinition = selectedBmmModel.getClassDefinition(className);
-            if(classDefinition == null) {
+            if (classDefinition == null)
                 return false;
-            }
-            return classDefinition.flattenBmmClass().hasPropertyWithName(propertyName);
-        } else {
-            return selectedModel.getAttributeInfo(rmTypeName, propertyName) != null;
+
+            return classDefinition.getFlatProperties().containsKey(propertyName);
         }
+        else
+            return selectedModel.getAttributeInfo(rmTypeName, propertyName) != null;
+
     }
 
     @Override
     public boolean isNullable(String typeId, String attributeName) {
-        if(selectedBmmModel != null) {
+        if (selectedBmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(typeId);
             BmmClass classDefinition = selectedBmmModel.getClassDefinition(className);
-            if(classDefinition == null) {
+            if (classDefinition == null || !classDefinition.hasPropertyWithName(attributeName))
                 return false;
-            }
-            if(!classDefinition.hasPropertyWithName(attributeName)) {
-                return false;
-            }
-            BmmClass bmmClass = classDefinition.flattenBmmClass();
-            BmmProperty bmmProperty = bmmClass.getProperties().get(attributeName);
+
+            BmmProperty bmmProperty = classDefinition.getFlatProperties().get(attributeName);
             return !bmmProperty.getMandatory() || (bmmProperty.getExistence() != null && !bmmProperty.getExistence().isMandatory());
-        } else {
+        }
+        else {
             return selectedModel.getAttributeInfo(typeId, attributeName).isNullable();
         }
     }
@@ -183,10 +181,9 @@ public class MetaModel implements MetaModelInterface {
             BmmClass parentClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
             BmmClass childClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(childConstraintTypeName));
             if(childClass != null && parentClass != null) {
-                BmmClass flatParentClass = parentClass.flattenBmmClass();
-                BmmProperty property = flatParentClass.getProperties().get(rmAttributeName);
+                BmmProperty property = parentClass.getFlatProperties().get(rmAttributeName);
                 if(property != null) {
-                    String propertyConfTypeName = property.getType().getBaseClass().getTypeName();
+                    String propertyConfTypeName = property.getType().getBaseClass().getType().getTypeName();
                    // if(BmmDefinitions.validGenericTypeName(propertyConfTypeName) &&
                    //         !BmmDefinitions.validGenericTypeName(childConstraintTypeName)) {
 
@@ -272,7 +269,7 @@ public class MetaModel implements MetaModelInterface {
             String modelTypeName = selectedBmmModel.effectivePropertyType(rmTypeName, rmAttributeName);
             BmmClass bmmClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
             if(bmmClass != null) {
-                BmmProperty bmmProperty = bmmClass.flattenBmmClass().getProperties().get(rmAttributeName);
+                BmmProperty bmmProperty = bmmClass.getFlatProperties().get(rmAttributeName);
                 if(bmmProperty != null) {
                     //check enumerated properties
                     BmmClass propertyClass = bmmProperty.getType().getBaseClass();
@@ -323,29 +320,31 @@ public class MetaModel implements MetaModelInterface {
 
     @Override
     public boolean isOrdered(String typeName, String attributeName) {
-        if(getSelectedBmmModel() != null) {
+        if (getSelectedBmmModel() != null) {
             BmmClass classDefinition = getSelectedBmmModel().getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
             if (classDefinition != null) {
                 //TODO: don't flatten on request, create a flattened properties cache just like the eiffel code for much better performance
-                BmmClass flatClassDefinition = classDefinition.flattenBmmClass();
-                BmmProperty bmmProperty = flatClassDefinition.getProperties().get(attributeName);
+                BmmProperty bmmProperty = classDefinition.getFlatProperties().get(attributeName);
                 return isOrdered(bmmProperty);
             }
-        } else {
+        }
+        else {
             RMAttributeInfo attributeInfo = selectedModel.getAttributeInfo(typeName, attributeName);
             return attributeInfo != null && List.class.isAssignableFrom(attributeInfo.getType());
         }
-        return true;//most collections will be ordered, so safe default
+        return true; //most collections will be ordered, so safe default
     }
 
     private boolean isOrdered(BmmProperty bmmProperty) {
-        if(bmmProperty == null) {
+        if (bmmProperty == null) {
             return false;
-        } else if(bmmProperty instanceof BmmContainerProperty) {
+        }
+        else if(bmmProperty instanceof BmmContainerProperty) {
             String baseType = BmmDefinitions.typeNameToClassKey(((BmmContainerProperty) bmmProperty).getType().getContainerType().toString());
 
             return baseType.equalsIgnoreCase("list") || baseType.equalsIgnoreCase("array");//TODO: check Hash
-        } else {
+        }
+        else {
             return false;
         }
     }

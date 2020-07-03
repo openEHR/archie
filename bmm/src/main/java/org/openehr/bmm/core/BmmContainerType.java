@@ -21,6 +21,11 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
+import org.openehr.bmm.BmmConstants;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Type reference that specifies containers with one generic parameter.
  *
@@ -35,7 +40,7 @@ public class BmmContainerType extends BmmType {
     /**
      *
      */
-    private BmmType baseType;
+    private BmmUnitaryType baseType;
 
     /**
      * Returns the type of the container. This converts to the root_type in BMM_GENERIC_TYPE.
@@ -65,7 +70,7 @@ public class BmmContainerType extends BmmType {
      *
      * @return
      */
-    public BmmType getBaseType() {
+    public BmmUnitaryType getBaseType() {
         return baseType;
     }
 
@@ -74,7 +79,7 @@ public class BmmContainerType extends BmmType {
      *
      * @param baseType
      */
-    public void setBaseType(BmmType baseType) {
+    public void setBaseType(BmmUnitaryType baseType) {
         this.baseType = baseType;
     }
 
@@ -89,12 +94,32 @@ public class BmmContainerType extends BmmType {
     }
 
     /**
-     * Return base_type.conformance_type_name; e.g. if this type is 'List&lt;ELEMENT&gt;', return 'ELEMENT'.
+     * Returns the completely flattened list of type names, flattening out all generic parameters.
+     *
+     * @return base class name
+     */
+    @Override
+    public List<String> getFlattenedTypeList() {
+        return baseType.getFlattenedTypeList();
+    }
+
+    /**
+     * Return the effective conformance type, taking into account formal parameter types.
      *
      * @return
      */
-    public String getConformanceTypeName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public BmmDefinedType getConformanceType() {
+        return baseType.getConformanceType();
+    }
+
+    /**
+     * Returns the effective unitary type, i.e. abstracting away any containers.
+     *
+     * @return
+     */
+    @Override
+    public BmmUnitaryType getUnitaryType() {
+        return baseType;
     }
 
     @Override

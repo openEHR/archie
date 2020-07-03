@@ -2,14 +2,7 @@ package org.openehr.bmm.v2.validation.converters;
 
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmContainerType;
-import org.openehr.bmm.core.BmmGenericProperty;
-import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.v2.persistence.PBmmContainerProperty;
 import org.openehr.bmm.v2.persistence.PBmmGenericProperty;
 import org.openehr.bmm.v2.persistence.PBmmGenericType;
@@ -27,18 +20,16 @@ public class BmmPropertyCreator {
         //getTypeDefinition().createBmmType(bmmSchema, classDefinition);
         BmmType type = new TypeCreator().createBmmType(property.getTypeRef(), schema, bmmClass);
 
-        if(property instanceof PBmmSinglePropertyOpen) {
+        if(property instanceof PBmmSinglePropertyOpen)
             return createSimpleProperty(property, type);
-        } else if (property instanceof PBmmSingleProperty) {
+        else if (property instanceof PBmmSingleProperty)
             return createSimpleProperty(property, type);
-        } else if (property instanceof PBmmGenericProperty) {
+        else if (property instanceof PBmmGenericProperty)
             return createGenericProperty(schema, (PBmmGenericProperty) property, (BmmGenericType) type, bmmClass);
-        } else if (property instanceof PBmmContainerProperty) {
+        else if (property instanceof PBmmContainerProperty)
             return createContainerProperty((PBmmContainerProperty) property, (BmmContainerType) type);
-        } else {
+        else
             throw new RuntimeException("unknown property class: " + property.getClass().getName());
-        }
-
     }
 
     private BmmContainerProperty createContainerProperty(PBmmContainerProperty property, BmmContainerType type) {
@@ -60,21 +51,19 @@ public class BmmPropertyCreator {
         return bmmProperty;
     }
 
-    private BmmGenericProperty createGenericProperty(BmmModel schema, PBmmGenericProperty property, BmmGenericType typeDefinition, BmmClass bmmClass) {
-        BmmGenericProperty bmmProperty = new BmmGenericProperty(property.getName(), typeDefinition);
-        setBasics(property, bmmProperty);
-        PBmmGenericType pbmmType = property.getTypeRef();
-        BmmGenericType genericTypeDef = new BmmGenericType();
-        genericTypeDef.setBaseClass(schema.getClassDefinition(pbmmType.getRootType()));
+    private BmmGenericProperty createGenericProperty(BmmModel schema, PBmmGenericProperty pBmmProperty, BmmGenericType typeDefinition, BmmClass bmmClass) {
+        BmmGenericProperty result = new BmmGenericProperty(pBmmProperty.getName(), typeDefinition);
+        setBasics(pBmmProperty, result);
+        PBmmGenericType pBmmType = pBmmProperty.getTypeRef();
+        BmmGenericType genericTypeDef = new BmmGenericType((BmmGenericClass) schema.getClassDefinition(pBmmType.getRootType()));
         List<BmmType> genericParams = new ArrayList<>();
         TypeCreator typeCreator = new TypeCreator();
-        for(PBmmType genericParamType: pbmmType.getGenericParamaterRefs()) {
+        for (PBmmType genericParamType: pBmmType.getGenericParamaterRefs()) {
             genericParams.add(typeCreator.createBmmType(genericParamType, schema, bmmClass));
         }
         genericTypeDef.setGenericParameters(genericParams);
-        bmmProperty.setGenericTypeDef(genericTypeDef);
-        //bmmProperty.setGenericTypeDef();
-        return bmmProperty;
+        result.setGenericTypeDef(genericTypeDef);
+        return result;
     }
 
     private void setBasics(PBmmProperty property, BmmProperty bmmProperty) {
@@ -84,19 +73,17 @@ public class BmmPropertyCreator {
         bmmProperty.setImInfrastructure(property.isImInfrastructure());
         bmmProperty.setImRuntime(property.isImRuntime());
 
-        if(bmmProperty.getMandatory() == null) {
+        if (bmmProperty.getMandatory() == null)
             bmmProperty.setMandatory(false);
-        }
-        if(bmmProperty.getComputed() == null) {
-            bmmProperty.setComputed(false);
-        }
-        if(bmmProperty.getImInfrastructure() == null) {
-            bmmProperty.setImInfrastructure(false);
-        }
 
-        if(bmmProperty.getImRuntime() == null) {
+        if (bmmProperty.getComputed() == null)
+            bmmProperty.setComputed(false);
+
+        if (bmmProperty.getImInfrastructure() == null)
+            bmmProperty.setImInfrastructure(false);
+
+        if(bmmProperty.getImRuntime() == null)
             bmmProperty.setImRuntime(false);
-        }
     }
 
 

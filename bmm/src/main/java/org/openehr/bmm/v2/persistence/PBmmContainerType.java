@@ -61,12 +61,13 @@ public class PBmmContainerType extends PBmmType {
      */
     @JsonIgnore
     public PBmmBaseType getTypeRef() {
-        if(typeDef == null && type != null) {
+        if (typeDef == null && type != null) {
             if(type.length() == 1) {
                 // This is ugly because it basically checks parameter length to see if it's a generic parameter
                 // However it's the only way in the current P_BMM version
                 return new PBmmOpenType(type);
-            } else {
+            }
+            else {
                 return new PBmmSimpleType(type);
             }
         }

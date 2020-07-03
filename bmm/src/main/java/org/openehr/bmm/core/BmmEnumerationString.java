@@ -30,12 +30,8 @@ import java.io.Serializable;
  */
 public class BmmEnumerationString extends BmmEnumeration<String> implements Serializable {
 
-    public BmmEnumerationString() {
-        setUnderlyingTypeName("STRING");
-    }
-
-    public BmmEnumerationString(String name) {
-        this();
-        setName(name);
+    public BmmEnumerationString(String aName, String aDocumentation, Boolean abstractFlag) {
+        super(aName, aDocumentation, abstractFlag);
+        setUnderlyingTypeName("String");
     }
 }

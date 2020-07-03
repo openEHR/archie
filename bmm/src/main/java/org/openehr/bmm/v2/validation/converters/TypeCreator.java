@@ -1,14 +1,6 @@
 package org.openehr.bmm.v2.validation.converters;
 
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerType;
-import org.openehr.bmm.core.BmmGenericClass;
-import org.openehr.bmm.core.BmmParameterType;
-import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmOpenType;
-import org.openehr.bmm.core.BmmSimpleType;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.v2.persistence.PBmmContainerType;
 import org.openehr.bmm.v2.persistence.PBmmGenericType;
 import org.openehr.bmm.v2.persistence.PBmmOpenType;
@@ -17,42 +9,43 @@ import org.openehr.bmm.v2.persistence.PBmmType;
 
 public class TypeCreator {
 
+    /*
+     * TODO: This should probably be refactored into the various PBmmXxxType classes
+     */
     public BmmType createBmmType(PBmmType typeDef, BmmModel schema, BmmClass bmmClass) {
-        if(typeDef == null) {
+        if (typeDef == null)
             return null;
-        }
-        if(typeDef instanceof PBmmSimpleType) {
+
+        if (typeDef instanceof PBmmSimpleType)
             return createSimpleType((PBmmSimpleType) typeDef, schema);
-        } else if (typeDef instanceof PBmmGenericType) {
+        else if (typeDef instanceof PBmmGenericType)
             return createGenericType((PBmmGenericType) typeDef, schema);
-        } else if (typeDef instanceof PBmmContainerType) {
+        else if (typeDef instanceof PBmmContainerType)
             return createContainerType((PBmmContainerType) typeDef, schema, bmmClass);
-        } else if (typeDef instanceof PBmmOpenType) {
-            return createOpenType((PBmmOpenType) typeDef, schema, bmmClass);
-        } else {
+        else if (typeDef instanceof PBmmOpenType)
+            return createParameterType((PBmmOpenType) typeDef, schema, bmmClass);
+        else
             throw new RuntimeException("unknown type found: " + typeDef.getClass().getName());
-        }
     }
 
-    private BmmType createOpenType(PBmmOpenType typeDef, BmmModel schema, BmmClass bmmClass) {
-        BmmParameterType genericParameter = ((BmmGenericClass) bmmClass).getGenericParameter(typeDef.getType());
-        if(bmmClass instanceof BmmGenericClass && genericParameter != null) {
-            BmmOpenType openType = new BmmOpenType();
-            openType.setGenericConstraint(genericParameter);
-            return openType;
+    private BmmUnitaryType createParameterType(PBmmOpenType typeDef, BmmModel schema, BmmClass bmmGenericClass) {
+        if(bmmGenericClass instanceof BmmGenericClass) {
+            BmmParameterType genericParameter = ((BmmGenericClass) bmmGenericClass).getGenericParameter(typeDef.getType());
+                return genericParameter;
         } else {
-            throw new RuntimeException("Unable to initialize BmmOpenType of type " + typeDef.getType() + ". Have you defined generic parameters in the class definition " + bmmClass.getName() + " for type " + typeDef.getType() + "?");
+            throw new RuntimeException("Unable to initialize BmmParameterType of type " + typeDef.getType() +
+                    ". Have you defined generic parameters in the class definition " + bmmGenericClass.getName() +
+                    " for type " + typeDef.getType() + "?");
         }
     }
 
-    private BmmType createContainerType(PBmmContainerType typeDef, BmmModel schema, BmmClass bmmClass) {
-        PBmmContainerType containerType = typeDef;
+    private BmmContainerType createContainerType(PBmmContainerType pContainerType, BmmModel schema, BmmClass bmmClass) {
         BmmContainerType bmmContainerType = new BmmContainerType();
-        BmmType containedType = createBmmType(containerType.getTypeRef(), schema, bmmClass);
+        BmmUnitaryType containedType = (BmmUnitaryType) createBmmType(pContainerType.getTypeRef(), schema, bmmClass);
 
-        BmmClass containerClass = schema.getClassDefinition(containerType.getContainerType());
+        BmmClass containerClass = schema.getClassDefinition(pContainerType.getContainerType());
         if(containerClass == null) {
-            throw new RuntimeException("Container type is null for " + containerType.getContainerType());
+            throw new RuntimeException("Container type is null for " + pContainerType.getContainerType());
         } else {
             bmmContainerType.setContainerType(containerClass);
         }
@@ -61,33 +54,31 @@ public class TypeCreator {
 
     }
 
-    private BmmType createSimpleType(PBmmSimpleType typeDef, BmmModel schema) {
+    private BmmSimpleType createSimpleType(PBmmSimpleType typeDef, BmmModel schema) {
         BmmClass baseClass = schema.getClassDefinition(typeDef.getType());
-        if(baseClass == null) {
+        if (baseClass instanceof BmmSimpleClass) {
+            BmmSimpleType result = new BmmSimpleType((BmmSimpleClass) baseClass);
+            result.setBaseClass(baseClass);
+            return result;
+        }
+        else {
             //Shouldn't happen: validation already tests this, so runtime exception is fine!
             throw new RuntimeException("BmmClass " + typeDef.getType() + " is not defined in this model");
-        } else {
-            BmmSimpleType simpleType = new BmmSimpleType();
-            simpleType.setBaseClass(baseClass);
-            return simpleType;
         }
     }
 
-    private BmmType createGenericType(PBmmGenericType typeDef, BmmModel schema) {
-        PBmmGenericType pGenericType = typeDef;
-        BmmGenericType genericType = new BmmGenericType();
-        BmmClass classDefinition = schema.getClassDefinition(pGenericType.getRootType());
-        if(classDefinition != null && classDefinition instanceof BmmGenericClass) {
-            BmmGenericClass baseClass = (BmmGenericClass)schema.getClassDefinition(pGenericType.getRootType());
-            genericType.setBaseClass(baseClass);
-            for(PBmmType param: pGenericType.getGenericParameterDefs().values()) {
-
+    private BmmGenericType createGenericType(PBmmGenericType typeDef, BmmModel schema) {
+        BmmClass classDefinition = schema.getClassDefinition(typeDef.getRootType());
+        if (classDefinition instanceof BmmGenericClass) {
+            BmmGenericClass baseClass = (BmmGenericClass)schema.getClassDefinition(typeDef.getRootType());
+            BmmGenericType result = new BmmGenericType(baseClass);
+            for (PBmmType param: typeDef.getGenericParameterDefs().values()) {
                 BmmType paramBmmType = createBmmType(param, schema, classDefinition);
-                genericType.addGenericParameter(paramBmmType);
+                result.addGenericParameter(paramBmmType);
             }
-        } else {
-            throw new RuntimeException("BmmClass " + pGenericType.getRootType() + " is not defined in this model or not a generic type");
+            return result;
         }
-        return genericType;
+        else
+            throw new RuntimeException("BmmClass " + typeDef.getRootType() + " is not defined in this model or not a generic type");
     }
 }

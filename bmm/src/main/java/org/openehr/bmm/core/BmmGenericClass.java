@@ -41,14 +41,9 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      */
     private Map<String, BmmParameterType> genericParameters;
 
-    public BmmGenericClass() {
-        super();
+    public BmmGenericClass(String aName, String aDocumentation, Boolean abstractFlag) {
+        initialize(aName, aDocumentation, abstractFlag);
         genericParameters = new LinkedHashMap<>();
-    }
-
-    public BmmGenericClass(String name) {
-        this();
-        setName(name);
     }
 
     /**
@@ -127,36 +122,26 @@ public class BmmGenericClass extends BmmClass implements Serializable {
     }
 
     /**
+     * Returns a type object corresponding to this class.
+     *
+     * @return
+     */
+    @Override
+    public BmmGenericType getType() {
+        BmmGenericType result = new BmmGenericType(this);
+        genericParameters.forEach((paramName, param) -> {
+            result.addGenericParameter(param);
+        });
+        return result;
+    }
+
+    /**
      * Add suppliers from generic parameters.
      *
      * @return
      */
     public List<String> getSuppliers() {
         throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    /**
-     * Signature form of the type, which for generics includes generic parameter constrainer types
-     * E.g. Interval&lt;T:Ordered&gt;
-     *
-     * @return
-     */
-    @Override
-    public String getTypeSignature() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    /**
-     * Formal string form of the type as per UML.
-     *
-     * @return
-     */
-    @Override
-    public String getTypeName() {
-        List<BmmParameterType> params = getGenericParameters();
-        String paramString = params.stream().map(i -> i.getName()).collect(Collectors.joining(", "));
-        StringBuilder builder = new StringBuilder(getName()).append("<").append(paramString).append(">");
-        return builder.toString();
     }
 
     /**

@@ -4,7 +4,7 @@ package org.openehr.bmm.core;
  * #%L
  * OpenEHR - Java Model Stack
  * %%
- * Copyright (C) 2016 - 2017 Cognitive Medical Systems
+ * Copyright (C) 2020 openEHR Foundation
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,29 @@ package org.openehr.bmm.core;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- * Author: Claude Nanjo
+ * Author: Thomas Beale
  */
 
+import java.util.LinkedHashMap;
+
 /**
+ * Parent of meta-types that may be used as the type of any instantiated object that is not a container object.
  *
- * Created by cnanjo on 1/24/17.
  */
-public abstract class BmmTypeElement extends BmmEntity {
+public class BmmSimpleClass extends BmmClass {
+
+    public BmmSimpleClass(String aName, String aDocumentation, Boolean abstractFlag) {
+        initialize (aName, aDocumentation, abstractFlag);
+    }
+
+    /**
+     * Returns a type object corresponding to this class.
+     *
+     * @return
+     */
+    @Override
+    public BmmSimpleType getType() {
+        return new BmmSimpleType(this);
+    }
+
 }

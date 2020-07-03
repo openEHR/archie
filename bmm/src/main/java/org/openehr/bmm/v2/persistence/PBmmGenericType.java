@@ -18,14 +18,9 @@ public final class PBmmGenericType extends PBmmBaseType {
         return rootType;
     }
 
-    public void setRootType(String rootType) {
-        this.rootType = rootType;
-    }
-
     public Map<String, PBmmType> getGenericParameterDefs() {
-        if(genericParameterDefs == null) {
+        if (genericParameterDefs == null)
             genericParameterDefs = new LinkedHashMap<>();
-        }
         return genericParameterDefs;
     }
 
@@ -34,9 +29,8 @@ public final class PBmmGenericType extends PBmmBaseType {
     }
 
     public List<String> getGenericParameters() {
-        if(genericParameters == null) {
+        if (genericParameters == null)
             genericParameters = new ArrayList<>();
-        }
         return genericParameters;
     }
 
@@ -55,14 +49,16 @@ public final class PBmmGenericType extends PBmmBaseType {
         List<PBmmType> genericParameterReferences = new ArrayList<>();
         if(genericParameterDefs != null && genericParameterDefs.size() > 0) {
             genericParameterReferences.addAll(genericParameterDefs.values());
-        } else {
+        }
+        else {
             genericParameters.forEach(param -> {
-                if(param.length() == 1) {
+                if (param.length() == 1) {
                     // This is ugly because it basically checks parameter length to see if it's a generic parameter
                     // However it's the only way in the current P_BMM version to do so.
                     PBmmOpenType openType = new PBmmOpenType(param);
                     genericParameterReferences.add(openType);
-                } else {
+                }
+                else {
                     PBmmSimpleType simpleType = new PBmmSimpleType(param);
                     genericParameterReferences.add(simpleType);
                 }

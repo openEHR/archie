@@ -42,12 +42,10 @@ public class BmmModelCreator {
                     BmmClass bmmClass = classCreator.createBmmClass(persistedBmmClass);
 
                     if (bmmClass != null && bmmPackage != null) {
-                        if (schema.getPrimitiveTypes().get(bmmClass.getName()) != null) {
+                        if (schema.getPrimitiveTypes().get(bmmClass.getName()) != null)
                             bmmClass.setPrimitiveType(true);
-                        }
-                        if (persistedBmmClass.isOverride() != null && persistedBmmClass.isOverride()) {
+                        if (persistedBmmClass.isOverride() != null && persistedBmmClass.isOverride())
                             bmmClass.setOverride(true);
-                        }
                         model.addClassDefinition(bmmClass, bmmPackage);
                     }
                 }
@@ -62,12 +60,8 @@ public class BmmModelCreator {
 
         // The basics have been created. Now populate the classes with properties
         ProcessClassesInOrder processClassesInOrder = new ProcessClassesInOrder();
-        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> {
-            classCreator.populateBmmClass(bmmClass, model);
-        }, new ArrayList<>(schema.getPrimitiveTypes().values()));
-        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> {
-            classCreator.populateBmmClass(bmmClass, model);
-        }, new ArrayList<>(schema.getClassDefinitions().values()));
+        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> classCreator.populateBmmClass(bmmClass, model), new ArrayList<>(schema.getPrimitiveTypes().values()));
+        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> classCreator.populateBmmClass(bmmClass, model), new ArrayList<>(schema.getClassDefinitions().values()));
 
         return model;
     }
@@ -77,7 +71,7 @@ public class BmmModelCreator {
     private BmmPackage createBmmPackageDefinition(PBmmPackage p, PBmmPackage parent, BmmPackage parentPackageDefinition) {
         BmmPackage bmmPackageDefinition = new BmmPackage(p.getName());
         bmmPackageDefinition.setDocumentation(p.getDocumentation());
-        if(parent != null) {
+        if (parent != null) {
             bmmPackageDefinition.appendToPath(parent.getName());
             bmmPackageDefinition.setParent(parentPackageDefinition);
         }
