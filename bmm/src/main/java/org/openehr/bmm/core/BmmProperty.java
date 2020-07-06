@@ -63,13 +63,27 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 */
 	private Boolean isImInfrastructure;
 
-	public BmmProperty() {
+	public BmmProperty(String aName, T aType, String aDocumentation, Boolean isMandatoryFlag, Boolean isComputedFlag) {
+		name = aName;
+		type = aType;
+		setDocumentation(aDocumentation);
+		isMandatory = isMandatoryFlag;
+		isComputed = isComputedFlag;
+		isImRuntime = Boolean.FALSE;
+		isImInfrastructure = Boolean.FALSE;
 	}
 
-	public BmmProperty(String name, T type) {
-		this.name = name;
-		this.type = type;
+	public BmmProperty(BmmProperty<T> other) {
+		name = other.name;
+		type = other.type;
+		setDocumentation(other.getDocumentation());
+		isMandatory = other.isMandatory;
+		isComputed = other.isComputed;
+		isImInfrastructure = other.isImInfrastructure;
+		isImRuntime = other.isImRuntime;
 	}
+
+	public BmmProperty() { }
 
 	/**
 	 * Returns the name of this property in the model.
@@ -211,15 +225,8 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 		throw new UnsupportedOperationException("Not implemented yet"); // TODO To be implemented
 	}
 
-	public BmmProperty duplicate() {
-		BmmProperty property = new BmmProperty();
-		property.setName(this.name);
-		property.setComputed(this.isComputed);
-		property.setImInfrastructure(this.isImInfrastructure);
-		property.setImRuntime(this.isImRuntime);
-		property.setMandatory(this.isMandatory);
-		property.setType(this.type);
-		property.setDocumentation(this.getDocumentation());
-		return property;
+	public BmmProperty<T> duplicate() {
+		BmmProperty<T> result = new BmmProperty<>(this);
+		return result;
 	}
 }

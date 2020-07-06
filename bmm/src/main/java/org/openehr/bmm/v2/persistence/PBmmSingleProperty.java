@@ -2,8 +2,13 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.nedap.archie.base.MultiplicityInterval;
+import org.openehr.bmm.core.BmmClass;
+import org.openehr.bmm.core.BmmContainerProperty;
+import org.openehr.bmm.core.BmmModel;
+import org.openehr.bmm.core.BmmUnitaryProperty;
 
-public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType> {
+public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType, BmmUnitaryProperty> {
 
     private String type;
 
@@ -13,8 +18,9 @@ public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType> {
      * So far, nothing strange going on. however, now there's a third variant:
      *
      * There's type_ref, which should be a computed (non-serialized) version. However, for terminology code constraints
-     * it has to be a serialized version of type_ref. To distinguish between the computed typeRef (so, in our case, a method that returns without side-effects)
-     * and the serialized type ref, a serialized type ref has been added. It maps to the json property type_ref.
+     * it has to be a serialized version of type_ref. To distinguish between the computed typeRef (so, in our case, a
+     * method that returns without side-effects) and the serialized type ref, a serialized type ref has been added.
+     * It maps to the json property type_ref.
      */
     private PBmmSimpleType serializedTypeRef;
 
@@ -34,6 +40,20 @@ public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType> {
         else if (getTypeDef() == null)
             return new PBmmSimpleType(type);
         return getTypeDef();
+    }
+
+    @Override
+    public void createBmmProperty(BmmModel schema, BmmClass bmmClass) {
+        if (typeDef != null) {
+            typeDef.createBmmType(schema, bmmClass);
+            if (typeDef.bmmType != null) {
+                bmmProperty = new BmmUnitaryProperty(getName(), typeDef.bmmType, getDocumentation(), isMandatory(), isComputed());
+            }
+            else
+                throw new RuntimeException("BmmTypeCreate failed for type " + typeDef.asTypeString() + " of property "
+                        + getName() + " in class " + bmmClass.getName());
+
+        }
     }
 
     @JsonProperty("type_ref")

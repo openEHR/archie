@@ -53,7 +53,20 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     /**
      * set from constructor
      */
-    private BmmDefinedType AnyTypeDefinition;
+    private BmmDefinedType anyTypeDefinition;
+
+    public BmmParameterType(String aName, BmmSimpleType anAnyType) {
+        name = aName;
+        anyTypeDefinition = anAnyType;
+    }
+
+    public BmmParameterType(String aName, BmmDefinedType aConformsToType, BmmSimpleType anAnyType) {
+        name = aName;
+        anyTypeDefinition = anAnyType;
+        conformsToType = aConformsToType;
+    }
+
+    public BmmParameterType () {}
 
     /**
      * Return type_name.

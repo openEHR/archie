@@ -42,6 +42,13 @@ public class BmmContainerType extends BmmType {
      */
     private BmmUnitaryType baseType;
 
+    public BmmContainerType (BmmUnitaryType aBaseType, BmmGenericClass aContainerClass) {
+        baseType = aBaseType;
+        containerType = aContainerClass;
+    }
+
+    public BmmContainerType () {}
+
     /**
      * Returns the type of the container. This converts to the root_type in BMM_GENERIC_TYPE.
      *

@@ -3,9 +3,12 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.openehr.bmm.core.BmmClass;
+import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmSimpleType;
+import org.openehr.bmm.core.BmmUnitaryProperty;
 
-public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType> {
+public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType, BmmUnitaryProperty> {
 
     private String type;
 
@@ -37,6 +40,19 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType> {
             return new PBmmOpenType(type);
         }
         return getTypeDef();
+    }
+
+    @Override
+    public void createBmmProperty(BmmModel schema, BmmClass bmmClass) {
+        if (typeDef != null) {
+            typeDef.createBmmType(schema, bmmClass);
+            if (typeDef.bmmType != null) {
+                bmmProperty = new BmmUnitaryProperty(getName(), typeDef.bmmType, getDocumentation(), isMandatory(), isComputed());
+            }
+            else
+                throw new RuntimeException("BmmTypeCreate failed for type " + typeDef.asTypeString() + " of property "
+                        + getName() + " in class " + bmmClass.getName());
+        }
     }
 
     @JsonProperty("type_ref")

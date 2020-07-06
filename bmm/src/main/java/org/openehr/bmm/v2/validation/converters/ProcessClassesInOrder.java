@@ -1,5 +1,6 @@
 package org.openehr.bmm.v2.validation.converters;
 
+import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.v2.persistence.PBmmClass;
 import org.openehr.bmm.v2.persistence.PBmmGenericParameter;
@@ -21,45 +22,45 @@ public class ProcessClassesInOrder {
      * @param action
      * @param classesToProcess
      */
-    public void doAllClassesInOrder(PBmmSchema schema, Consumer<PBmmClass> action, List<PBmmClass> classesToProcess) {
+    public void doAllClassesInOrder(PBmmSchema schema, Consumer<PBmmClass<BmmClass>> action, List<PBmmClass<BmmClass>> classesToProcess) {
         int attempts = schema.getClassDefinitions().size() * 10;
         int tries = 0;
         List<String> visitedClasses = new ArrayList<>();
-        Queue<PBmmClass> queue = new LinkedList<>();
+        Queue<PBmmClass<BmmClass>> queue = new LinkedList<>();
+
         //Initial queue population
-        for (PBmmClass bmmClass : classesToProcess) {
+        for (PBmmClass<BmmClass> bmmClass : classesToProcess) {
             processClass(schema, action, visitedClasses, queue, bmmClass);
         }
+
         //Go through the queue and remove nodes whose ancestors have already been processed
         while (!queue.isEmpty() && tries < attempts) {
             PBmmClass<BmmClass> element = queue.remove();
             if (element != null)
                 processClass(schema, action, visitedClasses, queue, element);
-            }
+
             tries++;
         }
     }
 
-    private void processClass(PBmmSchema schema, Consumer<PBmmClass> action, List<String> visitedClasses, Queue<PBmmClass> queue, PBmmClass bmmClass) {
+    private void processClass(PBmmSchema schema, Consumer<PBmmClass<BmmClass>> action, List<String> visitedClasses, Queue<PBmmClass<BmmClass>> queue, PBmmClass<BmmClass> bmmClass) {
         if (!visitedClasses.contains(bmmClass.getName().toUpperCase())) {
             boolean allAncestorsAndDependenciesVisited = true;
             for (String ancestor : bmmClass.getAncestorTypeNames()) {
                 String ancestorClassName = BmmDefinitions.typeNameToClassKey(ancestor);
                 if (!visitedClasses.contains(ancestorClassName.toUpperCase())) {
                     allAncestorsAndDependenciesVisited = false;
-                    PBmmClass ancestorDef = schema.findClassOrPrimitiveDefinition(ancestorClassName);
+                    PBmmClass<BmmClass> ancestorDef = schema.getClassDefinition(ancestorClassName);
                     queue.add(ancestorDef);
                 }
 
             }
             if (bmmClass.isGeneric()) {
-                Map<String, PBmmGenericParameter> parameters = bmmClass.getGenericParameterDefs();
-                for (PBmmGenericParameter parameter : parameters.values()) {
+                for (PBmmGenericParameter parameter : bmmClass.getGenericParameterDefs().values()) {
                     String conformsTo = parameter.getConformsToType();
                     if (conformsTo != null && !visitedClasses.contains(conformsTo.toUpperCase())) {
                         allAncestorsAndDependenciesVisited = false;
-                        PBmmClass dependency = schema.findClassOrPrimitiveDefinition(conformsTo);
-                        queue.add(dependency);
+                        queue.add(schema.getClassDefinition(conformsTo));
                     }
                 }
             }

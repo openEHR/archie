@@ -23,7 +23,7 @@ import java.io.IOException;
 public class BmmTypeNaming extends ClassNameIdResolver {
 
     private final static ImmutableBiMap<String, Class> classNaming = ImmutableBiMap.<String, Class>builder().
-        put("P_BMM_BASE_TYPE", PBmmBaseType.class).
+        put("P_BMM_BASE_TYPE", PBmmUnitaryType.class).
         put("BMM_INCLUDE_SPEC", BmmIncludeSpec.class).
         put("P_BMM_CLASS", PBmmClass.class).
         put("P_BMM_CONTAINER_PROPERTY", PBmmContainerProperty.class).

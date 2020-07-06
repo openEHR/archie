@@ -2,6 +2,7 @@ package org.openehr.bmm.v2.validation.validators;
 
 import org.apache.commons.lang3.StringUtils;
 
+import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
 import org.openehr.bmm.v2.persistence.*;
@@ -28,12 +29,17 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
         this.schema = schema;
         propertyValidator = new PropertyValidator(logger, schema);
 
+        // set reverse ref to this schema
+        schema.doAllClasses( pBmmClass -> {
+            pBmmClass.setSchema (schema);
+        });
+
         schema.doAllClasses( pBmmClass -> {
             validateClass(pBmmClass);
         });
     }
 
-    public void validateClass(PBmmClass pBmmClass) {
+    public void validateClass(PBmmClass<BmmClass> pBmmClass) {
         //check that all ancestors exist
         pBmmClass.getAncestors().forEach (ancestorClassName -> {
             if (StringUtils.isEmpty (ancestorClassName))
@@ -50,13 +56,10 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
             propertyValidator.validateProperty(pBmmClass, property);
     }
 
-    private void validateGenericParameters(PBmmClass pBmmClass) {
+    private void validateGenericParameters(PBmmClass<BmmClass> pBmmClass) {
         //check that all generic parameter.conforms_to_type exist exists
-        if(pBmmClass.isGeneric()) {
-            Map<String, PBmmGenericParameter> genericParameterDefinitions = pBmmClass.getGenericParameterDefs();
-
-            for(PBmmGenericParameter pBmmGenericParameter: genericParameterDefinitions.values()) {
-
+        if (pBmmClass.isGeneric()) {
+            for (PBmmGenericParameter pBmmGenericParameter: pBmmClass.getGenericParameterDefs().values()) {
                 String conformsToType = pBmmGenericParameter.getConformsToType();
                 if (conformsToType != null && !schema.hasClassOrPrimitiveDefinition(conformsToType))
                     addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_GENERIC_PARAMETER_CONSTRAINT_DOES_NOT_EXIST,

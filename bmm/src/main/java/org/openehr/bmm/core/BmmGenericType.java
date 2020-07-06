@@ -38,6 +38,8 @@ public class BmmGenericType extends BmmDefinedType implements Serializable {
         genericParameters = new ArrayList<>();
     }
 
+    public BmmGenericType() {}
+
     /**
      * Generic parameters of the root_type in this type specifier. The order must match the order of the owning class’s
      * formal generic parameter declarations.

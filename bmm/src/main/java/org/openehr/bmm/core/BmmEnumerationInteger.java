@@ -35,4 +35,9 @@ public class BmmEnumerationInteger extends BmmEnumeration<Integer> implements Se
         setUnderlyingTypeName("Integer");
     }
 
+    public BmmEnumerationInteger() {
+        super();
+    }
+
+
 }

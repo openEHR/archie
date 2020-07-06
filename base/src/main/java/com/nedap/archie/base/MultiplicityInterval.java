@@ -30,6 +30,10 @@ public class MultiplicityInterval extends Interval<Integer> implements Serializa
         super(lower, upper);
     }
 
+    public MultiplicityInterval(Interval<Integer> ivl) {
+        super(ivl.getLower(), ivl.getUpper());
+    }
+
     public MultiplicityInterval(Integer lower, Boolean lowerIncluded, Boolean lowerUnbounded, Integer upper, Boolean upperIncluded, Boolean upperUnbounded) {
         setLower(lower);
         setLowerIncluded(lowerIncluded);

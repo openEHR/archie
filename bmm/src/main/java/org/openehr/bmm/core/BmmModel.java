@@ -170,49 +170,53 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @param bmmClassName
      * @return
      */
-    public List<String> getAllAncestorClasses(String bmmClassName) {
+    public List<String> getAllAncestorClasses (String bmmClassName) {
         Map<String, BmmClass> classMap = new LinkedHashMap<>();
-        BmmClass bmmClass = getClassDefinition(bmmClassName);
-        populateAllAncestorClassMap(bmmClass, classMap);
-        List<String> classNames = new ArrayList<>();
-        classNames.addAll(classMap.keySet());
-        return classNames;
+        BmmClass bmmClass = getClassDefinition (bmmClassName);
+        populateAllAncestorClassMap (bmmClass, classMap);
+        List<String> result = new ArrayList<>();
+        result.addAll(classMap.keySet());
+        return result;
     }
 
-    public Map<String, BmmClass> getAllAncestorClassObjects(BmmClass bmmClass) {
-        Map<String, BmmClass> classMap = new LinkedHashMap<>();
-        populateAllAncestorClassMap(bmmClass, classMap);
+    public Map<String, BmmClass> getAllAncestorClassObjects (BmmClass bmmClass) {
+        Map<String, BmmClass> result = new LinkedHashMap<>();
+        populateAllAncestorClassMap (bmmClass, result);
         List<String> classNames = new ArrayList<>();
-        classNames.addAll(classMap.keySet());
-        return classMap;
+        classNames.addAll(result.keySet());
+        return result;
     }
 
-    protected void populateAllAncestorClassMap(BmmClass bmmClass, Map<String, BmmClass> classMap) {
-        bmmClass.getAncestors().forEach((className, classDef) ->{
-            classMap.put(className, classDef);
-            populateAllAncestorClassMap(classDef, classMap);
+    protected void populateAllAncestorClassMap (BmmClass bmmClass, Map<String, BmmClass> classMap) {
+        bmmClass.getAncestors().forEach((className, typeDef) -> {
+            classMap.put (className, typeDef.baseClass);
+            populateAllAncestorClassMap (typeDef.baseClass, classMap);
         });
     }
 
-    public Map<String, BmmClass> getAllDescendantClassObjects(BmmClass bmmClass) {
-        Map<String, BmmClass> descendants = new LinkedHashMap<>();
+    public Map<String, BmmClass> getAllDescendantClassObjects (BmmClass bmmClass) {
+        Map<String, BmmClass> result = new LinkedHashMap<>();
         getClassDefinitions().forEach((className, classDef) -> {
             Map<String, BmmClass> allAncestors = getAllAncestorClassObjects(classDef);
             if(allAncestors.containsKey(bmmClass.getName())) {
-                descendants.put(classDef.getName(), classDef);
+                result.put(classDef.getName(), classDef);
             }
         });
-        return descendants;
+        return result;
     }
 
-    public BmmClass getAnyClassDefinition() {
-        if(getClassDefinition(BasicDefinitions.ANY_TYPE) != null) {
-            return getClassDefinition(BasicDefinitions.ANY_TYPE);
+    public BmmSimpleClass getAnyClassDefinition() {
+        if (getClassDefinition(BasicDefinitions.ANY_TYPE) != null) {
+            return (BmmSimpleClass) getClassDefinition(BasicDefinitions.ANY_TYPE);
         }
-        BmmClass result = new BmmSimpleClass(BasicDefinitions.ANY_TYPE, null, false);
+        BmmSimpleClass result = new BmmSimpleClass(BasicDefinitions.ANY_TYPE, null, false);
         result.setAbstract(true);
         result.setDocumentation("Root class of type system");
         return result;
+    }
+
+    public BmmSimpleType getAnyTypeDefinition() {
+        return new BmmSimpleType(getAnyClassDefinition());
     }
 
     /**

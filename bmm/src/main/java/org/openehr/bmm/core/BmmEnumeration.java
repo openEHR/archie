@@ -51,6 +51,10 @@ public class BmmEnumeration<T> extends BmmSimpleClass implements Serializable {
         super(aName, aDocumentation, abstractFlag);
     }
 
+    public BmmEnumeration() {
+        super();
+    }
+
     /**
      * Returns the list of names of the enumeration. If no values are supplied, the integer values 0, 1, 2, …​ are assumed.
      *

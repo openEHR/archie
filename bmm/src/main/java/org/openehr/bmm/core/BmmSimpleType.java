@@ -36,6 +36,8 @@ public class BmmSimpleType extends BmmDefinedType implements Serializable {
         baseClass = aBaseClass;
     }
 
+    public BmmSimpleType() {}
+
     /**
      * Return base_class.type_name.
      *

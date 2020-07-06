@@ -21,30 +21,24 @@ package org.openehr.bmm.core;
  * Author: Thomas Beale
  */
 
-import java.util.LinkedHashMap;
+import com.nedap.archie.base.MultiplicityInterval;
 
 /**
- * Parent of meta-types that may be used as the type of any instantiated object that is not a container object.
+ * Property whose type is unitary.
  *
  */
-public class BmmSimpleClass extends BmmClass {
+public class BmmUnitaryProperty extends BmmProperty<BmmUnitaryType> {
 
-    public BmmSimpleClass(String aName, String aDocumentation, Boolean abstractFlag) {
-        super(aName, aDocumentation, abstractFlag);
+    public BmmUnitaryProperty (String name, BmmUnitaryType type, String aDocumentation, Boolean isMandatoryFlag, Boolean isComputedFlag) {
+        super(name, type, aDocumentation, isMandatoryFlag, isComputedFlag);
     }
 
-    public BmmSimpleClass() {
+    public BmmUnitaryProperty(BmmUnitaryProperty other) {
+        super (other);
+    }
+
+    public BmmUnitaryProperty() {
         super();
-    }
-
-    /**
-     * Returns a type object corresponding to this class.
-     *
-     * @return
-     */
-    @Override
-    public BmmSimpleType getType() {
-        return new BmmSimpleType(this);
     }
 
 }

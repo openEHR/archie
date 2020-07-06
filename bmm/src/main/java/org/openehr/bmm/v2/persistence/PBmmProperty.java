@@ -2,8 +2,12 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.openehr.bmm.core.BmmClass;
+import org.openehr.bmm.core.BmmModel;
+import org.openehr.bmm.core.BmmProperty;
+import org.openehr.bmm.core.BmmType;
 
-public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
+public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  extends PBmmBase {
 
     private String documentation;
     private String name;
@@ -11,7 +15,8 @@ public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
     private Boolean isComputed;
     private Boolean isImInfrastructure;
     private Boolean isImRuntime;
-    private T typeDef;
+    protected T typeDef;
+    protected U bmmProperty;
 
     public String getName() {
         return name;
@@ -44,26 +49,22 @@ public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
         return isImInfrastructure;
     }
 
-    public void setImInfrastructure(Boolean imInfrastructure) {
-        isImInfrastructure = imInfrastructure;
-    }
+    public void setIsImInfrastructure (Boolean imInfrastructure) {isImInfrastructure = imInfrastructure; }
 
     @JsonProperty(value = "is_im_runtime")
     public Boolean isImRuntime() {
         return isImRuntime;
     }
 
-    public void setImRuntime(Boolean imRuntime) {
-        isImRuntime = imRuntime;
-    }
+    public void setIsImRuntime (Boolean imRuntime) {isImRuntime = imRuntime; }
 
     public T getTypeDef() {
         return typeDef;
     }
 
-    public void setTypeDef(T typeDef) {
-        this.typeDef = typeDef;
-    }
+    public U getBmmProperty() { return bmmProperty; }
+
+    public abstract void createBmmProperty(BmmModel schema, BmmClass bmmClass);
 
     /**
      * Calculate typeDef and return. Always returns a type, even if typeDef in the persisted schema is not set

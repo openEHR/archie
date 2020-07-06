@@ -42,8 +42,12 @@ public class BmmGenericClass extends BmmClass implements Serializable {
     private Map<String, BmmParameterType> genericParameters;
 
     public BmmGenericClass(String aName, String aDocumentation, Boolean abstractFlag) {
-        initialize(aName, aDocumentation, abstractFlag);
+        super(aName, aDocumentation, abstractFlag);
         genericParameters = new LinkedHashMap<>();
+    }
+
+    public BmmGenericClass() {
+        super();
     }
 
     /**
@@ -52,10 +56,20 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      *
      * @return
      */
-    public List<BmmParameterType> getGenericParameters() {
+    public List<BmmParameterType> getGenericParametersList() {
         List<BmmParameterType> parameters = new ArrayList<>();
         parameters.addAll(genericParameters.values());
         return parameters;
+    }
+
+    /**
+     * Returns shallow cloned list of generic parameter definitions; these are defined either directly on
+     * this class or by the addition of an ancestor class which is generic.
+     *
+     * @return
+     */
+    public Map<String, BmmParameterType> getGenericParameters() {
+        return genericParameters;
     }
 
     /**
@@ -74,11 +88,8 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      *
      * @param parameters
      */
-    public void setGenericParameters(List<BmmParameterType> parameters) {
-        this.genericParameters.clear();
-        parameters.forEach(param -> {
-            this.genericParameters.put(param.getName().toUpperCase(), param);
-        });
+    public void setGenericParameters(Map<String, BmmParameterType> parameters) {
+        genericParameters = parameters;
     }
 
     /**
@@ -151,7 +162,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
     @Override
     public BmmGenericClass duplicate() {
         BmmGenericClass target = (BmmGenericClass)super.duplicate();
-        target.setGenericParameters(this.getGenericParameters());
+        target.setGenericParameters (this.getGenericParameters());
         return target;
     }
 }

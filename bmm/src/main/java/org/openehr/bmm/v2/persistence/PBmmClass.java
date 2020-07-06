@@ -2,6 +2,7 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.openehr.bmm.core.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -9,16 +10,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class PBmmClass extends PBmmBase {
+public class PBmmClass<T extends BmmClass> extends PBmmBase {
 
     private String documentation;//from P_BMM_MODEL_ELEMENT
     private String name;
     private List<String> ancestors;
-    private Map<String, PBmmType> ancestorDefs;
+    private List<PBmmUnitaryType> ancestorDefs;
     private Map<String, PBmmProperty> properties;
     private Boolean isAbstract = false;
     private Boolean isOverride = false;
     private Map<String, PBmmGenericParameter> genericParameterDefs;
+    private PBmmSchema pBmmSchema;
+    protected T bmmClass;
 
     private transient String sourceSchemaId;
 
@@ -38,10 +41,38 @@ public class PBmmClass extends PBmmBase {
         this.name = name;
     }
 
+    public T getBmmClass() {
+        return bmmClass;
+    }
+
     public List<String> getAncestors() {
         if (ancestors == null)
             ancestors = new ArrayList<>();
         return ancestors;
+    }
+
+    public List<PBmmUnitaryType> ancestorRefs() {
+        if (ancestorDefs != null)
+            return ancestorDefs;
+        else {
+            List<PBmmUnitaryType> result = new ArrayList<>();
+            if (ancestors != null) {
+                for (String anc: ancestors) {
+                    PBmmClass pBmmClass = pBmmSchema.getClassDefinition(anc);
+                    if (pBmmClass != null)
+                        if (pBmmClass.isGeneric())
+                            result.add(new PBmmGenericType(anc, new ArrayList<>(pBmmClass.genericParameterDefs.keySet())));
+                        else
+                            result.add(new PBmmSimpleType(anc));
+                    else {
+                        // could also throw a runtime exception here.
+                        // throw new RuntimeException("Error retrieving class definition for ancestor \"" +
+                        //            anc  + "\" of PBmmClass " + name);
+                    }
+                }
+            }
+            return result;
+        }
     }
 
     /**
@@ -52,12 +83,7 @@ public class PBmmClass extends PBmmBase {
      */
     @JsonIgnore
     public List<String> getAncestorTypeNames() {
-        if (ancestorDefs != null && !ancestorDefs.isEmpty())
-            return ancestorDefs.values().stream().map(type -> type.asTypeString()).collect(Collectors.toList());
-        else if (ancestors != null)
-            return ancestors;
-        else
-            return new ArrayList<>();
+        return ancestorRefs().stream().map(PBmmType::asTypeString).collect(Collectors.toList());
     }
 
     public void setAncestors(List<String> ancestors) {
@@ -121,12 +147,59 @@ public class PBmmClass extends PBmmBase {
         this.sourceSchemaId = sourceSchemaId;
     }
 
-    public Map<String, PBmmType> getAncestorDefs() {
+    public List<PBmmUnitaryType> getAncestorDefs() {
         return ancestorDefs;
     }
 
-    public void setAncestorDefs(Map<String, PBmmType> ancestorDefs) {
-        this.ancestorDefs = ancestorDefs;
+    public void createBmmClass() {
+        if (getGenericParameterDefs().size() > 0)
+            bmmClass = (T) new BmmGenericClass(getName(), getDocumentation(), isAbstract());
+        else
+            bmmClass = (T) new BmmSimpleClass(getName(), getDocumentation(), isAbstract());
+
+        bmmClass.setSourceSchemaId(getSourceSchemaId());
     }
 
+    public void populateBmmClass(BmmModel schema) {
+        if (bmmClass != null) {
+            // populate references to ancestor classes; should be every class except Any
+            for (PBmmUnitaryType ancestorType : ancestorRefs()) {
+                BmmClass ancestorClass = schema.getClassDefinition(ancestorType.baseType());
+                if (ancestorClass != null)
+                    ancestorType.createBmmType(schema, ancestorClass);
+                else
+                    throw new RuntimeException("Error retrieving class definition for ancestor class " +
+                            ancestorType.baseType() + " of BmmClass " + name);
+
+                if (ancestorType.bmmType instanceof BmmDefinedType)
+                    bmmClass.addAncestor((BmmDefinedType)ancestorType.bmmType);
+            }
+
+            // create generic parameters if a generic class
+            // and add to the BMM_GENERIC_TYPE.generic_parameters list
+            if (bmmClass instanceof BmmGenericClass)
+                for (PBmmGenericParameter param : getGenericParameterDefs().values()) {
+                    param.createBmmGenericParameter(schema);
+                    if (param.bmmGenericParameter != null)
+                        ((BmmGenericClass) bmmClass).addGenericParameter(param.bmmGenericParameter);
+                    else
+                        throw new RuntimeException("Error retrieving class definition for generic parameter " +
+                                param.getName()  + " of PBmmClass " + name);
+                }
+
+            // populate properties
+            if (getProperties() != null)
+                for (PBmmProperty pBmmProperty: getProperties().values()) {
+                    pBmmProperty.createBmmProperty(schema, bmmClass);
+                    if (pBmmProperty.bmmProperty != null)
+                        bmmClass.addProperty(pBmmProperty.bmmProperty);
+                }
+        }
+        else
+            throw new RuntimeException("bmmClass for PBmmClass \"" + name + "\" is null. It may have been defined as a class or a primitive but not included in a package");
+    }
+
+    public void setSchema(PBmmSchema aSchema) {
+        pBmmSchema = aSchema;
+    }
 }

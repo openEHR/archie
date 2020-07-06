@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 public class BmmModelCreator {
 
-    private BmmClassCreator classCreator = new BmmClassCreator();
-
     public BmmModel create(BmmValidationResult validationResult) {
         PBmmSchema schema = validationResult.getSchemaWithMergedIncludes();
         BmmModel model = new BmmModel();
@@ -35,14 +33,14 @@ public class BmmModelCreator {
             model.addPackage(bmmPackage);
 
             pBmmPackage.doRecursiveClasses((p, s) -> {
-                PBmmClass persistedBmmClass = schema.findClassOrPrimitiveDefinition(s);
-                if (persistedBmmClass != null) {
-                    BmmClass bmmClass = classCreator.createBmmClass(persistedBmmClass);
-
-                    if (bmmClass != null && bmmPackage != null) {
+                PBmmClass pBmmClass = schema.getClassDefinition(s);
+                if (pBmmClass != null) {
+                    pBmmClass.createBmmClass();
+                    BmmClass bmmClass = pBmmClass.getBmmClass();
+                    if (bmmClass != null) {
                         if (schema.getPrimitiveTypes().get(bmmClass.getName()) != null)
                             bmmClass.setPrimitiveType(true);
-                        if (persistedBmmClass.isOverride() != null && persistedBmmClass.isOverride())
+                        if (pBmmClass.isOverride() != null && pBmmClass.isOverride())
                             bmmClass.setOverride(true);
                         model.addClassDefinition(bmmClass, bmmPackage);
                     }
@@ -58,12 +56,11 @@ public class BmmModelCreator {
 
         // The basics have been created. Now populate the classes with properties
         ProcessClassesInOrder processClassesInOrder = new ProcessClassesInOrder();
-        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> classCreator.populateBmmClass(bmmClass, model), new ArrayList<>(schema.getPrimitiveTypes().values()));
-        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> classCreator.populateBmmClass(bmmClass, model), new ArrayList<>(schema.getClassDefinitions().values()));
+        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> bmmClass.populateBmmClass(model), new ArrayList<>(schema.getPrimitiveTypes().values()));
+        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> bmmClass.populateBmmClass(model), new ArrayList<>(schema.getClassDefinitions().values()));
 
         return model;
     }
-
 
 
     private BmmPackage createBmmPackageDefinition(PBmmPackage p, PBmmPackage parent, BmmPackage parentPackageDefinition) {

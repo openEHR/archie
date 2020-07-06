@@ -2,19 +2,35 @@ package org.openehr.bmm.v2.persistence;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openehr.bmm.core.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class PBmmGenericType extends PBmmBaseType {
+public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     private String rootType;
     private Map<String, PBmmType> genericParameterDefs;
     private List<String> genericParameters;
 
+    public PBmmGenericType() {
+    }
+
+    public PBmmGenericType (String aTypeName, List<String> genericParams) {
+        rootType = aTypeName;
+        genericParameters = genericParams;
+    }
 
     public String getRootType() {
+        return rootType;
+    }
+
+    /**
+     * Effective unitary type, ignoring containers and also generic parameters
+     */
+    @Override
+    public String baseType() {
         return rootType;
     }
 
@@ -65,6 +81,24 @@ public final class PBmmGenericType extends PBmmBaseType {
             });
         }
         return genericParameterReferences;
+    }
+
+    @Override
+    public void createBmmType(BmmModel schema, BmmClass classDefinition) {
+        BmmClass rootClassDef = schema.getClassDefinition(rootType);
+        if (rootClassDef instanceof BmmGenericClass) {
+            bmmType = new BmmGenericType((BmmGenericClass)rootClassDef);
+            for (PBmmType param: getGenericParameterDefs().values()) {
+                param.createBmmType(schema, classDefinition);
+                if (param.bmmType instanceof BmmUnitaryType)
+                    bmmType.addGenericParameter(param.bmmType);
+                else
+                    throw new RuntimeException("BmmClass " + getRootType() + " generic parameter" +
+                            param.asTypeString() + " not BmmUnitaryType");
+            }
+        }
+        else
+            throw new RuntimeException("BmmClass " + getRootType() + " is not defined in this model or not a generic type");
     }
 
     /**

@@ -1,11 +1,11 @@
 package org.openehr.bmm.v2.persistence;
 
 import com.google.common.collect.Lists;
+import org.openehr.bmm.core.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public final class PBmmSimpleType extends PBmmBaseType {
+public final class PBmmSimpleType extends PBmmUnitaryType<BmmSimpleType> {
 
     private String type;
 
@@ -23,6 +23,24 @@ public final class PBmmSimpleType extends PBmmBaseType {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * Effective unitary type, ignoring containers and also generic parameters
+     */
+    @Override
+    public String baseType() {
+        return type;
+    }
+
+    @Override
+    public void createBmmType(BmmModel schema, BmmClass classDefinition) {
+        BmmClass simpleClassDef = schema.getClassDefinition (type);
+        if (simpleClassDef instanceof BmmSimpleClass) {
+            bmmType = new BmmSimpleType((BmmSimpleClass) simpleClassDef);
+        }
+        else
+            throw new RuntimeException("BmmClass " + type + " is not defined in this model");
     }
 
     /**

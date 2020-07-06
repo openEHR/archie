@@ -3,6 +3,7 @@ package org.openehr.bmm.v2.persistence;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.ArrayList;
@@ -31,8 +32,8 @@ import java.util.function.Consumer;
 })
 public final class PBmmSchema extends PBmmPackageContainer {
 
-    private Map<String, PBmmClass> primitiveTypes;
-    private Map<String, PBmmClass> classDefinitions;
+    private Map<String, PBmmClass<BmmClass>> primitiveTypes;
+    private Map<String, PBmmClass<BmmClass>> classDefinitions;
     private Map<String, BmmIncludeSpec> includes;
 
     private String rmPublisher;
@@ -59,25 +60,23 @@ public final class PBmmSchema extends PBmmPackageContainer {
     @Deprecated
     private String archetypeVisualizeDescendantsOf;
 
-    public Map<String, PBmmClass> getPrimitiveTypes() {
-        if(primitiveTypes == null) {
+    public Map<String, PBmmClass<BmmClass>> getPrimitiveTypes() {
+        if (primitiveTypes == null)
             primitiveTypes = new CaseInsensitiveLinkedHashMap<>();
-        }
         return primitiveTypes;
     }
 
-    public void setPrimitiveTypes(Map<String, PBmmClass> primitiveTypes) {
+    public void setPrimitiveTypes(Map<String, PBmmClass<BmmClass>> primitiveTypes) {
         this.primitiveTypes = primitiveTypes;
     }
 
-    public Map<String, PBmmClass> getClassDefinitions() {
-        if(classDefinitions == null) {
+    public Map<String, PBmmClass<BmmClass>> getClassDefinitions() {
+        if (classDefinitions == null)
             classDefinitions = new CaseInsensitiveLinkedHashMap<>();
-        }
         return classDefinitions;
     }
 
-    public void setClassDefinitions(Map<String, PBmmClass> classDefinitions) {
+    public void setClassDefinitions(Map<String, PBmmClass<BmmClass>> classDefinitions) {
         this.classDefinitions = classDefinitions;
     }
 
@@ -224,16 +223,11 @@ public final class PBmmSchema extends PBmmPackageContainer {
      * @param className
      * @return
      */
-    public PBmmClass findClassOrPrimitiveDefinition(String className) {
-        PBmmClass bmmClass = getClassDefinitions().get(className);
-        if (bmmClass == null) {
-            bmmClass = getPrimitiveTypes().get(className);
-        }
-        return bmmClass;
-    }
-
-    public PBmmClass getClassDefinition(String className) {
-        return classDefinitions.get(className);
+    public PBmmClass<BmmClass> getClassDefinition(String className) {
+        PBmmClass<BmmClass> result = classDefinitions.get(className);
+        if (result == null)
+            result = primitiveTypes.get(className);
+        return result;
     }
 
     /**
@@ -242,7 +236,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
      *
      * @param action
      */
-    public void doAllClasses(Consumer<PBmmClass> action) {
+    public void doAllClasses(Consumer<PBmmClass<BmmClass>> action) {
         getPrimitiveTypes().values().forEach(action);
         getClassDefinitions().values().forEach(action);
     }
