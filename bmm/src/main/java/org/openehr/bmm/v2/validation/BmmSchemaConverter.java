@@ -102,7 +102,7 @@ public class BmmSchemaConverter {
 
             schemaValidator.checkNoExceptions();
 
-            //set the descendants and ancestors properties
+            // set the descendants and ancestors properties
             new DescendantsCalculator().calculateDescendants(bmmModel);
             result.setModel(bmmModel);
 
@@ -110,10 +110,12 @@ public class BmmSchemaConverter {
             createModelsByClosureAndVersion(result);
 
             return result;
-        } catch (BmmSchemaValidationException ex) {
+        }
+        catch (BmmSchemaValidationException ex) {
             //cannot continue on validation error
             return result;
-        } finally {
+        }
+        finally {
             //add the result to the repo, even in case of errors
             repository.addModel(result);
         }
@@ -123,11 +125,10 @@ public class BmmSchemaConverter {
      * Convert and validate all schemas in the repository. Stores the results in the repository
      */
     public void validateAndConvertRepository() {
-        for(PBmmSchema schema:repository.getPersistentSchemas()) {
-            if(repository.getModel(schema.getSchemaId()) == null) {
+        for (PBmmSchema schema:repository.getPersistentSchemas())
+            if (repository.getModel(schema.getSchemaId()) == null) {
                 BmmValidationResult bmmValidationResult = validateConvertAndAddToRepo(schema);
             }
-        }
     }
 
     private void createModelsByClosureAndVersion(BmmValidationResult validationResult) {
@@ -136,28 +137,24 @@ public class BmmSchemaConverter {
         String schemaId = model.getSchemaId();
         String modelPublisher = model.getRmPublisher();
         String modelName = model.getModelName();
-        if(modelName != null) {
+        if (modelName != null)
             addClosure(schemaId, validationResult, modelPublisher, modelName);
-        } else {
+        else
             //possibly old style BMM, test
-            for(String closureName:model.getArchetypeRmClosurePackages()) {
+            for (String closureName:model.getArchetypeRmClosurePackages())
                 addClosure(schemaId, validationResult, modelPublisher, closureName);
-            }
-        }
     }
 
     private void addClosure(String schemaId, BmmValidationResult validationResult, String modelPublisher, String modelName) {
         String qualifiedRmClosureName = BmmDefinitions.publisherQualifiedRmClosureName(modelPublisher, modelName) + "_" + validationResult.getModel().getRmRelease();
         BmmValidationResult existingSchema = repository.getModelByClosure(qualifiedRmClosureName);
-        if (existingSchema != null) {
+        if (existingSchema != null)
             schemaValidator.getLogger().addInfo(BmmMessageIds.ec_bmm_schema_duplicate_found,
                     qualifiedRmClosureName,
                     existingSchema.getSchemaId(),
                     schemaId);
-        } else {
+        else
             repository.addModelByClosure(qualifiedRmClosureName, validationResult);
-        }
-
     }
 
 

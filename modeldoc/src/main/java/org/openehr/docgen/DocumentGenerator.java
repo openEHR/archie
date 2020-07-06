@@ -134,13 +134,11 @@ public class DocumentGenerator {
             details.setDocumentation(revertSafeString(((BmmClass) bmmClass).getDocumentation()));
             details.setFlagClass(false);
             bmmClass.getProperties().forEach((propName, property) ->{
-                if(property.getDocumentation() == null) {
+                if(property.getDocumentation() == null)
                     details.setFlagClass(true);
-                }
             });
-            if(bmmClass.getDocumentation() == null) {
+            if(bmmClass.getDocumentation() == null)
                 details.setFlagClass(true);
-            }
             classes.add(details);
         });
         root.put("classes", classes);
@@ -206,21 +204,22 @@ public class DocumentGenerator {
                 ancestors.add(ancestor);
             });
             List<PropertyDetails> properties = new ArrayList<>();
-            bmmClass.getProperties().forEach((K,V) ->{
+            bmmClass.getProperties().forEach((K,V) -> {
                 PropertyDetails property = new PropertyDetails(V.getName());
                 property.setType(V.getType().toDisplayString());
                 property.setDocumentation(revertSafeString(V.getDocumentation()));
                 property.setExistence(V.getExistence().toString());
                 if(V instanceof BmmContainerProperty) {
-                    if(((BmmContainerProperty)V).getCardinality().getLower() != null) {
+                    if(((BmmContainerProperty)V).getCardinality().getLower() != null)
                         property.setCardinality(((BmmContainerProperty) V).getCardinality().toString());
-                    } else {
+                    else {
                         System.out.println("######## INVESTIGATE " + bmmClass.getName() + "." + property.getName());
                         property.setCardinality("0..*");
                     }
-                } else {
-                    property.setCardinality("N/A");
                 }
+                else
+                    property.setCardinality("N/A");
+
                 properties.add(property);
             });
             List<ClassDetails> descendants = new ArrayList<>();
@@ -237,7 +236,8 @@ public class DocumentGenerator {
             root.put("properties", properties);
             root.put("descendants", descendants);
             populateTemplate(classDetails, root, classPath);
-        }catch(Exception e) {
+        }
+        catch(Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error generating class detail page from template for class " + bmmClass.getName());
         }

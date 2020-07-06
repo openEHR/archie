@@ -27,14 +27,14 @@ public class ConversionTest {
 
         BmmSchemaConverter converter = new BmmSchemaConverter(repo);
         converter.validateAndConvertRepository();
-        for(BmmValidationResult validationResult:repo.getModels()) {
+        for (BmmValidationResult validationResult:repo.getModels()) {
             System.out.println(validationResult.getLogger());
             assertTrue("the OpenEHR RM 1.0.2 BMM files should pass validation", validationResult.passes());
         }
     }
 
     private PBmmSchema parse(String name) throws IOException  {
-        try(InputStream stream = getClass().getResourceAsStream(name)) {//"/testbmm/TestBmm1.bmm")) {
+        try (InputStream stream = getClass().getResourceAsStream(name)) {//"/testbmm/TestBmm1.bmm")) {
             return BmmOdinParser.convert(stream);
         }
     }

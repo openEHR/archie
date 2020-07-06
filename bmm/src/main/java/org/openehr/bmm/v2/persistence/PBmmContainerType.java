@@ -67,9 +67,8 @@ public class PBmmContainerType extends PBmmType {
                 // However it's the only way in the current P_BMM version
                 return new PBmmOpenType(type);
             }
-            else {
+            else
                 return new PBmmSimpleType(type);
-            }
         }
         return typeDef;
     }

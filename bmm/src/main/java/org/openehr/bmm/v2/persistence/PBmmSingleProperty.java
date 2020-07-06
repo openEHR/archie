@@ -29,11 +29,10 @@ public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType> {
     @Override
     @JsonIgnore
     public PBmmSimpleType getTypeRef() {
-        if(serializedTypeRef != null) {
+        if (serializedTypeRef != null)
             return serializedTypeRef;
-        } else if(getTypeDef() == null) {
+        else if (getTypeDef() == null)
             return new PBmmSimpleType(type);
-        }
         return getTypeDef();
     }
 

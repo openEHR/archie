@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class BmmSimpleType extends BmmDefinedType implements Serializable {
 
-    public BmmSimpleType(BmmSimpleClass aBaseClass) {
+    public BmmSimpleType (BmmSimpleClass aBaseClass) {
         baseClass = aBaseClass;
     }
 

@@ -11,11 +11,10 @@ import org.openehr.utils.message.MessageLogger;
 public class BmmVersionValidation implements BmmValidation {
     @Override
     public void validate(BmmValidationResult validationResult, BmmRepository repository, MessageLogger logger, PBmmSchema schema) {
-        if (!BmmDefinitions.isBmmVersionCompatible(schema.getBmmVersion())) {
+        if (!BmmDefinitions.isBmmVersionCompatible(schema.getBmmVersion()))
             logger.addError(BmmMessageIds.EC_INCOMPATIBLE_BMM_VERSION,
                     schema.getSchemaId(),
                     schema.getBmmVersion(),
                     BmmDefinitions.BMM_INTERNAL_VERSION);
-        }
     }
 }

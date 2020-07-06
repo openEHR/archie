@@ -11,7 +11,8 @@ public class PBmmBase extends OpenEHRBase {
         try {
             kryo = KryoUtil.getPool().borrow();
             return kryo.copy(this);
-        } finally {
+        }
+        finally {
             KryoUtil.getPool().release(kryo);
         }
     }

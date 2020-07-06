@@ -32,10 +32,8 @@ public class ProcessClassesInOrder {
         }
         //Go through the queue and remove nodes whose ancestors have already been processed
         while (!queue.isEmpty() && tries < attempts) {
-            PBmmClass element = queue.remove();
-            if (element == null) {
-
-            } else {
+            PBmmClass<BmmClass> element = queue.remove();
+            if (element != null)
                 processClass(schema, action, visitedClasses, queue, element);
             }
             tries++;
@@ -65,9 +63,9 @@ public class ProcessClassesInOrder {
                     }
                 }
             }
-            if (!allAncestorsAndDependenciesVisited) {
+            if (!allAncestorsAndDependenciesVisited)
                 queue.add(bmmClass);
-            } else {
+            else {
                 action.accept(bmmClass);
                 visitedClasses.add(bmmClass.getName().toUpperCase());
             }

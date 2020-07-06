@@ -50,8 +50,8 @@ public final class PBmmSchema extends PBmmPackageContainer {
     @Deprecated
     private List<String> archetypeRmClosurePackages;
 
-    //these fields are now stored in the Archetype Profile files, and are
-    //deprecated here - included mainly to be able to parse older P_BMM files.
+    // These fields are now stored in the Archetype Profile files, and are
+    // deprecated here - included mainly to be able to parse older P_BMM files.
     @Deprecated
     private String archetypeParentClass;
     @Deprecated
@@ -82,25 +82,24 @@ public final class PBmmSchema extends PBmmPackageContainer {
     }
 
     public Map<String, BmmIncludeSpec> getIncludes() {
-        if(includes == null) {
+        if (includes == null)
             includes = new CaseInsensitiveLinkedHashMap<>();
-        }
         return includes;
     }
 
-    public void setIncludes(Map<String, BmmIncludeSpec> includes) {
+    public void setIncludes (Map<String, BmmIncludeSpec> includes) {
         this.includes = includes;
     }
 
-    public String getBmmVersion() {
+    public String getBmmVersion () {
         return bmmVersion;
     }
 
-    public void setBmmVersion(String bmmVersion) {
+    public void setBmmVersion (String bmmVersion) {
         this.bmmVersion = bmmVersion;
     }
 
-    public String getModelName() {
+    public String getModelName () {
         return modelName;
     }
 
@@ -108,7 +107,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
         this.modelName = modelName;
     }
 
-    public String getSchemaName() {
+    public String getSchemaName () {
         return schemaName;
     }
 

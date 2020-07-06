@@ -1,6 +1,8 @@
 package org.openehr.bmm.v2.persistence;
 
-public abstract class PBmmBaseType extends PBmmType {
+import org.openehr.bmm.core.BmmType;
+
+public abstract class PBmmBaseType<T extends BmmType> extends PBmmType<T> {
     private String valueConstraint;
 
     public String getValueConstraint() {

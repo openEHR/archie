@@ -37,22 +37,27 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * Name of this property in the model.
 	 */
 	private String name;
+
 	/**
 	 * True if this property is mandatory in its class.
 	 */
 	private Boolean isMandatory;
+
 	/**
 	 * True if this property is computed rather than stored in objects of this class.
 	 */
 	private Boolean isComputed;
+
 	/**
 	 * Formal type of this property.
 	 */
 	private T type;
+
 	/**
 	 * True if this property is marked with info model 'im_runtime' property.
 	 */
 	private Boolean isImRuntime;
+
 	/**
 	 * True if this property was marked with info model 'im_infrastructure' flag.
 	 */
@@ -189,13 +194,12 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * @return
 	 */
 	public MultiplicityInterval getExistence() {
-		MultiplicityInterval interval = null;
-		if(isMandatory) {
-			interval = MultiplicityInterval.createMandatory();
-		} else {
-			interval = MultiplicityInterval.createOptional();
-		}
-		return interval;
+		MultiplicityInterval result;
+		if (isMandatory)
+			result = MultiplicityInterval.createMandatory();
+		else
+			result = MultiplicityInterval.createOptional();
+		return result;
 	}
 
 	/**

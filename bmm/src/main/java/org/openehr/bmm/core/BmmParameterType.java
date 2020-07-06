@@ -144,7 +144,7 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
         if (confType != null)
             return confType;
         else
-            return AnyTypeDefinition;
+            return anyTypeDefinition;
     }
 
     /**
