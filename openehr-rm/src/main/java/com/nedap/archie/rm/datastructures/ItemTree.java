@@ -24,7 +24,7 @@ import java.util.Objects;
         "items"
 })
 @XmlRootElement(name = "item_tree")
-public class ItemTree extends ItemStructure<Item> {
+public class ItemTree extends ItemStructure {
     @Nullable
     private List<Item> items = new ArrayList<>();
 

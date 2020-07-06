@@ -24,7 +24,7 @@ import java.util.Objects;
         "items"
 })
 @XmlRootElement(name = "item_list")
-public class ItemList extends ItemStructure<Element> {
+public class ItemList extends ItemStructure {
 
 
     @Nullable

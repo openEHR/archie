@@ -24,35 +24,35 @@ import java.util.Objects;
         "items"
 })
 @XmlRootElement
-public class Cluster<Type extends Item> extends Item {
+public class Cluster extends Item {
 
-    private List<Type> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     public Cluster() {
     }
 
-    public Cluster(String archetypeNodeId, DvText name, List<Type> items) {
+    public Cluster(String archetypeNodeId, DvText name, List<Item> items) {
         super(archetypeNodeId, name);
         setItems(items);
     }
 
-    public Cluster(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, List<Type> items) {
+    public Cluster(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, List<Item> items) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
         setItems(items);
     }
 
-    public List<Type> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Type> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
 
         setThisAsParent(items, "items");
 
     }
 
-    public void addItem(Type item) {
+    public void addItem(Item item) {
         items.add(item);
         setThisAsParent(item, "items");
     }
@@ -62,7 +62,7 @@ public class Cluster<Type extends Item> extends Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        Cluster<?> cluster = (Cluster<?>) o;
+        Cluster cluster = (Cluster) o;
         return Objects.equals(items, cluster.items);
     }
 
