@@ -43,6 +43,7 @@ public class ItemList extends ItemStructure {
         setItems(items);
     }
 
+    @Override
     public List<Element> getItems() {
         return items;
     }

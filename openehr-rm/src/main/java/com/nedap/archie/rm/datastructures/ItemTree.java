@@ -41,6 +41,7 @@ public class ItemTree extends ItemStructure {
         setItems(items);
     }
 
+    @Override
     public List<Item> getItems() {
         return items;
     }
