@@ -8,8 +8,6 @@ import org.openehr.bmm.v2.persistence.odin.BmmOdinSerializer;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
