@@ -16,7 +16,22 @@ import static org.junit.Assert.assertTrue;
 public class ConversionTest {
 
     @Test
-    public void test() throws Exception {
+    public void testAdlTestSchema() throws Exception {
+        BmmRepository repo = new BmmRepository();
+        repo.addPersistentSchema(parse("/openehr/openehr_primitive_types_102.bmm"));
+        repo.addPersistentSchema(parse("/openehr/openehr_basic_types_102.bmm"));
+        repo.addPersistentSchema(parse("/openehr/openehr_adltest_100.bmm"));
+
+        BmmSchemaConverter converter = new BmmSchemaConverter(repo);
+        converter.validateAndConvertRepository();
+        for (BmmValidationResult validationResult:repo.getModels()) {
+            System.out.println(validationResult.getLogger());
+            assertTrue("the OpenEHR ADL Test 1.0.0 BMM files should pass validation", validationResult.passes());
+        }
+    }
+
+    @Test
+    public void testRm102() throws Exception {
         BmmRepository repo = new BmmRepository();
         repo.addPersistentSchema(parse("/openehr/openehr_basic_types_102.bmm"));
         repo.addPersistentSchema(parse("/openehr/openehr_demographic_102.bmm"));
@@ -41,7 +56,6 @@ public class ConversionTest {
 
     @Test
     public void generateOdinTest() throws  Exception{
-
         PBmmSchema parsed = parse("/openehr/openehr_basic_types_102.bmm");
         String serialized = new BmmOdinSerializer().serialize(parsed);
         //check that it can be parsed again
