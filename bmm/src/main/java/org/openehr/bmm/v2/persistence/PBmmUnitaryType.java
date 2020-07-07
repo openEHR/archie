@@ -3,6 +3,7 @@ package org.openehr.bmm.v2.persistence;
 import org.openehr.bmm.core.BmmType;
 
 public abstract class PBmmUnitaryType<T extends BmmType> extends PBmmType<T> {
+
     private String valueConstraint;
 
     public String getValueConstraint() {

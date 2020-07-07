@@ -34,11 +34,10 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType, Bmm
     @JsonIgnore
     @Override
     public PBmmOpenType getTypeRef() {
-        if(serializedTypeRef != null) {
+        if (serializedTypeRef != null)
             return serializedTypeRef;
-        } else if(getTypeDef() == null) {
+        else if(getTypeDef() == null)
             return new PBmmOpenType(type);
-        }
         return getTypeDef();
     }
 
