@@ -9,7 +9,11 @@ import org.openehr.bmm.core.BmmModel;
 public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType, BmmContainerProperty> {
 
     private Interval<Integer> cardinality;
-    
+
+    public PBmmContainerProperty() {
+        super();
+    }
+
     public Interval<Integer> getCardinality() {
         return cardinality;
     }

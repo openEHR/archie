@@ -6,6 +6,10 @@ import org.openehr.bmm.core.BmmUnitaryProperty;
 
 public final class PBmmGenericProperty extends PBmmProperty<PBmmGenericType, BmmUnitaryProperty> {
 
+    public PBmmGenericProperty() {
+        super();
+    }
+
     @Override
     public void createBmmProperty(BmmModel schema, BmmClass bmmClass) {
         if (typeDef != null) {

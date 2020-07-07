@@ -23,6 +23,10 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType, Bmm
      */
     private PBmmOpenType serializedTypeRef;
 
+    public PBmmSinglePropertyOpen() {
+        super();
+    }
+
     public String getType() {
         return type;
     }

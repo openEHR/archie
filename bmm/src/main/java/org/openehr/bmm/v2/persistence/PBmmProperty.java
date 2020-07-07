@@ -26,6 +26,13 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
         this.name = name;
     }
 
+    public PBmmProperty () {
+        isMandatory = Boolean.FALSE;
+        isComputed = Boolean.FALSE;
+        isImInfrastructure = Boolean.FALSE;
+        isImRuntime = Boolean.FALSE;
+    }
+
     @JsonProperty(value = "is_mandatory")
     public Boolean isMandatory() {
         return isMandatory;

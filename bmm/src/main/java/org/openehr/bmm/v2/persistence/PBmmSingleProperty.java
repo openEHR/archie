@@ -24,6 +24,10 @@ public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType, BmmUn
      */
     private PBmmSimpleType serializedTypeRef;
 
+    public PBmmSingleProperty() {
+        super();
+    }
+
     public String getType() {
         return type;
     }
