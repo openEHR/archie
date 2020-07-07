@@ -48,7 +48,7 @@ public class BuiltinReferenceModels {
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_rm_103.bmm",
                 "bmm/openEHR/components/BASE/Release-1.1.0/openehr_base_110.bmm",
                 "bmm/openEHR/components/RM/rejected/openehr_ehr_extract_999.bmm",
-                "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_CLINICAL.v.0.0.3.bmm",
+                // "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_CLINICAL.v.0.0.3.bmm",
                 "bmm/openEHR/original/Release-1.0.2/openehr_demographic_102.bmm",
                 "bmm/openEHR/original/Release-1.0.2/openehr_ehr_102.bmm",
                 "bmm/openEHR/components/LANG/Release-1.0.0/openehr_lang_100.bmm",
