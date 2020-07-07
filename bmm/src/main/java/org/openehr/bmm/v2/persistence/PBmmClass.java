@@ -15,11 +15,11 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
     private String documentation;//from P_BMM_MODEL_ELEMENT
     private String name;
     private List<String> ancestors;
-    private List<PBmmUnitaryType> ancestorDefs;
+    private Map<String, PBmmUnitaryType> ancestorDefs;
     private Map<String, PBmmProperty> properties;
     private Boolean isAbstract = false;
-    private Boolean isOverride = false;
     private Map<String, PBmmGenericParameter> genericParameterDefs;
+    private Boolean isOverride = false;
     private PBmmSchema pBmmSchema;
     protected T bmmClass;
 
@@ -51,19 +51,23 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
         return ancestors;
     }
 
-    public List<PBmmUnitaryType> ancestorRefs() {
+    /**
+     * @return coalesced structural representation of ancestors from ancestorDefs and ancestors
+     */
+    @JsonIgnore
+    public Map<String, PBmmUnitaryType> ancestorRefs() {
         if (ancestorDefs != null)
             return ancestorDefs;
         else {
-            List<PBmmUnitaryType> result = new ArrayList<>();
+            Map<String, PBmmUnitaryType> result = new LinkedHashMap<>();
             if (ancestors != null) {
                 for (String anc: ancestors) {
                     PBmmClass pBmmClass = pBmmSchema.getClassDefinition(anc);
                     if (pBmmClass != null)
                         if (pBmmClass.isGeneric())
-                            result.add(new PBmmGenericType(anc, new ArrayList<>(pBmmClass.genericParameterDefs.keySet())));
+                            result.put(anc, new PBmmGenericType(anc, new ArrayList<>(pBmmClass.genericParameterDefs.keySet())));
                         else
-                            result.add(new PBmmSimpleType(anc));
+                            result.put(anc, new PBmmSimpleType(anc));
                     else {
                         // could also throw a runtime exception here.
                         // throw new RuntimeException("Error retrieving class definition for ancestor \"" +
@@ -83,7 +87,7 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
      */
     @JsonIgnore
     public List<String> getAncestorTypeNames() {
-        return ancestorRefs().stream().map(PBmmType::asTypeString).collect(Collectors.toList());
+        return ancestorRefs().values().stream().map(PBmmType::asTypeString).collect(Collectors.toList());
     }
 
     public void setAncestors(List<String> ancestors) {
@@ -147,7 +151,7 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
         this.sourceSchemaId = sourceSchemaId;
     }
 
-    public List<PBmmUnitaryType> getAncestorDefs() {
+    public Map<String, PBmmUnitaryType> getAncestorDefs() {
         return ancestorDefs;
     }
 
@@ -163,7 +167,7 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
     public void populateBmmClass(BmmModel schema) {
         if (bmmClass != null) {
             // populate references to ancestor classes; should be every class except Any
-            for (PBmmUnitaryType ancestorType : ancestorRefs()) {
+            for (PBmmUnitaryType ancestorType : ancestorRefs().values()) {
                 BmmClass ancestorClass = schema.getClassDefinition(ancestorType.baseType());
                 if (ancestorClass != null)
                     ancestorType.createBmmType(schema, ancestorClass);
