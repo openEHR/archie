@@ -8,6 +8,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.composition.Composition;
+import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -72,7 +73,8 @@ public class RMQueryContextTest {
         {
             //add another cluster to the RM Object, with the same archetype id (very possible!)
             Composition composition2 = (Composition) testUtil.constructEmptyRMObject(archetype.getDefinition());
-            composition.getContext().getOtherContext().getItems().addAll(composition2.getContext().getOtherContext().getItems());
+            ItemTree otherContext = (ItemTree) composition.getContext().getOtherContext();
+            otherContext.getItems().addAll(composition2.getContext().getOtherContext().getItems());
         }
 
         RMQueryContext queryContext = getQueryContext();
@@ -101,7 +103,8 @@ public class RMQueryContextTest {
         {
             //add another cluster to the RM Object, with the same archetype id (very possible!)
             Composition composition2 = (Composition) testUtil.constructEmptyRMObject(archetype.getDefinition());
-            composition.getContext().getOtherContext().getItems().addAll(composition2.getContext().getOtherContext().getItems());
+            ItemTree otherContext = (ItemTree) composition.getContext().getOtherContext();
+            otherContext.getItems().addAll(composition2.getContext().getOtherContext().getItems());
         }
 
         RMQueryContext queryContext = getQueryContext();
