@@ -75,7 +75,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     /**
      * True if this class is abstract in its model.
      */
-    private boolean isAbstract;
+    private Boolean isAbstract;
 
     /**
      * True if this class is designated a primitive type within the overall type system of the schema.
@@ -103,6 +103,8 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
         ancestors = new LinkedHashMap<>();
         immediateDescendants = new ArrayList<>();
         properties = new LinkedHashMap<>();
+
+        isAbstract = Boolean.FALSE;
     }
 
     /**
