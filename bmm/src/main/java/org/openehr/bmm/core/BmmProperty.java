@@ -69,21 +69,26 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 		setDocumentation(aDocumentation);
 		isMandatory = isMandatoryFlag;
 		isComputed = isComputedFlag;
-		isImRuntime = Boolean.FALSE;
-		isImInfrastructure = Boolean.FALSE;
+		isImRuntime = false;
+		isImInfrastructure = false;
 	}
 
 	public BmmProperty(BmmProperty<T> other) {
 		name = other.name;
 		type = other.type;
 		setDocumentation(other.getDocumentation());
-		isMandatory = other.isMandatory;
-		isComputed = other.isComputed;
-		isImInfrastructure = other.isImInfrastructure;
-		isImRuntime = other.isImRuntime;
+		isMandatory = (other.isMandatory != null) ? other.isMandatory : false;
+		isComputed = (other.isComputed != null) ? other.isComputed : false;
+		isImInfrastructure = (other.isImInfrastructure != null) ? other.isImInfrastructure : false;
+		isImRuntime = (other.isImRuntime != null) ? other.isImRuntime : false;
 	}
 
-	public BmmProperty() { }
+	public BmmProperty() {
+		isMandatory = false;
+		isComputed = false;
+		isImRuntime = false;
+		isImInfrastructure = false;
+	}
 
 	/**
 	 * Returns the name of this property in the model.
@@ -117,7 +122,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * @param mandatory
 	 */
 	public void setMandatory(Boolean mandatory) {
-		isMandatory = mandatory;
+		isMandatory = (mandatory != null) ? mandatory : false;
 	}
 
 	/**
@@ -135,7 +140,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * @param computed
 	 */
 	public void setComputed(Boolean computed) {
-		isComputed = computed;
+		isComputed = (computed != null) ? computed : false;
 	}
 
 	/**
@@ -171,7 +176,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * @param imRuntime
 	 */
 	public void setImRuntime(Boolean imRuntime) {
-		isImRuntime = imRuntime;
+		isImRuntime = (imRuntime != null) ? imRuntime : false;
 	}
 
 	/**
@@ -189,7 +194,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * @param imInfrastructure
 	 */
 	public void setImInfrastructure(Boolean imInfrastructure) {
-		isImInfrastructure = imInfrastructure;
+		isImInfrastructure = (imInfrastructure != null) ? imInfrastructure : false;
 	}
 
 	/**
