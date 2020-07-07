@@ -15,20 +15,20 @@ public class BmmModelCreator {
     public BmmModel create(BmmValidationResult validationResult) {
         PBmmSchema schema = validationResult.getSchemaWithMergedIncludes();
         BmmModel model = new BmmModel();
-        model.setRmPublisher(schema.getRmPublisher());
-        model.setRmRelease(schema.getRmRelease());
-        model.setModelName(schema.getModelName());
-        model.setSchemaName(schema.getSchemaName());
-        model.setSchemaRevision(schema.getSchemaRevision());
-        model.setSchemaAuthor(schema.getSchemaAuthor());
-        model.setSchemaDescription(schema.getSchemaDescription());
-        model.setSchemaLifecycleState(schema.getSchemaLifecycleState());
+        model.setRmPublisher (schema.getRmPublisher());
+        model.setRmRelease (schema.getRmRelease());
+        model.setModelName (schema.getModelName());
+        model.setSchemaName (schema.getSchemaName());
+        model.setSchemaRevision (schema.getSchemaRevision());
+        model.setSchemaAuthor (schema.getSchemaAuthor());
+        model.setSchemaDescription (schema.getSchemaDescription());
+        model.setSchemaLifecycleState (schema.getSchemaLifecycleState());
         // cannot set the documentation - the supported P_BMM version has no documentation in the P_BMM_SCHEMA
         model.setSchemaContributors(schema.getSchemaContributors() == null ? new ArrayList() : new ArrayList<>(schema.getSchemaContributors()));
 
         // Add packages first
         for(PBmmPackage pBmmPackage:validationResult.getCanonicalPackages().values()) {
-            BmmPackage bmmPackage = createBmmPackageDefinition(pBmmPackage, null, null);
+            BmmPackage bmmPackage = createBmmPackageDefinition (pBmmPackage, null, null);
 
             model.addPackage(bmmPackage);
 
@@ -38,20 +38,18 @@ public class BmmModelCreator {
                     pBmmClass.createBmmClass();
                     BmmClass bmmClass = pBmmClass.getBmmClass();
                     if (bmmClass != null) {
-                        if (schema.getPrimitiveTypes().get(bmmClass.getName()) != null)
-                            bmmClass.setPrimitiveType(true);
-                        if (pBmmClass.isOverride() != null && pBmmClass.isOverride())
-                            bmmClass.setOverride(true);
+                        bmmClass.setPrimitiveType(schema.getPrimitiveTypes().containsKey (bmmClass.getName()));
+                        bmmClass.setOverride(pBmmClass.isOverride());
                         model.addClassDefinition(bmmClass, bmmPackage);
                     }
                 }
             });
         }
 
-        model.setArchetypeParentClass(schema.getArchetypeParentClass());
-        model.setArchetypeDataValueParentClass(schema.getArchetypeDataValueParentClass());
-        model.setArchetypeVisualizeDescendantsOf(schema.getArchetypeVisualizeDescendantsOf());
-        model.setArchetypeRmClosurePackages(schema.getArchetypeRmClosurePackages() == null ? new ArrayList<>() : new ArrayList<>(schema.getArchetypeRmClosurePackages()));
+        model.setArchetypeParentClass (schema.getArchetypeParentClass());
+        model.setArchetypeDataValueParentClass (schema.getArchetypeDataValueParentClass());
+        model.setArchetypeVisualizeDescendantsOf (schema.getArchetypeVisualizeDescendantsOf());
+        model.setArchetypeRmClosurePackages (schema.getArchetypeRmClosurePackages() == null ? new ArrayList<>() : new ArrayList<>(schema.getArchetypeRmClosurePackages()));
 
 
         // The basics have been created. Now populate the classes with properties

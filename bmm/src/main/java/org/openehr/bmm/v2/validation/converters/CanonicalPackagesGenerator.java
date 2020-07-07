@@ -28,7 +28,8 @@ public class CanonicalPackagesGenerator {
                     childPackageKey = packagePathComponents[index].toUpperCase();
                     if (packageContainer.containsKey(childPackageKey)) {
                         childPackage = packageContainer.get(childPackageKey);
-                    } else {
+                    }
+                    else {
                         childPackage = new PBmmPackage(packagePathComponents[index]);
                         packageContainer.put(childPackageKey, childPackage);
                     }
@@ -37,7 +38,8 @@ public class CanonicalPackagesGenerator {
                 //make this package with `packages' and `classes' references to those parts of `other_pkg'
                 //but keeping its own name.
                 childPackage.setClassesAndPackagesFrom(topPackage);
-            } else {
+            }
+            else {
                 //just create a reference in the canonical packages; note that this precludes
                 //the situation where top-level packages like 'rm' and 'rm.composition.content'
                 //co-exist - this would be bad structure

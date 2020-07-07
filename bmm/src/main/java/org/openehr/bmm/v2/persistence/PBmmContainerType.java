@@ -61,7 +61,7 @@ public class PBmmContainerType extends PBmmType<BmmContainerType> {
     public List<String> flattenedTypeList() {
         List<String> retVal = new ArrayList<>();
         retVal.add(containerType);
-        if(getTypeRef() != null) {
+        if (getTypeRef() != null) {
             retVal.addAll(getTypeRef().flattenedTypeList());
         }
         return retVal;
@@ -74,7 +74,7 @@ public class PBmmContainerType extends PBmmType<BmmContainerType> {
     @JsonIgnore
     public PBmmUnitaryType getTypeRef() {
         if (typeDef == null && type != null) {
-            if(type.length() == 1) {
+            if (type.length() == 1) {
                 // This is ugly because it basically checks parameter length to see if it's a generic parameter
                 // However it's the only way in the current P_BMM version
                 return new PBmmOpenType(type);

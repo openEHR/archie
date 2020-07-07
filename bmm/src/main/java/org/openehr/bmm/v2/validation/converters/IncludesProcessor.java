@@ -97,8 +97,6 @@ public class IncludesProcessor {
         }
 
         includingValidationResult.addMergedSchema(included.getSchemaId().toUpperCase());
-
-
     }
 
     private void merge(PBmmPackage including, PBmmPackage included) {

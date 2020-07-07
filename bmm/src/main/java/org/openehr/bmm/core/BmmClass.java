@@ -383,11 +383,10 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      * @return
      */
     public String getPackagePath() {
-        if (bmmPackage != null) {
+        if (bmmPackage != null)
             return bmmPackage.getPath();
-        } else {
+        else
             return null;
-        }
     }
 
     /**

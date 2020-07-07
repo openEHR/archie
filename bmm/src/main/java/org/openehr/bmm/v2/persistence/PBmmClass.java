@@ -192,12 +192,11 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
                 }
 
             // populate properties
-            if (getProperties() != null)
-                for (PBmmProperty pBmmProperty: getProperties().values()) {
-                    pBmmProperty.createBmmProperty(schema, bmmClass);
-                    if (pBmmProperty.bmmProperty != null)
-                        bmmClass.addProperty(pBmmProperty.bmmProperty);
-                }
+            for (PBmmProperty pBmmProperty: getProperties().values()) {
+                pBmmProperty.createBmmProperty(schema, bmmClass);
+                if (pBmmProperty.bmmProperty != null)
+                    bmmClass.addProperty(pBmmProperty.bmmProperty);
+            }
         }
         else
             throw new RuntimeException("bmmClass for PBmmClass \"" + name + "\" is null. It may have been defined as a class or a primitive but not included in a package");

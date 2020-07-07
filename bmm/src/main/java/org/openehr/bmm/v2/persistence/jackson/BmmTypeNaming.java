@@ -23,7 +23,6 @@ import java.io.IOException;
 public class BmmTypeNaming extends ClassNameIdResolver {
 
     private final static ImmutableBiMap<String, Class> classNaming = ImmutableBiMap.<String, Class>builder().
-        put("P_BMM_BASE_TYPE", PBmmUnitaryType.class).
         put("BMM_INCLUDE_SPEC", BmmIncludeSpec.class).
         put("P_BMM_CLASS", PBmmClass.class).
         put("P_BMM_CONTAINER_PROPERTY", PBmmContainerProperty.class).
@@ -41,6 +40,7 @@ public class BmmTypeNaming extends ClassNameIdResolver {
         put("P_BMM_SIMPLE_TYPE", PBmmSimpleType.class).
         put("P_BMM_SINGLE_PROPERTY", PBmmSingleProperty.class).
         put("P_BMM_SINGLE_PROPERTY_OPEN", PBmmSinglePropertyOpen.class).
+        put("P_BMM_UNITARY_TYPE", PBmmUnitaryType.class).
         put("P_BMM_TYPE", PBmmType.class).
         put("INTERVAL", Interval.class).build();
 
@@ -57,14 +57,11 @@ public class BmmTypeNaming extends ClassNameIdResolver {
     @Override
     public String idFromValue(Object value) {
         String result = inverseClassNaming.get(value.getClass());
-        if(result != null) {
+        if (result != null)
             return result;
-        } else {
+        else
             //not sure if we need this. If so, it should implement naming such as ArchieNamingStrategy (requires module restructuring)
             return value.getClass().getSimpleName();
-        }
-
-
     }
 
     @Override
@@ -76,7 +73,7 @@ public class BmmTypeNaming extends ClassNameIdResolver {
     protected JavaType _typeFromId(String typeName, DatabindContext ctxt) throws IOException {
         String classKey = BmmDefinitions.typeNameToClassKey(typeName);
         Class result =  classNaming.get(classKey);
-        if(result != null) {
+        if (result != null) {
             TypeFactory typeFactory = (ctxt == null) ? _typeFactory : ctxt.getTypeFactory();
             return typeFactory.constructSpecializedType(_baseType, result);
         }
