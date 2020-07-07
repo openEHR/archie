@@ -34,4 +34,9 @@ public class BmmEnumerationString extends BmmEnumeration<String> implements Seri
         super(aName, aDocumentation, abstractFlag);
         setUnderlyingTypeName("String");
     }
+
+    public BmmEnumerationString() {
+        super();
+    }
+
 }
