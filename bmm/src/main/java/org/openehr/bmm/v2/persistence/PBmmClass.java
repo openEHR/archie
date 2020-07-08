@@ -19,7 +19,7 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
     private Map<String, PBmmProperty> properties;
     private Boolean isAbstract = false;
     private Map<String, PBmmGenericParameter> genericParameterDefs;
-    private Boolean isOverride = false;
+    private Boolean isOverride;
     private PBmmSchema pBmmSchema;
 
     private transient String sourceSchemaId;
