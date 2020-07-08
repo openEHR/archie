@@ -1,5 +1,6 @@
 package org.openehr.bmm.v2.persistence;
 
+import com.google.common.collect.Lists;
 import org.openehr.bmm.core.*;
 
 import java.util.ArrayList;
@@ -18,11 +19,7 @@ public final class PBmmEnumerationInteger extends PBmmEnumeration<Integer> {
      */
     @Override
     protected void setDefaultItemValues(BmmEnumeration bmmClass) {
-        itemValues = new ArrayList<>();
-        for (int i = 0; i < bmmClass.getItemNames().size(); i++)
-            itemValues.add(i);
-
-        bmmClass.setItemValues(itemValues);
+        bmmClass.setItemValues(Lists.newArrayList(bmmClass.getItemNames()));
     }
 
 }
