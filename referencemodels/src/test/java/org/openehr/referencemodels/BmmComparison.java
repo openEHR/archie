@@ -109,9 +109,11 @@ public class BmmComparison {
         for(String ancestor:classDefinition.getAncestors().keySet()) {
             Set<RMTypeInfo> directParentClasses = typeInfo.getDirectParentClasses();
             Set<String> parentTypeNames = directParentClasses.stream().map((type) -> type.getRmName()).collect(Collectors.toSet());
-            if(!ancestor.equalsIgnoreCase("any") && !parentTypeNames.contains(ancestor)) {
+
+            String ancestorClassName = BmmDefinitions.typeNameToClassKey(ancestor);
+            if(!ancestorClassName.equalsIgnoreCase("any") && !parentTypeNames.contains(ancestorClassName)) {
                 result.add(new ModelDifference(ModelDifferenceType.ANCESTOR_DIFFERENCE,
-                        MessageFormat.format("class {0} has ancestor {1} in BMM, but not in ModelInfoLookup", classDefinition.getType().getTypeName(), ancestor),
+                        MessageFormat.format("class {0} has ancestor {1} in BMM, but not in ModelInfoLookup", classDefinition.getType().getTypeName(), ancestorClassName),
                         typeInfo.getRmName()));
             }
         }
