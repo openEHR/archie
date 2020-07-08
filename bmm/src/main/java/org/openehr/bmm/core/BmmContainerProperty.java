@@ -33,7 +33,7 @@ public class BmmContainerProperty extends BmmProperty<BmmContainerType> {
      */
     private MultiplicityInterval cardinality;
 
-    public BmmContainerProperty(String aName, BmmContainerType aType, String aDocumentation, Boolean isMandatoryFlag, Boolean isComputedFlag) {
+    public BmmContainerProperty(String aName, BmmContainerType aType, String aDocumentation, boolean isMandatoryFlag, boolean isComputedFlag) {
         super(aName, aType, aDocumentation, isMandatoryFlag, isComputedFlag);
         cardinality = new MultiplicityInterval();
     }

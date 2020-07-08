@@ -15,8 +15,7 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
     private Boolean isComputed;
     private Boolean isImInfrastructure;
     private Boolean isImRuntime;
-    protected T typeDef;
-    protected U bmmProperty;
+    private T typeDef;
 
     public String getName() {
         return name;
@@ -27,10 +26,6 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
     }
 
     public PBmmProperty () {
-        isMandatory = Boolean.FALSE;
-        isComputed = Boolean.FALSE;
-        isImInfrastructure = Boolean.FALSE;
-        isImRuntime = Boolean.FALSE;
     }
 
     @JsonProperty(value = "is_mandatory")
@@ -69,9 +64,18 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
         return typeDef;
     }
 
-    public U getBmmProperty() { return bmmProperty; }
+    public void setTypeDef(T typeDef) {
+        this.typeDef = typeDef;
+    }
 
-    public abstract void createBmmProperty(BmmModel schema, BmmClass bmmClass);
+    public abstract BmmProperty createBmmProperty(BmmModel schema, BmmClass bmmClass);
+
+    /** set the values to the BmmProperty that come from this class
+     */
+    protected void setValues(BmmProperty property) {
+        property.setImInfrastructure(nullToFalse(isImInfrastructure));
+        property.setImRuntime(nullToFalse(isImRuntime));
+    }
 
     /**
      * Calculate typeDef and return. Always returns a type, even if typeDef in the persisted schema is not set
@@ -89,5 +93,9 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
 
     public void setDocumentation(String documentation) {
         this.documentation = documentation;
+    }
+
+    protected Boolean nullToFalse(Boolean value) {
+        return value == null ? false: value;
     }
 }

@@ -5,6 +5,7 @@ import com.nedap.archie.base.MultiplicityInterval;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmContainerProperty;
 import org.openehr.bmm.core.BmmModel;
+import org.openehr.bmm.core.BmmProperty;
 
 public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType, BmmContainerProperty> {
 
@@ -23,18 +24,21 @@ public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType,
     }
 
     @Override
-    public void createBmmProperty(BmmModel schema, BmmClass bmmClass) {
-        if (typeDef != null) {
-            typeDef.createBmmType(schema, bmmClass);
-            if (typeDef.bmmType != null) {
-                bmmProperty = new BmmContainerProperty(getName(), typeDef.bmmType, getDocumentation(), isMandatory(), isComputed());
-                if (getCardinality() != null)
+    public BmmProperty createBmmProperty(BmmModel schema, BmmClass bmmClass) {
+        PBmmContainerType typeRef = getTypeRef();
+        if (typeRef != null) {
+            typeRef.createBmmType(schema, bmmClass);
+            if (getTypeDef().bmmType != null) {
+                BmmContainerProperty bmmProperty = new BmmContainerProperty(getName(), typeRef.bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+                if (getCardinality() != null) {
                     bmmProperty.setCardinality(new MultiplicityInterval(getCardinality()));
+                }
+                setValues(bmmProperty);
+                return bmmProperty;
             }
-            else
-                throw new RuntimeException("BmmTypeCreate failed for type " + typeDef.asTypeString() + " of property "
-                    + getName() + " in class " + bmmClass.getName());
         }
+        throw new RuntimeException("BmmTypeCreate failed for type " + typeRef.asTypeString() + " of property "
+                + getName() + " in class " + bmmClass.getName());
     }
 
 }

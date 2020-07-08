@@ -17,8 +17,7 @@ import java.util.List;
 public class BmmPropertyCreator {
 
     public BmmProperty createBmmProperty(PBmmProperty property, BmmModel schema, BmmClass bmmClass) {
-        property.createBmmProperty(schema, bmmClass);
-        return property.getBmmProperty();
+        return property.createBmmProperty(schema, bmmClass);
     }
 
 }

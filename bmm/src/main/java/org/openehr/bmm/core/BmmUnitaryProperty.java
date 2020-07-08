@@ -29,7 +29,7 @@ import com.nedap.archie.base.MultiplicityInterval;
  */
 public class BmmUnitaryProperty extends BmmProperty<BmmUnitaryType> {
 
-    public BmmUnitaryProperty (String name, BmmUnitaryType type, String aDocumentation, Boolean isMandatoryFlag, Boolean isComputedFlag) {
+    public BmmUnitaryProperty (String name, BmmUnitaryType type, String aDocumentation, boolean isMandatoryFlag, boolean isComputedFlag) {
         super(name, type, aDocumentation, isMandatoryFlag, isComputedFlag);
     }
 

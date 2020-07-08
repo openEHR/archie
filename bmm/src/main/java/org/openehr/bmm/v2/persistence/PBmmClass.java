@@ -193,9 +193,9 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
 
             // populate properties
             for (PBmmProperty pBmmProperty: getProperties().values()) {
-                pBmmProperty.createBmmProperty(schema, bmmClass);
-                if (pBmmProperty.bmmProperty != null)
-                    bmmClass.addProperty(pBmmProperty.bmmProperty);
+                BmmProperty bmmProperty = pBmmProperty.createBmmProperty(schema, bmmClass);
+                if (bmmProperty != null)
+                    bmmClass.addProperty(bmmProperty);
             }
         }
         else
