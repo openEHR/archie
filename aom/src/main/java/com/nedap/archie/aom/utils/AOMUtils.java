@@ -308,7 +308,6 @@ public class AOMUtils {
                     return null;
                 }
             }
-            classDefinition = property.getType().getBaseClass();
         }
         return property;
 
