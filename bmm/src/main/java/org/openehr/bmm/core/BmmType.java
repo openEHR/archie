@@ -33,29 +33,6 @@ import java.util.List;
 public abstract class BmmType extends BmmEntity {
 
     /**
-     * Main design class for this type, from which properties etc can be extracted.
-     */
-    private BmmClass baseClass;
-
-    /**
-     * Returns the base class
-     *
-     * @return
-     */
-    public BmmClass getBaseClass() {
-        return baseClass;
-    }
-
-    /**
-     * Sets the base class
-     *
-     * @param baseClass
-     */
-    public void setBaseClass(BmmClass baseClass) {
-        this.baseClass = baseClass;
-    }
-
-    /**
      * Returns the formal string form of the type as per UML.
      *
      * @return a formal type name
@@ -73,11 +50,12 @@ public abstract class BmmType extends BmmEntity {
     }
 
     /**
-     * Return the effective conformance type, taking into account formal parameter types.
+     * Return the effective, unitary type with any container abstracted away, and any formal parameter replaced by its
+     * effective constraint type.
      *
      * @return
      */
-    public abstract BmmDefinedType getConformanceType();
+    public abstract BmmEffectiveType getEffectiveType();
 
     /**
      * Returns the effective unitary type, i.e. abstracting away any containers.

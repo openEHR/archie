@@ -199,7 +199,7 @@ public class BmmComparison {
             return genericType.getBaseClass().getType().getTypeName();
         } else if (type instanceof BmmParameterType) {
             BmmParameterType parameterType = (BmmParameterType) type;
-            BmmDefinedType conformsToType = parameterType.getConformsToType();
+            BmmEffectiveType conformsToType = parameterType.getConformsToType();
             if(conformsToType == null) {
                 return BmmDefinitions.ANY_TYPE;
             }

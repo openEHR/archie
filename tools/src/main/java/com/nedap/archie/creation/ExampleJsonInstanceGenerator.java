@@ -27,14 +27,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModels;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmContainerType;
-import org.openehr.bmm.core.BmmEnumerationInteger;
-import org.openehr.bmm.core.BmmEnumerationString;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.ArrayList;
@@ -266,27 +259,32 @@ public  class ExampleJsonInstanceGenerator {
 
     private void addRequiredProperty(Map<String, Object> result, BmmProperty property, String value) {
         BmmType type = property.getType();
-        BmmClass propertyClass = type.getBaseClass();
-        if(value != null) {
+        if (value != null) {
             result.put(property.getName(), value);
         } else if (property instanceof BmmContainerProperty) {
             List<Object> children = new ArrayList<>();
             MultiplicityInterval cardinality = ((BmmContainerProperty) property).getCardinality();
-            if(cardinality.isMandatory() ) {
+            if (cardinality.isMandatory()) {
                 //if mandatory attribute, create at least one child type
                 //this won't be from an actual archetype, but at least it is valid RM data
                 String actualType = ((BmmContainerType) type).getBaseType().getTypeName();
                 children.add(createExampleFromTypeName(actualType));
             }
-
             result.put(property.getName(), children);
-        } else if (propertyClass instanceof BmmEnumerationInteger) {
-            result.put(property.getName(), 0);
-        } else if (propertyClass instanceof BmmEnumerationString) {
-            result.put(property.getName(), "string");
+        } else if (type instanceof BmmParameterType) {
+            result.put(property.getName(), createExampleFromTypeName(type.getEffectiveType().getTypeName()));
+        } else if (type instanceof BmmDefinedType) {
+            BmmClass propertyClass = ((BmmDefinedType)type).getBaseClass();
+            if (propertyClass instanceof BmmEnumerationInteger) {
+                result.put(property.getName(), 0);
+            } else if (propertyClass instanceof BmmEnumerationString) {
+                result.put(property.getName(), "string");
+            } else {
+                result.put(property.getName(), createExampleFromTypeName(type.getTypeName()));
+            }
         } else {
-            String actualType = type.getTypeName();
-            result.put(property.getName(), createExampleFromTypeName(actualType));
+            // TODO: if we reach here, we are on a property of a built-in type, either a Tuple
+            // (for which we can build an example instance) or an agent, for which we cannot.
         }
     }
 

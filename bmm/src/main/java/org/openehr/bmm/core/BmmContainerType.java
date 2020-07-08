@@ -21,9 +21,6 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
-import org.openehr.bmm.BmmConstants;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,11 +65,6 @@ public class BmmContainerType extends BmmType {
         this.containerType = containerType;
     }
 
-
-    @Override
-    public BmmClass getBaseClass() {
-        return baseType.getBaseClass();
-    }
     /**
      * Returns the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
      *
@@ -116,8 +108,8 @@ public class BmmContainerType extends BmmType {
      *
      * @return
      */
-    public BmmDefinedType getConformanceType() {
-        return baseType.getConformanceType();
+    public BmmEffectiveType getEffectiveType() {
+        return baseType.getEffectiveType();
     }
 
     /**

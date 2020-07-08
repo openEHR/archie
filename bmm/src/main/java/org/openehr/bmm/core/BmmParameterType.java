@@ -43,7 +43,7 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     /**
      * Optional conformance constraint that must be another valid class name.
      */
-    private BmmDefinedType conformsToType;
+    private BmmEffectiveType conformsToType;
 
     /**
      * If set, is the corresponding generic parameter definition in an ancestor class.
@@ -101,7 +101,7 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
      *
      * @return
      */
-    public BmmDefinedType getConformsToType() {
+    public BmmEffectiveType getConformsToType() {
         return conformsToType;
     }
 
@@ -110,7 +110,7 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
      *
      * @param conformsToType
      */
-    public void setConformsToType(BmmDefinedType conformsToType) {
+    public void setConformsToType(BmmEffectiveType conformsToType) {
         this.conformsToType = conformsToType;
     }
 
@@ -137,7 +137,7 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
      *
      * @return
      */
-    public BmmDefinedType flattenedConformsToType() {
+    public BmmEffectiveType flattenedConformsToType() {
         if (conformsToType != null)
             return conformsToType;
         else if (inheritancePrecursor != null)
@@ -152,8 +152,8 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
      * @return
      */
     @Override
-    public BmmDefinedType getConformanceType() {
-        BmmDefinedType confType = flattenedConformsToType();
+    public BmmEffectiveType getEffectiveType() {
+        BmmEffectiveType confType = flattenedConformsToType();
         if (confType != null)
             return confType;
         else
@@ -169,7 +169,7 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     public String getTypeSignature() {
         StringBuilder builder = new StringBuilder();
         builder.append(name);
-        BmmDefinedType confType = flattenedConformsToType();
+        BmmEffectiveType confType = flattenedConformsToType();
         if (confType != null) {
             builder.append(":" + confType.getTypeName());
         }
@@ -184,7 +184,7 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     @Override
     public List<String> getFlattenedTypeList() {
         ArrayList<String> result = new ArrayList<>();
-        BmmDefinedType confType = flattenedConformsToType();
+        BmmEffectiveType confType = flattenedConformsToType();
         if (confType != null)
             result.addAll(confType.getFlattenedTypeList());
         else

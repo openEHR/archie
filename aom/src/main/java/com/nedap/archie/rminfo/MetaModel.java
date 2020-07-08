@@ -8,15 +8,7 @@ import com.nedap.archie.aom.profile.AomProfile;
 import com.nedap.archie.aom.profile.AomTypeMapping;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.query.APathQuery;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmEnumeration;
-import org.openehr.bmm.core.BmmEnumerationInteger;
-import org.openehr.bmm.core.BmmEnumerationString;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.List;
@@ -183,7 +175,7 @@ public class MetaModel implements MetaModelInterface {
                 BmmProperty property = parentClass.getFlatProperties().get(rmAttributeName);
                 if(property != null) {
                     try {
-                        String propertyConfTypeName = property.getType().getConformanceType().getTypeName();
+                        String propertyConfTypeName = property.getType().getEffectiveType().getTypeName();
 
                         // if(BmmDefinitions.validGenericTypeName(propertyConfTypeName) &&
                         //         !BmmDefinitions.validGenericTypeName(childConstraintTypeName)) {
@@ -276,31 +268,34 @@ public class MetaModel implements MetaModelInterface {
                 BmmProperty bmmProperty = bmmClass.getFlatProperties().get(rmAttributeName);
                 if(bmmProperty != null) {
                     //check enumerated properties
-                    BmmClass propertyClass = bmmProperty.getType().getBaseClass();
-                    if(propertyClass instanceof BmmEnumeration) {
-                        //enumeration. This should probably an integer.
-                        //TODO: check if we should check the actual type as well as the string values of the enumeration?
-                        modelTypeName = ((BmmEnumeration) propertyClass).getUnderlyingTypeName();
-                        if(!modelTypeName.equalsIgnoreCase(cRmTypeName)) {
-                            return false;//TODO: this should be a different error code/message
-                        }
-                        else if(cObject instanceof CString && propertyClass instanceof BmmEnumerationString) {
-                            BmmEnumerationString enumerationString = (BmmEnumerationString) propertyClass;
-                            CString cString = (CString) cObject;
-                            if(!cString.getConstraint().stream().allMatch(item -> enumerationString.getItemValues().contains(item))) {
+                    BmmEffectiveType propertyEffectiveType = bmmProperty.getType().getEffectiveType();
+                    if (propertyEffectiveType instanceof BmmDefinedType) {
+                        BmmClass propertyClass = ((BmmDefinedType) propertyEffectiveType).getBaseClass();
+                        if (propertyClass instanceof BmmEnumeration) {
+                            //enumeration. This should probably an integer.
+                            //TODO: check if we should check the actual type as well as the string values of the enumeration?
+                            modelTypeName = ((BmmEnumeration) propertyClass).getUnderlyingTypeName();
+                            if(!modelTypeName.equalsIgnoreCase(cRmTypeName)) {
+                                return false;//TODO: this should be a different error code/message
+                            }
+                            else if(cObject instanceof CString && propertyClass instanceof BmmEnumerationString) {
+                                BmmEnumerationString enumerationString = (BmmEnumerationString) propertyClass;
+                                CString cString = (CString) cObject;
+                                if(!cString.getConstraint().stream().allMatch(item -> enumerationString.getItemValues().contains(item))) {
+                                    return false;
+                                }
+                            } else if (cObject instanceof CInteger && propertyClass instanceof BmmEnumerationInteger) {
+                                BmmEnumerationInteger enumerationInteger = (BmmEnumerationInteger) propertyClass;
+                                CInteger cInteger = (CInteger) cObject;
+                                //TODO: BMM uses Integers instead of long, that could be aproblem as it can be Integer64 in models!
+                                if(!cInteger.getConstraintValues().stream().allMatch(item -> enumerationInteger.getItemValues().contains(item.intValue()))) {
+                                    return false;
+                                }
+                            } else {
+                                //this isn't right, unless we have some very fancy type substition going on.
+                                //TODO: add an error message, not just a boolean
                                 return false;
                             }
-                        } else if (cObject instanceof CInteger && propertyClass instanceof BmmEnumerationInteger) {
-                            BmmEnumerationInteger enumerationInteger = (BmmEnumerationInteger) propertyClass;
-                            CInteger cInteger = (CInteger) cObject;
-                            //TODO: BMM uses Integers instead of long, that could be aproblem as it can be Integer64 in models!
-                            if(!cInteger.getConstraintValues().stream().allMatch(item -> enumerationInteger.getItemValues().contains(item.intValue()))) {
-                                return false;
-                            }
-                        } else {
-                            //this isn't right, unless we have some very fancy type substition going on.
-                            //TODO: add an error message, not just a boolean
-                            return false;
                         }
                     }
                 }

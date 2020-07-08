@@ -28,7 +28,7 @@ import java.util.List;
  * built-in types. See subtypes.
  *
  */
-public abstract class BmmDefinedType extends BmmUnitaryType {
+public abstract class BmmDefinedType extends BmmEffectiveType {
 
     protected BmmClass baseClass;
 
@@ -49,12 +49,11 @@ public abstract class BmmDefinedType extends BmmUnitaryType {
     }
 
     /**
-     * Return the effective conformance type, taking into account formal parameter types.
-     *
-     * @return
+     * Return the type base-name (i.e. no generic parameters), which i.e. the name
+     * of the base class (also with no formal generics).
      */
-    public BmmDefinedType getConformanceType() {
-        return this;
+    public String typeBaseName() {
+        return baseClass.getName();
     }
 
 }

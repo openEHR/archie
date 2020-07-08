@@ -166,27 +166,27 @@ public class JSONSchemaCreator {
 
     private JsonObjectBuilder createPropertyDef(BmmType type) {
 
-
-        if(type instanceof BmmParameterType) {
+        if (type instanceof BmmParameterType) {
             return createType("object");
             //nothing more to be done
         } else if (type instanceof BmmSimpleType) {
-            if(isJSPrimitive(type)) {
-                return getJSPrimitive(type);
+            BmmSimpleType simpleType = (BmmSimpleType) type;
+            if (isJSPrimitive(type)) {
+                return getJSPrimitive(simpleType);
             } else {
-                return createPolymorphicReference(type.getBaseClass());
+                return createPolymorphicReference(simpleType.getBaseClass());
             }
         } else if (type instanceof BmmContainerType) {
-
             BmmContainerType containerType = (BmmContainerType) type;
             return jsonFactory.createObjectBuilder()
                 .add("type", "array")
                 .add("items", createPropertyDef(containerType.getBaseType()));
         } else if (type instanceof BmmGenericType) {
-            if(isJSPrimitive(type)) {
-                return getJSPrimitive(type);
+            BmmGenericType genericType = (BmmGenericType) type;
+            if (isJSPrimitive(genericType)) {
+                return getJSPrimitive(genericType);
             } else {
-                return createPolymorphicReference(type.getBaseClass());
+                return createPolymorphicReference(genericType.getBaseClass());
             }
 
         }
