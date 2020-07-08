@@ -19,7 +19,7 @@ public final class PBmmEnumerationInteger extends PBmmEnumeration<Integer> {
      */
     @Override
     protected void setDefaultItemValues(BmmEnumeration bmmClass) {
-        bmmClass.setItemValues(Lists.newArrayList(bmmClass.getItemNames()));
+        bmmClass.setItemValues(new ArrayList(bmmClass.getItemNames()));
     }
 
 }
