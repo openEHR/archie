@@ -38,7 +38,7 @@ public class BmmModelCreator {
                     BmmClass bmmClass = pBmmClass.createBmmClass();
                     if (bmmClass != null) {
                         bmmClass.setPrimitiveType(schema.getPrimitiveTypes().containsKey (bmmClass.getName()));
-                        bmmClass.setOverride(pBmmClass.isOverride());
+                        bmmClass.setOverride(pBmmClass.isOverride() == null ? false : pBmmClass.isOverride());
                         model.addClassDefinition(bmmClass, bmmPackage);
                     }
                 }
