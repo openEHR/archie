@@ -36,7 +36,8 @@ public class BmmContainerType extends BmmType {
     /**
      * The type of the container. This converts to the root_type in BMM_GENERIC_TYPE.
      */
-    private BmmClass containerType;
+    private BmmGenericClass containerType;
+
     /**
      *
      */
@@ -54,7 +55,7 @@ public class BmmContainerType extends BmmType {
      *
      * @return
      */
-    public BmmClass getContainerType() {
+    public BmmGenericClass getContainerType() {
         return containerType;
     }
 
@@ -63,7 +64,7 @@ public class BmmContainerType extends BmmType {
      *
      * @param containerType
      */
-    public void setContainerType(BmmClass containerType) {
+    public void setContainerType(BmmGenericClass containerType) {
         this.containerType = containerType;
     }
 
