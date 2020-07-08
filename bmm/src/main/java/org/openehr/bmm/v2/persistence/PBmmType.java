@@ -6,8 +6,6 @@ import java.util.List;
 
 public abstract class PBmmType<T extends BmmType> extends PBmmBase {
 
-    protected T bmmType;
-
     /**
      * Effective unitary type, ignoring containers and also generic parameters
      */
@@ -32,6 +30,6 @@ public abstract class PBmmType<T extends BmmType> extends PBmmBase {
      * @param schema
      * @param classDefinition
      */
-    public abstract void createBmmType(BmmModel schema, BmmClass classDefinition);
+    public abstract T createBmmType(BmmModel schema, BmmClass classDefinition);
 
 }

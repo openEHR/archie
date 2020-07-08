@@ -35,8 +35,7 @@ public class BmmModelCreator {
             pBmmPackage.doRecursiveClasses((p, s) -> {
                 PBmmClass pBmmClass = schema.getClassDefinition(s);
                 if (pBmmClass != null) {
-                    pBmmClass.createBmmClass();
-                    BmmClass bmmClass = pBmmClass.getBmmClass();
+                    BmmClass bmmClass = pBmmClass.createBmmClass();
                     if (bmmClass != null) {
                         bmmClass.setPrimitiveType(schema.getPrimitiveTypes().containsKey (bmmClass.getName()));
                         bmmClass.setOverride(pBmmClass.isOverride());
@@ -54,8 +53,8 @@ public class BmmModelCreator {
 
         // The basics have been created. Now populate the classes with properties
         ProcessClassesInOrder processClassesInOrder = new ProcessClassesInOrder();
-        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> bmmClass.populateBmmClass(model), new ArrayList<>(schema.getPrimitiveTypes().values()));
-        processClassesInOrder.doAllClassesInOrder(schema, bmmClass -> bmmClass.populateBmmClass(model), new ArrayList<>(schema.getClassDefinitions().values()));
+        processClassesInOrder.doAllClassesInOrder(schema, pBmmClass -> pBmmClass.populateBmmClass(model), new ArrayList<>(schema.getPrimitiveTypes().values()));
+        processClassesInOrder.doAllClassesInOrder(schema, pBmmClass -> pBmmClass.populateBmmClass(model), new ArrayList<>(schema.getClassDefinitions().values()));
 
         return model;
     }

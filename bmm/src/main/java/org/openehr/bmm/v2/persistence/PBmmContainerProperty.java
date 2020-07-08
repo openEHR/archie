@@ -4,6 +4,7 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmContainerProperty;
+import org.openehr.bmm.core.BmmContainerType;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmProperty;
 
@@ -27,9 +28,9 @@ public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType,
     public BmmProperty createBmmProperty(BmmModel schema, BmmClass bmmClass) {
         PBmmContainerType typeRef = getTypeRef();
         if (typeRef != null) {
-            typeRef.createBmmType(schema, bmmClass);
-            if (getTypeDef().bmmType != null) {
-                BmmContainerProperty bmmProperty = new BmmContainerProperty(getName(), typeRef.bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+            BmmContainerType bmmType = typeRef.createBmmType(schema, bmmClass);
+            if (bmmType != null) {
+                BmmContainerProperty bmmProperty = new BmmContainerProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
                 if (getCardinality() != null) {
                     bmmProperty.setCardinality(new MultiplicityInterval(getCardinality()));
                 }

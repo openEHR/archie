@@ -195,7 +195,6 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
             result.putAll(ancestor.getBaseClass().getFlatProperties());
         });
         result.putAll(properties);
-
         return result;
     }
 

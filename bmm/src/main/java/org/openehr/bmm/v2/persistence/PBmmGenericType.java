@@ -84,21 +84,23 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     }
 
     @Override
-    public void createBmmType(BmmModel schema, BmmClass classDefinition) {
+    public BmmGenericType createBmmType(BmmModel schema, BmmClass classDefinition) {
         BmmClass rootClassDef = schema.getClassDefinition(rootType);
         if (rootClassDef instanceof BmmGenericClass) {
-            bmmType = new BmmGenericType((BmmGenericClass)rootClassDef);
+            BmmGenericType bmmType = new BmmGenericType((BmmGenericClass)rootClassDef);
             for (PBmmType param: getGenericParameterDefs().values()) {
-                param.createBmmType(schema, classDefinition);
-                if (param.bmmType instanceof BmmUnitaryType)
-                    bmmType.addGenericParameter(param.bmmType);
-                else
+                BmmType paramBmmType = param.createBmmType(schema, classDefinition);
+                if (paramBmmType instanceof BmmUnitaryType) {
+                    bmmType.addGenericParameter(paramBmmType);
+                } else {
                     throw new RuntimeException("BmmClass " + getRootType() + " generic parameter" +
                             param.asTypeString() + " not BmmUnitaryType");
+                }
             }
+            return bmmType;
         }
-        else
-            throw new RuntimeException("BmmClass " + getRootType() + " is not defined in this model or not a generic type");
+
+        throw new RuntimeException("BmmClass " + getRootType() + " is not defined in this model or not a generic type");
     }
 
     /**

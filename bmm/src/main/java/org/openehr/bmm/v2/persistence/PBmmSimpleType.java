@@ -34,10 +34,10 @@ public final class PBmmSimpleType extends PBmmUnitaryType<BmmSimpleType> {
     }
 
     @Override
-    public void createBmmType(BmmModel schema, BmmClass classDefinition) {
+    public BmmSimpleType createBmmType(BmmModel schema, BmmClass classDefinition) {
         BmmClass simpleClassDef = schema.getClassDefinition (type);
         if (simpleClassDef instanceof BmmSimpleClass)
-            bmmType = new BmmSimpleType((BmmSimpleClass) simpleClassDef);
+            return new BmmSimpleType((BmmSimpleClass) simpleClassDef);
         else
             throw new RuntimeException("BmmClass " + type + " is not defined in this model");
     }

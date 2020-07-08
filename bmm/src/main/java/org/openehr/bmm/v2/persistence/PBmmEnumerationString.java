@@ -5,9 +5,10 @@ import org.openehr.bmm.core.BmmEnumerationString;
 public final class PBmmEnumerationString extends PBmmEnumeration<String> {
 
     @Override
-    public void createBmmClass() {
-        bmmClass = new BmmEnumerationString(getName(), getDocumentation(), isAbstract());
+    public BmmEnumerationString createBmmClass() {
+        BmmEnumerationString bmmClass = new BmmEnumerationString(getName(), getDocumentation(), isAbstract());
         bmmClass.setSourceSchemaId (getSourceSchemaId());
+        return bmmClass;
     }
 
 }

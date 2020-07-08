@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
+import org.openehr.bmm.core.BmmParameterType;
 import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.core.BmmSimpleType;
 import org.openehr.bmm.core.BmmUnitaryProperty;
@@ -50,9 +51,9 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType, Bmm
     public BmmProperty createBmmProperty(BmmModel schema, BmmClass bmmClass) {
         PBmmOpenType typeRef = getTypeRef();
         if (typeRef != null) {
-            typeRef.createBmmType(schema, bmmClass);
-            if (typeRef.bmmType != null) {
-                BmmProperty bmmProperty = new BmmUnitaryProperty(getName(), typeRef.bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+            BmmParameterType bmmType = typeRef.createBmmType(schema, bmmClass);
+            if (bmmType != null) {
+                BmmProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
                 setValues(bmmProperty);
                 return bmmProperty;
             }

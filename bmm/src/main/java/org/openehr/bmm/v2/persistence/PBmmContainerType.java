@@ -86,16 +86,17 @@ public class PBmmContainerType extends PBmmType<BmmContainerType> {
     }
 
     @Override
-    public void createBmmType(BmmModel schema, BmmClass classDefinition) {
+    public BmmContainerType createBmmType(BmmModel schema, BmmClass classDefinition) {
         BmmClass containerClassDef = schema.getClassDefinition(containerType);
         PBmmUnitaryType containedType = getTypeRef();
         if (containerClassDef instanceof BmmGenericClass && containedType != null) {
-            containedType.createBmmType(schema, classDefinition);
-            if (containedType.bmmType instanceof BmmUnitaryType)
-                bmmType = new BmmContainerType ((BmmUnitaryType)containedType.bmmType, (BmmGenericClass)containerClassDef);
+            BmmType containedBmmType = containedType.createBmmType(schema, classDefinition);
+            if (containedBmmType instanceof BmmUnitaryType) {
+                return new BmmContainerType((BmmUnitaryType) containedBmmType, (BmmGenericClass) containerClassDef);
+            }
         }
-        else
-            throw new RuntimeException("BmmClass " + containerClassDef.getName() + " is not defined in this model or not a generic type");
+
+        throw new RuntimeException("BmmClass " + containerClassDef.getName() + " is not defined in this model or not a generic type");
     }
 
 }

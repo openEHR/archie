@@ -72,7 +72,7 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
 
     /** set the values to the BmmProperty that come from this class
      */
-    protected void setValues(BmmProperty property) {
+    protected void populateImBooleans(BmmProperty property) {
         property.setImInfrastructure(nullToFalse(isImInfrastructure));
         property.setImRuntime(nullToFalse(isImRuntime));
     }
