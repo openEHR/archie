@@ -190,10 +190,11 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      * Flat list of properties defined in this class and ancestors
      */
     public Map<String, BmmProperty> getFlatProperties() {
-        Map<String, BmmProperty> result = new LinkedHashMap<String, BmmProperty>(properties);
+        Map<String, BmmProperty> result = new LinkedHashMap<String, BmmProperty>();
         getAncestors().forEach( (ancestorName, ancestor) -> {
             result.putAll(ancestor.getBaseClass().getFlatProperties());
         });
+        result.putAll(properties);
 
         return result;
     }
