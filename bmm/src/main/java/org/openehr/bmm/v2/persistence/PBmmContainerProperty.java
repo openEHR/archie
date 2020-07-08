@@ -34,7 +34,7 @@ public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType,
                 if (getCardinality() != null) {
                     bmmProperty.setCardinality(new MultiplicityInterval(getCardinality()));
                 }
-                setValues(bmmProperty);
+                populateImBooleans(bmmProperty);
                 return bmmProperty;
             }
         }

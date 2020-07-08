@@ -54,7 +54,7 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType, Bmm
             BmmParameterType bmmType = typeRef.createBmmType(schema, bmmClass);
             if (bmmType != null) {
                 BmmProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
-                setValues(bmmProperty);
+                populateImBooleans(bmmProperty);
                 return bmmProperty;
             }
         }

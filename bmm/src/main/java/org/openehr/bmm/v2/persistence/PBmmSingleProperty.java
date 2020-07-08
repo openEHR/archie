@@ -55,7 +55,7 @@ public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType, BmmUn
             BmmSimpleType bmmType = typeRef.createBmmType(schema, bmmClass);
             if (bmmType != null) {
                 BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
-                setValues(bmmProperty);
+                populateImBooleans(bmmProperty);
                 return bmmProperty;
             }
         }

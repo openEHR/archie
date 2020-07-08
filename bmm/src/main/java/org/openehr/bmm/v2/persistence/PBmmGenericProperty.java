@@ -19,7 +19,7 @@ public final class PBmmGenericProperty extends PBmmProperty<PBmmGenericType, Bmm
             BmmGenericType bmmType = typeRef.createBmmType(schema, bmmClass);
             if (bmmType != null) {
                 BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
-                setValues(bmmProperty);
+                populateImBooleans(bmmProperty);
                 return bmmProperty;
             }
         }
