@@ -25,6 +25,8 @@ import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.OperatorKind;
 import org.apache.commons.lang3.StringUtils;
 import org.openehr.bmm.core.BmmClass;
+import org.openehr.bmm.core.BmmDefinedType;
+import org.openehr.bmm.core.BmmEffectiveType;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
@@ -289,6 +291,7 @@ public class AOMUtils {
 
         APathQuery query = new APathQuery(path);
 
+        //the class definition matching the pathsegment that was last processed
         BmmClass classDefinition = bmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
         BmmProperty property = null;
         for (PathSegment segment : query.getPathSegments()) {
@@ -298,6 +301,10 @@ public class AOMUtils {
             property = classDefinition.getFlatProperties().get(segment.getNodeName());
             if(property == null) {
                 for(String descendant: classDefinition.findAllDescendants()) {
+                    //A bit of a hack: sometimes paths are used in archetypes that match with a descendant of the RM type
+                    //only, and not the concrete type, for example the items property of an ITEM_STRUCTURE.
+                    // Try to find a matching descendant, so the archetype validates.
+                    // This is not entirely a nice thing to have, but this makes quite a lot of archetypes work that would not otherwise.
                     BmmProperty bmmProperty = bmmModel.getClassDefinition(descendant).getFlatProperties().get(segment.getNodeName());
                     if(bmmProperty != null) {
                         property = bmmProperty;
@@ -307,6 +314,13 @@ public class AOMUtils {
                 if(property == null) {
                     return null;
                 }
+            }
+            BmmEffectiveType effectiveType = property.getType().getEffectiveType();
+            if(effectiveType instanceof BmmDefinedType) {
+                //set the new classdefinition, so it can be used to find the next property in the path
+                classDefinition = ((BmmDefinedType) effectiveType).getBaseClass();
+            } else {
+                throw new IllegalArgumentException("cannot traverse paths of tuples or signatures, only BMM Defined types");
             }
         }
         return property;
