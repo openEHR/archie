@@ -21,6 +21,8 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
+import org.openehr.bmm.BmmConstants;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,9 +109,9 @@ public class BmmGenericType extends BmmDefinedType implements Serializable {
     @Override
     public String getTypeName() {
         return baseClass.getName() +
-                "<" +
-                genericParameters.stream().map(t -> t.getTypeName()).collect(Collectors.joining(",")) +
-                ">";
+                BmmConstants.Generic_left_delim +
+                genericParameters.stream().map(t -> t.getTypeName()).collect(Collectors.joining(BmmConstants.Generic_separator.toString())) +
+                BmmConstants.Generic_right_delim;
     }
 
     /**
@@ -119,9 +121,9 @@ public class BmmGenericType extends BmmDefinedType implements Serializable {
      */
     public String getTypeSignature() {
         return baseClass.getName() +
-                "<" +
-                genericParameters.stream().map(t -> t.getTypeSignature()).collect(Collectors.joining(",")) +
-                ">";
+                BmmConstants.Generic_left_delim +
+                genericParameters.stream().map(t -> t.getTypeSignature()).collect(Collectors.joining(BmmConstants.Generic_separator.toString())) +
+                BmmConstants.Generic_right_delim;
     }
 
     /**

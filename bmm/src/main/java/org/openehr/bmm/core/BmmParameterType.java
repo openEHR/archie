@@ -22,6 +22,7 @@ package org.openehr.bmm.core;
  */
 
 
+import org.openehr.bmm.BmmConstants;
 import org.openehr.bmm.persistence.validation.BasicDefinitions;
 
 import java.io.Serializable;
@@ -168,10 +169,10 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     @Override
     public String getTypeSignature() {
         StringBuilder builder = new StringBuilder();
-        builder.append(name);
+        builder.append (name);
         BmmEffectiveType confType = flattenedConformsToType();
         if (confType != null) {
-            builder.append(":" + confType.getTypeName());
+            builder.append (BmmConstants.Generic_constraint_delimiter + confType.getTypeName());
         }
         return builder.toString();
     }
@@ -186,9 +187,9 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
         ArrayList<String> result = new ArrayList<>();
         BmmEffectiveType confType = flattenedConformsToType();
         if (confType != null)
-            result.addAll(confType.getFlattenedTypeList());
+            result.addAll (confType.getFlattenedTypeList());
         else
-            result.add(BasicDefinitions.ANY_TYPE);
+            result.add (BasicDefinitions.ANY_TYPE);
         return result;
     }
 

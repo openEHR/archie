@@ -59,4 +59,29 @@ public class BmmConstants {
     public static final String BMM_CONFORMS_TO = "conforms_to_type";
     public static final String BMM_DOCUMENTATION = "documentation";
 
+    // delimiter between parts of `schema_id`
+    public static final Character Schema_id_delimiter = '_';
+
+    public static final String Schema_name_delimiter = "::";
+
+    public static final Character Package_name_delimiter = '.';
+
+    public static final Character Generic_separator = ',';
+    // appears between 'T' and constraining type if there is one
+    public static final Character Generic_constraint_delimiter = ':';
+    public static final Character Type_delimiter = ':';
+    public static final Character Generic_left_delim = '<';
+    public static final Character Generic_right_delim = '>';
+
+    public static final Character Tuple_left_delim = '[';
+    public static final Character Tuple_right_delim = ']';
+    public static final Character Tuple_separator = ',';
+
+    public static final Character Constraint_left_delim = '«';
+    public static final Character Constraint_right_delim = '»';
+
+    public static final boolean formalGenericParameterName (String aTypeName) {
+        return aTypeName.length() == 1;
+    }
+
 }
