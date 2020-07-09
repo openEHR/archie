@@ -1,9 +1,11 @@
 package org.openehr.bmm.v2.persistence;
 
-import com.google.common.collect.Lists;
-import org.openehr.bmm.core.*;
+import org.openehr.bmm.core.BmmEnumeration;
+import org.openehr.bmm.core.BmmEnumerationInteger;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class PBmmEnumerationInteger extends PBmmEnumeration<Integer> {
 
@@ -19,7 +21,7 @@ public final class PBmmEnumerationInteger extends PBmmEnumeration<Integer> {
      */
     @Override
     protected void setDefaultItemValues(BmmEnumeration bmmClass) {
-        bmmClass.setItemValues(new ArrayList(bmmClass.getItemNames()));
+        bmmClass.setItemValues(IntStream.rangeClosed(0, getItemNames().size()).boxed().collect(Collectors.toList()));
     }
 
 }
