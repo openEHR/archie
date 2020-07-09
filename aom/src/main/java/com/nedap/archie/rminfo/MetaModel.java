@@ -109,7 +109,7 @@ public class MetaModel implements MetaModelInterface {
                 return true;//will be checked elsewhere
             }
             List<String> allAncestors = childClass.findAllAncestors();
-            allAncestors = allAncestors.stream().map((s) -> s.toUpperCase()).collect(Collectors.toList());
+            allAncestors = allAncestors.stream().map((s) -> BmmDefinitions.typeNameToClassKey(s.toUpperCase())).collect(Collectors.toList());
             if(!parentClassName.equalsIgnoreCase(childClassName) && !allAncestors.contains(parentClassName)) {
                 return false;
             }
