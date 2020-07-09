@@ -114,6 +114,9 @@ public class BmmSchemaConverter {
         catch (BmmSchemaValidationException ex) {
             //cannot continue on validation error
             return result;
+        } catch (Exception e) {
+            result.getLogger().addError(BmmMessageIds.ec_bmm_schema_conv_fail_err, schema.getSchemaName(), e.getMessage());
+            return result;
         }
         finally {
             //add the result to the repo, even in case of errors
