@@ -196,20 +196,29 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
                         throw new RuntimeException("Error retrieving class definition for generic parameter " +
                                 param.getName()  + " of PBmmClass " + name);
                 }
-
-            // populate properties
-            for (PBmmProperty pBmmProperty: getProperties().values()) {
-                BmmProperty bmmProperty = pBmmProperty.createBmmProperty(bmmModel, bmmClass);
-                if (bmmProperty != null)
-                    bmmClass.addProperty(bmmProperty);
-            }
         } else {
             throw new RuntimeException("bmmClass for PBmmClass \"" + name + "\" is null. It may have been defined as a class or a primitive but not included in a package");
         }
         return (T) bmmClass;
     }
 
-    public void setSchema(PBmmSchema aSchema) {
+    public BmmClass populateBmmClassProperties(BmmClassProcessor classProcessor) {
+        BmmClass bmmClass = classProcessor.getUnprocessedClassDefinition(getName());
+        if (bmmClass != null) {
+            // populate properties
+            for (PBmmProperty pBmmProperty : getProperties().values()) {
+                BmmProperty bmmProperty = pBmmProperty.createBmmProperty(classProcessor, bmmClass);
+                if (bmmProperty != null) {
+                    bmmClass.addProperty(bmmProperty);
+                } else {
+                    throw new RuntimeException("BMM Property creation returned null");
+                }
+            }
+        }
+        return bmmClass;
+    }
+
+        public void setSchema(PBmmSchema aSchema) {
         pBmmSchema = aSchema;
     }
 }

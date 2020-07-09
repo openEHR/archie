@@ -37,10 +37,13 @@ public final class PBmmSimpleType extends PBmmUnitaryType<BmmSimpleType> {
     @Override
     public BmmSimpleType createBmmType(BmmClassProcessor classProcessor, BmmClass classDefinition) {
         BmmClass simpleClassDef = classProcessor.getClassDefinition (type);
-        if (simpleClassDef instanceof BmmSimpleClass)
-            return new BmmSimpleType((BmmSimpleClass) simpleClassDef);
-        else
+        if(simpleClassDef == null) {
             throw new RuntimeException("BmmClass " + type + " is not defined in this model");
+        } else if (simpleClassDef instanceof BmmSimpleClass) {
+            return new BmmSimpleType((BmmSimpleClass) simpleClassDef);
+        } else {
+            throw new RuntimeException("BmmClass " + type + " should be a simple type, but was " + simpleClassDef.getClass().getSimpleName());
+        }
     }
 
     /**

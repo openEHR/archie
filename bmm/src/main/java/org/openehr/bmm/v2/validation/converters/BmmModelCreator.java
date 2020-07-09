@@ -56,8 +56,8 @@ public class BmmModelCreator {
         BmmClassProcessor classSupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClass(processor));
         classSupplier.run();
         //add all properties
-        //BmmClassProcessor propertySupplier = new BmmClassProcessor(model, schema, classCreator::populateBmmClassProperties);
-        //propertySupplier.run();
+        BmmClassProcessor propertySupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClassProperties(processor));
+        propertySupplier.run();
 
         return model;
     }
