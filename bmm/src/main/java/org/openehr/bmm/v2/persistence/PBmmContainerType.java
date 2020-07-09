@@ -90,6 +90,12 @@ public class PBmmContainerType extends PBmmType<BmmContainerType> {
     public BmmContainerType createBmmType(BmmClassProcessor processor, BmmClass classDefinition) {
         BmmClass containerClassDef = processor.getClassDefinition(containerType);
         PBmmUnitaryType containedType = getTypeRef();
+        BmmClass containedClassDefinition = processor.getClassDefinition(containedType.baseType());
+        if(containedType instanceof PBmmSimpleType && containedClassDefinition instanceof BmmGenericClass) {
+            PBmmSimpleType containedSimpleType = (PBmmSimpleType) containedType;
+            //fixes the 'this is ugly' in getTypeRef(), which makes it even more ugly.
+            containedType = new PBmmGenericType(containedSimpleType.getType(), new ArrayList<>());
+        }
         if (containerClassDef instanceof BmmGenericClass && containedType != null) {
             BmmType containedBmmType = containedType.createBmmType(processor, classDefinition);
             if (containedBmmType instanceof BmmUnitaryType) {

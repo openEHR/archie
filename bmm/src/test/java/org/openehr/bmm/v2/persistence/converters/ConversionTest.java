@@ -97,10 +97,10 @@ public class ConversionTest {
             assertTrue("the AOM schema must be valid", validationResult.passes());
         }
         //RESOURCE_DESCRIPTION_ITEM.original_resource_uri should be a LIST<HASH<STRING, STRING>>
-        BmmModel baseModel = repo.getModel("openehr_base_1.1.0").getModel();
+        BmmModel baseModel = repo.getModel("openehr_aom_2.0.6").getModel();
         BmmClass resourceDescriptionItem = baseModel.getClassDefinition("RESOURCE_DESCRIPTION_ITEM");
         BmmGenericType hashContentType = (BmmGenericType) resourceDescriptionItem.getFlatProperties().get("original_resource_uri").getType().getEffectiveType();
         assertEquals(2, hashContentType.getGenericParameters().size());
-        assertEquals("Hash<String,String>", hashContentType.toDisplayString());
+        assertEquals("Hash<String,Uri>", hashContentType.toDisplayString());//this is not according to spec perhaps, but it is how the Archie AOM is implemented, and this is a direct conversion
     }
 }
