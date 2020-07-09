@@ -1,6 +1,7 @@
 package org.openehr.bmm.v2.persistence;
 
 import org.openehr.bmm.core.*;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
@@ -30,6 +31,6 @@ public abstract class PBmmType<T extends BmmType> extends PBmmBase {
      * @param schema
      * @param classDefinition
      */
-    public abstract T createBmmType(BmmModel schema, BmmClass classDefinition);
+    public abstract T createBmmType(BmmClassProcessor schema, BmmClass classDefinition);
 
 }

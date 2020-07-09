@@ -1,7 +1,9 @@
 package org.openehr.bmm.v2.persistence;
 
+import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmEnumeration;
 import org.openehr.bmm.core.BmmEnumerationInteger;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -11,9 +13,9 @@ public final class PBmmEnumerationInteger extends PBmmEnumeration<Integer> {
 
     @Override
     public BmmEnumerationInteger createBmmClass() {
-        BmmEnumerationInteger bmmClass = new BmmEnumerationInteger (getName(), getDocumentation(), nullToFalse(isAbstract()));
-        bmmClass.setSourceSchemaId (getSourceSchemaId());
-        return bmmClass;
+        BmmEnumerationInteger bmmEnumerationInteger = new BmmEnumerationInteger (getName(), getDocumentation(), nullToFalse(isAbstract()));
+        bmmEnumerationInteger.setSourceSchemaId (getSourceSchemaId());
+        return bmmEnumerationInteger;
     }
 
     /**

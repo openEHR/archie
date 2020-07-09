@@ -2,6 +2,7 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openehr.bmm.core.*;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,11 +87,11 @@ public class PBmmContainerType extends PBmmType<BmmContainerType> {
     }
 
     @Override
-    public BmmContainerType createBmmType(BmmModel schema, BmmClass classDefinition) {
-        BmmClass containerClassDef = schema.getClassDefinition(containerType);
+    public BmmContainerType createBmmType(BmmClassProcessor processor, BmmClass classDefinition) {
+        BmmClass containerClassDef = processor.getClassDefinition(containerType);
         PBmmUnitaryType containedType = getTypeRef();
         if (containerClassDef instanceof BmmGenericClass && containedType != null) {
-            BmmType containedBmmType = containedType.createBmmType(schema, classDefinition);
+            BmmType containedBmmType = containedType.createBmmType(processor, classDefinition);
             if (containedBmmType instanceof BmmUnitaryType) {
                 return new BmmContainerType((BmmUnitaryType) containedBmmType, (BmmGenericClass) containerClassDef);
             }

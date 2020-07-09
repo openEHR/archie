@@ -3,6 +3,7 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openehr.bmm.core.*;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -84,12 +85,12 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     }
 
     @Override
-    public BmmGenericType createBmmType(BmmModel schema, BmmClass classDefinition) {
-        BmmClass rootClassDef = schema.getClassDefinition(rootType);
+    public BmmGenericType createBmmType(BmmClassProcessor processor, BmmClass classDefinition) {
+        BmmClass rootClassDef = processor.getClassDefinition(rootType);
         if (rootClassDef instanceof BmmGenericClass) {
             BmmGenericType bmmType = new BmmGenericType((BmmGenericClass)rootClassDef);
             for (PBmmType param: getGenericParameterRefs()) {
-                BmmType paramBmmType = param.createBmmType(schema, classDefinition);
+                BmmType paramBmmType = param.createBmmType(processor, classDefinition);
                 if (paramBmmType instanceof BmmUnitaryType) {
                     bmmType.addGenericParameter(paramBmmType);
                 } else {

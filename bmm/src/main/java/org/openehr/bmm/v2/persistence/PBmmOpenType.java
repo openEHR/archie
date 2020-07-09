@@ -2,6 +2,7 @@ package org.openehr.bmm.v2.persistence;
 
 import com.google.common.collect.Lists;
 import org.openehr.bmm.core.*;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public final class PBmmOpenType extends PBmmUnitaryType<BmmParameterType> {
     }
 
     @Override
-    public BmmParameterType createBmmType (BmmModel schema, BmmClass classDefinition) {
+    public BmmParameterType createBmmType (BmmClassProcessor processor, BmmClass classDefinition) {
         if (classDefinition instanceof BmmGenericClass) {
             BmmParameterType bmmParamType = ((BmmGenericClass) classDefinition).getGenericParameters().get(type);
             if (bmmParamType != null)

@@ -3,6 +3,7 @@ package org.openehr.bmm.v2.persistence;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openehr.bmm.core.*;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -162,8 +163,8 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
         return (T) bmmClass;
     }
 
-    public T populateBmmClass(BmmModel bmmModel) {
-        BmmClass bmmClass = bmmModel.getClassDefinition(getName());
+    public T populateBmmClass(BmmClassProcessor bmmModel) {
+        BmmClass bmmClass = bmmModel.getUnprocessedClassDefinition(getName());
         if (bmmClass != null) {
             // populate references to ancestor classes; should be every class except Any
             BmmType bmmType;

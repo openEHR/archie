@@ -52,9 +52,12 @@ public class BmmModelCreator {
 
 
         // The basics have been created. Now populate the classes with properties
-        ProcessClassesInOrder processClassesInOrder = new ProcessClassesInOrder();
-        processClassesInOrder.doAllClassesInOrder(schema, pBmmClass -> pBmmClass.populateBmmClass(model), new ArrayList<>(schema.getPrimitiveTypes().values()));
-        processClassesInOrder.doAllClassesInOrder(schema, pBmmClass -> pBmmClass.populateBmmClass(model), new ArrayList<>(schema.getClassDefinitions().values()));
+        //setup all classes, ancestors and generic parameters
+        BmmClassProcessor classSupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClass(processor));
+        classSupplier.run();
+        //add all properties
+        //BmmClassProcessor propertySupplier = new BmmClassProcessor(model, schema, classCreator::populateBmmClassProperties);
+        //propertySupplier.run();
 
         return model;
     }

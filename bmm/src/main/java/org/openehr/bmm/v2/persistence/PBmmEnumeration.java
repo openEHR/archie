@@ -1,6 +1,7 @@
 package org.openehr.bmm.v2.persistence;
 
 import org.openehr.bmm.core.*;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
@@ -27,14 +28,14 @@ public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
 
     @Override
     public BmmEnumeration createBmmClass() {
-        BmmEnumeration bmmClass = new BmmEnumeration(getName(), getDocumentation(), nullToFalse(isAbstract()));
-        bmmClass.setSourceSchemaId(getSourceSchemaId());
-        return bmmClass;
+        BmmEnumeration newEnumeration = new BmmEnumeration(getName(), getDocumentation(), nullToFalse(isAbstract()));
+        newEnumeration.setSourceSchemaId(getSourceSchemaId());
+        return newEnumeration;
     }
 
     @Override
-    public BmmEnumeration populateBmmClass(BmmModel schema) {
-        BmmEnumeration bmmClass = super.populateBmmClass(schema);
+    public BmmEnumeration populateBmmClass(BmmClassProcessor classProcessor) {
+        BmmEnumeration bmmClass = super.populateBmmClass(classProcessor);
         if (bmmClass != null) {
             bmmClass.setItemNames(itemNames);
             if (itemValues != null) {

@@ -7,6 +7,7 @@ import org.openehr.bmm.core.BmmContainerProperty;
 import org.openehr.bmm.core.BmmContainerType;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmProperty;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType, BmmContainerProperty> {
 
@@ -25,10 +26,10 @@ public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType,
     }
 
     @Override
-    public BmmProperty createBmmProperty(BmmModel schema, BmmClass bmmClass) {
+    public BmmProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass) {
         PBmmContainerType typeRef = getTypeRef();
         if (typeRef != null) {
-            BmmContainerType bmmType = typeRef.createBmmType(schema, bmmClass);
+            BmmContainerType bmmType = typeRef.createBmmType(classProcessor, bmmClass);
             if (bmmType != null) {
                 BmmContainerProperty bmmProperty = new BmmContainerProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
                 if (getCardinality() != null) {

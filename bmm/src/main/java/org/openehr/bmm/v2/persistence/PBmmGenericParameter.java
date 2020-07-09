@@ -3,6 +3,7 @@ package org.openehr.bmm.v2.persistence;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmParameterType;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 public final class PBmmGenericParameter extends PBmmBase {
 
@@ -30,13 +31,13 @@ public final class PBmmGenericParameter extends PBmmBase {
         return conformsToType;
     }
 
-    public BmmParameterType createBmmGenericParameter (BmmModel aBmmModel) {
+    public BmmParameterType createBmmGenericParameter (BmmClassProcessor processor) {
         if (conformsToType != null) {
-            BmmClass confTypeClassDef = aBmmModel.getClassDefinition(conformsToType);
-            return new BmmParameterType (name, confTypeClassDef.getType(), aBmmModel.getAnyTypeDefinition());
+            BmmClass confTypeClassDef = processor.getClassDefinition(conformsToType);
+            return new BmmParameterType (name, confTypeClassDef.getType(), processor.getAnyTypeDefinition());
         }
         else {
-            return new BmmParameterType(name, aBmmModel.getAnyTypeDefinition());
+            return new BmmParameterType(name, processor.getAnyTypeDefinition());
         }
     }
 }

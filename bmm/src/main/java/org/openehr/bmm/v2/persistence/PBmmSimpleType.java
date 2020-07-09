@@ -2,6 +2,7 @@ package org.openehr.bmm.v2.persistence;
 
 import com.google.common.collect.Lists;
 import org.openehr.bmm.core.*;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
@@ -34,8 +35,8 @@ public final class PBmmSimpleType extends PBmmUnitaryType<BmmSimpleType> {
     }
 
     @Override
-    public BmmSimpleType createBmmType(BmmModel schema, BmmClass classDefinition) {
-        BmmClass simpleClassDef = schema.getClassDefinition (type);
+    public BmmSimpleType createBmmType(BmmClassProcessor classProcessor, BmmClass classDefinition) {
+        BmmClass simpleClassDef = classProcessor.getClassDefinition (type);
         if (simpleClassDef instanceof BmmSimpleClass)
             return new BmmSimpleType((BmmSimpleClass) simpleClassDef);
         else
