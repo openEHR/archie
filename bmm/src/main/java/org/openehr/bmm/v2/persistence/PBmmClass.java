@@ -17,7 +17,7 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
     private List<String> ancestors;
     private Map<String, PBmmUnitaryType> ancestorDefs;
     private Map<String, PBmmProperty> properties;
-    private Boolean isAbstract = false;
+    private Boolean isAbstract;
     private Map<String, PBmmGenericParameter> genericParameterDefs;
     private Boolean isOverride;
     private PBmmSchema pBmmSchema;
@@ -153,9 +153,9 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
     public T createBmmClass() {
         BmmClass bmmClass;
         if (getGenericParameterDefs().size() > 0) {
-            bmmClass = new BmmGenericClass(getName(), getDocumentation(), isAbstract());
+            bmmClass = new BmmGenericClass(getName(), getDocumentation(), nullToFalse(isAbstract()));
         } else {
-            bmmClass = new BmmSimpleClass(getName(), getDocumentation(), isAbstract());
+            bmmClass = new BmmSimpleClass(getName(), getDocumentation(), nullToFalse(isAbstract()));
         }
 
         bmmClass.setSourceSchemaId(getSourceSchemaId());

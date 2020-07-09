@@ -9,7 +9,7 @@ public final class PBmmEnumerationInteger extends PBmmEnumeration<Integer> {
 
     @Override
     public BmmEnumerationInteger createBmmClass() {
-        BmmEnumerationInteger bmmClass = new BmmEnumerationInteger (getName(), getDocumentation(), isAbstract());
+        BmmEnumerationInteger bmmClass = new BmmEnumerationInteger (getName(), getDocumentation(), nullToFalse(isAbstract()));
         bmmClass.setSourceSchemaId (getSourceSchemaId());
         return bmmClass;
     }

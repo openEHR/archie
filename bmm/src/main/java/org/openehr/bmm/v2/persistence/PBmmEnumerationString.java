@@ -6,7 +6,7 @@ public final class PBmmEnumerationString extends PBmmEnumeration<String> {
 
     @Override
     public BmmEnumerationString createBmmClass() {
-        BmmEnumerationString bmmClass = new BmmEnumerationString(getName(), getDocumentation(), isAbstract());
+        BmmEnumerationString bmmClass = new BmmEnumerationString(getName(), getDocumentation(), nullToFalse(isAbstract()));
         bmmClass.setSourceSchemaId (getSourceSchemaId());
         return bmmClass;
     }

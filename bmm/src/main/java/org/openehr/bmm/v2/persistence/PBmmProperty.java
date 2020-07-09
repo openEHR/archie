@@ -94,8 +94,4 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
     public void setDocumentation(String documentation) {
         this.documentation = documentation;
     }
-
-    protected Boolean nullToFalse(Boolean value) {
-        return value == null ? false: value;
-    }
 }

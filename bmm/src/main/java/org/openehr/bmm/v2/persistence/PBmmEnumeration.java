@@ -27,7 +27,7 @@ public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
 
     @Override
     public BmmEnumeration createBmmClass() {
-        BmmEnumeration bmmClass = new BmmEnumeration(getName(), getDocumentation(), isAbstract());
+        BmmEnumeration bmmClass = new BmmEnumeration(getName(), getDocumentation(), nullToFalse(isAbstract()));
         bmmClass.setSourceSchemaId(getSourceSchemaId());
         return bmmClass;
     }

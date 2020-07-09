@@ -16,4 +16,8 @@ public class PBmmBase extends OpenEHRBase {
             KryoUtil.getPool().release(kryo);
         }
     }
+
+    protected boolean nullToFalse(Boolean value) {
+        return value == null ? false: value;
+    }
 }
