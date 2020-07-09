@@ -88,7 +88,7 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
         BmmClass rootClassDef = schema.getClassDefinition(rootType);
         if (rootClassDef instanceof BmmGenericClass) {
             BmmGenericType bmmType = new BmmGenericType((BmmGenericClass)rootClassDef);
-            for (PBmmType param: getGenericParameterDefs().values()) {
+            for (PBmmType param: getGenericParameterRefs()) {
                 BmmType paramBmmType = param.createBmmType(schema, classDefinition);
                 if (paramBmmType instanceof BmmUnitaryType) {
                     bmmType.addGenericParameter(paramBmmType);

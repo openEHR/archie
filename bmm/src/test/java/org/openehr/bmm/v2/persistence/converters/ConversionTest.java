@@ -82,5 +82,6 @@ public class ConversionTest {
         BmmClass resourceDescriptionItem = baseModel.getClassDefinition("RESOURCE_DESCRIPTION_ITEM");
         BmmGenericType hashContentType = (BmmGenericType) resourceDescriptionItem.getFlatProperties().get("original_resource_uri").getType().getEffectiveType();
         assertEquals(2, hashContentType.getGenericParameters().size());
+        assertEquals("Hash<String,String>", hashContentType.toDisplayString());
     }
 }
