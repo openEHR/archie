@@ -2,6 +2,7 @@ package org.openehr.bmm.v2.persistence;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openehr.bmm.BmmConstants;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
@@ -69,9 +70,7 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
         }
         else {
             genericParameters.forEach(param -> {
-                if (param.length() == 1) {
-                    // This is ugly because it basically checks parameter length to see if it's a generic parameter
-                    // However it's the only way in the current P_BMM version to do so.
+                if (BmmConstants.formalGenericParameterName(param)) {
                     PBmmOpenType openType = new PBmmOpenType(param);
                     genericParameterReferences.add(openType);
                 }
@@ -112,15 +111,15 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     @Override
     public String asTypeString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(rootType).append("<");
+        builder.append(rootType).append(BmmConstants.Generic_left_delim);
         List<PBmmType> parameterReferences = getGenericParameterRefs();
         for (int i = 0; i < parameterReferences.size(); i++) {
             builder.append(parameterReferences.get(i).asTypeString());
             if (i < parameterReferences.size() - 1) {
-                builder.append(",");
+                builder.append(BmmConstants.Generic_separator);
             }
         }
-        builder.append(">");
+        builder.append(BmmConstants.Generic_right_delim);
         return builder.toString();
     }
 

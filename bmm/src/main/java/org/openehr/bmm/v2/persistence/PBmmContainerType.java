@@ -1,6 +1,7 @@
 package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openehr.bmm.BmmConstants;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
@@ -55,7 +56,7 @@ public class PBmmContainerType extends PBmmType<BmmContainerType> {
      */
     @Override
     public String asTypeString() {
-        return containerType + "<" + getTypeRef().asTypeString() + ">";
+        return containerType + BmmConstants.Generic_left_delim + getTypeRef().asTypeString() + BmmConstants.Generic_right_delim;
     }
 
     @Override
@@ -74,16 +75,16 @@ public class PBmmContainerType extends PBmmType<BmmContainerType> {
      */
     @JsonIgnore
     public PBmmUnitaryType getTypeRef() {
-        if (typeDef == null && type != null) {
-            if (type.length() == 1) {
-                // This is ugly because it basically checks parameter length to see if it's a generic parameter
-                // However it's the only way in the current P_BMM version
+        if (typeDef != null)
+            return typeDef;
+        else if (type != null) {
+            if (BmmConstants.formalGenericParameterName(type))
                 return new PBmmOpenType(type);
-            }
             else
                 return new PBmmSimpleType(type);
         }
-        return typeDef;
+        else
+            return null;
     }
 
     @Override
