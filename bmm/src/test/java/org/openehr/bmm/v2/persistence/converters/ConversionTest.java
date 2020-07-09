@@ -84,4 +84,23 @@ public class ConversionTest {
         assertEquals(2, hashContentType.getGenericParameters().size());
         assertEquals("Hash<String,String>", hashContentType.toDisplayString());
     }
+
+    @Test
+    public void aomParseAndConvertTest() throws Exception {
+        BmmRepository repo = new BmmRepository();
+        repo.addPersistentSchema(parse("/openehr/openehr_base_for_aom.bmm"));
+        repo.addPersistentSchema(parse("/openehr/openehr_aom_206.bmm"));
+        BmmSchemaConverter converter = new BmmSchemaConverter(repo);
+        converter.validateAndConvertRepository();
+        for (BmmValidationResult validationResult:repo.getModels()) {
+            System.out.println(validationResult.getLogger());
+            assertTrue("the AOM schema must be valid", validationResult.passes());
+        }
+        //RESOURCE_DESCRIPTION_ITEM.original_resource_uri should be a LIST<HASH<STRING, STRING>>
+        BmmModel baseModel = repo.getModel("openehr_base_1.1.0").getModel();
+        BmmClass resourceDescriptionItem = baseModel.getClassDefinition("RESOURCE_DESCRIPTION_ITEM");
+        BmmGenericType hashContentType = (BmmGenericType) resourceDescriptionItem.getFlatProperties().get("original_resource_uri").getType().getEffectiveType();
+        assertEquals(2, hashContentType.getGenericParameters().size());
+        assertEquals("Hash<String,String>", hashContentType.toDisplayString());
+    }
 }
