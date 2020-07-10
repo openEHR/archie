@@ -248,11 +248,11 @@ public class JSONSchemaCreator {
     }
 
     private boolean isJSPrimitive(BmmType bmmType) {
-        return primitiveTypeMapping.containsKey(bmmType.getTypeName().toLowerCase());
+        return primitiveTypeMapping.containsKey(BmmDefinitions.typeNameToClassKey(bmmType.getTypeName()).toLowerCase());
     }
 
     private JsonObjectBuilder getJSPrimitive(BmmType bmmType) {
-        return primitiveTypeMapping.get(bmmType.getTypeName().toLowerCase()).get();
+        return primitiveTypeMapping.get(BmmDefinitions.typeNameToClassKey(bmmType.getTypeName()).toLowerCase()).get();
     }
 
     private JsonObjectBuilder createConstType(String rootType) {
