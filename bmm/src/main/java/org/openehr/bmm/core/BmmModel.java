@@ -189,8 +189,8 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
 
     protected void populateAllAncestorClassMap (BmmClass bmmClass, Map<String, BmmClass> classMap) {
         bmmClass.getAncestors().forEach((className, typeDef) -> {
-            classMap.put (className, typeDef.baseClass);
-            populateAllAncestorClassMap (typeDef.baseClass, classMap);
+            classMap.put (className, typeDef.getBaseClass());
+            populateAllAncestorClassMap (typeDef.getBaseClass(), classMap);
         });
     }
 
