@@ -167,6 +167,7 @@ public class JSONSchemaCreator {
     private JsonObjectBuilder createPropertyDef(BmmType type) {
 
         if (type instanceof BmmParameterType) {
+            //TODO: this has a conforms to type, so change into polymorphic type reference to all descendants of that!
             return createType("object");
             //nothing more to be done
         } else if (type instanceof BmmSimpleType) {
