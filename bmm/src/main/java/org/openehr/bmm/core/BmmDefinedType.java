@@ -28,23 +28,27 @@ import java.util.List;
  * built-in types. See subtypes.
  *
  */
-public abstract class BmmDefinedType extends BmmEffectiveType {
+public abstract class BmmDefinedType<T extends BmmClass> extends BmmEffectiveType {
 
-    protected BmmClass baseClass;
+    private T baseClass;
+
+    protected BmmDefinedType(T baseClass) {
+        this.baseClass = baseClass;
+    }
 
     /**
      * Returns the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
      *
      * @return the base class
      */
-    public BmmClass getBaseClass() {
+    public T getBaseClass() {
         return baseClass;
     }
 
     /**
      * Sets the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
      */
-    public void setBaseClass(BmmClass baseClass) {
+    public void setBaseClass(T baseClass) {
         this.baseClass = baseClass;
     }
 
