@@ -23,7 +23,7 @@ public class ProcessClassesInOrder {
      * @param classesToProcess
      */
     public void doAllClassesInOrder(PBmmSchema schema, Consumer<PBmmClass<BmmClass>> action, List<PBmmClass<BmmClass>> classesToProcess) {
-        int attempts = schema.getClassDefinitions().size() * 10;
+        int attempts = (schema.getPrimitiveTypes().size() + schema.getClassDefinitions().size()) * 10;
         int tries = 0;
         List<String> visitedClasses = new ArrayList<>();
         Queue<PBmmClass<BmmClass>> queue = new LinkedList<>();
@@ -40,6 +40,9 @@ public class ProcessClassesInOrder {
                 processClass(schema, action, visitedClasses, queue, element);
 
             tries++;
+        }
+        if(!queue.isEmpty() || (attempts != 0 && tries >= attempts) ) {
+            throw new RuntimeException("BMM class not processed due to ordering problem!");
         }
     }
 

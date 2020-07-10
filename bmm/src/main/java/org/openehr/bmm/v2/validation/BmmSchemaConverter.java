@@ -116,6 +116,7 @@ public class BmmSchemaConverter {
             return result;
         } catch (Exception e) {
             result.getLogger().addError(BmmMessageIds.ec_bmm_schema_conv_fail_err, schema.getSchemaName(), e.getMessage());
+            logger.error("exception converting BMM", e);
             return result;
         }
         finally {
