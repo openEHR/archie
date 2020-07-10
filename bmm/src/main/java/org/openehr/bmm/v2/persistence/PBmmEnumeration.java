@@ -34,8 +34,8 @@ public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
     }
 
     @Override
-    public BmmEnumeration populateBmmClass(BmmClassProcessor classProcessor) {
-        BmmEnumeration bmmClass = super.populateBmmClass(classProcessor);
+    public BmmEnumeration populateBmmClass(BmmModel bmmModel) {
+        BmmEnumeration bmmClass = super.populateBmmClass(bmmModel);
         if (bmmClass != null) {
             bmmClass.setItemNames(itemNames);
             if (itemValues != null) {

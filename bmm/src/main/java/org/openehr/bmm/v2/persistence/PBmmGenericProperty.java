@@ -14,10 +14,10 @@ public final class PBmmGenericProperty extends PBmmProperty<PBmmGenericType, Bmm
     }
 
     @Override
-    public BmmProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass) {
+    public BmmProperty createBmmProperty(BmmModel bmmModel, BmmClass bmmClass) {
         PBmmGenericType typeRef = getTypeRef();
         if (typeRef != null) {
-            BmmGenericType bmmType = typeRef.createBmmType(classProcessor, bmmClass);
+            BmmGenericType bmmType = typeRef.createBmmType(bmmModel, bmmClass);
             if (bmmType != null) {
                 BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
                 populateImBooleans(bmmProperty);

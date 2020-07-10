@@ -88,28 +88,17 @@ public class PBmmContainerType extends PBmmType<BmmContainerType> {
     }
 
     @Override
-    public BmmContainerType createBmmType(BmmClassProcessor processor, BmmClass classDefinition) {
-        BmmClass containerClassDef = processor.getClassDefinition(containerType);
-        PBmmUnitaryType containedType = getTypeRef(processor);//get the actual typeref for conversion
+    public BmmContainerType createBmmType(BmmModel bmmModel, BmmClass classDefinition) {
+        BmmClass containerClassDef = bmmModel.getClassDefinition(containerType);
+        PBmmUnitaryType containedType = getTypeRef();
         if (containerClassDef instanceof BmmGenericClass && containedType != null) {
-            BmmType containedBmmType = containedType.createBmmType(processor, classDefinition);
+            BmmType containedBmmType = containedType.createBmmType(bmmModel, classDefinition);
             if (containedBmmType instanceof BmmUnitaryType) {
                 return new BmmContainerType((BmmUnitaryType) containedBmmType, (BmmGenericClass) containerClassDef);
             }
         }
 
         throw new RuntimeException("BmmClass " + containerClassDef.getName() + " is not defined in this model or not a generic type");
-    }
-
-    private PBmmUnitaryType getTypeRef(BmmClassProcessor processor) {
-        PBmmUnitaryType containedType = getTypeRef();
-        BmmClass containedClassDefinition = processor.getClassDefinition(containedType.baseType());
-        if(containedType instanceof PBmmSimpleType && containedClassDefinition instanceof BmmGenericClass) {
-            PBmmSimpleType containedSimpleType = (PBmmSimpleType) containedType;
-            //fixes the 'this is ugly' in getTypeRef(), which makes it even more ugly.
-            containedType = new PBmmGenericType(containedSimpleType.getType(), new ArrayList<>());
-        }
-        return containedType;
     }
 
 }

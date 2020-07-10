@@ -84,12 +84,12 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     }
 
     @Override
-    public BmmGenericType createBmmType(BmmClassProcessor processor, BmmClass classDefinition) {
-        BmmClass rootClassDef = processor.getClassDefinition(rootType);
+    public BmmGenericType createBmmType(BmmModel bmmModel, BmmClass classDefinition) {
+        BmmClass rootClassDef = bmmModel.getClassDefinition(rootType);
         if (rootClassDef instanceof BmmGenericClass) {
             BmmGenericType bmmType = new BmmGenericType((BmmGenericClass)rootClassDef);
             for (PBmmType param: getGenericParameterRefs()) {
-                BmmType paramBmmType = param.createBmmType(processor, classDefinition);
+                BmmType paramBmmType = param.createBmmType(bmmModel, classDefinition);
                 if (paramBmmType instanceof BmmUnitaryType) {
                     bmmType.addGenericParameter(paramBmmType);
                 } else {
