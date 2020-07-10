@@ -33,14 +33,7 @@ import java.util.stream.Collectors;
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmGenericType extends BmmDefinedType implements Serializable {
-
-    public BmmGenericType(BmmGenericClass aBaseClass) {
-        baseClass = aBaseClass;
-        genericParameters = new ArrayList<>();
-    }
-
-    public BmmGenericType() {}
+public class BmmGenericType extends BmmDefinedType<BmmGenericClass> implements Serializable {
 
     /**
      * Generic parameters of the root_type in this type specifier. The order must match the order of the owning class’s
@@ -48,10 +41,10 @@ public class BmmGenericType extends BmmDefinedType implements Serializable {
      */
     public List<BmmType> genericParameters;
 
-    /**
-     * The base class of this type.
-     */
-    protected BmmGenericClass baseClass;
+    public BmmGenericType(BmmGenericClass aBaseClass) {
+        super(aBaseClass);
+        genericParameters = new ArrayList<>();
+    }
 
     /**
      * Returns generic parameters of the root_type in this type specifier. The order must match the order of the owning
@@ -83,32 +76,13 @@ public class BmmGenericType extends BmmDefinedType implements Serializable {
     }
 
     /**
-     * Returns the base class of this type.
-     *
-     * @return
-     */
-    @Override
-    public BmmGenericClass getBaseClass() {
-        return baseClass;
-    }
-
-    /**
-     * Sets the base class of this type.
-     *
-     * @param baseClass
-     */
-    public void setBaseClass(BmmGenericClass baseClass) {
-        this.baseClass = baseClass;
-    }
-
-    /**
      * Return the full name of the type including generic parameters, e.g. 'DV_INTERVAL&lt;T&gt;', 'TABLE&lt;List&lt;THING&gt;,String&gt;'.
      *
      * @return
      */
     @Override
     public String getTypeName() {
-        return baseClass.getName() +
+        return getBaseClass().getName() +
                 BmmConstants.Generic_left_delim +
                 genericParameters.stream().map(t -> t.getTypeName()).collect(Collectors.joining(BmmConstants.Generic_separator.toString())) +
                 BmmConstants.Generic_right_delim;
@@ -120,7 +94,7 @@ public class BmmGenericType extends BmmDefinedType implements Serializable {
      * @return
      */
     public String getTypeSignature() {
-        return baseClass.getName() +
+        return getBaseClass().getName() +
                 BmmConstants.Generic_left_delim +
                 genericParameters.stream().map(t -> t.getTypeSignature()).collect(Collectors.joining(BmmConstants.Generic_separator.toString())) +
                 BmmConstants.Generic_right_delim;
@@ -134,7 +108,7 @@ public class BmmGenericType extends BmmDefinedType implements Serializable {
     @Override
     public List<String> getFlattenedTypeList() {
         ArrayList<String> result = new ArrayList<>();
-        result.add(baseClass.getName());
+        result.add(getBaseClass().getName());
         for (BmmType g : genericParameters)
             result.addAll (g.getFlattenedTypeList());
         return result;
