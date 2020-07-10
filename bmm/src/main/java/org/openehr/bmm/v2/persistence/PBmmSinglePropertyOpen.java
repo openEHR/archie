@@ -49,10 +49,10 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType, Bmm
     }
 
     @Override
-    public BmmProperty createBmmProperty(BmmModel bmmModel, BmmClass bmmClass) {
+    public BmmProperty createBmmProperty(BmmClassProcessor processor, BmmClass bmmClass) {
         PBmmOpenType typeRef = getTypeRef();
         if (typeRef != null) {
-            BmmParameterType bmmType = typeRef.createBmmType(bmmModel, bmmClass);
+            BmmParameterType bmmType = typeRef.createBmmType(processor, bmmClass);
             if (bmmType != null) {
                 BmmProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
                 populateImBooleans(bmmProperty);

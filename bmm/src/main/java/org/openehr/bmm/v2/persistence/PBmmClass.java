@@ -163,8 +163,8 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
         return (T) bmmClass;
     }
 
-    public T populateBmmClass(BmmModel bmmModel) {
-        BmmClass bmmClass = bmmModel.getClassDefinition(getName());
+    public T populateBmmClass(BmmClassProcessor bmmModel) {
+        BmmClass bmmClass = bmmModel.getUnprocessedClassDefinition(getName());
         if (bmmClass != null) {
             // populate references to ancestor classes; should be every class except Any
             BmmType bmmType;
@@ -202,12 +202,12 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
         return (T) bmmClass;
     }
 
-    public BmmClass populateBmmClassProperties(BmmModel bmmModel) {
-        BmmClass bmmClass = bmmModel.getClassDefinition(getName());
+    public BmmClass populateBmmClassProperties(BmmClassProcessor classProcessor) {
+        BmmClass bmmClass = classProcessor.getUnprocessedClassDefinition(getName());
         if (bmmClass != null) {
             // populate properties
             for (PBmmProperty pBmmProperty : getProperties().values()) {
-                BmmProperty bmmProperty = pBmmProperty.createBmmProperty(bmmModel, bmmClass);
+                BmmProperty bmmProperty = pBmmProperty.createBmmProperty(classProcessor, bmmClass);
                 if (bmmProperty != null) {
                     bmmClass.addProperty(bmmProperty);
                 } else {

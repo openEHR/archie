@@ -69,7 +69,7 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
         this.typeDef = typeDef;
     }
 
-    public abstract BmmProperty createBmmProperty(BmmModel bmmModel, BmmClass bmmClass);
+    public abstract BmmProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass);
 
     /** set the values to the BmmProperty that come from this class
      */

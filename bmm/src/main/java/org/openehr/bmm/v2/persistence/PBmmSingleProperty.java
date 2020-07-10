@@ -50,10 +50,10 @@ public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType, BmmUn
     }
 
     @Override
-    public BmmProperty createBmmProperty(BmmModel bmmModel, BmmClass bmmClass) {
+    public BmmProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass) {
         PBmmSimpleType typeRef = getTypeRef();
         if (typeRef != null) {
-            BmmSimpleType bmmType = typeRef.createBmmType(bmmModel, bmmClass);
+            BmmSimpleType bmmType = typeRef.createBmmType(classProcessor, bmmClass);
             if (bmmType != null) {
                 BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
                 populateImBooleans(bmmProperty);

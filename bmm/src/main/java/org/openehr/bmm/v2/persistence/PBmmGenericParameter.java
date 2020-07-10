@@ -31,13 +31,13 @@ public final class PBmmGenericParameter extends PBmmBase {
         return conformsToType;
     }
 
-    public BmmParameterType createBmmGenericParameter (BmmModel bmmModel) {
+    public BmmParameterType createBmmGenericParameter (BmmClassProcessor processor) {
         if (conformsToType != null) {
-            BmmClass confTypeClassDef = bmmModel.getClassDefinition(conformsToType);
-            return new BmmParameterType (name, confTypeClassDef.getType(), bmmModel.getAnyTypeDefinition());
+            BmmClass confTypeClassDef = processor.getClassDefinition(conformsToType);
+            return new BmmParameterType (name, confTypeClassDef.getType(), processor.getAnyTypeDefinition());
         }
         else {
-            return new BmmParameterType(name, bmmModel.getAnyTypeDefinition());
+            return new BmmParameterType(name, processor.getAnyTypeDefinition());
         }
     }
 }

@@ -26,10 +26,10 @@ public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType,
     }
 
     @Override
-    public BmmProperty createBmmProperty(BmmModel bmmModel, BmmClass bmmClass) {
+    public BmmProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass) {
         PBmmContainerType typeRef = getTypeRef();
         if (typeRef != null) {
-            BmmContainerType bmmType = typeRef.createBmmType(bmmModel, bmmClass);
+            BmmContainerType bmmType = typeRef.createBmmType(classProcessor, bmmClass);
             if (bmmType != null) {
                 BmmContainerProperty bmmProperty = new BmmContainerProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
                 if (getCardinality() != null) {

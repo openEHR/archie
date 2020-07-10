@@ -55,6 +55,11 @@ public class BmmClassProcessor {
         }
     }
 
+    public BmmClass getClassDefinition(String typeName) {
+        processBmmClassIfNeeded(typeName);
+        return model.getClassDefinition(typeName);
+    }
+
     private void processBmmClassIfNeeded(String typeName) {
         if(unprocessedClasses.contains(typeName.toUpperCase()) && !processingStack.contains(typeName.toUpperCase())) {
             try {
@@ -74,4 +79,12 @@ public class BmmClassProcessor {
 
     }
 
+    public BmmSimpleType getAnyTypeDefinition() {
+        getAnyClassDefinition(); //get the any class definition to be sure it gets processed
+        return model.getAnyTypeDefinition();
+    }
+
+    public BmmClass getUnprocessedClassDefinition(String name) {
+        return model.getClassDefinition(name);
+    }
 }

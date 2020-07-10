@@ -209,10 +209,7 @@ class_definitions = <
                 name = <"constraint">
                 type_def = (P_BMM_CONTAINER_TYPE) <
                     container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"INTERVAL">
-                        generic_parameters = <"Real">
-                    >
+                    type = <"INTERVAL">
                 >
                 cardinality = <|>=0|>
                 is_mandatory = <True>
@@ -753,10 +750,7 @@ class_definitions = <
                 name = <"constraint">
                 type_def = (P_BMM_CONTAINER_TYPE) <
                     container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"INTERVAL">
-                        generic_parameters = <"Iso8601_time">
-                    >
+                    type = <"INTERVAL">
                 >
                 cardinality = <|>=0|>
                 is_mandatory = <True>
@@ -778,10 +772,7 @@ class_definitions = <
                 name = <"constraint">
                 type_def = (P_BMM_CONTAINER_TYPE) <
                     container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"INTERVAL">
-                        generic_parameters = <"Iso8601_date">
-                    >
+                    type = <"INTERVAL">
                 >
                 cardinality = <|>=0|>
                 is_mandatory = <True>
@@ -979,10 +970,7 @@ class_definitions = <
                 name = <"constraint">
                 type_def = (P_BMM_CONTAINER_TYPE) <
                     container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"INTERVAL">
-                        generic_parameters = <"Iso8601_date_time">
-                    >
+                    type = <"INTERVAL">
                 >
                 cardinality = <|>=0|>
                 is_mandatory = <True>
@@ -1321,10 +1309,7 @@ class_definitions = <
                 name = <"constraint">
                 type_def = (P_BMM_CONTAINER_TYPE) <
                     container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"INTERVAL">
-                        generic_parameters = <"Integer">
-                    >
+                    type = <"INTERVAL">
                 >
                 cardinality = <|>=0|>
                 is_mandatory = <True>
@@ -1359,10 +1344,7 @@ class_definitions = <
                 name = <"constraint">
                 type_def = (P_BMM_CONTAINER_TYPE) <
                     container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"INTERVAL">
-                        generic_parameters = <"Iso8601_duration">
-                    >
+                    type = <"INTERVAL">
                 >
                 cardinality = <|>=0|>
                 is_mandatory = <True>

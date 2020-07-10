@@ -43,7 +43,7 @@ public final class PBmmOpenType extends PBmmUnitaryType<BmmParameterType> {
     }
 
     @Override
-    public BmmParameterType createBmmType (BmmModel bmmModel, BmmClass classDefinition) {
+    public BmmParameterType createBmmType (BmmClassProcessor processor, BmmClass classDefinition) {
         if (classDefinition instanceof BmmGenericClass) {
             BmmParameterType bmmParamType = ((BmmGenericClass) classDefinition).getGenericParameters().get(type);
             if (bmmParamType != null)
