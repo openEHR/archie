@@ -39,9 +39,9 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
         });
     }
 
-    public void validateClass(PBmmClass<BmmClass> pBmmClass) {
+    public void validateClass(PBmmClass pBmmClass) {
         //check that all ancestors exist
-        pBmmClass.getAncestors().forEach (ancestorClassName -> {
+        pBmmClass.getAncestorTypeNames().forEach (ancestorClassName -> {
             if (StringUtils.isEmpty (ancestorClassName))
                 addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_ANCESTOR_NAME_EMPTY, pBmmClass.getSourceSchemaId(), pBmmClass.getName());
             else if (!ancestorClassName.equalsIgnoreCase(BmmDefinitions.ANY_TYPE) && schema.getClassDefinition(BmmDefinitions.typeNameToClassKey(ancestorClassName)) == null)
@@ -56,7 +56,7 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
             propertyValidator.validateProperty(pBmmClass, property);
     }
 
-    private void validateGenericParameters(PBmmClass<BmmClass> pBmmClass) {
+    private void validateGenericParameters(PBmmClass pBmmClass) {
         //check that all generic parameter.conforms_to_type exist exists
         if (pBmmClass.isGeneric()) {
             for (PBmmGenericParameter pBmmGenericParameter: pBmmClass.getGenericParameterDefs().values()) {

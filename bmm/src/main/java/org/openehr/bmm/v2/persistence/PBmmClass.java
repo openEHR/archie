@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class PBmmClass<T extends BmmClass> extends PBmmBase {
+public class PBmmClass extends PBmmBase {
 
     private String documentation;//from P_BMM_MODEL_ELEMENT
     private String name;
@@ -49,6 +49,7 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
 
     /**
      * @return coalesced structural representation of ancestors from ancestorDefs and ancestors
+     * @throws  RuntimeException if BmmSchema contains a non-existing ancestor reference
      */
     @JsonIgnore
     public Map<String, PBmmUnitaryType> ancestorRefs() {
@@ -65,9 +66,9 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
                         else
                             result.put(anc, new PBmmSimpleType(anc));
                     else {
-                        // could also throw a runtime exception here.
-                        // throw new RuntimeException("Error retrieving class definition for ancestor \"" +
-                        //            anc  + "\" of PBmmClass " + name);
+                        //validation will catch this case.
+                         throw new RuntimeException("Error retrieving class definition for ancestor \"" +
+                                    anc  + "\" of PBmmClass " + name);
                     }
                 }
             }
@@ -83,7 +84,13 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
      */
     @JsonIgnore
     public List<String> getAncestorTypeNames() {
-        return ancestorRefs().values().stream().map(PBmmType::asTypeString).collect(Collectors.toList());
+        if(ancestorDefs != null && !ancestorDefs.isEmpty()) {
+            return ancestorDefs.values().stream().map(type -> type.asTypeString()).collect(Collectors.toList());
+        } else if (ancestors != null) {
+            return ancestors;
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     public void setAncestors(List<String> ancestors) {
@@ -151,7 +158,7 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
         return ancestorDefs;
     }
 
-    public T createBmmClass() {
+    public BmmClass createBmmClass() {
         BmmClass bmmClass;
         if (getGenericParameterDefs().size() > 0) {
             bmmClass = new BmmGenericClass(getName(), getDocumentation(), nullToFalse(isAbstract()));
@@ -160,10 +167,10 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
         }
 
         bmmClass.setSourceSchemaId(getSourceSchemaId());
-        return (T) bmmClass;
+        return bmmClass;
     }
 
-    public T populateBmmClass(BmmClassProcessor bmmModel) {
+    public BmmClass populateBmmClass(BmmClassProcessor bmmModel) {
         BmmClass bmmClass = bmmModel.getUnprocessedClassDefinition(getName());
         if (bmmClass != null) {
             // populate references to ancestor classes; should be every class except Any
@@ -199,7 +206,7 @@ public class PBmmClass<T extends BmmClass> extends PBmmBase {
         } else {
             throw new RuntimeException("bmmClass for PBmmClass \"" + name + "\" is null. It may have been defined as a class or a primitive but not included in a package");
         }
-        return (T) bmmClass;
+        return bmmClass;
     }
 
     public BmmClass populateBmmClassProperties(BmmClassProcessor classProcessor) {

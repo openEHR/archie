@@ -5,7 +5,7 @@ import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
-public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
+public class PBmmEnumeration<ItemType> extends PBmmClass {
 
     private List<String> itemNames;
     protected List<ItemType> itemValues;
@@ -35,7 +35,7 @@ public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
 
     @Override
     public BmmEnumeration populateBmmClass(BmmClassProcessor classProcessor) {
-        BmmEnumeration bmmClass = super.populateBmmClass(classProcessor);
+        BmmEnumeration bmmClass = (BmmEnumeration) super.populateBmmClass(classProcessor);
         if (bmmClass != null) {
             bmmClass.setItemNames(itemNames);
             if (itemValues != null) {
