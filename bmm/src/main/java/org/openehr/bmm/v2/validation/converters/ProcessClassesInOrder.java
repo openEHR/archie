@@ -22,20 +22,20 @@ public class ProcessClassesInOrder {
      * @param action
      * @param classesToProcess
      */
-    public void doAllClassesInOrder(PBmmSchema schema, Consumer<PBmmClass<BmmClass>> action, List<PBmmClass<BmmClass>> classesToProcess) {
+    public void doAllClassesInOrder(PBmmSchema schema, Consumer<PBmmClass> action, List<PBmmClass> classesToProcess) {
         int attempts = (schema.getPrimitiveTypes().size() + schema.getClassDefinitions().size()) * 10;
         int tries = 0;
         List<String> visitedClasses = new ArrayList<>();
-        Queue<PBmmClass<BmmClass>> queue = new LinkedList<>();
+        Queue<PBmmClass> queue = new LinkedList<>();
 
         //Initial queue population
-        for (PBmmClass<BmmClass> bmmClass : classesToProcess) {
+        for (PBmmClass bmmClass : classesToProcess) {
             processClass(schema, action, visitedClasses, queue, bmmClass);
         }
 
         //Go through the queue and remove nodes whose ancestors have already been processed
         while (!queue.isEmpty() && tries < attempts) {
-            PBmmClass<BmmClass> element = queue.remove();
+            PBmmClass element = queue.remove();
             if (element != null)
                 processClass(schema, action, visitedClasses, queue, element);
 
@@ -46,14 +46,14 @@ public class ProcessClassesInOrder {
         }
     }
 
-    private void processClass(PBmmSchema schema, Consumer<PBmmClass<BmmClass>> action, List<String> visitedClasses, Queue<PBmmClass<BmmClass>> queue, PBmmClass<BmmClass> bmmClass) {
+    private void processClass(PBmmSchema schema, Consumer<PBmmClass> action, List<String> visitedClasses, Queue<PBmmClass> queue, PBmmClass bmmClass) {
         if (!visitedClasses.contains(bmmClass.getName().toUpperCase())) {
             boolean allAncestorsAndDependenciesVisited = true;
             for (String ancestor : bmmClass.getAncestorTypeNames()) {
                 String ancestorClassName = BmmDefinitions.typeNameToClassKey(ancestor);
                 if (!visitedClasses.contains(ancestorClassName.toUpperCase())) {
                     allAncestorsAndDependenciesVisited = false;
-                    PBmmClass<BmmClass> ancestorDef = schema.getClassDefinition(ancestorClassName);
+                    PBmmClass ancestorDef = schema.getClassDefinition(ancestorClassName);
                     queue.add(ancestorDef);
                 }
 

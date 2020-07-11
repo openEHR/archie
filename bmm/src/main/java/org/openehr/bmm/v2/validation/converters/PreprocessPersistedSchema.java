@@ -13,8 +13,8 @@ public class PreprocessPersistedSchema {
     //convert all maps to case insensitive variants
     public void preprocess(PBmmSchema schema) {
         {
-            Map<String, PBmmClass<BmmClass>> classDefinitions = schema.getClassDefinitions();
-            CaseInsensitiveLinkedHashMap<PBmmClass<BmmClass>> newClassDefinitions = new CaseInsensitiveLinkedHashMap<>();
+            Map<String, PBmmClass> classDefinitions = schema.getClassDefinitions();
+            CaseInsensitiveLinkedHashMap<PBmmClass> newClassDefinitions = new CaseInsensitiveLinkedHashMap<>();
             newClassDefinitions.putAll(classDefinitions);
             schema.setClassDefinitions(newClassDefinitions);
             for (PBmmClass clazz:classDefinitions.values()) {
@@ -23,11 +23,11 @@ public class PreprocessPersistedSchema {
         }
 
         {
-            Map<String, PBmmClass<BmmClass>> primitiveTypes = schema.getPrimitiveTypes();
-            CaseInsensitiveLinkedHashMap<PBmmClass<BmmClass>> newPrimitiveTypes = new CaseInsensitiveLinkedHashMap<>();
+            Map<String, PBmmClass> primitiveTypes = schema.getPrimitiveTypes();
+            CaseInsensitiveLinkedHashMap<PBmmClass> newPrimitiveTypes = new CaseInsensitiveLinkedHashMap<>();
             newPrimitiveTypes.putAll(primitiveTypes);
             schema.setPrimitiveTypes(newPrimitiveTypes);
-            for (PBmmClass<BmmClass> clazz:primitiveTypes.values()) {
+            for (PBmmClass clazz:primitiveTypes.values()) {
                 clazz.setSourceSchemaId(schema.getSchemaId());
             }
         }

@@ -4,7 +4,7 @@ import org.openehr.bmm.core.*;
 
 import java.util.List;
 
-public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
+public class PBmmEnumeration<ItemType> extends PBmmClass {
 
     private List<String> itemNames;
     protected List<ItemType> itemValues;
@@ -33,8 +33,9 @@ public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
     }
 
     @Override
+
     public BmmEnumeration populateBmmClass(BmmModel schema) {
-        BmmEnumeration bmmClass = super.populateBmmClass(schema);
+        BmmEnumeration bmmClass = (BmmEnumeration) super.populateBmmClass(schema);
         if (bmmClass != null) {
             bmmClass.setItemNames(itemNames);
             if (itemValues != null) {

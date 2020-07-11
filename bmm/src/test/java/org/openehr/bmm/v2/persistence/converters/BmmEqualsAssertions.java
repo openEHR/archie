@@ -77,7 +77,7 @@ public class BmmEqualsAssertions {
 
     }
 
-    public static void assertClassEquals(PBmmClass<BmmClass> class1, PBmmClass<BmmClass> class2) {
+    public static void assertClassEquals(PBmmClass class1, PBmmClass class2) {
         assertEquals(class1.getClass(), class2.getClass());//TODO: manually check enumerations
         assertEquals(class1.getDocumentation(), class2.getDocumentation());
         assertEquals(class1.getName(), class2.getName());
