@@ -5,7 +5,7 @@ import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
-public abstract class PBmmType<T extends BmmType> extends PBmmBase {
+public abstract class PBmmType extends PBmmBase {
 
     /**
      * Effective unitary type, ignoring containers and also generic parameters
@@ -30,7 +30,8 @@ public abstract class PBmmType<T extends BmmType> extends PBmmBase {
      * build bmmType from classDefinition
      * @param schema
      * @param classDefinition
+     * @return
      */
-    public abstract T createBmmType(BmmClassProcessor schema, BmmClass classDefinition);
+    public abstract BmmType createBmmType(BmmClassProcessor schema, BmmClass classDefinition);
 
 }

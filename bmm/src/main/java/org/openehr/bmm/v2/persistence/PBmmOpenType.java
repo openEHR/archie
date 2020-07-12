@@ -6,7 +6,7 @@ import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
-public final class PBmmOpenType extends PBmmUnitaryType<BmmParameterType> {
+public final class PBmmOpenType extends PBmmUnitaryType {
 
     private String type;
 

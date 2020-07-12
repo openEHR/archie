@@ -7,14 +7,14 @@ import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.core.BmmUnitaryProperty;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
-public final class PBmmGenericProperty extends PBmmProperty<PBmmGenericType, BmmUnitaryProperty> {
+public final class PBmmGenericProperty extends PBmmProperty<PBmmGenericType> {
 
     public PBmmGenericProperty() {
         super();
     }
 
     @Override
-    public BmmProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass) {
+    public BmmUnitaryProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass) {
         PBmmGenericType typeRef = getTypeRef();
         if (typeRef != null) {
             BmmGenericType bmmType = typeRef.createBmmType(classProcessor, bmmClass);

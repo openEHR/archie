@@ -11,7 +11,7 @@ import org.openehr.bmm.core.BmmSimpleType;
 import org.openehr.bmm.core.BmmUnitaryProperty;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
-public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType, BmmUnitaryProperty> {
+public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType> {
 
     private String type;
 
@@ -49,12 +49,12 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType, Bmm
     }
 
     @Override
-    public BmmProperty createBmmProperty(BmmClassProcessor processor, BmmClass bmmClass) {
+    public BmmUnitaryProperty createBmmProperty(BmmClassProcessor processor, BmmClass bmmClass) {
         PBmmOpenType typeRef = getTypeRef();
         if (typeRef != null) {
             BmmParameterType bmmType = typeRef.createBmmType(processor, bmmClass);
             if (bmmType != null) {
-                BmmProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+                BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
                 populateImBooleans(bmmProperty);
                 return bmmProperty;
             }

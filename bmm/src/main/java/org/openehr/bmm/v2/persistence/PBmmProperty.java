@@ -8,7 +8,7 @@ import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.core.BmmType;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
-public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  extends PBmmBase {
+public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
 
     private String documentation;
     private String name;

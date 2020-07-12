@@ -8,7 +8,7 @@ import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PBmmContainerType extends PBmmType<BmmContainerType> {
+public class PBmmContainerType extends PBmmType {
 
     private String containerType;
     private PBmmUnitaryType typeDef;

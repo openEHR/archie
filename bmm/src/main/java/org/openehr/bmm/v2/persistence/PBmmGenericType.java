@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
+public final class PBmmGenericType extends PBmmUnitaryType {
     private String rootType;
     private Map<String, PBmmType> genericParameterDefs;
     private List<String> genericParameters;
