@@ -1,5 +1,7 @@
 package org.openehr.bmm.core;
 
+import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.query.APathQuery;
 import org.openehr.bmm.BmmConstants;
 import org.openehr.bmm.persistence.validation.BasicDefinitions;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
@@ -149,39 +151,32 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return BmmProperty
      */
     public Boolean hasPropertyAtPath (String typeName, String propertyPath) {
-        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
-        if (bmmClass != null) {
-            List<String> pathList = new ArrayList<> (Arrays.asList (propertyPath.split (BmmConstants.Path_delimiter.toString())));
-            if (pathList.get (0).isEmpty())
-                pathList.remove (0);
-            return hasPropertyAtPath (bmmClass, pathList);
-        }
+        BmmClass bmmClass = getClassDefinition (BmmDefinitions.typeNameToClassKey (typeName));
+        if (bmmClass != null)
+            return hasPropertyAtPath (bmmClass, new APathQuery (propertyPath));
         else
             return false;
     }
 
-    private Boolean hasPropertyAtPath (BmmClass bmmClass, List<String> pathList) {
-        String pathSegment = pathList.get(0);
-        if (bmmClass.hasFlatPropertyWithName (pathSegment)) {
-            if (pathList.size() == 1)
-                return true;
+    private boolean hasPropertyAtPath (BmmClass bmmClass, APathQuery qPath) {
+        int pathPos = qPath.index();
+        boolean result = false;
+        if (bmmClass.hasFlatPropertyWithName(qPath.itemName())) {
+            if (qPath.isLast())
+                result = true;
             else {
-                BmmClass bmmPropTypeClass = getClassDefinition (bmmClass.getFlatProperties().get(pathSegment).getType().getEffectiveType().typeBaseName());
-                if (bmmPropTypeClass != null) {
-                    // Need to copy path since this routine is called recursively
-                    // TODO: a better implem would use a path with built-in movable cursor.
-                    List<String> subPath = new ArrayList<> (pathList);
-                    subPath.remove(0);
-                    return hasPropertyAtPath (bmmPropTypeClass, subPath);
-                }
+                BmmClass bmmPropTypeClass = getClassDefinition(bmmClass.getFlatProperties().get(qPath.itemName()).getType().getEffectiveType().typeBaseName());
+                qPath.forth();
+                if (bmmPropTypeClass != null)
+                    result = hasPropertyAtPath(bmmPropTypeClass, qPath);
             }
         } else {
             for (String descClass : bmmClass.getImmediateDescendants())
-                if (hasPropertyAtPath (getClassDefinition(descClass), pathList))
-                    return true;
-            return false;
+                if (hasPropertyAtPath(getClassDefinition(descClass), qPath))
+                    result = true;
         }
-        return false;
+        qPath.go (pathPos);
+        return result;
     }
 
     /**
@@ -194,40 +189,33 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      */
     public BmmProperty propertyAtPath (String typeName, String propertyPath) {
         BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
-        if (bmmClass != null) {
-            List<String> pathList = new ArrayList<> (Arrays.asList (propertyPath.split (BmmConstants.Path_delimiter.toString())));
-            if (pathList.get(0).isEmpty())
-                pathList.remove(0);
-            return propertyAtPath (bmmClass, pathList);
-        }
+        if (bmmClass != null)
+            return propertyAtPath (bmmClass, new APathQuery(propertyPath));
         else
             return null;
     }
 
-    private BmmProperty propertyAtPath (BmmClass bmmClass, List<String> pathList) {
-        String pathSegment = pathList.get(0);
-        if (bmmClass.hasFlatPropertyWithName (pathSegment)) {
-            if (pathList.size() == 1)
-                return bmmClass.getFlatProperties().get(pathSegment);
+    private BmmProperty propertyAtPath (BmmClass bmmClass, APathQuery qPath) {
+        BmmProperty result = null;
+        int pathPos = qPath.index();
+        if (bmmClass.hasFlatPropertyWithName (qPath.itemName())) {
+            if (qPath.isLast())
+                result = bmmClass.getFlatProperties().get(qPath.itemName());
             else {
-                BmmClass bmmPropTypeClass = getClassDefinition (bmmClass.getFlatProperties().get(pathSegment).getType().getEffectiveType().typeBaseName());
-                if (bmmPropTypeClass != null) {
-                    // Need to copy path since this routine is called recursively
-                    // TODO: a better implem would use a path with built-in movable cursor.
-                    List<String> subPath = new ArrayList<> (pathList);
-                    subPath.remove(0);
-                    return propertyAtPath (bmmPropTypeClass, subPath);
-                }
+                BmmClass bmmPropTypeClass = getClassDefinition (bmmClass.getFlatProperties().get(qPath.itemName()).getType().getEffectiveType().typeBaseName());
+                qPath.forth();
+                if (bmmPropTypeClass != null)
+                    result = propertyAtPath (bmmPropTypeClass, qPath);
             }
         } else {
             for (String descClass : bmmClass.getImmediateDescendants()) {
-                BmmProperty descClassProperty = propertyAtPath (getClassDefinition(descClass), pathList);
+                BmmProperty descClassProperty = propertyAtPath (getClassDefinition(descClass), qPath);
                 if (descClassProperty != null)
-                    return descClassProperty;
+                    result = descClassProperty;
             }
-            return null;
         }
-        return null;
+        qPath.go (pathPos);
+        return result;
     }
 
     /**

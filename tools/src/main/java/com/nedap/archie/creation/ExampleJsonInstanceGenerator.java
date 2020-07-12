@@ -124,7 +124,7 @@ public  class ExampleJsonInstanceGenerator {
 
 
         for (CAttribute attribute : cObject.getAttributes()) {
-            BmmProperty property = AOMUtils.getPropertyAtPath(bmm, cObject.getRmTypeName(), attribute.getRmAttributeName());
+            BmmProperty property = bmm.propertyAtPath (cObject.getRmTypeName(), attribute.getRmAttributeName());
             if(property == null || property.getComputed()) {
                 continue;//do not serialize non-bmm properties such as functions and computed properties
             }

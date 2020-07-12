@@ -210,7 +210,7 @@ public class MetaModel implements MetaModelInterface {
         }
 
         if(selectedBmmModel != null) {
-            return AOMUtils.getPropertyAtPath(selectedBmmModel, rmTypeName, path) != null;
+            return selectedBmmModel.propertyAtPath (rmTypeName, path) != null;
         } else {
             return AOMUtils.getAttributeInfoAtPath(selectedModel, rmTypeName, path) != null;
         }
@@ -219,7 +219,7 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public MultiplicityInterval referenceModelPropMultiplicity(String rmTypeName, String rmAttributeNameOrPath) {
         if(selectedBmmModel != null) {
-            BmmProperty bmmProperty =  AOMUtils.getPropertyAtPath(selectedBmmModel, rmTypeName, rmAttributeNameOrPath);
+            BmmProperty bmmProperty =  selectedBmmModel.propertyAtPath (rmTypeName, rmAttributeNameOrPath);
             if(bmmProperty == null) {
                 return null;
             }

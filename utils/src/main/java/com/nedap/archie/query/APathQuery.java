@@ -13,10 +13,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -85,10 +82,55 @@ public class APathQuery {
     }
 
     public String toString(){
-        if(pathSegments.size() == 0) {
+        if (pathSegments.size() == 0) {
             return "/";
         }
         return Joiner.on("").join(pathSegments);
     }
 
+    private int pathCursor;
+
+    public void start() {
+        pathCursor = 0;
+    }
+
+    public void forth() {
+        pathCursor += 1;
+    }
+
+    public void back() {
+        pathCursor -= 1;
+    }
+
+    public PathSegment item() {
+        return pathSegments.get(pathCursor);
+    }
+
+    public String itemName() {
+        return pathSegments.get(pathCursor).getNodeName();
+    }
+
+    public boolean off() {
+        return pathCursor >= pathSegments.size();
+    }
+
+    public boolean isLast() {
+        return pathCursor == pathSegments.size() - 1;
+    }
+
+    public boolean isFirst() {
+        return pathCursor == 0;
+    }
+
+    public int size() {
+        return pathSegments.size();
+    }
+
+    public int index() {
+        return pathCursor;
+    }
+
+    public void go (int i) {
+        pathCursor = i;
+    }
 }
