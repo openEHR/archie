@@ -1,9 +1,7 @@
 package org.openehr.bmm.v2.persistence.converters;
 
 import org.junit.Test;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinSerializer;
@@ -13,9 +11,9 @@ import org.openehr.bmm.v2.validation.BmmValidationResult;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ConversionTest {
 
@@ -50,10 +48,53 @@ public class ConversionTest {
             System.out.println(validationResult.getLogger());
             assertTrue("the OpenEHR RM 1.0.2 BMM files should pass validation", validationResult.passes());
         }
+
+        Rm102Model = repo.getModel("openehr_ehr_1.0.2").getModel();
+        testRm102ModelPaths ();
+        testRm102PropertyMetatypes ();
+        testRm102ModelDescendants();
+        testRm102ImmediateSuppliers();
+    }
+
+    public void testRm102ModelPaths() throws Exception {
+        // check some paths through the model
+        assertTrue ("property defined in class: (\"CARE_ENTRY\", \"/protocol\")", Rm102Model.hasPropertyAtPath("CARE_ENTRY", "/protocol"));
+        assertTrue ("property defined in descendant: (\"CARE_ENTRY\", \"/data/events/data\")", Rm102Model.hasPropertyAtPath("CARE_ENTRY", "/data/events/data"));
+        assertTrue ("property defined in ancestor: (\"OBSERVATION\", \"/protocol\")", Rm102Model.hasPropertyAtPath("OBSERVATION", "/protocol"));
+        assertTrue ("property defined in class: (\"OBSERVATION\", \"/data/events/data\")", Rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data"));
+        assertTrue ("property defined in descendant: (\"OBSERVATION\", \"/data/events/data/items\")", Rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data/items"));
+        assertFalse ("non-existent property: (\"OBSERVATION\", \"/data/events/data/xxx\")", Rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data/xxx"));
+        assertTrue ("property defined in class: (\"COMPOSITION\", \"/context\")", Rm102Model.hasPropertyAtPath("COMPOSITION", "/context"));
+        assertTrue ("property defined in descendant: (\"CLUSTER\", \"/items/items/items\")", Rm102Model.hasPropertyAtPath("CLUSTER", "/items/items/items"));
+        assertTrue ("property defined in class: (\"DV_QUANTITY\", \"/normal_range\")", Rm102Model.hasPropertyAtPath("DV_QUANTITY", "/normal_range"));
+    }
+
+    public void testRm102PropertyMetatypes() throws Exception {
+        // check meta-types of some properties at paths
+        assertTrue ("BmmSimpleType at path: (\"OBSERVATION\", \"/protocol\")", Rm102Model.propertyAtPath("OBSERVATION", "/protocol").getType() instanceof BmmSimpleType);
+        assertTrue ("BmmContainerType at path: (\"OBSERVATION\", \"/data/events/data/items\")", Rm102Model.propertyAtPath("OBSERVATION", "/data/events/data/items").getType() instanceof BmmContainerType);
+        assertTrue ("BmmGenericType at path: (\"DV_QUANTITY\", \"/normal_range\").getType() is BmmGenericType", Rm102Model.propertyAtPath("DV_QUANTITY", "/normal_range").getType() instanceof BmmGenericType);
+    }
+
+    public void testRm102ModelDescendants() throws Exception {
+        // test descendant relations
+        assertTrue ("\"OBSERVATION\" descendant of \"LOCATABLE\")", Rm102Model.descendantOf("OBSERVATION", "LOCATABLE"));
+        assertFalse ("\"LOCATABLE\" not descendant of \"COMPOSITION\")", Rm102Model.descendantOf("LOCATABLE", "COMPOSITION"));
+        assertTrue ("\"ITEM_TREE\" descendant of \"ITEM_STRUCTURE\")", Rm102Model.descendantOf("ITEM_TREE", "ITEM_STRUCTURE"));
+    }
+
+    public void testRm102ImmediateSuppliers() throws Exception {
+        // test supplier relations
+        Set<String> compositionSuppliers = Rm102Model.suppliers("COMPOSITION");
+        assertTrue ("\"COMPOSITION\" has supplier \"CODE_PHRASE\")", compositionSuppliers.contains("CODE_PHRASE"));
+        assertTrue ("\"COMPOSITION\" has supplier \"DV_CODED_TEXT\")", compositionSuppliers.contains("DV_CODED_TEXT"));
+        assertTrue ("\"COMPOSITION\" has supplier \"PARTY_PROXY\")", compositionSuppliers.contains("PARTY_PROXY"));
+        assertTrue ("\"COMPOSITION\" has supplier \"PARTY_IDENTIFIED\")", compositionSuppliers.contains("PARTY_IDENTIFIED"));
+        assertFalse ("\"COMPOSITION\" not has supplier \"OBSERVATION\")", compositionSuppliers.contains("OBSERVATION"));
     }
 
     private PBmmSchema parse(String name) throws IOException  {
-        try (InputStream stream = getClass().getResourceAsStream(name)) {//"/testbmm/TestBmm1.bmm")) {
+        try (InputStream stream = getClass().getResourceAsStream(name)) {
             return BmmOdinParser.convert(stream);
         }
     }
@@ -103,4 +144,7 @@ public class ConversionTest {
         assertEquals(2, hashContentType.getGenericParameters().size());
         assertEquals("Hash<String,Uri>", hashContentType.toDisplayString());//this is not according to spec perhaps, but it is how the Archie AOM is implemented, and this is a direct conversion
     }
+
+    private BmmModel Rm102Model;
+
 }

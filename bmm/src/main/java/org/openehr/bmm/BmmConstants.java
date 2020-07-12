@@ -80,6 +80,8 @@ public class BmmConstants {
     public static final Character Constraint_left_delim = '«';
     public static final Character Constraint_right_delim = '»';
 
+    public static final Character Path_delimiter = '/';
+
     public static final boolean formalGenericParameterName (String aTypeName) {
         return aTypeName.length() == 1;
     }

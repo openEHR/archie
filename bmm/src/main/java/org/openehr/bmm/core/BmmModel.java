@@ -1,14 +1,12 @@
 package org.openehr.bmm.core;
 
+import org.openehr.bmm.BmmConstants;
 import org.openehr.bmm.persistence.validation.BasicDefinitions;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Path;
+import java.util.*;
 
 /**
  * Copyright 2017 Cognitive Medical Systems, Inc (http://www.cognitivemedicine.com).
@@ -129,16 +127,6 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     }
 
     /**
-     * Retrieve the property definition for `a_prop_name' in flattened class corresponding to `a_type_name'.
-     *
-     * @param bmmClassName
-     * @return
-     */
-    public BmmProperty getPropertyDefinition(String bmmClassName) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    /**
      * True if `a_ms_property_type' is a valid 'MS' dynamic type for `a_property' in BMM type `a_bmm_type_name'.
      * 'MS' conformance means 'model-semantic' conformance, which abstracts away container types like List&lt;&gt;, Set&lt;&gt;
      *  etc and compares the dynamic type with the relation target type in the UML sense, i.e. regardless of whether
@@ -154,13 +142,92 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     }
 
     /**
-     * Retrieve the property definition for `a_property_path' in flattened class corresponding to `a_type_name'.
-     *
-     * @param propertyPath
-     * @return
+     * Return true if propertyPath exists within a type, including among flat properties
+     * and descendant classes (i.e. compute dynamic attachment possibilities).
+     * @param typeName : type within which to find the property
+     * @param propertyPath : path
+     * @return BmmProperty
      */
-    public BmmProperty getPropertyDefinitionAtPath(String propertyPath) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public Boolean hasPropertyAtPath (String typeName, String propertyPath) {
+        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        if (bmmClass != null) {
+            List<String> pathList = new ArrayList<> (Arrays.asList (propertyPath.split (BmmConstants.Path_delimiter.toString())));
+            if (pathList.get (0).isEmpty())
+                pathList.remove (0);
+            return hasPropertyAtPath (bmmClass, pathList);
+        }
+        else
+            return false;
+    }
+
+    private Boolean hasPropertyAtPath (BmmClass bmmClass, List<String> pathList) {
+        String pathSegment = pathList.get(0);
+        if (bmmClass.hasFlatPropertyWithName (pathSegment)) {
+            if (pathList.size() == 1)
+                return true;
+            else {
+                BmmClass bmmPropTypeClass = getClassDefinition (bmmClass.getFlatProperties().get(pathSegment).getType().getEffectiveType().typeBaseName());
+                if (bmmPropTypeClass != null) {
+                    // Need to copy path since this routine is called recursively
+                    // TODO: a better implem would use a path with built-in movable cursor.
+                    List<String> subPath = new ArrayList<> (pathList);
+                    subPath.remove(0);
+                    return hasPropertyAtPath (bmmPropTypeClass, subPath);
+                }
+            }
+        } else {
+            for (String descClass : bmmClass.getImmediateDescendants())
+                if (hasPropertyAtPath (getClassDefinition(descClass), pathList))
+                    return true;
+            return false;
+        }
+        return false;
+    }
+
+    /**
+     * Return BmmProperty object at a path within a type, including among flat properties
+     * and descendant classes (i.e. compute dynamic attachment possibilities).
+     * @precondition hasPropertyAtPath ()
+     * @param typeName : type within which to find the property
+     * @param propertyPath : path
+     * @return BmmProperty
+     */
+    public BmmProperty propertyAtPath (String typeName, String propertyPath) {
+        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        if (bmmClass != null) {
+            List<String> pathList = new ArrayList<> (Arrays.asList (propertyPath.split (BmmConstants.Path_delimiter.toString())));
+            if (pathList.get(0).isEmpty())
+                pathList.remove(0);
+            return propertyAtPath (bmmClass, pathList);
+        }
+        else
+            return null;
+    }
+
+    private BmmProperty propertyAtPath (BmmClass bmmClass, List<String> pathList) {
+        String pathSegment = pathList.get(0);
+        if (bmmClass.hasFlatPropertyWithName (pathSegment)) {
+            if (pathList.size() == 1)
+                return bmmClass.getFlatProperties().get(pathSegment);
+            else {
+                BmmClass bmmPropTypeClass = getClassDefinition (bmmClass.getFlatProperties().get(pathSegment).getType().getEffectiveType().typeBaseName());
+                if (bmmPropTypeClass != null) {
+                    // Need to copy path since this routine is called recursively
+                    // TODO: a better implem would use a path with built-in movable cursor.
+                    List<String> subPath = new ArrayList<> (pathList);
+                    subPath.remove(0);
+                    return propertyAtPath (bmmPropTypeClass, subPath);
+                }
+            }
+        } else {
+            for (String descClass : bmmClass.getImmediateDescendants()) {
+                BmmProperty descClassProperty = propertyAtPath (getClassDefinition(descClass), pathList);
+                if (descClassProperty != null)
+                    return descClassProperty;
+            }
+            return null;
+        }
+        return null;
     }
 
     /**
@@ -220,8 +287,19 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     }
 
     /**
+     * Check descendant relation
+     *
+     * @param descendantType
+     * @param ancestorType
+     * @return
+     */
+    public boolean descendantOf (String descendantType, String ancestorType) {
+        return getClassDefinition (descendantType).findAllAncestors().contains (ancestorType);
+    }
+
+    /**
      * Check conformance of `a_desc_type' to `an_anc_type'; the types may be generic, and may contain open generic
-     * parameters like 'T' etc. These are replaced with their apporpriate constrainer types, or Any during the conformance
+     * parameters like 'T' etc. These are replaced with their appropriate constrainer types, or Any during the conformance
      * testing process.
      *
      * Conformance is found if:
@@ -235,10 +313,35 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @param ancestorType
      * @return
      */
-    public boolean doesTypeConformTo(String descendantType, String ancestorType) {
+    public boolean doesTypeConformTo (String descendantType, String ancestorType) {
         throw new UnsupportedOperationException("Not yet implememented");
     }
 
+    /**
+     * Get names of all supplier classes to the type aTypeName
+     * @param typeName
+     * @return
+     */
+    public Set<String> suppliers (String typeName) {
+        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        Set<String> result = new HashSet<>();
+
+        for (BmmProperty bmmProperty: bmmClass.getFlatProperties().values()) {
+            List<String> ftl = bmmProperty.getType().getFlattenedTypeList();
+            result.addAll(ftl);
+            for (String type: ftl)
+                result.addAll(getClassDefinition (type).getImmediateDescendants());
+        }
+
+        return result;
+    }
+
+    public String effectivePropertyType(String typeName, String propertyName) {
+        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        if(bmmClass == null)
+            return BmmDefinitions.UNKNOWN_TYPE_NAME;
+        return bmmClass.effectivePropertyType(propertyName);
+    }
 
     /****************************************************************************
      ***  From Bmm Schema Core
@@ -250,7 +353,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return
      */
     @Override
-    public String getRmPublisher() {
+    public String getRmPublisher () {
         return bmmSchemaCore.getRmPublisher();
     }
 
@@ -260,7 +363,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @param rmPublisher
      */
     @Override
-    public void setRmPublisher(String rmPublisher) {
+    public void setRmPublisher (String rmPublisher) {
         bmmSchemaCore.setRmPublisher(rmPublisher);
     }
 
@@ -270,7 +373,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return
      */
     @Override
-    public String getRmRelease() {
+    public String getRmRelease () {
         return bmmSchemaCore.getRmRelease();
     }
 
@@ -529,11 +632,4 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
         this.bmmSchemaCore.setModelName(modelName);
     }
 
-    public String effectivePropertyType(String typeName, String propertyName) {
-        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
-        if(bmmClass == null) {
-            return BmmDefinitions.UNKNOWN_TYPE_NAME;
-        }
-        return bmmClass.effectivePropertyType(propertyName);
-    }
 }
