@@ -172,8 +172,10 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
             }
         } else {
             for (String descClass : bmmClass.getImmediateDescendants())
-                if (hasPropertyAtPath(getClassDefinition(descClass), qPath))
+                if (hasPropertyAtPath(getClassDefinition(descClass), qPath)) {
                     result = true;
+                    break;
+                }
         }
         qPath.go (pathPos);
         return result;
@@ -210,8 +212,10 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
         } else {
             for (String descClass : bmmClass.getImmediateDescendants()) {
                 BmmProperty descClassProperty = propertyAtPath (getClassDefinition(descClass), qPath);
-                if (descClassProperty != null)
+                if (descClassProperty != null) {
                     result = descClassProperty;
+                    break;
+                }
             }
         }
         qPath.go (pathPos);
