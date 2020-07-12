@@ -129,8 +129,8 @@ public class ConversionTest {
     @Test
     public void aomParseAndConvertTest() throws Exception {
         BmmRepository repo = new BmmRepository();
-        repo.addPersistentSchema(parse("/openehr/openEHR_base_for_aom.bmm"));
-        repo.addPersistentSchema(parse("/openehr/openehr_aom_206.bmm"));
+        repo.addPersistentSchema(parse("/openehr/openehr_base_for_aom.bmm"));
+        repo.addPersistentSchema(parse("/openehr/openEHR_aom_206.bmm"));
         BmmSchemaConverter converter = new BmmSchemaConverter(repo);
         converter.validateAndConvertRepository();
         for (BmmValidationResult validationResult:repo.getModels()) {
