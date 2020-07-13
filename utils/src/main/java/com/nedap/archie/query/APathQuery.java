@@ -36,13 +36,18 @@ public class APathQuery {
             XPathParser parser = new XPathParser(new CommonTokenStream(lexer));
             LocationPathContext locationPathContext = parser.locationPath();
             AbsoluteLocationPathNorootContext absoluteLocationPathNorootContext = locationPathContext.absoluteLocationPathNoroot();
-            if (absoluteLocationPathNorootContext == null) {
-                throw new UnsupportedOperationException("relative xpath expressions not yet supported: " + query);
-            }
-            if (!absoluteLocationPathNorootContext.getTokens(XPathLexer.ABRPATH).isEmpty()) {
+            //if (absoluteLocationPathNorootContext == null) {
+            //    throw new UnsupportedOperationException("relative xpath expressions not yet supported: " + query);
+           // }
+            if (absoluteLocationPathNorootContext != null && !absoluteLocationPathNorootContext.getTokens(XPathLexer.ABRPATH).isEmpty()) {
                 throw new UnsupportedOperationException("absolute path starting with // not yet supported");
             }
-            RelativeLocationPathContext relativeLocationPathContext = absoluteLocationPathNorootContext.relativeLocationPath();
+            RelativeLocationPathContext relativeLocationPathContext;
+            if(absoluteLocationPathNorootContext == null) {
+                relativeLocationPathContext = locationPathContext.relativeLocationPath();
+            } else {
+                relativeLocationPathContext = absoluteLocationPathNorootContext.relativeLocationPath();
+            }
 
             if (!relativeLocationPathContext.getTokens(XPathLexer.ABRPATH).isEmpty()) {
                 throw new UnsupportedOperationException("relative path with // between steps not yet supported");
