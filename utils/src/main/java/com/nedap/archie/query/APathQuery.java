@@ -31,7 +31,9 @@ public class APathQuery {
     private List<PathSegment> pathSegments = new ArrayList<>();
 
     public APathQuery(String query) {
-        if(!query.equals("/")) {
+        if(!query.startsWith("/") && !query.contains("/") && !query.contains("[")) {
+            pathSegments.add(new PathSegment(query));
+        } else if(!query.equals("/")) {
             XPathLexer lexer = new XPathLexer(new ANTLRInputStream(query));
             XPathParser parser = new XPathParser(new CommonTokenStream(lexer));
             LocationPathContext locationPathContext = parser.locationPath();
