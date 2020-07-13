@@ -11,6 +11,10 @@ import org.openehr.bmm.v2.validation.BmmValidationResult;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -53,7 +57,8 @@ public class ConversionTest {
         testRm102ModelPaths ();
         testRm102PropertyMetatypes ();
         testRm102ModelDescendants();
-        testRm102ImmediateSuppliers();
+        testRm102CompositionImmediateSuppliers();
+        testRm102PartyIdentifiedSuppliers();
     }
 
     public void testRm102ModelPaths() throws Exception {
@@ -83,14 +88,57 @@ public class ConversionTest {
         assertTrue ("\"ITEM_TREE\" descendant of \"ITEM_STRUCTURE\")", Rm102Model.descendantOf("ITEM_TREE", "ITEM_STRUCTURE"));
     }
 
-    public void testRm102ImmediateSuppliers() throws Exception {
+    public void testRm102CompositionImmediateSuppliers() throws Exception {
         // test supplier relations
-        Set<String> compositionSuppliers = Rm102Model.suppliers("COMPOSITION");
-        assertTrue ("\"COMPOSITION\" has supplier \"CODE_PHRASE\")", compositionSuppliers.contains("CODE_PHRASE"));
-        assertTrue ("\"COMPOSITION\" has supplier \"DV_CODED_TEXT\")", compositionSuppliers.contains("DV_CODED_TEXT"));
-        assertTrue ("\"COMPOSITION\" has supplier \"PARTY_PROXY\")", compositionSuppliers.contains("PARTY_PROXY"));
-        assertTrue ("\"COMPOSITION\" has supplier \"PARTY_IDENTIFIED\")", compositionSuppliers.contains("PARTY_IDENTIFIED"));
-        assertFalse ("\"COMPOSITION\" not has supplier \"OBSERVATION\")", compositionSuppliers.contains("OBSERVATION"));
+        Set<String> testResult = Rm102Model.suppliers("COMPOSITION");
+
+        // conformance result from ADL Workbench
+        Set<String> conformanceResult = new LinkedHashSet<>(
+            Arrays.asList(
+                "String", "UID_BASED_ID", "OBJECT_VERSION_ID", "HIER_OBJECT_ID",
+                "DV_TEXT", "DV_CODED_TEXT", "ARCHETYPED", "FEEDER_AUDIT", "LINK", "CODE_PHRASE", "PARTY_PROXY",
+                "PARTY_IDENTIFIED", "PARTY_SELF", "EVENT_CONTEXT", "CONTENT_ITEM", "SECTION", "ENTRY", "GENERIC_ENTRY"
+            )
+        );
+
+        // if anyone wants to see the contents.
+//        System.out.println("Test result: ");
+//        String[] sortedTestResult = testResult.toArray(new String[testResult.size()]);
+//        Arrays.sort (sortedTestResult);
+//        System.out.println(Arrays.toString (sortedTestResult));
+//
+//        System.out.println("Conformance result: ");
+//        String[] sortedConformanceResult = conformanceResult.toArray(new String[conformanceResult.size()]);
+//        Arrays.sort (sortedConformanceResult);
+//        System.out.println(Arrays.toString (sortedConformanceResult));
+
+        assertTrue ("\"COMPOSITION\" has suppliers {\"CODE_PHRASE\", \"DV_TEXT\", ...})", testResult.equals (conformanceResult));
+    }
+
+    public void testRm102PartyIdentifiedSuppliers() throws Exception {
+        // test supplier relations
+        Set<String> testResult = Rm102Model.supplierClosure("PARTY_IDENTIFIED");
+
+        // conformance result from ADL Workbench
+        Set<String> conformanceResult = new LinkedHashSet<>(
+                Arrays.asList(
+                        "String", "PARTY_REF", "DV_IDENTIFIER", "OBJECT_ID",
+                        "TERMINOLOGY_ID", "UID_BASED_ID", "GENERIC_ID", "ARCHETYPE_ID", "TEMPLATE_ID"
+                )
+        );
+
+        // if anyone wants to see the contents.
+//        System.out.println("Test result: ");
+//        String[] sortedTestResult = testResult.toArray(new String[testResult.size()]);
+//        Arrays.sort (sortedTestResult);
+//        System.out.println(Arrays.toString (sortedTestResult));
+//
+//        System.out.println("Conformance result: ");
+//        String[] sortedConformanceResult = conformanceResult.toArray(new String[conformanceResult.size()]);
+//        Arrays.sort (sortedConformanceResult);
+//        System.out.println(Arrays.toString (sortedConformanceResult));
+
+        assertTrue ("\"PARTY_IDENTIFIED\" has suppliers {\"String\", \"PARTY_REF\", ...})", testResult.equals (conformanceResult));
     }
 
     private PBmmSchema parse(String name) throws IOException  {

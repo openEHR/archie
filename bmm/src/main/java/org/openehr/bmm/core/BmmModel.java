@@ -310,7 +310,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     }
 
     /**
-     * Get names of all supplier classes to the type aTypeName
+     * Get names of all immediate supplier classes to the type aTypeName
      * @param typeName
      * @return
      */
@@ -327,6 +327,33 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
 
         return result;
     }
+
+    /**
+     * Get names of all supplier classes in reachability closure to the type aTypeName
+     * @param typeName
+     * @return
+     */
+    public Set<String> supplierClosure (String typeName) {
+        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        Set<String> immediateSuppliers = new HashSet<>();
+        Set<String> result = new HashSet<>();
+
+        closureTypesDone = new HashSet<>();
+        closureTypesDone.add(bmmClass.getName());
+        immediateSuppliers = suppliers(typeName);
+        result.addAll(immediateSuppliers);
+
+        for (String immSupp: immediateSuppliers) {
+            if (!closureTypesDone.contains(immSupp)) {
+                result.addAll(supplierClosure(immSupp));
+                closureTypesDone.add(immSupp);
+            }
+        }
+
+        return result;
+    }
+
+    private Set<String> closureTypesDone;
 
     public String effectivePropertyType(String typeName, String propertyName) {
         BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
