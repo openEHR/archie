@@ -29,11 +29,6 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
         this.schema = schema;
         propertyValidator = new PropertyValidator(logger, schema);
 
-        // set reverse ref to this schema
-        schema.doAllClasses( pBmmClass -> {
-            pBmmClass.setSchema (schema);
-        });
-
         schema.doAllClasses( pBmmClass -> {
             validateClass(pBmmClass);
         });

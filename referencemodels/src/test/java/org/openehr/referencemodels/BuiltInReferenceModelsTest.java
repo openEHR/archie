@@ -18,7 +18,6 @@ public class BuiltInReferenceModelsTest {
 
     @Test
     public void bmmRepository() throws Exception {
-
         BmmRepository bmmRepository = BuiltinReferenceModels.getBmmRepository();
 
         for(BmmValidationResult validation:bmmRepository.getInvalidModels()) {

@@ -21,9 +21,9 @@ public class PBmmClass extends PBmmBase {
     private Boolean isAbstract;
     private Map<String, PBmmGenericParameter> genericParameterDefs;
     private Boolean isOverride;
-    private PBmmSchema pBmmSchema;
 
     private transient String sourceSchemaId;
+
 
     public String getDocumentation() {
         return documentation;
@@ -52,14 +52,14 @@ public class PBmmClass extends PBmmBase {
      * @throws  RuntimeException if BmmSchema contains a non-existing ancestor reference
      */
     @JsonIgnore
-    public Map<String, PBmmUnitaryType> ancestorRefs() {
+    public Map<String, PBmmUnitaryType> ancestorRefs(PBmmSchema schema ) {
         if (ancestorDefs != null)
             return ancestorDefs;
         else {
             Map<String, PBmmUnitaryType> result = new LinkedHashMap<>();
             if (ancestors != null) {
                 for (String anc: ancestors) {
-                    PBmmClass pBmmClass = pBmmSchema.getClassDefinition(anc);
+                    PBmmClass pBmmClass = schema.getClassDefinition(anc);
                     if (pBmmClass != null)
                         if (pBmmClass.isGeneric())
                             result.put(anc, new PBmmGenericType(anc, new ArrayList<>(pBmmClass.genericParameterDefs.keySet())));
@@ -170,12 +170,12 @@ public class PBmmClass extends PBmmBase {
         return bmmClass;
     }
 
-    public BmmClass populateBmmClass(BmmClassProcessor bmmModel) {
+    public BmmClass populateBmmClass(BmmClassProcessor bmmModel, PBmmSchema schema) {
         BmmClass bmmClass = bmmModel.getUnprocessedClassDefinition(getName());
         if (bmmClass != null) {
             // populate references to ancestor classes; should be every class except Any
             BmmType bmmType;
-            for (PBmmUnitaryType ancestorType : ancestorRefs().values()) {
+            for (PBmmUnitaryType ancestorType : ancestorRefs(schema).values()) {
                 BmmClass ancestorClass = bmmModel.getClassDefinition(ancestorType.baseType());
                 if (ancestorClass != null) {
                      bmmType = ancestorType.createBmmType(bmmModel, ancestorClass);
@@ -223,9 +223,5 @@ public class PBmmClass extends PBmmBase {
             }
         }
         return bmmClass;
-    }
-
-        public void setSchema(PBmmSchema aSchema) {
-        pBmmSchema = aSchema;
     }
 }

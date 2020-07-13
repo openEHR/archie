@@ -53,7 +53,7 @@ public class BmmModelCreator {
 
         // The basics have been created. Now populate the classes with properties
         //setup all classes, ancestors and generic parameters
-        BmmClassProcessor classSupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClass(processor));
+        BmmClassProcessor classSupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClass(processor, schema));
         classSupplier.run();
         //add all properties
         BmmClassProcessor propertySupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClassProperties(processor));
