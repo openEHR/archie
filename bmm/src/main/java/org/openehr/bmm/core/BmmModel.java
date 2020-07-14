@@ -73,7 +73,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return
      */
     public BmmClass getClassDefinition(String bmmClassName) {
-        return this.classDefinitions.get(bmmClassName.toUpperCase());
+        return this.classDefinitions.get(BmmDefinitions.typeNameToClassKey(bmmClassName));
     }
 
     public IBmmSchemaCore getBmmSchemaCore() {
@@ -151,7 +151,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return BmmProperty
      */
     public Boolean hasPropertyAtPath (String typeName, String propertyPath) {
-        BmmClass bmmClass = getClassDefinition (BmmDefinitions.typeNameToClassKey (typeName));
+        BmmClass bmmClass = getClassDefinition (typeName);
         if (bmmClass != null)
             return hasPropertyAtPath (bmmClass, new APathQuery (propertyPath));
         else
@@ -190,7 +190,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return BmmProperty
      */
     public BmmProperty propertyAtPath (String typeName, String propertyPath) {
-        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        BmmClass bmmClass = getClassDefinition(typeName);
         if (bmmClass != null)
             return propertyAtPath (bmmClass, new APathQuery(propertyPath));
         else
@@ -241,8 +241,6 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     public Map<String, BmmClass> getAllAncestorClassObjects (BmmClass bmmClass) {
         Map<String, BmmClass> result = new LinkedHashMap<>();
         populateAllAncestorClassMap (bmmClass, result);
-        List<String> classNames = new ArrayList<>();
-        classNames.addAll(result.keySet());
         return result;
     }
 
@@ -315,7 +313,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return
      */
     public Set<String> suppliers (String typeName) {
-        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        BmmClass bmmClass = getClassDefinition(typeName);
         Set<String> result = new HashSet<>();
 
         for (BmmProperty bmmProperty: bmmClass.getFlatProperties().values()) {
@@ -334,8 +332,8 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return
      */
     public Set<String> supplierClosure (String typeName) {
-        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
-        Set<String> immediateSuppliers = new HashSet<>();
+        BmmClass bmmClass = getClassDefinition(typeName);
+        Set<String> immediateSuppliers;
         Set<String> result = new HashSet<>();
 
         closureTypesDone = new HashSet<>();
@@ -356,7 +354,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     private Set<String> closureTypesDone;
 
     public String effectivePropertyType(String typeName, String propertyName) {
-        BmmClass bmmClass = getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        BmmClass bmmClass = getClassDefinition(typeName);
         if(bmmClass == null)
             return BmmDefinitions.UNKNOWN_TYPE_NAME;
         return bmmClass.effectivePropertyType(propertyName);
