@@ -12,10 +12,7 @@ import org.openehr.bmm.v2.validation.BmmValidationResult;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -34,6 +31,19 @@ public class ConversionTest {
             System.out.println(validationResult.getLogger());
             assertTrue("the OpenEHR ADL Test 1.0.0 BMM files should pass validation", validationResult.passes());
         }
+        AdlTestModel = repo.getModel("openehr_adltest_1.0.0").getModel();
+
+        // Descendant relations
+        assertTrue ("\"GENERIC_CHILD_CLOSED\" descendant of \"GENERIC_PARENT<SUPPLIER_A,SUPPLIER_B>\"",
+                AdlTestModel.descendantOf("GENERIC_CHILD_CLOSED", "GENERIC_PARENT<SUPPLIER_A,SUPPLIER_B>"));
+
+        // Ancestor relations
+        List<String> testResult = AdlTestModel.getAllAncestorClasses("GENERIC_CHILD_OPEN_T");
+        // conformance result from ADL Workbench
+        List<String> conformanceResult = new ArrayList<>(Arrays.asList("GENERIC_PARENT<T,SUPPLIER_B>"));
+
+        assertTrue ("\"GENERIC_CHILD_CLOSED\" descendant of \"GENERIC_PARENT\")", testResult.equals(conformanceResult));
+
     }
 
     @Test
@@ -78,7 +88,8 @@ public class ConversionTest {
         // check meta-types of some properties at paths
         assertTrue ("BmmSimpleType at path: (\"OBSERVATION\", \"/protocol\")", Rm102Model.propertyAtPath("OBSERVATION", "/protocol").getType() instanceof BmmSimpleType);
         assertTrue ("BmmContainerType at path: (\"OBSERVATION\", \"/data/events/data/items\")", Rm102Model.propertyAtPath("OBSERVATION", "/data/events/data/items").getType() instanceof BmmContainerType);
-        assertTrue ("BmmGenericType at path: (\"DV_QUANTITY\", \"/normal_range\").getType() is BmmGenericType", Rm102Model.propertyAtPath("DV_QUANTITY", "/normal_range").getType() instanceof BmmGenericType);
+        assertTrue ("BmmGenericType at path: (\"DV_QUANTITY\", \"/normal_range\")", Rm102Model.propertyAtPath("DV_QUANTITY", "/normal_range").getType() instanceof BmmGenericType);
+        assertTrue ("BmmGSimpleType at path: (\"CARE_ENTRY\", \"/subject\")", Rm102Model.propertyAtPath("CARE_ENTRY", "/subject").getType() instanceof BmmSimpleType);
     }
 
     public void testRm102ModelDescendants() throws Exception {
@@ -86,6 +97,7 @@ public class ConversionTest {
         assertTrue ("\"OBSERVATION\" descendant of \"LOCATABLE\")", Rm102Model.descendantOf("OBSERVATION", "LOCATABLE"));
         assertFalse ("\"LOCATABLE\" not descendant of \"COMPOSITION\")", Rm102Model.descendantOf("LOCATABLE", "COMPOSITION"));
         assertTrue ("\"ITEM_TREE\" descendant of \"ITEM_STRUCTURE\")", Rm102Model.descendantOf("ITEM_TREE", "ITEM_STRUCTURE"));
+        assertTrue ("\"DV_DURATION\" descendant of \"DV_ORDERED\")", Rm102Model.descendantOf("DV_DURATION", "DV_ORDERED"));
     }
 
     public void testRm102CompositionImmediateSuppliers() throws Exception {
@@ -194,5 +206,7 @@ public class ConversionTest {
     }
 
     private BmmModel Rm102Model;
+
+    private BmmModel AdlTestModel;
 
 }
