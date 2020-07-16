@@ -45,13 +45,13 @@ public class ConversionTest {
         // conformance result from ADL Workbench
         List<String> conformanceResult = new ArrayList<>(Arrays.asList("GENERIC_PARENT<T,SUPPLIER_B>"));
 
-        assertTrue ("\"GENERIC_CHILD_CLOSED\" descendant of \"GENERIC_PARENT\")", testResult.equals(conformanceResult));
+        assertEquals ("\"GENERIC_CHILD_CLOSED\" descendant of \"GENERIC_PARENT\")", testResult, conformanceResult);
 
     }
 
 
     @Test
-    public void generateOdinTest() throws  Exception{
+    public void generateOdinTest() throws  Exception {
         PBmmSchema parsed = parse("/openehr/openehr_basic_types_102.bmm");
         String serialized = new BmmOdinSerializer().serialize(parsed);
         //check that it can be parsed again

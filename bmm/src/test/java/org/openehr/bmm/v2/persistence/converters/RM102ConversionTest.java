@@ -15,8 +15,7 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.openehr.bmm.v2.persistence.converters.BmmTestUtil.parse;
 
 public class RM102ConversionTest {
@@ -101,19 +100,7 @@ public class RM102ConversionTest {
                         "PARTY_IDENTIFIED", "PARTY_SELF", "EVENT_CONTEXT", "CONTENT_ITEM", "SECTION", "ENTRY", "GENERIC_ENTRY"
                 )
         );
-
-        // if anyone wants to see the contents.
-//        System.out.println("Test result: ");
-//        String[] sortedTestResult = testResult.toArray(new String[testResult.size()]);
-//        Arrays.sort (sortedTestResult);
-//        System.out.println(Arrays.toString (sortedTestResult));
-//
-//        System.out.println("Conformance result: ");
-//        String[] sortedConformanceResult = conformanceResult.toArray(new String[conformanceResult.size()]);
-//        Arrays.sort (sortedConformanceResult);
-//        System.out.println(Arrays.toString (sortedConformanceResult));
-
-        assertTrue ("\"COMPOSITION\" has suppliers {\"CODE_PHRASE\", \"DV_TEXT\", ...})", testResult.equals (conformanceResult));
+        assertEquals ("\"COMPOSITION\" has suppliers {\"CODE_PHRASE\", \"DV_TEXT\", ...})", testResult, conformanceResult);
     }
 
     public void testRm102PartyIdentifiedSuppliers() throws Exception {
@@ -128,18 +115,7 @@ public class RM102ConversionTest {
                 )
         );
 
-        // if anyone wants to see the contents.
-//        System.out.println("Test result: ");
-//        String[] sortedTestResult = testResult.toArray(new String[testResult.size()]);
-//        Arrays.sort (sortedTestResult);
-//        System.out.println(Arrays.toString (sortedTestResult));
-//
-//        System.out.println("Conformance result: ");
-//        String[] sortedConformanceResult = conformanceResult.toArray(new String[conformanceResult.size()]);
-//        Arrays.sort (sortedConformanceResult);
-//        System.out.println(Arrays.toString (sortedConformanceResult));
-
-        assertTrue ("\"PARTY_IDENTIFIED\" has suppliers {\"String\", \"PARTY_REF\", ...})", testResult.equals (conformanceResult));
+        assertEquals ("\"PARTY_IDENTIFIED\" has suppliers {\"String\", \"PARTY_REF\", ...})", testResult, conformanceResult);
     }
 
 }
