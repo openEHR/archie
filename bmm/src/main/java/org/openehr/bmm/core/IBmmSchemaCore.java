@@ -35,28 +35,28 @@ public interface IBmmSchemaCore {
      *
      * @return
      */
-    public String getRmPublisher();
+    String getRmPublisher();
 
     /**
      * Sets the publisher of model expressed in the schema.
      *
      * @param rmPublisher
      */
-    public void setRmPublisher(String rmPublisher);
+    void setRmPublisher(String rmPublisher);
 
     /**
      * Returns the release of model expressed in the schema as a 3-part numeric, e.g. "3.1.0" .
      *
      * @return
      */
-    public String getRmRelease();
+    String getRmRelease();
 
     /**
      * Sets the release of model expressed in the schema as a 3-part numeric, e.g. "3.1.0" .
      *
      * @param rmRelease
      */
-    public void setRmRelease(String rmRelease);
+    void setRmRelease(String rmRelease);
 
     /**
      * Returns the name of model expressed in schema; a 'schema' usually contains all of the packages of one 'model'
@@ -64,7 +64,7 @@ public interface IBmmSchemaCore {
      *
      * @return
      */
-    public String getSchemaName();
+    String getSchemaName();
 
     /**
      * Sets the name of model expressed in schema; a 'schema' usually contains all of the packages of one 'model'
@@ -72,76 +72,76 @@ public interface IBmmSchemaCore {
      *
      * @param schemaName
      */
-    public void setSchemaName(String schemaName);
+    void setSchemaName(String schemaName);
 
     /**
      * Returns the revision of schema.
      *
      * @return
      */
-    public String getSchemaRevision();
+    String getSchemaRevision();
 
     /**
      * Sets the revision of schema.
      *
      * @param schemaRevision
      */
-    public void setSchemaRevision(String schemaRevision);
+    void setSchemaRevision(String schemaRevision);
 
     /**
      * Returns the lifecycle state of the schema.
      *
      * @return
      */
-    public String getSchemaLifecycleState();
+    String getSchemaLifecycleState();
 
     /**
      * Sets the lifecycle state of the schema.
      *
      * @param schemaLifecycleState
      */
-    public void setSchemaLifecycleState(String schemaLifecycleState);
+    void setSchemaLifecycleState(String schemaLifecycleState);
 
     /**
      * Returns the primary author of schema.
      *
      * @return
      */
-    public String getSchemaAuthor();
+    String getSchemaAuthor();
     /**
      * Sets the primary author of schema.
      *
      * @param schemaAuthor
      */
-    public void setSchemaAuthor(String schemaAuthor);
+    void setSchemaAuthor(String schemaAuthor);
 
     /**
      * Returns the description of schema.
      *
      * @return
      */
-    public String getSchemaDescription();
+    String getSchemaDescription();
 
     /**
      * Sets the description of schema.
      *
      * @param schemaDescription
      */
-    public void setSchemaDescription(String schemaDescription);
+    void setSchemaDescription(String schemaDescription);
 
     /**
      * Returns the contributing authors of schema.
      *
      * @return
      */
-    public List<String> getSchemaContributors();
+    List<String> getSchemaContributors();
 
     /**
      * Sets the contributing authors of schema.
      *
      * @param schemaContributors
      */
-    public void setSchemaContributors(List<String> schemaContributors);
+    void setSchemaContributors(List<String> schemaContributors);
 
     /**
      * Returns the name of a parent class used within the schema to provide archetype capability, enabling filtering of
@@ -149,7 +149,7 @@ public interface IBmmSchemaCore {
      *
      * @return
      */
-    public String getArchetypeParentClass();
+    String getArchetypeParentClass();
 
     /**
      * Sets the name of a parent class used within the schema to provide archetype capability, enabling filtering of
@@ -157,7 +157,7 @@ public interface IBmmSchemaCore {
      *
      * @param archetypeParentClass
      */
-    public void setArchetypeParentClass(String archetypeParentClass);
+    void setArchetypeParentClass(String archetypeParentClass);
 
     /**
      * Returns the name of a parent class of logical 'data types' used within the schema to provide archetype capability, enabling
@@ -165,7 +165,7 @@ public interface IBmmSchemaCore {
      *
      * @return
      */
-    public String getArchetypeDataValueParentClass();
+    String getArchetypeDataValueParentClass();
 
     /**
      * Sets the name of a parent class of logical 'data types' used within the schema to provide archetype capability,
@@ -173,7 +173,7 @@ public interface IBmmSchemaCore {
      *
      * @param archetypeDataValueParentClass
      */
-    public void setArchetypeDataValueParentClass(String archetypeDataValueParentClass);
+    void setArchetypeDataValueParentClass(String archetypeDataValueParentClass);
 
     /**
      * List of top-level package paths that provide the RM 'model' part in archetype identifiers, e.g. the path "org.openehr.ehr"
@@ -181,7 +181,7 @@ public interface IBmmSchemaCore {
      *
      * @return
      */
-    public List<String> getArchetypeRmClosurePackages();
+    List<String> getArchetypeRmClosurePackages();
 
     /**
      * Returns the list of top-level package paths that provide the RM 'model' part in achetype identifiers, e.g. the path
@@ -190,7 +190,7 @@ public interface IBmmSchemaCore {
      *
      * @param rmClosurePackages
      */
-    public void setArchetypeRmClosurePackages(List<String> rmClosurePackages);
+    void setArchetypeRmClosurePackages(List<String> rmClosurePackages);
 
     /**
      * Method adds a top-level package paths that provide the RM 'model' part in achetype identifiers, e.g. the path
@@ -198,7 +198,7 @@ public interface IBmmSchemaCore {
      *
      * @param rmClosurePackage
      */
-    public void addArchetypeRmClosurePackage(String rmClosurePackage);
+    void addArchetypeRmClosurePackage(String rmClosurePackage);
 
     /**
      * Method returns a class whose descendants should be made visible in tree and grid renderings of the archetype
@@ -208,7 +208,7 @@ public interface IBmmSchemaCore {
      *
      * @return
      */
-    public String getArchetypeVisualizeDescendantsOf();
+    String getArchetypeVisualizeDescendantsOf();
 
     /**
      * Method a class whose descendants should be made visible in tree and grid renderings of the archetype
@@ -218,20 +218,20 @@ public interface IBmmSchemaCore {
      *
      * @param archetypeVisualizeDescendantsOf
      */
-    public void setArchetypeVisualizeDescendantsOf(String archetypeVisualizeDescendantsOf);
+    void setArchetypeVisualizeDescendantsOf(String archetypeVisualizeDescendantsOf);
 
     /**
      * Returns the derived name of schema, based on model publisher, model name, model release.
      *
      * @return
      */
-    public String getSchemaId();
+    String getSchemaId();
 
     /**
      * Returns the name of this model, if this schema is a model root point. Not set for sub-schemas that are not considered models on their own.
      */
-    public String getModelName();
+    String getModelName();
 
     /** Sets the Name of this model, if this schema is a model root point. Not set for sub-schemas that are not considered models on their own. */
-    public void setModelName(String modelName);
+    void setModelName(String modelName);
 }

@@ -56,11 +56,12 @@ public class BmmTypeNaming extends ClassNameIdResolver {
     @Override
     public String idFromValue(Object value) {
         String result = inverseClassNaming.get(value.getClass());
-        if (result != null)
+        if (result != null) {
             return result;
-        else
+        } else {
             //not sure if we need this. If so, it should implement naming such as ArchieNamingStrategy (requires module restructuring)
             return value.getClass().getSimpleName();
+        }
     }
 
     @Override

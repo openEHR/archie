@@ -185,10 +185,11 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     public List<String> getFlattenedTypeList() {
         ArrayList<String> result = new ArrayList<>();
         BmmEffectiveType confType = flattenedConformsToType();
-        if (confType != null)
-            result.addAll (confType.getFlattenedTypeList());
-        else
-            result.add (BasicDefinitions.ANY_TYPE);
+        if (confType != null) {
+            result.addAll(confType.getFlattenedTypeList());
+        } else {
+            result.add(BasicDefinitions.ANY_TYPE);
+        }
         return result;
     }
 

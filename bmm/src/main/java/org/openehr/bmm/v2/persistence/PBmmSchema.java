@@ -172,7 +172,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
     @Deprecated
     public List<String> getArchetypeRmClosurePackages() {
         if(archetypeRmClosurePackages == null) {
-            archetypeRmClosurePackages = new ArrayList();
+            archetypeRmClosurePackages = new ArrayList<>();
         }
         return archetypeRmClosurePackages;
     }

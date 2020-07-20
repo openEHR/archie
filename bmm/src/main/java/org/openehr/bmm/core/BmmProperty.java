@@ -208,10 +208,11 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 */
 	public MultiplicityInterval getExistence() {
 		MultiplicityInterval result;
-		if (isMandatory)
+		if (isMandatory) {
 			result = MultiplicityInterval.createMandatory();
-		else
+		} else {
 			result = MultiplicityInterval.createOptional();
+		}
 		return result;
 	}
 
@@ -225,7 +226,6 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	}
 
 	public BmmProperty<T> duplicate() {
-		BmmProperty<T> result = new BmmProperty<>(this);
-		return result;
+		return new BmmProperty<>(this);
 	}
 }

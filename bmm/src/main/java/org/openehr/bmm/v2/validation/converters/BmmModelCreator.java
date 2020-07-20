@@ -24,7 +24,7 @@ public class BmmModelCreator {
         model.setSchemaDescription (schema.getSchemaDescription());
         model.setSchemaLifecycleState (schema.getSchemaLifecycleState());
         // cannot set the documentation - the supported P_BMM version has no documentation in the P_BMM_SCHEMA
-        model.setSchemaContributors(schema.getSchemaContributors() == null ? new ArrayList() : new ArrayList<>(schema.getSchemaContributors()));
+        model.setSchemaContributors(schema.getSchemaContributors() == null ? new ArrayList<>() : new ArrayList<>(schema.getSchemaContributors()));
 
         // Add packages first
         for(PBmmPackage pBmmPackage:validationResult.getCanonicalPackages().values()) {

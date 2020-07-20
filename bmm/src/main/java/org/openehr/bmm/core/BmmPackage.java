@@ -96,9 +96,7 @@ public class BmmPackage extends BmmPackageContainer implements Serializable {
      * @return
      */
     public List<BmmClass> getClasses() {
-        List<BmmClass> classList = new ArrayList<>();
-        classList.addAll(classes.values());
-        return classList;
+        return new ArrayList<>(classes.values());
     }
 
     /**
@@ -159,7 +157,7 @@ public class BmmPackage extends BmmPackageContainer implements Serializable {
     }
 
     public void appendToPath(String pathComponent) {
-        if(this.canonicalPath == null | this.canonicalPath.isEmpty()) {
+        if(this.canonicalPath == null || this.canonicalPath.isEmpty()) {
             this.canonicalPath = pathComponent;
         } else {
             this.canonicalPath = this.canonicalPath + PACKAGE_PATH_DELIMITER + pathComponent;

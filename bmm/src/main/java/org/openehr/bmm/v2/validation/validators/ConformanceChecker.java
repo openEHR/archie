@@ -74,7 +74,7 @@ public class ConformanceChecker {
      * @return
      */
     public boolean typeConformsTo(PBmmSchema schema, String type1, String type2) {
-        List<String> typeList1 = null, typeList2 = null;
+        List<String> typeList1, typeList2;
         typeList1 = BmmDefinitions.typeNameAsFlatList(type1);
         typeList2 = BmmDefinitions.typeNameAsFlatList(type2);
         int index = 0;
@@ -102,11 +102,14 @@ public class ConformanceChecker {
     public boolean isAncestor(PBmmSchema schema, String typePart1, String typePart2) {
         PBmmClass classDefinition = schema.getClassDefinition(typePart1);
         List<String> ancestors = classDefinition.getAncestorTypeNames();
-        if (ancestors.contains(typePart2)) //direct ancestor
+        if (ancestors.contains(typePart2)) { //direct ancestor
             return true;
-        for (String ancestor:ancestors)
-            if (isAncestor(schema, typePart1, ancestor)) //recursive check
+        }
+        for (String ancestor:ancestors) {
+            if (isAncestor(schema, typePart1, ancestor)) { //recursive check
                 return true;
+            }
+        }
         return false;
     }
 

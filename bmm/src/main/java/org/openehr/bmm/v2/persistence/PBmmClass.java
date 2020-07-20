@@ -200,15 +200,17 @@ public class PBmmClass extends PBmmBase {
 
             // create generic parameters if a generic class
             // and add to the BMM_GENERIC_TYPE.generic_parameters list
-            if (bmmClass instanceof BmmGenericClass)
+            if (bmmClass instanceof BmmGenericClass) {
                 for (PBmmGenericParameter param : getGenericParameterDefs().values()) {
                     BmmParameterType bmmGenericParameter = param.createBmmGenericParameter(bmmModel);
-                    if (bmmGenericParameter != null)
+                    if (bmmGenericParameter != null) {
                         ((BmmGenericClass) bmmClass).addGenericParameter(bmmGenericParameter);
-                    else
+                    } else {
                         throw new RuntimeException("Error retrieving class definition for generic parameter " +
-                                param.getName()  + " of PBmmClass " + name);
+                                param.getName() + " of PBmmClass " + name);
+                    }
                 }
+            }
         } else {
             throw new RuntimeException("bmmClass for PBmmClass \"" + name + "\" is null. It may have been defined as a class or a primitive but not included in a package");
         }

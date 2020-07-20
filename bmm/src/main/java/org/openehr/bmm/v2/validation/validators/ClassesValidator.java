@@ -36,18 +36,21 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
     public void validateClass(PBmmClass pBmmClass) {
         //check that all ancestors exist
         pBmmClass.getAncestorTypeNames().forEach (ancestorClassName -> {
-            if (StringUtils.isEmpty (ancestorClassName))
+            if (StringUtils.isEmpty (ancestorClassName)) {
                 addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_ANCESTOR_NAME_EMPTY, pBmmClass.getSourceSchemaId(), pBmmClass.getName());
-            else if (!ancestorClassName.equalsIgnoreCase(BmmDefinitions.ANY_TYPE) && schema.getClassDefinition(BmmDefinitions.typeNameToClassKey(ancestorClassName)) == null)
+            } else if (!ancestorClassName.equalsIgnoreCase(BmmDefinitions.ANY_TYPE) && schema.getClassDefinition(BmmDefinitions.typeNameToClassKey(ancestorClassName)) == null) {
                 addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_ANCESTOR_DOES_NOT_EXIST, pBmmClass.getSourceSchemaId(), pBmmClass.getName(), ancestorClassName);
+            }
         });
 
-        if (!logger.hasErrors())
+        if (!logger.hasErrors()) {
             validateGenericParameters(pBmmClass);
+        }
 
         // validate the properties
-        for (PBmmProperty property:pBmmClass.getProperties().values())
+        for (PBmmProperty property:pBmmClass.getProperties().values()) {
             propertyValidator.validateProperty(pBmmClass, property);
+        }
     }
 
     private void validateGenericParameters(PBmmClass pBmmClass) {
@@ -55,12 +58,13 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
         if (pBmmClass.isGeneric()) {
             for (PBmmGenericParameter pBmmGenericParameter: pBmmClass.getGenericParameterDefs().values()) {
                 String conformsToType = pBmmGenericParameter.getConformsToType();
-                if (conformsToType != null && !schema.hasClassOrPrimitiveDefinition(conformsToType))
+                if (conformsToType != null && !schema.hasClassOrPrimitiveDefinition(conformsToType)) {
                     addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_GENERIC_PARAMETER_CONSTRAINT_DOES_NOT_EXIST,
                             pBmmClass.getSourceSchemaId(),
                             pBmmClass.getName(),
                             pBmmGenericParameter.getName(),
                             conformsToType);
+                }
             }
 
         }

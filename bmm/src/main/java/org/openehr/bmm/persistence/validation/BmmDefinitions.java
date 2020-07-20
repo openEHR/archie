@@ -4,6 +4,7 @@ package org.openehr.bmm.persistence.validation;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -134,7 +135,7 @@ public class BmmDefinitions extends BasicDefinitions {
         return WELL_FORMED_CLASS_NAME_REGEX.matcher(aClassName).matches();
     }
 
-    public static final boolean isFormalGenericParameterName(String typeName) {
+    public static boolean isFormalGenericParameterName(String typeName) {
         return typeName.length() == 1;
     }
 
@@ -166,7 +167,7 @@ public class BmmDefinitions extends BasicDefinitions {
      * @return
      */
     public static boolean isBmmVersionCompatible(String aSchemaBmmVersion) {
-        return aSchemaBmmVersion.substring (0, aSchemaBmmVersion.indexOf ('.', 0)).equals (BMM_INTERNAL_VERSION.substring (0, BMM_INTERNAL_VERSION.indexOf ('.', 0)));
+        return aSchemaBmmVersion.substring (0, aSchemaBmmVersion.indexOf ('.')).equals (BMM_INTERNAL_VERSION.substring (0, BMM_INTERNAL_VERSION.indexOf ('.')));
     }
 
     /**
@@ -275,9 +276,7 @@ public class BmmDefinitions extends BasicDefinitions {
             cleanedType = cleanedType.substring(rpos + 1);
             cleanedType = cleanedType.replaceAll(""+ GENERIC_RIGHT_DELIMITER, "");
             String[] genericTypes = cleanedType.split("" + GENERIC_SEPARATOR);
-            for(int index = 0; index < genericTypes.length; index++) {
-                retVal.add(genericTypes[index]);
-            }
+            retVal.addAll(Arrays.asList(genericTypes));
         }
         return retVal;
     }

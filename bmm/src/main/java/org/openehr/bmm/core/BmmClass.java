@@ -323,11 +323,11 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      * @return
      */
     public List<String> findAllAncestors() {
-        List<String> result = new ArrayList<String>();
         Map<String, BmmDefinedType> ancestors = getAncestors();
-        result.addAll(ancestors.keySet());
-        for (BmmDefinedType ancestor:ancestors.values())
-            result.addAll (ancestor.getBaseClass().findAllAncestors());
+        List<String> result = new ArrayList<>(ancestors.keySet());
+        for (BmmDefinedType ancestor:ancestors.values()) {
+            result.addAll(ancestor.getBaseClass().findAllAncestors());
+        }
         return result;
     }
 
@@ -337,13 +337,13 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      * @return
      */
     public List<String> findAllDescendants() {
-        List<String> result = new ArrayList<String>();
         List<String> descendants = getImmediateDescendants();
-        result.addAll(descendants);
+        List<String> result = new ArrayList<>(descendants);
         for(String descendant:descendants) {
             BmmClass classDefinition = this.getBmmModel().getClassDefinition(descendant);
-            if(classDefinition != null)
+            if(classDefinition != null) {
                 result.addAll(classDefinition.findAllDescendants());
+            }
         }
         return result;
     }
@@ -385,10 +385,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      * @return
      */
     public String getPackagePath() {
-        if (bmmPackage != null)
-            return bmmPackage.getPath();
-        else
-            return null;
+        return bmmPackage == null ? null : bmmPackage.getPath();
     }
 
     /**
@@ -419,17 +416,15 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
 
     public String effectivePropertyType (String propertyName) {
         BmmProperty property = getFlatProperties().get(propertyName);
-        if(property != null)
-            return property.getType().getTypeName();
-        else
-            return BmmDefinitions.UNKNOWN_TYPE_NAME;
+        return property == null ? BmmDefinitions.UNKNOWN_TYPE_NAME : property.getType().getTypeName();
     }
 
     protected void populateTarget (BmmClass source, BmmClass target) {
         Map<String, BmmProperty> propertyMap = source.getProperties();
         propertyMap.values().forEach (property -> {
-            if (!target.hasPropertyWithName(property.getName()))
+            if (!target.hasPropertyWithName(property.getName())) {
                 target.addProperty(property);
+            }
         });
         source.getAncestors().values().forEach (ancestor -> populateTarget (ancestor.getBaseClass(), target));
     }
@@ -441,10 +436,11 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      */
     public BmmClass duplicate() {
         BmmClass result;
-        if (this instanceof BmmGenericClass)
+        if (this instanceof BmmGenericClass) {
             result = new BmmGenericClass(this.getName(), this.getDocumentation(), this.isAbstract);
-        else
+        } else {
             result = new BmmSimpleClass(this.getName(), this.getDocumentation(), this.isAbstract);
+        }
 
         result.getProperties().putAll(this.getProperties());
         result.setSourceSchemaId(this.getSourceSchemaId());

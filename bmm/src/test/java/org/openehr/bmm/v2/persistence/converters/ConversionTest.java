@@ -43,7 +43,7 @@ public class ConversionTest {
         // Ancestor relations
         List<String> testResult = adlTestModel.getAllAncestorClasses("GENERIC_CHILD_OPEN_T");
         // conformance result from ADL Workbench
-        List<String> conformanceResult = new ArrayList<>(Arrays.asList("GENERIC_PARENT<T,SUPPLIER_B>"));
+        List<String> conformanceResult = Arrays.asList("GENERIC_PARENT<T,SUPPLIER_B>");
 
         assertEquals ("\"GENERIC_CHILD_CLOSED\" descendant of \"GENERIC_PARENT\")", testResult, conformanceResult);
 

@@ -72,15 +72,9 @@ public class BmmClassProcessor {
         }
     }
 
-    public BmmClass getAnyClassDefinition() {
+    public BmmSimpleType getAnyTypeDefinition() {
         BmmClass anyClassDefinition = model.getAnyClassDefinition();
         processBmmClassIfNeeded(anyClassDefinition.getName());
-        return model.getAnyClassDefinition();
-
-    }
-
-    public BmmSimpleType getAnyTypeDefinition() {
-        getAnyClassDefinition(); //get the any class definition to be sure it gets processed
         return model.getAnyTypeDefinition();
     }
 

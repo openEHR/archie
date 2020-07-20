@@ -152,13 +152,14 @@ public class BmmSchemaConverter {
     private void addClosure(String schemaId, BmmValidationResult validationResult, String modelPublisher, String modelName) {
         String qualifiedRmClosureName = BmmDefinitions.publisherQualifiedRmClosureName(modelPublisher, modelName) + "_" + validationResult.getModel().getRmRelease();
         BmmValidationResult existingSchema = repository.getModelByClosure(qualifiedRmClosureName);
-        if (existingSchema != null)
+        if (existingSchema != null) {
             schemaValidator.getLogger().addInfo(BmmMessageIds.ec_bmm_schema_duplicate_found,
                     qualifiedRmClosureName,
                     existingSchema.getSchemaId(),
                     schemaId);
-        else
+        } else {
             repository.addModelByClosure(qualifiedRmClosureName, validationResult);
+        }
     }
 
 

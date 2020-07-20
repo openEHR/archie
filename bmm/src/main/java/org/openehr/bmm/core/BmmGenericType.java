@@ -109,8 +109,9 @@ public class BmmGenericType extends BmmDefinedType<BmmGenericClass> implements S
     public List<String> getFlattenedTypeList() {
         ArrayList<String> result = new ArrayList<>();
         result.add(getBaseClass().getName());
-        for (BmmType g : genericParameters)
-            result.addAll (g.getFlattenedTypeList());
+        for (BmmType g : genericParameters) {
+            result.addAll(g.getFlattenedTypeList());
+        }
         return result;
     }
 

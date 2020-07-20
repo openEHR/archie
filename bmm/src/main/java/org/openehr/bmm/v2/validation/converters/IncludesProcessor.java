@@ -66,9 +66,9 @@ public class IncludesProcessor {
             including.setArchetypeParentClass(included.getArchetypeParentClass());
 
         //archetype data value parent class: only merge if nothing already in the higher-level schema
-        if (included.getArchetypeDataValueParentClass() != null && including.getArchetypeDataValueParentClass() == null)
+        if (included.getArchetypeDataValueParentClass() != null && including.getArchetypeDataValueParentClass() == null) {
             including.setArchetypeDataValueParentClass(including.getArchetypeDataValueParentClass());
-
+        }
         //archetype closures
         LinkedHashSet<String> newClosurePackages = new LinkedHashSet<>();
         newClosurePackages.addAll(included.getArchetypeRmClosurePackages());
@@ -79,9 +79,9 @@ public class IncludesProcessor {
             if (includingValidationResult.getCanonicalPackages().containsKey(packageEntry.getKey())) {
                 PBmmPackage persistedBmmPackage = includingValidationResult.getCanonicalPackages().get(packageEntry.getKey());
                 merge(persistedBmmPackage, packageEntry.getValue());
-            }
-            else
+            } else {
                 includingValidationResult.getCanonicalPackages().put(packageEntry.getKey(), (PBmmPackage) packageEntry.getValue().clone());
+            }
         }
 
         //If a package already exist, merge its classes, for each child package repeat...
@@ -105,10 +105,11 @@ public class IncludesProcessor {
         including.setClasses(new ArrayList<>(newClasses));
         included.getPackages().values().forEach(p -> {
             PBmmPackage sourcePackage = including.getPackages().get(p.getName());
-            if (sourcePackage != null)
+            if (sourcePackage != null) {
                 merge(sourcePackage, p);
-            else
+            } else {
                 including.getPackages().put(p.getName().toUpperCase(), (PBmmPackage) p.clone());
+            }
         });
     }
 }

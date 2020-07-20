@@ -27,14 +27,15 @@ public class PropertyValidator extends ValidatorBase {
         validateOverriddenPropertyType(pBmmClass, pBmmProperty);
 
         //For single properties, check if property type is empty or not defined in the schema
-        if(pBmmProperty instanceof PBmmSingleProperty)
+        if(pBmmProperty instanceof PBmmSingleProperty) {
             validateSingleProperty(pBmmClass, pBmmProperty);
-        else if(pBmmProperty instanceof PBmmSinglePropertyOpen)
+        } else if(pBmmProperty instanceof PBmmSinglePropertyOpen) {
             validateSimpleOpenProperty(pBmmClass, pBmmProperty);
-        else if(pBmmProperty instanceof PBmmContainerProperty)
-            validateContainerProperty(pBmmClass, pBmmProperty);
-        else if (pBmmProperty instanceof PBmmGenericProperty)
+        } else if(pBmmProperty instanceof PBmmContainerProperty) {
+                validateContainerProperty(pBmmClass, pBmmProperty);
+        } else if (pBmmProperty instanceof PBmmGenericProperty) {
             validateGenericProperty(pBmmClass, pBmmProperty);
+        }
 
     }
 
@@ -43,20 +44,22 @@ public class PropertyValidator extends ValidatorBase {
         PBmmGenericProperty genericPropertyDefinition = (PBmmGenericProperty)pBmmProperty;
         PBmmGenericType attributeTypeDefinition = genericPropertyDefinition.getTypeDef();
         if (attributeTypeDefinition != null) {
-            if (!schema.hasClassOrPrimitiveDefinition(attributeTypeDefinition.getRootType()))
+            if (!schema.hasClassOrPrimitiveDefinition(attributeTypeDefinition.getRootType())) {
                 addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_GENERIC_PROPERTY_ROOT_TYPE_NOT_FOUND, pBmmClass.getSourceSchemaId(),
                         pBmmClass.getName(),
                         pBmmProperty.getName(),
                         attributeTypeDefinition.getRootType());
+            }
 
-            for(PBmmType genericParameter:attributeTypeDefinition.getGenericParameterDefs().values())
+            for(PBmmType genericParameter:attributeTypeDefinition.getGenericParameterDefs().values()) {
                 validateGenericTypeDefParameter(pBmmClass, pBmmProperty, attributeTypeDefinition, genericParameter);
-        }
-        else
+            }
+        } else {
             addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_GENERIC_PROPERTY_TYPE_DEF_UNDEFINED,
                     pBmmClass.getSourceSchemaId(),
                     pBmmClass.getName(),
                     pBmmProperty.getName());
+        }
     }
 
     private void validateGenericTypeDefParameter(PBmmClass pBmmClass, PBmmProperty pBmmProperty, PBmmGenericType attributeTypeDefinition, PBmmType genericParameter) {
@@ -92,28 +95,27 @@ public class PropertyValidator extends ValidatorBase {
         PBmmContainerProperty containerPropertyDefinition = (PBmmContainerProperty) pBmmProperty;
         PBmmContainerType attributeTypeDefinition = containerPropertyDefinition.getTypeRef();
         PBmmType attributeTypeReference = attributeTypeDefinition.getTypeRef();
-        if (!schema.hasClassOrPrimitiveDefinition(attributeTypeDefinition.getContainerType()))
+        if (!schema.hasClassOrPrimitiveDefinition(attributeTypeDefinition.getContainerType())) {
             addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_CONTAINER_TYPE_NOT_FOUND,
                     pBmmClass.getSourceSchemaId(),
                     pBmmClass.getName(),
                     pBmmProperty.getName(),
                     attributeTypeDefinition.getType());
-        else if (attributeTypeReference != null) {
+        } else if (attributeTypeReference != null) {
             //Loop through types inside container type
             List<String> typeReferences = attributeTypeReference.flattenedTypeList();
-            if (typeReferences != null)
-                for(String typeReference:typeReferences)
+            if (typeReferences != null) {
+                for (String typeReference : typeReferences)
                     validateContainerTypeReference(pBmmClass, pBmmProperty, attributeTypeDefinition, typeReference);
-            else {
+            } else {
                 //Should this be logged?
             }
-        }
-        else
+        } else {
             addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_CONTAINER_PROPERTY_TARGET_TYPE_NOT_DEFINED,
                     pBmmClass.getSourceSchemaId(),
                     pBmmClass.getName(),
                     pBmmProperty.getName());
-
+        }
         if (containerPropertyDefinition.getCardinality() == null) {
 //                    addValidityInfo(pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_CONTAINER_PROPERTY_CARDINALITY_NOT_DEFINED,
 //                            pBmmClass.getSourceSchemaId(),
@@ -134,12 +136,13 @@ public class PropertyValidator extends ValidatorBase {
                             attributeTypeDefinition.getType());
                 }
             }
-            else
+            else {
                 addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_CONTAINER_PROPERTY_TARGET_TYPE_NOT_FOUND,
                         pBmmClass.getSourceSchemaId(),
                         pBmmClass.getName(),
                         pBmmProperty.getName(),
                         attributeTypeDefinition.getType());
+            }
         }
     }
 
@@ -147,20 +150,22 @@ public class PropertyValidator extends ValidatorBase {
         //For open properties, check if the containing class is a generic class and has a parameter of that type
         PBmmSinglePropertyOpen singlePropertyOpenDefinition = (PBmmSinglePropertyOpen) pBmmProperty;
         PBmmOpenType attributeTypeDefinition = singlePropertyOpenDefinition.getTypeRef();
-        if (!pBmmClass.isGeneric() || !pBmmClass.getGenericParameterDefs().containsKey(attributeTypeDefinition.getType()))
+        if (!pBmmClass.isGeneric() || !pBmmClass.getGenericParameterDefs().containsKey(attributeTypeDefinition.getType())) {
             addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_SINGLE_OPEN_PARAMETER_NOT_FOUND,
                     pBmmClass.getSourceSchemaId(), pBmmClass.getName(), pBmmProperty.getName(), attributeTypeDefinition.getType());
+        }
     }
 
     private void validateSingleProperty(PBmmClass pBmmClass, PBmmProperty pBmmProperty) {
         PBmmSingleProperty singlePropertyDefinition = (PBmmSingleProperty)pBmmProperty;
         PBmmSimpleType attributeTypeDefinition = singlePropertyDefinition.getTypeRef();
-        if (StringUtils.isEmpty(attributeTypeDefinition.getType()) || !schema.hasClassOrPrimitiveDefinition(attributeTypeDefinition.getType()))
+        if (StringUtils.isEmpty(attributeTypeDefinition.getType()) || !schema.hasClassOrPrimitiveDefinition(attributeTypeDefinition.getType())) {
             addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_SINGLE_PROPERTY_TYPE_NOT_FOUND,
                     pBmmClass.getSourceSchemaId(),
                     pBmmClass.getName(),
                     pBmmProperty.getName(),
                     attributeTypeDefinition.getType());
+        }
     }
 
     private void validateOverriddenPropertyType(PBmmClass pBmmClass, PBmmProperty pBmmProperty) {
