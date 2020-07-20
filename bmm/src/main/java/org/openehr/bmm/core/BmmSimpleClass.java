@@ -27,7 +27,7 @@ package org.openehr.bmm.core;
  */
 public class BmmSimpleClass extends BmmClass {
 
-    public BmmSimpleClass(String aName, String aDocumentation, Boolean abstractFlag) {
+    public BmmSimpleClass(String aName, String aDocumentation, boolean abstractFlag) {
         super(aName, aDocumentation, abstractFlag);
     }
 

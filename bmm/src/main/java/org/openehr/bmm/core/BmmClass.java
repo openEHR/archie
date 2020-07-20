@@ -75,7 +75,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     /**
      * True if this class is abstract in its model.
      */
-    private Boolean isAbstract;
+    private boolean isAbstract;
 
     /**
      * True if this class is designated a primitive type within the overall type system of the schema.
@@ -87,7 +87,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      */
     private boolean isOverride;
 
-    public BmmClass(String aName, String aDocumentation, Boolean abstractFlag) {
+    public BmmClass(String aName, String aDocumentation, boolean abstractFlag) {
         name = aName;
         setDocumentation(aDocumentation);
         isAbstract = abstractFlag;
@@ -439,6 +439,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
         if (this instanceof BmmGenericClass) {
             result = new BmmGenericClass(this.getName(), this.getDocumentation(), this.isAbstract);
         } else {
+            result = new BmmSimpleClass(this.getName(), this.getDocumentation(), this.isAbstract);
             result = new BmmSimpleClass(this.getName(), this.getDocumentation(), this.isAbstract);
         }
 

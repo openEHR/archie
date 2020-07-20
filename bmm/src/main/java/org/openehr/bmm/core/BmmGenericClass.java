@@ -40,7 +40,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      */
     private Map<String, BmmParameterType> genericParameters;
 
-    public BmmGenericClass(String aName, String aDocumentation, Boolean abstractFlag) {
+    public BmmGenericClass(String aName, String aDocumentation, boolean abstractFlag) {
         super(aName, aDocumentation, abstractFlag);
         genericParameters = new LinkedHashMap<>();
     }
