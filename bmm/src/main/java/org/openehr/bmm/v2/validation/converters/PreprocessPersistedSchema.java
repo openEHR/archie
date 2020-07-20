@@ -1,6 +1,5 @@
 package org.openehr.bmm.v2.validation.converters;
 
-import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.v2.persistence.CaseInsensitiveLinkedHashMap;
 import org.openehr.bmm.v2.persistence.PBmmClass;
 import org.openehr.bmm.v2.persistence.PBmmPackage;

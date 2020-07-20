@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.common.collect.ImmutableBiMap;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.OpenEHRBase;
-
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.v2.persistence.*;
 

@@ -7,9 +7,9 @@ import org.openehr.bmm.persistence.validation.BmmMessageIds;
 import org.openehr.bmm.v2.persistence.PBmmPackage;
 import org.openehr.bmm.v2.persistence.PBmmPackageContainer;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
+import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmValidation;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
-import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.utils.message.MessageLogger;
 
 import java.util.ArrayList;

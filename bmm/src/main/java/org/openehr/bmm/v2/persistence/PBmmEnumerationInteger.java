@@ -1,11 +1,8 @@
 package org.openehr.bmm.v2.persistence;
 
-import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmEnumeration;
 import org.openehr.bmm.core.BmmEnumerationInteger;
-import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

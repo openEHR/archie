@@ -1,8 +1,6 @@
 package org.openehr.bmm.v2.validation.validators;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
 import org.openehr.bmm.v2.persistence.*;

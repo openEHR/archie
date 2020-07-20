@@ -4,10 +4,7 @@ package org.openehr.bmm.v2.persistence;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmParameterType;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmSimpleType;
 import org.openehr.bmm.core.BmmUnitaryProperty;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 

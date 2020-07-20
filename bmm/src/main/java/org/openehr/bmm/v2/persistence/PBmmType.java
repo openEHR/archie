@@ -1,6 +1,7 @@
 package org.openehr.bmm.v2.persistence;
 
-import org.openehr.bmm.core.*;
+import org.openehr.bmm.core.BmmClass;
+import org.openehr.bmm.core.BmmType;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;

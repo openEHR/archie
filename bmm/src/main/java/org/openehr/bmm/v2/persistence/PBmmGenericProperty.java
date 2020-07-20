@@ -2,8 +2,6 @@ package org.openehr.bmm.v2.persistence;
 
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.core.BmmUnitaryProperty;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 

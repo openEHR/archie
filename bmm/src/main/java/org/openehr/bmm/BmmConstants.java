@@ -22,8 +22,6 @@ package org.openehr.bmm;
  */
 
 
-import org.openehr.bmm.core.BmmSimpleType;
-
 /**
  * Created by cnanjo on 10/1/16.
  */

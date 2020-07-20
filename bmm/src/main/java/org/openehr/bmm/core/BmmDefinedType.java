@@ -21,8 +21,6 @@ package org.openehr.bmm.core;
  * Author: Thomas Beale
  */
 
-import java.util.List;
-
 /**
  * Abstract meta-type for types 'defined' in a BMM model, compared to formal parameter types,
  * built-in types. See subtypes.

@@ -21,14 +21,13 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
-import org.openehr.bmm.BmmConstants;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.io.Serializable;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Definition of a class in an object model. A class is type that may be open or closed in terms of other types mentioned within.
