@@ -21,7 +21,7 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
-import org.openehr.bmm.BmmConstants;
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -83,9 +83,9 @@ public class BmmGenericType extends BmmDefinedType<BmmGenericClass> implements S
     @Override
     public String getTypeName() {
         return getBaseClass().getName() +
-                BmmConstants.Generic_left_delim +
-                genericParameters.stream().map(t -> t.getTypeName()).collect(Collectors.joining(BmmConstants.Generic_separator.toString())) +
-                BmmConstants.Generic_right_delim;
+                BmmDefinitions.GENERIC_LEFT_DELIMITER +
+                genericParameters.stream().map(t -> t.getTypeName()).collect(Collectors.joining(BmmDefinitions.GENERIC_SEPARATOR.toString())) +
+                BmmDefinitions.GENERIC_RIGHT_DELIMITER;
     }
 
     /**
@@ -95,9 +95,9 @@ public class BmmGenericType extends BmmDefinedType<BmmGenericClass> implements S
      */
     public String getTypeSignature() {
         return getBaseClass().getName() +
-                BmmConstants.Generic_left_delim +
-                genericParameters.stream().map(t -> t.getTypeSignature()).collect(Collectors.joining(BmmConstants.Generic_separator.toString())) +
-                BmmConstants.Generic_right_delim;
+                BmmDefinitions.GENERIC_LEFT_DELIMITER +
+                genericParameters.stream().map(t -> t.getTypeSignature()).collect(Collectors.joining(BmmDefinitions.GENERIC_SEPARATOR.toString())) +
+                BmmDefinitions.GENERIC_RIGHT_DELIMITER;
     }
 
     /**

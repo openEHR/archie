@@ -2,12 +2,12 @@ package org.openehr.bmm.v2.persistence;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openehr.bmm.BmmConstants;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmGenericClass;
 import org.openehr.bmm.core.BmmGenericType;
 import org.openehr.bmm.core.BmmType;
 import org.openehr.bmm.core.BmmUnitaryType;
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public final class PBmmGenericType extends PBmmUnitaryType {
         }
         else {
             genericParameters.forEach(param -> {
-                if (BmmConstants.formalGenericParameterName(param)) {
+                if (BmmDefinitions.isFormalGenericParameterName(param)) {
                     PBmmOpenType openType = new PBmmOpenType(param);
                     genericParameterReferences.add(openType);
                 }
@@ -115,15 +115,15 @@ public final class PBmmGenericType extends PBmmUnitaryType {
     @Override
     public String asTypeString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(rootType).append(BmmConstants.Generic_left_delim);
+        builder.append(rootType).append(BmmDefinitions.GENERIC_LEFT_DELIMITER);
         List<PBmmType> parameterReferences = getGenericParameterRefs();
         for (int i = 0; i < parameterReferences.size(); i++) {
             builder.append(parameterReferences.get(i).asTypeString());
             if (i < parameterReferences.size() - 1) {
-                builder.append(BmmConstants.Generic_separator);
+                builder.append(BmmDefinitions.GENERIC_SEPARATOR);
             }
         }
-        builder.append(BmmConstants.Generic_right_delim);
+        builder.append(BmmDefinitions.GENERIC_RIGHT_DELIMITER);
         return builder.toString();
     }
 

@@ -18,15 +18,23 @@ public class BmmDefinitions extends BasicDefinitions {
      */
     public static final String BMM_INTERNAL_VERSION = "2.1";
 
-    /**
-     * delimiter between class_name and qualifiying closure name, e.g. EHR-ENTRY
-     */
-    public static final Character QUALIFIED_NAME_DELIMITER = '-';
+
+    // delimiter between parts of `schema_id`
+    public static final Character SCHEMA_ID_DELIMITER = '-';
     public static final String SCHEMA_NAME_DELIMITER = "::";
     public static final Character PACKAGE_NAME_DELIMITER = '.';
     public static final Character GENERIC_LEFT_DELIMITER = '<';
     public static final Character GENERIC_RIGHT_DELIMITER = '>';
     public static final Character GENERIC_SEPARATOR = ',';
+
+    public static final Character TUPLE_LEFT_DELIMITER = '[';
+    public static final Character TUPLE_RIGHT_DELIMITER = ']';
+    public static final Character TUPLE_SEPARATOR = ',';
+
+    public static final Character CONSTRAINT_LEFT_DELIMITER = '«';
+    public static final Character CONSTRAINT_RIGHT_DELIMITER = '»';
+
+    public static final Character PATH_DELIMITER = '/';
     /**
      * Delimiter between class_name and qualifiying closure name, e.g. EHR-ENTRY
      */
@@ -43,24 +51,6 @@ public class BmmDefinitions extends BasicDefinitions {
         add("List");
         add("Set");
         add("Array");
-    }});
-
-    public static final String TYPE_CAT_PRIMITIVE_CLASS = "class_primitive";
-    public static final String TYPE_CAT_ENUMERATION = "class_enumeration";
-    public static final String TYPE_CAT_CONCRETE_CLASS = "class_concrete";
-    public static final String TYPE_CAT_CONCRETE_CLASS_SUPERTYPE = "class_concrete_supertype";
-    public static final String TYPE_CAT_ABSTRACT_CLASS = "class_abstract";
-    public static final String TYPE_CAT_GENERIC_PARAMETER = "generic_parameter";
-    public static final String TYPE_CAT_CONSTRAINED_GENERIC_PARAMETER = "constrained_generic_parameter";
-
-    public static List<String> TYPE_CATEGORIES = Collections.unmodifiableList(new ArrayList<String>() {{
-        add(TYPE_CAT_PRIMITIVE_CLASS);
-        add(TYPE_CAT_ENUMERATION);
-        add(TYPE_CAT_CONCRETE_CLASS);
-        add(TYPE_CAT_CONCRETE_CLASS_SUPERTYPE);
-        add(TYPE_CAT_ABSTRACT_CLASS);
-        add(TYPE_CAT_GENERIC_PARAMETER);
-        add(TYPE_CAT_CONSTRAINED_GENERIC_PARAMETER);
     }});
 
     public static final String BMM_SCHEMA_FILE_EXTENSION = ".bmm";
@@ -106,19 +96,6 @@ public class BmmDefinitions extends BasicDefinitions {
      * path of schema file
      */
     public static final String METADATA_SCHEMA_PATH = "schema_path";
-    /**
-     * attributes to retrieve for initial fast parse on schemas
-     */
-    public static final List<String> SCHEMA_FAST_PARSE_ATTRIBUTES = Collections.unmodifiableList(new ArrayList<String>() {{
-        add(METADATA_BMM_VERSION);
-        add(METADATA_RM_PUBLISHER);
-        add(METADATA_SCHEMA_NAME);
-        add(METADATA_RM_RELEASE);
-        add(METADATA_SCHEMA_REVISION);
-        add(METADATA_SCHEMA_LIFECYCLE_STATE);
-        add(METADATA_SCHEMA_DESCRIPTION);
-        add(METADATA_SCHEMA_PATH);
-    }});
 
     /**
      * version of BMM to assume for a schema that doesn't have the bmm_version attribute
@@ -155,6 +132,10 @@ public class BmmDefinitions extends BasicDefinitions {
      */
     public static boolean isWellFormedClassName(String aClassName) {
         return WELL_FORMED_CLASS_NAME_REGEX.matcher(aClassName).matches();
+    }
+
+    public static final boolean isFormalGenericParameterName(String typeName) {
+        return typeName.length() == 1;
     }
 
     /**
@@ -243,7 +224,7 @@ public class BmmDefinitions extends BasicDefinitions {
      * @return
      */
     public static String publisherQualifiedRmClosureName(String aRmPublisher, String aRmClosureName) {
-        return aRmPublisher + QUALIFIED_NAME_DELIMITER + packageBaseName(aRmClosureName).toUpperCase();
+        return aRmPublisher + SCHEMA_ID_DELIMITER + packageBaseName(aRmClosureName).toUpperCase();
     }
 
     /**
@@ -265,7 +246,7 @@ public class BmmDefinitions extends BasicDefinitions {
      * @return
      */
     public static String rmClosureQualifiedClassName(String aRmClosureName, String aClassName) {
-        return aRmClosureName + QUALIFIED_NAME_DELIMITER + aClassName;
+        return aRmClosureName + SCHEMA_ID_DELIMITER + aClassName;
     }
 
     /**

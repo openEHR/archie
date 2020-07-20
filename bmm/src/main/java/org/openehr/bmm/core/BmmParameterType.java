@@ -21,9 +21,8 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
-
-import org.openehr.bmm.BmmConstants;
 import org.openehr.bmm.persistence.validation.BasicDefinitions;
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -172,7 +171,7 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
         builder.append (name);
         BmmEffectiveType confType = flattenedConformsToType();
         if (confType != null) {
-            builder.append (BmmConstants.Generic_constraint_delimiter + confType.getTypeName());
+            builder.append (BmmDefinitions.GENERIC_CONSTRAINT_DELIMITER + confType.getTypeName());
         }
         return builder.toString();
     }
