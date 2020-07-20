@@ -24,12 +24,6 @@ import com.nedap.archie.rules.Constraint;
 import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.OperatorKind;
 import org.apache.commons.lang3.StringUtils;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmDefinedType;
-import org.openehr.bmm.core.BmmEffectiveType;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.ArrayList;
 import java.util.Collection;

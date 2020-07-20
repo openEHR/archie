@@ -8,7 +8,7 @@ import java.util.List;
 public class PBmmEnumeration<ItemType> extends PBmmClass {
 
     private List<String> itemNames;
-    protected List<ItemType> itemValues;
+    private List<ItemType> itemValues;
 
     public List<String> getItemNames() {
         return itemNames;
@@ -30,6 +30,7 @@ public class PBmmEnumeration<ItemType> extends PBmmClass {
     public BmmEnumeration createBmmClass() {
         BmmEnumeration newEnumeration = new BmmEnumeration(getName(), getDocumentation(), nullToFalse(isAbstract()));
         newEnumeration.setSourceSchemaId(getSourceSchemaId());
+        newEnumeration.setOverride(nullToFalse(isOverride()));
         return newEnumeration;
     }
 

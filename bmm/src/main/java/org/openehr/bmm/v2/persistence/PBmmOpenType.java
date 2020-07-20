@@ -10,6 +10,10 @@ public final class PBmmOpenType extends PBmmUnitaryType {
 
     private String type;
 
+    public PBmmOpenType() {
+        super();
+    }
+
     public PBmmOpenType (String type) {
         this.type = type;
     }

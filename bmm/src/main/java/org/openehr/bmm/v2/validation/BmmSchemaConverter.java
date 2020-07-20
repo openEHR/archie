@@ -1,6 +1,7 @@
 package org.openehr.bmm.v2.validation;
 
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
@@ -115,7 +116,7 @@ public class BmmSchemaConverter {
             //cannot continue on validation error
             return result;
         } catch (Exception e) {
-            result.getLogger().addError(BmmMessageIds.ec_bmm_schema_conv_fail_err, schema.getSchemaName(), e.getMessage());
+            result.getLogger().addError(BmmMessageIds.ec_bmm_schema_conv_fail_err, schema.getSchemaName(), e.getMessage() + "\n" + ExceptionUtils.getStackTrace(e));
             return result;
         }
         finally {

@@ -165,7 +165,7 @@ public class PBmmClass extends PBmmBase {
         } else {
             bmmClass = new BmmSimpleClass(getName(), getDocumentation(), nullToFalse(isAbstract()));
         }
-
+        bmmClass.setOverride(nullToFalse(isOverride()));
         bmmClass.setSourceSchemaId(getSourceSchemaId());
         return bmmClass;
     }

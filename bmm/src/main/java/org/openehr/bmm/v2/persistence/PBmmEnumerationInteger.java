@@ -15,6 +15,7 @@ public final class PBmmEnumerationInteger extends PBmmEnumeration<Integer> {
     public BmmEnumerationInteger createBmmClass() {
         BmmEnumerationInteger bmmEnumerationInteger = new BmmEnumerationInteger (getName(), getDocumentation(), nullToFalse(isAbstract()));
         bmmEnumerationInteger.setSourceSchemaId (getSourceSchemaId());
+        bmmEnumerationInteger.setOverride(nullToFalse(isOverride()));
         return bmmEnumerationInteger;
     }
 
