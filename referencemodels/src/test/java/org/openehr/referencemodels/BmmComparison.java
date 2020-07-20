@@ -83,13 +83,14 @@ public class BmmComparison {
         for(RMAttributeInfo attributeInfo:typeInfo.getAttributes().values()) {
             if(!isIgnorableModelParam(classDefinition.getName(), attributeInfo.getRmName())) {
                 BmmProperty bmmProperty = classDefinition.getFlatProperties().get(attributeInfo.getRmName());
-                if (bmmProperty == null)
+                if (bmmProperty == null) {
                     result.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM,
                             MessageFormat.format("class {0}: ModelInfoLookup property {1} is missing in BMM", classDefinition.getType().getTypeName(), attributeInfo.getRmName()),
                             typeInfo.getRmName(),
                             attributeInfo.getRmName()));
-                else
+                } else {
                     result.addAll(compareProperty(classDefinition.getName(), attributeInfo, bmmProperty));
+                }
             }
         }
         for(BmmProperty property: classDefinition.getFlatProperties().values()) {

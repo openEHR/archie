@@ -84,8 +84,9 @@ public class ConformanceChecker {
                 schema.hasClassOrPrimitiveDefinition(typeList2.get(index))) {
             String typePart1 = typeList1.get(index);
             String typePart2 = typeList2.get(index);
-            if (!(type1.equalsIgnoreCase(typePart2) || isAncestor(schema, typePart1, typePart2)))
+            if (!(type1.equalsIgnoreCase(typePart2) || isAncestor(schema, typePart1, typePart2))) {
                 return false;
+            }
             index++;
 
         }

@@ -47,10 +47,11 @@ public class PBmmContainerType extends PBmmType {
      */
     @Override
     public String baseType() {
-        if (type != null)
+        if (type != null) {
             return type;
-        else
+        } else {
             return typeDef.baseType();
+        }
     }
 
     /**
@@ -79,16 +80,18 @@ public class PBmmContainerType extends PBmmType {
      */
     @JsonIgnore
     public PBmmUnitaryType getTypeRef() {
-        if (typeDef != null)
+        if (typeDef != null) {
             return typeDef;
-        else if (type != null) {
-            if (BmmDefinitions.isFormalGenericParameterName(type))
+        } else if (type != null) {
+            if (BmmDefinitions.isFormalGenericParameterName(type)) {
                 return new PBmmOpenType(type);
-            else
+            } else {
                 return new PBmmSimpleType(type);
+            }
         }
-        else
+        else {
             return null;
+        }
     }
 
     @Override

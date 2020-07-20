@@ -121,10 +121,11 @@ public class MetaModel implements MetaModelInterface {
 
     @Override
     public boolean typeNameExists(String typeName) {
-        if (getSelectedBmmModel() != null)
+        if (getSelectedBmmModel() != null) {
             return selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName)) != null;
-        else
+        } else {
             return selectedModel.getTypeInfo(typeName) != null;
+        }
 
     }
 
@@ -133,13 +134,15 @@ public class MetaModel implements MetaModelInterface {
         if (selectedBmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(rmTypeName);
             BmmClass classDefinition = selectedBmmModel.getClassDefinition(className);
-            if (classDefinition == null)
+            if (classDefinition == null) {
                 return false;
+            }
 
             return classDefinition.getFlatProperties().containsKey(propertyName);
         }
-        else
+        else {
             return selectedModel.getAttributeInfo(rmTypeName, propertyName) != null;
+        }
 
     }
 
@@ -148,8 +151,9 @@ public class MetaModel implements MetaModelInterface {
         if (selectedBmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(typeId);
             BmmClass classDefinition = selectedBmmModel.getClassDefinition(className);
-            if (classDefinition == null || !classDefinition.hasPropertyWithName(attributeName))
+            if (classDefinition == null || !classDefinition.hasPropertyWithName(attributeName)) {
                 return false;
+            }
 
             BmmProperty bmmProperty = classDefinition.getFlatProperties().get(attributeName);
             return !bmmProperty.getMandatory() || (bmmProperty.getExistence() != null && !bmmProperty.getExistence().isMandatory());

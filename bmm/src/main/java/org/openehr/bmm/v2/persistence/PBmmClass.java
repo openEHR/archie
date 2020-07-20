@@ -48,8 +48,9 @@ public class PBmmClass extends PBmmBase {
     }
 
     public List<String> getAncestors() {
-        if (ancestors == null)
+        if (ancestors == null) {
             ancestors = new ArrayList<>();
+        }
         return ancestors;
     }
 
@@ -59,19 +60,20 @@ public class PBmmClass extends PBmmBase {
      */
     @JsonIgnore
     public Map<String, PBmmUnitaryType> ancestorRefs(PBmmSchema schema ) {
-        if (ancestorDefs != null)
+        if (ancestorDefs != null) {
             return ancestorDefs;
-        else {
+        } else {
             Map<String, PBmmUnitaryType> result = new LinkedHashMap<>();
             if (ancestors != null) {
                 for (String anc: ancestors) {
                     PBmmClass pBmmClass = schema.getClassDefinition(anc);
-                    if (pBmmClass != null)
-                        if (pBmmClass.isGeneric())
+                    if (pBmmClass != null) {
+                        if (pBmmClass.isGeneric()) {
                             result.put(anc, new PBmmGenericType(anc, new ArrayList<>(pBmmClass.genericParameterDefs.keySet())));
-                        else
+                        } else {
                             result.put(anc, new PBmmSimpleType(anc));
-                    else {
+                        }
+                    } else {
                         //validation will catch this case.
                          throw new RuntimeException("Error retrieving class definition for ancestor \"" +
                                     anc  + "\" of PBmmClass " + name);
@@ -104,8 +106,9 @@ public class PBmmClass extends PBmmBase {
     }
 
     public Map<String, PBmmProperty> getProperties() {
-        if (properties == null)
+        if (properties == null) {
             properties = new LinkedHashMap<>();
+        }
         return properties;
     }
 
@@ -132,8 +135,9 @@ public class PBmmClass extends PBmmBase {
     }
 
     public Map<String, PBmmGenericParameter> getGenericParameterDefs() {
-        if (genericParameterDefs == null)
+        if (genericParameterDefs == null) {
             genericParameterDefs = new LinkedHashMap<>();
+        }
         return genericParameterDefs;
     }
 

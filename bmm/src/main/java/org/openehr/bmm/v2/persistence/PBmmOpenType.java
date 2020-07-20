@@ -52,8 +52,9 @@ public final class PBmmOpenType extends PBmmUnitaryType {
     public BmmParameterType createBmmType (BmmClassProcessor processor, BmmClass classDefinition) {
         if (classDefinition instanceof BmmGenericClass) {
             BmmParameterType bmmParamType = ((BmmGenericClass) classDefinition).getGenericParameters().get(type);
-            if (bmmParamType != null)
+            if (bmmParamType != null) {
                 return bmmParamType;
+            }
         }
         throw new RuntimeException("error creating class");
     }

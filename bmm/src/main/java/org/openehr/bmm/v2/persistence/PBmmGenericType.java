@@ -41,8 +41,9 @@ public final class PBmmGenericType extends PBmmUnitaryType {
     }
 
     public Map<String, PBmmType> getGenericParameterDefs() {
-        if (genericParameterDefs == null)
+        if (genericParameterDefs == null) {
             genericParameterDefs = new LinkedHashMap<>();
+        }
         return genericParameterDefs;
     }
 
@@ -51,8 +52,9 @@ public final class PBmmGenericType extends PBmmUnitaryType {
     }
 
     public List<String> getGenericParameters() {
-        if (genericParameters == null)
+        if (genericParameters == null) {
             genericParameters = new ArrayList<>();
+        }
         return genericParameters;
     }
 

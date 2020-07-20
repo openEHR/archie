@@ -138,12 +138,13 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
      * @return
      */
     public BmmEffectiveType flattenedConformsToType() {
-        if (conformsToType != null)
+        if (conformsToType != null) {
             return conformsToType;
-        else if (inheritancePrecursor != null)
+        } else if (inheritancePrecursor != null) {
             return inheritancePrecursor.flattenedConformsToType();
-        else
+        } else {
             return null;
+        }
     }
 
     /**
@@ -154,10 +155,11 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     @Override
     public BmmEffectiveType getEffectiveType() {
         BmmEffectiveType confType = flattenedConformsToType();
-        if (confType != null)
+        if (confType != null) {
             return confType;
-        else
+        } else {
             return anyTypeDefinition;
+        }
     }
 
     /**

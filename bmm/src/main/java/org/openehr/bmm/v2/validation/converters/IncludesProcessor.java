@@ -28,9 +28,11 @@ public class IncludesProcessor {
     public void cloneSchemaAndAddIncludes(BmmValidationResult validationResult, BmmRepository repository, MessageLogger logger) {
         //step 1: check that all includes exist
         PBmmSchema schema = validationResult.getOriginalSchema();
-        for(BmmIncludeSpec include: schema.getIncludes().values())
-            if(!repository.containsPersistentSchema(include.getId()))
+        for(BmmIncludeSpec include: schema.getIncludes().values()) {
+            if(!repository.containsPersistentSchema(include.getId())) {
                 logger.addError(BmmMessageIds.ec_bmm_schema_included_schema_not_found, include.getId());
+            }
+        }
 
         if (!logger.hasErrors()) {
             PBmmSchema clone = (PBmmSchema) schema.clone();
@@ -51,8 +53,9 @@ public class IncludesProcessor {
                         logger.addError(BmmMessageIds.ec_bmm_schema_includes_valiidation_failed, schema.getSchemaId(), included.getLogger().toString());
                         validationResult.addFailedMerge(include.getId());
                     }
-                    else
+                    else {
                         mergeIncluded(validationResult, included);
+                    }
                 }
             }
         }
@@ -62,13 +65,15 @@ public class IncludesProcessor {
         PBmmSchema including = includingValidationResult.getSchemaWithMergedIncludes();
         PBmmSchema included = includedValidation.getSchemaWithMergedIncludes();
         //archetype parent class: only merge if nothing already in the higher-level schema
-        if (included.getArchetypeParentClass() != null &&  including.getArchetypeParentClass() == null)
+        if (included.getArchetypeParentClass() != null &&  including.getArchetypeParentClass() == null) {
             including.setArchetypeParentClass(included.getArchetypeParentClass());
+        }
 
         //archetype data value parent class: only merge if nothing already in the higher-level schema
         if (included.getArchetypeDataValueParentClass() != null && including.getArchetypeDataValueParentClass() == null) {
             including.setArchetypeDataValueParentClass(included.getArchetypeDataValueParentClass());
         }
+
         //archetype closures
         LinkedHashSet<String> newClosurePackages = new LinkedHashSet<>();
         newClosurePackages.addAll(included.getArchetypeRmClosurePackages());

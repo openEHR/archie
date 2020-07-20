@@ -129,10 +129,11 @@ public class BmmSchemaConverter {
      * Convert and validate all schemas in the repository. Stores the results in the repository
      */
     public void validateAndConvertRepository() {
-        for (PBmmSchema schema:repository.getPersistentSchemas())
+        for (PBmmSchema schema:repository.getPersistentSchemas()) {
             if (repository.getModel(schema.getSchemaId()) == null) {
                 BmmValidationResult bmmValidationResult = validateConvertAndAddToRepo(schema);
             }
+        }
     }
 
     private void createModelsByClosureAndVersion(BmmValidationResult validationResult) {
@@ -141,12 +142,15 @@ public class BmmSchemaConverter {
         String schemaId = model.getSchemaId();
         String modelPublisher = model.getRmPublisher();
         String modelName = model.getModelName();
-        if (modelName != null)
+        if (modelName != null) {
             addClosure(schemaId, validationResult, modelPublisher, modelName);
-        else
+        } else
             //possibly old style BMM, test
-            for (String closureName:model.getArchetypeRmClosurePackages())
+        {
+            for (String closureName:model.getArchetypeRmClosurePackages()) {
                 addClosure(schemaId, validationResult, modelPublisher, closureName);
+            }
+        }
     }
 
     private void addClosure(String schemaId, BmmValidationResult validationResult, String modelPublisher, String modelName) {

@@ -84,8 +84,9 @@ public class BasicSchemaValidations implements BmmValidation {
 
             for(String packageName:packageNames) {
                 currentPackage = currentPackage.getPackages().get(packageName);
-                if(currentPackage == null)
+                if(currentPackage == null) {
                     return false;
+                }
             }
             return true;
         }

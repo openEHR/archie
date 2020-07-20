@@ -60,8 +60,9 @@ public final class PBmmSchema extends PBmmPackageContainer {
     private String archetypeVisualizeDescendantsOf;
 
     public Map<String, PBmmClass> getPrimitiveTypes() {
-        if (primitiveTypes == null)
+        if (primitiveTypes == null) {
             primitiveTypes = new CaseInsensitiveLinkedHashMap<>();
+        }
         return primitiveTypes;
     }
 
@@ -70,8 +71,9 @@ public final class PBmmSchema extends PBmmPackageContainer {
     }
 
     public Map<String, PBmmClass> getClassDefinitions() {
-        if (classDefinitions == null)
+        if (classDefinitions == null) {
             classDefinitions = new CaseInsensitiveLinkedHashMap<>();
+        }
         return classDefinitions;
     }
 
@@ -80,8 +82,9 @@ public final class PBmmSchema extends PBmmPackageContainer {
     }
 
     public Map<String, BmmIncludeSpec> getIncludes() {
-        if (includes == null)
+        if (includes == null) {
             includes = new CaseInsensitiveLinkedHashMap<>();
+        }
         return includes;
     }
 
@@ -224,8 +227,9 @@ public final class PBmmSchema extends PBmmPackageContainer {
      */
     public PBmmClass getClassDefinition(String className) {
         PBmmClass result = classDefinitions.get(className);
-        if (result == null)
+        if (result == null) {
             result = primitiveTypes.get(className);
+        }
         return result;
     }
 
