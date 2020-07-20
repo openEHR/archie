@@ -67,7 +67,7 @@ public class IncludesProcessor {
 
         //archetype data value parent class: only merge if nothing already in the higher-level schema
         if (included.getArchetypeDataValueParentClass() != null && including.getArchetypeDataValueParentClass() == null) {
-            including.setArchetypeDataValueParentClass(including.getArchetypeDataValueParentClass());
+            including.setArchetypeDataValueParentClass(included.getArchetypeDataValueParentClass());
         }
         //archetype closures
         LinkedHashSet<String> newClosurePackages = new LinkedHashSet<>();
