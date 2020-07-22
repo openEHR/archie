@@ -17,8 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.nedap.archie.adlparser.treewalkers.FilePositionUtil.*;
-
 /**
  * Parser for the definition part of an archetype
  *
@@ -51,7 +49,6 @@ public class CComplexObjectParser extends BaseTreeWalker {
         CComplexObject object = new CComplexObject();
         if(context.type_id() != null) {
             object.setRmTypeName(context.type_id().getText());
-            setFilePosition(context.type_id().ALPHA_UC_ID(), object);
         }
         if(context.ID_CODE() != null) {
             object.setNodeId(context.ID_CODE().getText());
@@ -65,7 +62,6 @@ public class CComplexObjectParser extends BaseTreeWalker {
         for (C_attribute_defContext attribute : context.c_attribute_def()) {
             parseCAttribute(object, attribute);
         }
-
         return object;
     }
 
@@ -73,16 +69,13 @@ public class CComplexObjectParser extends BaseTreeWalker {
 
         if (attributeDefContext.c_attribute() != null) {
             CAttribute attribute = new CAttribute();
-
             C_attributeContext attributeContext = attributeDefContext.c_attribute();
             if(attributeContext.attribute_id() != null) {
                 attribute.setRmAttributeName(attributeContext.attribute_id().getText());
-                setFilePosition(attributeContext.attribute_id().ALPHA_LC_ID(), attribute);
             } else {
                 attribute.setDifferentialPath(attributeContext.ADL_PATH().getText());
 
                 attribute.setRmAttributeName(getLastAttributeFromPath(attribute.getDifferentialPath()));
-                setFilePosition(attributeContext.ADL_PATH(), attribute);
             }
             if (attributeContext.c_existence() != null) {
                 attribute.setExistence(parseMultiplicityInterval(attributeContext.c_existence()));
@@ -291,15 +284,11 @@ public class CComplexObjectParser extends BaseTreeWalker {
         proxy.setTargetPath(proxyContext.adl_path().getText());
         proxy.setRmTypeName(proxyContext.type_id().getText());
         proxy.setNodeId(proxyContext.ID_CODE().getText());
-
-        setFilePosition(proxyContext.type_id().ALPHA_UC_ID(), proxy);
-
         return proxy;
     }
 
     private CArchetypeRoot parseArchetypeRoot(C_archetype_rootContext archetypeRootContext) {
         CArchetypeRoot root = new CArchetypeRoot();
-        setFilePosition(archetypeRootContext.ID_CODE(), root);
 
         root.setRmTypeName(archetypeRootContext.type_id().getText());
         root.setNodeId(archetypeRootContext.ID_CODE().getText());
@@ -317,12 +306,9 @@ public class CComplexObjectParser extends BaseTreeWalker {
 
     private ArchetypeSlot parseArchetypeSlot(Archetype_slotContext slotContext) {
         ArchetypeSlot slot = new ArchetypeSlot();
-
         C_archetype_slot_headContext headContext = slotContext.c_archetype_slot_head();
         slot.setNodeId(headContext.c_archetype_slot_id().ID_CODE().getText());
         slot.setRmTypeName(headContext.c_archetype_slot_id().type_id().getText());
-
-        setFilePosition(headContext.c_archetype_slot_id().type_id().ALPHA_UC_ID(), slot);
         if(headContext.c_archetype_slot_id().SYM_CLOSED() != null) {
             slot.setClosed(true);
         }

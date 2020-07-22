@@ -15,8 +15,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.nedap.archie.adlparser.treewalkers.FilePositionUtil.*;
-
 /**
  * ANTLR listener for an ADLS file. Uses the listener construction for the topmost elements, switches to custom treewalker
  * for elements lower in the tree. This approach saves some code and complexity.
@@ -47,7 +45,6 @@ public class ADLListener extends AdlBaseListener {
         rootArchetype = new AuthoredArchetype();
         archetype = rootArchetype;
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
-        setFilePosition(ctx.SYM_ARCHETYPE(), archetype);
     }
 
     @Override
@@ -60,7 +57,6 @@ public class ADLListener extends AdlBaseListener {
         rootArchetype = new Template();
         archetype = rootArchetype;
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
-        setFilePosition(ctx.SYM_TEMPLATE(), archetype);
     }
 
     @Override
@@ -84,7 +80,6 @@ public class ADLListener extends AdlBaseListener {
             rootArchetype = overlay;
         }
         archetype = overlay;
-        setFilePosition(ctx.SYM_TEMPLATE_OVERLAY(), archetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
@@ -93,14 +88,12 @@ public class ADLListener extends AdlBaseListener {
         rootArchetype = new OperationalTemplate();
         rootArchetype.setDifferential(false);//operational templates are flat by definition
         archetype = rootArchetype;
-        setFilePosition(ctx.SYM_OPERATIONAL_TEMPLATE(), archetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
     private void parseArchetypeHRID(TerminalNode hrId) {
         if(hrId != null) {
             ArchetypeHRID archetypeID = new ArchetypeHRID(hrId.getText());
-            setFilePosition(hrId, archetypeID);
             archetype.setArchetypeId(archetypeID);
             if(metaModels != null) {
                 metaModels.selectModel(archetype);
@@ -159,19 +152,16 @@ public class ADLListener extends AdlBaseListener {
     @Override
     public void enterLanguage_section(Language_sectionContext ctx) {
         archetype.setAuthoredResourceContent(OdinObjectParser.convert(ctx.odin_text(), LanguageSection.class));
-        setFilePosition(ctx.SYM_LANGUAGE(), archetype.getAuthoredResourceContent());
     }
 
     @Override
     public void enterTerminology_section(Terminology_sectionContext ctx) {
         archetype.setTerminology(terminologyParser.parseTerminology(ctx));
-        setFilePosition(ctx.SYM_TERMINOLOGY(), archetype.getTerminology());
     }
 
     @Override
     public void enterDescription_section(AdlParser.Description_sectionContext ctx) {
         archetype.setDescription(OdinObjectParser.convert(ctx.odin_text(), ResourceDescription.class));
-        setFilePosition(ctx.SYM_DESCRIPTION(), archetype.getDescription());
     }
 
     @Override
