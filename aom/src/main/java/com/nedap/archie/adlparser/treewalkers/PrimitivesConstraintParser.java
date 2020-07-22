@@ -48,7 +48,6 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
     }
 
     public CPrimitiveObject parsePrimitiveObject(AdlParser.C_primitive_objectContext objectContext) {
-
         /*c_integer
                 | c_real
                 | c_date
@@ -58,30 +57,26 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
                 | c_string
                 | c_terminology_code
                 | c_boolean*/
-        CPrimitiveObject result = null;
         if(objectContext.c_integer() != null) {
-            result = numberConstraintParser.parseCInteger(objectContext.c_integer());
+            return numberConstraintParser.parseCInteger(objectContext.c_integer());
         } else if (objectContext.c_real() != null) {
-            result = numberConstraintParser.parseCReal(objectContext.c_real());
+            return numberConstraintParser.parseCReal(objectContext.c_real());
         } else if (objectContext.c_date() != null) {
-            result = parseCDate(objectContext.c_date());
+            return parseCDate(objectContext.c_date());
         } else if (objectContext.c_time() != null) {
-            result = parseCTime(objectContext.c_time());
+            return parseCTime(objectContext.c_time());
         } else if (objectContext.c_date_time() != null) {
-            result = parseCDateTime(objectContext.c_date_time());
+            return parseCDateTime(objectContext.c_date_time());
         } else if (objectContext.c_duration() != null) {
-            result = parseCDuration(objectContext.c_duration());
+            return parseCDuration(objectContext.c_duration());
         } else if (objectContext.c_string() != null) {
-            result = parseCString(objectContext.c_string());
+            return parseCString(objectContext.c_string());
         } else if (objectContext.c_terminology_code() != null) {
-            result = parseCTerminologyCode(objectContext.c_terminology_code());
+            return parseCTerminologyCode(objectContext.c_terminology_code());
         } else if (objectContext.c_boolean() != null) {
-            result = parseCBoolean(objectContext.c_boolean());
+            return parseCBoolean(objectContext.c_boolean());
         }
-        if(result != null) {
-            FilePositionUtil.setFilePosition(objectContext, result);
-        }
-        return result;
+        return null;
     }
 
     public CBoolean parseCBoolean(AdlParser.C_booleanContext booleanContext) {
