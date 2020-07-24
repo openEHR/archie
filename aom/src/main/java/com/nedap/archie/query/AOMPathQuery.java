@@ -254,16 +254,16 @@ public class AOMPathQuery {
      * Useful mainly when flattening, probably does not have many other uses
      */
     public List<ArchetypeModelObject> findAllMatchingPredicate(CComplexObject root, Predicate predicate) {
-        List<ArchetypeModelObject> result = new ArrayList<>();
-        result.add(root);
+        List<ArchetypeModelObject> currentObjects = new ArrayList<>();
+        currentObjects.add(root);
         List<ArchetypeModelObject> results = new ArrayList<>();
         for(PathSegment segment:this.pathSegments) {
-            if (result.size() == 0) {
+            if (currentObjects.size() == 0) {
                 return results;
             }
-            result = findOneSegment(segment, result, false);
-            if(result.size() == 1 && predicate.test(result.get(0))) {
-                results.addAll(result);
+            currentObjects = findOneSegment(segment, currentObjects, false);
+            if(currentObjects.size() == 1 && predicate.test(currentObjects.get(0))) {
+                results.addAll(currentObjects);
             }
         }
         return results;
