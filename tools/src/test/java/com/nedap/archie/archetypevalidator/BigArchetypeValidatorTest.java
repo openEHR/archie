@@ -104,7 +104,7 @@ public class BigArchetypeValidatorTest {
         Reflections reflections = new Reflections("adl2-tests", new ResourcesScanner());
         List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
         for(String file:adlFiles) {
-            if (file.contains("legacy_adl1.4")) {
+            if (file.contains("legacy_adl_1.4")) {
                 continue;
             }
             Archetype archetype = null;
@@ -151,15 +151,17 @@ public class BigArchetypeValidatorTest {
 
 
         int errorCount = 0;
+        int correctButShouldBeInvalid = 0;
         int correctCount = 0;
         int shouldBeFineButWasinvalid = 0;
         int notImplemented = 0;
         int unexpectedParseErrors = 0;
+        int wrongMessageCount = 0;
         List<String> errorStrings = new ArrayList<>();
         ArchetypeValidator validator = new ArchetypeValidator(metaModels);
-        SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         for(String file:adlFiles) {
-            if(file.contains("legacy_adl_1.4")){
+            if (file.contains("legacy_adl_1.4")) {
                 continue;
             }
             Archetype archetype = null;
@@ -203,6 +205,7 @@ public class BigArchetypeValidatorTest {
                         log.error("exception:", exception);
                         errorStrings.add(archetype == null ? file : archetype.getArchetypeId()  + " has exception: " + (exception == null ? "no exception": exception.getMessage()));
                         unexpectedParseErrors++;
+                        errorCount++;
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -218,13 +221,14 @@ public class BigArchetypeValidatorTest {
             String regression = archetype.getDescription().getOtherDetails().get("regression");
             if(regression != null && !regression.equalsIgnoreCase("PASS")) {
                 if(!errorTypeImplemented(archetype, regression)) {
-                    log.info("regression {} not implemented yet, so not yet tested", regression);
+                    log.info("regression {} not implemented yet, so {} not yet tested", regression, archetype.getArchetypeId());
                     notImplemented++;
                 } else {
                     if (!validation.hasWarningsOrErrors()) {
 
                         log.error("test failed: archetype {} considered valid, it should not", archetype.getArchetypeId());
                         errorStrings.add("test failed: archetype " + archetype.getArchetypeId() + " considered valid, it should not");
+                        correctButShouldBeInvalid++;
                         errorCount++;
                     } else {
                         boolean found = false;
@@ -246,6 +250,7 @@ public class BigArchetypeValidatorTest {
                                     Joiner.on(", ").join(errorTypes) + " but should be " +
                                     regression);
                             printErrors(validation);
+                            wrongMessageCount++;
                             errorCount++;
                         }
 
@@ -257,14 +262,18 @@ public class BigArchetypeValidatorTest {
                     errorStrings.add("Validation should pass, but it failed for archetype " + archetype.getArchetypeId() + ", " + regression);
                     printErrors(validation);
                     shouldBeFineButWasinvalid++;
+                    errorCount++;
                 } else {
                     correctCount++;
                 }
             }
         }
         if(errorCount > 0) {
-            Assert.fail(String.format("%s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s", errorCount, correctCount, shouldBeFineButWasinvalid, notImplemented, unexpectedParseErrors, Joiner.on(", ").join(errorStrings)));
+            Assert.fail(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",
+                    errorCount, wrongMessageCount, correctButShouldBeInvalid, correctCount, shouldBeFineButWasinvalid, notImplemented, unexpectedParseErrors, Joiner.on(", ").join(errorStrings)));
         }
+        log.info(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",
+                errorCount, wrongMessageCount, correctButShouldBeInvalid, correctCount, shouldBeFineButWasinvalid, notImplemented, unexpectedParseErrors, Joiner.on(", ").join(errorStrings)));
         log.info("{} not implemented yet", notImplemented);
 
 

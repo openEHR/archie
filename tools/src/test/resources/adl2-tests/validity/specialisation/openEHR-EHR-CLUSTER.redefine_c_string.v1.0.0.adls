@@ -49,9 +49,6 @@ definition
             DV_TEXT[id31.2] matches {
                 value matches {"aaaaaaa", "b", "c"}
             }
-            DV_TEXT[id31.3] matches {
-                value matches {"/a+/", "b", "c"}
-            }
         }
 	}
 

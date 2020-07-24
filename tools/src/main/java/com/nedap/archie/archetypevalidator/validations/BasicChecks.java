@@ -54,7 +54,7 @@ public class BasicChecks extends ArchetypeValidationBase {
 
             );
         }
-        if(!archetype.getDefinition().getNodeId().matches("id1(.1)*")) {
+        if(!archetype.getDefinition().getNodeId().matches("id1(\\.1)*")) {
             addMessageWithPath(ErrorType.VARCN,
                     "/",
                     I18n.t("The node id is not in the form id1.1....1: {0}", archetype.getDefinition().getNodeId())
