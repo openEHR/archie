@@ -215,6 +215,12 @@ public class BigArchetypeValidatorTest {
             }
         }
 
+        //some archetypes in the repository use some parents outside of the adl2-validity test package.
+        //these parents should be valid, but the entire package contain some invalid archetypes
+        //so validate against this bigger repository, but do not validate all of them
+        //better would be to split this in valid and invalid archetypes, and/or fix the invalid ones
+        //but now we just parse things separately: one big repository, one only with validaty tests, and use the big ones
+        //to lookup/validate parent archetypes
         FullArchetypeRepository all = parseAll();
         for(Archetype archetype:repository.getAllArchetypes()) {
             ValidationResult validation = validator.validate(archetype, all);
