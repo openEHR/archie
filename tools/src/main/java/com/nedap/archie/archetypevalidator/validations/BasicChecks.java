@@ -47,10 +47,18 @@ public class BasicChecks extends ArchetypeValidationBase {
     private void checkIdCodeSpecialisationLevel() {
         int depth = ValidationUtils.getSpecializationDepth(archetype, repository);
         if(depth != archetype.getDefinition().specialisationDepth()) {
-            addMessage(ErrorType.VARCN, I18n.t("Incorrect root node id {0}: it must match the specialization depth of the archetype, which is {1}", archetype.getDefinition().getNodeId(), depth));
+
+            addMessageWithPath(ErrorType.VARCN,
+                    "/",
+                    I18n.t("Incorrect root node id {0}: it must match the specialization depth of the archetype, which is {1}", archetype.getDefinition().getNodeId(), depth)
+
+            );
         }
         if(!archetype.getDefinition().getNodeId().matches("id1(.1)*")) {
-            addMessage(ErrorType.VARCN, I18n.t("The node id is not in the form id1.1....1: {0}", archetype.getDefinition().getNodeId()));
+            addMessageWithPath(ErrorType.VARCN,
+                    "/",
+                    I18n.t("The node id is not in the form id1.1....1: {0}", archetype.getDefinition().getNodeId())
+                    );
         }
     }
 
@@ -58,7 +66,7 @@ public class BasicChecks extends ArchetypeValidationBase {
 
     private void checkRmRootType() {
         if(!Objects.equals(archetype.getArchetypeId().getRmClass(), archetype.getDefinition().getRmTypeName())) {
-            addMessage(ErrorType.VARDT, String.format("RM type in id %s does not match RM type in definition %s",
+            addMessage(ErrorType.VARDT, I18n.t("RM type in id {0} does not match RM type in definition {1}",
                             archetype.getArchetypeId().getConceptId(),
                             archetype.getDefinition().getRmTypeName()));
         }
