@@ -115,13 +115,9 @@ public class CString extends CPrimitiveObject<String, String> {
         for(String otherConstraint:otherString.constraint) {
             boolean otherIsRegexp = CString.isRegexConstraint(otherConstraint);
             if(otherIsRegexp && !isRegexp) {
-
                 if(matchesRegexp(constraint, otherConstraint)) {
                     return true;
                 }
-            } else if (otherIsRegexp && isRegexp) {
-                //this is very hard to validate. Don't allow it until the spec gets updated to allow this
-                return false;
             } else if(otherConstraint.equals(constraint)) {
                 return true;
             }
