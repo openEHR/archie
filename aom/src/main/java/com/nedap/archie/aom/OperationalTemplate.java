@@ -60,6 +60,7 @@ public class OperationalTemplate extends AuthoredArchetype {
      * Get the last used archetype reference in the path of the given cObject.
      * If stripLastPartOfPath == true, ignore the last pathsegment, usable for finding
      * the id code of an archetype root
+     * Returns null if the root archetype is found.
      * @param object
      * @param stripLastPartOfPath
      * @return
@@ -73,6 +74,9 @@ public class OperationalTemplate extends AuthoredArchetype {
             //the first path segment can point to a archetype root. We do not want to include that
             //but need the path from the parent archetype
             pathSegments = pathSegments.subList(1, pathSegments.size());
+        } else if (stripLastPartOfPath) {
+            //points to the root node
+            return null;
         }
         for(PathSegment segment:pathSegments) {
             if(segment.hasArchetypeRef()) {
@@ -114,7 +118,6 @@ public class OperationalTemplate extends AuthoredArchetype {
             ArchetypeTerminology terminology = getComponentTerminologies().get(archetypeId);
             if(terminology != null) {
                 return terminology.getTermDefinition(language, code);
-                return term;
             } else {
                 //TODO: check if we should do this or just return null
                 throw new IllegalStateException("Expected an archetype terminology for archetype id " + archetypeId);
