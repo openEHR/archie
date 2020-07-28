@@ -75,10 +75,12 @@ public class OperationalTemplate extends AuthoredArchetype {
             //but need the path from the parent archetype
             pathSegments = pathSegments.subList(1, pathSegments.size());
         } else if (stripLastPartOfPath) {
-            //points to the root node
+            //points to the root node. This should return null
             return null;
         }
         for(PathSegment segment:pathSegments) {
+            //TODO: refactor PathSegment parsing so that archetype ref is NEVER in id code and always in archetype ref
+            //then remove this if.
             if(segment.hasArchetypeRef()) {
                 //this is [archetypeId] instead of [idcode]
                 return segment.getNodeId();
@@ -110,6 +112,14 @@ public class OperationalTemplate extends AuthoredArchetype {
     @Override
     public ArchetypeTerm getTerm(CObject object, String code, String language) {
         boolean stripLastPartOfPath = object instanceof CArchetypeRoot && AOMUtils.isIdCode(code);
+        ArchetypeTerm term = getTermInternal(object, code, language, stripLastPartOfPath);
+        if(stripLastPartOfPath && term == null) {
+            term = getTermInternal(object, code, language, false);
+        }
+        return term;
+    }
+
+    private ArchetypeTerm getTermInternal(CObject object, String code, String language, boolean stripLastPartOfPath) {
         String archetypeId = getChildArchetypeId(object, stripLastPartOfPath);
 
         if(archetypeId == null) {
@@ -117,7 +127,13 @@ public class OperationalTemplate extends AuthoredArchetype {
         } else {
             ArchetypeTerminology terminology = getComponentTerminologies().get(archetypeId);
             if(terminology != null) {
-                return terminology.getTermDefinition(language, code);
+                ArchetypeTerm term = terminology.getTermDefinition(language, code);
+                if(term == null && object instanceof CArchetypeRoot) {
+                    //for an archetype root without a term in the parent archetype, for some reason, just return the root node.
+                    //this archetype shouldn't validate, but archie has done this since the first versions, so let's keep this behaviour
+                    return terminology.getTermDefinition(language, ((CArchetypeRoot) object).getArchetypeRef());
+                }
+                return term;
             } else {
                 //TODO: check if we should do this or just return null
                 throw new IllegalStateException("Expected an archetype terminology for archetype id " + archetypeId);
