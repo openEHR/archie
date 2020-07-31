@@ -168,35 +168,33 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     public BmmProperty propertyAtPath (String typeName, String propertyPath) {
         BmmClass bmmClass = getClassDefinition(typeName);
         if (bmmClass != null) {
-            return propertyAtPath (bmmClass, new APathQuery(propertyPath));
+            return propertyAtPath (bmmClass, new APathQuery(propertyPath).getPathSegments());
         } else {
             return null;
         }
     }
 
-    private BmmProperty propertyAtPath (BmmClass bmmClass, APathQuery qPath) {
+    private BmmProperty propertyAtPath (BmmClass bmmClass, List<PathSegment> pathSegments) {
         BmmProperty result = null;
-        int pathPos = qPath.index();
-        if (bmmClass.hasFlatPropertyWithName (qPath.itemName())) {
-            if (qPath.isLast()) {
-                result = bmmClass.getFlatProperties().get(qPath.itemName());
+        String nodeName = pathSegments.get(0).getNodeName();
+        if (bmmClass.hasFlatPropertyWithName (nodeName)) {
+            if (pathSegments.size() == 1) {
+                result = bmmClass.getFlatProperties().get(nodeName);
             } else {
-                BmmClass bmmPropTypeClass = getClassDefinition (bmmClass.getFlatProperties().get(qPath.itemName()).getType().getEffectiveType().typeBaseName());
-                qPath.forth();
+                BmmClass bmmPropTypeClass = getClassDefinition (bmmClass.getFlatProperties().get(nodeName).getType().getEffectiveType().typeBaseName());
                 if (bmmPropTypeClass != null) {
-                    result = propertyAtPath (bmmPropTypeClass, qPath);
+                    result = propertyAtPath (bmmPropTypeClass, pathSegments.subList(1, pathSegments.size()));
                 }
             }
         } else {
             for (String descClass : bmmClass.getImmediateDescendants()) {
-                BmmProperty descClassProperty = propertyAtPath (getClassDefinition(descClass), qPath);
+                BmmProperty descClassProperty = propertyAtPath (getClassDefinition(descClass), pathSegments);
                 if (descClassProperty != null) {
                     result = descClassProperty;
                     break;
                 }
             }
         }
-        qPath.go (pathPos);
         return result;
     }
 
