@@ -118,7 +118,7 @@ public  class ExampleJsonInstanceGenerator {
             result.put(typePropertyName, type);
         }
 
-        BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(cObject.getRmTypeName()));
+        BmmClass classDefinition = bmm.getClassDefinition(cObject.getRmTypeName());
 
         addAdditionalPropertiesAtBegin(classDefinition, result, cObject);
 
@@ -155,7 +155,7 @@ public  class ExampleJsonInstanceGenerator {
                         Map<String, Object> next = new LinkedHashMap<>();
 
                         String concreteTypeName = getConcreteTypeName(child.getRmTypeName());
-                        BmmClass childClassDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(concreteTypeName));
+                        BmmClass childClassDefinition = bmm.getClassDefinition(concreteTypeName);
                         next.put(typePropertyName, concreteTypeName);
                         addAdditionalPropertiesAtBegin(classDefinition, next, child);
                         addRequiredPropertiesFromBmm(next, childClassDefinition);
@@ -218,8 +218,7 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     protected String getConcreteTypeName(String rmTypeName) {
-        String classKey = BmmDefinitions.typeNameToClassKey(rmTypeName);
-        BmmClass classDefinition = bmm.getClassDefinition(classKey);
+        BmmClass classDefinition = bmm.getClassDefinition(rmTypeName);
         if(classDefinition.isAbstract()) {
             String customConcreteType = getConcreteTypeOverride(rmTypeName);
             if(customConcreteType != null) {
@@ -290,7 +289,7 @@ public  class ExampleJsonInstanceGenerator {
 
     private Object createExampleFromTypeName(String typeName) {
         String actualType = getConcreteTypeName(typeName);
-        BmmClass classDefinition1 = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(actualType));
+        BmmClass classDefinition1 = bmm.getClassDefinition(actualType);
         if(classDefinition1 != null && classDefinition1.isPrimitiveType()) {
             if (aomProfile.getRmPrimitiveTypeEquivalences().get(actualType) != null) {
                 actualType = aomProfile.getRmPrimitiveTypeEquivalences().get(actualType);
@@ -308,7 +307,7 @@ public  class ExampleJsonInstanceGenerator {
         }
         Map<String, Object> result = new LinkedHashMap<>();
         String className = getConcreteTypeName(actualType);
-        BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(actualType));
+        BmmClass classDefinition = bmm.getClassDefinition(actualType);
         result.put(typePropertyName, className);
         if(classDefinition != null) {
             addRequiredPropertiesFromBmm(result, classDefinition);
@@ -506,7 +505,7 @@ public  class ExampleJsonInstanceGenerator {
 
             CAttribute parentAttribute = child.getParent();
             CComplexObject parentObject = (CComplexObject) parentAttribute.getParent();
-            BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(parentObject.getRmTypeName()));
+            BmmClass classDefinition = bmm.getClassDefinition(parentObject.getRmTypeName());
             if(classDefinition == null) {
                 return null;
             }

@@ -122,7 +122,7 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public boolean typeNameExists(String typeName) {
         if (getSelectedBmmModel() != null) {
-            return selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName)) != null;
+            return selectedBmmModel.getClassDefinition(typeName) != null;
         } else {
             return selectedModel.getTypeInfo(typeName) != null;
         }
@@ -132,8 +132,7 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public boolean attributeExists(String rmTypeName, String propertyName) {
         if (selectedBmmModel != null) {
-            String className = BmmDefinitions.typeNameToClassKey(rmTypeName);
-            BmmClass classDefinition = selectedBmmModel.getClassDefinition(className);
+            BmmClass classDefinition = selectedBmmModel.getClassDefinition(rmTypeName);
             if (classDefinition == null) {
                 return false;
             }
@@ -173,8 +172,8 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public boolean typeConformant(String rmTypeName, String rmAttributeName, String childConstraintTypeName) {
         if(getSelectedBmmModel() != null) {
-            BmmClass parentClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
-            BmmClass childClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(childConstraintTypeName));
+            BmmClass parentClass = selectedBmmModel.getClassDefinition(rmTypeName);
+            BmmClass childClass = selectedBmmModel.getClassDefinition(childConstraintTypeName);
             if(childClass != null && parentClass != null) {
                 BmmProperty property = parentClass.getFlatProperties().get(rmAttributeName);
                 if(property != null) {
@@ -262,7 +261,7 @@ public class MetaModel implements MetaModelInterface {
                 cRmTypeName = aomTypeMapping.getTargetClassName();
             }
             String modelTypeName = selectedBmmModel.effectivePropertyType(rmTypeName, rmAttributeName);
-            BmmClass bmmClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
+            BmmClass bmmClass = selectedBmmModel.getClassDefinition(rmTypeName);
             if(bmmClass != null) {
                 BmmProperty bmmProperty = bmmClass.getFlatProperties().get(rmAttributeName);
                 if(bmmProperty != null) {
@@ -319,7 +318,7 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public boolean isOrdered(String typeName, String attributeName) {
         if (getSelectedBmmModel() != null) {
-            BmmClass classDefinition = getSelectedBmmModel().getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+            BmmClass classDefinition = getSelectedBmmModel().getClassDefinition(typeName);
             if (classDefinition != null) {
                 //TODO: don't flatten on request, create a flattened properties cache just like the eiffel code for much better performance
                 BmmProperty bmmProperty = classDefinition.getFlatProperties().get(attributeName);
