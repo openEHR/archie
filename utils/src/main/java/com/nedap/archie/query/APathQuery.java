@@ -94,50 +94,5 @@ public class APathQuery {
         }
         return Joiner.on("").join(pathSegments);
     }
-
-    private int pathCursor;
-
-    public void start() {
-        pathCursor = 0;
-    }
-
-    public void forth() {
-        pathCursor += 1;
-    }
-
-    public void back() {
-        pathCursor -= 1;
-    }
-
-    public PathSegment item() {
-        return pathSegments.get(pathCursor);
-    }
-
-    public String itemName() {
-        return pathSegments.get(pathCursor).getNodeName();
-    }
-
-    public boolean off() {
-        return pathCursor >= pathSegments.size();
-    }
-
-    public boolean isLast() {
-        return pathCursor == pathSegments.size() - 1;
-    }
-
-    public boolean isFirst() {
-        return pathCursor == 0;
-    }
-
-    public int size() {
-        return pathSegments.size();
-    }
-
-    public int index() {
-        return pathCursor;
-    }
-
-    public void go (int i) {
-        pathCursor = i;
-    }
+    
 }
