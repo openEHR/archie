@@ -137,7 +137,7 @@ public class MetaModel implements MetaModelInterface {
                 return false;
             }
 
-            return classDefinition.getFlatProperties().containsKey(propertyName);
+            return classDefinition.hasFlatPropertyWithName(propertyName);
         }
         else {
             return selectedModel.getAttributeInfo(rmTypeName, propertyName) != null;
@@ -208,7 +208,7 @@ public class MetaModel implements MetaModelInterface {
         }
 
         if(selectedBmmModel != null) {
-            return selectedBmmModel.propertyAtPath (rmTypeName, path) != null;
+            return selectedBmmModel.hasPropertyAtPath (rmTypeName, path);
         } else {
             return AOMUtils.getAttributeInfoAtPath(selectedModel, rmTypeName, path) != null;
         }
