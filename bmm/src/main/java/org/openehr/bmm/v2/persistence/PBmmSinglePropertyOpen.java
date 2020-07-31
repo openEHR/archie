@@ -51,14 +51,11 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType> {
         PBmmOpenType typeRef = getTypeRef();
         if (typeRef != null) {
             BmmParameterType bmmType = typeRef.createBmmType(processor, bmmClass);
-            if (bmmType != null) {
-                BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
-                populateImBooleans(bmmProperty);
-                return bmmProperty;
-            }
+            BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+            populateImBooleans(bmmProperty);
+            return bmmProperty;
         }
-        throw new RuntimeException("BmmTypeCreate failed for type " + typeRef.asTypeString() + " of property "
-                + getName() + " in class " + bmmClass.getName());
+        throw new RuntimeException("BmmTypeCreate failed for property " + getName() + " in class " + bmmClass.getName());
     }
 
     @JsonProperty("type_ref")

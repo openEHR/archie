@@ -180,19 +180,19 @@ public class PBmmClass extends PBmmBase {
         return bmmClass;
     }
 
-    public BmmClass populateBmmClass(BmmClassProcessor bmmModel, PBmmSchema schema) {
-        BmmClass bmmClass = bmmModel.getUnprocessedClassDefinition(getName());
+    public BmmClass populateBmmClass(BmmClassProcessor classProcessor, PBmmSchema schema) {
+        BmmClass bmmClass = classProcessor.getUnprocessedClassDefinition(getName());
         if (bmmClass != null) {
             // populate references to ancestor classes; should be every class except Any
-            BmmType bmmType;
+
             for (PBmmUnitaryType ancestorType : ancestorRefs(schema).values()) {
-                BmmClass ancestorClass = bmmModel.getClassDefinition(ancestorType.baseType());
-                if (ancestorClass != null) {
-                     bmmType = ancestorType.createBmmType(bmmModel, ancestorClass);
-                } else {
+                BmmClass ancestorClass = classProcessor.getClassDefinition(ancestorType.baseType());
+                if (ancestorClass == null) {
                     throw new RuntimeException("Error retrieving class definition for ancestor class " +
                             ancestorType.baseType() + " of BmmClass " + name);
+
                 }
+                BmmType bmmType = ancestorType.createBmmType(classProcessor, ancestorClass);
 
                 if (bmmType instanceof BmmDefinedType) {
                     bmmClass.addAncestor((BmmDefinedType) bmmType);
@@ -206,13 +206,7 @@ public class PBmmClass extends PBmmBase {
             // and add to the BMM_GENERIC_TYPE.generic_parameters list
             if (bmmClass instanceof BmmGenericClass) {
                 for (PBmmGenericParameter param : getGenericParameterDefs().values()) {
-                    BmmParameterType bmmGenericParameter = param.createBmmGenericParameter(bmmModel);
-                    if (bmmGenericParameter != null) {
-                        ((BmmGenericClass) bmmClass).addGenericParameter(bmmGenericParameter);
-                    } else {
-                        throw new RuntimeException("Error retrieving class definition for generic parameter " +
-                                param.getName() + " of PBmmClass " + name);
-                    }
+                    ((BmmGenericClass) bmmClass).addGenericParameter(param.createBmmGenericParameter(classProcessor));
                 }
             }
         } else {

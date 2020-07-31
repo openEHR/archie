@@ -7,22 +7,17 @@ import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 public final class PBmmGenericProperty extends PBmmProperty<PBmmGenericType> {
 
-    public PBmmGenericProperty() {
-        super();
-    }
-
     @Override
     public BmmUnitaryProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass) {
         PBmmGenericType typeRef = getTypeRef();
         if (typeRef != null) {
             BmmGenericType bmmType = typeRef.createBmmType(classProcessor, bmmClass);
-            if (bmmType != null) {
-                BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
-                populateImBooleans(bmmProperty);
-                return bmmProperty;
-            }
+
+            BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+            populateImBooleans(bmmProperty);
+            return bmmProperty;
         }
-        throw new RuntimeException("BmmTypeCreate failed for type " + typeRef.asTypeString() + " of property "
+        throw new RuntimeException("BmmTypeCreate failed for type " + typeRef + " of property "
                 + getName() + " in class " + bmmClass.getName());
     }
 

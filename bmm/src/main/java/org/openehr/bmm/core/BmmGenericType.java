@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmGenericType extends BmmDefinedType<BmmGenericClass> implements Serializable {
+public class BmmGenericType extends BmmDefinedType implements Serializable {
 
     /**
      * Generic parameters of the root_type in this type specifier. The order must match the order of the owning class’s
@@ -41,9 +41,19 @@ public class BmmGenericType extends BmmDefinedType<BmmGenericClass> implements S
      */
     public List<BmmType> genericParameters;
 
-    public BmmGenericType(BmmGenericClass aBaseClass) {
-        super(aBaseClass);
+    public BmmGenericType(BmmGenericClass baseClass) {
+        super(baseClass);
         genericParameters = new ArrayList<>();
+    }
+
+    /**
+     * Returns the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
+     *
+     * @return the base class
+     */
+    @Override
+    public BmmGenericClass getBaseClass() {
+        return (BmmGenericClass) super.getBaseClass();
     }
 
     /**

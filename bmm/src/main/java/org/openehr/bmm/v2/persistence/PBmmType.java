@@ -33,6 +33,6 @@ public abstract class PBmmType extends PBmmBase {
      * @param classDefinition
      * @return
      */
-    public abstract BmmType createBmmType(BmmClassProcessor schema, BmmClass classDefinition);
+    public abstract BmmType createBmmType(BmmClassProcessor classProcessor, BmmClass classDefinition);
 
 }

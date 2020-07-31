@@ -75,8 +75,8 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @param bmmClassName
      * @return
      */
-    public BmmClass getClassDefinition(String bmmClassName) {
-        return this.classDefinitions.get(BmmDefinitions.typeNameToClassKey(bmmClassName));
+    public BmmClass getClassDefinition(String typeName) {
+        return this.classDefinitions.get(BmmDefinitions.typeNameToClassKey(typeName));
     }
 
     public IBmmSchemaCore getBmmSchemaCore() {
@@ -154,37 +154,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @return BmmProperty
      */
     public Boolean hasPropertyAtPath (String typeName, String propertyPath) {
-        BmmClass bmmClass = getClassDefinition (typeName);
-        if (bmmClass != null) {
-            return hasPropertyAtPath(bmmClass, new APathQuery(propertyPath));
-        } else {
-            return false;
-        }
-    }
-
-    private boolean hasPropertyAtPath (BmmClass bmmClass, APathQuery qPath) {
-        int pathPos = qPath.index();
-        boolean result = false;
-        if (bmmClass.hasFlatPropertyWithName(qPath.itemName())) {
-            if (qPath.isLast()) {
-                result = true;
-            } else {
-                BmmClass bmmPropTypeClass = getClassDefinition(bmmClass.getFlatProperties().get(qPath.itemName()).getType().getEffectiveType().typeBaseName());
-                qPath.forth();
-                if (bmmPropTypeClass != null) {
-                    result = hasPropertyAtPath(bmmPropTypeClass, qPath);
-                }
-            }
-        } else {
-            for (String descClass : bmmClass.getImmediateDescendants()) {
-                if (hasPropertyAtPath(getClassDefinition(descClass), qPath)) {
-                    result = true;
-                    break;
-                }
-            }
-        }
-        qPath.go (pathPos);
-        return result;
+        return propertyAtPath(typeName, propertyPath) != null;
     }
 
     /**

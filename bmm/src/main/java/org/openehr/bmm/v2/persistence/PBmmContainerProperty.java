@@ -28,16 +28,14 @@ public final class PBmmContainerProperty extends PBmmProperty<PBmmContainerType>
         PBmmContainerType typeRef = getTypeRef();
         if (typeRef != null) {
             BmmContainerType bmmType = typeRef.createBmmType(classProcessor, bmmClass);
-            if (bmmType != null) {
-                BmmContainerProperty bmmProperty = new BmmContainerProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
-                if (getCardinality() != null) {
-                    bmmProperty.setCardinality(new MultiplicityInterval(getCardinality()));
-                }
-                populateImBooleans(bmmProperty);
-                return bmmProperty;
+            BmmContainerProperty bmmProperty = new BmmContainerProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+            if (getCardinality() != null) {
+                bmmProperty.setCardinality(new MultiplicityInterval(getCardinality()));
             }
+            populateImBooleans(bmmProperty);
+            return bmmProperty;
         }
-        throw new RuntimeException("BmmTypeCreate failed for type " + typeRef.asTypeString() + " of property "
+        throw new RuntimeException("BmmTypeCreate failed for type " + typeRef + " of property "
                 + getName() + " in class " + bmmClass.getName());
     }
 

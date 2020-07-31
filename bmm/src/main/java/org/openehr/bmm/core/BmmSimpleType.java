@@ -30,10 +30,15 @@ import java.util.List;
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmSimpleType extends BmmDefinedType<BmmSimpleClass> implements Serializable {
+public class BmmSimpleType extends BmmDefinedType implements Serializable {
 
     public BmmSimpleType (BmmSimpleClass baseClass) {
         super(baseClass);
+    }
+
+    @Override
+    public BmmSimpleClass getBaseClass() {
+        return (BmmSimpleClass) super.getBaseClass();
     }
 
     /**

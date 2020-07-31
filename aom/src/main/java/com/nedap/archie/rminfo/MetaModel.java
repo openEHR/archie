@@ -151,7 +151,7 @@ public class MetaModel implements MetaModelInterface {
         if (selectedBmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(typeId);
             BmmClass classDefinition = selectedBmmModel.getClassDefinition(className);
-            if (classDefinition == null || !classDefinition.hasPropertyWithName(attributeName)) {
+            if (classDefinition == null || !classDefinition.hasFlatPropertyWithName(attributeName)) {
                 return false;
             }
 
@@ -178,17 +178,12 @@ public class MetaModel implements MetaModelInterface {
             if(childClass != null && parentClass != null) {
                 BmmProperty property = parentClass.getFlatProperties().get(rmAttributeName);
                 if(property != null) {
-                    try {
-                        String propertyConfTypeName = property.getType().getEffectiveType().getTypeName();
+                    String propertyConfTypeName = property.getType().getEffectiveType().getTypeName();
+                    // if(BmmDefinitions.validGenericTypeName(propertyConfTypeName) &&
+                    //         !BmmDefinitions.validGenericTypeName(childConstraintTypeName)) {
 
-                        // if(BmmDefinitions.validGenericTypeName(propertyConfTypeName) &&
-                        //         !BmmDefinitions.validGenericTypeName(childConstraintTypeName)) {
-
-                        //}
-                        return rmTypesConformant(childConstraintTypeName, propertyConfTypeName);
-                    } catch (NullPointerException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    //}
+                    return rmTypesConformant(childConstraintTypeName, propertyConfTypeName);
                 }
 
 

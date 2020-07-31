@@ -44,7 +44,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     /**
      * List of immediate inheritance parents.
      */
-    private Map<String, BmmDefinedType> ancestors;
+    private Map<String, BmmDefinedType> ancestors = new LinkedHashMap<>();;
 
     /**
      * Package this class belongs to.
@@ -59,7 +59,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     /**
      * List of attributes defined in this class.
      */
-    private Map<String, BmmProperty> properties;
+    private Map<String, BmmProperty> properties = new LinkedHashMap<>();
 
     /**
      * Reference to original source schema defining this class. Useful for UI tools to determine which original schema
@@ -70,7 +70,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     /**
      * List of immediate inheritance descendants.
      */
-    private List<String> immediateDescendants;
+    private List<String> immediateDescendants = new ArrayList<>();;
 
     /**
      * True if this class is abstract in its model.
@@ -91,20 +91,10 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
         name = aName;
         setDocumentation(aDocumentation);
         isAbstract = abstractFlag;
-
-        properties = new LinkedHashMap<>();
-        ancestors = new LinkedHashMap<>();
-        immediateDescendants = new ArrayList<>();
-        properties = new LinkedHashMap<>();
     }
 
     public BmmClass() {
-        properties = new LinkedHashMap<>();
-        ancestors = new LinkedHashMap<>();
-        immediateDescendants = new ArrayList<>();
-        properties = new LinkedHashMap<>();
 
-        isAbstract = Boolean.FALSE;
     }
 
     /**
@@ -419,16 +409,6 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
         return property == null ? BmmDefinitions.UNKNOWN_TYPE_NAME : property.getType().getTypeName();
     }
 
-    protected void populateTarget (BmmClass source, BmmClass target) {
-        Map<String, BmmProperty> propertyMap = source.getProperties();
-        propertyMap.values().forEach (property -> {
-            if (!target.hasPropertyWithName(property.getName())) {
-                target.addProperty(property);
-            }
-        });
-        source.getAncestors().values().forEach (ancestor -> populateTarget (ancestor.getBaseClass(), target));
-    }
-
     /**
      * Creates a shallow clone of the class.
      *
@@ -439,7 +419,6 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
         if (this instanceof BmmGenericClass) {
             result = new BmmGenericClass(this.getName(), this.getDocumentation(), this.isAbstract);
         } else {
-            result = new BmmSimpleClass(this.getName(), this.getDocumentation(), this.isAbstract);
             result = new BmmSimpleClass(this.getName(), this.getDocumentation(), this.isAbstract);
         }
 

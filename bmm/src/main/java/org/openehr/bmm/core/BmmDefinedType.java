@@ -26,11 +26,11 @@ package org.openehr.bmm.core;
  * built-in types. See subtypes.
  *
  */
-public abstract class BmmDefinedType<T extends BmmClass> extends BmmEffectiveType {
+public abstract class BmmDefinedType extends BmmEffectiveType {
 
-    private T baseClass;
+    private BmmClass baseClass;
 
-    protected BmmDefinedType(T baseClass) {
+    protected BmmDefinedType(BmmClass baseClass) {
         this.baseClass = baseClass;
     }
 
@@ -39,14 +39,14 @@ public abstract class BmmDefinedType<T extends BmmClass> extends BmmEffectiveTyp
      *
      * @return the base class
      */
-    public T getBaseClass() {
+    public BmmClass getBaseClass() {
         return baseClass;
     }
 
     /**
      * Sets the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
      */
-    public void setBaseClass(T baseClass) {
+    public void setBaseClass(BmmClass baseClass) {
         this.baseClass = baseClass;
     }
 
