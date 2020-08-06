@@ -60,8 +60,7 @@ public class DvCodedText extends DvText {
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("code_string", definingCode.getCodeString())
-                .add("terminology_id", definingCode.getTerminologyId())
+        return MoreObjects.toStringHelper(this).add("defining_code", definingCode)
                 .add("value", getValue())
                 .toString();
     }
