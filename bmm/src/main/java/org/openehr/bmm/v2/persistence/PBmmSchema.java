@@ -50,8 +50,8 @@ public final class PBmmSchema extends PBmmPackageContainer {
     @Deprecated
     private List<String> archetypeRmClosurePackages;
 
-    //these fields are now stored in the Archetype Profile files, and are
-    //deprecated here - included mainly to be able to parse older P_BMM files.
+    // These fields are now stored in the Archetype Profile files, and are
+    // deprecated here - included mainly to be able to parse older P_BMM files.
     @Deprecated
     private String archetypeParentClass;
     @Deprecated
@@ -60,7 +60,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
     private String archetypeVisualizeDescendantsOf;
 
     public Map<String, PBmmClass> getPrimitiveTypes() {
-        if(primitiveTypes == null) {
+        if (primitiveTypes == null) {
             primitiveTypes = new CaseInsensitiveLinkedHashMap<>();
         }
         return primitiveTypes;
@@ -71,7 +71,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
     }
 
     public Map<String, PBmmClass> getClassDefinitions() {
-        if(classDefinitions == null) {
+        if (classDefinitions == null) {
             classDefinitions = new CaseInsensitiveLinkedHashMap<>();
         }
         return classDefinitions;
@@ -82,25 +82,25 @@ public final class PBmmSchema extends PBmmPackageContainer {
     }
 
     public Map<String, BmmIncludeSpec> getIncludes() {
-        if(includes == null) {
+        if (includes == null) {
             includes = new CaseInsensitiveLinkedHashMap<>();
         }
         return includes;
     }
 
-    public void setIncludes(Map<String, BmmIncludeSpec> includes) {
+    public void setIncludes (Map<String, BmmIncludeSpec> includes) {
         this.includes = includes;
     }
 
-    public String getBmmVersion() {
+    public String getBmmVersion () {
         return bmmVersion;
     }
 
-    public void setBmmVersion(String bmmVersion) {
+    public void setBmmVersion (String bmmVersion) {
         this.bmmVersion = bmmVersion;
     }
 
-    public String getModelName() {
+    public String getModelName () {
         return modelName;
     }
 
@@ -108,7 +108,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
         this.modelName = modelName;
     }
 
-    public String getSchemaName() {
+    public String getSchemaName () {
         return schemaName;
     }
 
@@ -175,7 +175,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
     @Deprecated
     public List<String> getArchetypeRmClosurePackages() {
         if(archetypeRmClosurePackages == null) {
-            archetypeRmClosurePackages = new ArrayList();
+            archetypeRmClosurePackages = new ArrayList<>();
         }
         return archetypeRmClosurePackages;
     }
@@ -225,16 +225,12 @@ public final class PBmmSchema extends PBmmPackageContainer {
      * @param className
      * @return
      */
-    public PBmmClass findClassOrPrimitiveDefinition(String className) {
-        PBmmClass bmmClass = getClassDefinitions().get(className);
-        if (bmmClass == null) {
-            bmmClass = getPrimitiveTypes().get(className);
-        }
-        return bmmClass;
-    }
-
     public PBmmClass getClassDefinition(String className) {
-        return classDefinitions.get(className);
+        PBmmClass result = classDefinitions.get(className);
+        if (result == null) {
+            result = primitiveTypes.get(className);
+        }
+        return result;
     }
 
     /**

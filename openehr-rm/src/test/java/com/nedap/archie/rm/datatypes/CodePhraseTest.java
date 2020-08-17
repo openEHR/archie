@@ -19,4 +19,13 @@ public class CodePhraseTest {
         Assert.assertNotEquals(codePhraseOne, codePhraseThree);
         Assert.assertNotEquals(codePhraseOne, codePhraseFour);
     }
+
+    @Test
+    public void testToString() {
+        CodePhrase codePhraseOne = new CodePhrase();
+        CodePhrase codePhraseTwo = new CodePhrase("hl7::gender");
+
+        assertEquals("null::null", codePhraseOne.toString());
+        assertEquals("hl7::gender", codePhraseTwo.toString());
+    }
 }

@@ -27,14 +27,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModels;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmContainerType;
-import org.openehr.bmm.core.BmmEnumerationInteger;
-import org.openehr.bmm.core.BmmEnumerationString;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.ArrayList;
@@ -125,13 +118,13 @@ public  class ExampleJsonInstanceGenerator {
             result.put(typePropertyName, type);
         }
 
-        BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(cObject.getRmTypeName()));
+        BmmClass classDefinition = bmm.getClassDefinition(cObject.getRmTypeName());
 
         addAdditionalPropertiesAtBegin(classDefinition, result, cObject);
 
 
         for (CAttribute attribute : cObject.getAttributes()) {
-            BmmProperty property = AOMUtils.getPropertyAtPath(bmm, cObject.getRmTypeName(), attribute.getRmAttributeName());
+            BmmProperty property = bmm.propertyAtPath (cObject.getRmTypeName(), attribute.getRmAttributeName());
             if(property == null || property.getComputed()) {
                 continue;//do not serialize non-bmm properties such as functions and computed properties
             }
@@ -162,7 +155,7 @@ public  class ExampleJsonInstanceGenerator {
                         Map<String, Object> next = new LinkedHashMap<>();
 
                         String concreteTypeName = getConcreteTypeName(child.getRmTypeName());
-                        BmmClass childClassDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(concreteTypeName));
+                        BmmClass childClassDefinition = bmm.getClassDefinition(concreteTypeName);
                         next.put(typePropertyName, concreteTypeName);
                         addAdditionalPropertiesAtBegin(classDefinition, next, child);
                         addRequiredPropertiesFromBmm(next, childClassDefinition);
@@ -225,8 +218,7 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     protected String getConcreteTypeName(String rmTypeName) {
-        String classKey = BmmDefinitions.typeNameToClassKey(rmTypeName);
-        BmmClass classDefinition = bmm.getClassDefinition(classKey);
+        BmmClass classDefinition = bmm.getClassDefinition(rmTypeName);
         if(classDefinition.isAbstract()) {
             String customConcreteType = getConcreteTypeOverride(rmTypeName);
             if(customConcreteType != null) {
@@ -237,7 +229,7 @@ public  class ExampleJsonInstanceGenerator {
                 BmmClass descendantClassDefinition = bmm.getClassDefinition(descendant);
                 if(!descendantClassDefinition.isAbstract()) {
                     //TODO: should we return generics here? for now left out
-                    return BmmDefinitions.typeNameToClassKey(descendantClassDefinition.getTypeName());
+                    return BmmDefinitions.typeNameToClassKey(descendantClassDefinition.getType().getTypeName());
                 }
 
             }
@@ -247,7 +239,7 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     private void addRequiredPropertiesFromBmm(Map<String, Object> result, BmmClass classDefinition) {
-        Map<String, BmmProperty> properties = classDefinition.flattenBmmClass().getProperties();
+        Map<String, BmmProperty> properties = classDefinition.getFlatProperties();
         //add all mandatory properties from the RM
         for (BmmProperty property : properties.values()) {
             if (property.getMandatory() && !result.containsKey(property.getName())) {
@@ -266,33 +258,38 @@ public  class ExampleJsonInstanceGenerator {
 
     private void addRequiredProperty(Map<String, Object> result, BmmProperty property, String value) {
         BmmType type = property.getType();
-        BmmClass propertyClass = type.getBaseClass();
-        if(value != null) {
+        if (value != null) {
             result.put(property.getName(), value);
         } else if (property instanceof BmmContainerProperty) {
             List<Object> children = new ArrayList<>();
             MultiplicityInterval cardinality = ((BmmContainerProperty) property).getCardinality();
-            if(cardinality.isMandatory() ) {
+            if (cardinality.isMandatory()) {
                 //if mandatory attribute, create at least one child type
                 //this won't be from an actual archetype, but at least it is valid RM data
                 String actualType = ((BmmContainerType) type).getBaseType().getTypeName();
                 children.add(createExampleFromTypeName(actualType));
             }
-
             result.put(property.getName(), children);
-        } else if (propertyClass instanceof BmmEnumerationInteger) {
-            result.put(property.getName(), 0);
-        } else if (propertyClass instanceof BmmEnumerationString) {
-            result.put(property.getName(), "string");
+        } else if (type instanceof BmmParameterType) {
+            result.put(property.getName(), createExampleFromTypeName(type.getEffectiveType().getTypeName()));
+        } else if (type instanceof BmmDefinedType) {
+            BmmClass propertyClass = ((BmmDefinedType)type).getBaseClass();
+            if (propertyClass instanceof BmmEnumerationInteger) {
+                result.put(property.getName(), 0);
+            } else if (propertyClass instanceof BmmEnumerationString) {
+                result.put(property.getName(), "string");
+            } else {
+                result.put(property.getName(), createExampleFromTypeName(type.getTypeName()));
+            }
         } else {
-            String actualType = type.getTypeName();
-            result.put(property.getName(), createExampleFromTypeName(actualType));
+            // TODO: if we reach here, we are on a property of a built-in type, either a Tuple
+            // (for which we can build an example instance) or an agent, for which we cannot.
         }
     }
 
     private Object createExampleFromTypeName(String typeName) {
         String actualType = getConcreteTypeName(typeName);
-        BmmClass classDefinition1 = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(actualType));
+        BmmClass classDefinition1 = bmm.getClassDefinition(actualType);
         if(classDefinition1 != null && classDefinition1.isPrimitiveType()) {
             if (aomProfile.getRmPrimitiveTypeEquivalences().get(actualType) != null) {
                 actualType = aomProfile.getRmPrimitiveTypeEquivalences().get(actualType);
@@ -310,7 +307,7 @@ public  class ExampleJsonInstanceGenerator {
         }
         Map<String, Object> result = new LinkedHashMap<>();
         String className = getConcreteTypeName(actualType);
-        BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(actualType));
+        BmmClass classDefinition = bmm.getClassDefinition(actualType);
         result.put(typePropertyName, className);
         if(classDefinition != null) {
             addRequiredPropertiesFromBmm(result, classDefinition);
@@ -508,11 +505,11 @@ public  class ExampleJsonInstanceGenerator {
 
             CAttribute parentAttribute = child.getParent();
             CComplexObject parentObject = (CComplexObject) parentAttribute.getParent();
-            BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(parentObject.getRmTypeName()));
+            BmmClass classDefinition = bmm.getClassDefinition(parentObject.getRmTypeName());
             if(classDefinition == null) {
                 return null;
             }
-            BmmProperty property = classDefinition.flattenBmmClass().getProperties().get(parentAttribute.getRmAttributeName());
+            BmmProperty property = classDefinition.getFlatProperties().get(parentAttribute.getRmAttributeName());
             if(property == null) {
                 return null;
             }
@@ -548,7 +545,7 @@ public  class ExampleJsonInstanceGenerator {
      */
     protected void addAdditionalPropertiesAtBegin(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
 
-        if (classDefinition.getTypeName().equalsIgnoreCase("LOCATABLE") || classDefinition.findAllAncestors().contains("LOCATABLE")) {
+        if (classDefinition.getType().getTypeName().equalsIgnoreCase("LOCATABLE") || classDefinition.findAllAncestors().contains("LOCATABLE")) {
 
             Map<String, Object> name = new LinkedHashMap<>();
             name.put(typePropertyName, "DV_TEXT");
@@ -586,7 +583,7 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     protected void addAdditionalPropertiesAtEnd(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
-        if(classDefinition.getTypeName().equalsIgnoreCase("DV_CODED_TEXT")) {
+        if(classDefinition.getType().getTypeName().equalsIgnoreCase("DV_CODED_TEXT")) {
             try {
                 Map<String, Object> definingCode = (Map<String, Object>) result.get("defining_code");
                 String codeString = (String) definingCode.get("code_string");//TODO: check terminology code to be local?

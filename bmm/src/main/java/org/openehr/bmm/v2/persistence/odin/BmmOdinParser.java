@@ -19,7 +19,8 @@ public class BmmOdinParser {
         try {
             String json = new OdinToJsonConverter().convert(odin);
             return BmmJacksonUtil.getObjectMapper().readValue(json, PBmmSchema.class);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -39,7 +40,8 @@ public class BmmOdinParser {
                 throw new RuntimeException("errors parsing ODIN file: " + errors);
             }
             return converted;
-        } catch (RuntimeException e) {
+        }
+        catch (RuntimeException e) {
             if (errors.hasErrors()) { //if parse errors, throw those first!
                 throw new RuntimeException("errors parsing ODIN file: " + errors);
             }
@@ -66,8 +68,6 @@ public class BmmOdinParser {
             }
             throw e;
         }
-
-
     }
 
 }

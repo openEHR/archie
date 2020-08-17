@@ -24,10 +24,6 @@ import com.nedap.archie.rules.Constraint;
 import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.OperatorKind;
 import org.apache.commons.lang3.StringUtils;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -277,42 +273,6 @@ public class AOMUtils {
                 .findAny().orElse(null);
     }
 
-
-    public static BmmProperty getPropertyAtPath(BmmModel bmmModel, String rmTypeName, String path) {
-        if(!path.contains("/")) {
-            BmmClass classDefinition = bmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
-            return classDefinition == null ? null : classDefinition.flattenBmmClass().getProperties().get(path);
-        } else if (path.equals("/")) {
-            //this is not a path
-            throw new IllegalArgumentException("cannot retrieve attribute information for path '/'");
-        }
-
-        APathQuery query = new APathQuery(path);
-
-        BmmClass classDefinition = bmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
-        BmmProperty property = null;
-        for (PathSegment segment : query.getPathSegments()) {
-            if (classDefinition == null) {
-                return null;
-            }
-            property = classDefinition.flattenBmmClass().getProperties().get(segment.getNodeName());
-            if(property == null) {
-                for(String descendant: classDefinition.findAllDescendants()) {
-                    BmmProperty bmmProperty = bmmModel.getClassDefinition(descendant).flattenBmmClass().getProperties().get(segment.getNodeName());
-                    if(bmmProperty != null) {
-                        property = bmmProperty;
-                        break;
-                    }
-                }
-                if(property == null) {
-                    return null;
-                }
-            }
-            classDefinition = property.getType().getBaseClass();
-        }
-        return property;
-
-    }
     public static RMAttributeInfo getAttributeInfoAtPath(ModelInfoLookup selectedModel, String rmTypeName, String path) {
         if(!path.contains("/")) {
             //this is not a path

@@ -1,13 +1,14 @@
 package org.openehr.bmm.v2.validation;
 
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
 import org.openehr.bmm.v2.persistence.PBmmPackage;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
-import org.openehr.bmm.v2.validation.converters.CanonicalPackagesGenerator;
 import org.openehr.bmm.v2.validation.converters.BmmModelCreator;
+import org.openehr.bmm.v2.validation.converters.CanonicalPackagesGenerator;
 import org.openehr.bmm.v2.validation.converters.DescendantsCalculator;
 import org.openehr.bmm.v2.validation.converters.IncludesProcessor;
 import org.openehr.bmm.v2.validation.converters.PreprocessPersistedSchema;
@@ -102,7 +103,7 @@ public class BmmSchemaConverter {
 
             schemaValidator.checkNoExceptions();
 
-            //set the descendants and ancestors properties
+            // set the descendants and ancestors properties
             new DescendantsCalculator().calculateDescendants(bmmModel);
             result.setModel(bmmModel);
 
@@ -110,10 +111,15 @@ public class BmmSchemaConverter {
             createModelsByClosureAndVersion(result);
 
             return result;
-        } catch (BmmSchemaValidationException ex) {
+        }
+        catch (BmmSchemaValidationException ex) {
             //cannot continue on validation error
             return result;
-        } finally {
+        } catch (Exception e) {
+            result.getLogger().addError(BmmMessageIds.ec_bmm_schema_conv_fail_err, schema.getSchemaName(), e.getMessage() + "\n" + ExceptionUtils.getStackTrace(e));
+            return result;
+        }
+        finally {
             //add the result to the repo, even in case of errors
             repository.addModel(result);
         }
@@ -123,8 +129,8 @@ public class BmmSchemaConverter {
      * Convert and validate all schemas in the repository. Stores the results in the repository
      */
     public void validateAndConvertRepository() {
-        for(PBmmSchema schema:repository.getPersistentSchemas()) {
-            if(repository.getModel(schema.getSchemaId()) == null) {
+        for (PBmmSchema schema:repository.getPersistentSchemas()) {
+            if (repository.getModel(schema.getSchemaId()) == null) {
                 BmmValidationResult bmmValidationResult = validateConvertAndAddToRepo(schema);
             }
         }
@@ -136,11 +142,12 @@ public class BmmSchemaConverter {
         String schemaId = model.getSchemaId();
         String modelPublisher = model.getRmPublisher();
         String modelName = model.getModelName();
-        if(modelName != null) {
+        if (modelName != null) {
             addClosure(schemaId, validationResult, modelPublisher, modelName);
-        } else {
+        } else
             //possibly old style BMM, test
-            for(String closureName:model.getArchetypeRmClosurePackages()) {
+        {
+            for (String closureName:model.getArchetypeRmClosurePackages()) {
                 addClosure(schemaId, validationResult, modelPublisher, closureName);
             }
         }
@@ -157,7 +164,6 @@ public class BmmSchemaConverter {
         } else {
             repository.addModelByClosure(qualifiedRmClosureName, validationResult);
         }
-
     }
 
 

@@ -21,6 +21,8 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,21 +33,28 @@ import java.util.stream.Collectors;
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmGenericType extends BmmType implements Serializable {
-
-    public BmmGenericType() {
-        genericParameters = new ArrayList<>();
-    }
+public class BmmGenericType extends BmmDefinedType implements Serializable {
 
     /**
      * Generic parameters of the root_type in this type specifier. The order must match the order of the owning class’s
      * formal generic parameter declarations.
      */
     public List<BmmType> genericParameters;
+
+    public BmmGenericType(BmmGenericClass baseClass) {
+        super(baseClass);
+        genericParameters = new ArrayList<>();
+    }
+
     /**
-     * The base class of this type.
+     * Returns the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
+     *
+     * @return the base class
      */
-    public BmmGenericClass baseClass;
+    @Override
+    public BmmGenericClass getBaseClass() {
+        return (BmmGenericClass) super.getBaseClass();
+    }
 
     /**
      * Returns generic parameters of the root_type in this type specifier. The order must match the order of the owning
@@ -77,43 +86,44 @@ public class BmmGenericType extends BmmType implements Serializable {
     }
 
     /**
-     * Returns the base class of this type.
-     *
-     * @return
-     */
-    @Override
-    public BmmGenericClass getBaseClass() {
-        return baseClass;
-    }
-
-    /**
-     * Sets the base class of this type.
-     *
-     * @param baseClass
-     */
-    public void setBaseClass(BmmGenericClass baseClass) {
-        this.baseClass = baseClass;
-    }
-
-    /**
      * Return the full name of the type including generic parameters, e.g. 'DV_INTERVAL&lt;T&gt;', 'TABLE&lt;List&lt;THING&gt;,String&gt;'.
      *
      * @return
      */
     @Override
     public String getTypeName() {
-        StringBuilder builder = new StringBuilder();
-        if(baseClass != null) {
-            builder.append(baseClass.getName());
-            builder.append("<");
-            builder.append(genericParameters.stream().map( t -> t.getTypeName()).collect(Collectors.joining(",")));
-            builder.append(">");
-        } else {
-            builder.append("No base class defined for type");
-        }
-        return builder.toString();
+        return getBaseClass().getName() +
+                BmmDefinitions.GENERIC_LEFT_DELIMITER +
+                genericParameters.stream().map(t -> t.getTypeName()).collect(Collectors.joining(BmmDefinitions.GENERIC_SEPARATOR.toString())) +
+                BmmDefinitions.GENERIC_RIGHT_DELIMITER;
     }
 
+    /**
+     * Signature form of the open type, including constrainer type if there is one, e.g. 'T:Ordered'.
+     *
+     * @return
+     */
+    public String getTypeSignature() {
+        return getBaseClass().getName() +
+                BmmDefinitions.GENERIC_LEFT_DELIMITER +
+                genericParameters.stream().map(t -> t.getTypeSignature()).collect(Collectors.joining(BmmDefinitions.GENERIC_SEPARATOR.toString())) +
+                BmmDefinitions.GENERIC_RIGHT_DELIMITER;
+    }
+
+    /**
+     * Returns the completely flattened list of type names, flattening out all generic parameters.
+     *
+     * @return
+     */
+    @Override
+    public List<String> getFlattenedTypeList() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add(getBaseClass().getName());
+        for (BmmType g : genericParameters) {
+            result.addAll(g.getFlattenedTypeList());
+        }
+        return result;
+    }
 
     @Override
     public String toDisplayString() {return getTypeName();}

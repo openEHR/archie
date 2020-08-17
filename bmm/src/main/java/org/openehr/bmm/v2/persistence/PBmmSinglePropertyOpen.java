@@ -3,7 +3,10 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openehr.bmm.core.BmmSimpleType;
+import org.openehr.bmm.core.BmmClass;
+import org.openehr.bmm.core.BmmParameterType;
+import org.openehr.bmm.core.BmmUnitaryProperty;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType> {
 
@@ -20,6 +23,10 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType> {
      */
     private PBmmOpenType serializedTypeRef;
 
+    public PBmmSinglePropertyOpen() {
+        super();
+    }
+
     public String getType() {
         return type;
     }
@@ -31,12 +38,24 @@ public final class PBmmSinglePropertyOpen extends PBmmProperty<PBmmOpenType> {
     @JsonIgnore
     @Override
     public PBmmOpenType getTypeRef() {
-        if(serializedTypeRef != null) {
+        if (serializedTypeRef != null) {
             return serializedTypeRef;
         } else if(getTypeDef() == null) {
             return new PBmmOpenType(type);
         }
         return getTypeDef();
+    }
+
+    @Override
+    public BmmUnitaryProperty createBmmProperty(BmmClassProcessor processor, BmmClass bmmClass) {
+        PBmmOpenType typeRef = getTypeRef();
+        if (typeRef != null) {
+            BmmParameterType bmmType = typeRef.createBmmType(processor, bmmClass);
+            BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+            populateImBooleans(bmmProperty);
+            return bmmProperty;
+        }
+        throw new RuntimeException("BmmTypeCreate failed for property " + getName() + " in class " + bmmClass.getName());
     }
 
     @JsonProperty("type_ref")
