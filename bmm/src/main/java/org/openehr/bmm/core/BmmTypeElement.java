@@ -25,5 +25,5 @@ package org.openehr.bmm.core;
  *
  * Created by cnanjo on 1/24/17.
  */
-public abstract class BmmTypeElement extends BmmClassifier {
+public abstract class BmmTypeElement extends BmmEntity {
 }

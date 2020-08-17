@@ -39,7 +39,7 @@ public class BuiltinReferenceModels {
             return bmmRepository;
         }
 
-        String[] resources = { "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_CORE.v.0.0.3.bmm",
+        String[] resources = { // "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_CORE.v.0.0.3.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_demographic_104.bmm",
                 "bmm/openEHR/original/Release-1.0.2/openehr_structures_102.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_ehr_103.bmm",
@@ -48,7 +48,7 @@ public class BuiltinReferenceModels {
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_rm_103.bmm",
                 "bmm/openEHR/components/BASE/Release-1.1.0/openehr_base_110.bmm",
                 "bmm/openEHR/components/RM/rejected/openehr_ehr_extract_999.bmm",
-                "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_CLINICAL.v.0.0.3.bmm",
+                // "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_CLINICAL.v.0.0.3.bmm",
                 "bmm/openEHR/original/Release-1.0.2/openehr_demographic_102.bmm",
                 "bmm/openEHR/original/Release-1.0.2/openehr_ehr_102.bmm",
                 "bmm/openEHR/components/LANG/Release-1.0.0/openehr_lang_100.bmm",
@@ -59,20 +59,20 @@ public class BuiltinReferenceModels {
                 "bmm/FHIR/DSTU/BMM/hl7_fhir_resourceses_dstu.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_demographic_103.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_104.bmm",
-                "bmm/ISO_13606/2008/BMM/cen_ts14796_0.90.bmm",
+                // "bmm/ISO_13606/2008/BMM/cen_ts14796_0.90.bmm",
                 "bmm/openEHR/components/BASE/Release-1.0.0/openehr_base_100.bmm",
-                "bmm/CDISC/Core/BMM/CDISC-Core-0.5.0.bmm",
+                // "bmm/CDISC/Core/BMM/CDISC-Core-0.5.0.bmm",
                 "bmm/openEHR/adl_test/Release-1.0.0/BMM/openehr_adltest_100.bmm",
-                "bmm/ISO_21090/2011/BMM/iso_21090_0.9.0.bmm",
+                // "bmm/ISO_21090/2011/BMM/iso_21090_0.9.0.bmm",
                 "bmm/openEHR/components/PROC/Release-1.0.0/openehr_proc_task_planning_100.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_structures_103.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_ehr_extract_103.bmm",
                 "bmm/openEHR/original/Release-1.0.2/openehr_basic_types_102.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_primitive_types_103.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_basic_types_103.bmm",
-                "bmm/ISO_13606/2008/BMM/cen_EN13606_0.95.bmm",
-                "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_data_types_104.bmm",
-                "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_FOUNDATION.v.0.0.3.bmm"
+                // "bmm/ISO_13606/2008/BMM/cen_EN13606_0.95.bmm",
+                "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_data_types_104.bmm"
+                // "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_FOUNDATION.v.0.0.3.bmm"
         };
         bmmRepository = new BmmRepository();
         for(String resourceName:resources) {

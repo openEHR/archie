@@ -7,9 +7,9 @@ import org.openehr.bmm.persistence.validation.BmmMessageIds;
 import org.openehr.bmm.v2.persistence.PBmmPackage;
 import org.openehr.bmm.v2.persistence.PBmmPackageContainer;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
+import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmValidation;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
-import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.utils.message.MessageLogger;
 
 import java.util.ArrayList;
@@ -22,11 +22,12 @@ public class BasicSchemaValidations implements BmmValidation {
     @Override
     public void validate(BmmValidationResult validationResult, BmmRepository repository, MessageLogger logger, PBmmSchema schema) {
         //Check that RM shema release is valid
-        if(!BmmDefinitions.isValidStandardVersion(schema.getRmRelease())) {
+        if (!BmmDefinitions.isValidStandardVersion(schema.getRmRelease())) {
             logger.addError(BmmMessageIds.EC_RM_RELEASE_INVALID, schema.getSchemaId(), schema.getRmRelease());
         }
+
         //check archetype parent class in list of class names
-        if(schema.getArchetypeParentClass() != null && schema.getClassDefinition(schema.getArchetypeParentClass()) ==  null) {
+        if (schema.getArchetypeParentClass() != null && schema.getClassDefinition(schema.getArchetypeParentClass()) ==  null) {
             logger.addError(BmmMessageIds.EC_ARCHETYPE_PARENT_CLASS_UNDEFINED, schema.getSchemaId(), schema.getArchetypeParentClass());
         }
 
@@ -55,9 +56,9 @@ public class BasicSchemaValidations implements BmmValidation {
         //2. check that every class is in a package
         schema.doAllClasses( persistedBmmClass -> {
             String className = persistedBmmClass.getName().toLowerCase();
-            if(!packageClassList.containsKey(className)) {
+            if (!packageClassList.containsKey(className)) {
                 logger.addError(BmmMessageIds.EC_CLASS_NOT_DECLARED_IN_PACKAGES, schema.getSchemaId(), persistedBmmClass.getName());
-            } else if(classNameList.contains(className)) {
+            } else if (classNameList.contains(className)) {
                 logger.addError(BmmMessageIds.EC_DUPLICATE_CLASS_DEFINITION, schema.getSchemaId(), persistedBmmClass.getName());
             } else {
                 classNameList.add(className);

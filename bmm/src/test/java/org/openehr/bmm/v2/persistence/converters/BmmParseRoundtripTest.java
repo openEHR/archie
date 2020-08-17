@@ -2,16 +2,11 @@ package org.openehr.bmm.v2.persistence.converters;
 
 
 import org.junit.Test;
-import org.openehr.bmm.v2.persistence.*;
+import org.openehr.bmm.v2.persistence.PBmmSchema;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinSerializer;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
+import static org.openehr.bmm.v2.persistence.converters.BmmTestUtil.parse;
 
 /**
  * Parse a number of BMM schemas
@@ -44,15 +39,7 @@ public class BmmParseRoundtripTest {
         String serialized = new BmmOdinSerializer().serialize(schema);
         System.out.print(serialized);
         PBmmSchema parsed = BmmOdinParser.convert(serialized);
-        BmmEqualsAssertions.assertSchemaEquals(schema, parsed);
+        PBmmEqualsAssertions.assertSchemaEquals(schema, parsed);
     }
-
-
-    private PBmmSchema parse(String name) throws IOException {
-        try(InputStream stream = getClass().getResourceAsStream(name)) {//"/testbmm/TestBmm1.bmm")) {
-            return BmmOdinParser.convert(stream);
-        }
-    }
-
 
 }

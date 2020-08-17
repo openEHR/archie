@@ -440,11 +440,14 @@ class_definitions = <
 				>
 				cardinality = <|>=1|>
 			>
-			["event_wait_states"] = (P_BMM_CONTAINER_PROPERTY) <
+		    ["event_wait_states"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"event_wait_states">
 				type_def = <
 					container_type = <"List">
-					type = <"EVENT_WAIT">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"EVENT_WAIT">
+						generic_parameters = <"EVENT">
+					>
 				>
 			>
 			["top_level_plans"] = (P_BMM_CONTAINER_PROPERTY) <

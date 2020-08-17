@@ -25,8 +25,6 @@ import com.nedap.archie.base.MultiplicityInterval;
 
 /**
  * Subtype of BMM_PROPERTY that represents a container type based on one of the inbuilt types List &lt;&gt;, Set &lt;&gt;, Array &lt;&gt;.
- *
- * Created by cnanjo on 4/11/16.
  */
 public class BmmContainerProperty extends BmmProperty<BmmContainerType> {
 
@@ -35,11 +33,18 @@ public class BmmContainerProperty extends BmmProperty<BmmContainerType> {
      */
     private MultiplicityInterval cardinality;
 
-    public BmmContainerProperty() {
+    public BmmContainerProperty(String aName, BmmContainerType aType, String aDocumentation, boolean isMandatoryFlag, boolean isComputedFlag) {
+        super(aName, aType, aDocumentation, isMandatoryFlag, isComputedFlag);
+        cardinality = MultiplicityInterval.createOpen();
     }
 
-    public BmmContainerProperty(String name, BmmContainerType type) {
-        super(name, type);
+    public BmmContainerProperty(BmmContainerProperty other) {
+        super (other);
+        cardinality = other.cardinality;
+    }
+
+    public BmmContainerProperty() {
+        super();
     }
 
     /**
