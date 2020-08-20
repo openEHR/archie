@@ -17,4 +17,13 @@ public class DvCodedTextTest {
         assertEquals(dvCodedTextOne, dvCodedTextTwo);
         assertNotEquals(dvCodedTextOne, dvCodedTextThree);
     }
+
+    @Test
+    public void testToString() {
+        DvCodedText dvCodedTextOne = new DvCodedText();
+        DvCodedText dvCodedTextTwo = new DvCodedText("some text", new CodePhrase("icd10:123"));
+
+        assertEquals("DvCodedText{defining_code=null, value=null}", dvCodedTextOne.toString());
+        assertEquals("DvCodedText{defining_code=UNKNOWN::icd10:123, value=some text}", dvCodedTextTwo.toString());
+    }
 }

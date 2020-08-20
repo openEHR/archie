@@ -29,11 +29,15 @@ import java.io.Serializable;
  * Created by cnanjo on 4/11/16.
  */
 public class BmmEnumerationInteger extends BmmEnumeration<Integer> implements Serializable {
+
+    public BmmEnumerationInteger(String aName, String aDocumentation, Boolean abstractFlag) {
+        super(aName, aDocumentation, abstractFlag);
+        setUnderlyingTypeName("Integer");
+    }
+
     public BmmEnumerationInteger() {
-        setUnderlyingTypeName("INTEGER");
+        super();
     }
-    public BmmEnumerationInteger(String name) {
-        this();
-        setName(name);
-    }
+
+
 }

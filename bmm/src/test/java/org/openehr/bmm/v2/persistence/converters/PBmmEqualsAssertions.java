@@ -13,7 +13,7 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-public class BmmEqualsAssertions {
+public class PBmmEqualsAssertions {
 
     public static void assertSchemaEquals(PBmmSchema schema1, PBmmSchema schema2) {
         assertEquals(schema1.getSchemaId(), schema2.getSchemaId());

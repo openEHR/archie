@@ -552,7 +552,10 @@ class_definitions = <
 			["versions"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"versions">
 				type_def = <
-					type = <"ORIGINAL_VERSION">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"ORIGINAL_VERSION">
+						generic_parameters = <"T">
+					>
 					container_type = <"List">
 				>
 				cardinality = <|>=0|>

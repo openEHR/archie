@@ -12,8 +12,8 @@ public class CanonicalPackagesGenerator {
     public Map<String, PBmmPackage> generateCanonicalPackages(PBmmSchema schema) {
         Map<String, PBmmPackage> canonicalPackages = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         PBmmPackage childPackage = null;
-        String childPackageKey = null;
-        Map<String, PBmmPackage> packageContainer = null;
+        String childPackageKey;
+        Map<String, PBmmPackage> packageContainer;
         //top-level package canonicalisation: the result is that in each P_BMM_SCHEMA, the
         //attribute `canonical_packages' contains the mergeable structure
         for (PBmmPackage topPackage : schema.getPackages().values()) {
@@ -24,12 +24,13 @@ public class CanonicalPackagesGenerator {
             if (topPackage.getName().indexOf(BmmDefinitions.PACKAGE_NAME_DELIMITER) >= 0) {
                 packageContainer = canonicalPackages;
                 String[] packagePathComponents = topPackage.getName().split("\\.");
-                for (int index = 0; index < packagePathComponents.length; index++) {
-                    childPackageKey = packagePathComponents[index].toUpperCase();
+                for (String packagePathComponent:packagePathComponents) {
+                    childPackageKey = packagePathComponent.toUpperCase();
                     if (packageContainer.containsKey(childPackageKey)) {
                         childPackage = packageContainer.get(childPackageKey);
-                    } else {
-                        childPackage = new PBmmPackage(packagePathComponents[index]);
+                    }
+                    else {
+                        childPackage = new PBmmPackage(packagePathComponent);
                         packageContainer.put(childPackageKey, childPackage);
                     }
                     packageContainer = childPackage.getPackages();
