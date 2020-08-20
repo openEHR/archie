@@ -83,7 +83,7 @@ ARCHETYPE_REF       : ARCHETYPE_HRID_ROOT '.v' INTEGER ( '.' DIGIT+ )* ;
 fragment ARCHETYPE_HRID_ROOT : (NAMESPACE '::')? IDENTIFIER '-' IDENTIFIER '-' IDENTIFIER '.' ARCHETYPE_CONCEPT_ID ;
 VERSION_ID          : DIGIT+ '.' DIGIT+ '.' DIGIT+ ( ( '-rc' | '-alpha' ) ( '.' DIGIT+ )? )? ;
 fragment IDENTIFIER : ALPHA_CHAR WORD_CHAR* ;
-fragment ARCHETYPE_CONCEPT_ID : ALPHA_CHAR ( NAME_CHAR* ALPHANUM_CHAR )? ;
+fragment ARCHETYPE_CONCEPT_ID : ALPHA_CHAR NAME_CHAR* ;
 
 
 // --------------------- composed primitive types -------------------
