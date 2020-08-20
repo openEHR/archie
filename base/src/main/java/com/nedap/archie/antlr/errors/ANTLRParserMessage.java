@@ -18,6 +18,13 @@ public class ANTLRParserMessage {
         this.message = message;
     }
 
+    public ANTLRParserMessage(String message, String shortMessage, Integer lineNumber, Integer columnNumber) {
+        this.message = message;
+        this.shortMessage = shortMessage;
+        this.lineNumber = lineNumber;
+        this.columnNumber = columnNumber;
+    }
+
     public ANTLRParserMessage(String message, String shortMessage, Integer lineNumber, Integer columnNumber, Integer length, String offendingSymbol) {
         this.message = message;
         this.shortMessage = shortMessage;
