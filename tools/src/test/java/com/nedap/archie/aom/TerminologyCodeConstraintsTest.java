@@ -50,5 +50,10 @@ public class TerminologyCodeConstraintsTest {
         assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
         text.setDefiningCode(new CodePhrase("[ac13::at24]"));
         assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        text.setDefiningCode(new CodePhrase());
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        text.setDefiningCode(null);
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), null));
     }
 }
