@@ -257,7 +257,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
             } else if (object instanceof CodePhrase) {
                 return convertCodePhrase((CodePhrase) object);
             } else {
-                return null;
+                return new TerminologyCode();
             }
         }
         return object;

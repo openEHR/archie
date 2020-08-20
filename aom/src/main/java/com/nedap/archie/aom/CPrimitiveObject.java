@@ -85,9 +85,6 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
      */
     public boolean isValidValue(ModelInfoLookup lookup, Object value) {
         Object convertedValue = lookup.convertToConstraintObject(value, this);
-        if(convertedValue == null) {
-            return false;
-        }
         return isValidValue((ValueType) convertedValue);
     }
 
