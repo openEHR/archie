@@ -39,7 +39,7 @@ public class Differentiator {
         new DifferentialPathGenerator().replace(result);
         new TerminologyDifferentiator().differentiate(result);
 
-        new DefaultRmStructureRemover(metaModels, true).removeRMDefaults(result);
+        new DefaultRmStructureRemover(metaModels, false).removeRMDefaults(result);
         result.setDifferential(true);
 
         return result;
