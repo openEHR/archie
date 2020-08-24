@@ -11,19 +11,19 @@ blocks:
         - name: Java 8 build
           commands:
             - sem-version java 1.8
-            - ./gradlew build
+            - ./gradlew clean check javadoc build
         - name: Java 9 build
           commands:
             - sem-version java 9
-            - ./gradlew build
+            - ./gradlew clean check javadoc build
         - name: Java 10 build
           commands:
             - sem-version java 10
-            - ./gradlew build
+            - ./gradlew clean check javadoc build
         - name: Java 11 build
           commands:
             - sem-version java 11
-            - ./gradlew build
+            - ./gradlew clean check javadoc build
             - ./gradlew jacocoRootReport
             - >-
               bash <(curl -s https://codecov.io/bash) -f
