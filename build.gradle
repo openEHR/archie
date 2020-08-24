@@ -27,7 +27,7 @@ allprojects {
   //archivesBaseName = 'archie'
 
   tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:all')
+    options.addStringOption('Xdoclint:all', '-quiet')
   }
 }
 
