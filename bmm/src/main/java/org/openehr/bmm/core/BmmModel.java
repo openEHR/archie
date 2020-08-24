@@ -70,11 +70,11 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     }
 
     /**
-     * Retrieve the class definition corresponding to `a_type_name' (which may contain a generic part) or null
+     * Retrieve the class definition corresponding to typeName (which may contain a generic part) or null
      * if the class is not found.
      *
-     * @param bmmClassName
-     * @return
+     * @param typeName the typename to get the class definition for
+     * @return the found class definition, or null if it cannot be found
      */
     public BmmClass getClassDefinition(String typeName) {
         return this.classDefinitions.get(BmmDefinitions.typeNameToClassKey(typeName));
@@ -93,7 +93,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      *
      * Note: no caching at this time. This list is created from scratch every time.
      *
-     * @return
+     * @return a list of keys of primitive types
      */
     public List<String> getPrimitiveTypes() {
         List<String> primitives = new ArrayList<>();
@@ -161,7 +161,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
     /**
      * Return BmmProperty object at a path within a type, including among flat properties
      * and descendant classes (i.e. compute dynamic attachment possibilities).
-     * @precondition hasPropertyAtPath ()
+     * precondition hasPropertyAtPath ()
      * @param typeName : type within which to find the property
      * @param propertyPath : path
      * @return BmmProperty
