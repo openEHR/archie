@@ -62,8 +62,10 @@ public class DateTimeFormatters {
     public static final DateTimeFormatter ISO_8601_DATE_TIME = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
             .append(ISO_8601_DATE)
+            .optionalStart()
             .appendLiteral('T')
             .append(ISO_8601_TIME)
+            .optionalEnd()
             .toFormatter();
 
     public static final DateTimeFormatter ISO_8601_DATE_COMPACT = new DateTimeFormatterBuilder()

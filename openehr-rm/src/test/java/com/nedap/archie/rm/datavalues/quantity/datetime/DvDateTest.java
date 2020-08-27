@@ -15,11 +15,14 @@ public class DvDateTest {
 		DvDate dvDateThree = new DvDate("2019-07-12");
 		DvDate dvDateFour = new DvDate("2019-07");
 		DvDate dvDateFive = new DvDate("2019-07");
+		DvDate dvDateSix = new DvDate("2019");
+		DvDate dvDateSeven = new DvDate("2019");
 
 		assertEquals(dvDateOne, dvDateTwo);
 		assertNotEquals(dvDateOne, dvDateThree);
 		assertNotEquals(dvDateOne, dvDateFour);
 		assertNotEquals(dvDateOne, dvDateFive);
 		assertEquals(dvDateFour, dvDateFive);
+		assertEquals(dvDateSix, dvDateSeven);
 	}
 }

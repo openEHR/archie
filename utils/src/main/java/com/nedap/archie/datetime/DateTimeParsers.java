@@ -27,13 +27,25 @@ public class DateTimeParsers {
                 //Not parseable as a standard public object from datetime. We do not implement our own yet (we could!)
                 //so fallback to the Parsed object. The Parsed object is package-private, so cannot be added as a reference
                 //to the parseBest query, unfortunately.
-                return DateTimeFormatters.ISO_8601_DATE_TIME.parse(text);
+                return DateTimeFormatters.ISO_8601_DATE_TIME.parse(text, LocalDate::from);
             } catch (DateTimeParseException e1) {
                 try {
-                    //some more interesting date_time expression without hyphens...
-                    return DateTimeFormatters.ISO_8601_DATE_TIME_COMPACT.parseBest(text, OffsetDateTime::from,  LocalDateTime::from);
-                } catch (DateTimeParseException e2) {
-                    throw new IllegalArgumentException(e2.getMessage() + ":" + text);
+                    //parse a partial YYYY-MM datetime
+                    return DateTimeFormatters.ISO_8601_DATE_TIME.parse(text, YearMonth::from);
+                }
+                catch (DateTimeParseException e2){
+                    try {
+                        //parse a partial YYYY datetime
+                        return DateTimeFormatters.ISO_8601_DATE_TIME.parse(text, Year::from);
+                    }
+                    catch (DateTimeParseException e3){
+                        try {
+                            //some more interesting date_time expression without hyphens...
+                            return DateTimeFormatters.ISO_8601_DATE_TIME_COMPACT.parseBest(text, OffsetDateTime::from,  LocalDateTime::from);
+                        } catch (DateTimeParseException e5) {
+                            throw new IllegalArgumentException(e2.getMessage() + ":" + text);
+                        }
+                    }
                 }
             }
         }
