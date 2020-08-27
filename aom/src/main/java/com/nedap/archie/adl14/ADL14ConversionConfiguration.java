@@ -16,6 +16,11 @@ public class ADL14ConversionConfiguration {
      */
     private boolean allowDuplicateFieldNames;
 
+    /**
+     * Set to false to skip applying the differential format. Use only when you know what you are doing, very nonstandard!
+     */
+    private boolean applyDiff = true;
+
 
     public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
         return terminologyConversionTemplates;
@@ -43,5 +48,13 @@ public class ADL14ConversionConfiguration {
 
     public void setAllowDuplicateFieldNames(boolean allowDuplicateFieldNames) {
         this.allowDuplicateFieldNames = allowDuplicateFieldNames;
+    }
+
+    public boolean isApplyDiff() {
+        return applyDiff;
+    }
+
+    public void setApplyDiff(boolean applyDiff) {
+        this.applyDiff = applyDiff;
     }
 }

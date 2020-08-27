@@ -1,13 +1,19 @@
 package com.nedap.archie.serializer.adl;
 
+import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.TemplateOverlay;
+import com.nedap.archie.rminfo.RMObjectMapperProvider;
+
+import java.util.function.Function;
 
 /**
  * @author markopi
  */
 class ADLTemplateOverlaySerializer extends ADLArchetypeSerializer<TemplateOverlay> {
-    public ADLTemplateOverlaySerializer(TemplateOverlay archetype) {
-        super(archetype);
+
+
+    public ADLTemplateOverlaySerializer(TemplateOverlay archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
+        super(archetype, flatArchetypeProvider, rmObjectMapperProvider);
     }
 
     @Override

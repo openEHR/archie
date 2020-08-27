@@ -1,5 +1,6 @@
 package com.nedap.archie.openehrtestrm;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
@@ -60,6 +61,11 @@ public class TestRMInfoLookup extends ReflectionModelInfoLookup {
 
     @Override
     public String getArchetypeNodeIdFromRMObject(Object rmObject) {
+        return null;
+    }
+
+    @Override
+    public String getArchetypeIdFromArchetypedRmObject(Object rmObject) {
         return null;
     }
 

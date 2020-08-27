@@ -122,6 +122,11 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
+    public String getArchetypeIdFromArchetypedRmObject(Object rmObject) {
+        throw new UnsupportedOperationException("not supported");//TODO: split this to different classes
+    }
+
+    @Override
     public String getNameFromRMObject(Object rmObject) {
         if(rmObject instanceof CObject) {
             return ((CObject) rmObject).getMeaning();

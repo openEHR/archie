@@ -80,9 +80,11 @@ SYM_FALSE : [Ff][Aa][Ll][Ss][Ee] ;
 
 ARCHETYPE_HRID      : ARCHETYPE_HRID_ROOT '.v' VERSION_ID ;
 ARCHETYPE_REF       : ARCHETYPE_HRID_ROOT '.v' INTEGER ( '.' DIGIT+ )* ;
-fragment ARCHETYPE_HRID_ROOT : (NAMESPACE '::')? IDENTIFIER '-' IDENTIFIER '-' IDENTIFIER '.' LABEL ;
+fragment ARCHETYPE_HRID_ROOT : (NAMESPACE '::')? IDENTIFIER '-' IDENTIFIER '-' IDENTIFIER '.' ARCHETYPE_CONCEPT_ID ;
 VERSION_ID          : DIGIT+ '.' DIGIT+ '.' DIGIT+ ( ( '-rc' | '-alpha' ) ( '.' DIGIT+ )? )? ;
 fragment IDENTIFIER : ALPHA_CHAR WORD_CHAR* ;
+fragment ARCHETYPE_CONCEPT_ID : ALPHA_CHAR NAME_CHAR* ;
+
 
 // --------------------- composed primitive types -------------------
 
@@ -183,3 +185,7 @@ SYM_LEFT_PAREN: '(';
 SYM_RIGHT_PAREN: ')';
 SYM_COLON: ':';
 SYM_COMMA: ',';
+
+INCLUDED_LANGUAGE_FRAGMENT: '(' ALPHANUM_CHAR+ ')' (WS|LINE)* '<#' .*? '#>';
+
+

@@ -38,19 +38,19 @@ public class BmmSchemaValidator {
      * 3. check that all models refer to valid packages
      */
     public void validateCreated(BmmValidationResult validationResult, PBmmSchema schema) {
-        run(new CreatedSchemaValidation(), validationResult, schema);
+        run (new CreatedSchemaValidation(), validationResult, schema);
     }
 
     public void validateBmmVersion(BmmValidationResult validationResult, PBmmSchema schema) {
-        run(new BmmVersionValidation(), validationResult, schema);
+        run (new BmmVersionValidation(), validationResult, schema);
     }
 
     public void validateIncludes(BmmValidationResult validationResult, PBmmSchema schema) {
-        run(new IncludesValidation(), validationResult, schema);
+        run (new IncludesValidation(), validationResult, schema);
     }
 
-    private void run(BmmValidation validation, BmmValidationResult validationResult, PBmmSchema schema) {
-        validation.validate(validationResult, repository, logger, schema);
+    private void run (BmmValidation validation, BmmValidationResult validationResult, PBmmSchema schema) {
+        validation.validate (validationResult, repository, logger, schema);
     }
 
     public MessageLogger getLogger() {

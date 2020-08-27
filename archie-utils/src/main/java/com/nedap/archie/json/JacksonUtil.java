@@ -12,30 +12,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.nedap.archie.aom.ResourceDescription;
-import com.nedap.archie.aom.terminology.ArchetypeTerm;
-import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.base.OpenEHRBase;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.datastructures.History;
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
-import com.nedap.archie.rm.datavalues.quantity.DvCount;
-import com.nedap.archie.rm.datavalues.quantity.DvProportion;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
-import com.nedap.archie.serializer.adl.jackson.ArchetypeTermOdinSerializer;
-import com.nedap.archie.serializer.adl.jackson.ArchetypeTerminologyMixin;
-import com.nedap.archie.serializer.adl.jackson.ResourceDescriptionMixin;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -54,7 +39,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class JacksonUtil {
 
     //threadsafe, can be cached
-    private static final ConcurrentHashMap<RMJacksonConfiguration, ObjectMapper> objectMapperByTypePropertyName = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<RMJacksonConfiguration, ObjectMapper> objectMapperByConfiguration = new ConcurrentHashMap<>();
 
     private static final String DEFAULT_TYPE_PARAMETER = "@type";
 
@@ -68,11 +53,11 @@ public class JacksonUtil {
     }
 
     public static ObjectMapper getObjectMapper(RMJacksonConfiguration configuration) {
-        ObjectMapper objectMapper = objectMapperByTypePropertyName.get(configuration);
+        ObjectMapper objectMapper = objectMapperByConfiguration.get(configuration);
         if(objectMapper == null) {
             objectMapper = new ObjectMapper();
             configureObjectMapper(objectMapper, configuration);
-            objectMapperByTypePropertyName.put(configuration, objectMapper);
+            objectMapperByConfiguration.put(configuration, objectMapper);
 
         }
         return objectMapper;
@@ -93,6 +78,7 @@ public class JacksonUtil {
         objectMapper.disable(SerializationFeature.WRITE_NULL_MAP_VALUES);
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.disable(SerializationFeature.WRITE_DURATIONS_AS_TIMESTAMPS);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
@@ -153,7 +139,8 @@ public class JacksonUtil {
         private Set<Class> classesToNotAddTypeProperty;
         public ArchieTypeResolverBuilder(RMJacksonConfiguration configuration)
         {
-            super(ObjectMapper.DefaultTyping.NON_FINAL);
+            super(ObjectMapper.DefaultTyping.NON_FINAL, BasicPolymorphicTypeValidator.builder()
+                    .allowIfBaseType(OpenEHRBase.class).build());
             classesToNotAddTypeProperty = new HashSet<>();
             if(!configuration.isAlwaysIncludeTypeProperty()) {
                 List<RMTypeInfo> allTypes = ArchieRMInfoLookup.getInstance().getAllTypes();

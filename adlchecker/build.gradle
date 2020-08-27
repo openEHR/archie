@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.nedap.healthcare.archie:archie-all:0.5.4'
+    compile 'com.nedap.healthcare.archie:archie-all:0.12.2'
     compile 'net.sourceforge.argparse4j:argparse4j:0.7.0'
 }
 

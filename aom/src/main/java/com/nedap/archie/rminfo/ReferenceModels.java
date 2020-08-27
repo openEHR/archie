@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ReferenceModels {
     private Map<RMPackageId, ModelInfoLookup> referenceModelsById = new ConcurrentHashMap<>();
+    private Map<RMPackageId, RMObjectMapperProvider> objectMapperProvidersById = new ConcurrentHashMap<>();
 
     public ReferenceModels() {
 
@@ -22,8 +23,15 @@ public class ReferenceModels {
     }
 
     public void registerModel(ModelInfoLookup model) {
+        registerModel(model, null);
+    }
+
+    public void registerModel(ModelInfoLookup model, RMObjectMapperProvider rmObjectMapperProvider) {
         for(RMPackageId id:model.getId()) {
             referenceModelsById.put(id, model);
+            if(rmObjectMapperProvider != null) {
+                objectMapperProvidersById.put(id, rmObjectMapperProvider);
+            }
         }
     }
 
@@ -32,7 +40,15 @@ public class ReferenceModels {
     }
 
     public ModelInfoLookup getModel(Archetype archetype) {
-        return referenceModelsById.get(new RMPackageId(archetype.getArchetypeId().getRmPublisher(), archetype.getArchetypeId().getRmPackage()));
+        return getModel(archetype.getArchetypeId().getRmPublisher(), archetype.getArchetypeId().getRmPackage());
+    }
+
+    public RMObjectMapperProvider getRmObjectMapperProvider(String publisher, String aPackage) {
+        return objectMapperProvidersById.get(new RMPackageId(publisher, aPackage));
+    }
+
+    public RMObjectMapperProvider getRmObjectMapperProvider(Archetype archetype) {
+        return getRmObjectMapperProvider(archetype.getArchetypeId().getRmPublisher(), archetype.getArchetypeId().getRmPackage());
     }
 
     public List<ModelInfoLookup> getAllModels() {

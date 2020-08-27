@@ -19,7 +19,7 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ITEM_STRUCTURE")
-public abstract class ItemStructure<Type extends Item> extends DataStructure {
+public abstract class ItemStructure extends DataStructure {
 
     public ItemStructure() {
     }
@@ -36,7 +36,7 @@ public abstract class ItemStructure<Type extends Item> extends DataStructure {
      * In the default model it's in the subclasses, but defined here as well because it has a lot of uses
      */
     @RMPropertyIgnore
-    public abstract List<Type> getItems();
+    public abstract List<? extends Item> getItems();
 
 
 }

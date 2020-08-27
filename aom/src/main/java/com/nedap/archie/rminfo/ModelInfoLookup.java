@@ -121,6 +121,7 @@ public interface ModelInfoLookup {
      */
     String getArchetypeNodeIdFromRMObject(Object rmObject);
 
+    String getArchetypeIdFromArchetypedRmObject(Object rmObject);
 
     /**
      * Get the name/meaning from the rmObject. Used in path queries with names instead of id codes.

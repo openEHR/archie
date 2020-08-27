@@ -1,20 +1,18 @@
 package com.nedap.archie.adlparser;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * Test APath queries with archetype model objects
@@ -97,5 +95,26 @@ public class AOMPathQueryTest {
         assertNotNull(archetypeModelObject);
         assertEquals("id5", ((CComplexObject) archetypeModelObject).getNodeId());
 
+    }
+
+    @Test
+    public void findOneMatchingObject() {
+        // Get dv_quantity object
+        AOMPathQuery query = new AOMPathQuery("/context[id11]/other_context[id2]/items[qualification]/items[4]/value[1]");
+        CComplexObject dvQuantity = query.find(archetype.getDefinition());
+
+        // Attribute magnitude in this dv_quantity has two children
+        CAttribute magnitude = dvQuantity.itemAtPath("/magnitude");
+        assertEquals(2, magnitude.getChildren().size());
+        // So this should give something back
+        CReal magnitudeChild = dvQuantity.itemAtPath("/magnitude[2]");
+        assertNotNull(magnitudeChild);
+
+        // Attribute precision in this dv_quantity has zero children
+        CAttribute precision = dvQuantity.itemAtPath("/precision");
+        assertEquals(0, precision.getChildren().size());
+        // So this should give nothing back
+        precision = dvQuantity.itemAtPath("/precision[1]");
+        assertNull(precision);
     }
 }

@@ -92,5 +92,5 @@ meta_data_tag_adl_version   : 'adl_version' ;
 meta_data_tag_uid           : 'uid' ;
 meta_data_tag_build_uid     : 'build_uid' ;
 meta_data_tag_rm_release    : 'rm_release' ;
-meta_data_tag_is_controlled : 'is_controlled' ;
-meta_data_tag_is_generated  : 'is_generated' ;
+meta_data_tag_is_controlled : 'controlled' ;
+meta_data_tag_is_generated  : 'generated' ;

@@ -67,7 +67,7 @@ public class CString extends CPrimitiveObject<String, String> {
                 //regexp. Strip first and last character and match. If you want to input
                 //data starting and ending with '/', you cannot in the AOM, although ADL lets you express if just fine.
                 //perhaps we should make the constraint object something more expressive than a String?
-                if(value.matches(constraint.substring(1).substring(0, constraint.length()-2))) {
+                if(matchesRegexp(value, constraint)) {
                     return true;
                 }
             } else {
@@ -78,6 +78,10 @@ public class CString extends CPrimitiveObject<String, String> {
             }
         }
         return false;
+    }
+
+    private boolean matchesRegexp(String value, String constraint) {
+        return value.matches(constraint.substring(1).substring(0, constraint.length()-2));
     }
 
     public static boolean isRegexConstraint(String constraint) {
@@ -97,16 +101,28 @@ public class CString extends CPrimitiveObject<String, String> {
             return true;
         }
 
-        if(!(constraint.size() < otherString.constraint.size())) {
-            return false;
-        }
-
         for(String constraint:constraint) {
-            if(!otherString.constraint.contains(constraint)) {
+            if(!hasMatchingConstraint(constraint, otherString)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean hasMatchingConstraint(String constraint, CString otherString) {
+        boolean isRegexp = CString.isRegexConstraint(constraint);
+
+        for(String otherConstraint:otherString.constraint) {
+            boolean otherIsRegexp = CString.isRegexConstraint(otherConstraint);
+            if(otherIsRegexp && !isRegexp) {
+                if(matchesRegexp(constraint, otherConstraint)) {
+                    return true;
+                }
+            } else if(otherConstraint.equals(constraint)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -123,3 +139,4 @@ public class CString extends CPrimitiveObject<String, String> {
         return Objects.hash(assumedValue, constraint);
     }
 }
+

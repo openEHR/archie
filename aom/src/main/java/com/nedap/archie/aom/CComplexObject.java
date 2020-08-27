@@ -2,6 +2,7 @@ package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.query.AOMPathQuery;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
         "attributes",
         "attributeTuples"
 })
-public class CComplexObject extends CDefinedObject<ArchetypeModelObject> {
+public class CComplexObject extends CDefinedObject<OpenEHRBase> {
 
     private List<CAttribute> attributes = new ArrayList();
 

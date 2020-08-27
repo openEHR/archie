@@ -26,7 +26,7 @@ import java.util.Objects;
 @XmlType(name = "ITEM_SINGLE", propOrder = {
         "item"
 })
-public class ItemSingle extends ItemStructure<Element> {
+public class ItemSingle extends ItemStructure {
 
     private Element item;
 

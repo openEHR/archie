@@ -50,6 +50,7 @@ class OperationalTemplateCreator {
     }
 
     public void fillSlots(OperationalTemplate archetype) { //should this be OperationalTemplate?
+        //TODO: closing archetype slots should be moved to AFTER including other archetypes
         closeArchetypeSlots(archetype);
         fillArchetypeRoots(archetype);
         fillComplexObjectProxies(archetype);
@@ -59,11 +60,11 @@ class OperationalTemplateCreator {
     public void removeZeroOccurrencesConstraints(Archetype archetype) {
         Stack<CObject> workList = new Stack<>();
         workList.push(archetype.getDefinition());
-        while(!workList.isEmpty()) {
+        while (!workList.isEmpty()) {
             CObject object = workList.pop();
             List<CAttribute> attributesToRemove = new ArrayList<>();
-            for(CAttribute attribute:object.getAttributes()) {
-                if(attribute.getExistence() != null && attribute.getExistence().getUpper() == 0 && !attribute.getExistence().isUpperUnbounded()) {
+            for (CAttribute attribute : object.getAttributes()) {
+                if (attribute.getExistence() != null && attribute.getExistence().getUpper() == 0 && !attribute.getExistence().isUpperUnbounded()) {
                     attributesToRemove.add(attribute);
                 } else {
                     List<CObject> objectsToRemove = new ArrayList<>();
@@ -81,8 +82,30 @@ class OperationalTemplateCreator {
         }
     }
 
+    /** Zero occurrences and existence constraint processing when creating OPT templates. Removes attributes */
+    public void fillEmptyOccurrences(Archetype archetype) {
+        Stack<CObject> workList = new Stack<>();
+        workList.push(archetype.getDefinition());
+        while (!workList.isEmpty()) {
+            CObject object = workList.pop();
+            if( (object instanceof CComplexObject || object instanceof ArchetypeSlot || object instanceof CComplexObjectProxy)
+                    && object.getOccurrences() == null) {
+                object.setOccurrences(object.effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity));
+            }
+            for (CAttribute attribute : object.getAttributes()) {
+
+                for (CObject child : attribute.getChildren()) {
+                    workList.push(child);
+                }
+            }
+        }
+    }
+
 
     private void closeArchetypeSlots(OperationalTemplate archetype) {
+        if(!getConfig().isCloseArchetypeSlots()) {
+            return;
+        }
         Stack<CObject> workList = new Stack<>();
         workList.push(archetype.getDefinition());
         while(!workList.isEmpty()) {
@@ -103,7 +126,9 @@ class OperationalTemplateCreator {
     }
 
     private void fillArchetypeRoots(OperationalTemplate result) {
-
+        if(!getConfig().isFillArchetypeRoots()) {
+            return;
+        }
         Stack<CObject> workList = new Stack<>();
         workList.push(result.getDefinition());
         while(!workList.isEmpty()) {
@@ -120,7 +145,9 @@ class OperationalTemplateCreator {
     }
 
     private void fillComplexObjectProxies(OperationalTemplate result) {
-
+        if(!getConfig().isReplaceUseNode()) {
+            return;
+        }
         Stack<CObject> workList = new Stack<>();
         workList.push(result.getDefinition());
         List<ComplexObjectProxyReplacement> replacements = new ArrayList<>();
@@ -210,6 +237,10 @@ class OperationalTemplateCreator {
             //templateResult.addTerminologyExtract(child.getNodeId(), archetype.getTerminology().);
         }
 
+    }
+
+    private FlattenerConfiguration getConfig() {
+        return flattener.getConfiguration();
     }
 
 

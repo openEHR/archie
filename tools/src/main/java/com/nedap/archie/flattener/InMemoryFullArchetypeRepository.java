@@ -69,4 +69,20 @@ public class InMemoryFullArchetypeRepository extends SimpleArchetypeRepository i
     public void setArchetypeValidationSettings(ArchetypeValidationSettings settings) {
         this.archetypeValidationSettings = settings;
     }
+
+    /**
+     * Removes the archetype, the flattened archetype, the operational template and the validationresult
+     * corresponding to the given archetype id from this repository.
+     * Does not invalidate any dependencies on this archetype. This is for now the responsibility of the caller,
+     * but this might be included here in a later version as a method with a different name.
+     * @param archetypeId
+     */
+    @Override
+    public void removeArchetype(String archetypeId) {
+        super.removeArchetype(archetypeId);
+        this.flattenedArchetypes.remove(archetypeId);
+        this.operationalTemplates.remove(archetypeId);
+        this.validationResult.remove(archetypeId);
+    }
+
 }

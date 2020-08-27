@@ -199,7 +199,7 @@ public class ArchetypeValidator {
             result.addOverlayValidations(extraArchetypeRepository.getAllValidationResults());
             for(ValidationResult subResult:extraArchetypeRepository.getAllValidationResults()) {
                 if(!subResult.passes()) {
-                    result.getErrors().add(new ValidationMessage(ErrorType.OTHER, I18n.t("Template overlay {0} had validation errors", subResult.getArchetypeId())));
+                    result.getErrors().add(new ValidationMessage(ErrorType.OVERLAY_VALIDATION_FAILED, I18n.t("Template overlay {0} had validation errors", subResult.getArchetypeId())));
                 }
             }
         }
@@ -256,7 +256,7 @@ public class ArchetypeValidator {
             } catch (Exception e) {
                 logger.error("error running validation processor", e);
                 e.printStackTrace();
-                messages.add(new ValidationMessage(ErrorType.OTHER, "unknown path", "error running validator : " + e.getClass().getSimpleName() +
+                messages.add(new ValidationMessage(ErrorType.OTHER, null, "error running validator : " + e.getClass().getSimpleName() +
                         Joiner.on("\n").join(e.getStackTrace())));
             }
         }

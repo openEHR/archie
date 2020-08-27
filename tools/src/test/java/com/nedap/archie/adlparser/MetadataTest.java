@@ -38,6 +38,9 @@ public class MetadataTest {
         //(adl_version=2.0.5; rm_release=1.0.2)
         assertEquals("2.0.5", archetype.getAdlVersion());
         assertEquals("1.0.2", archetype.getRmRelease());
+        assertTrue(archetype.getGenerated());
+        assertTrue(archetype.getControlled());
+        assertEquals("B430138C-1DD2-42EF-B54C-633909437054", archetype.getBuildUid());
     }
 
 }

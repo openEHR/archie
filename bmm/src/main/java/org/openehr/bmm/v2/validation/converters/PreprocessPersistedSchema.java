@@ -16,7 +16,7 @@ public class PreprocessPersistedSchema {
             CaseInsensitiveLinkedHashMap<PBmmClass> newClassDefinitions = new CaseInsensitiveLinkedHashMap<>();
             newClassDefinitions.putAll(classDefinitions);
             schema.setClassDefinitions(newClassDefinitions);
-            for(PBmmClass clazz:classDefinitions.values()) {
+            for (PBmmClass clazz:classDefinitions.values()) {
                 clazz.setSourceSchemaId(schema.getSchemaId());
             }
         }
@@ -26,7 +26,7 @@ public class PreprocessPersistedSchema {
             CaseInsensitiveLinkedHashMap<PBmmClass> newPrimitiveTypes = new CaseInsensitiveLinkedHashMap<>();
             newPrimitiveTypes.putAll(primitiveTypes);
             schema.setPrimitiveTypes(newPrimitiveTypes);
-            for(PBmmClass clazz:primitiveTypes.values()) {
+            for (PBmmClass clazz:primitiveTypes.values()) {
                 clazz.setSourceSchemaId(schema.getSchemaId());
             }
         }

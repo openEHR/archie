@@ -35,6 +35,8 @@ public class FunctionEvaluator  implements Evaluator<Function> {
         registerFunction(new FlatSum());
         registerFunction(new ValueWhenUndefined());
         registerFunction(new Round());
+        registerFunction(new Ceil());
+        registerFunction(new Floor());
     }
 
     @Override

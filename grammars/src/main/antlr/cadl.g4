@@ -7,7 +7,7 @@
 //
 
 grammar cadl;
-import adl_rules;
+import adl_rules, odin, adl_keywords;
 
 //
 //  ======================= Top-level Objects ========================
@@ -46,11 +46,14 @@ c_archetype_slot_id: SYM_ALLOW_ARCHETYPE type_id '[' ID_CODE ']' SYM_CLOSED? ;
 c_attribute_def:
       c_attribute
     | c_attribute_tuple
+    | default_value
     ;
 
 c_attribute: (ADL_PATH | attribute_id) c_existence? c_cardinality? ( SYM_MATCHES ('{' c_objects '}' | CONTAINED_REGEXP) )? ;
 
 c_attribute_tuple : '[' attribute_id ( ',' attribute_id )* ']' SYM_MATCHES '{' c_object_tuple ( ',' c_object_tuple )* '}' ;
+
+default_value: SYM_DEFAULT SYM_EQ ('<')? odin_text ('>')?;
 
 c_object_tuple : '[' c_object_tuple_items ']' ;
 

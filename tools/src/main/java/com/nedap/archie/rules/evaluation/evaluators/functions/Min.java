@@ -29,7 +29,7 @@ public class Min implements FunctionImplementation {
             return possiblyNullResult;
         }
         //check that all valueList are equal length or 1 length
-        int length = checkEqualLength(arguments);
+        int length = checkEqualLengthOrOne(arguments);
         if(length == -1) {
             throw new FunctionCallException("value lists of min operator not the same length");
         }

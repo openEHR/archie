@@ -41,6 +41,14 @@ public class ArchetypeValidatorTest {
     }
 
     @Test
+    public void validArchetypeConceptWithUnderscore() throws Exception {
+        archetype = parse("basic_with_concept_underscore.adls");
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        List<ValidationMessage> messages = validationResult.getErrors();
+        assertEquals(0, messages.size());
+    }
+
+    @Test
     public void VCARMNonExistantType() throws Exception {
         archetype = parse("/adl2-tests/validity/rm_checking/openEHR-EHR-EVALUATION.VCARM_rm_non_existent_attribute.v1.0.0.adls");
         ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);

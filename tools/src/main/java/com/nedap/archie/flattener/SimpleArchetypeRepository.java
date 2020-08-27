@@ -1,6 +1,7 @@
 package com.nedap.archie.flattener;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeHRID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,10 @@ public class SimpleArchetypeRepository implements ArchetypeRepository, MutableAr
 
     public List<Archetype> getAllArchetypes() {
         return new ArrayList<>(archetypes.values());
+    }
+
+    public void removeArchetype(String archetypeId) {
+        archetypes.remove(new ArchetypeHRID(archetypeId));
     }
 
 }

@@ -22,7 +22,7 @@ public class TemplateOverlay extends Archetype {
     @XmlTransient
     @Override
     public String getRmRelease() {
-        return owningTemplate == null ? null : owningTemplate.getRmRelease();
+        return owningTemplate == null ? super.getRmRelease() : owningTemplate.getRmRelease();
     }
 
     @JsonIgnore

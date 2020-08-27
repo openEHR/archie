@@ -1,8 +1,12 @@
 package com.nedap.archie.base;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -26,6 +30,10 @@ public class MultiplicityInterval extends Interval<Integer> implements Serializa
         super(lower, upper);
     }
 
+    public MultiplicityInterval(Interval<Integer> interval) {
+        this(interval.getLower(), interval.isLowerIncluded(), interval.isLowerUnbounded(), interval.getUpper(), interval.isUpperIncluded(), interval.isUpperUnbounded());
+    }
+
     public MultiplicityInterval(Integer lower, Boolean lowerIncluded, Boolean lowerUnbounded, Integer upper, Boolean upperIncluded, Boolean upperUnbounded) {
         setLower(lower);
         setLowerIncluded(lowerIncluded);
@@ -33,6 +41,25 @@ public class MultiplicityInterval extends Interval<Integer> implements Serializa
         setUpper(upper);
         setUpperIncluded(upperIncluded);
         setUpperUnbounded(upperUnbounded);
+    }
+
+    @JsonCreator
+    public static MultiplicityInterval createFromString(String interval) {
+        Pattern pattern = Pattern.compile("(?<lower>[0-9]+)\\.\\.(?<upper>[0-9]+|\\*)");
+        Matcher matcher = pattern.matcher(interval);
+        if(!matcher.matches()) {
+            throw new IllegalArgumentException("Cannot parse interval " + interval);
+        }
+        String lower = matcher.group("lower");
+        String upper = matcher.group("upper");
+        MultiplicityInterval result = new MultiplicityInterval();
+        if(upper.equalsIgnoreCase("*")) {
+            result.setUpperUnbounded(true);
+        } else {
+            result.setUpper(Integer.parseInt(upper));
+        }
+        result.setLower(Integer.parseInt(lower));
+        return result;
     }
 
     /**

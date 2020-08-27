@@ -1,6 +1,5 @@
 package com.nedap.archie.adl14;
 
-import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.treewalkers.ADL14Listener;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.adlparser.antlr.Adl14Parser;
@@ -10,7 +9,6 @@ import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.rminfo.MetaModels;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -48,7 +46,7 @@ public class ADL14Parser {
         this.metaModels = models;
     }
 
-    public Archetype parse(String adl, ADL14ConversionConfiguration conversionConfiguration) throws IOException {
+    public Archetype parse(String adl, ADL14ConversionConfiguration conversionConfiguration) {
         return parse(CharStreams.fromString(adl), conversionConfiguration);
     }
 

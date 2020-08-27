@@ -225,7 +225,7 @@ public class ADLDefinitionSerializerTest {
         String serialized = serializeConstraint(ordinal);
         assertThat(serialized, equalTo("\n" +
                 "    DV_QUANTITY[id2] matches {\n" +
-                "        property matches {[at1]}\n" +
+                "        property matches {[at1]}    -- Temperature\n" +
                 "        [units, magnitude] matches {\n" +
                 "            [{\"C\"}, {|>=4.0|}],\n" +
                 "            [{\"F\"}, {|>=40.0|}]\n" +
@@ -322,7 +322,7 @@ public class ADLDefinitionSerializerTest {
     }
 
     private String serializeConstraint(CObject cons) {
-        ADLDefinitionSerializer serializer = new ADLDefinitionSerializer(new ADLStringBuilder());
+        ADLDefinitionSerializer serializer = new ADLDefinitionSerializer(new ADLStringBuilder(), s -> null, null);
         serializer.appendCObject(cons);
         return serializer.getBuilder().toString();
     }

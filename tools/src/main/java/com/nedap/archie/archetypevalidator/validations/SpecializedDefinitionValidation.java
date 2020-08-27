@@ -142,8 +142,15 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
                             for(CAttribute attribute:tuple.getMembers()) {
                                 CAttribute parentAttribute = parentCComplexObject.getAttribute(attribute.getRmAttributeName());
                                 if(parentAttribute != null  && parentAttribute.getSocParent() == null) {
-                                    addMessageWithPath(ErrorType.VTPIN, attribute.getPath(),
-                                            I18n.t("Attribute {0} is a non-tuple attribute in the parent archetype, but a tuple attribute in the current archetype. That is not allowed", attribute.getRmAttributeName()));
+                                    for(CPrimitiveTuple primitiveTuple:tuple.getTuples()) {
+                                        CPrimitiveObject member = primitiveTuple.getMember(tuple.getMemberIndex(attribute.getRmAttributeName()));
+                                        if(!hasConformingParent(parentAttribute, member)) {
+                                            addMessageWithPath(ErrorType.VTPIN, attribute.getPath(),
+                                                    I18n.t("Attribute {0} is a non-tuple attribute in the parent archetype, but a tuple attribute in the current archetype. That is not allowed", attribute.getRmAttributeName()));
+                                        }
+
+                                    }
+
                                 }
                             }
                         }
@@ -153,6 +160,15 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
         }
 
 
+    }
+
+    private boolean hasConformingParent(CAttribute parentAttribute, CPrimitiveObject<?, ?> member) {
+        for(CObject parentCObject:parentAttribute.getChildren()) {
+            if(member.cConformsTo(parentCObject, (a, b) -> combinedModels.rmTypesConformant(a, b))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean validateRootSpecializedWithRoot(CArchetypeRoot parentCObject, CArchetypeRoot cObject) {

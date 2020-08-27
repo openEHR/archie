@@ -40,8 +40,11 @@ public class ADL14ConversionUtil {
     }
 
     public static String findExistingTermBinding(String terminologyId, Archetype archetype, Archetype flatParentArchetype, URI uri, Map<String, URI> termBindingsMap) {
-        if(flatParentArchetype != null && flatParentArchetype.getTerminology().getTermBindings() != null && flatParentArchetype.getTerminology().getTermDefinitions().get(terminologyId) != null) {
-            return findExistingTermBinding(uri, flatParentArchetype.getTerminology().getTermBindings().get(terminologyId));
+        if(flatParentArchetype != null && flatParentArchetype.getTerminology().getTermBindings() != null && flatParentArchetype.getTerminology().getTermBindings().get(terminologyId) != null) {
+            String termBinding = findExistingTermBinding(uri, flatParentArchetype.getTerminology().getTermBindings().get(terminologyId));
+            if(termBinding != null) {
+                return termBinding;
+            }
         }
         return findExistingTermBinding(uri, termBindingsMap);
     }

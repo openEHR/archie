@@ -17,6 +17,7 @@ odin_text :
       attr_vals
     | object_value_block
     | keyed_object+
+    | included_other_language
 	;
 
 attr_vals : ( attr_val ';'? )+ ;
@@ -31,6 +32,8 @@ object_block :
 object_value_block : ( '(' type_id ')' )? '<' ( primitive_object | attr_vals? | keyed_object* ) '>' ;
 
 keyed_object : '[' primitive_value ']' '=' object_block ; // TODO: probably should limit to String and Integer?
+
+included_other_language: INCLUDED_LANGUAGE_FRAGMENT;
 
 // ------ leaf types ------
 

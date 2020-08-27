@@ -93,4 +93,8 @@ public class CodePhrase extends RMObject {
     public int hashCode() {
         return Objects.hash(terminologyId, codeString);
     }
+
+    public String toString() {
+        return terminologyId + "::" + codeString;
+    }
 }

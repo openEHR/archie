@@ -25,7 +25,7 @@ import java.util.Objects;
         "rows"
 })
 @XmlRootElement(name = "item_table")
-public class ItemTable extends ItemStructure<Element> {
+public class ItemTable extends ItemStructure {
 
     @Nullable
     private List<Cluster> rows = new ArrayList<>();
@@ -68,9 +68,9 @@ public class ItemTable extends ItemStructure<Element> {
             return null;
         }
         List<Element> result = new ArrayList<>();
-        for (Cluster<Element> row : rows) {
-            for (Element element : row.getItems()) {
-                result.add(element);
+        for (Cluster row : rows) {
+            for (Item element : row.getItems()) {
+                result.add((Element) element);
             }
         }
         return result;

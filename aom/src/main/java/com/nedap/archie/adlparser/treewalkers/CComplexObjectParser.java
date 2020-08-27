@@ -1,14 +1,19 @@
 package com.nedap.archie.adlparser.treewalkers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
+import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rules.Assertion;
+import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +96,86 @@ public class CComplexObjectParser extends BaseTreeWalker {
             }
         } else if (attributeDefContext.c_attribute_tuple() != null) {
             parent.addAttributeTuple(parseAttributeTuple(parent, attributeDefContext.c_attribute_tuple()));
+        } else {
+            Default_valueContext defaultValueContext = attributeDefContext.default_value();
+            if (defaultValueContext != null) {
+                if (defaultValueContext.odin_text().included_other_language() != null) {
+                    parent.setDefaultValue(parseIncludedLanguageDefaultValue(defaultValueContext.odin_text().included_other_language().getText()));
+                } else {
+                    parseOdinDefaultValue(parent, defaultValueContext);
+                }
+            }
         }
+    }
+
+    private OpenEHRBase parseIncludedLanguageDefaultValue(String text) {
+        String format = text.substring(1, text.indexOf(')'));
+        int startIndex = text.indexOf("<#");
+        int endIndex = text.lastIndexOf("#>");
+        String content = text.substring(startIndex+2, endIndex);
+
+        if(format.equalsIgnoreCase(DefaultValueContainer.JSON)) {
+            ObjectMapper defaultValueJsonObjectMapper = getDefaultValueJsonObjectMapper();
+            if (defaultValueJsonObjectMapper != null) {
+                try {
+                    return defaultValueJsonObjectMapper.readValue(
+                            content, OpenEHRBase.class
+                    );
+                } catch (IOException e) {
+                    //TODO: find how to add line number/character position information here
+                    addError("error parsing json in default value: " + e.getMessage());
+                    //and just store it as a DefaultValueContainer
+                    return new DefaultValueContainer(content, format);
+                    //throw new RuntimeException(e);
+                }
+
+            } else {
+                return new DefaultValueContainer(format, content);
+            }
+        } else {
+            return new DefaultValueContainer(format, content);
+        }
+    }
+
+    private void parseOdinDefaultValue(CComplexObject parent, Default_valueContext defaultValueContext) {
+        try {
+            ObjectMapper defaultValueObjectMapper = getDefaultValueOdinObjectMapper();
+            if (defaultValueObjectMapper != null) {
+                OpenEHRBase value = defaultValueObjectMapper.readValue(
+                        new AdlOdinToJsonConverter().convert(defaultValueContext.odin_text()), OpenEHRBase.class
+                );
+
+                parent.setDefaultValue(value);
+            } else {
+                parent.setDefaultValue(new DefaultValueContainer(DefaultValueContainer.ODIN, defaultValueContext.odin_text().getText()));
+            }
+        } catch (IOException e) {
+            //TODO: find how to add line number/character position information here
+            addError("error parsing json in default value: " + e.getMessage());
+            //and just store it as a DefaultValueContainer
+            parent.setDefaultValue(new DefaultValueContainer(DefaultValueContainer.ODIN, defaultValueContext.odin_text().getText()));
+            //throw new RuntimeException(e);
+        }
+    }
+
+    private ObjectMapper getDefaultValueJsonObjectMapper() {
+        if(metaModels == null) {
+            return null;
+        }
+        if(metaModels.getSelectedModel() == null) {
+            return null;
+        }
+        return metaModels.getSelectedModel().getJsonObjectMapper();
+    }
+
+    private ObjectMapper getDefaultValueOdinObjectMapper() {
+        if(metaModels == null) {
+            return null;
+        }
+        if(metaModels.getSelectedModel() == null) {
+            return null;
+        }
+        return metaModels.getSelectedModel().getOdinInputObjectMapper();
 
     }
 

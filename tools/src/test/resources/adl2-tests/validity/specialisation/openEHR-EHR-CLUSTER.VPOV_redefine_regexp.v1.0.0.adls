@@ -1,0 +1,66 @@
+archetype (adl_version=2.0.6; rm_release=1.0.2)
+	openEHR-EHR-CLUSTER.redefine_c_string.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.c_string_parent.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	custodian_namespace = <"org.openehr">
+	custodian_organisation = <"openEHR Foundation <http://www.openEHR.org>">
+
+	original_author = <
+		["name"] = <"Pieter Bos">
+ 		["email"] = <"pieter.bos@nedap.com">
+		["organisation"] = <"Nedap Healthcare <http://www.nedap.com>">
+		["date"] = <"2020-04-03">
+	>
+
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Parent for C_STRING specialization">
+			keywords = <"ADL", "test", "specialisation">
+		>
+	>
+
+	lifecycle_state = <"published">
+	other_details = <
+		["regression"] = <"VPOV">
+	>
+	licence = <"Creative Commons CC-BY-SA <https://creativecommons.org/licenses/by-sa/3.0/>">
+
+definition
+	CLUSTER[id1.1] matches {	-- Adverse reaction exclusions
+		/items[id2]/value matches {
+		    DV_TEXT[id21.1] matches {
+		        value matches {"a"}
+            }
+            DV_TEXT[id21.2] matches {
+                value matches {"a", "b", "c"}
+            }
+		}
+		/items[id3]/value matches {
+            DV_TEXT[id31.1] matches {
+                value matches {"b"}
+            }
+            DV_TEXT[id31.2] matches {
+                value matches {"aaaaaaad", "b", "c"} -- invalid
+            }
+            DV_TEXT[id31.3] matches {
+                value matches {"/a+/", "b", "c"}
+            }
+        }
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Adverse reaction exclusions">
+				description = <"A category of conditions or states which have been excluded as cause of adverse reaction">
+			>
+		>
+	>

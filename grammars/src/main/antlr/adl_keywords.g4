@@ -38,6 +38,8 @@ SYM_AFTER       : [Aa][Ff][Tt][Ee][Rr] ;
 SYM_BEFORE      : [Bb][Ee][Ff][Oo][Rr][Ee] ;
 SYM_CLOSED      : [Cc][Ll][Oo][Ss][Ee][Dd] ;
 
+SYM_DEFAULT     : '_' [Dd] [Ee] [Ff] [Aa] [Uu] [Ll] [Tt] ;
+
 SYM_THEN     : [Tt][Hh][Ee][Nn] ;
 SYM_AND      : [Aa][Nn][Dd] | '∧';
 SYM_OR       : [Oo][Rr] | '∨' ;

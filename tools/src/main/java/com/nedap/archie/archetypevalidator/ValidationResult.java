@@ -124,7 +124,12 @@ public class ValidationResult {
         for(ValidationMessage message:errors) {
             result.append(message);
             result.append("\n");
-
+        }
+        if(overlayValidations != null) {
+            for(ValidationResult overlayValidation:overlayValidations) {
+                result.append("\n");
+                result.append(overlayValidation);
+            }
         }
 
         return result.toString();

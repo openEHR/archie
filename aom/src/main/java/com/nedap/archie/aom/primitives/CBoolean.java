@@ -61,7 +61,7 @@ public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
             return true;
         }
 
-        if(!(constraint.size() < otherBoolean.constraint.size())) {
+        if(!(constraint.size() <= otherBoolean.constraint.size())) {
             return false;
         }
 

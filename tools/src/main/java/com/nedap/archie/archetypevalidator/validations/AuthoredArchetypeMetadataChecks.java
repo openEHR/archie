@@ -74,7 +74,7 @@ public class AuthoredArchetypeMetadataChecks extends ArchetypeValidationBase {
                 }
             }
         } else {
-            addMessage(ErrorType.VDEOL);
+            addMessage(ErrorType.VDEOL, I18n.t("Original language is missing in archetype"));
         }
     }
 

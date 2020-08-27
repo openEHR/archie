@@ -38,7 +38,7 @@ import static org.junit.Assert.assertThat;
  *
  * Created by pieter.bos on 30/06/16.
  */
-public class JacksonRMRoundTripTest {
+public class    JacksonRMRoundTripTest {
 
     private ADLParser parser;
     private Archetype archetype;

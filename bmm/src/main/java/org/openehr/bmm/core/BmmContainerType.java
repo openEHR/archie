@@ -21,6 +21,8 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
+import java.util.List;
+
 /**
  * Type reference that specifies containers with one generic parameter.
  *
@@ -31,18 +33,26 @@ public class BmmContainerType extends BmmType {
     /**
      * The type of the container. This converts to the root_type in BMM_GENERIC_TYPE.
      */
-    private BmmClass containerType;
+    private BmmGenericClass containerType;
+
     /**
      *
      */
-    private BmmType baseType;
+    private BmmUnitaryType baseType;
+
+    public BmmContainerType (BmmUnitaryType aBaseType, BmmGenericClass aContainerClass) {
+        baseType = aBaseType;
+        containerType = aContainerClass;
+    }
+
+    public BmmContainerType () {}
 
     /**
      * Returns the type of the container. This converts to the root_type in BMM_GENERIC_TYPE.
      *
      * @return
      */
-    public BmmClass getContainerType() {
+    public BmmGenericClass getContainerType() {
         return containerType;
     }
 
@@ -51,21 +61,16 @@ public class BmmContainerType extends BmmType {
      *
      * @param containerType
      */
-    public void setContainerType(BmmClass containerType) {
+    public void setContainerType(BmmGenericClass containerType) {
         this.containerType = containerType;
     }
 
-
-    @Override
-    public BmmClass getBaseClass() {
-        return baseType.getBaseClass();
-    }
     /**
      * Returns the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
      *
      * @return
      */
-    public BmmType getBaseType() {
+    public BmmUnitaryType getBaseType() {
         return baseType;
     }
 
@@ -74,7 +79,7 @@ public class BmmContainerType extends BmmType {
      *
      * @param baseType
      */
-    public void setBaseType(BmmType baseType) {
+    public void setBaseType(BmmUnitaryType baseType) {
         this.baseType = baseType;
     }
 
@@ -89,12 +94,32 @@ public class BmmContainerType extends BmmType {
     }
 
     /**
-     * Return base_type.conformance_type_name; e.g. if this type is 'List&lt;ELEMENT&gt;', return 'ELEMENT'.
+     * Returns the completely flattened list of type names, flattening out all generic parameters.
+     *
+     * @return base class name
+     */
+    @Override
+    public List<String> getFlattenedTypeList() {
+        return baseType.getFlattenedTypeList();
+    }
+
+    /**
+     * Return the effective conformance type, taking into account formal parameter types.
      *
      * @return
      */
-    public String getConformanceTypeName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public BmmEffectiveType getEffectiveType() {
+        return baseType.getEffectiveType();
+    }
+
+    /**
+     * Returns the effective unitary type, i.e. abstracting away any containers.
+     *
+     * @return
+     */
+    @Override
+    public BmmUnitaryType getUnitaryType() {
+        return baseType;
     }
 
     @Override

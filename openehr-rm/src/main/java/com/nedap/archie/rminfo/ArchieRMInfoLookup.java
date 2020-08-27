@@ -1,5 +1,6 @@
 package com.nedap.archie.rminfo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.AuthoredResource;
@@ -251,10 +252,12 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     @Override
     public Object convertToConstraintObject(Object object, CPrimitiveObject cPrimitiveObject) {
         if(cPrimitiveObject instanceof CTerminologyCode) {
-            if(object instanceof DvCodedText) {
+            if(object instanceof DvCodedText && ((DvCodedText) object).getDefiningCode() != null) {
                 return convertCodePhrase(((DvCodedText) object).getDefiningCode());
             } else if (object instanceof CodePhrase) {
                 return convertCodePhrase((CodePhrase) object);
+            } else {
+                return new TerminologyCode();
             }
         }
         return object;
@@ -298,6 +301,17 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         if(rmObject instanceof Locatable) {
             Locatable locatable = (Locatable) rmObject;
             return locatable.getArchetypeNodeId();
+        }
+        return null;
+    }
+
+    @Override
+    public String getArchetypeIdFromArchetypedRmObject(Object rmObject) {
+        if(rmObject instanceof Locatable) {
+            Locatable locatable = (Locatable) rmObject;
+            if(locatable.getArchetypeDetails() != null) {
+                return locatable.getArchetypeDetails().getArchetypeId().getFullId();
+            }
         }
         return null;
     }

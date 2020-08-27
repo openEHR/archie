@@ -70,7 +70,7 @@ public class ADLParser {
         this.modelConstraintImposer = null;
     }
 
-    public Archetype parse(String adl) throws IOException {
+    public Archetype parse(String adl) {
         return parse(CharStreams.fromString(adl));
     }
 

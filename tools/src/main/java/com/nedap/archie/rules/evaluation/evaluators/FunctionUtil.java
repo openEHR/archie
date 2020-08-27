@@ -22,17 +22,22 @@ public class FunctionUtil {
         throw new FunctionCallException("cannot cast " + value.getValue().getClass() + " to a number");
     }
 
-    public static int checkEqualLength(List<ValueList> arguments) {
-        int length = 1;
-        boolean first = true;
-        for(ValueList list:arguments) {
-            if(first && list.size() != 1) {
-                length = list.size();
-            } else  if(list.size() != 1 && list.size() != length) {
-                return -1;
+    /**
+     * All arguments should have an equal list size OR list size of 1
+     * @return If list sizes equal or 1 return this length, otherwise return -1
+     */
+    public static int checkEqualLengthOrOne(List<ValueList> arguments) {
+        final int allowedLength = 1;
+        int otherLength = -1;
+        for (ValueList list : arguments) {
+            if (list.size() != allowedLength) {
+                if (otherLength != -1 && otherLength != list.size()) {
+                    return -1;
+                }
+                otherLength = list.size();
             }
         }
-        return length;
+        return otherLength == -1 ? allowedLength : otherLength;
     }
 
     public static ValueList checkAndHandleNull(ValueList leftValues, ValueList rightValues) {

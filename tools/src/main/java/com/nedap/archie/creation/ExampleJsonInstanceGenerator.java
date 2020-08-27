@@ -27,14 +27,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModels;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmContainerType;
-import org.openehr.bmm.core.BmmEnumerationInteger;
-import org.openehr.bmm.core.BmmEnumerationString;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.ArrayList;
@@ -61,6 +54,9 @@ public  class ExampleJsonInstanceGenerator {
     private BmmModel bmm;
     private AomProfile aomProfile;
 
+    private boolean useTypeNameWhenTermMissing = false;
+    private boolean addUniqueNamesForSiblingNodes = false;
+
     private String typePropertyName = "@type";
 
     public ExampleJsonInstanceGenerator(MetaModels models, String language) {
@@ -76,8 +72,42 @@ public  class ExampleJsonInstanceGenerator {
         return generate(archetype.getDefinition());
     }
 
+
+    public boolean isUseTypeNameWhenTermMissing() {
+        return useTypeNameWhenTermMissing;
+    }
+
+    /**
+     * Set whether to add a human readable 'name is missing' message in english for a missing type name, or
+     * to use the RM type name as name
+     * @param useTypeNameWhenTermMissing
+     */
+    public void setUseTypeNameWhenTermMissing(boolean useTypeNameWhenTermMissing) {
+        this.useTypeNameWhenTermMissing = useTypeNameWhenTermMissing;
+    }
+
+
+    /**
+     * The the property name for the type identifier. Defaults to "@type", can be set to "_type" for standard behaviour
+     * @param typePropertyName the name of the type property
+     */
     public void setTypePropertyName(String typePropertyName) {
         this.typePropertyName = typePropertyName;
+    }
+
+
+    public boolean isAddUniqueNamesForSiblingNodes() {
+        return addUniqueNamesForSiblingNodes;
+    }
+
+    /**
+     * Set to false to just include the terms from the archetype as names
+     * Set to true to append a numeric suffix to these terms in case two sibling nodes will have the same name with a different archetype node id
+     *
+     * @param addUniqueNamesForSiblingNodes whether to ensure name uniqueness or not
+     */
+    public void setAddUniqueNamesForSiblingNodes(boolean addUniqueNamesForSiblingNodes) {
+        this.addUniqueNamesForSiblingNodes = addUniqueNamesForSiblingNodes;
     }
 
     private Map<String, Object> generate(CComplexObject cObject) {
@@ -88,13 +118,13 @@ public  class ExampleJsonInstanceGenerator {
             result.put(typePropertyName, type);
         }
 
-        BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(cObject.getRmTypeName()));
+        BmmClass classDefinition = bmm.getClassDefinition(cObject.getRmTypeName());
 
         addAdditionalPropertiesAtBegin(classDefinition, result, cObject);
 
 
         for (CAttribute attribute : cObject.getAttributes()) {
-            BmmProperty property = AOMUtils.getPropertyAtPath(bmm, cObject.getRmTypeName(), attribute.getRmAttributeName());
+            BmmProperty property = bmm.propertyAtPath (cObject.getRmTypeName(), attribute.getRmAttributeName());
             if(property == null || property.getComputed()) {
                 continue;//do not serialize non-bmm properties such as functions and computed properties
             }
@@ -125,7 +155,7 @@ public  class ExampleJsonInstanceGenerator {
                         Map<String, Object> next = new LinkedHashMap<>();
 
                         String concreteTypeName = getConcreteTypeName(child.getRmTypeName());
-                        BmmClass childClassDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(concreteTypeName));
+                        BmmClass childClassDefinition = bmm.getClassDefinition(concreteTypeName);
                         next.put(typePropertyName, concreteTypeName);
                         addAdditionalPropertiesAtBegin(classDefinition, next, child);
                         addRequiredPropertiesFromBmm(next, childClassDefinition);
@@ -138,6 +168,7 @@ public  class ExampleJsonInstanceGenerator {
             }
 
             if (property instanceof BmmContainerProperty) {
+                ensureNoDuplicateName(children);
                 result.put(attribute.getRmAttributeName(), children);
             } else if (!children.isEmpty()) {
                 result.put(attribute.getRmAttributeName(), children.get(0));
@@ -151,9 +182,43 @@ public  class ExampleJsonInstanceGenerator {
 
     }
 
+    private void ensureNoDuplicateName(List<Object> children) {
+        if(!this.addUniqueNamesForSiblingNodes) {
+            return;
+        }
+        Map<String, String> nameToNodeIdMap = new LinkedHashMap<>();
+        for(Object child:children) {
+            if(child instanceof Map) {
+                Map json = (Map) child;
+                String archetypeNodeId = (String) json.get("archetype_node_id");
+                Object name = json.get("name");
+                if(archetypeNodeId != null && name instanceof Map) {
+                    Map nameMap = (Map) name;
+                    String nameValue = (String) nameMap.get("value");
+                    if(nameValue != null) {
+                        String existingNodeId = nameToNodeIdMap.get(nameValue);
+                        if(existingNodeId != null && !existingNodeId.equalsIgnoreCase(archetypeNodeId)) { //if the node ids are the same, it's just a second instance, that's fine.
+                            //we now have two nodes with the same name, both with a different node id. That can be a problem in some cases
+
+                            int index = 1;
+                            String newName = nameValue + " " + index;
+                            while(nameToNodeIdMap.containsKey(newName)) {
+                                index++;
+                                newName = nameValue + " " + index;
+                            }
+                            nameMap.put("value", newName);
+                            nameToNodeIdMap.put(newName, archetypeNodeId);
+                        } else {
+                            nameToNodeIdMap.put(nameValue, archetypeNodeId);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     protected String getConcreteTypeName(String rmTypeName) {
-        String classKey = BmmDefinitions.typeNameToClassKey(rmTypeName);
-        BmmClass classDefinition = bmm.getClassDefinition(classKey);
+        BmmClass classDefinition = bmm.getClassDefinition(rmTypeName);
         if(classDefinition.isAbstract()) {
             String customConcreteType = getConcreteTypeOverride(rmTypeName);
             if(customConcreteType != null) {
@@ -164,7 +229,7 @@ public  class ExampleJsonInstanceGenerator {
                 BmmClass descendantClassDefinition = bmm.getClassDefinition(descendant);
                 if(!descendantClassDefinition.isAbstract()) {
                     //TODO: should we return generics here? for now left out
-                    return BmmDefinitions.typeNameToClassKey(descendantClassDefinition.getTypeName());
+                    return BmmDefinitions.typeNameToClassKey(descendantClassDefinition.getType().getTypeName());
                 }
 
             }
@@ -174,42 +239,57 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     private void addRequiredPropertiesFromBmm(Map<String, Object> result, BmmClass classDefinition) {
-        Map<String, BmmProperty> properties = classDefinition.flattenBmmClass().getProperties();
+        Map<String, BmmProperty> properties = classDefinition.getFlatProperties();
         //add all mandatory properties from the RM
         for (BmmProperty property : properties.values()) {
             if (property.getMandatory() && !result.containsKey(property.getName())) {
-                addRequiredProperty(result, property);
+                if(property.getName().equalsIgnoreCase("archetype_node_id")) {
+                    addRequiredProperty(result, property, "idX");
+                } else {
+                    addRequiredProperty(result, property);
+                }
             }
         }
     }
 
     private void addRequiredProperty(Map<String, Object> result, BmmProperty property) {
+        addRequiredProperty(result, property, null);
+    }
+
+    private void addRequiredProperty(Map<String, Object> result, BmmProperty property, String value) {
         BmmType type = property.getType();
-        BmmClass propertyClass = type.getBaseClass();
-        if (property instanceof BmmContainerProperty) {
+        if (value != null) {
+            result.put(property.getName(), value);
+        } else if (property instanceof BmmContainerProperty) {
             List<Object> children = new ArrayList<>();
             MultiplicityInterval cardinality = ((BmmContainerProperty) property).getCardinality();
-            if(cardinality.isMandatory() ) {
+            if (cardinality.isMandatory()) {
                 //if mandatory attribute, create at least one child type
                 //this won't be from an actual archetype, but at least it is valid RM data
                 String actualType = ((BmmContainerType) type).getBaseType().getTypeName();
                 children.add(createExampleFromTypeName(actualType));
             }
-
             result.put(property.getName(), children);
-        } else if (propertyClass instanceof BmmEnumerationInteger) {
-            result.put(property.getName(), 0);
-        } else if (propertyClass instanceof BmmEnumerationString) {
-            result.put(property.getName(), "string");
+        } else if (type instanceof BmmParameterType) {
+            result.put(property.getName(), createExampleFromTypeName(type.getEffectiveType().getTypeName()));
+        } else if (type instanceof BmmDefinedType) {
+            BmmClass propertyClass = ((BmmDefinedType)type).getBaseClass();
+            if (propertyClass instanceof BmmEnumerationInteger) {
+                result.put(property.getName(), 0);
+            } else if (propertyClass instanceof BmmEnumerationString) {
+                result.put(property.getName(), "string");
+            } else {
+                result.put(property.getName(), createExampleFromTypeName(type.getTypeName()));
+            }
         } else {
-            String actualType = type.getTypeName();
-            result.put(property.getName(), createExampleFromTypeName(actualType));
+            // TODO: if we reach here, we are on a property of a built-in type, either a Tuple
+            // (for which we can build an example instance) or an agent, for which we cannot.
         }
     }
 
     private Object createExampleFromTypeName(String typeName) {
         String actualType = getConcreteTypeName(typeName);
-        BmmClass classDefinition1 = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(actualType));
+        BmmClass classDefinition1 = bmm.getClassDefinition(actualType);
         if(classDefinition1 != null && classDefinition1.isPrimitiveType()) {
             if (aomProfile.getRmPrimitiveTypeEquivalences().get(actualType) != null) {
                 actualType = aomProfile.getRmPrimitiveTypeEquivalences().get(actualType);
@@ -227,7 +307,7 @@ public  class ExampleJsonInstanceGenerator {
         }
         Map<String, Object> result = new LinkedHashMap<>();
         String className = getConcreteTypeName(actualType);
-        BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(actualType));
+        BmmClass classDefinition = bmm.getClassDefinition(actualType);
         result.put(typePropertyName, className);
         if(classDefinition != null) {
             addRequiredPropertiesFromBmm(result, classDefinition);
@@ -425,11 +505,11 @@ public  class ExampleJsonInstanceGenerator {
 
             CAttribute parentAttribute = child.getParent();
             CComplexObject parentObject = (CComplexObject) parentAttribute.getParent();
-            BmmClass classDefinition = bmm.getClassDefinition(BmmDefinitions.typeNameToClassKey(parentObject.getRmTypeName()));
+            BmmClass classDefinition = bmm.getClassDefinition(parentObject.getRmTypeName());
             if(classDefinition == null) {
                 return null;
             }
-            BmmProperty property = classDefinition.flattenBmmClass().getProperties().get(parentAttribute.getRmAttributeName());
+            BmmProperty property = classDefinition.getFlatProperties().get(parentAttribute.getRmAttributeName());
             if(property == null) {
                 return null;
             }
@@ -441,7 +521,7 @@ public  class ExampleJsonInstanceGenerator {
                     Map<String, Object> definingCode = (Map<String, Object>) codePhrase;
                     String codeString = (String) definingCode.get("code_string");//TODO: check terminology code to be local?
                     ArchetypeTerm term = archetype.getTerm(child, codeString, language);
-                    dvCodedText.put("value", term == null ? MISSING_TERM_IN_ARCHETYPE_FOR_LANGUAGE + language: term.getText());
+                    dvCodedText.put("value", term == null ? getMissingTermText(child) : term.getText());
                 }
 
                 return dvCodedText;
@@ -452,18 +532,26 @@ public  class ExampleJsonInstanceGenerator {
 
         return null;
     }
+
+    private String getMissingTermText(CObject cObject) {
+        if(this.useTypeNameWhenTermMissing && !(cObject instanceof CPrimitiveObject)) {
+            return cObject.getRmTypeName();
+        }
+        return MISSING_TERM_IN_ARCHETYPE_FOR_LANGUAGE + language;
+    }
+
     /** Add any properties required for this specific RM based on the CObject. For openEHR RM, this should at least
      * set the name if present
      */
     protected void addAdditionalPropertiesAtBegin(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
 
-        if (classDefinition.getTypeName().equalsIgnoreCase("LOCATABLE") || classDefinition.findAllAncestors().contains("LOCATABLE")) {
+        if (classDefinition.getType().getTypeName().equalsIgnoreCase("LOCATABLE") || classDefinition.findAllAncestors().contains("LOCATABLE")) {
 
             Map<String, Object> name = new LinkedHashMap<>();
             name.put(typePropertyName, "DV_TEXT");
             ArchetypeTerm term = archetype.getTerm(cObject, language);
             if (term == null) {
-                name.put("value", MISSING_TERM_IN_ARCHETYPE_FOR_LANGUAGE + language);
+                name.put("value", getMissingTermText(cObject));
             } else {
                 name.put("value", term.getText());
             }
@@ -495,7 +583,7 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     protected void addAdditionalPropertiesAtEnd(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
-        if(classDefinition.getTypeName().equalsIgnoreCase("DV_CODED_TEXT")) {
+        if(classDefinition.getType().getTypeName().equalsIgnoreCase("DV_CODED_TEXT")) {
             try {
                 Map<String, Object> definingCode = (Map<String, Object>) result.get("defining_code");
                 String codeString = (String) definingCode.get("code_string");//TODO: check terminology code to be local?

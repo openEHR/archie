@@ -1,37 +1,63 @@
 package com.nedap.archie.serializer.adl;
 
 import com.nedap.archie.aom.*;
+import com.nedap.archie.rminfo.RMObjectMapperProvider;
+
+import java.util.function.Function;
 
 /**
  * @author markopi
  */
 abstract public class ADLArchetypeSerializer<T extends Archetype> {
     protected final T archetype;
+    final RMObjectMapperProvider rmObjectMapperProvider;
+    Function<String, Archetype> flatArchetypeProvider;
     protected final ADLStringBuilder builder = new ADLStringBuilder();
 
     private final ADLDefinitionSerializer definitionSerializer;
     private final ADLRulesSerializer rulesSerializer;
 
 
-    protected ADLArchetypeSerializer(T archetype) {
+    protected ADLArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
         this.archetype = archetype;
+        this.flatArchetypeProvider = flatArchetypeProvider;
+        this.rmObjectMapperProvider = rmObjectMapperProvider;
 
-        this.definitionSerializer = new ADLDefinitionSerializer(builder);
+        this.definitionSerializer = new ADLDefinitionSerializer(builder, flatArchetypeProvider, rmObjectMapperProvider);
         this.rulesSerializer = new ADLRulesSerializer(builder, definitionSerializer);
     }
 
-    public static String serialize(Archetype archetype) {
+    /**
+     * Serialize the archetype to ADL, using the flattened parent archetypes to get names for in the comments
+     * of specialized archetypes
+     * @param archetype the archetype to serialize
+     * @param flatArchetypeProvider the function to retrieve flat parent archetypes
+     * @param rmObjectMapperProvider the RM Object Mapper provider used to serialize default values. If not provided,
+     *                               the standard ODIN serializer will be used, which will likekely not be correct.
+     * @return the ADL output
+     */
+    public static String serialize(Archetype archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
         if (archetype instanceof Template) {
-            return new ADLTemplateSerializer((Template) archetype).serialize();
+            return new ADLTemplateSerializer((Template) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         } else if (archetype instanceof OperationalTemplate) {
-            return new ADLOperationalTemplateSerializer((OperationalTemplate) archetype).serialize();
+            return new ADLOperationalTemplateSerializer((OperationalTemplate) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         } else if (archetype instanceof TemplateOverlay) {
-            return new ADLTemplateOverlaySerializer((TemplateOverlay) archetype).serialize();
+            return new ADLTemplateOverlaySerializer((TemplateOverlay) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         } else if (archetype instanceof AuthoredArchetype) {
-            return new ADLAuthoredArchetypeSerializer<>((AuthoredArchetype) archetype).serialize();
+            return new ADLAuthoredArchetypeSerializer<>((AuthoredArchetype) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         }
         throw new AssertionError("Could not serialize archetype of class " +
                 (archetype == null ? null : archetype.getClass().getName()));
+    }
+
+
+    /**
+     * Serialize the archetype to ADL
+     * @param archetype the archetype to serialize
+     * @return the ADL output
+     */
+    public static String serialize(Archetype archetype) {
+        return serialize(archetype, null, null);
     }
 
     protected String serialize() {

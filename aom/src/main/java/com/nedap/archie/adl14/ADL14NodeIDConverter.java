@@ -92,7 +92,7 @@ public class ADL14NodeIDConverter {
         convertTermBindings(archetype);
         generateMissingNodeIds(archetype.getDefinition());
 
-        convertTermDefinitions();
+        convertTermDefinitions(archetype, convertedCodes);
         previousConversionApplier.removeCreatedUnusedTermCodesAndValueSets();
         return new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
     }
@@ -114,7 +114,7 @@ public class ADL14NodeIDConverter {
 
     }
 
-    private void convertTermDefinitions() {
+    public static void convertTermDefinitions(Archetype archetype, Map<String, ConvertedCodeResult> convertedCodes) {
         //process the codes in alphabetical order, high to low, to prevent overwriting codes
         //even better would probably be to create an empty terminology and separate all new+converted codes and old codes
         //instead of doing this in place. Worth a refactor perhaps?
@@ -213,7 +213,7 @@ public class ADL14NodeIDConverter {
                         //this is a bit odd - it now specializes the first child it finds. Let's warn
                         synthesizeNodeId(cObject, path);
                         conversionResult.getLog().addWarningWithLocation(ADL14ConversionMessageCode.WARNING_SPECIALIZED_FIRST_MATCHING_CHILD, cObject.path());
-                    } else if (cAttributeInParent.getChildren().size() == 1) {
+                    } else if (cAttributeInParent.getChildren().size() == 1 || cObject.getParent().getChildren().size() == 1) {
                         if(this.metaModels.rmTypesConformant(cObject.getRmTypeName(), cAttributeInParent.getChildren().get(0).getRmTypeName())) {
                             //this replaces a parent node, so a specialisation. add id code and possibly a term
                             createSpecialisedNodeId(cObject, path, Arrays.asList(cAttributeInParent.getChildren().get(0)));
@@ -298,7 +298,21 @@ public class ADL14NodeIDConverter {
             }
             calculateNewNodeId(cObject);
         } else if (cObject instanceof ArchetypeSlot) {
+
             calculateNewNodeId(cObject);
+            if (cObject.getNodeId() != null) {
+                //VSSID validation does not exist in ADL 1.4. Fix it here
+
+                if(flatParentArchetype != null) {
+                    String parentPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
+                    CObject cObjectInParent = flatParentArchetype.itemAtPath(parentPath);
+                    if (cObjectInParent != null && cObjectInParent instanceof ArchetypeSlot && !cObjectInParent.getNodeId().equalsIgnoreCase(cObject.getNodeId())) {
+                        //specializing a node id for an archetype slot is not allowed in ADL 2. Set to parent node id.
+                        cObject.setNodeId(cObjectInParent.getNodeId());
+                        //TODO: remove id code from terminology as well
+                    }
+                }
+            }
         } else if (cObject instanceof CComplexObjectProxy) {
             CComplexObjectProxy proxy = (CComplexObjectProxy) cObject;
             calculateNewNodeId(cObject);
@@ -362,13 +376,13 @@ public class ADL14NodeIDConverter {
         return convertCode(oldCode, "ac");
     }
 
-    private String convertCode(String oldCode, String newCodePrefix) {
+    public static String convertCode(String oldCode, String newCodePrefix) {
         NodeIdUtil nodeIdUtil = new NodeIdUtil(oldCode);
         if (nodeIdUtil.getCodes().isEmpty()) {
             return oldCode;
         }
         nodeIdUtil.setPrefix(newCodePrefix); //will automatically strip the leading zeroes due to integer-parsing
-        if(!oldCode.startsWith("at0.")) {
+        if(!oldCode.startsWith("at0.") && !oldCode.startsWith("ac0.")) {
             //a bit tricky, since the root of an archetype starts with at0000.0, but that's different from this I guess
             nodeIdUtil.getCodes().set(0, nodeIdUtil.getCodes().get(0) + 1); //increment with 1, old is 0-based
         }

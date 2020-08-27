@@ -5,4 +5,5 @@ dependencies {
   compile project(':odin')
   compile project(':aom')
   testCompile project(':openehr-rm')
+  testCompile project(':archie-utils')
 }

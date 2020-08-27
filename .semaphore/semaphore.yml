@@ -26,8 +26,11 @@ blocks:
             - ./gradlew build
             - ./gradlew jacocoRootReport
             - >-
-              curl -s https://codecov.io/bash | bash -s - -f
-              ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
+              bash <(curl -s https://codecov.io/bash) -f
+              ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml -t
+              "$ARCHIE_CODECOV_TOKEN"
       prologue:
         commands:
           - checkout
+      secrets:
+        - name: Archie codecov token

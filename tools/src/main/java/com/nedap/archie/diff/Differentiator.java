@@ -1,5 +1,6 @@
 package com.nedap.archie.diff;
 
+import com.nedap.archie.adl14.DefaultRmStructureRemover;
 import com.nedap.archie.adlparser.modelconstraints.BMMConstraintImposer;
 import com.nedap.archie.adlparser.modelconstraints.ModelConstraintImposer;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
@@ -16,6 +17,10 @@ public class Differentiator {
 
 
     public Archetype differentiate(Archetype flatChild, Archetype flatParent) {
+        return differentiate(flatChild, flatParent, true);
+    }
+
+    public Archetype differentiate(Archetype flatChild, Archetype flatParent, boolean addSiblingOrder) {
         metaModels.selectModel(flatChild);
         ModelConstraintImposer constraintImposer;
         if(metaModels.getSelectedBmmModel() != null) {
@@ -24,16 +29,19 @@ public class Differentiator {
             constraintImposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
         }
         Archetype result = flatChild.clone();
+        UnconstrainedIntervalRemover.removeUnconstrainedIntervals(result);
 
-
-        new LCSOrderingDiff(metaModels).addSiblingOrder(result, flatChild, flatParent);
+        if(addSiblingOrder) {
+            new LCSOrderingDiff(metaModels).addSiblingOrder(result, flatChild, flatParent);
+        }
         new ConstraintDifferentiator(constraintImposer, flatParent).removeUnspecializedConstraints(result, flatParent);
 
         new DifferentialPathGenerator().replace(result);
         new TerminologyDifferentiator().differentiate(result);
 
-
+        new DefaultRmStructureRemover(metaModels, false).removeRMDefaults(result);
         result.setDifferential(true);
+
         return result;
     }
 

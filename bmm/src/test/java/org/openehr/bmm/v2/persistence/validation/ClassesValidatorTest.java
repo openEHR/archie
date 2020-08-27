@@ -24,6 +24,12 @@ public class ClassesValidatorTest extends AbstractSchemaValidationsTest {
     }
 
     @Test
+    public void ancestorDefDoesNotExist() throws Exception {
+        BmmValidationResult validationResult = parseAndConvert("ancestor_def_doesnt_exist.bmm");
+        assertEquals(Lists.newArrayList(BmmMessageIds.EC_ANCESTOR_DOES_NOT_EXIST), validationResult.getLogger().getErrorCodes());
+    }
+
+    @Test
     public void genericParameterTypeMissing() throws Exception {
         BmmValidationResult validationResult = parseAndConvert("generic_parameter_type_missing.bmm");
         assertEquals(Lists.newArrayList(BmmMessageIds.EC_GENERIC_PARAMETER_CONSTRAINT_DOES_NOT_EXIST), validationResult.getLogger().getErrorCodes());

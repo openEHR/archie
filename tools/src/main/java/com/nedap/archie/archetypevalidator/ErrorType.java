@@ -81,7 +81,8 @@ public enum ErrorType implements MessageCode {
     VDSEV(I18n.register("archetype slot 'exclude' constraint validity. The 'exclude' constraint in an archetype slot must conform to the slot constraint validity rules.")),
     VACSO(I18n.register("single-valued attribute child object occurrences validity: the occurrences of a child object of a single-valued attribute cannot have an upper limit greater than 1.")),
     VACMCU(I18n.register("cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is ⇐ the cardinality upper bound.")),
-    WOUC(I18n.register("code in terminology not used in archetype definition"));
+    WOUC(I18n.register("code in terminology not used in archetype definition")),
+    OVERLAY_VALIDATION_FAILED(I18n.register("The validation of a template overlay failed"));
 
 
 

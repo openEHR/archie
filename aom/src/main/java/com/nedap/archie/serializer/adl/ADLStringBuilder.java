@@ -49,11 +49,7 @@ public class ADLStringBuilder implements StructuredStringAppendable {
     public ADLStringBuilder odin(Object structure) {
         try {
             String odin = odinMapper.writeValueAsString(structure);
-            for(String line:odin.split("\n")) {
-                //append per line to get indentation
-                builder.append(line);
-                builder.newline();
-            }
+            appendMultipleLines(odin);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -106,6 +102,18 @@ public class ADLStringBuilder implements StructuredStringAppendable {
     public ADLStringBuilder ensureSpace() {
         builder.ensureSpace();
         return this;
+    }
+
+    /**
+     * Append multiple lines, adding indentation before each line
+     * @param lines
+     */
+    public void appendMultipleLines(String lines) {
+        for(String line:lines.split("\n")) {
+            //append per line to get indentation
+            builder.append(line);
+            builder.newline();
+        }
     }
 }
 

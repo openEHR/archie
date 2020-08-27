@@ -115,8 +115,10 @@ public class MetaModels implements MetaModelInterface {
     public void selectModel(String rmPublisher, String rmPackage, String rmRelease) throws ModelNotFoundException {
         ModelInfoLookup selectedModel = null;
         BmmModel selectedBmmModel = null;
+        RMObjectMapperProvider objectMapperProvider = null;
         if(models != null) {
              selectedModel = models.getModel(rmPublisher, rmPackage);
+             objectMapperProvider = models.getRmObjectMapperProvider(rmPublisher, rmPackage);
         }
         if(bmmRepository != null) {
             BmmValidationResult validationResult = bmmRepository.getModelByClosure(BmmDefinitions.publisherQualifiedRmClosureName(rmPublisher, rmPackage) + "_" +  rmRelease);
@@ -131,7 +133,7 @@ public class MetaModels implements MetaModelInterface {
         if(selectedModel == null && selectedBmmModel == null) {
             throw new ModelNotFoundException(String.format("model for %s.%s version %s not found", rmPublisher, rmPackage, rmRelease));
         }
-        this.selectedModel = new MetaModel(selectedModel, selectedBmmModel, selectedAomProfile);
+        this.selectedModel = new MetaModel(selectedModel, selectedBmmModel, selectedAomProfile, objectMapperProvider);
 
     }
 
