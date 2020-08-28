@@ -21,33 +21,14 @@ public class DateTimeParsers {
 
     public static TemporalAccessor parseDateTimeValue(String text) {
         try {
-            return DateTimeFormatters.ISO_8601_DATE_TIME.parseBest(text, OffsetDateTime::from, LocalDateTime::from);
+            return DateTimeFormatters.ISO_8601_DATE_TIME.parseBest(text, OffsetDateTime::from, LocalDateTime::from, LocalDate::from, YearMonth::from, Year::from);
         } catch (DateTimeParseException e) {
-            try {
-                //Not parseable as a standard public object from datetime. We do not implement our own yet (we could!)
-                //so fallback to the Parsed object. The Parsed object is package-private, so cannot be added as a reference
-                //to the parseBest query, unfortunately.
-                return DateTimeFormatters.ISO_8601_DATE_TIME.parse(text, LocalDate::from);
-            } catch (DateTimeParseException e1) {
-                try {
-                    //parse a partial YYYY-MM datetime
-                    return DateTimeFormatters.ISO_8601_DATE_TIME.parse(text, YearMonth::from);
-                }
-                catch (DateTimeParseException e2){
-                    try {
-                        //parse a partial YYYY datetime
-                        return DateTimeFormatters.ISO_8601_DATE_TIME.parse(text, Year::from);
-                    }
-                    catch (DateTimeParseException e3){
-                        try {
-                            //some more interesting date_time expression without hyphens...
-                            return DateTimeFormatters.ISO_8601_DATE_TIME_COMPACT.parseBest(text, OffsetDateTime::from,  LocalDateTime::from);
-                        } catch (DateTimeParseException e5) {
-                            throw new IllegalArgumentException(e2.getMessage() + ":" + text);
-                        }
-                    }
-                }
-            }
+          try {
+              //some more interesting date_time expression without hyphens...
+              return DateTimeFormatters.ISO_8601_DATE_TIME_COMPACT.parseBest(text, OffsetDateTime::from,  LocalDateTime::from);
+          } catch (DateTimeParseException e2) {
+              throw new IllegalArgumentException(e2.getMessage() + ":" + text);
+          }
         }
     }
 
