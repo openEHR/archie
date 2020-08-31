@@ -291,13 +291,13 @@ public class RMPathQuery {
             String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(o);
 
             if (segment.hasIdCode()) {
-                if (archetypeNodeId.equals(segment.getNodeId())) {
+                if (segment.getNodeId().equals(archetypeNodeId)) {
                     return o;
                 }
             } else if (segment.hasArchetypeRef()) {
                 //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
                 //we support. Other things not so much
-                if (archetypeNodeId.equals(segment.getNodeId())) {
+                if (segment.getNodeId().equals(archetypeNodeId)) {
                     return o;
                 }
             } else {
