@@ -19,6 +19,7 @@ public class RMPathQueryTest {
     private Element elementId3_2;
     private Element elementNoId_1;
     private Element elementNoId_2;
+    private Element elementArchetypeId;
 
     @Before
     public void setup() {
@@ -32,12 +33,15 @@ public class RMPathQueryTest {
         elementId3_2.setArchetypeNodeId("id3.1");
         elementNoId_1 = new Element();
         elementNoId_2 = new Element();
+        elementArchetypeId = new Element();
+        elementArchetypeId.setArchetypeNodeId("openEHR-EHR-ELEMENT.element.v1.0.0");
 
         cluster.addItem(elementNoId_1);
         cluster.addItem(elementId2);
         cluster.addItem(elementId3_1);
         cluster.addItem(elementId3_2);
         cluster.addItem(elementNoId_2);
+        cluster.addItem(elementArchetypeId);
     }
 
     @Test
@@ -45,13 +49,15 @@ public class RMPathQueryTest {
         assertEquals(elementId2, cluster.itemAtPath("/items[id2]"));
         assertEquals(elementId3_1, cluster.itemAtPath("/items[id3.1]"));
         assertEquals(elementNoId_1, cluster.itemAtPath("/items[1]"));
+        assertEquals(elementArchetypeId, cluster.itemAtPath("/items[openEHR-EHR-ELEMENT.element.v1.0.0]"));
     }
 
     @Test
     public void adl2NodeIdMatchList() {
         assertEquals(Collections.singletonList(elementId2), cluster.itemsAtPath("/items[id2]"));
         assertEquals(Arrays.asList(elementId3_1, elementId3_2), cluster.itemsAtPath("/items[id3.1]"));
-        assertEquals(Arrays.asList(elementNoId_1, elementId2, elementId3_1, elementId3_2, elementNoId_2), cluster.itemsAtPath("/items"));
+        assertEquals(Arrays.asList(elementNoId_1, elementId2, elementId3_1, elementId3_2, elementNoId_2, elementArchetypeId), cluster.itemsAtPath("/items"));
+        assertEquals(Collections.singletonList(elementArchetypeId), cluster.itemsAtPath("/items[openEHR-EHR-ELEMENT.element.v1.0.0]"));
     }
 
     @Test
