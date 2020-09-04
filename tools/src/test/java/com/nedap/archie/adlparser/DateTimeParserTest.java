@@ -4,14 +4,9 @@ import com.nedap.archie.adlparser.treewalkers.TemporalConstraintParser;
 import com.nedap.archie.datetime.DateTimeParsers;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.OffsetDateTime;
-import java.time.OffsetTime;
-import java.time.Year;
-import java.time.YearMonth;
-import java.time.ZoneOffset;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
 
 import static org.junit.Assert.assertEquals;
 
@@ -66,6 +61,19 @@ public class DateTimeParserTest {
         assertEquals(OffsetDateTime.of(2019, 01, 14, 18, 36, 49, 294000000, ZoneOffset.of("Z")), DateTimeParsers.parseDateTimeValue("20190114T183649,294+0000"));
         assertEquals(LocalDate.of(2019, 1, 14), DateTimeParsers.parseDateValue("20190114"));
         assertEquals(LocalTime.of(18, 36, 49, 0), DateTimeParsers.parseTimeValue("183649"));
+    }
+
+    @Test
+    public void negativeDurations() {
+        TemporalAmount minusTwoSeconds = DateTimeParsers.parseDurationValue("-PT2S");
+        assertEquals(Duration.of(-2, ChronoUnit.SECONDS), minusTwoSeconds);
+
+        TemporalAmount minutsTwelHoursTwoSeconds = DateTimeParsers.parseDurationValue("-PT12H2S");
+        assertEquals(Duration.of(-2 - 12*60*60, ChronoUnit.SECONDS), minutsTwelHoursTwoSeconds);
+
+        TemporalAmount minusTwoWeeks = DateTimeParsers.parseDurationValue("-P2Y");
+        assertEquals(Period.of(-2, 0, 0), minusTwoWeeks);
+
     }
 
 }
