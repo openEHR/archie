@@ -187,8 +187,11 @@ public class ADLDefinitionSerializerTest {
 //        assertPrimitive("duration_attr34", "PTs/|P38W..P39W4D|");
 //        assertPrimitive("duration_attr35", "PThm/|P38W..P39W4D|");
         assertPrimitive("duration_attr36", "|>=PT0S|");
+        assertPrimitive("duration_attr37", "|>=-PT10S|");
+        assertPrimitive("duration_attr38", "|>=-P10D|");
 
         assertPrimitive("duration_attr104", "PD; P4D");
+        assertPrimitive("duration_attr105", "PD; -P4D");
         assertPrimitive("duration_attr118", "|<=PT1H|; PT30M");
         assertPrimitive("duration_attr128", "Pw/|P266D..P277D|; P268D"); // duration in weeks is serialized as days
 

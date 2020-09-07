@@ -1,9 +1,12 @@
 package com.nedap.archie.datetime;
 
+import java.time.Duration;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DecimalStyle;
 import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalAmount;
 
 public class DateTimeSerializerFormatters {
 
@@ -47,4 +50,28 @@ public class DateTimeSerializerFormatters {
             .append(ISO_8601_TIME)
             .toFormatter()
             .withDecimalStyle(DecimalStyle.STANDARD.withDecimalSeparator(','));
+
+    public static String serializeDuration(TemporalAmount amount) {
+        if(amount instanceof Duration) {
+            return serializeDuration((Duration) amount);
+        } else if (amount instanceof Period) {
+            return serializeDuration((Period) amount);
+        }
+        return amount.toString();
+    }
+
+    private static String serializeDuration(Duration duration) {
+        if(duration.isNegative()) {
+            return "-" + Duration.ZERO.minus(duration).toString();
+        }
+        return duration.toString();
+    }
+
+    private static String serializeDuration(Period period) {
+        if(period.isNegative()) {
+            return "-" + Period.ZERO.minus(period).toString();
+        }
+        return period.toString();
+    }
+
 }
