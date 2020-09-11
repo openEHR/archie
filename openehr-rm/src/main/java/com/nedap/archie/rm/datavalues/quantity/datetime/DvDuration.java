@@ -58,12 +58,6 @@ public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<
 	}
 
 	@Override
-//    @XmlElements({
-//            @XmlElement(type=Period.class),
-//            @XmlElement(type=Duration.class)
-//    })    
-    @JsonDeserialize(using=DurationDeserializer.class)
-	@JsonSerialize(using= DurationSerializer.class)
     public TemporalAmount getValue() {
         return value;
     }

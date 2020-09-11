@@ -65,6 +65,12 @@ public class DateTimeParserTest {
     }
 
     @Test
+    public void durations() {
+        assertEquals(Duration.of(12, ChronoUnit.HOURS), DateTimeParsers.parseDurationValue("PT12H"));
+        assertEquals(Duration.of(12, ChronoUnit.HOURS), DateTimeParsers.parseDurationValue("P1Y10DT12H"));
+    }
+
+    @Test
     public void negativeDurations() {
         TemporalAmount minusTwoSeconds = DateTimeParsers.parseDurationValue("-PT2S");
         assertEquals(Duration.of(-2, ChronoUnit.SECONDS), minusTwoSeconds);

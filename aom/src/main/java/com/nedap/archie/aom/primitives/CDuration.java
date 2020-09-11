@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.json.DurationDeserializer;
+import com.nedap.archie.json.DurationIntervalToStringMapper;
 import com.nedap.archie.json.DurationSerializer;
+import com.nedap.archie.json.StringIntervalToDurationMapper;
 import com.nedap.archie.xml.adapters.DurationIntervalXmlAdapter;
 import com.nedap.archie.xml.adapters.DurationXmlAdapter;
 
@@ -41,21 +43,18 @@ public class CDuration extends CTemporal<TemporalAmount> {
     public void setAssumedValue(TemporalAmount assumedValue) {
         this.assumedValue = assumedValue;
     }
-
-    //TODO: should add a custom serializer/deserializer in JSON to serialize/deserialize negative values correctly
+    
     @Override
     public List<Interval<TemporalAmount>> getConstraint() {
         return constraint;
     }
 
     @Override
+    //@JsonDeserialize(converter= StringIntervalToDurationMapper.class)
     public void setConstraint(List<Interval<TemporalAmount>> constraint) {
         this.constraint = constraint;
     }
 
-    public List<Interval<TemporalAmount>> getConstraints() {
-        return constraint;
-    }
 
     @Override
     public void addConstraint(Interval<TemporalAmount> constraint) {

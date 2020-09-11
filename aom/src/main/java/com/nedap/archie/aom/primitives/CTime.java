@@ -46,10 +46,6 @@ public class CTime extends CTemporal<TemporalAccessor> {
         this.constraint = constraint;
     }
 
-    public List<Interval<TemporalAccessor>> getConstraints() {
-        return constraint;
-    }
-
     @Override
     public void addConstraint(Interval<TemporalAccessor> constraint) {
         this.constraint.add(constraint);

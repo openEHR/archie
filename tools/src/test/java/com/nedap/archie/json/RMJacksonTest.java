@@ -3,16 +3,18 @@ package com.nedap.archie.json;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Composition;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class RMParseTest {
+public class RMJacksonTest {
 
     @Test
     public void parseEhrBaseJsonExample() throws Exception {
@@ -31,5 +33,33 @@ public class RMParseTest {
             Map uidMap = (Map) mapped.get("uid");
             assertEquals("__THIS_SHOULD_BE_MODIFIED_BY_THE_TEST_::piri.ehrscape.com::1", uidMap.get("value"));
         }
+    }
+
+    @Test
+    public void parseDuration() throws Exception {
+        String json = "{\n" +
+                "  \"_type\": \"DV_DURATION\",\n" +
+                "  \"value\": \"PT12H20S\"\n" +
+                "}";
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        DvDuration dvDuration = objectMapper.readValue(json, DvDuration.class);
+        assertEquals(Duration.parse("PT12H20S"), dvDuration.getValue());
+
+        String s = objectMapper.writeValueAsString(dvDuration);
+        assertTrue(s.contains("PT12H20S"));
+    }
+
+    @Test
+    public void parseNegativeDuration() throws Exception {
+        String json = "{\n" +
+                "  \"_type\": \"DV_DURATION\",\n" +
+                "  \"value\": \"-PT12H20S\"\n" +
+                "}";
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        DvDuration dvDuration = objectMapper.readValue(json, DvDuration.class);
+        assertEquals(Duration.parse("-PT12H20S"), dvDuration.getValue());
+
+        String s = objectMapper.writeValueAsString(dvDuration);
+        assertTrue(s.contains("-PT12H20S"));
     }
 }

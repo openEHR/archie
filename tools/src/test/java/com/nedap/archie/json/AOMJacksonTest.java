@@ -1,13 +1,20 @@
 package com.nedap.archie.json;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.primitives.CDuration;
+import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -17,7 +24,7 @@ import static org.junit.Assert.*;
  *
  * Created by pieter.bos on 06/07/16.
  */
-public class AOMParseTest {
+public class AOMJacksonTest {
 
 
 
@@ -46,5 +53,19 @@ public class AOMParseTest {
             System.out.println(reserialized);
             JacksonUtil.getObjectMapper().readValue(reserialized, Archetype.class);
         }
+    }
+
+    @Test
+    public void cDuration() throws Exception {
+        CDuration cDuration = new CDuration();
+        cDuration.addConstraint(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), Duration.of(10, ChronoUnit.SECONDS)));
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        String cDurationJson = objectMapper.writeValueAsString(cDuration);
+        assertTrue(cDurationJson.contains("-PT10H"));
+        assertTrue(cDurationJson.contains("PT10S"));
+        System.out.println(cDurationJson);
+
+        CDuration parsedDuration = objectMapper.readValue(cDurationJson, CDuration.class);
+        assertEquals(Lists.newArrayList(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), Duration.of(10, ChronoUnit.SECONDS))), parsedDuration.getConstraint());
     }
 }
