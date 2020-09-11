@@ -1,15 +1,20 @@
 package com.nedap.archie.xml;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 
+import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.json.RMJacksonConfiguration;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rm.datastructures.Cluster;
+import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
@@ -17,15 +22,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Period;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by pieter.bos on 30/06/16.
@@ -85,6 +93,64 @@ public class JAXBRMRoundTripTest {
 
     private RMQueryContext getQueryContext(Cluster cluster) {
         return new RMQueryContext(ArchieRMInfoLookup.getInstance(), cluster, JAXBUtil.getArchieJAXBContext());
+    }
+
+    @Test
+    public void serializeDuration() throws Exception {
+        Element element = new Element("id6",
+                new DvText("duration"),
+                new DvDuration(Period.parse("P10D")));
+        StringWriter writer = new StringWriter();
+        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(element, writer);
+        String xml = writer.toString();
+        assertTrue(xml, xml.contains("P10D"));
+    }
+
+    @Test
+    public void serializeNegativeDuration() throws Exception {
+        Element element = new Element("id6",
+                new DvText("duration"),
+                new DvDuration(Period.parse("-P10D")));
+        StringWriter writer = new StringWriter();
+        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(element, writer);
+        String xml = writer.toString();
+        assertTrue(xml, xml.contains("-P10D"));
+    }
+
+    @Test
+    public void parseDuration() throws Exception {
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+                "<element archetype_node_id=\"id6\" xmlns:ns2=\"http://schemas.openehr.org/v1\">\n" +
+                "    <name>\n" +
+                "        <value>duration</value>\n" +
+                "    </name>\n" +
+                "    <value xsi:type=\"DV_DURATION\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
+                "        <value>P10D</value>\n" +
+                "    </value>\n" +
+                "</element>";
+        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
+        assertEquals(Period.parse("P10D"), ((DvDuration)unmarshalled.getValue()).getValue());
+    }
+
+    @Test
+    public void parseNegativeDuration() throws Exception {
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+                "<element archetype_node_id=\"id6\" xmlns:ns2=\"http://schemas.openehr.org/v1\">\n" +
+                "    <name>\n" +
+                "        <value>duration</value>\n" +
+                "    </name>\n" +
+                "    <value xsi:type=\"DV_DURATION\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
+                "        <value>-P10D</value>\n" +
+                "    </value>\n" +
+                "</element>";
+        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
+        assertEquals(Period.parse("-P10D"), ((DvDuration)unmarshalled.getValue()).getValue());
     }
 
 }
