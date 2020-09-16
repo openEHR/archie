@@ -20,6 +20,9 @@ import static com.nedap.archie.xml.adapters.StringDictionaryUtil.*;
 public class ResourceDescriptionAdapter extends XmlAdapter<XmlResourceDescription, ResourceDescription> {
     @Override
     public ResourceDescription unmarshal(XmlResourceDescription v) throws Exception {
+        if(v == null) {
+            return null;
+        }
         ResourceDescription result = new ResourceDescription();
         result.setConversionDetails(convertStringDictionaryListToStringMap(v.getConversionDetails()));
         result.setCopyright(v.getCopyright());
@@ -40,6 +43,9 @@ public class ResourceDescriptionAdapter extends XmlAdapter<XmlResourceDescriptio
 
     @Override
     public XmlResourceDescription marshal(ResourceDescription v) throws Exception {
+        if(v == null) {
+            return null;
+        }
         XmlResourceDescription result = new XmlResourceDescription();
         result.setConversionDetails(convertStringMapIntoStringDictionaryList(v.getConversionDetails()));
         result.setCopyright(v.getCopyright());

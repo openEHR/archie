@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.json.DurationDeserializer;
-import com.nedap.archie.json.DurationIntervalToStringMapper;
 import com.nedap.archie.json.DurationSerializer;
-import com.nedap.archie.json.StringIntervalToDurationMapper;
 import com.nedap.archie.xml.adapters.DurationIntervalXmlAdapter;
 import com.nedap.archie.xml.adapters.DurationXmlAdapter;
 
