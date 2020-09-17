@@ -95,30 +95,15 @@ VARIABLE_DECLARATION: SYM_VARIABLE_START RULE_IDENTIFIER SYM_COLON RULE_IDENTIFI
 fragment RULE_IDENTIFIER: ALPHA_UC_ID | ALPHA_LC_ID;
 
 
-EMBEDDED_URI: '<' WS? URI (',' URI)* WS? '>';
+EMBEDDED_URI: '<' ([ \t\r\n]|CMT_LINE)* URI ([ \t\r\n]|CMT_LINE)* '>';
 // URIs - simple recogniser based on https://tools.ietf.org/html/rfc3986 and
 // http://www.w3.org/Addressing/URL/5_URI_BNF.html
 fragment URI : URI_SCHEME ':' URI_HIER_PART ( '?' URI_QUERY )? ('#' URI_FRAGMENT)? ;
 
-
-// URN. TODO: check if still necessary
-//fragment URN: ASSIGNED_NAME RQ_COMPONENTS ('#' F_COMPONENT)?;
-//fragment ASSIGNED_NAME: 'urn:' NID ':' NSS;
-//fragment NID: ALPHANUM_CHAR (ALPHANUM_CHAR | '_')* ALPHANUM_CHAR;
-//fragment NSS: URI_XPALPHA (URI_XPALPHA | '/')*;
-//fragment RQ_COMPONENTS: ('?+' R_COMPONENT)? ('?=' Q_COMPONENT)?;
-//fragment R_COMPONENT: URI_XPALPHA (URI_XPALPHA | '/' | '?')*;
-//fragment Q_COMPONENT: URI_XPALPHA (URI_XPALPHA | '/' | '?')*;
-//fragment F_COMPONENT: URI_XALPHA+ ( '+' URI_XALPHA+ )* ;
-//fragment URI_XPALPHA : URI_XALPHA | '+' ;
-//fragment URI_XALPHA : ALPHANUM_CHAR | URI_SAFE | URI_EXTRA | URI_PCT_ENCODED ;
-//fragment URI_SAFE   : [$@\\._-] ;
-//fragment URI_EXTRA  : [!*"'()] ;
-
 fragment URI_HIER_PART : ( '//' URI_AUTHORITY ) URI_PATH_ABEMPTY
     | URI_PATH_ABSOLUTE
-    | URI_PATH_ROOTLESS;
-    //| URI_PATH_EMPTY;
+    | URI_PATH_ROOTLESS
+    | URI_PATH_EMPTY;
 
 fragment URI_SCHEME : ALPHA_CHAR ( ALPHA_CHAR | DIGIT | '+' | '-' | '.')* ;
 
