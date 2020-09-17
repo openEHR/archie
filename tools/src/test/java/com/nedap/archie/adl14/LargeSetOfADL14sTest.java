@@ -47,7 +47,7 @@ public class LargeSetOfADL14sTest {
     @Test
     public void parseUri() {
 //        CodePointCharStream codePointCharStream = CharStreams.fromString("terminology://SNOMED-CT.com/408733002?subset=Diabetic");//%20Retinopathy%20Study%20field");
-        CodePointCharStream codePointCharStream = CharStreams.fromString("http://test.com/bla?test=green");
+        CodePointCharStream codePointCharStream = CharStreams.fromString("<http://test.com/bla?test=green>");
         Adl14Lexer adl14Lexer = new Adl14Lexer(codePointCharStream);
         assertEquals(1, adl14Lexer.getAllTokens().size());
     }
@@ -55,7 +55,7 @@ public class LargeSetOfADL14sTest {
     @Test
     public void parseUrn() {
 //        CodePointCharStream codePointCharStream = CharStreams.fromString("terminology://SNOMED-CT.com/408733002?subset=Diabetic");//%20Retinopathy%20Study%20field");
-        CodePointCharStream codePointCharStream = CharStreams.fromString("urn:oin:2.3.1.4.4545.22.23");
+        CodePointCharStream codePointCharStream = CharStreams.fromString("< urn:oin:2.3.1.4.4545.22.23 >");
         Adl14Lexer adl14Lexer = new Adl14Lexer(codePointCharStream);
         assertEquals(1, adl14Lexer.getAllTokens().size());
     }

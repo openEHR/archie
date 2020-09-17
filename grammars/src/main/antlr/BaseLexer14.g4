@@ -125,15 +125,16 @@ fragment IDENTIFIER : ALPHA_CHAR WORD_CHAR* ;
 // --------------------- composed primitive types -------------------
 
 TERM_CODE_REF : '[' TERM_CODE_CHAR+ ( '(' TERM_CODE_CHAR+ ')' )? '::' TERM_CODE_CHAR+ ']' ;  // e.g. [ICD10AM(1998)::F23]; [ISO_639-1::en]
-fragment TERM_NAME_CHAR: NAME_CHAR | '.';
-fragment TERM_CODE_CHAR: NAME_CHAR | '.' | ',' | WS | LINE | CMT_LINE;
+fragment TERM_CODE_CHAR: NAME_CHAR | '.';
 
 VARIABLE_DECLARATION: SYM_VARIABLE_START RULE_IDENTIFIER SYM_COLON RULE_IDENTIFIER;
 fragment RULE_IDENTIFIER: ALPHA_UC_ID | ALPHA_LC_ID;
 
+EMBEDDED_URI: '<' WS? URI (',' URI)* WS? '>';
+
 // URIs - simple recogniser based on https://tools.ietf.org/html/rfc3986 and
 // http://www.w3.org/Addressing/URL/5_URI_BNF.html
-URI :  //URN |
+fragment URI :  //URN |
     URI_SCHEME ':' URI_HIER_PART ( '?' URI_QUERY )? ('#' URI_FRAGMENT)? ;
 
 
@@ -171,7 +172,7 @@ fragment URI_DEC_OCTET  : DIGIT | [1-9] DIGIT | '1' DIGIT DIGIT | '2' [0-4] DIGI
 fragment URI_REG_NAME: (URI_UNRESERVED | URI_PCT_ENCODED | URI_SUB_DELIMS)*;
 fragment HEX_QUAD : HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT ;
 
-fragment URI_PATH_ABEMPTY: ('/' URI_SEGMENT ) +;
+fragment URI_PATH_ABEMPTY: ('/' URI_SEGMENT ) *;
 fragment URI_PATH_ABSOLUTE: '/' ( URI_SEGMENT_NZ ( '/' URI_SEGMENT )* )?;
 fragment URI_PATH_NOSCHEME: URI_SEGMENT_NZ_NC ( '/' URI_SEGMENT )*;
 fragment URI_PATH_ROOTLESS: URI_SEGMENT_NZ ( '/' URI_SEGMENT )*;
@@ -194,10 +195,6 @@ fragment URI_RESERVED: URI_GEN_DELIMS | URI_SUB_DELIMS;
 fragment URI_GEN_DELIMS: ':' | '/' | '?' | '#' | '[' | ']' | '@'; //TODO: migrate to [/?#...] notation
 fragment URI_SUB_DELIMS: '!' | '$' | '&' | '\'' | '(' | ')'
                          | '*' | '+' | ',' | ';' | '=';
-
-
-
-
 
 // According to IETF http://tools.ietf.org/html/rfc1034[RFC 1034] and http://tools.ietf.org/html/rfc1035[RFC 1035],
 // as clarified by http://tools.ietf.org/html/rfc2181[RFC 2181] (section 11)
