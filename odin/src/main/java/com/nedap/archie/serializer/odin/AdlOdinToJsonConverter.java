@@ -135,7 +135,7 @@ public class AdlOdinToJsonConverter {
                 output.append("");
             }
             output.append("\"");
-            output.append(uri, 1, uri.length()-1);
+            output.append(uri.substring(1, uri.length()-1).trim());
             output.append("\"");
         } else if (primitiveObjectContext != null) {
             if(primitiveObjectContext.primitive_value() != null) {
