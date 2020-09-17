@@ -274,6 +274,25 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
     }
 
     public void visitObject_value_block_pre(odinParser.Object_value_blockContext ctx) {
+        if(ctx.EMBEDDED_URI() != null) {
+            Object object = getStack().peek();
+            String value = ctx.getText();
+            if(value != null && value.length() >= 2) {
+                value = value.substring(1, value.length() - 1).trim();
+            }
+            UriObject uri = new UriObject();
+            uri.setValue(value);
+            if(object instanceof OdinAttribute) { //URI is the value of an attribute
+                OdinAttribute attribute = (OdinAttribute) object;
+                attribute.getChildren().add(uri);
+            } else if(object instanceof StringObject) { //URI is probably the value of some keyed object
+                getStack().push(uri);
+            } else {
+                throw new RuntimeException("Invalid type " + object.getClass().getCanonicalName());
+            }
+            return;
+        }
+
         int index = 1;
         if(ctx.getChildCount() == 6) {
             index = 4;
@@ -300,6 +319,8 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
             }
             addComplexObjectToStack(complexObject);
         }
+
+
     }
 
     /**
@@ -1211,368 +1232,5 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
         stack.push(string);
     }
 
-    /**
-     * Method creates a new CompositeOdinObject-valued attribute, sets its type to a new type,
-     * adds attribute to parent type on the stack and sets the value of the attribute
-     * as the new parent on the stack.
-     *
-     * @param attributeId The attributeId to assign to the new attribute
-     */
-    private void addNewComplexObjectValuedAttributeToStack(String attributeId) {
-        OdinAttribute attribute = new OdinAttribute();
-        attribute.setName(attributeId);
-        CompositeOdinObject parent = (CompositeOdinObject) stack.peek();
-        parent.addAttribute(attribute);
-        CompositeOdinObject attrBody = new CompositeOdinObject();
-        attribute.getChildren().add(attrBody);
-        addComplexObjectToStack(attrBody);
-    }
 
-    /**************************************************************************************************
-     * NAVIGATION HELPER METHODS
-     *
-     * The following methods are convenience methods to help code readability
-     * when navigating the ancestor or dependant paths during lookahead operations
-     **************************************************************************************************/
-
-
-    /**
-     * <p>Method return true if ctx has an ancestor that is of type nodeClass. Else, returns false;</p>
-     *
-     * @param nodeClass The class we are looking for in the ancestor path
-     * @param ctx The node in the parse tree where we begin the search
-     * @return True if the node is found, false otherwise
-     */
-    private boolean hasParentNodeOfTypeInPath(Class nodeClass, ParseTree ctx) {
-        boolean found = false;
-        ParseTree currentNode = ctx;
-        while (currentNode != null) {
-            if (currentNode.getClass().equals(nodeClass)) {
-                found = true;
-                break;
-            }
-            currentNode = currentNode.getParent();
-        }
-        return found;
-    }
-
-    /**
-     * Returns the third child (i.e., object_block) from the attr_val definition.
-     * <p>
-     * <code>
-     * <pre>
-     *         attr_val : rm_attribute_id '=' object_block ;
-     *     </pre>
-     * </code>
-     *
-     * @param ctx The attr_val context parent
-     * @return The object_block child
-     */
-    private odinParser.Object_blockContext navigateToObjectBlock(odinParser.Attr_valContext ctx) {
-        return (odinParser.Object_blockContext) ctx.getChild(2);
-    }
-
-    /**
-     * Returns object_value_block if present or null otherwise.
-     * <p>
-     * <code>
-     * <pre>
-     *         object_block :
-     *              object_value_block
-     *              | object_reference_block
-     *              ;
-     *     </pre>
-     * </code>
-     *
-     * @param ctx The object_block parent node in the parse tree
-     * @return The object_value_block child node if it exists given the grammar
-     */
-    private odinParser.Object_value_blockContext navigateToObjectValueBlock(odinParser.Object_blockContext ctx) {
-        ParseTree child = ctx.getChild(0);
-        if (child instanceof odinParser.Object_value_blockContext) {
-            return (odinParser.Object_value_blockContext) child;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the attr_vals child of object_value_block
-     * <br>
-     * <code>
-     * <pre>
-     *         object_value_block : ( '(' rm_type_id ')' )? '<' ( primitive_object | attr_vals? | keyed_object* ) '>' ;
-     *     </pre>
-     * </code>
-     * <p>
-     * Handles the rm_type_id clause type
-     *
-     * @param ctx The object_value_block parent node
-     * @return The attr_vals child if it exists in this instance
-     */
-    private odinParser.Attr_valsContext navigateToAttrVals(odinParser.Object_value_blockContext ctx) {
-        int numberOfChildren = ctx.getChildCount(); //object_value_block may have either six or three children
-        int index = 1; //In those cases where rm_type_id is optional
-        if (numberOfChildren == 6) { //In those cases where rm_type_id is specified
-            index = 4;
-        }
-        ParseTree child = ctx.getChild(index);
-        if (child instanceof odinParser.Attr_valsContext) {
-            return (odinParser.Attr_valsContext) child;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the primitive_object parent of primitive interval context
-     *
-     * @param primitiveInterval The primitive_interval_value node
-     * @return The primitive_object parent of that node
-     */
-    private odinParser.Primitive_objectContext getPrimitiveObjectAncestor(odinParser.Primitive_interval_valueContext primitiveInterval) {
-        return (odinParser.Primitive_objectContext) primitiveInterval.getParent();
-    }
-
-    /**
-     * Returns the object_value_block parent of primitive_object
-     *
-     * @param primitiveObject The primitive_object node
-     * @return The object_value_block parent of the node
-     */
-    private odinParser.Object_value_blockContext getObjectValueBlockAncestor(odinParser.Primitive_objectContext primitiveObject) {
-        return (odinParser.Object_value_blockContext) primitiveObject.getParent();
-    }
-
-    /**
-     * Returns the object_block parent of object_value if it exists or null otherwise
-     *
-     * @param objectValue The object_value_block node
-     * @return The parent of the object_value_block node
-     */
-    private odinParser.Object_blockContext getObjectBlockAncestor(odinParser.Object_value_blockContext objectValue) {
-        ParseTree tree = objectValue.getParent();
-        if (tree instanceof odinParser.Object_blockContext) {
-            return (odinParser.Object_blockContext) tree;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the attr_val parent of object if it exists or null otherwise
-     *
-     * @param object The object_block node
-     * @return The attr_val parent of the object_block_node
-     */
-    private odinParser.Attr_valContext getAttrValAncestor(odinParser.Object_blockContext object) {
-        ParseTree tree = object.getParent();
-        if (tree instanceof odinParser.Attr_valContext) {
-            return (odinParser.Attr_valContext) tree;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the primitive_value parent of string_value if it exists or null otherwise
-     *
-     * @param stringValue A odinParser.String_valueContext parse tree
-     * @return The parent primitive_value node for this string_value node in the parse tree
-     */
-    private odinParser.Primitive_valueContext getPrimitiveValueAncestor(odinParser.String_valueContext stringValue) {
-        ParseTree tree = stringValue.getParent();
-        if (tree instanceof odinParser.Primitive_valueContext) {
-            return (odinParser.Primitive_valueContext) stringValue.getParent();
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the primitive_value parent of boolean_value if it exists or null otherwise
-     *
-     * @param booleanValue The boolean_value node
-     * @return The primitive_value parent of this boolean_value node
-     */
-    private odinParser.Primitive_valueContext getPrimitiveValueAncestor(odinParser.Boolean_valueContext booleanValue) {
-        ParseTree tree = booleanValue.getParent();
-        if (tree instanceof odinParser.Primitive_valueContext) {
-            return (odinParser.Primitive_valueContext) tree;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the primitive_object parent of primitive_value if it exists or null otherwise
-     *
-     * @param primitiveValue The primitive_value node
-     * @return The primitive_object parent of the primitive_value node
-     */
-    private odinParser.Primitive_objectContext getPrimitiveObjectAncestor(odinParser.Primitive_valueContext primitiveValue) {
-        ParseTree tree = primitiveValue.getParent();
-        if (tree instanceof odinParser.Primitive_objectContext) {
-            return (odinParser.Primitive_objectContext) tree;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the primitive_object parent of primitive_list_value if it exists or null otherwise
-     *
-     * @param primitiveListValue The primitive_list_value node
-     * @return The primitive_object parent of the primitive_list_value node
-     */
-    private odinParser.Primitive_objectContext getPrimitiveObjectAncestor(odinParser.Primitive_list_valueContext primitiveListValue) {
-        ParseTree tree = primitiveListValue.getParent();
-        if (tree instanceof odinParser.Primitive_objectContext) {
-            return (odinParser.Primitive_objectContext) tree;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the primitive_list_value parent of string_list_value
-     *
-     * @param stringListValue The string_list_value node
-     * @return The primitive_list_value parent of the string_list_value node
-     */
-    private odinParser.Primitive_list_valueContext getPrimitiveListAncestor(odinParser.String_list_valueContext stringListValue) {
-        return (odinParser.Primitive_list_valueContext) stringListValue.getParent();
-    }
-
-    /**
-     * Returns true if attr_val is in the descendant path of attr_val shown below
-     *
-     * <code>
-     *     <pre>
-     *         attr_val -(has-child)-> object_block -(has-child)-> object_value_block -(has-child)-> attr_vals
-     *     </pre>
-     * </code>
-     *
-     * @param ctx The attr_val node
-     * @return The attr_vals parent of the attr_val node argument
-     */
-    private odinParser.Attr_valsContext navigateToFirstAttrValsDescendant(odinParser.Attr_valContext ctx) {
-        odinParser.Object_blockContext object = navigateToObjectBlock(ctx);
-        odinParser.Object_value_blockContext objectValue = navigateToObjectValueBlock(object);
-        if (objectValue != null) {
-            return navigateToAttrVals(objectValue);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns true if attr_val is in the ancestor path of primitive_interval_value shown below
-     *
-     * <code>
-     *     <pre>
-     *         primitive_interval_value -(has-parent)-> primitive_object -(has-parent)-> object_value_block -(has-parent)-> object_block -(has-parent)-> attr_val
-     *     </pre>
-     * </code>
-     *
-     * @param primitiveInterval The primitive_interval_value node
-     * @return True if this node has an attr_val ancestor
-     */
-    private boolean primitiveIntervalHasAttrValAncestor(odinParser.Primitive_interval_valueContext primitiveInterval) {
-        odinParser.Primitive_objectContext primitiveObject = getPrimitiveObjectAncestor(primitiveInterval);
-        odinParser.Object_value_blockContext objectValue = getObjectValueBlockAncestor(primitiveObject);
-        odinParser.Object_blockContext object = getObjectBlockAncestor(objectValue);
-        odinParser.Attr_valContext attrVal = null;
-        if (object != null) {
-            attrVal = getAttrValAncestor(object);
-        }
-        return attrVal != null;
-    }
-
-    /**
-     * Returns true if attr_val is in the ancestor path of string_value shown below
-     *
-     * <code>
-     *     <pre>
-     *         string_value -(has-parent)-> primitive_value -(has-parent)-> primitive_object -(has-parent)-> object_value_block -(has-parent)-> object_block -(has-parent)-> attr_val
-     *     </pre>
-     * </code>
-     *
-     * @param stringValue The string_value node
-     * @return True if the string_value node has an attr_val ancestor
-     */
-    private boolean stringValueHasAttrValAncestor(odinParser.String_valueContext stringValue) {
-        odinParser.Primitive_valueContext primitiveValue = getPrimitiveValueAncestor(stringValue);
-        return primitiveValue != null && primitiveValueHasAttrValAncestor(primitiveValue);
-    }
-
-    /**
-     * Returns true if attr_val is in the ancestor path of boolean_value shown below
-     *
-     * <code>
-     *     <pre>
-     *         boolean_value -(has-parent)-> primitive_value -(has-parent)-> primitive_object -(has-parent)-> object_value_block -(has-parent)-> object_block -(has-parent)-> attr_val
-     *     </pre>
-     * </code>
-     *
-     * @param booleanValue The boolean_value node
-     * @return True if this boolean_value has an attr_val ancestor
-     */
-    private boolean booleanValueHasAttrValAncestor(odinParser.Boolean_valueContext booleanValue) {
-        odinParser.Primitive_valueContext primitiveValue = getPrimitiveValueAncestor(booleanValue);
-        return (primitiveValue != null) && primitiveValueHasAttrValAncestor(primitiveValue);
-    }
-
-    /**
-     * Returns true if attr_val is in the ancestor path of primitive_value shown below
-     *
-     * <code>
-     *     <pre>
-     *         primitive_value -(has-parent)-> primitive_object -(has-parent)-> object_value_block -(has-parent)-> object_block -(has-parent)-> attr_val
-     *     </pre>
-     * </code>
-     *
-     * @param primitiveValue The primitive_value node
-     * @return True if this node has an attr_val ancestor
-     */
-    private boolean primitiveValueHasAttrValAncestor(odinParser.Primitive_valueContext primitiveValue) {
-        odinParser.Primitive_objectContext primitiveObject = getPrimitiveObjectAncestor(primitiveValue);
-        if (primitiveObject == null) {
-            return false;
-        }
-        odinParser.Object_value_blockContext objectValue = getObjectValueBlockAncestor(primitiveObject);
-        odinParser.Object_blockContext object = getObjectBlockAncestor(objectValue);
-        odinParser.Attr_valContext attrVal = null;
-        if (object != null) {
-            attrVal = getAttrValAncestor(object);
-        }
-        return attrVal != null;
-    }
-
-    /**
-     * Returns true if attr_val is in the ancestor path of string_list_value shown below:
-     *
-     * <code>
-     *     <pre>
-     *         string-list-value -(has-parent)-> primitive_object -(has-parent)-> object_value_block -(has-parent)-> object_block -(has-parent)-> attr_val
-     *     </pre>
-     * </code>
-     *
-     * @param stringListValue The string_list_value node
-     * @return True if this node has an attr_val ancestor node
-     */
-    private boolean stringListValueHasAttrValAncestor(odinParser.String_list_valueContext stringListValue) {
-        odinParser.Primitive_list_valueContext primitiveListValue = getPrimitiveListAncestor(stringListValue);
-        odinParser.Primitive_objectContext primitiveObject = getPrimitiveObjectAncestor(primitiveListValue);
-        if (primitiveObject == null) {
-            return false;
-        }
-        odinParser.Object_value_blockContext objectValue = getObjectValueBlockAncestor(primitiveObject);
-        odinParser.Object_blockContext object = getObjectBlockAncestor(objectValue);
-        odinParser.Attr_valContext attrVal = null;
-        if (object != null) {
-            attrVal = getAttrValAncestor(object);
-        }
-        return attrVal != null;
-    }
 }
