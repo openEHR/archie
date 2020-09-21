@@ -130,12 +130,8 @@ public class AdlOdinToJsonConverter {
         } else if (keyedObjectContexts != null && !keyedObjectContexts.isEmpty()) {
             outputKeyedObjects(keyedObjectContexts, valueBlockContext.type_id());
         }  else if (valueBlockContext.EMBEDDED_URI() != null) {
-            String uri = valueBlockContext.EMBEDDED_URI().getText();
-            if(uri.length() < 2) {
-                output.append("");
-            }
             output.append("\"");
-            output.append(uri.substring(1, uri.length()-1).trim());
+            output.append(OdinEmbeddedUriParser.parseEmbeddedUri(valueBlockContext.EMBEDDED_URI().getText()));
             output.append("\"");
         } else if (primitiveObjectContext != null) {
             if(primitiveObjectContext.primitive_value() != null) {

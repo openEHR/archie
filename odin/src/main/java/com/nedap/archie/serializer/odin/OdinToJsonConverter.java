@@ -2,7 +2,6 @@ package com.nedap.archie.serializer.odin;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -105,12 +104,8 @@ public class OdinToJsonConverter {
         } else if (keyedObjectContexts != null && !keyedObjectContexts.isEmpty()) {
             outputKeyedObjects(keyedObjectContexts, valueBlockContext.type_id());
         } else if (valueBlockContext.EMBEDDED_URI() != null) {
-            String uri = valueBlockContext.EMBEDDED_URI().getText();
-            if(uri.length() < 2) {
-                output.append("");
-            }
             output.append("\"");
-            output.append(uri.substring(1, uri.length()-1).trim());
+            output.append(OdinEmbeddedUriParser.parseEmbeddedUri(valueBlockContext.EMBEDDED_URI().getText()));
             output.append("\"");
         } else if (primitiveObjectContext != null) {
             if(primitiveObjectContext.primitive_value() != null) {

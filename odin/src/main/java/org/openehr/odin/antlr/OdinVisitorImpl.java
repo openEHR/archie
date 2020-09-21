@@ -24,7 +24,7 @@ package org.openehr.odin.antlr;
 import com.nedap.archie.adlparser.antlr.odinBaseVisitor;
 import com.nedap.archie.adlparser.antlr.odinParser;
 import com.nedap.archie.adlparser.antlr.odinVisitor;
-import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import com.nedap.archie.serializer.odin.OdinEmbeddedUriParser;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.openehr.odin.*;
@@ -276,12 +276,8 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
     public void visitObject_value_block_pre(odinParser.Object_value_blockContext ctx) {
         if(ctx.EMBEDDED_URI() != null) {
             Object object = getStack().peek();
-            String value = ctx.getText();
-            if(value != null && value.length() >= 2) {
-                value = value.substring(1, value.length() - 1).trim();
-            }
             UriObject uri = new UriObject();
-            uri.setValue(value);
+            uri.setValue(OdinEmbeddedUriParser.parseEmbeddedUri(ctx.EMBEDDED_URI().getText()));
             if(object instanceof OdinAttribute) { //URI is the value of an attribute
                 OdinAttribute attribute = (OdinAttribute) object;
                 attribute.getChildren().add(uri);
