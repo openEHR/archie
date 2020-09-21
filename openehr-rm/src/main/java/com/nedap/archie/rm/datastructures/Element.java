@@ -21,7 +21,8 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ELEMENT", propOrder = {
         "value",
-        "nullFlavour"
+        "nullFlavour",
+        "nullReason"
 })
 @XmlRootElement(name = "element")
 public class Element extends Item implements SingleValuedDataValue<DataValue> {
@@ -33,6 +34,10 @@ public class Element extends Item implements SingleValuedDataValue<DataValue> {
     @XmlElement(name = "null_flavour")
     private DvCodedText nullFlavour;
 
+    @Nullable
+    @XmlElement(name = "null_reason")
+    private DvText nullReason;
+
     public Element() {
     }
 
@@ -41,10 +46,13 @@ public class Element extends Item implements SingleValuedDataValue<DataValue> {
         this.value = value;
     }
 
-    public Element(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable DataValue value, @Nullable DvCodedText nullFlavour) {
+    public Element(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails,
+                   @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName,
+                   @Nullable DataValue value, @Nullable DvCodedText nullFlavour, DvText nullReason) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
         this.value = value;
         this.nullFlavour = nullFlavour;
+        this.nullReason = nullReason;
     }
 
     public DvCodedText getNullFlavour() {
@@ -65,6 +73,14 @@ public class Element extends Item implements SingleValuedDataValue<DataValue> {
         this.value = value;
     }
 
+    @Nullable
+    public DvText getNullReason() {
+        return nullReason;
+    }
+
+    public void setNullReason(@Nullable DvText nullReason) {
+        this.nullReason = nullReason;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -73,11 +89,12 @@ public class Element extends Item implements SingleValuedDataValue<DataValue> {
         if (!super.equals(o)) return false;
         Element element = (Element) o;
         return Objects.equals(value, element.value) &&
-                Objects.equals(nullFlavour, element.nullFlavour);
+                Objects.equals(nullFlavour, element.nullFlavour) &&
+                Objects.equals(nullReason, element.nullReason);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), value, nullFlavour);
+        return Objects.hash(super.hashCode(), value, nullFlavour, nullReason);
     }
 }
