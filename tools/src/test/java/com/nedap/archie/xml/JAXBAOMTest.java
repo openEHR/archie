@@ -79,7 +79,7 @@ public class JAXBAOMTest {
                 "            <children xsi:type=\"C_DURATION\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
                 "                <constraint lower_unbounded=\"false\" upper_unbounded=\"false\" lower_included=\"true\" upper_included=\"true\">\n" +
                 "                    <lower xsi:type=\"xs:string\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">-P10D</lower>\n" +
-                "                    <upper xsi:type=\"xs:string\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">PT10S</upper>\n" +
+                "                    <upper xsi:type=\"xs:string\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">P10YT10S</upper>\n" +
                 "                </constraint>\n" +
                 "            </children>\n" +
                 "        </attributes>\n" +
@@ -93,7 +93,7 @@ public class JAXBAOMTest {
         Interval<TemporalAmount> constraint = parsedDuration.getConstraint().get(0);
         assertEquals(1, parsedDuration.getConstraint().size());
         assertEquals(
-                new Interval<TemporalAmount>(DateTimeParsers.parseDurationValue("-P10D"), DateTimeParsers.parseDurationValue("PT10S")),
+                new Interval<TemporalAmount>(DateTimeParsers.parseDurationValue("-P10D"), DateTimeParsers.parseDurationValue("P10YT10S")),
                 constraint);
     }
 

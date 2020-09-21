@@ -1,5 +1,7 @@
 package com.nedap.archie.datetime;
 
+import org.threeten.extra.PeriodDuration;
+
 import java.time.Duration;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -56,22 +58,31 @@ public class DateTimeSerializerFormatters {
             return serializeDuration((Duration) amount);
         } else if (amount instanceof Period) {
             return serializeDuration((Period) amount);
+        } else if (amount instanceof PeriodDuration) {
+            return serializePeriodDuration((PeriodDuration) amount);
         }
         return amount.toString();
     }
 
     private static String serializeDuration(Duration duration) {
         if(duration.isNegative()) {
-            return "-" + Duration.ZERO.minus(duration).toString();
+            return "-" + duration.negated();
         }
         return duration.toString();
     }
 
     private static String serializeDuration(Period period) {
         if(period.isNegative()) {
-            return "-" + Period.ZERO.minus(period).toString();
+            return "-" + period.negated();
         }
         return period.toString();
+    }
+
+    private static String serializePeriodDuration(PeriodDuration periodDuration) {
+        if(periodDuration.getPeriod().isNegative() || periodDuration.getDuration().isNegative()) {
+            return "-" + periodDuration.negated();
+        }
+        return periodDuration.toString();
     }
 
 }

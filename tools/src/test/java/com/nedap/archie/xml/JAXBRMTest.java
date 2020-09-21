@@ -4,6 +4,7 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import org.junit.Test;
+import org.threeten.extra.PeriodDuration;
 
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
@@ -72,5 +73,21 @@ public class JAXBRMTest {
         Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
         assertEquals(Period.parse("-P10D"), ((DvDuration)unmarshalled.getValue()).getValue());
+    }
+
+    @Test
+    public void parseNegativePeriodDuration() throws Exception {
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+                "<element archetype_node_id=\"id6\" xmlns:ns2=\"http://schemas.openehr.org/v1\">\n" +
+                "    <name>\n" +
+                "        <value>duration</value>\n" +
+                "    </name>\n" +
+                "    <value xsi:type=\"DV_DURATION\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
+                "        <value>-P10YT12H</value>\n" +
+                "    </value>\n" +
+                "</element>";
+        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
+        assertEquals(PeriodDuration.parse("-P10YT12H"), ((DvDuration)unmarshalled.getValue()).getValue());
     }
 }
