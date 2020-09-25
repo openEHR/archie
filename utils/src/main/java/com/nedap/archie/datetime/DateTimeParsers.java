@@ -13,6 +13,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAmount;
+import org.threeten.extra.PeriodDuration;
 
 /**
  * ISO date time parsers
@@ -67,8 +68,10 @@ public class DateTimeParsers {
 
     public static TemporalAmount parseDurationValue(String text) {
         try {
-            if(text.contains("T")) {
+            if(text.startsWith("PT") || text.startsWith("-PT")) {
                 return Duration.parse(text);
+            } else if (text.contains("T")) {
+                return PeriodDuration.parse(text);
             } else {
                 return Period.parse(text);
             }

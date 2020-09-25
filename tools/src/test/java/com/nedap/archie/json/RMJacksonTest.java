@@ -5,6 +5,7 @@ import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import org.junit.Test;
+import org.threeten.extra.PeriodDuration;
 
 import java.io.InputStream;
 import java.time.Duration;
@@ -61,5 +62,19 @@ public class RMJacksonTest {
 
         String s = objectMapper.writeValueAsString(dvDuration);
         assertTrue(s.contains("-PT12H20S"));
+    }
+
+    @Test
+    public void parsePeriodDuration() throws Exception {
+        String json = "{\n" +
+                "  \"_type\": \"DV_DURATION\",\n" +
+                "  \"value\": \"-P10Y10DT12H20S\"\n" +
+                "}";
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        DvDuration dvDuration = objectMapper.readValue(json, DvDuration.class);
+        assertEquals(PeriodDuration.parse("-P10Y10DT12H20S"), dvDuration.getValue());
+
+        String s = objectMapper.writeValueAsString(dvDuration);
+        assertTrue(s.contains("-P10Y10DT12H20S"));
     }
 }

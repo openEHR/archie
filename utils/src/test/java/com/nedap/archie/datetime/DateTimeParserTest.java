@@ -1,12 +1,11 @@
-package com.nedap.archie.adlparser;
+package com.nedap.archie.datetime;
 
-import com.nedap.archie.adlparser.treewalkers.TemporalConstraintParser;
-import com.nedap.archie.datetime.DateTimeParsers;
-import com.nedap.archie.datetime.DateTimeSerializerFormatters;
 import org.junit.Test;
+import org.threeten.extra.PeriodDuration;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAmount;
 
 import static org.junit.Assert.assertEquals;
@@ -81,9 +80,8 @@ public class DateTimeParserTest {
         TemporalAmount minusTwoYears = DateTimeParsers.parseDurationValue("-P2Y");
         assertEquals(Period.of(-2, 0, 0), minusTwoYears);
 
-        assertEquals("-PT2S", DateTimeSerializerFormatters.serializeDuration(minusTwoSeconds));
-        assertEquals("-P2Y", DateTimeSerializerFormatters.serializeDuration(minusTwoYears));
-        assertEquals("-PT12H2S", DateTimeSerializerFormatters.serializeDuration(minutsTwelHoursTwoSeconds));
+        TemporalAmount minusOneYear2Hours = DateTimeParsers.parseDurationValue("-P1YT2H");
+        assertEquals(PeriodDuration.of(Period.of(-1 ,0, 0), Duration.of(-2, ChronoUnit.HOURS)), minusOneYear2Hours);
     }
 
 }
