@@ -5,8 +5,12 @@ import org.threeten.extra.PeriodDuration;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -65,6 +69,39 @@ public class DateTimeSerializerFormattersTest {
         assertEquals("-PT2H", DateTimeSerializerFormatters.serializeDuration(minusTwoHoursPeriodDuration));
         assertEquals("-P1Y", DateTimeSerializerFormatters.serializeDuration(minusOneYearPeriodDuration));
 
+    }
+
+    /*
+     * If someone uses a non-standard TemporalAmount, it should still be serialized correctly.
+     */
+    @Test
+    public void serializeNonStandardTemporalAmount() {
+        TemporalAmount test = new TemporalAmount() {
+            @Override
+            public long get(TemporalUnit unit) {
+                return 0;
+            }
+
+            @Override
+            public List<TemporalUnit> getUnits() {
+                return Collections.emptyList();
+            }
+
+            @Override
+            public Temporal addTo(Temporal temporal) {
+                return temporal;
+            }
+
+            @Override
+            public Temporal subtractFrom(Temporal temporal) {
+                return temporal;
+            }
+
+            public String toString() {
+                return "toString";
+            }
+        };
+        assertEquals("toString", DateTimeSerializerFormatters.serializeDuration(test));
     }
 
     private String serializeDate(TemporalAccessor value) {
