@@ -26,6 +26,9 @@ allprojects {
   ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
   //archivesBaseName = 'archie'
 
+  tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:all', '-quiet')
+  }
 }
 
 gradle.ext.ossrhUsernameSafe = hasProperty('ossrhUsername') ? ossrhUsername : ""
