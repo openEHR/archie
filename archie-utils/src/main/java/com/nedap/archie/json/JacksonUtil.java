@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
 import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
@@ -91,7 +92,9 @@ public class JacksonUtil {
             objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         }
 
-        objectMapper.registerModule(new ArchieJavaTimeModule());
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.registerModule(new ArchieDurationModule());
+
 
         SimpleModule module = new SimpleModule();
         if(!configuration.isAddExtraFieldsInArchetypeId()) {

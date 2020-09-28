@@ -86,5 +86,5 @@ public class JAXBRMRoundTripTest {
     private RMQueryContext getQueryContext(Cluster cluster) {
         return new RMQueryContext(ArchieRMInfoLookup.getInstance(), cluster, JAXBUtil.getArchieJAXBContext());
     }
-    
+
 }
