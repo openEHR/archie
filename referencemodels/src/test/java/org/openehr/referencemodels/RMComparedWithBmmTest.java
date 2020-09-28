@@ -43,14 +43,14 @@ public class RMComparedWithBmmTest {
         typeNamesOverride.put("Interval.upper", "object");
 
         BmmRepository bmmRepository = BuiltinReferenceModels.getBmmRepository();
-        BmmModel model = bmmRepository.getModel("openehr_rm_1.0.4").getModel();
+        BmmModel model = bmmRepository.getModel("openehr_rm_1.1.0").getModel();
 
         List<ModelDifference> compared = new BmmComparison(extraParams, typeMap, typeNamesOverride).compare(model, ArchieRMInfoLookup.getInstance());
 
         compared.sort(Comparator.comparing((a) -> a.getClassName() + "." + a.getType().toString()));
         compared = compared.stream().filter((diff) -> {
                 BmmClass classDefinition = model.getClassDefinition(diff.getClassName());
-                return classDefinition == null ? true : !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.0.4");
+                return classDefinition == null ? true : !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.1.0");
             }).collect(Collectors.toList());
 
         Set<ModelDifference> knownDifferences = new HashSet();

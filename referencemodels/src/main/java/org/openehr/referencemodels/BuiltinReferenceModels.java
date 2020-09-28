@@ -71,7 +71,14 @@ public class BuiltinReferenceModels {
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_primitive_types_103.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_basic_types_103.bmm",
                 // "bmm/ISO_13606/2008/BMM/cen_EN13606_0.95.bmm",
-                "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_data_types_104.bmm"
+                "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_data_types_104.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_data_types_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_demographic_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_ehr_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_ehr_extract_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_structures_110.bmm"
+
                 // "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_FOUNDATION.v.0.0.3.bmm"
         };
         bmmRepository = new BmmRepository();
