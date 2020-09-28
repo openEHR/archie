@@ -1087,29 +1087,6 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
         return visitChildren(ctx);
     }
 
-//    /**
-//     * {@inheritDoc}
-//     *
-//     * <p>The default implementation returns the result of calling
-//     * {@link #visitChildren} on {@code ctx}.</p>
-//     */
-//    @Override
-//    public T visitUri_value(odinParser.Uri_valueContext ctx) {
-//        Object object = getStack().peek();
-//        String value = ctx.getText();
-//        UriObject uri = new UriObject();
-//        uri.setValue(value);
-//        if(object instanceof OdinAttribute) { //URI is the value of an attribute
-//            OdinAttribute attribute = (OdinAttribute) object;
-//            attribute.getChildren().add(uri);
-//        } else if(object instanceof StringObject) { //URI is probably the value of some keyed object
-//            getStack().push(uri);
-//        } else {
-//            throw new RuntimeException("Invalid type " + object.getClass().getCanonicalName());
-//        }
-//        return visitChildren(ctx);
-//    }
-
     /**
      * {@inheritDoc}
      *
