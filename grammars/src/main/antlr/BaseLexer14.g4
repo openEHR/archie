@@ -107,7 +107,7 @@ fragment SECOND   : [0-5][0-9] ;                 // seconds
 // ISO8601 DURATION PnYnMnWnDTnnHnnMnn.nnnS
 // here we allow a deviation from the standard to allow weeks to be // mixed in with the rest since this commonly occurs in medicine
 // TODO: the following will incorrectly match just 'P'
-ISO8601_DURATION : 'P' (DIGIT+ [yY])? (DIGIT+ [mM])? (DIGIT+ [wW])? (DIGIT+[dD])? ('T' (DIGIT+[hH])? (DIGIT+[mM])? (DIGIT+ ('.'DIGIT+)?[sS])?)? ;
+ISO8601_DURATION : '-'?'P' (DIGIT+ [yY])? (DIGIT+ [mM])? (DIGIT+ [wW])? (DIGIT+[dD])? ('T' (DIGIT+[hH])? (DIGIT+[mM])? (DIGIT+ ('.'DIGIT+)?[sS])?)? ;
 
 // ------------------- special word symbols --------------
 SYM_TRUE  : [Tt][Rr][Uu][Ee] ;

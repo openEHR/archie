@@ -1,9 +1,16 @@
 package com.nedap.archie.datetime;
 
 import org.junit.Test;
+import org.threeten.extra.PeriodDuration;
 
 import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -44,6 +51,57 @@ public class DateTimeSerializerFormattersTest {
     @Test
     public void serializeYearMonth() {
         assertEquals("2015-01", serializeDate(YearMonth.of(2015, 1)));
+    }
+
+    @Test
+    public void serializeNegativeDurations() {
+        TemporalAmount minusTwoSeconds = Duration.of(-2, ChronoUnit.SECONDS);
+        TemporalAmount minutsTwelHoursTwoSeconds = Duration.of(-2 - 12*60*60, ChronoUnit.SECONDS);
+        TemporalAmount minusTwoYears = Period.of(-2, 0, 0);
+        TemporalAmount minusOneYearOneHour = PeriodDuration.of(Period.of(-1 ,0, 0), Duration.of(-2, ChronoUnit.HOURS));
+        TemporalAmount minusTwoHoursPeriodDuration = PeriodDuration.of(Period.ZERO, Duration.of(-2, ChronoUnit.HOURS));
+        TemporalAmount minusOneYearPeriodDuration = PeriodDuration.of(Period.of(-1 ,0, 0), Duration.ZERO);
+
+        assertEquals("-PT2S", DateTimeSerializerFormatters.serializeDuration(minusTwoSeconds));
+        assertEquals("-P2Y", DateTimeSerializerFormatters.serializeDuration(minusTwoYears));
+        assertEquals("-PT12H2S", DateTimeSerializerFormatters.serializeDuration(minutsTwelHoursTwoSeconds));
+        assertEquals("-P1YT2H", DateTimeSerializerFormatters.serializeDuration(minusOneYearOneHour));
+        assertEquals("-PT2H", DateTimeSerializerFormatters.serializeDuration(minusTwoHoursPeriodDuration));
+        assertEquals("-P1Y", DateTimeSerializerFormatters.serializeDuration(minusOneYearPeriodDuration));
+
+    }
+
+    /*
+     * If someone uses a non-standard TemporalAmount, it should still be serialized correctly.
+     */
+    @Test
+    public void serializeNonStandardTemporalAmount() {
+        TemporalAmount test = new TemporalAmount() {
+            @Override
+            public long get(TemporalUnit unit) {
+                return 0;
+            }
+
+            @Override
+            public List<TemporalUnit> getUnits() {
+                return Collections.emptyList();
+            }
+
+            @Override
+            public Temporal addTo(Temporal temporal) {
+                return temporal;
+            }
+
+            @Override
+            public Temporal subtractFrom(Temporal temporal) {
+                return temporal;
+            }
+
+            public String toString() {
+                return "toString";
+            }
+        };
+        assertEquals("toString", DateTimeSerializerFormatters.serializeDuration(test));
     }
 
     private String serializeDate(TemporalAccessor value) {

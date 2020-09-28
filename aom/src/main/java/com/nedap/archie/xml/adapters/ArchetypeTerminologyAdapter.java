@@ -24,6 +24,9 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
 
     @Override
     public XmlArchetypeTerminology marshal(ArchetypeTerminology terminology) throws Exception {
+        if(terminology == null) {
+            return null;
+        }
         XmlArchetypeTerminology xmlTerminology = new XmlArchetypeTerminology();
         xmlTerminology.setOriginalLanguage(terminology.getOriginalLanguage());
         xmlTerminology.setDifferential(terminology.getDifferential());
@@ -69,6 +72,9 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
 
     @Override
     public ArchetypeTerminology unmarshal(XmlArchetypeTerminology xmlTerminology) throws Exception {
+        if(xmlTerminology == null) {
+            return null;
+        }
         ArchetypeTerminology terminology = new ArchetypeTerminology();
         terminology.setOriginalLanguage(xmlTerminology.getOriginalLanguage());
         terminology.setDifferential(xmlTerminology.getDifferential());

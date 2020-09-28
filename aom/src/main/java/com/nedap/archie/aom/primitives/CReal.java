@@ -41,10 +41,6 @@ public class CReal extends COrdered<Double> {
         this.constraint = constraint;
     }
 
-    public List<Interval<Double>> getConstraints() {
-        return constraint;
-    }
-
     @Override
     public void addConstraint(Interval<Double> constraint) {
         this.constraint.add(constraint);

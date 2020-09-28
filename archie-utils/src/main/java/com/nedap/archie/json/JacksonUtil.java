@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
 import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.nedap.archie.base.OpenEHRBase;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
@@ -93,6 +93,8 @@ public class JacksonUtil {
         }
 
         objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.registerModule(new ArchieDurationModule());
+
 
         SimpleModule module = new SimpleModule();
         if(!configuration.isAddExtraFieldsInArchetypeId()) {
