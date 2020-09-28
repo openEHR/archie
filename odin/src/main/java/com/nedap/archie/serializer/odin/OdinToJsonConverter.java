@@ -2,7 +2,6 @@ package com.nedap.archie.serializer.odin;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -104,6 +103,10 @@ public class OdinToJsonConverter {
             output(valueBlockContext.attr_vals().attr_val(), valueBlockContext.type_id());
         } else if (keyedObjectContexts != null && !keyedObjectContexts.isEmpty()) {
             outputKeyedObjects(keyedObjectContexts, valueBlockContext.type_id());
+        } else if (valueBlockContext.EMBEDDED_URI() != null) {
+            output.append("\"");
+            output.append(OdinEmbeddedUriParser.parseEmbeddedUri(valueBlockContext.EMBEDDED_URI().getText()));
+            output.append("\"");
         } else if (primitiveObjectContext != null) {
             if(primitiveObjectContext.primitive_value() != null) {
                 output(primitiveObjectContext.primitive_value());
@@ -251,9 +254,7 @@ public class OdinToJsonConverter {
     }
 
     private void output(Primitive_valueContext context) {
-        if(context.uri_value() != null) {
-            outputString(context.getText());
-        } else if (context.date_time_value() != null) {
+        if (context.date_time_value() != null) {
             outputString(context.getText());
         } else if (context.date_value()!= null) {
             outputString(context.getText());
