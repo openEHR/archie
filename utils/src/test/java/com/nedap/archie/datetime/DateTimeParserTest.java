@@ -66,7 +66,6 @@ public class DateTimeParserTest {
     @Test
     public void durations() {
         assertEquals(Duration.of(12, ChronoUnit.HOURS), DateTimeParsers.parseDurationValue("PT12H"));
-        //assertEquals(Duration.of(12, ChronoUnit.HOURS), DateTimeParsers.parseDurationValue("P1Y10DT12H"));
     }
 
     @Test

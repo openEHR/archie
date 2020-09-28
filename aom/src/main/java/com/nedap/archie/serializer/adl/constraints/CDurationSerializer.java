@@ -17,9 +17,7 @@ public class CDurationSerializer extends CTemporalSerializer<CDuration> {
 
     @Override
     protected String serializeConstraintValue(Object value) {
-        if(value instanceof TemporalAmount) {
-            return DateTimeSerializerFormatters.serializeDuration((TemporalAmount) value);
-        }
-        return super.serializeConstraintValue(value);
+        // value is always a TemporalAmount
+        return DateTimeSerializerFormatters.serializeDuration((TemporalAmount) value);
     }
 }

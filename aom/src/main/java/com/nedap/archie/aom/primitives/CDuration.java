@@ -1,10 +1,6 @@
 package com.nedap.archie.aom.primitives;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nedap.archie.base.Interval;
-import com.nedap.archie.json.DurationDeserializer;
-import com.nedap.archie.json.DurationSerializer;
 import com.nedap.archie.xml.adapters.DurationIntervalXmlAdapter;
 import com.nedap.archie.xml.adapters.DurationXmlAdapter;
 
@@ -36,8 +32,6 @@ public class CDuration extends CTemporal<TemporalAmount> {
     }
 
     @Override
-    @JsonDeserialize(using= DurationDeserializer.class)
-    @JsonSerialize(using= DurationSerializer.class)
     public void setAssumedValue(TemporalAmount assumedValue) {
         this.assumedValue = assumedValue;
     }
@@ -48,7 +42,6 @@ public class CDuration extends CTemporal<TemporalAmount> {
     }
 
     @Override
-    //@JsonDeserialize(converter= StringIntervalToDurationMapper.class)
     public void setConstraint(List<Interval<TemporalAmount>> constraint) {
         this.constraint = constraint;
     }

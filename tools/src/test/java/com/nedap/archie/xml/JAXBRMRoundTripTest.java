@@ -1,20 +1,14 @@
 package com.nedap.archie.xml;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
-
-import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.json.RMJacksonConfiguration;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
@@ -22,18 +16,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Period;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by pieter.bos on 30/06/16.
@@ -94,6 +86,5 @@ public class JAXBRMRoundTripTest {
     private RMQueryContext getQueryContext(Cluster cluster) {
         return new RMQueryContext(ArchieRMInfoLookup.getInstance(), cluster, JAXBUtil.getArchieJAXBContext());
     }
-
-
+    
 }
