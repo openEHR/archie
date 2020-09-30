@@ -10,6 +10,7 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.TerminologyCodeWithArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 
@@ -32,6 +33,8 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     @XmlElement(name="assumed_value")
     private TerminologyCode assumedValue;
     private List<String> constraint = new ArrayList<>();
+
+    private ConstraintStatus constraintStatus;
 
     @Override
     public TerminologyCode getAssumedValue() {
@@ -58,21 +61,37 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         this.constraint.add(constraint);
     }
 
+    public ConstraintStatus getConstraintStatus() {
+        return constraintStatus;
+    }
+
+    public void setConstraintStatus(ConstraintStatus constraintStatus) {
+        this.constraintStatus = constraintStatus;
+    }
+
+    public boolean isConstraintRequired() {
+        return getConstraintStatus() == null || getConstraintStatus() == ConstraintStatus.REQUIRED;
+    }
+
     @Override
     public boolean isValidValue(TerminologyCode value) {
         if(getConstraint().isEmpty()) {
             return true;
         }
-        for(String constraint:getConstraint()) {
-            if(constraint.startsWith("at")) {
-                if(value.getCodeString() != null && value.getCodeString().equals(constraint)) {
-                    return true;
-                }
-            } else if (constraint.startsWith("ac")) {
-                if(value.getTerminologyId() != null && value.getTerminologyId().equals(constraint)) {
-                    return true;
+        if(isConstraintRequired()) {
+            for (String constraint : getConstraint()) {
+                if (constraint.startsWith("at")) {
+                    if (value.getCodeString() != null && value.getCodeString().equals(constraint)) {
+                        return true;
+                    }
+                } else if (constraint.startsWith("ac")) {
+                    if (value.getTerminologyId() != null && value.getTerminologyId().equals(constraint)) {
+                        return true;
+                    }
                 }
             }
+        } else {
+            return true;
         }
         return false;
     }
@@ -164,23 +183,49 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         }
         String thisConstraint = constraint.get(0);
         String otherConstraint = otherCode.constraint.get(0);
+        Archetype archetype = this.getArchetype();
+        int archetypeSpecialisationDepth = archetype == null ? 0 : archetype.specializationDepth();
         if(AOMUtils.isValidValueSetCode(thisConstraint) && AOMUtils.isValidValueSetCode(otherConstraint)) {
             if (otherValueSet.isEmpty()) {
                 return true;
             }
-            if(!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
+            if (!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
                 return false;
             }
-            for (String value : valueSet) {
-                //TODO: redefine validation to actually work here!
-                if (!otherValueSet.contains(value)) {
-                    return false;
+            if(isConstraintRequired()) {
+                //if required, codes can be:
+                // - reused directly
+                // - specialized
+                for (String value : valueSet) {
+                    if( valueSetContainsCodeOrSpecialization(otherValueSet, value)) {
+                        return false;
+                    }
+                }
+            } else {
+                //if not required, codes can be:
+                // - reused directly
+                // - specialized
+                // - added
+                for (String value : valueSet) {
+                    if(valueSetContainsCodeOrSpecialization(otherValueSet, value) ||
+                            AOMUtils.getSpecialisationStatusFromCode(value, archetypeSpecialisationDepth) == CodeRedefinitionStatus.ADDED) {
+                        return false;
+                    }
                 }
             }
             return true;
         } else {
             return AOMUtils.codesConformant(thisConstraint, otherConstraint);
         }
+    }
+
+    private boolean valueSetContainsCodeOrSpecialization(List<String> otherValueSet, String code) {
+        for(String value:otherValueSet) {
+            if(AOMUtils.codesConformant(code, value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
