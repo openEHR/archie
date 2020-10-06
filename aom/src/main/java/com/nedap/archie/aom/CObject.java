@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.paths.PathSegment;
+import org.openehr.utils.message.I18n;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -270,10 +272,17 @@ public abstract class CObject extends ArchetypeConstraint {
      * @param rmTypesConformant
      * @return
      */
-    public boolean cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
-        return nodeIdConformsTo(other) &&
-                occurrencesConformsTo(other)
-                && typeNameConformsTo(other, rmTypesConformant);
+    public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
+        if(!nodeIdConformsTo(other)) {
+            return ConformanceCheckResult.fails(I18n.t("Node id {0} does not conform to {1}", this.getNodeId(), other.getNodeId()));
+        }
+        if(!occurrencesConformsTo(other)) {
+            return ConformanceCheckResult.fails(I18n.t("Occurrences {0} does not conform to {1}", this.getOccurrences(), other.getOccurrences()));
+        }
+        if(!typeNameConformsTo(other, rmTypesConformant)) {
+            return ConformanceCheckResult.fails(I18n.t("type name {0} does not conform to {1}", this.getRmTypeName(), other.getRmTypeName()));
+        }
+        return ConformanceCheckResult.conforms();
 
     }
 

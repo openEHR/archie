@@ -2,8 +2,10 @@ package com.nedap.archie.aom.primitives;
 
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rminfo.ModelInfoLookup;
+import org.openehr.utils.message.I18n;
 
 import java.util.function.BiFunction;
 
@@ -26,15 +28,16 @@ public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
     }
 
     @Override
-    public boolean cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
-        if(!super.cConformsTo(other, rmTypesConformant)) {
-            return false;
+    public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
+        ConformanceCheckResult superResult = super.cConformsTo(other, rmTypesConformant);
+        if (!superResult.doesConform()) {
+            return superResult;
         }
         //now guaranteed to be the same class
 
         COrdered<?> otherOrdered = (COrdered) other;
         if(otherOrdered.getConstraint().isEmpty()) {
-            return true;
+            return ConformanceCheckResult.conforms();
         }
 
 
@@ -47,9 +50,9 @@ public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
                 }
             }
             if(!found) {
-                return false;
+                return ConformanceCheckResult.fails(I18n.t("Parent constraint contains no interval that fully contains {0}", constraint));
             }
         }
-        return true;
+        return ConformanceCheckResult.conforms();
     }
 }

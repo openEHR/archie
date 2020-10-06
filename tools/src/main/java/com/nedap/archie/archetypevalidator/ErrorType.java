@@ -67,8 +67,8 @@ public enum ErrorType implements MessageCode {
     VSONCO(I18n.register("specialised archetype redefine object node occurrences validity: the occurrences of a redefined object node in a specialised archetype, if stated, must conform to the occurrences in the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.")),
     @Deprecated//TODO: not in spec why this is deprecated
     VSONI(I18n.register("specialised archetype redefined object node identifier validity: if an object node in a specialised archetype is a redefinition of a node in the flat parent according to VSONIR, and the parent node carries a node identifier, it must carry a node identifier specalised at the level of the child archetype. Otherwise it must carry the same node identifier (or none) as the corresponding parent node.")),
-    VPOV(I18n.register("TODO: something with leaf nodes")),
-    VUNK(I18n.register("TODO: something with leaf nodes")),
+    VPOV(I18n.register("Primitive object specialisation validation failed")),
+    VUNK(I18n.register("Unknown conformance error")),
     SEXLU(I18n.register("Syntax error: existence must be one of 0..0, 0..1, or 1..1")),
     SEXLMG(I18n.register("Syntax error: existence must be one of 0..0, 0..1, or 1..1")),
     VTVSUQ(I18n.register("value-set members unique. The member codes of a value set must be unique within the value set")),
