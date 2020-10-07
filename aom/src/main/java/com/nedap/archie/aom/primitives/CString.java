@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import org.openehr.utils.message.I18n;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -106,7 +107,7 @@ public class CString extends CPrimitiveObject<String, String> {
 
         for(String constraint:constraint) {
             if(!hasMatchingConstraint(constraint, otherString)) {
-                return ConformanceCheckResult.fails(I18n.t("No matching constraint found in parent for contraint {0}", constraint));
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("No matching constraint found in parent for contraint {0}", constraint));
             }
         }
         return ConformanceCheckResult.conforms();

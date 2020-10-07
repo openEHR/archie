@@ -110,17 +110,8 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
 
         ConformanceCheckResult conformanceCheckResult = cObject.cConformsTo(parentCObject, combinedModels::rmTypesConformant);
         if(!conformanceCheckResult.doesConform()) {
-            if(!cObject.typeNameConformsTo(parentCObject, combinedModels::rmTypesConformant)) {
-                addMessageWithPath(ErrorType.VSONCT, cObject.path(),
-                        I18n.t("Type {0} does not conform to type {1} in parent", cObject.getRmTypeName(), parentCObject.getRmTypeName()));
-            } else if (!cObject.occurrencesConformsTo(parentCObject)) {
-                addMessageWithPath(ErrorType.VSONCO, cObject.path(),
-                        I18n.t("Occurrences {0} does not conform to occurrences {1} in parent", cObject.getOccurrences(), parentCObject.getOccurrences()));
-            } else if (!cObject.nodeIdConformsTo(parentCObject)) {
-                addMessageWithPath(ErrorType.VSONI, cObject.path(),
-                        I18n.t("Node ID {0} does not conform to node id {1} in parent", cObject.getNodeId(), parentCObject.getNodeId()));
-            } else if (cObject instanceof CPrimitiveObject && parentCObject instanceof CPrimitiveObject) {
-                addMessageWithPath(ErrorType.VPOV, cObject.path(),
+            if(conformanceCheckResult.getErrorType() != null) {
+                addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
                         conformanceCheckResult.getError());
             } else {
                 addMessageWithPath(ErrorType.VUNK, cObject.path(),

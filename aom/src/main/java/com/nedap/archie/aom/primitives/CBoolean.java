@@ -3,6 +3,7 @@ package com.nedap.archie.aom.primitives;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import org.openehr.utils.message.I18n;
 
 import javax.annotation.Nullable;
@@ -65,12 +66,12 @@ public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
         }
 
         if(!(constraint.size() <= otherBoolean.constraint.size())) {
-            return ConformanceCheckResult.fails(I18n.t("A specialised boolean constraint cannot include the same number of more constraints than its parent"));
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("A specialised boolean constraint cannot include the same number of more constraints than its parent"));
         }
 
         for(Boolean constraint:constraint) {
             if(!otherBoolean.constraint.contains(constraint)) {
-                return ConformanceCheckResult.fails(I18n.t("A specialised boolean constraint cannot add a constraint not in its parent"));
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("A specialised boolean constraint cannot add a constraint not in its parent"));
             }
         }
         return ConformanceCheckResult.conforms();

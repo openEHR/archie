@@ -12,6 +12,7 @@ import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import org.openehr.utils.message.I18n;
@@ -182,10 +183,10 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         List<String> valueSet = getValueSetExpanded();
         List<String> otherValueSet = otherCode.getValueSetExpanded();
         if(constraint.size() != 1) {
-            return ConformanceCheckResult.fails(I18n.t("child CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
         }
         if(otherCode.constraint.size() != 1) {
-            return ConformanceCheckResult.fails(I18n.t("parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
         }
         String thisConstraint = constraint.get(0);
         String otherConstraint = otherCode.constraint.get(0);
@@ -202,11 +203,11 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
                 // - specialized
                 //this includes the value set codes
                 if (!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
-                    return ConformanceCheckResult.fails(I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}", thisConstraint, otherConstraint));
+                    return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}", thisConstraint, otherConstraint));
                 }
                 for (String value : valueSet) {
                     if( !valueSetContainsCodeOrSpecialization(otherValueSet, value)) {
-                        return ConformanceCheckResult.fails(I18n.t("child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values", value, otherValueSet));
+                        return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values", value, otherValueSet));
                     }
                 }
             } else {
@@ -222,7 +223,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             return ConformanceCheckResult.conforms();
         } else {
             if(!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
-                return ConformanceCheckResult.fails(I18n.t("child terminology constraint value code {0} does not conform to parent constraint with value code {0}", thisConstraint, otherConstraint));
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} does not conform to parent constraint with value code {0}", thisConstraint, otherConstraint));
             }
             return ConformanceCheckResult.conforms();
         }

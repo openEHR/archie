@@ -3,6 +3,7 @@ package com.nedap.archie.aom.primitives;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import org.openehr.utils.message.I18n;
@@ -50,7 +51,7 @@ public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
                 }
             }
             if(!found) {
-                return ConformanceCheckResult.fails(I18n.t("Parent constraint contains no interval that fully contains {0}", constraint));
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("Parent constraint contains no interval that fully contains {0}", constraint));
             }
         }
         return ConformanceCheckResult.conforms();

@@ -1,6 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import org.openehr.utils.message.I18n;
@@ -116,16 +117,16 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
     public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
         if(other instanceof CPrimitiveObject && other.getClass().equals(getClass())) {
             if(!occurrencesConformsTo(other)) {
-                return ConformanceCheckResult.fails(I18n.t("Occurrences {0} does not conform to {1}", this.getOccurrences(), other.getOccurrences()));
+                return ConformanceCheckResult.fails(ErrorType.VSONCO, I18n.t("Occurrences {0} does not conform to {1}", this.getOccurrences(), other.getOccurrences()));
             }
             if(!getRmTypeName().equalsIgnoreCase(other.getRmTypeName())) {
-                return ConformanceCheckResult.fails(I18n.t("type name {0} does not conform to {1}", this.getRmTypeName(), other.getRmTypeName()));
+                return ConformanceCheckResult.fails(ErrorType.VSONCT, I18n.t("type name {0} does not conform to {1}", this.getRmTypeName(), other.getRmTypeName()));
             }
         } else {
             if(other == null) {
-                return ConformanceCheckResult.fails(I18n.t("The primitive object of type {0} does not conform null", getClass().getSimpleName()));
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("The primitive object of type {0} does not conform null", getClass().getSimpleName()));
             }
-            return ConformanceCheckResult.fails(I18n.t("The primitive object of type {0} does not conform to non-primitive object with type {1}", getClass().getSimpleName(), other.getClass().getSimpleName()));
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("The primitive object of type {0} does not conform to non-primitive object with type {1}", getClass().getSimpleName(), other.getClass().getSimpleName()));
         }
         return ConformanceCheckResult.conforms();
     }
