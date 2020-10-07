@@ -9,12 +9,12 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class TermCodeSpecializationTest {
 
     @Test
-    public void requiredBindingStrength() throws IOException {
+    public void validRequiredBindingStrength() throws IOException {
         Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
         Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_valid_child.v1.0.0.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
@@ -25,6 +25,43 @@ public class TermCodeSpecializationTest {
         for(ValidationResult validationResult:repo.getAllValidationResults()) {
             assertTrue(validationResult.toString(), validationResult.passes());
         }
+    }
 
+    @Test
+    public void invalidRequiredBindingStrength() throws IOException {
+        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_invalid_child.v1.0.0.adls");
+        InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
+        repo.addArchetype(parent);
+        repo.addArchetype(child);
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        repo.compile(archetypeValidator);
+        ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_child.v1.0.0");
+        assertFalse(validationResult.toString(), validationResult.passes());
+        assertTrue("VPOV error should be present", validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VPOV).findFirst().isPresent());
+    }
+
+    @Test
+    public void valueSetCodeChanges() throws IOException {
+        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_change_valueset_code.v1.0.0.adls");
+        InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
+        repo.addArchetype(parent);
+        repo.addArchetype(child);
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        repo.compile(archetypeValidator);
+        ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_change_valueset_code.v1.0.0");
+        assertFalse(validationResult.toString(), validationResult.passes());
+
+        assertEquals(ErrorType.VPOV, validationResult.getErrors().get(0).getType());
+        assertEquals("/items[id2]/value[id3]/defining_code", validationResult.getErrors().get(0).getPathInArchetype());
+        //assertEquals(ErrorType.VPOV, validationResult.getErrors().get(1).getType());
+        //assertEquals("/items[id4]/value[id5]/defining_code", validationResult.getErrors().get(1).getPathInArchetype());
+        assertEquals(validationResult.getErrors().size(), 1);
+    }
+
+    @Test
+    public void invalidConstraintStrenghKeyword() throws IOException {
+        TestUtil.parseExpectErrorCode("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_wrong_name.v1.0.0.adls", "Constraint status incorrect");
     }
 }

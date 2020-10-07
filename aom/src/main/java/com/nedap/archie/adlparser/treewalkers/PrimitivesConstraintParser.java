@@ -142,8 +142,8 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
                     result.setConstraintStatus(ConstraintStatus.EXAMPLE);
                     break;
                 default:
-                    getErrors().addError("Constraint status incorrect",
-                            "constraint status must be one of required, extensible, preferred or example, but was " + constraintStatusText,
+                    getErrors().addError("constraint status must be one of required, extensible, preferred or example, but was " + constraintStatusText,
+                            "Constraint status incorrect",
                             terminologyCodeContext.getStart().getLine(),
                             terminologyCodeContext.getStart().getCharPositionInLine(),
                             constraintStatusText.length(),

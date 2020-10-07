@@ -195,24 +195,22 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             if (otherValueSet.isEmpty()) {
                 return ConformanceCheckResult.conforms();
             }
-            if (!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
-                return ConformanceCheckResult.fails(I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {0}", thisConstraint, otherConstraint));
-            }
+
             if(otherCode.isConstraintRequired()) {
                 //if required, codes can be:
                 // - reused directly
                 // - specialized
+                //this includes the value set codes
+                if (!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
+                    return ConformanceCheckResult.fails(I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}", thisConstraint, otherConstraint));
+                }
                 for (String value : valueSet) {
                     if( !valueSetContainsCodeOrSpecialization(otherValueSet, value)) {
                         return ConformanceCheckResult.fails(I18n.t("child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values", value, otherValueSet));
                     }
                 }
             } else {
-                //if not required, codes can be:
-                // - reused directly
-                // - specialized
-                // - added
-                //everything goes here.
+                //if not required, everything goes
                 return ConformanceCheckResult.conforms();
 //                for (String value : valueSet) {
 //                    if(valueSetContainsCodeOrSpecialization(otherValueSet, value) ||
