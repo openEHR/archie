@@ -68,6 +68,7 @@ import com.nedap.archie.rm.generic.RevisionHistoryItem;
 import com.nedap.archie.rm.integration.GenericEntry;
 import com.nedap.archie.rm.security.AccessControlSettings;
 import com.nedap.archie.rm.support.identification.*;
+import com.nedap.archie.rm.tags.ItemTag;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -216,6 +217,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         addClass(ArchetypeHRID.class);
         addClass(AuthoredResource.class);
         addClass(TranslationDetails.class);
+        addClass(ItemTag.class);
     }
 
     @Override

@@ -87,6 +87,10 @@ packages = <
 				name = <"directory">
 				classes = <"FOLDER">
 			>
+			["tags"] = <
+			    name = <"tags">
+			    classes = <"ITEM_TAG">
+            >
 		>
 	>
 >
@@ -896,4 +900,36 @@ class_definitions = <
 		>
 	>
 
+	------------------------------------------------------------
+	------------------ rm.common.tags ----------------
+	------------------------------------------------------------
+
+    ["ITEM_TAG"] = <
+		name = <"ITEM_TAG">
+		properties = <
+			["target"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"target">
+				type = <"UID_BASED_ID">
+				is_mandatory = <True>
+			>
+            ["target_path"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"target_path">
+				type = <"String">
+			>
+            ["key"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"key">
+				type = <"String">
+                is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+			>
+			["owner_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"owner_id">
+				type = <"OBJECT_REF">
+				is_mandatory = <True>
+			>
+		>
+	>
 >
