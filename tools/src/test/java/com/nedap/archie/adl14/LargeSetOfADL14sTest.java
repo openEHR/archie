@@ -168,6 +168,9 @@ public class LargeSetOfADL14sTest {
         adl2Repository.compile(BuiltinReferenceModels.getMetaModels());
         int passingValidations = 0;
         for(ValidationResult validationResult:adl2Repository.getAllValidationResults()) {
+            if(validationResult.hasWarningsOrErrors()) {
+                logger.error(String.format("archetype %s has warning %s: ", validationResult.getArchetypeId(), validationResult.getErrors()));
+            }
             if(validationResult.passes()) {
                 passingValidations++;
             } else {
