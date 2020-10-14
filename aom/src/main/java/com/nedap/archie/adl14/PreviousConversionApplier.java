@@ -101,18 +101,7 @@ public class PreviousConversionApplier {
                 newCreatedCode.setOriginalTerm(createdCode.getOriginalTerm());
                 converter.addCreatedCode(createdCode.getOriginalTerm().toString(), createdCode);
 
-                for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
-                    TermCode termFromTerminology = OpenEHRTerminologyAccess.getInstance().getTermByTerminologyURI(uri.toString(), language);
-                    ArchetypeTerm term = new ArchetypeTerm();
-                    term.setCode(valueCode);
-                    if(termFromTerminology == null) {
-                        term.setText("Term binding for " + createdCode.getGeneratedCode() + ", translation not known in ADL 1.4 -> ADL 2 converter");
-                    } else {
-                        term.setText(termFromTerminology.getDescription());
-                    }
-                    term.setDescription(term.getText());
-                    archetype.getTerminology().getTermDefinitions().get(language).put(valueCode, term);
-                }
+                ADL14TermConstraintConverter.addTermBindingCode(archetype, createdCode.getGeneratedCode(), uri, valueCode);
             }
         } catch (URISyntaxException e) {
             //TODO: warn? or add generated URL to CreatedCode?
