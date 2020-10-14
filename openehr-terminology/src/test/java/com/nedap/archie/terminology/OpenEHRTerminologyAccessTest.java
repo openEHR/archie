@@ -61,7 +61,7 @@ public class OpenEHRTerminologyAccessTest {
     @Test
     public void getGroup() {
         List<TermCode> groupContent = termAccess.getTermsByOpenEHRGroup("composition category", "en");
-        
+
         assertEquals("431", groupContent.get(0).getCodeString());
         assertEquals("persistent", groupContent.get(0).getDescription());
         assertEquals("435", groupContent.get(1).getCodeString());

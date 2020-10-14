@@ -10,6 +10,8 @@ import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
+import com.nedap.archie.terminology.TermCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -220,9 +222,14 @@ public class ADL14TermConstraintConverter {
         converter.addCreatedCode(termCode.toString(), createdCode);
 
         for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
+            TermCode termFromTerminology = OpenEHRTerminologyAccess.getInstance().getTermByTerminologyURI(uri.toString(), language);
             ArchetypeTerm term = new ArchetypeTerm();
             term.setCode(valueCode);
-            term.setText("Term binding for " + termCode.toString() + ", translation not known in ADL 1.4 -> ADL 2 converter");
+            if(termFromTerminology == null) {
+                term.setText("Term binding for " + termCode.toString() + ", translation not known in ADL 1.4 -> ADL 2 converter");
+            } else {
+                term.setText(termFromTerminology.getDescription());
+            }
             term.setDescription(term.getText());
             archetype.getTerminology().getTermDefinitions().get(language).put(valueCode, term);
         }

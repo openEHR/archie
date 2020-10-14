@@ -6,4 +6,5 @@ dependencies {
   compile project(':odin')
   compile project(':utils')
   compile project(':bmm')
+  compile project(':openehr-terminology')
 }

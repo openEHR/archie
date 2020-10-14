@@ -1,6 +1,5 @@
 package com.nedap.archie.adl14;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
@@ -13,15 +12,13 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveTuple;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
-import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
-import com.nedap.archie.aom.utils.AOMUtils;
-import org.openehr.utils.message.I18n;
+import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
+import com.nedap.archie.terminology.TermCode;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -105,9 +102,14 @@ public class PreviousConversionApplier {
                 converter.addCreatedCode(createdCode.getOriginalTerm().toString(), createdCode);
 
                 for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
+                    TermCode termFromTerminology = OpenEHRTerminologyAccess.getInstance().getTermByTerminologyURI(uri.toString(), language);
                     ArchetypeTerm term = new ArchetypeTerm();
                     term.setCode(valueCode);
-                    term.setText("Term binding for " + createdCode.getGeneratedCode() + ", translation not known in ADL 1.4 -> ADL 2 converter");
+                    if(termFromTerminology == null) {
+                        term.setText("Term binding for " + createdCode.getGeneratedCode() + ", translation not known in ADL 1.4 -> ADL 2 converter");
+                    } else {
+                        term.setText(termFromTerminology.getDescription());
+                    }
                     term.setDescription(term.getText());
                     archetype.getTerminology().getTermDefinitions().get(language).put(valueCode, term);
                 }
