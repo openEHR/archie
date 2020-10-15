@@ -5,6 +5,16 @@ concept
 	[at0000]	-- value_binding
 language
 	original_language = <[ISO_639-1::en]>
+translations = <
+		["no-bk"] = <
+			language = <[ISO_639-1::no-bk]>
+			author = <
+				["name"] = <"Pieter Bos">
+				["organisation"] = <"Nonsense translation inc.">
+			>
+		>
+    >
+
 description
 	original_author = <
 		["name"] = <"Pieter Bos">
@@ -16,6 +26,9 @@ description
 			use = <"">
 			misuse = <"">
 		>
+		["no-bk"] = <
+			language = <[ISO_639-1::no-bk]>
+        >
 	>
 	other_contributors = <>
 	other_details = <
@@ -54,6 +67,18 @@ ontology
 					text = <"element">
 					description = <"Element">
 				>
+            >
+        >
+        ["no-bk"] = <
+            items = <
+                ["at0000"] = <
+                    text = <"root node">
+                    description = <"Root node">
+                >
+                ["at0006"] = <
+                    text = <"element">
+                    description = <"Element">
+                >
             >
         >
     >
