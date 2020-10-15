@@ -25,7 +25,8 @@ import java.util.Objects;
         "ehrAccess",
         "ehrStatus",
         "directory",
-        "compositions"
+        "compositions",
+        "folders"
 })
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Ehr extends RMObject {
@@ -45,6 +46,9 @@ public class Ehr extends RMObject {
 
     @Nullable
     private ObjectRef directory;
+
+    @Nullable
+    private List<ObjectRef> folders = new ArrayList<>();
 
     @XmlElement(name="time_created")
     private DvDateTime timeCreated;
@@ -138,6 +142,15 @@ public class Ehr extends RMObject {
         this.timeCreated = timeCreated;
     }
 
+    @Nullable
+    public List<ObjectRef> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(@Nullable List<ObjectRef> folders) {
+        this.folders = folders;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -150,11 +163,12 @@ public class Ehr extends RMObject {
                 Objects.equals(ehrAccess, ehr.ehrAccess) &&
                 Objects.equals(compositions, ehr.compositions) &&
                 Objects.equals(directory, ehr.directory) &&
-                Objects.equals(timeCreated, ehr.timeCreated);
+                Objects.equals(timeCreated, ehr.timeCreated) &&
+                Objects.equals(folders, ehr.folders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(systemId, ehrId, contributions, ehrStatus, ehrAccess, compositions, directory, timeCreated);
+        return Objects.hash(systemId, ehrId, contributions, ehrStatus, ehrAccess, compositions, directory, timeCreated, folders);
     }
 }

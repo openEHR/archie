@@ -18,7 +18,9 @@ import java.util.Objects;
 @XmlType(name = "DV_QUANTITY", propOrder = {
         "magnitude",
         "units",
-        "precision"
+        "precision",
+        "unitsSystem",
+        "unitsDisplayName"
 })
 public class DvQuantity extends DvAmount<Double> {
 
@@ -28,6 +30,13 @@ public class DvQuantity extends DvAmount<Double> {
     private String units;
     @XmlElement
     private Double magnitude;
+    @Nullable
+    @XmlElement(name = "units_system")
+    private String unitsSystem;
+    @Nullable
+    @XmlElement(name = "units_display_name")
+    private String unitsDisplayName;
+
 
     /**
      * This has been removed, but causes many archetypes to fail because they still define it. So introduce, but don't use
@@ -91,6 +100,23 @@ public class DvQuantity extends DvAmount<Double> {
         this.property = property;
     }
 
+    @Nullable
+    public String getUnitsSystem() {
+        return unitsSystem;
+    }
+
+    public void setUnitsSystem(@Nullable String unitsSystem) {
+        this.unitsSystem = unitsSystem;
+    }
+
+    @Nullable
+    public String getUnitsDisplayName() {
+        return unitsDisplayName;
+    }
+
+    public void setUnitsDisplayName(@Nullable String unitsDisplayName) {
+        this.unitsDisplayName = unitsDisplayName;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -101,7 +127,9 @@ public class DvQuantity extends DvAmount<Double> {
         return Objects.equals(precision, that.precision) &&
                 Objects.equals(units, that.units) &&
                 Objects.equals(magnitude, that.magnitude) &&
-                Objects.equals(property, that.property);
+                Objects.equals(property, that.property) &&
+                Objects.equals(unitsSystem, that.unitsSystem) &&
+                Objects.equals(unitsDisplayName, that.unitsDisplayName);
     }
 
     @Override
