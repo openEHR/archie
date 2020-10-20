@@ -2,6 +2,9 @@ package com.nedap.archie.rm.datavalues;
 
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
+import com.nedap.archie.terminology.TermCode;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -103,6 +106,38 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
 
     public void setEncoding(CodePhrase encoding) {
         this.encoding = encoding;
+    }
+
+    @Invariant("Language_valid")
+    public boolean isLanguageValid() {
+        if(language != null && language.getCodeString() != null) {
+            return OpenEHRTerminologyAccess.getInstance().getTermByOpenEhrId("languages", language.getCodeString(), "en") != null &&
+                    language.getCodeString().equalsIgnoreCase("ISO_639-1");
+        }
+        return true;
+    }
+    @Invariant("Encoding_valid")
+    public boolean isEncodingValid() {
+        if(encoding != null && encoding.getCodeString() != null) {
+            return OpenEHRTerminologyAccess.getInstance().getTermByOpenEhrId("character sets", encoding.getCodeString(), "en") != null &&
+                    encoding.getCodeString().equalsIgnoreCase("IANA_character-sets");
+        }
+        return true;
+    }
+    @Invariant("Mappings_valid")
+    public boolean isMappingsValid() {
+//        if(mappings != null) {
+//            return !mappings.isEmpty();
+//        }
+        return true;
+        //TODO!
+    }
+    @Invariant("Formatting_valid")
+    public boolean isFormattingValid() {
+        if(formatting != null) {
+            return !formatting.isEmpty();
+        }
+        return true;
     }
 
     @Override

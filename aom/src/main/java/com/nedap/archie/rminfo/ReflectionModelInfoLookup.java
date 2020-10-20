@@ -130,6 +130,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         String rmTypeName = namingStrategy.getTypeName(clazz);
         RMTypeInfo typeInfo = new RMTypeInfo(clazz, rmTypeName);
         addAttributeInfo(clazz, typeInfo);
+        addInvariantChecks(clazz, typeInfo);
         rmTypeNamesToRmTypeInfo.put(rmTypeName, typeInfo);
         classesToRmTypeInfo.put(clazz, typeInfo);
         if(!inConstructor) {
@@ -160,6 +161,22 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                 }
             }
         }
+    }
+
+    private void addInvariantChecks(Class clazz, RMTypeInfo typeInfo) {
+        Set<Method> allInvariants = ReflectionUtils.getAllMethods(clazz, (method) -> method.getAnnotation(Invariant.class) != null);
+        for(Method method:allInvariants) {
+            if(method.getParameterCount() != 0) {
+                throw new RuntimeException("An invariant check must not have any parameters, in method " + clazz.getSimpleName() + "::" + method.getName());
+            }
+            Class<?> returnType = method.getReturnType();
+            if(!(returnType.equals(Boolean.class) || returnType.equals(boolean.class))) {
+                throw new RuntimeException("An invariant check must return a boolean parameter, was " + returnType.getSimpleName() + " in method " + clazz.getSimpleName() + "::" + method.getName());
+            }
+            Invariant annotation = method.getAnnotation(Invariant.class);
+            typeInfo.addInvariantMethod(method, annotation);
+        }
+
     }
 
     protected boolean shouldAdd(Method method) {

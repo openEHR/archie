@@ -6,6 +6,7 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
+import com.nedap.archie.rminfo.InvariantMethod;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
@@ -14,7 +15,9 @@ import com.nedap.archie.rmobjectvalidator.validations.RMMultiplicityValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMOccurrenceValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMPrimitiveObjectValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMTupleValidation;
+import org.openehr.utils.message.I18n;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -30,11 +33,19 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private APathQueryCache queryCache = new APathQueryCache();
     private ModelInfoLookup lookup;
     private ReflectionConstraintImposer constraintImposer;
+    private boolean validateInvariants = true;
 
     public RMObjectValidator(ModelInfoLookup lookup) {
         this.lookup = lookup;
         this.metaModel = new MetaModel(lookup, null);
         constraintImposer = new ReflectionConstraintImposer(lookup);
+    }
+
+    public static RMObjectValidator disabledInvariantChecks(ModelInfoLookup lookup) {
+        RMObjectValidator rmObjectValidator = new RMObjectValidator(lookup);
+        rmObjectValidator.validateInvariants = false;
+
+        return rmObjectValidator;
     }
 
     public List<RMObjectValidationMessage> validate(Archetype archetype, Object rmObject) {
@@ -46,7 +57,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
     public List<RMObjectValidationMessage> validate(Object rmObject) {
         clearMessages();
-        List<RMObjectWithPath> objects = Lists.newArrayList(new RMObjectWithPath(rmObject, ""));
+        List<RMObjectWithPath> objects = Lists.newArrayList(new RMObjectWithPath(rmObject, "/"));
         addAllMessages(runArchetypeValidations(objects, "", null));
         return getMessages();
     }
@@ -57,6 +68,9 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             //if this branch of the archetype tree is null in the reference model, we're done validating
             //this has to be done after validateOccurrences(), or required fields do not get validated
             return result;
+        }
+        for (RMObjectWithPath objectWithPath : rmObjects) {
+            validateInvariants(objectWithPath);
         }
         if(cobject == null) {
             //add default validations
@@ -78,6 +92,29 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             }
         }
         return result;
+    }
+
+    private void validateInvariants(RMObjectWithPath objectWithPath) {
+        if(!validateInvariants) {
+            return;
+        }
+        Object rmObject = objectWithPath.getObject();
+        if(rmObject != null) {
+            RMTypeInfo typeInfo = lookup.getTypeInfo(rmObject.getClass());
+            if(typeInfo != null) {
+                for (InvariantMethod invariantMethod : typeInfo.getInvariants()) {
+                    try {
+                        Boolean result = (Boolean) invariantMethod.getMethod().invoke(rmObject);
+                        if (!result) {
+                            this.addMessage(null, objectWithPath.getPath(), I18n.t("Invariant {0} failed", invariantMethod.getAnnotation().value()), RMObjectValidationMessageType.INVARIANT_ERROR);
+                        }
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        this.addMessage(null, objectWithPath.getPath(), I18n.t("Exception {0} invoking invariant {1}: {2}", e.getClass().getSimpleName(), invariantMethod.getAnnotation().value(), e.getMessage()), RMObjectValidationMessageType.EXCEPTION);
+                    }
+                }
+            }
+
+        }
     }
 
     private void validateObjectWithPath(List<RMObjectValidationMessage> result, CObject cobject, String path, RMObjectWithPath objectWithPath){

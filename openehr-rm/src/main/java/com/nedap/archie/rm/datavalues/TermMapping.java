@@ -2,6 +2,7 @@ package com.nedap.archie.rm.datavalues;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.xml.adapters.TermMappingMatchAdapter;
 
 import javax.annotation.Nullable;
@@ -85,5 +86,18 @@ public class TermMapping extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(match, purpose, target);
+    }
+
+    @Invariant("Purpose_valid")
+    public boolean isPurposeValid() {
+        return true;//TODO
+    }
+
+    @Invariant("Match_valid")
+    public boolean isMatchValid() {
+        if(match != null) {
+            //
+        }
+        return true; //nullable check is done elsewhere
     }
 }
