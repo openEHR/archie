@@ -184,11 +184,14 @@ public class PreviousConversionApplier {
     }
 
     private void removeTerminologyEntry(String code) {
-        for(String language:archetype.getTerminology().getTermDefinitions().keySet()) {
-            archetype.getTerminology().getTermDefinitions().get(language).remove(code);
-        }
-        List<String> termCodeBindingsToRemove = new ArrayList<>();
+        archetype.getTerminology().getTermDefinitions().values().forEach(
+                map -> map.remove(code)
+        );
+
         if(archetype.getTerminology().getTermBindings() != null) {
+
+            List<String> termCodeBindingsToRemove = new ArrayList<>();
+
             for (String terminologyId: archetype.getTerminology().getTermBindings().keySet()) {
                 Map<String, URI> termBindings = archetype.getTerminology().getTermBindings().get(terminologyId);
                 termBindings.remove(code);
@@ -196,10 +199,12 @@ public class PreviousConversionApplier {
                     termCodeBindingsToRemove.add(terminologyId);
                 }
             }
+
+            for(String terminologyId:termCodeBindingsToRemove) {
+                archetype.getTerminology().getTermBindings().remove(terminologyId);
+            }
         }
-        for(String terminologyId:termCodeBindingsToRemove) {
-            archetype.getTerminology().getTermBindings().remove(terminologyId);
-        }
+
     }
 
     private Set<String> gatherUsedValueSets(CObject cObject) {

@@ -168,10 +168,12 @@ public class LargeSetOfADL14sTest {
         adl2Repository.compile(BuiltinReferenceModels.getMetaModels());
         int passingValidations = 0;
         for(ValidationResult validationResult:adl2Repository.getAllValidationResults()) {
-            if(validationResult.hasWarningsOrErrors()) {
-                logger.error(String.format("archetype %s has warning %s: ", validationResult.getArchetypeId(), validationResult.getErrors()));
-            }
             if(validationResult.passes()) {
+                //may still have warnings, so print if that's the case, so you can at least see in the log
+                //assertions would be even better, but these are actual warnings due to ADL 1.4 archetype content
+                if(validationResult.hasWarningsOrErrors()) {
+                    logger.error(String.format("archetype %s has warning %s: ", validationResult.getArchetypeId(), validationResult.getErrors()));
+                }
                 passingValidations++;
             } else {
                 logger.error("error validating {}: {}", validationResult.getArchetypeId(), validationResult.getErrors());
