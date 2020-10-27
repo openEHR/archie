@@ -184,13 +184,13 @@ public class Flattener implements IAttributeFlattenerSupport {
         rulesFlattener.combineRules(child, result, prefix, "", "", true /* override statements with same tag */);
         if(config.isCreateOperationalTemplate()) {
             optCreator.fillSlots((OperationalTemplate) result);
-            optCreator.expandValueSets((OperationalTemplate) result);
 
         }
         fillOptEmptyOccurrences(result);
         TerminologyFlattener.flattenTerminology(result, child);
 
         if(config.isCreateOperationalTemplate()) {
+            optCreator.expandValueSets((OperationalTemplate) result);
             TerminologyFlattener.filterLanguages((OperationalTemplate) result, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
         }
         result.getDefinition().setArchetype(result);

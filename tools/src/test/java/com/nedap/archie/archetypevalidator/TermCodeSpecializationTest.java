@@ -1,13 +1,19 @@
 package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.OperationalTemplate;
+import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.flattener.Flattener;
+import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 import static org.junit.Assert.*;
 
@@ -25,6 +31,10 @@ public class TermCodeSpecializationTest {
         for(ValidationResult validationResult:repo.getAllValidationResults()) {
             assertTrue(validationResult.toString(), validationResult.passes());
         }
+        Flattener flattener = new Flattener(repo, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(child);
+        ValueSet valueSet = opt.getTerminology().getValueSets().get("ac0.2");
+        assertEquals(new LinkedHashSet(Arrays.asList("at1", "at2", "at3", "at0.1")), valueSet.getMembers());
     }
 
     @Test
@@ -77,6 +87,5 @@ public class TermCodeSpecializationTest {
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0");
         assertFalse(validationResult.toString(), validationResult.passes());
         assertTrue("VPOV error should be present in " + validationResult, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent());
-
     }
 }

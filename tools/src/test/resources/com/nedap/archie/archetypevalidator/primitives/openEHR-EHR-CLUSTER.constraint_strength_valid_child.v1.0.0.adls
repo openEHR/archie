@@ -64,6 +64,6 @@ terminology
         >
         ["ac0.2"] = <
             id=<"ac0.2">
-            members = <"at1", "at0.1">
+            members = <"ac1", "at0.1">
         >
 	>
