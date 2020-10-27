@@ -165,7 +165,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             } else if (constraint.startsWith("ac")) {
                 ValueSet acValueSet = terminology.getValueSets().get(constraint);
                 if(acValueSet != null) {
-                    result.addAll(acValueSet.getMembers());
+                    result.addAll(AOMUtils.getExpandedValueSetMembers(terminology.getValueSets(), acValueSet));
                 }
             }
         }
@@ -191,7 +191,6 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         String thisConstraint = constraint.get(0);
         String otherConstraint = otherCode.constraint.get(0);
         Archetype archetype = this.getArchetype();
-        int archetypeSpecialisationDepth = archetype == null ? 0 : archetype.specializationDepth();
         if(AOMUtils.isValidValueSetCode(thisConstraint) && AOMUtils.isValidValueSetCode(otherConstraint)) {
             if (otherValueSet.isEmpty()) {
                 return ConformanceCheckResult.conforms();
@@ -206,7 +205,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
                     return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}", thisConstraint, otherConstraint));
                 }
                 for (String value : valueSet) {
-                    if( !valueSetContainsCodeOrSpecialization(otherValueSet, value)) {
+                    if( !AOMUtils.valueSetContainsCodeOrParent(otherValueSet, value)) {
                         return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values", value, otherValueSet));
                     }
                 }
@@ -227,15 +226,6 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             }
             return ConformanceCheckResult.conforms();
         }
-    }
-
-    private boolean valueSetContainsCodeOrSpecialization(List<String> otherValueSet, String code) {
-        for(String value:otherValueSet) {
-            if(AOMUtils.codesConformant(code, value)) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }

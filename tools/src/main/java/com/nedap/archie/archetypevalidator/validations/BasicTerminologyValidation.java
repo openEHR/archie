@@ -4,6 +4,7 @@ import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationBase;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.query.AOMPathQuery;
@@ -97,23 +98,55 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
 
     private void validateValueSets() {
         ArchetypeTerminology terminology = archetype.getTerminology();
+        int terminologySpecialisationDepth = terminology.specialisationDepth();
         for(ValueSet valueSet:terminology.getValueSets().values()){
             if(!terminology.hasValueSetCode(valueSet.getId())) {
                 addMessage(ErrorType.VTVSID, I18n.t("value set code {0} is not present in terminology", valueSet.getId()));
             }
             for(String value:valueSet.getMembers()) {
-                if(flatParent == null) {
+                if(AOMUtils.isValueSetCode(value)) {
+                    if(flatParent == null) {
+                        if(!terminology.hasValueSetCode(value)) {
+                            addMessage(ErrorType.VTVSMD, I18n.t("value set code {0} is used in value set {1}, but not present in terminology", value, valueSet.getId()));
+                        }
+                    } else {
+                        if(!(terminology.hasValueSetCode(value) || flatParent.getTerminology().hasValueSetCode(value))) {
+                            addMessage(ErrorType.VTVSMD, I18n.t("value set code {0} is used in value set {1}, but not present in terminology", value, valueSet.getId()));
+                        }
+                    }
+                } else if(flatParent == null) {
                     if(!terminology.hasValueCode(value)) {
-                        addMessage(ErrorType.VTVSMD, I18n.t("value code {0} is not present in terminology", value));
+                        addMessage(ErrorType.VTVSMD, I18n.t("value code {0} is used in value set {1}, but not present in terminology", value, valueSet.getId()));
                     }
                 } else {
                     if(!(terminology.hasValueCode(value) || flatParent.getTerminology().hasValueCode(value))) {
-                        addMessage(ErrorType.VTVSMD, I18n.t("value code {0} is not present in terminology", value));
+                        addMessage(ErrorType.VTVSMD, I18n.t("value code {0} is used in value set {1}, but not present in terminology", value, valueSet.getId()));
                     }
                 }
             }
             //TODO: we should check for uniqueness, but valueset is a java.util.Set, so there can be no duplicates by definition
         }
+        if(flatParent != null) {
+            for(ValueSet valueSet:terminology.getValueSets().values()) {
+                if(AOMUtils.getSpecialisationStatusFromCode(valueSet.getId(), terminologySpecialisationDepth) == CodeRedefinitionStatus.REDEFINED) {
+                    if(flatParent.getTerminology().getValueSets() == null) {
+
+                    } else {
+                        ValueSet parentValueSet = flatParent.getTerminology().getValueSets().get(AOMUtils.codeAtLevel(valueSet.getId(), terminologySpecialisationDepth - 1));
+                        for(String member:valueSet.getMembers()) {
+                            if(!AOMUtils.valueSetContainsCodeOrParent(parentValueSet.getMembers(), member)) {
+                                addMessage(ErrorType.VALUESET_REDEFINITION_ERROR,
+                                        I18n.t("value code {0} is used in redefined value set {1}, but not present in its parent value set with members {2}", member, valueSet.getId(), parentValueSet.getMembers()));
+                            }
+
+                        }
+                    }
+                }
+                // if it's not ADDED or REDEFINED, it should fail. But VTVSID will ensure that the code is in the terminology, and that it's either ADDED or REFINED
+                //so no problem here
+            }
+        }
+
     }
 
     private void warnAboutUnusedValues() {

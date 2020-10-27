@@ -89,11 +89,15 @@ terminology
                 text = <"value 2">
                 description = <"value 2">
             >
+            ["at3"] = <
+                text = <"value 3">
+                description = <"value 3">
+            >
 		>
 	>
 	value_sets = <
 	    ["ac1"] = <
 	        id=<"ac1">
-	        members = <"at1", "at2">
+	        members = <"at1", "at2", "at3">
         >
 	>

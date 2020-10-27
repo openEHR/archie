@@ -115,6 +115,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                 result = template;
                 //make an operational template by just filling complex object proxies and archetype slots
                 optCreator.fillSlots(template);
+                optCreator.expandValueSets((OperationalTemplate) result);
                 fillOptEmptyOccurrences(result);
                 TerminologyFlattener.filterLanguages(template, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
                 result = template;
@@ -183,6 +184,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         rulesFlattener.combineRules(child, result, prefix, "", "", true /* override statements with same tag */);
         if(config.isCreateOperationalTemplate()) {
             optCreator.fillSlots((OperationalTemplate) result);
+            optCreator.expandValueSets((OperationalTemplate) result);
 
         }
         fillOptEmptyOccurrences(result);

@@ -1,5 +1,5 @@
 archetype (adl_version=2.0.7; rm_release=1.0.2)
-	openEHR-EHR-CLUSTER.constraint_strength_valid_child.v1.0.0
+	openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0
 
 specialise
     openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0
@@ -14,22 +14,27 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"Test a valid constraint strength child">
+			purpose = <"Test VALUESET_REDEFINITION_ERROR validity check,">
 			keywords = <"ADL", "validation", "test">
 			copyright = <"copyright (c) 2008 The openEHR Foundation">
 		>
 	>
 	other_details = <
-		["regression"] = <"PASS">
+		["regression"] = <"VALUESET_REDEFINITION_ERROR">
 	>
 	lifecycle_state = <"unmanaged">
 
 definition
 	CLUSTER[id1.1] matches {
-		/items[id2]/value[id3]/defining_code matches {[ac1.1]} -- required
-		/items[id4]/value[id5]/defining_code matches {[ac0.2]} -- extensible
-		/items[id6]/value[id7]/defining_code matches {[ac0.2]} -- preferred
-		/items[id8]/value[id9]/defining_code matches {[ac0.2]} -- example
+	    /items matches {
+            ELEMENT[id0.1] matches {
+               value matches {
+                   DV_CODED_TEXT[id0.2] matches {
+                       defining_code matches { [ac1.1]}
+                   }
+               }
+            }
+        }
 	}
 
 terminology
@@ -38,32 +43,24 @@ terminology
 			["id1.1"] = <
 				text = <"root node">
 				description = <"root node">
-			>			
-			["ac1.1"] = <
-                text = <"extended value set 1">
-                description = <"extended value set 1">
+			>
+			["id0.1"] = <
+                text = <"added ELEMENT">
+                description = <"added ELEMENT">
             >
-			["ac0.2"] = <
-                text = <"extended value set 2">
-                description = <"extended value set 2">
+			["ac1.1"] = <
+                text = <"extended value set 1 (invalid)">
+                description = <"extended value set 1">
             >
             ["at0.1"] = <
                 text = <"value 4">
                 description = <"value 4">
-            >
-             ["at2.1"] = <
-                text = <"value 2 specialized">
-                description = <"value 2 specialized">
             >
 		>
 	>
 	value_sets = <
 	    ["ac1.1"] = <
 	        id=<"ac1.1">
-	        members = <"at1", "at2.1">
-        >
-        ["ac0.2"] = <
-            id=<"ac0.2">
-            members = <"at1", "at0.1">
+	        members = <"at1", "at0.1">
         >
 	>

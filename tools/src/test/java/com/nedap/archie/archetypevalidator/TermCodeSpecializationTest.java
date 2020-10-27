@@ -64,4 +64,19 @@ public class TermCodeSpecializationTest {
     public void invalidConstraintStrenghKeyword() throws IOException {
         TestUtil.parseExpectErrorCode("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_wrong_name.v1.0.0.adls", "Constraint status incorrect");
     }
+
+    @Test
+    public void invalidValueSetRedefinition() throws IOException {
+        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0.adls");
+        InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
+        repo.addArchetype(parent);
+        repo.addArchetype(child);
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        repo.compile(archetypeValidator);
+        ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0");
+        assertFalse(validationResult.toString(), validationResult.passes());
+        assertTrue("VPOV error should be present in " + validationResult, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent());
+
+    }
 }
