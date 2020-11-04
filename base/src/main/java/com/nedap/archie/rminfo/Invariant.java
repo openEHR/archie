@@ -14,4 +14,5 @@ import java.lang.annotation.Target;
 public @interface Invariant {
     /** the name of the Invariant */
     String value();
+    boolean ignored() default false;
 }

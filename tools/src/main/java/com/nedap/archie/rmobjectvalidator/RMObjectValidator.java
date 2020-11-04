@@ -57,7 +57,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
     public List<RMObjectValidationMessage> validate(Object rmObject) {
         clearMessages();
-        List<RMObjectWithPath> objects = Lists.newArrayList(new RMObjectWithPath(rmObject, "/"));
+        List<RMObjectWithPath> objects = Lists.newArrayList(new RMObjectWithPath(rmObject, ""));
         addAllMessages(runArchetypeValidations(objects, "", null));
         return getMessages();
     }
@@ -103,17 +103,18 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             RMTypeInfo typeInfo = lookup.getTypeInfo(rmObject.getClass());
             if(typeInfo != null) {
                 for (InvariantMethod invariantMethod : typeInfo.getInvariants()) {
-                    try {
-                        Boolean result = (Boolean) invariantMethod.getMethod().invoke(rmObject);
-                        if (!result) {
-                            this.addMessage(null, objectWithPath.getPath(), I18n.t("Invariant {0} failed", invariantMethod.getAnnotation().value()), RMObjectValidationMessageType.INVARIANT_ERROR);
+                    if(!invariantMethod.getAnnotation().ignored()) {
+                        try {
+                            Boolean result = (Boolean) invariantMethod.getMethod().invoke(rmObject);
+                            if (!result) {
+                                this.addMessage(null, objectWithPath.getPath(), I18n.t("Invariant {0} failed", invariantMethod.getAnnotation().value()), RMObjectValidationMessageType.INVARIANT_ERROR);
+                            }
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                            this.addMessage(null, objectWithPath.getPath(), I18n.t("Exception {0} invoking invariant {1}: {2}", e.getClass().getSimpleName(), invariantMethod.getAnnotation().value(), e.getMessage()), RMObjectValidationMessageType.EXCEPTION);
                         }
-                    } catch (IllegalAccessException | InvocationTargetException e) {
-                        this.addMessage(null, objectWithPath.getPath(), I18n.t("Exception {0} invoking invariant {1}: {2}", e.getClass().getSimpleName(), invariantMethod.getAnnotation().value(), e.getMessage()), RMObjectValidationMessageType.EXCEPTION);
                     }
                 }
             }
-
         }
     }
 

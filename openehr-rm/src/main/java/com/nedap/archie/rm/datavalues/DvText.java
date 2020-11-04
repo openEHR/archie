@@ -124,11 +124,11 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
         }
         return true;
     }
-    @Invariant("Mappings_valid")
+    @Invariant(value = "Mappings_valid", ignored = true)
     public boolean isMappingsValid() {
-//        if(mappings != null) {
-//            return !mappings.isEmpty();
-//        }
+        if(mappings != null) {
+            return !mappings.isEmpty();
+        }
         return true;
         //TODO!
     }
