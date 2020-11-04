@@ -66,7 +66,13 @@ public  class ExampleJsonInstanceGenerator {
 
     public Map<String, Object> generate(OperationalTemplate archetype) {
         this.archetype = archetype;
-        models.selectModel(archetype, "1.0.4");
+        String rmRelease = archetype.getRmRelease();
+        //rm release 1.0.4 and 1.1.0 supported. if other versions, switch to 1.1.0 automatically to support other archetypes
+        if(rmRelease == null ||
+                !(rmRelease.equalsIgnoreCase("1.0.4") || rmRelease.equalsIgnoreCase("1.1.0"))) {
+            rmRelease = "1.1.0";
+        }
+        models.selectModel(archetype, rmRelease);
         aomProfile = models.getSelectedAomProfile();
         bmm = models.getSelectedBmmModel();
         return generate(archetype.getDefinition());
