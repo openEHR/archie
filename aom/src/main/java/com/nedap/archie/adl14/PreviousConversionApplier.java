@@ -13,7 +13,10 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveTuple;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
+import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
+import com.nedap.archie.aom.utils.AOMUtils;
+import org.openehr.utils.message.I18n;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -154,17 +157,54 @@ public class PreviousConversionApplier {
         if(this.conversionLog == null) {
             return;
         }
+        removeUnusedValuesets();
+        removeUnusedValues();
+    }
+
+    private void removeUnusedValuesets() {
         Set<String> usedValueSets = gatherUsedValueSets(archetype.getDefinition());
         for(Map.Entry<String, ValueSet> valueSetEntry:this.conversionLog.getCreatedValueSets().entrySet()) {
             if(!usedValueSets.contains(valueSetEntry.getKey())) {
                 //ok, unused, remove it
                 archetype.getTerminology().getValueSets().remove(valueSetEntry.getKey());
-                for(String language:archetype.getTerminology().getTermDefinitions().keySet()) {
-                    archetype.getTerminology().getTermDefinitions().get(language).remove(valueSetEntry.getKey());
-                }
+                removeTerminologyEntry(valueSetEntry.getKey());
             }
         }
-        //TODO: Gather all unused term bindings and remove from archetype as well
+    }
+
+    private void removeUnusedValues() {
+        Set<String> usedCodes = archetype.getAllUsedCodes();
+        for(Map.Entry<String, CreatedCode> valueEntry:this.conversionLog.getCreatedCodes().entrySet()) {
+            if(valueEntry.getValue().getReasonForCreation() == ReasonForCodeCreation.CREATED_VALUE_FOR_EXTERNAL_TERM
+                    && !usedCodes.contains(valueEntry.getValue().getGeneratedCode())) {
+                //unused code found. Remove!
+                removeTerminologyEntry(valueEntry.getValue().getGeneratedCode());
+            }
+        }
+    }
+
+    private void removeTerminologyEntry(String code) {
+        archetype.getTerminology().getTermDefinitions().values().forEach(
+                map -> map.remove(code)
+        );
+
+        if(archetype.getTerminology().getTermBindings() != null) {
+
+            List<String> termCodeBindingsToRemove = new ArrayList<>();
+
+            for (String terminologyId: archetype.getTerminology().getTermBindings().keySet()) {
+                Map<String, URI> termBindings = archetype.getTerminology().getTermBindings().get(terminologyId);
+                termBindings.remove(code);
+                if(termBindings.isEmpty()) {
+                    termCodeBindingsToRemove.add(terminologyId);
+                }
+            }
+
+            for(String terminologyId:termCodeBindingsToRemove) {
+                archetype.getTerminology().getTermBindings().remove(terminologyId);
+            }
+        }
+
     }
 
     private Set<String> gatherUsedValueSets(CObject cObject) {

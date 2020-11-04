@@ -47,7 +47,7 @@ public class LargeSetOfADL14sTest {
     @Test
     public void parseUri() {
 //        CodePointCharStream codePointCharStream = CharStreams.fromString("terminology://SNOMED-CT.com/408733002?subset=Diabetic");//%20Retinopathy%20Study%20field");
-        CodePointCharStream codePointCharStream = CharStreams.fromString("http://test.com/bla?test=green");
+        CodePointCharStream codePointCharStream = CharStreams.fromString("<http://test.com/bla?test=green>");
         Adl14Lexer adl14Lexer = new Adl14Lexer(codePointCharStream);
         assertEquals(1, adl14Lexer.getAllTokens().size());
     }
@@ -55,7 +55,7 @@ public class LargeSetOfADL14sTest {
     @Test
     public void parseUrn() {
 //        CodePointCharStream codePointCharStream = CharStreams.fromString("terminology://SNOMED-CT.com/408733002?subset=Diabetic");//%20Retinopathy%20Study%20field");
-        CodePointCharStream codePointCharStream = CharStreams.fromString("urn:oin:2.3.1.4.4545.22.23");
+        CodePointCharStream codePointCharStream = CharStreams.fromString("< urn:oin:2.3.1.4.4545.22.23 >");
         Adl14Lexer adl14Lexer = new Adl14Lexer(codePointCharStream);
         assertEquals(1, adl14Lexer.getAllTokens().size());
     }
@@ -169,6 +169,11 @@ public class LargeSetOfADL14sTest {
         int passingValidations = 0;
         for(ValidationResult validationResult:adl2Repository.getAllValidationResults()) {
             if(validationResult.passes()) {
+                //may still have warnings, so print if that's the case, so you can at least see in the log
+                //assertions would be even better, but these are actual warnings due to ADL 1.4 archetype content
+                if(validationResult.hasWarningsOrErrors()) {
+                    logger.error(String.format("archetype %s has warning %s: ", validationResult.getArchetypeId(), validationResult.getErrors()));
+                }
                 passingValidations++;
             } else {
                 logger.error("error validating {}: {}", validationResult.getArchetypeId(), validationResult.getErrors());

@@ -1,38 +1,203 @@
-archetype (adl_version=1.4; uid=d8e13c17-6da2-40b7-b945-5f93df77daa4)
-	openEHR-EHR-OBSERVATION.fundoscopic_examination.v0
+archetype (adl_version=1.4; uid=dc53a546-cd68-4a22-8625-f1d1f77b02df)
+	openEHR-EHR-CLUSTER.testts.v0
 
 concept
-	[at0000]	-- Fundoscopic examination of eyes
+	[at0000]	-- Testts
 language
-	original_language = <[ISO_639-1::en]>
-
+	original_language = <[ISO_639-1::de]>
 description
 	original_author = <
-		["name"] = <"Heather Leslie">
-		["organisation"] = <"Atomica Informatics">
-		["email"] = <"heather.leslie@atomicainformatics.com">
-		["date"] = <"2008-07-27">
+		["name"] = <"">
 	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"© openEHR Foundation">
+		>
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"B8E70E8505967D15EC267BEB2EC84885">
+		["build_uid"] = <"c774033c-528b-48c9-8176-326f8ade9785">
+		["revision"] = <"0.0.1-alpha">
+	>
+
 definition
-	OBSERVATION[at0000] matches {*}
+	CLUSTER[at0000] matches {	-- Testts
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0001] occurrences matches {0..1} matches {	-- Neues Element
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[ac0001]}		-- test
+					}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {	-- Neues Element
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[ac0002]}		-- test
+					}
+				}
+			}
+			ELEMENT[at0003] occurrences matches {0..1} matches {	-- Neues Element
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[ac0003]}		-- test
+					}
+				}
+			}
+			ELEMENT[at0004] occurrences matches {0..1} matches {	-- Neues Element
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[ac0004]}		-- test
+					}
+				}
+			}
+			ELEMENT[at0005] occurrences matches {0..1} matches {	-- Neues Element
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[ac0005]}		-- test
+					}
+				}
+			}
+			ELEMENT[at0006] occurrences matches {0..1} matches {	-- Neues Element
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[ac0006]}		-- test
+					}
+				}
+			}
+			ELEMENT[at0007] occurrences matches {0..1} matches {	-- Neues Element
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[ac0007]}		-- test
+					}
+				}
+			}
+			ELEMENT[at0008] occurrences matches {0..1} matches {	-- Neues Element
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[ac0008]}		-- test
+					}
+				}
+			}
+			ELEMENT[at0008] occurrences matches {0..1} matches {	-- Neues Element
+                value matches {
+                    DV_CODED_TEXT matches {
+                        defining_code matches {[ac0009]}		-- test
+                    }
+                }
+            }
+		}
+	}
 
 
 ontology
 	terminologies_available = <"SNOMED-CT", ...>
 	term_definitions = <
-		["es"] = <
+		["de"] = <
 			items = <
 				["at0000"] = <
-					text = <"*Fundoscopic examination of eyes(en)">
-					description = <"*Record of clinical findings on fundoscopy of eyes.(en)">
+					text = <"Testts">
+					description = <"unknown">
 				>
+				["at0001"] = <
+					text = <"A simple existing value set">
+					description = <"*">
+				>
+				["at0002"] = <
+					text = <"With non-existing value set">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"With just a constraint def, no binding">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"A hierarchical VS with predefined display, using expand">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"A hierarchical VS with predefined display, using direct url">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"An intensional VS with many codes if expanded">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"An intensional VS with 40+ codes if expanded">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Covid example VS">
+					description = <"*">
+				>
+			>
+		>
+	>
+	constraint_definitions = <
+		["de"] = <
+			items = <
+				["ac0001"] = <
+					text = <"test">
+					description = <"*">
+				>
+				["ac0002"] = <
+					text = <"test-non">
+					description = <"*">
+				>
+				["ac0003"] = <
+					text = <"a VS without a binding">
+					description = <"*">
+				>
+				["ac0004"] = <
+					text = <"a hierachical VS (using expand for predefined)">
+					description = <"*">
+				>
+				["ac0005"] = <
+					text = <"a hierachical VS (not using expand for predefined)">
+					description = <"*">
+				>
+				["ac0006"] = <
+					text = <"a INTENSIONAL vs with many codes if expanded">
+					description = <"*">
+				>
+				["ac0007"] = <
+					text = <"a INTENSIONAL vs with 40+ codes if expanded">
+					description = <"*">
+				>
+				["ac0008"] = <
+					text = <"Covid example VS">
+					description = <"*">
+				>
+				["ac0009"] = <
+                    text = <"Some URN">
+                    description = <"*">
+                >
 			>
 		>
 	>
 	constraint_bindings = <
 		["SNOMED-CT"] = <
 			items = <
+				["ac0001"] = <terminology://fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/vs/snomed-example-vs>
 				["ac0002"] = <terminology:SNOMED-CT/408733002?subset=Diabetic%20Retinopathy%20Study%20field>
+				["ac0004"] = <terminology://fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/example-hierarchical>
+				["ac0005"] = <terminology://fhir.hl7.org/ValueSet/example-hierarchical>
+				["ac0006"] = <terminology://fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergyintolerance-code>
+				["ac0007"] = <terminology://fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/additional-instruction-codes>
+				["ac0008"] = <terminology://fhir.hl7.org/ValueSet/SARS-CoV-2-symptoms/$expand>
+				["ac0009"] = <urn:something:somethingelse:andmore>
 			>
 		>
 	>
