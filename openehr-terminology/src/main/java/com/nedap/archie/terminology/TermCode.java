@@ -12,4 +12,6 @@ public interface TermCode {
     String getDescription();
     /** Get the language specific OpenEHR Group name. Often null */
     String getGroupName();
+    /** get the id of the openEHR group, which is independent of the language as its the English group name. often null */
+    String getGroupId();
 }

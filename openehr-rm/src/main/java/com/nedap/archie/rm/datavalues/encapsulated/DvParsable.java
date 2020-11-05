@@ -2,6 +2,8 @@ package com.nedap.archie.rm.datavalues.encapsulated;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -68,5 +70,15 @@ public class DvParsable extends DvEncapsulated implements SingleValuedDataValue<
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), value, formalism);
+    }
+
+    @Invariant("Formalism_valid")
+    public boolean formalismValid() {
+        return InvariantUtil.nullOrNotEmpty(formalism);
+    }
+
+    @Invariant("Size_valid")
+    public boolean sizeValid() {
+        return value == null || value.length() > 0;
     }
 }

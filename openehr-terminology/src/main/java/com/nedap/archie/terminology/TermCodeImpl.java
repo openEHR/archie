@@ -4,25 +4,28 @@ import com.nedap.archie.terminology.openehr.Code;
 
 public class TermCodeImpl implements TermCode {
 
-    private String terminologyId;
-    private String language;
-    private String codeString;
-    private String description;
-    private String groupName;
+    private final String terminologyId;
+    private final String language;
+    private final String codeString;
+    private final String description;
+    private final String groupName;
+    private final String groupId;
 
-    public TermCodeImpl(String terminologyId, String language, String codeString, String description, String groupName) {
+    public TermCodeImpl(String terminologyId, String language, String codeString, String description, String groupName, String groupId) {
         this.terminologyId = terminologyId;
         this.language = language;
-        this.description = description;
         if(description == null) {
             this.description = codeString;
+        } else {
+            this.description = description;
         }
         this.codeString = codeString;
         this.groupName = groupName;
+        this.groupId = groupId;
     }
 
     public TermCodeImpl(String terminologyId, String language, String codeString, String description) {
-        this(terminologyId, language, codeString, description, null);
+        this(terminologyId, language, codeString, description, null, null);
     }
 
     @Override
@@ -48,5 +51,10 @@ public class TermCodeImpl implements TermCode {
     @Override
     public String getGroupName() {
         return groupName;
+    }
+
+    @Override
+    public String getGroupId() {
+        return groupId;
     }
 }

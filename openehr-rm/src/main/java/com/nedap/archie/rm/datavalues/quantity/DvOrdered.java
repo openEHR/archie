@@ -1,12 +1,17 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DataValue;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rminfo.RMPropertyIgnore;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,8 +93,39 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
                 Objects.equals(otherReferenceRanges, dvOrdered.otherReferenceRanges);
     }
 
+    @JsonIgnore
+    @XmlTransient
+    @RMPropertyIgnore
+    public boolean isSimple() {
+        return normalRange == null && (otherReferenceRanges == null || otherReferenceRanges.isEmpty());
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(normalStatus, normalRange, otherReferenceRanges);
     }
+
+    @Invariant(value = "Other_reference_ranges_validity", ignored = true)
+    public boolean otherReferenceRangesValid() {
+        return InvariantUtil.nullOrNotEmpty(otherReferenceRanges);
+    }
+
+    @Invariant(value = "Is_simple_validity", ignored = true)
+    public boolean simpleValiditiy() {
+        return true;//we're not checking whether our implementation is correct here, just data
+    }
+
+    @Invariant("Normal_status_validity")
+    public boolean normalStatusValidity() {
+        return InvariantUtil.belongsToTerminologyByGroupId(normalStatus, "normal statuses");
+    }
+
+    @Invariant("Normal_range_and_status_consistency")
+    public boolean normalRangeAndStatusConsistency() {
+        if(normalStatus != null && normalRange != null) {
+            return normalStatus.equals("N") ^ normalRange.has(this);
+        }
+        return true;
+    }
+
 }

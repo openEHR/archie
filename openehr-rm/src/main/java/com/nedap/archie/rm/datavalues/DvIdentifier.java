@@ -77,7 +77,7 @@ public class DvIdentifier extends DataValue {
     }
 
     @Invariant("Id_valid")
-    public boolean isIdValid() {
+    public boolean idValid() {
         if( id != null && id.isEmpty() ) {
             return false;
         }

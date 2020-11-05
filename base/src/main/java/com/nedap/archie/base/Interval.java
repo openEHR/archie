@@ -1,6 +1,7 @@
 package com.nedap.archie.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
@@ -356,4 +357,34 @@ public class Interval<T> extends OpenEHRBase {
             this.lowerIncluded = false;
         }
     }
+
+    @Invariant("Lower_included_valid")
+    public boolean lowerIncludedValid() {
+        if(lowerUnbounded) {
+            return !lowerIncluded;
+        }
+        return true;
+    }
+
+    @Invariant("Upper_included_valid")
+    public boolean upperIncludedValid() {
+        if(upperUnbounded) {
+            return !upperIncluded;
+        }
+        return true;
+    }
+
+    @Invariant("Limits_consistent")
+    public boolean limitsConsistent() {
+        if(!lowerUnbounded && !upperUnbounded) {
+            return compareTo(upper, lower) <= 0;
+        }
+        return true;
+    }
+
+    @Invariant(value = "Limits_comparable", ignored = true)
+    public boolean limitsComparable() {
+        return true; //great test, but hard to implement, you'll find out when using this
+    }
+
 }

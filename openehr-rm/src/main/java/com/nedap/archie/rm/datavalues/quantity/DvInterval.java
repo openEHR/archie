@@ -2,6 +2,7 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datavalues.DataValue;
+import com.nedap.archie.rminfo.Invariant;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -108,4 +109,5 @@ public class DvInterval<Type extends DvOrdered> extends DataValue {
     public int hashCode() {
         return Objects.hash(interval);
     }
+
 }

@@ -183,6 +183,10 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         if(method == null) {
             return true;
         }
+        //do not add invariants
+        if(method.getAnnotation(Invariant.class) != null) {
+            return false;
+        }
         //do not add private or protected properties, they will result in errors
         return Modifier.isPublic(method.getModifiers()) && method.getAnnotation(RMPropertyIgnore.class) == null;
     }

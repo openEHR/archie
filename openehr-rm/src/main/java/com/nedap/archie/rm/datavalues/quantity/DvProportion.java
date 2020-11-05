@@ -2,6 +2,7 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import com.nedap.archie.rminfo.Invariant;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -114,4 +115,64 @@ public class DvProportion extends DvAmount<Double> {
     public int hashCode() {
         return Objects.hash(super.hashCode(), numerator, denominator, type, precision);
     }
+
+    @Invariant("Type_validity")
+    public boolean typeValid() {
+        if(type != null) {
+            return type >= 0 && type <= 4;
+        }
+        return true;
+    }
+
+    @Invariant("Precision_validity")
+    public boolean precisionValid() {
+        if(precision != null && precision == 0 && denominator != null && numerator != null) {
+            //what can possibly go wrong with double values here....
+           return isIntegral();
+        }
+        return true;
+    }
+
+    @Invariant("Is_integral_validity")
+    public boolean integralValidity() {
+        if(isIntegral() && denominator != null && numerator != null) {
+            return (numerator.equals(Math.floor(numerator)) || Double.isInfinite(numerator)) &&
+                    (denominator.equals(Math.floor(denominator)) || Double.isFinite(denominator));
+        }
+        return true;
+    }
+
+    @Invariant("Fraction_validity")
+    public boolean fractionValidity() {
+        if(type != null && precision != null && (type.equals(ProportionKind.FRACTION.getPk()) || type.equals(ProportionKind.INTEGER_FRACTION.getPk()))) {
+            return isIntegral();
+        }
+        return true;
+    }
+
+    @Invariant("Unitary_validity")
+    public boolean unitaryValidity() {
+        if(type != null && denominator != null && type.equals(ProportionKind.UNITARY.getPk())) {
+            return denominator.equals(1d);
+        }
+        return true;
+    }
+
+    @Invariant("Percent_validity")
+    public boolean percentValidity() {
+        if(type != null && denominator != null && type.equals(ProportionKind.PERCENT.getPk())) {
+            return denominator.equals(100d);
+        }
+        return true;
+    }
+
+    @Invariant("Valid_denominator")
+    public boolean denominatorValid() {
+        if(denominator != null) {
+            return !denominator.equals(0d);
+        }
+        return true;
+    }
+
+
 }
