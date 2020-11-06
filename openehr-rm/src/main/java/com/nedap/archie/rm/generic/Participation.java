@@ -96,13 +96,13 @@ public class Participation extends RMObject {
     @Invariant("Function_valid")
     public boolean functionValid() {
         if(function instanceof DvCodedText) {
-            return InvariantUtil.belongsToTerminologyByGroupId((DvCodedText) function, "participation function")
+            return InvariantUtil.belongsToTerminologyByGroupId((DvCodedText) function, "participation function");
         }
         return true;
     }
 
     @Invariant("Mode_valid")
     public boolean modeValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(mode, "participation mode")
+        return InvariantUtil.belongsToTerminologyByGroupId(mode, "participation mode");
     }
 }
