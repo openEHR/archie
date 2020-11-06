@@ -8,6 +8,8 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.PartyProxy;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -163,5 +165,30 @@ public class Composition extends Locatable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), language, territory, category, composer, context, content);
+    }
+
+    @Invariant("Category_validity")
+    public boolean categoryValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(category, "composition category");
+    }
+
+    @Invariant("Territory_valid")
+    public boolean territoryValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(territory, "countries");
+    }
+
+    @Invariant("Language_valid")
+    public boolean languageValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "languages");
+    }
+
+    @Invariant("Content valid")
+    public boolean contentValid() {
+        return InvariantUtil.nullOrNotEmpty(content);
+    }
+
+    @Invariant(value = "Is_archetype_root", ignored=true)//TODO: implement isArchetypeRoot in Locatable
+    public boolean isArchetypeRoot() {
+        return true;
     }
 }

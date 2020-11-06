@@ -3,10 +3,12 @@ package com.nedap.archie.rmutil;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
 import com.nedap.archie.terminology.TermCode;
 
 import java.util.Collection;
+import java.util.List;
 
 public class InvariantUtil {
 
@@ -57,5 +59,19 @@ public class InvariantUtil {
             return belongsToTerminologyByGroupId(value.getDefiningCode(), groupId);
         }
         return true;
+    }
+
+    public static boolean objectRefTypeEquals(List<ObjectRef> refs, String type) {
+        for(ObjectRef ref:refs) {
+            if (objectRefTypeEquals(ref, type)) return false;
+        }
+        return true;
+    }
+
+    public static boolean objectRefTypeEquals(ObjectRef ref, String type) {
+        if(ref.getType() != null && !ref.getType().equals(type)) {
+            return true;
+        }
+        return false;
     }
 }

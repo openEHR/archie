@@ -4,6 +4,8 @@ import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -171,4 +173,49 @@ public class Ehr extends RMObject {
     public int hashCode() {
         return Objects.hash(systemId, ehrId, contributions, ehrStatus, ehrAccess, compositions, directory, timeCreated, folders);
     }
+
+    @Invariant("Contributions valid")
+    public boolean contributionsValid() {
+        return InvariantUtil.objectRefTypeEquals(contributions, "CONTRIBUTION");
+    }
+
+    @Invariant("Ehr_access_valid")
+    public boolean ehrAccessValid() {
+        return InvariantUtil.objectRefTypeEquals(ehrAccess, "VERSIONED_EHR_ACCESS");
+
+    }
+
+    @Invariant("Ehr_status_valid")
+    public boolean ehrStatusValid() {
+        return InvariantUtil.objectRefTypeEquals(ehrStatus, "VERSIONED_EHR_STATUS");
+
+    }
+
+    @Invariant("Compositions_valid")
+    public boolean compositionsValid() {
+        return InvariantUtil.objectRefTypeEquals(compositions, "VERSIONED_COMPOSITION");
+
+    }
+
+    @Invariant("Directory_valid")
+    public boolean directoryValid() {
+        return InvariantUtil.objectRefTypeEquals(directory, "VERSIONED_FOLDER");
+
+    }
+
+//TODO:
+// @Invariant("Folderss_valid")
+//    public boolean foldersValid() {
+//        return InvariantUtil.objectRefTypeEquals(folders, "VERSIONED_FOLDER");
+//
+//    }
+
+// TODO
+//  @Invariant("Directory_in_folders")
+//    public boolean directoryInFolders() {
+//        if(folders != null) {
+//        return InvariantUtil.objectRefTypeEquals(folders, "VERSIONED_FOLDER");
+//
+//    }
+
 }
