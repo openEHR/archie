@@ -17,6 +17,7 @@ import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -51,10 +52,10 @@ public class RmObjectValidatorTest {
         Element element = new Element();
         RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
         List<RMObjectValidationMessage> messages = rmObjectValidator.validate(element);
-        assertEquals(2, messages.size());
+        assertEquals(3, messages.size());
         for(RMObjectValidationMessage message:messages) {
-            assertTrue(Sets.newHashSet("/name", "/archetype_node_id").contains(message.getPath()));
-            assertEquals(RMObjectValidationMessageType.REQUIRED, message.getType());
+            assertTrue(Sets.newHashSet("/name", "/archetype_node_id", "/").contains(message.getPath()));
+            assertTrue(EnumSet.of(RMObjectValidationMessageType.REQUIRED, RMObjectValidationMessageType.INVARIANT_ERROR).contains(message.getType()));
         }
     }
 
@@ -64,10 +65,11 @@ public class RmObjectValidatorTest {
         cluster.setName(new DvText("test cluster"));
         cluster.setArchetypeNodeId("id12");
         Element element = new Element();
+        element.setValue(new DvText("hi!"));
         cluster.setItems(Lists.newArrayList(element));
         RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
         List<RMObjectValidationMessage> messages = rmObjectValidator.validate(cluster);
-        assertEquals(2, messages.size());
+        assertEquals(messages.toString() ,2, messages.size());
         for(RMObjectValidationMessage message:messages) {
             assertTrue(message.getPath(), Sets.newHashSet("/items[1]/name", "/items[1]/archetype_node_id").contains(message.getPath()));
             assertEquals(RMObjectValidationMessageType.REQUIRED, message.getType());
@@ -81,11 +83,12 @@ public class RmObjectValidatorTest {
         cluster.setArchetypeNodeId("id12");
         Element element = new Element();
         element.setName(new DvText("test element"));
+        element.setValue(new DvText("value"));
         element.setArchetypeNodeId("id15");
         cluster.setItems(Lists.newArrayList(element));
         RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
         List<RMObjectValidationMessage> messages = rmObjectValidator.validate(cluster);
-        assertEquals(0, messages.size());
+        assertEquals(messages.toString(), 0, messages.size());
 
     }
 
