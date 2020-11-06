@@ -30,6 +30,7 @@ import com.nedap.archie.rminfo.MetaModels;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -440,12 +441,13 @@ public  class ExampleJsonInstanceGenerator {
             terminologyId.put(typePropertyName, "TERMINOLOGY_ID");
             terminologyId.put("value", "local");
             String termString = "term";
+            ArchetypeTerminology terminology = archetype.getTerminology(child);
             if(child.getConstraint().isEmpty()) {
                 codeString = "term code";
             } else {
                 String constraint = child.getConstraint().get(0);
                 if(constraint.startsWith("ac")) {
-                    ArchetypeTerminology terminology = archetype.getTerminology(child);
+
                     ValueSet valueSet = terminology.getValueSets().get(constraint);
                     if(valueSet == null) {
                         valueSet = archetype.getTerminology().getValueSets().get(constraint);
@@ -468,6 +470,19 @@ public  class ExampleJsonInstanceGenerator {
                     }
                 } else {
                     codeString = "unknown term code mapping" + constraint;
+                }
+            }
+            if(AOMUtils.isValueCode(codeString)) {
+                //check for OpenEHR term mapping and use that if available, so we get correct
+                //rm objects
+                //TODO: quite some more term ids, such as IANA characters sets, etc. HOW?
+                URI openehr = terminology.getTermBinding("openehr", codeString);
+                if(openehr != null && openehr.getPath() != null) {
+                    int i = openehr.getPath().lastIndexOf('/');
+                    if (i > 0) {
+                        codeString = openehr.getPath().substring(i+1);
+                        terminologyId.put("value", "openehr");
+                    }
                 }
             }
             if(terminologyIdMapping != null) {
