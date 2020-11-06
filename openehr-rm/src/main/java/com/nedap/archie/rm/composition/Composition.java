@@ -187,8 +187,8 @@ public class Composition extends Locatable {
         return InvariantUtil.nullOrNotEmpty(content);
     }
 
-    @Invariant(value = "Is_archetype_root", ignored=true)//TODO: implement isArchetypeRoot in Locatable
-    public boolean isArchetypeRoot() {
-        return true;
+    @Invariant("Is_archetype_root")
+    public boolean archetypeRoot() {
+        return isArchetypeRoot();
     }
 }
