@@ -19,6 +19,7 @@ import org.openehr.utils.message.I18n;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,7 +71,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             return result;
         }
         for (RMObjectWithPath objectWithPath : rmObjects) {
-            validateInvariants(objectWithPath);
+            result.addAll(validateInvariants(objectWithPath, path));
         }
         if(cobject == null) {
             //add default validations
@@ -94,10 +95,11 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         return result;
     }
 
-    private void validateInvariants(RMObjectWithPath objectWithPath) {
+    private List<RMObjectValidationMessage> validateInvariants(RMObjectWithPath objectWithPath, String pathSoFar) {
         if(!validateInvariants) {
-            return;
+            return Collections.emptyList();
         }
+        List<RMObjectValidationMessage> result = new ArrayList<>();
         Object rmObject = objectWithPath.getObject();
         if(rmObject != null) {
             RMTypeInfo typeInfo = lookup.getTypeInfo(rmObject.getClass());
@@ -105,17 +107,22 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 for (InvariantMethod invariantMethod : typeInfo.getInvariants()) {
                     if(!invariantMethod.getAnnotation().ignored()) {
                         try {
-                            Boolean result = (Boolean) invariantMethod.getMethod().invoke(rmObject);
-                            if (!result) {
-                                this.addMessage(null, objectWithPath.getPath(), I18n.t("Invariant {0} failed", invariantMethod.getAnnotation().value()), RMObjectValidationMessageType.INVARIANT_ERROR);
+                            boolean passed = (boolean) invariantMethod.getMethod().invoke(rmObject);
+                            if (!passed) {
+                                result.add(new RMObjectValidationMessage(null, pathSoFar + objectWithPath.getPath(),
+                                        I18n.t("Invariant {0} failed", invariantMethod.getAnnotation().value()),
+                                        RMObjectValidationMessageType.INVARIANT_ERROR));
                             }
                         } catch (IllegalAccessException | InvocationTargetException e) {
-                            this.addMessage(null, objectWithPath.getPath(), I18n.t("Exception {0} invoking invariant {1}: {2}", e.getClass().getSimpleName(), invariantMethod.getAnnotation().value(), e.getMessage()), RMObjectValidationMessageType.EXCEPTION);
+                            result.add(new RMObjectValidationMessage(null, pathSoFar + objectWithPath.getPath(),
+                                    I18n.t("Exception {0} invoking invariant {1}: {2}", e.getClass().getSimpleName(), invariantMethod.getAnnotation().value(), e.getMessage()),
+                                    RMObjectValidationMessageType.EXCEPTION));
                         }
                     }
                 }
             }
         }
+        return result;
     }
 
     private void validateObjectWithPath(List<RMObjectValidationMessage> result, CObject cobject, String path, RMObjectWithPath objectWithPath){

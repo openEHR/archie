@@ -150,7 +150,7 @@ public abstract class Entry extends ContentItem {
 
     @Invariant("Encoding_valid")
     public boolean encodingValid() {
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "character sets");
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(encoding, "character sets");
     }
 
     @Invariant(value="Subject_validity", ignored = true)

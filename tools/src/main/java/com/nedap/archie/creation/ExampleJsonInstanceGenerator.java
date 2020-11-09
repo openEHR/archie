@@ -60,9 +60,12 @@ public  class ExampleJsonInstanceGenerator {
 
     private String typePropertyName = "@type";
 
+    private OpenEHRExampleCodePhrases exampleCodePhrases;
+
     public ExampleJsonInstanceGenerator(MetaModels models, String language) {
         this.language = language;
         this.models = models;
+        this.exampleCodePhrases = new OpenEHRExampleCodePhrases(typePropertyName);
     }
 
     public Map<String, Object> generate(OperationalTemplate archetype) {
@@ -100,6 +103,7 @@ public  class ExampleJsonInstanceGenerator {
      */
     public void setTypePropertyName(String typePropertyName) {
         this.typePropertyName = typePropertyName;
+        this.exampleCodePhrases = new OpenEHRExampleCodePhrases(typePropertyName);
     }
 
 
@@ -250,7 +254,10 @@ public  class ExampleJsonInstanceGenerator {
         //add all mandatory properties from the RM
         for (BmmProperty property : properties.values()) {
             if (property.getMandatory() && !result.containsKey(property.getName())) {
-                if(property.getName().equalsIgnoreCase("archetype_node_id")) {
+                Map<String, Object> potentialCodePhrase = exampleCodePhrases.getOpenEHRCodePhrase(classDefinition.getType().getTypeName(), property.getName());
+                if(potentialCodePhrase != null) {
+                    result.put(property.getName(), potentialCodePhrase);
+                } else if(property.getName().equalsIgnoreCase("archetype_node_id")) {
                     addRequiredProperty(result, property, "idX");
                 } else {
                     addRequiredProperty(result, property);
@@ -444,6 +451,12 @@ public  class ExampleJsonInstanceGenerator {
             ArchetypeTerminology terminology = archetype.getTerminology(child);
             if(child.getConstraint().isEmpty()) {
                 codeString = "term code";
+                CAttribute attribute = child.getParent();
+                CComplexObject parent = (CComplexObject) attribute.getParent();
+                Map<String, Object> potentialResult = getOpenEHRCodedText(parent, attribute);
+                if(potentialResult != null) {
+                    return potentialResult;
+                }
             } else {
                 String constraint = child.getConstraint().get(0);
                 if(constraint.startsWith("ac")) {
@@ -472,19 +485,7 @@ public  class ExampleJsonInstanceGenerator {
                     codeString = "unknown term code mapping" + constraint;
                 }
             }
-            if(AOMUtils.isValueCode(codeString)) {
-                //check for OpenEHR term mapping and use that if available, so we get correct
-                //rm objects
-                //TODO: quite some more term ids, such as IANA characters sets, etc. HOW?
-                URI openehr = terminology.getTermBinding("openehr", codeString);
-                if(openehr != null && openehr.getPath() != null) {
-                    int i = openehr.getPath().lastIndexOf('/');
-                    if (i > 0) {
-                        codeString = openehr.getPath().substring(i+1);
-                        terminologyId.put("value", "openehr");
-                    }
-                }
-            }
+
             if(terminologyIdMapping != null) {
                 result.put(terminologyIdMapping.getTargetPropertyName(), terminologyId);
             }
@@ -502,7 +503,6 @@ public  class ExampleJsonInstanceGenerator {
 
     }
 
-
     ///// BEGIN OPENEHR RM SPECIFIC CODE TO BE EXTRACTED /////
 
     private String getConcreteTypeOverride(String rmTypeName) {
@@ -513,6 +513,17 @@ public  class ExampleJsonInstanceGenerator {
         }
 
         return null;
+    }
+
+
+    /**
+     * Returns a DV_CODED_TEXT instance of the given place in the RM requires a custom known code, for example 'UTF-8' in encoding.
+     * @param parent
+     * @param attribute
+     * @return
+     */
+    private Map<String, Object> getOpenEHRCodedText(CComplexObject parent, CAttribute attribute) {
+        return exampleCodePhrases.getOpenEHRCodedText(parent, attribute);
     }
 
     /**
@@ -608,6 +619,23 @@ public  class ExampleJsonInstanceGenerator {
             try {
                 Map<String, Object> definingCode = (Map<String, Object>) result.get("defining_code");
                 String codeString = (String) definingCode.get("code_string");//TODO: check terminology code to be local?
+                if(AOMUtils.isValueCode(codeString)) {
+                    //check for OpenEHR term mapping and use that if available, so we get correct
+                    //rm objects
+                    //TODO: quite some more term ids, such as IANA characters sets, etc. HOW?
+                    URI openehr = archetype.getTerminology(cObject).getTermBinding("openehr", codeString);
+                    if(openehr != null && openehr.getPath() != null) {
+                        int i = openehr.getPath().lastIndexOf('/');
+                        if (i > 0) {
+                            codeString = openehr.getPath().substring(i+1);
+                            Map<String, Object> terminologyId = (Map<String, Object>) definingCode.get("terminology_id");
+                            if(terminologyId != null) {
+                                terminologyId.put("value", "openehr");
+                            }
+                            //TODO: add a mapping to the at code in the data.
+                        }
+                    }
+                }
                 ArchetypeTerm term = archetype.getTerm(cObject, codeString, language);
                 result.put("value", term.getText());
             } catch (Exception e) {

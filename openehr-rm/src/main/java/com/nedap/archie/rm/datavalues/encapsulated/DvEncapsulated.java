@@ -71,6 +71,6 @@ public abstract class DvEncapsulated extends DataValue {
 
     @Invariant("Charset_valid")
     public boolean charsetValid() {
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "character sets");
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(charset, "character sets");
     }
 }

@@ -62,7 +62,7 @@ public class ExampleJsonInstanceGeneratorTest {
         Map<String, Object> encoding = (Map<String, Object>) structure.get("encoding");
         assertEquals("CODE_PHRASE", encoding.get(TYPE_PROPERTY_NAME));
         Map<String, Object> terminologyId = (Map<String, Object>) encoding.get("terminology_id");
-        assertEquals("the default value for a string type should be \"string\"", "string", terminologyId.get("value"));
+        assertEquals("the default value for a terminology id encoding should be \"IANA_character-sets\"", "IANA_character-sets", terminologyId.get("value"));
         List events = (List) data.get("events");
         assertEquals(3, events.size());
         assertEquals("POINT_EVENT", ((Map) events.get(0)).get(TYPE_PROPERTY_NAME));
