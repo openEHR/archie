@@ -65,7 +65,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
     private synchronized  TerminologyImpl getOrCreateTerminologyById(String issuer, String openEhrId, String externalId) {
         TerminologyImpl terminology = terminologiesByExternalId.get(externalId);
         if(terminology == null) {
-            terminology = new TerminologyImpl(issuer, externalId, openEhrId);
+            terminology = new TerminologyImpl(issuer, openEhrId, externalId);
             terminologiesByExternalId.put(externalId, terminology);
             terminologiesByOpenEHRId.put(openEhrId, terminology);
         }
