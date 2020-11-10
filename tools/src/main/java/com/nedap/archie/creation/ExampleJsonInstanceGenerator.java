@@ -324,7 +324,9 @@ public  class ExampleJsonInstanceGenerator {
         BmmClass classDefinition = bmm.getClassDefinition(actualType);
         result.put(typePropertyName, className);
         if(classDefinition != null) {
+            addAdditionalPropertiesAtBegin(classDefinition, result, null);
             addRequiredPropertiesFromBmm(result, classDefinition);
+            addAdditionalPropertiesAtEnd(classDefinition, result, null);
         }
         return result;
     }
@@ -581,25 +583,32 @@ public  class ExampleJsonInstanceGenerator {
 
             Map<String, Object> name = new LinkedHashMap<>();
             name.put(typePropertyName, "DV_TEXT");
-            ArchetypeTerm term = archetype.getTerm(cObject, language);
-            if (term == null) {
-                name.put("value", getMissingTermText(cObject));
+
+            if(cObject == null) {
+                name.put("value", "example generated name");
             } else {
-                name.put("value", term.getText());
+                ArchetypeTerm term = archetype.getTerm(cObject, language);
+                if (term == null) {
+                    name.put("value", getMissingTermText(cObject));
+                } else {
+                    name.put("value", term.getText());
+                }
             }
             result.put("name", name);
 
-            if (!(cObject instanceof CPrimitiveObject)) {
+            if (cObject != null && !(cObject instanceof CPrimitiveObject)) {
                 result.put("archetype_node_id", cObject.getNodeId());
             }
         }
 
-        if(cObject instanceof ArchetypeSlot) {
-            result.put("archetype_details", constructArchetypeDetails("openEHR-EHR-" + cObject.getRmTypeName() + ".archetype-slot.v1"));
-        } else if (cObject instanceof CArchetypeRoot) {
-            result.put("archetype_details", constructArchetypeDetails(((CArchetypeRoot) cObject).getArchetypeRef()));
-        } else if(cObject.isRootNode()) {
-            result.put("archetype_details", constructArchetypeDetails(cObject.getArchetype().getArchetypeId().getFullId()));
+        if(cObject != null) {
+            if (cObject instanceof ArchetypeSlot) {
+                result.put("archetype_details", constructArchetypeDetails("openEHR-EHR-" + cObject.getRmTypeName() + ".archetype-slot.v1"));
+            } else if (cObject instanceof CArchetypeRoot) {
+                result.put("archetype_details", constructArchetypeDetails(((CArchetypeRoot) cObject).getArchetypeRef()));
+            } else if (cObject.isRootNode()) {
+                result.put("archetype_details", constructArchetypeDetails(cObject.getArchetype().getArchetypeId().getFullId()));
+            }
         }
     }
 
@@ -615,13 +624,17 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     protected void addAdditionalPropertiesAtEnd(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
-        if(classDefinition.getType().getTypeName().equalsIgnoreCase("DV_CODED_TEXT")) {
+        String rmTypeName = classDefinition.getType().getTypeName();
+        if(rmTypeName.equalsIgnoreCase("DV_CODED_TEXT")) {
             try {
                 Map<String, Object> definingCode = (Map<String, Object>) result.get("defining_code");
                 String codeString = (String) definingCode.get("code_string");//TODO: check terminology code to be local?
+                ArchetypeTerm term = archetype.getTerm(cObject, codeString, language);
+                result.put("value", term.getText());
                 if(AOMUtils.isValueCode(codeString)) {
                     //check for OpenEHR term mapping and use that if available, so we get correct
                     //rm objects
+
                     //TODO: quite some more term ids, such as IANA characters sets, etc. HOW?
                     URI openehr = archetype.getTerminology(cObject).getTermBinding("openehr", codeString);
                     if(openehr != null && openehr.getPath() != null) {
@@ -632,15 +645,26 @@ public  class ExampleJsonInstanceGenerator {
                             if(terminologyId != null) {
                                 terminologyId.put("value", "openehr");
                             }
+                            ((Map<String, Object>) result.get("defining_code")).put("code_string", codeString);
                             //TODO: add a mapping to the at code in the data.
                         }
                     }
                 }
-                ArchetypeTerm term = archetype.getTerm(cObject, codeString, language);
-                result.put("value", term.getText());
             } catch (Exception e) {
                 //if statements would be cleaner, but this should not happen and is a lot less code
                 //cannot set this apparently, it will be filled by the BMM required property later
+            }
+        } else if(rmTypeName.equalsIgnoreCase("CODE_PHRASE")) {
+            System.out.println("CODEPHRASE FOUND");//TODO
+        } else if(rmTypeName.equalsIgnoreCase("ELEMENT")) {
+            Object value = result.get("value");
+            Object nullFlavour = result.get("null_flavour");
+            if(value == null && nullFlavour == null) {
+                Map<String, Object> dvText = new LinkedHashMap<>();
+                dvText.put(typePropertyName, "DV_TEXT");
+                dvText.put("value", "string");
+
+                result.put("value", dvText);
             }
         }
     }
