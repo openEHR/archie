@@ -7,8 +7,8 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.archetypevalidator.validations.*;
-import com.nedap.archie.flattener.ArchetypeRepository;
 import com.nedap.archie.flattener.Flattener;
+import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.flattener.OverridingInMemFullArchetypeRepository;
@@ -18,7 +18,6 @@ import org.openehr.utils.message.I18n;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +28,7 @@ public class ArchetypeValidator {
     private static final Logger logger = LoggerFactory.getLogger(ArchetypeValidator.class);
 
     private MetaModels combinedModels;
+    private FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forFlattened();
 
     //see comment on why there is a phase 0
     private List<ArchetypeValidation> validationsPhase0;
@@ -38,7 +38,6 @@ public class ArchetypeValidator {
     private List<ArchetypeValidation> validationsPhase2;
 
     private List<ArchetypeValidation> validationsPhase3;
-
 
     public ArchetypeValidator(ReferenceModels models) {
         this(new MetaModels(models, null));
@@ -79,6 +78,11 @@ public class ArchetypeValidator {
         validationsPhase3.add(new FlatFormValidation());
 
     }
+
+    public void setRemoveZeroOccurrencesConstraintsComingFromParents(boolean value) {
+        flattenerConfiguration.setRemoveZeroOccurrencesInParents(value);
+    }
+
 
     public ValidationResult validate(Archetype archetype) {
         return validate(archetype, null);
@@ -172,7 +176,7 @@ public class ArchetypeValidator {
         result.setErrors(messages);
         if(result.passes() || settings.isAlwaysTryToFlatten()) {
             try {
-                Archetype flattened = new Flattener(repository, combinedModels).flatten(archetype);
+                Archetype flattened = new Flattener(repository, combinedModels, flattenerConfiguration).flatten(archetype);
 
                 try {
                     OperationalTemplate operationalTemplate = (OperationalTemplate) new Flattener(repository, combinedModels).createOperationalTemplate(true).flatten(archetype);

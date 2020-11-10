@@ -132,6 +132,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         addClass(ContentItem.class);
         addClass(DataValue.class);
         addClass(DvOrdinal.class);
+        addClass(DvScale.class);
         addClass(Agent.class);
         addClass(InternetId.class);
         addClass(Role.class);
