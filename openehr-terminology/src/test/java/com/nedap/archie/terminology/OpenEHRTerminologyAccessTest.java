@@ -18,16 +18,25 @@ public class OpenEHRTerminologyAccessTest {
 
     @Test
     public void getCodesFromGroup() {
-        TermCode mass = termAccess.getTerm("openehr", "124", "en");
-        assertEquals("Mass", mass.getDescription());
-        assertEquals("124", mass.getCodeString());
-        assertEquals("openehr", mass.getTerminologyId());
-        assertEquals("en", mass.getLanguage());
+        List<TermCode> compositionCategories = termAccess.getTermsByOpenEHRGroup("composition category", "en");
+        assertEquals(3, compositionCategories.size());
+        for(TermCode termCode:compositionCategories) {
+            assertEquals("composition category", termCode.getGroupName());
+            assertEquals("en", termCode.getLanguage());
+            assertEquals("openehr", termCode.getTerminologyId());
+        }
 
-        assertEquals("median", termAccess.getTerm("openehr", "268", "en").getDescription());
+        TermCode persistent = compositionCategories.get(0);
+        TermCode episodic = compositionCategories.get(1);
+        TermCode event = compositionCategories.get(2);
+        assertEquals("431", persistent.getCodeString());
+        assertEquals("435", episodic.getCodeString());
+        assertEquals("433", event.getCodeString());
+        assertEquals("persistent", persistent.getDescription());
+        assertEquals("episodic", episodic.getDescription());
+        assertEquals("event", event.getDescription());
 
-        assertEquals("massa", termAccess.getTerm("openehr", "124", "pt").getDescription());
-        assertEquals("mediana", termAccess.getTerm("openehr", "268", "pt").getDescription());
+
     }
 
     @Test
