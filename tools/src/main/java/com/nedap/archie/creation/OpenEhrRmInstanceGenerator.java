@@ -158,6 +158,9 @@ class OpenEhrRmInstanceGenerator {
 
                 result.put("value", dvText);
             }
+            if(value != null && nullFlavour != null) {
+                result.remove("null_flavour");//can't be set at the same time
+            }
         } else if (rmTypeName.equalsIgnoreCase("DV_MULTIMEDIA")) {
             Object data = result.get("data");
             if(data == null) {
@@ -167,6 +170,39 @@ class OpenEhrRmInstanceGenerator {
             Object name = result.get("name");
             if(name == null) {
                 result.put("name", "John Doe");
+            }
+        } else if (rmTypeName.equalsIgnoreCase("DV_PROPORTION")) {
+            //this one is tricky. Several cases
+            //RATIO(0), UNITARY(1), PERCENT(2), FRACTION(3), INTEGER_FRACTION(4);
+            Number proportionKind = (Number) result.get("type");
+            Number denominator = (Number) result.get("denominator");
+            if(denominator != null && denominator.intValue() == 0) {
+                result.put("denominator", 1);
+            }
+            if(proportionKind == null || proportionKind.intValue() > 4) {
+                result.put("type", 2);
+                result.put("denominator", 100);
+                result.put("numerator", 50);
+            } else {
+                switch(proportionKind.intValue()) {
+                    case 0: //ratio
+                        //nothing to be done.
+                        break;
+                    case 1: //unitary
+                        result.put("denominator", 1);
+                        break;
+                    case 2: //percent
+                        result.put("denominator", 100);
+                        break;
+                    case 3: //fraction
+                    case 4: //integer fraction
+                        result.put("precision", 0);
+                }
+            }
+        } else if (rmTypeName.equalsIgnoreCase("DV_URI") || rmTypeName.equalsIgnoreCase("DV_EHR_URI") ){
+            String value = (String) result.get("value");
+            if(value.equalsIgnoreCase("string")) {
+                result.put("value", "ehr://something/something");
             }
         }
     }

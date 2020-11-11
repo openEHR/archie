@@ -134,6 +134,7 @@ public class JSONSchemaCreator {
             } else if ((typeName.equalsIgnoreCase("DV_URI") || typeName.equalsIgnoreCase("DV_EHR_URI")) && propertyName.equalsIgnoreCase("value")) {
                 JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
                 propertyDef.add("format", "uri-reference");
+                properties.add(propertyName, propertyDef);
                 atLeastOneProperty = true;
             } else {
                 JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
