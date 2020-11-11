@@ -2,6 +2,8 @@ package com.nedap.archie.adl14;
 
 import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.log.ADL2ConversionRunLog;
+import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
+import com.nedap.archie.terminology.TerminologyAccess;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.Template;
@@ -21,8 +23,9 @@ import java.util.List;
 public class ADL14Converter {
 
     private final MetaModels metaModels;
+    private TerminologyAccess terminologyAccess = OpenEHRTerminologyAccess.getInstance();
     private final ADL14ConversionConfiguration conversionConfiguration;
-    InMemoryFullArchetypeRepository existingRepository;
+    private InMemoryFullArchetypeRepository existingRepository;
 
     public ADL14Converter(MetaModels metaModels, ADL14ConversionConfiguration conversionConfiguration) {
         this.metaModels = metaModels;

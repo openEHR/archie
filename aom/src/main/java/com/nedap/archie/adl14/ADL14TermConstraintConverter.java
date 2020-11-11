@@ -10,6 +10,8 @@ import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
+import com.nedap.archie.terminology.TermCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -219,14 +221,27 @@ public class ADL14TermConstraintConverter {
         createdCode.setOriginalTerm(termCode);
         converter.addCreatedCode(termCode.toString(), createdCode);
 
+        addTermBindingCode(archetype, termCode.toString(), uri, valueCode);
+        return valueCode;
+    }
+
+    protected static void addTermBindingCode(Archetype archetype, String termCode, URI uri, String valueCode) {
         for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
+            TermCode termFromTerminology = OpenEHRTerminologyAccess.getInstance().getTermByTerminologyURI(uri.toString(), language);
+            TermCode fallbackCode = OpenEHRTerminologyAccess.getInstance().getTermByTerminologyURI(uri.toString(), "en");
             ArchetypeTerm term = new ArchetypeTerm();
             term.setCode(valueCode);
-            term.setText("Term binding for " + termCode.toString() + ", translation not known in ADL 1.4 -> ADL 2 converter");
+            if(termFromTerminology != null) {
+                term.setText(termFromTerminology.getDescription());
+            } else if (fallbackCode != null) {
+                term.setText("* " + fallbackCode.getDescription() + " (en)");
+            }else {
+                term.setText("Term binding for " + termCode + ", translation not known in ADL 1.4 -> ADL 2 converter");
+
+            }
             term.setDescription(term.getText());
             archetype.getTerminology().getTermDefinitions().get(language).put(valueCode, term);
         }
-        return valueCode;
     }
 
     private ValueSet findOrCreateValueSet(Archetype archetype, Set<String> localCodes, CObject owningConstraint) {

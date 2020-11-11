@@ -3,24 +3,38 @@ archetype (adl_version=1.4; uid=1.2.36.1.2001.1001.100.137.1.0)
 
 concept
     [at0000]	-- value_binding
+
 language
-    original_language = <[ISO_639-1::en]>
+	original_language = <[ISO_639-1::en]>
+  translations = <
+		["no-bk"] = <
+			language = <[ISO_639-1::no-bk]>
+			author = <
+				["name"] = <"Pieter Bos">
+				["organisation"] = <"Nonsense translation inc.">
+			>
+		>
+    >
+
 description
-    original_author = <
-        ["name"] = <"Pieter Bos">
-    >
-    details = <
-        ["en"] = <
-            language = <[ISO_639-1::en]>
-            purpose = <"A test for value binding">
-            use = <"">
-            misuse = <"">
+	original_author = <
+		["name"] = <"Pieter Bos">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"A test for value binding">
+			use = <"">
+			misuse = <"">
+		>
+		["no-bk"] = <
+			language = <[ISO_639-1::no-bk]>
         >
-    >
-    other_contributors = <>
-    other_details = <
-        ["revision"] = <"1.0.0">
-    >
+	>
+	other_contributors = <>
+	other_details = <
+		["revision"] = <"1.0.0">
+	>
 
 definition
 
@@ -45,6 +59,18 @@ CLUSTER[at0000] matches {
 ontology
     term_definitions = <
         ["en"] = <
+            items = <
+                ["at0000"] = <
+                    text = <"root node">
+                    description = <"Root node">
+                >
+                ["at0006"] = <
+                    text = <"element">
+                    description = <"Element">
+                >
+            >
+        >
+        ["no-bk"] = <
             items = <
                 ["at0000"] = <
                     text = <"root node">
