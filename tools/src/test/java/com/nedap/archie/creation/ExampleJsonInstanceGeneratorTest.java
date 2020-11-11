@@ -148,6 +148,7 @@ public class ExampleJsonInstanceGeneratorTest {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         int numberCreated = 0, validationFailed = 0, generatedException = 0, jsonSchemaValidationRan = 0, jsonSchemaValidationFailed = 0;
         int secondJsonSchemaValidationRan = 0, reserializedJsonSchemaValidationFailed = 0;
+        int rmObjectValidatorRan = 0, rmObjectValidatorFailed = 0;
         repository.compile(BuiltinReferenceModels.getMetaModels());
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         JsonSchemaValidator firstValidator = new JsonSchemaValidator(model, true);
@@ -167,8 +168,10 @@ public class ExampleJsonInstanceGeneratorTest {
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
                     List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance()).validate(parsed);
+                    rmObjectValidatorRan++;
                     if(!validated.isEmpty()) {
                         rmValidationErrors.add("error in " + result.getArchetypeId() + ": " + validated);
+                        rmObjectValidatorFailed++;
                     }
                     //assertEquals("error in " + result.getArchetypeId(), new ArrayList<>(), validated);
                     numberCreated++;
@@ -212,6 +215,7 @@ public class ExampleJsonInstanceGeneratorTest {
         logger.info("created " + numberCreated + " examples, " + validationFailed + " failed to validate, " + generatedException + " threw exception in test");
         logger.info("failed validation " + jsonSchemaValidationFailed + " of " + jsonSchemaValidationRan);
         logger.info("failed validation of reserialized json " + reserializedJsonSchemaValidationFailed + " of " + secondJsonSchemaValidationRan);
+        logger.info("failed validation of RM Objects+invariants " + rmObjectValidatorFailed + " of " + rmObjectValidatorRan);
         assertEquals("Example JSON schema should not fail", 0, jsonSchemaValidationFailed);
         assertEquals("Example JSON schema serialized from RM implementation should not fail", 0, reserializedJsonSchemaValidationFailed);
         assertEquals("no exceptions should occur during schema validation", 0, generatedException);

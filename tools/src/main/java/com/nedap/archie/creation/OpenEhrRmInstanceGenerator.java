@@ -163,6 +163,11 @@ class OpenEhrRmInstanceGenerator {
             if(data == null) {
                 result.put("data", "NDIK");
             }
+        } else if(rmTypeName.equalsIgnoreCase("PARTY_RELATED")) {
+            Object name = result.get("name");
+            if(name == null) {
+                result.put("name", "John Doe");
+            }
         }
     }
 
