@@ -178,6 +178,12 @@ public class JSONSchemaCreator {
             }
         } else if (type instanceof BmmContainerType) {
             BmmContainerType containerType = (BmmContainerType) type;
+            if(containerType.getBaseType().getTypeName().equalsIgnoreCase("Octet")) {
+                //binary data will be base64 encoded, so express that here
+                JsonObjectBuilder string = createType("string");
+                string.add("contentEncoding", "base64");
+                return string;
+            }
             return jsonFactory.createObjectBuilder()
                 .add("type", "array")
                 .add("items", createPropertyDef(containerType.getBaseType()));
@@ -252,7 +258,11 @@ public class JSONSchemaCreator {
     }
 
     private JsonObjectBuilder getJSPrimitive(BmmType bmmType) {
-        return primitiveTypeMapping.get(BmmDefinitions.typeNameToClassKey(bmmType.getTypeName()).toLowerCase()).get();
+        return getJSPrimitive(BmmDefinitions.typeNameToClassKey(bmmType.getTypeName()).toLowerCase());
+    }
+
+    private JsonObjectBuilder getJSPrimitive(String classKey) {
+        return primitiveTypeMapping.get(classKey.toLowerCase()).get();
     }
 
     private JsonObjectBuilder createConstType(String rootType) {
