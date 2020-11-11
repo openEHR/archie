@@ -110,7 +110,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                             boolean passed = (boolean) invariantMethod.getMethod().invoke(rmObject);
                             if (!passed) {
                                 result.add(new RMObjectValidationMessage(null, pathSoFar + objectWithPath.getPath(),
-                                        I18n.t("Invariant {0} failed", invariantMethod.getAnnotation().value()),
+                                        I18n.t("Invariant {0} failed on type " + typeInfo.getRmName(), invariantMethod.getAnnotation().value()),
                                         RMObjectValidationMessageType.INVARIANT_ERROR));
                             }
                         } catch (IllegalAccessException | InvocationTargetException e) {

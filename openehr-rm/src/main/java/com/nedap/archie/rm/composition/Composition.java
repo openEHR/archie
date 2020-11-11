@@ -169,7 +169,7 @@ public class Composition extends Locatable {
 
     @Invariant("Category_validity")
     public boolean categoryValid() {
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(category, "composition category");
+        return InvariantUtil.belongsToTerminologyByGroupId(category, "composition category");
     }
 
     @Invariant("Territory_valid")
@@ -182,7 +182,7 @@ public class Composition extends Locatable {
         return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "languages");
     }
 
-    @Invariant("Content valid")
+    @Invariant(value="Content valid", ignored=true)
     public boolean contentValid() {
         return InvariantUtil.nullOrNotEmpty(content);
     }

@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 public class OpenEHRExampleCodePhrases {
 
     private final Map<String, Supplier<Map<String, Object>>> exampleObjectsByAttribute = new LinkedHashMap<>();
-    private final String typeNameProperty;
+    private String typeNameProperty;
 
     public OpenEHRExampleCodePhrases(String typeNameProperty) {
         this.typeNameProperty = typeNameProperty;
@@ -53,6 +53,10 @@ public class OpenEHRExampleCodePhrases {
         exampleObjectsByAttribute.put("ADMIN_ENTRY.encoding", () -> createCodePhrase("IANA_character-sets", "UTF-8"));
 
 
+    }
+
+    public void setTypePropertyName(String typePropertyName) {
+        this.typeNameProperty = typePropertyName;
     }
 
     private Map<String, Object> createCodedText(String terminologyId, String codeString, String name) {

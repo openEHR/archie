@@ -16,6 +16,7 @@ import com.nedap.archie.json.JsonSchemaValidator;
 import com.nedap.archie.json.RMJacksonConfiguration;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Observation;
+import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
@@ -134,7 +135,6 @@ public class ExampleJsonInstanceGeneratorTest {
         assertTrue(s.contains("{\"_type\":\"DV_ORDINAL\",\"value\":0,\"symbol\":{\"_type\":\"DV_CODED_TEXT\",\"value\":\"Absent\",\"defining_code\":{\"_type\":\"CODE_PHRASE\",\"terminology_id\":{\"_type\":\"TERMINOLOGY_ID\",\"value\":\"local\"},\"code_string\":\"at11\"}}}"));
     }
 
-
     /**
      * Tests all CKM examples with the Archie JSON Schema, that properly handles polymorphism
      * This probably will go away once we have a proper solution
@@ -154,10 +154,10 @@ public class ExampleJsonInstanceGeneratorTest {
         JsonSchemaValidator secondValidator = new JsonSchemaValidator(model,false);
 
         ObjectMapper archieObjectMapper = getArchieObjectMapper();
+        List<String> rmValidationErrors = new ArrayList<>();
 
         for(ValidationResult result:repository.getAllValidationResults()) {
-            if(result.passes()
-                ) {
+            if(result.passes() ) { //&& result.getArchetypeId().equalsIgnoreCase("openEHR-EHR-OBSERVATION.conference.v1.0.0")) {
                 String json = "";
                 try {
                     Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
@@ -166,6 +166,11 @@ public class ExampleJsonInstanceGeneratorTest {
                     json = mapper.writeValueAsString(example);
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
+                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance()).validate(parsed);
+                    if(!validated.isEmpty()) {
+                        rmValidationErrors.add("error in " + result.getArchetypeId() + ": " + validated);
+                    }
+                    //assertEquals("error in " + result.getArchetypeId(), new ArrayList<>(), validated);
                     numberCreated++;
 
                     jsonSchemaValidationRan++;
@@ -203,6 +208,7 @@ public class ExampleJsonInstanceGeneratorTest {
 
 
         }
+        logger.info("error validation: " + Joiner.on("\n").join(rmValidationErrors));
         logger.info("created " + numberCreated + " examples, " + validationFailed + " failed to validate, " + generatedException + " threw exception in test");
         logger.info("failed validation " + jsonSchemaValidationFailed + " of " + jsonSchemaValidationRan);
         logger.info("failed validation of reserialized json " + reserializedJsonSchemaValidationFailed + " of " + secondJsonSchemaValidationRan);

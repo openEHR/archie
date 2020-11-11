@@ -38,8 +38,7 @@
 		<concept id="435" rubric="*episodic(en)"/>
 
 	</group>
-	<!--
-	<group name="multimídia">
+	<group name="multimídia" id="MultiMedia">
 		<concept id="387" rubric="audio/DVI4" />
 		<concept id="388" rubric="audio/G722" />
 		<concept id="389" rubric="audio/G723" />
@@ -90,7 +89,6 @@
 		<concept id="682" rubric="application/vnd.oasis.opendocument.text" />
 		<concept id="683" rubric="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
 	</group>
-	-->
 	<group name="propriedade" id="property">
 		<concept id="339" rubric="aceleração"/>
 		<concept id="342" rubric="aceleração, angular"/>

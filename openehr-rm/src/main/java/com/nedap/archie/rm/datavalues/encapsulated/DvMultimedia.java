@@ -184,7 +184,9 @@ public class DvMultimedia extends DvEncapsulated {
 
     @Invariant("Media_type_valid")
     public boolean mediaTypeValid() {
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(mediaType, "media types");
+        //the second type is still in use in many archetypes, so needs to be supported here, or we need other migration strategies
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(mediaType, "media types") ||
+                InvariantUtil.belongsToTerminologyByGroupId(mediaType, "MultiMedia");
     }
 
     @Invariant("Compression_algorithm_valid")
