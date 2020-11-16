@@ -141,9 +141,9 @@ public class ExampleJsonInstanceGeneratorTest {
      * @throws Exception
      */
     @Test
-    public void generateAllCKMExamples2() throws Exception {
+    public void generateAllCKMExamples() throws Exception {
         ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
-        FullArchetypeRepository repository = TestUtil.parseCKM();
+        FullArchetypeRepository repository = TestUtil.parseCKM();//".*lifestyle.*adls");
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         int numberCreated = 0, validationFailed = 0, generatedException = 0, jsonSchemaValidationRan = 0, jsonSchemaValidationFailed = 0;
@@ -158,7 +158,7 @@ public class ExampleJsonInstanceGeneratorTest {
         List<String> rmValidationErrors = new ArrayList<>();
 
         for(ValidationResult result:repository.getAllValidationResults()) {
-            if(result.passes() ) { //&& result.getArchetypeId().equalsIgnoreCase("openEHR-EHR-OBSERVATION.conference.v1.0.0")) {
+            if(result.passes()) {
                 String json = "";
                 try {
                     Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
@@ -184,7 +184,7 @@ public class ExampleJsonInstanceGeneratorTest {
                         jsonSchemaValidationFailed++;
                         continue;
                     }
-                    logger.info("first validation ok for {}", result.getArchetypeId());
+                    //logger.info("first validation ok for {}", result.getArchetypeId());
 
                     String serializedAgain = archieObjectMapper.writeValueAsString(parsed);
                     secondJsonSchemaValidationRan++;
@@ -195,7 +195,7 @@ public class ExampleJsonInstanceGeneratorTest {
                         logger.error(Joiner.on("\n").join(secondProblems));
                         reserializedJsonSchemaValidationFailed++;
                     } else {
-                        logger.info("second validation ok for {}", result.getArchetypeId());
+                       // logger.info("second validation ok for {}", result.getArchetypeId());
                     }
 
                 } catch (Exception e) {

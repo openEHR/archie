@@ -176,9 +176,9 @@ public  class ExampleJsonInstanceGenerator {
                         String concreteTypeName = getConcreteTypeName(child.getRmTypeName());
                         BmmClass childClassDefinition = bmm.getClassDefinition(concreteTypeName);
                         next.put(typePropertyName, concreteTypeName);
-                        openEhrRmInstanceGenerator.addAdditionalPropertiesAtBegin(classDefinition, next, child);
+                        openEhrRmInstanceGenerator.addAdditionalPropertiesAtBegin(childClassDefinition, next, child);
                         addRequiredPropertiesFromBmm(next, childClassDefinition);
-                        openEhrRmInstanceGenerator.addAdditionalPropertiesAtEnd(classDefinition, next, child);
+                        openEhrRmInstanceGenerator.addAdditionalPropertiesAtEnd(childClassDefinition, next, child);
                         children.add(next);
                     } else {
                         children.add("unsupported constraint: " + child.getClass().getSimpleName());
