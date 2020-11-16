@@ -1,5 +1,6 @@
 package com.nedap.archie.creation;
 
+import com.google.common.collect.Lists;
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CArchetypeRoot;
 import com.nedap.archie.aom.CAttribute;
@@ -13,7 +14,9 @@ import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmProperty;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 class OpenEhrRmInstanceGenerator {
@@ -143,11 +146,18 @@ class OpenEhrRmInstanceGenerator {
     }
 
     public void addAdditionalPropertiesAtEnd(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
-        String rmTypeName = classDefinition.getType().getTypeName();
+        String rmTypeName = classDefinition.getType().getBaseClass().getName();
         if(rmTypeName.equalsIgnoreCase("DV_CODED_TEXT")) {
             fixCodedText(result, cObject);
         } else if(rmTypeName.equalsIgnoreCase("CODE_PHRASE")) {
             fixCodePhrase(result, cObject);
+        } else if(rmTypeName.equalsIgnoreCase("HISTORY")) {
+            Object events = result.get("events");
+            if(events == null || (events instanceof List && ((List) events).isEmpty())) {
+                List<Map> newEvents = new ArrayList<>();
+                newEvents.add(this.generator.constructExampleType("EVENT"));
+                result.put("events", newEvents);
+            }
         } else if(rmTypeName.equalsIgnoreCase("ELEMENT")) {
             Object value = result.get("value");
             Object nullFlavour = result.get("null_flavour");
