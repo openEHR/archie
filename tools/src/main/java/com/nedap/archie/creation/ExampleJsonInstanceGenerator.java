@@ -162,8 +162,10 @@ public  class ExampleJsonInstanceGenerator {
                             //primitive object, but actual object in JSON
                             //TODO: how to do properties at begin? Just add as empty map, then add fields here then at end?
                             //perhaps not required?
-                            BmmClass childClassDefinition = bmm.getClassDefinition(child.getRmTypeName());
-                            openEhrRmInstanceGenerator.addAdditionalPropertiesAtEnd(childClassDefinition, (Map<String, Object>) toAdd, child);
+                            Map<String, Object> toAddMap = (Map<String, Object>) toAdd;
+                            String childTypeName = toAddMap.containsKey("_type") ? (String) toAddMap.get("_type") : child.getRmTypeName();
+                            BmmClass childClassDefinition = bmm.getClassDefinition(childTypeName);
+                            openEhrRmInstanceGenerator.addAdditionalPropertiesAtEnd(childClassDefinition, toAddMap, child);
                         }
                         children.add(toAdd);
                     } else if (child instanceof ArchetypeSlot) {

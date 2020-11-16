@@ -143,7 +143,7 @@ public class ExampleJsonInstanceGeneratorTest {
     @Test
     public void generateAllCKMExamples() throws Exception {
         ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
-        FullArchetypeRepository repository = TestUtil.parseCKM();//".*lifestyle.*adls");
+        FullArchetypeRepository repository = TestUtil.parseCKM();//add string regex filename fiter param here to filter files
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         int numberCreated = 0, validationFailed = 0, generatedException = 0, jsonSchemaValidationRan = 0, jsonSchemaValidationFailed = 0;
