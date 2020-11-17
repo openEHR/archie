@@ -26,16 +26,10 @@ public class RMObjectValidatingProcessor {
     }
 
     protected void addMessage(CObject cobject, String actualPath, String message) {
-        if(actualPath != null && actualPath.isEmpty()) {
-            actualPath = "/";
-        }
         messages.add(new RMObjectValidationMessage(cobject, actualPath, message));
     }
 
     protected void addMessage(CObject cobject, String actualPath, String message, RMObjectValidationMessageType type) {
-        if(actualPath != null && actualPath.isEmpty()) {
-            actualPath = "/";
-        }
         messages.add(new RMObjectValidationMessage(cobject, actualPath, message, type));
     }
 

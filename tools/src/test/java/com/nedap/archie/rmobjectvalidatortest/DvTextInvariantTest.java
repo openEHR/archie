@@ -34,7 +34,7 @@ public class DvTextInvariantTest {
         RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
         List<RMObjectValidationMessage> messages = rmObjectValidator.validate(text);
         assertEquals(messages.toString(), 1, messages.size());
-        assertEquals("Invariant Language_valid failed", messages.get(0).getMessage());
+        assertEquals("Invariant Language_valid failed on type DV_TEXT", messages.get(0).getMessage());
         assertEquals("/", messages.get(0).getPath());
     }
 
@@ -46,7 +46,7 @@ public class DvTextInvariantTest {
         RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
         List<RMObjectValidationMessage> messages = rmObjectValidator.validate(text);
         assertEquals(messages.toString(), 1, messages.size());
-        assertEquals("Invariant Encoding_valid failed", messages.get(0).getMessage());
+        assertEquals("Invariant Encoding_valid failed on type DV_TEXT", messages.get(0).getMessage());
         assertEquals("/", messages.get(0).getPath());
     }
 
@@ -58,7 +58,7 @@ public class DvTextInvariantTest {
         RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
         List<RMObjectValidationMessage> messages = rmObjectValidator.validate(text);
         assertEquals(messages.toString(), 1, messages.size());
-        assertEquals("Invariant Encoding_valid failed", messages.get(0).getMessage());
+        assertEquals("Invariant Encoding_valid failed on type DV_TEXT", messages.get(0).getMessage());
         assertEquals("/", messages.get(0).getPath());
     }
 }

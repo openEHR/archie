@@ -50,11 +50,12 @@ public class RmObjectValidatorTest {
     @Test
     public void testEmptyElementWithoutArchetype() {
         Element element = new Element();
+        element.setValue(new DvText("something"));
         RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
         List<RMObjectValidationMessage> messages = rmObjectValidator.validate(element);
-        assertEquals(3, messages.size());
+        assertEquals(2, messages.size());
         for(RMObjectValidationMessage message:messages) {
-            assertTrue(Sets.newHashSet("/name", "/archetype_node_id", "/").contains(message.getPath()));
+            assertTrue(message.getPath() + " unexpected value", Sets.newHashSet("/name", "/archetype_node_id", "/").contains(message.getPath()));
             assertTrue(EnumSet.of(RMObjectValidationMessageType.REQUIRED, RMObjectValidationMessageType.INVARIANT_ERROR).contains(message.getType()));
         }
     }
