@@ -16,15 +16,13 @@ public class DvIdentifierInvariantTest {
     public void valid() {
         DvIdentifier identifier = new DvIdentifier();
         identifier.setId("something");
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        assertTrue(rmObjectValidator.validate(identifier).isEmpty());
+        InvariantTestUtil.assertValid(identifier);
     }
 
     @Test
     public void idInvalid() {
         DvIdentifier identifier = new DvIdentifier();
         identifier.setId("");
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        assertFalse(rmObjectValidator.validate(identifier).isEmpty());
+        InvariantTestUtil.assertInvariantInvalid(identifier, "Id_valid", "/");
     }
 }

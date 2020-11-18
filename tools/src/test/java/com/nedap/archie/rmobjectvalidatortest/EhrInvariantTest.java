@@ -28,9 +28,7 @@ public class EhrInvariantTest {
     @Test
     public void validEhr() {
         Ehr ehr = createValidEhr();
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(ehr);
-        assertTrue(messages.toString(), messages.isEmpty());
+        InvariantTestUtil.assertValid(ehr);
     }
 
 
@@ -39,27 +37,21 @@ public class EhrInvariantTest {
     public void invalidContributions() {
         Ehr ehr = createValidEhr();
         ehr.setContributions(createExampleRefList("VERSIONED_COMPOSITION"));
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(ehr);
-        assertEquals(messages.toString(), 1, messages.size());
+        InvariantTestUtil.assertInvariantInvalid(ehr, "Contributions valid", "/");
     }
 
     @Test
     public void invalidEhrAccess() {
         Ehr ehr = createValidEhr();
         ehr.setEhrAccess(createExampleRef("VERSIONED_EHR_STATUS"));
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(ehr);
-        assertEquals(messages.toString(), 1, messages.size());
+        InvariantTestUtil.assertInvariantInvalid(ehr, "Ehr_access_valid", "/");
     }
 
     @Test
     public void invalidEhrStatus() {
         Ehr ehr = createValidEhr();
         ehr.setEhrStatus(createExampleRef("VERSIONED_EHR_ACCESS"));
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(ehr);
-        assertEquals(messages.toString(), 1, messages.size());
+        InvariantTestUtil.assertInvariantInvalid(ehr, "Ehr_status_valid", "/");
     }
 
     @Test
@@ -67,19 +59,15 @@ public class EhrInvariantTest {
         Ehr ehr = createValidEhr();
         ObjectRef directoryRef = createExampleRef("VERSIONED_UNKNOWN");
         ehr.setDirectory(directoryRef);
-        ehr.setFolders(Arrays.asList(directoryRef));
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(ehr);
-        assertEquals(messages.toString(), 2, messages.size());
+        ehr.setFolders(null);
+        InvariantTestUtil.assertInvariantInvalid(ehr, "Directory_valid", "/");
     }
 
     @Test
     public void invalidCompositions() {
         Ehr ehr = createValidEhr();
         ehr.setCompositions(createExampleRefList("VERSIONED_NON_COMPOSITION"));
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(ehr);
-        assertEquals(messages.toString(), 1, messages.size());
+        InvariantTestUtil.assertInvariantInvalid(ehr, "Compositions_valid", "/");
     }
 
     @Test
@@ -87,9 +75,7 @@ public class EhrInvariantTest {
         Ehr ehr = createValidEhr();
         ehr.setDirectory(null);
         ehr.setFolders(new ArrayList<>());
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(ehr);
-        assertEquals(messages.toString(), 0, messages.size());
+        InvariantTestUtil.assertValid(ehr);
     }
 
     @Test
@@ -98,9 +84,7 @@ public class EhrInvariantTest {
         ObjectRef directoryRef = createExampleRef("VERSIONED_FOLDER");
         ehr.setDirectory(directoryRef);
         ehr.setFolders(new ArrayList<>());
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(ehr);
-        assertEquals(messages.toString(), 1, messages.size());
+        InvariantTestUtil.assertInvariantInvalid(ehr, "Directory_in_folders", "/");
     }
 
     private Ehr createValidEhr() {

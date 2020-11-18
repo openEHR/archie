@@ -94,6 +94,13 @@ public class Interval<T> extends OpenEHRBase {
         return result;
     }
 
+    public static <T> Interval<T> unbounded() {
+        Interval<T> result = new Interval<T>(null, null, false, false);
+        result.setLowerUnbounded(true);
+        result.setUpperUnbounded(true);
+        return result;
+    }
+
     public T getLower() {
         return lower;
     }
