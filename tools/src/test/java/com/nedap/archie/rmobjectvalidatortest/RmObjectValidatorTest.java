@@ -93,6 +93,23 @@ public class RmObjectValidatorTest {
 
     }
 
+    @Test
+    public void skipInvariantValidation(){
+        //create element with every required field filled, that does not pass invariant
+        Element element = new Element();
+        element.setArchetypeNodeId("id5");
+        element.setName(new DvText("name"));
+
+        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
+        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(element);
+        assertEquals(messages.toString(), 1, messages.size());
+
+        rmObjectValidator.setRunInvariantChecks(false);
+        messages = rmObjectValidator.validate(element);
+        assertEquals(messages.toString(), 0, messages.size());
+
+    }
+
 
     @Test
     public void testNestedEmptyElementWithoutArchetype() {

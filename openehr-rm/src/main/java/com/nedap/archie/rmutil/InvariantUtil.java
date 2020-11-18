@@ -63,15 +63,13 @@ public class InvariantUtil {
 
     public static boolean objectRefTypeEquals(List<ObjectRef> refs, String type) {
         for(ObjectRef ref:refs) {
-            if (objectRefTypeEquals(ref, type)) return false;
+            if (!objectRefTypeEquals(ref, type)) return false;
         }
         return true;
     }
 
     public static boolean objectRefTypeEquals(ObjectRef ref, String type) {
-        if(ref.getType() != null && !ref.getType().equals(type)) {
-            return true;
-        }
-        return false;
+        return ref == null || ref.getType() == null || ref.getType().equals(type);
+
     }
 }

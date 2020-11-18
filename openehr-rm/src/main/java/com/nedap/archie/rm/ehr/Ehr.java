@@ -203,19 +203,19 @@ public class Ehr extends RMObject {
 
     }
 
-//TODO:
-// @Invariant("Folderss_valid")
-//    public boolean foldersValid() {
-//        return InvariantUtil.objectRefTypeEquals(folders, "VERSIONED_FOLDER");
-//
-//    }
 
-// TODO
-//  @Invariant("Directory_in_folders")
-//    public boolean directoryInFolders() {
-//        if(folders != null) {
-//        return InvariantUtil.objectRefTypeEquals(folders, "VERSIONED_FOLDER");
-//
-//    }
+    @Invariant("Folderss_valid")
+    public boolean foldersValid() {
+        return InvariantUtil.objectRefTypeEquals(folders, "VERSIONED_FOLDER");
+
+    }
+
+    @Invariant("Directory_in_folders")
+    public boolean directoryInFolders() {
+        if (folders != null && directory != null) {
+            return folders.size() >= 1 && folders.get(0).equals(directory);
+        }
+        return true;
+    }
 
 }

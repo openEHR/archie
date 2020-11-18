@@ -42,11 +42,8 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         constraintImposer = new ReflectionConstraintImposer(lookup);
     }
 
-    public static RMObjectValidator disabledInvariantChecks(ModelInfoLookup lookup) {
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(lookup);
-        rmObjectValidator.validateInvariants = false;
-
-        return rmObjectValidator;
+    public void setRunInvariantChecks(boolean validateInvariants) {
+        this.validateInvariants = validateInvariants;
     }
 
     public List<RMObjectValidationMessage> validate(Archetype archetype, Object rmObject) {
