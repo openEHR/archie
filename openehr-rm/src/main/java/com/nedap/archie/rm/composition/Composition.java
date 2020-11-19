@@ -111,9 +111,8 @@ public class Composition extends Locatable {
     }
 
     @JsonIgnore
-    public void setCategory(String codePhrase) {
-        this.category = new DvCodedText();
-        category.setDefiningCode(new CodePhrase(codePhrase));
+    public void setCategory(String value, String codePhrase) {
+        this.category = new DvCodedText(value, codePhrase);
     }
 
     public PartyProxy getComposer() {

@@ -154,7 +154,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
     private void validateCAttributes(List<RMObjectValidationMessage> result, String path, RMObjectWithPath objectWithPath, Object rmObject, CObject cObject, List<CAttribute> attributes) {
-        String pathSoFar = RMObjectValidationUtil.stripLastPathSegment(path) + objectWithPath.getPath();
+        String pathSoFar = joinPaths(path, objectWithPath.getPath());
         for (CAttribute attribute : attributes) {
             validateAttributes(result, attribute, cObject, rmObject, pathSoFar);
         }
@@ -176,7 +176,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 String query = "/" + rmAttributeName;
                 aPathQuery = queryCache.getApathQuery(query);
                 List<RMObjectWithPath> childRmObjects = aPathQuery.findList(lookup, rmObject);
-                result.addAll(runArchetypeValidations(childRmObjects, joinPaths(pathSoFar, query), null));
+                result.addAll(runArchetypeValidations(childRmObjects, pathSoFar, null));
             }
             else if (attribute.isSingle()) {
                 validateSingleAttribute(result, attribute, rmObject, pathSoFar);
