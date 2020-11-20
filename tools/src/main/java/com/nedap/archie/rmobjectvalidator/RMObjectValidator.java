@@ -96,6 +96,8 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         if(!validateInvariants) {
             return Collections.emptyList();
         }
+        //pathSoFar ends with an attribute, but objectWithPath contains it, so remove that.
+        pathSoFar = RMObjectValidationUtil.stripLastPathSegment(pathSoFar);
         List<RMObjectValidationMessage> result = new ArrayList<>();
         Object rmObject = objectWithPath.getObject();
         if(rmObject != null) {
@@ -154,7 +156,8 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
     private void validateCAttributes(List<RMObjectValidationMessage> result, String path, RMObjectWithPath objectWithPath, Object rmObject, CObject cObject, List<CAttribute> attributes) {
-        String pathSoFar = joinPaths(path, objectWithPath.getPath());
+        //the path contains an attribute, but is missing the [idx] part. So strip the attribute, and add the attribute plus the [idx] part.
+        String pathSoFar = joinPaths(RMObjectValidationUtil.stripLastPathSegment(path), objectWithPath.getPath());
         for (CAttribute attribute : attributes) {
             validateAttributes(result, attribute, cObject, rmObject, pathSoFar);
         }
@@ -176,7 +179,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 String query = "/" + rmAttributeName;
                 aPathQuery = queryCache.getApathQuery(query);
                 List<RMObjectWithPath> childRmObjects = aPathQuery.findList(lookup, rmObject);
-                result.addAll(runArchetypeValidations(childRmObjects, pathSoFar, null));
+                result.addAll(runArchetypeValidations(childRmObjects, joinPaths(pathSoFar, query), null));
             }
             else if (attribute.isSingle()) {
                 validateSingleAttribute(result, attribute, rmObject, pathSoFar);

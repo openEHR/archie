@@ -41,8 +41,8 @@ public class RmObjectValidatorTest {
         List<RMObjectValidationMessage> validationMessages = validator.validate(archetype, element);
         assertEquals("There should be 1 errors", 1, validationMessages.size());
         assertEquals("There should be a validation message about the numerator", "Attribute numerator of class DV_PROPORTION does not match existence 1..1", validationMessages.get(0).getMessage());
-        assertEquals("The path should be correct", "/value[id2]/numerator", validationMessages.get(0).getPath());
-        assertEquals("The archetype path should be correct", "/value[id2]/value/numerator", validationMessages.get(0).getArchetypePath());
+        assertEquals("The path should be correct", "/value/numerator", validationMessages.get(0).getPath());
+        assertEquals("The archetype path should be correct", "/value[id2]/numerator", validationMessages.get(0).getArchetypePath());
 
         dvProportion.setNumerator(2D);
         validationMessages = validator.validate(archetype, element);
