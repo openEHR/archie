@@ -103,6 +103,7 @@ public class RM102ConversionTest {
         assertEquals ("\"COMPOSITION\" has suppliers {\"CODE_PHRASE\", \"DV_TEXT\", ...})", testResult, conformanceResult);
     }
 
+    @Test
     public void testRm102PartyIdentifiedSuppliers() throws Exception {
         // test supplier relations
         Set<String> testResult = rm102Model.supplierClosure("PARTY_IDENTIFIED");
@@ -116,6 +117,11 @@ public class RM102ConversionTest {
         );
 
         assertEquals ("\"PARTY_IDENTIFIED\" has suppliers {\"String\", \"PARTY_REF\", ...})", testResult, conformanceResult);
+    }
+
+    @Test
+    public void packagedCorrectlyConverted() {
+        assertEquals("org.openehr.rm.composition.content.navigation", rm102Model.getClassDefinition("SECTION").getPackagePath());
     }
 
 }
