@@ -1,5 +1,7 @@
 package org.openehr.bmm.v2.persistence;
 
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -56,9 +58,18 @@ public final class PBmmPackage extends PBmmPackageContainer {
         return documentation;
     }
 
-    public void doRecursiveClasses(BiConsumer<PBmmPackage, String> action) {
-        getClasses().forEach(bmmClass -> action.accept(this, bmmClass));
-        getPackages().forEach((key, bmmPackage) -> bmmPackage.doRecursiveClasses(action));
+    /** perform an action first on all classes of the root package, then traverse the package tree and
+     * perform on all classes
+     * @param action an action, which is a consumer of two Strings: the first the packagename including "."s, the second the className
+     */
+    public void doRecursiveClasses(BiConsumer<String, String> action) {
+        doRecursiveClasses(action, "");
+    }
+
+    private void doRecursiveClasses(BiConsumer<String, String> action, String parentPackageName) {
+        String thisPackageName = parentPackageName.isEmpty() ? name : parentPackageName + BmmDefinitions.PACKAGE_NAME_DELIMITER + name;
+        getClasses().forEach(bmmClass -> action.accept(thisPackageName, bmmClass));
+        getPackages().forEach((key, bmmPackage) -> bmmPackage.doRecursiveClasses(action, thisPackageName));
     }
 
     public void setDocumentation(String documentation) {

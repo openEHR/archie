@@ -85,7 +85,7 @@ public class BmmSchemaConverter {
             //this keeps the original casing, just the lookup is different
             new PreprocessPersistedSchema().preprocess(schema);
 
-            //step 2: create canonical packages (org.openehr.ehr becomes org -> openehr -> ehr)
+                //step 2: create canonical packages (org.openehr.ehr becomes org -> openehr -> ehr)
             Map<String, PBmmPackage> canonicalPackages = new CanonicalPackagesGenerator().generateCanonicalPackages(schema);
             result.setCanonicalPackages(canonicalPackages);
 

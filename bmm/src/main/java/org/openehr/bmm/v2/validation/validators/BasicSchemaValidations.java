@@ -42,12 +42,12 @@ public class BasicSchemaValidations implements BmmValidation {
 
         //1. check that no duplicate class names are found in packages
         validationResult.getCanonicalPackages().forEach((packageName, canonicalPackage) -> {
-            canonicalPackage.doRecursiveClasses((persistedBmmPackage, className) -> {
+            canonicalPackage.doRecursiveClasses((persistedBmmPackageName, className) -> {
                 String classNameStr = className.toLowerCase();
                 if(packageClassList.containsKey(classNameStr)) {
-                    logger.addError(BmmMessageIds.EC_DUPLICATE_CLASS_IN_PACKAGES, schema.getSchemaId(), className, persistedBmmPackage.getName(), packageClassList.get(classNameStr));
+                    logger.addError(BmmMessageIds.EC_DUPLICATE_CLASS_IN_PACKAGES, schema.getSchemaId(), className, persistedBmmPackageName, packageClassList.get(classNameStr));
                 } else {
-                    packageClassList.put(classNameStr, persistedBmmPackage.getName());
+                    packageClassList.put(classNameStr, persistedBmmPackageName);
                 }
             });
         });

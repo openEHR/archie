@@ -21,14 +21,56 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class BmmPackageContainerTest {
+
+    private BmmPackage level_0;
+    private BmmPackage level_0_1;
+    private BmmPackage level_0_2;
+    private BmmPackage level_0_1_1;
+    private BmmPackage level_0_1_2;
+    private BmmPackage level_0_2_1;
+    private BmmPackage level_0_2_2;
+    private BmmPackage level_0_1_1_1;
+    private BmmModel rootPackage;
+
+    @Before
+    public void setup() {
+        rootPackage = new BmmModel();
+
+        level_0 = new BmmPackage("level_0");
+        level_0_1 = new BmmPackage("level_0_1");
+        level_0_2 = new BmmPackage("level_0_2");
+        level_0_1_1 = new BmmPackage("level_0_1_1");
+        level_0_1_2 = new BmmPackage("level_0_1_2");
+        level_0_2_1 = new BmmPackage("level_0_2_1");
+        level_0_2_2 = new BmmPackage("level_0_2_2");
+        level_0_1_1_1 = new BmmPackage("level_0_1_1_1");
+        level_0.addPackage(level_0_1);
+        level_0.addPackage(level_0_2);
+        level_0_1.addPackage(level_0_1_1);
+        level_0_1.addPackage(level_0_1_2);
+        level_0_2.addPackage(level_0_2_1);
+        level_0_2.addPackage(level_0_2_2);
+        level_0_1_1.addPackage(level_0_1_1_1);
+        rootPackage.addPackage(level_0);
+
+    }
+
     @Test
     public void packageAtPath() throws Exception {
-
+        assertEquals(level_0_2_2, rootPackage.packageAtPath("level_0.level_0_2.level_0_2_2"));
+        assertEquals(level_0_1_1, rootPackage.packageAtPath("level_0.level_0_1.level_0_1_1"));
+        assertEquals(level_0_2, rootPackage.packageAtPath("level_0.level_0_2"));
+        assertNull(rootPackage.packageAtPath("level_0.level_0_1.level_0_1_3"));
+        assertEquals(level_0_1_1_1, rootPackage.packageAtPath("level_0.level_0_1.level_0_1_1.level_0_1_1_1"));
+        assertEquals(level_0, rootPackage.packageAtPath("level_0"));
+        assertNull(rootPackage.packageAtPath("level_4"));
+        assertNull(rootPackage.packageAtPath("level_0.level_0_1.level_0_1_1.level_0_1_1_1.level_0_1_1_1_1"));
     }
 
     @Test
@@ -38,41 +80,15 @@ public class BmmPackageContainerTest {
 
     @Test
     public void hasPackagePath() throws Exception {
-        BmmPackageContainer container = createPackageContainer();
-        assertTrue(container.hasPackagePath("level_0.level_0_2.level_0_2_2"));
-        assertTrue(container.hasPackagePath("level_0.level_0_1.level_0_1_1"));
-        assertTrue(container.hasPackagePath("level_0.level_0_2"));
-        assertFalse(container.hasPackagePath("level_0.level_0_1.level_0_1_3"));
-        assertTrue(container.hasPackagePath("level_0.level_0_1.level_0_1_1.level_0_1_1_1"));
-        assertTrue(container.hasPackagePath("level_0"));
-        assertFalse(container.hasPackagePath("level_4"));
-        assertFalse(container.hasPackagePath("level_0.level_0_1.level_0_1_1.level_0_1_1_1.level_0_1_1_1_1"));
+        assertTrue(rootPackage.hasPackagePath("level_0.level_0_2.level_0_2_2"));
+        assertTrue(rootPackage.hasPackagePath("level_0.level_0_1.level_0_1_1"));
+        assertTrue(rootPackage.hasPackagePath("level_0.level_0_2"));
+        assertFalse(rootPackage.hasPackagePath("level_0.level_0_1.level_0_1_3"));
+        assertTrue(rootPackage.hasPackagePath("level_0.level_0_1.level_0_1_1.level_0_1_1_1"));
+        assertTrue(rootPackage.hasPackagePath("level_0"));
+        assertFalse(rootPackage.hasPackagePath("level_4"));
+        assertFalse(rootPackage.hasPackagePath("level_0.level_0_1.level_0_1_1.level_0_1_1_1.level_0_1_1_1_1"));
     }
 
-    @Test
-    public void packageExistsInHierarchy() throws Exception {
-        BmmPackageContainer container = createPackageContainer();
-        assertTrue(container.hasPackageNameInHierarchy(new BmmPackage("level_0_1_2")));
-        assertTrue(container.hasPackageNameInHierarchy(new BmmPackage("level_0_1_1_1")));
-        assertFalse(container.hasPackageNameInHierarchy(new BmmPackage("level_3")));
-    }
 
-    public BmmPackage createPackageContainer() {
-        BmmPackage root = new BmmPackage("level_0");
-        BmmPackage level_0_1 = new BmmPackage("level_0_1");
-        BmmPackage level_0_2 = new BmmPackage("level_0_2");
-        BmmPackage level_0_1_1 = new BmmPackage("level_0_1_1");
-        BmmPackage level_0_1_2 = new BmmPackage("level_0_1_2");
-        BmmPackage level_0_2_1 = new BmmPackage("level_0_2_1");
-        BmmPackage level_0_2_2 = new BmmPackage("level_0_2_2");
-        BmmPackage level_0_1_1_1 = new BmmPackage("level_0_1_1_1");
-        root.addPackage(level_0_1);
-        root.addPackage(level_0_2);
-        level_0_1.addPackage(level_0_1_1);
-        level_0_1.addPackage(level_0_1_2);
-        level_0_2.addPackage(level_0_2_1);
-        level_0_2.addPackage(level_0_2_2);
-        level_0_1_1.addPackage(level_0_1_1_1);
-        return root;
-    }
 }

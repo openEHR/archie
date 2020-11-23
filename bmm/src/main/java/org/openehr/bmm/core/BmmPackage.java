@@ -21,6 +21,8 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
+import com.google.common.base.Strings;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -157,11 +159,10 @@ public class BmmPackage extends BmmPackageContainer implements Serializable {
     }
 
     public void appendToPath(String pathComponent) {
-        if(this.canonicalPath == null || this.canonicalPath.isEmpty()) {
-            this.canonicalPath = pathComponent;
-        } else {
-            this.canonicalPath = this.canonicalPath + PACKAGE_PATH_DELIMITER + pathComponent;
-        }
+
+        canonicalPath = Strings.isNullOrEmpty(canonicalPath) ?
+                pathComponent : this.canonicalPath + PACKAGE_PATH_DELIMITER + pathComponent;
+
     }
 
     public boolean hasPackagePath(List<String> packagePathComponents, int currentIndex, int sizeRemaining) {

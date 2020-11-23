@@ -32,15 +32,14 @@ public class BmmModelCreator {
 
             model.addPackage(bmmPackage);
 
-            pBmmPackage.doRecursiveClasses((p, s) -> {
-                PBmmClass pBmmClass = schema.getClassDefinition(s);
-                if (pBmmClass != null) {
-                    BmmClass bmmClass = pBmmClass.createBmmClass();
-                    if (bmmClass != null) {
-                        bmmClass.setPrimitiveType(schema.getPrimitiveTypes().containsKey (bmmClass.getName()));
-                        model.addClassDefinition(bmmClass, bmmPackage);
-                    }
-                }
+            pBmmPackage.doRecursiveClasses((packageName, className) -> {
+                BmmPackage foundPackage = model.packageAtPath(packageName);
+                PBmmClass pBmmClass = schema.getClassDefinition(className);
+
+                BmmClass bmmClass = pBmmClass.createBmmClass();
+
+                bmmClass.setPrimitiveType(schema.getPrimitiveTypes().containsKey (bmmClass.getName()));
+                model.addClassDefinition(bmmClass, foundPackage);
             });
         }
 
@@ -76,4 +75,6 @@ public class BmmModelCreator {
         });
         return bmmPackageDefinition;
     }
+    
+
 }

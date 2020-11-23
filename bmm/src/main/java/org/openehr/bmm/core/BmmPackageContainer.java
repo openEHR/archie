@@ -85,7 +85,17 @@ public abstract class BmmPackageContainer extends BmmModelElement implements IBm
      * @return
      */
     public BmmPackage packageAtPath(String packagePath) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        String[] packagePathParsed = packagePath.split("\\" + PACKAGE_PATH_DELIMITER);
+        Map<String, BmmPackage> packages = this.packages;
+        BmmPackage bmmPackage = null;
+        for(String packageName:packagePathParsed) {
+            bmmPackage = packages.get(packageName);
+            if(bmmPackage == null) {
+                return null;
+            }
+            packages = bmmPackage.getPackages();
+        }
+        return bmmPackage;
     }
 
     /**
@@ -105,45 +115,7 @@ public abstract class BmmPackageContainer extends BmmModelElement implements IBm
      * @return
      */
     public boolean hasPackagePath(String packagePathString) {
-        String[] components = packagePathString.split("\\" + PACKAGE_PATH_DELIMITER);
-        List<String> packagePath = new ArrayList<>();
-        packagePath.addAll(Arrays.asList(components));
-        boolean exists = false;
-        if(this instanceof BmmPackage) {
-            exists = ((BmmPackage)this).hasPackagePath(packagePath, 0, packagePath.size());
-        } else {
-            for (BmmPackage bmmPackage : packages.values()) {
-                exists = bmmPackage.hasPackagePath(packagePath, 0, packagePath.size());
-                if (exists) {
-                    break;
-                }
-            }
-        }
-        return exists;
+       return packageAtPath(packagePathString) != null;
     }
 
-    /**
-     * Method looks for the first instance of a package of the same name
-     * as the argument package in the container's package hierarchy.
-     *
-     * @param testPackage
-     * @return
-     */
-    public boolean hasPackageNameInHierarchy(BmmPackage testPackage) {
-        boolean found = false;
-        if(packages != null) {
-            if(packages.containsKey(testPackage.getName())) {
-                found = true;
-            } else {
-                for(BmmPackage bmmPackage : packages.values()) {
-                    found = bmmPackage.hasPackageNameInHierarchy(testPackage);
-                    if(found) {
-                        break;
-                    }
-                }
-
-            }
-        }
-        return found;
-    }
 }
