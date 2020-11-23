@@ -64,8 +64,8 @@ public class BmmModelCreator {
     private BmmPackage createBmmPackageDefinition(PBmmPackage p, PBmmPackage parent, BmmPackage parentPackageDefinition) {
         BmmPackage bmmPackageDefinition = new BmmPackage(p.getName());
         bmmPackageDefinition.setDocumentation(p.getDocumentation());
-        if (parent != null) {
-            bmmPackageDefinition.appendToPath(parent.getName());
+        if (parentPackageDefinition != null) {
+            bmmPackageDefinition.appendToPath(parentPackageDefinition.getPath());
             bmmPackageDefinition.setParent(parentPackageDefinition);
         }
         bmmPackageDefinition.appendToPath(p.getName());

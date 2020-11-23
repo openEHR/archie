@@ -159,31 +159,9 @@ public class BmmPackage extends BmmPackageContainer implements Serializable {
     }
 
     public void appendToPath(String pathComponent) {
-
         canonicalPath = Strings.isNullOrEmpty(canonicalPath) ?
-                pathComponent : this.canonicalPath + PACKAGE_PATH_DELIMITER + pathComponent;
+                pathComponent : canonicalPath + PACKAGE_PATH_DELIMITER + pathComponent;
 
-    }
-
-    public boolean hasPackagePath(List<String> packagePathComponents, int currentIndex, int sizeRemaining) {
-        boolean matches = false;
-        if(sizeRemaining > 1) {
-            if (packagePathComponents.get(currentIndex).equalsIgnoreCase(name)) {
-                for(BmmPackage bmmPackage : getPackages().values()) {
-                    matches = bmmPackage.hasPackagePath(packagePathComponents, currentIndex + 1, sizeRemaining - 1);
-                    if(matches) {
-                        break;
-                    }
-                }
-            }
-        } else if(sizeRemaining == 1) {
-            if(packagePathComponents.get(currentIndex).equalsIgnoreCase(name)) {
-                matches = true;
-            }
-        } else {
-            throw new RuntimeException("Invalid size. Recursion exceeded bounds");
-        }
-        return matches;
     }
 
     /**
