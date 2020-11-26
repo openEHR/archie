@@ -60,8 +60,8 @@ public class DvURI extends DataValue implements SingleValuedDataValue<URI> {
         return Objects.hash(value);
     }
 
-    @Invariant(value="Value_valid", ignored=true)
+    @Invariant(value="Value_valid")
     public boolean valueValid() {
-        return true;//we replaced String with URI, so this is automatically valid
+        return value == null || !value.toString().isEmpty();
     }
 }

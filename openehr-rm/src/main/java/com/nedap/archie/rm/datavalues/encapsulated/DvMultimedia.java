@@ -177,7 +177,7 @@ public class DvMultimedia extends DvEncapsulated {
         return uri != null;
     }
 
-    @Invariant("Not_Empty")
+    @Invariant("Not_empty")
     public boolean notEmpty() {
         return isInline() || isExternal();
     }
@@ -202,7 +202,7 @@ public class DvMultimedia extends DvEncapsulated {
         return true;
     }
 
-    @Invariant("Integrity_check_validity")
+    @Invariant("Integrity_check_algorithm_validity")
     public boolean integrityCheckAlgorithmValid() {
         return InvariantUtil.belongsToTerminologyByOpenEHRId(integrityCheckAlgorithm, "integrity check algorithms");
     }
