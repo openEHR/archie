@@ -18,7 +18,7 @@ public class DvPeriodicTimeSpecificationInvariantTest {
     @Test
     public void formalismInvalid() {
         DvPeriodicTimeSpecification value = new DvPeriodicTimeSpecification();
-        value.setValue(new DvParsable("insert valid time spec here", "HL7:PIVL"));
+        value.setValue(new DvParsable("insert valid time spec here", "HL7:blabla"));
         InvariantTestUtil.assertInvariantInvalid(value, "Value_valid", "/");
     }
 
