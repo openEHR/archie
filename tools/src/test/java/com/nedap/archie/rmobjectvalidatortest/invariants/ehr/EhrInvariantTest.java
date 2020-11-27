@@ -1,4 +1,4 @@
-package com.nedap.archie.rmobjectvalidatortest;
+package com.nedap.archie.rmobjectvalidatortest.invariants.ehr;
 
 import com.google.common.collect.Lists;
 import com.nedap.archie.rm.datavalues.DvText;
@@ -12,6 +12,7 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
+import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 

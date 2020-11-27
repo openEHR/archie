@@ -1,4 +1,4 @@
-package com.nedap.archie.rmobjectvalidatortest;
+package com.nedap.archie.rmobjectvalidatortest.invariants.datavalues;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvText;
@@ -6,6 +6,7 @@ import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
+import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
 import com.nedap.archie.rmutil.InvariantUtil;
 import org.junit.Test;
 

@@ -25,7 +25,7 @@ import java.util.Set;
         DvTemporal.class,
         DvAmount.class
 })
-public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparable> extends DvOrdered<MagnitudeType> {
+public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparable> extends DvOrdered {
 
     private static final Set<String> VALID_MAGNITUDE_STATUS_CODES = Sets.newHashSet("=", "<", ">", "<=", ">=", "~");
 
@@ -56,8 +56,17 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
     public abstract MagnitudeType getMagnitude();
 
     @Override
-    public int compareTo(MagnitudeType other) {
-        return getMagnitude().compareTo(other);
+    public int compareTo(Object other) {
+        if(other instanceof DvQuantified) {
+            return getMagnitude().compareTo(((DvQuantified) other).getMagnitude());
+        } else {
+            //this should not be here, but was the earlier implementation, by mistake.
+            //so if people rely on this, still support it, but it is deprecated and will eventually be removed
+
+            //cannot do instanceof with generic type. So just try.
+            MagnitudeType otherMagnitude = (MagnitudeType) other;
+            return getMagnitude().compareTo(otherMagnitude);
+        }
     }
 
     @Override

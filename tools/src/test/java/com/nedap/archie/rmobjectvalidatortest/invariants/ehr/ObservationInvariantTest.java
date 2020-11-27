@@ -1,4 +1,4 @@
-package com.nedap.archie.rmobjectvalidatortest;
+package com.nedap.archie.rmobjectvalidatortest.invariants.ehr;
 
 import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.composition.Composition;
@@ -13,6 +13,7 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.PartySelf;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
+import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
 import org.junit.Test;
 
 import java.awt.*;

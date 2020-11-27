@@ -117,13 +117,13 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
 
     @Invariant("Normal_status_validity")
     public boolean normalStatusValidity() {
-        return InvariantUtil.belongsToTerminologyByGroupId(normalStatus, "normal statuses");
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(normalStatus, "normal statuses");
     }
 
     @Invariant("Normal_range_and_status_consistency")
     public boolean normalRangeAndStatusConsistency() {
         if(normalStatus != null && normalRange != null) {
-            return normalStatus.equals("N") ^ normalRange.has(this);
+            return Objects.equals(normalStatus.getCodeString(), "N") ^ !normalRange.has(this);
         }
         return true;
     }

@@ -1,7 +1,8 @@
-package com.nedap.archie.rmobjectvalidatortest;
+package com.nedap.archie.rmobjectvalidatortest.invariants.datavalues;
 
 import com.nedap.archie.rm.datavalues.DvEHRURI;
 import com.nedap.archie.rm.datavalues.DvURI;
+import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
 import org.junit.Test;
 
 public class DvEhrUriInvariantTest {

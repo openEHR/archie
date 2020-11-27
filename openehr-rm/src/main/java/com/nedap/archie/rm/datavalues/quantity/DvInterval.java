@@ -110,4 +110,12 @@ public class DvInterval<Type extends DvOrdered> extends DataValue {
         return Objects.hash(interval);
     }
 
+    @Invariant("Limits_consistent")
+    public boolean limitsConsistent() {
+        if(!isLowerUnbounded() && !isUpperUnbounded() && getLower() != null && getUpper() != null) {
+            return interval.getComparableLower().compareTo(interval.getComparableUpper()) <= 0;
+        }
+        return true;
+    }
+
 }

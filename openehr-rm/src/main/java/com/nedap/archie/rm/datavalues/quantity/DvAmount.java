@@ -75,7 +75,7 @@ public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuant
     @Invariant("Accuracy_is_percent_validity")
     public boolean accuracyIsPercentValidity() {
         if (accuracy != null && accuracyIsPercent != null && accuracyIsPercent) {
-            return accuracy != 0;
+            return accuracy != 0.0d;
         }
         return true;
     }
@@ -83,7 +83,7 @@ public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuant
     @Invariant("Accuracy_valid")
     public boolean accuracyValid() {
         if(accuracyIsPercent != null && accuracy != null && accuracyIsPercent) {
-            return accuracy <= 100 && accuracy >= 0;
+            return accuracy <= 100.0d && accuracy >= 0.0d;
         }
         return true;
     }

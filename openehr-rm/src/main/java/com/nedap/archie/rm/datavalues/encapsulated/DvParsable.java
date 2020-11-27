@@ -4,11 +4,13 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rmutil.InvariantUtil;
+import org.apache.commons.io.Charsets;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
@@ -57,6 +59,20 @@ public class DvParsable extends DvEncapsulated implements SingleValuedDataValue<
     }
 
 
+    /**
+     * The number of bytes in the value string, represented in the given character set. Defaults to UTF-8 if no encoding is given.
+     * @return
+     */
+    public int size() {
+        if(value == null) {
+            return 0;
+        }
+        if(getCharset() != null) {
+            return value.getBytes(Charsets.toCharset(getCharset().getCodeString())).length;
+        }
+        return value.getBytes(StandardCharsets.UTF_8).length;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,6 +95,7 @@ public class DvParsable extends DvEncapsulated implements SingleValuedDataValue<
 
     @Invariant("Size_valid")
     public boolean sizeValid() {
+        //have not implemented the size function. The size of a string in bytes is not the number of characters, but depends on the encoding, and it's not possible to implement here.
         return value == null || value.length() > 0;
     }
 }
