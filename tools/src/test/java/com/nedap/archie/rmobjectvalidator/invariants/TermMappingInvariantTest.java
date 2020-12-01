@@ -1,4 +1,4 @@
-package com.nedap.archie.rmobjectvalidatortest;
+package com.nedap.archie.rmobjectvalidator.invariants;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;

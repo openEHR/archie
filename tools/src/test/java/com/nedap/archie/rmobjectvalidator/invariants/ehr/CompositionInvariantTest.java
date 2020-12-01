@@ -1,18 +1,14 @@
-package com.nedap.archie.rmobjectvalidatortest.invariants.ehr;
+package com.nedap.archie.rmobjectvalidator.invariants.ehr;
 
-import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.composition.Observation;
 import com.nedap.archie.rm.datastructures.History;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datastructures.PointEvent;
-import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.PartySelf;
-import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rm.support.identification.TerminologyId;
-import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
+import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -50,6 +46,13 @@ public class CompositionInvariantTest {
         Composition composition = createValidComposition();
         composition.setArchetypeDetails(null);
         InvariantTestUtil.assertInvariantInvalid(composition, "Is_archetype_root", "/");
+    }
+
+    @Test
+    public void rmVersionInvalid() {
+        Composition composition = createValidComposition();
+        composition.getArchetypeDetails().setRmVersion("");
+        InvariantTestUtil.assertInvariantInvalid(composition, "Rm_version_valid", "ARCHETYPED", "/archetype_details");
     }
 
     private Composition createValidComposition() {

@@ -1,11 +1,11 @@
-package com.nedap.archie.rmobjectvalidatortest.invariants.datavalues;
+package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
-import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
+import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
 import java.util.ArrayList;

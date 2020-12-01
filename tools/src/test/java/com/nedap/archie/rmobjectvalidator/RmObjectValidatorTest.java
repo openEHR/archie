@@ -1,4 +1,4 @@
-package com.nedap.archie.rmobjectvalidatortest;
+package com.nedap.archie.rmobjectvalidator;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;

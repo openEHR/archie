@@ -1,9 +1,9 @@
-package com.nedap.archie.rmobjectvalidatortest.invariants.datavalues;
+package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rm.support.identification.TerminologyId;
-import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
+import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
 public class DvMultimediaInvariantTest {

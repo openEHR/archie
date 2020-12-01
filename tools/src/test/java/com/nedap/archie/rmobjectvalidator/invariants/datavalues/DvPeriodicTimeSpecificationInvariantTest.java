@@ -1,10 +1,8 @@
-package com.nedap.archie.rmobjectvalidatortest.invariants.datavalues;
+package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
 import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
 import com.nedap.archie.rm.datavalues.timespecification.DvPeriodicTimeSpecification;
-import com.nedap.archie.rminfo.Invariant;
-import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
-import com.nedap.archie.rmutil.InvariantUtil;
+import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
 public class DvPeriodicTimeSpecificationInvariantTest {

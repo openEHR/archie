@@ -142,7 +142,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
             return Collections.emptyList(); //should never happen
         }
         return openehr.getAllTermsForLanguage(language).stream()
-                .filter(t -> t.getGroupId().equalsIgnoreCase(groupId))
+                .filter(t -> t.getGroupIds().contains(groupId))
                 .collect(Collectors.toList());
     }
 
@@ -154,7 +154,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
             return null; //should never happen
         }
         List<TermCode> codes = openehr.getAllTermsForLanguage(language).stream()
-                .filter(t -> t.getGroupId().equalsIgnoreCase(groupId))
+                .filter(t -> t.getGroupIds().contains(groupId))
                 .collect(Collectors.toList());
         return codes.stream().filter(c -> c.getCodeString().equalsIgnoreCase(code)).findFirst().orElse(null);
     }
@@ -240,7 +240,14 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
         }
 
         public void addCode(TermCode code) {
-            termCodesByLanguage.put(code.getLanguage(), code);
+            TermCode termCode = termCodesByLanguage.get(code.getLanguage());
+            if(termCode != null) {
+                //sometimes terms occur twice. They mean the same, but are in two groups.
+                //todo: properly implement groups
+                termCode.getGroupIds().add(code.getGroupName());
+            } else {
+                termCodesByLanguage.put(code.getLanguage(), code);
+            }
         }
 
     }

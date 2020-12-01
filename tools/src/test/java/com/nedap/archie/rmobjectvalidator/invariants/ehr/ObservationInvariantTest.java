@@ -1,24 +1,15 @@
-package com.nedap.archie.rmobjectvalidatortest.invariants.ehr;
+package com.nedap.archie.rmobjectvalidator.invariants.ehr;
 
-import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.composition.Composition;
-import com.nedap.archie.rm.composition.ContentItem;
 import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.Event;
 import com.nedap.archie.rm.datastructures.History;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datastructures.PointEvent;
-import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.generic.PartySelf;
-import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
+import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
-import java.awt.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /**
  * Also includes History invariants

@@ -1,12 +1,13 @@
-package com.nedap.archie.rmobjectvalidatortest;
+package com.nedap.archie.rmobjectvalidator.invariants;
 
 import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.composition.Entry;
 import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.generic.PartySelf;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
+import com.nedap.archie.rm.support.identification.LocatableRef;
+import com.nedap.archie.rm.support.identification.ObjectVersionId;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
@@ -52,5 +53,16 @@ public class InvariantTestUtil {
         entry.setLanguage(new CodePhrase("ISO_639-1::en"));
         entry.setSubject(new PartySelf());
         entry.setEncoding(new CodePhrase(new TerminologyId("IANA_character-sets"), "UTF-8"));
+    }
+
+    public static LocatableRef createExampleRef(String type) {
+        LocatableRef ref = new LocatableRef();
+        ref.setNamespace("local");
+        ref.setPath("/");
+        ref.setType(type);
+        ObjectVersionId id = new ObjectVersionId();
+        id.setValue("some-id2234");
+        ref.setId(id);
+        return ref;
     }
 }

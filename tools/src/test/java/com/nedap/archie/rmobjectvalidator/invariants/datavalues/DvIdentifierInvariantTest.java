@@ -1,11 +1,7 @@
-package com.nedap.archie.rmobjectvalidatortest.invariants.datavalues;
+package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
 import com.nedap.archie.rm.datavalues.DvIdentifier;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.Invariant;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
-import com.nedap.archie.rmobjectvalidatortest.InvariantTestUtil;
+import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;

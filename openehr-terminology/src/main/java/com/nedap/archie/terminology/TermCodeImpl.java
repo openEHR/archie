@@ -2,6 +2,9 @@ package com.nedap.archie.terminology;
 
 import com.nedap.archie.terminology.openehr.Code;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class TermCodeImpl implements TermCode {
 
     private final String terminologyId;
@@ -9,7 +12,7 @@ public class TermCodeImpl implements TermCode {
     private final String codeString;
     private final String description;
     private final String groupName;
-    private final String groupId;
+    private final Set<String> groupIds;//TODO: still one group name. Change to multiple as well?
 
     public TermCodeImpl(String terminologyId, String language, String codeString, String description, String groupName, String groupId) {
         this.terminologyId = terminologyId;
@@ -21,11 +24,16 @@ public class TermCodeImpl implements TermCode {
         }
         this.codeString = codeString;
         this.groupName = groupName;
-        this.groupId = groupId;
+        this.groupIds = new HashSet<>();
+        groupIds.add(groupId);
     }
 
     public TermCodeImpl(String terminologyId, String language, String codeString, String description) {
         this(terminologyId, language, codeString, description, null, null);
+    }
+
+    protected  void addGroupId(String groupId) {
+        this.groupIds.add(groupId);
     }
 
     @Override
@@ -54,7 +62,7 @@ public class TermCodeImpl implements TermCode {
     }
 
     @Override
-    public String getGroupId() {
-        return groupId;
+    public Set<String> getGroupIds() {
+        return groupIds;
     }
 }
