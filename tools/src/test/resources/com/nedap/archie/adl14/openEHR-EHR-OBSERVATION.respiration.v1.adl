@@ -337,8 +337,6 @@ definition
 									allow_archetype CLUSTER[at0037] occurrences matches {0..1} matches {    -- Exertion
 										include
 											archetype_id/value matches {/openEHR-EHR-CLUSTER\.level_of_exertion(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-CLUSTER\.level_of_exertion(-[a-zA-Z0-9_]+)*\.v1/}
-                                        exclude
-                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.level_of_exertion-excluded.v1/}
 									}
 								}
 							}
