@@ -86,6 +86,17 @@ public class CAttributeTest {
         assertEquals(child2, attribute.getChild("id3"));
     }
 
+    @Test
+    public void isLeaf() {
+        CAttribute cAttribute = new CAttribute("items");
+
+        assertTrue(cAttribute.isLeaf());
+
+        cAttribute.addChild(createCComplexObject("id2"));
+
+        assertFalse(cAttribute.isLeaf());
+    }
+
     private CComplexObject createCComplexObject(String nodeId) {
         CComplexObject complexObject = new CComplexObject();
         complexObject.setNodeId(nodeId);
