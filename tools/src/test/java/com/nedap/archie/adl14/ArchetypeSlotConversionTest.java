@@ -32,10 +32,10 @@ public class ArchetypeSlotConversionTest {
             String includesPattern = getPattern(slot.getIncludes().get(0));
             assertEquals("/openEHR-EHR-CLUSTER\\.inspired_oxygen(-[a-zA-Z0-9_]+)*\\.v1.*/", includesPattern);
 
-            ArchetypeSlot slot2 = archetype.itemAtPath("/data/events[1]/state[id23]/items[id38]");
+            ArchetypeSlot slot2 = archetype.itemAtPath("/protocol/items[1]");
             String includesPattern2 = getPattern(slot2.getIncludes().get(0));
             String excludesPattern2 = getPattern(slot2.getExcludes().get(0));
-            assertEquals("/openEHR-EHR-CLUSTER\\.level_of_exertion(-[a-zA-Z0-9_]+)*\\.v0.*|openEHR-EHR-CLUSTER\\.level_of_exertion(-[a-zA-Z0-9_]+)*\\.v1.*/", includesPattern2);
+            assertEquals("/.*/", includesPattern2);
             assertEquals("/openEHR-EHR-CLUSTER\\.level_of_exertion-excluded.v1.*/", excludesPattern2);
         }
     }

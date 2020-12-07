@@ -139,6 +139,22 @@ public class ArchetypeValidatorTest {
     }
 
 
+    @Test
+    public void wrongSlotFiller() throws Exception {
+        Archetype parent = parse("/adl2-tests/validity/slots/openEHR-EHR-SECTION.slot_parent.v1.0.0.adls");
+        Archetype childArchetype = parse("/adl2-tests/validity/slots/openEHR-EHR-SECTION.VARXS_slot_id_mismatch.v1.0.0.adls");
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        repository.addArchetype(parent);
+        repository.addArchetype(childArchetype);
+        repository.addArchetype(parse("/adl2-tests/features/reference_model/generic_types/openEHR-EHR-OBSERVATION.rm_correct_generic.v1.0.0.adls"));
+
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
+        assertFalse(validationResult.passes());
+        List<ValidationMessage> messages = validationResult.getErrors();
+        assertEquals(messages.toString(), 1, messages.size());
+        assertEquals(messages.toString(), ErrorType.VARXS, messages.get(0).getType());
+    }
+
     private Archetype parse(String filename) throws IOException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
