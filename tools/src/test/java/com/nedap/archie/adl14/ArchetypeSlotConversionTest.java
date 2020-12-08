@@ -24,7 +24,7 @@ public class ArchetypeSlotConversionTest {
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
         ADL2ConversionRunLog log = null;
 
-        try(InputStream stream = getClass().getResourceAsStream("openehr-EHR-OBSERVATION.respiration.v1.adl")) {
+        try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.respiration.v1.adl")) {
             ADL2ConversionResultList result = converter.convert(
                     Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration)));
             Archetype archetype = result.getConversionResults().get(0).getArchetype();
