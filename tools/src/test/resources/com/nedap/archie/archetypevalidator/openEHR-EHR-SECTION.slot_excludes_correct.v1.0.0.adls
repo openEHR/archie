@@ -1,8 +1,8 @@
 archetype (adl_version=2.0.7; rm_release=1.0.2)
-	openEHR-EHR-SECTION.VARXS_slot_id_mismatch.v1.0.0
+	openEHR-EHR-SECTION.slot_excludes_correct.v1.0.0
 
 specialize
-	openEHR-EHR-SECTION.slot_parent.v1
+	openEHR-EHR-SECTION.slot_parent_excludes.v1
 
 language
 	original_language = <[ISO_639-1::en]>
@@ -22,7 +22,7 @@ description
 	>
 	lifecycle_state = <"initial">
 	other_details = <
-		["regression"] = <"VARXS">
+		["regression"] = <"PASS">
 	>
 
 definition
