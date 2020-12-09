@@ -49,8 +49,8 @@ public class ArchetypeHRID extends ArchetypeModelObject {
     private String buildCount;
     //TODO: XML attribute 'physical id', which is the full id
 
-    private static final Pattern namespacePattern = Pattern.compile("((?<namespace>.*)::)?");
-    private static final Pattern publisherPattern = Pattern.compile("(?<publisher>[^.-]*)");
+    private static final Pattern namespacePattern = Pattern.compile("((?<namespace>([a-zA-Z][a-zA-Z0-9-]*(?<!-))(\\.(?!-)[A-Za-z0-9-]+(?<!-))*)::)?");
+    private static final Pattern publisherPattern = Pattern.compile("(?<publisher>[^.:-]*)");
     private static final Pattern packagePattern = Pattern.compile("(?<package>[^.-]*)");
     private static final Pattern classPattern = Pattern.compile("(?<class>[^.-]*)");
     private static final Pattern conceptPattern = Pattern.compile("(?<concept>[^.]*)");

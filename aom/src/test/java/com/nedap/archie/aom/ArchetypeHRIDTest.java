@@ -33,8 +33,8 @@ public class ArchetypeHRIDTest {
                 archetypeHRID.getSemanticId());
 
         archetypeHRID = new ArchetypeHRID(
-                "archie.test.namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3+42");
-        assertEquals("archie.test.namespace",archetypeHRID.getNamespace());
+                "namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3+42");
+        assertEquals("namespace",archetypeHRID.getNamespace());
         assertEquals("testRmPublisher",archetypeHRID.getRmPublisher());
         assertEquals("testRmPackage",archetypeHRID.getRmPackage());
         assertEquals("testRmClass",archetypeHRID.getRmClass());
@@ -45,16 +45,16 @@ public class ArchetypeHRIDTest {
         assertEquals("1",archetypeHRID.getMajorVersion());
         assertEquals("2",archetypeHRID.getMinorVersion());
         assertEquals("3",archetypeHRID.getPatchVersion());
-        assertEquals("archie.test.namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId",
+        assertEquals("namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId",
                 archetypeHRID.getIdUpToConcept());
-        assertEquals("archie.test.namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3+42",
+        assertEquals("namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3+42",
                 archetypeHRID.getFullId());
-        assertEquals("archie.test.namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1",
+        assertEquals("namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1",
                 archetypeHRID.getSemanticId());
 
         archetypeHRID = new ArchetypeHRID(
-                "archie.test.namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3-alpha");
-        assertEquals("archie.test.namespace",archetypeHRID.getNamespace());
+                "archie.test4.name-space.test::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3-alpha");
+        assertEquals("archie.test4.name-space.test",archetypeHRID.getNamespace());
         assertEquals("testRmPublisher",archetypeHRID.getRmPublisher());
         assertEquals("testRmPackage",archetypeHRID.getRmPackage());
         assertEquals("testRmClass",archetypeHRID.getRmClass());
@@ -65,11 +65,11 @@ public class ArchetypeHRIDTest {
         assertEquals("1",archetypeHRID.getMajorVersion());
         assertEquals("2",archetypeHRID.getMinorVersion());
         assertEquals("3",archetypeHRID.getPatchVersion());
-        assertEquals("archie.test.namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId",
+        assertEquals("archie.test4.name-space.test::testRmPublisher-testRmPackage-testRmClass.testConceptId",
                 archetypeHRID.getIdUpToConcept());
-        assertEquals("archie.test.namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3-alpha",
+        assertEquals("archie.test4.name-space.test::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3-alpha",
                 archetypeHRID.getFullId());
-        assertEquals("archie.test.namespace::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1",
+        assertEquals("archie.test4.name-space.test::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1",
                 archetypeHRID.getSemanticId());
 
         archetypeHRID = new ArchetypeHRID(
@@ -157,6 +157,16 @@ public class ArchetypeHRIDTest {
         invalidArchetypeHRIDs.add("testRmPublisher_testRmPackage_testRmClass-someString.testConceptId.v1.2.3");
         invalidArchetypeHRIDs.add("testRmPublisher-testRmPackage-testRmClass-someString..testConceptId.v1.2.3");
         invalidArchetypeHRIDs.add("testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("test.::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add(".test::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("archie..test::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("archie.te_st::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("-test::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("test-::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("archie.-test::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("archie.test-::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
+        invalidArchetypeHRIDs.add("3archie.test::testRmPublisher-testRmPackage-testRmClass.testConceptId.v1.2.3");
 
         for (String archetypeHRID : invalidArchetypeHRIDs) {
             try {
