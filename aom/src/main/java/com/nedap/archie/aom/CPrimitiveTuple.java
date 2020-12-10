@@ -34,7 +34,10 @@ public class CPrimitiveTuple extends CSecondOrder<CPrimitiveObject> {
         for(int i = 0; i < getMembers().size(); i++){
             CPrimitiveObject member = getMember(i);
             CPrimitiveObject otherMember = other.getMember(i);
-            if(!member.getClass().equals(otherMember.getClass()) || !member.cConformsTo(otherMember, rmTypesConformant)) {
+            if(!member.getClass().equals(otherMember.getClass())) {
+                return false;
+            }
+            if(!member.cConformsTo(otherMember, rmTypesConformant).doesConform()) {
                 return false;
             }
         }

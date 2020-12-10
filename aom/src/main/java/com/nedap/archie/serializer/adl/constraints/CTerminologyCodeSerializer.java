@@ -17,6 +17,27 @@ public class CTerminologyCodeSerializer extends ConstraintSerializer<CTerminolog
     @Override
     public void serialize(CTerminologyCode cobj) {
         if (!cobj.getConstraint().isEmpty()) {
+            if(cobj.getConstraintStatus() != null) {
+                String constraintStatusString = null;
+                switch(cobj.getConstraintStatus()) {
+                    case REQUIRED:
+                        constraintStatusString = "required";
+                        break;
+                    case EXTENSIBLE:
+                        constraintStatusString = "extensible";
+                        break;
+                    case PREFERRED:
+                        constraintStatusString = "preferred";
+                        break;
+                    case EXAMPLE:
+                        constraintStatusString = "example";
+                        break;
+                    default:
+                        throw new RuntimeException("constraint status " + cobj.getConstraintStatus() + " unknown, cannot be serialized");
+                }
+                builder.append(constraintStatusString);
+                builder.append(" ");
+            }
             builder.append("[");
             String constraint = cobj.getConstraint().get(0);
             builder.append(constraint);

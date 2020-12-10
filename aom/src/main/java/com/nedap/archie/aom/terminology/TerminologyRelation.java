@@ -1,7 +1,9 @@
 package com.nedap.archie.aom.terminology;
 
 
+import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
+import com.nedap.archie.aom.utils.AOMUtils;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;

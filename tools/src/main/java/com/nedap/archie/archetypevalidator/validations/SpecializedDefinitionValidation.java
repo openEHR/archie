@@ -3,6 +3,7 @@ package com.nedap.archie.archetypevalidator.validations;
 import com.google.common.base.Joiner;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.archetypevalidator.ErrorType;
@@ -107,24 +108,14 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
 
     private void validateConformsTo(CObject cObject, CObject parentCObject) {
 
-        if(!cObject.cConformsTo(parentCObject, combinedModels::rmTypesConformant)) {
-            if(!cObject.typeNameConformsTo(parentCObject, combinedModels::rmTypesConformant)) {
-                addMessageWithPath(ErrorType.VSONCT, cObject.path(),
-                        I18n.t("Type {0} does not conform to type {1} in parent", cObject.getRmTypeName(), parentCObject.getRmTypeName()));
-            } else if (!cObject.occurrencesConformsTo(parentCObject)) {
-                addMessageWithPath(ErrorType.VSONCO, cObject.path(),
-                        I18n.t("Occurrences {0} does not conform to occurrences {1} in parent", cObject.getOccurrences(), parentCObject.getOccurrences()));
-            } else if (!cObject.nodeIdConformsTo(parentCObject)) {
-                addMessageWithPath(ErrorType.VSONI, cObject.path(),
-                        I18n.t("Node ID {0} does not conform to node id {1} in parent", cObject.getNodeId(), parentCObject.getNodeId()));
-            } else if (cObject instanceof CPrimitiveObject && parentCObject instanceof CPrimitiveObject) {
-                addMessageWithPath(ErrorType.VPOV, cObject.path(),
-                        I18n.t("Primitive object with RM type {0} does not conform to primitive object with RM type {1} in parent",
-                                cObject.getRmTypeName(),
-                                parentCObject.getRmTypeName()));
+        ConformanceCheckResult conformanceCheckResult = cObject.cConformsTo(parentCObject, combinedModels::rmTypesConformant);
+        if(!conformanceCheckResult.doesConform()) {
+            if(conformanceCheckResult.getErrorType() != null) {
+                addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
+                        conformanceCheckResult.getError());
             } else {
                 addMessageWithPath(ErrorType.VUNK, cObject.path(),
-                        I18n.t("Unknown error in conformance of specialized C_OBJECT"));
+                        I18n.t("Conformance error: {0}", conformanceCheckResult.getError()));
             }
         } else {
             if (cObject instanceof CComplexObject && parentCObject instanceof  CComplexObject) {
@@ -164,7 +155,8 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
 
     private boolean hasConformingParent(CAttribute parentAttribute, CPrimitiveObject<?, ?> member) {
         for(CObject parentCObject:parentAttribute.getChildren()) {
-            if(member.cConformsTo(parentCObject, (a, b) -> combinedModels.rmTypesConformant(a, b))) {
+            ConformanceCheckResult result = member.cConformsTo(parentCObject, (a, b) -> combinedModels.rmTypesConformant(a, b));
+            if(result.doesConform()) {
                 return true;
             }
         }

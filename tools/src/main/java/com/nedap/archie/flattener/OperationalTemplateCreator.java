@@ -3,11 +3,16 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.aom.terminology.ValueSet;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -54,6 +59,16 @@ class OperationalTemplateCreator {
         closeArchetypeSlots(archetype);
         fillArchetypeRoots(archetype);
         fillComplexObjectProxies(archetype);
+    }
+
+    static void expandValueSets(OperationalTemplate operationalTemplate) {
+        List<ArchetypeTerminology> terminologies = Arrays.asList(operationalTemplate.getTerminology());
+       // terminologies.addAll(operationalTemplate.getComponentTerminologies().values());
+        for(ArchetypeTerminology terminology:terminologies) {
+            for(ValueSet valueSet:terminology.getValueSets().values()) {
+                valueSet.setMembers(AOMUtils.getExpandedValueSetMembers(terminology.getValueSets(), valueSet));
+            }
+        }
     }
 
     /** Zero occurrences and existence constraint processing when creating OPT templates. Removes attributes */
