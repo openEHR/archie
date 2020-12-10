@@ -1,5 +1,5 @@
-﻿archetype (adl_version=2.0.7; rm_release=1.0.2)
-	openEHR-EHR-SECTION.slot_parent.v1.0.0
+archetype (adl_version=2.0.7; rm_release=1.0.2)
+	openEHR-EHR-SECTION.slot_parent_excludes.v1.0.0
 
 language
 	original_language = <[ISO_639-1::en]>
@@ -27,9 +27,9 @@ definition
 		items cardinality matches {1..*; unordered} matches {
 			allow_archetype OBSERVATION[id2] occurrences matches {0..1} matches {	-- Vital signs
 				include
-					archetype_id/value matches {/openEHR-EHR-OBSERVATION\.redefine([a-zA-Z0-9_]+)*\.v1.*/}
-				exclude
 					archetype_id/value matches {/.*/}
+				exclude
+				    archetype_id/value matches {/openEHR-EHR-OBSERVATION\.redefine([a-zA-Z0-9_]+)*\.v1.*/}
 			}
 		}
 	}
