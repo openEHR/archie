@@ -52,6 +52,15 @@ public class FlattenerConfiguration {
      */
     private boolean fillEmptyOccurrences = true;
 
+    /**
+     * Only for Operational templates: in case a used archetype in a slot is missing, switches the following behaviour:
+     * true: throw an exception
+     * false: skip replacing the archetype root with the archetype contents, and continue creating the operational tempalte
+     *
+     * Can be useful for archetype modeling purposes.
+     */
+    private boolean failOnMissingUsedArchetype = true;
+
     private FlattenerConfiguration() {
 
     }
@@ -157,5 +166,13 @@ public class FlattenerConfiguration {
 
     public void setFillEmptyOccurrences(boolean fillEmptyOccurrences) {
         this.fillEmptyOccurrences = fillEmptyOccurrences;
+    }
+
+    public boolean isFailOnMissingUsedArchetype() {
+        return failOnMissingUsedArchetype;
+    }
+
+    public void setFailOnMissingUsedArchetype(boolean failOnMissingUsedArchetype) {
+        this.failOnMissingUsedArchetype = failOnMissingUsedArchetype;
     }
 }

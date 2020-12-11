@@ -186,7 +186,12 @@ class OperationalTemplateCreator {
                 newArchetypeRef = archetype.getParentArchetypeId();
             }
             if (archetype == null) {
-                throw new IllegalArgumentException("Archetype with reference :" + archetypeRef + " not found.");
+                if(getConfig().isFailOnMissingUsedArchetype()) {
+                    throw new IllegalArgumentException("Archetype with reference :" + archetypeRef + " not found.");
+                } else {
+                    //just skip, as a form of graceful degradation.
+                    return;
+                }
             }
 
             archetype = flattener.getNewFlattener().flatten(archetype);
