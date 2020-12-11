@@ -1,24 +1,16 @@
 package com.nedap.archie.flattener;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.OperationalTemplate;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import javax.json.JsonPatch;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Stack;
 
 import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class OperationalTemplateCreatorTest {
 
@@ -66,6 +58,41 @@ public class OperationalTemplateCreatorTest {
                     workList.addAll(attribute.getChildren());
                 }
             }
+        }
+    }
+
+    @Test
+    public void fillArchetypeRootsAtDefault() throws Exception {
+        SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
+        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.cluster_with_annotations.v1.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            repository.addArchetype(archetype);
+        }
+
+        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.with_used_archetype.v1.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
+            Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), flattenerConfiguration);
+            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
+
+            CArchetypeRoot archetypeRoot = template.getDefinition().itemAtPath("/data[id2]/events[id3]/data[id4]/items[id8]");
+            assertEquals("openEHR-EHR-CLUSTER.cluster_with_annotations.v1.0.0", archetypeRoot.getArchetypeRef());
+            assertFalse(archetypeRoot.getAttributes().isEmpty());
+        }
+    }
+
+    @Test
+    public void dontFillArchetypeRootsWhenSet() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.with_used_archetype.v1.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
+            flattenerConfiguration.setReplaceArchetypeRootsWithArchetypes(false);
+            Flattener flattener = new Flattener(new SimpleArchetypeRepository(), BuiltinReferenceModels.getMetaModels(), flattenerConfiguration);
+            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
+
+            CArchetypeRoot archetypeRoot = template.getDefinition().itemAtPath("/data[id2]/events[id3]/data[id4]/items[id8]");
+            assertEquals("openEHR-EHR-CLUSTER.cluster_with_annotations.v1", archetypeRoot.getArchetypeRef());
+            assertTrue(archetypeRoot.getAttributes().isEmpty());
         }
     }
 }
