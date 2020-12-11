@@ -55,7 +55,7 @@ public class FlattenerConfiguration {
     /**
      * Only for Operational templates: fill archetype slots. Default to true
      */
-    private boolean fillSlots = true;
+    private boolean replaceArchetypeRootsWithArchetypes = true;
 
     private FlattenerConfiguration() {
 
@@ -164,11 +164,11 @@ public class FlattenerConfiguration {
         this.fillEmptyOccurrences = fillEmptyOccurrences;
     }
 
-    public boolean isFillSlots() {
-        return fillSlots;
+    public boolean isReplaceArchetypeRootsWithArchetypes() {
+        return replaceArchetypeRootsWithArchetypes;
     }
 
-    public void setFillSlots(boolean fillSlots) {
-        this.fillSlots = fillSlots;
+    public void setReplaceArchetypeRootsWithArchetypes(boolean replaceArchetypeRootsWithArchetypes) {
+        this.replaceArchetypeRootsWithArchetypes = replaceArchetypeRootsWithArchetypes;
     }
 }

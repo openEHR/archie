@@ -50,13 +50,11 @@ class OperationalTemplateCreator {
     }
 
     public void fillSlots(OperationalTemplate archetype) { //should this be OperationalTemplate?
-        if(!getConfig().isFillSlots()) {
-            return;
-        }
-
         //TODO: closing archetype slots should be moved to AFTER including other archetypes
         closeArchetypeSlots(archetype);
-        fillArchetypeRoots(archetype);
+        if(getConfig().isReplaceArchetypeRootsWithArchetypes()) {
+            fillArchetypeRoots(archetype);
+        }
         fillComplexObjectProxies(archetype);
     }
 
