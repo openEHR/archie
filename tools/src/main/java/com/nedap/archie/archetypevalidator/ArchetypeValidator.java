@@ -150,7 +150,13 @@ public class ArchetypeValidator {
                 if(parentValidationResult.passes()) {
                     flatParent = parentValidationResult.getFlattened();
                 } else {
-                    return parentValidationResult;
+                    ValidationResult result = new ValidationResult(archetype);
+                    List<ValidationMessage> messages = new ArrayList<>();
+                    ValidationMessage message = new ValidationMessage(ErrorType.PARENT_VALIDATION_FAILED, "", I18n.t("Error in parent archetype. Fix those errors before continuing with this archetype: {0}", parentValidationResult.getErrors().toString()));
+                    messages.add(message);
+                    result.setErrors(messages);
+                    result.setSourceArchetype(archetype);
+                    return result;
                 }
             }
         }
