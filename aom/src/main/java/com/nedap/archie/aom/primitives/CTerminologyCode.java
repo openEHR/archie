@@ -63,17 +63,11 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         if(getConstraint().isEmpty()) {
             return true;
         }
-        for(String constraint:getConstraint()) {
-            if(constraint.startsWith("at")) {
-                if(value.getCodeString() != null && value.getCodeString().equals(constraint)) {
-                    return true;
-                }
-            } else if (constraint.startsWith("ac")) {
-                if(value.getTerminologyId() != null && value.getTerminologyId().equals(constraint)) {
-                    return true;
-                }
-            }
+        List<String> values = this.getValueSetExpanded();
+        if(values != null && !values.isEmpty()) {
+            return value.getCodeString() != null && values.contains(value.getCodeString());
         }
+        //TODO: check term bindings as well!
         return false;
     }
 
