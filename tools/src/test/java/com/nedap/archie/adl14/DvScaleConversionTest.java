@@ -2,10 +2,7 @@ package com.nedap.archie.adl14;
 
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
-import com.nedap.archie.rm.datavalues.quantity.DvScale;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
