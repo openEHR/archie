@@ -170,7 +170,7 @@ public class ADL14Converter {
 
     private void setCorrectVersions(Archetype result) {
         result.setAdlVersion("2.0.6");
-        result.setRmRelease("1.0.4");
+        result.setRmRelease(conversionConfiguration.getRmRelease());
         if(result.getArchetypeId().getMinorVersion() == null) {
             result.getArchetypeId().setReleaseVersion(result.getArchetypeId().getReleaseVersion() + ".0.0");
         }
