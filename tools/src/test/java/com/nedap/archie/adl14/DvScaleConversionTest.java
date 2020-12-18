@@ -15,13 +15,13 @@ import static org.junit.Assert.assertTrue;
 public class DvScaleConversionTest {
 
     @Test
-    public void testRmRelease() throws Exception {
+    public void testDvScale() throws Exception {
 
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
 
 
-        try(InputStream stream = getClass().getResourceAsStream("openehr-EHR-CLUSTER.ordinalandscale.v0.adl")) {
+        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.ordinalandscale.v0.adl")) {
             ADL14Parser adl14Parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
             Archetype adl14 = adl14Parser.parse(stream, conversionConfiguration);
             assertFalse(adl14Parser.getErrors().hasErrors());
