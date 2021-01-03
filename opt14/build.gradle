@@ -1,0 +1,43 @@
+plugins {
+    id 'com.github.edeandrea.xjc-generation' version '1.5'
+}
+
+description = "OPT 1.4 parser and converter to ADL 2"
+
+ext {
+    jaxbVersion = '2.3.1'
+}
+
+dependencies {
+  compile project(':grammars')
+  compile project(':base')
+  compile project(':aom')
+  compile project(':bmm') 
+  compile project(':path-queries')
+  compile project(':utils')
+  compile project(':tools')
+  testCompile project(':openehr-rm')
+  testCompile project(':archie-utils')
+  testCompile project(':i18n')
+  testCompile project(':test-rm')
+  testCompile project(':referencemodels')
+
+
+  xjc "javax.xml.bind:jaxb-api:$jaxbVersion"
+  xjc "org.glassfish.jaxb:jaxb-runtime:$jaxbVersion"
+  xjc "org.glassfish.jaxb:jaxb-xjc:$jaxbVersion"
+}
+
+xjcGeneration {
+    defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
+    defaultBindingFile = null //file 'src/main/resources//xjc/xjc.xjb.xml'
+
+    schemas {
+        opt14 {
+            schemaFile = 'Template.xsd'
+            javaPackageName = 'com.nedap.archie.opt14'
+        }
+
+    }
+}
+

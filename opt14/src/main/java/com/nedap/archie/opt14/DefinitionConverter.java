@@ -1,0 +1,108 @@
+package com.nedap.archie.opt14;
+
+import com.nedap.archie.aom.ArchetypeHRID;
+import com.nedap.archie.aom.ArchetypeSlot;
+import com.nedap.archie.aom.CArchetypeRoot;
+import com.nedap.archie.aom.CAttribute;
+import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.Template;
+import com.nedap.archie.aom.TemplateOverlay;
+
+import static com.nedap.archie.opt14.IntervalConverter.convertCardinality;
+import static com.nedap.archie.opt14.IntervalConverter.convertMultiplicity;
+import static com.nedap.archie.opt14.PrimitiveConverter.convertPrimitive;
+
+public class DefinitionConverter {
+
+    private OPERATIONALTEMPLATE opt14;
+    private Template template;
+
+    public void convert(Template template, OPERATIONALTEMPLATE opt14) {
+        this.opt14 = opt14;
+        this.template = template;
+        CARCHETYPEROOT definition = opt14.getDefinition();
+        template.setTerminology(TerminologyConverter.createTerminology(opt14, definition));
+        template.setDefinition(convert(definition));
+    }
+
+    private CComplexObject convert(CCOMPLEXOBJECT cComplexObject14) {
+        CComplexObject cComplexObject = new CComplexObject();
+        cComplexObject.setNodeId(cComplexObject14.getNodeId());
+        cComplexObject.setRmTypeName(cComplexObject14.getRmTypeName());
+        cComplexObject.setOccurrences(IntervalConverter.convertMultiplicity(cComplexObject14.getOccurrences()));
+
+        for (CATTRIBUTE attribute14 : cComplexObject14.getAttributes()) {
+            cComplexObject.addAttribute(convert(attribute14));
+        }
+        return cComplexObject;
+    }
+
+    private CAttribute convert(CATTRIBUTE attribute14) {
+        CAttribute attribute = new CAttribute();
+        attribute.setRmAttributeName(attribute14.getRmAttributeName());
+        attribute.setExistence(convertMultiplicity(attribute14.getExistence()));
+        if(attribute14 instanceof  CMULTIPLEATTRIBUTE) {
+            CMULTIPLEATTRIBUTE attr14Multiple = (CMULTIPLEATTRIBUTE) attribute14;
+            attribute.setCardinality(convertCardinality(attr14Multiple.getCardinality()));
+            attribute.setMultiple(true);
+        } else if (attribute14 instanceof CSINGLEATTRIBUTE) {
+            //ok no one cares about this class
+            attribute.setMultiple(false);
+        }
+        for(COBJECT cobject14:attribute14.getChildren()) {
+            CObject cObject = convert(cobject14);
+            if(cObject != null) {
+                attribute.addChild(cObject);
+            }
+        }
+        return attribute;
+    }
+
+    private CObject convert(COBJECT cobject14) {
+        if(cobject14 instanceof CARCHETYPEROOT) {
+            return convertRoot((CARCHETYPEROOT) cobject14);
+        } else if (cobject14 instanceof CCOMPLEXOBJECT) {
+            return convert((CCOMPLEXOBJECT) cobject14);
+        } else if (cobject14 instanceof ARCHETYPESLOT) {
+            return convertSlot((ARCHETYPESLOT) cobject14);
+        } else if (cobject14 instanceof CPRIMITIVEOBJECT) {
+            return convertPrimitive((CPRIMITIVEOBJECT) cobject14);
+        } else if (cobject14 instanceof CDOMAINTYPE) {
+            return DomainTypeConverter.convertDomainType((CDOMAINTYPE) cobject14);
+        }
+        throw new IllegalArgumentException("unknown COBJECT subtype: " + cobject14.getClass());
+    }
+
+
+
+    private CObject convertSlot(ARCHETYPESLOT cobject14) {
+        ArchetypeSlot archetypeSlot = new ArchetypeSlot();
+        archetypeSlot.setNodeId(cobject14.getNodeId());
+        archetypeSlot.setRmTypeName(cobject14.getRmTypeName());
+
+        archetypeSlot.setOccurrences(IntervalConverter.convertMultiplicity(cobject14.getOccurrences()));
+        //TODO: assertions for include/exclude, should be straightforward
+        return archetypeSlot;
+    }
+
+    private CObject convertRoot(CARCHETYPEROOT cRoot14) {
+
+        TemplateOverlay overlay = new TemplateOverlay();
+        overlay.setArchetypeId(new ArchetypeHRID(cRoot14.getArchetypeId().getValue()));
+        overlay.getArchetypeId().setConceptId(overlay.getArchetypeId().getConceptId() + "ovl-1");
+        overlay.setParentArchetypeId(cRoot14.getArchetypeId().getValue());
+        overlay.setDefinition(convert(cRoot14));
+        overlay.setTerminology(TerminologyConverter.createTerminology(opt14, cRoot14));
+        template.addTemplateOverlay(overlay);
+
+        CArchetypeRoot root = new CArchetypeRoot();
+        root.setArchetypeRef(overlay.getArchetypeId().getFullId());
+        root.setNodeId(cRoot14.getNodeId());
+        root.setOccurrences(IntervalConverter.convertMultiplicity(cRoot14.getOccurrences()));
+        root.setRmTypeName(cRoot14.getRmTypeName());
+        return root;
+    }
+
+
+}
