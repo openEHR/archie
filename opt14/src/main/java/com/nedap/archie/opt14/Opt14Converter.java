@@ -9,6 +9,9 @@ public class Opt14Converter {
         Template template = new Template();
         template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + "v1.0.0"));
         template.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
+        if(opt14.getUid() != null) {
+            template.setUid(opt14.getUid().getValue());
+        }
         DescriptionConverter.convert(template, opt14);
 
         new DefinitionConverter().convert(template, opt14);

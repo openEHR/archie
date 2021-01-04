@@ -41,7 +41,7 @@ public class LargeSetOfADL14sTest {
 
     @Before
     public void setup() throws Exception {
-        conversionConfiguration = ConversionConfigForTest.getConfig();
+        conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
     }
 
     @Test

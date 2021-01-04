@@ -21,7 +21,7 @@ public class PreviousLogConversionTest {
     @Test
     public void applyConsistentConversion() throws Exception {
 
-        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
         ADL2ConversionRunLog log = null;
 
@@ -51,7 +51,7 @@ public class PreviousLogConversionTest {
 
     @Test
     public void testValueSet() throws Exception {
-        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
         ADL2ConversionRunLog log = null;
 
@@ -88,7 +88,7 @@ public class PreviousLogConversionTest {
 
     @Test
     public void unusedValuesAreRemoved() throws Exception {
-        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
         ADL2ConversionRunLog log = null;
         String createdAtCode = null;

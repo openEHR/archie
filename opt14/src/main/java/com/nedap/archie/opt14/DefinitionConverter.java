@@ -9,8 +9,8 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 
-import static com.nedap.archie.opt14.IntervalConverter.convertCardinality;
-import static com.nedap.archie.opt14.IntervalConverter.convertMultiplicity;
+import static com.nedap.archie.opt14.BaseTypesConverter.convertCardinality;
+import static com.nedap.archie.opt14.BaseTypesConverter.convertMultiplicity;
 import static com.nedap.archie.opt14.PrimitiveConverter.convertPrimitive;
 
 public class DefinitionConverter {
@@ -30,7 +30,7 @@ public class DefinitionConverter {
         CComplexObject cComplexObject = new CComplexObject();
         cComplexObject.setNodeId(cComplexObject14.getNodeId());
         cComplexObject.setRmTypeName(cComplexObject14.getRmTypeName());
-        cComplexObject.setOccurrences(IntervalConverter.convertMultiplicity(cComplexObject14.getOccurrences()));
+        cComplexObject.setOccurrences(BaseTypesConverter.convertMultiplicity(cComplexObject14.getOccurrences()));
 
         for (CATTRIBUTE attribute14 : cComplexObject14.getAttributes()) {
             cComplexObject.addAttribute(convert(attribute14));
@@ -81,7 +81,7 @@ public class DefinitionConverter {
         archetypeSlot.setNodeId(cobject14.getNodeId());
         archetypeSlot.setRmTypeName(cobject14.getRmTypeName());
 
-        archetypeSlot.setOccurrences(IntervalConverter.convertMultiplicity(cobject14.getOccurrences()));
+        archetypeSlot.setOccurrences(BaseTypesConverter.convertMultiplicity(cobject14.getOccurrences()));
         //TODO: assertions for include/exclude, should be straightforward
         return archetypeSlot;
     }
@@ -99,7 +99,7 @@ public class DefinitionConverter {
         CArchetypeRoot root = new CArchetypeRoot();
         root.setArchetypeRef(overlay.getArchetypeId().getFullId());
         root.setNodeId(cRoot14.getNodeId());
-        root.setOccurrences(IntervalConverter.convertMultiplicity(cRoot14.getOccurrences()));
+        root.setOccurrences(BaseTypesConverter.convertMultiplicity(cRoot14.getOccurrences()));
         root.setRmTypeName(cRoot14.getRmTypeName());
         return root;
     }

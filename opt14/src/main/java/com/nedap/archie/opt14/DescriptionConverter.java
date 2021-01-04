@@ -19,14 +19,18 @@ public class DescriptionConverter {
                 author.put(item.getId(), item.getValue());
             }
         }
+        if(description14.getOtherDetails() != null) {
+            for(StringDictionaryItem item:description14.getOtherDetails()) {
+                description.getOtherDetails().put(item.getId(), item.getValue());
+            }
+        }
+
+        description.setOtherContributors(description14.getOtherContributors());
+
         description.setOriginalAuthor(author);
         template.setDescription(description);
 
-        template.setOriginalLanguage(
-                TerminologyCode.createFromString(
-                        opt14.getLanguage().getTerminologyId().getValue(),
-                        null,
-                        opt14.getLanguage().getCodeString()));
+        template.setOriginalLanguage(BaseTypesConverter.convert(opt14.getLanguage()));
         //TODO: implement me further
     }
 }

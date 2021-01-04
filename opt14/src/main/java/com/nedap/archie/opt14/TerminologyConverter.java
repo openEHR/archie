@@ -17,7 +17,7 @@ public class TerminologyConverter {
             ArchetypeTerm term = new ArchetypeTerm();
             term.setCode(term14.getCode());
             for(StringDictionaryItem item:term14.getItems()) {
-                term.put(item.getId(), item.getId());
+                term.put(item.getId(), item.getValue());
             }
             terms.put(term14.getCode(), term);
         }

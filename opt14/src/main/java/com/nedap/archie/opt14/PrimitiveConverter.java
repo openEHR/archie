@@ -6,7 +6,7 @@ import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
 
-import static com.nedap.archie.opt14.IntervalConverter.convertInterval;
+import static com.nedap.archie.opt14.BaseTypesConverter.convertInterval;
 
 public class PrimitiveConverter {
 

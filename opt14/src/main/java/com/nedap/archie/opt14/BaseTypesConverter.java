@@ -3,8 +3,9 @@ package com.nedap.archie.opt14;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
+import com.nedap.archie.base.terminology.TerminologyCode;
 
-public class IntervalConverter {
+public class BaseTypesConverter {
 
     public static Cardinality convertCardinality(CARDINALITY cardinality14) {
         if(cardinality14 == null) {
@@ -50,6 +51,13 @@ public class IntervalConverter {
                 range.getUpper() == null ? null : range.getUpper().doubleValue() ,
                 range.isLowerIncluded() == null ? true : range.isLowerIncluded(),
                 range.isUpperIncluded() == null ? true : range.isUpperIncluded());
+    }
+
+    public static TerminologyCode convert(CODEPHRASE definingCode) {
+        if(definingCode == null) {
+            return null;
+        }
+        return TerminologyCode.createFromString(definingCode.getTerminologyId().getValue(), null, definingCode.getCodeString());
     }
 
 }
