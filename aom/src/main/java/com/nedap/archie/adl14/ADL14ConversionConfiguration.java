@@ -21,6 +21,9 @@ public class ADL14ConversionConfiguration {
      */
     private boolean applyDiff = true;
 
+    /** If true, allow empty node ids where specialisations occur. for OPT conversion */
+    private boolean allowEmptyNodeIdsForSpecializations = false;
+
 
     public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
         return terminologyConversionTemplates;
@@ -56,5 +59,13 @@ public class ADL14ConversionConfiguration {
 
     public void setApplyDiff(boolean applyDiff) {
         this.applyDiff = applyDiff;
+    }
+
+    public boolean isAllowEmptyNodeIdsForSpecializations() {
+        return allowEmptyNodeIdsForSpecializations;
+    }
+
+    public void setAllowEmptyNodeIdsForSpecializations(boolean allowEmptyNodeIdsForSpecializations) {
+        this.allowEmptyNodeIdsForSpecializations = allowEmptyNodeIdsForSpecializations;
     }
 }

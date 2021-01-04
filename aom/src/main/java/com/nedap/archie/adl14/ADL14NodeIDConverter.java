@@ -203,7 +203,6 @@ public class ADL14NodeIDConverter {
     }
 
     private void generateMissingNodeIds(CObject cObject) {
-
         if(!(cObject instanceof CPrimitiveObject) && cObject.getNodeId() == null) {
             String path = cObject.getPath();
             if(archetype.getParentArchetypeId() != null && flatParentArchetype != null) {

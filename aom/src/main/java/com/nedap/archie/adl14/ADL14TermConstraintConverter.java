@@ -203,6 +203,9 @@ public class ADL14TermConstraintConverter {
     }
 
     private Map<String, URI> findOrCreateTermBindings(TerminologyCode termCode) {
+        if(termCode.getTerminologyId() == null) {
+            throw new IllegalArgumentException("terminology id cannot be null!");
+        }
         Map<String, URI> termBindings =  archetype.getTerminology().getTermBindings().get(termCode.getTerminologyId());
 
         if(termBindings == null) {

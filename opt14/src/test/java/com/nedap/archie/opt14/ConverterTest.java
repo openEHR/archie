@@ -1,5 +1,6 @@
 package com.nedap.archie.opt14;
 
+import com.nedap.archie.adl14.ADL2ConversionResult;
 import com.nedap.archie.adl14.ADL2ConversionResultList;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
@@ -30,6 +31,11 @@ public class ConverterTest {
         try(InputStream stream = getClass().getResourceAsStream("/procedure_list.opt")) {
             OPERATIONALTEMPLATE opt14 =  ((JAXBElement<OPERATIONALTEMPLATE>) unmarshaller.unmarshal(stream)).getValue();
             ADL2ConversionResultList convert = new Opt14Converter().convert(opt14, repository);
+            for(ADL2ConversionResult result:convert.getConversionResults()) {
+                if(result.getException() != null) {
+                    result.getException().printStackTrace();
+                }
+            }
             System.out.println(ADLArchetypeSerializer.serialize(convert.getConversionResults().get(0).getArchetype()));
         }
     }

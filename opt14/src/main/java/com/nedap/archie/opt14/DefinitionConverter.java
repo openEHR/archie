@@ -101,7 +101,11 @@ public class DefinitionConverter {
 
         CArchetypeRoot root = new CArchetypeRoot();
         root.setArchetypeRef(overlay.getArchetypeId().getFullId());
-        setObjectBasics(cRoot14, root);
+        if(cRoot14.getNodeId() != null && !cRoot14.getNodeId().isEmpty() && !cRoot14.getNodeId().startsWith("at0000")) {
+            root.setNodeId(cRoot14.getNodeId());
+        }
+        root.setRmTypeName(cRoot14.getRmTypeName());
+        root.setOccurrences(BaseTypesConverter.convertMultiplicity(cRoot14.getOccurrences()));
         return root;
     }
 

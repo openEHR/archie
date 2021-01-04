@@ -3,12 +3,11 @@ package com.nedap.archie.opt14;
 import com.nedap.archie.adl14.aom14.CDVOrdinal;
 import com.nedap.archie.adl14.aom14.CDVOrdinalItem;
 import com.nedap.archie.adl14.aom14.CDVQuantity;
-
 import com.nedap.archie.adl14.aom14.CDVQuantityAssumedValue;
 import com.nedap.archie.adl14.aom14.CDVQuantityItem;
 import com.nedap.archie.adl14.treewalkers.Adl14CComplexObjectParser;
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.aom.primitives.CTerminologyCode;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,9 +23,28 @@ public class DomainTypeConverter {
         } else if (cobject14 instanceof CDVSTATE) {
 
         } else if (cobject14 instanceof CCODEPHRASE) {
-
+            return convertCodePhrase((CCODEPHRASE) cobject14);
         }
         return null;
+    }
+
+    private static CObject convertCodePhrase(CCODEPHRASE cobject14) {
+        CTerminologyCode cTerminologyCode = new CTerminologyCode();
+
+        if(cobject14.getTerminologyId() != null) {
+            cTerminologyCode.addConstraint(cobject14.getTerminologyId().getValue());
+        } else {
+            System.out.println("HELP");
+        }
+        if(cobject14.getCodeList() != null) {
+            for(String code:cobject14.getCodeList()) {
+                cTerminologyCode.addConstraint(code);
+            }
+        }
+        if(cobject14.getAssumedValue() != null) {
+            cTerminologyCode.setAssumedValue(BaseTypesConverter.convert(cobject14.getAssumedValue()));
+        }
+        return cTerminologyCode;
     }
 
     private static CObject convertCDVOrdinal(CDVORDINAL ordinal14) {

@@ -447,7 +447,7 @@ definition
             }
         }
         description matches {
-            ITEM_TREE[id9000] matches {
+            ITEM_TREE[id2] matches {
                 items cardinality matches {1..*; unordered} matches {
                     ELEMENT[id3] matches {    -- Procedure name
                         value matches {
