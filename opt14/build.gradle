@@ -16,11 +16,12 @@ dependencies {
   compile project(':path-queries')
   compile project(':utils')
   compile project(':tools')
-  testCompile project(':openehr-rm')
-  testCompile project(':archie-utils')
-  testCompile project(':i18n')
+  compile project(':referencemodels')
+  compile project(':openehr-rm')
+  compile project(':archie-utils')
+  compile project(':i18n')
   testCompile project(':test-rm')
-  testCompile project(':referencemodels')
+
 
 
   xjc "javax.xml.bind:jaxb-api:$jaxbVersion"
