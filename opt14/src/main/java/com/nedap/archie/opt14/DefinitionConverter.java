@@ -1,5 +1,6 @@
 package com.nedap.archie.opt14;
 
+import com.google.common.base.Strings;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CArchetypeRoot;
@@ -28,14 +29,18 @@ public class DefinitionConverter {
 
     private CComplexObject convert(CCOMPLEXOBJECT cComplexObject14) {
         CComplexObject cComplexObject = new CComplexObject();
-        cComplexObject.setNodeId(cComplexObject14.getNodeId());
-        cComplexObject.setRmTypeName(cComplexObject14.getRmTypeName());
-        cComplexObject.setOccurrences(BaseTypesConverter.convertMultiplicity(cComplexObject14.getOccurrences()));
+        setObjectBasics(cComplexObject14, cComplexObject);
 
         for (CATTRIBUTE attribute14 : cComplexObject14.getAttributes()) {
             cComplexObject.addAttribute(convert(attribute14));
         }
         return cComplexObject;
+    }
+
+    private void setObjectBasics(COBJECT cComplexObject14, CObject cComplexObject) {
+        cComplexObject.setNodeId(Strings.isNullOrEmpty(cComplexObject14.getNodeId()) ? null : cComplexObject14.getNodeId());
+        cComplexObject.setRmTypeName(cComplexObject14.getRmTypeName());
+        cComplexObject.setOccurrences(BaseTypesConverter.convertMultiplicity(cComplexObject14.getOccurrences()));
     }
 
     private CAttribute convert(CATTRIBUTE attribute14) {
@@ -78,10 +83,8 @@ public class DefinitionConverter {
 
     private CObject convertSlot(ARCHETYPESLOT cobject14) {
         ArchetypeSlot archetypeSlot = new ArchetypeSlot();
-        archetypeSlot.setNodeId(cobject14.getNodeId());
-        archetypeSlot.setRmTypeName(cobject14.getRmTypeName());
+        setObjectBasics(cobject14, archetypeSlot);
 
-        archetypeSlot.setOccurrences(BaseTypesConverter.convertMultiplicity(cobject14.getOccurrences()));
         //TODO: assertions for include/exclude, should be straightforward
         return archetypeSlot;
     }
@@ -98,9 +101,7 @@ public class DefinitionConverter {
 
         CArchetypeRoot root = new CArchetypeRoot();
         root.setArchetypeRef(overlay.getArchetypeId().getFullId());
-        root.setNodeId(cRoot14.getNodeId());
-        root.setOccurrences(BaseTypesConverter.convertMultiplicity(cRoot14.getOccurrences()));
-        root.setRmTypeName(cRoot14.getRmTypeName());
+        setObjectBasics(cRoot14, root);
         return root;
     }
 
