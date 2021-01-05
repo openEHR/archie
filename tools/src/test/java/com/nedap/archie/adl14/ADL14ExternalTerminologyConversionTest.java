@@ -31,6 +31,7 @@ public class ADL14ExternalTerminologyConversionTest {
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             CTerminologyCode termCodeConstraint = converted.itemAtPath("/items/value/property[1]");
             String atCode = termCodeConstraint.getConstraint().get(0);
+            assertTrue("code must be a value, not a value set", AOMUtils.isValueCode(atCode));
             assertEquals("Mass", converted.getTerminology().getTermDefinition("en", atCode).getText());
             assertEquals("Mass", converted.getTerminology().getTermDefinition("en", atCode).getDescription());
 
