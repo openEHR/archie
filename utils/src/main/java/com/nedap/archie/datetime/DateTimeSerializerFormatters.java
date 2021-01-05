@@ -35,7 +35,7 @@ public class DateTimeSerializerFormatters {
             .appendLiteral(':')
             .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
             .optionalStart()
-            .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 6, true)
+            .appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true)
             .optionalEnd()
             .optionalEnd()
             .optionalEnd()
