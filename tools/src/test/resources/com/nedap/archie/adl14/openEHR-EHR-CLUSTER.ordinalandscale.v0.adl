@@ -1,0 +1,209 @@
+archetype (adl_version=1.4; uid=64891061-481c-44ce-aa73-1913ef8dc66d)
+    openEHR-EHR-CLUSTER.ordinalandscale.v0
+concept
+    [at0000]    -- Ordinalandscale
+language
+    original_language = <[ISO_639-1::de]>
+description
+    original_author = <
+        ["name"] = <"">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+    lifecycle_state = <"in_development">
+    other_contributors = <>
+    other_details = <
+        ["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+        ["custodian_organisation"] = <"openEHR Foundation">
+        ["original_namespace"] = <"org.openehr">
+        ["original_publisher"] = <"openEHR Foundation">
+        ["custodian_namespace"] = <"org.openehr">
+        ["MD5-CAM-1.0.1"] = <"60400C49A960FAF443B1EC1DB870040B">
+        ["build_uid"] = <"73064b08-4ae3-46c7-941d-b45e5066e7a3">
+        ["revision"] = <"0.0.1-alpha">
+    >
+definition
+    CLUSTER[at0000] matches {   -- Ordinalandscale
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[at0001] occurrences matches {0..1} matches {    -- MYOrdinal
+                value matches {
+                    1|[local::at0002],  -- 1ord
+                    2|[local::at0003],  -- 2ord
+                    3|[local::at0004]   -- 3ord
+                }
+            }
+            ELEMENT[at0005] occurrences matches {0..1} matches {    -- MyScale
+                value matches {
+                    1.0|[local::at0006],    -- 1.0scale
+                    2.5|[local::at0007],    -- 25scale
+                    3.0|[local::at0008]     -- 3.0scale
+                }
+            }
+            ELEMENT[at0009] occurrences matches {0..1} matches {    -- MyScale2
+                value matches {
+                    1|[local::at0010],  -- 1scale
+                    2|[local::at0015],  -- 2scale
+                    2.5|[local::at0011],    -- 25scale
+                    3|[local::at0012]   -- 3scale
+                }
+            }
+            ELEMENT[at0013] occurrences matches {0..1} matches {    -- MyScale3
+                value matches {
+                    1.5|[local::at0014],    -- 15scale
+                    2|[local::at0015],  -- 2scale
+                    3|[local::at0016]   -- 3scale
+                }
+            }
+            ELEMENT[at0020] occurrences matches {0..1} matches {    -- MyScale4
+                value matches {
+                    1|[local::at0010],  -- 1scale
+                    2|[local::at0015],  -- 2scale
+                    3|[local::at0006],  -- 3scale
+                    3.5|[local::at0021]     -- 3.5scale
+                }
+            }
+            ELEMENT[at0017] occurrences matches {0..1} matches {    -- MyScale NORMAL
+                value matches {
+                    DV_SCALE[at00170] matches {
+                        value matches {0}
+                        symbol matches {
+                            DV_CODED_TEXT matches {
+                                defining_code matches {
+                                    [local::at0018]
+                                } -- 0scale
+                            }
+                        }
+                    }
+                    DV_SCALE[at00171] matches {
+                        value matches {1.5}
+                        symbol matches {
+                            DV_CODED_TEXT matches {
+                                defining_code matches {
+                                    [local::at0019]
+                                } -- 1.5scale
+                            }
+                        }
+                    }
+                }
+            }
+            ELEMENT[at0022] occurrences matches {0..1} matches {    -- MyScale unconstrained
+                value matches {
+                    DV_SCALE matches { * }
+                }
+            }
+        }
+    }
+ontology
+    term_definitions = <
+        ["de"] = <
+            items = <
+                ["at0000"] = <
+                    text = <"Ordinalandscale">
+                    description = <"unknown">
+                >
+                ["at0001"] = <
+                    text = <"My Ordinal">
+                    description = <"*">
+                >
+                ["at0002"] = <
+                    text = <"1ord">
+                    description = <"*">
+                >
+                ["at0003"] = <
+                    text = <"2ord">
+                    description = <"*">
+                >
+                ["at0004"] = <
+                    text = <"3ord">
+                    description = <"*">
+                >
+                ["at0005"] = <
+                    text = <"MyScale">
+                    description = <"*">
+                >
+                ["at0006"] = <
+                    text = <"1scale">
+                    description = <"*">
+                >
+                ["at0007"] = <
+                    text = <"2.5scale">
+                    description = <"*">
+                >
+                ["at0008"] = <
+                    text = <"3scale">
+                    description = <"*">
+                >
+                ["at0009"] = <
+                    text = <"MyScale2">
+                    description = <"*">
+                >
+                ["at0010"] = <
+                    text = <"1.2scale">
+                    description = <"*">
+                >
+                ["at0011"] = <
+                    text = <"2.5scale">
+                    description = <"*">
+                >
+                ["at0012"] = <
+                    text = <"3scale">
+                    description = <"*">
+                >
+                ["at0013"] = <
+                    text = <"MyScale2">
+                    description = <"*">
+                >
+                ["at0014"] = <
+                    text = <"1.5scale">
+                    description = <"*">
+                >
+                ["at0015"] = <
+                    text = <"2scale">
+                    description = <"*">
+                >
+                ["at0016"] = <
+                    text = <"3scale">
+                    description = <"*">
+                >
+                ["at0017"] = <
+                    text = <"MyScale NORMAL">
+                    description = <"*">
+                >
+                ["at00170"] = <
+                    text = <"First scale dv">
+                    description = <"*">
+                >
+                ["at00171"] = <
+                    text = <"Second scale dv">
+                    description = <"*">
+                >
+                ["at0018"] = <
+                    text = <"0scale">
+                    description = <"*">
+                >
+                ["at0019"] = <
+                    text = <"1.5scale">
+                    description = <"*">
+                >
+                ["at0020"] = <
+                    text = <"MyScale 4">
+                    description = <"*">
+                >
+                ["at0021"] = <
+                    text = <"3.5 scale">
+                    description = <"*">
+                >
+                ["at0022"] = <
+                    text = <"Unconstrained scale">
+                    description = <"*">
+                >
+            >
+        >
+    >

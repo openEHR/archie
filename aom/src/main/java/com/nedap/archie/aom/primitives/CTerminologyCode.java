@@ -183,4 +183,20 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("{[");
+        boolean first = true;
+        for(String constraint:getConstraint()) {
+            if(!first) {
+                result.append(", ");
+            }
+            first = false;
+            result.append(constraint.toString());
+        }
+        result.append("]}");
+        return result.toString();
+    }
+
 }
