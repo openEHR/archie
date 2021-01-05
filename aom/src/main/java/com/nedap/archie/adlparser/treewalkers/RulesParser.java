@@ -180,10 +180,8 @@ public class RulesParser extends BaseTreeWalker {
 
     private Expression parseBooleanConstraint(BooleanConstraintContext context) {
         Expression leftOperand = null;
-        if(context.adlRulesPath() != null) {
-            leftOperand = parseModelReference(context.adlRulesPath());
-        } else if (context.variableReference() != null) {
-            leftOperand = parseVariableReference(context.variableReference());
+        if(context.equalityExpression() != null) {
+            leftOperand = parseEqualityExpression(context.equalityExpression());
         }
 
         CPrimitiveObject cPrimitiveObject = null;

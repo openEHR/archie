@@ -60,6 +60,17 @@ public class TerminologyCodeConstraintsTest {
     }
 
     @Test
+    public void externalTerminology() {
+        CTerminologyCode code = new CTerminologyCode();
+        code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
+        code.addConstraint("ac12");
+        //this is valid, because we have no idea about the binding currently. Could be invalid later, when we have proper
+        //external terminology support
+        assertTrue(code.isValidValue(TerminologyCode.createFromString("[snomedct::72489423]")));
+        assertTrue(code.isValidValue(TerminologyCode.createFromString("[anything::atall]")));
+    }
+
+    @Test
     public void terminologyCodeConstraint() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));

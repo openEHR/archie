@@ -104,21 +104,7 @@ public class ParsedRulesEvaluationTest {
         return null;
     }
 
-    private Assertion getAssertionByTag(Archetype archetype, String tag) {
-        for(RuleStatement statement:archetype.getRules().getRules()) {
-            if(statement instanceof Assertion) {
-                Assertion assertion = (Assertion) statement;
-                if(Objects.equals(assertion.getTag(), tag)) {
-                    return assertion;
-                }
-            }
-        }
-        return null;
-    }
-
-
-
-    @Test
+      @Test
     public void modelReferences() throws Exception {
         parse("modelreferences.adls");
         RuleEvaluation ruleEvaluation = getRuleEvaluation();
@@ -156,14 +142,46 @@ public class ParsedRulesEvaluationTest {
 
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         assertEquals(false, ruleEvaluation.getVariableMap().get("extended_validity").getObject(0));
+        assertEquals(false, ruleEvaluation.getVariableMap().get("extended_validity_2").getObject(0));
+
         ValueList extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
+        ValueList extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
+        ValueList variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
+        assertEquals(false, extendedValidity.getObject(0));
+        assertEquals(false, extendedValidity2.getObject(0));
+        assertEquals(false, variableMatches.getObject(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
         quantity.setMagnitude(20d);
 
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
         assertEquals(true, extendedValidity.getObject(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
+
+        extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
+        assertEquals(true, extendedValidity2.getObject(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+
+        variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
+        assertEquals(true, variableMatches.getObject(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
+
+        quantity.setMagnitude(0d);
+
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
+        assertEquals(true, extendedValidity.getObject(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
+
+        extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
+        assertEquals(false, extendedValidity2.getObject(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+
+        variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
+        assertEquals(true, variableMatches.getObject(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
 
     }
 
