@@ -17,24 +17,24 @@ import java.io.IOException;
 public class Opt14Converter {
     
     public ADL2ConversionResultList convert(OPERATIONALTEMPLATE opt14, InMemoryFullArchetypeRepository adl2Archetypes) {
-        Template template = new Template();
-        template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + "v1.0.0"));
-        template.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
-        if(opt14.getUid() != null) {
-            template.setUid(opt14.getUid().getValue());
-        }
-        DescriptionConverter.convert(template, opt14);
-
-        new DefinitionConverter().convert(template, opt14);
-
-
-        new NodeIdFixer().fixNodeIds(template, new RepoFlatArchetypeProvider(adl2Archetypes));
-
-
         try {
             ADL14ConversionConfiguration config = OpenEHRADL14ConversionConfiguration.getConfig();
             config.setAllowEmptyNodeIdsForSpecializations(true);
-            config.setApplyDiff(false);
+            config.setApplyDiff(true);//TODO: check what the LCS diff does!
+
+            Template template = new Template();
+            template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + "v1.0.0"));
+            template.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
+            if(opt14.getUid() != null) {
+                template.setUid(opt14.getUid().getValue());
+            }
+            DescriptionConverter.convert(template, opt14);
+
+            new DefinitionConverter().convert(template, opt14, config);
+
+
+            new NodeIdFixer().fixNodeIds(template, new RepoFlatArchetypeProvider(adl2Archetypes));
+
             ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), config);
             converter.setExistingRepository(adl2Archetypes);
             ADL2ConversionResultList converted = converter.convert(Lists.newArrayList(template));

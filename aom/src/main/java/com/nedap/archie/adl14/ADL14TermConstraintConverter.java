@@ -149,6 +149,21 @@ public class ADL14TermConstraintConverter {
                         //TODO
                         logger.error("error converting term", e);
                     }
+                } else if (cTerminologyCode.getConstraint().size() == 2) {
+                    //still one code.
+                    try {
+                        termCode = TerminologyCode.createFromString(cTerminologyCode.getConstraint().get(0), null, cTerminologyCode.getConstraint().get(1));
+                        //do not create a value set, create a code plus binding to the old non-local code
+                        URI uri = new ADL14ConversionUtil(converter.getConversionConfiguration()).convertToUri(termCode);
+                        Map<String, URI> termBindingsMap = findOrCreateTermBindings(termCode);
+
+                        //TODO: check if this is a converted or old term binding - old is unusual, but could be possible!
+                        String termBinding = findOrAddTermBindingAndCode(termCode, uri, termBindingsMap);
+                        cTerminologyCode.setConstraint(Lists.newArrayList(termBinding));
+                    } catch (URISyntaxException e) {
+                        //TODO
+                        logger.error("error converting term", e);
+                    }
                 } else {
                     String terminologyId = cTerminologyCode.getConstraint().get(0);
                     termCode = TerminologyCode.createFromString(terminologyId, null, cTerminologyCode.getConstraint().get(1));

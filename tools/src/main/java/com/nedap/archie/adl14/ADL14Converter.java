@@ -95,7 +95,7 @@ public class ADL14Converter {
                         if(conversionConfiguration.isApplyDiff()) {
                             result.setArchetype(differentiator.differentiate(result.getArchetype(), flatParent, true));
                         } else {
-                            result.setArchetype(differentiator.differentiate(result.getArchetype(), flatParent, false));
+                            //result.setArchetype(differentiator.differentiate(result.getArchetype(), flatParent, false));
                         }
                     }
                     resultList.addConversionResult(result);

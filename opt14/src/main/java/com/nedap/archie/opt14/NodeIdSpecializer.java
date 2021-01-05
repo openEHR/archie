@@ -15,8 +15,11 @@ import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -72,47 +75,69 @@ public class NodeIdSpecializer {
                         if (!term.getText().equalsIgnoreCase(parentTerm.getText()) ||
                                 !term.getDescription().equalsIgnoreCase(parentTerm.getDescription())) {
                             //term changes. We need a new node id
-                            System.out.println("GOT ONE!");
+                            //TODO
                         }
                     }
                 }
 
             } else {
-                System.out.println("DID NOT EXPECT THIS");
+                //someone added a new node. It wil have a specialized id already - or it should anyway. let's check!
+                if(AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) != flatParent.specializationDepth() +1) {
+                    System.out.println("change of code!");//TODO
+                }
                // throw new RuntimeException("I did not expect the Spanish inquisition!");//TODO: remove or add proper message
             }
+
             for(CAttribute attribute:cObject.getAttributes()) {
                 specializeNodeIds(attribute);
             }
+            changeNameConstraintToArchetypeTerm(cObject);
         }
 
     }
 
-    private void specializeNodeIds(CAttribute attribute) {
-        if(attribute.getRmAttributeName().equalsIgnoreCase("name")) {
-            //ok a name constraint. If it's a simple constraint, replace it with a terminology entry please.
-            if(attribute.getChildren().size() == 1 && attribute.getChildren().get(0).getRmTypeName().equalsIgnoreCase("DV_TEXT")) {
-                CObject cObject = attribute.getChildren().get(0);
-                Object o = new AOMPathQuery("/value[1]").find((CComplexObject) cObject);
-                if(o instanceof CString) {
-                    CString nameConstraint = (CString) o;
-                    if (nameConstraint.getConstraint().size() == 1 && !CString.isRegexConstraint(nameConstraint.getConstraint().get(0))) {
-                        //remove the crap out of this attribute.
-                        attribute.setChildren(new ArrayList<>());
-                        ArchetypeTerm term = archetype.getTerm(attribute.getParent(), archetype.getOriginalLanguage().getCodeString());
-                        if (term != null) {
-                            term.setText((nameConstraint.getConstraint().get(0)));
-                        } else {
-                            term = new ArchetypeTerm();
-                            term.setCode(attribute.getParent().getNodeId());
-                            term.setText(nameConstraint.getConstraint().get(0));
-                            term.setDescription(nameConstraint.getConstraint().get(0));
-                            getOrCreateTermDefinitions().put(attribute.getParent().getNodeId(), term);
+    /**
+     * replace all 'name matches DV_TEXT { value matches {"some static name"}}' constraints to archtype terms
+     * @param cObject
+     */
+    private void changeNameConstraintToArchetypeTerm(CObject cObject) {
+        List<Integer> attributesToRemove = new ArrayList<>();
+        int i = 0;
+        for(CAttribute attribute:cObject.getAttributes()) {
+            if(attribute.getRmAttributeName().equalsIgnoreCase("name")) {
+                //ok a name constraint. If it's a simple constraint, replace it with a terminology entry please.
+                if(attribute.getChildren().size() == 1 && attribute.getChildren().get(0).getRmTypeName().equalsIgnoreCase("DV_TEXT")) {
+                    CObject nameCObject = attribute.getChildren().get(0);
+                    Object o = new AOMPathQuery("/value[1]").find((CComplexObject) nameCObject);
+                    if(o instanceof CString) {
+                        CString nameConstraint = (CString) o;
+                        if (nameConstraint.getConstraint().size() == 1 && !CString.isRegexConstraint(nameConstraint.getConstraint().get(0))) {
+                            //remove the crap out of this attribute.
+                            attributesToRemove.add(i);
+                            ArchetypeTerm term = archetype.getTerm(attribute.getParent(), archetype.getOriginalLanguage().getCodeString());
+                            if (term != null) {
+                                term.setText((nameConstraint.getConstraint().get(0)));
+                            } else {
+                                term = new ArchetypeTerm();
+                                term.setCode(attribute.getParent().getNodeId());
+                                term.setText(nameConstraint.getConstraint().get(0));
+                                term.setDescription(nameConstraint.getConstraint().get(0));
+                                getOrCreateTermDefinitions().put(attribute.getParent().getNodeId(), term);
+                            }
                         }
                     }
                 }
             }
+            i++;
         }
+        Collections.reverse(attributesToRemove);
+        for(int index:attributesToRemove) {
+            cObject.getAttributes().remove(index);
+        }
+    }
+
+    private void specializeNodeIds(CAttribute attribute) {
+
         for(CObject child:attribute.getChildren()) {
             specializeNodeIds(child);
         }

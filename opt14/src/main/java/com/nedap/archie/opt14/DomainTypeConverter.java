@@ -21,10 +21,14 @@ public class DomainTypeConverter {
         } else if (cobject14 instanceof CDVQUANTITY) {
             return convertCDVQuantity((CDVQUANTITY) cobject14);
         } else if (cobject14 instanceof CDVSTATE) {
-
+            return convertCDVState((CDVSTATE) cobject14);
         } else if (cobject14 instanceof CCODEPHRASE) {
             return convertCodePhrase((CCODEPHRASE) cobject14);
         }
+        return null;
+    }
+
+    private static CObject convertCDVState(CDVSTATE cobject14) {
         return null;
     }
 
@@ -32,7 +36,9 @@ public class DomainTypeConverter {
         CTerminologyCode cTerminologyCode = new CTerminologyCode();
 
         if(cobject14.getTerminologyId() != null) {
-            cTerminologyCode.addConstraint(cobject14.getTerminologyId().getValue());
+            if(!cobject14.getTerminologyId().getValue().equalsIgnoreCase("local")) {
+                cTerminologyCode.addConstraint(cobject14.getTerminologyId().getValue());
+            }
         } else {
             System.out.println("HELP");
         }

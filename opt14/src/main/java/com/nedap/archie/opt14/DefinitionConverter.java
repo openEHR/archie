@@ -1,6 +1,7 @@
 package com.nedap.archie.opt14;
 
 import com.google.common.base.Strings;
+import com.nedap.archie.adl14.ADL14ConversionConfiguration;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CArchetypeRoot;
@@ -18,12 +19,14 @@ public class DefinitionConverter {
 
     private OPERATIONALTEMPLATE opt14;
     private Template template;
+    private ADL14ConversionConfiguration config;
 
-    public void convert(Template template, OPERATIONALTEMPLATE opt14) {
+    public void convert(Template template, OPERATIONALTEMPLATE opt14, ADL14ConversionConfiguration config) {
+        this.config = config;
         this.opt14 = opt14;
         this.template = template;
         CARCHETYPEROOT definition = opt14.getDefinition();
-        template.setTerminology(TerminologyConverter.createTerminology(opt14, definition));
+        template.setTerminology(TerminologyConverter.createTerminology(opt14, definition, config));
         template.setDefinition(convert(definition));
     }
 
@@ -96,7 +99,7 @@ public class DefinitionConverter {
         overlay.getArchetypeId().setConceptId(overlay.getArchetypeId().getConceptId() + "ovl-1");
         overlay.setParentArchetypeId(cRoot14.getArchetypeId().getValue());
         overlay.setDefinition(convert(cRoot14));
-        overlay.setTerminology(TerminologyConverter.createTerminology(opt14, cRoot14));
+        overlay.setTerminology(TerminologyConverter.createTerminology(opt14, cRoot14, config));
         template.addTemplateOverlay(overlay);
 
         CArchetypeRoot root = new CArchetypeRoot();
