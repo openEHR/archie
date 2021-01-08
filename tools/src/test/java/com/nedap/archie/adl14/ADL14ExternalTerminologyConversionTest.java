@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
@@ -23,7 +22,6 @@ public class ADL14ExternalTerminologyConversionTest {
     public void terminologyBindingsConverted() throws IOException {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
-        String createdAtCode = null;
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
         try(InputStream stream = getClass().getResourceAsStream("/adl14/openEHR-EHR-CLUSTER.value_binding.v1.0.0.adl")) {
             ADL2ConversionResultList result = converter.convert(
@@ -45,7 +43,6 @@ public class ADL14ExternalTerminologyConversionTest {
     public void twoTermbindingsInOneConstraint() throws Exception {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
-        String createdAtCode = null;
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.termbinding.v1.adl")) {
             ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
