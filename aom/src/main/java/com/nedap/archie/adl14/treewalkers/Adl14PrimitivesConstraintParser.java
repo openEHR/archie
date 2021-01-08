@@ -125,7 +125,9 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
                     }
                 } else {
                     //non-local term constraints. Add the text here, will be converted later
-                    result.addConstraint(qualifiedTermCodeContext.getText());
+                    for (int i = 0; i < qualifiedTermCodeContext.identifier().size(); i++) {
+                        result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
+                    }
                 }
 
             }

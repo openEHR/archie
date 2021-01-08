@@ -150,12 +150,14 @@ public class ADL14TermConstraintConverter {
                         logger.error("error converting term", e);
                     }
                 } else {
-                    String terminologyId = termCode.getTerminologyId();
+                    String terminologyId = cTerminologyCode.getConstraint().get(0);
+                    termCode = TerminologyCode.createFromString(terminologyId, null, cTerminologyCode.getConstraint().get(1));
                     Map<String, URI> termBindingsMap = findOrCreateTermBindings(termCode);
                     List<String> atCodes = new ArrayList<>();
                     List<String> constraints = new ArrayList<>(cTerminologyCode.getConstraint());
                     cTerminologyCode.setConstraint(atCodes);
-                    for(String constraint:constraints) {
+                    for(int i = 1; i < constraints.size(); i++) {
+                        String constraint = constraints.get(i);
                         try {
                             if(constraint.startsWith("[") && constraint.endsWith("]")) {
                                 TerminologyCode constraintCode = TerminologyCode.createFromString(constraint);
