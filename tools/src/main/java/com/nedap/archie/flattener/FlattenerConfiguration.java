@@ -1,6 +1,6 @@
 package com.nedap.archie.flattener;
 
-import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.kryo5.Kryo;
 import com.nedap.archie.util.KryoUtil;
 
 public class FlattenerConfiguration {
@@ -112,10 +112,10 @@ public class FlattenerConfiguration {
     public FlattenerConfiguration clone() {
         Kryo kryo = null;
         try {
-            kryo = KryoUtil.getPool().borrow();
+            kryo = KryoUtil.getPool().obtain();
             return kryo.copy(this);
         } finally {
-            KryoUtil.getPool().release(kryo);
+            KryoUtil.getPool().free(kryo);
         }
     }
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DummyRulesPrimitiveObjectParent extends CAttribute {
-    private final Archetype archetype;
+    private final transient Archetype archetype;
 
     public DummyRulesPrimitiveObjectParent() {
         super();

@@ -21,7 +21,6 @@ import java.util.regex.Pattern;
  */
 public class RulesParser extends BaseTreeWalker {
 
-    private final Archetype archetype;
     private PrimitivesConstraintParser primitivesConstraintParser;
     public static final Pattern VARIABLE_ASSIGNMENT_PATTERN = Pattern.compile("\\$(?<name>.*)\\:(?<type>.*)");
 
@@ -31,7 +30,6 @@ public class RulesParser extends BaseTreeWalker {
 
     public RulesParser(ANTLRParserErrors errors, Archetype archetype) {
         super(errors);
-        this.archetype = archetype;
         primitivesConstraintParser = new PrimitivesConstraintParser(errors);
     }
 
@@ -190,7 +188,7 @@ public class RulesParser extends BaseTreeWalker {
         } else {
             cPrimitiveObject = primitivesConstraintParser.parseRegex(context.CONTAINED_REGEXP());
         }
-        cPrimitiveObject.setParent(new DummyRulesPrimitiveObjectParent(archetype)); //rules do not yet have a parent, but we'd like to add the archetype
+        //cPrimitiveObject.setParent(dummyRule); //rules do not yet have a parent, but we'd like to add the archetype
         return new BinaryOperator(ExpressionType.BOOLEAN, OperatorKind.matches, leftOperand, new Constraint(cPrimitiveObject));
     }
 

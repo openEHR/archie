@@ -58,7 +58,7 @@ public class RuleEvaluation<T> {
         add(new VariableDeclarationEvaluator());
         add(new ConstantEvaluator());
         add(new AssertionEvaluator());
-        add(new BinaryOperatorEvaluator(modelInfoLookup));
+        add(new BinaryOperatorEvaluator(modelInfoLookup, archetype));
         add(new UnaryOperatorEvaluator());
         add(new VariableReferenceEvaluator());
         add(new ModelReferenceEvaluator());

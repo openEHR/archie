@@ -70,7 +70,7 @@ subprojects {
     compile 'com.google.guava:guava:29.0-jre'
 
     compile "org.reflections:reflections:${reflectionsVersion}"
-    compile 'com.esotericsoftware:kryo-shaded:4.0.2' //for easy and relatively fast object cloning
+    compile 'com.esotericsoftware.kryo:kryo5:5.0.3'
 
     compile('commons-io:commons-io:2.7'){
       exclude group: 'commons-logging', module: 'commons-logging'

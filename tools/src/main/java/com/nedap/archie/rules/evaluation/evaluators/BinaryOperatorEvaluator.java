@@ -1,6 +1,9 @@
 package com.nedap.archie.rules.evaluation.evaluators;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.treewalkers.DummyRulesPrimitiveObjectParent;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
@@ -23,14 +26,16 @@ import static com.nedap.archie.rules.evaluation.evaluators.FunctionUtil.checkAnd
  */
 public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     private static final double EPSILON = 0.00001d;
+    private final Archetype archetype;
 
     private BinaryBooleanOperandEvaluator booleanOperandEvaluator = new BinaryBooleanOperandEvaluator(this);
     private BinaryStringOperandEvaluator stringOperandEvaluator = new BinaryStringOperandEvaluator(this);
 
     private final ModelInfoLookup lookup; //for now only the archie rm model for rule evaluation
 
-    public BinaryOperatorEvaluator(ModelInfoLookup lookup) {
+    public BinaryOperatorEvaluator(ModelInfoLookup lookup, Archetype archetype) {
         this.lookup = lookup;
+        this.archetype = archetype;
     }
 
     @Override
@@ -84,6 +89,12 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         Constraint constraint = (Constraint) statement.getRightOperand();
         ValueList result = new ValueList();
         result.setType(PrimitiveType.Boolean);
+        if(constraint.getItem() instanceof CTerminologyCode) {
+            constraint = (Constraint) constraint.clone();
+            //hack to support CTerminologyConstraints properly
+            DummyRulesPrimitiveObjectParent dummyParent = new DummyRulesPrimitiveObjectParent(archetype);
+            constraint.getItem().setParent(dummyParent);
+        }
         for(Value value:leftValues.getValues()) {
             result.addValue(constraint.getItem().isValidValue(lookup, value.getValue()), value.getPaths());
         }
