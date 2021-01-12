@@ -10,8 +10,12 @@ import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.utils.message.MessageCode;
+import org.openehr.utils.message.MessageDescriptor;
+import org.openehr.utils.message.MessageSeverity;
 
 import java.io.InputStream;
+import java.util.List;
 
 import static junit.framework.TestCase.*;
 import static org.junit.Assert.assertTrue;
@@ -123,6 +127,56 @@ public class PreviousLogConversionTest {
             ADL2ConversionRunLog log2 = result.getConversionLog();
             //the code should still be present in the conversion log, should it be added later on
             assertNotNull(log2.getConversionLog("openEHR-EHR-CLUSTER.value_binding.v1").getCreatedCodes().get("[openehr::124]"));
+        }
+    }
+
+    /**
+     * Test the following:
+     * - a node in an archetype has no node id.
+     * - it is converted to ADL 2
+     * - the adl 1.4 one is edited so that node now has an explicity node id
+     *
+     * Then the explicit node id must be used, and a warning be issued
+     */
+    @Test
+    public void acceptExplicitlySetCode() throws Exception {
+
+        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL2ConversionRunLog log = null;
+
+        try(InputStream stream = getClass().getResourceAsStream("openehr-EHR-COMPOSITION.review.v1.adl")) {
+            ADL2ConversionResultList result = converter.convert(
+                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration)));
+            log = result.getConversionLog();
+        }
+
+        assertEquals(1, log.getConvertedArchetypes().size());
+
+        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-COMPOSITION.review.v1.codeadded.adl")) {
+            ADL2ConversionResultList result = converter.convert(
+                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration)),
+                    log);
+            CAttribute attribute = result.getConversionResults().get(0).getArchetype().itemAtPath("/category");
+
+            assertEquals(1, attribute.getChildren().size());
+            CObject dvCodedText = attribute.getChildren().get(0);
+            assertEquals("DV_CODED_TEXT", dvCodedText.getRmTypeName());
+            assertEquals("id27", dvCodedText.getNodeId());
+
+            List<MessageDescriptor> messageList = result.getConversionResults().get(0).getLog().getMessageList();
+            assertEquals(2, messageList.size());
+
+            //the first is what we want here
+            MessageDescriptor message = messageList.get(0);
+            assertEquals(ADL14ConversionMessageCode.INFO_PREVIOUSLY_CONVERTED_CODE_RENAMED, message.getCode());
+            assertEquals(MessageSeverity.INFO, message.getSeverity());
+            assertEquals("/category", message.getLocation());
+
+            //the second message is a warning that looks like it should be removed, but not in scope for this issue. Assertion just to
+            //make clear it has to messages, should be deleted later.
+            assertEquals(ADL14ConversionMessageCode.WARNING_UNKNOWN_CODE_TYPE_IN_TERMBINDING, messageList.get(1).getCode());
+
         }
     }
 
