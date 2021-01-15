@@ -2,6 +2,7 @@ package com.nedap.archie.rm.support.identification;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.rminfo.RMProperty;
 
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Objects;
@@ -33,6 +34,7 @@ public class VersionTreeId extends RMObject {
 
     @JsonIgnore
     @XmlTransient
+    @RMProperty("is_branch")
     public Boolean isBranch() {
         if (value == null) {
             return null;

@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.support.identification;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nedap.archie.rminfo.RMProperty;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -65,6 +66,7 @@ public class ObjectVersionId extends UIDBasedId {
 
     @JsonIgnore
     @XmlTransient
+    @RMProperty("is_branch")
     public Boolean isBranch() {
         return getVersionTreeId().isBranch();
     }

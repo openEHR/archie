@@ -71,7 +71,6 @@ public abstract class UIDBasedId extends ObjectId {
 
     @Nullable
     @JsonIgnore
-    @XmlTransient
     public Boolean hasExtension() {
         if (getExtension() == null)
             return null;
