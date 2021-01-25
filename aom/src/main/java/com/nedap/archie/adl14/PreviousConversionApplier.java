@@ -235,7 +235,9 @@ public class PreviousConversionApplier {
                         }
                     }
                     ValueSet set = findLocalValueSet(atCodes);
-                    result.add(set.getId());
+                    if(set != null) {
+                        result.add(set.getId());
+                    }
                 }
             }
             result.addAll(gatherUsedValueSets(child));
