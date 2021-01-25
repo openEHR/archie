@@ -51,7 +51,7 @@ public class VersionTreeIdTest {
         version = new VersionTreeId("1.1.1");
         assertEquals("1", version.getTrunkVersion());
 
-        version = new VersionTreeId("123.123.123");
+        version = new VersionTreeId("123.456.789");
         assertEquals("123", version.getTrunkVersion());
 
         // invalid entries

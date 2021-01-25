@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class VersionTreeId extends RMObject {
 
-    public static final String BRANCH_VERSION = ".*[1-9][0-9]*[.].*[0-9].*[.].*[0-9].*";
+    public static final String BRANCH_VERSION = "[1-9][0-9]*[.][0-9]+[.][0-9]+";
     public static final String SIMPLE_VERSION = "[1-9][0-9]*";
 
     private String value;
@@ -35,9 +35,9 @@ public class VersionTreeId extends RMObject {
     @JsonIgnore
     @XmlTransient
     @RMProperty("is_branch")
-    public Boolean isBranch() {
+    public boolean isBranch() {
         if (value == null) {
-            return null;
+            return false;
         }
 
         if (value.matches(BRANCH_VERSION)) {
@@ -70,7 +70,7 @@ public class VersionTreeId extends RMObject {
     @JsonIgnore
     @XmlTransient
     public String getBranchNumber() {
-        if (value == null || isBranch().equals(false)) {
+        if (!isBranch()) {
             return null;
         }
 
@@ -81,7 +81,7 @@ public class VersionTreeId extends RMObject {
     @JsonIgnore
     @XmlTransient
     public String getBranchVersion() {
-        if (value == null || isBranch().equals(false)) {
+        if (!isBranch()) {
             return null;
         }
 
