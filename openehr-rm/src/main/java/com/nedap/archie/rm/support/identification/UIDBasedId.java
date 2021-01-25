@@ -69,12 +69,11 @@ public abstract class UIDBasedId extends ObjectId {
         }
     }
 
-    @Nullable
     @JsonIgnore
-    public Boolean hasExtension() {
-        if (getExtension() == null)
-            return null;
-        else {
+    public boolean hasExtension() {
+        if (getExtension() == null) {
+            return false;
+        } else {
             return !getExtension().isEmpty();
         }
     }

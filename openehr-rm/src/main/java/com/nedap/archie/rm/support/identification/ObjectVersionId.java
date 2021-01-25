@@ -22,6 +22,10 @@ public class ObjectVersionId extends UIDBasedId {
         super(value);
     }
 
+    public ObjectVersionId(String objectId, String creatingSystemId, String versionTreeId) {
+        this(objectId + "::" + creatingSystemId + "::" + versionTreeId);
+    }
+
     @JsonIgnore
     @XmlTransient
     public UID getObjectId() {
@@ -31,17 +35,17 @@ public class ObjectVersionId extends UIDBasedId {
     @JsonIgnore
     @XmlTransient
     public UID getCreatingSystemId() {
-        if (getExtension() == null)
-            // TODO: what kind of exception should be thrown here?
-            throw new IllegalArgumentException("Invalid OBJECT_VERSION_ID. Needs to have EXTENSION.");
+        if (getExtension() == null) {
+            throw new UnsupportedOperationException("Invalid OBJECT_VERSION_ID. Needs to have EXTENSION.");
+        }
 
         int index = getExtension().indexOf("::");
         String system;
-        if (index != -1)
+        if (index != -1) {
             system = getExtension().substring(0, index);
-        else
-            // TODO: what kind of exception should be thrown here?
-            throw new IllegalArgumentException("Invalid OBJECT_VERSION_ID. Needs to have CREATING_SYSTEM_ID.");
+        } else {
+            throw new UnsupportedOperationException("Invalid OBJECT_VERSION_ID. Needs to have CREATING_SYSTEM_ID.");
+        }
 
         return new UUID(system);
     }
@@ -49,17 +53,17 @@ public class ObjectVersionId extends UIDBasedId {
     @JsonIgnore
     @XmlTransient
     public VersionTreeId getVersionTreeId() {
-        if (getExtension() == null)
-            // TODO: what kind of exception should be thrown here?
-            throw new IllegalArgumentException("Invalid OBJECT_VERSION_ID. Needs to have EXTENSION.");
+        if (getExtension() == null) {
+            throw new UnsupportedOperationException("Invalid OBJECT_VERSION_ID. Needs to have EXTENSION.");
+        }
 
         int index = getExtension().indexOf("::");
         String version;
-        if (index != -1)
-            version = getExtension().substring(index+2);
-        else
-            // TODO: what kind of exception should be thrown here?
-            throw new IllegalArgumentException("Invalid OBJECT_VERSION_ID. Needs to have CREATING_SYSTEM_ID.");
+        if (index != -1) {
+            version = getExtension().substring(index + 2);
+        } else {
+            throw new UnsupportedOperationException("Invalid OBJECT_VERSION_ID. Needs to have CREATING_SYSTEM_ID.");
+        }
 
         return  new VersionTreeId(version);
     }

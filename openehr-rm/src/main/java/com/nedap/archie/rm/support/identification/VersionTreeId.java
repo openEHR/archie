@@ -40,14 +40,15 @@ public class VersionTreeId extends RMObject {
             return null;
         }
 
-        if (value.matches(BRANCH_VERSION))
+        if (value.matches(BRANCH_VERSION)) {
             return true;
-        else {
+        } else {
             // checking if it is just a 1-part identifier or invalid
-            if (value.matches(SIMPLE_VERSION))
+            if (value.matches(SIMPLE_VERSION)) {
                 return false;
-            else    // TODO: what kind of exception should be thrown here?
+            } else {
                 throw new IllegalArgumentException("Invalid object. Version needs to be 1- or 3-part numeric identifier.");
+            }
         }
     }
 
@@ -61,8 +62,9 @@ public class VersionTreeId extends RMObject {
         if (isBranch()) {
             int dot = value.indexOf(".");
             return value.substring(0, dot);
-        } else
+        } else {
             return value;
+        }
     }
 
     @JsonIgnore

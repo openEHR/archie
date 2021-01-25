@@ -27,9 +27,9 @@ public class HierObjectIdTest {
     @Test
     public void hasExtension() {
         HierObjectId id = new HierObjectId("fd0c55b8-a396-4ca1-8928-e12b88148359::local.archie.org::1");
-        assertEquals(Boolean.TRUE, id.hasExtension());
+        assertTrue(id.hasExtension());
 
         HierObjectId id2 = new HierObjectId("fd0c55b8-a396-4ca1-8928-e12b88148359");
-        assertEquals(Boolean.FALSE, id2.hasExtension());
+        assertFalse(id2.hasExtension());
     }
 }
