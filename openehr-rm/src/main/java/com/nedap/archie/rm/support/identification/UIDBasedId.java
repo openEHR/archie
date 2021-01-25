@@ -36,7 +36,7 @@ public abstract class UIDBasedId extends ObjectId {
         if (index < 0) {
             resultString = value;
         } else {
-            resultString = value.substring(index);
+            resultString = value.substring(0, index);
         }
         if (resultString.matches(UUID_REGEXP)) {
             UID result = new UUID();
@@ -66,6 +66,15 @@ public abstract class UIDBasedId extends ObjectId {
             return "";
         } else {
             return value.substring(index + 2);
+        }
+    }
+
+    @JsonIgnore
+    public boolean hasExtension() {
+        if (getExtension() == null) {
+            return false;
+        } else {
+            return !getExtension().isEmpty();
         }
     }
 
