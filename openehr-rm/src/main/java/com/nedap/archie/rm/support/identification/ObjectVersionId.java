@@ -71,7 +71,7 @@ public class ObjectVersionId extends UIDBasedId {
     @JsonIgnore
     @XmlTransient
     @RMProperty("is_branch")
-    public Boolean isBranch() {
+    public boolean isBranch() {
         return getVersionTreeId().isBranch();
     }
 }
