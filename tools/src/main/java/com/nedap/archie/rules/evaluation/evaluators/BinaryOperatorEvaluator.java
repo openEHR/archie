@@ -1,9 +1,18 @@
 package com.nedap.archie.rules.evaluation.evaluators;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.treewalkers.DummyRulesPrimitiveObjectParent;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeConstraint;
+import com.nedap.archie.aom.ArchetypeModelObject;
+import com.nedap.archie.aom.ArchetypeSlot;
+import com.nedap.archie.aom.CArchetypeRoot;
+import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.query.AOMPathQuery;
+import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
@@ -14,9 +23,11 @@ import com.nedap.archie.rules.evaluation.RuleEvaluation;
 import com.nedap.archie.rules.evaluation.Value;
 import com.nedap.archie.rules.evaluation.ValueList;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static com.nedap.archie.rules.evaluation.evaluators.FunctionUtil.checkAndHandleNull;
 
@@ -84,22 +95,49 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         ValueList leftValues = evaluation.evaluate(statement.getLeftOperand());
         if(!(statement.getRightOperand() instanceof Constraint)){
             throw new IllegalArgumentException("cannot evaluate matches statement, right operand not a constraint");
-
         }
         Constraint constraint = (Constraint) statement.getRightOperand();
         ValueList result = new ValueList();
         result.setType(PrimitiveType.Boolean);
+        DummyRulesPrimitiveObjectParent dummyParent = null;
         if(constraint.getItem() instanceof CTerminologyCode) {
             constraint = (Constraint) constraint.clone();
             //hack to support CTerminologyConstraints properly
-            DummyRulesPrimitiveObjectParent dummyParent = new DummyRulesPrimitiveObjectParent(archetype);
+            dummyParent = new DummyRulesPrimitiveObjectParent(archetype);
             constraint.getItem().setParent(dummyParent);
         }
         for(Value value:leftValues.getValues()) {
+            if(dummyParent != null && !value.getPaths().isEmpty()) {
+                //set the path where this thing came from, so the terminology code can be matched
+                //against the correct part of the archetype. This is a bit of a hack
+                //better would be to flatten rules in a separate structure for each included archetype, similar to componentTerminologies.
+                //and to evaluate those. That is a later improvement than this fix
+                dummyParent.setPath(convertToArchetypePath((String) value.getPaths().get(0)));
+            }
             result.addValue(constraint.getItem().isValidValue(lookup, value.getValue()), value.getPaths());
         }
         return result;
 
+    }
+
+    private String convertToArchetypePath(String path) {
+        List<PathSegment> segments = new APathQuery(path).getPathSegments();
+        for(PathSegment segment:segments) {
+            if(segment.getIndex() != null) {
+                segment.setIndex(null);//no indices in archetype paths
+            }
+        }
+        String archetypePath = segments.isEmpty() ? "/" : Joiner.on("").join(segments);
+        List<ArchetypeModelObject> allMatchingPredicate = new AOMPathQuery(archetypePath).findAllMatchingPredicate(archetype.getDefinition(), o -> o instanceof CArchetypeRoot || o instanceof ArchetypeSlot);
+        if(allMatchingPredicate.isEmpty()) {
+            return archetypePath;
+        } else {
+            ArchetypeModelObject archetypeModelObject = allMatchingPredicate.get(allMatchingPredicate.size() - 1);
+            if(archetypeModelObject instanceof ArchetypeConstraint) {
+                return ((ArchetypeConstraint) archetypeModelObject).getPath();
+            }
+            return archetypePath;
+        }
     }
 
     private ValueList evaluateBooleanOperator(RuleEvaluation evaluation, BinaryOperator statement) {

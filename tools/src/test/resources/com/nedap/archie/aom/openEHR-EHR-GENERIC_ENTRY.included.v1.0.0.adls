@@ -23,7 +23,13 @@ definition
 	    data matches {
 	        ITEM_TREE[id3] matches {
 	            items matches {
-	                ELEMENT[id2]
+	                ELEMENT[id2] matches {
+	                    value matches {
+	                        DV_CODED_TEXT[id26] matches {
+	                            defining_code matches {[ac3]}
+                            }
+                        }
+	                }
 	            }
 	        }
 	    }
@@ -40,5 +46,27 @@ terminology
                 text = <"an element">
                 description = <"an element described">
             >
+            ["ac3"] = <
+                text = <"a value set">
+                description = <"a value set">
+            >
+            ["at4"] = <
+                text = <"Value 1">
+                description = <"Value 1">
+            >
+            ["at5"] = <
+                text = <"Value 2">
+                description = <"Value 2">
+            >
+            ["at6"] = <
+                text = <"Value 3">
+                description = <"Value 3">
+            >
+        >
+    >
+    value_sets = <
+        ["ac3"] = <
+            id = <"ac3">
+            members=<"at4", "at5", "at6">
         >
     >
