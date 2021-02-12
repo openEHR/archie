@@ -43,7 +43,6 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
             valueList.setType(PrimitiveType.ObjectReference);
 
             //set the variable
-            evaluation.enterForAllScope(path);
             evaluation.getVariableMap().put(variableName, valueList);
 
             //evaluate
@@ -60,7 +59,6 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
             } else if(evaluated.getType() == PrimitiveType.Integer || evaluated.getType() == PrimitiveType.Real) {
                 throw new UnsupportedOperationException("cannot convert type to boolean yet: " + evaluated.getType());
             }
-            evaluation.exitForAllScope();
         }
         evaluation.getVariableMap().put(variableName, null);
 
