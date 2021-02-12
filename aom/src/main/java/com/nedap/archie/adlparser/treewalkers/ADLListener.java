@@ -43,8 +43,13 @@ public class ADLListener extends AdlBaseListener {
     @Override
     public void enterArchetype(ArchetypeContext ctx) {
         rootArchetype = new AuthoredArchetype();
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
+    }
+
+    private void setArchetype(Archetype archetype) {
+        this.archetype = archetype;
+        this.cComplexObjectParser.setArchetype(archetype);
     }
 
     @Override
@@ -55,7 +60,7 @@ public class ADLListener extends AdlBaseListener {
     @Override
     public void enterTemplate(TemplateContext ctx) {
         rootArchetype = new Template();
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
@@ -79,7 +84,7 @@ public class ADLListener extends AdlBaseListener {
         } else {
             rootArchetype = overlay;
         }
-        archetype = overlay;
+        setArchetype(overlay);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
@@ -87,7 +92,7 @@ public class ADLListener extends AdlBaseListener {
     public void enterOperational_template(Operational_templateContext ctx) {
         rootArchetype = new OperationalTemplate();
         rootArchetype.setDifferential(false);//operational templates are flat by definition
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
