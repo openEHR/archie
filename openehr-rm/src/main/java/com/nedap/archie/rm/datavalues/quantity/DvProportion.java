@@ -35,9 +35,14 @@ public class DvProportion extends DvAmount<Double> {
     }
 
     public DvProportion(Double numerator, Double denominator, Long type) {
+        this(numerator, denominator, type, null);
+    }
+
+    public DvProportion(Double numerator, Double denominator, Long type, Long precision) {
         this.numerator = numerator;
         this.denominator = denominator;
         this.type = type;
+        this.precision = precision;
     }
 
     public DvProportion(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Double numerator, Double denominator, Long type, @Nullable Long precision) {
@@ -82,9 +87,13 @@ public class DvProportion extends DvAmount<Double> {
         this.precision = precision;
     }
 
+    private static boolean isInteger(Double value) {
+        return value == Math.floor(value) && !Double.isInfinite(value);
+    }
+
     @JsonIgnore
     public boolean isIntegral() {
-        return precision != null && precision == 0;
+        return isInteger(numerator) && isInteger(denominator);
     }
 
     @Override
@@ -133,7 +142,7 @@ public class DvProportion extends DvAmount<Double> {
         return true;
     }
 
-    @Invariant("Is_integral_validity")
+    @Invariant(value = "Is_integral_validity", ignored = true) //not data validation, correctness validaiton
     public boolean integralValidity() {
         if(isIntegral() && denominator != null && numerator != null) {
             return (numerator.equals(Math.floor(numerator)) || Double.isInfinite(numerator)) &&
@@ -144,7 +153,7 @@ public class DvProportion extends DvAmount<Double> {
 
     @Invariant("Fraction_validity")
     public boolean fractionValidity() {
-        if(type != null && precision != null && (type.equals(ProportionKind.FRACTION.getPk()) || type.equals(ProportionKind.INTEGER_FRACTION.getPk()))) {
+        if(type != null && (type.equals(ProportionKind.FRACTION.getPk()) || type.equals(ProportionKind.INTEGER_FRACTION.getPk()))) {
             return isIntegral();
         }
         return true;

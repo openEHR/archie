@@ -20,6 +20,8 @@ import java.util.regex.Pattern;
 })
 public class ObjectRef<Idtype extends ObjectId> extends RMObject {
 
+    private static Pattern NAMESPACE_PATTERN = Pattern.compile("[a-zA-Z][a-zA-Z0-9_.:\\/&?=+-]*");
+
     private String namespace;
     private String type;
     private Idtype id;
@@ -72,13 +74,11 @@ public class ObjectRef<Idtype extends ObjectId> extends RMObject {
         return Objects.hash(namespace, type, id);
     }
 
-    private Pattern namespacePattern = Pattern.compile("[a-zA-Z][a-zA-Z0-9_.:\\/&?=+-]*");
-
     @Invariant("Namespace_valid") //not officially defined as invariant, but its as defined in the text
     public boolean namespaceValid() {
         if(namespace == null) {
             return true;
         }
-        return namespacePattern.matcher(namespace).matches();
+        return NAMESPACE_PATTERN.matcher(namespace).matches();
     }
 }

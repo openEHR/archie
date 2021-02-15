@@ -42,7 +42,11 @@ public class FeederAuditDetails extends RMObject {
     public FeederAuditDetails() {
     }
 
-    public FeederAuditDetails(String systemId, @Nullable PartyIdentified provider, @Nullable PartyIdentified location, @Nullable DvDateTime time, @Nullable PartyProxy subject, @Nullable String versionId, ItemStructure otherDetails) {
+    public FeederAuditDetails(String systemId) {
+        this.systemId = systemId;
+    }
+
+    public FeederAuditDetails(String systemId, @Nullable PartyIdentified provider, @Nullable PartyIdentified location, @Nullable DvDateTime time, @Nullable PartyProxy subject, @Nullable String versionId, @Nullable ItemStructure otherDetails) {
         this.systemId = systemId;
         this.location = location;
         this.provider = provider;
