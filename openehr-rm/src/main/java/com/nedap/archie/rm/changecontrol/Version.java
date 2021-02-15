@@ -5,7 +5,9 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.generic.AuditDetails;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMProperty;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -100,5 +102,12 @@ public abstract class Version<Type> extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(contribution, signature, commitAudit);
+    }
+
+    //TODO: Preceding_version_uid_validity, if version_tree_id() is implemented
+
+    @Invariant("Lifecycle_state_valid")
+    public boolean lifecycleStateValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(getLifecycleState(), "version lifecycle state");
     }
 }

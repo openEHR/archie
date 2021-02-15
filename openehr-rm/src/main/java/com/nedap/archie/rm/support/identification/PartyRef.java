@@ -1,5 +1,7 @@
 package com.nedap.archie.rm.support.identification;
 
+import com.nedap.archie.rminfo.Invariant;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -16,5 +18,21 @@ public class PartyRef extends ObjectRef {
 
     public PartyRef(ObjectId id, String namespace, String type) {
         super(id, namespace, type);
+    }
+
+    @Invariant("Type_validity")
+    public boolean typeValidity() {
+        String type = getType();
+        if(type == null) {
+            return true;
+        }
+
+        return type.equals("PERSON") ||
+                type.equals("ORGANISATION") ||
+                type.equals("GROUP") ||
+                type.equals("AGENT") ||
+                type.equals("ROLE") ||
+                type.equals("PARTY") ||
+                type.equals("ACTOR");
     }
 }

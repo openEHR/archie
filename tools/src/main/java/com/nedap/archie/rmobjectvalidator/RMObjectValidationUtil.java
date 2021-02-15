@@ -26,8 +26,8 @@ class RMObjectValidationUtil {
     public static String getParentObservationTerm(CAttribute attribute) {
         String result = "";
         CObject parent = attribute.getParent();
-        while (result.equals("") && parent != null) {
-            CAttribute attributeParent = parent.getParent();
+        CAttribute attributeParent = parent.getParent();
+        while (result.equals("") && parent != null && attributeParent != null) {
             if (attributeParent != null) {
                 parent = attributeParent.getParent();
                 if (parent.getRmTypeName().equals("OBSERVATION")) {
@@ -37,6 +37,7 @@ class RMObjectValidationUtil {
                     }
                 }
             }
+            attributeParent = parent.getParent();
         }
         return result;
     }

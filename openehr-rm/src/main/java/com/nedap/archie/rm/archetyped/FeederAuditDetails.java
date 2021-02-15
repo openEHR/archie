@@ -5,6 +5,8 @@ import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.PartyIdentified;
 import com.nedap.archie.rm.generic.PartyProxy;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -124,5 +126,10 @@ public class FeederAuditDetails extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(systemId, location, provider, subject, time, versionId, otherDetails);
+    }
+
+    @Invariant("System_id_valid")
+    public boolean systemIdValid() {
+        return InvariantUtil.nullOrNotEmpty(systemId);
     }
 }
