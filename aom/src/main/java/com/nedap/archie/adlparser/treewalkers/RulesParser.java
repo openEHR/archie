@@ -2,6 +2,9 @@ package com.nedap.archie.adlparser.treewalkers;
 
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeConstraint;
+import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.serializer.odin.OdinValueParser;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.rules.*;
@@ -22,6 +25,10 @@ public class RulesParser extends BaseTreeWalker {
     public static final Pattern VARIABLE_ASSIGNMENT_PATTERN = Pattern.compile("\\$(?<name>.*)\\:(?<type>.*)");
 
     public RulesParser(ANTLRParserErrors errors) {
+        this(errors, null);
+    }
+
+    public RulesParser(ANTLRParserErrors errors, Archetype archetype) {
         super(errors);
         primitivesConstraintParser = new PrimitivesConstraintParser(errors);
     }
@@ -170,9 +177,9 @@ public class RulesParser extends BaseTreeWalker {
 
 
     private Expression parseBooleanConstraint(BooleanConstraintContext context) {
-        ModelReference modelReference = null;
-        if(context.adlRulesPath() != null) {
-            modelReference = parseModelReference(context.adlRulesPath());
+        Expression leftOperand = null;
+        if(context.equalityExpression() != null) {
+            leftOperand = parseEqualityExpression(context.equalityExpression());
         }
 
         CPrimitiveObject cPrimitiveObject = null;
@@ -181,7 +188,8 @@ public class RulesParser extends BaseTreeWalker {
         } else {
             cPrimitiveObject = primitivesConstraintParser.parseRegex(context.CONTAINED_REGEXP());
         }
-        return new BinaryOperator(ExpressionType.BOOLEAN, OperatorKind.matches, modelReference, new Constraint(cPrimitiveObject));
+        //cPrimitiveObject.setParent(dummyRule); //rules do not yet have a parent, but we'd like to add the archetype
+        return new BinaryOperator(ExpressionType.BOOLEAN, OperatorKind.matches, leftOperand, new Constraint(cPrimitiveObject));
     }
 
     private Expression parseEqualityExpression(EqualityExpressionContext context) {
