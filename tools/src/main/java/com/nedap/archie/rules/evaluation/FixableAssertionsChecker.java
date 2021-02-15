@@ -154,6 +154,9 @@ class FixableAssertionsChecker {
                             path = path + "/code_string";
                         }
                         setPathsToValues(assertionResult, path, valueList);
+                    } else if (AOMUtils.isValueSetCode(constraint)) {
+                        String path = resolveModelReference(pathToSet);
+                        assertionResult.constrainPathToValueSet(path, constraint);
                     }
                     break;
                 }

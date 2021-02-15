@@ -38,6 +38,12 @@ public class AssertionResult {
      */
     private List<String> pathsThatMustNotExist = new ArrayList<>();
 
+    /**
+     * Paths where a term code must now be constrained to a value set. Use for example to change a drop down list, to a subselection of
+     * the original full list of values
+     */
+    private Map<String, String> pathsConstrainedToValueSets = new LinkedHashMap<>();
+
     public String getTag() {
         return tag;
     }
@@ -90,6 +96,14 @@ public class AssertionResult {
         return pathsThatMustNotExist;
     }
 
+    public Map<String, String> getPathsConstrainedToValueSets() {
+        return pathsConstrainedToValueSets;
+    }
+
+    public void setPathsConstrainedToValueSets(Map<String, String> pathsConstrainedToValueSets) {
+        this.pathsConstrainedToValueSets = pathsConstrainedToValueSets;
+    }
+
     public void setPathsThatMustNotExist(List<String> pathsThatMustNotExist) {
         this.pathsThatMustNotExist = pathsThatMustNotExist;
     }
@@ -129,5 +143,9 @@ public class AssertionResult {
             setPathValues.put(path, value);
         }
 
+    }
+
+    public void constrainPathToValueSet(String path, String valueSetId) {
+        pathsConstrainedToValueSets.put(path, valueSetId);
     }
 }

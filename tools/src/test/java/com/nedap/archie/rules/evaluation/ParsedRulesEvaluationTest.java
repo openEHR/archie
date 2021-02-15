@@ -672,6 +672,7 @@ public class ParsedRulesEvaluationTest {
         codedText.setValue("value 1");
         EvaluationResult result = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult assertionResult = result.getAssertionResults().get(0);
+        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
 
         //incorrect case next
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at26"));//wrong code!
@@ -679,6 +680,7 @@ public class ParsedRulesEvaluationTest {
         EvaluationResult falseResult = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult  falseAssertionResult = falseResult.getAssertionResults().get(0);
         assertFalse(falseAssertionResult.getResult());
+        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
 
 
     }
