@@ -106,4 +106,23 @@ public class ItemTable extends ItemStructure {
         }
         return true;
     }
+
+    @Invariant("Valid_number_of_rows")//indicated in text only, but hey, it's a rule that must be validated
+    public boolean validNumberOfRows() {
+        if(rows != null) {
+            Integer size = null;
+            for(Cluster row:rows) {
+                if(row.getItems() != null) {
+                    if(size == null) {
+                        size = row.getItems().size();
+                    } else {
+                        if(size != row.getItems().size()) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }

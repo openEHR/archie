@@ -12,17 +12,17 @@ public class PartyRefInvariantTest {
 
     @Test
     public void valid() {
-        InvariantTestUtil.assertValid(new PartyRef(new HierObjectId(UUID.randomUUID().toString()), "local", "PERSON"));
+        InvariantTestUtil.assertValid(new PartyRef(HierObjectId.createRandomUUID(), "local", "PERSON"));
     }
 
     @Test
     public void invalidType() {
-        InvariantTestUtil.assertInvariantInvalid(new PartyRef(new HierObjectId(UUID.randomUUID().toString()), "unknown", "SOMEONE"), "Type_validity", "/");
+        InvariantTestUtil.assertInvariantInvalid(new PartyRef(HierObjectId.createRandomUUID(), "unknown", "SOMEONE"), "Type_validity", "/");
     }
 
     @Test
     public void invalidNamespace() {
-        InvariantTestUtil.assertInvariantInvalid(new PartyRef(new HierObjectId(UUID.randomUUID().toString()), "1badhjklcd", "AGENT"), "Namespace_valid", "/");
-        InvariantTestUtil.assertInvariantInvalid(new PartyRef(new HierObjectId(UUID.randomUUID().toString()), "A*", "AGENT"), "Namespace_valid", "/");
+        InvariantTestUtil.assertInvariantInvalid(new PartyRef(HierObjectId.createRandomUUID(), "1badhjklcd", "AGENT"), "Namespace_valid", "/");
+        InvariantTestUtil.assertInvariantInvalid(new PartyRef(HierObjectId.createRandomUUID(), "A*", "AGENT"), "Namespace_valid", "/");
     }
 }

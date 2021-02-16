@@ -14,16 +14,39 @@ public class ElementInvariantTest {
     @Test
     public void valid() {
         InvariantTestUtil.assertValid(createValid());
+        Element nullFlavoured = createValid();
+        nullFlavoured.setValue(null);
+        nullFlavoured.setNullFlavour(new DvCodedText("unknown", "openehr::253"));
+        InvariantTestUtil.assertValid(nullFlavoured);
+
+        Element nullReasoned = createValid();
+        nullReasoned.setValue(null);
+        nullReasoned.setNullFlavour(new DvCodedText("unknown", "openehr::253"));
+        nullReasoned.setNullReason(new DvCodedText("unknown", "local::at5"));
+        InvariantTestUtil.assertValid(nullReasoned);
     }
 
     @Test
-    public void nullFlavourInvalid() {
+    public void nullFlavourIndicated() {
         Element element = createValid();
         element.setNullFlavour(new DvCodedText("unknown", "openehr::253"));
         InvariantTestUtil.assertInvariantInvalid(element, "Inv_null_flavour_indicated", "/");
     }
 
-    //TODO: null-reaosn_invalid
+    @Test
+    public void nullFlavourValid() {
+        Element two = createValid();
+        two.setValue(null);
+        two.setNullFlavour(new DvCodedText("unknown", "openehr::666"));
+        InvariantTestUtil.assertInvariantInvalid(two, "Inv_null_flavour_valid", "/");
+    }
+
+    @Test
+    public void nullReasonInvalid() {
+        Element element = createValid();
+        element.setNullReason(new DvCodedText("unknown", "local::at5"));
+        InvariantTestUtil.assertInvariantInvalid(element, "Inv_null_reason_valid", "/");
+    }
 
     public Element createValid() {
         Element element = new Element();
