@@ -9,6 +9,8 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -86,5 +88,10 @@ public class IntervalEvent<Type extends ItemStructure> extends Event<Type> {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), width, sampleCount, mathFunction);
+    }
+
+    @Invariant("Math_function_validity")
+    public boolean mathFunctionValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(mathFunction, "event math function");
     }
 }

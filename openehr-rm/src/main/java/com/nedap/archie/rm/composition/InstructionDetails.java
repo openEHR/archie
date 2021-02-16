@@ -3,6 +3,8 @@ package com.nedap.archie.rm.composition;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.support.identification.LocatableRef;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -80,5 +82,10 @@ public class InstructionDetails extends Pathable {
     @Override
     public int hashCode() {
         return Objects.hash(instructionId, activityId, wfDetails);
+    }
+
+    @Invariant("Activity_path_valid")
+    public boolean actionArchetypeIdValid() {
+        return InvariantUtil.nullOrNotEmpty(activityId);
     }
 }
