@@ -14,6 +14,7 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.TestUtil;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -26,9 +27,16 @@ import static org.junit.Assert.assertTrue;
 
 public class RmObjectValidatorTest {
 
-    private ADLParser parser = new ADLParser();
-    TestUtil testUtil = new TestUtil();
-    RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
+    private ADLParser parser;
+    private TestUtil testUtil;
+    private RMObjectValidator validator;
+
+    @Before
+    public void setup() {
+        parser = new ADLParser();
+        testUtil = new TestUtil();
+        validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
+    }
 
     @Test
     public void requiredAttributesShouldBePresent() throws Exception {
@@ -38,8 +46,9 @@ public class RmObjectValidatorTest {
         DvProportion dvProportion = (DvProportion) element.getValue();
         dvProportion.setDenominator(4D);
         dvProportion.setType(3L);
+        validator.setRunInvariantChecks(false);
         List<RMObjectValidationMessage> validationMessages = validator.validate(archetype, element);
-        assertEquals("There should be 1 errors", 1, validationMessages.size());
+        assertEquals("There should be 1 errors:" + validationMessages, 1, validationMessages.size());
         assertEquals("There should be a validation message about the numerator", "Attribute numerator of class DV_PROPORTION does not match existence 1..1", validationMessages.get(0).getMessage());
         assertEquals("The path should be correct", "/value/numerator", validationMessages.get(0).getPath());
         assertEquals("The archetype path should be correct", "/value[id2]/numerator", validationMessages.get(0).getArchetypePath());

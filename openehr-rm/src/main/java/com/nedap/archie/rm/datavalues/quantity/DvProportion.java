@@ -93,7 +93,7 @@ public class DvProportion extends DvAmount<Double> {
 
     @JsonIgnore
     public boolean isIntegral() {
-        return isInteger(numerator) && isInteger(denominator);
+        return numerator != null && denominator != null && isInteger(numerator) && isInteger(denominator);
     }
 
     @Override

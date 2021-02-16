@@ -212,7 +212,7 @@ public class ExampleJsonInstanceGeneratorTest {
 
         }
         logger.info("error validation: " + Joiner.on("\n").join(rmValidationErrors));
-        logger.info("created " + numberCreated + " examples, " + validationFailed + " failed to validate, " + generatedException + " threw exception in test");
+        logger.info("created " + numberCreated + " examples, " + validationFailed + " archetypes failed to validate so were skipped, " + generatedException + " threw exception in test");
         logger.info("failed validation " + jsonSchemaValidationFailed + " of " + jsonSchemaValidationRan);
         logger.info("failed validation of reserialized json " + reserializedJsonSchemaValidationFailed + " of " + secondJsonSchemaValidationRan);
         logger.info("failed validation of RM Objects+invariants " + rmObjectValidatorFailed + " of " + rmObjectValidatorRan);

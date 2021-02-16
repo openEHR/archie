@@ -147,73 +147,123 @@ class OpenEhrRmInstanceGenerator {
 
     public void addAdditionalPropertiesAtEnd(BmmClass classDefinition, Map<String, Object> result, CObject cObject) {
         String rmTypeName = classDefinition.getType().getBaseClass().getName();
-        if(rmTypeName.equalsIgnoreCase("DV_CODED_TEXT")) {
-            fixCodedText(result, cObject);
-        } else if(rmTypeName.equalsIgnoreCase("CODE_PHRASE")) {
-            fixCodePhrase(result, cObject);
-        } else if(rmTypeName.equalsIgnoreCase("HISTORY")) {
-            Object events = result.get("events");
-            if(events == null || (events instanceof List && ((List) events).isEmpty())) {
-                List<Map> newEvents = new ArrayList<>();
-                newEvents.add(this.generator.constructExampleType("EVENT"));
-                result.put("events", newEvents);
-            }
-        } else if(rmTypeName.equalsIgnoreCase("ELEMENT")) {
-            Object value = result.get("value");
-            Object nullFlavour = result.get("null_flavour");
-            if(value == null && nullFlavour == null) {
-                Map<String, Object> dvText = new LinkedHashMap<>();
-                dvText.put(typePropertyName, "DV_TEXT");
-                dvText.put("value", "string");
+        switch (rmTypeName.toUpperCase()) {
+            case "DV_CODED_TEXT":
+                fixCodedText(result, cObject);
+                break;
+            case "CODE_PHRASE":
+                fixCodePhrase(result, cObject);
+                break;
+            case "HISTORY":
+                fixHistory(result);
+                break;
+            case "ELEMENT":
+                fixElement(result);
+                break;
+            case "DV_MULTIMEDIA":
+                fixDvMultimedia(result);
+                break;
+            case "PARTY_RELATED":
+                FixPartyRelated(result);
+                break;
+            case "DV_PROPORTION":
+                fixDvProportion(result);
+                break;
+            case "DV_URI":
+            case "DV_EHR_URI":
+                fixDvUri(result);
+                break;
+            case "PARTY_REF":
+                fixPartyRef(result);
+        }
+    }
 
-                result.put("value", dvText);
+    private void fixPartyRef(Map<String, Object> result) {
+        String type = (String) result.get("type");
+        if(type == null || !(type.equals("PERSON") ||
+                type.equals("ORGANISATION") ||
+                type.equals("GROUP") ||
+                type.equals("AGENT") ||
+                type.equals("ROLE") ||
+                type.equals("PARTY") ||
+                type.equals("ACTOR"))) {
+            result.put("type", "PERSON");
+        }
+
+    }
+
+    private void fixDvUri(Map<String, Object> result) {
+        String value = (String) result.get("value");
+        if(value.equalsIgnoreCase("string")) {
+            result.put("value", "ehr://something/something");
+        }
+    }
+
+    private void fixDvProportion(Map<String, Object> result) {
+        //this one is tricky. Several cases
+        //RATIO(0), UNITARY(1), PERCENT(2), FRACTION(3), INTEGER_FRACTION(4);
+        Number proportionKind = (Number) result.get("type");
+        Number denominator = (Number) result.get("denominator");
+        if(denominator != null && denominator.intValue() == 0) {
+            result.put("denominator", 1);
+        }
+        if(proportionKind == null || proportionKind.intValue() > 4) {
+            result.put("type", 2);
+            result.put("denominator", 100);
+            result.put("numerator", 50);
+        } else {
+            switch(proportionKind.intValue()) {
+                case 0: //ratio
+                    //nothing to be done.
+                    break;
+                case 1: //unitary
+                    result.put("denominator", 1);
+                    break;
+                case 2: //percent
+                    result.put("denominator", 100);
+                    break;
+                case 3: //fraction
+                case 4: //integer fraction
+                    result.put("precision", 0);
             }
-            if(value != null && nullFlavour != null) {
-                result.remove("null_flavour");//can't be set at the same time
-            }
-        } else if (rmTypeName.equalsIgnoreCase("DV_MULTIMEDIA")) {
-            Object data = result.get("data");
-            if(data == null) {
-                result.put("data", "NDIK");
-            }
-        } else if(rmTypeName.equalsIgnoreCase("PARTY_RELATED")) {
-            Object name = result.get("name");
-            if(name == null) {
-                result.put("name", "John Doe");
-            }
-        } else if (rmTypeName.equalsIgnoreCase("DV_PROPORTION")) {
-            //this one is tricky. Several cases
-            //RATIO(0), UNITARY(1), PERCENT(2), FRACTION(3), INTEGER_FRACTION(4);
-            Number proportionKind = (Number) result.get("type");
-            Number denominator = (Number) result.get("denominator");
-            if(denominator != null && denominator.intValue() == 0) {
-                result.put("denominator", 1);
-            }
-            if(proportionKind == null || proportionKind.intValue() > 4) {
-                result.put("type", 2);
-                result.put("denominator", 100);
-                result.put("numerator", 50);
-            } else {
-                switch(proportionKind.intValue()) {
-                    case 0: //ratio
-                        //nothing to be done.
-                        break;
-                    case 1: //unitary
-                        result.put("denominator", 1);
-                        break;
-                    case 2: //percent
-                        result.put("denominator", 100);
-                        break;
-                    case 3: //fraction
-                    case 4: //integer fraction
-                        result.put("precision", 0);
-                }
-            }
-        } else if (rmTypeName.equalsIgnoreCase("DV_URI") || rmTypeName.equalsIgnoreCase("DV_EHR_URI") ){
-            String value = (String) result.get("value");
-            if(value.equalsIgnoreCase("string")) {
-                result.put("value", "ehr://something/something");
-            }
+        }
+    }
+
+    private void FixPartyRelated(Map<String, Object> result) {
+        Object name = result.get("name");
+        if(name == null) {
+            result.put("name", "John Doe");
+        }
+    }
+
+    private void fixDvMultimedia(Map<String, Object> result) {
+        Object data = result.get("data");
+        if(data == null) {
+            result.put("data", "NDIK");
+        }
+    }
+
+    private void fixElement(Map<String, Object> result) {
+        Object value = result.get("value");
+        Object nullFlavour = result.get("null_flavour");
+        if(value == null && nullFlavour == null) {
+            Map<String, Object> dvText = new LinkedHashMap<>();
+            dvText.put(typePropertyName, "DV_TEXT");
+            dvText.put("value", "string");
+
+            result.put("value", dvText);
+        }
+        if(value != null && nullFlavour != null) {
+            result.remove("null_flavour");//can't be set at the same time
+        }
+    }
+
+    private void fixHistory(Map<String, Object> result) {
+        Object events = result.get("events");
+        if(events == null || (events instanceof List && ((List) events).isEmpty())) {
+            List<Map> newEvents = new ArrayList<>();
+            newEvents.add(this.generator.constructExampleType("EVENT"));
+            result.put("events", newEvents);
         }
     }
 
