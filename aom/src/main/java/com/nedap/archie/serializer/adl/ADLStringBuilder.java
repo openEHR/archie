@@ -15,11 +15,16 @@ public class ADLStringBuilder implements StructuredStringAppendable {
 
     private final StructureStringBuilder builder = new StructureStringBuilder();
 
-    private ODINMapper odinMapper = new ArchetypeODINMapperFactory().createMapper();
+    private final ODINMapper odinMapper;
+
+    public ADLStringBuilder() {
+        odinMapper = new ArchetypeODINMapperFactory().createMapper();
+    }
 
     @Override
     public ADLStringBuilder append(Object str) {
-        builder.append(str);
+        String toAppend = str.toString();
+        builder.append(toAppend);
         return this;
     }
 
@@ -114,6 +119,14 @@ public class ADLStringBuilder implements StructuredStringAppendable {
             builder.append(line);
             builder.newline();
         }
+    }
+
+    public int getCurrentLineLength() {
+        return builder.getCurrentLineLength();
+    }
+
+    public ODINMapper getOdinMapper() {
+        return odinMapper;
     }
 }
 
