@@ -22,7 +22,7 @@ public class AssertionsFixer {
 
     private final RMObjectCreator creator;
     private final RuleEvaluation ruleEvaluation;
-    private final EmptyRMObjectConstructor emptyRMObjectConstructor;
+    private final RMObjectCreator rmObjectCreator;
 
     private ModelInfoLookup modelInfoLookup;
 
@@ -30,7 +30,7 @@ public class AssertionsFixer {
         this.creator = creator;
         this.ruleEvaluation = evaluation;
         this.modelInfoLookup = ruleEvaluation.getModelInfoLookup();
-        emptyRMObjectConstructor = new EmptyRMObjectConstructor(evaluation.getModelInfoLookup());
+        rmObjectCreator = new RMObjectCreator(evaluation.getModelInfoLookup());
     }
 
     public Map<String, Object> fixAssertions(Archetype archetype, AssertionResult assertionResult) {
@@ -116,7 +116,7 @@ public class AssertionsFixer {
 
                 Object newEmptyObject = null;
                 if (constraint instanceof CComplexObject) {
-                    newEmptyObject = emptyRMObjectConstructor.constructEmptyRMObject(constraint);
+                    newEmptyObject = rmObjectCreator.create(constraint);
                 } else {
                     newEmptyObject = constructEmptySimpleObject(newLastPathSegment, object, newEmptyObject);
                 }
