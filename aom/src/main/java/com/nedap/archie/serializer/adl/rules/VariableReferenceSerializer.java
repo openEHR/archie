@@ -14,7 +14,13 @@ public class VariableReferenceSerializer extends RuleElementSerializer<VariableR
 
     @Override
     public void serialize(VariableReference ruleElement) {
-        builder.append("$");
-        builder.append(ruleElement.getDeclaration().getName());
+        StringBuilder toAppend = new StringBuilder();
+        toAppend.append("$");
+        toAppend.append(ruleElement.getDeclaration().getName());
+
+        if(builder.getCurrentLineLength() + toAppend.length() > ADLRulesSerializer.NEW_LINE_LIMIT) {
+            builder.newline();
+        }
+        builder.append(toAppend);
     }
 }
