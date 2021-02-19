@@ -1,7 +1,6 @@
 package com.nedap.archie.rm.datavalues;
 
 import com.nedap.archie.rminfo.Invariant;
-import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -1,5 +1,6 @@
 package com.nedap.archie.rmobjectvalidator;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
@@ -114,9 +115,13 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                             }
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             result.add(new RMObjectValidationMessage(null, joinPaths(pathSoFar, objectWithPath.getPath()),
-                                    I18n.t("Exception {0} invoking invariant {1} on {2}: {3}", e.getClass().getSimpleName(), invariantMethod.getAnnotation().value(), typeInfo.getRmName(), e.getMessage()),
+                                    I18n.t("Exception {0} invoking invariant {1} on {2}: {3}\n{4}",
+                                            e.getClass().getSimpleName(),
+                                            invariantMethod.getAnnotation().value(),
+                                            typeInfo.getRmName(),
+                                            e.getMessage(),
+                                            Joiner.on("\n\t").join(e.getStackTrace())),
                                     RMObjectValidationMessageType.EXCEPTION));
-                                e.printStackTrace();
                         }
                     }
                 }

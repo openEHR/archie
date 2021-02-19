@@ -11,6 +11,7 @@ import java.util.function.Supplier;
 public class OpenEHRExampleCodePhrases {
 
     private final Map<String, Supplier<Map<String, Object>>> exampleObjectsByAttribute = new LinkedHashMap<>();
+
     private String typeNameProperty;
 
     public OpenEHRExampleCodePhrases(String typeNameProperty) {
@@ -82,28 +83,11 @@ public class OpenEHRExampleCodePhrases {
         return result;
     }
 
-    /**
-     * Returns a
-     * @param parent
-     * @param attribute
-     * @return
-     */
-    public Map<String, Object> getOpenEHRCodedText(CComplexObject parent, CAttribute attribute) {
-        return exampleObjectsByAttribute.get(parent.getRmTypeName().toUpperCase() + "." + attribute.getRmAttributeName().toLowerCase()).get();
+    public Map<String, Object> getOpenEHRCodePhraseOrCodedText(CComplexObject parent, CAttribute attribute) {
+        return getOpenEHRCodePhraseOrCodedText(parent.getRmTypeName(), attribute.getRmAttributeName());
     }
 
-
-    /**
-     * Returns a
-     * @param parent
-     * @param attribute
-     * @return
-     */
-    public Map<String, Object> getOpenEHRCodePhrase(CComplexObject parent, CAttribute attribute) {
-        return exampleObjectsByAttribute.get(parent.getRmTypeName().toUpperCase() + "." + attribute.getRmAttributeName().toLowerCase()).get();
-    }
-
-    public Map<String, Object> getOpenEHRCodePhrase(String typeName, String attributeName) {
+    public Map<String, Object> getOpenEHRCodePhraseOrCodedText(String typeName, String attributeName) {
         Supplier<Map<String, Object>> mapSupplier = exampleObjectsByAttribute.get(typeName.toUpperCase() + "." + attributeName.toLowerCase());
         if(mapSupplier == null) {
             return null;

@@ -53,8 +53,8 @@ class OpenEhrRmInstanceGenerator {
      * @param attribute
      * @return
      */
-    public Map<String, Object> getOpenEHRCodedText(CComplexObject parent, CAttribute attribute) {
-        return exampleCodePhrases.getOpenEHRCodedText(parent, attribute);
+    public Map<String, Object> getOpenEHRCodedTextOrCodePhrase(CComplexObject parent, CAttribute attribute) {
+        return exampleCodePhrases.getOpenEHRCodePhraseOrCodedText(parent, attribute);
     }
 
     /**
@@ -338,7 +338,7 @@ class OpenEhrRmInstanceGenerator {
         return null;
     }
 
-    public Map<String, Object> getOpenEHRCodePhrase(String typeName, String name) {
-        return exampleCodePhrases.getOpenEHRCodePhrase(typeName, name);
+    public Map<String, Object> getOpenEHRCodedTextOrCodePhrase(String typeName, String name) {
+        return exampleCodePhrases.getOpenEHRCodePhraseOrCodedText(typeName, name);
     }
 }

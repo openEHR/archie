@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.datavalues;
 
 import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -78,9 +79,6 @@ public class DvIdentifier extends DataValue {
 
     @Invariant("Id_valid")
     public boolean idValid() {
-        if( id != null && id.isEmpty() ) {
-            return false;
-        }
-        return true;
+        return InvariantUtil.nullOrNotEmpty(id);
     }
 }

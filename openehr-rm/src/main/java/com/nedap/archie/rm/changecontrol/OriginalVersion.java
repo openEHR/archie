@@ -32,7 +32,7 @@ import java.util.Objects;
         "lifecycleState"
 
 })
-public class OriginalVersion<Type> extends Version<Type> {
+public class    OriginalVersion<Type> extends Version<Type> {
 
     private ObjectVersionId uid;
     @Nullable
@@ -133,7 +133,7 @@ public class OriginalVersion<Type> extends Version<Type> {
     @RMPropertyIgnore
     @XmlTransient
     public boolean isMerged() {
-        return otherInputVersionUids != null;
+        return otherInputVersionUids != null && !otherInputVersionUids.isEmpty();
     }
 
     @Override
