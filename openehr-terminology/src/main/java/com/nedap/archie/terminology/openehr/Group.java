@@ -51,6 +51,9 @@ public class Group {
     @XmlAttribute(name = "name", required = true)
     @XmlSchemaType(name = "anySimpleType")
     protected String name;
+    @XmlAttribute(name = "id", required = true)
+    @XmlSchemaType(name = "anySimpleType")
+    protected String id;
 
     /**
      * Gets the value of the concept property.
@@ -105,4 +108,11 @@ public class Group {
         this.name = value;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

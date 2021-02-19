@@ -42,7 +42,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
                         TerminologyImpl impl = getOrCreateTerminologyById(codeSet.getIssuer(), codeSet.getOpenehrId(), codeSet.getExternalId());
                         for (Code code : codeSet.getCode()) {
                             MultiLanguageTerm multiLanguageTerm = impl.getOrCreateTermSet(code.getValue());
-                            multiLanguageTerm.addCode(new TermCodeImpl(codeSet.getOpenehrId(), terminology.getLanguage(), code.getValue(), code.getDescription()));
+                            multiLanguageTerm.addCode(new TermCodeImpl(codeSet.getExternalId(), terminology.getLanguage(), code.getValue(), code.getDescription()));
                         }
                     }
                     for(Group group:terminology.getGroup()) {
@@ -50,7 +50,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
                         TerminologyImpl impl = getOrCreateTerminologyById("openehr", "openehr", terminology.getName());
                         for (Concept concept : group.getConcept()) {
                             MultiLanguageTerm multiLanguageTerm = impl.getOrCreateTermSet(concept.getId().toString());
-                            multiLanguageTerm.addCode(new TermCodeImpl(terminology.getName(), terminology.getLanguage(), concept.getId().toString(), concept.getRubric(), group.getName()));
+                            multiLanguageTerm.addCode(new TermCodeImpl(terminology.getName(), terminology.getLanguage(), concept.getId().toString(), concept.getRubric(), group.getName(), group.getId()));
                         }
                     }
 
@@ -135,14 +135,28 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
     }
 
     @Override
-    public List<TermCode> getTermsByOpenEHRGroup(String groupName, String language) {
+    public List<TermCode> getTermsByOpenEHRGroup(String groupId, String language) {
+        //TODO: improve performance with a nice index
         TerminologyImpl openehr = terminologiesByExternalId.get("openehr");
         if(openehr == null) {
             return Collections.emptyList(); //should never happen
         }
         return openehr.getAllTermsForLanguage(language).stream()
-                .filter(t -> t.getGroupName().equalsIgnoreCase(groupName))
+                .filter(t -> t.getGroupIds().contains(groupId))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public TermCode getTermByOpenEHRGroup(String groupId, String language, String code) {
+        //TODO: improve performance with a nice index
+        TerminologyImpl openehr = terminologiesByExternalId.get("openehr");
+        if(openehr == null) {
+            return null; //should never happen
+        }
+        List<TermCode> codes = openehr.getAllTermsForLanguage(language).stream()
+                .filter(t -> t.getGroupIds().contains(groupId))
+                .collect(Collectors.toList());
+        return codes.stream().filter(c -> c.getCodeString().equalsIgnoreCase(code)).findFirst().orElse(null);
     }
 
     private static class TerminologyImpl {
@@ -226,7 +240,14 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
         }
 
         public void addCode(TermCode code) {
-            termCodesByLanguage.put(code.getLanguage(), code);
+            TermCode termCode = termCodesByLanguage.get(code.getLanguage());
+            if(termCode != null) {
+                //sometimes terms occur twice. They mean the same, but are in two groups.
+                //todo: properly implement groups
+                termCode.getGroupIds().add(code.getGroupName());
+            } else {
+                termCodesByLanguage.put(code.getLanguage(), code);
+            }
         }
 
     }
