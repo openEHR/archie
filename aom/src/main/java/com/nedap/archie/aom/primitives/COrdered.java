@@ -5,11 +5,13 @@ import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 
+import javax.xml.bind.annotation.XmlType;
 import java.util.function.BiFunction;
 
 /**
  * Created by pieter.bos on 15/10/15.
  */
+@XmlType(name="C_ORDERED")
 public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
 
     @Override

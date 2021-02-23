@@ -5,12 +5,14 @@ import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
 
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 import java.util.List;
 
 /**
  * Created by pieter.bos on 15/10/15.
  */
+@XmlType(name="ARCHETYPE_CONSTRAINT")
 public abstract class ArchetypeConstraint extends ArchetypeModelObject {
 
     @JsonIgnore //ignore these field in popular object mappers

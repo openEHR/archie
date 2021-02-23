@@ -28,6 +28,11 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
             return null;
         }
         XmlArchetypeTerminology xmlTerminology = new XmlArchetypeTerminology();
+        toXml(terminology, xmlTerminology);
+        return xmlTerminology;
+    }
+
+    public static void toXml(ArchetypeTerminology terminology, XmlArchetypeTerminology xmlTerminology) {
         xmlTerminology.setOriginalLanguage(terminology.getOriginalLanguage());
         xmlTerminology.setDifferential(terminology.getDifferential());
         xmlTerminology.setConceptCode(terminology.getConceptCode());
@@ -35,17 +40,16 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
         xmlTerminology.setTermDefinitions(convertIntoCodeDefinitionSetList(terminology.getTermDefinitions()));
         xmlTerminology.setTermBindings(convertIntoTermBindingSetList(terminology.getTermBindings()));
         xmlTerminology.setValueSets(convertIntoValueSetList(terminology.getValueSets()));
-        return xmlTerminology;
     }
 
     // Converters to JAXB Models to the AOM
 
-    private List<ValueSet> convertIntoValueSetList(Map<String, ValueSet> valueSets) {
+    private static List<ValueSet> convertIntoValueSetList(Map<String, ValueSet> valueSets) {
         return new ArrayList<>(valueSets.values());
     }
 
 
-    private List<TermBindingSet> convertIntoTermBindingSetList(Map<String, Map<String, URI>> map) {
+    private static List<TermBindingSet> convertIntoTermBindingSetList(Map<String, Map<String, URI>> map) {
         List<TermBindingSet> result = new ArrayList<>();
         for(String id:map.keySet()) {
             Map<String, URI> terms = map.get(id);
@@ -58,7 +62,7 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
         return result;
     }
 
-    private List<CodeDefinitionSet> convertIntoCodeDefinitionSetList(Map<String, Map<String, ArchetypeTerm>> map) {
+    private static List<CodeDefinitionSet> convertIntoCodeDefinitionSetList(Map<String, Map<String, ArchetypeTerm>> map) {
         List<CodeDefinitionSet> result = new ArrayList<>();
         for(String language:map.keySet()) {
             Map<String, ArchetypeTerm> terms = map.get(language);
@@ -75,6 +79,11 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
         if(xmlTerminology == null) {
             return null;
         }
+        ArchetypeTerminology terminology = fromXml(xmlTerminology);
+        return terminology;
+    }
+
+    public static ArchetypeTerminology fromXml(XmlArchetypeTerminology xmlTerminology) throws Exception {
         ArchetypeTerminology terminology = new ArchetypeTerminology();
         terminology.setOriginalLanguage(xmlTerminology.getOriginalLanguage());
         terminology.setDifferential(xmlTerminology.getDifferential());
@@ -89,7 +98,7 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
 
     // Converters to the AOM from JAXB models
 
-    private Map<String, ValueSet> convertIntoValueSetMap(List<ValueSet> valueSets) {
+    private static Map<String, ValueSet> convertIntoValueSetMap(List<ValueSet> valueSets) {
         Map<String, ValueSet> result = new LinkedHashMap<>();
         for(ValueSet valueSet:valueSets) {
             result.put(valueSet.getId(), valueSet);
@@ -97,7 +106,7 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
         return result;
     }
 
-    private Map<String, Map<String, URI>> convertIntoTermBindingsMap(List<TermBindingSet> termBindings) throws Exception{
+    private static Map<String, Map<String, URI>> convertIntoTermBindingsMap(List<TermBindingSet> termBindings) throws Exception{
         Map<String, Map<String, URI>> result = new LinkedHashMap<>();
         for(TermBindingSet set:termBindings) {
             Map<String, URI> termMap = StringDictionaryUtil.convertStringDictionaryListToUriMap(set.getItems());
@@ -108,7 +117,7 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
 
 
 
-    private Map<String, Map<String, ArchetypeTerm>> convertIntoArchetypeTermMap(List<CodeDefinitionSet> list) {
+    private static Map<String, Map<String, ArchetypeTerm>> convertIntoArchetypeTermMap(List<CodeDefinitionSet> list) {
         Map<String, Map<String, ArchetypeTerm>> result = new LinkedHashMap<>();
         for(CodeDefinitionSet set:list) {
             Map<String, ArchetypeTerm> termMap = new LinkedHashMap<>();

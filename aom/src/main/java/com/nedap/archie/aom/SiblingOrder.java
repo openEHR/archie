@@ -1,10 +1,12 @@
 package com.nedap.archie.aom;
 
+import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
  * Created by pieter.bos on 22/10/15.
  */
+@XmlType(name="SIBLING_ORDER")
 public class SiblingOrder extends ArchetypeModelObject {
 
     private boolean before;

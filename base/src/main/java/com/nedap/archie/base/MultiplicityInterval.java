@@ -3,6 +3,7 @@ package com.nedap.archie.base;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.regex.Matcher;
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
 /**
  * Created by pieter.bos on 15/10/15.
  */
+@XmlType(name="MULTIPLICITY_INTERVAL")
 public class MultiplicityInterval extends Interval<Integer> implements Serializable {
 
     /**

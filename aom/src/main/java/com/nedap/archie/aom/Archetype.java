@@ -11,6 +11,7 @@ import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
+import com.nedap.archie.xml.adapters.StringDictionaryAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -74,6 +75,7 @@ public class Archetype extends AuthoredResource {
 
     @XmlElement(name="other_meta_data")
     //TODO: this probably requires a custom XmlAdapter
+    @XmlJavaTypeAdapter(StringDictionaryAdapter.class)
     private Map<String, String> otherMetaData = new LinkedHashMap<>();
 
     public String getParentArchetypeId() {

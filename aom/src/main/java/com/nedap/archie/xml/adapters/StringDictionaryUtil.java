@@ -28,15 +28,15 @@ public class StringDictionaryUtil {
         return items;
     }
 
-    public static ArrayList<StringDictionaryItem> convertStringMapIntoStringDictionaryList(Map<String, String> terms) {
-        if(terms == null) {
+    public static ArrayList<StringDictionaryItem> convertStringMapIntoStringDictionaryList(Map<String, String> map) {
+        if(map == null) {
             return null;
         }
         ArrayList<StringDictionaryItem> items = new ArrayList<>();
-        for(String termId: terms.keySet()) {
+        for(String termId: map.keySet()) {
             StringDictionaryItem item = new StringDictionaryItem();
             item.setId(termId);
-            item.setValue(terms.get(termId));
+            item.setValue(map.get(termId));
             items.add(item);
         }
         return items;

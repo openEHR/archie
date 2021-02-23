@@ -1,6 +1,10 @@
 package com.nedap.archie.xml;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.aom.LanguageSection;
+import com.nedap.archie.aom.ResourceDescription;
+import com.nedap.archie.aom.ResourceDescriptionItem;
+import com.nedap.archie.aom.TranslationDetails;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.xml.types.XmlResourceDescriptionItem;
@@ -49,6 +53,10 @@ public class JAXBUtil {
     public static synchronized JAXBContext createAOMContext() {
         try {
             List<Class> classes = Lists.newArrayList(ArchieAOMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
+            classes.remove(ResourceDescription.class);
+            classes.remove(ResourceDescriptionItem.class);
+            classes.remove(LanguageSection.class);
+            classes.remove(TranslationDetails.class);
             //extra classes from the adapters package that are not directly referenced.\
             classes.add(XmlResourceDescriptionItem.class);
             return JAXBContext.newInstance(classes.toArray(new Class[0]));
