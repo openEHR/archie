@@ -11,7 +11,9 @@ import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.serializer.odin.OdinValueParser;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -134,7 +136,11 @@ public class ADLListener extends AdlBaseListener {
                 authoredArchetype.setUid(ctx.GUID().getText());
             }
             else if(ctx.identifier() != null) {
-                authoredArchetype.addOtherMetadata(ctx.identifier().getText(), ctx.meta_data_value() == null ? null : ctx.meta_data_value().getText());
+
+                authoredArchetype.addOtherMetadata(ctx.identifier().getText(),
+                        ctx.meta_data_value() == null ?
+                                null :
+                                StringUtils.strip(ctx.meta_data_value().getText(), "\""));
             }
         }
 

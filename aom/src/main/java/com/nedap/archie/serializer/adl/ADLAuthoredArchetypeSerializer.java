@@ -4,6 +4,7 @@ import com.google.common.base.Joiner;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -63,6 +64,7 @@ public class ADLAuthoredArchetypeSerializer<T extends AuthoredArchetype> extends
         if(archetype.getBuildUid() != null) {
             attributes.put("build_uid", archetype.getBuildUid());
         }
+        archetype.getOtherMetaData().forEach((key, value) -> attributes.put(key, '"' + value + '"'));
 
         if (!attributes.isEmpty()) {
             List<String> elements = attributes.entrySet().stream()

@@ -22,6 +22,8 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
                 return "DV_EHR_URI";
             case "UIDBasedId":
                 return "UID_BASED_ID";
+            case "IncludedTerminology":
+                return "ARCHETYPE_TERMINOLOGY";//hack to fix JAB issue
             default:
 
         }

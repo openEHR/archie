@@ -24,9 +24,9 @@ public class StringDictionaryItem {
 
     }
 
-    public StringDictionaryItem(String value, String id) {
-        this.value = value;
+    public StringDictionaryItem(String id, String value) {
         this.id = id;
+        this.value = value;
     }
 
     public String getValue() {

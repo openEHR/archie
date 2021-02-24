@@ -1007,7 +1007,10 @@
   "adl_version": "2.0.5",
   "rm_release": "1.0.4",
   "generated": true,
-  "other_meta_data": {},
+  "other_meta_data": {
+    "something": "with a value",
+    "and_also":  "another value"
+  },
   "terminology_extracts": {},
   "component_terminologies": {},
   "original_language": "[ISO_639-1::nl]",
