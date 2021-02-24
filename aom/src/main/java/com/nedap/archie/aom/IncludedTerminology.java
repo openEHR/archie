@@ -3,6 +3,9 @@ package com.nedap.archie.aom;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(name="IncludedTerminology")
 public class IncludedTerminology extends ArchetypeTerminology {
 
     public String key;

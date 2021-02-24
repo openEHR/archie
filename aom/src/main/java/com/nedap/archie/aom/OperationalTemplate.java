@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="archetype")
-@XmlJavaTypeAdapter(OPTAdapter.class)
+@XmlType(name="OPERATIONAL_TEMPLATE")
 public class OperationalTemplate extends AuthoredArchetype {
 
     /**

@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="archetype")
+@XmlType(name="AUTHORED_ARCHETYPE")
 public class AuthoredArchetype extends Archetype {
 
 

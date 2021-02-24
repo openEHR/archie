@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="archetype" type="ARCHETYPE"/>
+  <xs:element name="archetype" nillable="true" type="xs:anyType"/>
 
   <xs:complexType name="C_ORDERED" abstract="true">
     <xs:complexContent>
@@ -127,6 +127,313 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="OPERATIONAL_TEMPLATE">
+    <xs:complexContent>
+      <xs:extension base="AUTHORED_ARCHETYPE">
+        <xs:sequence>
+          <xs:element name="terminology_extracts" type="IncludedTerminology" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="component_terminologies" type="IncludedTerminology" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AUTHORED_ARCHETYPE">
+    <xs:complexContent>
+      <xs:extension base="ARCHETYPE">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ARCHETYPE">
+    <xs:complexContent>
+      <xs:extension base="AUTHORED_RESOURCE">
+        <xs:sequence>
+          <xs:element name="archetype_id" type="ARCHETYPE_HRID" minOccurs="0"/>
+          <xs:element name="parent_archetype_id" type="xs:string" minOccurs="0"/>
+          <xs:element name="definition" type="C_COMPLEX_OBJECT" minOccurs="0"/>
+          <xs:element name="terminology" type="ARCHETYPE_TERMINOLOGY" minOccurs="0"/>
+          <xs:element name="rules" type="rulesSection" minOccurs="0"/>
+          <xs:element name="build_uid" type="xs:string" minOccurs="0"/>
+          <xs:element name="other_meta_data" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="rm_release" type="xs:string"/>
+        <xs:attribute name="is_generated" type="xs:boolean"/>
+        <xs:attribute name="is_differential" type="xs:boolean" use="required"/>
+        <xs:attribute name="adl_version" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AUTHORED_RESOURCE" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence>
+          <xs:element name="annotations" type="RESOURCE_ANNOTATION" minOccurs="0"/>
+          <xs:element name="is_controlled" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="description" type="RESOURCE_DESCRIPTION" minOccurs="0"/>
+          <xs:element name="original_language" type="TERMINOLOGY_CODE" minOccurs="0"/>
+          <xs:element name="translations" type="TRANSLATION_DETAILS" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="uid" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IncludedTerminology">
+    <xs:complexContent>
+      <xs:extension base="ARCHETYPE_TERMINOLOGY_TEST">
+        <xs:sequence>
+          <xs:element name="key" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ARCHETYPE_TERMINOLOGY_TEST">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence>
+          <xs:element name="differential" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="original_language" type="xs:string" minOccurs="0"/>
+          <xs:element name="concept_code" type="xs:string" minOccurs="0"/>
+          <xs:element name="valueSets">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="key" minOccurs="0" type="xs:string"/>
+                      <xs:element name="value" minOccurs="0" type="VALUE_SET"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="VALUE_SET">
+    <xs:complexContent>
+      <xs:extension base="TERMINOLOGY_RELATION">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TERMINOLOGY_RELATION">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence>
+          <xs:element name="id" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ARCHETYPE_HRID">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence>
+          <xs:element name="namespace" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="concept_id" type="xs:string"/>
+        <xs:attribute name="rm_publisher" type="xs:string"/>
+        <xs:attribute name="rm_package" type="xs:string"/>
+        <xs:attribute name="rm_class" type="xs:string"/>
+        <xs:attribute name="release_version" type="xs:string"/>
+        <xs:attribute name="version_status" type="versionStatus"/>
+        <xs:attribute name="build_count" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="C_COMPLEX_OBJECT">
+    <xs:complexContent>
+      <xs:extension base="C_DEFINED_OBJECT">
+        <xs:sequence>
+          <xs:element name="attributes" type="C_ATTRIBUTE" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="attributeTuples" type="C_ATTRIBUTE_TUPLE" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="C_ATTRIBUTE">
+    <xs:complexContent>
+      <xs:extension base="ARCHETYPE_CONSTRAINT">
+        <xs:sequence>
+          <xs:element name="existence" type="MULTIPLICITY_INTERVAL" minOccurs="0"/>
+          <xs:element name="differential_path" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_multiple" type="xs:boolean"/>
+          <xs:element name="cardinality" type="CARDINALITY" minOccurs="0"/>
+          <xs:element name="children" type="C_OBJECT" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="rm_attribute_name" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CARDINALITY">
+    <xs:complexContent>
+      <xs:extension base="openEHRBase">
+        <xs:sequence>
+          <xs:element name="is_ordered" type="xs:boolean"/>
+          <xs:element name="is_unique" type="xs:boolean"/>
+          <xs:element name="interval" type="MULTIPLICITY_INTERVAL" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ARCHETYPE_TERMINOLOGY">
+    <xs:sequence>
+      <xs:element name="concept_code" type="xs:string" minOccurs="0"/>
+      <xs:element name="term_definitions" type="CodeDefinitionSet" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="term_bindings" type="TermBindingSet" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="terminology_extracts" type="CodeDefinitionSet" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="value_sets" type="VALUE_SET" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="is_differential" type="xs:boolean"/>
+    <xs:attribute name="original_language" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="CodeDefinitionSet">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence>
+          <xs:element name="items" type="ARCHETYPE_TERM" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="language" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ARCHETYPE_TERM">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence>
+          <xs:element name="description" type="xs:string" minOccurs="0"/>
+          <xs:element name="text" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TermBindingSet">
+    <xs:sequence>
+      <xs:element name="items" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="StringDictionaryItem">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="rulesSection">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence>
+          <xs:element name="content" type="xs:string" minOccurs="0"/>
+          <xs:element name="rules" type="ruleStatement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ruleStatement">
+    <xs:complexContent>
+      <xs:extension base="ruleElement">
+        <xs:sequence>
+          <xs:element name="ruleContent" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ruleElement">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence>
+          <xs:element name="type" type="expressionType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="RESOURCE_ANNOTATION">
+    <xs:complexContent>
+      <xs:extension base="archetypeModelObject">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="RESOURCE_DESCRIPTION">
+    <xs:sequence>
+      <xs:element name="original_author" type="StringDictionaryItem" maxOccurs="unbounded"/>
+      <xs:element name="original_namespace" type="xs:string" minOccurs="0"/>
+      <xs:element name="original_publisher" type="xs:string" minOccurs="0"/>
+      <xs:element name="other_contributors" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="lifecycle_state" type="TERMINOLOGY_CODE"/>
+      <xs:element name="custodian_namespace" type="xs:string" minOccurs="0"/>
+      <xs:element name="custodian_organisation" type="xs:string" minOccurs="0"/>
+      <xs:element name="copyright" type="xs:string" minOccurs="0"/>
+      <xs:element name="licence" type="xs:string" minOccurs="0"/>
+      <xs:element name="ip_acknowledgements" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="references" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="resource_package_uri" type="xs:string" minOccurs="0"/>
+      <xs:element name="conversion_details" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="other_details" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="details" type="RESOURCE_DESCRIPTION_ITEM" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TERMINOLOGY_CODE">
+    <xs:complexContent>
+      <xs:extension base="openEHRBase">
+        <xs:sequence>
+          <xs:element name="terminology_id" type="xs:string" minOccurs="0"/>
+          <xs:element name="terminology_version" type="xs:string" minOccurs="0"/>
+          <xs:element name="code_string" type="xs:string" minOccurs="0"/>
+          <xs:element name="uri" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="RESOURCE_DESCRIPTION_ITEM">
+    <xs:sequence>
+      <xs:element name="language" type="TERMINOLOGY_CODE"/>
+      <xs:element name="purpose" type="xs:string"/>
+      <xs:element name="keywords" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="use" type="xs:string" minOccurs="0"/>
+      <xs:element name="misuse" type="xs:string" minOccurs="0"/>
+      <xs:element name="original_resource_uri" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="other_details" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TRANSLATION_DETAILS">
+    <xs:sequence>
+      <xs:element name="language" type="TERMINOLOGY_CODE"/>
+      <xs:element name="author" type="StringDictionaryItem" maxOccurs="unbounded"/>
+      <xs:element name="accreditation" type="xs:string" minOccurs="0"/>
+      <xs:element name="other_details" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="version_last_translated" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="C_DATE">
     <xs:complexContent>
       <xs:extension base="C_TEMPORAL">
@@ -156,26 +463,6 @@
           <xs:element name="stringExpression" type="xs:string" minOccurs="0"/>
           <xs:element name="tag" type="xs:string" minOccurs="0"/>
           <xs:element name="variables" type="variableDeclaration" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="ruleStatement">
-    <xs:complexContent>
-      <xs:extension base="ruleElement">
-        <xs:sequence>
-          <xs:element name="ruleContent" type="xs:string" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="ruleElement">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence>
-          <xs:element name="type" type="expressionType" minOccurs="0"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -212,23 +499,6 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="ARCHETYPE_HRID">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence>
-          <xs:element name="namespace" type="xs:string" minOccurs="0"/>
-        </xs:sequence>
-        <xs:attribute name="concept_id" type="xs:string"/>
-        <xs:attribute name="rm_publisher" type="xs:string"/>
-        <xs:attribute name="rm_package" type="xs:string"/>
-        <xs:attribute name="rm_class" type="xs:string"/>
-        <xs:attribute name="release_version" type="xs:string"/>
-        <xs:attribute name="version_status" type="versionStatus"/>
-        <xs:attribute name="build_count" type="xs:string"/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
   <xs:complexType name="C_COMPLEX_OBJECT_PROXY">
     <xs:complexContent>
       <xs:extension base="C_OBJECT">
@@ -250,19 +520,6 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="TERMINOLOGY_CODE">
-    <xs:complexContent>
-      <xs:extension base="openEHRBase">
-        <xs:sequence>
-          <xs:element name="terminology_id" type="xs:string" minOccurs="0"/>
-          <xs:element name="terminology_version" type="xs:string" minOccurs="0"/>
-          <xs:element name="code_string" type="xs:string" minOccurs="0"/>
-          <xs:element name="uri" type="xs:string" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
   <xs:complexType name="C_DURATION">
     <xs:complexContent>
       <xs:extension base="C_TEMPORAL">
@@ -270,6 +527,24 @@
           <xs:element name="assumed_value" type="xs:string" minOccurs="0"/>
           <xs:element name="constraint" type="INTERVAL" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TEMPLATE">
+    <xs:complexContent>
+      <xs:extension base="AUTHORED_ARCHETYPE">
+        <xs:sequence>
+          <xs:element name="templateOverlays" type="TEMPLATE_OVERLAY" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TEMPLATE_OVERLAY">
+    <xs:complexContent>
+      <xs:extension base="ARCHETYPE">
+        <xs:sequence/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -282,14 +557,6 @@
           <xs:element name="excludes" type="assertion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
           <xs:element name="is_closed" type="xs:boolean"/>
         </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="RESOURCE_ANNOTATION">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -341,239 +608,11 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="ARCHETYPE_TERM">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence>
-          <xs:element name="description" type="xs:string" minOccurs="0"/>
-          <xs:element name="text" type="xs:string" minOccurs="0"/>
-        </xs:sequence>
-        <xs:attribute name="id" type="xs:string"/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
   <xs:complexType name="C_ARCHETYPE_ROOT">
     <xs:complexContent>
       <xs:extension base="C_COMPLEX_OBJECT">
         <xs:sequence>
           <xs:element name="archetype_ref" type="xs:string" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="C_COMPLEX_OBJECT">
-    <xs:complexContent>
-      <xs:extension base="C_DEFINED_OBJECT">
-        <xs:sequence>
-          <xs:element name="attributes" type="C_ATTRIBUTE" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-          <xs:element name="attributeTuples" type="C_ATTRIBUTE_TUPLE" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="C_ATTRIBUTE">
-    <xs:complexContent>
-      <xs:extension base="ARCHETYPE_CONSTRAINT">
-        <xs:sequence>
-          <xs:element name="existence" type="MULTIPLICITY_INTERVAL" minOccurs="0"/>
-          <xs:element name="differential_path" type="xs:string" minOccurs="0"/>
-          <xs:element name="is_multiple" type="xs:boolean"/>
-          <xs:element name="cardinality" type="CARDINALITY" minOccurs="0"/>
-          <xs:element name="children" type="C_OBJECT" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attribute name="rm_attribute_name" type="xs:string"/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="CARDINALITY">
-    <xs:complexContent>
-      <xs:extension base="openEHRBase">
-        <xs:sequence>
-          <xs:element name="is_ordered" type="xs:boolean"/>
-          <xs:element name="is_unique" type="xs:boolean"/>
-          <xs:element name="interval" type="MULTIPLICITY_INTERVAL" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="TEMPLATE_OVERLAY">
-    <xs:complexContent>
-      <xs:extension base="ARCHETYPE">
-        <xs:sequence/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="ARCHETYPE">
-    <xs:complexContent>
-      <xs:extension base="AUTHORED_RESOURCE">
-        <xs:sequence>
-          <xs:element name="archetype_id" type="ARCHETYPE_HRID" minOccurs="0"/>
-          <xs:element name="parent_archetype_id" type="xs:string" minOccurs="0"/>
-          <xs:element name="definition" type="C_COMPLEX_OBJECT" minOccurs="0"/>
-          <xs:element name="terminology" type="ARCHETYPE_TERMINOLOGY" minOccurs="0"/>
-          <xs:element name="rules" type="rulesSection" minOccurs="0"/>
-          <xs:element name="build_uid" type="xs:string" minOccurs="0"/>
-          <xs:element name="other_meta_data" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attribute name="rm_release" type="xs:string"/>
-        <xs:attribute name="is_generated" type="xs:boolean"/>
-        <xs:attribute name="is_differential" type="xs:boolean" use="required"/>
-        <xs:attribute name="adl_version" type="xs:string"/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="AUTHORED_RESOURCE" abstract="true">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence>
-          <xs:element name="annotations" type="RESOURCE_ANNOTATION" minOccurs="0"/>
-          <xs:element name="is_controlled" type="xs:boolean" minOccurs="0"/>
-          <xs:element name="description" type="RESOURCE_DESCRIPTION" minOccurs="0"/>
-          <xs:element name="original_language" type="TERMINOLOGY_CODE" minOccurs="0"/>
-          <xs:element name="translations" type="TRANSLATION_DETAILS" minOccurs="0" maxOccurs="unbounded"/>
-          <xs:element name="uid" type="xs:string" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="ARCHETYPE_TERMINOLOGY">
-    <xs:sequence>
-      <xs:element name="concept_code" type="xs:string" minOccurs="0"/>
-      <xs:element name="term_definitions" type="CodeDefinitionSet" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="term_bindings" type="TermBindingSet" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="terminology_extracts" type="CodeDefinitionSet" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="value_sets" type="VALUE_SET" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-    <xs:attribute name="is_differential" type="xs:boolean"/>
-    <xs:attribute name="original_language" type="xs:string"/>
-  </xs:complexType>
-
-  <xs:complexType name="CodeDefinitionSet">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence>
-          <xs:element name="items" type="ARCHETYPE_TERM" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attribute name="language" type="xs:string" use="required"/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="TermBindingSet">
-    <xs:sequence>
-      <xs:element name="items" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-    <xs:attribute name="id" type="xs:string" use="required"/>
-  </xs:complexType>
-
-  <xs:complexType name="StringDictionaryItem">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="id" type="xs:string" use="required"/>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-
-  <xs:complexType name="VALUE_SET">
-    <xs:complexContent>
-      <xs:extension base="TERMINOLOGY_RELATION">
-        <xs:sequence/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="TERMINOLOGY_RELATION">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence>
-          <xs:element name="id" type="xs:string" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="rulesSection">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence>
-          <xs:element name="content" type="xs:string" minOccurs="0"/>
-          <xs:element name="rules" type="ruleStatement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-
-  <xs:complexType name="RESOURCE_DESCRIPTION">
-    <xs:sequence>
-      <xs:element name="original_author" type="StringDictionaryItem" maxOccurs="unbounded"/>
-      <xs:element name="original_namespace" type="xs:string" minOccurs="0"/>
-      <xs:element name="original_publisher" type="xs:string" minOccurs="0"/>
-      <xs:element name="other_contributors" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="lifecycle_state" type="TERMINOLOGY_CODE"/>
-      <xs:element name="custodian_namespace" type="xs:string" minOccurs="0"/>
-      <xs:element name="custodian_organisation" type="xs:string" minOccurs="0"/>
-      <xs:element name="copyright" type="xs:string" minOccurs="0"/>
-      <xs:element name="licence" type="xs:string" minOccurs="0"/>
-      <xs:element name="ip_acknowledgements" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="references" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="resource_package_uri" type="xs:string" minOccurs="0"/>
-      <xs:element name="conversion_details" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="other_details" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="details" type="RESOURCE_DESCRIPTION_ITEM" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="RESOURCE_DESCRIPTION_ITEM">
-    <xs:sequence>
-      <xs:element name="language" type="TERMINOLOGY_CODE"/>
-      <xs:element name="purpose" type="xs:string"/>
-      <xs:element name="keywords" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="use" type="xs:string" minOccurs="0"/>
-      <xs:element name="misuse" type="xs:string" minOccurs="0"/>
-      <xs:element name="original_resource_uri" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="other_details" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="TRANSLATION_DETAILS">
-    <xs:sequence>
-      <xs:element name="language" type="TERMINOLOGY_CODE"/>
-      <xs:element name="author" type="StringDictionaryItem" maxOccurs="unbounded"/>
-      <xs:element name="accreditation" type="xs:string" minOccurs="0"/>
-      <xs:element name="other_details" type="StringDictionaryItem" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="version_last_translated" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="ARCHETYPE_TERMINOLOGY_TEST">
-    <xs:complexContent>
-      <xs:extension base="archetypeModelObject">
-        <xs:sequence>
-          <xs:element name="differential" type="xs:boolean" minOccurs="0"/>
-          <xs:element name="original_language" type="xs:string" minOccurs="0"/>
-          <xs:element name="concept_code" type="xs:string" minOccurs="0"/>
-          <xs:element name="valueSets">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="key" minOccurs="0" type="xs:string"/>
-                      <xs:element name="value" minOccurs="0" type="VALUE_SET"/>
-                    </xs:sequence>
-                  </xs:complexType>
-                </xs:element>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -731,15 +770,6 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:simpleType name="expressionType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="BOOLEAN"/>
-      <xs:enumeration value="STRING"/>
-      <xs:enumeration value="INTEGER"/>
-      <xs:enumeration value="REAL"/>
-    </xs:restriction>
-  </xs:simpleType>
-
   <xs:simpleType name="versionStatus">
     <xs:restriction base="xs:string">
       <xs:enumeration value="ALPHA"/>
@@ -747,6 +777,15 @@
       <xs:enumeration value="RELEASE_CANDIDATE"/>
       <xs:enumeration value="RELEASED"/>
       <xs:enumeration value="BUILD"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="expressionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BOOLEAN"/>
+      <xs:enumeration value="STRING"/>
+      <xs:enumeration value="INTEGER"/>
+      <xs:enumeration value="REAL"/>
     </xs:restriction>
   </xs:simpleType>
 

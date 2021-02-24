@@ -45,9 +45,6 @@ public class GenerateSchemaTest {
             classes.remove(ResourceDescriptionItem.class);
             classes.remove(LanguageSection.class);
             classes.remove(TranslationDetails.class);
-            classes.remove(Template.class);
-            classes.remove(OperationalTemplate.class);
-            classes.remove(AuthoredArchetype.class);
             //extra classes from the adapters package that are not directly referenced.\
             classes.add(XmlResourceDescriptionItem.class);
             classes.add(XmlIncludedTerminology.class);

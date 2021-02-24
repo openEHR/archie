@@ -63,9 +63,6 @@ public class JAXBUtil {
             classes.add(XmlResourceDescriptionItem.class);
             classes.add(XmlIncludedTerminology.class);
             classes.add(XmlTranslationDetails.class);
-            //classes.add(XmlOperationalTemplate.class);
-            //classes.add(XmlArchetype.class);
-            //classes.add(XmlTemplate.class);
             return JAXBContext.newInstance(classes.toArray(new Class[0]));
         } catch (JAXBException e) {
             throw new RuntimeException(e);//programmer error, tests will fail
