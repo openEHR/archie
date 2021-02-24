@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated;something_else="something")
 	openEHR-EHR-COMPOSITION.report.v1.0.0
 
 language

@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author markopi
@@ -21,11 +22,12 @@ public class ADLArchetypeSerializerTest {
 
         String[] serializedLines = serialized.split("\\n");
 
-        assertThat(serializedLines[0], startsWith("archetype "));
-        assertThat(serializedLines[0], containsString("adl_version=2.0.5"));
-        assertThat(serializedLines[0], containsString("rm_release=1.0.2"));
+        assertTrue(serializedLines[0].startsWith("archetype "));
+        assertTrue(serializedLines[0].contains("adl_version=2.0.5"));
+        assertTrue(serializedLines[0].contains("rm_release=1.0.2"));
+        assertTrue(serializedLines[0].contains("something_else=\"something\""));
 
-        assertThat(serializedLines[1], containsString("openEHR-EHR-COMPOSITION.report.v1.0.0"));
+        assertTrue(serializedLines[1].contains("openEHR-EHR-COMPOSITION.report.v1.0.0"));
     }
 
     @Test
