@@ -3,6 +3,7 @@ package com.nedap.archie.aom.terminology;
 
 import com.nedap.archie.aom.ArchetypeModelObject;
 
+import javax.xml.bind.annotation.XmlType;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
 /**
  * Class whose instances represent any kind of 1:N relationship between a source term and 1-N target terms.
  */
+@XmlType(name="TERMINOLOGY_RELATION")
 public class TerminologyRelation extends ArchetypeModelObject {
 
     /**

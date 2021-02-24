@@ -7,12 +7,17 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.xml.adapters.IncludedTerminologyAdapter;
+import com.nedap.archie.xml.adapters.OPTAdapter;
+import com.nedap.archie.xml.types.MapBackedList;
+import com.nedap.archie.xml.types.StringDictionaryItem;
+import com.nedap.archie.xml.types.XmlIncludedTerminology;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,43 +26,65 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by pieter.bos on 15/10/15.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="OPERATIONAL_TEMPLATE")
 @XmlRootElement(name="archetype")
+@XmlJavaTypeAdapter(OPTAdapter.class)
 public class OperationalTemplate extends AuthoredArchetype {
 
     /**
      * terminology extracts from subarchetypes, for example snomed codes, multiple choice thingies, etc
      */
     @XmlElement(name="terminology_extracts") //TODO: requires an adapter for JAXB to work
-    @XmlJavaTypeAdapter(IncludedTerminologyAdapter.class)
-    private Map<String, ArchetypeTerminology> terminologyExtracts = new ConcurrentHashMap<>();//TODO: is this correct?
+    private MapBackedList<String, IncludedTerminology> terminologyExtracts = new MapBackedList<>();//TODO: is this correct?
     @XmlElement(name="component_terminologies") //TODO: requires an adapter for JAXB to work
-    @XmlJavaTypeAdapter(IncludedTerminologyAdapter.class)
-    private Map<String, ArchetypeTerminology> componentTerminologies = new ConcurrentHashMap<>();
+    private MapBackedList<String, IncludedTerminology> componentTerminologies = new MapBackedList<>();
 
 
     public Map<String, ArchetypeTerminology> getTerminologyExtracts() {
-        return terminologyExtracts;
+        LinkedHashMap<String, ArchetypeTerminology> result = new LinkedHashMap<>();
+
+        for(IncludedTerminology item:terminologyExtracts.getMap().values()) {
+            result.put(item.getKey(), item);
+        }
+        return result;
     }
 
     public void setTerminologyExtracts(Map<String, ArchetypeTerminology> terminologyExtracts) {
-        this.terminologyExtracts = terminologyExtracts;
+        if(terminologyExtracts == null) {
+           this.terminologyExtracts = null;
+        } else {
+            this.terminologyExtracts = new MapBackedList<>();
+            for (Map.Entry<String, ArchetypeTerminology> entry : terminologyExtracts.entrySet()) {
+                this.terminologyExtracts.put(entry.getKey(), new IncludedTerminology(entry.getKey(), entry.getValue()));
+            }
+        }
     }
 
     public void addTerminologyExtract(String nodeId, ArchetypeTerminology terminology) {
-        terminologyExtracts.put(nodeId, terminology);
+        terminologyExtracts.put(nodeId, new IncludedTerminology(nodeId, terminology));
     }
 
     public Map<String, ArchetypeTerminology> getComponentTerminologies() {
-        return componentTerminologies;
+        LinkedHashMap<String, ArchetypeTerminology> result = new LinkedHashMap<>();
+
+        for(IncludedTerminology item:terminologyExtracts.getMap().values()) {
+            result.put(item.getKey(), item);
+        }
+        return result;
     }
 
     public void setComponentTerminologies(Map<String, ArchetypeTerminology> componentTerminologies) {
-        this.componentTerminologies = componentTerminologies;
+        if(componentTerminologies == null) {
+            this.componentTerminologies = null;
+        } else {
+            this.componentTerminologies = new MapBackedList<>();
+            for (Map.Entry<String, ArchetypeTerminology> entry : componentTerminologies.entrySet()) {
+                this.componentTerminologies.put(entry.getKey(), new IncludedTerminology(entry.getKey(), entry.getValue()));
+            }
+        }
     }
 
     public void addComponentTerminology(String nodeId, ArchetypeTerminology terminology) {
-        componentTerminologies.put(nodeId, terminology);
+        terminologyExtracts.put(nodeId, new IncludedTerminology(nodeId, terminology));
     }
 
     /**

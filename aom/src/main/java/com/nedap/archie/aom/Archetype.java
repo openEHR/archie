@@ -12,6 +12,9 @@ import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
 import com.nedap.archie.xml.adapters.StringDictionaryAdapter;
+import com.nedap.archie.xml.adapters.StringDictionaryUtil;
+import com.nedap.archie.xml.types.MapBackedList;
+import com.nedap.archie.xml.types.StringDictionaryItem;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -74,9 +77,8 @@ public class Archetype extends AuthoredResource {
     private Boolean generated = false;
 
     @XmlElement(name="other_meta_data")
-    //TODO: this probably requires a custom XmlAdapter
-    @XmlJavaTypeAdapter(StringDictionaryAdapter.class)
-    private Map<String, String> otherMetaData = new LinkedHashMap<>();
+    //TODO: add a JSON converter for this JAXB-required uglyness
+    private MapBackedList<String, StringDictionaryItem> otherMetaData = new MapBackedList<>();
 
     public String getParentArchetypeId() {
         return parentArchetypeId;
@@ -161,16 +163,24 @@ public class Archetype extends AuthoredResource {
     }
 
     public Map<String, String> getOtherMetaData() {
-        return otherMetaData;
+        LinkedHashMap<String, String> result = new LinkedHashMap<>();
+
+        for(StringDictionaryItem item:otherMetaData.getMap().values()) {
+            result.put(item.getId(), item.getValue());
+        }
+        return result;
     }
 
     public void setOtherMetaData(Map<String, String> otherMetaData) {
-        this.otherMetaData = otherMetaData;
+        this.otherMetaData = new MapBackedList<>();
+        for(Map.Entry<String, String> entry:otherMetaData.entrySet()) {
+            this.otherMetaData.put(entry.getKey(), new StringDictionaryItem(entry.getKey(), entry.getValue()));
+        }
     }
 
-    public void addOtherMetadata(String text, String value) {
+    public void addOtherMetadata(String key, String value) {
         if (value != null) {
-            otherMetaData.put(text, value);
+            otherMetaData.put(key, new StringDictionaryItem(key, value));
         }
     }
 

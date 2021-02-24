@@ -6,6 +6,7 @@ import com.nedap.archie.rminfo.ModelInfoLookup;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +24,7 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
     public static final String PRIMITIVE_NODE_ID_VALUE = "id9999";
 
+    @XmlElement(name="enumerated_type_constraint")
     private Boolean enumeratedTypeConstraint;
 
     public abstract ValueType getAssumedValue();

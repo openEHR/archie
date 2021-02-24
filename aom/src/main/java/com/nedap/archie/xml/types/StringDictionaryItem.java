@@ -20,6 +20,15 @@ public class StringDictionaryItem {
     @XmlAttribute(name = "id", required = true)
     private String id;
 
+    public StringDictionaryItem() {
+
+    }
+
+    public StringDictionaryItem(String value, String id) {
+        this.value = value;
+        this.id = id;
+    }
+
     public String getValue() {
         return value;
     }

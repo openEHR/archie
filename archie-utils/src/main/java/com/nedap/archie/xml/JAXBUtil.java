@@ -7,7 +7,9 @@ import com.nedap.archie.aom.ResourceDescriptionItem;
 import com.nedap.archie.aom.TranslationDetails;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.xml.types.XmlIncludedTerminology;
 import com.nedap.archie.xml.types.XmlResourceDescriptionItem;
+import com.nedap.archie.xml.types.XmlTranslationDetails;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -59,6 +61,11 @@ public class JAXBUtil {
             classes.remove(TranslationDetails.class);
             //extra classes from the adapters package that are not directly referenced.\
             classes.add(XmlResourceDescriptionItem.class);
+            classes.add(XmlIncludedTerminology.class);
+            classes.add(XmlTranslationDetails.class);
+            //classes.add(XmlOperationalTemplate.class);
+            //classes.add(XmlArchetype.class);
+            //classes.add(XmlTemplate.class);
             return JAXBContext.newInstance(classes.toArray(new Class[0]));
         } catch (JAXBException e) {
             throw new RuntimeException(e);//programmer error, tests will fail

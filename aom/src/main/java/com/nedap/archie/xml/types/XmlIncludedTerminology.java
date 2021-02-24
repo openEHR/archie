@@ -5,7 +5,7 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlType(name="INCLUDED_TERMINOLOGY")
-public class XMLIncludedTerminology extends XmlArchetypeTerminology {
+public class XmlIncludedTerminology extends XmlArchetypeTerminology {
     private String id;
 
     public String getId() {

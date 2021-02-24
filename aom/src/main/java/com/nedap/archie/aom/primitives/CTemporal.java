@@ -1,9 +1,12 @@
 package com.nedap.archie.aom.primitives;
 
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * TODO: cConformsTo for temporal and date types
  * Created by pieter.bos on 15/10/15.
  */
+@XmlType(name="C_TEMPORAL")
 public abstract class CTemporal<T> extends COrdered<T>{
 
     private String patternedConstraint;

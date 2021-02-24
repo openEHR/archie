@@ -16,10 +16,10 @@ public abstract class ArchetypeModelObject extends OpenEHRBase implements Serial
     public ArchetypeModelObject clone() {
         Kryo kryo = null;
         try {
-            kryo = KryoUtil.getPool().borrow();
+            kryo = ArchetypeKryoUtil.getPool().borrow();
             return kryo.copy(this);
         } finally {
-            KryoUtil.getPool().release(kryo);
+            ArchetypeKryoUtil.getPool().release(kryo);
         }
     }
 
