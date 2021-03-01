@@ -5,6 +5,8 @@ import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -106,4 +108,16 @@ public class AuditDetails extends RMObject {
     public int hashCode() {
         return Objects.hash(systemId, timeCommitted, changeType, description, committer);
     }
+
+    @Invariant("System_id_valid")
+    public boolean systemIdValid() {
+        return InvariantUtil.nullOrNotEmpty(systemId);
+    }
+
+    @Invariant("Change_type_valid")
+    public boolean changeTypeValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(changeType, "audit change type");
+    }
+
+
 }

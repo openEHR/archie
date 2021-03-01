@@ -18,7 +18,8 @@ public interface TerminologyAccess {
     List<TermCode> getTermsByOpenEhrId(String terminologyId, String language);
 
 
-    /** Get a list of all term codes for a given OpenEHR group */
+    /** Get a list of all term codes for a given OpenEHR group, given the ENGLISH group id (NO translated group names, but you will get them in the result!) */
     List<TermCode> getTermsByOpenEHRGroup(String groupId, String language);
-
+    /** Get a list a term for a given value in a OpenEHR group, given the ENGLISH group id (NO translated group names, but you will get them in the result!) */
+    TermCode getTermByOpenEHRGroup(String groupId, String language, String code);
 }

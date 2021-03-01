@@ -1,5 +1,7 @@
 package com.nedap.archie.terminology;
 
+import java.util.Set;
+
 public interface TermCode {
 
     /** get the id of the terminology of this code*/
@@ -12,4 +14,6 @@ public interface TermCode {
     String getDescription();
     /** Get the language specific OpenEHR Group name. Often null */
     String getGroupName();
+    /** get the id of the openEHR group, which is independent of the language as its the English group name. often null */
+    Set<String> getGroupIds();
 }
