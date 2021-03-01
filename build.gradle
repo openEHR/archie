@@ -3,7 +3,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
+    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0"
     classpath 'org.owasp:dependency-check-gradle:6.1.1'
   }
 
