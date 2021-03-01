@@ -213,7 +213,13 @@ public class JSONSchemaCreator {
             descendants.add(BmmDefinitions.typeNameToClassKey(type.getName()));
             addConcreteElse = true;
         }
+
         boolean genericType = type instanceof BmmGenericClass;
+        for(String descendant:descendants) {
+            if(bmmModel.getClassDefinition(descendant) instanceof BmmGenericClass) {
+                genericType = true; // it would be better to generate either an enum OR a couple of patterns, but not now
+            }
+        }
 
         if(descendants.isEmpty()) {
             //this is an object of which only an abstract class exists.
