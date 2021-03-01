@@ -208,8 +208,10 @@ public class JSONSchemaCreator {
     private JsonObjectBuilder createPolymorphicReference(BmmClass type) {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
+        boolean addConcreteElse = false;
         if(!type.isAbstract()) {
             descendants.add(BmmDefinitions.typeNameToClassKey(type.getName()));
+            addConcreteElse = true;
         }
 
         if(descendants.isEmpty()) {
@@ -219,7 +221,9 @@ public class JSONSchemaCreator {
             return createType("object");
         } else if (descendants.size() > 1) {
             JsonArrayBuilder array = jsonFactory.createArrayBuilder();
-            array.add(createRequiredArray("_type"));
+            if(!addConcreteElse) {
+                array.add(createRequiredArray("_type"));
+            }
             for(String descendant:descendants) {
                 JsonObjectBuilder typePropertyCheck = createConstType(descendant);
                 JsonObjectBuilder typeCheck = jsonFactory.createObjectBuilder().add("properties", typePropertyCheck);
@@ -234,6 +238,12 @@ public class JSONSchemaCreator {
 
             }
 
+            if(addConcreteElse) {
+                JsonObjectBuilder elseObject = jsonFactory.createObjectBuilder()
+                        .add("if", jsonFactory.createObjectBuilder().add("not", createRequiredArray("_type")))
+                        .add("then", createReference(type.getName()));
+                array.add(elseObject);
+            }
 
             return jsonFactory.createObjectBuilder().add("allOf", array);
         } else {
