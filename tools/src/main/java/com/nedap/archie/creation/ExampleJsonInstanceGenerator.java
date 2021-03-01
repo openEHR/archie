@@ -264,7 +264,7 @@ public  class ExampleJsonInstanceGenerator {
         //add all mandatory properties from the RM
         for (BmmProperty property : properties.values()) {
             if (property.getMandatory() && !result.containsKey(property.getName())) {
-                Map<String, Object> potentialCodePhrase = openEhrRmInstanceGenerator.getOpenEHRCodePhrase(classDefinition.getType().typeBaseName(), property.getName());
+                Map<String, Object> potentialCodePhrase = openEhrRmInstanceGenerator.getOpenEHRCodedTextOrCodePhrase(classDefinition.getType().typeBaseName(), property.getName());
                 if(potentialCodePhrase != null) {
                     result.put(property.getName(), potentialCodePhrase);
                 } else if(property.getName().equalsIgnoreCase("archetype_node_id")) {
@@ -465,7 +465,7 @@ public  class ExampleJsonInstanceGenerator {
                 codeString = "term code";
                 CAttribute attribute = child.getParent();
                 CComplexObject parent = (CComplexObject) attribute.getParent();
-                Map<String, Object> potentialResult = openEhrRmInstanceGenerator.getOpenEHRCodedText(parent, attribute);
+                Map<String, Object> potentialResult = openEhrRmInstanceGenerator.getOpenEHRCodedTextOrCodePhrase(parent, attribute);
                 if(potentialResult != null) {
                     return potentialResult;
                 }
