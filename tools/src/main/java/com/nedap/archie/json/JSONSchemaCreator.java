@@ -208,9 +208,12 @@ public class JSONSchemaCreator {
     private JsonObjectBuilder createPolymorphicReference(BmmClass type) {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
+        boolean addConcreteElse = false;
         if(!type.isAbstract()) {
             descendants.add(BmmDefinitions.typeNameToClassKey(type.getName()));
+            addConcreteElse = true;
         }
+        boolean genericType = type instanceof BmmGenericClass;
 
         if(descendants.isEmpty()) {
             //this is an object of which only an abstract class exists.
@@ -219,10 +222,30 @@ public class JSONSchemaCreator {
             return createType("object");
         } else if (descendants.size() > 1) {
             JsonArrayBuilder array = jsonFactory.createArrayBuilder();
-            array.add(createRequiredArray("_type"));
+
+            JsonObjectBuilder requiredType = addConcreteElse? jsonFactory.createObjectBuilder() : createRequiredArray("_type");
+
+            if(!genericType) {
+                JsonObjectBuilder typeDefinition = jsonFactory.createObjectBuilder()
+                        .add("type", "string");
+
+                JsonArrayBuilder enumValues = jsonFactory.createArrayBuilder();
+                for (String descendant : descendants) {
+                    enumValues.add(descendant);
+                }
+                typeDefinition.add("enum", enumValues);
+                JsonObjectBuilder typePropertyCheck = jsonFactory.createObjectBuilder()
+                        .add("_type", typeDefinition);
+                requiredType.add("properties", typePropertyCheck);
+            }
+            array.add(requiredType);
+
             for(String descendant:descendants) {
                 JsonObjectBuilder typePropertyCheck = createConstType(descendant);
                 JsonObjectBuilder typeCheck = jsonFactory.createObjectBuilder().add("properties", typePropertyCheck);
+                if(addConcreteElse) {
+                    typeCheck.addAll(createRequiredArray("_type"));
+                }
 
                 JsonObjectBuilder typeReference = createReference(descendant);
                 //IF the type matches
@@ -234,6 +257,12 @@ public class JSONSchemaCreator {
 
             }
 
+            if(addConcreteElse) {
+                JsonObjectBuilder elseObject = jsonFactory.createObjectBuilder()
+                        .add("if", jsonFactory.createObjectBuilder().add("not", createRequiredArray("_type")))
+                        .add("then", createReference(type.getName()));
+                array.add(elseObject);
+            }
 
             return jsonFactory.createObjectBuilder().add("allOf", array);
         } else {
