@@ -2,13 +2,10 @@ package com.nedap.archie.rules.evaluation.evaluators;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
-import com.nedap.archie.adlparser.treewalkers.DummyRulesPrimitiveObjectParent;
+import com.nedap.archie.rules.evaluation.DummyRulesPrimitiveObjectParent;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeConstraint;
 import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.AOMPathQuery;
@@ -23,11 +20,9 @@ import com.nedap.archie.rules.evaluation.RuleEvaluation;
 import com.nedap.archie.rules.evaluation.Value;
 import com.nedap.archie.rules.evaluation.ValueList;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static com.nedap.archie.rules.evaluation.evaluators.FunctionUtil.checkAndHandleNull;
 

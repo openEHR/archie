@@ -1,4 +1,4 @@
-package com.nedap.archie.adlparser.treewalkers;
+package com.nedap.archie.rules.evaluation;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeConstraint;
