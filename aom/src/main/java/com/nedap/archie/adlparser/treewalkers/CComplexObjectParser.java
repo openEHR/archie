@@ -1,7 +1,7 @@
 package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.adlparser.antlr.AdlParser;
+
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.aom.*;
@@ -26,7 +26,6 @@ public class CComplexObjectParser extends BaseTreeWalker {
 
     private final PrimitivesConstraintParser primitivesConstraintParser;
     private final MetaModels metaModels;
-    private Archetype archetype;
 
     public CComplexObjectParser(ANTLRParserErrors errors, MetaModels metaModels) {
         super(errors);
@@ -38,7 +37,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
         RulesSection result = new RulesSection();
 
         result.setContent(context.getText());
-        RulesParser rulesParser = new RulesParser(getErrors(), getArchetype());
+        RulesParser rulesParser = new RulesParser(getErrors());
         for(AssertionContext assertion:context.assertion_list().assertion()) {
             result.addRule(rulesParser.parse(assertion));
         }
@@ -401,11 +400,4 @@ public class CComplexObjectParser extends BaseTreeWalker {
         return interval;
     }
 
-    public Archetype getArchetype() {
-        return archetype;
-    }
-
-    public void setArchetype(Archetype archetype) {
-        this.archetype = archetype;
-    }
 }

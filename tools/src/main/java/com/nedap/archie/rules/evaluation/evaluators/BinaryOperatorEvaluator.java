@@ -112,7 +112,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
                 //against the correct part of the archetype. This is a bit of a hack
                 //better would be to flatten rules in a separate structure for each included archetype, similar to componentTerminologies.
                 //and to evaluate those. That is a later improvement than this fix
-                dummyParent.setPath(convertToArchetypePath((String) value.getPaths().get(0)));
+                dummyParent.setPathSegments(convertToArchetypePath((String) value.getPaths().get(0)));
             }
             result.addValue(constraint.getItem().isValidValue(lookup, value.getValue()), value.getPaths());
         }
@@ -120,7 +120,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
 
     }
 
-    private String convertToArchetypePath(String path) {
+    private List<PathSegment> convertToArchetypePath(String path) {
         List<PathSegment> segments = new APathQuery(path).getPathSegments();
         for(PathSegment segment:segments) {
             if(segment.getIndex() != null) {
@@ -128,15 +128,15 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             }
         }
         String archetypePath = segments.isEmpty() ? "/" : Joiner.on("").join(segments);
-        List<ArchetypeModelObject> allMatchingPredicate = new AOMPathQuery(archetypePath).findAllMatchingPredicate(archetype.getDefinition(), o -> o instanceof CArchetypeRoot || o instanceof ArchetypeSlot);
+        List<ArchetypeModelObject> allMatchingPredicate = new AOMPathQuery(archetypePath).findAllMatchingPredicate(archetype.getDefinition(), o -> true);
         if(allMatchingPredicate.isEmpty()) {
-            return archetypePath;
+            return segments;
         } else {
             ArchetypeModelObject archetypeModelObject = allMatchingPredicate.get(allMatchingPredicate.size() - 1);
             if(archetypeModelObject instanceof ArchetypeConstraint) {
-                return ((ArchetypeConstraint) archetypeModelObject).getPath();
+                return ((ArchetypeConstraint) archetypeModelObject).getPathSegments();
             }
-            return archetypePath;
+            return segments;
         }
     }
 

@@ -2,6 +2,7 @@ package com.nedap.archie.aom.primitives;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.ArchieLanguageConfiguration;
+import com.nedap.archie.ValidationConfiguration;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
@@ -68,9 +69,10 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         }
         if(value != null && value.getTerminologyId() != null && !value.getTerminologyId().equalsIgnoreCase("local") && !AOMUtils.isValueSetCode(value.getTerminologyId())) {
             //this is a non-local terminology. If a term binding is there, we may be able to validate, if external, we wil not be able to
-            //TODO: check term bindings as well! However, no idea how to handle the URIs, as the value will not be URI. I think?
             //so return true for now for non-local terminology values
-            return true;
+            //TODO: implement checking for direct term bindings later
+            //TODO: implement checking for include openehr-terminology
+            return !ValidationConfiguration.isFailOnUnknownTerminologyId();
         }
         List<String> values = this.getValueSetExpanded();
         if(values != null && !values.isEmpty()) {

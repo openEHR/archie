@@ -672,6 +672,7 @@ public class ParsedRulesEvaluationTest {
         codedText.setValue("value 1");
         EvaluationResult result = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult assertionResult = result.getAssertionResults().get(0);
+        assertTrue("The given validation rule should pass", assertionResult.getResult());
         assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
 
         //incorrect case next

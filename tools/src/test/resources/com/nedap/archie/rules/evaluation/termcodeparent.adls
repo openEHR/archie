@@ -1,42 +1,42 @@
 archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
-	openEHR-EHR-CLUSTER.matches_valueset.v1.0.0
+    openEHR-EHR-CLUSTER.matches_valueset.v1.0.0
 
 language
-	original_language = <[ISO_639-1::en]>
+    original_language = <[ISO_639-1::en]>
 
 description
-	original_author = <
-		["name"] = <"Pieter Bos">
-	>
-	details = <
-		["en"] = <
-			language = <[ISO_639-1::en]>
-			purpose = <"Test for rules, simple constant arithmetics">
-			keywords = <"ADL", "test">
-		>
-	>
-	lifecycle_state = <"published">
-	other_details = <
-		["regression"] = <"PASS">
-	>
-	copyright = <"copyright © 2004 openEHR Foundation <http://www.openEHR.org>">
+    original_author = <
+        ["name"] = <"Pieter Bos">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Test for rules, simple constant arithmetics">
+            keywords = <"ADL", "test">
+        >
+    >
+    lifecycle_state = <"published">
+    other_details = <
+        ["regression"] = <"PASS">
+    >
+    copyright = <"copyright © 2004 openEHR Foundation <http://www.openEHR.org>">
 
 definition
-	CLUSTER[id1] matches {
-	    items matches {
-	        use_archetype CLUSTER[id2,openEHR-EHR-CLUSTER.matches_valueset.v1] occurrences matches {1}
+    CLUSTER[id1] matches {
+        items matches {
+            use_archetype CLUSTER[id2,openEHR-EHR-CLUSTER.matches_valueset.v1] occurrences matches {1}
         }
-	}
+    }
 terminology
-	term_definitions = <
-		["en"] = <
-			["id1"] = <
-				text = <"Cluster">
-				description = <"Cluster">
-			>
-			["id2"] = <
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Cluster">
+                description = <"Cluster">
+            >
+            ["id2"] = <
                 text = <"cluster">
                 description = <"cluster">
             >
-		>
+        >
     >

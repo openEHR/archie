@@ -49,7 +49,6 @@ public class ADLListener extends AdlBaseListener {
 
     private void setArchetype(Archetype archetype) {
         this.archetype = archetype;
-        this.cComplexObjectParser.setArchetype(archetype);
     }
 
     @Override

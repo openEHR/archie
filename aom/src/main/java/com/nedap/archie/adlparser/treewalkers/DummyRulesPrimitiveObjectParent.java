@@ -11,38 +11,26 @@ import java.util.List;
 
 public class DummyRulesPrimitiveObjectParent extends CAttribute {
     private final transient Archetype archetype;
-    private String path;
-
-    public DummyRulesPrimitiveObjectParent() {
-        super();
-        this.archetype = null;
-        this.path = "/";
-    }
+    private List<PathSegment> pathSegments;
 
     public DummyRulesPrimitiveObjectParent(Archetype archetype) {
         super();
         this.archetype = archetype;
-        this.path = "/";
+        this.pathSegments = new ArrayList<>();
     }
 
-    public DummyRulesPrimitiveObjectParent(Archetype archetype, String path) {
-        super();
-        this.archetype = archetype;
-        this.path = path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
+    public void setPathSegments(List<PathSegment> pathSegments) {
+        this.pathSegments = pathSegments;
     }
 
     @Override
     public List<PathSegment> getPathSegments() {
-        return new APathQuery(path).getPathSegments();
+       return pathSegments;
     }
 
     @Override
     public String getLogicalPath() {
-        return path;
+        return getPath();
     }
 
     @Override
@@ -54,4 +42,6 @@ public class DummyRulesPrimitiveObjectParent extends CAttribute {
     public Archetype getArchetype() {
         return archetype;
     }
+
+
 }
