@@ -16,7 +16,7 @@ import java.util.Objects;
         "meaning",
         "range"
 })
-public class ReferenceRange<T extends DvOrdered> extends RMObject {
+public class ReferenceRange<T extends DvOrdered<T, ?>> extends RMObject {
 
     private DvInterval<T> range;
     private DvText meaning;

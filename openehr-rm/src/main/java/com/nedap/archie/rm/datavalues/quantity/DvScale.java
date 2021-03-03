@@ -18,7 +18,7 @@ import java.util.Objects;
         "value",
         "symbol"
 })
-public class DvScale extends DvOrdered<DvScale> implements SingleValuedDataValue<Double>, Comparable<DvScale> {
+public class DvScale extends DvOrdered<DvScale, DvScale> implements SingleValuedDataValue<Double>, Comparable<DvScale> {
 
     private DvCodedText symbol;
     private Double value;
@@ -31,7 +31,7 @@ public class DvScale extends DvOrdered<DvScale> implements SingleValuedDataValue
         this.value = value;
     }
 
-    public DvScale(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, Double value, DvCodedText symbol) {
+    public DvScale(@Nullable List<ReferenceRange<DvScale>> otherReferenceRanges, @Nullable DvInterval<DvScale> normalRange, Double value, DvCodedText symbol) {
         super(otherReferenceRanges, normalRange);
         this.symbol = symbol;
         this.value = value;

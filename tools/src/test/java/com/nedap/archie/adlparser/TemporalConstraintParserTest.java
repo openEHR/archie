@@ -86,17 +86,17 @@ public class TemporalConstraintParserTest extends PrimitivesConstraintParserTest
 
     }
 
-    private void assertDurationInterval(Interval<TemporalAmount> expected, String attribute) {
+    private void assertDurationInterval(Interval<?> expected, String attribute) {
         CDuration duration = getAttribute(attribute);
         assertEquals(1, duration.getConstraint().size());
-        Interval<TemporalAmount> interval = duration.getConstraint().get(0);
+        Interval<?> interval = duration.getConstraint().get(0);
         assertEquals(expected, interval);
     }
 
     private void assertSingleDuration(TemporalAmount amount, String attribute) {
         CDuration duration = getAttribute(attribute);
         assertEquals(1, duration.getConstraint().size());
-        Interval<TemporalAmount> interval = duration.getConstraint().get(0);
+        Interval<?> interval = duration.getConstraint().get(0);
         assertEquals(amount, interval.getLower());
         assertEquals(interval.getLower(), interval.getUpper());
         assertFalse(interval.isLowerUnbounded());

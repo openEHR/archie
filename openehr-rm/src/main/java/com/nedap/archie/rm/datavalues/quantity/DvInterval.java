@@ -22,9 +22,9 @@ import java.util.Objects;
         "lowerUnbounded",
         "upperUnbounded"
 })
-public class DvInterval<Type extends DvOrdered> extends DataValue {
+public class DvInterval<Type extends DvOrdered<Type, ?>> extends DataValue {
 
-    private final Interval<DvOrdered> interval;
+    private final Interval<Type> interval;
 
     public DvInterval() {
         interval = new Interval<>();
@@ -35,20 +35,20 @@ public class DvInterval<Type extends DvOrdered> extends DataValue {
     }
 
     @Nullable
-    public DvOrdered getLower() {
+    public Type getLower() {
         return interval.getLower();
     }
 
-    public void setLower(DvOrdered lower) {
+    public void setLower(Type lower) {
         interval.setLower(lower);
     }
 
     @Nullable
-    public DvOrdered getUpper() {
+    public Type getUpper() {
         return interval.getUpper();
     }
 
-    public void setUpper(DvOrdered upper) {
+    public void setUpper(Type upper) {
         interval.setUpper(upper);
     }
 
@@ -88,7 +88,7 @@ public class DvInterval<Type extends DvOrdered> extends DataValue {
         interval.setUpperIncluded(upperIncluded);
     }
 
-    public boolean has(DvOrdered value) {
+    public boolean has(Type value) {
         return interval.has(value);
     }
 
