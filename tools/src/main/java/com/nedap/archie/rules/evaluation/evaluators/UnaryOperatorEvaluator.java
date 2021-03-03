@@ -36,19 +36,19 @@ public class UnaryOperatorEvaluator implements Evaluator<UnaryOperator> {
         ValueList valueList = evaluation.evaluate(statement.getOperand());
         if(valueList.getType() == PrimitiveType.Integer || valueList.getType() == PrimitiveType.Real) {
             ValueList result = new ValueList();
-            for(Value value:valueList.getValues()) {
-                Value negatedValue = null;
+            for(Value<?> value:valueList.getValues()) {
+                Value<?> negatedValue = null;
                 if(value.getValue() instanceof Integer) {
-                    negatedValue = new Value(-((Integer) value.getValue()), value.getPaths());
+                    negatedValue = new Value<>(-((Integer) value.getValue()), value.getPaths());
                 }
                 else if(value.getValue() instanceof Long) {
-                    negatedValue = new Value(-((Long) value.getValue()), value.getPaths());
+                    negatedValue = new Value<>(-((Long) value.getValue()), value.getPaths());
                 }
                 else if(value.getValue() instanceof Double) {
-                    negatedValue = new Value(-((Double) value.getValue()), value.getPaths());
+                    negatedValue = new Value<>(-((Double) value.getValue()), value.getPaths());
                 }
                 else if(value.getValue() instanceof Float) {
-                    negatedValue = new Value(-((Float) value.getValue()), value.getPaths());
+                    negatedValue = new Value<>(-((Float) value.getValue()), value.getPaths());
                 }
                 result.addValue(negatedValue);
             }
@@ -70,10 +70,10 @@ public class UnaryOperatorEvaluator implements Evaluator<UnaryOperator> {
     public ValueList handleNot(RuleEvaluation<?> evaluation, UnaryOperator statement) {
         Expression operand = statement.getOperand();
         ValueList input = evaluation.evaluate(operand);
-        List<Value> values = input.getValues();
+        List<Value<?>> values = input.getValues();
         ValueList result = new ValueList();
         result.setType(PrimitiveType.Boolean);
-        for(Value value:values){
+        for(Value<?> value:values){
             if(value == null) {
                 values.add(null);
             } else if(value.getValue() instanceof Boolean) {

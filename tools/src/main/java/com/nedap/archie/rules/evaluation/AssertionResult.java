@@ -28,7 +28,7 @@ public class AssertionResult {
      * Paths that must have a specific value. Will be set even if this path already has the specific value,
      * to let the UI know that this field can NOT manually be changed by the user right now
      */
-    private Map<String, Value> setPathValues = new LinkedHashMap<>();
+    private Map<String, Value<?>> setPathValues = new LinkedHashMap<>();
     /**
      * Paths that must exist. Will be set even if it does exist, to let the UI know it should not be removed
      */
@@ -70,11 +70,11 @@ public class AssertionResult {
         this.result = result;
     }
 
-    public Map<String, Value> getSetPathValues() {
+    public Map<String, Value<?>> getSetPathValues() {
         return setPathValues;
     }
 
-    public void setSetPathValues(Map<String, Value> setPathValues) {
+    public void setSetPathValues(Map<String, Value<?>> setPathValues) {
         this.setPathValues = setPathValues;
     }
 
@@ -124,7 +124,7 @@ public class AssertionResult {
     }
 
     public void setSetPathValue(String path, ValueList values) {
-        for(Value value: values.getValues()) {
+        for(Value<?> value: values.getValues()) {
             //TODO
             setPathValues.put(path, value);
         }

@@ -186,7 +186,7 @@ class FixableAssertionsChecker {
 
             //set the variables to what they were during the for all evaluation.
             //this is a bit of code duplication from the ForAllEvaluator. I think improvement is possible in this place
-            Value value = pathExpressionValues.get(i);
+            Value<?> value = pathExpressionValues.get(i);
             Object context = value.getValue();
             String path = (String) value.getPaths().get(0);
 

@@ -43,8 +43,8 @@ public class EvaluationResult {
         return result;
     }
 
-    public Map<String, Value> getSetPathValues() {
-        Map<String, Value> result = new LinkedHashMap<>();
+    public Map<String, Value<?>> getSetPathValues() {
+        Map<String, Value<?>> result = new LinkedHashMap<>();
         for(AssertionResult assertionResult:assertionResults) {
             result.putAll(assertionResult.getSetPathValues());
         }

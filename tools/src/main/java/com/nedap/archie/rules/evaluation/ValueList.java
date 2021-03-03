@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ValueList {
     private PrimitiveType type;
-    private List<Value> values = new ArrayList<>();
+    private List<Value<?>> values = new ArrayList<>();
 
     private static Logger logger = LoggerFactory.getLogger(ValueList.class);
 
@@ -24,7 +24,7 @@ public class ValueList {
 
     }
 
-    public ValueList(List<Value> values) {
+    public ValueList(List<Value<?>> values) {
         setValues(values);
         determineTypeFromValues();
     }
@@ -41,14 +41,14 @@ public class ValueList {
      * Construct a value list of a single value, that does not have a path.
      */
     public ValueList(Object value) {
-        this(value, Collections.EMPTY_LIST);
+        this(value, Collections.emptyList());
     }
 
     /*
      * Construct a value list of a single value, that does not have a path.
      */
     public ValueList(Object value, PrimitiveType type) {
-        this(value, Collections.EMPTY_LIST);
+        this(value, Collections.emptyList());
         setType(type);
     }
 
@@ -76,30 +76,30 @@ public class ValueList {
         this.type = type;
     }
 
-    public List<Value> getValues() {
+    public List<Value<?>> getValues() {
         return values;
     }
 
     public List<Object> getValueObjects() {
         List<Object> result = new ArrayList<>();
-        for(Value value:values) {
+        for(Value<?> value:values) {
             result.add(value.getValue());
         }
         return result;
     }
 
-    public void setValues(List<Value> values) {
+    public void setValues(List<Value<?>> values) {
         this.values = new ArrayList<>(values.size());
-        for(Value o:values) {
+        for(Value<?> o:values) {
             addValue(o);
         }
     }
 
     public void addValue(Object value,  List<String> paths) {
-        values.add(new Value(value, paths));
+        values.add(new Value<>(value, paths));
     }
 
-    public void addValue(Value value){
+    public void addValue(Value<?> value){
         values.add(value);
     }
 
@@ -120,13 +120,13 @@ public class ValueList {
         return values.get(i).getPaths();
     }
 
-    public Value get(int i) {
+    public Value<?> get(int i) {
         return values.get(i);
     }
 
     public boolean isEmpty() {
         boolean containsValue = false;
-        for(Value value:this.values) {
+        for(Value<?> value:this.values) {
             if(!value.isNull()) {
                 containsValue = true;
             }
@@ -135,14 +135,14 @@ public class ValueList {
     }
 
     public void addValues(ValueList evaluated) {
-        for(Value value:evaluated.getValues()) {
+        for(Value<?> value:evaluated.getValues()) {
             addValue(value);
         }
     }
 
     public List<String> getAllPaths() {
         List<String> result = new ArrayList<>();
-        for(Value value:values) {
+        for(Value<?> value:values) {
             result.addAll(value.getPaths());
         }
         return result;
@@ -157,7 +157,7 @@ public class ValueList {
         if(isEmpty()) {
             return false;
         }
-        for(Value singleResult: values) {
+        for(Value<?> singleResult: values) {
             Boolean singleBoolean = (Boolean) singleResult.getValue();
             if(singleBoolean != null && !singleBoolean) {
                 return false;
@@ -167,7 +167,7 @@ public class ValueList {
     }
 
     public boolean containsOnlyNullValues() {
-        for(Value value:values) {
+        for(Value<?> value:values) {
             if(!value.isNull()) {
                 return false;
             }

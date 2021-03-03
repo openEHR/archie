@@ -37,9 +37,9 @@ public class AssertionsFixer {
         Map<String, Object> result = new HashMap<>();
 
         try {
-            Map<String, Value> setPathValues = assertionResult.getSetPathValues();
+            Map<String, Value<?>> setPathValues = assertionResult.getSetPathValues();
             for(String path:setPathValues.keySet()) {
-                Value value = setPathValues.get(path);
+                Value<?> value = setPathValues.get(path);
 
                 String pathOfParent = stripLastPathSegment(path);
                 String lastPathSegment = getLastPathSegment(path);

@@ -58,9 +58,9 @@ public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
         } catch (XPathExpressionException e) {
             throw new RuntimeException("error evaluating " + path, e);
         }
-        List<Value> values = rmObjectsWithPath.stream().map(
+        List<Value<?>> values = rmObjectsWithPath.stream().map(
             rmObjectWithPath ->
-                new Value(rmObjectWithPath.getObject(), Lists.newArrayList(rmObjectWithPath.getPath())))
+                new Value<>(rmObjectWithPath.getObject(), Lists.newArrayList(rmObjectWithPath.getPath())))
             .collect(Collectors.toList());
 
         return new ValueList(values);

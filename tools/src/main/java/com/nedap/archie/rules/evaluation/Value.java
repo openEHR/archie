@@ -53,8 +53,8 @@ public class Value<Type> {
         return value == null;
     }
 
-    public static Value createNull(List<String> paths) {
-        return new Value(null, paths);
+    public static Value<?> createNull(List<String> paths) {
+        return new Value<>(null, paths);
     }
 
 }

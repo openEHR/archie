@@ -84,7 +84,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         Constraint<?> constraint = (Constraint<?>) statement.getRightOperand();
         ValueList result = new ValueList();
         result.setType(PrimitiveType.Boolean);
-        for(Value value:leftValues.getValues()) {
+        for(Value<?> value:leftValues.getValues()) {
             result.addValue(constraint.getItem().isValidValue(lookup, value.getValue()), value.getPaths());
         }
         return result;
@@ -111,22 +111,22 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         result.setType(PrimitiveType.Boolean);
         if(leftValues.size() == rightValues.size()) {
             for(int i = 0; i < leftValues.size();i++) {
-                Value<Boolean> leftValue = leftValues.get(i);
-                Value<Boolean> rightValue = rightValues.get(i);
+                Value<Boolean> leftValue = (Value<Boolean>) leftValues.get(i);
+                Value<Boolean> rightValue = (Value<Boolean>) rightValues.get(i);
                 List<String> paths = getPaths(leftValue, rightValue);
                 result.addValue(evaluateBoolean(statement, leftValue.getValue(), rightValue.getValue()), paths);
             }
         } else if (leftValues.size() == 1) {
-            Value<Boolean> leftValue = leftValues.get(0);
-            for(Value<Boolean> rightValue:rightValues.getValues()) {
+            Value<Boolean> leftValue = (Value<Boolean>) leftValues.get(0);
+            for(Value<?> rightValue:rightValues.getValues()) {
                 List<String> paths = getPaths(leftValue, rightValue);
-                result.addValue(evaluateBoolean(statement, leftValue.getValue(), rightValue.getValue()), paths);
+                result.addValue(evaluateBoolean(statement, leftValue.getValue(), ((Value<Boolean>) rightValue).getValue()), paths);
             }
         } else if (rightValues.size() == 1) {
-            Value<Boolean>  rightValue = rightValues.get(0);
-            for(Value<Boolean> leftValue:leftValues.getValues()) {
+            Value<Boolean>  rightValue = (Value<Boolean>) rightValues.get(0);
+            for(Value<?> leftValue:leftValues.getValues()) {
                 List<String> paths = getPaths(leftValue, rightValue);
-                result.addValue(evaluateBoolean(statement, leftValue.getValue(), rightValue.getValue()), paths);
+                result.addValue(evaluateBoolean(statement, ((Value<Boolean>) leftValue).getValue(), rightValue.getValue()), paths);
             }
         } else {
             throw new IllegalArgumentException("sizes of operator arguments not compatible");
@@ -135,7 +135,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         return result;
     }
 
-    protected List<String> getPaths(Value<Boolean> leftValue, Value<Boolean> rightValue) {
+    protected List<String> getPaths(Value<?> leftValue, Value<?> rightValue) {
         List<String> paths = new ArrayList<>();
         paths.addAll(leftValue.getPaths());
         paths.addAll(rightValue.getPaths());
@@ -184,18 +184,18 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             checkIsNumber(leftValues, rightValues);
             if (leftValues.size() == rightValues.size()) {
                 for (int i = 0; i < leftValues.size(); i++) {
-                    Value leftValue = leftValues.get(i);
-                    Value rightValue = rightValues.get(i);
+                    Value<?> leftValue = leftValues.get(i);
+                    Value<?> rightValue = rightValues.get(i);
                     evaluateArithmetic(statement, result, rightValue.getValue(), leftValue.getValue(), getPaths(leftValue, rightValue));
                 }
             } else if (leftValues.size() == 1) {
-                Value leftValue = leftValues.get(0);
-                for (Value rightValue : rightValues.getValues()) {
+                Value<?> leftValue = leftValues.get(0);
+                for (Value<?> rightValue : rightValues.getValues()) {
                     evaluateArithmetic(statement, result, rightValue.getValue(), leftValue.getValue(), getPaths(leftValue, rightValue));
                 }
             } else if (rightValues.size() == 1) {
-                Value rightValue = rightValues.get(0);
-                for (Value leftValue : leftValues.getValues()) {
+                Value<?> rightValue = rightValues.get(0);
+                for (Value<?> leftValue : leftValues.getValues()) {
                     evaluateArithmetic(statement, result, rightValue.getValue(), leftValue.getValue(), getPaths(leftValue, rightValue));
                 }
             } else {
@@ -331,17 +331,17 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
 
     }
 
-    private Value evaluateMultipleValuesRelOp(BinaryOperator statement, ValueList leftValues, ValueList rightValues) {
+    private Value<?> evaluateMultipleValuesRelOp(BinaryOperator statement, ValueList leftValues, ValueList rightValues) {
 
-        for(Value leftValue:leftValues.getValues()) {
-            for (Value rightValue:rightValues.getValues()) {
-                Value evaluatedRelOp = evaluateRelOp(statement, leftValue.getValue(), rightValue.getValue(), getPaths(leftValue, rightValue));
+        for(Value<?> leftValue:leftValues.getValues()) {
+            for (Value<?> rightValue:rightValues.getValues()) {
+                Value<?> evaluatedRelOp = evaluateRelOp(statement, leftValue.getValue(), rightValue.getValue(), getPaths(leftValue, rightValue));
                 if (((Boolean) evaluatedRelOp.getValue()).booleanValue()) {
                     return evaluatedRelOp;
                 }
             }
         }
-        return new Value(false, getAllPaths(leftValues, rightValues));
+        return new Value<>(false, getAllPaths(leftValues, rightValues));
     }
 
     protected List<String> getAllPaths(ValueList leftValue, ValueList rightValue) {
@@ -351,17 +351,17 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         return allPaths;
     }
 
-    private Value evaluateRelOp(BinaryOperator statement, Object leftValue, Object rightValue, List<String> paths) {
+    private Value<?> evaluateRelOp(BinaryOperator statement, Object leftValue, Object rightValue, List<String> paths) {
         if(leftValue == null || rightValue == null) {
-            return new Value(evaluateNullRelOp(statement.getOperator(), leftValue, rightValue), paths);
+            return new Value<>(evaluateNullRelOp(statement.getOperator(), leftValue, rightValue), paths);
         }
         else if(leftValue instanceof Long && rightValue instanceof Long) {
-            return new Value(evaluateIntegerRelOp(statement.getOperator(),
+            return new Value<>(evaluateIntegerRelOp(statement.getOperator(),
                     (Long) leftValue,
                     (Long) rightValue
             ), paths);
         } else {
-            return new Value(evaluateRealRelOp(statement.getOperator(),
+            return new Value<>(evaluateRealRelOp(statement.getOperator(),
                     convertToDouble(leftValue),
                     convertToDouble(rightValue)
             ), paths);

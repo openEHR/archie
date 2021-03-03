@@ -395,7 +395,7 @@ public class ParsedRulesEvaluationTest {
         assertFalse(evaluationResult.getAssertionResults().get(0).getResult());
         assertFalse(evaluationResult.getAssertionResults().get(1).getResult());
         assertEquals(2, evaluationResult.getSetPathValues().size());
-        Iterator<Value> iterator = evaluationResult.getSetPathValues().values().iterator();
+        Iterator<Value<?>> iterator = evaluationResult.getSetPathValues().values().iterator();
         assertEquals(20.0d, (Double) iterator.next().getValue(), 0.0001d);
         assertEquals(23.0d, (Double) iterator.next().getValue(), 0.0001d);
     }
@@ -414,7 +414,7 @@ public class ParsedRulesEvaluationTest {
         assertEquals(1, evaluationResult.getAssertionResults().size());
         assertFalse(evaluationResult.getAssertionResults().get(0).getResult());
         assertEquals(2, evaluationResult.getSetPathValues().size());
-        Iterator<Value> setValuesIterator = evaluationResult.getSetPathValues().values().iterator();
+        Iterator<Value<?>> setValuesIterator = evaluationResult.getSetPathValues().values().iterator();
         assertEquals(-4.0d, (Double) setValuesIterator.next().getValue(), 0.0001d);
         assertEquals(-20.0d, (Double) setValuesIterator.next().getValue(), 0.0001d);
     }
