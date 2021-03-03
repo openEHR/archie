@@ -22,7 +22,7 @@ public class AssumedValueFiller {
 
     public static void fillAssumedValues(CObject cObject) {
         if(cObject instanceof CPrimitiveObject) {
-            fillAssumedValue((CPrimitiveObject) cObject);
+            fillAssumedValue((CPrimitiveObject<?, ?>) cObject);
         } else {
             for(CAttribute attribute:cObject.getAttributes()) {
                 for(CObject child:attribute.getChildren()) {
@@ -32,9 +32,9 @@ public class AssumedValueFiller {
         }
     }
 
-    private static void fillAssumedValue(CPrimitiveObject cObject) {
+    private static void fillAssumedValue(CPrimitiveObject<?, ?> cObject) {
         if(cObject instanceof COrdered) {
-            fillAssumedValueForOrdered((COrdered) cObject);
+            fillAssumedValueForOrdered((COrdered<?>) cObject);
         } else if (cObject instanceof CString) {
             fillAssumedValueForString((CString) cObject);
         }
@@ -51,11 +51,11 @@ public class AssumedValueFiller {
         }
     }
 
-    private static void fillAssumedValueForOrdered(COrdered cObject) {
-        COrdered cOrdered = cObject;
-        List<Interval> constraint = cOrdered.getConstraint();
+    private static <T> void fillAssumedValueForOrdered(COrdered<T> cObject) {
+        COrdered<T> cOrdered = cObject;
+        List<Interval<T>> constraint = cOrdered.getConstraint();
         if(constraint != null && constraint.size() == 1) {
-            Interval interval = constraint.get(0);
+            Interval<T> interval = constraint.get(0);
             if(!interval.isLowerUnbounded() && !interval.isUpperUnbounded() &&
                     interval.isLowerIncluded() && interval.isUpperIncluded()
                     && Objects.equals(interval.getLower(), interval.getUpper())) {

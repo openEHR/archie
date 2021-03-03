@@ -34,12 +34,12 @@ public abstract class CareEntry extends Entry {
     private ItemStructure protocol;
     @Nullable
     @XmlElement(name = "guideline_id")
-    private ObjectRef guidelineId;
+    private ObjectRef<?> guidelineId;
 
     public CareEntry() {
     }
 
-    public CareEntry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef workflowId, @Nullable List<Participation> otherParticipations, @Nullable ItemStructure protocol, @Nullable ObjectRef guidelineId) {
+    public CareEntry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<?> workflowId, @Nullable List<Participation> otherParticipations, @Nullable ItemStructure protocol, @Nullable ObjectRef<?> guidelineId) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName, language, encoding, subject, provider, workflowId, otherParticipations);
         this.protocol = protocol;
         this.guidelineId = guidelineId;
@@ -56,11 +56,11 @@ public abstract class CareEntry extends Entry {
     }
 
     @Nullable
-    public ObjectRef getGuidelineId() {
+    public ObjectRef<?> getGuidelineId() {
         return guidelineId;
     }
 
-    public void setGuidelineId(@Nullable ObjectRef guidelineId) {
+    public void setGuidelineId(@Nullable ObjectRef<?> guidelineId) {
         this.guidelineId = guidelineId;
     }
 

@@ -20,7 +20,7 @@ public class ImportedVersion<T> extends Version<T> {
     public ImportedVersion() {
     }
 
-    public ImportedVersion(AuditDetails commitAudit, ObjectRef contribution, @Nullable String signature, OriginalVersion item) {
+    public ImportedVersion(AuditDetails commitAudit, ObjectRef<?> contribution, @Nullable String signature, OriginalVersion<T> item) {
         super(commitAudit, contribution, signature);
         this.item = item;
     }

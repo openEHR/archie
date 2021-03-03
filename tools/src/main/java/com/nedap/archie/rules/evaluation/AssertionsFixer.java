@@ -21,12 +21,12 @@ public class AssertionsFixer {
     private static final Logger logger = LoggerFactory.getLogger(AssertionsFixer.class);
 
     private final RMObjectCreator creator;
-    private final RuleEvaluation ruleEvaluation;
+    private final RuleEvaluation<?> ruleEvaluation;
     private final RMObjectCreator rmObjectCreator;
 
     private ModelInfoLookup modelInfoLookup;
 
-    public AssertionsFixer(RuleEvaluation evaluation, RMObjectCreator creator) {
+    public AssertionsFixer(RuleEvaluation<?> evaluation, RMObjectCreator creator) {
         this.creator = creator;
         this.ruleEvaluation = evaluation;
         this.modelInfoLookup = ruleEvaluation.getModelInfoLookup();

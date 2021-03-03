@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class UnaryOperatorEvaluator implements Evaluator<UnaryOperator> {
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, UnaryOperator statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, UnaryOperator statement) {
         OperatorKind operator = statement.getOperator();
         Expression operand = statement.getOperand();
         switch(operator) {
@@ -32,7 +32,7 @@ public class UnaryOperatorEvaluator implements Evaluator<UnaryOperator> {
         }
     }
 
-    private ValueList handleMinus(RuleEvaluation evaluation, UnaryOperator statement) {
+    private ValueList handleMinus(RuleEvaluation<?> evaluation, UnaryOperator statement) {
         ValueList valueList = evaluation.evaluate(statement.getOperand());
         if(valueList.getType() == PrimitiveType.Integer || valueList.getType() == PrimitiveType.Real) {
             ValueList result = new ValueList();
@@ -58,7 +58,7 @@ public class UnaryOperatorEvaluator implements Evaluator<UnaryOperator> {
         }
     }
 
-    private ValueList handleExists(RuleEvaluation evaluation, UnaryOperator statement) {
+    private ValueList handleExists(RuleEvaluation<?> evaluation, UnaryOperator statement) {
         ValueList value = evaluation.evaluate(statement.getOperand());
         if(value.isEmpty() || value.containsOnlyNullValues()) {
             return new ValueList(false, value.getAllPaths());
@@ -67,7 +67,7 @@ public class UnaryOperatorEvaluator implements Evaluator<UnaryOperator> {
         }
     }
 
-    public ValueList handleNot(RuleEvaluation evaluation, UnaryOperator statement) {
+    public ValueList handleNot(RuleEvaluation<?> evaluation, UnaryOperator statement) {
         Expression operand = statement.getOperand();
         ValueList input = evaluation.evaluate(operand);
         List<Value> values = input.getValues();
@@ -86,7 +86,7 @@ public class UnaryOperatorEvaluator implements Evaluator<UnaryOperator> {
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(UnaryOperator.class);
     }
 }

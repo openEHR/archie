@@ -66,10 +66,10 @@ public class RuleEvaluation<T> {
         add(functionEvaluator);
     }
 
-    private void add(Evaluator evaluator) {
+    private void add(Evaluator<?> evaluator) {
         evaluators.add(evaluator);
-        for(Object clazz: evaluator.getSupportedClasses()) {
-            classToEvaluator.put((Class) clazz, evaluator);
+        for(Class<?> clazz: evaluator.getSupportedClasses()) {
+            classToEvaluator.put(clazz, evaluator);
         }
     }
 

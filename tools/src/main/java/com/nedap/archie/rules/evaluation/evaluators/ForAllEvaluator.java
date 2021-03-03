@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class ForAllEvaluator implements Evaluator<ForAllStatement> {
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, ForAllStatement statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, ForAllStatement statement) {
         Expression pathExpression = statement.getPathExpression();
         String variableName = statement.getVariableName();
         Expression toEvaluate = statement.getAssertion();
@@ -64,7 +64,7 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(ForAllStatement.class);
     }
 }

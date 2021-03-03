@@ -26,7 +26,7 @@ public class ADLRulesSerializer {
         this.builder = builder;
         this.definitionSerializer = definitionSerializer;
 
-        ruleElementSerializers = new HashMap();
+        ruleElementSerializers = new HashMap<>();
         ruleElementSerializers.put(UnaryOperator.class, new UnaryOperatorSerializer(this));
         ruleElementSerializers.put(BinaryOperator.class, new BinaryOperatorSerializer(this));
         ruleElementSerializers.put(Assertion.class, new AssertionSerializer(this));

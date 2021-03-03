@@ -65,7 +65,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             }
         }
         else if (cobject instanceof CPrimitiveObject) {
-            result.addAll(RMPrimitiveObjectValidation.validate(lookup, rmObjects, path, (CPrimitiveObject) cobject));
+            result.addAll(RMPrimitiveObjectValidation.validate(lookup, rmObjects, path, (CPrimitiveObject<?, ?>) cobject));
         } else {
             if (cobject instanceof CComplexObject) {
                 CComplexObject cComplexObject = (CComplexObject) cobject;

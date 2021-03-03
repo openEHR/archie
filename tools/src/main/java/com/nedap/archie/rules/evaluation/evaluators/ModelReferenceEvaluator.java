@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, ModelReference statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, ModelReference statement) {
 
 
         String variable = statement.getVariableReferencePrefix();
@@ -67,7 +67,7 @@ public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(ModelReference.class);
     }
 }

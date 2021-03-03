@@ -139,8 +139,8 @@ public class ConstraintDifferentiator {
             CPrimitiveTuple primitiveTuple = tuple.getTuples().get(i);
             CPrimitiveTuple primitiveTupleInParent = tupleInParent.getTuples().get(i);
             for(int j = 0; j < primitiveTuple.getMembers().size(); j++) {
-                CPrimitiveObject member = primitiveTuple.getMember(j);
-                CPrimitiveObject memberInParent = primitiveTupleInParent.getMember(j);
+                CPrimitiveObject<?, ?> member = primitiveTuple.getMember(j);
+                CPrimitiveObject<?, ?> memberInParent = primitiveTupleInParent.getMember(j);
                 if(!PrimitiveObjectEqualsChecker.isEqual(member, memberInParent)) {
                     return false; //at least one difference, keep
                 }

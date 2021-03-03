@@ -220,7 +220,7 @@ public class MetaModels implements MetaModelInterface {
         return selectedModel.referenceModelPropMultiplicity(rmTypeName, rmAttributeName);
     }
 
-    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject) {
+    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject) {
         checkThatModelHasBeenSelected();
         return selectedModel.validatePrimitiveType(rmTypeName, rmAttributeName, cObject);
     }

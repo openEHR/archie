@@ -34,7 +34,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     }
 
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, BinaryOperator statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, BinaryOperator statement) {
         switch(statement.getOperator()) {
             case plus:
             case minus:
@@ -64,7 +64,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         throw new RuntimeException("operation " + statement.getOperator() + " not yet supported");
     }
 
-    private ValueList evaluateImplies(RuleEvaluation evaluation, BinaryOperator statement) {
+    private ValueList evaluateImplies(RuleEvaluation<?> evaluation, BinaryOperator statement) {
         ValueList leftValue = evaluation.evaluate(statement.getLeftOperand());
         if(leftValue.getSingleBooleanResult()) {
             ValueList rightValue  = evaluation.evaluate(statement.getRightOperand());
@@ -75,7 +75,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         }
     }
 
-    private ValueList evaluateBooleanConstraint(RuleEvaluation evaluation, BinaryOperator statement) {
+    private ValueList evaluateBooleanConstraint(RuleEvaluation<?> evaluation, BinaryOperator statement) {
         ValueList leftValues = evaluation.evaluate(statement.getLeftOperand());
         if(!(statement.getRightOperand() instanceof Constraint)){
             throw new IllegalArgumentException("cannot evaluate matches statement, right operand not a constraint");
@@ -91,7 +91,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
 
     }
 
-    private ValueList evaluateBooleanOperator(RuleEvaluation evaluation, BinaryOperator statement) {
+    private ValueList evaluateBooleanOperator(RuleEvaluation<?> evaluation, BinaryOperator statement) {
 
         ValueList leftValues = evaluation.evaluate(statement.getLeftOperand());
         ValueList rightValues = evaluation.evaluate(statement.getRightOperand());
@@ -168,7 +168,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         }
     }
 
-    private ValueList evaluateArithmeticOperator(RuleEvaluation evaluation, BinaryOperator statement) {
+    private ValueList evaluateArithmeticOperator(RuleEvaluation<?> evaluation, BinaryOperator statement) {
         ValueList leftValues = evaluation.evaluate(statement.getLeftOperand());
         ValueList rightValues = evaluation.evaluate(statement.getRightOperand());
 
@@ -264,7 +264,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         }
     }
 
-    private ValueList evaluateRelOpOperator(RuleEvaluation evaluation, BinaryOperator statement) {
+    private ValueList evaluateRelOpOperator(RuleEvaluation<?> evaluation, BinaryOperator statement) {
         ValueList leftValues = evaluation.evaluate(statement.getLeftOperand());
         ValueList rightValues = evaluation.evaluate(statement.getRightOperand());
 
@@ -468,7 +468,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(BinaryOperator.class);
     }
 }
