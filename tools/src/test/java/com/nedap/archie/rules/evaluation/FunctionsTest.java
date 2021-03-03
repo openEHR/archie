@@ -36,7 +36,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
         System.out.println(archetype);
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Observation> ruleEvaluation = getRuleEvaluation();
         Observation root = new Observation();
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         ValueList min = ruleEvaluation.getVariableMap().get("min");
@@ -48,15 +48,15 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
         System.out.println(archetype);
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Observation> ruleEvaluation = getRuleEvaluation();
         Observation root = new Observation();
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         ValueList max = ruleEvaluation.getVariableMap().get("max");
         assertEquals("max should work", 2.0, (double) max.getValues().get(0).getValue(), 0.001);
     }
 
-    private RuleEvaluation getRuleEvaluation() {
-        return new RuleEvaluation(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), archetype);
+    private <T> RuleEvaluation<T> getRuleEvaluation() {
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), archetype);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
         System.out.println(archetype);
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
         Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
@@ -94,7 +94,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
         System.out.println(archetype);
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
         Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
@@ -113,7 +113,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
         System.out.println(archetype);
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
         Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
@@ -131,7 +131,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
 
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Observation> ruleEvaluation = getRuleEvaluation();
         Observation root = new Observation();
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         ValueList valueWhenUndefined = ruleEvaluation.getVariableMap().get("value_when_undefined");
@@ -143,7 +143,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
 
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
         Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
@@ -158,7 +158,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
 
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Observation> ruleEvaluation = getRuleEvaluation();
         Observation root = new Observation();
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         ValueList roundedUp = ruleEvaluation.getVariableMap().get("round_up");
@@ -184,7 +184,7 @@ public class FunctionsTest {
         quantity1.setMagnitude(65.4);
         quantity2.setMagnitude(45.6);
 
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
         ruleEvaluation.evaluate(rmObject, archetype.getRules().getRules());
         ValueList roundMultiple = ruleEvaluation.getVariableMap().get("round_multiple");
         assertEquals("rounds each value in a value list", 2, roundMultiple.getValues().size());
@@ -197,7 +197,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
 
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
         Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(26.1);
@@ -212,7 +212,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
 
-        RuleEvaluation ruleEvaluation = getRuleEvaluation();
+        RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
         Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(27.9);

@@ -52,9 +52,9 @@ public class RMObjectCreator {
 
             Type type = attributeInfo.getType();
             if(type instanceof Class) {
-                Class clazz = (Class) type;
+                Class<?> clazz = (Class<?>) type;
                 if(attributeInfo.isMultipleValued()) {
-                    Collection collection = (Collection) newInstance(attributeInfo);
+                    Collection<Object> collection = (Collection<Object>) newInstance(attributeInfo);
                     if(values != null) {
                         collection.addAll(values);
                     }
@@ -119,7 +119,7 @@ public class RMObjectCreator {
                 if(!(attributeInfo.getType() instanceof Class)) {
                     throw new IllegalArgumentException("trying to add an element to an object with type " + attributeInfo.getType());
                 }
-                if(Collection.class.isAssignableFrom((Class) attributeInfo.getType())) {
+                if(Collection.class.isAssignableFrom((Class<?>) attributeInfo.getType())) {
                     if(collectionValue == null) {
                         collectionValue = newInstance(attributeInfo);
                         setField(object, attributeInfo, collectionValue);

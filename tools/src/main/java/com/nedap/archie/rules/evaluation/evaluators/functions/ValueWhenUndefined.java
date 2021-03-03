@@ -36,7 +36,7 @@ public class ValueWhenUndefined implements FunctionImplementation {
         } else {
             for (Value value : argument.getValues()) {
                 if (value.isNull()) {
-                    List<String> paths = new ArrayList(value.getPaths());
+                    List<String> paths = new ArrayList<>(value.getPaths());
                     paths.addAll(valueWhenUndefined.getPaths());
                     result.addValue(new Value(valueWhenUndefined.getValue(), paths));
                 } else {

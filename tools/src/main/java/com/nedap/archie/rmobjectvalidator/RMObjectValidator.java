@@ -91,7 +91,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 }
             }
         } else {
-            Class classInConstraint = this.lookup.getClass(cobject.getRmTypeName());
+            Class<?> classInConstraint = this.lookup.getClass(cobject.getRmTypeName());
             if (!classInConstraint.isAssignableFrom(objectWithPath.getObject().getClass())) {
                 //not a matching constraint. Cannot validate. add error message and stop validating.
                 //If another constraint is present, that one will succeed

@@ -32,7 +32,7 @@ public class TemporalConstraintParserTest extends PrimitivesConstraintParserTest
     public void durationPattern() {
         assertEquals("Pw", this.<CDuration>getAttribute("duration_attr1").getPatternedConstraint());
         //		duration_attr33 matches {PdThms/|P38W..P39W4D|}
-        assertDurationInterval(new Interval(Period.ofWeeks(38), Period.ofWeeks(39).plus(Period.ofDays(4))), "duration_attr33");
+        assertDurationInterval(new Interval<>(Period.ofWeeks(38), Period.ofWeeks(39).plus(Period.ofDays(4))), "duration_attr33");
         assertEquals("PdThms", this.<CDuration>getAttribute("duration_attr33").getPatternedConstraint());
     }
 

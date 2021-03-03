@@ -23,7 +23,7 @@ import static java.util.Optional.ofNullable;
 public class ADLDefinitionSerializer {
     protected final ADLStringBuilder builder;
 
-    private final Map<Class, ConstraintSerializer> constraintSerializers;
+    private final Map<Class<?>, ConstraintSerializer<?>> constraintSerializers;
     private Function<String, Archetype> flatArchetypeProvider;
     private RMObjectMapperProvider rmObjectMapperProvider;
 
@@ -117,7 +117,7 @@ public class ADLDefinitionSerializer {
 
     @SuppressWarnings("unchecked")
     private ConstraintSerializer<CObject> getSerializer(CObject cobj) {
-        Class c = cobj.getClass();
+        Class<?> c = cobj.getClass();
         ConstraintSerializer result = constraintSerializers.get(c);
         while(result == null && c.getSuperclass() != null) {
             c = c.getSuperclass();

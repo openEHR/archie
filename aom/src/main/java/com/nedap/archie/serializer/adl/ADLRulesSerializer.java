@@ -20,7 +20,7 @@ public class ADLRulesSerializer {
     private ADLStringBuilder builder;
     private ADLDefinitionSerializer definitionSerializer;
 
-    private final Map<Class, RuleElementSerializer> ruleElementSerializers;
+    private final Map<Class<?>, RuleElementSerializer<?>> ruleElementSerializers;
 
     public ADLRulesSerializer(ADLStringBuilder builder, ADLDefinitionSerializer definitionSerializer) {
         this.builder = builder;

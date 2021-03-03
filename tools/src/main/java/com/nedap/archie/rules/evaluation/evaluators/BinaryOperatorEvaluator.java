@@ -81,7 +81,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             throw new IllegalArgumentException("cannot evaluate matches statement, right operand not a constraint");
 
         }
-        Constraint constraint = (Constraint) statement.getRightOperand();
+        Constraint<?> constraint = (Constraint<?>) statement.getRightOperand();
         ValueList result = new ValueList();
         result.setType(PrimitiveType.Boolean);
         for(Value value:leftValues.getValues()) {
@@ -431,7 +431,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     }
 
     public static void checkisBoolean(ValueList leftValueList, ValueList rightValueList) {
-        EnumSet booleanTypes = EnumSet.of(PrimitiveType.Boolean);
+        EnumSet<PrimitiveType> booleanTypes = EnumSet.of(PrimitiveType.Boolean);
         if(!booleanTypes.contains(leftValueList.getType())) {
             throw new RuntimeException("not a boolean with boolean operator: " + leftValueList.getType());//TODO: proper errors
         }
@@ -444,7 +444,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         if(leftValueList.isEmpty() || rightValueList.isEmpty()) {
             return;
         }
-        EnumSet numberTypes = EnumSet.of(PrimitiveType.Integer, PrimitiveType.Real);
+        EnumSet<PrimitiveType> numberTypes = EnumSet.of(PrimitiveType.Integer, PrimitiveType.Real);
         if(!numberTypes.contains(leftValueList.getType())) {
             throw new RuntimeException("Type supplied to operator should be a number, but it is not: " + leftValueList.getType());//TODO: proper errors
         }
@@ -454,7 +454,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     }
 
     public static void checkIsNumber(ValueList leftValueList, ValueList rightValueList) {
-        EnumSet numberTypes = EnumSet.of(PrimitiveType.Integer, PrimitiveType.Real);
+        EnumSet<PrimitiveType> numberTypes = EnumSet.of(PrimitiveType.Integer, PrimitiveType.Real);
         if(!numberTypes.contains(leftValueList.getType())) {
             throw new RuntimeException("Type supplied to operator should be a number, but it is not: " + leftValueList.getType());//TODO: proper errors
         }

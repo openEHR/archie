@@ -152,7 +152,7 @@ public  class ExampleJsonInstanceGenerator {
                         Map<String, Object> next = generate((CComplexObject) child);
                         children.add(next);
                     } else if (child instanceof CPrimitiveObject) {
-                        children.add(generateCPrimitive((CPrimitiveObject) child));
+                        children.add(generateCPrimitive((CPrimitiveObject<?, ?>) child));
                     } else if (child instanceof ArchetypeSlot) {
                         //TODO: it would be better to actually include an archetype
                         //however that leads to some tricky situations when this archetype again optionally includes
@@ -343,7 +343,7 @@ public  class ExampleJsonInstanceGenerator {
         return "unknown primitive type " + typeName;
     }
 
-    private Object generateCPrimitive(CPrimitiveObject child) {
+    private Object generateCPrimitive(CPrimitiveObject<?, ?> child) {
         //optionally create a custom mapping for the current RM. useful to map to strange objects
         //such as mapping a CTerminologyCode to a DV_CODED_TEXT in OpenEHR ERM
         Object customMapping = generateCustomMapping(child);
@@ -505,7 +505,7 @@ public  class ExampleJsonInstanceGenerator {
      * @param child
      * @return the custom JSON mapping, or null if no custom mapping is required
      */
-    private Object generateCustomMapping(CPrimitiveObject child) {
+    private Object generateCustomMapping(CPrimitiveObject<?, ?> child) {
         if(child instanceof CTerminologyCode) {
             CTerminologyCode cTermCode = (CTerminologyCode) child;
 

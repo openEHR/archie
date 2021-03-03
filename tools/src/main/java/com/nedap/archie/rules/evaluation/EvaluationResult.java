@@ -44,7 +44,7 @@ public class EvaluationResult {
     }
 
     public Map<String, Value> getSetPathValues() {
-        Map<String, Value> result = new LinkedHashMap();
+        Map<String, Value> result = new LinkedHashMap<>();
         for(AssertionResult assertionResult:assertionResults) {
             result.putAll(assertionResult.getSetPathValues());
         }

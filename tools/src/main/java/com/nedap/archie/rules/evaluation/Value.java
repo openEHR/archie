@@ -17,7 +17,7 @@ public class Value<Type> {
 
     public Value(Type value) {
         this.value = value;
-        this.paths = new ArrayList();
+        this.paths = new ArrayList<>();
     }
 
     public Value(Type value, List<String> paths) {

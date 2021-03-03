@@ -27,8 +27,8 @@ public class RuleEvaluation<T> {
     private final JAXBContext jaxbContext;
 
     private Archetype archetype;
-    private List<Evaluator> evaluators = new ArrayList<>();
-    private HashMap<Class, Evaluator> classToEvaluator = new HashMap<>();
+    private List<Evaluator<?>> evaluators = new ArrayList<>();
+    private HashMap<Class<?>, Evaluator<?>> classToEvaluator = new HashMap<>();
     private FunctionEvaluator functionEvaluator;
 
     //evaluation state

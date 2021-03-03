@@ -192,7 +192,7 @@ public class MetaModel implements MetaModelInterface {
             RMTypeInfo typeInfo = selectedModel.getTypeInfo(childConstraintTypeName);
             RMAttributeInfo owningAttributeInfo = selectedModel.getAttributeInfo(rmTypeName, rmAttributeName);
             if (owningAttributeInfo != null) {//this case is another validation, see the validate(cattribute) method of this class
-                Class typeInCollection = owningAttributeInfo.getTypeInCollection();
+                Class<?> typeInCollection = owningAttributeInfo.getTypeInCollection();
                 if (!typeInCollection.isAssignableFrom(typeInfo.getJavaClass())) {
                     return false;
                 }

@@ -189,7 +189,7 @@ public class ConstraintDifferentiator {
 
         if(childCObject instanceof CPrimitiveObject) {
 
-            if(PrimitiveObjectEqualsChecker.isEqual((CPrimitiveObject) childCObject, (CPrimitiveObject) childCObjectInParent)) {
+            if(PrimitiveObjectEqualsChecker.isEqual((CPrimitiveObject<?, ?>) childCObject, (CPrimitiveObject<?, ?>) childCObjectInParent)) {
                 return true;
             }
         } else {

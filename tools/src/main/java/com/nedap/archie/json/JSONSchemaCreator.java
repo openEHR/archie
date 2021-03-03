@@ -64,7 +64,7 @@ public class JSONSchemaCreator {
         rootTypes.add("ORGANISATION");
         rootTypes.add("PARTY_IDENTITY");
         rootTypes.add("ITEM_TREE");
-        Map<String, Object> config = new HashMap();
+        Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
     }

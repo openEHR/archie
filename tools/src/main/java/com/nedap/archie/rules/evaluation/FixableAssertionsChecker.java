@@ -132,9 +132,9 @@ class FixableAssertionsChecker {
         Expression rightOperand = binaryExpression.getRightOperand();
         ModelReference pathToSet = (ModelReference) binaryExpression.getLeftOperand();
         if(rightOperand instanceof Constraint) {
-            Constraint c = (Constraint) rightOperand;
-            CPrimitiveObject object = c.getItem();
-            List constraints = object.getConstraint();
+            Constraint<?> c = (Constraint<?>) rightOperand;
+            CPrimitiveObject<?, ?> object = c.getItem();
+            List<?> constraints = object.getConstraint();
             if(constraints.size() != 1) {
                 return;
             }

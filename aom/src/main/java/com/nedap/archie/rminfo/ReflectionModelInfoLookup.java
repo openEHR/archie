@@ -141,7 +141,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
 
     private void addAttributeInfo(Class<?> clazz, RMTypeInfo typeInfo) {
         //TODO: it's possible to constrain some method as well. should we do that here too?
-        TypeToken typeToken = TypeToken.of(clazz);
+        TypeToken<?> typeToken = TypeToken.of(clazz);
 
         Set<Field> allFields = ReflectionUtils.getAllFields(clazz);
         Map<String, Field> fieldsByName = allFields.stream()
@@ -169,7 +169,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         return Modifier.isPublic(method.getModifiers()) && method.getAnnotation(RMPropertyIgnore.class) == null;
     }
 
-    protected void addRMAttributeInfo(Class<?> clazz, RMTypeInfo typeInfo, TypeToken typeToken, Method getMethod, Map<String, Field> fieldsByName) {
+    protected void addRMAttributeInfo(Class<?> clazz, RMTypeInfo typeInfo, TypeToken<?> typeToken, Method getMethod, Map<String, Field> fieldsByName) {
         String javaFieldName = null;
         if(getMethod.getName().startsWith("is")) {
             javaFieldName = lowerCaseFirstChar(getMethod.getName().substring(2));
@@ -195,7 +195,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
 
         String attributeName = namingStrategy.getAttributeName(field, getMethod);
 
-        TypeToken fieldType = typeToken.resolveType(getMethod.getGenericReturnType());;
+        TypeToken<?> fieldType = typeToken.resolveType(getMethod.getGenericReturnType());;
 
         Class<?> rawFieldType = fieldType.getRawType();
         Class<?> typeInCollection = getTypeInCollection(fieldType);
@@ -224,7 +224,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
     }
 
 
-    private void addRMAttributeInfo(Class<?> clazz, RMTypeInfo typeInfo, TypeToken typeToken, Field field) {
+    private void addRMAttributeInfo(Class<?> clazz, RMTypeInfo typeInfo, TypeToken<?> typeToken, Field field) {
         String javaFieldName = field.getName();
         String javaFieldNameUpperCased = upperCaseFirstChar(javaFieldName);
         Method getMethod = getMethod(clazz, "get" + javaFieldNameUpperCased);
@@ -260,7 +260,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         }
         String attributeName = namingStrategy.getAttributeName(field, getMethod);
 
-        TypeToken fieldType = null;
+        TypeToken<?> fieldType = null;
         if (getMethod != null) {
             fieldType = typeToken.resolveType(getMethod.getGenericReturnType());
         } else {
@@ -287,19 +287,19 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         }
     }
 
-    private Class getTypeInCollection(TypeToken fieldType) {
-        Class rawFieldType = fieldType.getRawType();
+    private Class<?> getTypeInCollection(TypeToken<?> fieldType) {
+        Class<?> rawFieldType = fieldType.getRawType();
         if (Collection.class.isAssignableFrom(rawFieldType)) {
             Type[] actualTypeArguments = ((ParameterizedType) fieldType.getType()).getActualTypeArguments();
             if (actualTypeArguments.length == 1) {
                 //the java reflection api is kind of tricky with types. This works for the archie RM, but may cause problems for other RMs. The fix is implementing more ways
                 if (actualTypeArguments[0] instanceof Class) {
-                    return (Class) actualTypeArguments[0];
+                    return (Class<?>) actualTypeArguments[0];
                 } else if (actualTypeArguments[0] instanceof ParameterizedType) {
                     ParameterizedType parameterizedTypeInCollection = (ParameterizedType) actualTypeArguments[0];
-                    return (Class) parameterizedTypeInCollection.getRawType();
+                    return (Class<?>) parameterizedTypeInCollection.getRawType();
                 } else if (actualTypeArguments[0] instanceof java.lang.reflect.TypeVariable) {
-                    return (Class) ((java.lang.reflect.TypeVariable) actualTypeArguments[0]).getBounds()[0];
+                    return (Class<?>) ((java.lang.reflect.TypeVariable<?>) actualTypeArguments[0]).getBounds()[0];
                 }
             }
         } else if(rawFieldType.isArray()) {
@@ -308,12 +308,12 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         return rawFieldType;
     }
 
-    private Method getAddMethod(Class clazz, TypeToken typeToken, String javaFieldNameUpperCased, Method getMethod) {
+    private Method getAddMethod(Class<?> clazz, TypeToken<?> typeToken, String javaFieldNameUpperCased, Method getMethod) {
         Method addMethod = null;
         if (Collection.class.isAssignableFrom(getMethod.getReturnType())) {
             Type[] typeArguments = ((ParameterizedType) getMethod.getGenericReturnType()).getActualTypeArguments();
             if (typeArguments.length == 1) {
-                TypeToken singularParameter = typeToken.resolveType(typeArguments[0]);
+                TypeToken<?> singularParameter = typeToken.resolveType(typeArguments[0]);
                 //TODO: does this work or should we use the typeArguments[0].getSomething?
                 String addMethodName = "add" + toSingular(javaFieldNameUpperCased);
                 addMethod = getMethod(clazz, addMethodName, singularParameter.getRawType());
@@ -339,7 +339,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         return javaFieldNameUpperCased;
     }
 
-    private Method getMethod(Class clazz, String name, Class<?>... parameterTypes) {
+    private Method getMethod(Class<?> clazz, String name, Class<?>... parameterTypes) {
         try {
             return clazz.getMethod(name, parameterTypes);
         } catch(NoSuchMethodException ex) {

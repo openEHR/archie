@@ -41,12 +41,12 @@ public class UnconstrainedIntervalRemover {
             if(cObject instanceof CComplexObject) {
                 removeUnconstrainedIntervals((CComplexObject) cObject);
             } else if (cObject instanceof CPrimitiveObject) {
-                CPrimitiveObject cPrimitiveObject = (CPrimitiveObject) cObject;
-                List constraint = cPrimitiveObject.getConstraint();
+                CPrimitiveObject<?, ?> cPrimitiveObject = (CPrimitiveObject<?, ?>) cObject;
+                List<?> constraint = cPrimitiveObject.getConstraint();
                 List<Object> toRemove = new ArrayList<>();
                 for(Object i:constraint) {
                     if(i instanceof Interval) {
-                        Interval interval = (Interval) i;
+                        Interval<?> interval = (Interval<?>) i;
                         if(interval.isUpperUnbounded() && interval.isLowerUnbounded()) {
                             toRemove.add(i);
                         }

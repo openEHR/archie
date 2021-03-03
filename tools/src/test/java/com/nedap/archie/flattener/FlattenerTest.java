@@ -116,7 +116,7 @@ public class FlattenerTest {
     public void checkParentReplacement() throws Exception {
         Archetype flattened = flattener.flatten(bloodPressureComposition);
 
-        Stack<CObject> worklist = new Stack();
+        Stack<CObject> worklist = new Stack<>();
         worklist.add(flattened.getDefinition());
 
         while (!worklist.isEmpty()) {
@@ -142,7 +142,7 @@ public class FlattenerTest {
     public void useNodeReplacement() throws Exception {
         Archetype flattened = flattener.flatten(bloodPressureComposition);
 
-        Stack<CObject> worklist = new Stack();
+        Stack<CObject> worklist = new Stack<>();
         worklist.add(flattened.getDefinition());
         boolean proxyFound = false;
         while (!worklist.isEmpty()) {

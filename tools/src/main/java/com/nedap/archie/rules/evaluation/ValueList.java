@@ -81,7 +81,7 @@ public class ValueList {
     }
 
     public List<Object> getValueObjects() {
-        List<Object> result = new ArrayList();
+        List<Object> result = new ArrayList<>();
         for(Value value:values) {
             result.add(value.getValue());
         }

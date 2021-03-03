@@ -110,7 +110,7 @@ public class JacksonUtil {
 
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
-        TypeResolverBuilder typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
+        TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
                 .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming())
                 .typeProperty(configuration.getTypePropertyName())
                 .typeIdVisibility(true)
@@ -138,7 +138,7 @@ public class JacksonUtil {
     static class ArchieTypeResolverBuilder extends ObjectMapper.DefaultTypeResolverBuilder
     {
 
-        private Set<Class> classesToNotAddTypeProperty;
+        private Set<Class<?>> classesToNotAddTypeProperty;
         public ArchieTypeResolverBuilder(RMJacksonConfiguration configuration)
         {
             super(ObjectMapper.DefaultTyping.NON_FINAL, BasicPolymorphicTypeValidator.builder()
