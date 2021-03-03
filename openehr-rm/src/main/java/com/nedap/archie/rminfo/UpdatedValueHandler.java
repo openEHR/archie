@@ -68,7 +68,7 @@ public class UpdatedValueHandler {
                 if (valueIndex != -1 && symbolIndex != -1) {
                     for (CPrimitiveTuple tuple : socParent.getTuples()) {
                         if (tuple.getMembers().get(symbolIndex).getConstraint().get(0).equals(ordinal.getSymbol().getDefiningCode().getCodeString())) {
-                            List<Interval> valueConstraint = (List<Interval>) tuple.getMembers().get(valueIndex).getConstraint();
+                            List<Interval<Long>> valueConstraint = (List<Interval<Long>>) tuple.getMembers().get(valueIndex).getConstraint();
                             if(valueConstraint.size() == 1) {
                                 Interval<Long> interval  = valueConstraint.get(0);
                                 if(interval.getLower().equals(interval.getUpper()) && !interval.isLowerUnbounded() && !interval.isUpperUnbounded()) {

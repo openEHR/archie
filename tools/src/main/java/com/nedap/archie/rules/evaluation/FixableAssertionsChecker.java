@@ -235,7 +235,7 @@ class FixableAssertionsChecker {
 
         List<ValueList> values = ruleElementValues.get(statement);
         if(index > values.size()) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             ValueList valueList = values.get(index);
             return valueList.getAllPaths();
