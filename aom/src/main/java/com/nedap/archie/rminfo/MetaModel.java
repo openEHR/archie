@@ -87,7 +87,7 @@ public class MetaModel implements MetaModelInterface {
         return multiplicityInterval.isUpperUnbounded() || multiplicityInterval.getUpper() > 1;
     }
 
-    private boolean isMultiple(BmmProperty bmmProperty) {
+    private boolean isMultiple(BmmProperty<?> bmmProperty) {
         if(bmmProperty == null) {
             return false;
         } else if(bmmProperty instanceof BmmContainerProperty) {
@@ -154,7 +154,7 @@ public class MetaModel implements MetaModelInterface {
                 return false;
             }
 
-            BmmProperty bmmProperty = classDefinition.getFlatProperties().get(attributeName);
+            BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeName);
             return !bmmProperty.getMandatory() || (bmmProperty.getExistence() != null && !bmmProperty.getExistence().isMandatory());
         }
         else {
@@ -175,7 +175,7 @@ public class MetaModel implements MetaModelInterface {
             BmmClass parentClass = selectedBmmModel.getClassDefinition(rmTypeName);
             BmmClass childClass = selectedBmmModel.getClassDefinition(childConstraintTypeName);
             if(childClass != null && parentClass != null) {
-                BmmProperty property = parentClass.getFlatProperties().get(rmAttributeName);
+                BmmProperty<?> property = parentClass.getFlatProperties().get(rmAttributeName);
                 if(property != null) {
                     String propertyConfTypeName = property.getType().getEffectiveType().getTypeName();
                     // if(BmmDefinitions.validGenericTypeName(propertyConfTypeName) &&
@@ -217,7 +217,7 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public MultiplicityInterval referenceModelPropMultiplicity(String rmTypeName, String rmAttributeNameOrPath) {
         if(selectedBmmModel != null) {
-            BmmProperty bmmProperty =  selectedBmmModel.propertyAtPath (rmTypeName, rmAttributeNameOrPath);
+            BmmProperty<?> bmmProperty =  selectedBmmModel.propertyAtPath (rmTypeName, rmAttributeNameOrPath);
             if(bmmProperty == null) {
                 return null;
             }
@@ -263,7 +263,7 @@ public class MetaModel implements MetaModelInterface {
             String modelTypeName = selectedBmmModel.effectivePropertyType(rmTypeName, rmAttributeName);
             BmmClass bmmClass = selectedBmmModel.getClassDefinition(rmTypeName);
             if(bmmClass != null) {
-                BmmProperty bmmProperty = bmmClass.getFlatProperties().get(rmAttributeName);
+                BmmProperty<?> bmmProperty = bmmClass.getFlatProperties().get(rmAttributeName);
                 if(bmmProperty != null) {
                     //check enumerated properties
                     BmmEffectiveType propertyEffectiveType = bmmProperty.getType().getEffectiveType();
@@ -272,7 +272,7 @@ public class MetaModel implements MetaModelInterface {
                         if (propertyClass instanceof BmmEnumeration) {
                             //enumeration. This should probably an integer.
                             //TODO: check if we should check the actual type as well as the string values of the enumeration?
-                            modelTypeName = ((BmmEnumeration) propertyClass).getUnderlyingTypeName();
+                            modelTypeName = ((BmmEnumeration<?>) propertyClass).getUnderlyingTypeName();
                             if(!modelTypeName.equalsIgnoreCase(cRmTypeName)) {
                                 return false;//TODO: this should be a different error code/message
                             }
@@ -321,7 +321,7 @@ public class MetaModel implements MetaModelInterface {
             BmmClass classDefinition = getSelectedBmmModel().getClassDefinition(typeName);
             if (classDefinition != null) {
                 //TODO: don't flatten on request, create a flattened properties cache just like the eiffel code for much better performance
-                BmmProperty bmmProperty = classDefinition.getFlatProperties().get(attributeName);
+                BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeName);
                 return isOrdered(bmmProperty);
             }
         }
@@ -332,7 +332,7 @@ public class MetaModel implements MetaModelInterface {
         return true; //most collections will be ordered, so safe default
     }
 
-    private boolean isOrdered(BmmProperty bmmProperty) {
+    private boolean isOrdered(BmmProperty<?> bmmProperty) {
         if (bmmProperty == null) {
             return false;
         }

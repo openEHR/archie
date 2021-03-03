@@ -130,7 +130,7 @@ public  class ExampleJsonInstanceGenerator {
 
 
         for (CAttribute attribute : cObject.getAttributes()) {
-            BmmProperty property = bmm.propertyAtPath (cObject.getRmTypeName(), attribute.getRmAttributeName());
+            BmmProperty<?> property = bmm.propertyAtPath (cObject.getRmTypeName(), attribute.getRmAttributeName());
             if(property == null || property.getComputed()) {
                 continue;//do not serialize non-bmm properties such as functions and computed properties
             }
@@ -245,9 +245,9 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     private void addRequiredPropertiesFromBmm(Map<String, Object> result, BmmClass classDefinition) {
-        Map<String, BmmProperty> properties = classDefinition.getFlatProperties();
+        Map<String, BmmProperty<?>> properties = classDefinition.getFlatProperties();
         //add all mandatory properties from the RM
-        for (BmmProperty property : properties.values()) {
+        for (BmmProperty<?> property : properties.values()) {
             if (property.getMandatory() && !result.containsKey(property.getName())) {
                 if(property.getName().equalsIgnoreCase("archetype_node_id")) {
                     addRequiredProperty(result, property, "idX");
@@ -258,11 +258,11 @@ public  class ExampleJsonInstanceGenerator {
         }
     }
 
-    private void addRequiredProperty(Map<String, Object> result, BmmProperty property) {
+    private void addRequiredProperty(Map<String, Object> result, BmmProperty<?> property) {
         addRequiredProperty(result, property, null);
     }
 
-    private void addRequiredProperty(Map<String, Object> result, BmmProperty property, String value) {
+    private void addRequiredProperty(Map<String, Object> result, BmmProperty<?> property, String value) {
         BmmType type = property.getType();
         if (value != null) {
             result.put(property.getName(), value);
@@ -515,7 +515,7 @@ public  class ExampleJsonInstanceGenerator {
             if(classDefinition == null) {
                 return null;
             }
-            BmmProperty property = classDefinition.getFlatProperties().get(parentAttribute.getRmAttributeName());
+            BmmProperty<?> property = classDefinition.getFlatProperties().get(parentAttribute.getRmAttributeName());
             if(property == null) {
                 return null;
             }
