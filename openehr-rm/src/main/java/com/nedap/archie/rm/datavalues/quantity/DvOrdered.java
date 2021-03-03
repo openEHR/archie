@@ -21,7 +21,7 @@ import java.util.Objects;
         "otherReferenceRanges",
         "normalStatus"
 })
-public abstract class DvOrdered<DataValueType extends DvOrdered<DataValueType, ComparableType>, ComparableType> extends DataValue implements Comparable<ComparableType> {
+public abstract class DvOrdered<DataValueType extends DvOrdered<DataValueType>> extends DataValue implements Comparable<DataValueType> {
 
     @Nullable
     @XmlElement(name = "normal_status")
@@ -82,7 +82,7 @@ public abstract class DvOrdered<DataValueType extends DvOrdered<DataValueType, C
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DvOrdered<?, ?> dvOrdered = (DvOrdered<?, ?>) o;
+        DvOrdered<?> dvOrdered = (DvOrdered<?>) o;
         return Objects.equals(normalStatus, dvOrdered.normalStatus) &&
                 Objects.equals(normalRange, dvOrdered.normalRange) &&
                 Objects.equals(otherReferenceRanges, dvOrdered.otherReferenceRanges);
