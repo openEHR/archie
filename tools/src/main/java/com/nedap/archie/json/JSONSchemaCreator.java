@@ -64,7 +64,7 @@ public class JSONSchemaCreator {
         rootTypes.add("ORGANISATION");
         rootTypes.add("PARTY_IDENTITY");
         rootTypes.add("ITEM_TREE");
-        Map<String, Object> config = new HashMap();
+        Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
     }
@@ -114,9 +114,9 @@ public class JSONSchemaCreator {
         JsonObjectBuilder properties = jsonFactory.createObjectBuilder();
 
         boolean atLeastOneProperty = false;
-        Map<String, BmmProperty> flatProperties = bmmClass.getFlatProperties();
+        Map<String, BmmProperty<?>> flatProperties = bmmClass.getFlatProperties();
         for (String propertyName : flatProperties.keySet()) {
-            BmmProperty bmmProperty = flatProperties.get(propertyName);
+            BmmProperty<?> bmmProperty = flatProperties.get(propertyName);
             if(bmmProperty.getComputed()) {
                 continue;//don't output this
             } else if((bmmClass.getName().startsWith("POINT_EVENT") || bmmClass.getName().startsWith("INTERVAL_EVENT")) &&
@@ -155,7 +155,7 @@ public class JSONSchemaCreator {
         definitions.add(typeName, definition);
     }
 
-    private void extendPropertyDef(JsonObjectBuilder propertyDef, BmmProperty bmmProperty) {
+    private void extendPropertyDef(JsonObjectBuilder propertyDef, BmmProperty<?> bmmProperty) {
         if(bmmProperty instanceof BmmContainerProperty) {
             BmmContainerProperty containerProperty = (BmmContainerProperty) bmmProperty;
             if(containerProperty.getCardinality() != null && containerProperty.getCardinality().getLower() > 0) {

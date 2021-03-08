@@ -20,7 +20,7 @@ public class ConformanceChecker {
      * @param aParentProperty
      * @return
      */
-    public boolean propertyConformsTo(PBmmSchema schema, PBmmProperty aChildProperty, PBmmProperty aParentProperty) {
+    public boolean propertyConformsTo(PBmmSchema schema, PBmmProperty<?> aChildProperty, PBmmProperty<?> aParentProperty) {
         if(aParentProperty instanceof PBmmSingleProperty && ((PBmmSingleProperty) aParentProperty).getTypeRef().getType().equalsIgnoreCase(BmmDefinitions.ANY_TYPE)) {
             return true;
         }

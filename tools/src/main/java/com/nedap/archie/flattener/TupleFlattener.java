@@ -35,7 +35,7 @@ class TupleFlattener {
         //update all parent references
         for(CPrimitiveTuple primitiveTuple:tupleClone.getTuples()) {
             int i = 0;
-            for(CPrimitiveObject object:primitiveTuple.getMembers()) {
+            for(CPrimitiveObject<?, ?> object:primitiveTuple.getMembers()) {
                 object.setSocParent(primitiveTuple);
                 object.setParent((tupleClone.getMembers().get(i)));
                 i++;

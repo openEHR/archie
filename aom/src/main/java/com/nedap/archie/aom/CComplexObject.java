@@ -24,10 +24,10 @@ import java.util.stream.Collectors;
 })
 public class CComplexObject extends CDefinedObject<OpenEHRBase> {
 
-    private List<CAttribute> attributes = new ArrayList();
+    private List<CAttribute> attributes = new ArrayList<>();
 
     @XmlElement(name="attributeTuples")
-    private List<CAttributeTuple> attributeTuples = new ArrayList();
+    private List<CAttributeTuple> attributeTuples = new ArrayList<>();
 
     @JsonIgnore
     protected transient Archetype archetype;

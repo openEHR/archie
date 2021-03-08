@@ -53,7 +53,7 @@ public class RMComparedWithBmmTest {
                 return classDefinition == null ? true : !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.1.0");
             }).collect(Collectors.toList());
 
-        Set<ModelDifference> knownDifferences = new HashSet();
+        Set<ModelDifference> knownDifferences = new HashSet<>();
 
 
         //Needs a backwards incompatible fix, not changing now (and not important, new API is included)

@@ -209,7 +209,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
             List<C_object_tuple_itemContext> primitiveObjectContexts = tupleContext.c_object_tuple_items().c_object_tuple_item();
             int i = 0;
             for(C_object_tuple_itemContext tupleObjectContext:primitiveObjectContexts) {
-                CPrimitiveObject primitiveObject = null;
+                CPrimitiveObject<?, ?> primitiveObject = null;
                 if(tupleObjectContext.c_primitive_object() != null) {
                     primitiveObject = primitivesConstraintParser.parsePrimitiveObject(tupleObjectContext.c_primitive_object());
                 } else if (tupleObjectContext.CONTAINED_REGEXP() != null) {

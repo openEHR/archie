@@ -24,7 +24,7 @@ public class RMPrimitiveObjectValidationTest {
         lookup = ArchieRMInfoLookup.getInstance();
     }
 
-    public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject cobject) {
+    public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
         return null;
     }
 

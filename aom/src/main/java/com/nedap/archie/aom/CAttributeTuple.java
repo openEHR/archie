@@ -68,7 +68,7 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
         for(CAttribute attribute:getMembers()) {
             String attributeName = attribute.getRmAttributeName();
 
-            CPrimitiveObject cPrimitiveObject = tuple.getMembers().get(index);
+            CPrimitiveObject<?, ?> cPrimitiveObject = tuple.getMembers().get(index);
             Object value = values.get(attributeName);
             if(value == null) {
                 return false;
@@ -89,7 +89,7 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
      */
     public boolean isValid(ModelInfoLookup lookup, Object value) {
 
-        HashMap<String, Object> members = new HashMap();
+        HashMap<String, Object> members = new HashMap<>();
         for(CAttribute attribute:getMembers()) {
             RMAttributeInfo attributeInfo = lookup.getAttributeInfo(value.getClass(), attribute.getRmAttributeName());
             try {

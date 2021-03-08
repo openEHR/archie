@@ -20,7 +20,7 @@ import java.util.Objects;
         DvTemporal.class,
         DvAmount.class
 })
-public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparable> extends DvOrdered<MagnitudeType> {
+public abstract class DvQuantified<DataValueType extends DvQuantified<DataValueType, AccuracyType, MagnitudeType>, AccuracyType, MagnitudeType extends Comparable<MagnitudeType>> extends DvOrdered<DataValueType, MagnitudeType> {
 
     @Nullable
     @XmlElement(name = "magnitude_status")
@@ -29,7 +29,7 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
     public DvQuantified() {
     }
 
-    public DvQuantified(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus) {
+    public DvQuantified(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus) {
         super(otherReferenceRanges, normalRange, normalStatus);
         this.magnitudeStatus = magnitudeStatus;
     }
@@ -58,7 +58,7 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        DvQuantified<?, ?> that = (DvQuantified<?, ?>) o;
+        DvQuantified<?, ?, ?> that = (DvQuantified<?, ?, ?>) o;
         return Objects.equals(magnitudeStatus, that.magnitudeStatus);
     }
 

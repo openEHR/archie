@@ -19,7 +19,7 @@ public class VersionedEhrAccess extends VersionedObject<EhrAccess> {
     public VersionedEhrAccess() {
     }
 
-    public VersionedEhrAccess(HierObjectId uid, ObjectRef ownerId, DvDateTime timeCreated) {
+    public VersionedEhrAccess(HierObjectId uid, ObjectRef<?> ownerId, DvDateTime timeCreated) {
         super(uid, ownerId, timeCreated);
     }
 }

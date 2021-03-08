@@ -32,7 +32,8 @@ public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
         }
         //now guaranteed to be the same class
 
-        COrdered<?> otherOrdered = (COrdered) other;
+        @SuppressWarnings("unchecked")
+        COrdered<T> otherOrdered = (COrdered<T>) other;
         if(otherOrdered.getConstraint().isEmpty()) {
             return true;
         }
@@ -40,7 +41,7 @@ public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
 
         for(Interval<T> constraint:getConstraint()) {
             boolean found = false;
-            for(Interval otherConstraint:otherOrdered.getConstraint()) {
+            for(Interval<T> otherConstraint:otherOrdered.getConstraint()) {
                 if(otherConstraint.contains(constraint)) {
                     found = true;
                     break;

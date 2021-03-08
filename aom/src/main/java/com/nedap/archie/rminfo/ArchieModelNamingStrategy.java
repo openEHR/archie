@@ -14,7 +14,7 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
     public static final PropertyNamingStrategy.SnakeCaseStrategy snakeCaseStrategy = new PropertyNamingStrategy.SnakeCaseStrategy();
 
     @Override
-    public String getTypeName(Class clazz) {
+    public String getTypeName(Class<?> clazz) {
         // For some RM objects the name is an exception on the snakecase -> uppercase strategy
         String name = clazz.getSimpleName();
         switch(name) {

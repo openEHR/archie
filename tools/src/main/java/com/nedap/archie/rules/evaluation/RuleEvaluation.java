@@ -27,8 +27,8 @@ public class RuleEvaluation<T> {
     private final JAXBContext jaxbContext;
 
     private Archetype archetype;
-    private List<Evaluator> evaluators = new ArrayList<>();
-    private HashMap<Class, Evaluator> classToEvaluator = new HashMap<>();
+    private List<Evaluator<?>> evaluators = new ArrayList<>();
+    private HashMap<Class<?>, Evaluator<?>> classToEvaluator = new HashMap<>();
     private FunctionEvaluator functionEvaluator;
 
     //evaluation state
@@ -66,10 +66,10 @@ public class RuleEvaluation<T> {
         add(functionEvaluator);
     }
 
-    private void add(Evaluator evaluator) {
+    private void add(Evaluator<?> evaluator) {
         evaluators.add(evaluator);
-        for(Object clazz: evaluator.getSupportedClasses()) {
-            classToEvaluator.put((Class) clazz, evaluator);
+        for(Class<?> clazz: evaluator.getSupportedClasses()) {
+            classToEvaluator.put(clazz, evaluator);
         }
     }
 

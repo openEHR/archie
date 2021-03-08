@@ -29,7 +29,7 @@ public class LocatableTest {
         item.setData(history);
 
         history.setArchetypeNodeId("id2");
-        PointEvent event = new PointEvent<>();
+        PointEvent<ItemStructure> event = new PointEvent<>();
         history.addEvent(event);
         event.setArchetypeNodeId("id3");
         event.setNameAsString("custom event");
@@ -70,7 +70,7 @@ public class LocatableTest {
         item.setData(history);
 
         history.setArchetypeNodeId("id2");
-        PointEvent event = new PointEvent<>();
+        PointEvent<ItemStructure> event = new PointEvent<>();
         history.addEvent(event);
         event.setArchetypeNodeId("id3");
         event.setNameAsString("custom event");

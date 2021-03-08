@@ -102,7 +102,7 @@ public class BigArchetypeValidatorTest {
     private FullArchetypeRepository parseAll() {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
         Reflections reflections = new Reflections("adl2-tests", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
         for(String file:adlFiles) {
             if (file.contains("legacy_adl_1.4")) {
                 continue;
@@ -147,7 +147,7 @@ public class BigArchetypeValidatorTest {
     public void testInner(MetaModels metaModels) {
 
         Reflections reflections = new Reflections("adl2-tests.validity", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
 
 
         int errorCount = 0;

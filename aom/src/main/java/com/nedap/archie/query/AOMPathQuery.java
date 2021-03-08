@@ -233,7 +233,7 @@ public class AOMPathQuery {
      * Find anything matching a specific predicate anywhere inside the APath query. Can be at the end of the full query, at the first matching CComplexObjectProxy or anywhere in between
      * Useful mainly when flattening, probably does not have many other uses
      */
-    public ArchetypeModelObject findMatchingPredicate(CComplexObject root, Predicate predicate) {
+    public ArchetypeModelObject findMatchingPredicate(CComplexObject root, Predicate<? super ArchetypeModelObject> predicate) {
         List<ArchetypeModelObject> result = new ArrayList<>();
         result.add(root);
         for(PathSegment segment:this.pathSegments) {
@@ -253,7 +253,7 @@ public class AOMPathQuery {
      * Find all path segments matching a specific predicate anywhere inside the APath query. Can be at the end of the full query, at the first matching CComplexObjectProxy or anywhere in between
      * Useful mainly when flattening, probably does not have many other uses
      */
-    public List<ArchetypeModelObject> findAllMatchingPredicate(CComplexObject root, Predicate predicate) {
+    public List<ArchetypeModelObject> findAllMatchingPredicate(CComplexObject root, Predicate<? super ArchetypeModelObject> predicate) {
         List<ArchetypeModelObject> currentObjects = new ArrayList<>();
         currentObjects.add(root);
         List<ArchetypeModelObject> results = new ArrayList<>();

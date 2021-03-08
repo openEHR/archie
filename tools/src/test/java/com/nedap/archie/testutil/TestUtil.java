@@ -125,7 +125,7 @@ public class TestUtil {
 
 
                 } else if (childObject1 instanceof CPrimitiveObject) {
-                    CPrimitiveObject primitiveChild = (CPrimitiveObject) childObject1;
+                    CPrimitiveObject<?, ?> primitiveChild = (CPrimitiveObject<?, ?>) childObject1;
                     List<CObject> childObjects2 = attribute2.getChildren().stream()
                         .filter(
                             o -> primitiveObjectMatches(primitiveChild, o)
@@ -139,8 +139,8 @@ public class TestUtil {
 
     }
 
-    private static boolean primitiveObjectMatches(CPrimitiveObject o1, CObject o2) {
-        return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject) o2).getConstraint(), o1.getConstraint());
+    private static boolean primitiveObjectMatches(CPrimitiveObject<?, ?> o1, CObject o2) {
+        return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject<?, ?>) o2).getConstraint(), o1.getConstraint());
     }
 
     public static Archetype parseFailOnErrors(String resourceName) throws IOException {
@@ -160,7 +160,7 @@ public class TestUtil {
     public static FullArchetypeRepository parseCKM() {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
         Reflections reflections = new Reflections("ckm-mirror", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
         for(String file:adlFiles) {
             Archetype archetype;
             ANTLRParserErrors errors;

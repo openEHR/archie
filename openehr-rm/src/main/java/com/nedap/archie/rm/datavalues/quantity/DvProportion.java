@@ -22,7 +22,7 @@ import java.util.Objects;
         "type",
         "precision"
 })
-public class DvProportion extends DvAmount<Double> {
+public class DvProportion extends DvAmount<DvProportion, Double> {
 
     private Double numerator;
     private Double denominator;
@@ -39,7 +39,7 @@ public class DvProportion extends DvAmount<Double> {
         this.type = type;
     }
 
-    public DvProportion(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Double numerator, Double denominator, Long type, @Nullable Long precision) {
+    public DvProportion(@Nullable List<ReferenceRange<DvProportion>> otherReferenceRanges, @Nullable DvInterval<DvProportion> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Double numerator, Double denominator, Long type, @Nullable Long precision) {
         super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
         this.numerator = numerator;
         this.denominator = denominator;

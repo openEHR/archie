@@ -242,7 +242,7 @@ public class AOMUtils {
             if (binary.getOperator() == OperatorKind.matches) {
                 Expression rightOperand = binary.getRightOperand();
                 if (rightOperand instanceof Constraint) {
-                    Constraint constraint = (Constraint) rightOperand;
+                    Constraint<?> constraint = (Constraint<?>) rightOperand;
                     if(constraint.getItem() != null && constraint.getItem().getConstraint() != null && constraint.getItem().getConstraint().size() > 0 &&
                             constraint.getItem() instanceof CString) {
                         String pattern = ((CString) constraint.getItem()).getConstraint().get(0);

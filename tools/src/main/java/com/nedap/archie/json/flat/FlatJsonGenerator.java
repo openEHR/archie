@@ -158,7 +158,7 @@ public class FlatJsonGenerator {
         } else if (child instanceof Collection) {
 
             Map<String, Integer> amountsPerNodeId = new HashMap<>();
-            for(Object c: (Collection) child) {
+            for(Object c: (Collection<?>) child) {
 
                 int numberOfNonLocatables = 1; //1-based, sory
                 String archetypeNodeId = modelInfoLookup.getArchetypeNodeIdFromRMObject(c);

@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PARTY_REF")
-public class PartyRef extends ObjectRef {
+public class PartyRef extends ObjectRef<ObjectId> {
 
     public PartyRef() {
     }
