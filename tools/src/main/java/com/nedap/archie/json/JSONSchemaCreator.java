@@ -307,11 +307,24 @@ public class JSONSchemaCreator {
 
     private JsonObjectBuilder createConstType(String rootType) {
 
-        return jsonFactory.createObjectBuilder()
-                .add("_type", jsonFactory.createObjectBuilder()
-                    .add("type", "string").add("pattern", "^" + rootType + "(<.*>)?$")
-                    //.add("const", rootType)
-                );
+        boolean generic = false;
+
+        BmmClass classDefinition = bmmModel.getClassDefinition(rootType);
+
+        if(classDefinition == null || classDefinition instanceof BmmGenericClass) {
+            generic = true;
+        }
+        if(generic) {
+            return jsonFactory.createObjectBuilder()
+                    .add("_type", jsonFactory.createObjectBuilder()
+                                    .add("type", "string").add("pattern", "^" + rootType + "<.*>$")
+                    );
+        } else {
+            return jsonFactory.createObjectBuilder()
+                    .add("_type", jsonFactory.createObjectBuilder()
+                            .add("const", rootType)
+                    );
+        }
     }
 
     private JsonObjectBuilder createRequiredArray(String... requiredFields) {
