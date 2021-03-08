@@ -154,6 +154,10 @@ public class JSONSchemaCreator {
                 .add("required", required)
                 .add("properties", properties);
 
+        if(bmmClass.getDocumentation() != null) {
+            definition.add("description", bmmClass.getDocumentation());
+        }
+
         if(!allowAdditionalProperties && atLeastOneProperty) {
             definition.add("additionalProperties", false);
         }
@@ -166,6 +170,9 @@ public class JSONSchemaCreator {
             if(containerProperty.getCardinality() != null && containerProperty.getCardinality().getLower() > 0) {
                 propertyDef.add("minItems", containerProperty.getCardinality().getLower());
             }
+        }
+        if(bmmProperty.getDocumentation() != null) {
+            propertyDef.add("description", bmmProperty.getDocumentation());
         }
     }
 
