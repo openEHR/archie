@@ -154,6 +154,10 @@ public class JSONSchemaCreator {
                 .add("required", required)
                 .add("properties", properties);
 
+        if(bmmClass.getDocumentation() != null) {
+            definition.add("description", bmmClass.getDocumentation());
+        }
+
         if(!allowAdditionalProperties && atLeastOneProperty) {
             definition.add("additionalProperties", false);
         }
@@ -166,6 +170,9 @@ public class JSONSchemaCreator {
             if(containerProperty.getCardinality() != null && containerProperty.getCardinality().getLower() > 0) {
                 propertyDef.add("minItems", containerProperty.getCardinality().getLower());
             }
+        }
+        if(bmmProperty.getDocumentation() != null) {
+            propertyDef.add("description", bmmProperty.getDocumentation());
         }
     }
 
@@ -208,8 +215,17 @@ public class JSONSchemaCreator {
     private JsonObjectBuilder createPolymorphicReference(BmmClass type) {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
+        boolean addConcreteElse = false;
         if(!type.isAbstract()) {
             descendants.add(BmmDefinitions.typeNameToClassKey(type.getName()));
+            addConcreteElse = true;
+        }
+
+        boolean genericType = type instanceof BmmGenericClass;
+        for(String descendant:descendants) {
+            if(bmmModel.getClassDefinition(descendant) instanceof BmmGenericClass) {
+                genericType = true; // it would be better to generate either an enum OR a couple of patterns, but not now
+            }
         }
 
         if(descendants.isEmpty()) {
@@ -219,10 +235,30 @@ public class JSONSchemaCreator {
             return createType("object");
         } else if (descendants.size() > 1) {
             JsonArrayBuilder array = jsonFactory.createArrayBuilder();
-            array.add(createRequiredArray("_type"));
+
+            JsonObjectBuilder requiredType = addConcreteElse? jsonFactory.createObjectBuilder() : createRequiredArray("_type");
+
+            if(!genericType) {
+                JsonObjectBuilder typeDefinition = jsonFactory.createObjectBuilder()
+                        .add("type", "string");
+
+                JsonArrayBuilder enumValues = jsonFactory.createArrayBuilder();
+                for (String descendant : descendants) {
+                    enumValues.add(descendant);
+                }
+                typeDefinition.add("enum", enumValues);
+                JsonObjectBuilder typePropertyCheck = jsonFactory.createObjectBuilder()
+                        .add("_type", typeDefinition);
+                requiredType.add("properties", typePropertyCheck);
+            }
+            array.add(requiredType);
+
             for(String descendant:descendants) {
                 JsonObjectBuilder typePropertyCheck = createConstType(descendant);
                 JsonObjectBuilder typeCheck = jsonFactory.createObjectBuilder().add("properties", typePropertyCheck);
+                if(addConcreteElse) {
+                    typeCheck.addAll(createRequiredArray("_type"));
+                }
 
                 JsonObjectBuilder typeReference = createReference(descendant);
                 //IF the type matches
@@ -234,6 +270,12 @@ public class JSONSchemaCreator {
 
             }
 
+            if(addConcreteElse) {
+                JsonObjectBuilder elseObject = jsonFactory.createObjectBuilder()
+                        .add("if", jsonFactory.createObjectBuilder().add("not", createRequiredArray("_type")))
+                        .add("then", createReference(type.getName()));
+                array.add(elseObject);
+            }
 
             return jsonFactory.createObjectBuilder().add("allOf", array);
         } else {
@@ -272,11 +314,24 @@ public class JSONSchemaCreator {
 
     private JsonObjectBuilder createConstType(String rootType) {
 
-        return jsonFactory.createObjectBuilder()
-                .add("_type", jsonFactory.createObjectBuilder()
-                    .add("type", "string").add("pattern", "^" + rootType + "(<.*>)?$")
-                    //.add("const", rootType)
-                );
+        boolean generic = false;
+
+        BmmClass classDefinition = bmmModel.getClassDefinition(rootType);
+
+        if(classDefinition == null || classDefinition instanceof BmmGenericClass) {
+            generic = true;
+        }
+        if(generic) {
+            return jsonFactory.createObjectBuilder()
+                    .add("_type", jsonFactory.createObjectBuilder()
+                                    .add("type", "string").add("pattern", "^" + rootType + "<.*>$")
+                    );
+        } else {
+            return jsonFactory.createObjectBuilder()
+                    .add("_type", jsonFactory.createObjectBuilder()
+                            .add("const", rootType)
+                    );
+        }
     }
 
     private JsonObjectBuilder createRequiredArray(String... requiredFields) {
