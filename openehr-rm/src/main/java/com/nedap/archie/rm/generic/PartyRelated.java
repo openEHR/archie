@@ -3,6 +3,8 @@ package com.nedap.archie.rm.generic;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvIdentifier;
 import com.nedap.archie.rm.support.identification.PartyRef;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -47,5 +49,10 @@ public class PartyRelated extends PartyIdentified {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), relationship);
+    }
+
+    @Invariant("Relationship_valid")
+    public boolean relationshipValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(relationship, "subject relationship");
     }
 }
