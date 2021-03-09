@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -221,7 +222,8 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
 
         Class rawFieldType = fieldType.getRawType();
         Class typeInCollection = getTypeInCollection(fieldType);
-       // if (setMethod != null) {
+
+        // if (setMethod != null) {
             RMAttributeInfo attributeInfo = new RMAttributeInfo(
                     attributeName,
                     field,
@@ -231,7 +233,8 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     isNullable(clazz, getMethod, field),
                     getMethod,
                     setMethod,
-                    addMethod
+                    addMethod,
+                    determineIfComputed(clazz, getMethod, field, setMethod, addMethod)
             );
             if(typeInfo.getAttribute(attributeName) == null) {
                 typeInfo.addAttribute(attributeInfo);
@@ -241,8 +244,34 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
        // }
     }
 
+    private boolean determineIfComputed(Class clazz, Method getMethod, Field field, Method setMethod, Method addMethod) {
+        boolean computed = setMethod == null && addMethod == null && field == null;
+
+        RMProperty annotation = getAnnotation(clazz, getMethod, field, RMProperty.class);
+        if(annotation != null && annotation.computed() != PropertyType.AUTO_DETECT) {
+            computed = annotation.computed() == PropertyType.COMPUTED;
+        }
+        return computed;
+    }
+
     protected boolean isNullable(Class clazz, Method getMethod, Field field) {
-        return (field != null && field.getAnnotation(Nullable.class) != null) || getMethod.getAnnotation(Nullable.class) != null;
+        return getAnnotation(clazz, getMethod, field, Nullable.class) != null;
+    }
+
+    private <T extends Annotation> T getAnnotation(Class clazz, Method getMethod, Field field, Class<T> annotationClass) {
+        if(field != null) {
+            T annotation = (T) field.getAnnotation(annotationClass);
+            if(annotation != null) {
+                return annotation;
+            }
+        }
+        if(getMethod != null) {
+            T annotation = (T) getMethod.getAnnotation(annotationClass);
+            if(annotation != null) {
+                return annotation;
+            }
+        }
+        return null;
     }
 
 
@@ -301,7 +330,8 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     isNullable(clazz, getMethod, field),
                     getMethod,
                     setMethod,
-                    addMethod
+                    addMethod,
+                    determineIfComputed(clazz, getMethod, field, setMethod, addMethod)
             );
             typeInfo.addAttribute(attributeInfo);
         } else {

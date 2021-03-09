@@ -1,5 +1,6 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
+import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
@@ -16,5 +17,14 @@ public class DvIntervalInvariantTest {
     @Test
     public void inconsistentLimits() {
         InvariantTestUtil.assertInvariantInvalid(new DvInterval(new DvCount(5l), new DvCount(1l)), "Limits_consistent", "/");
+    }
+
+    @Test
+    public void intervalInvariantsChecked() {
+        DvInterval interval = new DvInterval(new DvCount(1l), new DvCount(4l));
+        interval.setLowerIncluded(true);
+        interval.setLowerUnbounded(true);
+        InvariantTestUtil.assertInvariantInvalid(interval.getInterval(), "Lower_included_valid", "/");
+        InvariantTestUtil.assertInvariantInvalid(interval, "Lower_included_valid", "INTERVAL", "/interval");
     }
 }

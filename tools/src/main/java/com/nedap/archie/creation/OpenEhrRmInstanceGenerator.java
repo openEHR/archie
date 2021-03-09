@@ -175,6 +175,37 @@ class OpenEhrRmInstanceGenerator {
                 break;
             case "PARTY_REF":
                 fixPartyRef(result);
+                break;
+            case "DV_INTERVAL":
+                fixDvInterval(result);
+                break;
+        }
+    }
+
+    private void fixDvInterval(Map<String, Object> result) {
+        Boolean lowerUnbounded = (Boolean) result.get("lower_unbounded");
+        Boolean lowerIncluded = (Boolean) result.get("lower_included");
+        Boolean upperUnbounded = (Boolean) result.get("upper_unbounded");
+        Boolean upperIncluded = (Boolean) result.get("upper_included");
+        if(lowerUnbounded != null && lowerIncluded != null) {
+            if(lowerUnbounded) {
+                result.put("lower_included", false);
+            }
+        }
+        if(upperUnbounded != null && upperIncluded != null) {
+            if(upperUnbounded) {
+                result.put("upper_included", false);
+            }
+        }
+        if(result.get("lower") == null) {
+            result.put("lower_unbounded", true);
+        } else {
+            result.put("lower_unbounded", false);
+        }
+        if(result.get("upper") == null) {
+            result.put("upper_unbounded", true);
+        } else {
+            result.put("upper_unbounded", false);
         }
     }
 

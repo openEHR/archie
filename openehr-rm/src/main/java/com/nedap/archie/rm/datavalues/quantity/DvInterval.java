@@ -1,5 +1,6 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datavalues.DataValue;
 import com.nedap.archie.rminfo.Invariant;
@@ -8,6 +9,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
@@ -87,6 +89,16 @@ public class DvInterval<Type extends DvOrdered> extends DataValue {
 
     public void setUpperIncluded(boolean upperIncluded) {
         interval.setUpperIncluded(upperIncluded);
+    }
+
+    /**
+     * gets the underlying interval, so it can be access and its invariants are validated
+     * @return
+     */
+    @JsonIgnore
+    @XmlTransient
+    public Interval<DvOrdered> getInterval() {
+        return interval;
     }
 
     public boolean has(DvOrdered value) {

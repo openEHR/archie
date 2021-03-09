@@ -5,6 +5,8 @@ import com.google.common.collect.Sets;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTemporal;
 import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rminfo.PropertyType;
+import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -51,6 +53,7 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
     }
 
     @Nullable
+    @RMProperty(value = "accuracy", computed = PropertyType.MEMORY)
     public abstract AccuracyType getAccuracy();
 
     public abstract MagnitudeType getMagnitude();
