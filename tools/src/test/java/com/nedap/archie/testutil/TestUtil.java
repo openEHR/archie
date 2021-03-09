@@ -158,9 +158,13 @@ public class TestUtil {
     }
 
     public static FullArchetypeRepository parseCKM() {
+        return parseCKM(".*\\.adls");
+    }
+
+    public static FullArchetypeRepository parseCKM(String filter) {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
         Reflections reflections = new Reflections("ckm-mirror", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(filter)));
         for(String file:adlFiles) {
             Archetype archetype;
             ANTLRParserErrors errors;
@@ -180,5 +184,6 @@ public class TestUtil {
         }
         return result;
     }
+
 
 }

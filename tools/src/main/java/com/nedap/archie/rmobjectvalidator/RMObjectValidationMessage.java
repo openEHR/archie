@@ -64,6 +64,6 @@ public class RMObjectValidationMessage {
     }
 
     public String toString() {
-        return RMObjectValidationMessageIds.rm_VALIDATION_MESSAGE_TO_STRING.getMessage(humanReadableArchetypePath, path, message);
+        return RMObjectValidationMessageIds.rm_VALIDATION_MESSAGE_TO_STRING.getMessage(humanReadableArchetypePath == null ? path : humanReadableArchetypePath, path, message);
     }
 }

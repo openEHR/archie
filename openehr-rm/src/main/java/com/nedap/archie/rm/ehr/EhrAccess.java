@@ -4,6 +4,8 @@ import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.security.AccessControlSettings;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -57,4 +59,10 @@ public class EhrAccess extends Locatable {
     public int hashCode() {
         return Objects.hash(super.hashCode(), settings);
     }
+
+//TODO: invariants requierd here? this is not a concrete data type
+//    @Invariant("Is_archetype_root")
+//    public boolean archetypeRoot() {
+//        return this.isA
+//    }
 }
