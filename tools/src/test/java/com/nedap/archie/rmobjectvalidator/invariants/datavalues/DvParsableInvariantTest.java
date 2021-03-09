@@ -3,8 +3,16 @@ package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
 import com.nedap.archie.rm.support.identification.TerminologyId;
+import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
+import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DvParsableInvariantTest {
 
@@ -25,7 +33,19 @@ public class DvParsableInvariantTest {
     public void charSetInvalid() {
         DvParsable value = createValid();
         value.setCharset(new CodePhrase(new TerminologyId("IANA_character-sets"), "UTF-13"));
-        InvariantTestUtil.assertInvariantInvalid(value, "Charset_valid", "/");
+        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
+        List<RMObjectValidationMessage> messages = validator.validate(value);
+
+        assertEquals(messages.toString(), 2, messages.size());
+        for(RMObjectValidationMessage message:messages) {
+            if(message.getMessage().startsWith("Invariant")) {
+                assertEquals("Invariant Charset_valid failed on type DV_PARSABLE", message.getMessage());
+                assertEquals("/", messages.get(0).getPath());
+            } else {
+                assertTrue(message.getMessage(), message.getMessage().contains("UnsupportedCharsetException"));
+            }
+        }
+
     }
 
     @Test

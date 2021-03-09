@@ -61,12 +61,14 @@ public class DvParsable extends DvEncapsulated implements SingleValuedDataValue<
 
     /**
      * The number of bytes in the value string, represented in the given character set. Defaults to UTF-8 if no encoding is given.
-     * @return
+     * @return The number of bytes in the value string, represented in the given character set. Defaults to UTF-8 if no encoding is given.
+     * @throws java.nio.charset.UnsupportedCharsetException in case of an unsupported character set.
      */
     public int size() {
         if(value == null) {
             return 0;
         }
+
         if(getCharset() != null) {
             return value.getBytes(Charsets.toCharset(getCharset().getCodeString())).length;
         }
@@ -95,7 +97,6 @@ public class DvParsable extends DvEncapsulated implements SingleValuedDataValue<
 
     @Invariant("Size_valid")
     public boolean sizeValid() {
-        //have not implemented the size function. The size of a string in bytes is not the number of characters, but depends on the encoding, and it's not possible to implement here.
-        return value == null || value.length() > 0;
+        return size() > 0;
     }
 }

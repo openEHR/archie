@@ -41,7 +41,6 @@ public class OpenEHRExampleCodePhrases {
         exampleObjectsByAttribute.put("DV_TEXT.encoding", () -> createCodePhrase("IANA_character-sets", "UTF-8"));
         exampleObjectsByAttribute.put("DV_CODED_TEXT.language", () -> createCodePhrase("ISO_639-1", "en"));
         exampleObjectsByAttribute.put("DV_CODED_TEXT.encoding", () -> createCodePhrase("IANA_character-sets", "UTF-8"));
-        //TODO: entry subtypes: OBSERVATION, EVALUATION, INSTRUCTION, ACTION, AMIN_ENTRY. GENERIC_ENTRY is not an entry, but a CONTENT_ITEM
         exampleObjectsByAttribute.put("OBSERVATION.language", () -> createCodePhrase("ISO_639-1", "en"));
         exampleObjectsByAttribute.put("OBSERVATION.encoding", () -> createCodePhrase("IANA_character-sets", "UTF-8"));
         exampleObjectsByAttribute.put("EVALUATION.language", () -> createCodePhrase("ISO_639-1", "en"));

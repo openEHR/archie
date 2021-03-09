@@ -116,10 +116,10 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             result.add(new RMObjectValidationMessage(null, joinPaths(pathSoFar, objectWithPath.getPath()),
                                     I18n.t("Exception {0} invoking invariant {1} on {2}: {3}\n{4}",
-                                            e.getClass().getSimpleName(),
+                                            e.getCause() == null ? e.getClass().getSimpleName() : e.getCause().getClass().getSimpleName(),
                                             invariantMethod.getAnnotation().value(),
                                             typeInfo.getRmName(),
-                                            e.getMessage(),
+                                            e.getCause() == null ? e.getMessage() : e.getCause().getMessage(),
                                             Joiner.on("\n\t").join(e.getStackTrace())),
                                     RMObjectValidationMessageType.EXCEPTION));
                         }
