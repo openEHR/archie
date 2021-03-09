@@ -2,6 +2,8 @@ package com.nedap.archie.rm.archetyped;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -89,4 +91,10 @@ public class Archetyped extends RMObject {
     public int hashCode() {
         return Objects.hash(archetypeId, templateId, rmVersion);
     }
+
+    @Invariant("Rm_version_valid")
+    public boolean rmVersionValid() {
+        return InvariantUtil.nullOrNotEmpty(rmVersion);
+    }
+
 }

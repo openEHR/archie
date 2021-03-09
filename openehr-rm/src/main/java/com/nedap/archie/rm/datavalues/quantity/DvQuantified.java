@@ -1,13 +1,20 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
 
+import com.google.common.collect.Sets;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTemporal;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rminfo.PropertyType;
+import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -20,7 +27,9 @@ import java.util.Objects;
         DvTemporal.class,
         DvAmount.class
 })
-public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparable> extends DvOrdered<MagnitudeType> {
+public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparable> extends DvOrdered {
+
+    private static final Set<String> VALID_MAGNITUDE_STATUS_CODES = Sets.newHashSet("=", "<", ">", "<=", ">=", "~");
 
     @Nullable
     @XmlElement(name = "magnitude_status")
@@ -44,13 +53,23 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
     }
 
     @Nullable
+    @RMProperty(value = "accuracy", computed = PropertyType.MEMORY)
     public abstract AccuracyType getAccuracy();
 
     public abstract MagnitudeType getMagnitude();
 
     @Override
-    public int compareTo(MagnitudeType other) {
-        return getMagnitude().compareTo(other);
+    public int compareTo(Object other) {
+        if(other instanceof DvQuantified) {
+            return getMagnitude().compareTo(((DvQuantified) other).getMagnitude());
+        } else {
+            //this should not be here, but was the earlier implementation, by mistake.
+            //so if people rely on this, still support it, but it is deprecated and will eventually be removed
+
+            //cannot do instanceof with generic type. So just try.
+            MagnitudeType otherMagnitude = (MagnitudeType) other;
+            return getMagnitude().compareTo(otherMagnitude);
+        }
     }
 
     @Override
@@ -65,5 +84,10 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), magnitudeStatus);
+    }
+
+    @Invariant("Magnitude_status_valid")
+    public boolean magnitudeStatusValid() {
+        return magnitudeStatus == null || VALID_MAGNITUDE_STATUS_CODES.contains(magnitudeStatus);
     }
 }

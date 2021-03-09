@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -149,7 +150,11 @@ public class BmmComparison {
                     className, bmmProperty.getName()
                     ));
         }
-
+        if(!Objects.equals(attributeInfo.isComputed(), bmmProperty.getComputed())) {
+            result.add(new ModelDifference(ModelDifferenceType.IS_COMPUTED_DIFFERENCE,
+                    MessageFormat.format("is computed different {0}: BMM {1}, implementation {2}", className + bmmProperty.getName(), bmmProperty.getComputed(), attributeInfo.isComputed()),
+                    className, bmmProperty.getName()));
+        }
         if(attributeInfo.isNullable() != !bmmProperty.getMandatory() && !bmmProperty.getComputed()) {
             result.add(new ModelDifference(ModelDifferenceType.EXISTENCE_DIFFERENCE,
                     MessageFormat.format("mandatory difference {2}: BMM: {0}, implementation: {1}", bmmProperty.getMandatory(), !attributeInfo.isNullable(), className + "." + bmmProperty.getName()),

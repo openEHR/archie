@@ -1,7 +1,10 @@
 package com.nedap.archie.rminfo;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -19,6 +22,7 @@ public class RMTypeInfo {
     //only direct descendant classes here
     private final Set<RMTypeInfo> descendantClasses = new LinkedHashSet<>();
     private Map<String, RMAttributeInfo> attributes = new HashMap<>();
+    private List<InvariantMethod> invariants = new ArrayList<>();
 
     public RMTypeInfo(Class clazz, String rmName) {
         this.javaClass = clazz;
@@ -59,6 +63,14 @@ public class RMTypeInfo {
 
     public Set<RMTypeInfo> getDirectDescendantClasses() {
         return descendantClasses;
+    }
+
+    public List<InvariantMethod> getInvariants() {
+        return invariants;
+    }
+
+    public void addInvariantMethod(Method method, Invariant annotation) {
+        this.invariants.add(new InvariantMethod(method, annotation));
     }
 
     public Set<RMTypeInfo> getAllDescendantClasses() {
