@@ -163,7 +163,7 @@ public  class ExampleJsonInstanceGenerator {
                             //TODO: how to do properties at begin? Just add as empty map, then add fields here then at end?
                             //perhaps not required?
                             Map<String, Object> toAddMap = (Map<String, Object>) toAdd;
-                            String childTypeName = toAddMap.containsKey("_type") ? (String) toAddMap.get("_type") : child.getRmTypeName();
+                            String childTypeName = toAddMap.containsKey(typePropertyName) ? (String) toAddMap.get(typePropertyName) : child.getRmTypeName();
                             BmmClass childClassDefinition = bmm.getClassDefinition(childTypeName);
                             openEhrRmInstanceGenerator.addAdditionalPropertiesAtEnd(childClassDefinition, toAddMap, child);
                         }
