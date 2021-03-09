@@ -1,6 +1,5 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
-import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
