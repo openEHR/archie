@@ -14,7 +14,7 @@ public class InvariantUtil {
 
     public static final String ENGLISH = "en";
 
-    public static boolean nullOrNotEmpty(Collection collection) {
+    public static boolean nullOrNotEmpty(Collection<?> collection) {
         if(collection != null) {
             return !collection.isEmpty();
         }
