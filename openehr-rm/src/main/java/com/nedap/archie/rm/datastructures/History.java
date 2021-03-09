@@ -8,6 +8,7 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -128,4 +129,25 @@ public final class History<Type extends ItemStructure> extends DataStructure {
     public int hashCode() {
         return Objects.hash(super.hashCode(), origin, period, duration, summary, events);
     }
+
+    @Invariant("Events_valid")
+    public boolean eventsValid() {
+        return (events != null && !events.isEmpty()) || summary != null;
+    }
+
+
+    @Invariant(value = "Periodic_validity", ignored = true)
+    public boolean periodicValid() {
+        return true; //not data validation
+    }
+
+//TODO    @Invariant("Period_consistency")
+//    public boolean periodConsistency() {
+//        if(period != null) {
+//            period.getValue().
+//        }
+//        return true;
+//    }
+
+
 }

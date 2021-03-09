@@ -7,6 +7,8 @@ import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.PropertyType;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
@@ -29,6 +31,7 @@ public abstract class Pathable extends RMObject {
     @JsonIgnore
     @XmlTransient
     @Nullable
+    @RMProperty(value="parent", computed=PropertyType.COMPUTED)
     private Pathable parent;
     @JsonIgnore
     @XmlTransient

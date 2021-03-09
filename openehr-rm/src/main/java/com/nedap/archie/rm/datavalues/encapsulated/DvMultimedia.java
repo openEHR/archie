@@ -1,12 +1,17 @@
 package com.nedap.archie.rm.datavalues.encapsulated;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvURI;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rminfo.RMPropertyIgnore;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Arrays;
 import java.util.Objects;
@@ -157,4 +162,54 @@ public class DvMultimedia extends DvEncapsulated {
         result = 31 * result + Arrays.hashCode(integrityCheck);
         return result;
     }
+
+    @JsonIgnore
+    @XmlTransient
+    @RMPropertyIgnore
+    public boolean isInline() {
+        return data != null;
+    }
+
+    @JsonIgnore
+    @XmlTransient
+    @RMPropertyIgnore
+    public boolean isExternal() {
+        return uri != null;
+    }
+
+    @Invariant("Not_empty")
+    public boolean notEmpty() {
+        return isInline() || isExternal();
+    }
+
+    @Invariant("Media_type_valid")
+    public boolean mediaTypeValid() {
+        //the second type is still in use in many archetypes, so needs to be supported here, or we need other migration strategies
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(mediaType, "media types") ||
+                InvariantUtil.belongsToTerminologyByGroupId(mediaType, "MultiMedia");
+    }
+
+    @Invariant("Compression_algorithm_valid")
+    public boolean compressionAlgorithmValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(compressionAlgorithm, "compression algorithms");
+    }
+
+    @Invariant("Integrity_check_validity")
+    public boolean integrityCheckValid() {
+        if(integrityCheck != null) {
+            return integrityCheckAlgorithm != null;
+        }
+        return true;
+    }
+
+    @Invariant("Integrity_check_algorithm_validity")
+    public boolean integrityCheckAlgorithmValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(integrityCheckAlgorithm, "integrity check algorithms");
+    }
+
+    @Invariant("Size_valid")
+    public boolean sizeValid() {
+        return size == null || size > 0;
+    }
+
 }

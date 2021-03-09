@@ -1,5 +1,8 @@
 package com.nedap.archie.rm.datavalues;
 
+import com.nedap.archie.definitions.OpenEhrDefinitions;
+import com.nedap.archie.rminfo.Invariant;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -27,5 +30,10 @@ public class DvEHRURI extends DvURI {
      */
     public DvEHRURI(String uri) {
         super(uri);
+    }
+
+    @Invariant("Scheme_valid")
+    public boolean schemeValid() {
+        return getValue() == null || getValue().getScheme().equalsIgnoreCase(OpenEhrDefinitions.EHR_SCHEME);
     }
 }
