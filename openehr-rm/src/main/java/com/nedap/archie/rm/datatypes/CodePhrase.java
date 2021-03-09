@@ -2,6 +2,8 @@ package com.nedap.archie.rm.datatypes;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.support.identification.TerminologyId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -116,5 +118,10 @@ public class CodePhrase extends RMObject {
 
     public String toString() {
         return terminologyId + "::" + codeString;//TODO: preferredTerm?
+    }
+
+    @Invariant("Code_string_valid")
+    public boolean codeStringValid() {
+        return InvariantUtil.nullOrNotEmpty(codeString);
     }
 }
