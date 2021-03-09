@@ -2,6 +2,7 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
+import com.nedap.archie.rminfo.Invariant;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -70,4 +71,22 @@ public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuant
     public int hashCode() {
         return Objects.hash(super.hashCode(), accuracy, accuracyIsPercent);
     }
+
+    @Invariant("Accuracy_is_percent_validity")
+    public boolean accuracyIsPercentValidity() {
+        if (accuracy != null && accuracy == 0.0d) {
+            return accuracyIsPercent == null || !accuracyIsPercent;
+        }
+        return true;
+
+    }
+
+    @Invariant("Accuracy_valid")
+    public boolean accuracyValid() {
+        if(accuracyIsPercent != null && accuracyIsPercent) {
+            return accuracy == null || (accuracy <= 100.0d && accuracy >= 0.0d);
+        }
+        return true;
+    }
+
 }

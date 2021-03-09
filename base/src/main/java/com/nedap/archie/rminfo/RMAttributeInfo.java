@@ -20,7 +20,7 @@ public class RMAttributeInfo {
     private final boolean nullable;
     private final boolean computed;
 
-    public RMAttributeInfo(String name, Field field, Class type, Class typeInCollection, String typeNameInCollection, boolean nullable, Method getMethod, Method setMethod, Method addMethod) {
+    public RMAttributeInfo(String name, Field field, Class type, Class typeInCollection, String typeNameInCollection, boolean nullable, Method getMethod, Method setMethod, Method addMethod, boolean computed) {
         this.name = name;
         this.field = field;
         this.type = type;
@@ -28,7 +28,7 @@ public class RMAttributeInfo {
         this.getMethod = getMethod;
         this.setMethod = setMethod;
         this.addMethod = addMethod;
-        this.computed = this.setMethod == null && this.addMethod == null;
+        this.computed = computed;
         this.isMultipleValued = (type instanceof Class && Collection.class.isAssignableFrom(type)) || type.isArray();
 
         this.typeInCollection = typeInCollection;

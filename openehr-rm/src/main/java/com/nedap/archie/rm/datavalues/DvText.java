@@ -2,6 +2,8 @@ package com.nedap.archie.rm.datavalues;
 
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -103,6 +105,23 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
 
     public void setEncoding(CodePhrase encoding) {
         this.encoding = encoding;
+    }
+
+    @Invariant("Language_valid")
+    public boolean languageValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "languages");
+    }
+    @Invariant("Encoding_valid")
+    public boolean encodingValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(encoding, "character sets");
+    }
+    @Invariant(value = "Mappings_valid", ignored = true)
+    public boolean mappingsValid() {
+        return InvariantUtil.nullOrNotEmpty(mappings);
+    }
+    @Invariant("Formatting_valid")
+    public boolean formattingValid() {
+        return InvariantUtil.nullOrNotEmpty(formatting);
     }
 
     @Override
