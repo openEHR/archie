@@ -1,8 +1,8 @@
 package com.nedap.archie.util;
 
-import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryo.pool.KryoFactory;
-import com.esotericsoftware.kryo.pool.KryoPool;
+import com.esotericsoftware.kryo.kryo5.Kryo;
+import com.esotericsoftware.kryo.kryo5.util.Pool;
+
 
 /**
  * Created by pieter.bos on 03/11/15.
@@ -10,19 +10,23 @@ import com.esotericsoftware.kryo.pool.KryoPool;
 public class KryoUtil {
 
     // Build pool with SoftReferences enabled (optional)
-    private static KryoPool pool;
+    private static Pool<Kryo> pool;
 
     static {
-        KryoFactory factory = new KryoFactory() {
-            public Kryo create() {
+        // Pool constructor arguments: thread safe, soft references, maximum capacity
+        pool = new Pool<Kryo>(true, false) {
+            protected Kryo create () {
                 Kryo kryo = new Kryo();
+                kryo.setRegistrationRequired(false);
+                kryo.setReferences(true);
+                kryo.setCopyReferences(true);
                 return kryo;
             }
         };
-        pool = new KryoPool.Builder(factory).softReferences().build();
+
     }
 
-    public static KryoPool getPool() {
+    public static Pool<Kryo> getPool() {
         return pool;
     }
 }
