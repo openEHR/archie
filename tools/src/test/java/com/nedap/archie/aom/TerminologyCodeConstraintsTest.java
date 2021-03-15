@@ -2,6 +2,7 @@ package com.nedap.archie.aom;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.nedap.archie.ValidationConfiguration;
 import com.nedap.archie.rules.evaluation.DummyRulesPrimitiveObjectParent;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
