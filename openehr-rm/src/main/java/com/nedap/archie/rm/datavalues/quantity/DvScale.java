@@ -18,7 +18,7 @@ import java.util.Objects;
         "value",
         "symbol"
 })
-public class DvScale extends DvOrdered<DvScale, DvScale> implements SingleValuedDataValue<Double>, Comparable<DvScale> {
+public class DvScale extends DvOrdered<DvScale> implements SingleValuedDataValue<Double>, Comparable<DvScale> {
 
     private DvCodedText symbol;
     private Double value;

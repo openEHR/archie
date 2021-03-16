@@ -22,7 +22,7 @@ import java.util.Objects;
         "lowerUnbounded",
         "upperUnbounded"
 })
-public class DvInterval<Type extends DvOrdered<Type, ?>> extends DataValue {
+public class DvInterval<Type extends DvOrdered<Type>> extends DataValue {
 
     private final Interval<Type> interval;
 
