@@ -212,13 +212,22 @@ public class JSONSchemaCreator {
 
     }
 
+    /**
+     * Create a reference to a given type, plus all its descendants.
+     * @param type the type to refer to
+     * @return the json schema that is a reference to this type, plus all of its descendants
+     */
     private JsonObjectBuilder createPolymorphicReference(BmmClass type) {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
-        boolean addConcreteElse = false;
+        //if the type to refer to is abstract, a _type field is required, because there is no class to fall back on
+        //if the type to refer to is concrete, a _type field is not required. If it is missing,
+        //the concrete type should be used instead
+        //this boolean indicates that difference.
+        boolean isConcreteType = false;
         if(!type.isAbstract()) {
             descendants.add(BmmDefinitions.typeNameToClassKey(type.getName()));
-            addConcreteElse = true;
+            isConcreteType = true;
         }
 
         boolean genericType = type instanceof BmmGenericClass;
@@ -236,7 +245,10 @@ public class JSONSchemaCreator {
         } else if (descendants.size() > 1) {
             JsonArrayBuilder array = jsonFactory.createArrayBuilder();
 
-            JsonObjectBuilder requiredType = addConcreteElse? jsonFactory.createObjectBuilder() : createRequiredArray("_type");
+            //if an abstract type, _type is required
+            JsonObjectBuilder requiredType = isConcreteType?
+                    jsonFactory.createObjectBuilder() :
+                    createRequiredArray("_type");
 
             if(!genericType) {
                 JsonObjectBuilder typeDefinition = jsonFactory.createObjectBuilder()
@@ -256,7 +268,8 @@ public class JSONSchemaCreator {
             for(String descendant:descendants) {
                 JsonObjectBuilder typePropertyCheck = createConstType(descendant);
                 JsonObjectBuilder typeCheck = jsonFactory.createObjectBuilder().add("properties", typePropertyCheck);
-                if(addConcreteElse) {
+                if(isConcreteType) {
+                    //inside the if-block, make type required, or it will match this block if _type is not present
                     typeCheck.addAll(createRequiredArray("_type"));
                 }
 
@@ -270,7 +283,8 @@ public class JSONSchemaCreator {
 
             }
 
-            if(addConcreteElse) {
+            if(isConcreteType) {
+                //fallback to the base type if it is concrete, and not if it is abstract
                 JsonObjectBuilder elseObject = jsonFactory.createObjectBuilder()
                         .add("if", jsonFactory.createObjectBuilder().add("not", createRequiredArray("_type")))
                         .add("then", createReference(type.getName()));
