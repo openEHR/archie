@@ -17,7 +17,7 @@ public class JSONSchemaCreatorTest {
 
     @Test
     public void createSchema() {
-        BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
+        BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
         JsonObject jsonObject = new JSONSchemaCreator().create(model);
 
         Map<String, Object> config = new HashMap();
@@ -30,7 +30,7 @@ public class JSONSchemaCreatorTest {
 
     @Test
     public void createSchemaWithoutAdditionalProperties() {
-        BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
+        BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
         JsonObject jsonObject = new JSONSchemaCreator().allowAdditionalProperties(false).create(model);
 
         Map<String, Object> config = new HashMap();
