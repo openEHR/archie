@@ -20,7 +20,7 @@ import java.util.Objects;
         DvTemporal.class,
         DvAmount.class
 })
-public abstract class DvQuantified<DataValueType extends DvQuantified<DataValueType, AccuracyType, MagnitudeType>, AccuracyType, MagnitudeType extends Comparable<MagnitudeType>> extends DvOrdered<DataValueType, MagnitudeType> {
+public abstract class DvQuantified<DataValueType extends DvQuantified<DataValueType, AccuracyType, MagnitudeType>, AccuracyType, MagnitudeType extends Comparable<MagnitudeType>> extends DvOrdered<DataValueType> {
 
     @Nullable
     @XmlElement(name = "magnitude_status")
@@ -49,8 +49,8 @@ public abstract class DvQuantified<DataValueType extends DvQuantified<DataValueT
     public abstract MagnitudeType getMagnitude();
 
     @Override
-    public int compareTo(MagnitudeType other) {
-        return getMagnitude().compareTo(other);
+    public int compareTo(DataValueType other) {
+        return getMagnitude().compareTo(other.getMagnitude());
     }
 
     @Override

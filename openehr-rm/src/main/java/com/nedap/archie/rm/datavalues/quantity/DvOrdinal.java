@@ -18,7 +18,7 @@ import java.util.Objects;
         "value",
         "symbol"
 })
-public class DvOrdinal extends DvOrdered<DvOrdinal, DvOrdinal> implements SingleValuedDataValue<Long>, Comparable<DvOrdinal> {
+public class DvOrdinal extends DvOrdered<DvOrdinal> implements SingleValuedDataValue<Long>, Comparable<DvOrdinal> {
 
     private DvCodedText symbol;
     private Long value;
