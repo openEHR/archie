@@ -29,7 +29,7 @@ public class RMObjectCreator {
     }
 
     public <T> T create(CObject constraint) {
-        Class clazz = modelInfoLookup.getClassToBeCreated(constraint.getRmTypeName());
+        Class<?> clazz = modelInfoLookup.getClassToBeCreated(constraint.getRmTypeName());
         if(clazz == null) {
             throw new IllegalArgumentException("cannot construct RMObject because of unknown constraint name " + constraint.getRmTypeName() + " full constraint " + constraint);
         }
@@ -52,9 +52,9 @@ public class RMObjectCreator {
 
             Type type = attributeInfo.getType();
             if(type instanceof Class) {
-                Class clazz = (Class) type;
+                Class<?> clazz = (Class<?>) type;
                 if(attributeInfo.isMultipleValued()) {
-                    Collection collection = (Collection) newInstance(attributeInfo);
+                    Collection<Object> collection = (Collection<Object>) newInstance(attributeInfo);
                     if(values != null) {
                         collection.addAll(values);
                     }
@@ -91,7 +91,7 @@ public class RMObjectCreator {
         } else if (attributeInfo.getType().equals(Set.class)) {
             return new LinkedHashSet<>();
         } else if(attributeInfo.getType() instanceof Class){
-            return ((Class)attributeInfo.getType()).newInstance();
+            return ((Class<?>)attributeInfo.getType()).newInstance();
         } else {
             throw new IllegalArgumentException("cannot create collection instanceof " + attributeInfo.toString());
         }
@@ -119,7 +119,7 @@ public class RMObjectCreator {
                 if(!(attributeInfo.getType() instanceof Class)) {
                     throw new IllegalArgumentException("trying to add an element to an object with type " + attributeInfo.getType());
                 }
-                if(Collection.class.isAssignableFrom((Class) attributeInfo.getType())) {
+                if(Collection.class.isAssignableFrom((Class<?>) attributeInfo.getType())) {
                     if(collectionValue == null) {
                         collectionValue = newInstance(attributeInfo);
                         setField(object, attributeInfo, collectionValue);
@@ -143,13 +143,13 @@ public class RMObjectCreator {
         }
         if(!attributeInfo.isMultipleValued()) {
             if(element instanceof Collection) {
-                set(object, rmAttributeName, new ArrayList((Collection) element));
+                set(object, rmAttributeName, new ArrayList<>((Collection<?>) element));
             } else {
                 set(object, rmAttributeName, Lists.newArrayList(element));
             }
         } else {
             if(element instanceof Collection) {
-                Collection collection = (Collection) element;
+                Collection<?> collection = (Collection<?>) element;
                 for(Object el:collection) {
                     addElementToList(object, attributeInfo, el);
                 }

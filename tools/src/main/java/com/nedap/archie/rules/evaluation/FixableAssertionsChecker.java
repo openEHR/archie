@@ -133,9 +133,9 @@ class FixableAssertionsChecker {
         Expression rightOperand = binaryExpression.getRightOperand();
         ModelReference pathToSet = (ModelReference) binaryExpression.getLeftOperand();
         if(rightOperand instanceof Constraint) {
-            Constraint c = (Constraint) rightOperand;
-            CPrimitiveObject object = c.getItem();
-            List constraints = object.getConstraint();
+            Constraint<?> c = (Constraint<?>) rightOperand;
+            CPrimitiveObject<?, ?> object = c.getItem();
+            List<?> constraints = object.getConstraint();
             if(constraints.size() != 1) {
                 return;
             }
@@ -192,7 +192,7 @@ class FixableAssertionsChecker {
 
             //set the variables to what they were during the for all evaluation.
             //this is a bit of code duplication from the ForAllEvaluator. I think improvement is possible in this place
-            Value value = pathExpressionValues.get(i);
+            Value<?> value = pathExpressionValues.get(i);
             Object context = value.getValue();
             String path = (String) value.getPaths().get(0);
 
@@ -241,7 +241,7 @@ class FixableAssertionsChecker {
 
         List<ValueList> values = ruleElementValues.get(statement);
         if(index > values.size()) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             ValueList valueList = values.get(index);
             return valueList.getAllPaths();

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RMPrimitiveObjectValidation {
 
-    public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject cobject) {
+    public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
         if(cobject == null) {
             return new ArrayList<>();
         }
@@ -31,7 +31,7 @@ public class RMPrimitiveObjectValidation {
         return validate_inner(lookup, rmObject, pathSoFar, cobject);
     }
 
-    static List<RMObjectValidationMessage> validate_inner(ModelInfoLookup lookup, Object rmObject, String pathSoFar, CPrimitiveObject cobject) {
+    static List<RMObjectValidationMessage> validate_inner(ModelInfoLookup lookup, Object rmObject, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
         List<RMObjectValidationMessage> result = new ArrayList<>();
         if (!cobject.isValidValue(lookup, rmObject)) {
             result.add(createValidationMessage(rmObject, pathSoFar, cobject));
@@ -39,8 +39,8 @@ public class RMPrimitiveObjectValidation {
         return result;
     }
 
-    private static RMObjectValidationMessage createValidationMessage(Object value, String pathSoFar, CPrimitiveObject cobject) {
-        List constraint = cobject.getConstraint();
+    private static RMObjectValidationMessage createValidationMessage(Object value, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
+        List<?> constraint = cobject.getConstraint();
         String message;
 
         if(constraint.size() == 1) {

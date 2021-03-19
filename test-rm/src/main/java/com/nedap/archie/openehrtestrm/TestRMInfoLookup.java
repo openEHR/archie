@@ -38,12 +38,12 @@ public class TestRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public Class getClassToBeCreated(String rmTypename) {
+    public Class<?> getClassToBeCreated(String rmTypename) {
         return getClass(rmTypename);
     }
 
     @Override
-    public Object convertToConstraintObject(Object object, CPrimitiveObject cPrimitiveObject) {
+    public Object convertToConstraintObject(Object object, CPrimitiveObject<?, ?> cPrimitiveObject) {
         return object;
     }
 
@@ -99,7 +99,7 @@ public class TestRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject) {
+    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject) {
         RMAttributeInfo attributeInfo = this.getAttributeInfo(rmTypeName, rmAttributeName);
         if(attributeInfo == null) {
             return true;//cannot validate

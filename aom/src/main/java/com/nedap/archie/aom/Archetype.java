@@ -244,7 +244,7 @@ public class Archetype extends AuthoredResource {
      */
     @JsonIgnore
     public Set<String> getAllUsedCodes() {
-        Stack<CObject> workList = new Stack();
+        Stack<CObject> workList = new Stack<>();
         Set<String> result = new LinkedHashSet<>();
         workList.add(definition);
         while(!workList.isEmpty()) {

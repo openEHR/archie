@@ -174,14 +174,14 @@ public class RulesParser extends BaseTreeWalker {
             leftOperand = parseEqualityExpression(context.equalityExpression());
         }
 
-        CPrimitiveObject cPrimitiveObject = null;
+        CPrimitiveObject<?, ?> cPrimitiveObject = null;
         if(context.c_primitive_object() != null) {
             cPrimitiveObject = primitivesConstraintParser.parsePrimitiveObject(context.c_primitive_object());
         } else {
             cPrimitiveObject = primitivesConstraintParser.parseRegex(context.CONTAINED_REGEXP());
         }
 
-        return new BinaryOperator(ExpressionType.BOOLEAN, OperatorKind.matches, leftOperand, new Constraint(cPrimitiveObject));
+        return new BinaryOperator(ExpressionType.BOOLEAN, OperatorKind.matches, leftOperand, new Constraint<>(cPrimitiveObject));
     }
 
     private Expression parseEqualityExpression(EqualityExpressionContext context) {

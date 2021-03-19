@@ -127,7 +127,7 @@ public class ADL14NodeIDConverter {
         //process the codes in alphabetical order, high to low, to prevent overwriting codes
         //even better would probably be to create an empty terminology and separate all new+converted codes and old codes
         //instead of doing this in place. Worth a refactor perhaps?
-        ArrayList<ConvertedCodeResult> sortedCodes = new ArrayList(convertedCodes.values());
+        ArrayList<ConvertedCodeResult> sortedCodes = new ArrayList<>(convertedCodes.values());
         Comparator<ConvertedCodeResult> comparator = Comparator.comparing(r -> r.getOriginalCode());
         sortedCodes.sort(comparator.reversed());
 
@@ -353,7 +353,7 @@ public class ADL14NodeIDConverter {
             if (binary.getOperator() == OperatorKind.matches) {
                 Expression rightOperand = binary.getRightOperand();
                 if (rightOperand instanceof Constraint) {
-                    Constraint constraint = (Constraint) rightOperand;
+                    Constraint<?> constraint = (Constraint<?>) rightOperand;
                     if(constraint.getItem() != null && constraint.getItem().getConstraint() != null && constraint.getItem().getConstraint().size() > 0 &&
                             constraint.getItem() instanceof CString) {
                         CString cString = (CString) constraint.getItem();

@@ -23,7 +23,7 @@ import static java.util.Optional.ofNullable;
 public class ADLDefinitionSerializer {
     protected final ADLStringBuilder builder;
 
-    private final Map<Class, ConstraintSerializer> constraintSerializers;
+    private final Map<Class<?>, ConstraintSerializer<?>> constraintSerializers;
     private Function<String, Archetype> flatArchetypeProvider;
     private RMObjectMapperProvider rmObjectMapperProvider;
 
@@ -36,7 +36,7 @@ public class ADLDefinitionSerializer {
         constraintSerializers.put(ArchetypeSlot.class, new ArchetypeSlotSerializer(this));
         constraintSerializers.put(CArchetypeRoot.class, new CArchetypeRootSerializer(this));
         constraintSerializers.put(CBoolean.class, new CBooleanSerializer(this));
-        constraintSerializers.put(CComplexObject.class, new CComplexObjectSerializer(this));
+        constraintSerializers.put(CComplexObject.class, new CComplexObjectSerializer<>(this));
         constraintSerializers.put(CComplexObjectProxy.class, new CComplexObjectProxySerializer(this));
         constraintSerializers.put(CDate.class, new CDateSerializer(this));
         constraintSerializers.put(CDateTime.class, new CDateTimeSerializer(this));
@@ -117,7 +117,7 @@ public class ADLDefinitionSerializer {
 
     @SuppressWarnings("unchecked")
     private ConstraintSerializer<CObject> getSerializer(CObject cobj) {
-        Class c = cobj.getClass();
+        Class<?> c = cobj.getClass();
         ConstraintSerializer result = constraintSerializers.get(c);
         while(result == null && c.getSuperclass() != null) {
             c = c.getSuperclass();

@@ -26,7 +26,7 @@ import java.util.Objects;
 })
 public class Folder extends Locatable {
     @Nullable
-    private List<ObjectRef> items = new ArrayList<>();
+    private List<ObjectRef<?>> items = new ArrayList<>();
     @Nullable
     private List<Folder> folders = new ArrayList<>();
 
@@ -37,14 +37,14 @@ public class Folder extends Locatable {
     public Folder() {
     }
 
-    public Folder(String archetypeNodeId, DvText name, ItemStructure details, @Nullable List<ObjectRef> items, @Nullable List<Folder> folders) {
+    public Folder(String archetypeNodeId, DvText name, ItemStructure details, @Nullable List<ObjectRef<?>> items, @Nullable List<Folder> folders) {
         super(archetypeNodeId, name);
         this.items = items;
         this.folders = folders;
         this.details = details;
     }
 
-    public Folder(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, ItemStructure details, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ObjectRef> items, @Nullable List<Folder> folders) {
+    public Folder(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, ItemStructure details, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ObjectRef<?>> items, @Nullable List<Folder> folders) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
         this.items = items;
         this.folders = folders;
@@ -52,15 +52,15 @@ public class Folder extends Locatable {
     }
 
     @Nullable
-    public List<ObjectRef> getItems() {
+    public List<ObjectRef<?>> getItems() {
         return items;
     }
 
-    public void setItems(@Nullable List<ObjectRef> items) {
+    public void setItems(@Nullable List<ObjectRef<?>> items) {
         this.items = items;
     }
 
-    public void addItem(ObjectRef item) {
+    public void addItem(ObjectRef<?> item) {
         this.items.add(item);
     }
 

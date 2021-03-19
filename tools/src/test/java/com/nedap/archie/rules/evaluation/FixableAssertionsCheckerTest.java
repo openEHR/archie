@@ -142,8 +142,8 @@ public class FixableAssertionsCheckerTest {
 
     }
 
-    private RuleEvaluation getRuleEvaluation() {
-        return new RuleEvaluation(ArchieRMInfoLookup.getInstance(),  JAXBUtil.getArchieJAXBContext(), archetype);
+    private RuleEvaluation<Locatable> getRuleEvaluation() {
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(),  JAXBUtil.getArchieJAXBContext(), archetype);
     }
 
 }
