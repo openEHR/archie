@@ -44,6 +44,7 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
 
             //set the variable
             evaluation.getVariableMap().put(variableName, valueList);
+
             //evaluate
             ValueList evaluated = evaluation.evaluate(toEvaluate);
             allPaths.addAll(evaluated.getAllPaths());
@@ -60,6 +61,7 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
             }
         }
         evaluation.getVariableMap().put(variableName, null);
+
         return new ValueList(Lists.newArrayList(new Value<>(resultingCheck, allPaths)));
     }
 

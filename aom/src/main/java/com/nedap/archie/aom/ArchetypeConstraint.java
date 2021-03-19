@@ -72,7 +72,6 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
     @JsonIgnore
     public abstract boolean isLeaf();
 
-
     @JsonIgnore
     @XmlTransient
     public Archetype getArchetype() {
