@@ -26,7 +26,7 @@ public class LargeSetOfADLsTest {
     @Test
     public void parseLots() throws Exception {
         Reflections reflections = new Reflections("adl2-tests", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
 
         Map<String, Exception> exceptions = new LinkedHashMap<>();
         Map<String, ANTLRParserErrors> parseErrors = new LinkedHashMap<>();

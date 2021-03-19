@@ -82,7 +82,7 @@ public class BmmComparison {
         List<ModelDifference> result = new ArrayList<>();
         for(RMAttributeInfo attributeInfo:typeInfo.getAttributes().values()) {
             if(!isIgnorableModelParam(classDefinition.getName(), attributeInfo.getRmName())) {
-                BmmProperty bmmProperty = classDefinition.getFlatProperties().get(attributeInfo.getRmName());
+                BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeInfo.getRmName());
                 if (bmmProperty == null) {
                     result.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM,
                             MessageFormat.format("class {0}: ModelInfoLookup property {1} is missing in BMM", classDefinition.getType().getTypeName(), attributeInfo.getRmName()),
@@ -93,7 +93,7 @@ public class BmmComparison {
                 }
             }
         }
-        for(BmmProperty property: classDefinition.getFlatProperties().values()) {
+        for(BmmProperty<?> property: classDefinition.getFlatProperties().values()) {
             if(!typeInfo.getAttributes().containsKey(property.getName())) {
                 String propertyDescription = property.getComputed() ? "computed property" : "property";
                 result.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_MODEL,
@@ -138,7 +138,7 @@ public class BmmComparison {
                 extraParamsInModel.contains(propertyName.toLowerCase());
     }
 
-    private Collection<? extends ModelDifference> compareProperty(String className, RMAttributeInfo attributeInfo, BmmProperty bmmProperty) {
+    private Collection<? extends ModelDifference> compareProperty(String className, RMAttributeInfo attributeInfo, BmmProperty<?> bmmProperty) {
         List<ModelDifference> result = new ArrayList<>();
         String modelInfoTypeName = attributeInfo.getTypeNameInCollection();
         String bmmTypeName = BmmDefinitions.typeNameToClassKey(getBmmTypeName(bmmProperty.getType()));

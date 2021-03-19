@@ -231,7 +231,7 @@ public abstract class CObject extends ArchetypeConstraint {
      * @return
      */
     public List<CAttribute> getAttributes() {
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

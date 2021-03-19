@@ -16,7 +16,7 @@ public class VersionedFolder extends VersionedObject<Folder> {
     public VersionedFolder() {
     }
 
-    public VersionedFolder(HierObjectId uid, ObjectRef ownerId, DvDateTime timeCreated) {
+    public VersionedFolder(HierObjectId uid, ObjectRef<?> ownerId, DvDateTime timeCreated) {
         super(uid, ownerId, timeCreated);
     }
 }

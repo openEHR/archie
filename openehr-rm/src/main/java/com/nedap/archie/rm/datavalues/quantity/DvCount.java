@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DV_COUNT")
-public class DvCount extends DvAmount<Long> {
+public class DvCount extends DvAmount<DvCount, Long> {
 
     private Long magnitude;
 
@@ -25,7 +25,7 @@ public class DvCount extends DvAmount<Long> {
         this.magnitude = magnitude;
     }
 
-    public DvCount(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Long magnitude) {
+    public DvCount(@Nullable List<ReferenceRange<DvCount>> otherReferenceRanges, @Nullable DvInterval<DvCount> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Long magnitude) {
         super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
         this.magnitude = magnitude;
     }

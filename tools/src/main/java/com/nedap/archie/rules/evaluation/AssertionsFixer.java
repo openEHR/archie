@@ -21,12 +21,12 @@ public class AssertionsFixer {
     private static final Logger logger = LoggerFactory.getLogger(AssertionsFixer.class);
 
     private final RMObjectCreator creator;
-    private final RuleEvaluation ruleEvaluation;
+    private final RuleEvaluation<?> ruleEvaluation;
     private final RMObjectCreator rmObjectCreator;
 
     private ModelInfoLookup modelInfoLookup;
 
-    public AssertionsFixer(RuleEvaluation evaluation, RMObjectCreator creator) {
+    public AssertionsFixer(RuleEvaluation<?> evaluation, RMObjectCreator creator) {
         this.creator = creator;
         this.ruleEvaluation = evaluation;
         this.modelInfoLookup = ruleEvaluation.getModelInfoLookup();
@@ -37,9 +37,9 @@ public class AssertionsFixer {
         Map<String, Object> result = new HashMap<>();
 
         try {
-            Map<String, Value> setPathValues = assertionResult.getSetPathValues();
+            Map<String, Value<?>> setPathValues = assertionResult.getSetPathValues();
             for(String path:setPathValues.keySet()) {
-                Value value = setPathValues.get(path);
+                Value<?> value = setPathValues.get(path);
 
                 String pathOfParent = stripLastPathSegment(path);
                 String lastPathSegment = getLastPathSegment(path);

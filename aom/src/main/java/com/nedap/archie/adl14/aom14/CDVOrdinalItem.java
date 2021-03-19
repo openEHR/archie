@@ -47,7 +47,7 @@ public class CDVOrdinalItem {
             return null;
         }
         CInteger result = new CInteger();
-        result.addConstraint(new Interval(new Long(value), new Long(value)));
+        result.addConstraint(new Interval<>(new Long(value), new Long(value)));
         return result;
     }
 }

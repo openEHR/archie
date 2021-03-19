@@ -59,7 +59,7 @@ public abstract class COrderedSerializer<T extends COrdered<?>> extends Constrai
         }
     }
 
-    private String serializeInterval(Interval interval) {
+    private String serializeInterval(Interval<?> interval) {
 
         if (interval.isLowerUnbounded()) {
             return "|" + (interval.isUpperIncluded() ? "<=" : "<") + serializeConstraintValue(interval.getUpper()) + "|";

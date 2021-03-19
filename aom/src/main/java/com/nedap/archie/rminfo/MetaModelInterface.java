@@ -24,7 +24,7 @@ public interface MetaModelInterface {
 
     MultiplicityInterval referenceModelPropMultiplicity(String rmTypeName, String rmAttributeName);
 
-    boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject);
+    boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject);
 
     boolean isOrdered(String rmTypeName, String rmAttributeName);
 }

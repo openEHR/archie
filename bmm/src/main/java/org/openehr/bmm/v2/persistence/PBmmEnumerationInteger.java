@@ -20,7 +20,7 @@ public final class PBmmEnumerationInteger extends PBmmEnumeration<Integer> {
      * add default integer values 0 .. n-1 when none set
      */
     @Override
-    protected void setDefaultItemValues(BmmEnumeration bmmClass) {
+    protected void setDefaultItemValues(BmmEnumeration<Integer> bmmClass) {
         bmmClass.setItemValues(IntStream.rangeClosed(0, getItemNames().size()).boxed().collect(Collectors.toList()));
     }
 

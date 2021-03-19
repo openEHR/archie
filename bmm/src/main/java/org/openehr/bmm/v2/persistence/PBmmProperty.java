@@ -67,11 +67,11 @@ public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
         this.typeDef = typeDef;
     }
 
-    public abstract BmmProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass);
+    public abstract BmmProperty<?> createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass);
 
     /** set the values to the BmmProperty that come from this class
      */
-    protected void populateImBooleans(BmmProperty property) {
+    protected void populateImBooleans(BmmProperty<?> property) {
         property.setImInfrastructure(nullToFalse(isImInfrastructure));
         property.setImRuntime(nullToFalse(isImRuntime));
     }

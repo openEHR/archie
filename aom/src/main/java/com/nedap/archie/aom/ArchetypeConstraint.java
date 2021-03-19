@@ -16,7 +16,7 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
     @JsonIgnore //ignore these field in popular object mappers
     private transient ArchetypeConstraint parent;
     @JsonIgnore //ignore these field in popular object mappers, otherwise we get infinite loops
-    private transient CSecondOrder socParent;
+    private transient CSecondOrder<?> socParent;
 
     @JsonIgnore
     @XmlTransient
@@ -30,11 +30,11 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
 
     @JsonIgnore
     @XmlTransient
-    public CSecondOrder getSocParent() {
+    public CSecondOrder<?> getSocParent() {
         return socParent;
     }
 
-    public void setSocParent(CSecondOrder socParent) {
+    public void setSocParent(CSecondOrder<?> socParent) {
         this.socParent = socParent;
     }
 

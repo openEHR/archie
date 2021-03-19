@@ -59,7 +59,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     /**
      * List of attributes defined in this class.
      */
-    private Map<String, BmmProperty> properties = new LinkedHashMap<>();
+    private Map<String, BmmProperty<?>> properties = new LinkedHashMap<>();
 
     /**
      * Reference to original source schema defining this class. Useful for UI tools to determine which original schema
@@ -172,15 +172,15 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      *
      * @return
      */
-    public Map<String, BmmProperty> getProperties() {
+    public Map<String, BmmProperty<?>> getProperties() {
         return properties;
     }
 
     /**
      * Flat list of properties defined in this class and ancestors
      */
-    public Map<String, BmmProperty> getFlatProperties() {
-        Map<String, BmmProperty> result = new LinkedHashMap<String, BmmProperty>();
+    public Map<String, BmmProperty<?>> getFlatProperties() {
+        Map<String, BmmProperty<?>> result = new LinkedHashMap<>();
         getAncestors().forEach( (ancestorName, ancestor) -> {
             result.putAll(ancestor.getBaseClass().getFlatProperties());
         });
@@ -193,7 +193,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      *
      * @param properties
      */
-    public void setProperties(Map<String, BmmProperty> properties) {
+    public void setProperties(Map<String, BmmProperty<?>> properties) {
         this.properties = properties;
     }
 
@@ -202,7 +202,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      *
      * @param property
      */
-    public void addProperty(BmmProperty property) {
+    public void addProperty(BmmProperty<?> property) {
         properties.put(property.getName(), property);
     }
 
@@ -405,7 +405,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     }
 
     public String effectivePropertyType (String propertyName) {
-        BmmProperty property = getFlatProperties().get(propertyName);
+        BmmProperty<?> property = getFlatProperties().get(propertyName);
         return property == null ? BmmDefinitions.UNKNOWN_TYPE_NAME : property.getType().getTypeName();
     }
 

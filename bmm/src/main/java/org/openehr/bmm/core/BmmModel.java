@@ -166,7 +166,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
      * @param propertyPath : path
      * @return BmmProperty
      */
-    public BmmProperty propertyAtPath (String typeName, String propertyPath) {
+    public BmmProperty<?> propertyAtPath (String typeName, String propertyPath) {
         BmmClass bmmClass = getClassDefinition(typeName);
         if (bmmClass != null) {
             return propertyAtPath (bmmClass, new APathQuery(propertyPath).getPathSegments());
@@ -175,8 +175,8 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
         }
     }
 
-    private BmmProperty propertyAtPath (BmmClass bmmClass, List<PathSegment> pathSegments) {
-        BmmProperty result = null;
+    private BmmProperty<?> propertyAtPath (BmmClass bmmClass, List<PathSegment> pathSegments) {
+        BmmProperty<?> result = null;
         String nodeName = pathSegments.get(0).getNodeName();
         if (bmmClass.hasFlatPropertyWithName (nodeName)) {
             if (pathSegments.size() == 1) {
@@ -189,7 +189,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
             }
         } else {
             for (String descClass : bmmClass.getImmediateDescendants()) {
-                BmmProperty descClassProperty = propertyAtPath (getClassDefinition(descClass), pathSegments);
+                BmmProperty<?> descClassProperty = propertyAtPath (getClassDefinition(descClass), pathSegments);
                 if (descClassProperty != null) {
                     result = descClassProperty;
                     break;
@@ -291,7 +291,7 @@ public class BmmModel extends BmmPackageContainer implements IBmmSchemaCore, IBm
         BmmClass bmmClass = getClassDefinition(typeName);
         Set<String> result = new HashSet<>();
 
-        for (BmmProperty bmmProperty: bmmClass.getFlatProperties().values()) {
+        for (BmmProperty<?> bmmProperty: bmmClass.getFlatProperties().values()) {
             List<String> ftl = bmmProperty.getType().getFlattenedTypeList();
             result.addAll(ftl);
             for (String type: ftl) {
