@@ -67,7 +67,7 @@ subprojects {
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
 
-    compile 'com.google.guava:guava:30.1-jre'
+    compile 'com.google.guava:guava:30.1.1-jre'
 
     compile "org.reflections:reflections:${reflectionsVersion}"
     compile 'com.esotericsoftware.kryo:kryo5:5.0.4'
