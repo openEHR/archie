@@ -6,3 +6,4 @@ target/
 .idea
 out/
 test-output/
+grammars/gen
