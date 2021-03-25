@@ -4,5 +4,5 @@ package com.nedap.archie.rmobjectvalidator;
  * Created by peter.leppers on 09/05/17.
  */
 public enum RMObjectValidationMessageType {
-    DEFAULT, REQUIRED, WRONG_TYPE, EMPTY_OBSERVATION, INVARIANT_ERROR, EXCEPTION;
+    DEFAULT, REQUIRED, WRONG_TYPE, EMPTY_OBSERVATION, WRONG_ARCHETYPE_ID, INVARIANT_ERROR, EXCEPTION;
 }
