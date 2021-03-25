@@ -22,7 +22,7 @@ import java.util.Objects;
         "unitsSystem",
         "unitsDisplayName"
 })
-public class DvQuantity extends DvAmount<Double> {
+public class DvQuantity extends DvAmount<DvQuantity, Double> {
 
     @Nullable
     @XmlElement(defaultValue = "-1")
@@ -57,7 +57,7 @@ public class DvQuantity extends DvAmount<Double> {
         this.magnitude = magnitude;
     }
 
-    public DvQuantity(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, String units, Double magnitude, @Nullable Long precision) {
+    public DvQuantity(@Nullable List<ReferenceRange<DvQuantity>> otherReferenceRanges, @Nullable DvInterval<DvQuantity> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, String units, Double magnitude, @Nullable Long precision) {
         super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
         this.precision = precision;
         this.units = units;

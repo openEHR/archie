@@ -25,7 +25,7 @@ public class FolderTest {
 
         ObjectRef<HierObjectId> item = new ObjectRef<>(new HierObjectId("test-ref"), "test-ns", "test-type");
 
-        List<ObjectRef> items = new ArrayList<>();
+        List<ObjectRef<?>> items = new ArrayList<>();
         items.add(item);
 
         List<Folder> folders = new ArrayList<>();

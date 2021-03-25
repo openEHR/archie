@@ -2,6 +2,7 @@ package com.nedap.archie.rules.evaluation;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
@@ -132,28 +133,33 @@ class FixableAssertionsChecker {
         Expression rightOperand = binaryExpression.getRightOperand();
         ModelReference pathToSet = (ModelReference) binaryExpression.getLeftOperand();
         if(rightOperand instanceof Constraint) {
-            Constraint c = (Constraint) rightOperand;
-            CPrimitiveObject object = c.getItem();
-            List constraints = object.getConstraint();
+            Constraint<?> c = (Constraint<?>) rightOperand;
+            CPrimitiveObject<?, ?> object = c.getItem();
+            List<?> constraints = object.getConstraint();
             if(constraints.size() != 1) {
                 return;
             }
             ValueList valueList = new ValueList();
             switch(object.getClass().getSimpleName()) {
-                case "CTerminologyCode":  {
-                        String constraint = (String) constraints.get(0);
+                case "CTerminologyCode": {
+                    String constraint = (String) constraints.get(0);
+                    if (AOMUtils.isValueCode(constraint)) {
                         valueList.addValue(constraint, Collections.emptyList());
                         String path = resolveModelReference(pathToSet);
-                        if(path.endsWith("symbol")) { // different for DV_CODED_TEXT and DV_CODEPHRASE
+                        if (path.endsWith("symbol")) { // different for DV_CODED_TEXT and DV_CODEPHRASE
                             /// it would be better to check the actual type, but hasn't been done now
                             //this limits this to the OpenEHR RM
                             path = path + "/defining_code/code_string";
-                        } else if(path.endsWith("defining_code")) {
+                        } else if (path.endsWith("defining_code")) {
                             path = path + "/code_string";
                         }
                         setPathsToValues(assertionResult, path, valueList);
+                    } else if (AOMUtils.isValueSetCode(constraint)) {
+                        String path = resolveModelReference(pathToSet);
+                        assertionResult.constrainPathToValueSet(path, constraint);
                     }
                     break;
+                }
                 case "CString": {
                         String constraint = (String) constraints.get(0);
                         valueList.addValue(constraint, Collections.emptyList());
@@ -186,7 +192,7 @@ class FixableAssertionsChecker {
 
             //set the variables to what they were during the for all evaluation.
             //this is a bit of code duplication from the ForAllEvaluator. I think improvement is possible in this place
-            Value value = pathExpressionValues.get(i);
+            Value<?> value = pathExpressionValues.get(i);
             Object context = value.getValue();
             String path = (String) value.getPaths().get(0);
 
@@ -235,7 +241,7 @@ class FixableAssertionsChecker {
 
         List<ValueList> values = ruleElementValues.get(statement);
         if(index > values.size()) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             ValueList valueList = values.get(index);
             return valueList.getAllPaths();

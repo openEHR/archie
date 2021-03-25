@@ -1,7 +1,7 @@
 package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.adlparser.antlr.AdlParser;
+
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.aom.*;
@@ -209,7 +209,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
             List<C_object_tuple_itemContext> primitiveObjectContexts = tupleContext.c_object_tuple_items().c_object_tuple_item();
             int i = 0;
             for(C_object_tuple_itemContext tupleObjectContext:primitiveObjectContexts) {
-                CPrimitiveObject primitiveObject = null;
+                CPrimitiveObject<?, ?> primitiveObject = null;
                 if(tupleObjectContext.c_primitive_object() != null) {
                     primitiveObject = primitivesConstraintParser.parsePrimitiveObject(tupleObjectContext.c_primitive_object());
                 } else if (tupleObjectContext.CONTAINED_REGEXP() != null) {
@@ -399,6 +399,5 @@ public class CComplexObjectParser extends BaseTreeWalker {
         interval.fixUnboundedIncluded();
         return interval;
     }
-
 
 }

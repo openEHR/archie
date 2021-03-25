@@ -171,11 +171,11 @@ public class RMQueryContext {
     }
 
     public <T> T find(String query) throws XPathExpressionException {
-        List result = findList(query);
+        List<T> result = findList(query);
         if(result.isEmpty()) {
             return null;
         } else if (result.size() == 1) {
-            return (T) result.get(0);
+            return result.get(0);
         } else {
             throw new RuntimeException("query returned more than one element: " + result.size());
         }

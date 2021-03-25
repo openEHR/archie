@@ -27,16 +27,16 @@ public class PBmmEnumeration<ItemType> extends PBmmClass {
     }
 
     @Override
-    public BmmEnumeration createBmmClass() {
-        BmmEnumeration newEnumeration = new BmmEnumeration(getName(), getDocumentation(), nullToFalse(isAbstract()));
+    public BmmEnumeration<ItemType> createBmmClass() {
+        BmmEnumeration<ItemType> newEnumeration = new BmmEnumeration<>(getName(), getDocumentation(), nullToFalse(isAbstract()));
         newEnumeration.setSourceSchemaId(getSourceSchemaId());
         newEnumeration.setOverride(nullToFalse(isOverride()));
         return newEnumeration;
     }
 
     @Override
-    public BmmEnumeration populateBmmClass(BmmClassProcessor classProcessor, PBmmSchema schema) {
-        BmmEnumeration bmmClass = (BmmEnumeration) super.populateBmmClass(classProcessor, schema);
+    public BmmEnumeration<ItemType> populateBmmClass(BmmClassProcessor classProcessor, PBmmSchema schema) {
+        BmmEnumeration<ItemType> bmmClass = (BmmEnumeration<ItemType>) super.populateBmmClass(classProcessor, schema);
         if (bmmClass != null) {
             bmmClass.setItemNames(itemNames);
             if (itemValues != null) {
@@ -51,7 +51,7 @@ public class PBmmEnumeration<ItemType> extends PBmmClass {
     /**
      * add default values
      */
-    protected void setDefaultItemValues(BmmEnumeration bmmClass) {
+    protected void setDefaultItemValues(BmmEnumeration<ItemType> bmmClass) {
         // implement in descendants
     }
 

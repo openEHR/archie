@@ -86,7 +86,7 @@ public class RMQueryContextTest {
         assertEquals("/context", context.get(0).getPath());
 
         //now check that retrieving this retrieves more than one, even with the same ID.
-        List items = queryContext.findList("/context/other_context[id2]/items");
+        List<?> items = queryContext.findList("/context/other_context[id2]/items");
         assertEquals(2, items.size());
 
 

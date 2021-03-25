@@ -20,7 +20,7 @@ public class JSONSchemaCreatorTest {
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         JsonObject jsonObject = new JSONSchemaCreator().create(model);
 
-        Map<String, Object> config = new HashMap();
+        Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         JsonWriterFactory jsonWriterFactory = Json.createWriterFactory(config);
 
@@ -33,7 +33,7 @@ public class JSONSchemaCreatorTest {
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         JsonObject jsonObject = new JSONSchemaCreator().allowAdditionalProperties(false).create(model);
 
-        Map<String, Object> config = new HashMap();
+        Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         JsonWriterFactory jsonWriterFactory = Json.createWriterFactory(config);
 

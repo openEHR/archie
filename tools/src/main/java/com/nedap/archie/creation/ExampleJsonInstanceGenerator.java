@@ -135,7 +135,7 @@ public  class ExampleJsonInstanceGenerator {
 
 
         for (CAttribute attribute : cObject.getAttributes()) {
-            BmmProperty property = bmm.propertyAtPath (cObject.getRmTypeName(), attribute.getRmAttributeName());
+            BmmProperty<?> property = bmm.propertyAtPath (cObject.getRmTypeName(), attribute.getRmAttributeName());
             if(property == null || property.getComputed()) {
                 continue;//do not serialize non-bmm properties such as functions and computed properties
             }
@@ -157,7 +157,8 @@ public  class ExampleJsonInstanceGenerator {
                         Map<String, Object> next = generate((CComplexObject) child);
                         children.add(next);
                     } else if (child instanceof CPrimitiveObject) {
-                        Object toAdd = generateCPrimitive((CPrimitiveObject) child);
+
+                        Object toAdd = generateCPrimitive((CPrimitiveObject<?, ?>) child);
                         if(toAdd instanceof Map) {
                             //primitive object, but actual object in JSON
                             //TODO: how to do properties at begin? Just add as empty map, then add fields here then at end?
@@ -168,6 +169,7 @@ public  class ExampleJsonInstanceGenerator {
                             openEhrRmInstanceGenerator.addAdditionalPropertiesAtEnd(childClassDefinition, toAddMap, child);
                         }
                         children.add(toAdd);
+
                     } else if (child instanceof ArchetypeSlot) {
                         //TODO: it would be better to actually include an archetype
                         //however that leads to some tricky situations when this archetype again optionally includes
@@ -260,9 +262,9 @@ public  class ExampleJsonInstanceGenerator {
     }
 
     private void addRequiredPropertiesFromBmm(Map<String, Object> result, BmmClass classDefinition) {
-        Map<String, BmmProperty> properties = classDefinition.getFlatProperties();
+        Map<String, BmmProperty<?>> properties = classDefinition.getFlatProperties();
         //add all mandatory properties from the RM
-        for (BmmProperty property : properties.values()) {
+        for (BmmProperty<?> property : properties.values()) {
             if (property.getMandatory() && !result.containsKey(property.getName())) {
                 Map<String, Object> potentialCodePhrase = openEhrRmInstanceGenerator.getOpenEHRCodedTextOrCodePhrase(classDefinition.getType().typeBaseName(), property.getName());
                 if(potentialCodePhrase != null) {
@@ -276,11 +278,11 @@ public  class ExampleJsonInstanceGenerator {
         }
     }
 
-    private void addRequiredProperty(Map<String, Object> result, BmmProperty property) {
+    private void addRequiredProperty(Map<String, Object> result, BmmProperty<?> property) {
         addRequiredProperty(result, property, null);
     }
 
-    private void addRequiredProperty(Map<String, Object> result, BmmProperty property, String value) {
+    private void addRequiredProperty(Map<String, Object> result, BmmProperty<?> property, String value) {
         BmmType type = property.getType();
         if (value != null) {
             result.put(property.getName(), value);
@@ -363,7 +365,7 @@ public  class ExampleJsonInstanceGenerator {
         return "unknown primitive type " + typeName;
     }
 
-    private Object generateCPrimitive(CPrimitiveObject child) {
+    private Object generateCPrimitive(CPrimitiveObject<?, ?> child) {
         //optionally create a custom mapping for the current RM. useful to map to strange objects
         //such as mapping a CTerminologyCode to a DV_CODED_TEXT in OpenEHR ERM
         Object customMapping = openEhrRmInstanceGenerator.generateCustomMapping(child);

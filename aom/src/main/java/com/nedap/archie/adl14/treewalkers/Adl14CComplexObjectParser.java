@@ -191,15 +191,17 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
             members.add(new CAttribute("symbol"));
             tuple.setMembers(members);
             for (Ordinal_termContext ordinal_termContext : ordinalContext.ordinal_term()) {
-                CPrimitiveObject cValue;
+                CPrimitiveObject<?, ?> cValue;
                 if(ordinal_termContext.integer_value() != null) {
                     long value = Integer.parseInt(ordinal_termContext.integer_value().getText());
-                    cValue = new CInteger();
-                    cValue.addConstraint(new Interval<>(value));
+                    CInteger cInteger = new CInteger();
+                    cInteger.addConstraint(new Interval<>(value));
+                    cValue = cInteger;
                 } else {
                     double value = Double.parseDouble(ordinal_termContext.real_value().getText());
-                    cValue = new CReal();
-                    cValue.addConstraint(new Interval<>(value));
+                    CReal cReal = new CReal();
+                    cReal.addConstraint(new Interval<>(value));
+                    cValue = cReal;
                 }
 
                 CPrimitiveTuple primitiveTuple = new CPrimitiveTuple();

@@ -24,7 +24,7 @@ public abstract class Actor extends Party {
     @Nullable
     private List<DvText> languages = new ArrayList<>();
     @Nullable
-    private List<PartyRef> roles = new ArrayList();
+    private List<PartyRef> roles = new ArrayList<>();
 
     public List<DvText> getLanguages() {
         return languages;

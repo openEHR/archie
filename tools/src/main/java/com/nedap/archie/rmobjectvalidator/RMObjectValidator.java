@@ -78,7 +78,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             }
         }
         else if (cobject instanceof CPrimitiveObject) {
-            result.addAll(RMPrimitiveObjectValidation.validate(lookup, rmObjects, path, (CPrimitiveObject) cobject));
+            result.addAll(RMPrimitiveObjectValidation.validate(lookup, rmObjects, path, (CPrimitiveObject<?, ?>) cobject));
         } else {
             if (cobject instanceof CComplexObject) {
                 CComplexObject cComplexObject = (CComplexObject) cobject;
@@ -141,7 +141,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 }
             }
         } else {
-            Class classInConstraint = this.lookup.getClass(cobject.getRmTypeName());
+            Class<?> classInConstraint = this.lookup.getClass(cobject.getRmTypeName());
             if (!classInConstraint.isAssignableFrom(objectWithPath.getObject().getClass())) {
                 //not a matching constraint. Cannot validate. add error message and stop validating.
                 //If another constraint is present, that one will succeed

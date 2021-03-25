@@ -17,7 +17,7 @@ import java.util.List;
 public class VariableDeclarationEvaluator implements Evaluator<VariableDeclaration> {
 
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, VariableDeclaration declaration) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, VariableDeclaration declaration) {
         String variableName = declaration.getName();
         ValueList valueList = calculateValue(evaluation, declaration);
         evaluation.getVariableMap().put(variableName, valueList);
@@ -25,7 +25,7 @@ public class VariableDeclarationEvaluator implements Evaluator<VariableDeclarati
 
     }
 
-    private ValueList calculateValue(RuleEvaluation evaluation, VariableDeclaration declaration) {
+    private ValueList calculateValue(RuleEvaluation<?> evaluation, VariableDeclaration declaration) {
         if(declaration instanceof ExpressionVariable) {
             return evaluation.evaluate(((ExpressionVariable) declaration).getExpression());
         } else if (declaration instanceof QueryVariable) {
@@ -39,7 +39,7 @@ public class VariableDeclarationEvaluator implements Evaluator<VariableDeclarati
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(
                 VariableDeclaration.class,
                 BuiltinVariable.class,

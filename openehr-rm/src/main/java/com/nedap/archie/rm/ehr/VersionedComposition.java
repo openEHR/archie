@@ -15,7 +15,7 @@ public class VersionedComposition extends VersionedObject<Composition> {
     public VersionedComposition() {
     }
 
-    public VersionedComposition(HierObjectId uid, ObjectRef ownerId, DvDateTime timeCreated) {
+    public VersionedComposition(HierObjectId uid, ObjectRef<?> ownerId, DvDateTime timeCreated) {
         super(uid, ownerId, timeCreated);
     }
 

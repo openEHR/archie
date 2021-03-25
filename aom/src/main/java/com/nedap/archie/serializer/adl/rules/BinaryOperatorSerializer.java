@@ -3,6 +3,7 @@ package com.nedap.archie.serializer.adl.rules;
 
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.serializer.adl.ADLRulesSerializer;
+import com.nedap.archie.serializer.adl.ADLStringBuilder;
 
 
 /**
@@ -15,11 +16,36 @@ public class BinaryOperatorSerializer extends RuleElementSerializer<BinaryOperat
 
     @Override
     public void serialize(BinaryOperator operator) {
-        serializer.serializeRuleElement(operator.getLeftOperand());
-        builder.append(" ");
-        builder.append(operator.getOperator().getDefaultCode());
-        builder.append(" ");
-        serializer.serializeRuleElement(operator.getRightOperand());
+        switch (operator.getOperator()) {
+            case implies:
+                serializer.serializeRuleElement(operator.getLeftOperand());
+                builder.append(" ");
+                builder.append(operator.getOperator().getDefaultCode());
+                builder.newIndentedLine();
+                serializer.serializeRuleElement(operator.getRightOperand());
+                builder.unindent();
+                break;
+            case eq:
+            case gt:
+            case lt:
+            case ne:
+            case le:
+            case ge:
+                serializer.serializeRuleElement(operator.getLeftOperand());
+                builder.append(" ");
+                builder.append(operator.getOperator().getDefaultCode());
+                builder.append(" ");
+                serializer.getBuilder().indent();
+                serializer.serializeRuleElement(operator.getRightOperand());
+                builder.unindent();
+                break;
+            default:
+                serializer.serializeRuleElement(operator.getLeftOperand());
+                builder.append(" ");
+                builder.append(operator.getOperator().getDefaultCode());
+                builder.append(" ");
+                serializer.serializeRuleElement(operator.getRightOperand());
+        }
 
     }
 }

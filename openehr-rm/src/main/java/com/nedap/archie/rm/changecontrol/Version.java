@@ -29,7 +29,7 @@ import java.util.Objects;
 
 })
 public abstract class Version<Type> extends RMObject {
-    private ObjectRef contribution;
+    private ObjectRef<?> contribution;
     @Nullable
 
     private String signature;
@@ -39,17 +39,17 @@ public abstract class Version<Type> extends RMObject {
     public Version() {
     }
 
-    public Version(AuditDetails commitAudit, ObjectRef contribution, @Nullable String signature) {
+    public Version(AuditDetails commitAudit, ObjectRef<?> contribution, @Nullable String signature) {
         this.contribution = contribution;
         this.signature = signature;
         this.commitAudit = commitAudit;
     }
 
-    public ObjectRef getContribution() {
+    public ObjectRef<?> getContribution() {
         return contribution;
     }
 
-    public void setContribution(ObjectRef contribution) {
+    public void setContribution(ObjectRef<?> contribution) {
         this.contribution = contribution;
     }
 

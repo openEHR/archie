@@ -95,7 +95,7 @@ public class EhrInvariantTest {
         return ehr;
     }
 
-    private List<ObjectRef> createExampleRefList(String type) {
+    private List<ObjectRef<?>> createExampleRefList(String type) {
         return Arrays.asList(createExampleRef(type));
     }
 

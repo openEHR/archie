@@ -27,7 +27,7 @@ import java.util.Set;
         DvTemporal.class,
         DvAmount.class
 })
-public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparable> extends DvOrdered {
+public abstract class DvQuantified<DataValueType extends DvQuantified<DataValueType, AccuracyType, MagnitudeType>, AccuracyType, MagnitudeType extends Comparable<MagnitudeType>> extends DvOrdered<DataValueType> {
 
     private static final Set<String> VALID_MAGNITUDE_STATUS_CODES = Sets.newHashSet("=", "<", ">", "<=", ">=", "~");
 
@@ -38,7 +38,7 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
     public DvQuantified() {
     }
 
-    public DvQuantified(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus) {
+    public DvQuantified(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus) {
         super(otherReferenceRanges, normalRange, normalStatus);
         this.magnitudeStatus = magnitudeStatus;
     }
@@ -58,18 +58,8 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
 
     public abstract MagnitudeType getMagnitude();
 
-    @Override
-    public int compareTo(Object other) {
-        if(other instanceof DvQuantified) {
-            return getMagnitude().compareTo(((DvQuantified) other).getMagnitude());
-        } else {
-            //this should not be here, but was the earlier implementation, by mistake.
-            //so if people rely on this, still support it, but it is deprecated and will eventually be removed
-
-            //cannot do instanceof with generic type. So just try.
-            MagnitudeType otherMagnitude = (MagnitudeType) other;
-            return getMagnitude().compareTo(otherMagnitude);
-        }
+    public int compareTo(DataValueType other) {
+        return getMagnitude().compareTo(other.getMagnitude());
     }
 
     @Override
@@ -77,7 +67,7 @@ public abstract class DvQuantified<AccuracyType, MagnitudeType extends Comparabl
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        DvQuantified<?, ?> that = (DvQuantified<?, ?>) o;
+        DvQuantified<?, ?, ?> that = (DvQuantified<?, ?, ?>) o;
         return Objects.equals(magnitudeStatus, that.magnitudeStatus);
     }
 

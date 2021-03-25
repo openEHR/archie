@@ -39,7 +39,7 @@ public class Min implements FunctionImplementation {
             Double min = null;
             List<String> paths = new ArrayList<>();
             for(ValueList list: arguments) {
-                Value value = list.get(i);
+                Value<?> value = list.get(i);
                 if(!value.isNull() && ((min == null) || castToDouble(value) < min)) {
                     min = castToDouble(value);
                 }

@@ -37,7 +37,7 @@ public class IsmTransition extends Pathable {
     private DvCodedText careflowStep;
 
     @Nullable
-    private List<DvText> reason = new ArrayList();
+    private List<DvText> reason = new ArrayList<>();
 
     public IsmTransition() {
     }

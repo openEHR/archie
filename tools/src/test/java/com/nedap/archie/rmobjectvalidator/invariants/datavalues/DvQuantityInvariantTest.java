@@ -82,7 +82,7 @@ public class DvQuantityInvariantTest {
 
         rangeTop.setNormalRange(new DvInterval(illegalRangeBottom, illegalrangeTop));
 
-        List<ReferenceRange> otherReferenceRanges = new ArrayList<>();
+        List<ReferenceRange<DvQuantity>> otherReferenceRanges = new ArrayList<>();
         ReferenceRange range = new ReferenceRange();
         range.setMeaning(new DvText("some reference range"));
         range.setRange(new DvInterval(rangeBottom, rangeTop));
@@ -108,7 +108,7 @@ public class DvQuantityInvariantTest {
         normalRangeTop.setUnits("kg");
         value.setNormalRange(new DvInterval(normalRangeBottom, normalRangeTop));
 
-        List<ReferenceRange> otherReferenceRanges = new ArrayList<>();
+        List<ReferenceRange<DvQuantity>> otherReferenceRanges = new ArrayList<>();
         ReferenceRange range = new ReferenceRange();
         range.setMeaning(new DvText("some reference range"));
         range.setRange(new DvInterval(normalRangeBottom, normalRangeTop));

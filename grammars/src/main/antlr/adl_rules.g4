@@ -63,7 +63,7 @@ booleanConstraintExpression
     | equalityExpression;
 
 
-booleanConstraint: adlRulesPath SYM_MATCHES ('{' c_primitive_object '}' | CONTAINED_REGEXP );
+booleanConstraint: equalityExpression SYM_MATCHES ('{' c_primitive_object '}' | CONTAINED_REGEXP );
 
 equalityExpression:
     relOpExpression

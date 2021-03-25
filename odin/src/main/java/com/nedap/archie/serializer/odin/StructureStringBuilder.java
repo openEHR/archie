@@ -13,6 +13,8 @@ public class StructureStringBuilder implements StructuredStringAppendable {
     private boolean startOfLine = true;
     private int startOfLineIndex = 0;
 
+    int currentLineLength = 0;
+
     public StructureStringBuilder() {
     }
 
@@ -39,8 +41,10 @@ public class StructureStringBuilder implements StructuredStringAppendable {
 
     @Override
     public StructureStringBuilder append(Object str) {
-        builder.append(str);
+        String toAppend = str.toString();
+        builder.append(toAppend);
         startOfLine = false;
+        currentLineLength += toAppend.length();
         return this;
     }
 
@@ -60,6 +64,7 @@ public class StructureStringBuilder implements StructuredStringAppendable {
         startOfLineIndex = builder.length();
         appendIndentation();
         startOfLine = true;
+        currentLineLength = 0;
         return this;
     }
 
@@ -105,6 +110,7 @@ public class StructureStringBuilder implements StructuredStringAppendable {
         char lastChar = builder.charAt(builder.length() - 1);
         if (Character.isWhitespace(lastChar)) return this;
         builder.append(" ");
+        currentLineLength = 1;
         return this;
     }
 
@@ -114,7 +120,13 @@ public class StructureStringBuilder implements StructuredStringAppendable {
     }
 
     private void appendIndentation() {
-        builder.append(padding(' ', indentDepth * INDENTATION_SIZE));
+        String toAppend = padding(' ', indentDepth * INDENTATION_SIZE);
+        builder.append(toAppend);
+        currentLineLength += toAppend.length();
+    }
+
+    public int getCurrentLineLength() {
+        return currentLineLength;
     }
 
     @Override

@@ -26,51 +26,51 @@ import java.util.Objects;
         "otherReferenceRanges",
         "normalStatus"
 })
-public abstract class DvOrdered<ComparableType> extends DataValue implements Comparable<ComparableType> {
+public abstract class DvOrdered<DataValueType extends DvOrdered<DataValueType>> extends DataValue implements Comparable<DataValueType> {
 
     @Nullable
     @XmlElement(name = "normal_status")
     private CodePhrase normalStatus;
     @Nullable
     @XmlElement(name = "normal_range")
-    private DvInterval normalRange;
+    private DvInterval<DataValueType> normalRange;
 
     @Nullable
     @XmlElement(name = "other_reference_ranges")
-    private List<ReferenceRange> otherReferenceRanges = new ArrayList<>();
+    private List<ReferenceRange<DataValueType>> otherReferenceRanges = new ArrayList<>();
 
     public DvOrdered() {
     }
 
-    public DvOrdered(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange) {
+    public DvOrdered(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange) {
         this.normalRange = normalRange;
         this.otherReferenceRanges = otherReferenceRanges;
     }
 
-    protected DvOrdered(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus) {
+    protected DvOrdered(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus) {
         this.normalStatus = normalStatus;
         this.normalRange = normalRange;
         this.otherReferenceRanges = otherReferenceRanges;
     }
 
 
-    public DvInterval getNormalRange() {
+    public DvInterval<DataValueType> getNormalRange() {
         return normalRange;
     }
 
-    public void setNormalRange(DvInterval normalRange) {
+    public void setNormalRange(DvInterval<DataValueType> normalRange) {
         this.normalRange = normalRange;
     }
 
-    public List<ReferenceRange> getOtherReferenceRanges() {
+    public List<ReferenceRange<DataValueType>> getOtherReferenceRanges() {
         return otherReferenceRanges;
     }
 
-    public void setOtherReferenceRanges(List<ReferenceRange> otherReferenceRanges) {
+    public void setOtherReferenceRanges(List<ReferenceRange<DataValueType>> otherReferenceRanges) {
         this.otherReferenceRanges = otherReferenceRanges;
     }
 
-    public void addOtherReferenceRange(ReferenceRange range) {
+    public void addOtherReferenceRange(ReferenceRange<DataValueType> range) {
         otherReferenceRanges.add(range);
     }
 
@@ -123,7 +123,7 @@ public abstract class DvOrdered<ComparableType> extends DataValue implements Com
     @Invariant("Normal_range_and_status_consistency")
     public boolean normalRangeAndStatusConsistency() {
         if(normalStatus != null && normalRange != null) {
-            return Objects.equals(normalStatus.getCodeString(), "N") ^ !normalRange.has(this);
+            return Objects.equals(normalStatus.getCodeString(), "N") ^ !normalRange.has((DataValueType) this);
         }
         return true;
     }

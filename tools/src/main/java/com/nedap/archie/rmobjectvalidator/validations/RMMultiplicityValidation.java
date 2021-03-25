@@ -15,7 +15,7 @@ import java.util.List;
 public class RMMultiplicityValidation {
     public static List<RMObjectValidationMessage> validate(CAttribute attribute, String pathSoFar, Object attributeValue) {
         if (attributeValue instanceof Collection) {
-            Collection collectionValue = (Collection) attributeValue;
+            Collection<?> collectionValue = (Collection<?>) attributeValue;
             //validate multiplicity
             Cardinality cardinality = attribute.getCardinality();
             if (cardinality != null) {

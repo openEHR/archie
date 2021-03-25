@@ -59,10 +59,10 @@ class OpenEhrRmInstanceGenerator {
 
     /**
      * Generate a custom JSON mapping if required by the given CPrimitiveObject at the given place in the tree.
-     * @param child
+     * @param child the primitive object to create a custom mapping for
      * @return the custom JSON mapping, or null if no custom mapping is required
      */
-    public Object generateCustomMapping(CPrimitiveObject child) {
+    public Object generateCustomMapping(CPrimitiveObject<?, ?> child) {
         if(child instanceof CTerminologyCode) {
             CTerminologyCode cTermCode = (CTerminologyCode) child;
 
@@ -72,7 +72,7 @@ class OpenEhrRmInstanceGenerator {
             if(classDefinition == null) {
                 return null;
             }
-            BmmProperty property = classDefinition.getFlatProperties().get(parentAttribute.getRmAttributeName());
+            BmmProperty<?> property = classDefinition.getFlatProperties().get(parentAttribute.getRmAttributeName());
             if(property == null) {
                 return null;
             }

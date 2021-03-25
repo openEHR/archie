@@ -16,7 +16,7 @@ import java.util.Stack;
 public class RMTypeInfo {
 
     private final String rmName;
-    private final Class javaClass;
+    private final Class<?> javaClass;
     //only direct parent classes here
     private final Set<RMTypeInfo> parentClasses = new LinkedHashSet<>();
     //only direct descendant classes here
@@ -24,7 +24,7 @@ public class RMTypeInfo {
     private Map<String, RMAttributeInfo> attributes = new HashMap<>();
     private List<InvariantMethod> invariants = new ArrayList<>();
 
-    public RMTypeInfo(Class clazz, String rmName) {
+    public RMTypeInfo(Class<?> clazz, String rmName) {
         this.javaClass = clazz;
         this.rmName = rmName;
     }
@@ -33,7 +33,7 @@ public class RMTypeInfo {
         return rmName;
     }
 
-    public Class getJavaClass() {
+    public Class<?> getJavaClass() {
         return javaClass;
     }
 

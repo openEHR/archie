@@ -75,7 +75,7 @@ public final class Assertion extends RuleStatement {
             BinaryOperator binaryOperator = (BinaryOperator) expression;
             if(binaryOperator.getOperator() == OperatorKind.matches &&
                     binaryOperator.getRightOperand() instanceof Constraint) {
-                Constraint constraint = (Constraint) binaryOperator.getRightOperand();
+                Constraint<?> constraint = (Constraint<?>) binaryOperator.getRightOperand();
                 return constraint.getItem().equals(new CString("/.*/")) ||
                         constraint.getItem().equals(new CString("^.*^"));
             }

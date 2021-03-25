@@ -106,7 +106,7 @@ public abstract class AuthoredResource extends ArchetypeModelObject {
     @XmlJavaTypeAdapter(TranslationDetailsAdapter.class)
     @JsonIgnore
     @RMPropertyIgnore
-    public List<TranslationDetails> getTranslationList() { return new ArrayList(content.getTranslations().values());}
+    public List<TranslationDetails> getTranslationList() { return new ArrayList<>(content.getTranslations().values());}
 
     public void setTranslationList(List<TranslationDetails> translationList) {
         LinkedHashMap<String, TranslationDetails> translations = new LinkedHashMap<>();

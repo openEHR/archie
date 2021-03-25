@@ -61,7 +61,7 @@ public abstract class ValidatingVisitor extends ArchetypeValidationBase {
         if(cObject instanceof  CComplexObject) {
             validate((CComplexObject) cObject);
         } else if (cObject instanceof  CPrimitiveObject) {
-            validate((CPrimitiveObject) cObject);
+            validate((CPrimitiveObject<?, ?>) cObject);
         } else if(cObject instanceof ArchetypeSlot){
             validate((ArchetypeSlot) cObject);
         } else if(cObject instanceof CComplexObjectProxy){
@@ -90,7 +90,7 @@ public abstract class ValidatingVisitor extends ArchetypeValidationBase {
     protected void validate(CComplexObject cObject) {
     }
 
-    protected void validate(CPrimitiveObject cObject) {
+    protected void validate(CPrimitiveObject<?, ?> cObject) {
     }
 
     protected void validate(CAttribute cAttribute) {

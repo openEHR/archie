@@ -63,7 +63,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
      *
      * @return The stack for this visitor
      */
-    public Stack getStack() {
+    public Stack<Object> getStack() {
         return this.stack;
     }
 
@@ -72,7 +72,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
      * dereferenced upon initialization.
      */
     private void initializeStack() {
-        stack = new Stack();
+        stack = new Stack<>();
     }
 
     /**
