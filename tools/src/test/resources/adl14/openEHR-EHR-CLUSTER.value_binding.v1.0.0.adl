@@ -6,7 +6,8 @@ concept
 
 language
 	original_language = <[ISO_639-1::en]>
-  translations = <
+    translations = <
+
 		["no-bk"] = <
 			language = <[ISO_639-1::no-bk]>
 			author = <

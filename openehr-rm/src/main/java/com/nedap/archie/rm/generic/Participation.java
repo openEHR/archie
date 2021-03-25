@@ -5,6 +5,8 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -89,5 +91,18 @@ public class Participation extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(function, mode, time, performer);
+    }
+
+    @Invariant("Function_valid")
+    public boolean functionValid() {
+        if(function instanceof DvCodedText) {
+            return InvariantUtil.belongsToTerminologyByGroupId((DvCodedText) function, "participation function");
+        }
+        return true;
+    }
+
+    @Invariant("Mode_valid")
+    public boolean modeValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(mode, "participation mode");
     }
 }

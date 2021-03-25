@@ -5,6 +5,8 @@ import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 
@@ -96,5 +98,10 @@ public class Activity extends Locatable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), description, timing, actionArchetypeId);
+    }
+
+    @Invariant("Action_archetype_id_valid")
+    public boolean actionArchetypeIdValid() {
+        return InvariantUtil.nullOrNotEmpty(actionArchetypeId);
     }
 }

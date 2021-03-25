@@ -2,6 +2,8 @@ package com.nedap.archie.rm.generic;
 
 import com.nedap.archie.rm.datavalues.DvIdentifier;
 import com.nedap.archie.rm.support.identification.PartyRef;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -67,5 +69,20 @@ public class PartyIdentified extends PartyProxy {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), name, identifiers);
+    }
+
+    @Invariant("Basic_validity")
+    public boolean basicValidity() {
+        return name != null || (identifiers != null && !identifiers.isEmpty()) || getExternalRef() != null;
+    }
+
+    @Invariant("Name_valid")
+    public boolean nameValid() {
+        return InvariantUtil.nullOrNotEmpty(name);
+    }
+
+    @Invariant(value = "Identifiers_valid", ignored = true)
+    public boolean identifiersValid() {
+        return InvariantUtil.nullOrNotEmpty(identifiers);
     }
 }
