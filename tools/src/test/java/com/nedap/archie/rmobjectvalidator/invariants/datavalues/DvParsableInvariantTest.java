@@ -36,23 +36,7 @@ public class DvParsableInvariantTest {
         RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
         List<RMObjectValidationMessage> messages = validator.validate(value);
 
-        assertEquals(messages.toString(), 2, messages.size());
-        for(RMObjectValidationMessage message:messages) {
-            if(message.getMessage().startsWith("Invariant")) {
-                assertEquals("Invariant Charset_valid failed on type DV_PARSABLE", message.getMessage());
-                assertEquals("/", messages.get(0).getPath());
-            } else {
-                assertTrue(message.getMessage(), message.getMessage().contains("UnsupportedCharsetException"));
-            }
-        }
-
-    }
-
-    @Test
-    public void sizeInvalid() {
-        DvParsable value = createValid();
-        value.setValue("");
-        InvariantTestUtil.assertInvariantInvalid(value, "Size_valid", "/");
+        InvariantTestUtil.assertInvariantInvalid(value, "Charset_valid", "/");
     }
 
     @Test

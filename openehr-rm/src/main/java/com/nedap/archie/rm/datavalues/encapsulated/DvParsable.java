@@ -95,8 +95,9 @@ public class DvParsable extends DvEncapsulated implements SingleValuedDataValue<
         return InvariantUtil.nullOrNotEmpty(formalism);
     }
 
-    @Invariant("Size_valid")
+    //this is an implementation correctness validation, not a data validation, so set to be ignored here
+    @Invariant(value = "Size_valid", ignored = true)
     public boolean sizeValid() {
-        return size() > 0;
+        return size() >= 0;
     }
 }
