@@ -26,17 +26,16 @@ class RMObjectValidationUtil {
     public static String getParentObservationTerm(CAttribute attribute) {
         String result = "";
         CObject parent = attribute.getParent();
-        while (result.equals("") && parent != null) {
-            CAttribute attributeParent = parent.getParent();
-            if (attributeParent != null) {
-                parent = attributeParent.getParent();
-                if (parent.getRmTypeName().equals("OBSERVATION")) {
-                    ArchetypeTerm parentTerm = parent.getTerm();
-                    if (parentTerm != null) {
-                        result = parentTerm.getText();
-                    }
+        CAttribute attributeParent = parent.getParent();
+        while (result.equals("") && parent != null && attributeParent != null) {
+            parent = attributeParent.getParent();
+            if (parent != null && parent.getRmTypeName().equals("OBSERVATION")) {
+                ArchetypeTerm parentTerm = parent.getTerm();
+                if (parentTerm != null) {
+                    result = parentTerm.getText();
                 }
             }
+            attributeParent = parent == null ? null : parent.getParent();
         }
         return result;
     }

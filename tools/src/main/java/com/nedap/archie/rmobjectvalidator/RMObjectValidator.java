@@ -1,11 +1,13 @@
 package com.nedap.archie.rmobjectvalidator;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
+import com.nedap.archie.rminfo.InvariantMethod;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
@@ -14,8 +16,11 @@ import com.nedap.archie.rmobjectvalidator.validations.RMMultiplicityValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMOccurrenceValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMPrimitiveObjectValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMTupleValidation;
+import org.openehr.utils.message.I18n;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,11 +35,16 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private APathQueryCache queryCache = new APathQueryCache();
     private ModelInfoLookup lookup;
     private ReflectionConstraintImposer constraintImposer;
+    private boolean validateInvariants = true;
 
     public RMObjectValidator(ModelInfoLookup lookup) {
         this.lookup = lookup;
         this.metaModel = new MetaModel(lookup, null);
         constraintImposer = new ReflectionConstraintImposer(lookup);
+    }
+
+    public void setRunInvariantChecks(boolean validateInvariants) {
+        this.validateInvariants = validateInvariants;
     }
 
     public List<RMObjectValidationMessage> validate(Archetype archetype, Object rmObject) {
@@ -46,7 +56,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
     public List<RMObjectValidationMessage> validate(Object rmObject) {
         clearMessages();
-        List<RMObjectWithPath> objects = Lists.newArrayList(new RMObjectWithPath(rmObject, ""));
+        List<RMObjectWithPath> objects = Lists.newArrayList(new RMObjectWithPath(rmObject, "/"));
         addAllMessages(runArchetypeValidations(objects, "", null));
         return getMessages();
     }
@@ -57,6 +67,9 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             //if this branch of the archetype tree is null in the reference model, we're done validating
             //this has to be done after validateOccurrences(), or required fields do not get validated
             return result;
+        }
+        for (RMObjectWithPath objectWithPath : rmObjects) {
+            result.addAll(validateInvariants(objectWithPath, path));
         }
         if(cobject == null) {
             //add default validations
@@ -75,6 +88,43 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             }
             for (RMObjectWithPath objectWithPath : rmObjects) {
                 validateObjectWithPath(result, cobject, path, objectWithPath);
+            }
+        }
+        return result;
+    }
+
+    private List<RMObjectValidationMessage> validateInvariants(RMObjectWithPath objectWithPath, String pathSoFar) {
+        if(!validateInvariants) {
+            return Collections.emptyList();
+        }
+        //pathSoFar ends with an attribute, but objectWithPath contains it, so remove that.
+        pathSoFar = RMObjectValidationUtil.stripLastPathSegment(pathSoFar);
+        List<RMObjectValidationMessage> result = new ArrayList<>();
+        Object rmObject = objectWithPath.getObject();
+        if(rmObject != null) {
+            RMTypeInfo typeInfo = lookup.getTypeInfo(rmObject.getClass());
+            if(typeInfo != null) {
+                for (InvariantMethod invariantMethod : typeInfo.getInvariants()) {
+                    if(!invariantMethod.getAnnotation().ignored()) {
+                        try {
+                            boolean passed = (boolean) invariantMethod.getMethod().invoke(rmObject);
+                            if (!passed) {
+                                result.add(new RMObjectValidationMessage(null, joinPaths(pathSoFar, objectWithPath.getPath()),
+                                        I18n.t("Invariant {0} failed on type " + typeInfo.getRmName(), invariantMethod.getAnnotation().value()),
+                                        RMObjectValidationMessageType.INVARIANT_ERROR));
+                            }
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                            result.add(new RMObjectValidationMessage(null, joinPaths(pathSoFar, objectWithPath.getPath()),
+                                    I18n.t("Exception {0} invoking invariant {1} on {2}: {3}\n{4}",
+                                            e.getCause() == null ? e.getClass().getSimpleName() : e.getCause().getClass().getSimpleName(),
+                                            invariantMethod.getAnnotation().value(),
+                                            typeInfo.getRmName(),
+                                            e.getCause() == null ? e.getMessage() : e.getCause().getMessage(),
+                                            Joiner.on("\n\t").join(e.getStackTrace())),
+                                    RMObjectValidationMessageType.EXCEPTION));
+                        }
+                    }
+                }
             }
         }
         return result;
@@ -111,7 +161,8 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
     private void validateCAttributes(List<RMObjectValidationMessage> result, String path, RMObjectWithPath objectWithPath, Object rmObject, CObject cObject, List<CAttribute> attributes) {
-        String pathSoFar = RMObjectValidationUtil.stripLastPathSegment(path) + objectWithPath.getPath();
+        //the path contains an attribute, but is missing the [idx] part. So strip the attribute, and add the attribute plus the [idx] part.
+        String pathSoFar = joinPaths(RMObjectValidationUtil.stripLastPathSegment(path), objectWithPath.getPath());
         for (CAttribute attribute : attributes) {
             validateAttributes(result, attribute, cObject, rmObject, pathSoFar);
         }
@@ -126,14 +177,14 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
         if (emptyObservationErrors.isEmpty()) {
 
-            result.addAll(RMMultiplicityValidation.validate(attribute, pathSoFar + "/" + rmAttributeName, attributeValue));
+            result.addAll(RMMultiplicityValidation.validate(attribute, joinPaths(pathSoFar, "/", rmAttributeName), attributeValue));
 
             if(attribute.getChildren() == null || attribute.getChildren().isEmpty()) {
                 //no child CObjects. Cardinality/existence has already been validated. Run default RM validations
                 String query = "/" + rmAttributeName;
                 aPathQuery = queryCache.getApathQuery(query);
                 List<RMObjectWithPath> childRmObjects = aPathQuery.findList(lookup, rmObject);
-                result.addAll(runArchetypeValidations(childRmObjects, pathSoFar + query, null));
+                result.addAll(runArchetypeValidations(childRmObjects, joinPaths(pathSoFar, query), null));
             }
             else if (attribute.isSingle()) {
                 validateSingleAttribute(result, attribute, rmObject, pathSoFar);
@@ -143,7 +194,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                     String query = "/" + rmAttributeName + "[" + childCObject.getNodeId() + "]";
                     aPathQuery = queryCache.getApathQuery(query);
                     List<RMObjectWithPath> childRmObjects = aPathQuery.findList(lookup, rmObject);
-                    result.addAll(runArchetypeValidations(childRmObjects, pathSoFar + query, childCObject));
+                    result.addAll(runArchetypeValidations(childRmObjects, joinPaths(pathSoFar, query), childCObject));
                     //TODO: find all other child RM Objects that don't match with a given node id (eg unconstraint in archetype) and
                     //run default validations against them!
                 }
@@ -158,7 +209,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             String query = "/" + attribute.getRmAttributeName() + "[" + childCObject.getNodeId() + "]";
             RMPathQuery aPathQuery = queryCache.getApathQuery(query);
             List<RMObjectWithPath> childNodes = aPathQuery.findList(lookup, rmObject);
-            List<RMObjectValidationMessage> subResult = runArchetypeValidations(childNodes, pathSoFar + query, childCObject);
+            List<RMObjectValidationMessage> subResult = runArchetypeValidations(childNodes, joinPaths(pathSoFar, query), childCObject);
             subResults.add(subResult);
         }
         //a single attribute with multiple CObjects means you can choose which CObject you use
@@ -204,6 +255,32 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             result.add(new RMObjectValidationMessage(cobject == null ? null : cobject.getParent().getParent(), pathSoFar, message, RMObjectValidationMessageType.EMPTY_OBSERVATION));
         }
         return result;
+    }
+
+    private static String joinPaths(String... pathElements) {
+        if(pathElements.length == 0) {
+            return "/";
+        }
+        if(pathElements.length == 1) {
+            String path =  pathElements[0];
+            if(path.isEmpty()) {
+                return "/";
+            }
+            return path;
+        }
+        StringBuilder result = new StringBuilder();
+        boolean lastCharacterWasSlash = false;
+        for(String pathElement:pathElements) {
+            if(lastCharacterWasSlash && pathElement.startsWith("/")) {
+                result.append(pathElement.substring(1));
+            } else {
+                result.append(pathElement);
+            }
+            if(!pathElement.isEmpty()) {
+                lastCharacterWasSlash = pathElement.charAt(pathElement.length() - 1) == '/';
+            }
+        }
+        return result.toString();
     }
 
 
