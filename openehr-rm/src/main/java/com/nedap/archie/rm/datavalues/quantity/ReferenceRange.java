@@ -2,6 +2,7 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rminfo.Invariant;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -57,5 +58,10 @@ public class ReferenceRange<T extends DvOrdered<T>> extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(range, meaning);
+    }
+
+    @Invariant("Range_is_simple")
+    public boolean rangeIsSimple() {
+        return (range.isLowerUnbounded() || (range.getLower() != null && range.getLower().isSimple())) && (range.isUpperUnbounded() || (range.getUpper() != null && range.getUpper().isSimple()));
     }
 }

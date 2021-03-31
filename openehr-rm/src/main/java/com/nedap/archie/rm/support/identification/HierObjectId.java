@@ -18,4 +18,8 @@ public class HierObjectId extends UIDBasedId {
     public HierObjectId(String value) {
         super(value);
     }
+
+    public static HierObjectId createRandomUUID() {
+        return new HierObjectId(java.util.UUID.randomUUID().toString());
+    }
 }

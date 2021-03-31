@@ -2,6 +2,8 @@ package com.nedap.archie.rm.datavalues.encapsulated;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DataValue;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -60,5 +62,15 @@ public abstract class DvEncapsulated extends DataValue {
     @Override
     public int hashCode() {
         return Objects.hash(charset, language);
+    }
+
+    @Invariant("Language_valid")
+    public boolean languageValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "languages");
+    }
+
+    @Invariant("Charset_valid")
+    public boolean charsetValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(charset, "character sets");
     }
 }

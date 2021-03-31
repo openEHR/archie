@@ -5,6 +5,8 @@ import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -103,5 +105,10 @@ public class Folder extends Locatable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), items, folders, details);
+    }
+
+    @Invariant(value="Folders_valid", ignored = true)
+    public boolean foldersValid() {
+        return InvariantUtil.nullOrNotEmpty(folders);
     }
 }

@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -143,6 +145,13 @@ public abstract class Locatable extends Pathable {
         this.feederAudit = feederAudit;
     }
 
+    @JsonIgnore
+    @RMPropertyIgnore
+    @XmlTransient
+    public boolean isArchetypeRoot() {
+        return archetypeDetails != null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -160,5 +169,20 @@ public abstract class Locatable extends Pathable {
     @Override
     public int hashCode() {
         return Objects.hash(name, archetypeNodeId, uid, archetypeDetails, feederAudit, links);
+    }
+
+    @Invariant(value="Links_valid", ignored = true)
+    public boolean linksValid() {
+        return InvariantUtil.nullOrNotEmpty(links);
+    }
+
+    @Invariant(value="Archetyped_valid", ignored = true)
+    public boolean archetypedValid() {
+        return isArchetypeRoot()^ archetypeDetails != null; //this is not a data validation, again, and pretty much useless
+    }
+
+    @Invariant("Archetype_node_id_valid")
+    public boolean archetypeNodeIdValid() {
+        return InvariantUtil.nullOrNotEmpty(archetypeNodeId);
     }
 }
