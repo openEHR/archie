@@ -184,31 +184,23 @@ class OpenEhrRmInstanceGenerator {
     }
 
     private void fixDvInterval(Map<String, Object> result) {
-        Boolean lowerUnbounded = (Boolean) result.get("lower_unbounded");
         Boolean lowerIncluded = (Boolean) result.get("lower_included");
-        Boolean upperUnbounded = (Boolean) result.get("upper_unbounded");
         Boolean upperIncluded = (Boolean) result.get("upper_included");
-
         if(result.get("lower") == null) {
             result.put("lower_unbounded", true);
+            if(lowerIncluded != null) {
+                result.put("lower_included", false);
+            }
         } else {
             result.put("lower_unbounded", false);
         }
         if(result.get("upper") == null) {
             result.put("upper_unbounded", true);
-        } else {
-            result.put("upper_unbounded", false);
-        }
-        //on partially unconstrained intervals, default values will have been added that are not valid. Correct them here.
-        if(lowerUnbounded != null && lowerIncluded != null) {
-            if(lowerUnbounded) {
-                result.put("lower_included", false);
-            }
-        }
-        if(upperUnbounded != null && upperIncluded != null) {
-            if(upperUnbounded) {
+            if(upperIncluded != null) {
                 result.put("upper_included", false);
             }
+        } else {
+            result.put("upper_unbounded", false);
         }
     }
 
