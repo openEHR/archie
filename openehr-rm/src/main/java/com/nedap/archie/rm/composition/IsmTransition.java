@@ -3,6 +3,8 @@ package com.nedap.archie.rm.composition;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -97,5 +99,15 @@ public class IsmTransition extends Pathable {
     @Override
     public int hashCode() {
         return Objects.hash(currentState, transition, careflowStep, reason);
+    }
+
+    @Invariant("Current_state_valid")
+    public boolean currentStateValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(currentState, "instruction states");
+    }
+
+    @Invariant("Transition_valid")
+    public boolean transitionValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(transition, "instruction transitions");
     }
 }
