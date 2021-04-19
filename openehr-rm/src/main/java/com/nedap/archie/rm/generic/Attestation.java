@@ -5,7 +5,9 @@ import com.nedap.archie.rm.datavalues.DvEHRURI;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMProperty;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -106,5 +108,18 @@ public class Attestation extends AuditDetails {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), attestedView, proof, items, reason, isPending);
+    }
+
+    @Invariant(value = "Items_valid", ignored = true)
+    public boolean itemsValid() {
+        return InvariantUtil.nullOrNotEmpty(items);
+    }
+
+    @Invariant(value = "Reason_valid", ignored = true)
+    public boolean reasonValid() {
+        if(reason instanceof DvCodedText) {
+            return InvariantUtil.belongsToTerminologyByGroupId((DvCodedText) reason, "attestation reason");
+        }
+        return true;
     }
 }

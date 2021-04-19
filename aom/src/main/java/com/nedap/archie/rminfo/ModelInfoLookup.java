@@ -19,7 +19,7 @@ public interface ModelInfoLookup {
      * @param rmTypename the rm type name
      * @return the class in the implementation
      */
-    Class getClass(String rmTypename);
+    Class<?> getClass(String rmTypename);
 
     /**
      * Return the default class to be created for a type name
@@ -28,20 +28,20 @@ public interface ModelInfoLookup {
      * @param rmTypename the rm type name
      * @return the class from which an instance should be created
      */
-    Class getClassToBeCreated(String rmTypename);
+    Class<?> getClassToBeCreated(String rmTypename);
 
     /**
      * Returns a map from rm type name to java class
      * @return a map from rm type name to java class
      */
-    Map<String, Class> getRmTypeNameToClassMap();
+    Map<String, Class<?>> getRmTypeNameToClassMap();
 
     /**
      * Get RM Type info for a specific class
      * @param clazz
      * @return
      */
-    RMTypeInfo getTypeInfo(Class clazz);
+    RMTypeInfo getTypeInfo(Class<?> clazz);
 
     /**
      * Get the java reflection Field of an attribute of a certain class
@@ -49,7 +49,7 @@ public interface ModelInfoLookup {
      * @param attributeName the attribute name
      * @return the java Field, or null if the attribute does not exist
      */
-    Field getField(Class clazz, String attributeName);
+    Field getField(Class<?> clazz, String attributeName);
 
     /**
      * Get the type info for the given RM Type Name
@@ -64,7 +64,7 @@ public interface ModelInfoLookup {
      * @param attributeName the attribute name
      * @return the attribute info, or null if it does not exist
      */
-    RMAttributeInfo getAttributeInfo(Class clazz, String attributeName);
+    RMAttributeInfo getAttributeInfo(Class<?> clazz, String attributeName);
 
     /**
      * Get AttributeInfo for the given typename and attribute
@@ -95,7 +95,7 @@ public interface ModelInfoLookup {
      * @param cPrimitiveObject the AOM constraint
      * @return the rm object converted to the corresponding AOM object
      */
-    Object convertToConstraintObject(Object object, CPrimitiveObject cPrimitiveObject);
+    Object convertToConstraintObject(Object object, CPrimitiveObject<?, ?> cPrimitiveObject);
 
 
     /**
@@ -169,7 +169,7 @@ public interface ModelInfoLookup {
      * @param cObject the primitive object to validate
      * @return true if valid, false if not valid
      */
-    boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject);
+    boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject);
 
     Collection<RMPackageId> getId();
 

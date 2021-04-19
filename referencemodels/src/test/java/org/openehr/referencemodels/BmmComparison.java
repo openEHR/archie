@@ -3,15 +3,7 @@ package org.openehr.referencemodels;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmContainerType;
-import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmOpenType;
-import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmSimpleType;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.lang.reflect.Modifier;
@@ -19,9 +11,9 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -89,13 +81,12 @@ public class BmmComparison {
 
     private List<ModelDifference> compareClass(RMTypeInfo typeInfo, BmmClass classDefinition) {
         List<ModelDifference> result = new ArrayList<>();
-        BmmClass flatBmmClass = classDefinition.flattenBmmClass();
         for(RMAttributeInfo attributeInfo:typeInfo.getAttributes().values()) {
             if(!isIgnorableModelParam(classDefinition.getName(), attributeInfo.getRmName())) {
-                BmmProperty bmmProperty = flatBmmClass.getProperties().get(attributeInfo.getRmName());
+                BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeInfo.getRmName());
                 if (bmmProperty == null) {
                     result.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM,
-                            MessageFormat.format("class {0}: ModelInfoLookup property {1} is missing in BMM", classDefinition.getTypeName(), attributeInfo.getRmName()),
+                            MessageFormat.format("class {0}: ModelInfoLookup property {1} is missing in BMM", classDefinition.getType().getTypeName(), attributeInfo.getRmName()),
                             typeInfo.getRmName(),
                             attributeInfo.getRmName()));
                 } else {
@@ -103,11 +94,11 @@ public class BmmComparison {
                 }
             }
         }
-        for(BmmProperty property: flatBmmClass.getProperties().values()) {
+        for(BmmProperty<?> property: classDefinition.getFlatProperties().values()) {
             if(!typeInfo.getAttributes().containsKey(property.getName())) {
                 String propertyDescription = property.getComputed() ? "computed property" : "property";
                 result.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_MODEL,
-                        MessageFormat.format("class {1}: BMM {0} {2} is missing in Model", propertyDescription, classDefinition.getTypeName(), property.getName()),
+                        MessageFormat.format("class {1}: BMM {0} {2} is missing in Model", propertyDescription, classDefinition.getType().getTypeName(), property.getName()),
                         typeInfo.getRmName(),
                         property.getName()));
             }
@@ -118,9 +109,11 @@ public class BmmComparison {
         for(String ancestor:classDefinition.getAncestors().keySet()) {
             Set<RMTypeInfo> directParentClasses = typeInfo.getDirectParentClasses();
             Set<String> parentTypeNames = directParentClasses.stream().map((type) -> type.getRmName()).collect(Collectors.toSet());
-            if(!ancestor.equalsIgnoreCase("any") && !parentTypeNames.contains(ancestor)) {
+
+            String ancestorClassName = BmmDefinitions.typeNameToClassKey(ancestor);
+            if(!ancestorClassName.equalsIgnoreCase("any") && !parentTypeNames.contains(ancestorClassName)) {
                 result.add(new ModelDifference(ModelDifferenceType.ANCESTOR_DIFFERENCE,
-                        MessageFormat.format("class {0} has ancestor {1} in BMM, but not in ModelInfoLookup", classDefinition.getTypeName(), ancestor),
+                        MessageFormat.format("class {0} has ancestor {1} in BMM, but not in ModelInfoLookup", classDefinition.getType().getTypeName(), ancestorClassName),
                         typeInfo.getRmName()));
             }
         }
@@ -128,7 +121,7 @@ public class BmmComparison {
         //abstract/concrete class
         if(typeInfo.getJavaClass() != null && Modifier.isAbstract(typeInfo.getJavaClass().getModifiers()) != classDefinition.isAbstract()) {
             result.add(new ModelDifference(ModelDifferenceType.ABSTRACT_DIFFERENCE,
-                    MessageFormat.format("class {0} abstract difference: BMM: {1}, Model: {2}", classDefinition.getTypeName(), classDefinition.isAbstract(), Modifier.isAbstract(typeInfo.getJavaClass().getModifiers())),
+                    MessageFormat.format("class {0} abstract difference: BMM: {1}, Model: {2}", classDefinition.getType().getTypeName(), classDefinition.isAbstract(), Modifier.isAbstract(typeInfo.getJavaClass().getModifiers())),
                     typeInfo.getRmName()));
         }
 
@@ -146,7 +139,7 @@ public class BmmComparison {
                 extraParamsInModel.contains(propertyName.toLowerCase());
     }
 
-    private Collection<? extends ModelDifference> compareProperty(String className, RMAttributeInfo attributeInfo, BmmProperty bmmProperty) {
+    private Collection<? extends ModelDifference> compareProperty(String className, RMAttributeInfo attributeInfo, BmmProperty<?> bmmProperty) {
         List<ModelDifference> result = new ArrayList<>();
         String modelInfoTypeName = attributeInfo.getTypeNameInCollection();
         String bmmTypeName = BmmDefinitions.typeNameToClassKey(getBmmTypeName(bmmProperty.getType()));
@@ -157,7 +150,11 @@ public class BmmComparison {
                     className, bmmProperty.getName()
                     ));
         }
-
+        if(!Objects.equals(attributeInfo.isComputed(), bmmProperty.getComputed())) {
+            result.add(new ModelDifference(ModelDifferenceType.IS_COMPUTED_DIFFERENCE,
+                    MessageFormat.format("is computed different {0}: BMM {1}, implementation {2}", className + bmmProperty.getName(), bmmProperty.getComputed(), attributeInfo.isComputed()),
+                    className, bmmProperty.getName()));
+        }
         if(attributeInfo.isNullable() != !bmmProperty.getMandatory() && !bmmProperty.getComputed()) {
             result.add(new ModelDifference(ModelDifferenceType.EXISTENCE_DIFFERENCE,
                     MessageFormat.format("mandatory difference {2}: BMM: {0}, implementation: {1}", bmmProperty.getMandatory(), !attributeInfo.isNullable(), className + "." + bmmProperty.getName()),
@@ -203,12 +200,12 @@ public class BmmComparison {
             return getBmmTypeName(containerType.getBaseType());
         } else if (type instanceof BmmGenericType) {
             BmmGenericType genericType = (BmmGenericType) type;
-            return genericType.getBaseClass().getTypeName();
-        } else if (type instanceof BmmOpenType) {
-            BmmOpenType openType = (BmmOpenType) type;
-            BmmClass conformsToType = openType.getGenericConstraint().getConformsToType();
+            return genericType.getBaseClass().getType().getTypeName();
+        } else if (type instanceof BmmParameterType) {
+            BmmParameterType parameterType = (BmmParameterType) type;
+            BmmEffectiveType conformsToType = parameterType.getConformsToType();
             if(conformsToType == null) {
-                return "ANY";//right...
+                return BmmDefinitions.ANY_TYPE;
             }
             return conformsToType.getTypeName();
         }

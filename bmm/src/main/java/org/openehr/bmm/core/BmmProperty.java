@@ -37,33 +37,51 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * Name of this property in the model.
 	 */
 	private String name;
+
 	/**
 	 * True if this property is mandatory in its class.
 	 */
-	private Boolean isMandatory;
+	private boolean isMandatory;
+
 	/**
 	 * True if this property is computed rather than stored in objects of this class.
 	 */
-	private Boolean isComputed;
+	private boolean isComputed;
+
 	/**
 	 * Formal type of this property.
 	 */
 	private T type;
+
 	/**
 	 * True if this property is marked with info model 'im_runtime' property.
 	 */
-	private Boolean isImRuntime;
+	private boolean isImRuntime;
+
 	/**
 	 * True if this property was marked with info model 'im_infrastructure' flag.
 	 */
-	private Boolean isImInfrastructure;
+	private boolean isImInfrastructure;
 
-	public BmmProperty() {
+	public BmmProperty(String aName, T aType, String aDocumentation, boolean isMandatoryFlag, boolean isComputedFlag) {
+		name = aName;
+		type = aType;
+		setDocumentation(aDocumentation);
+		isMandatory = isMandatoryFlag;
+		isComputed = isComputedFlag;
 	}
 
-	public BmmProperty(String name, T type) {
-		this.name = name;
-		this.type = type;
+	public BmmProperty(BmmProperty<T> other) {
+		name = other.name;
+		type = other.type;
+		setDocumentation(other.getDocumentation());
+		isMandatory = other.isMandatory;
+		isComputed = other.isComputed;
+		isImInfrastructure = other.isImInfrastructure;
+		isImRuntime = other.isImRuntime;
+	}
+
+	public BmmProperty() {
 	}
 
 	/**
@@ -89,7 +107,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 *
 	 * @return
 	 */
-	public Boolean getMandatory() {
+	public boolean getMandatory() {
 		return isMandatory;
 	}
 
@@ -97,8 +115,8 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * Set to true if this property is mandatory in its class.
 	 * @param mandatory
 	 */
-	public void setMandatory(Boolean mandatory) {
-		isMandatory = mandatory;
+	public void setMandatory(boolean mandatory) {
+		this.isMandatory = mandatory;
 	}
 
 	/**
@@ -106,7 +124,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 *
 	 * @return
 	 */
-	public Boolean getComputed() {
+	public boolean getComputed() {
 		return isComputed;
 	}
 
@@ -115,7 +133,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 *
 	 * @param computed
 	 */
-	public void setComputed(Boolean computed) {
+	public void setComputed(boolean computed) {
 		isComputed = computed;
 	}
 
@@ -142,7 +160,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 *
 	 * @return
 	 */
-	public Boolean getImRuntime() {
+	public boolean getImRuntime() {
 		return isImRuntime;
 	}
 
@@ -151,7 +169,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 *
 	 * @param imRuntime
 	 */
-	public void setImRuntime(Boolean imRuntime) {
+	public void setImRuntime(boolean imRuntime) {
 		isImRuntime = imRuntime;
 	}
 
@@ -160,7 +178,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 *
 	 * @return
 	 */
-	public Boolean getImInfrastructure() {
+	public boolean getImInfrastructure() {
 		return isImInfrastructure;
 	}
 
@@ -169,8 +187,8 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 *
 	 * @param imInfrastructure
 	 */
-	public void setImInfrastructure(Boolean imInfrastructure) {
-		isImInfrastructure = imInfrastructure;
+	public void setImInfrastructure(boolean imInfrastructure) {
+		isImInfrastructure =imInfrastructure;
 	}
 
 	/**
@@ -189,13 +207,13 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 	 * @return
 	 */
 	public MultiplicityInterval getExistence() {
-		MultiplicityInterval interval = null;
-		if(isMandatory) {
-			interval = MultiplicityInterval.createMandatory();
+		MultiplicityInterval result;
+		if (isMandatory) {
+			result = MultiplicityInterval.createMandatory();
 		} else {
-			interval = MultiplicityInterval.createOptional();
+			result = MultiplicityInterval.createOptional();
 		}
-		return interval;
+		return result;
 	}
 
 	/**
@@ -207,15 +225,7 @@ public class BmmProperty<T extends BmmType> extends BmmModelElement implements S
 		throw new UnsupportedOperationException("Not implemented yet"); // TODO To be implemented
 	}
 
-	public BmmProperty duplicate() {
-		BmmProperty property = new BmmProperty();
-		property.setName(this.name);
-		property.setComputed(this.isComputed);
-		property.setImInfrastructure(this.isImInfrastructure);
-		property.setImRuntime(this.isImRuntime);
-		property.setMandatory(this.isMandatory);
-		property.setType(this.type);
-		property.setDocumentation(this.getDocumentation());
-		return property;
+	public BmmProperty<T> duplicate() {
+		return new BmmProperty<>(this);
 	}
 }

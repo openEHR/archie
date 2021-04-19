@@ -35,7 +35,7 @@ public class CDuration extends CTemporal<TemporalAmount> {
     public void setAssumedValue(TemporalAmount assumedValue) {
         this.assumedValue = assumedValue;
     }
-
+    
     @Override
     public List<Interval<TemporalAmount>> getConstraint() {
         return constraint;
@@ -46,9 +46,6 @@ public class CDuration extends CTemporal<TemporalAmount> {
         this.constraint = constraint;
     }
 
-    public List<Interval<TemporalAmount>> getConstraints() {
-        return constraint;
-    }
 
     @Override
     public void addConstraint(Interval<TemporalAmount> constraint) {

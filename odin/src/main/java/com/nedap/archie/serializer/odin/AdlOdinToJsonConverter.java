@@ -76,7 +76,7 @@ public class AdlOdinToJsonConverter {
             output(context.object_value_block());
         } else if (context.keyed_object() != null && context.keyed_object().size() > 0) {
             outputKeyedObjects(context.keyed_object(), null /* no type id here */);
-        } else {
+        } else{
             //empty
             return "{}";
         }
@@ -129,6 +129,10 @@ public class AdlOdinToJsonConverter {
             output(valueBlockContext.attr_vals().attr_val(), valueBlockContext.type_id());
         } else if (keyedObjectContexts != null && !keyedObjectContexts.isEmpty()) {
             outputKeyedObjects(keyedObjectContexts, valueBlockContext.type_id());
+        }  else if (valueBlockContext.EMBEDDED_URI() != null) {
+            output.append("\"");
+            output.append(OdinEmbeddedUriParser.parseEmbeddedUri(valueBlockContext.EMBEDDED_URI().getText()));
+            output.append("\"");
         } else if (primitiveObjectContext != null) {
             if(primitiveObjectContext.primitive_value() != null) {
                 output(primitiveObjectContext.primitive_value());
@@ -286,9 +290,7 @@ public class AdlOdinToJsonConverter {
     }
 
     private void output(Primitive_valueContext context) {
-        if(context.uri_value() != null) {
-            outputString(context.getText());
-        } else if (context.date_time_value() != null) {
+        if (context.date_time_value() != null) {
             outputString(context.getText());
         } else if (context.date_value()!= null) {
             outputString(context.getText());

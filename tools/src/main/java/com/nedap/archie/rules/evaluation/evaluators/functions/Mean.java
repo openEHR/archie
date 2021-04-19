@@ -21,7 +21,7 @@ public class Mean implements FunctionImplementation {
         Sum sum = new Sum();
         ValueList values = sum.evaluate(arguments);
         ValueList result = new ValueList();
-        for(Value value:values.getValues()) {
+        for(Value<?> value:values.getValues()) {
             if(value.isNull()) {
                 result.addValue(null, value.getPaths());
             } else if(value.getValue() instanceof Number) {

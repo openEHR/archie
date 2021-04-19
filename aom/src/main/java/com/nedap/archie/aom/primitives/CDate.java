@@ -46,10 +46,6 @@ public class CDate extends CTemporal<Temporal> {
         this.constraint = constraint;
     }
 
-    public List<Interval<Temporal>> getConstraints() {
-        return constraint;
-    }
-
     @Override
     public void addConstraint(Interval<Temporal> constraint) {
         this.constraint.add(constraint);

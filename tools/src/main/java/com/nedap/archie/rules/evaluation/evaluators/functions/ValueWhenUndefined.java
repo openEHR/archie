@@ -26,7 +26,7 @@ public class ValueWhenUndefined implements FunctionImplementation {
         if(valueWhenUndefinedList.size() != 1) {
             throw new FunctionCallException("The first argument of value_when_undefined must evaluate to a single value, but got " + valueWhenUndefinedList.size());
         }
-        Value valueWhenUndefined = valueWhenUndefinedList.get(0);
+        Value<?> valueWhenUndefined = valueWhenUndefinedList.get(0);
         ValueList argument = arguments.get(1);
 
         ValueList result = new ValueList();
@@ -34,11 +34,11 @@ public class ValueWhenUndefined implements FunctionImplementation {
             result.addValue(valueWhenUndefined.getValue(), new ArrayList<>(valueWhenUndefined.getPaths()));
             result.setType(valueWhenUndefinedList.getType());
         } else {
-            for (Value value : argument.getValues()) {
+            for (Value<?> value : argument.getValues()) {
                 if (value.isNull()) {
-                    List<String> paths = new ArrayList(value.getPaths());
+                    List<String> paths = new ArrayList<>(value.getPaths());
                     paths.addAll(valueWhenUndefined.getPaths());
-                    result.addValue(new Value(valueWhenUndefined.getValue(), paths));
+                    result.addValue(new Value<>(valueWhenUndefined.getValue(), paths));
                 } else {
                     result.addValue(value);
                 }

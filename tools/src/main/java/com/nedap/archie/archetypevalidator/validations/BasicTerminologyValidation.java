@@ -80,12 +80,12 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
                                 archetypeHasPath || combinedModels.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
                         )
                         ) {
-                            addMessage(ErrorType.VTTBK, String.format("Term binding key %s in path format is not present in archetype", constraintCodeOrPath));
+                            addMessage(ErrorType.VTTBK, I18n.t("Term binding key {0} in path format is not present in archetype", constraintCodeOrPath));
                         } else if (AOMUtils.isValidCode(constraintCodeOrPath) &&
                                 !terminology.hasCode(constraintCodeOrPath) &&
                                 !(archetype.isSpecialized() && flatParent != null && !flatParent.getTerminology().hasCode(constraintCodeOrPath))
                         ) {
-                            addMessage(ErrorType.VTTBK, String.format("Term binding key %s is not present in terminology", constraintCodeOrPath));
+                            addMessage(ErrorType.VTTBK, I18n.t("Term binding key {0} is not present in terminology", constraintCodeOrPath));
                         } else {
                             //TODO: two warnings
                         }
@@ -99,16 +99,16 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
         ArchetypeTerminology terminology = archetype.getTerminology();
         for(ValueSet valueSet:terminology.getValueSets().values()){
             if(!terminology.hasValueSetCode(valueSet.getId())) {
-                addMessage(ErrorType.VTVSID, String.format("value set code %s is not present in terminology", valueSet.getId()));
+                addMessage(ErrorType.VTVSID, I18n.t("value set code {0} is not present in terminology", valueSet.getId()));
             }
             for(String value:valueSet.getMembers()) {
                 if(flatParent == null) {
                     if(!terminology.hasValueCode(value)) {
-                        addMessage(ErrorType.VTVSMD, String.format("value code %s is not present in terminology", value));
+                        addMessage(ErrorType.VTVSMD, I18n.t("value code {0} is not present in terminology", value));
                     }
                 } else {
                     if(!(terminology.hasValueCode(value) || flatParent.getTerminology().hasValueCode(value))) {
-                        addMessage(ErrorType.VTVSMD, String.format("value code %s is not present in terminology", value));
+                        addMessage(ErrorType.VTVSMD, I18n.t("value code {0} is not present in terminology", value));
                     }
                 }
             }
@@ -123,7 +123,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
             Map<String, ArchetypeTerm> archetypeTerms = terminology.getTermDefinitions().get(language);
             for(String key:archetypeTerms.keySet()) {
                 if(!usedCodes.contains(key)) {
-                    addWarning(ErrorType.WOUC, key);
+                    addWarning(ErrorType.WOUC, I18n.t("Code {0} is in the terminology, but not used in the archetype", key));
                 }
             }
         }

@@ -1,15 +1,20 @@
 package com.nedap.archie.rm.changecontrol;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.generic.Attestation;
 import com.nedap.archie.rm.generic.AuditDetails;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMProperty;
+import com.nedap.archie.rminfo.RMPropertyIgnore;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +32,7 @@ import java.util.Objects;
         "lifecycleState"
 
 })
-public class OriginalVersion<Type> extends Version<Type> {
+public class    OriginalVersion<Type> extends Version<Type> {
 
     private ObjectVersionId uid;
     @Nullable
@@ -48,7 +53,7 @@ public class OriginalVersion<Type> extends Version<Type> {
     public OriginalVersion() {
     }
 
-    public OriginalVersion(ObjectVersionId uid, @Nullable ObjectVersionId precedingVersionUid, @Nullable Type data, DvCodedText lifecycleState, AuditDetails commitAudit, ObjectRef contribution, @Nullable String signature, @Nullable List<ObjectVersionId> otherInputVersionUids, @Nullable List<Attestation> attestations) {
+    public OriginalVersion(ObjectVersionId uid, @Nullable ObjectVersionId precedingVersionUid, @Nullable Type data, DvCodedText lifecycleState, AuditDetails commitAudit, ObjectRef<?> contribution, @Nullable String signature, @Nullable List<ObjectVersionId> otherInputVersionUids, @Nullable List<Attestation> attestations) {
         super(commitAudit, contribution, signature);
         this.uid = uid;
         this.precedingVersionUid = precedingVersionUid;
@@ -123,6 +128,14 @@ public class OriginalVersion<Type> extends Version<Type> {
         this.data = data;
     }
 
+
+    @JsonIgnore
+    @RMPropertyIgnore
+    @XmlTransient
+    public boolean isMerged() {
+        return otherInputVersionUids != null && !otherInputVersionUids.isEmpty();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -144,5 +157,21 @@ public class OriginalVersion<Type> extends Version<Type> {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), uid, precedingVersionUid, otherInputVersionUids, lifecycleState, attestations, data);
+    }
+
+    @Invariant(value = "Attestations_valid", ignored = true)
+    public boolean attestationsValid() {
+        return InvariantUtil.nullOrNotEmpty(attestations);
+    }
+
+    @Invariant(value = "Is_merged_validity", ignored = true)
+    public boolean mergedValidity() {
+        //not data validity, so let's ignore this
+        return (otherInputVersionUids == null || otherInputVersionUids.isEmpty()) ^ isMerged();
+    }
+
+    @Invariant(value = "Other_input_version_uids_valid", ignored = true)
+    public boolean otherInputVersionUidsValid() {
+        return InvariantUtil.nullOrNotEmpty(otherInputVersionUids);
     }
 }

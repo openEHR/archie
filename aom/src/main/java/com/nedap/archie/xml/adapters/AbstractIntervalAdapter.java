@@ -7,18 +7,18 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 /**
  * Created by pieter.bos on 28/07/16.
  */
-public abstract class AbstractIntervalAdapter extends XmlAdapter<Interval, Interval> {
+public abstract class AbstractIntervalAdapter<ValueType,BoundType> extends XmlAdapter<Interval<ValueType>, Interval<BoundType>> {
 
 
-    private final XmlAdapter innerAdapter;
+    private final XmlAdapter<ValueType,BoundType> innerAdapter;
 
-    public AbstractIntervalAdapter(XmlAdapter innerAdapter) {
+    public AbstractIntervalAdapter(XmlAdapter<ValueType,BoundType> innerAdapter) {
         this.innerAdapter = innerAdapter;
     }
 
     @Override
-    public Interval unmarshal(Interval v) throws Exception {
-        Interval result = new Interval();
+    public Interval<BoundType> unmarshal(Interval<ValueType> v) throws Exception {
+        Interval<BoundType> result = new Interval<>();
         result.setLowerIncluded(v.isLowerIncluded());
         result.setUpperIncluded(v.isUpperIncluded());
         result.setLowerUnbounded(v.isLowerUnbounded());
@@ -29,8 +29,8 @@ public abstract class AbstractIntervalAdapter extends XmlAdapter<Interval, Inter
     }
 
     @Override
-    public Interval marshal(Interval v) throws Exception {
-        Interval result = new Interval();
+    public Interval<ValueType> marshal(Interval<BoundType> v) throws Exception {
+        Interval<ValueType> result = new Interval<>();
         result.setLowerIncluded(v.isLowerIncluded());
         result.setUpperIncluded(v.isUpperIncluded());
         result.setLowerUnbounded(v.isLowerUnbounded());

@@ -33,7 +33,7 @@ public abstract class COrderedSerializer<T extends COrdered<?>> extends Constrai
     private void serializeAssumedValue(T cobj) {
         if (cobj.getAssumedValue() != null) {
             if (shouldIncludeAssumedValue(cobj)) {
-                builder.append("; ").append(cobj.getAssumedValue());
+                builder.append("; ").append(serializeConstraintValue(cobj.getAssumedValue()));
             }
         }
     }
@@ -50,13 +50,44 @@ public abstract class COrderedSerializer<T extends COrdered<?>> extends Constrai
                     builder.append(", ");
                 }
                 if (isSingleValueInterval(interval)) {
-                    builder.append(interval.getLower());
+                    builder.append(serializeConstraintValue(interval.getLower()));
                 } else {
-                    builder.append(interval);
+                    builder.append(serializeInterval(interval));
                 }
                 first = false;
             }
         }
+    }
+
+    private String serializeInterval(Interval<?> interval) {
+
+        if (interval.isLowerUnbounded()) {
+            return "|" + (interval.isUpperIncluded() ? "<=" : "<") + serializeConstraintValue(interval.getUpper()) + "|";
+        }
+        if (interval.isUpperUnbounded()) {
+            return "|" + (interval.isLowerIncluded() ? ">=" : ">") + serializeConstraintValue(interval.getLower()) + "|";
+        }
+
+        if (interval.getLower() != null && interval.getUpper() != null && interval.getLower() == interval.getUpper()) {
+            return serializeConstraintValue(interval.getLower());
+        }
+        StringBuilder result = new StringBuilder();
+        result.append("|");
+        if (!interval.isLowerIncluded()) {
+            result.append(">");
+        }
+        result.append(serializeConstraintValue(interval.getLower()));
+        result.append("..");
+        if (!interval.isUpperIncluded()) {
+            result.append("<");
+        }
+        result.append(serializeConstraintValue(interval.getUpper()));
+        result.append("|");
+        return result.toString();
+    }
+
+    protected String serializeConstraintValue(Object value) {
+        return value.toString();
     }
 
     private boolean isSingleValueInterval(Interval<?> interval) {

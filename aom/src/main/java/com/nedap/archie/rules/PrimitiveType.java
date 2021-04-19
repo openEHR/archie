@@ -8,7 +8,7 @@ import java.util.Collection;
 public enum PrimitiveType {
     Integer, Real, Boolean, String, Character, Date, Time, DateTime, Duration, Interval, List, Unknown, ObjectReference;//TODO: interval or list with generics?
 
-    public static PrimitiveType fromJavaType(Class clazz) {
+    public static PrimitiveType fromJavaType(Class<?> clazz) {
         if(Collection.class.isAssignableFrom(clazz)) {
             return List;
         }

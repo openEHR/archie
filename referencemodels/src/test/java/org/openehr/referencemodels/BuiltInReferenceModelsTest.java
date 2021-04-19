@@ -18,7 +18,6 @@ public class BuiltInReferenceModelsTest {
 
     @Test
     public void bmmRepository() throws Exception {
-
         BmmRepository bmmRepository = BuiltinReferenceModels.getBmmRepository();
 
         for(BmmValidationResult validation:bmmRepository.getInvalidModels()) {
@@ -26,10 +25,10 @@ public class BuiltInReferenceModelsTest {
             System.out.println(validation.getLogger().toString());
 
         }
-        assertEquals(34, bmmRepository.getPersistentSchemas().size());
-        assertEquals(34, bmmRepository.getModels().size());
-        assertEquals(29, bmmRepository.getValidModels().size());
-        assertEquals(5, bmmRepository.getInvalidModels().size());
+        assertEquals(33, bmmRepository.getPersistentSchemas().size());
+        assertEquals(33, bmmRepository.getModels().size());
+        assertEquals(31, bmmRepository.getValidModels().size());
+        assertEquals(2, bmmRepository.getInvalidModels().size());
     }
 
     @Test

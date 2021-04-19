@@ -6,6 +6,7 @@ import com.nedap.archie.adl14.log.ConvertedCodeResult;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CArchetypeRoot;
 import com.nedap.archie.aom.CAttribute;
@@ -13,6 +14,7 @@ import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -21,6 +23,11 @@ import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rules.Assertion;
+import com.nedap.archie.rules.BinaryOperator;
+import com.nedap.archie.rules.Constraint;
+import com.nedap.archie.rules.Expression;
+import com.nedap.archie.rules.OperatorKind;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -29,6 +36,8 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ADL14NodeIDConverter {
 
@@ -118,7 +127,7 @@ public class ADL14NodeIDConverter {
         //process the codes in alphabetical order, high to low, to prevent overwriting codes
         //even better would probably be to create an empty terminology and separate all new+converted codes and old codes
         //instead of doing this in place. Worth a refactor perhaps?
-        ArrayList<ConvertedCodeResult> sortedCodes = new ArrayList(convertedCodes.values());
+        ArrayList<ConvertedCodeResult> sortedCodes = new ArrayList<>(convertedCodes.values());
         Comparator<ConvertedCodeResult> comparator = Comparator.comparing(r -> r.getOriginalCode());
         sortedCodes.sort(comparator.reversed());
 
@@ -312,6 +321,17 @@ public class ADL14NodeIDConverter {
                         //TODO: remove id code from terminology as well
                     }
                 }
+                ArchetypeSlot slot = (ArchetypeSlot) cObject;
+                for(Assertion assertion:slot.getIncludes()) {
+                    if(assertion.getExpression() != null) {
+                        fixArchetypeSlotExpression(assertion.getExpression());
+                    }
+                }
+                for(Assertion assertion:slot.getExcludes()) {
+                    if(assertion.getExpression() != null) {
+                        fixArchetypeSlotExpression(assertion.getExpression());
+                    }
+                }
             }
         } else if (cObject instanceof CComplexObjectProxy) {
             CComplexObjectProxy proxy = (CComplexObjectProxy) cObject;
@@ -323,6 +343,46 @@ public class ADL14NodeIDConverter {
         }
     }
 
+    private static final Pattern ARCHETYPE_ID_ENDS_WITH_VERSION_PATTERN = Pattern.compile(".*v[0-9]+");
+    private static final Pattern ARCHETYPE_ID_ENDS_WITH_VERSION_PATTERN_REPLACE = Pattern.compile("(?<version>\\.v[0-9]+)(?<end>([\\|]|\\z))");//\z means end of input
+
+    private static void fixArchetypeSlotExpression(Expression expression) {
+        //match patterns in the form archetype_id/value matches {/regexp/} or archetype_id/value matches {"string"}
+        if (expression instanceof BinaryOperator) {
+            BinaryOperator binary = (BinaryOperator) expression;
+            if (binary.getOperator() == OperatorKind.matches) {
+                Expression rightOperand = binary.getRightOperand();
+                if (rightOperand instanceof Constraint) {
+                    Constraint<?> constraint = (Constraint<?>) rightOperand;
+                    if(constraint.getItem() != null && constraint.getItem().getConstraint() != null && constraint.getItem().getConstraint().size() > 0 &&
+                            constraint.getItem() instanceof CString) {
+                        CString cString = (CString) constraint.getItem();
+                        if(cString.getConstraint() == null || cString.getConstraint().isEmpty()) {
+                            return;
+                        }
+                        String pattern = cString.getConstraint().get(0);
+                        if (pattern.startsWith("^") || pattern.startsWith("/")) {
+                            //regexp
+                            pattern = pattern.substring(1, pattern.length() - 1);
+                            Matcher matcher = ARCHETYPE_ID_ENDS_WITH_VERSION_PATTERN_REPLACE.matcher(pattern);
+                            if(matcher.find()) {
+                                pattern = "/" + matcher.replaceAll("${version}\\.*${end}") + "/";
+                                cString.getConstraint().remove(0);
+                                cString.getConstraint().add(pattern);
+                            }
+                        } else {
+                            //string instead of regexp. does this happen in any archetypes?
+                            if(ARCHETYPE_ID_ENDS_WITH_VERSION_PATTERN.matcher(pattern).matches()) {
+                                cString.getConstraint().remove(0);
+                                cString.getConstraint().add(pattern + ".*");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
 
 
@@ -330,7 +390,7 @@ public class ADL14NodeIDConverter {
     private void calculateNewNodeId(CObject cObject) {
         if(cObject.getNodeId() == null) {
             if(cObject instanceof CComplexObject || cObject instanceof CArchetypeRoot || cObject instanceof ArchetypeSlot) {
-               //will be calculated later
+                //will be calculated later
             } else if(cObject instanceof CPrimitiveObject){
                 //done automatically
             }
@@ -355,7 +415,7 @@ public class ADL14NodeIDConverter {
     public String convertNodeId(String oldNodeId) {
         ConvertedCodeResult convertedCodeResult = convertedCodes.get(oldNodeId);
         if(convertedCodeResult != null && convertedCodeResult.hasIdCode()) {
-          return convertedCodeResult.getIdCode();
+            return convertedCodeResult.getIdCode();
         }
         return convertCode(oldNodeId, "id");
     }

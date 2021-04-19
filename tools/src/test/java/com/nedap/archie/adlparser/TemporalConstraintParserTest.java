@@ -32,7 +32,7 @@ public class TemporalConstraintParserTest extends PrimitivesConstraintParserTest
     public void durationPattern() {
         assertEquals("Pw", this.<CDuration>getAttribute("duration_attr1").getPatternedConstraint());
         //		duration_attr33 matches {PdThms/|P38W..P39W4D|}
-        assertDurationInterval(new Interval(Period.ofWeeks(38), Period.ofWeeks(39).plus(Period.ofDays(4))), "duration_attr33");
+        assertDurationInterval(new Interval<>(Period.ofWeeks(38), Period.ofWeeks(39).plus(Period.ofDays(4))), "duration_attr33");
         assertEquals("PdThms", this.<CDuration>getAttribute("duration_attr33").getPatternedConstraint());
     }
 
@@ -86,17 +86,17 @@ public class TemporalConstraintParserTest extends PrimitivesConstraintParserTest
 
     }
 
-    private void assertDurationInterval(Interval<TemporalAmount> expected, String attribute) {
+    private void assertDurationInterval(Interval<?> expected, String attribute) {
         CDuration duration = getAttribute(attribute);
         assertEquals(1, duration.getConstraint().size());
-        Interval<TemporalAmount> interval = duration.getConstraint().get(0);
+        Interval<?> interval = duration.getConstraint().get(0);
         assertEquals(expected, interval);
     }
 
     private void assertSingleDuration(TemporalAmount amount, String attribute) {
         CDuration duration = getAttribute(attribute);
         assertEquals(1, duration.getConstraint().size());
-        Interval<TemporalAmount> interval = duration.getConstraint().get(0);
+        Interval<?> interval = duration.getConstraint().get(0);
         assertEquals(amount, interval.getLower());
         assertEquals(interval.getLower(), interval.getUpper());
         assertFalse(interval.isLowerUnbounded());

@@ -7,12 +7,13 @@ dependencies {
   compile project(':bmm') 
   compile project(':path-queries')
   compile project(':utils')
+  compile project(':openehr-terminology')
   testCompile project(':openehr-rm')
   testCompile project(':archie-utils')
   testCompile project(':i18n')
   testCompile project(':test-rm')
   testCompile project(':referencemodels')
 
-  compile 'org.leadpony.justify:justify:1.1.0'
-  compile 'org.glassfish:jakarta.json:1.1.5:module'
+  compile 'org.leadpony.justify:justify:2.1.0'
+  compile 'org.glassfish:jakarta.json:1.1.6:module'
 }

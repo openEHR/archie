@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.common.collect.ImmutableBiMap;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.OpenEHRBase;
-
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.v2.persistence.*;
 
@@ -22,8 +21,7 @@ import java.io.IOException;
  */
 public class BmmTypeNaming extends ClassNameIdResolver {
 
-    private final static ImmutableBiMap<String, Class> classNaming = ImmutableBiMap.<String, Class>builder().
-        put("P_BMM_BASE_TYPE", PBmmBaseType.class).
+    private final static ImmutableBiMap<String, Class<?>> classNaming = ImmutableBiMap.<String, Class<?>>builder().
         put("BMM_INCLUDE_SPEC", BmmIncludeSpec.class).
         put("P_BMM_CLASS", PBmmClass.class).
         put("P_BMM_CONTAINER_PROPERTY", PBmmContainerProperty.class).
@@ -41,10 +39,11 @@ public class BmmTypeNaming extends ClassNameIdResolver {
         put("P_BMM_SIMPLE_TYPE", PBmmSimpleType.class).
         put("P_BMM_SINGLE_PROPERTY", PBmmSingleProperty.class).
         put("P_BMM_SINGLE_PROPERTY_OPEN", PBmmSinglePropertyOpen.class).
+        put("P_BMM_UNITARY_TYPE", PBmmUnitaryType.class).
         put("P_BMM_TYPE", PBmmType.class).
         put("INTERVAL", Interval.class).build();
 
-    private final static ImmutableBiMap<Class, String>  inverseClassNaming = classNaming.inverse();
+    private final static ImmutableBiMap<Class<?>, String>  inverseClassNaming = classNaming.inverse();
 
     protected BmmTypeNaming() {
         super(TypeFactory.defaultInstance().constructType(OpenEHRBase.class), TypeFactory.defaultInstance());
@@ -57,14 +56,12 @@ public class BmmTypeNaming extends ClassNameIdResolver {
     @Override
     public String idFromValue(Object value) {
         String result = inverseClassNaming.get(value.getClass());
-        if(result != null) {
+        if (result != null) {
             return result;
         } else {
             //not sure if we need this. If so, it should implement naming such as ArchieNamingStrategy (requires module restructuring)
             return value.getClass().getSimpleName();
         }
-
-
     }
 
     @Override
@@ -75,8 +72,8 @@ public class BmmTypeNaming extends ClassNameIdResolver {
     @Override
     protected JavaType _typeFromId(String typeName, DatabindContext ctxt) throws IOException {
         String classKey = BmmDefinitions.typeNameToClassKey(typeName);
-        Class result =  classNaming.get(classKey);
-        if(result != null) {
+        Class<?> result =  classNaming.get(classKey);
+        if (result != null) {
             TypeFactory typeFactory = (ctxt == null) ? _typeFactory : ctxt.getTypeFactory();
             return typeFactory.constructSpecializedType(_baseType, result);
         }

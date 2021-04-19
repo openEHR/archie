@@ -20,28 +20,33 @@ public class ConformanceChecker {
      * @param aParentProperty
      * @return
      */
-    public boolean propertyConformsTo(PBmmSchema schema, PBmmProperty aChildProperty, PBmmProperty aParentProperty) {
+    public boolean propertyConformsTo(PBmmSchema schema, PBmmProperty<?> aChildProperty, PBmmProperty<?> aParentProperty) {
         if(aParentProperty instanceof PBmmSingleProperty && ((PBmmSingleProperty) aParentProperty).getTypeRef().getType().equalsIgnoreCase(BmmDefinitions.ANY_TYPE)) {
             return true;
-        } else if(aChildProperty.getName().equalsIgnoreCase(aParentProperty.getName())) {
+        }
+        else if (aChildProperty.getName().equalsIgnoreCase(aParentProperty.getName())) {
             //Properties names are the same
-            if(aChildProperty instanceof PBmmSingleProperty && aParentProperty instanceof PBmmSingleProperty) {
+            if (aChildProperty instanceof PBmmSingleProperty && aParentProperty instanceof PBmmSingleProperty) {
                 PBmmSingleProperty aChildSingleProperty = (PBmmSingleProperty)aChildProperty;
                 PBmmSingleProperty aParentSingleProperty = (PBmmSingleProperty)aParentProperty;
                 return typeStrictlyConformsTo(schema, aChildSingleProperty.getTypeRef().getType(), aParentSingleProperty.getTypeRef().getType());
-            } else if(aParentProperty instanceof PBmmSingleProperty) {
-                if(aChildProperty instanceof PBmmSinglePropertyOpen) {
+            }
+            else if (aParentProperty instanceof PBmmSingleProperty) {
+                if (aChildProperty instanceof PBmmSinglePropertyOpen) {
                     //If both properties have the same name and are both open properties, then they do not conform.
                     return false;
-                } else if(aChildProperty instanceof PBmmSingleProperty) {
+                }
+                else if(aChildProperty instanceof PBmmSingleProperty) {
                     return true;
                     //TODO FIXME: proper type conformance to constraining generic type needs to be checked here
                 }
-            } else if(aChildProperty instanceof PBmmContainerProperty && aParentProperty instanceof PBmmContainerProperty) {
+            }
+            else if (aChildProperty instanceof PBmmContainerProperty && aParentProperty instanceof PBmmContainerProperty) {
                 PBmmContainerProperty aChildContainerProperty = (PBmmContainerProperty)aChildProperty;
                 PBmmContainerProperty aParentContainerProperty = (PBmmContainerProperty)aParentProperty;
                 return typeStrictlyConformsTo(schema, aChildContainerProperty.getTypeRef().asTypeString(), aParentContainerProperty.getTypeRef().asTypeString());
-            } else if(aChildProperty instanceof PBmmGenericProperty && aParentProperty instanceof PBmmGenericProperty) {
+            }
+            else if (aChildProperty instanceof PBmmGenericProperty && aParentProperty instanceof PBmmGenericProperty) {
                 PBmmGenericProperty aChildGenericProperty = (PBmmGenericProperty)aChildProperty;
                 PBmmGenericProperty aParentGenericProperty = (PBmmGenericProperty)aParentProperty;
                 return typeStrictlyConformsTo(schema, aChildGenericProperty.getTypeRef().asTypeString(), aParentGenericProperty.getTypeRef().asTypeString());
@@ -69,18 +74,17 @@ public class ConformanceChecker {
      * @return
      */
     public boolean typeConformsTo(PBmmSchema schema, String type1, String type2) {
-        List<String> typeList1 = null, typeList2 = null;
+        List<String> typeList1, typeList2;
         typeList1 = BmmDefinitions.typeNameAsFlatList(type1);
         typeList2 = BmmDefinitions.typeNameAsFlatList(type2);
         int index = 0;
 
-        while(index < typeList1.size() && index < typeList2.size() &&
+        while (index < typeList1.size() && index < typeList2.size() &&
                 schema.hasClassOrPrimitiveDefinition(typeList1.get(index)) &&
                 schema.hasClassOrPrimitiveDefinition(typeList2.get(index))) {
             String typePart1 = typeList1.get(index);
             String typePart2 = typeList2.get(index);
-            if(!(type1.equalsIgnoreCase(typePart2)
-                    || isAncestor(schema, typePart1, typePart2))) {
+            if (!(type1.equalsIgnoreCase(typePart2) || isAncestor(schema, typePart1, typePart2))) {
                 return false;
             }
             index++;
@@ -97,13 +101,13 @@ public class ConformanceChecker {
      * @return
      */
     public boolean isAncestor(PBmmSchema schema, String typePart1, String typePart2) {
-        PBmmClass classOrPrimitiveDefinition = schema.findClassOrPrimitiveDefinition(typePart1);
-        List<String> ancestors = classOrPrimitiveDefinition.getAncestorTypeNames();
-        if(ancestors.contains(typePart2)) { //direct ancestor
+        PBmmClass classDefinition = schema.getClassDefinition(typePart1);
+        List<String> ancestors = classDefinition.getAncestorTypeNames();
+        if (ancestors.contains(typePart2)) { //direct ancestor
             return true;
         }
-        for(String ancestor:ancestors) {
-            if(isAncestor(schema, typePart1, ancestor)) { //recursive check
+        for (String ancestor:ancestors) {
+            if (isAncestor(schema, typePart1, ancestor)) { //recursive check
                 return true;
             }
         }

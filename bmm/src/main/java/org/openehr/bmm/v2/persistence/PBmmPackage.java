@@ -57,12 +57,8 @@ public final class PBmmPackage extends PBmmPackageContainer {
     }
 
     public void doRecursiveClasses(BiConsumer<PBmmPackage, String> action) {
-        getClasses().forEach(bmmClass -> {
-            action.accept(this, bmmClass);
-        });
-        getPackages().forEach((key, bmmPackage) -> {
-            bmmPackage.doRecursiveClasses(action);
-        });
+        getClasses().forEach(bmmClass -> action.accept(this, bmmClass));
+        getPackages().forEach((key, bmmPackage) -> bmmPackage.doRecursiveClasses(action));
     }
 
     public void setDocumentation(String documentation) {

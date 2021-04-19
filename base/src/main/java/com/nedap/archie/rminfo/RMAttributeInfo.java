@@ -11,8 +11,8 @@ import java.util.Map;
 public class RMAttributeInfo {
     private final String name;
     private final Field field;
-    private final Class type;
-    private final Class typeInCollection;
+    private final Class<?> type;
+    private final Class<?> typeInCollection;
     private final String typeNameInCollection;
     private final boolean isMultipleValued;
     private final Method getMethod;
@@ -22,7 +22,7 @@ public class RMAttributeInfo {
     private final boolean computed;
     private boolean fromAncestor;
 
-    public RMAttributeInfo(String name, Field field, Class type, Class typeInCollection, String typeNameInCollection, boolean nullable, boolean fromAncestor, Method getMethod, Method setMethod, Method addMethod) {
+    public RMAttributeInfo(String name, Field field, Class<?> type, Class<?> typeInCollection, String typeNameInCollection, boolean nullable, boolean fromAncestor, Method getMethod, Method setMethod, Method addMethod, boolean computed) {
         this.name = name;
         this.field = field;
         this.type = type;
@@ -31,9 +31,9 @@ public class RMAttributeInfo {
         this.getMethod = getMethod;
         this.setMethod = setMethod;
         this.addMethod = addMethod;
-        this.computed = this.setMethod == null && this.addMethod == null;
-        this.isMultipleValued = type instanceof Class && (Collection.class.isAssignableFrom(type)) || type.isArray();
 
+        this.computed = computed;
+        this.isMultipleValued = (type instanceof Class && Collection.class.isAssignableFrom(type)) || type.isArray();
         this.typeInCollection = typeInCollection;
         this.typeNameInCollection = typeNameInCollection;
     }
@@ -62,7 +62,7 @@ public class RMAttributeInfo {
         return isMultipleValued;
     }
 
-    public Class getType() {
+    public Class<?> getType() {
         return type;
     }
 
@@ -74,7 +74,7 @@ public class RMAttributeInfo {
      * If isMultipleValued == true, this will return the type used in the collection, eg if the the collection is List&lt;String&gt;, this will return String.class
      * @return
      */
-    public Class getTypeInCollection() {
+    public Class<?> getTypeInCollection() {
         return typeInCollection;
     }
 

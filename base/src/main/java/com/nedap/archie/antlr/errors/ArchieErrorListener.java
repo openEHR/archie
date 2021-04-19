@@ -45,7 +45,12 @@ public class ArchieErrorListener implements ANTLRErrorListener {
         if(logEnabled) {
             logger.warn(error);
         }
-        errors.addError(error, line, charPositionInLine);
+        if (offendingSymbol != null) {
+            String offendingSymbolString = offendingSymbol.toString();
+            errors.addError(error, msg, line, charPositionInLine, offendingSymbolString.length(), offendingSymbolString);
+        } else {
+            errors.addError(error, msg, line, charPositionInLine);
+        }
     }
 
     @Override

@@ -235,7 +235,7 @@ public class FlattenerExamplesFromSpecTest {
             assertFalse(child.getNodeId() + " should have accuraccy !empty", accuracyAttribute.getChildren().isEmpty());
             CReal accuracy = (CReal) accuracyAttribute.getChildren().get(0);
             CReal parentAccuracy = rmTypeRefinement.itemAtPath("/value/accuracy[1]");
-            assertEquals(parentAccuracy.getConstraints(), accuracy.getConstraints());
+            assertEquals(parentAccuracy.getConstraint(), accuracy.getConstraint());
         }
 
     }
@@ -277,8 +277,8 @@ public class FlattenerExamplesFromSpecTest {
         Archetype flat = new Flattener(repository, models).flatten(specialized);
 
         CReal flatConstraint = flat.itemAtPath("/value[id3]/magnitude[1]");
-        assertEquals(4.0d, flatConstraint.getConstraints().get(0).getLower(), 0.0001d);
-        assertEquals(6.5d, flatConstraint.getConstraints().get(0).getUpper(), 0.0001d);
+        assertEquals(4.0d, flatConstraint.getConstraint().get(0).getLower(), 0.0001d);
+        assertEquals(6.5d, flatConstraint.getConstraint().get(0).getUpper(), 0.0001d);
 
         CString units = flat.itemAtPath("/value[id3]/units[1]");
         assertNotNull(units);
@@ -303,8 +303,8 @@ public class FlattenerExamplesFromSpecTest {
 
         assertEquals(1, dvQuantity.getAttribute("magnitude").getChildren().size());
         CReal magnitudeAttr = (CReal) dvQuantity.getAttribute("magnitude").getChildren().get(0);
-        assertEquals(50.0d, magnitudeAttr.getConstraints().get(0).getLower(), 0.0001d);
-        assertEquals(true, magnitudeAttr.getConstraints().get(0).isUpperUnbounded());
+        assertEquals(50.0d, magnitudeAttr.getConstraint().get(0).getLower(), 0.0001d);
+        assertEquals(true, magnitudeAttr.getConstraint().get(0).isUpperUnbounded());
 
         assertEquals(1, dvQuantity.getAttribute("units").getChildren().size());
         CString unitsAttribute = (CString) dvQuantity.getAttribute("units").getChildren().get(0);
@@ -331,9 +331,9 @@ public class FlattenerExamplesFromSpecTest {
 
         assertEquals(1, dvQuantity.getAttribute("magnitude").getChildren().size());
         CReal magnitudeAttr = (CReal) dvQuantity.getAttribute("magnitude").getChildren().get(0);
-        assertEquals(4.0d, magnitudeAttr.getConstraints().get(0).getLower(), 0.0001d);
-        assertEquals(8.0d, magnitudeAttr.getConstraints().get(0).getUpper(), 0.0001d);
-        assertEquals(false, magnitudeAttr.getConstraints().get(0).isUpperUnbounded());
+        assertEquals(4.0d, magnitudeAttr.getConstraint().get(0).getLower(), 0.0001d);
+        assertEquals(8.0d, magnitudeAttr.getConstraint().get(0).getUpper(), 0.0001d);
+        assertEquals(false, magnitudeAttr.getConstraint().get(0).isUpperUnbounded());
 
         assertEquals(1, dvQuantity.getAttribute("units").getChildren().size());
         CString unitsAttribute = (CString) dvQuantity.getAttribute("units").getChildren().get(0);

@@ -65,7 +65,7 @@ public class RegexTest extends PrimitivesConstraintParserTest {
             BinaryOperator binaryExpression = (BinaryOperator) rule.getExpression();
             ModelReference ref = (ModelReference) binaryExpression.getLeftOperand();
             assertEquals("relative[id3]/path", ref.getPath());
-            Constraint regexConstraint = (Constraint) binaryExpression.getRightOperand();
+            Constraint<?> regexConstraint = (Constraint<?>) binaryExpression.getRightOperand();
             CString regex = (CString) regexConstraint.getItem();
             assertEquals("/regexp/", regex.getConstraint().get(0));
         }

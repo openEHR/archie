@@ -76,7 +76,7 @@ public class RulesFlattener {
             if(!Strings.isNullOrEmpty(assertion.getTag())) {
                 assertion.setTag(tagPrefix + assertion.getTag());
             }
-            if (!(assertion.getExpression() instanceof ForAllStatement)) {
+            if (!Strings.isNullOrEmpty(pathPrefix) && !(assertion.getExpression() instanceof ForAllStatement)) {
                 //Cast expression to ForAllStatement. The variableReferencePrefix is set for all operands within this
                 //expression so that they are recognized as operands of a ForAllStatement, i.e. the prefix will be used
                 //instead of the full path within the flattened rule section. Note that the prefix "item" is

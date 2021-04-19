@@ -91,7 +91,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    protected void addTypes(Class baseClass) {
+    protected void addTypes(Class<?> baseClass) {
         addClass(Interval.class); //extra class from the base package. No RMObject because it is also used in the AOM
         addClass(AuditDetails.class);
         addClass(Ehr.class);
@@ -132,6 +132,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         addClass(ContentItem.class);
         addClass(DataValue.class);
         addClass(DvOrdinal.class);
+        addClass(DvScale.class);
         addClass(Agent.class);
         addClass(InternetId.class);
         addClass(Role.class);
@@ -218,7 +219,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    protected boolean isNullable(Class clazz, Method getMethod, Field field) {
+    protected boolean isNullable(Class<?> clazz, Method getMethod, Field field) {
         //The Party class has a non-null field that is nullable in its ancestor Actor. Cannot model that in Java
         //with Nullable annotations, or have to add really complicated stuff. This works too.
         if(field != null) {
@@ -241,7 +242,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public Class getClassToBeCreated(String rmTypename) {
+    public Class<?> getClassToBeCreated(String rmTypename) {
         if(rmTypename.equals("EVENT")) {
             //this is an abstract class and cannot be created. Create point event instead
             return PointEvent.class;
@@ -250,12 +251,14 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public Object convertToConstraintObject(Object object, CPrimitiveObject cPrimitiveObject) {
+    public Object convertToConstraintObject(Object object, CPrimitiveObject<?, ?> cPrimitiveObject) {
         if(cPrimitiveObject instanceof CTerminologyCode) {
-            if(object instanceof DvCodedText) {
+            if(object instanceof DvCodedText && ((DvCodedText) object).getDefiningCode() != null) {
                 return convertCodePhrase(((DvCodedText) object).getDefiningCode());
             } else if (object instanceof CodePhrase) {
                 return convertCodePhrase((CodePhrase) object);
+            } else {
+                return new TerminologyCode();
             }
         }
         return object;
@@ -348,12 +351,12 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject) {
+    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject) {
         RMAttributeInfo attributeInfo = this.getAttributeInfo(rmTypeName, rmAttributeName);
         if(attributeInfo == null) {
             return true;//cannot validate
         }
-        Class typeInCollection = attributeInfo.getTypeInCollection();
+        Class<?> typeInCollection = attributeInfo.getTypeInCollection();
         if(cObject instanceof CInteger) {
             return typeInCollection.equals(Long.class) || typeInCollection.getName().equals("long");
         } else if(cObject instanceof CReal) {

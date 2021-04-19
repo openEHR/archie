@@ -1,6 +1,5 @@
 package org.openehr.bmm.v2.validation;
 
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 
 import java.util.ArrayList;

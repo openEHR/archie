@@ -38,7 +38,7 @@ import static org.junit.Assert.assertThat;
  *
  * Created by pieter.bos on 30/06/16.
  */
-public class JacksonRMRoundTripTest {
+public class    JacksonRMRoundTripTest {
 
     private ADLParser parser;
     private Archetype archetype;
@@ -98,7 +98,7 @@ public class JacksonRMRoundTripTest {
     @Test
     public void composition() throws Exception {
         Composition composition = new Composition();
-        composition.setCategory("openEhr::123");
+        composition.setCategory("persistent", "openEhr::123");
         composition.setTerritory("openEhr::456");
         composition.setLanguage("openEhr::nl");
         String json = JacksonUtil.getObjectMapper().writeValueAsString(composition);

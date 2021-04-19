@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  *
  * Configurable to support several formats used by several vendors for the same concept
  *
- * This generator generates a Map&ltString, Object&gt;, which can be serializes using the ObjectMapper in JacksonUtil.getObjectMapper()
+ * This generator generates a Map&lt;String, Object&gt;, which can be serializes using the ObjectMapper in JacksonUtil.getObjectMapper()
  * or any other object mapper
  */
 public class FlatJsonGenerator {
@@ -158,7 +158,7 @@ public class FlatJsonGenerator {
         } else if (child instanceof Collection) {
 
             Map<String, Integer> amountsPerNodeId = new HashMap<>();
-            for(Object c: (Collection) child) {
+            for(Object c: (Collection<?>) child) {
 
                 int numberOfNonLocatables = 1; //1-based, sory
                 String archetypeNodeId = modelInfoLookup.getArchetypeNodeIdFromRMObject(c);

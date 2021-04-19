@@ -6,6 +6,8 @@ import com.nedap.archie.rm.archetyped.Link;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -66,5 +68,10 @@ public class Section extends ContentItem {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), items);
+    }
+
+    @Invariant(value="Items_valid", ignored=true)
+    public boolean itemsValid() {
+        return InvariantUtil.nullOrNotEmpty(items);
     }
 }

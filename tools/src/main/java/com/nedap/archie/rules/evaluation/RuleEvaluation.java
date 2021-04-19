@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * Created by pieter.bos on 31/03/16.
@@ -27,8 +28,8 @@ public class RuleEvaluation<T> {
     private final JAXBContext jaxbContext;
 
     private Archetype archetype;
-    private List<Evaluator> evaluators = new ArrayList<>();
-    private HashMap<Class, Evaluator> classToEvaluator = new HashMap<>();
+    private List<Evaluator<?>> evaluators = new ArrayList<>();
+    private HashMap<Class<?>, Evaluator<?>> classToEvaluator = new HashMap<>();
     private FunctionEvaluator functionEvaluator;
 
     //evaluation state
@@ -58,7 +59,7 @@ public class RuleEvaluation<T> {
         add(new VariableDeclarationEvaluator());
         add(new ConstantEvaluator());
         add(new AssertionEvaluator());
-        add(new BinaryOperatorEvaluator(modelInfoLookup));
+        add(new BinaryOperatorEvaluator(modelInfoLookup, archetype));
         add(new UnaryOperatorEvaluator());
         add(new VariableReferenceEvaluator());
         add(new ModelReferenceEvaluator());
@@ -66,10 +67,10 @@ public class RuleEvaluation<T> {
         add(functionEvaluator);
     }
 
-    private void add(Evaluator evaluator) {
+    private void add(Evaluator<?> evaluator) {
         evaluators.add(evaluator);
-        for(Object clazz: evaluator.getSupportedClasses()) {
-            classToEvaluator.put((Class) clazz, evaluator);
+        for(Class<?> clazz: evaluator.getSupportedClasses()) {
+            classToEvaluator.put(clazz, evaluator);
         }
     }
 
@@ -164,4 +165,5 @@ public class RuleEvaluation<T> {
     public ModelInfoLookup getModelInfoLookup() {
         return modelInfoLookup;
     }
+
 }

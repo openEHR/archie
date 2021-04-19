@@ -107,7 +107,7 @@ fragment SECOND   : [0-5][0-9] ;                 // seconds
 // ISO8601 DURATION PnYnMnWnDTnnHnnMnn.nnnS
 // here we allow a deviation from the standard to allow weeks to be // mixed in with the rest since this commonly occurs in medicine
 // TODO: the following will incorrectly match just 'P'
-ISO8601_DURATION : 'P' (DIGIT+ [yY])? (DIGIT+ [mM])? (DIGIT+ [wW])? (DIGIT+[dD])? ('T' (DIGIT+[hH])? (DIGIT+[mM])? (DIGIT+ ('.'DIGIT+)?[sS])?)? ;
+ISO8601_DURATION : '-'?'P' (DIGIT+ [yY])? (DIGIT+ [mM])? (DIGIT+ [wW])? (DIGIT+[dD])? ('T' (DIGIT+[hH])? (DIGIT+[mM])? (DIGIT+ ('.'DIGIT+)?[sS])?)? ;
 
 // ------------------- special word symbols --------------
 SYM_TRUE  : [Tt][Rr][Uu][Ee] ;
@@ -130,47 +130,60 @@ fragment TERM_CODE_CHAR: NAME_CHAR | '.';
 VARIABLE_DECLARATION: SYM_VARIABLE_START RULE_IDENTIFIER SYM_COLON RULE_IDENTIFIER;
 fragment RULE_IDENTIFIER: ALPHA_UC_ID | ALPHA_LC_ID;
 
+EMBEDDED_URI: '<' ([ \t\r\n]|CMT_LINE)* URI ([ \t\r\n]|CMT_LINE)* '>';
+
 // URIs - simple recogniser based on https://tools.ietf.org/html/rfc3986 and
 // http://www.w3.org/Addressing/URL/5_URI_BNF.html
-URI :  URN | URI_SCHEME SYM_COLON URI_HIER_PART ( '?' URI_QUERY+ )? ;
+fragment URI : URI_SCHEME ':' URI_HIER_PART ( '?' URI_QUERY )? ('#' URI_FRAGMENT)? ;
 
-fragment URN: ASSIGNED_NAME RQ_COMPONENTS ('#' F_COMPONENT)?;
-fragment ASSIGNED_NAME: 'urn:' NID ':' NSS;
-fragment NID: ALPHANUM_CHAR (ALPHANUM_CHAR | '_')* ALPHANUM_CHAR;
-fragment NSS: URI_XPALPHA (URI_XPALPHA | '/')*;
-fragment RQ_COMPONENTS: ('?+' R_COMPONENT)? ('?=' Q_COMPONENT)?;
-fragment R_COMPONENT: URI_XPALPHA (URI_XPALPHA | '/' | '?')*;
-fragment Q_COMPONENT: URI_XPALPHA (URI_XPALPHA | '/' | '?')*;
-fragment F_COMPONENT: URI_QUERY_FRAGMENT;
+fragment URI_HIER_PART : ( '//' URI_AUTHORITY ) URI_PATH_ABEMPTY
+    | URI_PATH_ABSOLUTE
+    | URI_PATH_ROOTLESS
+    | URI_PATH_EMPTY;
 
-fragment URI_HIER_PART : ( ('//')? URI_AUTHORITY ) URI_PATH? ;
-fragment URI_AUTHORITY : ( URI_USER '@' )? URI_HOST ( SYM_COLON NATURAL )? ;
-fragment URI_HOST : IP_LITERAL | NAMESPACE ;
-fragment URI_USER : (URI_XALPHA ) + ;
-fragment URI_SCHEME : ALPHANUM_CHAR URI_XALPHA* ;
-fragment URI_PATH   : '/' | ( '/' URI_XPALPHA+ )+ ('/')?;
-fragment URI_QUERY : URI_QUERY_PARAM ('&' URI_QUERY_PARAM) ?;
-fragment URI_QUERY_PARAM : URI_QUERY_FRAGMENT ('=' URI_QUERY_FRAGMENT)?;
-fragment URI_QUERY_FRAGMENT  : URI_XALPHA+ ( '+' URI_XALPHA+ )* ;
+fragment URI_SCHEME : ALPHA_CHAR ( ALPHA_CHAR | DIGIT | '+' | '-' | '.')* ;
 
-fragment IP_LITERAL   : IPV4_LITERAL | IPV6_LITERAL ;
-fragment IPV4_LITERAL : NATURAL '.' NATURAL '.' NATURAL '.' NATURAL ;
-fragment IPV6_LITERAL : HEX_QUAD (SYM_COLON HEX_QUAD )* SYM_COLON SYM_COLON HEX_QUAD (SYM_COLON HEX_QUAD )* ;
+fragment URI_AUTHORITY : ( URI_USERINFO '@' )? URI_HOST ( ':' URI_PORT )? ;
+fragment URI_USERINFO: (URI_UNRESERVED | URI_PCT_ENCODED | URI_SUB_DELIMS | ':' )* ;
+fragment URI_HOST : URI_IP_LITERAL | URI_IPV4_ADDRESS | URI_REG_NAME ; //TODO: ipv6
+fragment URI_PORT: DIGIT*;
 
-fragment URI_XPALPHA : URI_XALPHA | '+' ;
-fragment URI_XALPHA : ALPHANUM_CHAR | URI_SAFE | URI_EXTRA | URI_ESCAPE ;
-fragment URI_SAFE   : [$@\\._-] ;
-fragment URI_EXTRA  : [!*"'()] ;
-fragment URI_ESCAPE : '%' HEX_DIGIT HEX_DIGIT ;
-//fragment URI_RESERVED : [=;/#?: ] ;
+fragment URI_IP_LITERAL   : '[' URI_IPV6_LITERAL ']'; //TODO, if needed: IPvFuture
+fragment URI_IPV4_ADDRESS : URI_DEC_OCTET '.' URI_DEC_OCTET '.' URI_DEC_OCTET '.' URI_DEC_OCTET ;
+fragment URI_IPV6_LITERAL : HEX_QUAD (SYM_COLON HEX_QUAD )* SYM_COLON SYM_COLON HEX_QUAD (SYM_COLON HEX_QUAD )* ;
 
-fragment NATURAL  : [1-9][0-9]* ;
+fragment URI_DEC_OCTET  : DIGIT | [1-9] DIGIT | '1' DIGIT DIGIT | '2' [0-4] DIGIT | '25' [0-5];
+fragment URI_REG_NAME: (URI_UNRESERVED | URI_PCT_ENCODED | URI_SUB_DELIMS)*;
 fragment HEX_QUAD : HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT ;
+
+fragment URI_PATH_ABEMPTY: ('/' URI_SEGMENT ) *;
+fragment URI_PATH_ABSOLUTE: '/' ( URI_SEGMENT_NZ ( '/' URI_SEGMENT )* )?;
+fragment URI_PATH_NOSCHEME: URI_SEGMENT_NZ_NC ( '/' URI_SEGMENT )*;
+fragment URI_PATH_ROOTLESS: URI_SEGMENT_NZ ( '/' URI_SEGMENT )*;
+fragment URI_PATH_EMPTY: ;
+
+fragment URI_SEGMENT: URI_PCHAR*;
+fragment URI_SEGMENT_NZ: URI_PCHAR+;
+fragment URI_SEGMENT_NZ_NC: ( URI_UNRESERVED | URI_PCT_ENCODED | URI_SUB_DELIMS | '@' )+; //non-zero-length segment without any colon ":"
+
+fragment URI_PCHAR: URI_UNRESERVED | URI_PCT_ENCODED | URI_SUB_DELIMS | ':' | '@';
+
+//fragment URI_PATH   : '/' | ( '/' URI_XPALPHA+ )+ ('/')?;
+fragment URI_QUERY : (URI_PCHAR | '/' | '?')*;
+fragment URI_FRAGMENT  : (URI_PCHAR | '/' | '?')*;
+
+fragment URI_PCT_ENCODED : '%' HEX_DIGIT HEX_DIGIT ;
+
+fragment URI_UNRESERVED: ALPHA_CHAR | DIGIT | '-' | '.' | '_' | '~';
+fragment URI_RESERVED: URI_GEN_DELIMS | URI_SUB_DELIMS;
+fragment URI_GEN_DELIMS: ':' | '/' | '?' | '#' | '[' | ']' | '@'; //TODO: migrate to [/?#...] notation
+fragment URI_SUB_DELIMS: '!' | '$' | '&' | '\'' | '(' | ')'
+                         | '*' | '+' | ',' | ';' | '=';
 
 // According to IETF http://tools.ietf.org/html/rfc1034[RFC 1034] and http://tools.ietf.org/html/rfc1035[RFC 1035],
 // as clarified by http://tools.ietf.org/html/rfc2181[RFC 2181] (section 11)
 fragment NAMESPACE : LABEL ('.' LABEL)* ;
-fragment LABEL : ALPHA_CHAR (NAME_CHAR|URI_ESCAPE)* ;
+fragment LABEL : ALPHA_CHAR (NAME_CHAR|URI_PCT_ENCODED)* ;
 
 GUID : HEX_DIGIT+ '-' HEX_DIGIT+ '-' HEX_DIGIT+ '-' HEX_DIGIT+ '-' HEX_DIGIT+ ;
 OID : DIGIT+ '.' DIGIT+ '.' DIGIT+ ('.' DIGIT+)+;

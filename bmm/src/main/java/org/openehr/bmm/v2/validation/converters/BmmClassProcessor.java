@@ -2,6 +2,9 @@ package org.openehr.bmm.v2.validation.converters;
 
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
+
+import org.openehr.bmm.core.BmmSimpleType;
+
 import org.openehr.bmm.v2.persistence.PBmmClass;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 
@@ -71,13 +74,14 @@ public class BmmClassProcessor {
         }
     }
 
-    public BmmClass getAnyClassDefinition() {
+    public BmmSimpleType getAnyTypeDefinition() {
         BmmClass anyClassDefinition = model.getAnyClassDefinition();
-        processBmmClassIfNeeded(anyClassDefinition.getTypeName());
-        return model.getAnyClassDefinition();
+        processBmmClassIfNeeded(anyClassDefinition.getName());
+        return model.getAnyTypeDefinition();
     }
 
     public BmmClass getUnprocessedClassDefinition(String name) {
         return model.getClassDefinition(name);
     }
+
 }

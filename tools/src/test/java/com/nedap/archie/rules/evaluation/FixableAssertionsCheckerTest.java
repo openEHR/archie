@@ -4,6 +4,7 @@ import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
@@ -25,12 +26,12 @@ public class FixableAssertionsCheckerTest {
     private Archetype archetype;
 
     private TestUtil testUtil;
-    private EmptyRMObjectConstructor emptyRMObjectConstructor;
+    private RMObjectCreator rmObjectCreator;
 
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        emptyRMObjectConstructor = new EmptyRMObjectConstructor(ArchieRMInfoLookup.getInstance());
+        rmObjectCreator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
         parser = new ADLParser(new RMConstraintImposer());
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
@@ -122,7 +123,7 @@ public class FixableAssertionsCheckerTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("construct_only_necessary_structure.adls"));
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
-        Locatable root = (Locatable) emptyRMObjectConstructor.constructEmptyRMObject(archetype.getDefinition());
+        Locatable root = rmObjectCreator.create(archetype.getDefinition());
         EvaluationResult evaluate = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         assertEquals("there must be three values that must be set", 1, evaluate.getSetPathValues().size());
 
@@ -141,8 +142,8 @@ public class FixableAssertionsCheckerTest {
 
     }
 
-    private RuleEvaluation getRuleEvaluation() {
-        return new RuleEvaluation(ArchieRMInfoLookup.getInstance(),  JAXBUtil.getArchieJAXBContext(), archetype);
+    private RuleEvaluation<Locatable> getRuleEvaluation() {
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(),  JAXBUtil.getArchieJAXBContext(), archetype);
     }
 
 }

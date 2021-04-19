@@ -16,7 +16,12 @@ import com.nedap.archie.json.JsonSchemaValidator;
 import com.nedap.archie.json.RMJacksonConfiguration;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Observation;
+import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
+import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
+import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.TestUtil;
+import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Test;
 import org.leadpony.justify.api.Problem;
 import org.openehr.bmm.core.BmmModel;
@@ -26,6 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -58,12 +64,15 @@ public class ExampleJsonInstanceGeneratorTest {
         Map<String, Object> encoding = (Map<String, Object>) structure.get("encoding");
         assertEquals("CODE_PHRASE", encoding.get(TYPE_PROPERTY_NAME));
         Map<String, Object> terminologyId = (Map<String, Object>) encoding.get("terminology_id");
-        assertEquals("the default value for a string type should be \"string\"", "string", terminologyId.get("value"));
+        assertEquals("the default value for a terminology id encoding should be \"IANA_character-sets\"", "IANA_character-sets", terminologyId.get("value"));
         List events = (List) data.get("events");
         assertEquals(3, events.size());
         assertEquals("POINT_EVENT", ((Map) events.get(0)).get(TYPE_PROPERTY_NAME));
         assertEquals("POINT_EVENT", ((Map) events.get(1)).get(TYPE_PROPERTY_NAME));
         assertEquals("INTERVAL_EVENT", ((Map) events.get(2)).get(TYPE_PROPERTY_NAME));
+
+        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance()).validate(JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
+        assertEquals(new ArrayList<>(), validated);
 
     }
 
@@ -123,9 +132,8 @@ public class ExampleJsonInstanceGeneratorTest {
         Map<String, Object> structure = structureGenerator.generate(opt);
         String s = serializeToJson(structure, false);
         //check the ordinal creation, including correct DV_CODED_TEXT and CODE_PHRASE
-        assertTrue(s.contains("{\"_type\":\"DV_ORDINAL\",\"value\":0,\"symbol\":{\"_type\":\"DV_CODED_TEXT\",\"defining_code\":{\"_type\":\"CODE_PHRASE\",\"terminology_id\":{\"_type\":\"TERMINOLOGY_ID\",\"value\":\"local\"},\"code_string\":\"at11\"},\"value\":\"Absent\"}}"));
+        assertTrue(s.contains("{\"_type\":\"DV_ORDINAL\",\"value\":0,\"symbol\":{\"_type\":\"DV_CODED_TEXT\",\"value\":\"Absent\",\"defining_code\":{\"_type\":\"CODE_PHRASE\",\"terminology_id\":{\"_type\":\"TERMINOLOGY_ID\",\"value\":\"local\"},\"code_string\":\"at11\"}}}"));
     }
-
 
     /**
      * Tests all CKM examples with the Archie JSON Schema, that properly handles polymorphism
@@ -133,23 +141,24 @@ public class ExampleJsonInstanceGeneratorTest {
      * @throws Exception
      */
     @Test
-    public void generateAllCKMExamples2() throws Exception {
+    public void generateAllCKMExamples() throws Exception {
         ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
-        FullArchetypeRepository repository = TestUtil.parseCKM();
+        FullArchetypeRepository repository = TestUtil.parseCKM();//add string regex filename fiter param here to filter files
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         int numberCreated = 0, validationFailed = 0, generatedException = 0, jsonSchemaValidationRan = 0, jsonSchemaValidationFailed = 0;
         int secondJsonSchemaValidationRan = 0, reserializedJsonSchemaValidationFailed = 0;
+        int rmObjectValidatorRan = 0, rmObjectValidatorFailed = 0;
         repository.compile(BuiltinReferenceModels.getMetaModels());
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         JsonSchemaValidator firstValidator = new JsonSchemaValidator(model, true);
         JsonSchemaValidator secondValidator = new JsonSchemaValidator(model,false);
 
         ObjectMapper archieObjectMapper = getArchieObjectMapper();
+        List<String> rmValidationErrors = new ArrayList<>();
 
         for(ValidationResult result:repository.getAllValidationResults()) {
-            if(result.passes()
-                ) {
+            if(result.passes()) {
                 String json = "";
                 try {
                     Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
@@ -158,6 +167,13 @@ public class ExampleJsonInstanceGeneratorTest {
                     json = mapper.writeValueAsString(example);
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
+                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance()).validate(parsed);
+                    rmObjectValidatorRan++;
+                    if(!validated.isEmpty()) {
+                        rmValidationErrors.add("error in " + result.getArchetypeId() + ": " + validated);
+                        rmObjectValidatorFailed++;
+                    }
+                    //assertEquals("error in " + result.getArchetypeId(), new ArrayList<>(), validated);
                     numberCreated++;
 
                     jsonSchemaValidationRan++;
@@ -168,7 +184,7 @@ public class ExampleJsonInstanceGeneratorTest {
                         jsonSchemaValidationFailed++;
                         continue;
                     }
-                    logger.info("first validation ok for {}", result.getArchetypeId());
+                    //logger.info("first validation ok for {}", result.getArchetypeId());
 
                     String serializedAgain = archieObjectMapper.writeValueAsString(parsed);
                     secondJsonSchemaValidationRan++;
@@ -179,7 +195,7 @@ public class ExampleJsonInstanceGeneratorTest {
                         logger.error(Joiner.on("\n").join(secondProblems));
                         reserializedJsonSchemaValidationFailed++;
                     } else {
-                        logger.info("second validation ok for {}", result.getArchetypeId());
+                       // logger.info("second validation ok for {}", result.getArchetypeId());
                     }
 
                 } catch (Exception e) {
@@ -195,14 +211,18 @@ public class ExampleJsonInstanceGeneratorTest {
 
 
         }
-        logger.info("created " + numberCreated + " examples, " + validationFailed + " failed to validate, " + generatedException + " threw exception in test");
+        logger.info("error validation: " + Joiner.on("\n").join(rmValidationErrors));
+        logger.info("created " + numberCreated + " examples, " + validationFailed + " archetypes failed to validate so were skipped, " + generatedException + " threw exception in test");
         logger.info("failed validation " + jsonSchemaValidationFailed + " of " + jsonSchemaValidationRan);
         logger.info("failed validation of reserialized json " + reserializedJsonSchemaValidationFailed + " of " + secondJsonSchemaValidationRan);
+        logger.info("failed validation of RM Objects+invariants " + rmObjectValidatorFailed + " of " + rmObjectValidatorRan);
         assertEquals("Example JSON schema should not fail", 0, jsonSchemaValidationFailed);
         assertEquals("Example JSON schema serialized from RM implementation should not fail", 0, reserializedJsonSchemaValidationFailed);
+        assertEquals("RMObjectValidator should not fail", 0, rmObjectValidatorFailed);
         assertEquals("no exceptions should occur during schema validation", 0, generatedException);
         assertEquals("example data from all archetypes should be validated", 404, jsonSchemaValidationRan);
         assertEquals("example data from all archetypes should be validated from the rm", 404, secondJsonSchemaValidationRan);
+
     }
 
     private ExampleJsonInstanceGenerator createExampleJsonInstanceGenerator() {

@@ -47,10 +47,10 @@ public abstract class BmmModelElement implements Serializable {
     /**
      * Method sets the documentation associated with this element.
      *
-     * @param documentation
+     * @param aDocumentation
      */
-    public void setDocumentation(String documentation) {
-        this.documentation = documentation;
+    public void setDocumentation(String aDocumentation) {
+        documentation = aDocumentation;
     }
 
 }

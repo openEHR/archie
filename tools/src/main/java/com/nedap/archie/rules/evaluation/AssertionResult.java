@@ -28,7 +28,7 @@ public class AssertionResult {
      * Paths that must have a specific value. Will be set even if this path already has the specific value,
      * to let the UI know that this field can NOT manually be changed by the user right now
      */
-    private Map<String, Value> setPathValues = new LinkedHashMap<>();
+    private Map<String, Value<?>> setPathValues = new LinkedHashMap<>();
     /**
      * Paths that must exist. Will be set even if it does exist, to let the UI know it should not be removed
      */
@@ -37,6 +37,12 @@ public class AssertionResult {
      * Paths that must not exist. Will be set even if it does not exist, to let the UI know if should not be added.
      */
     private List<String> pathsThatMustNotExist = new ArrayList<>();
+
+    /**
+     * Paths where a term code must now be constrained to a value set. Use for example to change a drop down list, to a subselection of
+     * the original full list of values
+     */
+    private Map<String, String> pathsConstrainedToValueSets = new LinkedHashMap<>();
 
     public String getTag() {
         return tag;
@@ -70,11 +76,11 @@ public class AssertionResult {
         this.result = result;
     }
 
-    public Map<String, Value> getSetPathValues() {
+    public Map<String, Value<?>> getSetPathValues() {
         return setPathValues;
     }
 
-    public void setSetPathValues(Map<String, Value> setPathValues) {
+    public void setSetPathValues(Map<String, Value<?>> setPathValues) {
         this.setPathValues = setPathValues;
     }
 
@@ -88,6 +94,14 @@ public class AssertionResult {
 
     public List<String> getPathsThatMustNotExist() {
         return pathsThatMustNotExist;
+    }
+
+    public Map<String, String> getPathsConstrainedToValueSets() {
+        return pathsConstrainedToValueSets;
+    }
+
+    public void setPathsConstrainedToValueSets(Map<String, String> pathsConstrainedToValueSets) {
+        this.pathsConstrainedToValueSets = pathsConstrainedToValueSets;
     }
 
     public void setPathsThatMustNotExist(List<String> pathsThatMustNotExist) {
@@ -124,10 +138,14 @@ public class AssertionResult {
     }
 
     public void setSetPathValue(String path, ValueList values) {
-        for(Value value: values.getValues()) {
+        for(Value<?> value: values.getValues()) {
             //TODO
             setPathValues.put(path, value);
         }
 
+    }
+
+    public void constrainPathToValueSet(String path, String valueSetId) {
+        pathsConstrainedToValueSets.put(path, valueSetId);
     }
 }

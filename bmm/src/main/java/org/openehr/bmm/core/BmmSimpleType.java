@@ -22,30 +22,23 @@ package org.openehr.bmm.core;
  */
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Type reference to a single type i.e. not generic or container type.
  *
  * Created by cnanjo on 4/11/16.
  */
-public class BmmSimpleType extends BmmType implements Serializable {
+public class BmmSimpleType extends BmmDefinedType implements Serializable {
 
-    private BmmClass baseClass;
-
-    /**
-     * Returns the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
-     *
-     * @return the base class
-     */
-    public BmmClass getBaseClass() {
-        return baseClass;
+    public BmmSimpleType (BmmSimpleClass baseClass) {
+        super(baseClass);
     }
 
-    /**
-     * Sets the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.
-     */
-    public void setBaseClass(BmmClass baseClass) {
-        this.baseClass = baseClass;
+    @Override
+    public BmmSimpleClass getBaseClass() {
+        return (BmmSimpleClass) super.getBaseClass();
     }
 
     /**
@@ -55,7 +48,19 @@ public class BmmSimpleType extends BmmType implements Serializable {
      */
     @Override
     public String getTypeName() {
-        return this.baseClass.getTypeName();
+        return getBaseClass().getName();
+    }
+
+    /**
+     * Returns the completely flattened list of type names, flattening out all generic parameters.
+     *
+     * @return base class name
+     */
+    @Override
+    public List<String> getFlattenedTypeList() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add(getBaseClass().getName());
+        return result;
     }
 
     @Override

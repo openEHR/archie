@@ -4,6 +4,8 @@ import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -25,7 +27,8 @@ import java.util.Objects;
         "ehrAccess",
         "ehrStatus",
         "directory",
-        "compositions"
+        "compositions",
+        "folders"
 })
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Ehr extends RMObject {
@@ -35,16 +38,19 @@ public class Ehr extends RMObject {
     @XmlElement(name="ehr_id")
     private HierObjectId ehrId;
 
-    private List<ObjectRef> contributions = new ArrayList<>();
+    private List<ObjectRef<?>> contributions = new ArrayList<>();
     @XmlElement(name="ehr_status")
-    private ObjectRef ehrStatus;
+    private ObjectRef<?> ehrStatus;
     @XmlElement(name="ehr_access")
-    private ObjectRef ehrAccess;
+    private ObjectRef<?> ehrAccess;
     @Nullable
-    private List<ObjectRef> compositions = new ArrayList<>();
+    private List<ObjectRef<?>> compositions = new ArrayList<>();
 
     @Nullable
-    private ObjectRef directory;
+    private ObjectRef<?> directory;
+
+    @Nullable
+    private List<ObjectRef<?>> folders = new ArrayList<>();
 
     @XmlElement(name="time_created")
     private DvDateTime timeCreated;
@@ -52,7 +58,7 @@ public class Ehr extends RMObject {
     public Ehr() {
     }
 
-    public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef> contributions, ObjectRef ehrStatus, ObjectRef ehrAccess, @Nullable ObjectRef directory, @Nullable List<ObjectRef> compositions) {
+    public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef<?>> contributions, ObjectRef<?> ehrStatus, ObjectRef<?> ehrAccess, @Nullable ObjectRef<?> directory, @Nullable List<ObjectRef<?>> compositions) {
         this.systemId = systemId;
         this.ehrId = ehrId;
         this.contributions = contributions;
@@ -80,53 +86,53 @@ public class Ehr extends RMObject {
     }
 
     @Nullable
-    public List<ObjectRef> getContributions() {
+    public List<ObjectRef<?>> getContributions() {
         return contributions;
     }
 
-    public void setContributions(@Nullable List<ObjectRef> contributions) {
+    public void setContributions(@Nullable List<ObjectRef<?>> contributions) {
         this.contributions = contributions;
     }
 
-    public void addContribution(ObjectRef contribution) {
+    public void addContribution(ObjectRef<?> contribution) {
         this.contributions.add(contribution);
     }
 
-    public ObjectRef getEhrStatus() {
+    public ObjectRef<?> getEhrStatus() {
         return ehrStatus;
     }
 
-    public void setEhrStatus(ObjectRef ehrStatus) {
+    public void setEhrStatus(ObjectRef<?> ehrStatus) {
         this.ehrStatus = ehrStatus;
     }
 
-    public ObjectRef getEhrAccess() {
+    public ObjectRef<?> getEhrAccess() {
         return ehrAccess;
     }
 
-    public void setEhrAccess(ObjectRef ehrAccess) {
+    public void setEhrAccess(ObjectRef<?> ehrAccess) {
         this.ehrAccess = ehrAccess;
     }
 
     @Nullable
-    public List<ObjectRef> getCompositions() {
+    public List<ObjectRef<?>> getCompositions() {
         return compositions;
     }
 
-    public void setCompositions(@Nullable List<ObjectRef> compositions) {
+    public void setCompositions(@Nullable List<ObjectRef<?>> compositions) {
         this.compositions = compositions;
     }
 
-    public void addComposition(ObjectRef composition) {
+    public void addComposition(ObjectRef<?> composition) {
         this.compositions.add(composition);
     }
 
     @Nullable
-    public ObjectRef getDirectory() {
+    public ObjectRef<?> getDirectory() {
         return directory;
     }
 
-    public void setDirectory(@Nullable ObjectRef directory) {
+    public void setDirectory(@Nullable ObjectRef<?> directory) {
         this.directory = directory;
     }
 
@@ -136,6 +142,15 @@ public class Ehr extends RMObject {
 
     public void setTimeCreated(DvDateTime timeCreated) {
         this.timeCreated = timeCreated;
+    }
+
+    @Nullable
+    public List<ObjectRef<?>> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(@Nullable List<ObjectRef<?>> folders) {
+        this.folders = folders;
     }
 
     @Override
@@ -150,11 +165,57 @@ public class Ehr extends RMObject {
                 Objects.equals(ehrAccess, ehr.ehrAccess) &&
                 Objects.equals(compositions, ehr.compositions) &&
                 Objects.equals(directory, ehr.directory) &&
-                Objects.equals(timeCreated, ehr.timeCreated);
+                Objects.equals(timeCreated, ehr.timeCreated) &&
+                Objects.equals(folders, ehr.folders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(systemId, ehrId, contributions, ehrStatus, ehrAccess, compositions, directory, timeCreated);
+        return Objects.hash(systemId, ehrId, contributions, ehrStatus, ehrAccess, compositions, directory, timeCreated, folders);
     }
+
+    @Invariant("Contributions valid")
+    public boolean contributionsValid() {
+        return InvariantUtil.objectRefTypeEquals(contributions, "CONTRIBUTION");
+    }
+
+    @Invariant("Ehr_access_valid")
+    public boolean ehrAccessValid() {
+        return InvariantUtil.objectRefTypeEquals(ehrAccess, "VERSIONED_EHR_ACCESS");
+
+    }
+
+    @Invariant("Ehr_status_valid")
+    public boolean ehrStatusValid() {
+        return InvariantUtil.objectRefTypeEquals(ehrStatus, "VERSIONED_EHR_STATUS");
+
+    }
+
+    @Invariant("Compositions_valid")
+    public boolean compositionsValid() {
+        return InvariantUtil.objectRefTypeEquals(compositions, "VERSIONED_COMPOSITION");
+
+    }
+
+    @Invariant("Directory_valid")
+    public boolean directoryValid() {
+        return InvariantUtil.objectRefTypeEquals(directory, "VERSIONED_FOLDER");
+
+    }
+
+
+    @Invariant("Folderss_valid")
+    public boolean foldersValid() {
+        return InvariantUtil.objectRefTypeEquals(folders, "VERSIONED_FOLDER");
+
+    }
+
+    @Invariant("Directory_in_folders")
+    public boolean directoryInFolders() {
+        if (folders != null && directory != null) {
+            return folders.size() >= 1 && folders.get(0).equals(directory);
+        }
+        return true;
+    }
+
 }

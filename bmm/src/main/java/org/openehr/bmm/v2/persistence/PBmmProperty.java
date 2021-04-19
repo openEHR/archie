@@ -2,6 +2,9 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.openehr.bmm.core.BmmClass;
+import org.openehr.bmm.core.BmmProperty;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
 
@@ -19,6 +22,9 @@ public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public PBmmProperty () {
     }
 
     @JsonProperty(value = "is_mandatory")
@@ -44,18 +50,14 @@ public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
         return isImInfrastructure;
     }
 
-    public void setImInfrastructure(Boolean imInfrastructure) {
-        isImInfrastructure = imInfrastructure;
-    }
+    public void setIsImInfrastructure (Boolean imInfrastructure) {isImInfrastructure = imInfrastructure; }
 
     @JsonProperty(value = "is_im_runtime")
     public Boolean isImRuntime() {
         return isImRuntime;
     }
 
-    public void setImRuntime(Boolean imRuntime) {
-        isImRuntime = imRuntime;
-    }
+    public void setIsImRuntime (Boolean imRuntime) {isImRuntime = imRuntime; }
 
     public T getTypeDef() {
         return typeDef;
@@ -63,6 +65,15 @@ public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
 
     public void setTypeDef(T typeDef) {
         this.typeDef = typeDef;
+    }
+
+    public abstract BmmProperty<?> createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass);
+
+    /** set the values to the BmmProperty that come from this class
+     */
+    protected void populateImBooleans(BmmProperty<?> property) {
+        property.setImInfrastructure(nullToFalse(isImInfrastructure));
+        property.setImRuntime(nullToFalse(isImRuntime));
     }
 
     /**

@@ -1,9 +1,7 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nedap.archie.datetime.DateTimeParsers;
-import com.nedap.archie.json.DurationDeserializer;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.datavalues.quantity.DvAmount;
@@ -29,7 +27,7 @@ import java.util.Objects;
 @XmlType(name = "DV_DURATION", propOrder = {
 		"value"
 })
-public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<TemporalAmount> {
+public class DvDuration extends DvAmount<DvDuration, Long> implements SingleValuedDataValue<TemporalAmount> {
 
 	@XmlJavaTypeAdapter(DurationXmlAdapter.class)
 	private TemporalAmount value;
@@ -50,17 +48,12 @@ public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<
 		this.value = DateTimeParsers.parseDurationValue(iso8601Duration);
 	}
 
-	public DvDuration(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, TemporalAmount value) {
+	public DvDuration(@Nullable List<ReferenceRange<DvDuration>> otherReferenceRanges, @Nullable DvInterval<DvDuration> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, TemporalAmount value) {
 		super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
 		this.value = value;
 	}
 
 	@Override
-//    @XmlElements({
-//            @XmlElement(type=Period.class),
-//            @XmlElement(type=Duration.class)
-//    })    
-    @JsonDeserialize(using=DurationDeserializer.class)
     public TemporalAmount getValue() {
         return value;
     }

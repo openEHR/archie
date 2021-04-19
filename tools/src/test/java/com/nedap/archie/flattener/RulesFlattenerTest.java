@@ -12,8 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by pieter.bos on 15/05/2017.
@@ -60,12 +59,21 @@ public class RulesFlattenerTest {
         assertEquals("diastolic", diastolic.getName());
         assertEquals("blood_pressure", bloodPressure.getTag());
         assertEquals("flattened_path_arguments", flattenedPathArguments.getName());
-        assertEquals(ForAllStatement.class, biggerThan90.getExpression().getClass());
+        assertEquals(BinaryOperator.class, biggerThan90.getExpression().getClass());
+        checkCorrectSyntax(flattened);
+    }
+
+    private void checkCorrectSyntax(Archetype flattened) {
+        String serialized= ADLArchetypeSerializer.serialize(flattened);
+        ADLParser parser = new ADLParser();
+        parser.parse(serialized);
+        assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
     }
 
     @Test
     public void flattenedRules() throws Exception {
         Archetype flattened = flattener.flatten(containingRules);
+
         CObject systolicCObject = flattened.itemAtPath("/content[id5]/data/events/data/items[id5]");
         assertEquals("systolic", systolicCObject.getTerm().getText());
         assertEquals(5, flattened.getRules().getRules().size()); //specialized rules, prefixed with the content[id5] path
@@ -88,6 +96,7 @@ public class RulesFlattenerTest {
         ADLParser parser = new ADLParser();
         parser.parse(ADLArchetypeSerializer.serialize(flattened));
         assertTrue(parser.getErrors().hasNoErrors());
+        checkCorrectSyntax(flattened);
     }
 
 }

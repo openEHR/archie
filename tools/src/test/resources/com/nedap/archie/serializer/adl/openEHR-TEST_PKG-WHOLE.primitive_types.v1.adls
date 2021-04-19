@@ -158,9 +158,10 @@ definition
 		duration_attr34 matches {PTs/|P38W..P39W4D|}
 		duration_attr35 matches {PThm/|P38W..P39W4D|}
 		duration_attr36 matches {|>=PT0S|}
+		duration_attr37 matches {|>=-PT10S|}
+		duration_attr38 matches {|>=-P10D|}
 		duration_attr104 matches {PD; P4D}
-		duration_attr118 matches {|<=PT1H|; PT30M}
-		duration_attr128 matches {Pw/|P38W..P39W4D|; P38W2D}
+		duration_attr105 matches {PD; -P4D}
 		duration_attr118 matches {|<=PT1H|; PT30M}
 		duration_attr128 matches {Pw/|P38W..P39W4D|; P38W2D}
 

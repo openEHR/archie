@@ -1,7 +1,6 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.base.Strings;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
@@ -245,7 +244,7 @@ public class Archetype extends AuthoredResource {
      */
     @JsonIgnore
     public Set<String> getAllUsedCodes() {
-        Stack<CObject> workList = new Stack();
+        Stack<CObject> workList = new Stack<>();
         Set<String> result = new LinkedHashSet<>();
         workList.add(definition);
         while(!workList.isEmpty()) {

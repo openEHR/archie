@@ -29,7 +29,7 @@ object_block :
     | object_reference_block
     ;
 
-object_value_block : ( '(' type_id ')' )? '<' ( primitive_object | attr_vals? | keyed_object* ) '>' ;
+object_value_block : ( '(' type_id ')' )? '<' ( primitive_object | attr_vals? | keyed_object* ) '>' | EMBEDDED_URI;
 
 keyed_object : '[' primitive_value ']' '=' object_block ; // TODO: probably should limit to String and Integer?
 
@@ -40,7 +40,7 @@ included_other_language: INCLUDED_LANGUAGE_FRAGMENT;
 primitive_object :
       primitive_value 
     | primitive_list_value 
-    | primitive_interval_value 
+    | primitive_interval_value
     ;
 
 primitive_value :
@@ -53,8 +53,7 @@ primitive_value :
     | date_value
     | time_value 
     | date_time_value 
-    | duration_value 
-    | uri_value 
+    | duration_value
     ;
 
 primitive_list_value :  primitive_value ( ( ',' primitive_value )+ | ',' SYM_LIST_CONTINUE ) ;

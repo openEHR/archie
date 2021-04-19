@@ -8,15 +8,7 @@ import com.nedap.archie.aom.profile.AomProfile;
 import com.nedap.archie.aom.profile.AomTypeMapping;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.query.APathQuery;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmEnumeration;
-import org.openehr.bmm.core.BmmEnumerationInteger;
-import org.openehr.bmm.core.BmmEnumerationString;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.List;
@@ -95,7 +87,7 @@ public class MetaModel implements MetaModelInterface {
         return multiplicityInterval.isUpperUnbounded() || multiplicityInterval.getUpper() > 1;
     }
 
-    private boolean isMultiple(BmmProperty bmmProperty) {
+    private boolean isMultiple(BmmProperty<?> bmmProperty) {
         if(bmmProperty == null) {
             return false;
         } else if(bmmProperty instanceof BmmContainerProperty) {
@@ -117,7 +109,7 @@ public class MetaModel implements MetaModelInterface {
                 return true;//will be checked elsewhere
             }
             List<String> allAncestors = childClass.findAllAncestors();
-            allAncestors = allAncestors.stream().map((s) -> s.toUpperCase()).collect(Collectors.toList());
+            allAncestors = allAncestors.stream().map((s) -> BmmDefinitions.typeNameToClassKey(s)).collect(Collectors.toList());
             if(!parentClassName.equalsIgnoreCase(childClassName) && !allAncestors.contains(parentClassName)) {
                 return false;
             }
@@ -129,42 +121,43 @@ public class MetaModel implements MetaModelInterface {
 
     @Override
     public boolean typeNameExists(String typeName) {
-        if(getSelectedBmmModel() != null) {
-            return selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName)) != null;
+        if (getSelectedBmmModel() != null) {
+            return selectedBmmModel.getClassDefinition(typeName) != null;
         } else {
             return selectedModel.getTypeInfo(typeName) != null;
         }
+
     }
 
     @Override
     public boolean attributeExists(String rmTypeName, String propertyName) {
-        if(selectedBmmModel != null) {
-            String className = BmmDefinitions.typeNameToClassKey(rmTypeName);
-            BmmClass classDefinition = selectedBmmModel.getClassDefinition(className);
-            if(classDefinition == null) {
+        if (selectedBmmModel != null) {
+            BmmClass classDefinition = selectedBmmModel.getClassDefinition(rmTypeName);
+            if (classDefinition == null) {
                 return false;
             }
-            return classDefinition.flattenBmmClass().hasPropertyWithName(propertyName);
-        } else {
+
+            return classDefinition.hasFlatPropertyWithName(propertyName);
+        }
+        else {
             return selectedModel.getAttributeInfo(rmTypeName, propertyName) != null;
         }
+
     }
 
     @Override
     public boolean isNullable(String typeId, String attributeName) {
-        if(selectedBmmModel != null) {
+        if (selectedBmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(typeId);
             BmmClass classDefinition = selectedBmmModel.getClassDefinition(className);
-            if(classDefinition == null) {
+            if (classDefinition == null || !classDefinition.hasFlatPropertyWithName(attributeName)) {
                 return false;
             }
-            if(!classDefinition.hasPropertyWithName(attributeName)) {
-                return false;
-            }
-            BmmClass bmmClass = classDefinition.flattenBmmClass();
-            BmmProperty bmmProperty = bmmClass.getProperties().get(attributeName);
+
+            BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeName);
             return !bmmProperty.getMandatory() || (bmmProperty.getExistence() != null && !bmmProperty.getExistence().isMandatory());
-        } else {
+        }
+        else {
             return selectedModel.getAttributeInfo(typeId, attributeName).isNullable();
         }
     }
@@ -179,16 +172,14 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public boolean typeConformant(String rmTypeName, String rmAttributeName, String childConstraintTypeName) {
         if(getSelectedBmmModel() != null) {
-            String propertyType = selectedBmmModel.effectivePropertyType(rmTypeName, rmAttributeName);
-            BmmClass parentClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
-            BmmClass childClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(childConstraintTypeName));
+            BmmClass parentClass = selectedBmmModel.getClassDefinition(rmTypeName);
+            BmmClass childClass = selectedBmmModel.getClassDefinition(childConstraintTypeName);
             if(childClass != null && parentClass != null) {
-                BmmClass flatParentClass = parentClass.flattenBmmClass();
-                BmmProperty property = flatParentClass.getProperties().get(rmAttributeName);
+                BmmProperty<?> property = parentClass.getFlatProperties().get(rmAttributeName);
                 if(property != null) {
-                    String propertyConfTypeName = property.getType().getBaseClass().getTypeName();
-                   // if(BmmDefinitions.validGenericTypeName(propertyConfTypeName) &&
-                   //         !BmmDefinitions.validGenericTypeName(childConstraintTypeName)) {
+                    String propertyConfTypeName = property.getType().getEffectiveType().getTypeName();
+                    // if(BmmDefinitions.validGenericTypeName(propertyConfTypeName) &&
+                    //         !BmmDefinitions.validGenericTypeName(childConstraintTypeName)) {
 
                     //}
                     return rmTypesConformant(childConstraintTypeName, propertyConfTypeName);
@@ -201,7 +192,7 @@ public class MetaModel implements MetaModelInterface {
             RMTypeInfo typeInfo = selectedModel.getTypeInfo(childConstraintTypeName);
             RMAttributeInfo owningAttributeInfo = selectedModel.getAttributeInfo(rmTypeName, rmAttributeName);
             if (owningAttributeInfo != null) {//this case is another validation, see the validate(cattribute) method of this class
-                Class typeInCollection = owningAttributeInfo.getTypeInCollection();
+                Class<?> typeInCollection = owningAttributeInfo.getTypeInCollection();
                 if (!typeInCollection.isAssignableFrom(typeInfo.getJavaClass())) {
                     return false;
                 }
@@ -217,7 +208,7 @@ public class MetaModel implements MetaModelInterface {
         }
 
         if(selectedBmmModel != null) {
-            return AOMUtils.getPropertyAtPath(selectedBmmModel, rmTypeName, path) != null;
+            return selectedBmmModel.hasPropertyAtPath (rmTypeName, path);
         } else {
             return AOMUtils.getAttributeInfoAtPath(selectedModel, rmTypeName, path) != null;
         }
@@ -226,7 +217,7 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public MultiplicityInterval referenceModelPropMultiplicity(String rmTypeName, String rmAttributeNameOrPath) {
         if(selectedBmmModel != null) {
-            BmmProperty bmmProperty =  AOMUtils.getPropertyAtPath(selectedBmmModel, rmTypeName, rmAttributeNameOrPath);
+            BmmProperty<?> bmmProperty =  selectedBmmModel.propertyAtPath (rmTypeName, rmAttributeNameOrPath);
             if(bmmProperty == null) {
                 return null;
             }
@@ -257,7 +248,7 @@ public class MetaModel implements MetaModelInterface {
     }
 
     @Override
-    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject) {
+    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject) {
         if(selectedAomProfile == null && selectedModel == null) {
             throw new IllegalStateException("no AOM profile and no selected ModelInfoLookup, cannot validate primitive type");
         } else if (selectedAomProfile == null) {
@@ -270,36 +261,39 @@ public class MetaModel implements MetaModelInterface {
                 cRmTypeName = aomTypeMapping.getTargetClassName();
             }
             String modelTypeName = selectedBmmModel.effectivePropertyType(rmTypeName, rmAttributeName);
-            BmmClass bmmClass = selectedBmmModel.getClassDefinition(BmmDefinitions.typeNameToClassKey(rmTypeName));
+            BmmClass bmmClass = selectedBmmModel.getClassDefinition(rmTypeName);
             if(bmmClass != null) {
-                BmmProperty bmmProperty = bmmClass.flattenBmmClass().getProperties().get(rmAttributeName);
+                BmmProperty<?> bmmProperty = bmmClass.getFlatProperties().get(rmAttributeName);
                 if(bmmProperty != null) {
                     //check enumerated properties
-                    BmmClass propertyClass = bmmProperty.getType().getBaseClass();
-                    if(propertyClass instanceof BmmEnumeration) {
-                        //enumeration. This should probably an integer.
-                        //TODO: check if we should check the actual type as well as the string values of the enumeration?
-                        modelTypeName = ((BmmEnumeration) propertyClass).getUnderlyingTypeName();
-                        if(!modelTypeName.equalsIgnoreCase(cRmTypeName)) {
-                            return false;//TODO: this should be a different error code/message
-                        }
-                        else if(cObject instanceof CString && propertyClass instanceof BmmEnumerationString) {
-                            BmmEnumerationString enumerationString = (BmmEnumerationString) propertyClass;
-                            CString cString = (CString) cObject;
-                            if(!cString.getConstraint().stream().allMatch(item -> enumerationString.getItemValues().contains(item))) {
+                    BmmEffectiveType propertyEffectiveType = bmmProperty.getType().getEffectiveType();
+                    if (propertyEffectiveType instanceof BmmDefinedType) {
+                        BmmClass propertyClass = ((BmmDefinedType) propertyEffectiveType).getBaseClass();
+                        if (propertyClass instanceof BmmEnumeration) {
+                            //enumeration. This should probably an integer.
+                            //TODO: check if we should check the actual type as well as the string values of the enumeration?
+                            modelTypeName = ((BmmEnumeration<?>) propertyClass).getUnderlyingTypeName();
+                            if(!modelTypeName.equalsIgnoreCase(cRmTypeName)) {
+                                return false;//TODO: this should be a different error code/message
+                            }
+                            else if(cObject instanceof CString && propertyClass instanceof BmmEnumerationString) {
+                                BmmEnumerationString enumerationString = (BmmEnumerationString) propertyClass;
+                                CString cString = (CString) cObject;
+                                if(!cString.getConstraint().stream().allMatch(item -> enumerationString.getItemValues().contains(item))) {
+                                    return false;
+                                }
+                            } else if (cObject instanceof CInteger && propertyClass instanceof BmmEnumerationInteger) {
+                                BmmEnumerationInteger enumerationInteger = (BmmEnumerationInteger) propertyClass;
+                                CInteger cInteger = (CInteger) cObject;
+                                //TODO: BMM uses Integers instead of long, that could be aproblem as it can be Integer64 in models!
+                                if(!cInteger.getConstraintValues().stream().allMatch(item -> enumerationInteger.getItemValues().contains(item.intValue()))) {
+                                    return false;
+                                }
+                            } else {
+                                //this isn't right, unless we have some very fancy type substition going on.
+                                //TODO: add an error message, not just a boolean
                                 return false;
                             }
-                        } else if (cObject instanceof CInteger && propertyClass instanceof BmmEnumerationInteger) {
-                            BmmEnumerationInteger enumerationInteger = (BmmEnumerationInteger) propertyClass;
-                            CInteger cInteger = (CInteger) cObject;
-                            //TODO: BMM uses Integers instead of long, that could be aproblem as it can be Integer64 in models!
-                            if(!cInteger.getConstraintValues().stream().allMatch(item -> enumerationInteger.getItemValues().contains(item.intValue()))) {
-                                return false;
-                            }
-                        } else {
-                            //this isn't right, unless we have some very fancy type substition going on.
-                            //TODO: add an error message, not just a boolean
-                            return false;
                         }
                     }
                 }
@@ -323,29 +317,31 @@ public class MetaModel implements MetaModelInterface {
 
     @Override
     public boolean isOrdered(String typeName, String attributeName) {
-        if(getSelectedBmmModel() != null) {
-            BmmClass classDefinition = getSelectedBmmModel().getClassDefinition(BmmDefinitions.typeNameToClassKey(typeName));
+        if (getSelectedBmmModel() != null) {
+            BmmClass classDefinition = getSelectedBmmModel().getClassDefinition(typeName);
             if (classDefinition != null) {
                 //TODO: don't flatten on request, create a flattened properties cache just like the eiffel code for much better performance
-                BmmClass flatClassDefinition = classDefinition.flattenBmmClass();
-                BmmProperty bmmProperty = flatClassDefinition.getProperties().get(attributeName);
+                BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeName);
                 return isOrdered(bmmProperty);
             }
-        } else {
+        }
+        else {
             RMAttributeInfo attributeInfo = selectedModel.getAttributeInfo(typeName, attributeName);
             return attributeInfo != null && List.class.isAssignableFrom(attributeInfo.getType());
         }
-        return true;//most collections will be ordered, so safe default
+        return true; //most collections will be ordered, so safe default
     }
 
-    private boolean isOrdered(BmmProperty bmmProperty) {
-        if(bmmProperty == null) {
+    private boolean isOrdered(BmmProperty<?> bmmProperty) {
+        if (bmmProperty == null) {
             return false;
-        } else if(bmmProperty instanceof BmmContainerProperty) {
+        }
+        else if(bmmProperty instanceof BmmContainerProperty) {
             String baseType = BmmDefinitions.typeNameToClassKey(((BmmContainerProperty) bmmProperty).getType().getContainerType().toString());
 
             return baseType.equalsIgnoreCase("list") || baseType.equalsIgnoreCase("array");//TODO: check Hash
-        } else {
+        }
+        else {
             return false;
         }
     }

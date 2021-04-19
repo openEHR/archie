@@ -13,10 +13,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -34,18 +31,25 @@ public class APathQuery {
     private List<PathSegment> pathSegments = new ArrayList<>();
 
     public APathQuery(String query) {
-        if(!query.equals("/")) {
+        if(!query.startsWith("/") && !query.contains("/") && !query.contains("[")) {
+            pathSegments.add(new PathSegment(query));
+        } else if(!query.equals("/")) {
             XPathLexer lexer = new XPathLexer(new ANTLRInputStream(query));
             XPathParser parser = new XPathParser(new CommonTokenStream(lexer));
             LocationPathContext locationPathContext = parser.locationPath();
             AbsoluteLocationPathNorootContext absoluteLocationPathNorootContext = locationPathContext.absoluteLocationPathNoroot();
-            if (absoluteLocationPathNorootContext == null) {
-                throw new UnsupportedOperationException("relative xpath expressions not yet supported: " + query);
-            }
-            if (!absoluteLocationPathNorootContext.getTokens(XPathLexer.ABRPATH).isEmpty()) {
+            //if (absoluteLocationPathNorootContext == null) {
+            //    throw new UnsupportedOperationException("relative xpath expressions not yet supported: " + query);
+           // }
+            if (absoluteLocationPathNorootContext != null && !absoluteLocationPathNorootContext.getTokens(XPathLexer.ABRPATH).isEmpty()) {
                 throw new UnsupportedOperationException("absolute path starting with // not yet supported");
             }
-            RelativeLocationPathContext relativeLocationPathContext = absoluteLocationPathNorootContext.relativeLocationPath();
+            RelativeLocationPathContext relativeLocationPathContext;
+            if(absoluteLocationPathNorootContext == null) {
+                relativeLocationPathContext = locationPathContext.relativeLocationPath();
+            } else {
+                relativeLocationPathContext = absoluteLocationPathNorootContext.relativeLocationPath();
+            }
 
             if (!relativeLocationPathContext.getTokens(XPathLexer.ABRPATH).isEmpty()) {
                 throw new UnsupportedOperationException("relative path with // between steps not yet supported");
@@ -85,10 +89,10 @@ public class APathQuery {
     }
 
     public String toString(){
-        if(pathSegments.size() == 0) {
+        if (pathSegments.size() == 0) {
             return "/";
         }
         return Joiner.on("").join(pathSegments);
     }
-
+    
 }

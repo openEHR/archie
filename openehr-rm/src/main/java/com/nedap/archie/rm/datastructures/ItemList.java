@@ -24,7 +24,7 @@ import java.util.Objects;
         "items"
 })
 @XmlRootElement(name = "item_list")
-public class ItemList extends ItemStructure<Element> {
+public class ItemList extends ItemStructure {
 
 
     @Nullable
@@ -43,6 +43,7 @@ public class ItemList extends ItemStructure<Element> {
         setItems(items);
     }
 
+    @Override
     public List<Element> getItems() {
         return items;
     }

@@ -35,7 +35,7 @@ public class ArchetypeParsePostProcesser {
     }
 
     private static void setParents(Archetype archetype) {
-        Stack<CObject> workList = new Stack();
+        Stack<CObject> workList = new Stack<>();
         workList.add(archetype.getDefinition());
         while(!workList.empty()) {
             CObject cObject = workList.pop();

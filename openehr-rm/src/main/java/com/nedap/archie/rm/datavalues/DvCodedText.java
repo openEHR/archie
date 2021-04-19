@@ -31,6 +31,11 @@ public class DvCodedText extends DvText {
         this.definingCode = definingCode;
     }
 
+    public DvCodedText(String value, String definingCode) {
+        super(value);
+        this.definingCode = new CodePhrase(definingCode);
+    }
+
     public DvCodedText(String value, @Nullable CodePhrase language, @Nullable CodePhrase encoding, CodePhrase definingCode) {
         super(value, language, encoding);
         this.definingCode = definingCode;
@@ -60,8 +65,7 @@ public class DvCodedText extends DvText {
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("code_string", definingCode.getCodeString())
-                .add("terminology_id", definingCode.getTerminologyId())
+        return MoreObjects.toStringHelper(this).add("defining_code", definingCode)
                 .add("value", getValue())
                 .toString();
     }

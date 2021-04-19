@@ -10,6 +10,8 @@ import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
+import com.nedap.archie.terminology.TermCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,9 +56,9 @@ public class ADL14TermConstraintConverter {
                 //tuples have not been properly converted to CAttributes in this parsed model, so we can ignore them above
                 Set<Integer> tupleTermCodeIndices = getCTerminologyCodeIndices(tuple);
                 for (Integer index : tupleTermCodeIndices) {
-                    List<CPrimitiveObject> termCodes = tuple.getTuples().stream().map(p -> p.getMember(index)).collect(Collectors.toList());
+                    List<CPrimitiveObject<?, ?>> termCodes = tuple.getTuples().stream().map(p -> p.getMember(index)).collect(Collectors.toList());
                     Set<String> atCodes = new LinkedHashSet<>();
-                    for (CPrimitiveObject cPrimitiveObject : termCodes) {
+                    for (CPrimitiveObject<?, ?> cPrimitiveObject : termCodes) {
                         CTerminologyCode cTerminologyCode = (CTerminologyCode) cPrimitiveObject;
                         convertCTerminologyCode(cTerminologyCode);
                         if(cTerminologyCode.getConstraint().size() == 1) {
@@ -78,7 +80,7 @@ public class ADL14TermConstraintConverter {
         Set<Integer> result = new LinkedHashSet<>();
         for (CPrimitiveTuple primitiveTuple : tuple.getTuples()) {
             int i = 0;
-            for (CPrimitiveObject cPrimitiveObject : primitiveTuple.getMembers()) {
+            for (CPrimitiveObject<?, ?> cPrimitiveObject : primitiveTuple.getMembers()) {
                 if(cPrimitiveObject instanceof CTerminologyCode) {
                     result.add(i);
                 }
@@ -148,12 +150,14 @@ public class ADL14TermConstraintConverter {
                         logger.error("error converting term", e);
                     }
                 } else {
-                    String terminologyId = termCode.getTerminologyId();
+                    String terminologyId = cTerminologyCode.getConstraint().get(0);
+                    termCode = TerminologyCode.createFromString(terminologyId, null, cTerminologyCode.getConstraint().get(1));
                     Map<String, URI> termBindingsMap = findOrCreateTermBindings(termCode);
                     List<String> atCodes = new ArrayList<>();
                     List<String> constraints = new ArrayList<>(cTerminologyCode.getConstraint());
                     cTerminologyCode.setConstraint(atCodes);
-                    for(String constraint:constraints) {
+                    for(int i = 1; i < constraints.size(); i++) {
+                        String constraint = constraints.get(i);
                         try {
                             if(constraint.startsWith("[") && constraint.endsWith("]")) {
                                 TerminologyCode constraintCode = TerminologyCode.createFromString(constraint);
@@ -219,14 +223,27 @@ public class ADL14TermConstraintConverter {
         createdCode.setOriginalTerm(termCode);
         converter.addCreatedCode(termCode.toString(), createdCode);
 
+        addTermBindingCode(archetype, termCode.toString(), uri, valueCode);
+        return valueCode;
+    }
+
+    protected static void addTermBindingCode(Archetype archetype, String termCode, URI uri, String valueCode) {
         for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
+            TermCode termFromTerminology = OpenEHRTerminologyAccess.getInstance().getTermByTerminologyURI(uri.toString(), language);
+            TermCode fallbackCode = OpenEHRTerminologyAccess.getInstance().getTermByTerminologyURI(uri.toString(), "en");
             ArchetypeTerm term = new ArchetypeTerm();
             term.setCode(valueCode);
-            term.setText("Term binding for " + termCode.toString() + ", translation not known in ADL 1.4 -> ADL 2 converter");
+            if(termFromTerminology != null) {
+                term.setText(termFromTerminology.getDescription());
+            } else if (fallbackCode != null) {
+                term.setText("* " + fallbackCode.getDescription() + " (en)");
+            }else {
+                term.setText("Term binding for " + termCode + ", translation not known in ADL 1.4 -> ADL 2 converter");
+
+            }
             term.setDescription(term.getText());
             archetype.getTerminology().getTermDefinitions().get(language).put(valueCode, term);
         }
-        return valueCode;
     }
 
     private ValueSet findOrCreateValueSet(Archetype archetype, Set<String> localCodes, CObject owningConstraint) {
