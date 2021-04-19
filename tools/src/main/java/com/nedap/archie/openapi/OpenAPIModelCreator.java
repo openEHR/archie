@@ -246,7 +246,7 @@ public class OpenAPIModelCreator {
                 Map<String, BmmClass> allDescendants = bmmModel.getAllDescendantClassObjects(bmmClass);
                 for(BmmClass descendant:allDescendants.values()) {
                     if(shouldClassBeIncluded(descendant)) {
-                        descendantsMappings.add(BmmDefinitions.typeNameToClassKey(descendant.getName()), BmmDefinitions.typeNameToClassKey(createReferenceTarget(descendant.getName())));
+                        descendantsMappings.add(BmmDefinitions.typeNameToClassKey(descendant.getName()), createReferenceTarget(descendant.getName()));
                     }
                 }
                 properties.add("_type", createType("string"));
