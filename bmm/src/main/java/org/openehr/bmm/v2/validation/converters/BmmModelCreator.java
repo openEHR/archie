@@ -49,8 +49,6 @@ public class BmmModelCreator {
         model.setArchetypeVisualizeDescendantsOf (schema.getArchetypeVisualizeDescendantsOf());
         model.setArchetypeRmClosurePackages (schema.getArchetypeRmClosurePackages() == null ? new ArrayList<>() : new ArrayList<>(schema.getArchetypeRmClosurePackages()));
 
-
-        // The basics have been created. Now populate the classes with properties
         //setup all classes, ancestors and generic parameters
         BmmClassProcessor classSupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClass(processor, schema));
         classSupplier.run();
