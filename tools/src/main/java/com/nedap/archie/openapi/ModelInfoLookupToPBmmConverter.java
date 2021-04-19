@@ -185,7 +185,12 @@ public class ModelInfoLookupToPBmmConverter {
             setBasicsForProperty(attribute, property);
             property.setCardinality(Interval.upperUnbounded(0, true));
             PBmmContainerType pBmmType = new PBmmContainerType();
-            pBmmType.setType(typeInCollection);
+            if(typeInCollection.startsWith("INTERVAL")) {
+                //generics!
+                pBmmType.setTypeDef(new PBmmGenericType(typeInCollection, new ArrayList<>()));//TODO: add generic parameters!
+            } else {
+                pBmmType.setType(typeInCollection);
+            }
             pBmmType.setContainerType("List");
             property.setTypeDef(pBmmType);
             return property;
