@@ -68,7 +68,7 @@ public class ModelInfoLookupToPBmmConverter {
                 bmmClass.setAncestors(Lists.newArrayList("Any"));
             }
 
-            Map<String, PBmmProperty> properties = new LinkedHashMap<>();
+            Map<String, PBmmProperty<?>> properties = new LinkedHashMap<>();
             for(RMAttributeInfo attribute:type.getAttributes().values()) {
                 if(attribute.isFromAncestor() || ignoredAttributes.contains(new AttributeReference(type.getRmName(), attribute.getRmName()))) {
                     continue;

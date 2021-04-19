@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.nedap.archie.aom.utils.AOMUtils;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
@@ -163,11 +164,12 @@ public class OpenAPIModelCreator {
     }
 
     private boolean shouldClassBeIncluded(BmmClass bmmClass) {
-        return !ignoredTypes.contains(bmmClass.getClassKey()) && !primitiveTypeMapping.containsKey(bmmClass.getTypeName().toLowerCase());
+        return !ignoredTypes.contains(BmmDefinitions.typeNameToClassKey(bmmClass.getName())) && !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase());
     }
 
     private void addClass(JsonObjectBuilder definitions, BmmClass bmmClass) {
-        String originalTypeName = bmmClass.getClassKey();
+        String bmmClassName = bmmClass.getName();
+        String originalTypeName = BmmDefinitions.typeNameToClassKey(bmmClassName);
         String typeName = convertTypeName(originalTypeName);
 
         BmmClass flatBmmClass = bmmClass; //NO flattening!
@@ -180,7 +182,7 @@ public class OpenAPIModelCreator {
             BmmProperty bmmProperty = flatBmmClass.getProperties().get(propertyName);
             if(bmmProperty.getComputed()) {
                 continue;//don't output this
-            } else if((bmmClass.getTypeName().startsWith("POINT_EVENT") || bmmClass.getTypeName().startsWith("INTERVAL_EVENT")) &&
+            } else if((bmmClass.getName().startsWith("POINT_EVENT") || bmmClass.getName().startsWith("INTERVAL_EVENT")) &&
                     propertyName.equalsIgnoreCase("data")) {
                 //we don't handle generics yet, and it's very tricky with the current BMM indeed. So, just manually hack this
                 JsonObjectBuilder propertyDef = createPolymorphicReference(bmmModel.getClassDefinition("ITEM_STRUCTURE"));
@@ -194,15 +196,12 @@ public class OpenAPIModelCreator {
                 atLeastOneProperty = true;
             } else {
 
-                JsonObjectBuilder propertyDef = bmmProperty instanceof BmmGenericProperty ?
-                        createTypeDef(((BmmGenericProperty) bmmProperty).getGenericTypeDef())
-                        : createTypeDef(bmmProperty.getType());
+                JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
                 extendPropertyDef(propertyDef, bmmProperty);
                 properties.add(propertyName, propertyDef);
 
                 if (bmmProperty.getMandatory()) {
                     required.add(propertyName);
-                    hasRequiredProperties = true;
                 }
                 atLeastOneProperty = true;
             }
@@ -229,9 +228,9 @@ public class OpenAPIModelCreator {
                 addedAncestors = true;
             }
         } else {
-            for (BmmClass ancestor : bmmClass.getAncestors().values()) {
+            for (BmmDefinedType ancestor : bmmClass.getAncestors().values()) {
                 if (!shouldAncestorBeIgnored(ancestor)) {
-                    polymorphicArray.add(createReference(ancestor.getClassKey()));
+                    polymorphicArray.add(createReference(ancestor.getTypeName()));
                     addedAncestors = true;
                 }
             }
@@ -247,7 +246,7 @@ public class OpenAPIModelCreator {
                 Map<String, BmmClass> allDescendants = bmmModel.getAllDescendantClassObjects(bmmClass);
                 for(BmmClass descendant:allDescendants.values()) {
                     if(shouldClassBeIncluded(descendant)) {
-                        descendantsMappings.add(descendant.getClassKey(), createReferenceTarget(descendant.getClassKey()));
+                        descendantsMappings.add(BmmDefinitions.typeNameToClassKey(descendant.getName()), BmmDefinitions.typeNameToClassKey(createReferenceTarget(descendant.getName())));
                     }
                 }
                 properties.add("_type", createType("string"));
@@ -261,9 +260,9 @@ public class OpenAPIModelCreator {
         }
     }
 
-    private boolean shouldAncestorBeIgnored(BmmClass bmmClass) {
+    private boolean shouldAncestorBeIgnored(BmmDefinedType bmmClass) {
         return //bmmClass.getTypeName().equalsIgnoreCase(baseType)  ||
-                isJSPrimitive(bmmClass) || this.ignoredTypes.contains(bmmClass.getClassKey().toUpperCase());
+                isJSPrimitive(bmmClass) || this.ignoredTypes.contains(bmmClass.getTypeName().toUpperCase());
     }
 
 
@@ -276,55 +275,35 @@ public class OpenAPIModelCreator {
         }
     }
 
-    private JsonObjectBuilder createTypeDef(BmmType type) {
+    private JsonObjectBuilder createPropertyDef(BmmType type) {
 
-
-        if(type instanceof BmmOpenType) {
+        if (type instanceof BmmParameterType) {
             return createType("object");
             //nothing more to be done
         } else if (type instanceof BmmSimpleType) {
-            if(isJSPrimitive(type)) {
-                return getJSPrimitive(type);
+            BmmSimpleType simpleType = (BmmSimpleType) type;
+            if (isJSPrimitive(type)) {
+                return getJSPrimitive(simpleType);
             } else {
-                return createPolymorphicReference(type.getBaseClass());
+                return createPolymorphicReference(simpleType.getBaseClass());
             }
         } else if (type instanceof BmmContainerType) {
             BmmContainerType containerType = (BmmContainerType) type;
-            String containerTypeName = BmmDefinitions.typeNameToClassKey(containerType.getContainerType().getTypeName());
-            if(containerTypeName.equalsIgnoreCase("Hash")) {
-                return jsonFactory.createObjectBuilder()
-                        .add("type", "object")
-                        .add("additionalProperties", createTypeDef(containerType.getBaseType())
-                        );
-            } else {
-                return jsonFactory.createObjectBuilder()
-                        .add("type", "array")
-                        .add("items", createTypeDef(containerType.getBaseType()));
+            if(containerType.getBaseType().getTypeName().equalsIgnoreCase("Octet")) {
+                //binary data will be base64 encoded, so express that here
+                JsonObjectBuilder string = createType("string");
+                string.add("contentEncoding", "base64");
+                return string;
             }
+            return jsonFactory.createObjectBuilder()
+                    .add("type", "array")
+                    .add("items", createPropertyDef(containerType.getBaseType()));
         } else if (type instanceof BmmGenericType) {
             BmmGenericType genericType = (BmmGenericType) type;
-            if(BmmDefinitions.typeNameToClassKey(type.getTypeName()).equalsIgnoreCase("HASH") &&
-                    genericType.getGenericParameters() != null &&
-                        genericType.getGenericParameters().size() >= 2) {
-                BmmType hashValueType = genericType.getGenericParameters().get(1);
-                //TODO: if hashValueType is itself a BmmGenericType, need to use that as reference for the parameters
-                //so the code here it not ok!
-                return jsonFactory.createObjectBuilder()
-                        .add("type", "object")
-                        .add("additionalProperties", createTypeDef(hashValueType)
-                        );
-            } else if(BmmDefinitions.typeNameToClassKey(type.getTypeName()).equalsIgnoreCase("HASH")) {
-                if (isJSPrimitive(type)) {
-                    return getJSPrimitive(type);
-                } else {
-                    return createPolymorphicReference(type.getBaseClass());
-                }
+            if (isJSPrimitive(genericType)) {
+                return getJSPrimitive(genericType);
             } else {
-                if (isJSPrimitive(type)) {
-                    return getJSPrimitive(type);
-                } else {
-                    return createPolymorphicReference(type.getBaseClass());
-                }
+                return createPolymorphicReference(genericType.getBaseClass());
             }
 
         }
@@ -336,7 +315,7 @@ public class OpenAPIModelCreator {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
         if(!type.isAbstract()) {
-            descendants.add(type.getClassKey());
+            descendants.add(BmmDefinitions.typeNameToClassKey(type.getName()));
         }
 
         if(descendants.isEmpty()) {
@@ -364,7 +343,7 @@ public class OpenAPIModelCreator {
 //
 //
 //            return jsonFactory.createObjectBuilder().add("allOf", array);
-            return createReference(type.getClassKey());
+            return createReference(BmmDefinitions.typeNameToClassKey(type.getName()));
         } else {
             return createReference(descendants.get(0));
         }
@@ -376,10 +355,10 @@ public class OpenAPIModelCreator {
         List<String> result = new ArrayList<>();
         List<String> descs = bmmClass.getImmediateDescendants();
         for(String desc:descs) {
-            if(!bmmClass.getTypeName().equalsIgnoreCase(desc)) {//TODO: fix getImmediateDescendants in BMM so this check is not required
+            if(!bmmClass.getName().equalsIgnoreCase(desc)) {//TODO: fix getImmediateDescendants in BMM so this check is not required
                 BmmClass classDefinition = bmmModel.getClassDefinition(desc);
                 if (!classDefinition.isAbstract()) {
-                    result.add(classDefinition.getClassKey());
+                    result.add(BmmDefinitions.typeNameToClassKey(classDefinition.getName()));
                 }
                 result.addAll(getAllNonAbstractDescendants(classDefinition));
             }
@@ -392,7 +371,7 @@ public class OpenAPIModelCreator {
     }
 
     private boolean isJSPrimitive(BmmClass bmmClass) {
-        return primitiveTypeMapping.containsKey(bmmClass.getTypeName().toLowerCase());
+        return primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase());
     }
 
 
