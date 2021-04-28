@@ -66,7 +66,7 @@ subprojects {
 
     //java 10 no longer has these included by default, so explicit dependency is needed.
     compile 'javax.xml.bind:jaxb-api:2.3.1'
-    compile 'com.sun.xml.bind:jaxb-core:2.3.0.1'
+    compile 'com.sun.xml.bind:jaxb-core:3.0.1'
     runtime 'com.sun.xml.bind:jaxb-impl:2.3.3'
     compile 'javax.activation:activation:1.1.1'
 
