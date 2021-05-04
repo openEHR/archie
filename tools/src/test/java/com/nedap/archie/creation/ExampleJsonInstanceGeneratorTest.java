@@ -71,7 +71,7 @@ public class ExampleJsonInstanceGeneratorTest {
         assertEquals("POINT_EVENT", ((Map) events.get(1)).get(TYPE_PROPERTY_NAME));
         assertEquals("INTERVAL_EVENT", ((Map) events.get(2)).get(TYPE_PROPERTY_NAME));
 
-        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance()).validate(JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
+        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), templateId -> null).validate(JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
         assertEquals(new ArrayList<>(), validated);
 
     }
@@ -167,7 +167,7 @@ public class ExampleJsonInstanceGeneratorTest {
                     json = mapper.writeValueAsString(example);
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
-                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance()).validate(parsed);
+                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null).validate(parsed);
                     rmObjectValidatorRan++;
                     if(!validated.isEmpty()) {
                         rmValidationErrors.add("error in " + result.getArchetypeId() + ": " + validated);
