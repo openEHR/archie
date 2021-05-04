@@ -166,7 +166,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                     CObject newRoot = operationalTemplate.getDefinition();
                     validateObjectWithPath(result, newRoot, path, objectWithPath);
                 } else {
-                    this.addMessage(slot, objectWithPath.getPath(), RMObjectValidationMessageIds.rm_ARCHETYPE_NOT_FOUND.getMessage(archetypeId), RMObjectValidationMessageType.DEFAULT);
+                    this.addMessage(slot, objectWithPath.getPath(), RMObjectValidationMessageIds.rm_ARCHETYPE_NOT_FOUND.getMessage(archetypeId), RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND);
                     //but continue validating the RM Objects, of course
                     validateObjectWithPath(result, cobject, path, objectWithPath);
                 }

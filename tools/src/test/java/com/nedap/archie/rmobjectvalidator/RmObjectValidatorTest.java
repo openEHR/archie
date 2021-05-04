@@ -148,9 +148,7 @@ public class RmObjectValidatorTest {
     }
 
     private Archetype parse(String filename) throws IOException {
-        Archetype archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
-        assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
-        return archetype;
+        return TestUtil.parseFailOnErrors(filename);
     }
 
 }
