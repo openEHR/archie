@@ -1,6 +1,7 @@
 package com.nedap.archie.testutil;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
@@ -143,7 +144,7 @@ public class TestUtil {
         return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject<?, ?>) o2).getConstraint(), o1.getConstraint());
     }
 
-    public static Archetype parseFailOnErrors(String resourceName) throws IOException {
+    public static Archetype parseFailOnErrors(String resourceName) throws IOException, ADLParseException {
         ADLParser parser = new ADLParser();
         try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
             if(stream == null) {
