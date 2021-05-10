@@ -1,6 +1,7 @@
 package com.nedap.archie.adl14;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -19,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 public class ADL14ExternalTerminologyConversionTest {
 
     @Test
-    public void terminologyBindingsConverted() throws IOException {
+    public void terminologyBindingsConverted() throws IOException, ADLParseException {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
