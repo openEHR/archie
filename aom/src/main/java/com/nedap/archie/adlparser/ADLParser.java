@@ -84,40 +84,50 @@ public class ADLParser {
         errorListener = new ArchieErrorListener(errors);
         errorListener.setLogEnabled(logEnabled);
         Archetype result = null;
-        try {
-            lexer = new AdlLexer(stream);
-            lexer.addErrorListener(errorListener);
-            parser = new AdlParser(new CommonTokenStream(lexer));
-            parser.addErrorListener(errorListener);
-            tree = parser.adl(); // parse
 
-            ADLListener listener = new ADLListener(errors, metaModels);
-            walker = new ParseTreeWalker();
-            walker.walk(listener, tree);
-            result = listener.getArchetype();
-            //set some values that are not directly in ODIN or ADL
-            ArchetypeParsePostProcesser.fixArchetype(result);
+        lexer = new AdlLexer(stream);
+        lexer.addErrorListener(errorListener);
+        parser = new AdlParser(new CommonTokenStream(lexer));
+        parser.addErrorListener(errorListener);
+        tree = parser.adl(); // parse
 
-            if (modelConstraintImposer != null && result.getDefinition() != null) {
-                modelConstraintImposer.imposeConstraints(result.getDefinition());
-            } else if (metaModels != null) {
-                metaModels.selectModel(result);
-                if (metaModels.getSelectedBmmModel() != null) {
-                    ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
-                    imposer.setSingleOrMultiple(result.getDefinition());
-                } else if (metaModels.getSelectedModelInfoLookup() != null) {
-                    ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
-                    imposer.setSingleOrMultiple(result.getDefinition());
-                }
-            }
-            return result;
-        } finally {
-            if (errors.hasErrors()) {
+        if (errors.hasErrors()) {
+            try {
+                result = convertToAOM();
+            } finally {
                 throw new ADLParseException(errors, result);
             }
         }
 
+        result = convertToAOM();
+        return result;
 
+
+
+    }
+
+    private Archetype convertToAOM() {
+
+        ADLListener listener = new ADLListener(errors, metaModels);
+        walker = new ParseTreeWalker();
+        walker.walk(listener, tree);
+        Archetype result = listener.getArchetype();
+        //set some values that are not directly in ODIN or ADL
+        ArchetypeParsePostProcesser.fixArchetype(result);
+
+        if (modelConstraintImposer != null && result.getDefinition() != null) {
+            modelConstraintImposer.imposeConstraints(result.getDefinition());
+        } else if (metaModels != null) {
+            metaModels.selectModel(result);
+            if (metaModels.getSelectedBmmModel() != null) {
+                ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
+                imposer.setSingleOrMultiple(result.getDefinition());
+            } else if (metaModels.getSelectedModelInfoLookup() != null) {
+                ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
+                imposer.setSingleOrMultiple(result.getDefinition());
+            }
+        }
+        return result;
     }
 
     public ANTLRParserErrors getErrors() {
