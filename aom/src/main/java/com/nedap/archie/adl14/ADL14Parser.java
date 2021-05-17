@@ -1,6 +1,7 @@
 package com.nedap.archie.adl14;
 
 import com.nedap.archie.adl14.treewalkers.ADL14Listener;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.adlparser.antlr.Adl14Parser;
 import com.nedap.archie.adlparser.modelconstraints.BMMConstraintImposer;
@@ -47,19 +48,19 @@ public class ADL14Parser {
         this.metaModels = models;
     }
 
-    public Archetype parse(String adl, ADL14ConversionConfiguration conversionConfiguration) {
+    public Archetype parse(String adl, ADL14ConversionConfiguration conversionConfiguration) throws ADLParseException {
         return parse(CharStreams.fromString(adl), conversionConfiguration);
     }
 
-    public Archetype parse(InputStream stream, ADL14ConversionConfiguration conversionConfiguration) throws IOException {
+    public Archetype parse(InputStream stream, ADL14ConversionConfiguration conversionConfiguration) throws IOException, ADLParseException {
         return parse(CharStreams.fromStream(new BOMInputStream(stream), Charset.availableCharsets().get("UTF-8")), conversionConfiguration);
     }
 
-    public Archetype parse(CharStream stream, ADL14ConversionConfiguration conversionConfiguration) {
-
+    public Archetype parse(CharStream stream, ADL14ConversionConfiguration conversionConfiguration) throws ADLParseException {
         errors = new ANTLRParserErrors();
         errorListener = new ArchieErrorListener(errors);
         errorListener.setLogEnabled(logEnabled);
+        Archetype result = null;
 
         lexer = new Adl14Lexer(stream);
         lexer.addErrorListener(errorListener);
@@ -67,14 +68,25 @@ public class ADL14Parser {
         parser.addErrorListener(errorListener);
         tree = parser.adl(); // parse
 
+        if(errors.hasErrors()) {
+            result = convertToAOM(conversionConfiguration);
+            throw new ADLParseException(errors, result);
+        }
+
+        result = convertToAOM(conversionConfiguration);
+        return result;
+
+    }
+
+    private Archetype convertToAOM(ADL14ConversionConfiguration conversionConfiguration) {
         ADL14Listener listener = new ADL14Listener(errors, conversionConfiguration);
-        walker= new ParseTreeWalker();
+        walker = new ParseTreeWalker();
         walker.walk(listener, tree);
         Archetype result = listener.getArchetype();
         ArchetypeParsePostProcesser.fixArchetype(result);
         if (metaModels != null) {
             metaModels.selectModel(result);
-            if(metaModels.getSelectedBmmModel() != null) {
+            if (metaModels.getSelectedBmmModel() != null) {
                 ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
                 imposer.setSingleOrMultiple(result.getDefinition());
             } else if (metaModels.getSelectedModelInfoLookup() != null) {
@@ -83,7 +95,6 @@ public class ADL14Parser {
             }
         }
         return result;
-
     }
 
     public ANTLRParserErrors getErrors() {

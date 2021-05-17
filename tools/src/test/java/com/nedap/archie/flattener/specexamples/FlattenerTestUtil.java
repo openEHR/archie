@@ -1,5 +1,6 @@
 package com.nedap.archie.flattener.specexamples;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
@@ -12,7 +13,7 @@ import static org.junit.Assert.fail;
 
 public class FlattenerTestUtil {
 
-    public static Archetype parse(String filename) throws IOException {
+    public static Archetype parse(String filename) throws IOException, ADLParseException {
         ADLParser parser = new ADLParser();
         InputStream stream = FlattenerTestUtil.class.getResourceAsStream(filename);
         if(stream == null) {
