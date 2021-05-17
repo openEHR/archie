@@ -33,7 +33,7 @@ public class DvParsableInvariantTest {
     public void charSetInvalid() {
         DvParsable value = createValid();
         value.setCharset(new CodePhrase(new TerminologyId("IANA_character-sets"), "UTF-13"));
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance());
+        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null);
         List<RMObjectValidationMessage> messages = validator.validate(value);
 
         InvariantTestUtil.assertInvariantInvalid(value, "Charset_valid", "/");
