@@ -111,7 +111,7 @@ public class ArchetypeSlotValidationTest {
         assertEquals(validated.toString(), 1, validated.size());
         RMObjectValidationMessage rmObjectValidationMessage = validated.get(0);
         assertEquals("/items[id2, 1]", rmObjectValidationMessage.getPath());
-        assertEquals(RMObjectValidationMessageType.WRONG_ARCHETYPE_ID, rmObjectValidationMessage.getType());
+        assertEquals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH, rmObjectValidationMessage.getType());
 
     }
 

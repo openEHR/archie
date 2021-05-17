@@ -5,7 +5,6 @@ import com.google.common.collect.Sets;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
-import com.nedap.archie.archetypevalidator.ArchetypeValidatorTest;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
@@ -14,9 +13,6 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvProportion;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,12 +22,10 @@ import java.io.IOException;
 import java.util.EnumSet;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class RmObjectValidatorTest {
-    private ADLParser parser;
+
     private TestUtil testUtil;
     InMemoryFullArchetypeRepository emptyRepo;
     private RMObjectValidator validator;
@@ -39,11 +33,11 @@ public class RmObjectValidatorTest {
 
     @Before
     public void setup() {
-        parser = new ADLParser();
+
         testUtil = new TestUtil();
 
-        emptyRepo = new InMemoryFullArchetypeRepository();;
-        validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null);
+        emptyRepo = new InMemoryFullArchetypeRepository();
+        validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), emptyRepo);
     }
 
     @Test
@@ -78,9 +72,8 @@ public class RmObjectValidatorTest {
         Element element = new Element();
 
         element.setValue(new DvText("something"));
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), new InMemoryFullArchetypeRepository());
 
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(element);
+        List<RMObjectValidationMessage> messages = validator.validate(element);
         assertEquals(2, messages.size());
         for(RMObjectValidationMessage message:messages) {
             assertTrue(message.getPath() + " unexpected value", Sets.newHashSet("/name", "/archetype_node_id", "/").contains(message.getPath()));
@@ -96,8 +89,8 @@ public class RmObjectValidatorTest {
         Element element = new Element();
         element.setValue(new DvText("hi!"));
         cluster.setItems(Lists.newArrayList(element));
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), new InMemoryFullArchetypeRepository());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(cluster);
+
+        List<RMObjectValidationMessage> messages = validator.validate(cluster);
         assertEquals(messages.toString() ,2, messages.size());
         for(RMObjectValidationMessage message:messages) {
             assertTrue(message.getPath(), Sets.newHashSet("/items[1]/name", "/items[1]/archetype_node_id").contains(message.getPath()));
@@ -115,8 +108,8 @@ public class RmObjectValidatorTest {
         element.setValue(new DvText("value"));
         element.setArchetypeNodeId("id15");
         cluster.setItems(Lists.newArrayList(element));
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), new InMemoryFullArchetypeRepository());
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(cluster);
+
+        List<RMObjectValidationMessage> messages = validator.validate(cluster);
         assertEquals(messages.toString(), 0, messages.size());
 
     }
@@ -128,12 +121,12 @@ public class RmObjectValidatorTest {
         element.setArchetypeNodeId("id5");
         element.setName(new DvText("name"));
 
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), emptyRepo);
-        List<RMObjectValidationMessage> messages = rmObjectValidator.validate(element);
+
+        List<RMObjectValidationMessage> messages = validator.validate(element);
         assertEquals(messages.toString(), 1, messages.size());
 
-        rmObjectValidator.setRunInvariantChecks(false);
-        messages = rmObjectValidator.validate(element);
+        validator.setRunInvariantChecks(false);
+        messages = validator.validate(element);
         assertEquals(messages.toString(), 0, messages.size());
 
     }
@@ -142,8 +135,8 @@ public class RmObjectValidatorTest {
     @Test
     public void testNestedEmptyElementWithoutArchetype() {
         Element element = new Element();
-        RMObjectValidator rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), new InMemoryFullArchetypeRepository());
-        List<RMObjectValidationMessage> validate = rmObjectValidator.validate(element);
+
+        List<RMObjectValidationMessage> validate = validator.validate(element);
         assertFalse(validate.isEmpty());
     }
 

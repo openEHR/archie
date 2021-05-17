@@ -155,10 +155,15 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             Object object = objectWithPath.getObject();
 
             String archetypeId =  metaModel.getSelectedModel().getArchetypeIdFromArchetypedRmObject(object);
+            if(archetypeId == null) {
+
+            }
             if(archetypeId != null) {
                 if(!AOMUtils.archetypeRefMatchesSlotExpression(archetypeId, slot)) {
                     //invalid archetype id, add message
-                    this.addMessage(slot, objectWithPath.getPath(), RMObjectValidationMessageIds.rm_ARCHETYPE_ID_SLOT_MISMATCH.getMessage(archetypeId), RMObjectValidationMessageType.WRONG_ARCHETYPE_ID);
+                    this.addMessage(slot, objectWithPath.getPath(),
+                            RMObjectValidationMessageIds.rm_ARCHETYPE_ID_SLOT_MISMATCH.getMessage(archetypeId),
+                            RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH);
                 }
                 //but do continue validation!
                 OperationalTemplate operationalTemplate = operationalTemplateProvider.getOperationalTemplate(archetypeId);
@@ -168,10 +173,18 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                     CObject newRoot = operationalTemplate.getDefinition();
                     validateObjectWithPath(result, newRoot, path, objectWithPath);
                 } else {
-                    this.addMessage(slot, objectWithPath.getPath(), RMObjectValidationMessageIds.rm_ARCHETYPE_NOT_FOUND.getMessage(archetypeId), RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND);
+                    this.addMessage(slot, objectWithPath.getPath(),
+                            RMObjectValidationMessageIds.rm_ARCHETYPE_NOT_FOUND.getMessage(archetypeId),
+                            RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND);
                     //but continue validating the RM Objects, of course
                     validateObjectWithPath(result, cobject, path, objectWithPath);
                 }
+            } else {
+                this.addMessage(slot, objectWithPath.getPath(),
+                        RMObjectValidationMessageIds.rm_ARCHETYPE_ID_SLOT_MISMATCH.getMessage(archetypeId),
+                        RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH);
+                //but continue validating the RM Objects, of course
+                validateObjectWithPath(result, cobject, path, objectWithPath);
             }
         }
     }
