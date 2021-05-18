@@ -57,44 +57,40 @@ public class ADL14Parser {
     }
 
     public Archetype parse(CharStream stream, ADL14ConversionConfiguration conversionConfiguration) throws ADLParseException {
+
         errors = new ANTLRParserErrors();
         errorListener = new ArchieErrorListener(errors);
         errorListener.setLogEnabled(logEnabled);
         Archetype result = null;
+        try {
+            lexer = new Adl14Lexer(stream);
+            lexer.addErrorListener(errorListener);
+            parser = new Adl14Parser(new CommonTokenStream(lexer));
+            parser.addErrorListener(errorListener);
+            tree = parser.adl(); // parse
 
-        lexer = new Adl14Lexer(stream);
-        lexer.addErrorListener(errorListener);
-        parser = new Adl14Parser(new CommonTokenStream(lexer));
-        parser.addErrorListener(errorListener);
-        tree = parser.adl(); // parse
-
-        if(errors.hasErrors()) {
-            result = convertToAOM(conversionConfiguration);
-            throw new ADLParseException(errors, result);
-        }
-
-        result = convertToAOM(conversionConfiguration);
-        return result;
-
-    }
-
-    private Archetype convertToAOM(ADL14ConversionConfiguration conversionConfiguration) {
-        ADL14Listener listener = new ADL14Listener(errors, conversionConfiguration);
-        walker = new ParseTreeWalker();
-        walker.walk(listener, tree);
-        Archetype result = listener.getArchetype();
-        ArchetypeParsePostProcesser.fixArchetype(result);
-        if (metaModels != null) {
-            metaModels.selectModel(result);
-            if (metaModels.getSelectedBmmModel() != null) {
-                ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
-                imposer.setSingleOrMultiple(result.getDefinition());
-            } else if (metaModels.getSelectedModelInfoLookup() != null) {
-                ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
-                imposer.setSingleOrMultiple(result.getDefinition());
+            ADL14Listener listener = new ADL14Listener(errors, conversionConfiguration);
+            walker = new ParseTreeWalker();
+            walker.walk(listener, tree);
+            result = listener.getArchetype();
+            ArchetypeParsePostProcesser.fixArchetype(result);
+            if (metaModels != null) {
+                metaModels.selectModel(result);
+                if (metaModels.getSelectedBmmModel() != null) {
+                    ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
+                    imposer.setSingleOrMultiple(result.getDefinition());
+                } else if (metaModels.getSelectedModelInfoLookup() != null) {
+                    ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
+                    imposer.setSingleOrMultiple(result.getDefinition());
+                }
+            }
+            return result;
+        } finally {
+            if(errors.hasErrors()) {
+                throw new ADLParseException(errors, result);
             }
         }
-        return result;
+
     }
 
     public ANTLRParserErrors getErrors() {
