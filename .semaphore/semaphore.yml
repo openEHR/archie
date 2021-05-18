@@ -12,14 +12,6 @@ blocks:
           commands:
             - sem-version java 1.8
             - ./gradlew clean build
-        - name: Java 9 build
-          commands:
-            - sem-version java 9
-            - ./gradlew clean build
-        - name: Java 10 build
-          commands:
-            - sem-version java 10
-            - ./gradlew clean build
         - name: Java 11 build
           commands:
             - sem-version java 11
