@@ -2,6 +2,7 @@ package com.nedap.archie.rmobjectvalidator;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.archetypevalidator.ArchetypeValidatorTest;
@@ -130,7 +131,7 @@ public class RmObjectValidatorTest {
         assertFalse(validate.isEmpty());
     }
 
-    private Archetype parse(String filename) throws IOException {
+    private Archetype parse(String filename) throws IOException, ADLParseException {
         Archetype archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
