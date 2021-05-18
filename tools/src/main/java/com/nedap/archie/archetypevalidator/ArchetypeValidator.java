@@ -179,8 +179,19 @@ public class ArchetypeValidator {
             //more errors in one go - could be useful
             messages.addAll(runValidations(archetype, repository, settings, flatParent, validationsPhase2));
         }
-
         result.setErrors(messages);
+
+        if(archetype instanceof Template) {
+            OverridingInMemFullArchetypeRepository repositoryWithOverlays =  (OverridingInMemFullArchetypeRepository) repository;
+            FullArchetypeRepository extraArchetypeRepository = repositoryWithOverlays.getExtraArchetypeRepository();
+            result.addOverlayValidations(extraArchetypeRepository.getAllValidationResults());
+            for(ValidationResult subResult:extraArchetypeRepository.getAllValidationResults()) {
+                if(!subResult.passes()) {
+                    result.getErrors().add(new ValidationMessage(ErrorType.OVERLAY_VALIDATION_FAILED, I18n.t("Template overlay {0} had validation errors", subResult.getArchetypeId())));
+                }
+            }
+        }
+
         if(result.passes() || settings.isAlwaysTryToFlatten()) {
             try {
                 Archetype flattened = new Flattener(repository, combinedModels, flattenerConfiguration).flatten(archetype);
@@ -202,16 +213,6 @@ public class ArchetypeValidator {
             } catch (Exception e) {
                 messages.add(new ValidationMessage(ErrorType.OTHER, "flattening failed with exception " + e));
                 logger.error("error during validation", e);
-            }
-        }
-        if(archetype instanceof Template) {
-            OverridingInMemFullArchetypeRepository repositoryWithOverlays =  (OverridingInMemFullArchetypeRepository) repository;
-            FullArchetypeRepository extraArchetypeRepository = repositoryWithOverlays.getExtraArchetypeRepository();
-            result.addOverlayValidations(extraArchetypeRepository.getAllValidationResults());
-            for(ValidationResult subResult:extraArchetypeRepository.getAllValidationResults()) {
-                if(!subResult.passes()) {
-                    result.getErrors().add(new ValidationMessage(ErrorType.OVERLAY_VALIDATION_FAILED, I18n.t("Template overlay {0} had validation errors", subResult.getArchetypeId())));
-                }
             }
         }
 
