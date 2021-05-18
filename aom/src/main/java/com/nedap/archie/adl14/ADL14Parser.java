@@ -62,13 +62,14 @@ public class ADL14Parser {
         errorListener = new ArchieErrorListener(errors);
         errorListener.setLogEnabled(logEnabled);
         Archetype result = null;
-        try {
-            lexer = new Adl14Lexer(stream);
-            lexer.addErrorListener(errorListener);
-            parser = new Adl14Parser(new CommonTokenStream(lexer));
-            parser.addErrorListener(errorListener);
-            tree = parser.adl(); // parse
 
+        lexer = new Adl14Lexer(stream);
+        lexer.addErrorListener(errorListener);
+        parser = new Adl14Parser(new CommonTokenStream(lexer));
+        parser.addErrorListener(errorListener);
+        tree = parser.adl(); // parse
+
+        try {
             ADL14Listener listener = new ADL14Listener(errors, conversionConfiguration);
             walker = new ParseTreeWalker();
             walker.walk(listener, tree);
