@@ -156,6 +156,7 @@ public class ArchetypeValidator {
                     messages.add(message);
                     result.setErrors(messages);
                     result.setSourceArchetype(archetype);
+                    repository.setValidationResult(result);
                     return result;
                 }
             }
