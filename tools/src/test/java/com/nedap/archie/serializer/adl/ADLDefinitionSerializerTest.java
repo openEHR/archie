@@ -1,5 +1,6 @@
 package com.nedap.archie.serializer.adl;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeSlot;
@@ -24,11 +25,11 @@ public class ADLDefinitionSerializerTest {
 
 
     @BeforeClass
-    public static void setupClass() throws IOException {
+    public static void setupClass() throws IOException, ADLParseException {
         archetypePrimitives = load("openEHR-TEST_PKG-WHOLE.primitive_types.v1.adls");
     }
 
-    private static Archetype load(String resourceName) throws IOException {
+    private static Archetype load(String resourceName) throws IOException, ADLParseException {
         return new ADLParser().parse(ADLDefinitionSerializerTest.class.getResourceAsStream(resourceName));
     }
 
@@ -268,7 +269,7 @@ public class ADLDefinitionSerializerTest {
     }
 
     @Test
-    public void serializeCArchetypeRoot() throws IOException {
+    public void serializeCArchetypeRoot() throws IOException, ADLParseException {
         Archetype archetype = loadRoot("adl2-tests/features/aom_structures/use_archetype/openEHR-EHR-COMPOSITION.ext_ref.v1.0.0.adls");
 
         List<CObject> archetypeRoots = archetype.getDefinition().getAttribute("content").getChildren();
@@ -280,7 +281,7 @@ public class ADLDefinitionSerializerTest {
     }
 
     @Test
-    public void serializeCComplexObjectProxy() throws IOException {
+    public void serializeCComplexObjectProxy() throws IOException, ADLParseException {
         Archetype archetype = loadRoot("adl2-tests/features/aom_structures/use_node/openEHR-DEMOGRAPHIC-PERSON.use_node_occurrences.v1.0.0.adls");
 
         CObject parentCObj = archetype.getDefinition().itemAtPath("/contacts[id10]");
@@ -330,7 +331,7 @@ public class ADLDefinitionSerializerTest {
         return serializer.getBuilder().toString();
     }
 
-    private Archetype loadRoot(String resourceName) throws IOException {
+    private Archetype loadRoot(String resourceName) throws IOException, ADLParseException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
     }
 

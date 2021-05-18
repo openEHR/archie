@@ -1,6 +1,7 @@
 package com.nedap.archie.flattener;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
 
 import com.nedap.archie.aom.ArchetypeSlot;
@@ -143,11 +144,11 @@ public class SiblingOrderFlattenerTest {
 
     }
 
-    private Archetype parse(String fileName) throws IOException {
+    private Archetype parse(String fileName) throws IOException, ADLParseException {
         return FlattenerTestUtil.parse("/com/nedap/archie/flattener/siblingorder/" + fileName);
     }
 
-    private Archetype parseAndFlatten(String fileName) throws IOException {
+    private Archetype parseAndFlatten(String fileName) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());

@@ -1,5 +1,6 @@
 package com.nedap.archie.serializer.rules;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.rules.evaluation.ParsedRulesEvaluationTest;
@@ -83,7 +84,7 @@ public class ADLRulesSerializerTest {
     }
 
 
-    private Archetype load(String resourceName) throws IOException {
+    private Archetype load(String resourceName) throws IOException, ADLParseException {
         return new ADLParser().parse(ParsedRulesEvaluationTest.class.getResourceAsStream(resourceName));
 
     }

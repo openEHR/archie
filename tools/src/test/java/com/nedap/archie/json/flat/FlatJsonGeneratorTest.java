@@ -1,6 +1,7 @@
 package com.nedap.archie.json.flat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
@@ -108,7 +109,7 @@ public class FlatJsonGeneratorTest {
         assertEquals("Systolic", stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5]/name/value"));
     }
 
-    private OperationalTemplate parseBloodPressure() throws IOException {
+    private OperationalTemplate parseBloodPressure() throws IOException, ADLParseException {
         try (InputStream stream = getClass().getResourceAsStream(BLOOD_PRESSURE_PATH)) {
             Archetype bloodPressure = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
             Flattener flattener = new Flattener(new SimpleArchetypeRepository(), BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
