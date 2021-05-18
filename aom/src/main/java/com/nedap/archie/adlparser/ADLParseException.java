@@ -1,10 +1,7 @@
 package com.nedap.archie.adlparser;
 
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import com.nedap.archie.antlr.errors.ANTLRParserMessage;
 import com.nedap.archie.aom.Archetype;
-
-import java.text.ParseException;
 
 public class ADLParseException extends Exception {
 
