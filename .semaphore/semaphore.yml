@@ -21,6 +21,10 @@ blocks:
               bash <(curl -s https://codecov.io/bash) -f
               ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml -t
               "$ARCHIE_CODECOV_TOKEN"
+	- name: Java 16 build
+          commands:
+            - sem-version java 16
+            - ./gradlew clean build
       prologue:
         commands:
           - checkout
