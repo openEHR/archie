@@ -2,6 +2,7 @@ package com.nedap.archie.json;
 
 import com.google.common.base.Charsets;
 import org.leadpony.justify.api.JsonSchema;
+import org.leadpony.justify.api.JsonSchemaReaderFactory;
 import org.leadpony.justify.api.JsonValidationService;
 import org.leadpony.justify.api.Problem;
 import org.leadpony.justify.api.ProblemHandler;
@@ -15,6 +16,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -39,8 +41,23 @@ public class JsonSchemaValidator {
      * @param allowAdditionalProperties whether to allow additional properties in the JSON
      */
     public JsonSchemaValidator(BmmModel bmmModel, boolean allowAdditionalProperties) {
-        JsonObject schemaJson = new JSONSchemaCreator().allowAdditionalProperties(allowAdditionalProperties).create(bmmModel);
+        Map<String, JsonObject> schemaFiles = new JSONSchemaCreator()
+                .allowAdditionalProperties(allowAdditionalProperties)
+                .splitInMultipleFiles(false)
+                .create(bmmModel);
+        //the result will have one schema, since split in multiple files is false
+        JsonObject schemaJson = schemaFiles.values().iterator().next();
 
+//      TO support multi-file schemas, we have to do something like this:
+//        JsonValidationService service = JsonValidationService.newInstance();
+//        JsonSchemaReaderFactory schemaReaderFactory = service.createSchemaReaderFactoryBuilder().withSchemaResolver((uri) -> {
+//            JsonObject schema = schemaFiles.get(uri);
+//            return schema == null ? null : service.readSchema(createByteArrayInputStream(schema.toString()));
+//        }).build();
+//          schemaReaderFactory.createSchemaReader(
+//                                    new ByteArrayInputStream(mainSchema.getBytes())
+//                            )}
+// Much more complicated. So don't split in multiple files - no need at all! :)
         JsonValidationService service = JsonValidationService.newInstance();
         schema = service.readSchema(createByteArrayInputStream(schemaJson.toString()));
 
