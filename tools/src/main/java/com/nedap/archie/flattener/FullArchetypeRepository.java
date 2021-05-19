@@ -10,7 +10,7 @@ import com.nedap.archie.rminfo.ReferenceModels;
 
 import java.util.List;
 
-public interface FullArchetypeRepository extends ArchetypeRepository {
+public interface FullArchetypeRepository extends ArchetypeRepository, OperationalTemplateProvider {
 
     Archetype getFlattenedArchetype(String archetypeId);
 
