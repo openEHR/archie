@@ -1,6 +1,5 @@
 package com.nedap.archie.flattener;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CArchetypeRoot;
@@ -12,12 +11,9 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import javax.json.JsonPatch;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Stack;
 
-import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.*;
 
