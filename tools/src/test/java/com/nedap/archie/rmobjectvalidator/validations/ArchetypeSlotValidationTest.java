@@ -1,5 +1,6 @@
 package com.nedap.archie.rmobjectvalidator.validations;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.creation.ExampleJsonInstanceGenerator;
@@ -42,7 +43,7 @@ public class ArchetypeSlotValidationTest {
     private RMObjectValidator rmObjectValidator;
 
     @Before
-    public void setup() throws IOException {
+    public void setup() throws IOException, ADLParseException {
         Archetype parent = TestUtil.parseFailOnErrors("/adl2-tests/validity/slots/openEHR-EHR-SECTION.slot_parent.v1.0.0.adls");
 
         included = TestUtil.parseFailOnErrors("/com/nedap/archie/rmobjectvalidation/openEHR-EHR-OBSERVATION.redefine_child.v1.0.0.adls");
