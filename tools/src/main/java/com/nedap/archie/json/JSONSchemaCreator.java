@@ -72,8 +72,6 @@ public class JSONSchemaCreator {
         rootTypes.add("CONTRIBUTION");
         rootTypes.add("EHR");
         rootTypes.add("EHR_STATUS");
-        rootTypes.add("VERSIONED_EHR_STATUS");
-        rootTypes.add("VERSIONED_COMPOSITION");
         rootTypes.add("ORIGINAL_VERSION");
         rootTypes.add("IMPORTED_VERSION");
         Map<String, Object> config = new HashMap<>();
@@ -91,7 +89,7 @@ public class JSONSchemaCreator {
      */
     public Map<String, JsonObject> create(BmmModel bmm) {
         this.bmmModel = bmm;
-
+        String mainFileName = bmm.getSchemaId() + JSON_SCHEMA_FILE_EXTENSION;
         //create the definitions and the root if/else base
 
         JsonArrayBuilder allOfArray = jsonFactory.createArrayBuilder();
@@ -106,7 +104,7 @@ public class JSONSchemaCreator {
             JsonObjectBuilder typePropertyCheck = createConstType(rootType);
             JsonObjectBuilder typeCheck = jsonFactory.createObjectBuilder().add("properties", typePropertyCheck);
 
-            JsonObjectBuilder typeReference = createReference(null, rootType);
+            JsonObjectBuilder typeReference = createRootlevelReference(mainFileName, rootType);
             //IF the type matches
             //THEN check the correct type from the definitions
             JsonObjectBuilder ifObject = jsonFactory.createObjectBuilder()
@@ -117,7 +115,7 @@ public class JSONSchemaCreator {
 
         Map<String, SchemaBuilder> schemas = new LinkedHashMap<>();
 
-        String mainFileName = bmm.getSchemaId() + JSON_SCHEMA_FILE_EXTENSION;
+
         SchemaBuilder mainSchemaBuilder = schemas.get(mainFileName);
 
         mainSchemaBuilder = new SchemaBuilder(mainFileName);
@@ -394,6 +392,26 @@ public class JSONSchemaCreator {
     private JsonObjectBuilder createType(String jsPrimitive) {
         return jsonFactory.createObjectBuilder().add("type", jsPrimitive);
     }
+
+    private JsonObjectBuilder createRootlevelReference(String packageFileName, String type) {
+        BmmClass bmmClass = bmmModel.getClassDefinitions().get(type);
+        if(bmmClass == null) {
+            //TODO: a warning!
+            return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
+        } else {
+            String typeFileName = getPackageFileName(bmmClass);
+            if(typeFileName == null) {
+                throw new RuntimeException();
+            }
+            if(typeFileName.equalsIgnoreCase(packageFileName)) {
+                return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
+            } else {
+                return jsonFactory.createObjectBuilder().add("$ref", typeFileName + "#/definitions/" + type);
+            }
+        }
+
+    }
+
 
     private JsonObjectBuilder createReference(BmmClass classContainingReference, String type) {
         String packageFileName = classContainingReference == null ? "" : getPackageFileName(classContainingReference);
