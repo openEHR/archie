@@ -155,9 +155,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             Object object = objectWithPath.getObject();
 
             String archetypeId =  metaModel.getSelectedModel().getArchetypeIdFromArchetypedRmObject(object);
-            if(archetypeId == null) {
 
-            }
             if(archetypeId != null) {
                 if(!AOMUtils.archetypeRefMatchesSlotExpression(archetypeId, slot)) {
                     //invalid archetype id, add message

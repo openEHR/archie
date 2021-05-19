@@ -133,4 +133,38 @@ public class ArchetypeSlotValidationTest {
         assertEquals(RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND, rmObjectValidationMessage.getType());
     }
 
+    @Test
+    public void noArchetypeIdInSlot() throws Exception {
+        //the example instance generator generated an empty example observation. Remove it
+        example.getItems().remove(0);
+
+        //generate a valid content, and validate
+        Observation exampleIncluded = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(generator.generate(includedOpt)), Observation.class);
+        example.addItem(exampleIncluded);
+        exampleIncluded.setArchetypeNodeId("id2");
+        exampleIncluded.setArchetypeDetails(null);
+
+        //now do something invalid against the RM constraint (since there is no archetype to validate against!)
+        Element element = (Element) example.itemAtPath("/items[id2]/data/events[id3]/data/items[id4.1]");
+        element.setValue(null);
+
+
+        List<RMObjectValidationMessage> validated = rmObjectValidator.validate(parentOpt, example);
+        assertEquals(validated.toString(), 3, validated.size());
+
+        //there must be an archetype id in a slot
+        RMObjectValidationMessage rmObjectValidationMessage = validated.get(0);
+        assertEquals("/items[id2, 1]", rmObjectValidationMessage.getPath());
+        assertEquals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH, rmObjectValidationMessage.getType());
+        //but also an observation must have an archetype id (invariant)
+        rmObjectValidationMessage = validated.get(1);
+        assertEquals("/items[id2, 1]", rmObjectValidationMessage.getPath());
+        assertEquals(RMObjectValidationMessageType.INVARIANT_ERROR, rmObjectValidationMessage.getType());
+        //and an element must either have a value or a null flavour (invariant)
+        rmObjectValidationMessage = validated.get(2);
+        assertEquals("/items[id2, 1]/data[id9]/events[id3, 1]/data[id10]/items[id4.1, 3]", rmObjectValidationMessage.getPath());
+        assertEquals(RMObjectValidationMessageType.INVARIANT_ERROR, rmObjectValidationMessage.getType());
+
+    }
+
 }
