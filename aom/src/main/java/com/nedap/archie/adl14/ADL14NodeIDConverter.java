@@ -366,7 +366,7 @@ public class ADL14NodeIDConverter {
                             pattern = pattern.substring(1, pattern.length() - 1);
                             Matcher matcher = ARCHETYPE_ID_ENDS_WITH_VERSION_PATTERN_REPLACE.matcher(pattern);
                             if(matcher.find()) {
-                                pattern = "/" + matcher.replaceAll("${version}\\.*${end}") + "/";
+                                pattern = "/" + matcher.replaceAll("${version}\\\\..*${end}") + "/";
                                 cString.getConstraint().remove(0);
                                 cString.getConstraint().add(pattern);
                             }

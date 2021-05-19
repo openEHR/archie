@@ -154,6 +154,10 @@ public class JSONSchemaCreator {
                 .add("required", required)
                 .add("properties", properties);
 
+        if(bmmClass.getDocumentation() != null) {
+            definition.add("description", bmmClass.getDocumentation());
+        }
+
         if(!allowAdditionalProperties && atLeastOneProperty) {
             definition.add("additionalProperties", false);
         }
@@ -166,6 +170,9 @@ public class JSONSchemaCreator {
             if(containerProperty.getCardinality() != null && containerProperty.getCardinality().getLower() > 0) {
                 propertyDef.add("minItems", containerProperty.getCardinality().getLower());
             }
+        }
+        if(bmmProperty.getDocumentation() != null) {
+            propertyDef.add("description", bmmProperty.getDocumentation());
         }
     }
 
@@ -205,11 +212,29 @@ public class JSONSchemaCreator {
 
     }
 
+    /**
+     * Create a reference to a given type, plus all its descendants.
+     * @param type the type to refer to
+     * @return the json schema that is a reference to this type, plus all of its descendants
+     */
     private JsonObjectBuilder createPolymorphicReference(BmmClass type) {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
+        //if the type to refer to is abstract, a _type field is required, because there is no class to fall back on
+        //if the type to refer to is concrete, a _type field is not required. If it is missing,
+        //the concrete type should be used instead
+        //this boolean indicates that difference.
+        boolean isConcreteType = false;
         if(!type.isAbstract()) {
             descendants.add(BmmDefinitions.typeNameToClassKey(type.getName()));
+            isConcreteType = true;
+        }
+
+        boolean genericType = type instanceof BmmGenericClass;
+        for(String descendant:descendants) {
+            if(bmmModel.getClassDefinition(descendant) instanceof BmmGenericClass) {
+                genericType = true; // it would be better to generate either an enum OR a couple of patterns, but not now
+            }
         }
 
         if(descendants.isEmpty()) {
@@ -219,10 +244,34 @@ public class JSONSchemaCreator {
             return createType("object");
         } else if (descendants.size() > 1) {
             JsonArrayBuilder array = jsonFactory.createArrayBuilder();
-            array.add(createRequiredArray("_type"));
+
+            //if an abstract type, _type is required
+            JsonObjectBuilder requiredType = isConcreteType?
+                    jsonFactory.createObjectBuilder() :
+                    createRequiredArray("_type");
+
+            if(!genericType) {
+                JsonObjectBuilder typeDefinition = jsonFactory.createObjectBuilder()
+                        .add("type", "string");
+
+                JsonArrayBuilder enumValues = jsonFactory.createArrayBuilder();
+                for (String descendant : descendants) {
+                    enumValues.add(descendant);
+                }
+                typeDefinition.add("enum", enumValues);
+                JsonObjectBuilder typePropertyCheck = jsonFactory.createObjectBuilder()
+                        .add("_type", typeDefinition);
+                requiredType.add("properties", typePropertyCheck);
+            }
+            array.add(requiredType);
+
             for(String descendant:descendants) {
                 JsonObjectBuilder typePropertyCheck = createConstType(descendant);
                 JsonObjectBuilder typeCheck = jsonFactory.createObjectBuilder().add("properties", typePropertyCheck);
+                if(isConcreteType) {
+                    //inside the if-block, make type required, or it will match this block if _type is not present
+                    typeCheck.addAll(createRequiredArray("_type"));
+                }
 
                 JsonObjectBuilder typeReference = createReference(descendant);
                 //IF the type matches
@@ -234,6 +283,13 @@ public class JSONSchemaCreator {
 
             }
 
+            if(isConcreteType) {
+                //fallback to the base type if it is concrete, and not if it is abstract
+                JsonObjectBuilder elseObject = jsonFactory.createObjectBuilder()
+                        .add("if", jsonFactory.createObjectBuilder().add("not", createRequiredArray("_type")))
+                        .add("then", createReference(type.getName()));
+                array.add(elseObject);
+            }
 
             return jsonFactory.createObjectBuilder().add("allOf", array);
         } else {
@@ -272,11 +328,24 @@ public class JSONSchemaCreator {
 
     private JsonObjectBuilder createConstType(String rootType) {
 
-        return jsonFactory.createObjectBuilder()
-                .add("_type", jsonFactory.createObjectBuilder()
-                    .add("type", "string").add("pattern", "^" + rootType + "(<.*>)?$")
-                    //.add("const", rootType)
-                );
+        boolean generic = false;
+
+        BmmClass classDefinition = bmmModel.getClassDefinition(rootType);
+
+        if(classDefinition == null || classDefinition instanceof BmmGenericClass) {
+            generic = true;
+        }
+        if(generic) {
+            return jsonFactory.createObjectBuilder()
+                    .add("_type", jsonFactory.createObjectBuilder()
+                                    .add("type", "string").add("pattern", "^" + rootType + "<.*>$")
+                    );
+        } else {
+            return jsonFactory.createObjectBuilder()
+                    .add("_type", jsonFactory.createObjectBuilder()
+                            .add("const", rootType)
+                    );
+        }
     }
 
     private JsonObjectBuilder createRequiredArray(String... requiredFields) {

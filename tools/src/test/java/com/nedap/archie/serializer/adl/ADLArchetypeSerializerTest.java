@@ -1,5 +1,6 @@
 package com.nedap.archie.serializer.adl;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import org.junit.Test;
@@ -95,11 +96,11 @@ public class ADLArchetypeSerializerTest {
         assertThat(serialized, containsString("[\"local_name\"] = <\"consultation start time\">"));
    }
 
-    private Archetype load(String resourceName) throws IOException {
+    private Archetype load(String resourceName) throws ADLParseException, IOException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
     }
 
-    private Archetype loadRoot(String resourceName) throws IOException {
+    private Archetype loadRoot(String resourceName) throws ADLParseException, IOException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
     }
 

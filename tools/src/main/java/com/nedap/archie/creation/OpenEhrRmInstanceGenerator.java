@@ -7,6 +7,7 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -183,27 +184,21 @@ class OpenEhrRmInstanceGenerator {
     }
 
     private void fixDvInterval(Map<String, Object> result) {
-        Boolean lowerUnbounded = (Boolean) result.get("lower_unbounded");
         Boolean lowerIncluded = (Boolean) result.get("lower_included");
-        Boolean upperUnbounded = (Boolean) result.get("upper_unbounded");
         Boolean upperIncluded = (Boolean) result.get("upper_included");
-        if(lowerUnbounded != null && lowerIncluded != null) {
-            if(lowerUnbounded) {
-                result.put("lower_included", false);
-            }
-        }
-        if(upperUnbounded != null && upperIncluded != null) {
-            if(upperUnbounded) {
-                result.put("upper_included", false);
-            }
-        }
         if(result.get("lower") == null) {
             result.put("lower_unbounded", true);
+            if(lowerIncluded != null) {
+                result.put("lower_included", false);
+            }
         } else {
             result.put("lower_unbounded", false);
         }
         if(result.get("upper") == null) {
             result.put("upper_unbounded", true);
+            if(upperIncluded != null) {
+                result.put("upper_included", false);
+            }
         } else {
             result.put("upper_unbounded", false);
         }
@@ -299,45 +294,45 @@ class OpenEhrRmInstanceGenerator {
     }
 
     private void fixCodePhrase(Map<String, Object> result, CObject cObject) {
-        try {
-            String codeString = (String) result.get("code_string");//TODO: check terminology code to be local?
+        String codeString = (String) result.get("code_string");//TODO: check terminology code to be local?
 
-            if(AOMUtils.isValueCode(codeString)) {
-                //check for OpenEHR term mapping and use that if available, so we get correct
-                //rm objects
+        if(codeString != null && AOMUtils.isValueCode(codeString)) {
+            //check for OpenEHR term mapping and use that if available, so we get correct
+            //rm objects
 
-                //TODO: quite some more term ids, such as IANA characters sets, etc. HOW?
-                URI openehr = generator.getArchetype().getTerminology(cObject).getTermBinding("openehr", codeString);
-                if(openehr != null && openehr.getPath() != null) {
-                    int i = openehr.getPath().lastIndexOf('/');
-                    if (i > 0) {
-                        codeString = openehr.getPath().substring(i+1);
-                        Map<String, Object> terminologyId = (Map<String, Object>) result.get("terminology_id");
-                        if(terminologyId != null) {
-                            terminologyId.put("value", "openehr");
-                        }
-                        result.put("code_string", codeString);
-                        //TODO: add a mapping to the at code in the data.
+            //TODO: quite some more term ids, such as IANA characters sets, etc. HOW?
+            URI openehr = generator.getArchetype().getTerminology(cObject).getTermBinding("openehr", codeString);
+            if(openehr != null && openehr.getPath() != null) {
+                int i = openehr.getPath().lastIndexOf('/');
+                if (i > 0) {
+                    codeString = openehr.getPath().substring(i+1);
+                    Map<String, Object> terminologyId = (Map<String, Object>) result.get("terminology_id");
+                    if(terminologyId != null) {
+                        terminologyId.put("value", "openehr");
                     }
+                    result.put("code_string", codeString);
+                    //TODO: add a mapping to the at code in the data.
                 }
             }
-        } catch (Exception e) {
-            //if statements would be cleaner, but this should not happen and is a lot less code
-            //cannot set this apparently, it will be filled by the BMM required property later
         }
     }
 
     private void fixCodedText(Map<String, Object> result, CObject cObject) {
-        try {
-            Map<String, Object> definingCode = (Map<String, Object>) result.get("defining_code");
-            String codeString = (String) definingCode.get("code_string");//TODO: check terminology code to be local?
+        Map<String, Object> definingCode = (Map<String, Object>) result.get("defining_code");
+        String codeString = (String) definingCode.get("code_string");//TODO: check terminology code to be local?
+        if(cObject != null) {
             ArchetypeTerm term = generator.getArchetype().getTerm(cObject, codeString, generator.getLanguage());
-            result.put("value", term.getText());
-            fixCodePhrase(definingCode, cObject);
-        } catch (Exception e) {
-            //if statements would be cleaner, but this should not happen and is a lot less code
-            //cannot set this apparently, it will be filled by the BMM required property later
+            if(term != null) {
+                result.put("value", term.getText());
+            }
+        } else {
+            //TODO: cObject is required to get a term from an OperationalTemplate. However, all we really need it a childArchetypeId
+            //to find the correct component terminology.
+            // so, add this as a parameter in which archetype we are now processing, and use that to manually retrieve the correct term
         }
+        fixCodePhrase(definingCode, cObject);
+
+
     }
 
     public Map<String, Object> generateCustomExampleType(String actualType) {
