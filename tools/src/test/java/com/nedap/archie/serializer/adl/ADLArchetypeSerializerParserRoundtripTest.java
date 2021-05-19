@@ -1,5 +1,6 @@
 package com.nedap.archie.serializer.adl;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
@@ -92,7 +93,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         Assert.assertThat(parsed.getDescription().getLicence(), is("license with a \\\"-mark" ));
     }
 
-    private Archetype roundtrip(Archetype archetype) throws IOException {
+    private Archetype roundtrip(Archetype archetype) throws ADLParseException {
         String serialized = ADLArchetypeSerializer.serialize(archetype);
         logger.info(serialized);
 
@@ -103,11 +104,11 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         return result;
     }
 
-    private Archetype load(String resourceName) throws IOException {
+    private Archetype load(String resourceName) throws IOException, ADLParseException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
     }
 
-    private Archetype loadRoot(String resourceName) throws IOException {
+    private Archetype loadRoot(String resourceName) throws IOException, ADLParseException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
     }
 
