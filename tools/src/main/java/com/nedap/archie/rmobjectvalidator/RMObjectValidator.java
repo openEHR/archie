@@ -181,7 +181,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 }
             } else {
                 this.addMessage(slot, objectWithPath.getPath(),
-                        RMObjectValidationMessageIds.rm_ARCHETYPE_ID_SLOT_MISMATCH.getMessage(archetypeId),
+                        RMObjectValidationMessageIds.rm_SLOT_WITHOUT_ARCHETYPE_ID.getMessage(),
                         RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH);
                 //but continue validating the RM Objects, of course
                 validateObjectWithPath(result, cobject, path, objectWithPath);
