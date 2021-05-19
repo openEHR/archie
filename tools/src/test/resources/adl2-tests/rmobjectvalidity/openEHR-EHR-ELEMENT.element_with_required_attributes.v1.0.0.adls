@@ -1,5 +1,5 @@
 archetype (adl_version=2.0.7; rm_release=1.0.2)
-	openEHR-TEST_RMOBJECT-ELEMENT.element_with_required_attributes.v1.0.0
+	openEHR-EHR-ELEMENT.element_with_required_attributes.v1.0.0
 
 language
 	original_language = <[ISO_639-1::en]>
