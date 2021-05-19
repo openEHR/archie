@@ -19,7 +19,6 @@ import java.util.function.Supplier;
 
 public class JSONSchemaCreator {
 
-
     private Map<String, Supplier<JsonObjectBuilder>> primitiveTypeMapping;
     private List<String> rootTypes;
     private BmmModel bmmModel;
@@ -64,6 +63,13 @@ public class JSONSchemaCreator {
         rootTypes.add("ORGANISATION");
         rootTypes.add("PARTY_IDENTITY");
         rootTypes.add("ITEM_TREE");
+        rootTypes.add("CONTRIBUTION");
+        rootTypes.add("EHR");
+        rootTypes.add("EHR_STATUS");
+        rootTypes.add("VERSIONED_EHR_STATUS");
+        rootTypes.add("VERSIONED_COMPOSITION");
+        rootTypes.add("ORIGINAL_VERSION");
+        rootTypes.add("IMPORTED_VERSION");
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
@@ -148,7 +154,7 @@ public class JSONSchemaCreator {
             }
         }
 
-        properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string").add("pattern", "^" + typeName + "(<.*>)?$"));
+        properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string").add("pattern", "^" + typeName ));
         JsonObjectBuilder definition = jsonFactory.createObjectBuilder()
                 .add("type", "object")
                 .add("required", required)
@@ -328,24 +334,12 @@ public class JSONSchemaCreator {
 
     private JsonObjectBuilder createConstType(String rootType) {
 
-        boolean generic = false;
-
         BmmClass classDefinition = bmmModel.getClassDefinition(rootType);
+        return jsonFactory.createObjectBuilder()
+                .add("_type", jsonFactory.createObjectBuilder()
+                        .add("const", rootType)
+                );
 
-        if(classDefinition == null || classDefinition instanceof BmmGenericClass) {
-            generic = true;
-        }
-        if(generic) {
-            return jsonFactory.createObjectBuilder()
-                    .add("_type", jsonFactory.createObjectBuilder()
-                                    .add("type", "string").add("pattern", "^" + rootType + "<.*>$")
-                    );
-        } else {
-            return jsonFactory.createObjectBuilder()
-                    .add("_type", jsonFactory.createObjectBuilder()
-                            .add("const", rootType)
-                    );
-        }
     }
 
     private JsonObjectBuilder createRequiredArray(String... requiredFields) {
