@@ -28,20 +28,31 @@ abstract class JsonSchemaCreationTask extends DefaultTask {
     }
 
     def generate(String dirName, boolean multifile) {
-        def model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
+        def rm110 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
+        def rm104 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
+        def rm103 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.3").getModel();
 
-        def schemas = new JSONSchemaCreator().splitInMultipleFiles(multifile).create(model);
+        def schemas110 = new JSONSchemaCreator().splitInMultipleFiles(multifile).create(rm110);
+        def schemas104 = new JSONSchemaCreator().splitInMultipleFiles(multifile).create(rm104);
+        def schemas103 = new JSONSchemaCreator().splitInMultipleFiles(multifile).create(rm103);
         def config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         def jsonWriterFactory = Json.createWriterFactory(config);
 
-        printSchemas(dirName, schemas, jsonWriterFactory);
+        printSchemas("RM-1.1.0", dirName, schemas104, jsonWriterFactory);
+        printSchemas("RM-1.0.4", dirName, schemas110, jsonWriterFactory);
+        printSchemas("RM-1.0.3", dirName, schemas103, jsonWriterFactory);
+
     }
 
-    def printSchemas(String outputDir, Map<String, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
+    def printSchemas(String version, String outputDir, Map<String, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
         for(String name:schemas.keySet()) {
             def schema = schemas.get(name);
-            def directory = getOutputDir().get().dir(outputDir)
+            def versionDir = getOutputDir().get().dir(version)
+            if(!versionDir.getAsFile().exists()) {
+                versionDir.getAsFile().mkdir();
+            }
+            def directory = versionDir.dir(outputDir)
             if(!directory.getAsFile().exists()) {
                 directory.getAsFile().mkdir();
             }
