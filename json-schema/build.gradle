@@ -1,0 +1,60 @@
+description = "tools that operate on the archie reference models and archetype object model"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.nedap.healthcare.archie:archie-all:0.19.0'
+    }
+}
+
+import com.nedap.archie.json.JSONSchemaCreator;
+import org.openehr.referencemodels.BuiltinReferenceModels;
+import javax.json.*;
+import javax.json.stream.JsonGenerator;
+
+abstract class JsonSchemaCreationTask extends DefaultTask {
+
+    private final FileSystemOperations fileSystemOperations
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDir();
+
+    @TaskAction
+    def generateSchema() {
+        generate("singlefile", false)
+        generate("multifile", true)
+    }
+
+    def generate(String dirName, boolean multifile) {
+        def model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
+
+        def schemas = new JSONSchemaCreator().splitInMultipleFiles(multifile).create(model);
+        def config = new HashMap<>();
+        config.put(JsonGenerator.PRETTY_PRINTING, true);
+        def jsonWriterFactory = Json.createWriterFactory(config);
+
+        printSchemas(dirName, schemas, jsonWriterFactory);
+    }
+
+    def printSchemas(String outputDir, Map<String, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
+        for(String name:schemas.keySet()) {
+            def schema = schemas.get(name);
+            def directory = getOutputDir().get().dir(outputDir)
+            if(!directory.getAsFile().exists()) {
+                directory.getAsFile().mkdir();
+            }
+            directory.file(name).getAsFile().withWriter { writer ->
+                jsonWriterFactory.createWriter(writer).write(schema);
+            }
+        }
+    }
+}
+
+// Create a task using the task type
+tasks.register('generateJsonSchema', JsonSchemaCreationTask) {
+    outputDir = file(layout.buildDirectory.dir('schemaOutput'))
+}
+
+
