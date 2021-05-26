@@ -31,6 +31,8 @@ public class JSONSchemaCreator {
     private boolean allowAdditionalProperties;
     private boolean splitInPackages = false;
 
+    private JsonSchemaUriProvider uriProvider = this::getSingleFileName;
+    private String baseUri = "https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.1.0/";
 
 
     public JSONSchemaCreator() {
@@ -87,9 +89,11 @@ public class JSONSchemaCreator {
      * @param bmm the BMM model to create the schema for
      * @return a map, keyed by file name, of JsonObjects containing the json schemas
      */
-    public Map<String, JsonObject> create(BmmModel bmm) {
+    public Map<JsonSchemaUri, JsonObject> create(BmmModel bmm) {
         this.bmmModel = bmm;
-        String mainFileName = bmm.getSchemaId() + JSON_SCHEMA_FILE_EXTENSION;
+        JsonSchemaUri mainFileName = new JsonSchemaUri(baseUri, this.splitInPackages ?
+                bmm.getSchemaId() + JSON_SCHEMA_FILE_EXTENSION :
+                bmm.getSchemaId() + "_all" + JSON_SCHEMA_FILE_EXTENSION);
         //create the definitions and the root if/else base
 
         JsonArrayBuilder allOfArray = jsonFactory.createArrayBuilder();
@@ -113,12 +117,9 @@ public class JSONSchemaCreator {
             allOfArray.add(ifObject);
         }
 
-        Map<String, SchemaBuilder> schemas = new LinkedHashMap<>();
+        Map<JsonSchemaUri, SchemaBuilder> schemas = new LinkedHashMap<>();
 
-
-        SchemaBuilder mainSchemaBuilder = schemas.get(mainFileName);
-
-        mainSchemaBuilder = new SchemaBuilder(mainFileName);
+        SchemaBuilder mainSchemaBuilder = new SchemaBuilder(mainFileName);
         schemas.put(mainFileName, mainSchemaBuilder);
         mainSchemaBuilder.getSchema().add("allOf", allOfArray);
 
@@ -129,22 +130,22 @@ public class JSONSchemaCreator {
             }
         }
 
-        Map<String, JsonObject> result = new LinkedHashMap<>();
+        Map<JsonSchemaUri, JsonObject> result = new LinkedHashMap<>();
         //put the main schema first
         for(SchemaBuilder schema:schemas.values()) {
-            result.put(schema.getFilename(), schema.build());
+            result.put(schema.getUri(), schema.build());
         }
 
         return result;
     }
 
-    private SchemaBuilder getOrCreateDefinitions(Map<String, SchemaBuilder> result, BmmClass bmmClass) {
-        String fileName = getPackageFileName(bmmClass);
-        SchemaBuilder schemaBuilder = result.get(fileName);
+    private SchemaBuilder getOrCreateDefinitions(Map<JsonSchemaUri, SchemaBuilder> result, BmmClass bmmClass) {
+        JsonSchemaUri uri = uriProvider.provideJsonSchemaUrl(bmmClass);
+        SchemaBuilder schemaBuilder = result.get(uri);
         if(schemaBuilder == null) {
             //file not yet found. Create it
-            schemaBuilder = new SchemaBuilder(fileName);
-            result.put(fileName, schemaBuilder);
+            schemaBuilder = new SchemaBuilder(uri);
+            result.put(uri, schemaBuilder);
         }
         return schemaBuilder;
 
@@ -393,20 +394,24 @@ public class JSONSchemaCreator {
         return jsonFactory.createObjectBuilder().add("type", jsPrimitive);
     }
 
-    private JsonObjectBuilder createRootlevelReference(String packageFileName, String type) {
+    private JsonObjectBuilder createRootlevelReference(JsonSchemaUri packageFileName, String type) {
         BmmClass bmmClass = bmmModel.getClassDefinitions().get(type);
         if(bmmClass == null) {
             //TODO: a warning!
             return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
         } else {
-            String typeFileName = getPackageFileName(bmmClass);
+            JsonSchemaUri typeFileName = uriProvider.provideJsonSchemaUrl(bmmClass);
             if(typeFileName == null) {
                 throw new RuntimeException();
             }
-            if(typeFileName.equalsIgnoreCase(packageFileName)) {
+            if(typeFileName.equals(packageFileName)) {
                 return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
             } else {
-                return jsonFactory.createObjectBuilder().add("$ref", typeFileName + "#/definitions/" + type);
+                if(typeFileName.getBaseUri().equals(packageFileName.getBaseUri())) {
+                    return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getFilename() + "#/definitions/" + type);
+                } else {
+                    return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getId() + "#/definitions/" + type);
+                }
             }
         }
 
@@ -414,23 +419,8 @@ public class JSONSchemaCreator {
 
 
     private JsonObjectBuilder createReference(BmmClass classContainingReference, String type) {
-        String packageFileName = classContainingReference == null ? "" : getPackageFileName(classContainingReference);
-        BmmClass bmmClass = bmmModel.getClassDefinitions().get(type);
-        if(bmmClass == null) {
-            //TODO: a warning!
-            return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
-        } else {
-            String typeFileName = getPackageFileName(bmmClass);
-            if(typeFileName == null) {
-                throw new RuntimeException();
-            }
-            if(typeFileName.equalsIgnoreCase(packageFileName)) {
-                return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
-            } else {
-                return jsonFactory.createObjectBuilder().add("$ref", typeFileName + "#/definitions/" + type);
-            }
-        }
-
+        JsonSchemaUri packageFileName = classContainingReference == null ? new JsonSchemaUri("", "") : uriProvider.provideJsonSchemaUrl(classContainingReference);
+        return createRootlevelReference(packageFileName, type);
     }
 
     public JSONSchemaCreator allowAdditionalProperties(boolean allowAdditionalProperties) {
@@ -440,30 +430,47 @@ public class JSONSchemaCreator {
 
     public JSONSchemaCreator splitInMultipleFiles(boolean splitInPackages) {
         this.splitInPackages = splitInPackages;
+        if(splitInPackages) {
+            this.uriProvider = this::getBmmFileName;
+        } else {
+            this.uriProvider = this::getSingleFileName;
+        }
         return this;
     }
 
-    private String getPackageFileName(BmmClass clazz) {
-        if(splitInPackages) {
-            return clazz.getSourceSchemaId() + JSON_SCHEMA_FILE_EXTENSION;
-        }
-        return clazz.getBmmModel().getSchemaId() + JSON_SCHEMA_FILE_EXTENSION;
+    public JSONSchemaCreator withJsonSchemaUriProvider(JsonSchemaUriProvider uriProvider) {
+        this.uriProvider = uriProvider;
+        return this;
+    }
+
+    public JSONSchemaCreator withBaseUri(String baseUri) {
+        this.baseUri = baseUri;
+        return this;
+    }
+
+    private JsonSchemaUri getSingleFileName(BmmClass clazz) {
+        return new JsonSchemaUri(baseUri, clazz.getBmmModel().getSchemaId() + "_all" + JSON_SCHEMA_FILE_EXTENSION);
+    }
+
+    private JsonSchemaUri getBmmFileName(BmmClass clazz) {
+        return new JsonSchemaUri(baseUri, clazz.getSourceSchemaId() + JSON_SCHEMA_FILE_EXTENSION);
     }
 
     private class SchemaBuilder {
-        private String filename;
+        private JsonSchemaUri uri;
         private JsonObjectBuilder schema;
         private JsonObjectBuilder definitions;
 
-        public SchemaBuilder(String fileName) {
-            this.filename = fileName;
+        public SchemaBuilder(JsonSchemaUri uri) {
+            this.uri = uri;
             definitions = jsonFactory.createObjectBuilder();
             schema = jsonFactory.createObjectBuilder()
-                    .add("$schema", "http://json-schema.org/draft-07/schema");
+                    .add("$schema", "http://json-schema.org/draft-07/schema")
+                    .add("$id", uri.getId());
         }
 
-        public String getFilename() {
-            return filename;
+        public JsonSchemaUri getUri() {
+            return uri;
         }
 
         public JsonObjectBuilder getSchema() {

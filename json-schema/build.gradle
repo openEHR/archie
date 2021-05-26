@@ -10,9 +10,24 @@ buildscript {
 }
 
 import com.nedap.archie.json.JSONSchemaCreator;
+import com.nedap.archie.json.JsonSchemaUriProvider;
+import com.nedap.archie.json.JsonSchemaUri;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import javax.json.*;
 import javax.json.stream.JsonGenerator;
+import org.openehr.bmm.core.BmmClass;
+
+class CustomUriProvider implements JsonSchemaUriProvider {
+
+    private String baseUri;
+    public CustomUriProvider(String baseUri) {
+        this.baseUri = baseUri;
+    }
+
+    public JsonSchemaUri provideJsonSchemaUrl(BmmClass bmmClass) {
+        return new JsonSchemaUri(baseUri, bmmClass.getPackagePath() + ".json");
+    }
+}
 
 abstract class JsonSchemaCreationTask extends DefaultTask {
 
@@ -32,31 +47,37 @@ abstract class JsonSchemaCreationTask extends DefaultTask {
         def rm104 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         def rm103 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.3").getModel();
 
-        def schemas110 = new JSONSchemaCreator().splitInMultipleFiles(multifile).create(rm110);
-        def schemas104 = new JSONSchemaCreator().splitInMultipleFiles(multifile).create(rm104);
-        def schemas103 = new JSONSchemaCreator().splitInMultipleFiles(multifile).create(rm103);
+        def schemas110 = new JSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.1.0/")
+                .splitInMultipleFiles(multifile).create(rm110);
+        def schemas104 = new JSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.0.4/")
+                .splitInMultipleFiles(multifile).create(rm104);
+        def schemas103 = new JSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.0.3/")
+                .splitInMultipleFiles(multifile).create(rm103);
         def config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         def jsonWriterFactory = Json.createWriterFactory(config);
 
-        printSchemas("RM-1.1.0", dirName, schemas104, jsonWriterFactory);
-        printSchemas("RM-1.0.4", dirName, schemas110, jsonWriterFactory);
+        printSchemas("RM-1.1.0", dirName, schemas110, jsonWriterFactory);
+        printSchemas("RM-1.0.4", dirName, schemas104, jsonWriterFactory);
         printSchemas("RM-1.0.3", dirName, schemas103, jsonWriterFactory);
 
     }
 
-    def printSchemas(String version, String outputDir, Map<String, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
-        for(String name:schemas.keySet()) {
+    def printSchemas(String version, String outputDir, Map<JsonSchemaUri, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
+        for(JsonSchemaUri name:schemas.keySet()) {
             def schema = schemas.get(name);
             def versionDir = getOutputDir().get().dir(version)
             if(!versionDir.getAsFile().exists()) {
                 versionDir.getAsFile().mkdir();
             }
-            def directory = versionDir.dir(outputDir)
-            if(!directory.getAsFile().exists()) {
-                directory.getAsFile().mkdir();
-            }
-            directory.file(name).getAsFile().withWriter { writer ->
+         //   def directory = versionDir.dir(outputDir)
+          //  if(!directory.getAsFile().exists()) {
+           //     directory.getAsFile().mkdir();
+           // }
+            versionDir.file(name.getFilename()).getAsFile().withWriter { writer ->
                 jsonWriterFactory.createWriter(writer).write(schema);
             }
         }

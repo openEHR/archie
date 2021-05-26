@@ -17,6 +17,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,12 +53,14 @@ public class JsonSchemaValidator {
      * @param allowAdditionalProperties whether to allow additional properties in the JSON
      */
     public JsonSchemaValidator(BmmModel bmmModel, boolean allowAdditionalProperties) {
-        schemaFiles = new JSONSchemaCreator()
+        schemaFiles = new LinkedHashMap<>();
+        new JSONSchemaCreator()
                 .allowAdditionalProperties(allowAdditionalProperties)
                 //the validator can actually handle a schema split in multiple files, but
                 //Justify's implementation is not perfect, causing some extra memory use that might be better to avoid.
                 .splitInMultipleFiles(false)
-                .create(bmmModel);
+                .create(bmmModel)
+                .forEach( (uri, schema) -> schemaFiles.put(uri.getId(), schema));
         //The first entry in schemaFiles is guaranteed to be the main schema by the JSONSchemaCreator.
         JsonObject schemaJson = schemaFiles.values().iterator().next();
 
@@ -81,7 +84,7 @@ public class JsonSchemaValidator {
     /**
      * Resolves the referenced JSON schema.
      *
-     * @param id the identifier of the referenced JSON schema.
+     * @param uri the identifier of the referenced JSON schema.
      * @return referenced JSON schema.
      */
     private JsonSchema resolveSchema(URI uri) {
