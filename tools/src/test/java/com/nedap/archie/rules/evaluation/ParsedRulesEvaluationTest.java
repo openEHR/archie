@@ -1,5 +1,6 @@
 package com.nedap.archie.rules.evaluation;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
@@ -72,7 +73,7 @@ public class ParsedRulesEvaluationTest {
 
     }
 
-    private Archetype parse(String filename) throws IOException {
+    private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
@@ -654,7 +655,7 @@ public class ParsedRulesEvaluationTest {
     }
 
     @Test
-    public void flattenedRules() throws IOException {
+    public void flattenedRules() throws IOException, ADLParseException {
         Archetype valueSet = parse("matches_valueset.adls");
         Archetype parent = parse("termcodeparent.adls");
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();

@@ -1,5 +1,6 @@
 package com.nedap.archie.archetypevalidator;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
@@ -198,7 +199,7 @@ public class ArchetypeValidatorTest {
     }
 
 
-    private Archetype parse(String filename) throws IOException {
+    private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;

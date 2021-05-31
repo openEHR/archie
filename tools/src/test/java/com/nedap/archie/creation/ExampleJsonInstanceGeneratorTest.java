@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Joiner;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
@@ -71,7 +72,7 @@ public class ExampleJsonInstanceGeneratorTest {
         assertEquals("POINT_EVENT", ((Map) events.get(1)).get(TYPE_PROPERTY_NAME));
         assertEquals("INTERVAL_EVENT", ((Map) events.get(2)).get(TYPE_PROPERTY_NAME));
 
-        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance()).validate(JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
+        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), templateId -> null).validate(JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
         assertEquals(new ArrayList<>(), validated);
 
     }
@@ -167,7 +168,7 @@ public class ExampleJsonInstanceGeneratorTest {
                     json = mapper.writeValueAsString(example);
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
-                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance()).validate(parsed);
+                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null).validate(parsed);
                     rmObjectValidatorRan++;
                     if(!validated.isEmpty()) {
                         rmValidationErrors.add("error in " + result.getArchetypeId() + ": " + validated);
@@ -232,14 +233,14 @@ public class ExampleJsonInstanceGeneratorTest {
     }
 
 
-    private OperationalTemplate createOPT(String s2) throws IOException {
+    private OperationalTemplate createOPT(String s2) throws IOException, ADLParseException {
         Archetype archetype = parse(s2);
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(archetype);
         return (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true).flatten(archetype);
     }
 
-    private Archetype parse(String filename) throws IOException {
+    private Archetype parse(String filename) throws IOException, ADLParseException {
         ADLParser parser = new ADLParser();
         Archetype archetype;
         try(InputStream stream =  getClass().getResourceAsStream(filename)) {

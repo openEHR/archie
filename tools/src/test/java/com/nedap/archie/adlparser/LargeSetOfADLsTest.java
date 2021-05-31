@@ -36,12 +36,9 @@ public class LargeSetOfADLsTest {
                 logger.info("trying to parse " + file);
                 ADLParser parser = new ADLParser();
                 parser.parse(stream);
-                if(parser.errorListener.getErrors().getErrors().size() > 0) {
-                    parseErrors.put(file, parser.errorListener.getErrors());
-                }
-                if(parser.getTree().exception != null) {
-                    exceptions.put(file, parser.getTree().exception);
-                }
+
+            } catch (ADLParseException parseException) {
+                parseErrors.put(file, parseException.getErrors());
             } catch (Exception e) {
                 exceptions.put(file, e);
             }
