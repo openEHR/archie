@@ -213,27 +213,6 @@ public class ArchetypeValidator {
         return result;
     }
 
-    /**
-     * Get the validation rsult for the given archetype id from given repository. Perform validation and add to repository
-     * if not already present in the repository.
-     * @param archetypeId
-     * @param repository
-     * @return
-     */
-    private ValidationResult getValidationResult(String archetypeId, FullArchetypeRepository repository) {
-        Archetype archetype = repository.getArchetype(archetypeId);
-        if(archetype == null) {
-            return null; //this situation will trigger the correct message later
-        }
-
-        ValidationResult validationResult = repository.getValidationResult(archetypeId);
-        if(validationResult == null) {
-            //archetype not yet validated. do it now.
-            validationResult = validate(archetype, repository);
-        }
-        return validationResult;
-    }
-
     private Archetype cloneAndPreprocess(MetaModels models, Archetype archetype) {
         Archetype preprocessed = archetype.clone();
         new ReflectionConstraintImposer(models).setSingleOrMultiple(preprocessed.getDefinition());
