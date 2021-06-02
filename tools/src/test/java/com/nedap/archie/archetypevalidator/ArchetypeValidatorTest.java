@@ -205,18 +205,32 @@ public class ArchetypeValidatorTest {
         //not available in the parent. One could say the parent needs to be upgraded to the new version
         //however this has some actual use cases where the parent in the CKM still has the old version, and you want
         //to use new features like DV_SCALE - as in this particular example. So this should just work.
-        Archetype parent = parse("/com/nedap/archie/archetypevalidator/rm_version/openEHR-EHR-CLUSTER.child.v0.0.1.adls");
-        Archetype child = parse("/com/nedap/archie/archetypevalidator/rm_version/openEHR-EHR-CLUSTER.parent.v1.1.0.adls");
-        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        repository.addArchetype(parent);
-        repository.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
-        ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
-        ValidationResult validatedChild = archetypeValidator.validate(child, repository);
+        Archetype child = parse("/com/nedap/archie/archetypevalidator/rm_version/openEHR-EHR-CLUSTER.child.v0.0.1.adls");
+        Archetype parent = parse("/com/nedap/archie/archetypevalidator/rm_version/openEHR-EHR-CLUSTER.parent.v1.1.0.adls");
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(child);
+            repository.addArchetype(parent);
 
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validatedChild = archetypeValidator.validate(child, repository);
+            ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
 
-        assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
-        assertTrue(validatedChild.getErrors().toString(), validatedParent.passes());
+            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+        }
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(child);
+            repository.addArchetype(parent);
+            
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
+            ValidationResult validatedChild = archetypeValidator.validate(child, repository);
+
+            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+        }
     }
 
 
