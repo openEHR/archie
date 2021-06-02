@@ -128,7 +128,7 @@ public class ArchetypeValidator {
             }
             for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
                 //validate the overlays first, but make sure to do that only once (so don't call this same method!)
-                getValidationResult(overlay.getArchetypeId().toString(), extraRepository);
+                extraRepository.compileAndRetrieveValidationResult(overlay.getArchetypeId().toString(), this);
                 combinedModels.selectModel(archetype);
             }
         }
@@ -143,7 +143,7 @@ public class ArchetypeValidator {
         archetype = cloneAndPreprocess(combinedModels, archetype);//this clones the actual archetype so the source does not get changed
         Archetype flatParent = null;
         if(archetype.isSpecialized()) {
-            ValidationResult parentValidationResult = getValidationResult(archetype.getParentArchetypeId(), repository);
+            ValidationResult parentValidationResult = repository.compileAndRetrieveValidationResult(archetype.getParentArchetypeId(), this);
             combinedModels.selectModel(archetype);
             if(parentValidationResult != null) {
                 if(parentValidationResult.passes()) {
@@ -213,27 +213,6 @@ public class ArchetypeValidator {
 
         repository.setValidationResult(result);
         return result;
-    }
-
-    /**
-     * Get the validation rsult for the given archetype id from given repository. Perform validation and add to repository
-     * if not already present in the repository.
-     * @param archetypeId
-     * @param repository
-     * @return
-     */
-    private ValidationResult getValidationResult(String archetypeId, FullArchetypeRepository repository) {
-        Archetype archetype = repository.getArchetype(archetypeId);
-        if(archetype == null) {
-            return null; //this situation will trigger the correct message later
-        }
-
-        ValidationResult validationResult = repository.getValidationResult(archetypeId);
-        if(validationResult == null) {
-            //archetype not yet validated. do it now.
-            validationResult = validate(archetype, repository);
-        }
-        return validationResult;
     }
 
     private Archetype cloneAndPreprocess(MetaModels models, Archetype archetype) {
