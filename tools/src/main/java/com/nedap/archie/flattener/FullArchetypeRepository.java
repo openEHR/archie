@@ -55,36 +55,20 @@ public interface FullArchetypeRepository extends ArchetypeRepository, Operationa
      * @return
      */
     default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModels models) {
-        ValidationResult validationResult = getValidationResult(archetypeId);
         Archetype archetype = getArchetype(archetypeId);
-        if(validationResult != null && !archetypeIsNewerVersion(archetype, validationResult)) {
+        if(archetype == null) {
+            return null;
+        }
+        ValidationResult validationResult = getValidationResult(archetype.getArchetypeId().getFullId());
+
+        if(validationResult != null) {
             //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
             return validationResult;
         }
 
-        if(archetype == null) {
-            return null;
-        }
         ArchetypeValidator validator = new ArchetypeValidator(models);
         return validator.validate(archetype, this);
     }
-
-    static boolean archetypeIsNewerVersion(Archetype archetype, ValidationResult validationResult) {
-        if(archetype == null || archetype.getArchetypeId() == null) {
-            return false;
-        }
-        String archetypeVersion = archetype.getArchetypeId().getVersionId();
-        String validationResultVersion;
-        if(validationResult.getSourceArchetype() == null || validationResult.getSourceArchetype().getArchetypeId() == null) {
-            //TODO: how to handle? use the string based archetypeID?
-            validationResultVersion = new ArchetypeHRID(validationResult.getArchetypeId()).getVersionId();
-        } else {
-            validationResultVersion = validationResult.getSourceArchetype().getArchetypeId().getVersionId();
-        }
-
-        return new CustomVersionComparator().compare(Version.valueOf(archetypeVersion), Version.valueOf(validationResultVersion)) > 0;
-    }
-
 
     /**
      * validate the validation result if necessary, and return either the newly validated one or
@@ -93,14 +77,15 @@ public interface FullArchetypeRepository extends ArchetypeRepository, Operationa
      * @return
      */
     default ValidationResult compileAndRetrieveValidationResult(String archetypeId, ArchetypeValidator validator) {
-        ValidationResult validationResult = getValidationResult(archetypeId);
         Archetype archetype = getArchetype(archetypeId);
-        if(validationResult != null && !archetypeIsNewerVersion(archetype, validationResult)) {
-            //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
-            return validationResult;
-        }
         if(archetype == null) {
             return null;
+        }
+        ValidationResult validationResult = getValidationResult(archetype.getArchetypeId().getFullId());
+
+        if(validationResult != null) {
+            //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
+            return validationResult;
         }
         return validator.validate(archetype, this);
     }
