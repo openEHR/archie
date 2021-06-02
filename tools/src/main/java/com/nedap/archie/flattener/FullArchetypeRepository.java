@@ -1,14 +1,17 @@
 package com.nedap.archie.flattener;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationSettings;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
+import com.github.zafarkhaja.semver.Version;
 
 import java.util.List;
+import java.util.Objects;
 
 public interface FullArchetypeRepository extends ArchetypeRepository, OperationalTemplateProvider {
 
@@ -52,15 +55,38 @@ public interface FullArchetypeRepository extends ArchetypeRepository, Operationa
      * @return
      */
     default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModels models) {
-        ValidationResult validationResult = getValidationResult(archetypeId);
-        if(validationResult != null) {
-            return validationResult;
-        }
         Archetype archetype = getArchetype(archetypeId);
         if(archetype == null) {
             return null;
         }
+        ValidationResult validationResult = getValidationResult(archetype.getArchetypeId().getFullId());
+
+        if(validationResult != null) {
+            //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
+            return validationResult;
+        }
+
         ArchetypeValidator validator = new ArchetypeValidator(models);
+        return validator.validate(archetype, this);
+    }
+
+    /**
+     * validate the validation result if necessary, and return either the newly validated one or
+     * the existing validation result
+     * @param models
+     * @return
+     */
+    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, ArchetypeValidator validator) {
+        Archetype archetype = getArchetype(archetypeId);
+        if(archetype == null) {
+            return null;
+        }
+        ValidationResult validationResult = getValidationResult(archetype.getArchetypeId().getFullId());
+
+        if(validationResult != null) {
+            //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
+            return validationResult;
+        }
         return validator.validate(archetype, this);
     }
 
