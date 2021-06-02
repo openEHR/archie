@@ -129,6 +129,7 @@ public class ArchetypeValidator {
             for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
                 //validate the overlays first, but make sure to do that only once (so don't call this same method!)
                 getValidationResult(overlay.getArchetypeId().toString(), extraRepository);
+                combinedModels.selectModel(archetype);
             }
         }
 
@@ -143,6 +144,7 @@ public class ArchetypeValidator {
         Archetype flatParent = null;
         if(archetype.isSpecialized()) {
             ValidationResult parentValidationResult = getValidationResult(archetype.getParentArchetypeId(), repository);
+            combinedModels.selectModel(archetype);
             if(parentValidationResult != null) {
                 if(parentValidationResult.passes()) {
                     flatParent = parentValidationResult.getFlattened();
