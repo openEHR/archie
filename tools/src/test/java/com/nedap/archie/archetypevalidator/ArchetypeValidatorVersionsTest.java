@@ -1,7 +1,6 @@
 package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.adlparser.ADLParseException;
-import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
