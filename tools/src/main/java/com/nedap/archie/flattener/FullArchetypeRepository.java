@@ -70,7 +70,6 @@ public interface FullArchetypeRepository extends ArchetypeRepository, Operationa
     /**
      * validate the validation result if necessary, and return either the newly validated one or
      * the existing validation result
-     * @param models
      * @return
      */
     default ValidationResult compileAndRetrieveValidationResult(String archetypeId, ArchetypeValidator validator) {
