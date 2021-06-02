@@ -1,27 +1,22 @@
 package com.nedap.archie.openapi;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.nedap.archie.json.flat.AttributeReference;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonWriterFactory;
+import jakarta.json.stream.JsonGenerator;
 import org.junit.Test;
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinSerializer;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmSchemaConverter;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
-import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonWriterFactory;
-import javax.json.stream.JsonGenerator;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 

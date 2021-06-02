@@ -17,26 +17,47 @@ public class JSONSchemaCreatorTest {
     @Test
     public void createSchema() {
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
-        JsonObject jsonObject = new JSONSchemaCreator().create(model);
+        Map<JsonSchemaUri, JsonObject> schemas = new JSONSchemaCreator().create(model);
 
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         JsonWriterFactory jsonWriterFactory = Json.createWriterFactory(config);
 
+        printSchemas(schemas, jsonWriterFactory);
 
-        jsonWriterFactory.createWriter(System.out).write(jsonObject);
+    }
+
+    private void printSchemas(Map<JsonSchemaUri, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
+        for(JsonSchemaUri name:schemas.keySet()) {
+            JsonObject schema = schemas.get(name);
+            System.out.println("printing schema " + name + ":");
+            jsonWriterFactory.createWriter(System.out).write(schema);
+        }
     }
 
     @Test
     public void createSchemaWithoutAdditionalProperties() {
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
-        JsonObject jsonObject = new JSONSchemaCreator().allowAdditionalProperties(false).create(model);
+        Map<JsonSchemaUri, JsonObject> schemas = new JSONSchemaCreator().allowAdditionalProperties(false).create(model);
+
 
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         JsonWriterFactory jsonWriterFactory = Json.createWriterFactory(config);
 
+        printSchemas(schemas, jsonWriterFactory);
+    }
 
-        jsonWriterFactory.createWriter(System.out).write(jsonObject);
+    @Test
+    public void createMultiFileSchemaWithoutAdditionalProperties() {
+        BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
+        Map<JsonSchemaUri, JsonObject> schemas = new JSONSchemaCreator().allowAdditionalProperties(false).splitInMultipleFiles(true).create(model);
+
+
+        Map<String, Object> config = new HashMap<>();
+        config.put(JsonGenerator.PRETTY_PRINTING, true);
+        JsonWriterFactory jsonWriterFactory = Json.createWriterFactory(config);
+
+        printSchemas(schemas, jsonWriterFactory);
     }
 }

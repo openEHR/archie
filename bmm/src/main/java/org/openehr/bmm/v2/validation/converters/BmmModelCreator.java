@@ -3,6 +3,7 @@ package org.openehr.bmm.v2.validation.converters;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmPackage;
+import org.openehr.bmm.core.BmmPackageContainer;
 import org.openehr.bmm.v2.persistence.PBmmClass;
 import org.openehr.bmm.v2.persistence.PBmmPackage;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
@@ -28,21 +29,12 @@ public class BmmModelCreator {
 
         // Add packages first
         for(PBmmPackage pBmmPackage:validationResult.getCanonicalPackages().values()) {
-            BmmPackage bmmPackage = createBmmPackageDefinition (pBmmPackage, null, null);
+            BmmPackage bmmPackage = createBmmPackageDefinition(pBmmPackage, null, null);
 
             model.addPackage(bmmPackage);
-
-            pBmmPackage.doRecursiveClasses((p, s) -> {
-                PBmmClass pBmmClass = schema.getClassDefinition(s);
-                if (pBmmClass != null) {
-                    BmmClass bmmClass = pBmmClass.createBmmClass();
-                    if (bmmClass != null) {
-                        bmmClass.setPrimitiveType(schema.getPrimitiveTypes().containsKey (bmmClass.getName()));
-                        model.addClassDefinition(bmmClass, bmmPackage);
-                    }
-                }
-            });
         }
+        validationResult.getCanonicalPackages().forEach( (packageName, pBmmPackage) -> convertPackage(model, schema, pBmmPackage.getName(), pBmmPackage, model));
+
 
         model.setArchetypeParentClass (schema.getArchetypeParentClass());
         model.setArchetypeDataValueParentClass (schema.getArchetypeDataValueParentClass());
@@ -57,6 +49,26 @@ public class BmmModelCreator {
         propertySupplier.run();
 
         return model;
+    }
+
+    private void convertPackage(BmmModel model, PBmmSchema schema, String packageName, PBmmPackage pBmmPackage, BmmPackageContainer bmmParentPackage) {
+
+        BmmPackage bmmPackage = bmmParentPackage.getPackage(pBmmPackage.getName());
+        pBmmPackage.getClasses().forEach( className -> {
+
+            PBmmClass pBmmClass = schema.getClassDefinition(className);
+            if (pBmmClass != null) {
+                BmmClass bmmClass = pBmmClass.createBmmClass();
+                if (bmmClass != null) {
+                    bmmClass.setPrimitiveType(schema.getPrimitiveTypes().containsKey (bmmClass.getName()));
+                    model.addClassDefinition(bmmClass, bmmPackage);
+                }
+            }
+        });
+        pBmmPackage.getPackages().forEach( (subPackageName, pBmmSubPackage) -> {
+            convertPackage(model, schema, packageName + "." + pBmmSubPackage.getName(), pBmmSubPackage, bmmPackage);
+        });
+
     }
 
 
