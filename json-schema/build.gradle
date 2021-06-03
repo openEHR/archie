@@ -13,9 +13,10 @@ import com.nedap.archie.json.JSONSchemaCreator;
 import com.nedap.archie.json.JsonSchemaUriProvider;
 import com.nedap.archie.json.JsonSchemaUri;
 import org.openehr.referencemodels.BuiltinReferenceModels;
-import javax.json.*;
-import javax.json.stream.JsonGenerator;
+import jakarta.json.*;
+import jakarta.json.stream.JsonGenerator;
 import org.openehr.bmm.core.BmmClass;
+import com.nedap.archie.openapi.OpenAPIModelCreator;
 
 class CustomUriProvider implements JsonSchemaUriProvider {
 
@@ -30,8 +31,6 @@ class CustomUriProvider implements JsonSchemaUriProvider {
 }
 
 abstract class JsonSchemaCreationTask extends DefaultTask {
-
-    private final FileSystemOperations fileSystemOperations
 
     @OutputDirectory
     abstract DirectoryProperty getOutputDir();
@@ -60,13 +59,12 @@ abstract class JsonSchemaCreationTask extends DefaultTask {
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         def jsonWriterFactory = Json.createWriterFactory(config);
 
-        printSchemas("RM-1.1.0", dirName, schemas110, jsonWriterFactory);
-        printSchemas("RM-1.0.4", dirName, schemas104, jsonWriterFactory);
-        printSchemas("RM-1.0.3", dirName, schemas103, jsonWriterFactory);
+        printSchemas("RM-1.1.0", schemas110, jsonWriterFactory);
+        printSchemas("RM-1.0.4", schemas104, jsonWriterFactory);
+        printSchemas("RM-1.0.3", schemas103, jsonWriterFactory);
 
     }
-
-    def printSchemas(String version, String outputDir, Map<JsonSchemaUri, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
+    def printSchemas(String version, Map<JsonSchemaUri, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
         for(JsonSchemaUri name:schemas.keySet()) {
             def schema = schemas.get(name);
             def versionDir = getOutputDir().get().dir(version)
@@ -84,9 +82,50 @@ abstract class JsonSchemaCreationTask extends DefaultTask {
     }
 }
 
+abstract class OpenAPICreationTask extends DefaultTask {
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDir();
+
+    @TaskAction
+    def generateOpenAPI () {
+        def rm110 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
+        JsonObject jsonObject = new OpenAPIModelCreator().allowAdditionalProperties(true).create(rm110);
+
+        def config = new HashMap<>();
+        config.put(JsonGenerator.PRETTY_PRINTING, true);
+        def jsonWriterFactory = Json.createWriterFactory(config);
+
+        printOpenAPI("RM-1.1.0", "openAPI_RM_1.1.0.json", jsonObject, jsonWriterFactory)
+    }
+
+    def printOpenAPI(String version, String fileName, JsonObject schema, JsonWriterFactory jsonWriterFactory) {
+
+        def versionDir = getOutputDir().get().dir(version)
+        if(!versionDir.getAsFile().exists()) {
+            versionDir.getAsFile().mkdir();
+        }
+        //   def directory = versionDir.dir(outputDir)
+        //  if(!directory.getAsFile().exists()) {
+        //     directory.getAsFile().mkdir();
+        // }
+        versionDir.file(fileName).getAsFile().withWriter { writer ->
+            jsonWriterFactory.createWriter(writer).write(schema);
+        }
+
+    }
+
+}
+
+
 // Create a task using the task type
 tasks.register('generateJsonSchema', JsonSchemaCreationTask) {
     outputDir = file(layout.buildDirectory.dir('schemaOutput'))
+}
+
+// Create a task using the task type
+tasks.register('generateOpenAPI', OpenAPICreationTask) {
+    outputDir = file(layout.buildDirectory.dir('openAPI'))
 }
 
 
