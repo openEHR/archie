@@ -45,7 +45,7 @@ public class FlatJsonExampleInstanceGenerator {
         String jsonRmObject = objectMapper.writeValueAsString(generatedExample);
         OpenEHRBase openEHRBase = objectMapper.readValue(jsonRmObject, OpenEHRBase.class);
 
-        return new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), jsonFormatConfiguration).buildPathsAndValues(openEHRBase, archetype);
+        return new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), jsonFormatConfiguration).buildPathsAndValues(openEHRBase, archetype, "en");
 
     }
 }

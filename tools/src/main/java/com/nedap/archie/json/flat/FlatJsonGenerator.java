@@ -1,8 +1,10 @@
 package com.nedap.archie.json.flat;
 
+import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.datetime.DateTimeSerializerFormatters;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -41,6 +43,7 @@ public class FlatJsonGenerator {
     private final boolean humanReadableFormat;
     private final IndexNotation indexNotation;
     private final String typeIdPropertyName;
+    private boolean filterNames = true;
 
 
     /**
@@ -67,10 +70,13 @@ public class FlatJsonGenerator {
      */
 
     public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject) throws DuplicateKeyException {
-        return buildPathsAndValues(rmObject, null);
+        return buildPathsAndValues(rmObject, null, null);
     }
 
-    public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject, Archetype archetype) throws DuplicateKeyException {
+    public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject, Archetype archetype, String language) throws DuplicateKeyException {
+        if(language != null) {
+            ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(language);
+        }
         Map<String, Object> result = new LinkedHashMap<>();
         CObject definition = archetype == null ? null : archetype.getDefinition();
         buildPathsAndValuesInner(result,null, "/", rmObject, definition);
@@ -97,10 +103,18 @@ public class FlatJsonGenerator {
             storeValue(result, joinPath(pathSoFar, typeIdPropertyName, null, null, "/"), getTypeIdFromValue(rmObject));
         }
 
+        String name = modelInfoLookup.getNameFromRMObject(rmObject);
+
         for(String attributeName:typeInfo.getAttributes().keySet()) {
             CAttribute cAttribute = cObject == null ? null : cObject.getAttribute(attributeName);
             RMAttributeInfo attributeInfo = typeInfo.getAttributes().get(attributeName);
             if(!attributeInfo.isComputed() && !isIgnored(typeInfo, attributeName) && attributeInfo.getGetMethod() != null) {
+                if(filterNames && cObject != null && isNameAttribute(typeInfo, attributeName)) {
+                    ArchetypeTerm term = cObject.getTerm();
+                    if(term != null && name.equals(term.getText())) {
+                        continue;
+                    }
+                }
                 try {
                     Object child = attributeInfo.getGetMethod().invoke(rmObject);
                     addAttribute(result, pathSoFar, rmObject, child, attributeName,null, cAttribute);
@@ -131,6 +145,12 @@ public class FlatJsonGenerator {
                 .filter( ignored ->
                     typeInfo.isDescendantOrEqual(ignored.getType()) && attributeName.equalsIgnoreCase(ignored.getAttributeName())
                 ).findAny().isPresent();
+    }
+
+
+    private boolean isNameAttribute(RMTypeInfo typeInfo, String attributeName) {
+        IgnoredAttribute ref = new IgnoredAttribute(modelInfoLookup.getTypeInfo("LOCATABLE"), "name");
+        return typeInfo.isDescendantOrEqual(ref.getType()) && attributeName.equalsIgnoreCase(ref.getAttributeName());
     }
 
     private Object getTypeIdFromValue(OpenEHRBase value) {

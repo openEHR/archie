@@ -114,7 +114,7 @@ public class FlatJsonGeneratorTest {
         OperationalTemplate bloodPressureOpt = parseBloodPressure();
         FlatJsonFormatConfiguration config = FlatJsonFormatConfiguration.nedapInternalFormat();
         config.setWritePipesForPrimitiveTypes(false);
-        config.getIgnoredAttributes().add(new AttributeReference("LOCATABLE", "name"));
+        //config.getIgnoredAttributes().add(new AttributeReference("LOCATABLE", "name"));
         Map<String, Object> stringObjectMap = new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModels(), "en", config, bloodPressureOpt);
 
         System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
