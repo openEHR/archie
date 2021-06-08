@@ -4,6 +4,7 @@ import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.datetime.DateTimeSerializerFormatters;
@@ -43,7 +44,8 @@ public class FlatJsonGenerator {
     private final boolean humanReadableFormat;
     private final IndexNotation indexNotation;
     private final String typeIdPropertyName;
-    private boolean filterNames = true;
+    private boolean filterNames;
+    private IgnoredAttribute nameProperty;
 
 
     /**
@@ -57,9 +59,12 @@ public class FlatJsonGenerator {
         this.humanReadableFormat = false;//TODO: this is quite a bit of work to do properly, so definately not doing this now.
         this.indexNotation = config.getIndexNotation();
         this.typeIdPropertyName = config.getTypeIdPropertyName();
+        this.filterNames = config.getFilterNames();
         ignoredAttributes = config.getIgnoredAttributes().stream()
                 .map(a -> new IgnoredAttribute(modelInfoLookup.getTypeInfo(a.getTypeName()), a.getAttributeName()))
                 .collect(Collectors.toList());
+        nameProperty = new IgnoredAttribute(modelInfoLookup.getTypeInfo(config.getNameProperty().getTypeName()), config.getNameProperty().getAttributeName());
+
     }
 
     /**
@@ -73,7 +78,7 @@ public class FlatJsonGenerator {
         return buildPathsAndValues(rmObject, null, null);
     }
 
-    public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject, Archetype archetype, String language) throws DuplicateKeyException {
+    public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject, OperationalTemplate archetype, String language) throws DuplicateKeyException {
         if(language != null) {
             ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(language);
         }
@@ -149,8 +154,10 @@ public class FlatJsonGenerator {
 
 
     private boolean isNameAttribute(RMTypeInfo typeInfo, String attributeName) {
-        IgnoredAttribute ref = new IgnoredAttribute(modelInfoLookup.getTypeInfo("LOCATABLE"), "name");
-        return typeInfo.isDescendantOrEqual(ref.getType()) && attributeName.equalsIgnoreCase(ref.getAttributeName());
+        if(nameProperty == null || nameProperty.getType() == null) {
+            return false;
+        }
+        return typeInfo.isDescendantOrEqual(nameProperty.getType()) && attributeName.equalsIgnoreCase(nameProperty.getAttributeName());
     }
 
     private Object getTypeIdFromValue(OpenEHRBase value) {

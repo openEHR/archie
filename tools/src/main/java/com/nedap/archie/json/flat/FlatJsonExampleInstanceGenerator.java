@@ -24,10 +24,6 @@ public class FlatJsonExampleInstanceGenerator {
      * @throws DuplicateKeyException in case the FlatJsonGenerator generates incorrect data for this OperationalTemplate
      */
     public Map<String, Object> generateExample(OperationalTemplate template, MetaModels metaModels, String language, FlatJsonFormatConfiguration jsonFormatConfiguration) throws JsonProcessingException, DuplicateKeyException {
-        return generateExample(template, metaModels, language, jsonFormatConfiguration, null);
-    }
-
-    public Map<String, Object> generateExample(OperationalTemplate template, MetaModels metaModels, String language, FlatJsonFormatConfiguration jsonFormatConfiguration, Archetype archetype) throws JsonProcessingException, DuplicateKeyException {
         metaModels.selectModel(template);
         if(metaModels.getSelectedModel() == null) {
             throw new IllegalArgumentException("Cannot find MetaModel for archetype");
@@ -45,7 +41,7 @@ public class FlatJsonExampleInstanceGenerator {
         String jsonRmObject = objectMapper.writeValueAsString(generatedExample);
         OpenEHRBase openEHRBase = objectMapper.readValue(jsonRmObject, OpenEHRBase.class);
 
-        return new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), jsonFormatConfiguration).buildPathsAndValues(openEHRBase, archetype, "en");
+        return new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), jsonFormatConfiguration).buildPathsAndValues(openEHRBase, template, "en");
 
     }
 }
