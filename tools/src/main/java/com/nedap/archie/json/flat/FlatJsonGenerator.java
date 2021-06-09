@@ -108,7 +108,7 @@ public class FlatJsonGenerator {
             return;
         }
         RMTypeInfo typeInfo = modelInfoLookup.getTypeInfo(rmObject.getClass());
-        if(pathSoFar.equalsIgnoreCase ("/") || shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject, typeAlternativesPresent)) {
+        if((cObject == null && pathSoFar.equalsIgnoreCase ("/")) || shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject, typeAlternativesPresent)) {
             storeValue(result, joinPath(pathSoFar, typeIdPropertyName, null, null, "/"), getTypeIdFromValue(rmObject));
         }
 
