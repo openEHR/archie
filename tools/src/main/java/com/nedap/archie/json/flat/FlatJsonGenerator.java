@@ -99,12 +99,16 @@ public class FlatJsonGenerator {
     }
 
     private void buildPathsAndValuesInner(Map<String, Object> result, RMTypeInfo rmAttributeTypeInfo, String pathSoFar, OpenEHRBase rmObject, CObject cObject) throws DuplicateKeyException {
+        buildPathsAndValuesInner(result, rmAttributeTypeInfo, pathSoFar, rmObject, cObject, false);
+    }
+
+    private void buildPathsAndValuesInner(Map<String, Object> result, RMTypeInfo rmAttributeTypeInfo, String pathSoFar, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) throws DuplicateKeyException {
 
         if(rmObject == null) {
             return;
         }
         RMTypeInfo typeInfo = modelInfoLookup.getTypeInfo(rmObject.getClass());
-        if(pathSoFar.equalsIgnoreCase ("/") || shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject)) {
+        if(pathSoFar.equalsIgnoreCase ("/") || shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject, typeAlternativesPresent)) {
             storeValue(result, joinPath(pathSoFar, typeIdPropertyName, null, null, "/"), getTypeIdFromValue(rmObject));
         }
 
@@ -131,10 +135,11 @@ public class FlatJsonGenerator {
         }
     }
 
-    private boolean shouldAddTypeName(RMTypeInfo rmAttributeTypeInfo, OpenEHRBase rmObject, CObject cObject) {
+    private boolean shouldAddTypeName(RMTypeInfo rmAttributeTypeInfo, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) {
         return typeHasDescendants(rmAttributeTypeInfo) &&
                 !sameType(rmAttributeTypeInfo, rmObject) &&
-                !sameType(cObject, rmObject);
+                !sameType(cObject, rmObject) &&
+                !typeAlternativesPresent;
     }
 
     private void storeValue(Map<String, Object> result, String path, Object value) throws DuplicateKeyException {
@@ -199,9 +204,29 @@ public class FlatJsonGenerator {
             //TODO: get correct type info here
             RMAttributeInfo attributeInfo = modelInfoLookup.getAttributeInfo(parent.getClass(), attributeName);
             RMTypeInfo typeInfo = getAttributeTypeInfo(attributeInfo);
+
+            RMTypeInfo modelTypeInfo = modelInfoLookup.getTypeInfo(child.getClass());
+            CObject cObject = null;
+            //whether other alternatives exist that could have been added in the archetype
+            boolean otherTypeAlternatives = false;
+
             String archetypeNodeIdFromRMObject = modelInfoLookup.getArchetypeNodeIdFromRMObject(child);
-            CObject cObject = archetypeNodeIdFromRMObject == null || cAttribute == null ? null : cAttribute.getChild(archetypeNodeIdFromRMObject);
-            buildPathsAndValuesInner(result, typeInfo, newPath, (OpenEHRBase) child, cObject);
+            if(cAttribute != null) {
+                if (archetypeNodeIdFromRMObject == null) {
+                    if(modelTypeInfo != null) {
+                        //do a type-name lookup. Also look for sibling alternatives
+                        List<CObject> childrenByRmTypeName = cAttribute.getChildrenByRmTypeName(modelTypeInfo.getRmName());
+                        if(childrenByRmTypeName != null && childrenByRmTypeName.size() == 1) {
+                            cObject = childrenByRmTypeName.get(0);
+                            otherTypeAlternatives = cAttribute.getChildren().size() > 1;
+                        }
+                    }
+                } else {
+                    cObject = cAttribute.getChild(archetypeNodeIdFromRMObject);
+                }
+            }
+
+            buildPathsAndValuesInner(result, typeInfo, newPath, (OpenEHRBase) child, cObject, otherTypeAlternatives);
 
             String archetypeId = modelInfoLookup.getArchetypeIdFromArchetypedRmObject(child);
             if(archetypeId != null) {
