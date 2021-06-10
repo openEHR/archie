@@ -185,7 +185,31 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
             result.putAll(ancestor.getBaseClass().getFlatProperties());
         });
         result.putAll(properties);
-        return result;
+        /*
+        DV_INTERVAL<T> inherits parent type, Interval<T>, which in turn defines
+        lower and upper fields based on type T. The default constraint of T in Interval<T> is
+        Ordered, but DV_INTERVAL has DV_ORDERED as the type constraint for its type parameter.
+        unless we intercept and change the type of the properties of Interval, these properties
+        will have the type Ordered, which is not the correct type for DV_INTERVAL. There are
+        more object oriented ways of doing this, but it'll add up to injecting a strategy interface
+        or something fancy and difficult to understand. Leaving it as simple as possible at the moment.
+         */
+        Map<String, BmmProperty<?>> processedResult = new LinkedHashMap<>();
+        if (name.equalsIgnoreCase("DV_INTERVAL")){
+            for (Map.Entry<String, BmmProperty<?>> propEntry : result.entrySet()) {
+                if (propEntry.getKey().equalsIgnoreCase("upper") || propEntry.getKey().equalsIgnoreCase("lower")){
+                    BmmGenericClass thisAsGenericClass = (BmmGenericClass)this;
+                    BmmParameterType parameterT = thisAsGenericClass.getGenericParameter("T");
+                    BmmUnitaryProperty prop = (BmmUnitaryProperty) propEntry.getValue();
+                    prop.setType(parameterT);
+                    processedResult.put(propEntry.getKey(), prop);
+                }else{
+                    processedResult.put(propEntry.getKey(), propEntry.getValue());
+                }
+            }
+            return processedResult;
+        }else
+            return result;
     }
 
     /**

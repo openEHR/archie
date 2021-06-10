@@ -5,7 +5,9 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.rminfo.MetaModels;
 import org.junit.Test;
+import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
+import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
 
@@ -29,6 +31,18 @@ public class BuiltInReferenceModelsTest {
         assertEquals(33, bmmRepository.getModels().size());
         assertEquals(31, bmmRepository.getValidModels().size());
         assertEquals(2, bmmRepository.getInvalidModels().size());
+    }
+
+    @Test
+    public void providesFlatPropertiesOfDvInterval(){
+        BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.2").getModel();
+        BmmClass dvInterval = model.getClassDefinition("DV_INTERVAL");
+
+        BmmProperty<?> upper = dvInterval.getFlatProperties().get("upper");
+        assertEquals("DV_ORDERED", upper.getType().getEffectiveType().typeBaseName());
+
+        BmmProperty<?> lower = dvInterval.getFlatProperties().get("lower");
+        assertEquals("DV_ORDERED", lower.getType().getEffectiveType().typeBaseName());
     }
 
     @Test
