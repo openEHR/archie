@@ -6,6 +6,7 @@ import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.json.flat.AttributeReference;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
@@ -17,6 +18,7 @@ import jakarta.json.JsonObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,20 @@ public class OpenAPIModelCreator {
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
     private String typeNameProperty = "_type";
+    private RedefinedProperties redefinedProperties;
+
+    /**
+     * Properties that should not be output.
+     */
+    private Set<AttributeReference> ignoredAttributes;
+
+    /**
+     * Attributes that should be added from the parent, at the given class.
+     * So if this contains DV_QUANTITY.accuracy, accuracy will be added from the closest parent
+     * in the inheritance tree, to the definition of DV_QUANTITY.
+     * This map has classname as key, and propertyname as values
+     */
+    private Map<String, Set<String>> addAttributesFromParent;
 
     private boolean allowAdditionalProperties;
 
@@ -84,15 +100,34 @@ public class OpenAPIModelCreator {
                 "DATE_TIME", "DATE", "TIME", "ISO8601_TYPE", "TEMPORAL", "NUMERIC", "ORDERED_NUMERIC");
 
 
-
-
+        addAttributesFromParent = new HashMap<>();
+        ignoredAttributes = new HashSet<>();
         Map<String, Object> config = new HashMap();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
     }
 
+    public void setIgnoredAttributes(Set<AttributeReference> ignoredAttributes) {
+        this.ignoredAttributes = ignoredAttributes;
+    }
+
+    public void setAddAttributesFromParent(List<AttributeReference> attributesToAddFromParent) {
+        this.addAttributesFromParent = new HashMap<>();
+        attributesToAddFromParent.forEach(ref -> {
+            Set<String> attributes = addAttributesFromParent.get(ref.getTypeName());
+            if(attributes == null) {
+                attributes = new HashSet<>();
+                addAttributesFromParent.put(ref.getTypeName(), attributes);
+            }
+            attributes.add(ref.getAttributeName());
+
+        });
+        this.addAttributesFromParent = addAttributesFromParent;
+    }
+
     public JsonObject create(BmmModel bmm) {
         this.bmmModel = bmm;
+        this.redefinedProperties = new RedefinedProperties(bmm);
 
         //create the definitions and the root if/else base
 
@@ -182,6 +217,8 @@ public class OpenAPIModelCreator {
             BmmProperty bmmProperty = flatBmmClass.getProperties().get(propertyName);
             if(bmmProperty.getComputed()) {
                 continue;//don't output this
+            } else if (ignoredAttributes.contains(new AttributeReference(bmmClassName, propertyName))) {
+                continue;
             } else if((bmmClass.getName().startsWith("POINT_EVENT") || bmmClass.getName().startsWith("INTERVAL_EVENT")) &&
                     propertyName.equalsIgnoreCase("data")) {
                 //we don't handle generics yet, and it's very tricky with the current BMM indeed. So, just manually hack this
@@ -195,15 +232,18 @@ public class OpenAPIModelCreator {
                 }
                 atLeastOneProperty = true;
             } else {
+                atLeastOneProperty = addPropertyDef(required, properties, propertyName, bmmProperty);
+            }
+        }
 
-                JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
-                extendPropertyDef(propertyDef, bmmProperty);
-                properties.add(propertyName, propertyDef);
-
-                if (bmmProperty.getMandatory()) {
-                    required.add(propertyName);
-                }
-                atLeastOneProperty = true;
+        // Some properties are ignored in the parent, but must be added here, because redefinition is hard to do
+        // for openAPI code generators. So add there here
+        Set<String> propertiesToAddFromParent = addAttributesFromParent.get(bmmClassName);
+        if(propertiesToAddFromParent != null) {
+            Map<String, BmmProperty<?>> flatProperties = bmmClass.getFlatProperties();
+            for(String propertyName : propertiesToAddFromParent) {
+                BmmProperty<?> bmmProperty = flatProperties.get(propertyName);
+                atLeastOneProperty = addPropertyDef(required, properties, propertyName, bmmProperty);
             }
         }
 
@@ -230,7 +270,7 @@ public class OpenAPIModelCreator {
         } else {
             for (BmmDefinedType ancestor : bmmClass.getAncestors().values()) {
                 if (!shouldAncestorBeIgnored(ancestor)) {
-                    polymorphicArray.add(createReference(ancestor.getTypeName()));
+                    polymorphicArray.add(createReference(ancestor.getBaseClass().getName()));
                     addedAncestors = true;
                 }
             }
@@ -258,6 +298,19 @@ public class OpenAPIModelCreator {
             definition.add("properties", properties);
             definitions.add(typeName, definition);
         }
+    }
+
+    private boolean addPropertyDef(JsonArrayBuilder required, JsonObjectBuilder properties, String propertyName, BmmProperty bmmProperty) {
+        boolean atLeastOneProperty;
+        JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
+        extendPropertyDef(propertyDef, bmmProperty);
+        properties.add(propertyName, propertyDef);
+
+        if (bmmProperty.getMandatory()) {
+            required.add(propertyName);
+        }
+        atLeastOneProperty = true;
+        return atLeastOneProperty;
     }
 
     private boolean shouldAncestorBeIgnored(BmmDefinedType bmmClass) {
@@ -292,7 +345,7 @@ public class OpenAPIModelCreator {
             if(containerType.getBaseType().getTypeName().equalsIgnoreCase("Octet")) {
                 //binary data will be base64 encoded, so express that here
                 JsonObjectBuilder string = createType("string");
-                string.add("contentEncoding", "base64");
+                string.add("format", "byte");
                 return string;
             }
             return jsonFactory.createObjectBuilder()
