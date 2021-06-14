@@ -150,6 +150,12 @@ abstract class OpenAPICreationTask extends DefaultTask {
 }
 
 
+tasks.register("clean") {
+    doLast {
+        delete rootProject.buildDir
+    }
+}
+
 // Create a task using the task type
 tasks.register('generateJsonSchema', JsonSchemaCreationTask) {
     outputDir = file(layout.buildDirectory.dir('schemaOutput'))
