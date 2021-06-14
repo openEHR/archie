@@ -200,6 +200,12 @@ public class BmmComparison {
             return getBmmTypeName(containerType.getBaseType());
         } else if (type instanceof BmmGenericType) {
             BmmGenericType genericType = (BmmGenericType) type;
+            if ( genericType.getBaseClass().getType().getTypeName().toLowerCase().startsWith("hash") ) {
+                if(genericType.getGenericParameters().size() >= 2) {
+                    //compare the second parameter here only
+                    return getBmmTypeName(genericType.getGenericParameters().get(1));
+                }
+            }
             return genericType.getBaseClass().getType().getTypeName();
         } else if (type instanceof BmmParameterType) {
             BmmParameterType parameterType = (BmmParameterType) type;

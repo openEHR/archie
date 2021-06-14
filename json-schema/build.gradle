@@ -1,0 +1,163 @@
+description = "tools that operate on the archie reference models and archetype object model"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.nedap.healthcare.archie:archie-all:0.19.0'
+    }
+}
+
+import com.nedap.archie.json.JSONSchemaCreator;
+import com.nedap.archie.json.JsonSchemaUriProvider;
+import com.nedap.archie.json.JsonSchemaUri;
+import org.openehr.referencemodels.BuiltinReferenceModels;
+import jakarta.json.*;
+import jakarta.json.stream.JsonGenerator;
+import org.openehr.bmm.core.BmmClass;
+import com.nedap.archie.openapi.OpenAPIModelCreator;
+import com.nedap.archie.json.flat.AttributeReference;
+
+class CustomUriProvider implements JsonSchemaUriProvider {
+
+    private String baseUri;
+    public CustomUriProvider(String baseUri) {
+        this.baseUri = baseUri;
+    }
+
+    public JsonSchemaUri provideJsonSchemaUrl(BmmClass bmmClass) {
+        return new JsonSchemaUri(baseUri, bmmClass.getPackagePath() + ".json");
+    }
+}
+
+abstract class JsonSchemaCreationTask extends DefaultTask {
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDir();
+
+    @TaskAction
+    def generateSchema() {
+        generate("singlefile", false)
+        generate("multifile", true)
+    }
+
+    def generate(String dirName, boolean multifile) {
+        def rm110 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
+        def rm104 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
+        def rm103 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.3").getModel();
+
+        def schemas110 = new JSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.1.0/")
+                .splitInMultipleFiles(multifile).create(rm110);
+        def schemas104 = new JSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.0.4/")
+                .splitInMultipleFiles(multifile).create(rm104);
+        def schemas103 = new JSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.0.3/")
+                .splitInMultipleFiles(multifile).create(rm103);
+        def config = new HashMap<>();
+        config.put(JsonGenerator.PRETTY_PRINTING, true);
+        def jsonWriterFactory = Json.createWriterFactory(config);
+
+        printSchemas("RM-1.1.0", schemas110, jsonWriterFactory);
+        printSchemas("RM-1.0.4", schemas104, jsonWriterFactory);
+        printSchemas("RM-1.0.3", schemas103, jsonWriterFactory);
+
+    }
+    def printSchemas(String version, Map<JsonSchemaUri, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
+        for(JsonSchemaUri name:schemas.keySet()) {
+            def schema = schemas.get(name);
+            def versionDir = getOutputDir().get().dir(version)
+            if(!versionDir.getAsFile().exists()) {
+                versionDir.getAsFile().mkdir();
+            }
+         //   def directory = versionDir.dir(outputDir)
+          //  if(!directory.getAsFile().exists()) {
+           //     directory.getAsFile().mkdir();
+           // }
+            versionDir.file(name.getFilename()).getAsFile().withWriter { writer ->
+                jsonWriterFactory.createWriter(writer).write(schema);
+            }
+        }
+    }
+}
+
+abstract class OpenAPICreationTask extends DefaultTask {
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDir();
+
+    @TaskAction
+    def generateOpenAPI () {
+        def rm110 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
+
+        OpenAPIModelCreator openAPIModelCreator = new OpenAPIModelCreator().allowAdditionalProperties(true);
+
+        //let's do some annoying polymorphism mapping!
+        Set<AttributeReference> ignoredAttributes = new HashSet<>();
+        //abstract any item. Not useful at all.
+        ignoredAttributes.add(new AttributeReference("EXTRACT_CONTENT_ITEM", "item"));
+        //generics redefinition. No generics support, so just DV_INTERVAL here.
+        ignoredAttributes.add(new AttributeReference("DV_QUANTITY", "normal_range"));
+        ignoredAttributes.add(new AttributeReference("DV_PROPORTION", "normal_range"));
+        ignoredAttributes.add(new AttributeReference("DV_COUNT", "normal_range"));
+        //same generics redefinition
+        ignoredAttributes.add(new AttributeReference("DV_QUANTITY", "other_reference_ranges"));
+        ignoredAttributes.add(new AttributeReference("DV_PROPORTION", "other_reference_ranges"));
+        ignoredAttributes.add(new AttributeReference("DV_COUNT", "other_reference_ranges"));
+        //uid is always the same except in extract. Let's keep it the same everywhere.
+        ignoredAttributes.add(new AttributeReference("EXTRACT_REQUEST", "uid"));
+        ignoredAttributes.add(new AttributeReference("PARTY", "uid"));
+        ignoredAttributes.add(new AttributeReference("EXTRACT_ACTION_REQUEST", "uid"));
+        //this makes id more specific, but objectref is also concrete, so let's not do that.
+        ignoredAttributes.add(new AttributeReference("LOCATABLE_REF", "id"));
+
+        //accuracy: redefined. Ignore, define in concrete types instead
+        //keep DV_AMOUNT and DV_TEMPORAL here
+        ignoredAttributes.add(new AttributeReference("DV_QUANTIFIED", "accuracy"));
+        ignoredAttributes.add(new AttributeReference("DV_ABSOLUTE_QUANTITY", "accuracy"));
+
+        List<AttributeReference> attributesFromParent = new ArrayList<>();
+        openAPIModelCreator.setIgnoredAttributes(ignoredAttributes);
+
+        openAPIModelCreator.setAddAttributesFromParent(attributesFromParent);
+        JsonObject jsonObject = openAPIModelCreator.create(rm110);
+
+        def config = new HashMap<>();
+        config.put(JsonGenerator.PRETTY_PRINTING, true);
+        def jsonWriterFactory = Json.createWriterFactory(config);
+
+        printOpenAPI("RM-1.1.0", "openAPI_RM_1.1.0.json", jsonObject, jsonWriterFactory);
+    }
+
+    def printOpenAPI(String version, String fileName, JsonObject schema, JsonWriterFactory jsonWriterFactory) {
+
+        def versionDir = getOutputDir().get().dir(version)
+        if(!versionDir.getAsFile().exists()) {
+            versionDir.getAsFile().mkdir();
+        }
+        //   def directory = versionDir.dir(outputDir)
+        //  if(!directory.getAsFile().exists()) {
+        //     directory.getAsFile().mkdir();
+        // }
+        versionDir.file(fileName).getAsFile().withWriter { writer ->
+            jsonWriterFactory.createWriter(writer).write(schema);
+        }
+
+    }
+
+}
+
+
+// Create a task using the task type
+tasks.register('generateJsonSchema', JsonSchemaCreationTask) {
+    outputDir = file(layout.buildDirectory.dir('schemaOutput'))
+}
+
+// Create a task using the task type
+tasks.register('generateOpenAPI', OpenAPICreationTask) {
+    outputDir = file(layout.buildDirectory.dir('openAPI'))
+}
+
+
