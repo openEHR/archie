@@ -9,6 +9,9 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
+import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.json.RMJacksonConfiguration;
+import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
@@ -20,6 +23,7 @@ import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -142,8 +146,17 @@ public class RmObjectValidatorTest {
     }
 
 
+    @Test
+    public void testEndlessLoop() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/rmobjectvalidation/empty-observation-composition.json")) {
+            Composition composition = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(stream, Composition.class);
+            new RMObjectValidator(ArchieRMInfoLookup.getInstance(), archetypeId -> null).validate(composition);
+        }
+    }
+
     private Archetype parse(String filename) throws IOException, ADLParseException {
         return TestUtil.parseFailOnErrors(filename);
     }
+
 
 }
