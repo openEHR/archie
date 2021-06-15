@@ -1,5 +1,11 @@
 package com.nedap.archie.json.flat;
 
+import com.nedap.archie.ArchieLanguageConfiguration;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.CAttribute;
+import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.OperationalTemplate;
+import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.datetime.DateTimeSerializerFormatters;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -38,6 +44,8 @@ public class FlatJsonGenerator {
     private final boolean humanReadableFormat;
     private final IndexNotation indexNotation;
     private final String typeIdPropertyName;
+    private boolean filterNames;
+    private IgnoredAttribute nameProperty;
 
 
     /**
@@ -51,9 +59,12 @@ public class FlatJsonGenerator {
         this.humanReadableFormat = false;//TODO: this is quite a bit of work to do properly, so definately not doing this now.
         this.indexNotation = config.getIndexNotation();
         this.typeIdPropertyName = config.getTypeIdPropertyName();
+        this.filterNames = config.getFilterNames();
         ignoredAttributes = config.getIgnoredAttributes().stream()
                 .map(a -> new IgnoredAttribute(modelInfoLookup.getTypeInfo(a.getTypeName()), a.getAttributeName()))
                 .collect(Collectors.toList());
+        nameProperty = new IgnoredAttribute(modelInfoLookup.getTypeInfo(config.getNameProperty().getTypeName()), config.getNameProperty().getAttributeName());
+
     }
 
     /**
@@ -62,9 +73,18 @@ public class FlatJsonGenerator {
      * @return a Map with paths as the key, and primitive objects as the value, to be serialized with an ObjectMapper
      * @throws DuplicateKeyException in case converting this to flat json would result in having the two exact paths at once. Generally this means a problem in input, this should not happen.
      */
+
     public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject) throws DuplicateKeyException {
+        return buildPathsAndValues(rmObject, null, null);
+    }
+
+    public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject, OperationalTemplate archetype, String language) throws DuplicateKeyException {
+        if(language != null) {
+            ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(language);
+        }
         Map<String, Object> result = new LinkedHashMap<>();
-        buildPathsAndValuesInner(result,null, "/", rmObject);
+        CObject definition = archetype == null ? null : archetype.getDefinition();
+        buildPathsAndValuesInner(result,null, "/", rmObject, definition);
 
         if(humanReadableFormat) {
             String rootName = modelInfoLookup.getNameFromRMObject(rmObject);
@@ -78,28 +98,48 @@ public class FlatJsonGenerator {
 
     }
 
-    private void buildPathsAndValuesInner(Map<String, Object> result, RMTypeInfo rmAttributeTypeInfo, String pathSoFar, OpenEHRBase rmObject) throws DuplicateKeyException {
+    private void buildPathsAndValuesInner(Map<String, Object> result, RMTypeInfo rmAttributeTypeInfo, String pathSoFar, OpenEHRBase rmObject, CObject cObject) throws DuplicateKeyException {
+        buildPathsAndValuesInner(result, rmAttributeTypeInfo, pathSoFar, rmObject, cObject, false);
+    }
+
+    private void buildPathsAndValuesInner(Map<String, Object> result, RMTypeInfo rmAttributeTypeInfo, String pathSoFar, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) throws DuplicateKeyException {
 
         if(rmObject == null) {
             return;
         }
         RMTypeInfo typeInfo = modelInfoLookup.getTypeInfo(rmObject.getClass());
-        if(pathSoFar.equalsIgnoreCase ("/") || (typeHasDescendants(rmAttributeTypeInfo) && !sameType(rmAttributeTypeInfo, rmObject))) {
+        if((cObject == null && pathSoFar.equalsIgnoreCase ("/")) || shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject, typeAlternativesPresent)) {
             storeValue(result, joinPath(pathSoFar, typeIdPropertyName, null, null, "/"), getTypeIdFromValue(rmObject));
         }
 
+        String name = modelInfoLookup.getNameFromRMObject(rmObject);
+
         for(String attributeName:typeInfo.getAttributes().keySet()) {
+            CAttribute cAttribute = cObject == null ? null : cObject.getAttribute(attributeName);
             RMAttributeInfo attributeInfo = typeInfo.getAttributes().get(attributeName);
             if(!attributeInfo.isComputed() && !isIgnored(typeInfo, attributeName) && attributeInfo.getGetMethod() != null) {
+                if(filterNames && cObject != null && isNameAttribute(typeInfo, attributeName)) {
+                    ArchetypeTerm term = cObject.getTerm();
+                    if(term != null && name.equals(term.getText())) {
+                        continue;
+                    }
+                }
                 try {
                     Object child = attributeInfo.getGetMethod().invoke(rmObject);
-                    addAttribute(result, pathSoFar, rmObject, child, attributeName,null);
+                    addAttribute(result, pathSoFar, rmObject, child, attributeName,null, cAttribute);
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     throw new RuntimeException(e);//TODO: fine for now...
                 }
             }
 
         }
+    }
+
+    private boolean shouldAddTypeName(RMTypeInfo rmAttributeTypeInfo, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) {
+        return typeHasDescendants(rmAttributeTypeInfo) &&
+                !sameType(rmAttributeTypeInfo, rmObject) &&
+                !sameType(cObject, rmObject) &&
+                !typeAlternativesPresent;
     }
 
     private void storeValue(Map<String, Object> result, String path, Object value) throws DuplicateKeyException {
@@ -115,6 +155,14 @@ public class FlatJsonGenerator {
                 .filter( ignored ->
                     typeInfo.isDescendantOrEqual(ignored.getType()) && attributeName.equalsIgnoreCase(ignored.getAttributeName())
                 ).findAny().isPresent();
+    }
+
+
+    private boolean isNameAttribute(RMTypeInfo typeInfo, String attributeName) {
+        if(nameProperty == null || nameProperty.getType() == null) {
+            return false;
+        }
+        return typeInfo.isDescendantOrEqual(nameProperty.getType()) && attributeName.equalsIgnoreCase(nameProperty.getAttributeName());
     }
 
     private Object getTypeIdFromValue(OpenEHRBase value) {
@@ -135,6 +183,13 @@ public class FlatJsonGenerator {
         return modelInfoLookup.getTypeInfo(rmObject.getClass()).equals(typeInfo);
     }
 
+    private boolean sameType(CObject cObject, OpenEHRBase rmObject) {
+        if(cObject == null || rmObject == null) {
+            return false;
+        }
+        return modelInfoLookup.getTypeInfo(rmObject.getClass()).getRmName().equals(cObject.getRmTypeName());
+    }
+
     private boolean typeHasDescendants(RMTypeInfo typeInfo) {
         if(typeInfo == null) {
             return true;// we have no idea, so include @type/_type
@@ -142,14 +197,36 @@ public class FlatJsonGenerator {
         return !typeInfo.getDirectDescendantClasses().isEmpty();
     }
 
-    private void addAttribute(Map<String, Object> result, String pathSoFar, OpenEHRBase parent, Object child, String attributeName, Integer index) throws DuplicateKeyException {
+    private void addAttribute(Map<String, Object> result, String pathSoFar, OpenEHRBase parent, Object child, String attributeName, Integer index, CAttribute cAttribute) throws DuplicateKeyException {
 
         if(child instanceof OpenEHRBase) {
             String newPath = joinPath(pathSoFar, attributeName, (OpenEHRBase) child, index, "/");
             //TODO: get correct type info here
             RMAttributeInfo attributeInfo = modelInfoLookup.getAttributeInfo(parent.getClass(), attributeName);
             RMTypeInfo typeInfo = getAttributeTypeInfo(attributeInfo);
-            buildPathsAndValuesInner(result, typeInfo, newPath, (OpenEHRBase) child);
+
+            RMTypeInfo modelTypeInfo = modelInfoLookup.getTypeInfo(child.getClass());
+            CObject cObject = null;
+            //whether other alternatives exist that could have been added in the archetype
+            boolean otherTypeAlternatives = false;
+
+            String archetypeNodeIdFromRMObject = modelInfoLookup.getArchetypeNodeIdFromRMObject(child);
+            if(cAttribute != null) {
+                if (archetypeNodeIdFromRMObject == null) {
+                    if(modelTypeInfo != null) {
+                        //do a type-name lookup. Also look for sibling alternatives
+                        List<CObject> childrenByRmTypeName = cAttribute.getChildrenByRmTypeName(modelTypeInfo.getRmName());
+                        if(childrenByRmTypeName != null && childrenByRmTypeName.size() == 1) {
+                            cObject = childrenByRmTypeName.get(0);
+                            otherTypeAlternatives = cAttribute.getChildren().size() > 1;
+                        }
+                    }
+                } else {
+                    cObject = cAttribute.getChild(archetypeNodeIdFromRMObject);
+                }
+            }
+
+            buildPathsAndValuesInner(result, typeInfo, newPath, (OpenEHRBase) child, cObject, otherTypeAlternatives);
 
             String archetypeId = modelInfoLookup.getArchetypeIdFromArchetypedRmObject(child);
             if(archetypeId != null) {
@@ -164,11 +241,11 @@ public class FlatJsonGenerator {
                 String archetypeNodeId = modelInfoLookup.getArchetypeNodeIdFromRMObject(c);
                 if(archetypeNodeId != null) {
                     Integer numberOfPreviousOccurrences = amountsPerNodeId.get(archetypeNodeId);
-                    addAttribute(result, pathSoFar, parent, c, attributeName, numberOfPreviousOccurrences);
+                    addAttribute(result, pathSoFar, parent, c, attributeName, numberOfPreviousOccurrences, cAttribute);
                     numberOfPreviousOccurrences = numberOfPreviousOccurrences == null ? 1: numberOfPreviousOccurrences + 1;
                     amountsPerNodeId.put(archetypeNodeId, numberOfPreviousOccurrences);
                 } else {
-                    addAttribute(result, pathSoFar, parent, c, attributeName, numberOfNonLocatables == 1 ? null: numberOfNonLocatables);
+                    addAttribute(result, pathSoFar, parent, c, attributeName, numberOfNonLocatables == 1 ? null: numberOfNonLocatables, cAttribute);
                     numberOfNonLocatables++;
                 }
             }

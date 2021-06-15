@@ -21,6 +21,7 @@ import java.util.Map;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
 public class FlatJsonGeneratorTest {
 
@@ -83,7 +84,7 @@ public class FlatJsonGeneratorTest {
         assertEquals("Systolic", stringObjectMap.get("/data[id2]/events[id7]:1/data[id4]/items[id5]/name|value"));
     }
 
-        @Test
+    @Test
     public void testNedapInternalFormat() throws Exception {
         OperationalTemplate bloodPressureOpt = parseBloodPressure();
         FlatJsonFormatConfiguration config = FlatJsonFormatConfiguration.nedapInternalFormat();
@@ -107,6 +108,34 @@ public class FlatJsonGeneratorTest {
         assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/precision")).longValue());
         //test indices
         assertEquals("Systolic", stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5]/name/value"));
+    }
+
+    @Test
+    public void dontSerializenames() throws  Exception {
+        OperationalTemplate bloodPressureOpt = parseBloodPressure();
+        FlatJsonFormatConfiguration config = FlatJsonFormatConfiguration.nedapInternalFormat();
+        config.setWritePipesForPrimitiveTypes(false);
+        config.setFilterNames(true);
+        //config.getIgnoredAttributes().add(new AttributeReference("LOCATABLE", "name"));
+        Map<String, Object> stringObjectMap = new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModels(), "en", config);
+
+        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+
+        //type property
+        assertEquals("OBSERVATION", stringObjectMap.get("/@type"));
+        //no name
+        assertNull(stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/name/value"));
+        //ignored field
+        assertFalse(stringObjectMap.containsKey("/data[id2]/archetype_node_id"));
+        //ignored field
+        assertFalse(stringObjectMap.containsKey("/archetype_details"));
+        //date time format
+        assertEquals("2018-01-01T12:00:00Z", stringObjectMap.get("/data[id2]/origin/value"));
+        //numbers
+        assertEquals(0.0d, (Double) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude"), EPSILON);
+        assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/precision")).longValue());
+        //no name
+        assertNull(stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5]/name/value"));
     }
 
     private OperationalTemplate parseBloodPressure() throws IOException, ADLParseException {
