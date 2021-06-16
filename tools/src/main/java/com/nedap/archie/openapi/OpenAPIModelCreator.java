@@ -37,6 +37,8 @@ public class OpenAPIModelCreator {
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
     private String typeNameProperty = "_type";
+    //whether to add oneOf to polymorphic references
+    private boolean writeOneOf = true;
     private RedefinedProperties redefinedProperties;
 
     /**
@@ -97,7 +99,8 @@ public class OpenAPIModelCreator {
 
         baseType = "Any";
         ignoredTypes = Sets.newHashSet("ORDERED", "HASH", "CONTAINER", "SET", "ARRAY", "LIST",
-                "DATE_TIME", "DATE", "TIME", "ISO8601_TYPE", "TEMPORAL", "NUMERIC", "ORDERED_NUMERIC");
+                "DATE_TIME", "DATE", "TIME", "ISO8601_TYPE", "TEMPORAL", "NUMERIC", "ORDERED_NUMERIC",
+                "RESOURCE_DESCRIPTION", "RESOURCE_DESCRIPTION_ITEM", "AUTHORED_RESOURCE", "TRANSLATION_DETAILS");
 
 
         addAttributesFromParent = new HashMap<>();
@@ -247,7 +250,7 @@ public class OpenAPIModelCreator {
             }
         }
 
-        //properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string"));//.add("pattern", "^" + typeName + "(<.*>)?$"));
+        //properties.add(typeNameProperty, jsonFactory.createObjectBuilder().add("type", "string"));//.add("pattern", "^" + typeName + "(<.*>)?$"));
         JsonObjectBuilder definition = jsonFactory.createObjectBuilder()
                 .add("type", "object");
         if(hasRequiredProperties) {
@@ -289,9 +292,9 @@ public class OpenAPIModelCreator {
                         descendantsMappings.add(BmmDefinitions.typeNameToClassKey(descendant.getName()), createReferenceTarget(descendant.getName()));
                     }
                 }
-                properties.add("_type", createType("string"));
+                properties.add(typeNameProperty, createType("string"));
                 definition.add("discriminator", jsonFactory.createObjectBuilder()
-                        .add("propertyName", "_type")
+                        .add("propertyName", typeNameProperty)
                         .add("mapping",descendantsMappings)
                 );
             }
@@ -377,26 +380,32 @@ public class OpenAPIModelCreator {
             //resource in the RM
             return createType("object");
         } else if (descendants.size() > 1) {
-//            jsonFactory.createObjectBuilder().add("oneOf", )
-//            JsonArrayBuilder array = jsonFactory.createArrayBuilder();
-//            array.add(createRequiredArray("_type"));
-//            for(String descendant:descendants) {
-//                JsonObjectBuilder typePropertyCheck = createConstType(descendant);
-//                JsonObjectBuilder typeCheck = jsonFactory.createObjectBuilder().add("properties", typePropertyCheck);
-//
-//                JsonObjectBuilder typeReference = createReference(descendant);
-//                //IF the type matches
-//                //THEN check the correct type from the definitions
-//                JsonObjectBuilder ifObject = jsonFactory.createObjectBuilder()
-//                        .add("if", typeCheck)
-//                        .add("then", typeReference);
-//                array.add(ifObject);
-//
-//            }
-//
-//
-//            return jsonFactory.createObjectBuilder().add("allOf", array);
-            return createReference(BmmDefinitions.typeNameToClassKey(type.getName()));
+
+            if(writeOneOf) {
+                JsonObjectBuilder polymorphicReference = jsonFactory.createObjectBuilder();
+                JsonObjectBuilder descendantsMappings = jsonFactory.createObjectBuilder();
+
+                JsonArrayBuilder oneOfArray = jsonFactory.createArrayBuilder();
+                for (String descendant : descendants) {
+                    JsonObjectBuilder typeReference = createReference(descendant);
+                    oneOfArray.add(typeReference);
+                    descendantsMappings.add(descendant, createReferenceTarget(descendant));
+                }
+
+
+
+
+
+                polymorphicReference.add("discriminator",
+                        jsonFactory.createObjectBuilder()
+                                .add("propertyName", typeNameProperty)
+                                .add("mapping", descendantsMappings));
+                polymorphicReference.add("oneOf", oneOfArray);
+
+                return polymorphicReference;
+            } else {
+                return createReference(BmmDefinitions.typeNameToClassKey(type.getName()));
+            }
         } else {
             return createReference(descendants.get(0));
         }
@@ -465,6 +474,16 @@ public class OpenAPIModelCreator {
 
     public OpenAPIModelCreator allowAdditionalProperties(boolean allowAdditionalProperties) {
         this.allowAdditionalProperties = allowAdditionalProperties;
+        return this;
+    }
+
+    public OpenAPIModelCreator withTypePropertyName(String typeNameProperty) {
+        this.typeNameProperty = typeNameProperty;
+        return this;
+    }
+
+    public OpenAPIModelCreator writeOneOf(boolean writeOneOf) {
+        this.writeOneOf = writeOneOf;
         return this;
     }
 

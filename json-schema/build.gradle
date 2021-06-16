@@ -92,7 +92,9 @@ abstract class OpenAPICreationTask extends DefaultTask {
     def generateOpenAPI () {
         def rm110 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
 
-        OpenAPIModelCreator openAPIModelCreator = new OpenAPIModelCreator().allowAdditionalProperties(true);
+        OpenAPIModelCreator openAPIModelCreator = new OpenAPIModelCreator()
+                .allowAdditionalProperties(true);
+                //.withTypePropertyName("@type");
 
         //let's do some annoying polymorphism mapping!
         Set<AttributeReference> ignoredAttributes = new HashSet<>();
