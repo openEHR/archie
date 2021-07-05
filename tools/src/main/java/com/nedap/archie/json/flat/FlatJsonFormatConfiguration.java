@@ -14,6 +14,9 @@ public class FlatJsonFormatConfiguration {
     private IndexNotation indexNotation = IndexNotation.AFTER_A_COLON;
     private String typeIdPropertyName = "_type";
     private Set<AttributeReference> ignoredAttributes;
+    private boolean filterNames = true;
+    private AttributeReference nameProperty;
+    private boolean filterTypes = true;
 
     /**
      * Construct a default flat JSON format configuration, with all fields set to default
@@ -23,6 +26,7 @@ public class FlatJsonFormatConfiguration {
                 new AttributeReference("LOCATABLE", "archetype_node_id"),
                 new AttributeReference("LOCATABLE", "archetype_details")
         );
+        nameProperty = new AttributeReference("LOCATABLE", "name");
     }
 
     /**
@@ -112,5 +116,56 @@ public class FlatJsonFormatConfiguration {
      **/
     public void setIgnoredAttributes(Set<AttributeReference> ignoredAttributes) {
         this.ignoredAttributes = ignoredAttributes;
+    }
+
+    /**
+     * Returns whether to filter names that are the same as in the archetype
+     * @return if true, names in the data that are the same as in the archetype will be filtered. If false, they will remain in the data
+     */
+    public boolean getFilterNames() {
+        return filterNames;
+    }
+
+    /**
+     * Set whether to filter names that are the same as in the archetype
+     *
+     * @param filterNames if true, names in the data that are the same as in the archetype will be filtered. If false, they will remain in the data
+     */
+    public void setFilterNames(boolean filterNames) {
+        this.filterNames = filterNames;
+    }
+
+    /**
+     * The property of the name attribute in the data. Defaults to LOCATABLE.name for OpenEHR RM.
+     */
+    public AttributeReference getNameProperty() {
+        return nameProperty;
+    }
+
+    /**
+     * The property of the name attribute in the data. Defaults to LOCATABLE.name for OpenEHR RM, but can be overriden
+     * @param nameProperty  the property of the name attribute in the data.
+     */
+    public void setNameProperty(AttributeReference nameProperty) {
+        this.nameProperty = nameProperty;
+    }
+
+
+    /**
+     * Get whether to filter type names that are the same as in the archetype
+     *
+     * @return if true, type names in the data that are the same as in the archetype will be filtered. If false, they will remain in the data
+     */
+    public boolean getFilterTypes() {
+        return filterTypes;
+    }
+
+    /**
+     * Set whether to filter type names that are the same as in the archetype
+     *
+     * @param filterTypes if true, type names in the data that are the same as in the archetype will be filtered. If false, they will remain in the data
+     */
+    public void setFilterTypes(boolean filterTypes) {
+        this.filterTypes = filterTypes;
     }
 }
