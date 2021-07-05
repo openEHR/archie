@@ -219,6 +219,8 @@ public class FlatJsonGeneratorTest {
         assertEquals("true", stringObjectMap.get("/items[id2]/value/value"));
         //the type
         assertEquals("DV_BOOLEAN", stringObjectMap.get("/items[id2]/value/@type"));
+        //and nothing else!
+        assertEquals(2, stringObjectMap.size());
 
     }
 
