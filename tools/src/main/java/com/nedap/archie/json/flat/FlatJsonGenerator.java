@@ -45,6 +45,7 @@ public class FlatJsonGenerator {
     private final IndexNotation indexNotation;
     private final String typeIdPropertyName;
     private boolean filterNames;
+    private boolean filterTypes;
     private IgnoredAttribute nameProperty;
 
 
@@ -60,6 +61,7 @@ public class FlatJsonGenerator {
         this.indexNotation = config.getIndexNotation();
         this.typeIdPropertyName = config.getTypeIdPropertyName();
         this.filterNames = config.getFilterNames();
+        this.filterTypes = config.getFilterTypes();
         ignoredAttributes = config.getIgnoredAttributes().stream()
                 .map(a -> new IgnoredAttribute(modelInfoLookup.getTypeInfo(a.getTypeName()), a.getAttributeName()))
                 .collect(Collectors.toList());
@@ -108,7 +110,7 @@ public class FlatJsonGenerator {
             return;
         }
         RMTypeInfo typeInfo = modelInfoLookup.getTypeInfo(rmObject.getClass());
-        if((cObject == null && pathSoFar.equalsIgnoreCase ("/")) || shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject, typeAlternativesPresent)) {
+        if(((!filterTypes || cObject == null) && pathSoFar.equalsIgnoreCase ("/")) || shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject, typeAlternativesPresent)) {
             storeValue(result, joinPath(pathSoFar, typeIdPropertyName, null, null, "/"), getTypeIdFromValue(rmObject));
         }
 
@@ -138,8 +140,7 @@ public class FlatJsonGenerator {
     private boolean shouldAddTypeName(RMTypeInfo rmAttributeTypeInfo, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) {
         return typeHasDescendants(rmAttributeTypeInfo) &&
                 !sameType(rmAttributeTypeInfo, rmObject) &&
-                !sameType(cObject, rmObject) &&
-                !typeAlternativesPresent;
+                ( !filterTypes || !sameType(cObject, rmObject) || typeAlternativesPresent);
     }
 
     private void storeValue(Map<String, Object> result, String path, Object value) throws DuplicateKeyException {

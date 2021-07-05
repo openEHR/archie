@@ -14,8 +14,9 @@ public class FlatJsonFormatConfiguration {
     private IndexNotation indexNotation = IndexNotation.AFTER_A_COLON;
     private String typeIdPropertyName = "_type";
     private Set<AttributeReference> ignoredAttributes;
-    private boolean filterNames = false;
+    private boolean filterNames = true;
     private AttributeReference nameProperty;
+    private boolean filterTypes = true;
 
     /**
      * Construct a default flat JSON format configuration, with all fields set to default
@@ -147,5 +148,24 @@ public class FlatJsonFormatConfiguration {
      */
     public void setNameProperty(AttributeReference nameProperty) {
         this.nameProperty = nameProperty;
+    }
+
+
+    /**
+     * Get whether to filter type names that are the same as in the archetype
+     *
+     * @return if true, type names in the data that are the same as in the archetype will be filtered. If false, they will remain in the data
+     */
+    public boolean getFilterTypes() {
+        return filterTypes;
+    }
+
+    /**
+     * Set whether to filter type names that are the same as in the archetype
+     *
+     * @param filterTypes if true, type names in the data that are the same as in the archetype will be filtered. If false, they will remain in the data
+     */
+    public void setFilterTypes(boolean filterTypes) {
+        this.filterTypes = filterTypes;
     }
 }

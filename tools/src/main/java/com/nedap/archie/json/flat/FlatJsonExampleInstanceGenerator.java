@@ -44,4 +44,6 @@ public class FlatJsonExampleInstanceGenerator {
         return new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), jsonFormatConfiguration).buildPathsAndValues(openEHRBase, template, "en");
 
     }
+
+
 }
