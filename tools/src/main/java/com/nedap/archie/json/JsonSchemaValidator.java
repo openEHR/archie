@@ -6,11 +6,10 @@ import org.leadpony.justify.api.JsonValidationService;
 import org.leadpony.justify.api.Problem;
 import org.leadpony.justify.api.ProblemHandler;
 import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.v2.validation.BmmRepository;
 
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.json.JsonStructure;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonStructure;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;

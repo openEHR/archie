@@ -14,16 +14,19 @@ import java.util.Map;
  */
 public class ADLRulesSerializer {
 
+    /** the number of characters after which to start a new line in case of before a ModelReference (path) or parentheses */
+    public static int NEW_LINE_LIMIT = 120;
+
     private ADLStringBuilder builder;
     private ADLDefinitionSerializer definitionSerializer;
 
-    private final Map<Class, RuleElementSerializer> ruleElementSerializers;
+    private final Map<Class<?>, RuleElementSerializer<?>> ruleElementSerializers;
 
     public ADLRulesSerializer(ADLStringBuilder builder, ADLDefinitionSerializer definitionSerializer) {
         this.builder = builder;
         this.definitionSerializer = definitionSerializer;
 
-        ruleElementSerializers = new HashMap();
+        ruleElementSerializers = new HashMap<>();
         ruleElementSerializers.put(UnaryOperator.class, new UnaryOperatorSerializer(this));
         ruleElementSerializers.put(BinaryOperator.class, new BinaryOperatorSerializer(this));
         ruleElementSerializers.put(Assertion.class, new AssertionSerializer(this));
@@ -45,12 +48,20 @@ public class ADLRulesSerializer {
         RuleElementSerializer serializer = getSerializer(element);
         if (serializer != null) {
             boolean shouldSerializeParentheses = isPrecedenceOverride(element);
+            boolean addedNewLine = false;
             if(shouldSerializeParentheses) {
+                if(builder.getCurrentLineLength() > ADLRulesSerializer.NEW_LINE_LIMIT) {
+                    builder.newline();
+                }
                 builder.append(" (");
+
             }
             serializer.serialize(element);
             if(shouldSerializeParentheses) {
                 builder.append(") ");
+                if(addedNewLine) {
+                    builder.newline();
+                }
             }
         } else {
             throw new AssertionError("Unsupported rule element: " + element.getClass().getName());

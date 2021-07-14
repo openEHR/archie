@@ -23,7 +23,7 @@ import java.util.Objects;
 public class VersionedObject<Type> extends RMObject {
     private HierObjectId uid;
     @XmlElement(name = "owner_id")
-    private ObjectRef ownerId;
+    private ObjectRef<?> ownerId;
 
     @XmlElement(name = "time_created")
     private DvDateTime timeCreated;
@@ -31,7 +31,7 @@ public class VersionedObject<Type> extends RMObject {
     public VersionedObject() {
     }
 
-    public VersionedObject(HierObjectId uid, ObjectRef ownerId, DvDateTime timeCreated) {
+    public VersionedObject(HierObjectId uid, ObjectRef<?> ownerId, DvDateTime timeCreated) {
         this.uid = uid;
         this.ownerId = ownerId;
         this.timeCreated = timeCreated;
@@ -45,11 +45,11 @@ public class VersionedObject<Type> extends RMObject {
         this.uid = uid;
     }
 
-    public ObjectRef getOwnerId() {
+    public ObjectRef<?> getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(ObjectRef ownerId) {
+    public void setOwnerId(ObjectRef<?> ownerId) {
         this.ownerId = ownerId;
     }
 

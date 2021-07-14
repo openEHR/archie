@@ -17,7 +17,7 @@ import java.util.Objects;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DV_TEMPORAL")
-public abstract class DvTemporal<MagnitudeType extends Comparable> extends DvAbsoluteQuantity<DvDuration, MagnitudeType> {
+public abstract class DvTemporal<DataValueType extends DvTemporal<DataValueType, MagnitudeType>, MagnitudeType extends Comparable<MagnitudeType>> extends DvAbsoluteQuantity<DataValueType, DvDuration, MagnitudeType> {
 
     @Nullable
     private DvDuration accuracy;
@@ -29,7 +29,7 @@ public abstract class DvTemporal<MagnitudeType extends Comparable> extends DvAbs
         this.accuracy = accuracy;
     }
 
-    public DvTemporal(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy) {
+    public DvTemporal(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus);
         this.accuracy = accuracy;
     }
@@ -49,7 +49,7 @@ public abstract class DvTemporal<MagnitudeType extends Comparable> extends DvAbs
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        DvTemporal<?> that = (DvTemporal<?>) o;
+        DvTemporal<?, ?> that = (DvTemporal<?, ?>) o;
 
         return Objects.equals(accuracy, that.accuracy);
 

@@ -10,7 +10,6 @@ import com.nedap.archie.archetypevalidator.validations.*;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.FullArchetypeRepository;
-import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.flattener.OverridingInMemFullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
@@ -110,7 +109,7 @@ public class ArchetypeValidator {
         if(settings == null) {
             settings = new ArchetypeValidationSettings();
         }
-        OverridingInMemFullArchetypeRepository extraRepository = null;
+        OverridingInMemFullArchetypeRepository extraRepository;
         if(repository == null) {
             extraRepository = new OverridingInMemFullArchetypeRepository();
         } else {
@@ -129,10 +128,10 @@ public class ArchetypeValidator {
             }
             for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
                 //validate the overlays first, but make sure to do that only once (so don't call this same method!)
-                getValidationResult(overlay.getArchetypeId().toString(), extraRepository);
+                extraRepository.compileAndRetrieveValidationResult(overlay.getArchetypeId().toString(), this);
+                combinedModels.selectModel(archetype);
             }
         }
-
 
         combinedModels.selectModel(archetype);
 
@@ -142,10 +141,10 @@ public class ArchetypeValidator {
         //we assume we always want a new validation to be run, for example because the archetype
         //has been updated. Therefore, do not retrieve the old result from the repository
         archetype = cloneAndPreprocess(combinedModels, archetype);//this clones the actual archetype so the source does not get changed
-        ValidationResult parentValidationResult = null;
         Archetype flatParent = null;
         if(archetype.isSpecialized()) {
-            parentValidationResult = getParentValidationResult(archetype, repository);
+            ValidationResult parentValidationResult = repository.compileAndRetrieveValidationResult(archetype.getParentArchetypeId(), this);
+            combinedModels.selectModel(archetype);
             if(parentValidationResult != null) {
                 if(parentValidationResult.passes()) {
                     flatParent = parentValidationResult.getFlattened();
@@ -156,12 +155,10 @@ public class ArchetypeValidator {
                     messages.add(message);
                     result.setErrors(messages);
                     result.setSourceArchetype(archetype);
+                    repository.setValidationResult(result);
                     return result;
                 }
             }
-        }
-        if(repository == null) {
-            repository = new InMemoryFullArchetypeRepository();
         }
 
         List<ValidationMessage> messages = runValidations(archetype, repository, settings, flatParent, validationsPhase0);
@@ -178,8 +175,18 @@ public class ArchetypeValidator {
             //more errors in one go - could be useful
             messages.addAll(runValidations(archetype, repository, settings, flatParent, validationsPhase2));
         }
-
         result.setErrors(messages);
+
+        if(archetype instanceof Template) {
+            FullArchetypeRepository extraArchetypeRepository = extraRepository.getExtraArchetypeRepository();
+            result.addOverlayValidations(extraArchetypeRepository.getAllValidationResults());
+            for(ValidationResult subResult:extraArchetypeRepository.getAllValidationResults()) {
+                if(!subResult.passes()) {
+                    result.getErrors().add(new ValidationMessage(ErrorType.OVERLAY_VALIDATION_FAILED, I18n.t("Template overlay {0} had validation errors", subResult.getArchetypeId())));
+                }
+            }
+        }
+
         if(result.passes() || settings.isAlwaysTryToFlatten()) {
             try {
                 Archetype flattened = new Flattener(repository, combinedModels, flattenerConfiguration).flatten(archetype);
@@ -203,52 +210,9 @@ public class ArchetypeValidator {
                 logger.error("error during validation", e);
             }
         }
-        if(archetype instanceof Template) {
-            OverridingInMemFullArchetypeRepository repositoryWithOverlays =  (OverridingInMemFullArchetypeRepository) repository;
-            FullArchetypeRepository extraArchetypeRepository = repositoryWithOverlays.getExtraArchetypeRepository();
-            result.addOverlayValidations(extraArchetypeRepository.getAllValidationResults());
-            for(ValidationResult subResult:extraArchetypeRepository.getAllValidationResults()) {
-                if(!subResult.passes()) {
-                    result.getErrors().add(new ValidationMessage(ErrorType.OVERLAY_VALIDATION_FAILED, I18n.t("Template overlay {0} had validation errors", subResult.getArchetypeId())));
-                }
-            }
-        }
 
-        if(repository != null) {
-            repository.setValidationResult(result);
-        }
+        repository.setValidationResult(result);
         return result;
-    }
-
-    private ValidationResult getParentValidationResult(Archetype archetype, FullArchetypeRepository repository) {
-        if(!archetype.isSpecialized()) {
-            return null; //no parent
-        }
-        if(repository == null) {
-            return null;
-        }
-        return getValidationResult(archetype.getParentArchetypeId(), repository);
-    }
-
-    /**
-     * Get the validation rsult for the given archetype id from given repository. Perform validation and add to repository
-     * if not already present in the repository.
-     * @param archetypeId
-     * @param repository
-     * @return
-     */
-    private ValidationResult getValidationResult(String archetypeId, FullArchetypeRepository repository) {
-        Archetype archetype = repository.getArchetype(archetypeId);
-        if(archetype == null) {
-            return null; //this situation will trigger the correct message later
-        }
-
-        ValidationResult validationResult = repository.getValidationResult(archetypeId);
-        if(validationResult == null) {
-            //archetype not yet validated. do it now.
-            validationResult = validate(archetype, repository);
-        }
-        return validationResult;
     }
 
     private Archetype cloneAndPreprocess(MetaModels models, Archetype archetype) {

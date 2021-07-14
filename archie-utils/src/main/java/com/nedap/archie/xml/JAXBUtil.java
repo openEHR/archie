@@ -34,7 +34,7 @@ public class JAXBUtil {
     private static synchronized void initArchieJaxbContext() {
         if(archieJaxbContext == null) {
             try {
-                List<Class> classes = new ArrayList<>();
+                List<Class<?>> classes = new ArrayList<>();
                 classes.addAll(ArchieAOMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
                 classes.addAll(ArchieRMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
                 //extra classes from the adapters package that are not directly referenced.\
@@ -48,7 +48,7 @@ public class JAXBUtil {
 
     public static synchronized JAXBContext createAOMContext() {
         try {
-            List<Class> classes = Lists.newArrayList(ArchieAOMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
+            List<Class<?>> classes = Lists.newArrayList(ArchieAOMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
             //extra classes from the adapters package that are not directly referenced.\
             classes.add(XmlResourceDescriptionItem.class);
             return JAXBContext.newInstance(classes.toArray(new Class[0]));
@@ -59,7 +59,7 @@ public class JAXBUtil {
 
     public static synchronized JAXBContext createRMContext() {
         try {
-            List<Class> classes = Lists.newArrayList(ArchieRMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
+            List<Class<?>> classes = Lists.newArrayList(ArchieRMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
             return JAXBContext.newInstance(classes.toArray(new Class[0]));
         } catch (JAXBException e) {
             throw new RuntimeException(e);//programmer error, tests will fail

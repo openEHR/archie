@@ -2,6 +2,7 @@ package com.nedap.archie.opt14;
 
 import com.nedap.archie.adl14.ADL2ConversionResult;
 import com.nedap.archie.adl14.ADL2ConversionResultList;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.Template;
@@ -40,13 +41,10 @@ public class ConverterTest {
         }
     }
 
-    public Archetype parseAdl2(String resource) throws IOException {
+    public Archetype parseAdl2(String resource) throws IOException, ADLParseException {
         try(InputStream stream = getClass().getResourceAsStream("/adl2/" + resource)) {
             ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
             Archetype archetype = adlParser.parse(stream);
-            if(adlParser.getErrors().hasErrors()) {
-                throw new RuntimeException(adlParser.getErrors().toString());
-            }
             return archetype;
         }
     }

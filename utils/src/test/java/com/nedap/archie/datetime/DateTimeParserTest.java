@@ -38,6 +38,7 @@ public class DateTimeParserTest {
         assertEquals(OffsetTime.of(12, 1, 1, 100000000, ZoneOffset.of("+0100")), DateTimeParsers.parseTimeValue("12:01:01,1+0100"));
         assertEquals(OffsetTime.of(12, 1, 1, 0, ZoneOffset.of("+0100")), DateTimeParsers.parseTimeValue("12:01:01+0100"));
         assertEquals(LocalTime.of(12, 1, 1, 100000000), DateTimeParsers.parseTimeValue("12:01:01,1"));
+        assertEquals(LocalTime.of(12, 1, 1, 123456789), DateTimeParsers.parseTimeValue("12:01:01,123456789"));
         assertEquals(LocalTime.of(12, 1, 1, 0), DateTimeParsers.parseTimeValue("12:01:01"));
         assertEquals(LocalTime.of(12, 1), DateTimeParsers.parseTimeValue("12:01"));
         assertEquals(OffsetTime.of(12, 1, 0, 0, ZoneOffset.of("+0100")), DateTimeParsers.parseTimeValue("12:01+0100"));
@@ -53,6 +54,7 @@ public class DateTimeParserTest {
         assertEquals(OffsetDateTime.of(2015, 1, 1, 12, 1, 1, 123000000, ZoneOffset.of("-0200")), DateTimeParsers.parseDateTimeValue("2015-1-1T12:01:01.123-02:00"));
         assertEquals(OffsetDateTime.of(2015, 1, 1, 12, 1, 1, 123000000, ZoneOffset.of("Z")), DateTimeParsers.parseDateTimeValue("2015-1-1T12:01:01.123Z"));
         assertEquals(OffsetDateTime.of(2015, 12, 02, 17, 41, 56, 809000000, ZoneOffset.of("Z")), DateTimeParsers.parseDateTimeValue("2015-12-02T17:41:56.809Z"));
+        assertEquals(OffsetDateTime.of(2015, 12, 02, 17, 41, 56, 809000123, ZoneOffset.of("Z")), DateTimeParsers.parseDateTimeValue("2015-12-02T17:41:56.809000123Z"));
     }
 
     @Test

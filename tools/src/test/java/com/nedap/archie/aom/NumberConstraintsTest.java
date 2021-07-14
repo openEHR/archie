@@ -26,9 +26,9 @@ public class NumberConstraintsTest {
         assertFalse(constantConstraint.isValidValue(56l));
 
         CInteger constantConstraints = new CInteger();
-        constantConstraints.addConstraint(new Interval(10L));
-        constantConstraints.addConstraint(new Interval(20L));
-        constantConstraints.addConstraint(new Interval(30L));
+        constantConstraints.addConstraint(new Interval<>(10L));
+        constantConstraints.addConstraint(new Interval<>(20L));
+        constantConstraints.addConstraint(new Interval<>(30L));
         assertTrue(constantConstraints.isValidValue(10l));
         assertTrue(constantConstraints.isValidValue(20l));
         assertTrue(constantConstraints.isValidValue(30l));
@@ -42,7 +42,7 @@ public class NumberConstraintsTest {
         assertFalse(rangeConstraint.isValidValue(-1l));
 
         CInteger rangeLowerNotIncluded = new CInteger();
-        rangeLowerNotIncluded.addConstraint(new Interval(0l, 100l, false, true));
+        rangeLowerNotIncluded.addConstraint(new Interval<>(0l, 100l, false, true));
         assertFalse(rangeLowerNotIncluded.isValidValue(0l));
         assertTrue(rangeLowerNotIncluded.isValidValue(100l));
         assertFalse(rangeLowerNotIncluded.isValidValue(101l));
@@ -50,7 +50,7 @@ public class NumberConstraintsTest {
 
 
         CInteger rangeUpperNotIncluded = new CInteger();
-        rangeUpperNotIncluded.addConstraint(new Interval(0l, 100l, true, false));
+        rangeUpperNotIncluded.addConstraint(new Interval<>(0l, 100l, true, false));
         assertTrue(rangeUpperNotIncluded.isValidValue(0l));
         assertFalse(rangeUpperNotIncluded.isValidValue(100l));
         assertFalse(rangeUpperNotIncluded.isValidValue(101l));
@@ -102,9 +102,9 @@ public class NumberConstraintsTest {
         assertFalse(constantConstraint.isValidValue(54.99d));
 
         CReal constantConstraints = new CReal();
-        constantConstraints.addConstraint(new Interval(10d));
-        constantConstraints.addConstraint(new Interval(20d));
-        constantConstraints.addConstraint(new Interval(30d));
+        constantConstraints.addConstraint(new Interval<>(10d));
+        constantConstraints.addConstraint(new Interval<>(20d));
+        constantConstraints.addConstraint(new Interval<>(30d));
         assertTrue(constantConstraints.isValidValue(10d));
         assertTrue(constantConstraints.isValidValue(20d));
         assertTrue(constantConstraints.isValidValue(30d));
@@ -119,7 +119,7 @@ public class NumberConstraintsTest {
         assertFalse(rangeConstraint.isValidValue(-1d));
 
         CReal rangeLowerNotIncluded = new CReal();
-        rangeLowerNotIncluded.addConstraint(new Interval(0d, 100d, false, true));
+        rangeLowerNotIncluded.addConstraint(new Interval<>(0d, 100d, false, true));
         assertFalse(rangeLowerNotIncluded.isValidValue(0d));
         assertTrue(rangeLowerNotIncluded.isValidValue(100d));
         assertFalse(rangeLowerNotIncluded.isValidValue(100.1d));
@@ -127,7 +127,7 @@ public class NumberConstraintsTest {
 
 
         CReal rangeUpperNotIncluded = new CReal();
-        rangeUpperNotIncluded.addConstraint(new Interval(0d, 100d, true, false));
+        rangeUpperNotIncluded.addConstraint(new Interval<>(0d, 100d, true, false));
         assertTrue(rangeUpperNotIncluded.isValidValue(0d));
         assertFalse(rangeUpperNotIncluded.isValidValue(100d));
         assertFalse(rangeUpperNotIncluded.isValidValue(101d));

@@ -56,9 +56,9 @@ public class ADL14TermConstraintConverter {
                 //tuples have not been properly converted to CAttributes in this parsed model, so we can ignore them above
                 Set<Integer> tupleTermCodeIndices = getCTerminologyCodeIndices(tuple);
                 for (Integer index : tupleTermCodeIndices) {
-                    List<CPrimitiveObject> termCodes = tuple.getTuples().stream().map(p -> p.getMember(index)).collect(Collectors.toList());
+                    List<CPrimitiveObject<?, ?>> termCodes = tuple.getTuples().stream().map(p -> p.getMember(index)).collect(Collectors.toList());
                     Set<String> atCodes = new LinkedHashSet<>();
-                    for (CPrimitiveObject cPrimitiveObject : termCodes) {
+                    for (CPrimitiveObject<?, ?> cPrimitiveObject : termCodes) {
                         CTerminologyCode cTerminologyCode = (CTerminologyCode) cPrimitiveObject;
                         convertCTerminologyCode(cTerminologyCode);
                         if(cTerminologyCode.getConstraint().size() == 1) {
@@ -80,7 +80,7 @@ public class ADL14TermConstraintConverter {
         Set<Integer> result = new LinkedHashSet<>();
         for (CPrimitiveTuple primitiveTuple : tuple.getTuples()) {
             int i = 0;
-            for (CPrimitiveObject cPrimitiveObject : primitiveTuple.getMembers()) {
+            for (CPrimitiveObject<?, ?> cPrimitiveObject : primitiveTuple.getMembers()) {
                 if(cPrimitiveObject instanceof CTerminologyCode) {
                     result.add(i);
                 }
@@ -118,12 +118,6 @@ public class ADL14TermConstraintConverter {
 
                     ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), localCodes, cTerminologyCode);
                     cTerminologyCode.setConstraint(Lists.newArrayList(valueSet.getId()));
-                }
-                if(cTerminologyCode.getAssumedValue() != null) {
-                    TerminologyCode assumedValue = cTerminologyCode.getAssumedValue();
-                    String oldCode = assumedValue.getCodeString();
-                    String newCode = converter.convertValueCode(oldCode);
-                    assumedValue.setCodeString(newCode);
                 }
             } else if (isLocalCode && AOMUtils.isValueSetCode(termCode.getCodeString())) {
                 List<String> newConstraint = new ArrayList<>();

@@ -11,6 +11,7 @@ import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.archetypevalidator.ValidationResult;
+import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
@@ -116,7 +117,7 @@ public class FlattenerTest {
     public void checkParentReplacement() throws Exception {
         Archetype flattened = flattener.flatten(bloodPressureComposition);
 
-        Stack<CObject> worklist = new Stack();
+        Stack<CObject> worklist = new Stack<>();
         worklist.add(flattened.getDefinition());
 
         while (!worklist.isEmpty()) {
@@ -133,6 +134,7 @@ public class FlattenerTest {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
+        JacksonUtil.configureObjectMapper(objectMapper);
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         System.out.println(objectMapper.writeValueAsString(flattened));
@@ -142,7 +144,7 @@ public class FlattenerTest {
     public void useNodeReplacement() throws Exception {
         Archetype flattened = flattener.flatten(bloodPressureComposition);
 
-        Stack<CObject> worklist = new Stack();
+        Stack<CObject> worklist = new Stack<>();
         worklist.add(flattened.getDefinition());
         boolean proxyFound = false;
         while (!worklist.isEmpty()) {

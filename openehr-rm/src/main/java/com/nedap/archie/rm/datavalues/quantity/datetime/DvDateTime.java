@@ -33,7 +33,7 @@ import java.util.Objects;
 @XmlType(name = "DV_DATE_TIME", propOrder = {
 		"value"
 })
-public class DvDateTime extends DvTemporal<Long> implements SingleValuedDataValue<TemporalAccessor> {
+public class DvDateTime extends DvTemporal<DvDateTime, Long> implements SingleValuedDataValue<TemporalAccessor> {
 
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
 	private TemporalAccessor value;
@@ -56,7 +56,7 @@ public class DvDateTime extends DvTemporal<Long> implements SingleValuedDataValu
 	}
 
 
-	public DvDateTime(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, TemporalAccessor value) {
+	public DvDateTime(@Nullable List<ReferenceRange<DvDateTime>> otherReferenceRanges, @Nullable DvInterval<DvDateTime> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, TemporalAccessor value) {
 		super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus, accuracy);
 		this.value = value;
 	}

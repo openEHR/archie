@@ -27,7 +27,7 @@ import java.util.Objects;
 @XmlType(name = "DV_DURATION", propOrder = {
 		"value"
 })
-public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<TemporalAmount> {
+public class DvDuration extends DvAmount<DvDuration, Long> implements SingleValuedDataValue<TemporalAmount> {
 
 	@XmlJavaTypeAdapter(DurationXmlAdapter.class)
 	private TemporalAmount value;
@@ -48,7 +48,7 @@ public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<
 		this.value = DateTimeParsers.parseDurationValue(iso8601Duration);
 	}
 
-	public DvDuration(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, TemporalAmount value) {
+	public DvDuration(@Nullable List<ReferenceRange<DvDuration>> otherReferenceRanges, @Nullable DvInterval<DvDuration> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, TemporalAmount value) {
 		super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
 		this.value = value;
 	}

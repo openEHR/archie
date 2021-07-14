@@ -123,9 +123,13 @@ public class PreviousConversionApplier {
             int index = attribute.getIndexOfChildWithMatchingRmTypeName(createdCode.getRmTypeName());
             if(index >= 0) {
                 CObject cObject = attribute.getChildren().get(index);
-                cObject.setNodeId(createdCode.getGeneratedCode());
-                //store the created code so it appears in the new conversion log as well
-                converter.addCreatedCode(createdCode.getGeneratedCode(), createdCode);
+                if(cObject.getNodeId() == null) {
+                    cObject.setNodeId(createdCode.getGeneratedCode());
+                    //store the created code so it appears in the new conversion log as well
+                    converter.addCreatedCode(createdCode.getGeneratedCode(), createdCode);
+                } else {
+                    this.converter.getConversionResult().getLog().addInfoWithLocation(ADL14ConversionMessageCode.INFO_PREVIOUSLY_CONVERTED_CODE_RENAMED, createdCode.getPathCreated());
+                }
 
             } else {
                 this.converter.getConversionResult().getLog().addInfoWithLocation(ADL14ConversionMessageCode.INFO_PREVIOUSLY_CONVERTED_CODE_DELETED, createdCode.getPathCreated());
@@ -231,7 +235,9 @@ public class PreviousConversionApplier {
                         }
                     }
                     ValueSet set = findLocalValueSet(atCodes);
-                    result.add(set.getId());
+                    if(set != null) {
+                        result.add(set.getId());
+                    }
                 }
             }
             result.addAll(gatherUsedValueSets(child));

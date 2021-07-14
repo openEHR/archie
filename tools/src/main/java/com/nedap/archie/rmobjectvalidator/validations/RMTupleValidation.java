@@ -47,7 +47,7 @@ public class RMTupleValidation {
         int index = 0;
         for(CAttribute attribute:attributeTuple.getMembers()) {
             String attributeName = attribute.getRmAttributeName();
-            CPrimitiveObject cPrimitiveObject = tuple.getMembers().get(index);
+            CPrimitiveObject<?, ?> cPrimitiveObject = tuple.getMembers().get(index);
             Object value = RMObjectAttributes.getAttributeValueFromRMObject(rmObject, attributeName, lookup);
             String path = pathSoFar + "/" + attributeName + "[" + cPrimitiveObject.getNodeId() + "]";
 

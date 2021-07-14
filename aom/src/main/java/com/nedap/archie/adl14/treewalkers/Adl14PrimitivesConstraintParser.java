@@ -40,7 +40,7 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         temporalConstraintParser = new Adl14TemporalConstraintParser(errors);
     }
 
-    public CPrimitiveObject parsePrimitiveObject(Adl14Parser.C_primitive_objectContext objectContext) {
+    public CPrimitiveObject<?, ?> parsePrimitiveObject(Adl14Parser.C_primitive_objectContext objectContext) {
         /*c_integer
                 | c_real
                 | c_date
@@ -125,7 +125,6 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
                     }
                 } else {
                     //non-local term constraints. Add the text here, will be converted later
-                    //result.addConstraint(qualifiedTermCodeContex);
                     for (int i = 0; i < qualifiedTermCodeContext.identifier().size(); i++) {
                         result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
                     }
@@ -193,7 +192,7 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         return temporalConstraintParser.parseCDate(context);
     }
 
-    public CPrimitiveObject parseRegex(TerminalNode terminalNode) {
+    public CPrimitiveObject<?, ?> parseRegex(TerminalNode terminalNode) {
         ContainedRegexLexer lexer = new ContainedRegexLexer(CharStreams.fromString(terminalNode.getText()));
         ContainedRegexParser parser = new ContainedRegexParser(new CommonTokenStream(lexer));
         ContainedRegexParser.RegexContext regex = parser.regex();

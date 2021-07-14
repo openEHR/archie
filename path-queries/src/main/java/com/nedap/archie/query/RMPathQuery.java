@@ -55,7 +55,7 @@ public class RMPathQuery {
 
                 String archetypeNodeIdFromObject = lookup.getArchetypeNodeIdFromRMObject(currentObject);
                 if (currentObject instanceof Collection) {
-                    Collection collection = (Collection) currentObject;
+                    Collection<?> collection = (Collection<?>) currentObject;
                     if (!segment.hasExpressions()) {
                         //TODO: check if this is correct
                         currentObject = collection;
@@ -134,7 +134,7 @@ public class RMPathQuery {
                     }
                     String archetypeNodeIdFromObject = lookup.getArchetypeNodeIdFromRMObject(currentObject);
                     if (currentRMObject instanceof Collection) {
-                        Collection collection = (Collection) currentRMObject;
+                        Collection<?> collection = (Collection<?>) currentRMObject;
                         if (!segment.hasExpressions()) {
                             addAllFromCollection(lookup, newCurrentObjects, collection, newPath);
                         } else {
@@ -200,7 +200,7 @@ public class RMPathQuery {
      * @param toAdd
      * @param basePath
      */
-    private void addAllFromCollection(ModelInfoLookup lookup, List<RMObjectWithPath> newCurrentObjects, Collection toAdd, String basePath) {
+    private void addAllFromCollection(ModelInfoLookup lookup, List<RMObjectWithPath> newCurrentObjects, Collection<?> toAdd, String basePath) {
         int index = 1;
         for(Object object:toAdd) {
             String constraint = buildPathConstraint(index, lookup.getArchetypeNodeIdFromRMObject(object));
@@ -237,7 +237,7 @@ public class RMPathQuery {
         return archetypeNodeId != null && !archetypeNodeId.equals(AdlCodeDefinitions.PRIMITIVE_NODE_ID);
     }
 
-    private Collection<RMObjectWithPath> findRMObjectsWithPathCollection(ModelInfoLookup lookup, PathSegment segment, Collection<Object> collection, String path) {
+    private Collection<RMObjectWithPath> findRMObjectsWithPathCollection(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection, String path) {
 
         if(segment.hasNumberIndex()) {
             int number = segment.getIndex();
@@ -275,7 +275,7 @@ public class RMPathQuery {
         return result;
     }
 
-    private Object findRMObject(ModelInfoLookup lookup, PathSegment segment, Collection collection) {
+    private Object findRMObject(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection) {
 
         if(segment.hasNumberIndex()) {
             int number = segment.getIndex();

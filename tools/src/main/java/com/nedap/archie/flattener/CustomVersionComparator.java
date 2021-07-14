@@ -11,7 +11,7 @@ import java.util.Comparator;
  */
 public class CustomVersionComparator implements Comparator<Version> {
 
-    Comparator versionComparator = Comparator.comparingInt(Version::getMajorVersion)
+    Comparator<Version> versionComparator = Comparator.comparingInt(Version::getMajorVersion)
             .thenComparingInt(Version::getMinorVersion)
             .thenComparingInt(Version::getPatchVersion)
             .thenComparing(

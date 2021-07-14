@@ -59,7 +59,7 @@ public class OpenEHRTypeNaming extends ClassNameIdResolver {
 
     @Override
     protected JavaType _typeFromId(String typeName, DatabindContext ctxt) throws IOException {
-        Class result = rmInfoLookup.getClass(typeName);
+        Class<?> result = rmInfoLookup.getClass(typeName);
         if(result == null) {
             //AOM class?
             result = aomInfoLookup.getClass(typeName);

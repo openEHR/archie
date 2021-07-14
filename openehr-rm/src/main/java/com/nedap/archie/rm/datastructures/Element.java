@@ -9,6 +9,8 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -96,5 +98,23 @@ public class Element extends Item implements SingleValuedDataValue<DataValue> {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), value, nullFlavour, nullReason);
+    }
+
+    @Invariant("Inv_null_flavour_indicated")
+    public boolean nullFlavourIndicated() {
+       return value == null ^ nullFlavour == null;
+    }
+
+    @Invariant("Inv_null_flavour_valid")
+    public boolean nullFlavourValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(nullFlavour, "null flavours");
+    }
+
+    @Invariant("Inv_null_reason_valid")
+    public boolean nullReasonValid() {
+        if(nullReason != null) {
+            return value == null;
+        }
+        return true;
     }
 }

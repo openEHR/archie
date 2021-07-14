@@ -40,7 +40,7 @@ public class DateTimeSerializerFormattersTest {
         assertEquals("2015-01-01T12:01:01Z", serializeDateTime(OffsetDateTime.of(2015, 1, 1, 12, 1, 1, 0, ZoneOffset.of("Z"))));
         assertEquals("2015-01-01T12:01:01,123Z", serializeDateTime(OffsetDateTime.of(2015, 1, 1, 12, 1, 1, 123000000, ZoneOffset.of("Z"))));
         assertEquals("2015-12-02T17:41:56,809Z", serializeDateTime(OffsetDateTime.of(2015, 12, 02, 17, 41, 56, 809000000, ZoneOffset.of("Z"))));
-        assertEquals("2019-01-14T18:36:49,294666Z", serializeDateTime(OffsetDateTime.of(2019, 01, 14, 18, 36, 49, 294666666, ZoneOffset.of("Z"))));
+        assertEquals("2019-01-14T18:36:49,294666666Z", serializeDateTime(OffsetDateTime.of(2019, 01, 14, 18, 36, 49, 294666666, ZoneOffset.of("Z"))));
     }
 
     @Test

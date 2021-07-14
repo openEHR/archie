@@ -20,7 +20,7 @@ public class EhrStatusTest {
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper();
         objectMapper.writeValue(stringWriter, status);
 
-        Map actual = objectMapper.readValue(stringWriter.toString(), Map.class);
+        Map<?, ?> actual = objectMapper.readValue(stringWriter.toString(), Map.class);
         assertTrue(actual.containsKey("is_queryable"));
         assertFalse(actual.containsKey("queryable"));
         assertTrue(actual.containsKey("is_modifiable"));

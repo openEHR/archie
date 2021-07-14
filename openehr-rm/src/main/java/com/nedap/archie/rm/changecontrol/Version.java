@@ -5,7 +5,9 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.generic.AuditDetails;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMProperty;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -27,7 +29,7 @@ import java.util.Objects;
 
 })
 public abstract class Version<Type> extends RMObject {
-    private ObjectRef contribution;
+    private ObjectRef<?> contribution;
     @Nullable
 
     private String signature;
@@ -37,17 +39,17 @@ public abstract class Version<Type> extends RMObject {
     public Version() {
     }
 
-    public Version(AuditDetails commitAudit, ObjectRef contribution, @Nullable String signature) {
+    public Version(AuditDetails commitAudit, ObjectRef<?> contribution, @Nullable String signature) {
         this.contribution = contribution;
         this.signature = signature;
         this.commitAudit = commitAudit;
     }
 
-    public ObjectRef getContribution() {
+    public ObjectRef<?> getContribution() {
         return contribution;
     }
 
-    public void setContribution(ObjectRef contribution) {
+    public void setContribution(ObjectRef<?> contribution) {
         this.contribution = contribution;
     }
 
@@ -100,5 +102,12 @@ public abstract class Version<Type> extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(contribution, signature, commitAudit);
+    }
+
+    //TODO: Preceding_version_uid_validity, if version_tree_id() is implemented
+
+    @Invariant("Lifecycle_state_valid")
+    public boolean lifecycleStateValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(getLifecycleState(), "version lifecycle state");
     }
 }

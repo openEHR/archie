@@ -31,7 +31,7 @@ import java.util.Objects;
 @XmlType(name = "DV_DATE", propOrder = {
         "value"
 })
-public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Temporal> {
+public class DvDate extends DvTemporal<DvDate, Long> implements SingleValuedDataValue<Temporal> {
     //TODO: in XML this should be a string probably
     @XmlJavaTypeAdapter(DateXmlAdapter.class)
     private Temporal value;
@@ -55,7 +55,7 @@ public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Te
         setValue(DateTimeParsers.parseDateValue(iso8601Date));
     }
 
-    public DvDate(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, Temporal value) {
+    public DvDate(@Nullable List<ReferenceRange<DvDate>> otherReferenceRanges, @Nullable DvInterval<DvDate> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, Temporal value) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus, accuracy);
         this.value = value;
     }

@@ -47,7 +47,7 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
         temporalConstraintParser = new TemporalConstraintParser(errors);
     }
 
-    public CPrimitiveObject parsePrimitiveObject(AdlParser.C_primitive_objectContext objectContext) {
+    public CPrimitiveObject<?, ?> parsePrimitiveObject(AdlParser.C_primitive_objectContext objectContext) {
         /*c_integer
                 | c_real
                 | c_date
@@ -165,7 +165,7 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
         return temporalConstraintParser.parseCDate(context);
     }
 
-    public CPrimitiveObject parseRegex(TerminalNode terminalNode) {
+    public CPrimitiveObject<?, ?> parseRegex(TerminalNode terminalNode) {
         ContainedRegexLexer lexer = new ContainedRegexLexer(CharStreams.fromString(terminalNode.getText()));
         ContainedRegexParser parser = new ContainedRegexParser(new CommonTokenStream(lexer));
         ContainedRegexParser.RegexContext regex = parser.regex();

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, ModelReference statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, ModelReference statement) {
 
 
         String variable = statement.getVariableReferencePrefix();
@@ -58,16 +58,16 @@ public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
         } catch (XPathExpressionException e) {
             throw new RuntimeException("error evaluating " + path, e);
         }
-        List<Value> values = rmObjectsWithPath.stream().map(
+        List<Value<?>> values = rmObjectsWithPath.stream().map(
             rmObjectWithPath ->
-                new Value(rmObjectWithPath.getObject(), Lists.newArrayList(rmObjectWithPath.getPath())))
+                new Value<>(rmObjectWithPath.getObject(), Lists.newArrayList(rmObjectWithPath.getPath())))
             .collect(Collectors.toList());
 
         return new ValueList(values);
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(ModelReference.class);
     }
 }

@@ -30,19 +30,19 @@ public class ArchetypeSlotConversionTest {
             Archetype archetype = result.getConversionResults().get(0).getArchetype();
             ArchetypeSlot slot = archetype.itemAtPath("/data/events[1]/state[id23]/items[id56]");
             String includesPattern = getPattern(slot.getIncludes().get(0));
-            assertEquals("/openEHR-EHR-CLUSTER\\.inspired_oxygen(-[a-zA-Z0-9_]+)*\\.v1.*/", includesPattern);
+            assertEquals("/openEHR-EHR-CLUSTER\\.inspired_oxygen(-[a-zA-Z0-9_]+)*\\.v1\\..*/", includesPattern);
 
             ArchetypeSlot slot2 = archetype.itemAtPath("/protocol/items[1]");
             String includesPattern2 = getPattern(slot2.getIncludes().get(0));
             String excludesPattern2 = getPattern(slot2.getExcludes().get(0));
             assertEquals("/.*/", includesPattern2);
-            assertEquals("/openEHR-EHR-CLUSTER\\.level_of_exertion-excluded.v1.*/", excludesPattern2);
+            assertEquals("/openEHR-EHR-CLUSTER\\.level_of_exertion-excluded.v1\\..*/", excludesPattern2);
         }
     }
 
     private String getPattern(Assertion assertion) {
         BinaryOperator matches = (BinaryOperator) assertion.getExpression();
-        Constraint constraint = (Constraint) matches.getRightOperand();
+        Constraint<?> constraint = (Constraint<?>) matches.getRightOperand();
         CString stringConstraint = (CString) constraint.getItem();
         String pattern = stringConstraint.getConstraint().get(0);
         return pattern;

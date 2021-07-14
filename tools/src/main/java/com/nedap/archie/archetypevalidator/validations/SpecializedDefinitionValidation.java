@@ -143,7 +143,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
                                 CAttribute parentAttribute = parentCComplexObject.getAttribute(attribute.getRmAttributeName());
                                 if(parentAttribute != null  && parentAttribute.getSocParent() == null) {
                                     for(CPrimitiveTuple primitiveTuple:tuple.getTuples()) {
-                                        CPrimitiveObject member = primitiveTuple.getMember(tuple.getMemberIndex(attribute.getRmAttributeName()));
+                                        CPrimitiveObject<?, ?> member = primitiveTuple.getMember(tuple.getMemberIndex(attribute.getRmAttributeName()));
                                         if(!hasConformingParent(parentAttribute, member)) {
                                             addMessageWithPath(ErrorType.VTPIN, attribute.getPath(),
                                                     I18n.t("Attribute {0} is a non-tuple attribute in the parent archetype, but a tuple attribute in the current archetype. That is not allowed", attribute.getRmAttributeName()));

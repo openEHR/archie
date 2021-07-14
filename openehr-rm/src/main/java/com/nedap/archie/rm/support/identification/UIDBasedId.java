@@ -1,6 +1,8 @@
 package com.nedap.archie.rm.support.identification;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Strings;
+import com.nedap.archie.rminfo.Invariant;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -36,7 +38,7 @@ public abstract class UIDBasedId extends ObjectId {
         if (index < 0) {
             resultString = value;
         } else {
-            resultString = value.substring(index);
+            resultString = value.substring(0, index);
         }
         if (resultString.matches(UUID_REGEXP)) {
             UID result = new UUID();
@@ -67,6 +69,17 @@ public abstract class UIDBasedId extends ObjectId {
         } else {
             return value.substring(index + 2);
         }
+    }
+
+    @JsonIgnore
+    public boolean hasExtension() {
+        return !Strings.isNullOrEmpty(getExtension());
+    }
+
+    //an absolutely useless invariant to check for data validity, so ignored
+    @Invariant(value="Has_extension_valid", ignored=true)
+    public boolean hasExtensionValid() {
+        return Strings.isNullOrEmpty(getExtension()) ^ hasExtension();
     }
 
 }

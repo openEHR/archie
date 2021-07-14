@@ -1,5 +1,6 @@
 package com.nedap.archie.archetypevalidator;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
@@ -8,6 +9,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.util.List;
@@ -197,8 +199,42 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void parentWithDifferentRmRelease() throws IOException, ADLParseException {
+        //the parent has an older RM Release than the parent, and the child contains a couple of new features
+        //not available in the parent. One could say the parent needs to be upgraded to the new version
+        //however this has some actual use cases where the parent in the CKM still has the old version, and you want
+        //to use new features like DV_SCALE - as in this particular example. So this should just work.
+        Archetype child = parse("/com/nedap/archie/archetypevalidator/rm_version/openEHR-EHR-CLUSTER.child.v0.0.1.adls");
+        Archetype parent = parse("/com/nedap/archie/archetypevalidator/rm_version/openEHR-EHR-CLUSTER.parent.v1.1.0.adls");
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(child);
+            repository.addArchetype(parent);
 
-    private Archetype parse(String filename) throws IOException {
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validatedChild = archetypeValidator.validate(child, repository);
+            ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
+
+            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+        }
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(child);
+            repository.addArchetype(parent);
+            
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
+            ValidationResult validatedChild = archetypeValidator.validate(child, repository);
+
+            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+        }
+    }
+
+
+    private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
