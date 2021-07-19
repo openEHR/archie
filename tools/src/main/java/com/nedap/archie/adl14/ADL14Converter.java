@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class ADL14Converter {
 
@@ -67,6 +68,8 @@ public class ADL14Converter {
                 for(TemplateOverlay overlay:t.getTemplateOverlays()) {
                     templateOverlays.add(overlay);
                     overlay.setRmRelease(t.getRmRelease());
+                    overlay.setOriginalLanguage(t.getOriginalLanguage());
+                    overlay.setTranslationList(t.getTranslationList());
                 }
             }
         }
@@ -92,7 +95,7 @@ public class ADL14Converter {
                         if(conversionConfiguration.isApplyDiff()) {
                             result.setArchetype(differentiator.differentiate(result.getArchetype(), flatParent, true));
                         } else {
-                            result.setArchetype(differentiator.differentiate(result.getArchetype(), flatParent, false));
+                            //result.setArchetype(differentiator.differentiate(result.getArchetype(), flatParent, false));
                         }
                     }
                     resultList.addConversionResult(result);
@@ -106,6 +109,25 @@ public class ADL14Converter {
             } catch (Exception e) {
                 result = new ADL2ConversionResult(archetype.getArchetypeId().toString(), e);
                 resultList.addConversionResult(result);
+            }
+        }
+
+        for(ADL2ConversionResult ar:resultList.getConversionResults()) {
+            //template overlays have been processed as separate archetypes. So combine them here again
+            if(ar.getArchetype() != null && ar.getArchetype() instanceof Template) {
+                Template t = (Template) ar.getArchetype();
+
+                List<TemplateOverlay> newOverlays = new ArrayList<>();
+                for(TemplateOverlay overlay:t.getTemplateOverlays()) {
+                    Optional<ADL2ConversionResult> convertedOverlay = resultList.getConversionResults().stream().filter(r -> r.getArchetypeId().startsWith(overlay.getArchetypeId().getFullId())).findFirst();
+                    if(convertedOverlay.isPresent()) {
+                        newOverlays.add((TemplateOverlay) convertedOverlay.get().getArchetype());
+                    } else {
+                        newOverlays.add(overlay);
+                        //TODO: add error
+                    }
+                    t.setTemplateOverlays(newOverlays);
+                }
             }
         }
 
