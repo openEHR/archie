@@ -50,8 +50,10 @@ public class Opt14Converter {
                 Template convertedTemplate = (Template) adl2ConversionResult.getArchetype();
 
                 new NodeIdSpecializer().specializeNodeIds(convertedTemplate, flatParentProvider);
+                new ArchetypeTermFixer().fixTerms(convertedTemplate, flatParentProvider);
                 for(TemplateOverlay overlay: convertedTemplate.getTemplateOverlays()) {
                     new NodeIdSpecializer().specializeNodeIds(overlay, flatParentProvider);
+                    new ArchetypeTermFixer().fixTerms(overlay, flatParentProvider);
                 }
                 convertedTemplate = (Template) differentiator.differentiate(convertedTemplate, flatParentProvider.getFlatArchetype(template.getParentArchetypeId()), true);
                 List<TemplateOverlay> newOverlays = new ArrayList();

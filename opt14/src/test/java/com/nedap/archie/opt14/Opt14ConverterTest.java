@@ -5,7 +5,11 @@ import com.nedap.archie.adl14.ADL2ConversionResultList;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
+import com.nedap.archie.archetypevalidator.ArchetypeValidator;
+import com.nedap.archie.archetypevalidator.ValidationResult;
+import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.junit.Test;
@@ -16,6 +20,8 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStream;
+
+import static org.junit.Assert.assertTrue;
 
 public class Opt14ConverterTest {
 
@@ -37,7 +43,20 @@ public class Opt14ConverterTest {
                     result.getException().printStackTrace();
                 }
             }
-            System.out.println(ADLArchetypeSerializer.serialize(convert.getConversionResults().get(0).getArchetype()));
+            Template convertedTemplate = (Template) convert.getConversionResults().get(0).getArchetype();
+            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate));
+
+            OperationalTemplate opt2 = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels())
+                    .createOperationalTemplate(true)
+                    .keepLanguages("en")
+                    .flatten(convertedTemplate);
+
+            System.out.println(ADLArchetypeSerializer.serialize(opt2));
+
+            ArchetypeValidator validator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validationResult = validator.validate(convertedTemplate, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
+
         }
     }
 
