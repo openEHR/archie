@@ -15,7 +15,7 @@ import org.openehr.utils.message.I18n;
 
 /**
  * Changes node ids so the archetype becomes a specialization rather than just a changed archetype at a very basic level
- * ran before ADL 1.4 -> 2 conversion.
+ * ran before ADL 1.4 to 2 conversion.
  *
  * After that a nex step must be taken to ensure more node id fixes after conversion, then diffing must still occur
  */
