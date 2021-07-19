@@ -17,7 +17,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ConverterTest {
+public class Opt14ConverterTest {
 
     @Test
     public void procedureList() throws Exception {

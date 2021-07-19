@@ -10,7 +10,9 @@ import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
+import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.diff.PrimitiveObjectEqualsChecker;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
@@ -70,12 +72,29 @@ public class NodeIdSpecializer {
             if(parentCObject != null) {
                 ArchetypeTerm term = archetype.getTerm(cObject, archetype.getOriginalLanguage().getCodeString());
                 ArchetypeTerm parentTerm = flatParent.getTerm(parentCObject, archetype.getOriginalLanguage().getCodeString());
-                if( cObject.getNodeId().equalsIgnoreCase(parentCObject.getNodeId())) {
-                    if(parentTerm != null && term != null) {
-                        if (!term.getText().equalsIgnoreCase(parentTerm.getText()) ||
-                                !term.getDescription().equalsIgnoreCase(parentTerm.getDescription())) {
-                            //term changes. We need a new node id
-                            //TODO
+                if ( cObject.getNodeId().equalsIgnoreCase(parentCObject.getNodeId())) {
+                    boolean createSpecializedObject = false;
+                    if ( parentTerm != null ) {
+                        if (term != null) {
+                            if (!term.getText().equalsIgnoreCase(parentTerm.getText()) ||
+                                    !term.getDescription().equalsIgnoreCase(parentTerm.getDescription())) {
+                                createSpecializedObject = true;
+                            }
+                        }
+                    }
+                    if (cObjectHasChangedPrimitiveChildren(cObject, parentCObject)) {
+                        createSpecializedObject = true;
+
+                    }
+                    if(createSpecializedObject) {
+                        //content changes. We need a new node id
+                        String newNodeId = archetype.generateNextSpecializedIdCode(cObject.getNodeId());
+                        String oldNodeId = cObject.getNodeId();
+                        cObject.setNodeId(newNodeId);
+                        ArchetypeTerminology terminology = cObject.getArchetype().getTerminology();
+                        for (String language : terminology.getTermDefinitions().keySet()) {
+                            ArchetypeTerm removed = terminology.getTermDefinitions().get(language).remove(oldNodeId);
+                            terminology.getTermDefinitions().get(language).put(newNodeId, removed);
                         }
                     }
                 }
@@ -88,12 +107,49 @@ public class NodeIdSpecializer {
                // throw new RuntimeException("I did not expect the Spanish inquisition!");//TODO: remove or add proper message
             }
 
+
             for(CAttribute attribute:cObject.getAttributes()) {
                 specializeNodeIds(attribute);
             }
             changeNameConstraintToArchetypeTerm(cObject);
         }
 
+    }
+
+    private boolean cObjectHasChangedPrimitiveChildren(CObject cObject, CObject parentCObject) {
+        for(CAttribute attribute:cObject.getAttributes()) {
+            int i = 0;
+            for(CObject childObject:attribute.getChildren()) {
+                if(childObject instanceof CPrimitiveObject) {
+                    //found a primitive object. Check if it's exactly the same as the parent
+                    CAttribute attributeFromParent = parentCObject.getAttribute(attribute.getRmAttributeName());
+                    if(attributeFromParent == null) {
+                        //new attribute with primitive content, needs specialization
+                        return true;
+                    } else {
+                        if(i < attributeFromParent.getChildren().size()) {
+                            CObject childObjectFromParent = attributeFromParent.getChildren().get(i);
+                            if(!(childObjectFromParent instanceof CPrimitiveObject)) {
+                                throw new RuntimeException("primitive object being converted is a non primitive object in parent at " + archetype.getArchetypeId() + " " + cObject.getPath());
+                            }
+                            if(!primitiveObjectEquals( (CPrimitiveObject) childObject, (CPrimitiveObject) childObjectFromParent)) {
+                                return true;
+                            }
+                        } else {
+                            //more cobjects than the parent has.
+                            return true;
+                        }
+                    }
+                }
+                i++;
+            }
+        }
+        return false;
+    }
+
+    private boolean primitiveObjectEquals(CPrimitiveObject childObject, CPrimitiveObject childObjectFromParent) {
+        PrimitiveObjectEqualsChecker.isEqual(childObject, childObjectFromParent);
+        return true;
     }
 
     /**
