@@ -19,6 +19,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TODO:
+ * archetype root DEFAULTVALUES
+ *
+ */
 public class Opt14Converter {
     
     public ADL2ConversionResultList convert(OPERATIONALTEMPLATE opt14, InMemoryFullArchetypeRepository adl2Archetypes) {
@@ -29,7 +34,9 @@ public class Opt14Converter {
             config.setApplyDiff(false);//the diff must be applied manually later, after converting node ids
 
             Template template = new Template();
+            //TODO: should this include the concept, rather than just the template ID?
             template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + "v1.0.0"));
+            template.setControlled(opt14.isIsControlled();
             template.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
             if(opt14.getUid() != null) {
                 template.setUid(opt14.getUid().getValue());
