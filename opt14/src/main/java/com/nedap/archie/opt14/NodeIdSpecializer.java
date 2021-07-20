@@ -1,21 +1,19 @@
 package com.nedap.archie.opt14;
 
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.Template;
-import com.nedap.archie.aom.TemplateOverlay;
+import com.google.common.collect.Lists;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.diff.PrimitiveObjectEqualsChecker;
+import com.nedap.archie.flattener.FlattenerUtil;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.MetaModels;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -38,11 +36,17 @@ public class NodeIdSpecializer {
 
     private Archetype archetype;
     private Archetype flatParent;
+    private MetaModels metaModels;
+
+    public NodeIdSpecializer(MetaModels metaModels) {
+        this.metaModels = metaModels;
+    }
 
     public void specializeNodeIds(Archetype archetype, FlatArchetypeProvider repo) {
         if(archetype.getParentArchetypeId() == null) {
             return;
         }
+        metaModels.selectModel(archetype);
         this.archetype = archetype;
         if(archetype.getParentArchetypeId() != null) {
             this.flatParent = repo.getFlatArchetype(archetype.getParentArchetypeId());
@@ -64,7 +68,13 @@ public class NodeIdSpecializer {
     }
 
 
-    private void specializeNodeIds(CObject cObject) {
+    /**
+     * Specialize the node ids of cObject. Returns to prevent ConcurrentModificationExceptions
+     * @param cObject the object to check and specialize
+     * @return null if no object should be added to the parent right after current object, non-null to indicate it must be added
+     */
+    private CObject specializeNodeIds(CObject cObject) {
+        CObject parentReplacement = null;
         if(!(cObject instanceof CPrimitiveObject)) {
             String flatPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), flatParent.specializationDepth());
             CObject parentCObject = getCObject(flatParent.itemAtPath(flatPath));
@@ -84,10 +94,14 @@ public class NodeIdSpecializer {
                     }
                     if (cObjectHasChangedPrimitiveChildren(cObject, parentCObject)) {
                         createSpecializedObject = true;
-
+                    }
+                    if(cObjectIsSpecializedArchetypeRoot(cObject, parentCObject)) {
+                        createSpecializedObject = true;
+                    }
+                    if(cObjectHasTypeNameChange(cObject, parentCObject)) {
+                        createSpecializedObject = true;
                     }
                     if(createSpecializedObject) {
-                        //content changes. We need a new node id
                         String newNodeId = archetype.generateNextSpecializedIdCode(cObject.getNodeId());
                         String oldNodeId = cObject.getNodeId();
                         cObject.setNodeId(newNodeId);
@@ -96,24 +110,45 @@ public class NodeIdSpecializer {
                             ArchetypeTerm removed = terminology.getTermDefinitions().get(language).remove(oldNodeId);
                             terminology.getTermDefinitions().get(language).put(newNodeId, removed);
                         }
+                        if(!FlattenerUtil.shouldReplaceSpecializedParent(parentCObject, Lists.newArrayList(cObject), metaModels)) {
+                            //this node should not replace its parent, but should just be added. however, the OPT indicates it should
+                            //so create a new CObject with node id of the parent, occurrences matches {0}
+                            if(parentCObject instanceof ArchetypeSlot) {
+                                parentReplacement = new ArchetypeSlot();
+                                ((ArchetypeSlot) parentReplacement).setClosed(true);
+                            } else {
+                                parentReplacement = new CComplexObject();
+                                parentReplacement.setOccurrences(MultiplicityInterval.createProhibited());
+                            }
+                            parentReplacement.setNodeId(oldNodeId);
+                            parentReplacement.setRmTypeName(parentCObject.getRmTypeName());
+                        }
                     }
                 }
 
             } else {
                 //someone added a new node. It wil have a specialized id already - or it should anyway. let's check!
                 if(AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) != flatParent.specializationDepth() +1) {
-                    System.out.println("change of code!");//TODO
+                    throw new RuntimeException("Template added a field with an incorrect specialization depth at " + cObject.getPath());//TODO: remove or add proper message
                 }
-               // throw new RuntimeException("I did not expect the Spanish inquisition!");//TODO: remove or add proper message
+               //
             }
-
 
             for(CAttribute attribute:cObject.getAttributes()) {
                 specializeNodeIds(attribute);
             }
             changeNameConstraintToArchetypeTerm(cObject);
         }
+        return parentReplacement;
 
+    }
+
+    private boolean cObjectIsSpecializedArchetypeRoot(CObject cObject, CObject parentCObject) {
+        return cObject instanceof CArchetypeRoot && parentCObject instanceof ArchetypeSlot;
+    }
+
+    private boolean cObjectHasTypeNameChange(CObject cObject, CObject parentCObject) {
+        return !cObject.getRmTypeName().equals(parentCObject.getRmTypeName());
     }
 
     private boolean cObjectHasChangedPrimitiveChildren(CObject cObject, CObject parentCObject) {
@@ -194,8 +229,19 @@ public class NodeIdSpecializer {
 
     private void specializeNodeIds(CAttribute attribute) {
 
+        List<CObject> objectsToAdd = new ArrayList<>();
         for(CObject child:attribute.getChildren()) {
-            specializeNodeIds(child);
+            CObject toAdd = specializeNodeIds(child);
+            if(toAdd != null) {
+                //add temporary sibling order to be able to add this node in the correct position
+                toAdd.setSiblingOrder(SiblingOrder.createAfter(child.getNodeId()));
+                objectsToAdd.add(toAdd);
+            }
+        }
+        for(CObject cObject:objectsToAdd) {
+            attribute.addChild(cObject, cObject.getSiblingOrder());
+            //remove temporary sibling order added above
+            cObject.setSiblingOrder(null);
         }
     }
 

@@ -11,6 +11,7 @@ import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.diff.Differentiator;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
+import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
@@ -22,6 +23,7 @@ public class Opt14Converter {
     
     public ADL2ConversionResultList convert(OPERATIONALTEMPLATE opt14, InMemoryFullArchetypeRepository adl2Archetypes) {
         try {
+            MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
             ADL14ConversionConfiguration config = OpenEHRADL14ConversionConfiguration.getConfig();
             config.setAllowEmptyNodeIdsForSpecializations(true);
             config.setApplyDiff(false);//the diff must be applied manually later, after converting node ids
@@ -39,9 +41,9 @@ public class Opt14Converter {
 
             RepoFlatArchetypeProvider flatParentProvider = new RepoFlatArchetypeProvider(adl2Archetypes);
             new NodeIdFixerBeforeConversion().fixNodeIds(template, flatParentProvider);
-            Differentiator differentiator = new Differentiator(BuiltinReferenceModels.getMetaModels());
+            Differentiator differentiator = new Differentiator(metaModels);
 
-            ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), config);
+            ADL14Converter converter = new ADL14Converter(metaModels, config);
             converter.setExistingRepository(adl2Archetypes);
             ADL2ConversionResultList converted = converter.convert(Lists.newArrayList(template));
             ADL2ConversionResult adl2ConversionResult = converted.getConversionResults().get(0);
@@ -49,10 +51,10 @@ public class Opt14Converter {
             if(adl2ConversionResult.getArchetype() != null) {
                 Template convertedTemplate = (Template) adl2ConversionResult.getArchetype();
 
-                new NodeIdSpecializer().specializeNodeIds(convertedTemplate, flatParentProvider);
+                new NodeIdSpecializer(metaModels).specializeNodeIds(convertedTemplate, flatParentProvider);
                 new ArchetypeTermFixer().fixTerms(convertedTemplate, flatParentProvider);
                 for(TemplateOverlay overlay: convertedTemplate.getTemplateOverlays()) {
-                    new NodeIdSpecializer().specializeNodeIds(overlay, flatParentProvider);
+                    new NodeIdSpecializer(metaModels).specializeNodeIds(overlay, flatParentProvider);
                     new ArchetypeTermFixer().fixTerms(overlay, flatParentProvider);
                 }
                 convertedTemplate = (Template) differentiator.differentiate(convertedTemplate, flatParentProvider.getFlatArchetype(template.getParentArchetypeId()), true);
