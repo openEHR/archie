@@ -9,6 +9,7 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.creation.RMObjectCreator;
+import com.nedap.archie.datetime.DateTimeParsers;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
@@ -45,6 +46,62 @@ public class DefaultValueConverter {
         groupDefaultValues(defaultValues, nonPrimitiveDefaults, groupedPrimitiveDefaults);
 
         addNonPrimitiveDefaultValues(nonPrimitiveDefaults, archetype);
+        addPrimitiveDefaultValues(groupedPrimitiveDefaults, archetype);
+    }
+
+    private void addPrimitiveDefaultValues(Map<String, List<DEFAULTVALUE>> groupedPrimitiveDefaults, Archetype archetype) {
+        RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
+        for(String path:groupedPrimitiveDefaults.keySet()) {
+            ArchetypeModelObject archetypeModelObject = archetype.itemAtPath(path);
+            if(archetypeModelObject instanceof CAttribute) {
+
+            } else if (archetypeModelObject instanceof CDefinedObject) {
+                CDefinedObject cObject = (CDefinedObject) archetypeModelObject;
+                Object object = creator.create(cObject);
+                for(DEFAULTVALUE value:groupedPrimitiveDefaults.get(path)) {
+                    APathQuery parsedPath = new APathQuery(value.getPath());
+                    PathSegment lastPathSegment = parsedPath.getPathSegments().remove(parsedPath.getPathSegments().size() - 1);
+                    creator.set(object, lastPathSegment.getNodeName(), Lists.newArrayList(convertPrimitiveDefaultsValue(value)));
+                }
+                cObject.setDefaultValue(object);
+            } else {
+                //todo warn
+            }
+
+        }
+    }
+
+    private Object convertPrimitiveDefaultsValue(DEFAULTVALUE value) {
+        if(value instanceof DEFAULTBOOLEAN) {
+            DEFAULTBOOLEAN d = (DEFAULTBOOLEAN) value;
+            return d.isValue();
+        } else if (value instanceof DEFAULTCODEPHRASE) {
+            DEFAULTCODEPHRASE d = (DEFAULTCODEPHRASE) value;
+            //TODO: potentially tricky - coded text may be needed here instead, look at rm model?
+            BaseTypesConverter.convertToCodePhrase(d.getValue());
+        } else if (value instanceof DEFAULTSTRING) {
+            DEFAULTSTRING d = (DEFAULTSTRING) value;
+            return d.getValue();
+        } else if (value instanceof DEFAULTINTEGER) {
+            DEFAULTINTEGER d = (DEFAULTINTEGER) value;
+            return (long) d.getValue();
+        } else if (value instanceof DEFAULTREAL) {
+            DEFAULTREAL d = (DEFAULTREAL) value;
+            return (double) d.getValue();
+        } else if (value instanceof DEFAULTTIME) {
+            DEFAULTTIME d = (DEFAULTTIME) value;
+            return DateTimeParsers.parseTimeValue(d.getValue());
+        } else if (value instanceof DEFAULTDATE) {
+            DEFAULTDATE d = (DEFAULTDATE) value;
+            return DateTimeParsers.parseDateValue(d.getValue());
+        } else if (value instanceof DEFAULTDATETIME) {
+            DEFAULTDATETIME d = (DEFAULTDATETIME) value;
+            return DateTimeParsers.parseDateTimeValue(d.getValue());
+        } else if (value instanceof DEFAULTDURATION) {
+            DEFAULTDURATION d = (DEFAULTDURATION) value;
+            return DateTimeParsers.parseDurationValue(d.getValue());
+        }
+        return null;
     }
 
     private void addNonPrimitiveDefaultValues(List<DEFAULTVALUE> nonPrimitiveDefaults, Archetype archetype) {
