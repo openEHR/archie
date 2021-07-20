@@ -10,6 +10,9 @@ public class ADL14DescriptionConverter {
 
     public void convert(Archetype archetype) {
         ResourceDescription description = archetype.getDescription();
+        if(description == null) {
+            return;
+        }
         description.setLicence(description.getOtherDetails().remove("licence"));
         description.setOriginalNamespace(description.getOtherDetails().remove("original_namespace"));
         description.setOriginalPublisher(description.getOtherDetails().remove("original_publisher"));
