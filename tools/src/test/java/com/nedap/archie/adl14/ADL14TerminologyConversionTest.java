@@ -25,6 +25,8 @@ public class ADL14TerminologyConversionTest {
             Archetype converted = result.getConversionResults().get(0).getArchetype();
 
             assertEquals("extra_value", converted.getTerminology().getTermDefinition("en", "id1").getOtherItems().get("extra_item"));
+            assertEquals("extra_value", converted.getTerminology().getTermDefinition("en", "id1").getOtherItems().get("Extra_item_2"));
+            assertEquals("extra_value", converted.getTerminology().getTermDefinition("en", "id1").getOtherItems().get("_Extra_item_2"));
             String serialized = ADLArchetypeSerializer.serialize(converted);
             assertTrue(serialized.contains("extra_item = <\"extra_value\">"));
 
