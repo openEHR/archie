@@ -47,7 +47,7 @@ subprojects {
 
 
   dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.30'
+    compile 'org.slf4j:slf4j-api:1.7.32'
 
     compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
