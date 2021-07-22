@@ -51,7 +51,7 @@ public class PropertyValidator extends ValidatorBase {
                         attributeTypeDefinition.getRootType());
             }
 
-            for(PBmmType genericParameter:attributeTypeDefinition.getGenericParameterDefs().values()) {
+            for(PBmmType genericParameter:attributeTypeDefinition.getGenericParameterRefs()) {
                 validateGenericTypeDefParameter(pBmmClass, pBmmProperty, attributeTypeDefinition, genericParameter);
             }
         } else {

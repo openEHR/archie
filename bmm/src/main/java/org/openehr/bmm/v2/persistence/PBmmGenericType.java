@@ -32,6 +32,10 @@ public final class PBmmGenericType extends PBmmUnitaryType {
         return rootType;
     }
 
+    public void setRootType(String rootType) {
+        this.rootType = rootType;
+    }
+
     /**
      * Effective unitary type, ignoring containers and also generic parameters
      */

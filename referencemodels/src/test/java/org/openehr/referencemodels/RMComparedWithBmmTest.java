@@ -118,7 +118,7 @@ public class RMComparedWithBmmTest {
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "ARCHETYPE_HRID", "minor_version"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "ARCHETYPE_HRID", "patch_version"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.CARDINALITY_DIFFERENCE, "", "AUTHORED_RESOURCE", "translations"));
-        knownDifferences.add(new ModelDifference(ModelDifferenceType.TYPE_NAME_DIFFERENCE, "", "AUTHORED_RESOURCE", "translations"));
+
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_ABSOLUTE_QUANTITY", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_AMOUNT", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_DATE", "magnitude"));

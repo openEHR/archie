@@ -10,21 +10,30 @@ import jakarta.json.JsonBuilderFactory;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class JSONSchemaCreator {
 
-
+    public static final String JSON_SCHEMA_FILE_EXTENSION = ".json";
     private Map<String, Supplier<JsonObjectBuilder>> primitiveTypeMapping;
     private List<String> rootTypes;
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
 
+    /**
+     * Whether to allow any additional properties in the openEHR json.
+     */
     private boolean allowAdditionalProperties;
+    private boolean splitInPackages = false;
+
+    private JsonSchemaUriProvider uriProvider = this::getSingleFileName;
+    private String baseUri = "https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.1.0/";
 
 
     public JSONSchemaCreator() {
@@ -63,18 +72,32 @@ public class JSONSchemaCreator {
         rootTypes.add("ORGANISATION");
         rootTypes.add("PARTY_IDENTITY");
         rootTypes.add("ITEM_TREE");
+        rootTypes.add("CONTRIBUTION");
+        rootTypes.add("EHR");
+        rootTypes.add("EHR_STATUS");
+        rootTypes.add("ORIGINAL_VERSION");
+        rootTypes.add("IMPORTED_VERSION");
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
     }
 
-    public JsonObject create(BmmModel bmm) {
+    /**
+     * Creates one or more JSON Schemas from a BMM model. Depending on configuration, creates a file per BMM source schema id
+     * , package, or just one file.
+     * the main schema, containing the entry point, will always be the first file in the returned list
+     *
+     * @param bmm the BMM model to create the schema for
+     * @return a map, keyed by file name, of JsonObjects containing the json schemas
+     */
+    public Map<JsonSchemaUri, JsonObject> create(BmmModel bmm) {
         this.bmmModel = bmm;
-
+        JsonSchemaUri mainFileName = new JsonSchemaUri(baseUri, this.splitInPackages ?
+                bmm.getSchemaId() + JSON_SCHEMA_FILE_EXTENSION :
+                bmm.getSchemaId() + "_all" + JSON_SCHEMA_FILE_EXTENSION);
         //create the definitions and the root if/else base
 
         JsonArrayBuilder allOfArray = jsonFactory.createArrayBuilder();
-        JsonObjectBuilder definitions = jsonFactory.createObjectBuilder();
 
 
         allOfArray.add(createRequiredArray("_type"));
@@ -86,7 +109,7 @@ public class JSONSchemaCreator {
             JsonObjectBuilder typePropertyCheck = createConstType(rootType);
             JsonObjectBuilder typeCheck = jsonFactory.createObjectBuilder().add("properties", typePropertyCheck);
 
-            JsonObjectBuilder typeReference = createReference(rootType);
+            JsonObjectBuilder typeReference = createRootlevelReference(mainFileName, rootType);
             //IF the type matches
             //THEN check the correct type from the definitions
             JsonObjectBuilder ifObject = jsonFactory.createObjectBuilder()
@@ -94,19 +117,42 @@ public class JSONSchemaCreator {
                     .add("then", typeReference);
             allOfArray.add(ifObject);
         }
+
+        Map<JsonSchemaUri, SchemaBuilder> schemas = new LinkedHashMap<>();
+
+        SchemaBuilder mainSchemaBuilder = new SchemaBuilder(mainFileName);
+        schemas.put(mainFileName, mainSchemaBuilder);
+        mainSchemaBuilder.getSchema().add("allOf", allOfArray);
+
         for(BmmClass bmmClass: bmm.getClassDefinitions().values()) {
             if (!bmmClass.isAbstract() && !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase())) {
-                addClass(definitions, bmmClass);
+                SchemaBuilder schema = getOrCreateDefinitions(schemas, bmmClass);
+                schema.getDefinitions().add(BmmDefinitions.typeNameToClassKey(bmmClass.getName()), createClass(bmmClass));
             }
         }
-        return jsonFactory.createObjectBuilder()
-                .add("$schema", "http://json-schema.org/draft-07/schema")
-                .add("allOf", allOfArray)
-                .add("definitions", definitions)
-                .build();
+
+        Map<JsonSchemaUri, JsonObject> result = new LinkedHashMap<>();
+        //put the main schema first
+        for(SchemaBuilder schema:schemas.values()) {
+            result.put(schema.getUri(), schema.build());
+        }
+
+        return result;
     }
 
-    private void addClass(JsonObjectBuilder definitions, BmmClass bmmClass) {
+    private SchemaBuilder getOrCreateDefinitions(Map<JsonSchemaUri, SchemaBuilder> result, BmmClass bmmClass) {
+        JsonSchemaUri uri = uriProvider.provideJsonSchemaUrl(bmmClass);
+        SchemaBuilder schemaBuilder = result.get(uri);
+        if(schemaBuilder == null) {
+            //file not yet found. Create it
+            schemaBuilder = new SchemaBuilder(uri);
+            result.put(uri, schemaBuilder);
+        }
+        return schemaBuilder;
+
+    }
+
+    private JsonObjectBuilder createClass(BmmClass bmmClass) {
         String bmmClassName = bmmClass.getName();
         String typeName = BmmDefinitions.typeNameToClassKey(bmmClassName);
 
@@ -122,7 +168,7 @@ public class JSONSchemaCreator {
             } else if((typeName.equalsIgnoreCase("POINT_EVENT") || typeName.equalsIgnoreCase("INTERVAL_EVENT")) &&
                     propertyName.equalsIgnoreCase("data")) {
                 //we don't handle generics yet, and it's very tricky with the current BMM indeed. So, just manually hack this
-                JsonObjectBuilder propertyDef = createPolymorphicReference(bmmModel.getClassDefinition("ITEM_STRUCTURE"));
+                JsonObjectBuilder propertyDef = createPolymorphicReference(bmmClass, bmmModel.getClassDefinition("ITEM_STRUCTURE"));
                 extendPropertyDef(propertyDef, bmmProperty);
                 properties.add(propertyName, propertyDef);
 
@@ -131,12 +177,12 @@ public class JSONSchemaCreator {
                 }
                 atLeastOneProperty = true;
             } else if ((typeName.equalsIgnoreCase("DV_URI") || typeName.equalsIgnoreCase("DV_EHR_URI")) && propertyName.equalsIgnoreCase("value")) {
-                JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
+                JsonObjectBuilder propertyDef = createPropertyDef(bmmClass, bmmProperty.getType());
                 propertyDef.add("format", "uri-reference");
                 properties.add(propertyName, propertyDef);
                 atLeastOneProperty = true;
             } else {
-                JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
+                JsonObjectBuilder propertyDef = createPropertyDef(bmmClass, bmmProperty.getType());
                 extendPropertyDef(propertyDef, bmmProperty);
                 properties.add(propertyName, propertyDef);
 
@@ -147,7 +193,7 @@ public class JSONSchemaCreator {
             }
         }
 
-        properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string").add("pattern", "^" + typeName + "(<.*>)?$"));
+        properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string").add("pattern", "^" + typeName ));
         JsonObjectBuilder definition = jsonFactory.createObjectBuilder()
                 .add("type", "object")
                 .add("required", required)
@@ -160,7 +206,7 @@ public class JSONSchemaCreator {
         if(!allowAdditionalProperties && atLeastOneProperty) {
             definition.add("additionalProperties", false);
         }
-        definitions.add(typeName, definition);
+        return definition;
     }
 
     private void extendPropertyDef(JsonObjectBuilder propertyDef, BmmProperty<?> bmmProperty) {
@@ -175,7 +221,7 @@ public class JSONSchemaCreator {
         }
     }
 
-    private JsonObjectBuilder createPropertyDef(BmmType type) {
+    private JsonObjectBuilder createPropertyDef(BmmClass classContainingProperty, BmmType type) {
 
         if (type instanceof BmmParameterType) {
             return createType("object");
@@ -185,7 +231,7 @@ public class JSONSchemaCreator {
             if (isJSPrimitive(type)) {
                 return getJSPrimitive(simpleType);
             } else {
-                return createPolymorphicReference(simpleType.getBaseClass());
+                return createPolymorphicReference(classContainingProperty, simpleType.getBaseClass());
             }
         } else if (type instanceof BmmContainerType) {
             BmmContainerType containerType = (BmmContainerType) type;
@@ -197,13 +243,13 @@ public class JSONSchemaCreator {
             }
             return jsonFactory.createObjectBuilder()
                 .add("type", "array")
-                .add("items", createPropertyDef(containerType.getBaseType()));
+                .add("items", createPropertyDef(classContainingProperty, containerType.getBaseType()));
         } else if (type instanceof BmmGenericType) {
             BmmGenericType genericType = (BmmGenericType) type;
             if (isJSPrimitive(genericType)) {
                 return getJSPrimitive(genericType);
             } else {
-                return createPolymorphicReference(genericType.getBaseClass());
+                return createPolymorphicReference(classContainingProperty, genericType.getBaseClass());
             }
 
         }
@@ -213,10 +259,11 @@ public class JSONSchemaCreator {
 
     /**
      * Create a reference to a given type, plus all its descendants.
+     * @param classContainingTypeReference the class containing the type reference - used to check to refer to just #definitions, or prepended with a filename
      * @param type the type to refer to
      * @return the json schema that is a reference to this type, plus all of its descendants
      */
-    private JsonObjectBuilder createPolymorphicReference(BmmClass type) {
+    private JsonObjectBuilder createPolymorphicReference(BmmClass classContainingTypeReference, BmmClass type) {
 
         List<String> descendants = getAllNonAbstractDescendants( type);
         //if the type to refer to is abstract, a _type field is required, because there is no class to fall back on
@@ -272,7 +319,7 @@ public class JSONSchemaCreator {
                     typeCheck.addAll(createRequiredArray("_type"));
                 }
 
-                JsonObjectBuilder typeReference = createReference(descendant);
+                JsonObjectBuilder typeReference = createReference(classContainingTypeReference, descendant);
                 //IF the type matches
                 //THEN check the correct type from the definitions
                 JsonObjectBuilder ifObject = jsonFactory.createObjectBuilder()
@@ -286,13 +333,13 @@ public class JSONSchemaCreator {
                 //fallback to the base type if it is concrete, and not if it is abstract
                 JsonObjectBuilder elseObject = jsonFactory.createObjectBuilder()
                         .add("if", jsonFactory.createObjectBuilder().add("not", createRequiredArray("_type")))
-                        .add("then", createReference(type.getName()));
+                        .add("then", createReference(classContainingTypeReference, type.getName()));
                 array.add(elseObject);
             }
 
             return jsonFactory.createObjectBuilder().add("allOf", array);
         } else {
-            return createReference(descendants.get(0));
+            return createReference(classContainingTypeReference, descendants.get(0));
         }
 
     }
@@ -327,24 +374,12 @@ public class JSONSchemaCreator {
 
     private JsonObjectBuilder createConstType(String rootType) {
 
-        boolean generic = false;
-
         BmmClass classDefinition = bmmModel.getClassDefinition(rootType);
+        return jsonFactory.createObjectBuilder()
+                .add("_type", jsonFactory.createObjectBuilder()
+                        .add("const", rootType)
+                );
 
-        if(classDefinition == null || classDefinition instanceof BmmGenericClass) {
-            generic = true;
-        }
-        if(generic) {
-            return jsonFactory.createObjectBuilder()
-                    .add("_type", jsonFactory.createObjectBuilder()
-                                    .add("type", "string").add("pattern", "^" + rootType + "<.*>$")
-                    );
-        } else {
-            return jsonFactory.createObjectBuilder()
-                    .add("_type", jsonFactory.createObjectBuilder()
-                            .add("const", rootType)
-                    );
-        }
     }
 
     private JsonObjectBuilder createRequiredArray(String... requiredFields) {
@@ -360,12 +395,95 @@ public class JSONSchemaCreator {
         return jsonFactory.createObjectBuilder().add("type", jsPrimitive);
     }
 
-    private JsonObjectBuilder createReference(String rootType) {
-        return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + rootType);
+    private JsonObjectBuilder createRootlevelReference(JsonSchemaUri packageFileName, String type) {
+        BmmClass bmmClass = bmmModel.getClassDefinitions().get(type);
+        if(bmmClass == null) {
+            //TODO: a warning!
+            return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
+        } else {
+            JsonSchemaUri typeFileName = uriProvider.provideJsonSchemaUrl(bmmClass);
+            if(typeFileName == null) {
+                throw new RuntimeException();
+            }
+            if(typeFileName.equals(packageFileName)) {
+                return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
+            } else {
+                if(typeFileName.getBaseUri().equals(packageFileName.getBaseUri())) {
+                    return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getFilename() + "#/definitions/" + type);
+                } else {
+                    return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getId() + "#/definitions/" + type);
+                }
+            }
+        }
+
+    }
+
+
+    private JsonObjectBuilder createReference(BmmClass classContainingReference, String type) {
+        JsonSchemaUri packageFileName = classContainingReference == null ? new JsonSchemaUri("", "") : uriProvider.provideJsonSchemaUrl(classContainingReference);
+        return createRootlevelReference(packageFileName, type);
     }
 
     public JSONSchemaCreator allowAdditionalProperties(boolean allowAdditionalProperties) {
         this.allowAdditionalProperties = allowAdditionalProperties;
         return this;
+    }
+
+    public JSONSchemaCreator splitInMultipleFiles(boolean splitInPackages) {
+        this.splitInPackages = splitInPackages;
+        if(splitInPackages) {
+            this.uriProvider = this::getBmmFileName;
+        } else {
+            this.uriProvider = this::getSingleFileName;
+        }
+        return this;
+    }
+
+    public JSONSchemaCreator withJsonSchemaUriProvider(JsonSchemaUriProvider uriProvider) {
+        this.uriProvider = uriProvider;
+        return this;
+    }
+
+    public JSONSchemaCreator withBaseUri(String baseUri) {
+        this.baseUri = baseUri;
+        return this;
+    }
+
+    private JsonSchemaUri getSingleFileName(BmmClass clazz) {
+        return new JsonSchemaUri(baseUri, clazz.getBmmModel().getSchemaId() + "_all" + JSON_SCHEMA_FILE_EXTENSION);
+    }
+
+    private JsonSchemaUri getBmmFileName(BmmClass clazz) {
+        return new JsonSchemaUri(baseUri, clazz.getSourceSchemaId() + JSON_SCHEMA_FILE_EXTENSION);
+    }
+
+    private class SchemaBuilder {
+        private JsonSchemaUri uri;
+        private JsonObjectBuilder schema;
+        private JsonObjectBuilder definitions;
+
+        public SchemaBuilder(JsonSchemaUri uri) {
+            this.uri = uri;
+            definitions = jsonFactory.createObjectBuilder();
+            schema = jsonFactory.createObjectBuilder()
+                    .add("$schema", "http://json-schema.org/draft-07/schema")
+                    .add("$id", uri.getId());
+        }
+
+        public JsonSchemaUri getUri() {
+            return uri;
+        }
+
+        public JsonObjectBuilder getSchema() {
+            return schema;
+        }
+        public JsonObjectBuilder getDefinitions() {
+            return definitions;
+        }
+
+        public JsonObject build() {
+            return schema.add("definitions", definitions).build();
+        }
+
     }
 }

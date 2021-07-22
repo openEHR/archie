@@ -60,4 +60,9 @@ public class AttributeReference {
     public int hashCode() {
         return Objects.hash(typeName, attributeName);
     }
+
+    @Override
+    public String toString() {
+        return typeName + "." + attributeName;
+    }
 }
