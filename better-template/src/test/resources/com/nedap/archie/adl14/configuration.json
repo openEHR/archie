@@ -1,0 +1,25 @@
+{
+  "terminology_conversion_templates": [
+    {
+      "terminology_id": "snomedct",
+      "template": "http://snomed.info/id/$code_string"
+    },
+    {
+      "terminology_id": "snomed-ct",
+      "template": "http://snomed.info/id/$code_string"
+    },
+    {
+      "terminology_id": "snomed",
+      "template": "http://snomed.info/id/$code_string"
+    },
+    {
+      "terminology_id": "openehr",
+      "template": "http://openehr.org/id/$code_string"
+    },
+    {
+      "terminology_id": "loinc",
+      "template": "http://loinc.org/id/$code_string"
+    }
+
+  ]
+}

@@ -1,0 +1,1428 @@
+archetype (adl_version=2.0.6; rm_release=1.0.3; generated; uid=ac33fa64-f61a-4feb-bd29-0e5b1f4710a0)
+	openEHR-EHR-CLUSTER.symptom_sign.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			author = <
+				["name"] = <"Jasmin Buck, Sebastian Garde">
+				["organisation"] = <"University of Heidelberg, Central Queensland University">
+			>
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			author = <
+				["name"] = <"Lars Bitsch-Larsen">
+				["organisation"] = <"Haukeland University Hospital of Bergen, Norway">
+				["email"] = <"lbla@helse-bergen.no">
+			>
+			accreditation = <"MD, DEAA, MBA, spec in anesthesia, spec in tropical medicine.">
+		>
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			author = <
+				["name"] = <"Mona Saleh">
+			>
+		>
+		["nl"] = <
+			language = <[ISO_639-1::nl]>
+			author = <
+				["name"] = <"Pieter Bos">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Tony Shannon">
+		["organisation"] = <"UK NHS, Connecting for Health">
+		["email"] = <"tony.shannon@nhs.net">
+		["date"] = <"2007-02-20">
+	>
+	original_namespace = <"org.openehr">
+	original_publisher = <"openEHR Foundation">
+	custodian_namespace = <"org.openehr">
+	custodian_organisation = <"openEHR Foundation">
+	copyright = <"© openEHR Foundation">
+	licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+	details = <
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			purpose = <"*To record detail about a symptom - either self-recorded by an individual or recorded on the behalf of a patient by a clinician. A complete patient history may include varying level of details about a variety of symptoms.(en)">
+			use = <"*Use to record detailed information about a symptom as told to a clinician by a patient or self-recorded by the individual/patient.
+
+This archetype allows a 'nil significant' statement to be explicitly recorded.(en)">
+			misuse = <"*Not to be used to record details about pain. Use the specialisation of this archetype - the CLUSTER.symptom-pain instead.
+
+Not to be used for diagnoses and problems that form part of a persisting Problem List - use EVALUATION.problem_diagnosis.(en)">
+		>
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"*To record detail about a symptom - either self-recorded by an individual or recorded on the behalf of a patient by a clinician. A complete patient history may include varying level of details about a variety of symptoms.(en)">
+			use = <"*Use to record detailed information about a symptom as told to a clinician by a patient or self-recorded by the individual/patient.
+
+This archetype allows a 'nil significant' statement to be explicitly recorded.(en)">
+			misuse = <"*Sollte nur für Symptome benutzt werden. (en)">
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"For registrering av detaljer om et symptom - enten registrert av personen selv eller registrert på vegne av pasienten av en klinikker. En fullstendig anamnese kan inkludere forskjellige nivåer av detaljer om forskjellige symptomer.">
+			use = <"Anvendes til registrering av detaljert informasjon om et symptom som det fortelles til en klinikker eller selv-registrert av personen selv.
+
+Denne arketype tillater spesifikk registrering av et \"null signifikant\" utsagn.">
+			keywords = <"klage", "presenterer", "symptom", "problem", "visuell analog skala", "VAS">
+			misuse = <"Skal ikke anvendes til registrering av detaljer om smerter. Bruk den spesialiserte -the CLUSTER.symptom-pain arketype istedet.
+
+Anvendes ikke til diagnoser og problemstillinger der er en del av den eksisterende Problem list - bruk EVALUATION.problem_diagnosis.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details about a single episode of a reported symptom or sign including context, but not details, of previous episodes if appropriate.">
+			use = <"Use to record details about a single episode of a symptom or reported sign in an individual, as reported by the individual, parent, care-giver or other party.  It may be recorded by a clinician as part of a clinical history record as reported to them, observed by the clinician or self-recorded as part of a clinical questionnaire or personal health record. A complete clinical history or patient story may include varying level of details about multiple episodes of an identified symptom or reported sign, as well as multiple symptoms/signs.
+
+In the purest sense, symptoms are subjective observations of a physical or mental disturbance and signs are objective observations of the same, as experienced by an individual and reported to the history taker by the same individual or another party. From this logic it follows that we will need two archetypes to record clinical history - one for reported symptoms and another for reported signs. In reality this is impractical as it will require clinical data entry into either one of these models which adds signficant overheads to modellers and those entering data. In addition, there is often overlap in clinical concepts - for example, is previous vomiting or bleeding to be categorised as a symptom or reported sign? In response, this archetype has been specifically designed to proved a single information model that allows for recording of the entire continuum between clearly identifable symptoms and reported signs when recording a clinical history.
+
+This archetype has been intended to be used as a generic pattern for all symptoms and reported signs. The 'Specific details' SLOT can be used to extend the archetype to include additional, specific data elements for more complex symptoms or signs.
+
+This archetype has been specifically designed to be used in the 'Structured detail' SLOT within the OBSERVATION.story archetype, but can also be used within other OBSERVATION or CLUSTER archetypes and in the 'Associated symptom/sign' or 'Previous episode' SLOT within other instances of this CLUSTER.symptom_sign archetype.
+
+Clinicians frequently record the phrase 'nil significant' against specific symptoms or reported signs as an efficient method to indicate that they asked the individual and it was not reported as causing any discomfort or disturbance - effectively used more like a 'normal statement' rather than an explicit exclusion. The 'Nil significant' data element has been deliberately included in this archetype to allow clinicians to record this same information in a simple and effective way in a clinical system. It can be used to drive a user interface, for example if 'Nil significant' is recorded as true then the remaining data elements can be hidden on a data entry screen. This pragmatic approach supports the majority of simple clinical recording requirements around reported symptoms and signs.
+
+However if there is a clinical imperative to explicitly record that a Symptom or Sign was reported as not present, for example if it will be used to drive clinical decision support, then it would be preferable to use the CLUSTER.exclusion_symptom_sign archetype. The use of CLUSTER.exclusion_symptom_sign will increase the complexity of template modelling, implementation and querying. It is recommended that the CLUSTER.exclusion_symptom_sign archetype only be considered for use if clear benefit can be identified in specific situations, but should not be used for routine symptom/sign recording.">
+			keywords = <"complaint", "symptom", "disturbance", "problem", "discomfort", "presenting complaint", "presenting symptom", "sign">
+			misuse = <"Not to be used to record that a symptom or sign was explicitly reported as not present - use CLUSTER.exclusion_symptom_sign carefully for specific purposes where the overheads of recording in this way warrant the additional complexity, and only if the 'Nil significant' in this archetype is not specific enough for recording purposes.
+
+Not to be used for recording objective findings as part of a physical examination - use OBSERVATION.exam and related examination CLUSTER archetypes for this purpose.
+
+Not to be used for diagnoses and problems that form part of a persisting Problem List - use EVALUATION.problem_diagnosis.">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS, Norway", "Vebjoern Arntzen, Oslo university hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, National ICT Norway, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Rong Chen, Cambio Healthcare Systems, Sweden", "Stephen Chu, Queensland Health, Australia", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Samuel Frade, Marand, Portugal", "Sebastian Garde, Ocean Informatics, Germany", "Yves Genevier, Privantis SA, Switzerland", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Oslo University Hospital, Norway", "Luis Marco Ruiz, Norwegian Center for Integrated Care and Telemedicine, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, UNB, Brazil", "Anoop Shah, University College London, United Kingdom", "Norwegian Review Summary, National ICT Norway, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "John Tore Valand, Helse Bergen, Norway">
+	references = <
+		["1"] = <"Common Terminology Criteria for Adverse Events (CTCAE) [Internet]. National Cancer Institute, USA. Available from: http://ctep.cancer.gov/protocolDevelopment/electronic_applications/ctc.htm (accessed 2015-07-13).">
+	>
+	other_details = <
+		["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+		["MD5-CAM-1.0.1"] = <"D99FDDA78E05025ED49B9F7502795394">
+		["build_uid"] = <"f3c119e8-8ec5-4c82-82cd-1a34f30e6bb0">
+	>
+
+definition
+	CLUSTER[id1] matches {	-- Symptom/Sign
+		items matches {
+			ELEMENT[id2] matches {	-- Symptom/Sign name
+				value matches {
+					DV_TEXT[id188]
+				}
+			}
+			ELEMENT[id36] occurrences matches {0..1} matches {	-- Nil significant
+				value matches {
+					DV_BOOLEAN[id189] matches {
+						value matches {True}
+					}
+				}
+			}
+			ELEMENT[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					DV_TEXT[id190]
+				}
+			}
+			ELEMENT[id152] matches {	-- Body site
+				value matches {
+					DV_TEXT[id191]
+				}
+			}
+			allow_archetype CLUSTER[id148] matches {	-- Structured body site
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-CLUSTER\.anatomical_location_clock(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-CLUSTER\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v1/}
+				exclude
+					archetype_id/value matches {/.*/}
+			}
+			ELEMENT[id176] occurrences matches {0..1} matches {	-- Episodicity
+				value matches {
+					DV_CODED_TEXT[id192] matches {
+						defining_code matches {[ac1]}		-- Episodicity (synthesised)
+					}
+				}
+			}
+			ELEMENT[id187] occurrences matches {0..1} matches {	-- First ever?
+				value matches {
+					DV_BOOLEAN[id193] matches {
+						value matches {True}
+					}
+				}
+			}
+			ELEMENT[id153] occurrences matches {0..1} matches {	-- Episode onset
+				value matches {
+					DV_DATE_TIME[id194]
+				}
+			}
+			ELEMENT[id165] occurrences matches {0..1} matches {	-- Onset type
+				value matches {
+					DV_TEXT[id195]
+				}
+			}
+			ELEMENT[id29] occurrences matches {0..1} matches {	-- Duration
+				value matches {
+					DV_DURATION[id196]
+				}
+			}
+			ELEMENT[id22] occurrences matches {0..1} matches {	-- Severity category
+				value matches {
+					DV_CODED_TEXT[id197] matches {
+						defining_code matches {[ac2]}		-- Severity category (synthesised)
+					}
+					DV_TEXT[id198]
+				}
+			}
+			ELEMENT[id27] matches {	-- Severity rating
+				value matches {
+					DV_QUANTITY[id199] matches {
+						property matches {[at186]}
+						magnitude matches {|0.0..10.0|}
+						precision matches {1}
+						units matches {"1"}
+					}
+				}
+			}
+			ELEMENT[id181] matches {	-- Progression
+				value matches {
+					DV_CODED_TEXT[id200] matches {
+						defining_code matches {[ac3]}		-- Progression (synthesised)
+					}
+				}
+			}
+			ELEMENT[id4] occurrences matches {0..1} matches {	-- Pattern
+				value matches {
+					DV_TEXT[id201]
+				}
+			}
+			CLUSTER[id19] matches {	-- Modifying factor
+				items matches {
+					ELEMENT[id20] occurrences matches {0..1} matches {	-- Factor
+						value matches {
+							DV_TEXT[id202]
+						}
+					}
+					ELEMENT[id18] occurrences matches {0..1} matches {	-- Effect
+						value matches {
+							DV_CODED_TEXT[id203] matches {
+								defining_code matches {[ac4]}		-- Effect (synthesised)
+							}
+						}
+					}
+					ELEMENT[id57] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							DV_TEXT[id204]
+						}
+					}
+				}
+			}
+			CLUSTER[id166] matches {	-- Precipitating/resolving factor
+				name matches {
+					DV_CODED_TEXT[id205] matches {
+						defining_code matches {[ac5]}		-- Precipitating/resolving factor (synthesised)
+					}
+				}
+				items matches {
+					ELEMENT[id171] occurrences matches {0..1} matches {	-- Factor
+						value matches {
+							DV_TEXT[id206]
+						}
+					}
+					allow_archetype CLUSTER[id155] matches {	-- Factor detail
+						include
+							archetype_id/value matches {/openEHR-EHR-CLUSTER\.health_event(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-CLUSTER\.symptom_sign(-[a-zA-Z0-9_]+)*\.v0/}
+					}
+					ELEMENT[id172] occurrences matches {0..1} matches {	-- Time interval
+						value matches {
+							DV_DURATION[id207]
+						}
+					}
+					ELEMENT[id186] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							DV_TEXT[id208]
+						}
+					}
+				}
+			}
+			ELEMENT[id156] matches {	-- Impact
+				value matches {
+					DV_TEXT[id209]
+				}
+			}
+			ELEMENT[id38] occurrences matches {0..1} matches {	-- Episode description
+				value matches {
+					DV_TEXT[id210]
+				}
+			}
+			allow_archetype CLUSTER[id154] matches {	-- Specific details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			ELEMENT[id162] occurrences matches {0..1} matches {	-- Resolution date/time
+				value matches {
+					DV_DATE_TIME[id211]
+				}
+			}
+			ELEMENT[id58] occurrences matches {0..1} matches {	-- Description of previous episodes
+				value matches {
+					DV_TEXT[id212]
+				}
+			}
+			ELEMENT[id32] occurrences matches {0..1} matches {	-- Number of previous episodes
+				value matches {
+					DV_COUNT[id213] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			allow_archetype CLUSTER[id147] matches {	-- Previous episodes
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.symptom_sign(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			allow_archetype CLUSTER[id64] matches {	-- Associated symptom/sign
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.symptom_sign(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			ELEMENT[id164] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					DV_TEXT[id214]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["nl"] = <
+			["id1"] = <
+				text = <"Symptoom/signaal">
+				description = <"Een klacht van een patient of objectief waargenomen kernmerk van een ziekte.">
+			>
+			["id2"] = <
+				text = <"Naam van Symptoom/signaal">
+				description = <"De naam van het symptoom of signaal">
+			>
+			["id3"] = <
+				text = <"Beschrijving">
+				description = <"Beschrijving over het symptoom of signaal">
+			>
+			["id4"] = <
+				text = <"Patroon">
+				description = <"Beschrijving over het patroon van het symptoom of signaal tijdens deze episode">
+			>
+			["id18"] = <
+				text = <"Effect">
+				description = <"*Perceived effect of the modifying factor on the symptom or sign.(en)">
+			>
+			["id19"] = <
+				text = <"*Modifying factor(en)">
+				description = <"*Detail about how a specific factor effects the identified symptom or sign during this episode.(en)">
+			>
+			["id20"] = <
+				text = <"*Factor(en)">
+				description = <"*Name of the modifying factor.(en)">
+			>
+			["id22"] = <
+				text = <"Ernstcategorie">
+				description = <"Een categorie waarbinnen de ernst van dit symptoom of signaal valt">
+			>
+			["at24"] = <
+				text = <"Mild">
+				description = <"De intensiteit van dit symptoom of signaal levert geen probleem op bij normale activiteiten.">
+			>
+			["at25"] = <
+				text = <"Middel">
+				description = <"De intensiteit van dit symptoom of signaal heeft invloed op normale activiteiten.">
+			>
+			["at26"] = <
+				text = <"Ernstig">
+				description = <"De intensiteit van dit symptoom of signaal maakt normale activiteiten onmogelijk.">
+			>
+			["id27"] = <
+				text = <"Ernst">
+				description = <"Numerieke beoordeelingsschaal van de ernst van het signaal of symptoom">
+			>
+			["id29"] = <
+				text = <"Duur">
+				description = <"De tijdsduur van het signaal of symptoom sinds het begin">
+			>
+			["id32"] = <
+				text = <"Aantal eerdere episodes">
+				description = <"Het aantal keer dat dit signaal of symptoom eerder gebeurd is.">
+			>
+			["id36"] = <
+				text = <"Niet significant">
+				description = <"Er is aangegeven dat het signaal of symptoom niet significant aanwezig was">
+			>
+			["id38"] = <
+				text = <"*Episode description(en)">
+				description = <"*Narrative description about the course of the symptom or sign during this episode.(en)">
+			>
+			["id57"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description of the effect of the modifying factor on the symptom or sign.(en)">
+			>
+			["id58"] = <
+				text = <"*Description of previous episodes(en)">
+				description = <"*Narrative description of any or all previous episodes.(en)">
+			>
+			["id64"] = <
+				text = <"*Associated symptom/sign(en)">
+				description = <"*Structured details about any associated symptoms or signs that are concurrent.(en)">
+			>
+			["id147"] = <
+				text = <"*Previous episodes(en)">
+				description = <"*Structured details of the symptom or sign during a previous episode.(en)">
+			>
+			["id148"] = <
+				text = <"*Structured body site(en)">
+				description = <"*Structured body site where the symptom or sign was reported.(en)">
+			>
+			["id152"] = <
+				text = <"*Body site(en)">
+				description = <"*Simple body site where the symptom or sign was reported.(en)">
+			>
+			["id153"] = <
+				text = <"*Onset date/time(en)">
+				description = <"*The onset for this episode of the symptom or sign.(en)">
+			>
+			["id154"] = <
+				text = <"*Specific details(en)">
+				description = <"*Specific data elements that are additionally required to record as unique attributes of the identified symptom or sign.(en)">
+			>
+			["id155"] = <
+				text = <"*Factor detail(en)">
+				description = <"*Structured detail about the factor associated with the identified symptom or sign.(en)">
+			>
+			["id156"] = <
+				text = <"*Impact(en)">
+				description = <"*Description of the impact of this symptom or sign.(en)">
+			>
+			["at157"] = <
+				text = <"*No effect(en)">
+				description = <"*Presence of the factor has no impact on the symptom or sign.(en)">
+			>
+			["at159"] = <
+				text = <"*Worsens(en)">
+				description = <"*Presence of the factor exaccerbates severity or impact of the symptom or sign.(en)">
+			>
+			["at160"] = <
+				text = <"*Relieves(en)">
+				description = <"*Presence of the factor reduces the severity or impact of the symptom or sign.(en)">
+			>
+			["id162"] = <
+				text = <"*Resolution date/time(en)">
+				description = <"*The timing of the cessation of this episode of the symptom or sign.(en)">
+			>
+			["id164"] = <
+				text = <"*Comment(en)">
+				description = <"*Additional narrative about the symptom or sign not captured in other fields.(en)">
+			>
+			["id165"] = <
+				text = <"*Onset type(en)">
+				description = <"*Description of the onset of the symptom or sign.(en)">
+			>
+			["id166"] = <
+				text = <"*Precipitating/resolving factor(en)">
+				description = <"*Details about a health event, symptom, sign or other factor associated with the onset or cessation of the symptom or sign.(en)">
+			>
+			["at168"] = <
+				text = <"*Precipitating factor(en)">
+				description = <"*Identification of factors/events associated with onset or commencement of the symptom or sign.(en)">
+			>
+			["at169"] = <
+				text = <"*Resolving factor(en)">
+				description = <"*Identification of factors/events associated with cessation of the symptom or sign.(en)">
+			>
+			["id171"] = <
+				text = <"*Factor(en)">
+				description = <"*Name of the health event, symptom, reported sign or other factor.(en)">
+			>
+			["id172"] = <
+				text = <"*Time interval(en)">
+				description = <"*The interval of time between the occurrence or onset of the factor and onset/resolution of the symptom or sign.(en)">
+			>
+			["id176"] = <
+				text = <"*Episodicity(en)">
+				description = <"*Category of this epsiode for the identified symptom or sign.(en)">
+			>
+			["at177"] = <
+				text = <"*New(en)">
+				description = <"*This is the first ever  episode of the symptom or sign.(en)">
+			>
+			["at178"] = <
+				text = <"*Reoccurrence(en)">
+				description = <"*This is a second or subsequent discrete episode of the symptom or sign, where each previous episode has completely resolved.(en)">
+			>
+			["at179"] = <
+				text = <"*Ongoing(en)">
+				description = <"*This symptom or sign is continuously present, effectively a single, ongoing episode.(en)">
+			>
+			["id181"] = <
+				text = <"*Progression(en)">
+				description = <"*Description progression of the symptom or sign at the time of reporting.(en)">
+			>
+			["at182"] = <
+				text = <"*Improving(en)">
+				description = <"*The severity of the symptom or sign has improved overall during this episode.(en)">
+			>
+			["at183"] = <
+				text = <"*Unchanged(en)">
+				description = <"*The severity of the symptom or sign has not changed overall during this episode.(en)">
+			>
+			["at184"] = <
+				text = <"*Worsening(en)">
+				description = <"*The severity of the symptom or sign has worsened overall during this episode.(en)">
+			>
+			["at185"] = <
+				text = <"*Resolved(en)">
+				description = <"*The severity of the symptom or sign has resolved.(en)">
+			>
+			["id186"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description about the effect of the factor on the identified symptom or sign.(en)">
+			>
+			["id187"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["at186"] = <
+				text = <"*(added by post-parse processor)(en)">
+				description = <"*(added by post-parse processor)(en)">
+			>
+			["ac1"] = <
+				text = <"*Episodicity(en) (synthesised)">
+				description = <"*Category of this epsiode for the identified symptom or sign.(en) (synthesised)">
+			>
+			["ac2"] = <
+				text = <"*Severity category(en) (synthesised)">
+				description = <"*Category representing the overall severity of the symptom or sign.(en) (synthesised)">
+			>
+			["ac3"] = <
+				text = <"*Progression(en) (synthesised)">
+				description = <"*Description progression of the symptom or sign at the time of reporting.(en) (synthesised)">
+			>
+			["ac4"] = <
+				text = <"*Effect(en) (synthesised)">
+				description = <"*Perceived effect of the modifying factor on the symptom or sign.(en) (synthesised)">
+			>
+			["ac5"] = <
+				text = <"*Precipitating/resolving factor(en) (synthesised)">
+				description = <"*Details about a health event, symptom, sign or other factor associated with the onset or cessation of the symptom or sign.(en) (synthesised)">
+			>
+		>
+		["ar-sy"] = <
+			["id1"] = <
+				text = <"*Symptom/Sign(en)">
+				description = <"*Reported observation of a physical or mental disturbance in an individual.(en)">
+			>
+			["id2"] = <
+				text = <"*Symptom/Sign name(en)">
+				description = <"*The name of the reported symptom or sign.(en)">
+			>
+			["id3"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description about the reported symptom or sign.(en)">
+			>
+			["id4"] = <
+				text = <"*Pattern(en)">
+				description = <"*Narrative description about the pattern of the symptom or sign during this episode.(en)">
+			>
+			["id18"] = <
+				text = <"*Effect(en)">
+				description = <"*Perceived effect of the modifying factor on the symptom or sign.(en)">
+			>
+			["id19"] = <
+				text = <"*Modifying factor(en)">
+				description = <"*Detail about how a specific factor effects the identified symptom or sign during this episode.(en)">
+			>
+			["id20"] = <
+				text = <"*Factor(en)">
+				description = <"*Name of the modifying factor.(en)">
+			>
+			["id22"] = <
+				text = <"*Severity category(en)">
+				description = <"*Category representing the overall severity of the symptom or sign.(en)">
+			>
+			["at24"] = <
+				text = <"*Mild(en)">
+				description = <"*The intensity of the symptom or sign does not cause interference with normal activity.(en)">
+			>
+			["at25"] = <
+				text = <"*Moderate(en)">
+				description = <"*The intensity of the symptom or sign causes interference with normal activity.(en)">
+			>
+			["at26"] = <
+				text = <"*Severe(en)">
+				description = <"*The intensity of the symptom or sign causes prevents normal activity.(en)">
+			>
+			["id27"] = <
+				text = <"*Severity rating(en)">
+				description = <"*Numerical rating scale representing the overall severity of the symptom or sign.(en)">
+			>
+			["id29"] = <
+				text = <"*Duration(en)">
+				description = <"*The duration of the symptom or sign since onset.(en)">
+			>
+			["id32"] = <
+				text = <"*Number of previous episodes(en)">
+				description = <"*The number of times this symptom or sign has previously occurred.(en)">
+			>
+			["id36"] = <
+				text = <"*Nil significant(en)">
+				description = <"*The identified symptom or sign was reported as not being present to any significant degree.(en)">
+			>
+			["id38"] = <
+				text = <"*Episode description(en)">
+				description = <"*Narrative description about the course of the symptom or sign during this episode.(en)">
+			>
+			["id57"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description of the effect of the modifying factor on the symptom or sign.(en)">
+			>
+			["id58"] = <
+				text = <"*Description of previous episodes(en)">
+				description = <"*Narrative description of any or all previous episodes.(en)">
+			>
+			["id64"] = <
+				text = <"*Associated symptom/sign(en)">
+				description = <"*Structured details about any associated symptoms or signs that are concurrent.(en)">
+			>
+			["id147"] = <
+				text = <"*Previous episodes(en)">
+				description = <"*Structured details of the symptom or sign during a previous episode.(en)">
+			>
+			["id148"] = <
+				text = <"*Structured body site(en)">
+				description = <"*Structured body site where the symptom or sign was reported.(en)">
+			>
+			["id152"] = <
+				text = <"*Body site(en)">
+				description = <"*Simple body site where the symptom or sign was reported.(en)">
+			>
+			["id153"] = <
+				text = <"*Onset date/time(en)">
+				description = <"*The onset for this episode of the symptom or sign.(en)">
+			>
+			["id154"] = <
+				text = <"*Specific details(en)">
+				description = <"*Specific data elements that are additionally required to record as unique attributes of the identified symptom or sign.(en)">
+			>
+			["id155"] = <
+				text = <"*Factor detail(en)">
+				description = <"*Structured detail about the factor associated with the identified symptom or sign.(en)">
+			>
+			["id156"] = <
+				text = <"*Impact(en)">
+				description = <"*Description of the impact of this symptom or sign.(en)">
+			>
+			["at157"] = <
+				text = <"*No effect(en)">
+				description = <"*Presence of the factor has no impact on the symptom or sign.(en)">
+			>
+			["at159"] = <
+				text = <"*Worsens(en)">
+				description = <"*Presence of the factor exaccerbates severity or impact of the symptom or sign.(en)">
+			>
+			["at160"] = <
+				text = <"*Relieves(en)">
+				description = <"*Presence of the factor reduces the severity or impact of the symptom or sign.(en)">
+			>
+			["id162"] = <
+				text = <"*Resolution date/time(en)">
+				description = <"*The timing of the cessation of this episode of the symptom or sign.(en)">
+			>
+			["id164"] = <
+				text = <"*Comment(en)">
+				description = <"*Additional narrative about the symptom or sign not captured in other fields.(en)">
+			>
+			["id165"] = <
+				text = <"*Onset type(en)">
+				description = <"*Description of the onset of the symptom or sign.(en)">
+			>
+			["id166"] = <
+				text = <"*Precipitating/resolving factor(en)">
+				description = <"*Details about a health event, symptom, sign or other factor associated with the onset or cessation of the symptom or sign.(en)">
+			>
+			["at168"] = <
+				text = <"*Precipitating factor(en)">
+				description = <"*Identification of factors/events associated with onset or commencement of the symptom or sign.(en)">
+			>
+			["at169"] = <
+				text = <"*Resolving factor(en)">
+				description = <"*Identification of factors/events associated with cessation of the symptom or sign.(en)">
+			>
+			["id171"] = <
+				text = <"*Factor(en)">
+				description = <"*Name of the health event, symptom, reported sign or other factor.(en)">
+			>
+			["id172"] = <
+				text = <"*Time interval(en)">
+				description = <"*The interval of time between the occurrence or onset of the factor and onset/resolution of the symptom or sign.(en)">
+			>
+			["id176"] = <
+				text = <"*Episodicity(en)">
+				description = <"*Category of this epsiode for the identified symptom or sign.(en)">
+			>
+			["at177"] = <
+				text = <"*New(en)">
+				description = <"*This is the first ever  episode of the symptom or sign.(en)">
+			>
+			["at178"] = <
+				text = <"*Reoccurrence(en)">
+				description = <"*This is a second or subsequent discrete episode of the symptom or sign, where each previous episode has completely resolved.(en)">
+			>
+			["at179"] = <
+				text = <"*Ongoing(en)">
+				description = <"*This symptom or sign is continuously present, effectively a single, ongoing episode.(en)">
+			>
+			["id181"] = <
+				text = <"*Progression(en)">
+				description = <"*Description progression of the symptom or sign at the time of reporting.(en)">
+			>
+			["at182"] = <
+				text = <"*Improving(en)">
+				description = <"*The severity of the symptom or sign has improved overall during this episode.(en)">
+			>
+			["at183"] = <
+				text = <"*Unchanged(en)">
+				description = <"*The severity of the symptom or sign has not changed overall during this episode.(en)">
+			>
+			["at184"] = <
+				text = <"*Worsening(en)">
+				description = <"*The severity of the symptom or sign has worsened overall during this episode.(en)">
+			>
+			["at185"] = <
+				text = <"*Resolved(en)">
+				description = <"*The severity of the symptom or sign has resolved.(en)">
+			>
+			["id186"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description about the effect of the factor on the identified symptom or sign.(en)">
+			>
+			["id187"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["at186"] = <
+				text = <"*(added by post-parse processor)(en)">
+				description = <"*(added by post-parse processor)(en)">
+			>
+			["ac1"] = <
+				text = <"*Episodicity(en) (synthesised)">
+				description = <"*Category of this epsiode for the identified symptom or sign.(en) (synthesised)">
+			>
+			["ac2"] = <
+				text = <"*Severity category(en) (synthesised)">
+				description = <"*Category representing the overall severity of the symptom or sign.(en) (synthesised)">
+			>
+			["ac3"] = <
+				text = <"*Progression(en) (synthesised)">
+				description = <"*Description progression of the symptom or sign at the time of reporting.(en) (synthesised)">
+			>
+			["ac4"] = <
+				text = <"*Effect(en) (synthesised)">
+				description = <"*Perceived effect of the modifying factor on the symptom or sign.(en) (synthesised)">
+			>
+			["ac5"] = <
+				text = <"*Precipitating/resolving factor(en) (synthesised)">
+				description = <"*Details about a health event, symptom, sign or other factor associated with the onset or cessation of the symptom or sign.(en) (synthesised)">
+			>
+		>
+		["en"] = <
+			["id1"] = <
+				text = <"Symptom/Sign">
+				description = <"Reported observation of a physical or mental disturbance in an individual.">
+			>
+			["id2"] = <
+				text = <"Symptom/Sign name">
+				description = <"The name of the reported symptom or sign.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description about the reported symptom or sign.">
+			>
+			["id4"] = <
+				text = <"Pattern">
+				description = <"Narrative description about the pattern of the symptom or sign during this episode.">
+			>
+			["id18"] = <
+				text = <"Effect">
+				description = <"Perceived effect of the modifying factor on the symptom or sign.">
+			>
+			["id19"] = <
+				text = <"Modifying factor">
+				description = <"Detail about how a specific factor effects the identified symptom or sign during this episode.">
+			>
+			["id20"] = <
+				text = <"Factor">
+				description = <"Name of the modifying factor.">
+			>
+			["id22"] = <
+				text = <"Severity category">
+				description = <"Category representing the overall severity of the symptom or sign.">
+			>
+			["at24"] = <
+				text = <"Mild">
+				description = <"The intensity of the symptom or sign does not cause interference with normal activity.">
+			>
+			["at25"] = <
+				text = <"Moderate">
+				description = <"The intensity of the symptom or sign causes interference with normal activity.">
+			>
+			["at26"] = <
+				text = <"Severe">
+				description = <"The intensity of the symptom or sign causes prevents normal activity.">
+			>
+			["id27"] = <
+				text = <"Severity rating">
+				description = <"Numerical rating scale representing the overall severity of the symptom or sign.">
+			>
+			["id29"] = <
+				text = <"Duration">
+				description = <"The duration of this episode of the symptom or sign since onset.">
+			>
+			["id32"] = <
+				text = <"Number of previous episodes">
+				description = <"The number of times this symptom or sign has previously occurred.">
+			>
+			["id36"] = <
+				text = <"Nil significant">
+				description = <"The identified symptom or sign was reported as not being present to any significant degree.">
+			>
+			["id38"] = <
+				text = <"Episode description">
+				description = <"Narrative description about the course of the symptom or sign during this episode.">
+			>
+			["id57"] = <
+				text = <"Description">
+				description = <"Narrative description of the effect of the modifying factor on the symptom or sign.">
+			>
+			["id58"] = <
+				text = <"Description of previous episodes">
+				description = <"Narrative description of any or all previous episodes.">
+			>
+			["id64"] = <
+				text = <"Associated symptom/sign">
+				description = <"Structured details about any associated symptoms or signs that are concurrent.">
+			>
+			["id147"] = <
+				text = <"Previous episodes">
+				description = <"Structured details of the symptom or sign during a previous episode.">
+			>
+			["id148"] = <
+				text = <"Structured body site">
+				description = <"Structured body site where the symptom or sign was reported.">
+			>
+			["id152"] = <
+				text = <"Body site">
+				description = <"Simple body site where the symptom or sign was reported.">
+			>
+			["id153"] = <
+				text = <"Episode onset">
+				description = <"The onset for this episode of the symptom or sign.">
+			>
+			["id154"] = <
+				text = <"Specific details">
+				description = <"Specific data elements that are additionally required to record as unique attributes of the identified symptom or sign.">
+			>
+			["id155"] = <
+				text = <"Factor detail">
+				description = <"Structured detail about the factor associated with the identified symptom or sign.">
+			>
+			["id156"] = <
+				text = <"Impact">
+				description = <"Description of the impact of this symptom or sign.">
+			>
+			["at157"] = <
+				text = <"No effect">
+				description = <"The factor has no impact on the symptom or sign.">
+			>
+			["at159"] = <
+				text = <"Worsens">
+				description = <"The factor increases the severity or impact of the symptom or sign.">
+			>
+			["at160"] = <
+				text = <"Relieves">
+				description = <"The factor decreases the severity or impact of the symptom or sign, but does not fully resolve it.">
+			>
+			["id162"] = <
+				text = <"Resolution date/time">
+				description = <"The timing of the cessation of this episode of the symptom or sign.">
+			>
+			["id164"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the symptom or sign not captured in other fields.">
+			>
+			["id165"] = <
+				text = <"Onset type">
+				description = <"Description of the onset of the symptom or sign.">
+			>
+			["id166"] = <
+				text = <"Precipitating/resolving factor">
+				description = <"Details about specified factors that are associated with the precipitation or resolution of the symptom or sign.">
+			>
+			["at168"] = <
+				text = <"Precipitating factor">
+				description = <"Identification of factors or events that trigger the onset or commencement of the symptom or sign.">
+			>
+			["at169"] = <
+				text = <"Resolving factor">
+				description = <"Identification of factors or events that trigger resolution or cessation of the symptom or sign.">
+			>
+			["id171"] = <
+				text = <"Factor">
+				description = <"Name of the health event, symptom, reported sign or other factor.">
+			>
+			["id172"] = <
+				text = <"Time interval">
+				description = <"The interval of time between the occurrence or onset of the factor and onset/resolution of the symptom or sign.">
+			>
+			["id176"] = <
+				text = <"Episodicity">
+				description = <"Category of this episode for the identified symptom or sign.">
+			>
+			["at177"] = <
+				text = <"New">
+				description = <"A new episode of the symptom or sign - either the first ever occurrence or a reoccurrence where the previous episode had completely resolved.">
+			>
+			["at178"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine if this occurrence of the symptom or sign is new or ongoing.">
+			>
+			["at179"] = <
+				text = <"Ongoing">
+				description = <"This symptom or sign is ongoing, effectively a single, continuous episode.">
+			>
+			["id181"] = <
+				text = <"Progression">
+				description = <"Description progression of the symptom or sign at the time of reporting.">
+			>
+			["at182"] = <
+				text = <"Improving">
+				description = <"The severity of the symptom or sign has improved overall during this episode.">
+			>
+			["at183"] = <
+				text = <"Unchanged">
+				description = <"The severity of the symptom or sign has not changed overall during this episode.">
+			>
+			["at184"] = <
+				text = <"Worsening">
+				description = <"The severity of the symptom or sign has worsened overall during this episode.">
+			>
+			["at185"] = <
+				text = <"Resolved">
+				description = <"The severity of the symptom or sign has resolved.">
+			>
+			["id186"] = <
+				text = <"Description">
+				description = <"Narrative description about the effect of the factor on the identified symptom or sign.">
+			>
+			["id187"] = <
+				text = <"First ever?">
+				description = <"Is this the first ever occurrence of this symptom or sign?">
+			>
+			["at186"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["ac1"] = <
+				text = <"Episodicity (synthesised)">
+				description = <"Category of this episode for the identified symptom or sign. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Severity category (synthesised)">
+				description = <"Category representing the overall severity of the symptom or sign. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Progression (synthesised)">
+				description = <"Description progression of the symptom or sign at the time of reporting. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Effect (synthesised)">
+				description = <"Perceived effect of the modifying factor on the symptom or sign. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Precipitating/resolving factor (synthesised)">
+				description = <"Details about specified factors that are associated with the precipitation or resolution of the symptom or sign. (synthesised)">
+			>
+		>
+		["de"] = <
+			["id1"] = <
+				text = <"*Symptom/Sign(en)">
+				description = <"*Reported observation of a physical or mental disturbance in an individual.(en)">
+			>
+			["id2"] = <
+				text = <"*Symptom/Sign name(en)">
+				description = <"*The name of the reported symptom or sign.(en)">
+			>
+			["id3"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description about the reported symptom or sign.(en)">
+			>
+			["id4"] = <
+				text = <"*Pattern(en)">
+				description = <"*Narrative description about the pattern of the symptom or sign during this episode.(en)">
+			>
+			["id18"] = <
+				text = <"*Effect(en)">
+				description = <"*Perceived effect of the modifying factor on the symptom or sign.(en)">
+			>
+			["id19"] = <
+				text = <"*Modifying factor(en)">
+				description = <"*Detail about how a specific factor effects the identified symptom or sign during this episode.(en)">
+			>
+			["id20"] = <
+				text = <"*Factor(en)">
+				description = <"*Name of the modifying factor.(en)">
+			>
+			["id22"] = <
+				text = <"*Severity category(en)">
+				description = <"*Category representing the overall severity of the symptom or sign.(en)">
+			>
+			["at24"] = <
+				text = <"*Mild(en)">
+				description = <"*The intensity of the symptom or sign does not cause interference with normal activity.(en)">
+			>
+			["at25"] = <
+				text = <"*Moderate(en)">
+				description = <"*The intensity of the symptom or sign causes interference with normal activity.(en)">
+			>
+			["at26"] = <
+				text = <"*Severe(en)">
+				description = <"*The intensity of the symptom or sign causes prevents normal activity.(en)">
+			>
+			["id27"] = <
+				text = <"*Severity rating(en)">
+				description = <"*Numerical rating scale representing the overall severity of the symptom or sign.(en)">
+			>
+			["id29"] = <
+				text = <"*Duration(en)">
+				description = <"*The duration of the symptom or sign since onset.(en)">
+			>
+			["id32"] = <
+				text = <"*Number of previous episodes(en)">
+				description = <"*The number of times this symptom or sign has previously occurred.(en)">
+			>
+			["id36"] = <
+				text = <"*Nil significant(en)">
+				description = <"*The identified symptom or sign was reported as not being present to any significant degree.(en)">
+			>
+			["id38"] = <
+				text = <"*Episode description(en)">
+				description = <"*Narrative description about the course of the symptom or sign during this episode.(en)">
+			>
+			["id57"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description of the effect of the modifying factor on the symptom or sign.(en)">
+			>
+			["id58"] = <
+				text = <"*Description of previous episodes(en)">
+				description = <"*Narrative description of any or all previous episodes.(en)">
+			>
+			["id64"] = <
+				text = <"*Associated symptom/sign(en)">
+				description = <"*Structured details about any associated symptoms or signs that are concurrent.(en)">
+			>
+			["id147"] = <
+				text = <"*Previous episodes(en)">
+				description = <"*Structured details of the symptom or sign during a previous episode.(en)">
+			>
+			["id148"] = <
+				text = <"*Structured body site(en)">
+				description = <"*Structured body site where the symptom or sign was reported.(en)">
+			>
+			["id152"] = <
+				text = <"*Body site(en)">
+				description = <"*Simple body site where the symptom or sign was reported.(en)">
+			>
+			["id153"] = <
+				text = <"*Onset date/time(en)">
+				description = <"*The onset for this episode of the symptom or sign.(en)">
+			>
+			["id154"] = <
+				text = <"*Specific details(en)">
+				description = <"*Specific data elements that are additionally required to record as unique attributes of the identified symptom or sign.(en)">
+			>
+			["id155"] = <
+				text = <"*Factor detail(en)">
+				description = <"*Structured detail about the factor associated with the identified symptom or sign.(en)">
+			>
+			["id156"] = <
+				text = <"*Impact(en)">
+				description = <"*Description of the impact of this symptom or sign.(en)">
+			>
+			["at157"] = <
+				text = <"*No effect(en)">
+				description = <"*Presence of the factor has no impact on the symptom or sign.(en)">
+			>
+			["at159"] = <
+				text = <"*Worsens(en)">
+				description = <"*Presence of the factor exaccerbates severity or impact of the symptom or sign.(en)">
+			>
+			["at160"] = <
+				text = <"*Relieves(en)">
+				description = <"*Presence of the factor reduces the severity or impact of the symptom or sign.(en)">
+			>
+			["id162"] = <
+				text = <"*Resolution date/time(en)">
+				description = <"*The timing of the cessation of this episode of the symptom or sign.(en)">
+			>
+			["id164"] = <
+				text = <"*Comment(en)">
+				description = <"*Additional narrative about the symptom or sign not captured in other fields.(en)">
+			>
+			["id165"] = <
+				text = <"*Onset type(en)">
+				description = <"*Description of the onset of the symptom or sign.(en)">
+			>
+			["id166"] = <
+				text = <"*Precipitating/resolving factor(en)">
+				description = <"*Details about a health event, symptom, sign or other factor associated with the onset or cessation of the symptom or sign.(en)">
+			>
+			["at168"] = <
+				text = <"*Precipitating factor(en)">
+				description = <"*Identification of factors/events associated with onset or commencement of the symptom or sign.(en)">
+			>
+			["at169"] = <
+				text = <"*Resolving factor(en)">
+				description = <"*Identification of factors/events associated with cessation of the symptom or sign.(en)">
+			>
+			["id171"] = <
+				text = <"*Factor(en)">
+				description = <"*Name of the health event, symptom, reported sign or other factor.(en)">
+			>
+			["id172"] = <
+				text = <"*Time interval(en)">
+				description = <"*The interval of time between the occurrence or onset of the factor and onset/resolution of the symptom or sign.(en)">
+			>
+			["id176"] = <
+				text = <"*Episodicity(en)">
+				description = <"*Category of this epsiode for the identified symptom or sign.(en)">
+			>
+			["at177"] = <
+				text = <"*New(en)">
+				description = <"*This is the first ever  episode of the symptom or sign.(en)">
+			>
+			["at178"] = <
+				text = <"*Reoccurrence(en)">
+				description = <"*This is a second or subsequent discrete episode of the symptom or sign, where each previous episode has completely resolved.(en)">
+			>
+			["at179"] = <
+				text = <"*Ongoing(en)">
+				description = <"*This symptom or sign is continuously present, effectively a single, ongoing episode.(en)">
+			>
+			["id181"] = <
+				text = <"*Progression(en)">
+				description = <"*Description progression of the symptom or sign at the time of reporting.(en)">
+			>
+			["at182"] = <
+				text = <"*Improving(en)">
+				description = <"*The severity of the symptom or sign has improved overall during this episode.(en)">
+			>
+			["at183"] = <
+				text = <"*Unchanged(en)">
+				description = <"*The severity of the symptom or sign has not changed overall during this episode.(en)">
+			>
+			["at184"] = <
+				text = <"*Worsening(en)">
+				description = <"*The severity of the symptom or sign has worsened overall during this episode.(en)">
+			>
+			["at185"] = <
+				text = <"*Resolved(en)">
+				description = <"*The severity of the symptom or sign has resolved.(en)">
+			>
+			["id186"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description about the effect of the factor on the identified symptom or sign.(en)">
+			>
+			["id187"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["at186"] = <
+				text = <"*(added by post-parse processor)(en)">
+				description = <"*(added by post-parse processor)(en)">
+			>
+			["ac1"] = <
+				text = <"*Episodicity(en) (synthesised)">
+				description = <"*Category of this epsiode for the identified symptom or sign.(en) (synthesised)">
+			>
+			["ac2"] = <
+				text = <"*Severity category(en) (synthesised)">
+				description = <"*Category representing the overall severity of the symptom or sign.(en) (synthesised)">
+			>
+			["ac3"] = <
+				text = <"*Progression(en) (synthesised)">
+				description = <"*Description progression of the symptom or sign at the time of reporting.(en) (synthesised)">
+			>
+			["ac4"] = <
+				text = <"*Effect(en) (synthesised)">
+				description = <"*Perceived effect of the modifying factor on the symptom or sign.(en) (synthesised)">
+			>
+			["ac5"] = <
+				text = <"*Precipitating/resolving factor(en) (synthesised)">
+				description = <"*Details about a health event, symptom, sign or other factor associated with the onset or cessation of the symptom or sign.(en) (synthesised)">
+			>
+		>
+		["nb"] = <
+			["id1"] = <
+				text = <"*Symptom/Sign(en)">
+				description = <"*Reported observation of a physical or mental disturbance in an individual.(en)">
+			>
+			["id2"] = <
+				text = <"*Symptom/Sign name(en)">
+				description = <"*The name of the reported symptom or sign.(en)">
+			>
+			["id3"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description about the reported symptom or sign.(en)">
+			>
+			["id4"] = <
+				text = <"*Pattern(en)">
+				description = <"*Narrative description about the pattern of the symptom or sign during this episode.(en)">
+			>
+			["id18"] = <
+				text = <"*Effect(en)">
+				description = <"*Perceived effect of the modifying factor on the symptom or sign.(en)">
+			>
+			["id19"] = <
+				text = <"*Modifying factor(en)">
+				description = <"*Detail about how a specific factor effects the identified symptom or sign during this episode.(en)">
+			>
+			["id20"] = <
+				text = <"*Factor(en)">
+				description = <"*Name of the modifying factor.(en)">
+			>
+			["id22"] = <
+				text = <"*Severity category(en)">
+				description = <"*Category representing the overall severity of the symptom or sign.(en)">
+			>
+			["at24"] = <
+				text = <"*Mild(en)">
+				description = <"*The intensity of the symptom or sign does not cause interference with normal activity.(en)">
+			>
+			["at25"] = <
+				text = <"*Moderate(en)">
+				description = <"*The intensity of the symptom or sign causes interference with normal activity.(en)">
+			>
+			["at26"] = <
+				text = <"*Severe(en)">
+				description = <"*The intensity of the symptom or sign causes prevents normal activity.(en)">
+			>
+			["id27"] = <
+				text = <"*Severity rating(en)">
+				description = <"*Numerical rating scale representing the overall severity of the symptom or sign.(en)">
+			>
+			["id29"] = <
+				text = <"*Duration(en)">
+				description = <"*The duration of the symptom or sign since onset.(en)">
+			>
+			["id32"] = <
+				text = <"*Number of previous episodes(en)">
+				description = <"*The number of times this symptom or sign has previously occurred.(en)">
+			>
+			["id36"] = <
+				text = <"*Nil significant(en)">
+				description = <"*The identified symptom or sign was reported as not being present to any significant degree.(en)">
+			>
+			["id38"] = <
+				text = <"*Episode description(en)">
+				description = <"*Narrative description about the course of the symptom or sign during this episode.(en)">
+			>
+			["id57"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description of the effect of the modifying factor on the symptom or sign.(en)">
+			>
+			["id58"] = <
+				text = <"*Description of previous episodes(en)">
+				description = <"*Narrative description of any or all previous episodes.(en)">
+			>
+			["id64"] = <
+				text = <"*Associated symptom/sign(en)">
+				description = <"*Structured details about any associated symptoms or signs that are concurrent.(en)">
+			>
+			["id147"] = <
+				text = <"*Previous episodes(en)">
+				description = <"*Structured details of the symptom or sign during a previous episode.(en)">
+			>
+			["id148"] = <
+				text = <"*Structured body site(en)">
+				description = <"*Structured body site where the symptom or sign was reported.(en)">
+			>
+			["id152"] = <
+				text = <"*Body site(en)">
+				description = <"*Simple body site where the symptom or sign was reported.(en)">
+			>
+			["id153"] = <
+				text = <"*Onset date/time(en)">
+				description = <"*The onset for this episode of the symptom or sign.(en)">
+			>
+			["id154"] = <
+				text = <"*Specific details(en)">
+				description = <"*Specific data elements that are additionally required to record as unique attributes of the identified symptom or sign.(en)">
+			>
+			["id155"] = <
+				text = <"*Factor detail(en)">
+				description = <"*Structured detail about the factor associated with the identified symptom or sign.(en)">
+			>
+			["id156"] = <
+				text = <"*Impact(en)">
+				description = <"*Description of the impact of this symptom or sign.(en)">
+			>
+			["at157"] = <
+				text = <"*No effect(en)">
+				description = <"*Presence of the factor has no impact on the symptom or sign.(en)">
+			>
+			["at159"] = <
+				text = <"*Worsens(en)">
+				description = <"*Presence of the factor exaccerbates severity or impact of the symptom or sign.(en)">
+			>
+			["at160"] = <
+				text = <"*Relieves(en)">
+				description = <"*Presence of the factor reduces the severity or impact of the symptom or sign.(en)">
+			>
+			["id162"] = <
+				text = <"*Resolution date/time(en)">
+				description = <"*The timing of the cessation of this episode of the symptom or sign.(en)">
+			>
+			["id164"] = <
+				text = <"*Comment(en)">
+				description = <"*Additional narrative about the symptom or sign not captured in other fields.(en)">
+			>
+			["id165"] = <
+				text = <"*Onset type(en)">
+				description = <"*Description of the onset of the symptom or sign.(en)">
+			>
+			["id166"] = <
+				text = <"*Precipitating/resolving factor(en)">
+				description = <"*Details about a health event, symptom, sign or other factor associated with the onset or cessation of the symptom or sign.(en)">
+			>
+			["at168"] = <
+				text = <"*Precipitating factor(en)">
+				description = <"*Identification of factors/events associated with onset or commencement of the symptom or sign.(en)">
+			>
+			["at169"] = <
+				text = <"*Resolving factor(en)">
+				description = <"*Identification of factors/events associated with cessation of the symptom or sign.(en)">
+			>
+			["id171"] = <
+				text = <"*Factor(en)">
+				description = <"*Name of the health event, symptom, reported sign or other factor.(en)">
+			>
+			["id172"] = <
+				text = <"*Time interval(en)">
+				description = <"*The interval of time between the occurrence or onset of the factor and onset/resolution of the symptom or sign.(en)">
+			>
+			["id176"] = <
+				text = <"*Episodicity(en)">
+				description = <"*Category of this epsiode for the identified symptom or sign.(en)">
+			>
+			["at177"] = <
+				text = <"*New(en)">
+				description = <"*This is the first ever  episode of the symptom or sign.(en)">
+			>
+			["at178"] = <
+				text = <"*Reoccurrence(en)">
+				description = <"*This is a second or subsequent discrete episode of the symptom or sign, where each previous episode has completely resolved.(en)">
+			>
+			["at179"] = <
+				text = <"*Ongoing(en)">
+				description = <"*This symptom or sign is continuously present, effectively a single, ongoing episode.(en)">
+			>
+			["id181"] = <
+				text = <"*Progression(en)">
+				description = <"*Description progression of the symptom or sign at the time of reporting.(en)">
+			>
+			["at182"] = <
+				text = <"*Improving(en)">
+				description = <"*The severity of the symptom or sign has improved overall during this episode.(en)">
+			>
+			["at183"] = <
+				text = <"*Unchanged(en)">
+				description = <"*The severity of the symptom or sign has not changed overall during this episode.(en)">
+			>
+			["at184"] = <
+				text = <"*Worsening(en)">
+				description = <"*The severity of the symptom or sign has worsened overall during this episode.(en)">
+			>
+			["at185"] = <
+				text = <"*Resolved(en)">
+				description = <"*The severity of the symptom or sign has resolved.(en)">
+			>
+			["id186"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description about the effect of the factor on the identified symptom or sign.(en)">
+			>
+			["id187"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["at186"] = <
+				text = <"*(added by post-parse processor)(en)">
+				description = <"*(added by post-parse processor)(en)">
+			>
+			["ac1"] = <
+				text = <"*Episodicity(en) (synthesised)">
+				description = <"*Category of this epsiode for the identified symptom or sign.(en) (synthesised)">
+			>
+			["ac2"] = <
+				text = <"*Severity category(en) (synthesised)">
+				description = <"*Category representing the overall severity of the symptom or sign.(en) (synthesised)">
+			>
+			["ac3"] = <
+				text = <"*Progression(en) (synthesised)">
+				description = <"*Description progression of the symptom or sign at the time of reporting.(en) (synthesised)">
+			>
+			["ac4"] = <
+				text = <"*Effect(en) (synthesised)">
+				description = <"*Perceived effect of the modifying factor on the symptom or sign.(en) (synthesised)">
+			>
+			["ac5"] = <
+				text = <"*Precipitating/resolving factor(en) (synthesised)">
+				description = <"*Details about a health event, symptom, sign or other factor associated with the onset or cessation of the symptom or sign.(en) (synthesised)">
+			>
+		>
+	>
+	term_bindings = <
+		["SNOMED-CT"] = <
+			["id1"] = <http://snomed.info/id/19019007>
+			["id2"] = <http://snomed.info/id/19019007>
+			["id3"] = <http://snomed.info/id/162408000>
+			["id22"] = <http://snomed.info/id/162465004>
+			["at24"] = <http://snomed.info/id/162468002>
+			["at25"] = <http://snomed.info/id/162469005>
+			["at26"] = <http://snomed.info/id/162470006>
+			["id29"] = <http://snomed.info/id/162442009>
+		>
+		["openehr"] = <
+			["at186"] = <http://openehr.org/id/380>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at177", "at179", "at178">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at24", "at25", "at26">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at184", "at183", "at182", "at185">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at160", "at157", "at159">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at168", "at169">
+		>
+	>
