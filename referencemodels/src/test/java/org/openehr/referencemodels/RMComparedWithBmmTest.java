@@ -124,8 +124,6 @@ public class RMComparedWithBmmTest {
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_DATE", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_DATE_TIME", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_DURATION", "magnitude"));
-        knownDifferences.add(new ModelDifference(ModelDifferenceType.TYPE_NAME_DIFFERENCE, "", "DV_INTERVAL", "upper"));
-        knownDifferences.add(new ModelDifference(ModelDifferenceType.TYPE_NAME_DIFFERENCE, "", "DV_INTERVAL", "lower"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_PROPORTION", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_QUANTIFIED", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_TEMPORAL", "magnitude"));
