@@ -14,7 +14,7 @@ public class ConversionConfigurationTest {
     @Test
     public void testRmRelease() throws Exception {
 
-        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
 
 

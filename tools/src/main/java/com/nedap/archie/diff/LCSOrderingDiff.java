@@ -103,7 +103,7 @@ public class LCSOrderingDiff {
                     !last.isBefore() &&
                     parentAttribute.getChildren().get(parentAttribute.getChildren().size()-1).getNodeId().equals(last.getSiblingNodeId())) {
                 List<CObject> cObjects = siblingOrders.get(last);
-                boolean allAdds = true;
+
                 for(CObject cObject:cObjects) {
                     if(AOMUtils.getSpecialisationStatusFromCode(cObject.getNodeId(), specializationDepth) == CodeRedefinitionStatus.ADDED
                         || AOMUtils.isOverriddenIdCode(cObject.getNodeId(), last.getSiblingNodeId())

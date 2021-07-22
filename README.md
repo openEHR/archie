@@ -453,7 +453,8 @@ The following features are experimental. This means its working or API will like
 Starting from version 0.7, Archie can import ADL 1.4 files, and convert them to ADL 2. To do so, do the following:
 
 ```java
-ADL14ConversionConfiguration conversionConfiguration = new ADL14ConversionConfiguration();
+//this is the default configuration. You can implement your own if you want to
+ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
 ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
 
 List<Archetype> archetypes = new ArrayList<>();
@@ -498,7 +499,7 @@ The conversion log can be serialized to a file for storage using Jackson, so it 
 
 ### Conversion Configuration
 
-You may have noticed an instance of `ADL14ConversionConfiguration` in the previous example. In this configuration the mapping from term codes as used in ADL 1.4 to term URIs as used in ADL 2 can be specified. See the `ConversionConfigForTest.java` file for an example on how this works, and how this can be serialized to a file, and the file `/tools/src/test/java/com/nedap/archie/adl14/configuration.json` for an example of a simple serialized configuration that contains sane defaults for snomed, loinc and openehr URIs.
+You may have noticed an instance of `ADL14ConversionConfiguration` in the previous example. In this configuration the mapping from term codes as used in ADL 1.4 to term URIs as used in ADL 2 can be specified. The archie-utils package provides a default configuration in the class `OpenEHRADL14ConversionConfiguration`. It is possible to supply your own, see the default implementation on how this works, and how this can be serialized to a file, and the file `/archie-utils/src/main/resources/adl14conversionconfiguration.json` for an example of a simple serialized configuration that contains sane defaults for snomed, loinc and openehr URIs.
 
 If you leave the configuration empty, the converter will fall back to a default URI conversion.
 

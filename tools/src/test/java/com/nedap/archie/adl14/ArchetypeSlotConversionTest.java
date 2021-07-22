@@ -20,7 +20,7 @@ public class ArchetypeSlotConversionTest {
 
     @Test
     public void testSlotConversion() throws Exception {
-        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
         ADL2ConversionRunLog log = null;
 

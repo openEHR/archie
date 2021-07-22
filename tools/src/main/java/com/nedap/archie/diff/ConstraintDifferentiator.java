@@ -2,19 +2,23 @@ package com.nedap.archie.diff;
 
 import com.nedap.archie.adlparser.modelconstraints.ModelConstraintImposer;
 import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
+import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ConstraintDifferentiator {
 
     private final Archetype flatParent;
     private final ModelConstraintImposer constraintImposer;
+    private boolean specializeDifferentTerm = false;
 
     ConstraintDifferentiator(ModelConstraintImposer constraintImposer, Archetype flatParent) {
         this.flatParent = flatParent;
@@ -195,7 +199,21 @@ public class ConstraintDifferentiator {
         } else {
             //no children, no occurrences, child object is in parent. check specialization id
             if(childCObject.specialisationDepth() == childCObjectInParent.specialisationDepth()) {
-                return true;
+                if(!specializeDifferentTerm) {
+                    return true;
+                } else {
+                    Archetype archetype = childCObject.getArchetype();
+                    TerminologyCode originalLanguage = archetype.getOriginalLanguage();
+                    ArchetypeTerm term = archetype.getTerm(childCObject, originalLanguage.getCodeString());
+                    ArchetypeTerm parentTerm = flatParent.getTerm(childCObjectInParent, originalLanguage.getCodeString());
+                    if(term == null || parentTerm == null) {
+                        //can't be handled, get rid of it
+                        return true;
+                    } else {
+                        //delete if term is the same. Otherwise, it will be specialized later.
+                        return Objects.equals(term.getText(), parentTerm.getText()) && Objects.equals(term.getDescription(), parentTerm.getDescription());
+                    }
+                }
             }
             return false;
         }

@@ -265,49 +265,11 @@ public class CAttributeFlattener {
         } else if(allMatchingChildren.get(allMatchingChildren.size()-1).getNodeId().equalsIgnoreCase(specializedChildCObject.getNodeId())) {
             //the last matching child should possibly replace the parent, the rest should just add
             //if there is just one child, that's fine, it should still work
-            return shouldReplaceSpecializedParent(matchingParentObject, allMatchingChildren);
+            return FlattenerUtil.shouldReplaceSpecializedParent(matchingParentObject, allMatchingChildren, flattener.getMetaModels());
         }
         return false;
     }
 
-    private boolean shouldReplaceSpecializedParent(CObject parent, List<CObject> differentialNodes) {
-
-        MultiplicityInterval occurrences = parent.effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity);
-        //isSingle/isMultiple is tricky and not doable just in the parser. Don't use those
-        if(isSingle(parent.getParent())) {
-            return true;
-        } else if(occurrences != null && occurrences.upperIsOne()) {
-            //REFINE the parent node case 1, the parent has occurrences upper == 1
-            return true;
-        } else if (differentialNodes.size() == 1) {
-            MultiplicityInterval effectiveOccurrences;
-            //the differentialNode can have a differential path instead of an attribute name. In that case, we need to replace the rm type name
-            //of the parent with the actual typename in the parent archetype. Otherwise, it may fall back to the default type in the RM,
-            //and that can be an abstract type that does not have the attribute that we are trying to constrain. For example:
-            //diff archetype:
-            // /events[id6]/data/items matches {
-            //in the rm, data maps to an ITEM_STRUCTURE that does not have the attribute items.
-            //in the parent archetype, that is then an ITEM_TREE. We need to use ITEM_TREE here, which is what this code accomplishes.
-            if(parent.getParent() == null || parent.getParent().getParent() == null) {
-                effectiveOccurrences = differentialNodes.get(0).effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity);
-            } else {
-                effectiveOccurrences = differentialNodes.get(0).effectiveOccurrences((s, s2) -> flattener.getMetaModels().referenceModelPropMultiplicity(
-                        parent.getParent().getParent().getRmTypeName(), parent.getParent().getRmAttributeName()));
-            }
-            if(effectiveOccurrences != null && effectiveOccurrences.upperIsOne()) {
-                //REFINE the parent node case 2, only one child with occurrences upper == 1
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isSingle(CAttribute attribute) {
-        if(attribute != null && attribute.getParent() != null && attribute.getDifferentialPath() == null) {
-            return !flattener.getMetaModels().isMultiple(attribute.getParent().getRmTypeName(), attribute.getRmAttributeName());
-        }
-        return false;
-    }
 
     /**
      * Find the matching parent CObject given a specialized child. REturns null if not found.

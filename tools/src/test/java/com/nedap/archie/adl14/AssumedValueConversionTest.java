@@ -17,7 +17,7 @@ public class AssumedValueConversionTest {
 
     @Test
     public void testAssumedValueConversion() throws Exception {
-        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
 
         Archetype adl14archetype;

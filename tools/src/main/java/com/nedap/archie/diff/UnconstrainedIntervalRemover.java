@@ -17,6 +17,7 @@ import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+/** removes all intervals that are lower + upper unbouded, so, matches {*} */
 public class UnconstrainedIntervalRemover {
 
     public static void removeUnconstrainedIntervals(Archetype archetype) {
