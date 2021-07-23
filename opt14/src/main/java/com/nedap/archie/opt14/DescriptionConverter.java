@@ -9,12 +9,14 @@ import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.nedap.archie.opt14.schema.*;
+
 public class DescriptionConverter {
 
     public static void convert(Template template, OPERATIONALTEMPLATE opt14) {
         RESOURCEDESCRIPTION description14 = opt14.getDescription();
         ResourceDescription description = new ResourceDescription();
-        description.setLifecycleState(TerminologyCode.createFromString("openehr", null, description14.lifecycleState));
+        description.setLifecycleState(TerminologyCode.createFromString("openehr", null, description14.getLifecycleState()));
         Map<String, String> author = new LinkedHashMap<>();
         if(description14.getOriginalAuthor() != null) {
             for(StringDictionaryItem item:description14.getOriginalAuthor()) {

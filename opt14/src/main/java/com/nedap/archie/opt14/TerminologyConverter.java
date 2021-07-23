@@ -14,6 +14,8 @@ import java.net.URISyntaxException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.nedap.archie.opt14.schema.*;
+
 public class TerminologyConverter {
 
     public static ArchetypeTerminology createTerminology(OPERATIONALTEMPLATE opt14, CARCHETYPEROOT definition,

@@ -15,6 +15,8 @@ import static com.nedap.archie.opt14.BaseTypesConverter.convertCardinality;
 import static com.nedap.archie.opt14.BaseTypesConverter.convertMultiplicity;
 import static com.nedap.archie.opt14.PrimitiveConverter.convertPrimitive;
 
+import com.nedap.archie.opt14.schema.*;
+
 public class DefinitionConverter {
 
     private OPERATIONALTEMPLATE opt14;

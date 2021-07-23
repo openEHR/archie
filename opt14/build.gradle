@@ -31,12 +31,13 @@ dependencies {
 
 xjcGeneration {
     defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
-    defaultBindingFile = null //file 'src/main/resources//xjc/xjc.xjb.xml'
+    defaultBindingFile = file 'src/main/schemas/xjc/xjc.xjb.xml'
 
     schemas {
         opt14 {
             schemaFile = 'Template.xsd'
-            javaPackageName = 'com.nedap.archie.opt14'
+            javaPackageName = 'com.nedap.archie.opt14.schema'
+
         }
 
     }

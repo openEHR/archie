@@ -12,6 +12,8 @@ import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 
+import com.nedap.archie.opt14.schema.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

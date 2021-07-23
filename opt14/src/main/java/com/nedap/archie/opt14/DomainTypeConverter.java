@@ -14,6 +14,8 @@ import java.util.Map;
 
 import static com.nedap.archie.opt14.BaseTypesConverter.convert;
 
+import com.nedap.archie.opt14.schema.*;
+
 public class DomainTypeConverter {
     public static CObject convertDomainType(CDOMAINTYPE cobject14) {
         if(cobject14 instanceof CDVORDINAL) {
@@ -96,7 +98,7 @@ public class DomainTypeConverter {
         DVQUANTITY assumedValue14 = quantity14.getAssumedValue();
         if(assumedValue14 != null) {
             CDVQuantityAssumedValue assumedValue = new CDVQuantityAssumedValue();
-            assumedValue.setMagnitude(assumedValue14.getMagnitude());
+            assumedValue.setMagnitude((double) assumedValue14.getMagnitude());
             assumedValue.setPrecision(assumedValue14.getPrecision() == null ? null : assumedValue14.getPrecision().longValue());
             assumedValue.setUnits(assumedValue14.getUnits());
             quantity.setAssumedValue(assumedValue);

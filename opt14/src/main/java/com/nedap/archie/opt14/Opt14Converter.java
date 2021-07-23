@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nedap.archie.opt14.schema.*;
+
 /**
  * TODO:
  * archetype root DEFAULTVALUES

@@ -23,6 +23,8 @@ import java.io.InputStream;
 
 import static org.junit.Assert.assertTrue;
 
+import com.nedap.archie.opt14.schema.*;
+
 public class Opt14ConverterTest {
 
     @Test
@@ -36,6 +38,7 @@ public class Opt14ConverterTest {
         JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         try(InputStream stream = getClass().getResourceAsStream("/procedure_list.opt")) {
+
             OPERATIONALTEMPLATE opt14 =  ((JAXBElement<OPERATIONALTEMPLATE>) unmarshaller.unmarshal(stream)).getValue();
             ADL2ConversionResultList convert = new Opt14Converter().convert(opt14, repository);
             for(ADL2ConversionResult result:convert.getConversionResults()) {

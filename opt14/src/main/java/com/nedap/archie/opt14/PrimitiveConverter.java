@@ -8,6 +8,8 @@ import com.nedap.archie.aom.primitives.CString;
 
 import static com.nedap.archie.opt14.BaseTypesConverter.convertInterval;
 
+import com.nedap.archie.opt14.schema.*;
+
 public class PrimitiveConverter {
 
     public static CObject convertPrimitive(CPRIMITIVEOBJECT cobject14) {
