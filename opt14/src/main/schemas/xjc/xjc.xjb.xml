@@ -12,7 +12,7 @@
             <jxb:class ref="com.nedap.archie.rm.datavalues.quantity.DvOrdinal"/>
         </jxb:bindings> -->
     </jxb:bindings>
-    <jxb:bindings schemaLocation="Common.xsd">
+  <!--  <jxb:bindings schemaLocation="Common.xsd">
         <jxb:bindings node="//xs:complexType[@name='FOLDER']">
             <jxb:class ref="com.nedap.archie.rm.directory.Folder"/>
         </jxb:bindings>
@@ -36,5 +36,5 @@
         <jxb:bindings node="//xs:complexType[@name='PARTY_REF']">
             <jxb:class ref="com.nedap.archie.rm.support.identification.PartyRef"/>
         </jxb:bindings>
-    </jxb:bindings>
+    </jxb:bindings>-->
 </jxb:bindings>
