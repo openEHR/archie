@@ -4,9 +4,16 @@
         version="2.1">
 
     <jxb:bindings schemaLocation="DataTypes.xsd">
-        <jxb:bindings node="//xs:complexType[@name='DATA_VALUE']">
-            <jxb:class ref="com.nedap.archie.rm.datavalues.DataValue"/>
-        </jxb:bindings>
+<!--        <jxb:bindings node="//xs:complexType[@name='DATA_VALUE']">-->
+<!--            <jxb:class ref="com.nedap.archie.rm.datavalues.DataValue"/>-->
+<!--        </jxb:bindings>-->
+<!--        <jxb:bindings node="//xs:complexType[@name='DV_TEXT']">-->
+<!--            <jxb:class ref="com.nedap.archie.rm.datavalues.DvText"/>-->
+<!--        </jxb:bindings>-->
+
+<!--        <jxb:bindings node="//xs:complexType[@name='DV_CODED_TEXT']">-->
+<!--            <jxb:class ref="com.nedap.archie.rm.datavalues.DvCodedText"/>-->
+<!--        </jxb:bindings>-->
 
        <!-- <jxb:bindings node="//xs:complexType[@name='DV_ORDINAL']">
             <jxb:class ref="com.nedap.archie.rm.datavalues.quantity.DvOrdinal"/>

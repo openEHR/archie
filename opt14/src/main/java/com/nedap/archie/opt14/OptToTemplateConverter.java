@@ -21,7 +21,7 @@ import java.util.Map;
  *
  * Does not perform any diffing, just creates template overlays where required
  */
-public class OptToTemplateConverter {
+class OptToTemplateConverter {
     private Template template;
     private OperationalTemplate opt2;
 

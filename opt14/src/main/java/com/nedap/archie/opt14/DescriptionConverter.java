@@ -12,9 +12,9 @@ import java.util.Map;
 
 import com.nedap.archie.opt14.schema.*;
 
-public class DescriptionConverter {
+class DescriptionConverter {
 
-    public static void convert(Archetype template, OPERATIONALTEMPLATE opt14) {
+    public static void convert(OPERATIONALTEMPLATE opt14, Archetype template) {
         RESOURCEDESCRIPTION description14 = opt14.getDescription();
         ResourceDescription description = new ResourceDescription();
         description.setLifecycleState(TerminologyCode.createFromString("openehr", null, description14.getLifecycleState()));

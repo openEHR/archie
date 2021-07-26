@@ -39,19 +39,21 @@ public class Opt14Converter {
             //First create an OPT 2
             OperationalTemplate opt2 = new OperationalTemplate();
             //TODO: should this include the concept, rather than just the template ID?
-            opt2.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + "v1.0.0"));
+            opt2.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + ".v1.0.0"));
             opt2.setControlled(opt14.isIsControlled());
             opt2.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
             if(opt14.getUid() != null) {
                 opt2.setUid(opt14.getUid().getValue());
             }
-            DescriptionConverter.convert(opt2, opt14);
+            DescriptionConverter.convert(opt14, opt2);
+
 
             new DefinitionConverter().convert(opt2, opt14, config);
 
+            new TConstraintApplier().apply(opt14, opt2);
 
             Template template = new Template();
-            template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + "v1.0.0"));
+            template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + ".v1.0.0"));
             template.setControlled(opt14.isIsControlled());
             template.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
             template.setTerminology(opt2.getTerminology());
@@ -59,7 +61,7 @@ public class Opt14Converter {
                 template.setUid(opt14.getUid().getValue());
             }
 
-            DescriptionConverter.convert(template, opt14);
+            DescriptionConverter.convert(opt14, template);
             new OptToTemplateConverter().convert(opt2, template);
             //template.setDefinition(opt2.getDefinition());
             //TODO: convert to template overlays here

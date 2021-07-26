@@ -6,6 +6,7 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
+import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.DvURI;
 import com.nedap.archie.rm.datavalues.TermMapping;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
@@ -17,7 +18,7 @@ import com.nedap.archie.opt14.schema.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseTypesConverter {
+class BaseTypesConverter {
 
     public static Cardinality convertCardinality(CARDINALITY cardinality14) {
         if(cardinality14 == null) {
@@ -91,6 +92,20 @@ public class BaseTypesConverter {
         return codedText;
     }
 
+    public static DvText convert(DVTEXT text) {
+        if(text == null) {
+            return null;
+        }
+        DvText convertedText = new DvText();
+        convertedText.setEncoding(convertToCodePhrase(text.getEncoding()));
+        convertedText.setFormatting(text.getFormatting());
+        convertedText.setHyperlink(convert(text.getHyperlink()));
+        convertedText.setLanguage(convertToCodePhrase(text.getLanguage()));
+        convertedText.setMappings(convert(text.getMappings()));
+        convertedText.setValue(text.getValue());
+        return convertedText;
+    }
+
     public static List<TermMapping> convert(List<TERMMAPPING> mappings14) {
         if(mappings14 == null) {
             return null;
@@ -114,7 +129,9 @@ public class BaseTypesConverter {
             return null;
         }
         //cannot use the codephrase to terminology code conversion
-        return new CodePhrase(codePhrase.getTerminologyId() != null ? new TerminologyId(codePhrase.getTerminologyId().getValue()) : null,
+        return new CodePhrase(codePhrase.getTerminologyId() != null ? new TerminologyId(codePhrase.getTerminologyId().getValue()) : new TerminologyId("local"),
                 codePhrase.getCodeString());
     }
+
+
 }

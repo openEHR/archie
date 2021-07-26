@@ -16,7 +16,7 @@ import java.util.Map;
 
 import com.nedap.archie.opt14.schema.*;
 
-public class TerminologyConverter {
+class TerminologyConverter {
 
     public static ArchetypeTerminology createTerminology(OPERATIONALTEMPLATE opt14, CARCHETYPEROOT definition,
                                                          ADL14ConversionConfiguration config) {

@@ -32,7 +32,7 @@ import java.util.Map;
  * TODO: remove simple single constraint name constraints, and put them in the terminology instead first!
  *
  */
-public class NodeIdSpecializer {
+class NodeIdSpecializer {
 
     private Archetype archetype;
     private Archetype flatParent;

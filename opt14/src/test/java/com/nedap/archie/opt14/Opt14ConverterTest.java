@@ -70,4 +70,40 @@ public class Opt14ConverterTest {
             return archetype;
         }
     }
+
+    @Test
+    public void respectFromRipple() throws Exception {
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        //TODO: the correct archetypes
+        repository.addArchetype(parseAdl2("openEHR-EHR-ACTION.procedure.v1.4.1.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls"));
+        JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        try(InputStream stream = getClass().getResourceAsStream("/RESPECT_NSS-v0.opt")) {
+
+            OPERATIONALTEMPLATE opt14 =  ((JAXBElement<OPERATIONALTEMPLATE>) unmarshaller.unmarshal(stream)).getValue();
+            ADL2ConversionResultList convert = new Opt14Converter().convert(opt14, repository);
+            for(ADL2ConversionResult result:convert.getConversionResults()) {
+                if(result.getException() != null) {
+                    result.getException().printStackTrace();
+                }
+            }
+            Template convertedTemplate = (Template) convert.getConversionResults().get(0).getArchetype();
+            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate));
+
+            OperationalTemplate opt2 = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels())
+                    .createOperationalTemplate(true)
+                    .keepLanguages("en")
+                    .flatten(convertedTemplate);
+
+            System.out.println(ADLArchetypeSerializer.serialize(opt2));
+
+            ArchetypeValidator validator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validationResult = validator.validate(convertedTemplate, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
+
+        }
+
+    }
 }

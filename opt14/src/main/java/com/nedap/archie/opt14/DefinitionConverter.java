@@ -19,7 +19,7 @@ import static com.nedap.archie.opt14.PrimitiveConverter.convertPrimitive;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.opt14.schema.*;
 
-public class DefinitionConverter {
+class DefinitionConverter {
 
     private OPERATIONALTEMPLATE opt14;
     private OperationalTemplate template;

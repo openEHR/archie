@@ -16,7 +16,7 @@ import static com.nedap.archie.opt14.BaseTypesConverter.convert;
 
 import com.nedap.archie.opt14.schema.*;
 
-public class DomainTypeConverter {
+class DomainTypeConverter {
     public static CObject convertDomainType(CDOMAINTYPE cobject14) {
         if(cobject14 instanceof CDVORDINAL) {
             return convertCDVOrdinal((CDVORDINAL) cobject14);
