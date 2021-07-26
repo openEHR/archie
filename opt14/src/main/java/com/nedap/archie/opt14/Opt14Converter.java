@@ -7,6 +7,7 @@ import com.nedap.archie.adl14.ADL2ConversionResult;
 import com.nedap.archie.adl14.ADL2ConversionResultList;
 import com.nedap.archie.adl14.OpenEHRADL14ConversionConfiguration;
 import com.nedap.archie.aom.ArchetypeHRID;
+import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.diff.Differentiator;
@@ -35,18 +36,33 @@ public class Opt14Converter {
             config.setAllowEmptyNodeIdsForSpecializations(true);
             config.setApplyDiff(false);//the diff must be applied manually later, after converting node ids
 
-            Template template = new Template();
+            //First create an OPT 2
+            OperationalTemplate opt2 = new OperationalTemplate();
             //TODO: should this include the concept, rather than just the template ID?
+            opt2.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + "v1.0.0"));
+            opt2.setControlled(opt14.isIsControlled());
+            opt2.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
+            if(opt14.getUid() != null) {
+                opt2.setUid(opt14.getUid().getValue());
+            }
+            DescriptionConverter.convert(opt2, opt14);
+
+            new DefinitionConverter().convert(opt2, opt14, config);
+
+
+            Template template = new Template();
             template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + "v1.0.0"));
             template.setControlled(opt14.isIsControlled());
             template.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
+            template.setTerminology(opt2.getTerminology());
             if(opt14.getUid() != null) {
                 template.setUid(opt14.getUid().getValue());
             }
+
             DescriptionConverter.convert(template, opt14);
-
-            new DefinitionConverter().convert(template, opt14, config);
-
+            new OptToTemplateConverter().convert(opt2, template);
+            //template.setDefinition(opt2.getDefinition());
+            //TODO: convert to template overlays here
 
             RepoFlatArchetypeProvider flatParentProvider = new RepoFlatArchetypeProvider(adl2Archetypes);
             new NodeIdFixerBeforeConversion().fixNodeIds(template, flatParentProvider);

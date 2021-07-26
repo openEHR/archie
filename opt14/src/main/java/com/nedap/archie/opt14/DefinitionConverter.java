@@ -8,6 +8,7 @@ import com.nedap.archie.aom.CArchetypeRoot;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 
@@ -15,15 +16,16 @@ import static com.nedap.archie.opt14.BaseTypesConverter.convertCardinality;
 import static com.nedap.archie.opt14.BaseTypesConverter.convertMultiplicity;
 import static com.nedap.archie.opt14.PrimitiveConverter.convertPrimitive;
 
+import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.opt14.schema.*;
 
 public class DefinitionConverter {
 
     private OPERATIONALTEMPLATE opt14;
-    private Template template;
+    private OperationalTemplate template;
     private ADL14ConversionConfiguration config;
 
-    public void convert(Template template, OPERATIONALTEMPLATE opt14, ADL14ConversionConfiguration config) {
+    public void convert(OperationalTemplate template, OPERATIONALTEMPLATE opt14, ADL14ConversionConfiguration config) {
         this.config = config;
         this.opt14 = opt14;
         this.template = template;
@@ -96,21 +98,22 @@ public class DefinitionConverter {
 
     private CObject convertRoot(CARCHETYPEROOT cRoot14) {
 
-        TemplateOverlay overlay = new TemplateOverlay();
-        overlay.setArchetypeId(new ArchetypeHRID(cRoot14.getArchetypeId().getValue()));
-        overlay.getArchetypeId().setConceptId(overlay.getArchetypeId().getConceptId() + "ovl-1");
-        overlay.setParentArchetypeId(cRoot14.getArchetypeId().getValue());
-        overlay.setDefinition(convert(cRoot14));
-        overlay.setTerminology(TerminologyConverter.createTerminology(opt14, cRoot14, config));
-        template.addTemplateOverlay(overlay);
-
+        ArchetypeTerminology terminology = TerminologyConverter.createTerminology(opt14, cRoot14, config);
         CArchetypeRoot root = new CArchetypeRoot();
-        root.setArchetypeRef(overlay.getArchetypeId().getFullId());
+        root.setArchetypeRef(cRoot14.getArchetypeId().getValue());
         if(cRoot14.getNodeId() != null && !cRoot14.getNodeId().isEmpty() && !cRoot14.getNodeId().startsWith("at0000")) {
             root.setNodeId(cRoot14.getNodeId());
         }
         root.setRmTypeName(cRoot14.getRmTypeName());
         root.setOccurrences(BaseTypesConverter.convertMultiplicity(cRoot14.getOccurrences()));
+
+        setObjectBasics(cRoot14, root);
+
+        for (CATTRIBUTE attribute14 : cRoot14.getAttributes()) {
+            root.addAttribute(convert(attribute14));
+        }
+
+        template.addComponentTerminology(cRoot14.getArchetypeId().getValue(), terminology);
         return root;
     }
 

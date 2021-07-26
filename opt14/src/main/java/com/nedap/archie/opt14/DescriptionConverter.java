@@ -1,5 +1,6 @@
 package com.nedap.archie.opt14;
 
+import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.ResourceDescriptionItem;
 import com.nedap.archie.aom.Template;
@@ -13,7 +14,7 @@ import com.nedap.archie.opt14.schema.*;
 
 public class DescriptionConverter {
 
-    public static void convert(Template template, OPERATIONALTEMPLATE opt14) {
+    public static void convert(Archetype template, OPERATIONALTEMPLATE opt14) {
         RESOURCEDESCRIPTION description14 = opt14.getDescription();
         ResourceDescription description = new ResourceDescription();
         description.setLifecycleState(TerminologyCode.createFromString("openehr", null, description14.getLifecycleState()));
