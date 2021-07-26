@@ -12,6 +12,7 @@ import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.diff.Differentiator;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
+import com.nedap.archie.json.ArchieRMObjectMapperProvider;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -51,6 +52,7 @@ public class Opt14Converter {
             new DefinitionConverter().convert(opt2, opt14, config);
 
             new TConstraintApplier().apply(opt14, opt2);
+            System.out.println(ADLArchetypeSerializer.serialize(opt2, null, new ArchieRMObjectMapperProvider()));
 
             Template template = new Template();
             template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + ".v1.0.0"));

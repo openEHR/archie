@@ -11,6 +11,7 @@ import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
+import com.nedap.archie.json.ArchieRMObjectMapperProvider;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -90,7 +91,7 @@ public class Opt14ConverterTest {
                 }
             }
             Template convertedTemplate = (Template) convert.getConversionResults().get(0).getArchetype();
-            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate));
+            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate, null, new ArchieRMObjectMapperProvider()));
 
             OperationalTemplate opt2 = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels())
                     .createOperationalTemplate(true)
