@@ -1,0 +1,40 @@
+<jxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+        version="2.1">
+
+    <jxb:bindings schemaLocation="DataTypes.xsd">
+        <jxb:bindings node="//xs:complexType[@name='DATA_VALUE']">
+            <jxb:class ref="com.nedap.archie.rm.datavalues.DataValue"/>
+        </jxb:bindings>
+
+       <!-- <jxb:bindings node="//xs:complexType[@name='DV_ORDINAL']">
+            <jxb:class ref="com.nedap.archie.rm.datavalues.quantity.DvOrdinal"/>
+        </jxb:bindings> -->
+    </jxb:bindings>
+  <!--  <jxb:bindings schemaLocation="Common.xsd">
+        <jxb:bindings node="//xs:complexType[@name='FOLDER']">
+            <jxb:class ref="com.nedap.archie.rm.directory.Folder"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='LOCATABLE']">
+            <jxb:class ref="com.nedap.archie.rm.archetyped.Locatable"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='PATHABLE']">
+            <jxb:class ref="com.nedap.archie.rm.archetyped.Pathable"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='FEEDER_AUDIT']">
+            <jxb:class ref="com.nedap.archie.rm.archetyped.FeederAudit"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='FEEDER_AUDIT_DETAILS']">
+            <jxb:class ref="com.nedap.archie.rm.archetyped.FeederAuditDetails"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='PARTY_IDENTIFIED']">
+            <jxb:class ref="com.nedap.archie.rm.generic.PartyIdentified"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="BaseTypes.xsd">
+        <jxb:bindings node="//xs:complexType[@name='PARTY_REF']">
+            <jxb:class ref="com.nedap.archie.rm.support.identification.PartyRef"/>
+        </jxb:bindings>
+    </jxb:bindings>-->
+</jxb:bindings>

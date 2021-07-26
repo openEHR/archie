@@ -1,4 +1,4 @@
-description = "Utils for the Archie OpenEHR library"
+description = "OpenEHR-RM specific utils for the Archie OpenEHR library"
 
 dependencies {
 	compile project(':base')
