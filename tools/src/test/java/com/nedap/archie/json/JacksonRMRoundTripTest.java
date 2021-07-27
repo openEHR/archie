@@ -1,5 +1,7 @@
 package com.nedap.archie.json;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
@@ -14,7 +16,9 @@ import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
+import com.nedap.archie.rm.ehr.Ehr;
 import com.nedap.archie.rm.support.identification.HierObjectId;
+import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
@@ -25,10 +29,13 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -117,6 +124,24 @@ public class    JacksonRMRoundTripTest {
     public void check055BackwardsCompatibility() throws Exception {
         InputStream stream = getClass().getResourceAsStream("rm_object.json");
         JacksonUtil.getObjectMapper().readValue(stream, RMObject.class);
+
+    }
+
+    @Test
+    public void ehr() throws JsonProcessingException {
+
+        Ehr expected = new Ehr();
+
+        List<ObjectRef<?>> contributions = new ArrayList<>();
+        contributions.add(new ObjectRef<>(new HierObjectId("value"), "namespace", "type"));
+        expected.setContributions(contributions);
+
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        String serialized = objectMapper.writeValueAsString(expected);
+        System.out.println(serialized);
+
+        Ehr actual = objectMapper.readValue(serialized, Ehr.class);
+        assertEquals(expected, actual);
 
     }
 
