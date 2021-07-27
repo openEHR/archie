@@ -1,0 +1,270 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=5da93e37-e608-4ac1-93d6-8fc6168082a1; build_uid=b4813378-d2eb-46a6-92e6-92b0cb77d6d8)
+    openEHR-EHR-ADMIN_ENTRY.careteam_cc.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2018-07-20">
+    >
+    original_namespace = <"uk.org.clinicalmodels">
+    original_publisher = <"Apperta UK">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"uk.org.clinicalmodels">
+    custodian_organisation = <"Apperta UK">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"https://www.hl7.org/fhir/careteam.html cited 20-Jul-2018.">
+    >
+    other_details = <
+        ["current_contact"] = <"Hildegard McNicoll, freshEHR Clinical Informatics Ltd.<hildi@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"5D5DF32D1FFC68C64DE20E13A568EF4E">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For the recording of care team details aligned with corresponding FHIR resource.">
+            use = <"Use to record care team details aligned with the corresponding FHIR resources.
+
+    The slots for member, on behalf of and managing organisation should be filled with the appropriate FHIR resource-aligned clusters, i.e. practitioner, contact or organisation.
+
+    This admin archetype is intended to be the main container for any patient contact related information.">
+            misuse = <"">
+            copyright = <"© Apperta Foundation">
+        >
+    >
+
+definition
+    ADMIN_ENTRY[id1] matches {    -- Care team
+        data matches {
+            ITEM_TREE[id2] matches {    -- Tree
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id5] matches {     -- Identifier
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.identifier_cc\.v0.*/}
+                    }
+                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Status
+                        value matches {
+                            DV_CODED_TEXT[id9002] matches {
+                                defining_code matches {[ac9000]}    -- Status (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id12] matches {    -- Category
+                        value matches {
+                            DV_CODED_TEXT[id9003] matches {
+                                defining_code matches {[ac9001]}    -- Category (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id19] occurrences matches {0..1} matches {    -- Name
+                        value matches {
+                            DV_TEXT[id9004]
+                        }
+                    }
+                    ELEMENT[id20] occurrences matches {0..1} matches {    -- Valid period start
+                        value matches {
+                            DV_DATE_TIME[id9005]
+                        }
+                    }
+                    ELEMENT[id21] occurrences matches {0..1} matches {    -- Valid period end
+                        value matches {
+                            DV_DATE_TIME[id9006]
+                        }
+                    }
+                    CLUSTER[id22] matches {    -- Participant
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id23] matches {    -- Role
+                                value matches {
+                                    DV_TEXT[id9007]
+                                }
+                            }
+                            allow_archetype CLUSTER[id24] matches {     -- Member
+                                include
+                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.contact_cc\.v0.*|openEHR-EHR-CLUSTER\.practitioner_cc\.v0.*/}
+                            }
+                            allow_archetype CLUSTER[id25]
+                            ELEMENT[id26] occurrences matches {0..1} matches {    -- Valid period start
+                                value matches {
+                                    DV_DATE_TIME[id9008]
+                                }
+                            }
+                            ELEMENT[id27] occurrences matches {0..1} matches {    -- Valid period end
+                                value matches {
+                                    DV_DATE_TIME[id9009]
+                                }
+                            }
+                            ELEMENT[id31] matches {    -- Note
+                                value matches {
+                                    DV_TEXT[id9012]
+                                }
+                            }
+                            allow_archetype CLUSTER[id32] matches {     -- Other details
+                                include
+                                    archetype_id/value matches {/.*/}
+                            }
+                        }
+                    }
+                    ELEMENT[id28] matches {    -- Reason
+                        value matches {
+                            DV_TEXT[id9010]
+                        }
+                    }
+                    allow_archetype CLUSTER[id30]
+                    ELEMENT[id29] matches {    -- Note
+                        value matches {
+                            DV_TEXT[id9011]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Status (synthesised)">
+                description = <"The current state of the care team. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Category (synthesised)">
+                description = <"Identifies what kind of team. This is to support differentiation between multiple co-existing teams, such as care plan team, episode of care team, longitudinal care team. (synthesised)">
+            >
+            ["id32"] = <
+                text = <"Other details">
+                description = <"Any other details about the participant.">
+            >
+            ["id31"] = <
+                text = <"Note">
+                description = <"Comments made about the participant.">
+            >
+            ["id30"] = <
+                text = <"Managing organisation">
+                description = <"The organisation responsible for the care team.">
+            >
+            ["id29"] = <
+                text = <"Note">
+                description = <"Comments made about the CareTeam.">
+            >
+            ["id28"] = <
+                text = <"Reason">
+                description = <"Describes why the care team exists.">
+            >
+            ["id27"] = <
+                text = <"Valid period end">
+                description = <"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.">
+            >
+            ["id26"] = <
+                text = <"Valid period start">
+                description = <"The start of the period. The boundary is inclusive.">
+            >
+            ["id25"] = <
+                text = <"On behalf of">
+                description = <"The organization of the practitioner.">
+            >
+            ["id24"] = <
+                text = <"Member">
+                description = <"The specific person or organization who is participating/expected to participate in the care team.">
+            >
+            ["id23"] = <
+                text = <"Role">
+                description = <"Indicates specific responsibility of an individual within the care team, such as \"Primary care physician\", \"Trained social worker counselor\", \"Caregiver\", etc.">
+            >
+            ["id22"] = <
+                text = <"Participant">
+                description = <"Identifies all people and organizations who are expected to be involved in the care team.">
+            >
+            ["id21"] = <
+                text = <"Valid period end">
+                description = <"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.">
+            >
+            ["id20"] = <
+                text = <"Valid period start">
+                description = <"The start of the period. The boundary is inclusive.">
+            >
+            ["id19"] = <
+                text = <"Name">
+                description = <"A label for human use intended to distinguish like teams.">
+            >
+            ["at18"] = <
+                text = <"Clinical research">
+                description = <"The care team category is clinicial research.">
+            >
+            ["at17"] = <
+                text = <"Condition">
+                description = <"The care team category is condition.">
+            >
+            ["at16"] = <
+                text = <"Longitudinal">
+                description = <"The care team category is longitudinal.">
+            >
+            ["at15"] = <
+                text = <"Episode">
+                description = <"The care team category is episode.">
+            >
+            ["at14"] = <
+                text = <"Encounter">
+                description = <"The care team category is encounter.">
+            >
+            ["at13"] = <
+                text = <"Event">
+                description = <"The care team category is event.">
+            >
+            ["id12"] = <
+                text = <"Category">
+                description = <"Identifies what kind of team. This is to support differentiation between multiple co-existing teams, such as care plan team, episode of care team, longitudinal care team.">
+            >
+            ["at11"] = <
+                text = <"Entered in error">
+                description = <"The current status of the care team is entered in error.">
+            >
+            ["at10"] = <
+                text = <"Inactive">
+                description = <"The current status of the care team is inactive.">
+            >
+            ["at9"] = <
+                text = <"Suspended">
+                description = <"The current status of the care team is suspended.">
+            >
+            ["at8"] = <
+                text = <"Active">
+                description = <"The current status of the care team is active.">
+            >
+            ["at7"] = <
+                text = <"Proposed">
+                description = <"The current status of the care team is proposed.">
+            >
+            ["id6"] = <
+                text = <"Status">
+                description = <"The current state of the care team.">
+            >
+            ["id5"] = <
+                text = <"Identifier">
+                description = <"Identifier details for the care team.">
+            >
+            ["id2"] = <
+                text = <"Tree">
+                description = <"@ internal @">
+            >
+            ["id1"] = <
+                text = <"Care team">
+                description = <"Care team details aligned with FHIR resource.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at13", "at14", "at15", "at16", "at17", "at18">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at7", "at8", "at9", "at10", "at11">
+        >
+    >

@@ -21,7 +21,7 @@ public class ADL14ExternalTerminologyConversionTest {
 
     @Test
     public void terminologyBindingsConverted() throws IOException, ADLParseException {
-        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
         try(InputStream stream = getClass().getResourceAsStream("/adl14/openEHR-EHR-CLUSTER.value_binding.v1.0.0.adl")) {
@@ -42,7 +42,7 @@ public class ADL14ExternalTerminologyConversionTest {
 
     @Test
     public void twoTermbindingsInOneConstraint() throws Exception {
-        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14ConversionConfiguration conversionConfiguration = OpenEHRADL14ConversionConfiguration.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.termbinding.v1.adl")) {

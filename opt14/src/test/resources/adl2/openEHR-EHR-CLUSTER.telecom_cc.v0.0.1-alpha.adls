@@ -1,0 +1,180 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=8c672bb2-6578-4804-8f61-e1d7dac6ddff; build_uid=7310f3a7-f711-41d8-ba24-40f936162628)
+    openEHR-EHR-CLUSTER.telecom_cc.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2018-07-19">
+    >
+    original_namespace = <"uk.org.clinicalmodels">
+    original_publisher = <"Apperta UK">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"uk.org.clinicalmodels">
+    custodian_organisation = <"Apperta UK">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1 cited 19-Jul-2018.">
+        ["2"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1 cited 19-Jul-2018.">
+    >
+    other_details = <
+        ["current_contact"] = <"Hildegard McNicoll, freshEHR Clinical Informatics Ltd.<hildi@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"895F99CC13DF97E2BEE2DD159E440414">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For the recording of telecom details aligned with corresponding FHIR resource.">
+            use = <"Use to record telecom details aligned with the corresponding FHIR resources.
+
+    This cluster archetype is intended to be used inside FHIR resource aligned archetypes such as CLUSTER.fhir_contact.v0 and CLUSTER.fhir_practitioner.v0.">
+            misuse = <"">
+            copyright = <"© Apperta Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Telecom
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- System
+                value matches {
+                    DV_CODED_TEXT[id9002] matches {
+                        defining_code matches {[ac9000]}    -- System (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Value
+                value matches {
+                    DV_TEXT[id9003]
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Use
+                value matches {
+                    DV_CODED_TEXT[id9004] matches {
+                        defining_code matches {[ac9001]}    -- Use (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id10] occurrences matches {0..1} matches {    -- Rank
+                value matches {
+                    DV_COUNT[id9005] matches {
+                        magnitude matches {|>=0|}
+                    }
+                }
+            }
+            ELEMENT[id11] occurrences matches {0..1} matches {    -- Valid period start
+                value matches {
+                    DV_DATE_TIME[id9006]
+                }
+            }
+            ELEMENT[id12] occurrences matches {0..1} matches {    -- Valid period end
+                value matches {
+                    DV_DATE_TIME[id9007]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"System (synthesised)">
+                description = <"Telecommunications form for contact point - what communications system is required to make use of the contact. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Use (synthesised)">
+                description = <"The purpose of the contact point. (synthesised)">
+            >
+            ["at19"] = <
+                text = <"Other">
+                description = <"The communication form is other.">
+            >
+            ["at18"] = <
+                text = <"SMS">
+                description = <"The communication is SMS.">
+            >
+            ["at17"] = <
+                text = <"Pager">
+                description = <"The communication form is pager.">
+            >
+            ["at16"] = <
+                text = <"URL">
+                description = <"The communication form is URL.">
+            >
+            ["at15"] = <
+                text = <"Email">
+                description = <"The communication form is email.">
+            >
+            ["at14"] = <
+                text = <"Fax">
+                description = <"The communication form is fax.">
+            >
+            ["at13"] = <
+                text = <"Phone">
+                description = <"The communication form is phone.">
+            >
+            ["id12"] = <
+                text = <"Valid period end">
+                description = <"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.">
+            >
+            ["id11"] = <
+                text = <"Valid period start">
+                description = <"The start of the period. The boundary is inclusive.">
+            >
+            ["id10"] = <
+                text = <"Rank">
+                description = <"Specifies a preferred order in which to use a set of contacts. Contacts are ranked with lower values coming before higher values.">
+            >
+            ["at9"] = <
+                text = <"Mobile">
+                description = <"Mobile contact details.">
+            >
+            ["at8"] = <
+                text = <"Old">
+                description = <"Old contact details.">
+            >
+            ["at7"] = <
+                text = <"Temp">
+                description = <"Temporary contact details.">
+            >
+            ["at6"] = <
+                text = <"Work">
+                description = <"Work contact details.">
+            >
+            ["at5"] = <
+                text = <"Home">
+                description = <"Home contact details.">
+            >
+            ["id4"] = <
+                text = <"Use">
+                description = <"The purpose of the contact point.">
+            >
+            ["id3"] = <
+                text = <"Value">
+                description = <"The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).">
+            >
+            ["id2"] = <
+                text = <"System">
+                description = <"Telecommunications form for contact point - what communications system is required to make use of the contact.">
+            >
+            ["id1"] = <
+                text = <"Telecom">
+                description = <"FHIR telecom details.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at5", "at6", "at7", "at8", "at9">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at13", "at14", "at15", "at16", "at17", "at18", "at19">
+        >
+    >
