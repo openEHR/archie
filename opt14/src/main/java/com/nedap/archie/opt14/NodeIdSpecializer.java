@@ -101,6 +101,9 @@ class NodeIdSpecializer {
                     if(cObjectHasTypeNameChange(cObject, parentCObject)) {
                         createSpecializedObject = true;
                     }
+                    if(cObject instanceof ArchetypeSlot) {
+                        createSpecializedObject = false;//archetype slots cannot be specialized with a new node id!
+                    }
                     if(createSpecializedObject) {
                         String newNodeId = archetype.generateNextSpecializedIdCode(cObject.getNodeId());
                         String oldNodeId = cObject.getNodeId();
@@ -108,7 +111,9 @@ class NodeIdSpecializer {
                         ArchetypeTerminology terminology = cObject.getArchetype().getTerminology();
                         for (String language : terminology.getTermDefinitions().keySet()) {
                             ArchetypeTerm removed = terminology.getTermDefinitions().get(language).remove(oldNodeId);
-                            terminology.getTermDefinitions().get(language).put(newNodeId, removed);
+                            if(removed != null) {
+                                terminology.getTermDefinitions().get(language).put(newNodeId, removed);
+                            }
                         }
                         if(!FlattenerUtil.shouldReplaceSpecializedParent(parentCObject, Lists.newArrayList(cObject), metaModels)) {
                             //this node should not replace its parent, but should just be added. however, the OPT indicates it should
@@ -129,7 +134,7 @@ class NodeIdSpecializer {
             } else {
                 //someone added a new node. It wil have a specialized id already - or it should anyway. let's check!
                 if(AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) != flatParent.specializationDepth() +1) {
-                    throw new RuntimeException("Template added a field with an incorrect specialization depth at " + cObject.getPath());//TODO: remove or add proper message
+                  //todo:   throw new RuntimeException("Template added a field with an incorrect specialization depth at " + cObject.getPath());//TODO: remove or add proper message
                 }
                //
             }

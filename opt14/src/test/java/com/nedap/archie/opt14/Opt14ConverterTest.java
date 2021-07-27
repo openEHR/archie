@@ -80,6 +80,28 @@ public class Opt14ConverterTest {
         repository.addArchetype(parseAdl2("openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls"));
         repository.addArchetype(parseAdl2("openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls"));
         repository.addArchetype(parseAdl2("openEHR-EHR-COMPOSITION.report.v1.0.0.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-SECTION.respect_headings.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.respect_summary.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.2.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.advance_planning_documentation.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.care_preference_uk.v1.0.0.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.care_preference_uk.v1.0.0.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.cpr_decision_uk.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.capacity_respect.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.involvement_respect.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-ACTION.service.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.practitioner_cc.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.practitioner_role_cc.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.name_cc.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2(" openEHR-EHR-CLUSTER.identifier_cc.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.careteam_cc.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.contact_cc.v0.0.1-alpha.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.telecom_cc.v0.0.1-alpha.adls"));
+//        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
+//        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
+//        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
+//        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
         JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         try(InputStream stream = getClass().getResourceAsStream("/RESPECT_NSS-v0.opt")) {

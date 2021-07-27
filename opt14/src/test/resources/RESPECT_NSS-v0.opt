@@ -992,7 +992,7 @@
                                     </children>
                                 </attributes>
                                 <archetype_id>
-                                    <value>openEHR-EHR-EVALUATION.care_preference_uk.v0</value>
+                                    <value>openEHR-EHR-EVALUATION.care_preference_uk.v1</value>
                                 </archetype_id>
                                 <term_definitions code="at0000">
                                     <items id="text">Preferred priorities of care</items>
@@ -7222,7 +7222,7 @@ Work addresses are not typically entered in this property as they are usually ro
     <component_ontologies archetype_id="openEHR-EHR-EVALUATION.advance_planning_documentation.v0"/>
     <component_ontologies archetype_id="openEHR-EHR-CLUSTER.multimedia.v0"/>
     <component_ontologies archetype_id="openEHR-EHR-ADMIN_ENTRY.organ_donation_preferences.v0"/>
-    <component_ontologies archetype_id="openEHR-EHR-EVALUATION.care_preference_uk.v0"/>
+    <component_ontologies archetype_id="openEHR-EHR-EVALUATION.care_preference_uk.v1"/>
     <component_ontologies archetype_id="openEHR-EHR-EVALUATION.recommendation.v1"/>
     <component_ontologies archetype_id="openEHR-EHR-EVALUATION.cpr_decision_uk.v0"/>
     <component_ontologies archetype_id="openEHR-EHR-ADMIN_ENTRY.capacity_respect.v0"/>
