@@ -9,11 +9,7 @@ import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +19,7 @@ import java.util.Objects;
  * in some kind of persistence framework. But it can be useful for transferring information
  * Created by pieter.bos on 08/07/16.
  */
-@XmlRootElement(name = "EHR")
+@XmlRootElement(name="EHR")
 @XmlType(name = "EHR", propOrder = {
         "systemId",
         "ehrId",
@@ -38,15 +34,15 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Ehr extends RMObject {
 
-    @XmlElement(name = "system_id")
+    @XmlElement(name="system_id")
     private HierObjectId systemId;
-    @XmlElement(name = "ehr_id")
+    @XmlElement(name="ehr_id")
     private HierObjectId ehrId;
 
     private List<ObjectRef<? extends ObjectId>> contributions = new ArrayList<>();
-    @XmlElement(name = "ehr_status")
+    @XmlElement(name="ehr_status")
     private ObjectRef<?> ehrStatus;
-    @XmlElement(name = "ehr_access")
+    @XmlElement(name="ehr_access")
     private ObjectRef<?> ehrAccess;
     @Nullable
     private List<ObjectRef<? extends ObjectId>> compositions = new ArrayList<>();
@@ -57,7 +53,7 @@ public class Ehr extends RMObject {
     @Nullable
     private List<ObjectRef<? extends ObjectId>> folders = new ArrayList<>();
 
-    @XmlElement(name = "time_created")
+    @XmlElement(name="time_created")
     private DvDateTime timeCreated;
 
     public Ehr() {

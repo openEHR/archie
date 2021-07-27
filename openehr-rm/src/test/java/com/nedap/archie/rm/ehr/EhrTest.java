@@ -21,8 +21,16 @@ public class EhrTest {
         Ehr expected = new Ehr();
 
         List<ObjectRef<?>> contributions = new ArrayList<>();
-        contributions.add(new ObjectRef<>(new HierObjectId("value"), "namespace", "type"));
+        contributions.add(new ObjectRef<>(new HierObjectId("contribution_value"), "contribution_namespace", "contribution_type"));
         expected.setContributions(contributions);
+
+        List<ObjectRef<?>> compositions = new ArrayList<>();
+        compositions.add(new ObjectRef<>(new HierObjectId("composition_value"), "composition_namespace", "composition_type"));
+        expected.setCompositions(compositions);
+
+        List<ObjectRef<?>> folders = new ArrayList<>();
+        folders.add(new ObjectRef<>(new HierObjectId("folder_value"), "folder_namespace", "folder_type"));
+        expected.setFolders(folders);
 
         StringWriter sw = new StringWriter();
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());

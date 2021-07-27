@@ -1,10 +1,6 @@
 package com.nedap.archie.rm.directory;
 
-import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.archetyped.FeederAudit;
-import com.nedap.archie.rm.archetyped.Link;
-import com.nedap.archie.rm.archetyped.Locatable;
-import com.nedap.archie.rm.archetyped.Pathable;
+import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.ObjectId;
@@ -38,7 +34,7 @@ public class Folder extends Locatable {
     private List<Folder> folders = new ArrayList<>();
 
     @Nullable
-    @XmlElement(name = "details")
+    @XmlElement(name="details")
     private ItemStructure details;
 
     public Folder() {
@@ -112,7 +108,7 @@ public class Folder extends Locatable {
         return Objects.hash(super.hashCode(), items, folders, details);
     }
 
-    @Invariant(value = "Folders_valid", ignored = true)
+    @Invariant(value="Folders_valid", ignored = true)
     public boolean foldersValid() {
         return InvariantUtil.nullOrNotEmpty(folders);
     }
