@@ -3,6 +3,7 @@ package com.nedap.archie.rm.ehr;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.HierObjectId;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rmutil.InvariantUtil;
@@ -38,19 +39,19 @@ public class Ehr extends RMObject {
     @XmlElement(name="ehr_id")
     private HierObjectId ehrId;
 
-    private List<ObjectRef<?>> contributions = new ArrayList<>();
+    private List<ObjectRef<? extends ObjectId>> contributions = new ArrayList<>();
     @XmlElement(name="ehr_status")
     private ObjectRef<?> ehrStatus;
     @XmlElement(name="ehr_access")
     private ObjectRef<?> ehrAccess;
     @Nullable
-    private List<ObjectRef<?>> compositions = new ArrayList<>();
+    private List<ObjectRef<? extends ObjectId>> compositions = new ArrayList<>();
 
     @Nullable
     private ObjectRef<?> directory;
 
     @Nullable
-    private List<ObjectRef<?>> folders = new ArrayList<>();
+    private List<ObjectRef<? extends ObjectId>> folders = new ArrayList<>();
 
     @XmlElement(name="time_created")
     private DvDateTime timeCreated;
@@ -58,7 +59,7 @@ public class Ehr extends RMObject {
     public Ehr() {
     }
 
-    public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef<?>> contributions, ObjectRef<?> ehrStatus, ObjectRef<?> ehrAccess, @Nullable ObjectRef<?> directory, @Nullable List<ObjectRef<?>> compositions) {
+    public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef<? extends ObjectId>> contributions, ObjectRef<?> ehrStatus, ObjectRef<?> ehrAccess, @Nullable ObjectRef<?> directory, @Nullable List<ObjectRef<?>> compositions) {
         this.systemId = systemId;
         this.ehrId = ehrId;
         this.contributions = contributions;
@@ -86,15 +87,15 @@ public class Ehr extends RMObject {
     }
 
     @Nullable
-    public List<ObjectRef<?>> getContributions() {
+    public List<ObjectRef<? extends ObjectId>> getContributions() {
         return contributions;
     }
 
-    public void setContributions(@Nullable List<ObjectRef<?>> contributions) {
+    public void setContributions(@Nullable List<ObjectRef<? extends ObjectId>> contributions) {
         this.contributions = contributions;
     }
 
-    public void addContribution(ObjectRef<?> contribution) {
+    public void addContribution(ObjectRef<? extends ObjectId> contribution) {
         this.contributions.add(contribution);
     }
 
@@ -115,15 +116,15 @@ public class Ehr extends RMObject {
     }
 
     @Nullable
-    public List<ObjectRef<?>> getCompositions() {
+    public List<ObjectRef<? extends ObjectId>> getCompositions() {
         return compositions;
     }
 
-    public void setCompositions(@Nullable List<ObjectRef<?>> compositions) {
+    public void setCompositions(@Nullable List<ObjectRef<? extends ObjectId>> compositions) {
         this.compositions = compositions;
     }
 
-    public void addComposition(ObjectRef<?> composition) {
+    public void addComposition(ObjectRef<? extends ObjectId> composition) {
         this.compositions.add(composition);
     }
 
@@ -145,11 +146,11 @@ public class Ehr extends RMObject {
     }
 
     @Nullable
-    public List<ObjectRef<?>> getFolders() {
+    public List<ObjectRef<? extends ObjectId>> getFolders() {
         return folders;
     }
 
-    public void setFolders(@Nullable List<ObjectRef<?>> folders) {
+    public void setFolders(@Nullable List<ObjectRef<? extends ObjectId>> folders) {
         this.folders = folders;
     }
 
