@@ -79,6 +79,7 @@ public class Opt14ConverterTest {
         repository.addArchetype(parseAdl2("openEHR-EHR-ACTION.procedure.v1.4.1.adls"));
         repository.addArchetype(parseAdl2("openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls"));
         repository.addArchetype(parseAdl2("openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls"));
+        repository.addArchetype(parseAdl2("openEHR-EHR-COMPOSITION.report.v1.0.0.adls"));
         JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         try(InputStream stream = getClass().getResourceAsStream("/RESPECT_NSS-v0.opt")) {

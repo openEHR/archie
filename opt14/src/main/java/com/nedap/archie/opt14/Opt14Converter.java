@@ -52,7 +52,7 @@ public class Opt14Converter {
             new DefinitionConverter().convert(opt2, opt14, config);
 
             new TConstraintApplier().apply(opt14, opt2);
-            System.out.println(ADLArchetypeSerializer.serialize(opt2, null, new ArchieRMObjectMapperProvider()));
+            //System.out.println(ADLArchetypeSerializer.serialize(opt2, null, new ArchieRMObjectMapperProvider()));
 
             Template template = new Template();
             template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-" + opt14.getDefinition().getRmTypeName() + "." + opt14.getTemplateId().getValue() + ".v1.0.0"));

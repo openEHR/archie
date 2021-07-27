@@ -27,6 +27,9 @@ class RepoFlatArchetypeProvider implements FlatArchetypeProvider {
             return flattenedArchetype;
         }
         Archetype archetype = repo.getArchetype(id);
+        if(archetype == null) {
+            return null;
+        }
         try {
             flattenedArchetype = new Flattener(repo, metaModels).flatten(archetype);
             flatArchetypes.put(flattenedArchetype.getArchetypeId(), flattenedArchetype);

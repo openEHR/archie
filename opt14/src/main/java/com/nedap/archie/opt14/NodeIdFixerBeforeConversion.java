@@ -28,6 +28,9 @@ class NodeIdFixerBeforeConversion {
         this.archetype = archetype;
         if(archetype.getParentArchetypeId() != null) {
             this.flatParent = repo.getFlatArchetype(archetype.getParentArchetypeId());
+            if(flatParent == null) {
+                throw new RuntimeException("could not find archetype with id " + archetype.getParentArchetypeId());
+            }
         }
         fixRootNodeId(archetype);
         //fixNodeId(archetype.getDefinition());
@@ -39,6 +42,9 @@ class NodeIdFixerBeforeConversion {
                 this.archetype = overlay;
                 if(archetype.getParentArchetypeId() != null) {
                     this.flatParent = repo.getFlatArchetype(overlay.getParentArchetypeId());
+                    if(flatParent == null) {
+                        throw new RuntimeException("could not find archetype with id " + overlay.getParentArchetypeId());
+                    }
                 }
                 fixRootNodeId(overlay);
                 //fixNodeId(overlay.getDefinition());

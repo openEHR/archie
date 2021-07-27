@@ -73,57 +73,6 @@ class BaseTypesConverter {
         return TerminologyCode.createFromString(definingCode.getTerminologyId().getValue(), null, definingCode.getCodeString());
     }
 
-    public static DvCodedText convert(DVCODEDTEXT symbol) {
-        if(symbol == null) {
-            return null;
-        }
-        DvCodedText codedText = new DvCodedText();
-        if(symbol.getDefiningCode() != null) {
-            CodePhrase codePhrase = convertToCodePhrase(symbol.getDefiningCode());
-            codedText.setDefiningCode(codePhrase);
-        }
-        codedText.setEncoding(convertToCodePhrase(symbol.getEncoding()));
-        codedText.setFormatting(symbol.getFormatting());
-        codedText.setHyperlink(convert(symbol.getHyperlink()));
-        codedText.setLanguage(convertToCodePhrase(symbol.getLanguage()));
-        codedText.setMappings(convert(symbol.getMappings()));
-        codedText.setValue(symbol.getValue());
-
-        return codedText;
-    }
-
-    public static DvText convert(DVTEXT text) {
-        if(text == null) {
-            return null;
-        }
-        DvText convertedText = new DvText();
-        convertedText.setEncoding(convertToCodePhrase(text.getEncoding()));
-        convertedText.setFormatting(text.getFormatting());
-        convertedText.setHyperlink(convert(text.getHyperlink()));
-        convertedText.setLanguage(convertToCodePhrase(text.getLanguage()));
-        convertedText.setMappings(convert(text.getMappings()));
-        convertedText.setValue(text.getValue());
-        return convertedText;
-    }
-
-    public static List<TermMapping> convert(List<TERMMAPPING> mappings14) {
-        if(mappings14 == null) {
-            return null;
-        }
-        List<TermMapping> mappings = new ArrayList<>();
-        for(TERMMAPPING mapping14:mappings14) {
-            TermMapping mapping = new TermMapping(convertToCodePhrase(mapping14.getTarget()),
-                    mapping14.getMatch() == null || mapping14.getMatch().isEmpty() ? null : mapping14.getMatch().charAt(0),
-                    convert(mapping14.getPurpose()));
-            mappings.add(mapping);
-        }
-        return mappings;
-    }
-
-    public static DvURI convert(DVURI hyperlink) {
-        return hyperlink == null ? null : new DvURI(hyperlink.getValue());
-    }
-
     public static CodePhrase convertToCodePhrase(CODEPHRASE codePhrase) {
         if(codePhrase == null) {
             return null;
