@@ -3,6 +3,7 @@ package com.nedap.archie.rm.changecontrol;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.generic.AuditDetails;
 import com.nedap.archie.rm.support.identification.HierObjectId;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -24,13 +25,13 @@ import java.util.Objects;
 public class Contribution extends RMObject {
 
     private HierObjectId uid;
-    private List<ObjectRef<?>> versions = new ArrayList<>();
+    private List<ObjectRef<? extends ObjectId>> versions = new ArrayList<>();
     private AuditDetails audit;
 
     public Contribution() {
     }
 
-    public Contribution(HierObjectId uid, List<ObjectRef<?>> versions, AuditDetails audit) {
+    public Contribution(HierObjectId uid, List<ObjectRef<? extends ObjectId>> versions, AuditDetails audit) {
         this.uid = uid;
         this.versions = versions;
         this.audit = audit;
@@ -44,11 +45,11 @@ public class Contribution extends RMObject {
         this.uid = uid;
     }
 
-    public List<ObjectRef<?>> getVersions() {
+    public List<ObjectRef<? extends ObjectId>> getVersions() {
         return versions;
     }
 
-    public void setVersions(List<ObjectRef<?>> versions) {
+    public void setVersions(List<ObjectRef<? extends ObjectId>> versions) {
         this.versions = versions;
     }
 

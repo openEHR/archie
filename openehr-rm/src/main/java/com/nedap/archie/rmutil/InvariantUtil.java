@@ -3,6 +3,7 @@ package com.nedap.archie.rmutil;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
 import com.nedap.archie.terminology.TermCode;
@@ -61,7 +62,7 @@ public class InvariantUtil {
         return true;
     }
 
-    public static boolean objectRefTypeEquals(List<ObjectRef<?>> refs, String type) {
+    public static boolean objectRefTypeEquals(List<ObjectRef<? extends ObjectId>> refs, String type) {
         if(refs == null) {
             return true;
         }
