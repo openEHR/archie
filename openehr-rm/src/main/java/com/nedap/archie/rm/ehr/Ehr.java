@@ -41,14 +41,14 @@ public class Ehr extends RMObject {
 
     private List<ObjectRef<? extends ObjectId>> contributions = new ArrayList<>();
     @XmlElement(name="ehr_status")
-    private ObjectRef<?> ehrStatus;
+    private ObjectRef<? extends ObjectId> ehrStatus;
     @XmlElement(name="ehr_access")
-    private ObjectRef<?> ehrAccess;
+    private ObjectRef<? extends ObjectId> ehrAccess;
     @Nullable
     private List<ObjectRef<? extends ObjectId>> compositions = new ArrayList<>();
 
     @Nullable
-    private ObjectRef<?> directory;
+    private ObjectRef<? extends ObjectId> directory;
 
     @Nullable
     private List<ObjectRef<? extends ObjectId>> folders = new ArrayList<>();
@@ -59,7 +59,7 @@ public class Ehr extends RMObject {
     public Ehr() {
     }
 
-    public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef<? extends ObjectId>> contributions, ObjectRef<?> ehrStatus, ObjectRef<?> ehrAccess, @Nullable ObjectRef<?> directory, @Nullable List<ObjectRef<?>> compositions) {
+    public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef<? extends ObjectId>> contributions, ObjectRef<? extends ObjectId> ehrStatus, ObjectRef<? extends ObjectId> ehrAccess, @Nullable ObjectRef<? extends ObjectId> directory, @Nullable List<ObjectRef<? extends ObjectId>> compositions) {
         this.systemId = systemId;
         this.ehrId = ehrId;
         this.contributions = contributions;
@@ -99,19 +99,19 @@ public class Ehr extends RMObject {
         this.contributions.add(contribution);
     }
 
-    public ObjectRef<?> getEhrStatus() {
+    public ObjectRef<? extends ObjectId> getEhrStatus() {
         return ehrStatus;
     }
 
-    public void setEhrStatus(ObjectRef<?> ehrStatus) {
+    public void setEhrStatus(ObjectRef<? extends ObjectId> ehrStatus) {
         this.ehrStatus = ehrStatus;
     }
 
-    public ObjectRef<?> getEhrAccess() {
+    public ObjectRef<? extends ObjectId> getEhrAccess() {
         return ehrAccess;
     }
 
-    public void setEhrAccess(ObjectRef<?> ehrAccess) {
+    public void setEhrAccess(ObjectRef<? extends ObjectId> ehrAccess) {
         this.ehrAccess = ehrAccess;
     }
 
@@ -129,11 +129,11 @@ public class Ehr extends RMObject {
     }
 
     @Nullable
-    public ObjectRef<?> getDirectory() {
+    public ObjectRef<? extends ObjectId> getDirectory() {
         return directory;
     }
 
-    public void setDirectory(@Nullable ObjectRef<?> directory) {
+    public void setDirectory(@Nullable ObjectRef<? extends ObjectId> directory) {
         this.directory = directory;
     }
 

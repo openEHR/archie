@@ -19,6 +19,9 @@ public class EhrTest {
     @Test
     public void testJsonSerialization() throws IOException {
         Ehr expected = new Ehr();
+        expected.setEhrStatus(new ObjectRef<>(new HierObjectId("ehr_status_value"), "ehr_status_namespace", "ehr_status_type"));
+        expected.setEhrAccess(new ObjectRef<>(new HierObjectId("ehr_access_value"), "ehr_access_namespace", "ehr_access_type"));
+        expected.setDirectory(new ObjectRef<>(new HierObjectId("directory_value"), "directory_namespace", "directory_type"));
 
         List<ObjectRef<?>> contributions = new ArrayList<>();
         contributions.add(new ObjectRef<>(new HierObjectId("contribution_value"), "contribution_namespace", "contribution_type"));
