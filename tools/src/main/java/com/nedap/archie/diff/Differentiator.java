@@ -37,6 +37,7 @@ public class Differentiator {
         new ConstraintDifferentiator(constraintImposer, flatParent).removeUnspecializedConstraints(result, flatParent);
 
         new DifferentialPathGenerator().replace(result);
+        //TODO: when converting OPT 1.4, add specialized nodes here whenever text/description is changed from parent!
         new TerminologyDifferentiator().differentiate(result);
 
         new DefaultRmStructureRemover(metaModels, false).removeRMDefaults(result);
