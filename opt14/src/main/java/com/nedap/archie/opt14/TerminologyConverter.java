@@ -2,7 +2,10 @@ package com.nedap.archie.opt14;
 
 import com.nedap.archie.adl14.ADL14ConversionConfiguration;
 import com.nedap.archie.adl14.ADL14ConversionUtil;
+import com.nedap.archie.adl14.aom14.ArchetypeOntology;
+import com.nedap.archie.adl14.aom14.ConstraintBindingsList;
 import com.nedap.archie.adl14.aom14.TermBindingsList;
+import com.nedap.archie.adl14.aom14.TermCodeList;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
@@ -17,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.nedap.archie.opt14.schema.*;
+import com.nedap.archie.rm.support.identification.TerminologyId;
 
 class TerminologyConverter {
 
@@ -49,17 +53,13 @@ class TerminologyConverter {
             }
         }
         for(ARCHETYPETERM term14:definition.getTermDefinitions()) {
-            ArchetypeTerm term = new ArchetypeTerm();
-            term.setCode(term14.getCode());
-            for(StringDictionaryItem item:term14.getItems()) {
-                term.put(item.getId(), item.getValue());
-            }
+            ArchetypeTerm term = convertArchetypeTerm(term14);
             terms.put(term14.getCode(), term);
         }
         return terminology;
     }
 
-    public static void convertComponentOntologies(OPERATIONALTEMPLATE opt14, OperationalTemplate opt2, ADL14ConversionConfiguration config) {
+    public static void convertOntologies(OPERATIONALTEMPLATE opt14, OperationalTemplate opt2, ADL14ConversionConfiguration config) {
         if(opt14.getOntology() != null) {
             ArchetypeTerminology terminology2 = opt2.getTerminology();
             if(terminology2 == null) {
@@ -117,12 +117,55 @@ class TerminologyConverter {
             }
 
             for(ARCHETYPETERM term14:definitionSet14.getItems()) {
-                ArchetypeTerm term = new ArchetypeTerm();
-                term.setCode(term14.getCode());
-                for (StringDictionaryItem item : term14.getItems()) {
-                    term.put(item.getId(), item.getValue());
-                }
+                ArchetypeTerm term = convertArchetypeTerm(term14);
                 terms.put(term14.getCode(), term);
+            }
+        }
+        ADL14ConversionUtil conversionUtil = new ADL14ConversionUtil(config);
+        convertConstraintBindings(flatarchetypeontology, terminology2, conversionUtil);
+        convertConstraintDefinitions(flatarchetypeontology, terminology2);
+    }
+
+    private static ArchetypeTerm convertArchetypeTerm(ARCHETYPETERM term14) {
+        ArchetypeTerm term = new ArchetypeTerm();
+        term.setCode(term14.getCode());
+        for (StringDictionaryItem item : term14.getItems()) {
+            term.put(item.getId(), item.getValue());
+        }
+        return term;
+    }
+
+    private static void convertConstraintDefinitions(FLATARCHETYPEONTOLOGY ontology, ArchetypeTerminology terminology) {
+        if(ontology.getConstraintDefinitions() != null) {
+            for(CodeDefinitionSet constraintDefinitions:ontology.getConstraintDefinitions()) {
+                String language = constraintDefinitions.getLanguage();
+                if(terminology.getTermDefinitions().get(language) == null) {
+                    terminology.getTermDefinitions().put(language, new LinkedHashMap<>());
+                }
+                for(ARCHETYPETERM term:constraintDefinitions.getItems()) {
+                    ArchetypeTerm archetypeTerm = convertArchetypeTerm(term);
+                    terminology.getTermDefinitions().get(language).put(term.getCode(), archetypeTerm);
+                }
+            }
+        }
+    }
+
+    private static void convertConstraintBindings(FLATARCHETYPEONTOLOGY ontology, ArchetypeTerminology terminology, ADL14ConversionUtil conversionUtil) {
+        if(ontology.getConstraintBindings() != null) {
+            for(ConstraintBindingSet constraintBinding:ontology.getConstraintBindings()) {
+                ensureTermBindingKeyExists(terminology, constraintBinding.getTerminology());
+                for(CONSTRAINTBINDINGITEM item14:constraintBinding.getItems()) {
+                    Map<String, URI> termBindings = terminology.getTermBindings().get(constraintBinding.getTerminology());
+                    try {
+                        URI newBindingValue = conversionUtil.convertToUri(TerminologyCode.createFromString(
+                                constraintBinding.getTerminology(),
+                                null,
+                                item14.getValue()));
+                        termBindings.put(item14.getCode(), newBindingValue);
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
