@@ -60,6 +60,14 @@ class TerminologyConverter {
     }
 
     public static void convertComponentOntologies(OPERATIONALTEMPLATE opt14, OperationalTemplate opt2, ADL14ConversionConfiguration config) {
+        if(opt14.getOntology() != null) {
+            ArchetypeTerminology terminology2 = opt2.getTerminology();
+            if(terminology2 == null) {
+                terminology2 = new ArchetypeTerminology();
+                opt2.setTerminology(terminology2);
+            }
+            convertFlatTerminology(opt14, config, opt14.getOntology(), terminology2);
+        }
         List<FLATARCHETYPEONTOLOGY> componentOntologies = opt14.getComponentOntologies();
         if(componentOntologies != null) {
             for(FLATARCHETYPEONTOLOGY flatarchetypeontology:componentOntologies) {
@@ -68,49 +76,53 @@ class TerminologyConverter {
                     terminology2 = new ArchetypeTerminology();
                     opt2.getComponentTerminologies().put(flatarchetypeontology.getArchetypeId(), terminology2);
                 }
-                if(flatarchetypeontology.getTermBindings() != null) {
-                    ADL14ConversionUtil conversionUtil = new ADL14ConversionUtil(config);
-                    for(TermBindingSet bindings14:flatarchetypeontology.getTermBindings()) {
+                convertFlatTerminology(opt14, config, flatarchetypeontology, terminology2);
+            }
+        }
+    }
 
-                        ensureTermBindingKeyExists(terminology2, bindings14.getTerminology());
-                        Map<String, URI> newBindings = terminology2.getTermBindings().get(bindings14.getTerminology());
+    private static void convertFlatTerminology(OPERATIONALTEMPLATE opt14, ADL14ConversionConfiguration config, FLATARCHETYPEONTOLOGY flatarchetypeontology, ArchetypeTerminology terminology2) {
+        if(flatarchetypeontology.getTermBindings() != null) {
+            ADL14ConversionUtil conversionUtil = new ADL14ConversionUtil(config);
+            for(TermBindingSet bindings14:flatarchetypeontology.getTermBindings()) {
 
-                        for(TERMBINDINGITEM item14:bindings14.getItems()) {
-                            try {
-                                URI newBindingValue = conversionUtil.convertToUri(BaseTypesConverter.convert(item14.getValue()));
-                                newBindings.put(item14.getCode(), newBindingValue);
-                                //So this is an old path, will be converted later
-                                //not inside te parser, obviously
-                                //URIs need to be converted to even fit into the new model
-                            } catch (URISyntaxException e) {
-                                //TODO: add to conversion notes/messages/warnings
-                                //logger.warn("error converting term binding to URI", e);
-                            }
+                ensureTermBindingKeyExists(terminology2, bindings14.getTerminology());
+                Map<String, URI> newBindings = terminology2.getTermBindings().get(bindings14.getTerminology());
 
-                        }
+                for(TERMBINDINGITEM item14:bindings14.getItems()) {
+                    try {
+                        URI newBindingValue = conversionUtil.convertToUri(BaseTypesConverter.convert(item14.getValue()));
+                        newBindings.put(item14.getCode(), newBindingValue);
+                        //So this is an old path, will be converted later
+                        //not inside te parser, obviously
+                        //URIs need to be converted to even fit into the new model
+                    } catch (URISyntaxException e) {
+                        //TODO: add to conversion notes/messages/warnings
+                        //logger.warn("error converting term binding to URI", e);
                     }
+
                 }
-                for(CodeDefinitionSet definitionSet14:flatarchetypeontology.getTermDefinitions()) {
-                    String language = definitionSet14.getLanguage();
-                    if(language == null) {
-                        language = opt14.getLanguage().getCodeString();
-                    }
+            }
+        }
+        for(CodeDefinitionSet definitionSet14:flatarchetypeontology.getTermDefinitions()) {
+            String language = definitionSet14.getLanguage();
+            if(language == null) {
+                language = opt14.getLanguage().getCodeString();
+            }
 
-                    Map<String, ArchetypeTerm> terms = terminology2.getTermDefinitions().get(language);
-                    if(terms == null) {
-                        terms = new LinkedHashMap<>();
-                        terminology2.getTermDefinitions().put(language, terms);
-                    }
+            Map<String, ArchetypeTerm> terms = terminology2.getTermDefinitions().get(language);
+            if(terms == null) {
+                terms = new LinkedHashMap<>();
+                terminology2.getTermDefinitions().put(language, terms);
+            }
 
-                    for(ARCHETYPETERM term14:definitionSet14.getItems()) {
-                        ArchetypeTerm term = new ArchetypeTerm();
-                        term.setCode(term14.getCode());
-                        for (StringDictionaryItem item : term14.getItems()) {
-                            term.put(item.getId(), item.getValue());
-                        }
-                        terms.put(term14.getCode(), term);
-                    }
+            for(ARCHETYPETERM term14:definitionSet14.getItems()) {
+                ArchetypeTerm term = new ArchetypeTerm();
+                term.setCode(term14.getCode());
+                for (StringDictionaryItem item : term14.getItems()) {
+                    term.put(item.getId(), item.getValue());
                 }
+                terms.put(term14.getCode(), term);
             }
         }
     }
