@@ -48,6 +48,7 @@ public class Opt14Converter {
             }
             DescriptionConverter.convert(opt14, opt2);
             new DefinitionConverter().convert(opt2, opt14, config);
+            TerminologyConverter.convertComponentOntologies(opt14, opt2, config);
 
             new TConstraintApplier().apply(opt14, opt2);
             //System.out.println(ADLArchetypeSerializer.serialize(opt2, null, new ArchieRMObjectMapperProvider()));
