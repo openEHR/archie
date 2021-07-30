@@ -1,0 +1,322 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=02b49d5d-22ee-45eb-be87-80866ecb5dbb; build_uid=87ccfa0a-57f8-4345-9da5-f3a7d334939d)
+    openEHR-EHR-EVALUATION.cpr_decision_uk.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"freshEHR, UK">
+        ["email"] = <"ian@freshehr.com">
+        ["date"] = <"2013-10-11">
+    >
+    original_namespace = <"uk.org.clinicalmodels">
+    original_publisher = <"UK Clinical Models">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"uk.org.apperta">
+    custodian_organisation = <"Appeet Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    ip_acknowledgements = <
+        ["1"] = <"This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyrighted material of the International Health Terminology Standards Development Organisation (IHTSDO). Where an implementation of this artefact makes use of SNOMED CT content, the implementer must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomedct or info@snomed.org.">
+    >
+    references = <
+        ["1"] = <"Information Standards Board ISB Data Dictionary Available at http://www.datadictionary.nhs.uk/">
+        ["2"] = <"End of Life Care Co-ordination: Core Content Standard Specification Available at http://www.isb.nhs.uk/documents/isb-1580/amd-29-2012/index_html">
+        ["3"] = <"NHS Scotland Key Information Summary">
+        ["4"] = <"Leeds ePaccs team">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"E37E04B211256676D357F175E28E71C6">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the outcome of a clinical decision as to whether cardio-pulmonary resuscitation should be undertaken or not. This is generally referred to in UK clinical guidance as the CPR (Cardio-pulmonary resuscitation) decision.
+
+    This archetype is closely aligned with with the UK Information Standards Board (ISB) standard covering Core Content.">
+            keywords = <"DNACPR", "resuscitation", "EoL", "directive", "preference">
+            use = <"If cardiac or respiratory arrest is an expected part of the dying process and it is the opinion of the senior responsible clinician that attempted cardiopulmonary resuscitation would be unsuccessful or the outcome would be unacceptably burdensome for the person, the making and recording of this clinician’s opinion and recommendation for future management should a cardiopulmonary arrest occur, may be made. These are ‘Do not attempt cardiopulmonary resuscitation’ (DNACPR) orders.
+
+    Some patients with capacity to make their own decision may refuse attempted cardio pulmonary resuscitation in advance. These decisions have to be registered as part of an advance decision to refuse treatment (ADRT).">
+            misuse = <"This archetype should not be used to convey the results of other advanced directives, patient preferences or resusciation activity *e.g. suction) which falls short of full cardio-pulminary resuscitation.">
+            copyright = <"© Apperta Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- CPR decision
+        data matches {
+            ITEM_TREE[id2] matches {    -- Tree
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- CPR decision
+                        value matches {
+                            DV_CODED_TEXT[id9006] matches {
+                                defining_code matches {[ac9016]}    -- CPR decision (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Date of CPR decision
+                        value matches {
+                            DV_DATE_TIME[id9007]
+                        }
+                    }
+                    ELEMENT[id29] occurrences matches {0..1} matches {    -- Details for Modified CPR child only
+                        value matches {
+                            DV_TEXT[id9017]
+                        }
+                    }
+                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Patient awareness of decision
+                        value matches {
+                            DV_CODED_TEXT[id9008] matches {
+                                defining_code matches {[ac9001]}    -- Patient awareness of decision (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Informal carer awareness of decision
+                        value matches {
+                            DV_CODED_TEXT[id9009] matches {
+                                defining_code matches {[ac9002]}    -- Informal carer awareness of decision (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            DV_TEXT[id9010]
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id11] matches {    -- Tree
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id18] occurrences matches {0..1} matches {    -- CPR form completed
+                        value matches {
+                            DV_CODED_TEXT[id9011] matches {
+                                defining_code matches {[ac9017]}    -- CPR form completed (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id14] occurrences matches {0..1} matches {    -- Discussion with patient
+                        value matches {
+                            DV_CODED_TEXT[id9012] matches {
+                                defining_code matches {[ac9004]}    -- Discussion with patient (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Discussion with informal carer
+                        value matches {
+                            DV_CODED_TEXT[id9013] matches {
+                                defining_code matches {[ac9005]}    -- Discussion with informal carer (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id12] occurrences matches {0..1} matches {    -- Location of CPR documentation
+                        value matches {
+                            DV_TEXT[id9014]
+                            DV_URI[id9015]
+                        }
+                    }
+                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Date for review of CPR decision
+                        value matches {
+                            DV_DATE_TIME[id9016] matches {
+                                value
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9016"] = <
+                text = <"CPR decision (synthesised)">
+                description = <"The advance recommendation as to whether cardiopulmonary resuscitation (CPR) should be attempted. In some cases a clear answer may not be available to the recording clinician. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Patient awareness of decision (synthesised)">
+                description = <"Is the patient aware of the CPR decision? (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Informal carer awareness of decision (synthesised)">
+                description = <"Is the informal carer, or carers, aware of the CPR decision? (synthesised)">
+            >
+            ["ac9017"] = <
+                text = <"CPR form completed (synthesised)">
+                description = <"Has the physical CPR form been completed? (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Discussion with patient (synthesised)">
+                description = <"Has resuscitation been discussed with  the patient? (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Discussion with informal carer (synthesised)">
+                description = <"Has resuscitation been discussed with  the patient's informal carer or carers? (synthesised)">
+            >
+            ["at30"] = <
+                text = <"CPR form status unknown">
+                description = <"The completion status of the CPR form is not known.">
+            >
+            ["id29"] = <
+                text = <"Details for Modified CPR child only">
+                description = <"Narrative description of modification where modified CPR for child only has been selected.">
+            >
+            ["at28"] = <
+                text = <"For modified CPR child only">
+                description = <"Modified CPR is recommended for child only.">
+            >
+            ["at27"] = <
+                text = <"Informal carer aware of CPR decision">
+                description = <"The informal carer is aware of the do not attempt cardiopulmonary resucitation decision.">
+            >
+            ["at26"] = <
+                text = <"Informal carer not aware of CPR decision">
+                description = <"The informal carer is not aware of the do not attempt cardiopulmonary resuscitation clinical decision.">
+            >
+            ["at25"] = <
+                text = <"Resuscitation not discussed with informal carer">
+                description = <"Resuscitation has not been discussed with the patient's informal carer or carers.">
+            >
+            ["at24"] = <
+                text = <"Resucitation not discussed with patient">
+                description = <"Resuscitation has not been discussed with the patient.">
+            >
+            ["at23"] = <
+                text = <"CPR decision status unknown">
+                description = <"There is no clear information on the outcome of the CPR decision.">
+            >
+            ["id22"] = <
+                text = <"Comment">
+                description = <"Other narrative comment pertinent to the CPR decision.">
+            >
+            ["at20"] = <
+                text = <"CPR form not completed">
+                description = <"The physical CPR form has not been completed.">
+            >
+            ["at19"] = <
+                text = <"CPR form completed">
+                description = <"The physical CPR form has been completed.">
+            >
+            ["id18"] = <
+                text = <"CPR form completed">
+                description = <"Has the physical CPR form been completed?">
+            >
+            ["at17"] = <
+                text = <"Resuscitation discussed with patient">
+                description = <"Resuscitation has been discussed with the patient.">
+            >
+            ["at16"] = <
+                text = <"Resuscitation discussed with informal carer">
+                description = <"Resuscitation has been discussed with the patient's informal carer.">
+            >
+            ["id15"] = <
+                text = <"Discussion with informal carer">
+                description = <"Has resuscitation been discussed with  the patient's informal carer or carers?">
+            >
+            ["id14"] = <
+                text = <"Discussion with patient">
+                description = <"Has resuscitation been discussed with  the patient?">
+            >
+            ["id13"] = <
+                text = <"Informal carer awareness of decision">
+                description = <"Is the informal carer, or carers, aware of the CPR decision?">
+            >
+            ["id12"] = <
+                text = <"Location of CPR documentation">
+                description = <"The location of the original CPR document, either a text description or an electronic link.">
+            >
+            ["id11"] = <
+                text = <"Tree">
+                description = <"@ internal @">
+            >
+            ["id10"] = <
+                text = <"Date for review of CPR decision">
+                description = <"The date at which the CPR decision should be reviewed.">
+            >
+            ["at9"] = <
+                text = <"Patient aware of CPR decision">
+                description = <"The patient is aware of the cardiopulmonary resucitation decision.">
+            >
+            ["at8"] = <
+                text = <"Patient not aware of CPR decision">
+                description = <"The patient is not aware of the cardiopulmonary resuscitation decision.">
+            >
+            ["id7"] = <
+                text = <"Patient awareness of decision">
+                description = <"Is the patient aware of the CPR decision?">
+            >
+            ["at6"] = <
+                text = <"CPR attempts not recommended adult or child.">
+                description = <"Cardiopulmonary resuscitation is not recommended for adult or child.">
+            >
+            ["at5"] = <
+                text = <"CPR attempts recommended adult or child">
+                description = <"Cardio-pulmonary resuscitation is recommended for adult or child.">
+            >
+            ["id4"] = <
+                text = <"CPR decision">
+                description = <"The advance recommendation as to whether cardiopulmonary resuscitation (CPR) should be attempted. In some cases a clear answer may not be available to the recording clinician.">
+            >
+            ["id3"] = <
+                text = <"Date of CPR decision">
+                description = <"The date at which the CPR decision was originally taken or last reviewed.">
+            >
+            ["id2"] = <
+                text = <"Tree">
+                description = <"@ internal @">
+            >
+            ["id1"] = <
+                text = <"CPR decision">
+                description = <"The advance recommendation as to whether cardio-pulmonary resuscitation should be undertaken or not. This is generally referred to in UK clinical guidance as the CPR (Cardio-pulmonary resuscitation) decision.">
+            >
+        >
+    >
+    term_bindings = <
+        ["RCD99"] = <
+            ["at5"] = <http://RCD99.org/id/1R00.>
+            ["at6"] = <http://RCD99.org/id/1R10.>
+            ["at23"] = <http://RCD99.org/id/9NgV.>
+        >
+        ["SNOMED-CT"] = <
+            ["at5"] = <http://snomed.info/id/450475007>
+            ["at6"] = <http://snomed.info/id/450476008>
+            ["at23"] = <http://snomed.info/id/845151000000104>
+        >
+        ["READ2"] = <
+            ["at5"] = <http://READ2.org/id/1R0..>
+            ["at6"] = <http://READ2.org/id/1R1..>
+            ["at16"] = <http://READ2.org/id/67P1.>
+            ["at17"] = <http://READ2.org/id/67P0.>
+            ["at23"] = <http://READ2.org/id/9NgV.>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at26", "at27">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at8", "at9">
+        >
+        ["ac9017"] = <
+            id = <"ac9017">
+            members = <"at19", "at20", "at30">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at16", "at25">
+        >
+        ["ac9016"] = <
+            id = <"ac9016">
+            members = <"at5", "at6", "at23", "at28">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at17", "at24">
+        >
+    >
