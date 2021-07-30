@@ -47,8 +47,6 @@ public class Opt14Converter {
                 opt2.setUid(opt14.getUid().getValue());
             }
             DescriptionConverter.convert(opt14, opt2);
-
-
             new DefinitionConverter().convert(opt2, opt14, config);
 
             new TConstraintApplier().apply(opt14, opt2);
@@ -59,6 +57,7 @@ public class Opt14Converter {
             template.setControlled(opt14.isIsControlled());
             template.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
             template.setTerminology(opt2.getTerminology());
+            AnnotationsConverter.convertAnnotations(opt14, opt2);
             if(opt14.getUid() != null) {
                 template.setUid(opt14.getUid().getValue());
             }

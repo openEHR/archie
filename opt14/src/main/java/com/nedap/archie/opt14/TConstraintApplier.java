@@ -54,6 +54,10 @@ class TConstraintApplier {
                             System.out.println(obj);
                             setDefaultValue(obj, attributeName, target);
                         }
+                        if(tcomplexobject.getOccurrences() != null && obj instanceof CComplexObject) {
+                            ((CComplexObject) obj).setOccurrences(BaseTypesConverter.convertMultiplicity(tcomplexobject.getOccurrences()));
+
+                        }
                     }
                 }
 
