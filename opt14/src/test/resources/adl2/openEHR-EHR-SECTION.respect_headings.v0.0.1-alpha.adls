@@ -1,0 +1,88 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=2dc7a3b9-54ad-46e2-a51d-0fd7783ac0ae; build_uid=6f6456c0-39da-4d31-aec2-f1ef2c3d1804)
+    openEHR-EHR-SECTION.respect_headings.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard Franke">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2017-12-11">
+    >
+    original_namespace = <"uk.org.clinicalmodels">
+    original_publisher = <"UK Clinical Models">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"uk.org.clinicalmodels">
+    custodian_organisation = <"UK Clinical Models">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Hildegard Franke, freshEHR Clinical Informatics Ltd.<hildi@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"2E0AA632D4E2F4960CA7B1F13AE680C9">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To provide an overall heading for the recording of details of ReSPECT process.">
+            use = <"Use as an overall heading for the recording of details of ReSPECT process.">
+            misuse = <"">
+            copyright = <"© Clinical Models UK">
+        >
+    >
+
+definition
+    SECTION[id1] matches {    -- ReSPECT headings
+        items cardinality matches {1..*; unordered} matches {
+            SECTION[id2] occurrences matches {0..1}     -- 2. Shared understanding
+            SECTION[id7] occurrences matches {0..1}     -- 3. What matters to me
+            SECTION[id8] occurrences matches {0..1}     -- 4. Clinical recommendations
+            SECTION[id9] occurrences matches {0..1}     -- 5. Capacity for involvement
+            SECTION[id10] occurrences matches {0..1}     -- 6. Involvement in making plan
+            SECTION[id11] occurrences matches {0..1}     -- 7. Clinician signatures
+            SECTION[id12] occurrences matches {0..1}     -- 8. Emergency contacts
+            SECTION[id13] occurrences matches {0..1}     -- 9. Review of Plan
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id13"] = <
+                text = <"9. Review of Plan">
+                description = <"Details of review dates and clinician for the confirmation of validity (e.g. for change of condition).">
+            >
+            ["id12"] = <
+                text = <"8. Emergency contacts">
+                description = <"Details of emergency contacts for ReSPECT plan.">
+            >
+            ["id11"] = <
+                text = <"7. Clinician signatures">
+                description = <"Details of clinicians involved in making ReSPECT plan.">
+            >
+            ["id10"] = <
+                text = <"6. Involvement in making plan">
+                description = <"Details of those involved and discussions in making the ReSPECT plan.">
+            >
+            ["id9"] = <
+                text = <"5. Capacity for involvement">
+                description = <"Details of capacity and representation at the time of completion of the ReSPECT form.">
+            >
+            ["id8"] = <
+                text = <"4. Clinical recommendations">
+                description = <"Summary of clinical recommendations for emergency care and treatment.">
+            >
+            ["id7"] = <
+                text = <"3. What matters to me">
+                description = <"Details of personal preferences to guide this ReSPECT plan (where the person has capacity).">
+            >
+            ["id2"] = <
+                text = <"2. Shared understanding">
+                description = <"Heading containing summary of relevant information for the ReSPECT process.">
+            >
+            ["id1"] = <
+                text = <"ReSPECT headings">
+                description = <"Top level heading for capturing details of ReSPECT process.">
+            >
+        >
+    >
