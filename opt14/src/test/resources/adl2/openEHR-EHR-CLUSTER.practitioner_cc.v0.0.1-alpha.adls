@@ -1,0 +1,149 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=a56d5316-3dde-4147-8495-9eff0c2ca3f3; build_uid=932dfe49-96f0-4a26-880a-c098e0fa0f9f)
+    openEHR-EHR-CLUSTER.practitioner_cc.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2018-07-20">
+    >
+    original_namespace = <"uk.org.clinicalmodels">
+    original_publisher = <"Apperta UK">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"uk.org.clinicalmodels">
+    custodian_organisation = <"Apperta UK">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1 cited 20-Jul-2018.">
+    >
+    other_details = <
+        ["current_contact"] = <"Hildegard McNicoll, freshEHR Clinical Informatics Ltd.<hildi@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"2FB296613CB5B886894CF7DD572C9D76">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For the recording of practitioner details aligned with corresponding FHIR resource.">
+            use = <"Use to record practitioner information in line with the corresponding FHIR resource.
+
+    The slots for name, telecom and address should be filled with the appropriate FHIR resource-aligned cluster archetypes.">
+            misuse = <"Do not use for recording non-clinical contact information. Use the CLUSTER.fhir_contact for that purpose.">
+            copyright = <"© Apperta Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Practitioner
+        items cardinality matches {1..*; unordered} matches {
+            allow_archetype CLUSTER[id26] matches {     -- Identifier
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_identifier(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+            ELEMENT[id16] occurrences matches {0..1} matches {    -- Active
+                value matches {
+                    DV_BOOLEAN[id9001]
+                }
+            }
+            allow_archetype CLUSTER[id17] matches {     -- Name
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_name(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+            allow_archetype CLUSTER[id18] matches {     -- Telecom
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_telecom(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+            allow_archetype CLUSTER[id19] matches {     -- Address
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_address(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+            ELEMENT[id20] occurrences matches {0..1} matches {    -- Gender
+                value matches {
+                    DV_CODED_TEXT[id9002] matches {
+                        defining_code matches {[ac9000]}    -- Gender (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id25] occurrences matches {0..1} matches {    -- Birthdate
+                value matches {
+                    DV_DATE_TIME[id9003]
+                }
+            }
+            allow_archetype CLUSTER[id27] matches {     -- Practitioner role
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_practitioner_role(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Gender (synthesised)">
+                description = <"Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes. (synthesised)">
+            >
+            ["id27"] = <
+                text = <"Practitioner role">
+                description = <"The role fulfilled by the practitioner.">
+            >
+            ["id26"] = <
+                text = <"Identifier">
+                description = <"Identifier details for the practitioner.">
+            >
+            ["id25"] = <
+                text = <"Birthdate">
+                description = <"The date on which the practitioner was born.">
+            >
+            ["at24"] = <
+                text = <"Unknown">
+                description = <"The practitioner gender is unknown.">
+            >
+            ["at23"] = <
+                text = <"Other">
+                description = <"The practitioner gender is other.">
+            >
+            ["at22"] = <
+                text = <"Female">
+                description = <"The practitioner gender is female.">
+            >
+            ["at21"] = <
+                text = <"Male">
+                description = <"The practitioner gender is male.">
+            >
+            ["id20"] = <
+                text = <"Gender">
+                description = <"Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.">
+            >
+            ["id19"] = <
+                text = <"Address">
+                description = <"Address(es) of the practitioner that are not role specific (typically home address).
+    Work addresses are not typically entered in this property as they are usually role dependent.">
+            >
+            ["id18"] = <
+                text = <"Telecom">
+                description = <"A contact detail for the practitioner, e.g. a telephone number or an email address.">
+            >
+            ["id17"] = <
+                text = <"Name">
+                description = <"The name(s) associated with the practitioner.">
+            >
+            ["id16"] = <
+                text = <"Active">
+                description = <"Whether this practitioner's record is in active use.">
+            >
+            ["id1"] = <
+                text = <"Practitioner">
+                description = <"Practitioner details aligned with FHIR resource.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at21", "at22", "at23", "at24">
+        >
+    >

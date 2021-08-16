@@ -5,15 +5,7 @@ import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.log.ConvertedCodeResult;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeHRID;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
@@ -102,8 +94,25 @@ public class ADL14NodeIDConverter {
         generateMissingNodeIds(archetype.getDefinition());
 
         convertTermDefinitions(archetype, convertedCodes);
+        convertAnnotations(archetype);
         previousConversionApplier.removeCreatedUnusedTermCodesAndValueSets();
         return new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
+    }
+
+    private void convertAnnotations(Archetype archetype) {
+        ResourceAnnotations converted = new ResourceAnnotations();
+        converted.setDocumentation(new LinkedHashMap<>());
+        if(archetype.getAnnotations() != null && archetype.getAnnotations().getDocumentation() != null) {
+            for(String language:archetype.getAnnotations().getDocumentation().keySet()) {
+                Map<String, Map<String, String>> convertedLanguageMap = new LinkedHashMap<>();
+                converted.getDocumentation().put(language, convertedLanguageMap);
+                Map<String, Map<String, String>> documentationMap = archetype.getAnnotations().getDocumentation().get(language);
+                for(String path:documentationMap.keySet()) {
+                    convertedLanguageMap.put(convertPath(path), documentationMap.get(path));
+                }
+            }
+        }
+        archetype.setAnnotations(converted);
     }
 
     private void correctItemsCardinality(CObject cObject) {
@@ -203,7 +212,6 @@ public class ADL14NodeIDConverter {
     }
 
     private void generateMissingNodeIds(CObject cObject) {
-
         if(!(cObject instanceof CPrimitiveObject) && cObject.getNodeId() == null) {
             String path = cObject.getPath();
             if(archetype.getParentArchetypeId() != null && flatParentArchetype != null) {

@@ -1,0 +1,148 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=a8594499-79c1-4d66-a030-21f6d42b6bdf; build_uid=60f561e8-a7bf-485a-b7cd-9fb45e0261fc)
+    openEHR-EHR-CLUSTER.practitioner_role_cc.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2018-07-20">
+    >
+    original_namespace = <"uk.org.clinicalmodels">
+    original_publisher = <"Apperta UK">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"uk.org.clinicalmodels">
+    custodian_organisation = <"Apperta UK">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1 cited 20-Jul-2018.">
+    >
+    other_details = <
+        ["current_contact"] = <"Hildegard McNicoll, freshEHR Clinical Informatics Ltd.<hildi@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"54DF385596D351E03EE2ED3C226D2834">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For the recording of practitioner role details aligned with corresponding FHIR resource.">
+            use = <"Use to record practitioner role details aligned with the corresponding FHIR resources.
+
+    This cluster archetype is intended to be used inside FHIR resource aligned archetypes such as CLUSTER.fhir_practitioner.v0.">
+            misuse = <"">
+            copyright = <"© Apperta Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Practitioner role
+        items cardinality matches {1..*; unordered} matches {
+            allow_archetype CLUSTER[id2] matches {     -- Identifier
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_identifier(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Active
+                value matches {
+                    DV_BOOLEAN[id9000]
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Valid period start
+                value matches {
+                    DV_DATE_TIME[id9001]
+                }
+            }
+            ELEMENT[id5] occurrences matches {0..1} matches {    -- Valid period end
+                value matches {
+                    DV_DATE_TIME[id9002]
+                }
+            }
+            allow_archetype CLUSTER[id6] matches {     -- Practitioner
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_practitioner(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+            allow_archetype CLUSTER[id7] matches {     -- Organisation
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_organisation(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+            ELEMENT[id8] matches {    -- Role
+                value matches {
+                    DV_TEXT[id9003]
+                }
+            }
+            ELEMENT[id9] matches {    -- Specialty
+                value matches {
+                    DV_TEXT[id9004]
+                }
+            }
+            ELEMENT[id10] matches {    -- Location
+                value matches {
+                    DV_TEXT[id9005]
+                }
+            }
+            ELEMENT[id11] occurrences matches {0..1} matches {    -- Healthcare service
+                value matches {
+                    DV_TEXT[id9006]
+                }
+            }
+            allow_archetype CLUSTER[id12] matches {     -- Telecom
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.fhir_telecom(-[a-zA-Z0-9_]+)*\.v0.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id12"] = <
+                text = <"Telecom">
+                description = <"Contact details that are specific to the role/location/service.">
+            >
+            ["id11"] = <
+                text = <"Healthcare service">
+                description = <"The list of healthcare services that this worker provides for this role's Organization/Location(s).">
+            >
+            ["id10"] = <
+                text = <"Location">
+                description = <"The location(s) at which this practitioner provides care.">
+            >
+            ["id9"] = <
+                text = <"Specialty">
+                description = <"Specific specialty or specialties of the practitioner.">
+            >
+            ["id8"] = <
+                text = <"Role">
+                description = <"Roles which this practitioner may perform.">
+            >
+            ["id7"] = <
+                text = <"Organisation">
+                description = <"Organisation where the roles are fulfilled.">
+            >
+            ["id6"] = <
+                text = <"Practitioner">
+                description = <"Practitioner that is able to provide the defined services for the organisation.">
+            >
+            ["id5"] = <
+                text = <"Valid period end">
+                description = <"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.">
+            >
+            ["id4"] = <
+                text = <"Valid period start">
+                description = <"The start of the period. The boundary is inclusive.">
+            >
+            ["id3"] = <
+                text = <"Active">
+                description = <"Whether this practitioner's record is in active use.">
+            >
+            ["id2"] = <
+                text = <"Identifier">
+                description = <"Identifier details for the practitioner role.">
+            >
+            ["id1"] = <
+                text = <"Practitioner role">
+                description = <"Practitioner role details aligned with FHIR resource.">
+            >
+        >
+    >
