@@ -6,6 +6,7 @@ import com.nedap.archie.adl14.ADL14Converter;
 import com.nedap.archie.adl14.ADL2ConversionResult;
 import com.nedap.archie.adl14.ADL2ConversionResultList;
 import com.nedap.archie.adl14.OpenEHRADL14ConversionConfiguration;
+import com.nedap.archie.adl14.log.ADL2ConversionRunLog;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
@@ -27,8 +28,12 @@ import com.nedap.archie.opt14.schema.*;
  *
  */
 public class Opt14Converter {
-    
+
     public ADL2ConversionResultList convert(OPERATIONALTEMPLATE opt14, InMemoryFullArchetypeRepository adl2Archetypes) {
+        return convert(opt14, adl2Archetypes, null);
+    }
+
+    public ADL2ConversionResultList convert(OPERATIONALTEMPLATE opt14, InMemoryFullArchetypeRepository adl2Archetypes, ADL2ConversionRunLog previousConversion) {
         try {
             MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
             ADL14ConversionConfiguration config = OpenEHRADL14ConversionConfiguration.getConfig();
@@ -72,7 +77,7 @@ public class Opt14Converter {
 
             ADL14Converter converter = new ADL14Converter(metaModels, config);
             converter.setExistingRepository(adl2Archetypes);
-            ADL2ConversionResultList converted = converter.convert(Lists.newArrayList(template));
+            ADL2ConversionResultList converted = converter.convert(Lists.newArrayList(template), previousConversion);
             ADL2ConversionResult adl2ConversionResult = converted.getConversionResults().get(0);
 
             if(adl2ConversionResult.getArchetype() != null) {

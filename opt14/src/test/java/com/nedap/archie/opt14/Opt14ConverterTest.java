@@ -31,38 +31,10 @@ public class Opt14ConverterTest {
 
     @Test
     public void procedureList() throws Exception {
-        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        repository.addArchetype(parseAdl2("openEHR-EHR-ACTION.procedure.v1.4.1.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls"));
-
-
-        JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        try(InputStream stream = getClass().getResourceAsStream("/procedure_list.opt")) {
-
-            OPERATIONALTEMPLATE opt14 =  ((JAXBElement<OPERATIONALTEMPLATE>) unmarshaller.unmarshal(stream)).getValue();
-            ADL2ConversionResultList convert = new Opt14Converter().convert(opt14, repository);
-            for(ADL2ConversionResult result:convert.getConversionResults()) {
-                if(result.getException() != null) {
-                    result.getException().printStackTrace();
-                }
-            }
-            Template convertedTemplate = (Template) convert.getConversionResults().get(0).getArchetype();
-            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate));
-
-            OperationalTemplate opt2 = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels())
-                    .createOperationalTemplate(true)
-                    .keepLanguages("en")
-                    .flatten(convertedTemplate);
-
-            System.out.println(ADLArchetypeSerializer.serialize(opt2));
-
-            ArchetypeValidator validator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
-            ValidationResult validationResult = validator.validate(convertedTemplate, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
-
-        }
+        testTemplate("/procedure_list.opt",
+                "openEHR-EHR-ACTION.procedure.v1.4.1.adls",
+                "openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls",
+                "openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls");
     }
 
     @Test
@@ -77,6 +49,34 @@ public class Opt14ConverterTest {
                 "openEHR-EHR-OBSERVATION.pulse.v2.0.4.adls",
                 "openEHR-EHR-OBSERVATION.respiration.v2.0.9.adls",
                 "openEHR-EHR-OBSERVATION.pulse_oximetry.v1.1.3.adls");
+    }
+
+    @Test
+    @Ignore
+    public void respectFromRipple() throws Exception {
+        testTemplate("/RESPECT_NSS-v0.opt",
+                "openEHR-EHR-ACTION.procedure.v1.4.1.adls",
+                "openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls",
+                "openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls",
+                "openEHR-EHR-COMPOSITION.report.v1.0.0.adls",
+                "openEHR-EHR-SECTION.respect_headings.v0.0.1-alpha.adls",
+                "openEHR-EHR-ADMIN_ENTRY.respect_summary.v0.0.1-alpha.adls",
+                "openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.2.adls",
+                "openEHR-EHR-EVALUATION.advance_planning_documentation.v0.0.1-alpha.adls",
+                "openEHR-EHR-ADMIN_ENTRY.care_preference_uk.v1.0.0.adls",
+                "openEHR-EHR-EVALUATION.care_preference_uk.v1.0.0.adls",
+                "openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls",
+                "openEHR-EHR-EVALUATION.cpr_decision_uk.v0.0.1-alpha.adls",
+                "openEHR-EHR-ADMIN_ENTRY.capacity_respect.v0.0.1-alpha.adls",
+                "openEHR-EHR-ADMIN_ENTRY.involvement_respect.v0.0.1-alpha.adls",
+                "openEHR-EHR-ACTION.service.v0.0.1-alpha.adls",
+                "openEHR-EHR-CLUSTER.practitioner_cc.v0.0.1-alpha.adls",
+                "openEHR-EHR-CLUSTER.practitioner_role_cc.v0.0.1-alpha.adls",
+                "openEHR-EHR-CLUSTER.name_cc.v0.0.1-alpha.adls",
+                " openEHR-EHR-CLUSTER.identifier_cc.v0.0.1-alpha.adls",
+                "openEHR-EHR-ADMIN_ENTRY.careteam_cc.v0.0.1-alpha.adls",
+                "openEHR-EHR-CLUSTER.contact_cc.v0.0.1-alpha.adls",
+                "openEHR-EHR-CLUSTER.telecom_cc.v0.0.1-alpha.adls");
     }
 
     private ValidationResult testTemplate(String templateFileName, String... sourceArchetypes) throws IOException, ADLParseException, JAXBException {
@@ -124,62 +124,5 @@ public class Opt14ConverterTest {
 
 
 
-    @Test
-    public void respectFromRipple() throws Exception {
-        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        //TODO: the correct archetypes
-        repository.addArchetype(parseAdl2("openEHR-EHR-ACTION.procedure.v1.4.1.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-COMPOSITION.report.v1.0.0.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-SECTION.respect_headings.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.respect_summary.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.2.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.advance_planning_documentation.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.care_preference_uk.v1.0.0.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.care_preference_uk.v1.0.0.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.cpr_decision_uk.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.capacity_respect.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.involvement_respect.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-ACTION.service.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.practitioner_cc.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.practitioner_role_cc.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.name_cc.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2(" openEHR-EHR-CLUSTER.identifier_cc.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-ADMIN_ENTRY.careteam_cc.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.contact_cc.v0.0.1-alpha.adls"));
-        repository.addArchetype(parseAdl2("openEHR-EHR-CLUSTER.telecom_cc.v0.0.1-alpha.adls"));
-//        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
-//        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
-//        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
-//        repository.addArchetype(parseAdl2("openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls"));
-        JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        try(InputStream stream = getClass().getResourceAsStream("/RESPECT_NSS-v0.opt")) {
 
-            OPERATIONALTEMPLATE opt14 =  ((JAXBElement<OPERATIONALTEMPLATE>) unmarshaller.unmarshal(stream)).getValue();
-            ADL2ConversionResultList convert = new Opt14Converter().convert(opt14, repository);
-            for(ADL2ConversionResult result:convert.getConversionResults()) {
-                if(result.getException() != null) {
-                    result.getException().printStackTrace();
-                }
-            }
-            Template convertedTemplate = (Template) convert.getConversionResults().get(0).getArchetype();
-            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate, null, new ArchieRMObjectMapperProvider()));
-
-            OperationalTemplate opt2 = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels())
-                    .createOperationalTemplate(true)
-                    .keepLanguages("en")
-                    .flatten(convertedTemplate);
-
-            System.out.println(ADLArchetypeSerializer.serialize(opt2));
-
-            ArchetypeValidator validator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
-            ValidationResult validationResult = validator.validate(convertedTemplate, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
-
-        }
-
-    }
 }
