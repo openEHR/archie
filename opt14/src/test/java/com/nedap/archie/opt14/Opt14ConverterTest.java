@@ -13,6 +13,7 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.json.ArchieRMObjectMapperProvider;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
