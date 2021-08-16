@@ -70,10 +70,12 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
                 if (rmObjectMapperProvider == null ||
                         (rmObjectMapperProvider.getOutputOdinObjectMapper() == null && rmObjectMapperProvider.getJsonObjectMapper() == null)) {
                     //fallback: serialize generic ODIN. This will likely be non-standard!
-                    builder.append("_default = ");
+                    builder.newline();
+                    builder.append("_default = <");
                     builder.newIndentedLine();
                     builder.odin(cobj.getDefaultValue());
                     builder.newUnindentedLine();
+                    builder.append(">");
                 } else {
                     try {
                         String format;

@@ -1,0 +1,161 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=6f4c3f44-aaed-455b-bc65-716f325ba32d; build_uid=68ccd8fd-6d1a-43e1-b8e9-95873687789d)
+    openEHR-EHR-CLUSTER.name_cc.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2018-07-19">
+    >
+    lifecycle_state = <"in_development">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1 cited 19-Jul-2018.">
+        ["2"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1 cited 19-Jul-2018.">
+    >
+    other_details = <
+        ["current_contact"] = <"Hildegard McNicoll, freshEHR Clinical Informatics Ltd.<hildi@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"837216B3380EEE7CDC8C974E487FE65F">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For the recording of name details aligned with corresponding FHIR resource.">
+            use = <"Use to record name details aligned with the corresponding FHIR resources.
+
+    This cluster archetype is intended to be used inside FHIR resource aligned archetypes such as CLUSTER.fhir_contact.v0 and CLUSTER.fhir_practitioner.v0.">
+            misuse = <"">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Name
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] matches {    -- Use
+                value matches {
+                    DV_CODED_TEXT[id9001] matches {
+                        defining_code matches {[ac9000]}    -- Use (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id10] occurrences matches {0..1} matches {    -- Text
+                value matches {
+                    DV_TEXT[id9002]
+                }
+            }
+            ELEMENT[id11] occurrences matches {0..1} matches {    -- Family
+                value matches {
+                    DV_TEXT[id9003]
+                }
+            }
+            ELEMENT[id12] matches {    -- Given
+                value matches {
+                    DV_TEXT[id9004]
+                }
+            }
+            ELEMENT[id13] matches {    -- Prefix
+                value matches {
+                    DV_TEXT[id9005]
+                }
+            }
+            ELEMENT[id14] matches {    -- Suffix
+                value matches {
+                    DV_TEXT[id9006]
+                }
+            }
+            ELEMENT[id15] occurrences matches {0..1} matches {    -- Valid period start
+                value matches {
+                    DV_DATE_TIME[id9007]
+                }
+            }
+            ELEMENT[id16] occurrences matches {0..1} matches {    -- Valid period end
+                value matches {
+                    DV_DATE_TIME[id9008]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Use (synthesised)">
+                description = <"Identification of the purpose for the name. (synthesised)">
+            >
+            ["id16"] = <
+                text = <"Valid period end">
+                description = <"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.">
+            >
+            ["id15"] = <
+                text = <"Valid period start">
+                description = <"The start of the period. The boundary is inclusive.">
+            >
+            ["id14"] = <
+                text = <"Suffix">
+                description = <"Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.">
+            >
+            ["id13"] = <
+                text = <"Prefix">
+                description = <"Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.">
+            >
+            ["id12"] = <
+                text = <"Given">
+                description = <"Given name, not always first and includes middle name(s).">
+            >
+            ["id11"] = <
+                text = <"Family">
+                description = <"Family name or surname.">
+            >
+            ["id10"] = <
+                text = <"Text">
+                description = <"A text representation of the full name.">
+            >
+            ["at9"] = <
+                text = <"Maiden">
+                description = <"The maiden name.">
+            >
+            ["at8"] = <
+                text = <"Old">
+                description = <"An old name.">
+            >
+            ["at7"] = <
+                text = <"Anonymous">
+                description = <"An anonymous name.">
+            >
+            ["at6"] = <
+                text = <"Nickname">
+                description = <"A nickname.">
+            >
+            ["at5"] = <
+                text = <"Temp">
+                description = <"A temporary name.">
+            >
+            ["at4"] = <
+                text = <"Official">
+                description = <"The official name.">
+            >
+            ["at3"] = <
+                text = <"Usual">
+                description = <"The usual name.">
+            >
+            ["id2"] = <
+                text = <"Use">
+                description = <"Identification of the purpose for the name.">
+            >
+            ["id1"] = <
+                text = <"Name">
+                description = <"Name details aligned with FHIR resource.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at3", "at4", "at5", "at6", "at7", "at8", "at9">
+        >
+    >
