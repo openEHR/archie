@@ -18,6 +18,7 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,6 +65,55 @@ public class Opt14ConverterTest {
         }
     }
 
+    @Test
+    public void vitalSigns() throws Exception {
+        ValidationResult result = testTemplate("/vital_signs.opt",
+                "openEHR-EHR-COMPOSITION.encounter.v1.0.7.adls",
+                "openEHR-EHR-OBSERVATION.body_temperature.v2.1.2.adls",
+                "openEHR-EHR-OBSERVATION.blood_pressure.v2.0.8.adls",
+                "openEHR-EHR-OBSERVATION.body_mass_index.v2.0.6.adls",
+                "openEHR-EHR-OBSERVATION.height.v2.0.8.adls",
+                "openEHR-EHR-OBSERVATION.body_weight.v2.1.6.adls",
+                "openEHR-EHR-OBSERVATION.pulse.v2.0.4.adls",
+                "openEHR-EHR-OBSERVATION.respiration.v2.0.9.adls",
+                "openEHR-EHR-OBSERVATION.pulse_oximetry.v1.1.3.adls");
+    }
+
+    private ValidationResult testTemplate(String templateFileName, String... sourceArchetypes) throws IOException, ADLParseException, JAXBException {
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        for(String sourcefile:sourceArchetypes) {
+            repository.addArchetype(parseAdl2(sourcefile));
+        }
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        try(InputStream stream = getClass().getResourceAsStream(templateFileName)) {
+
+            OPERATIONALTEMPLATE opt14 =  ((JAXBElement<OPERATIONALTEMPLATE>) unmarshaller.unmarshal(stream)).getValue();
+            ADL2ConversionResultList convert = new Opt14Converter().convert(opt14, repository);
+            for(ADL2ConversionResult result:convert.getConversionResults()) {
+                if(result.getException() != null) {
+                    result.getException().printStackTrace();
+                }
+            }
+            Template convertedTemplate = (Template) convert.getConversionResults().get(0).getArchetype();
+            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate));
+
+            OperationalTemplate opt2 = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels())
+                    .createOperationalTemplate(true)
+                    .keepLanguages("en")
+                    .flatten(convertedTemplate);
+
+            System.out.println(ADLArchetypeSerializer.serialize(opt2));
+
+            ArchetypeValidator validator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validationResult = validator.validate(convertedTemplate, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
+            return validationResult;
+        }
+    }
+
+
     public Archetype parseAdl2(String resource) throws IOException, ADLParseException {
         try(InputStream stream = getClass().getResourceAsStream("/adl2/" + resource)) {
             ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
@@ -71,6 +121,8 @@ public class Opt14ConverterTest {
             return archetype;
         }
     }
+
+
 
     @Test
     public void respectFromRipple() throws Exception {
