@@ -1,0 +1,120 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=603a87fc-4f35-488c-95b6-495e463a2f37; build_uid=e8394e36-24ab-46a7-8b94-32b9579b44dc)
+    openEHR-EHR-CLUSTER.identifier_cc.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2018-07-20">
+    >
+    original_namespace = <"uk.org.clinicalmodels">
+    original_publisher = <"Apperta UK">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"uk.org.clinicalmodels">
+    custodian_organisation = <"Apperta UK">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1 cited 20-Jul-2018.">
+        ["2"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1 cited 20-Jul-2018.">
+        ["3"] = <"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1 cited 20-Jul-2018.">
+        ["4"] = <"https://www.hl7.org/fhir/careteam.html cited 20-Jul-2018.">
+    >
+    other_details = <
+        ["current_contact"] = <"Hildegard McNicoll, freshEHR Clinical Informatics Ltd.<hildi@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"A4C278B59C4D855C741CA3E0C21E9011">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For the recording of identifier details aligned with corresponding FHIR resource or data types.">
+            use = <"Use to record identifier details aligned with the corresponding FHIR resources or data types.
+
+    This cluster archetype is intended to be used inside the Identifier slot in any FHIR resource-aligned archetypes. These may be clusters themselves or entry archetypes.">
+            misuse = <"">
+            copyright = <"© Apperta Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Identifier
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Value
+                value matches {
+                    DV_IDENTIFIER[id9001]
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Use
+                value matches {
+                    DV_CODED_TEXT[id9002] matches {
+                        defining_code matches {[ac9000]}    -- Use (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id8] occurrences matches {0..1} matches {    -- Valid period start
+                value matches {
+                    DV_DATE_TIME[id9003]
+                }
+            }
+            ELEMENT[id9] occurrences matches {0..1} matches {    -- Valid period end
+                value matches {
+                    DV_DATE_TIME[id9004]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Use (synthesised)">
+                description = <"The purpose of the identifier. (synthesised)">
+            >
+            ["id9"] = <
+                text = <"Valid period end">
+                description = <"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.">
+            >
+            ["id8"] = <
+                text = <"Valid period start">
+                description = <"The start of the period. The boundary is inclusive.">
+            >
+            ["at7"] = <
+                text = <"Secondary">
+                description = <"A secondary identifier.">
+            >
+            ["at6"] = <
+                text = <"Temp">
+                description = <"A temporary identifier.">
+            >
+            ["at5"] = <
+                text = <"Official">
+                description = <"The official identifier.">
+            >
+            ["at4"] = <
+                text = <"Usual">
+                description = <"The usual identifier.">
+            >
+            ["id3"] = <
+                text = <"Use">
+                description = <"The purpose of the identifier.">
+            >
+            ["id2"] = <
+                text = <"Value">
+                description = <"The identifier value.">
+            >
+            ["id1"] = <
+                text = <"Identifier">
+                description = <"Identifier details aligned with FHIR resources or data types.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at4", "at5", "at6", "at7">
+        >
+    >

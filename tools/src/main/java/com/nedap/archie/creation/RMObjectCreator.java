@@ -23,9 +23,14 @@ import java.util.Set;
 public class RMObjectCreator {
 
     private final ModelInfoLookup modelInfoLookup;
+    private boolean processRmSpecificConstraints = true;
 
     public RMObjectCreator(ModelInfoLookup lookup) {
         this.modelInfoLookup = lookup;
+    }
+
+    public void setProcessRmSpecificConstraints(boolean processRmSpecificConstraints) {
+        this.processRmSpecificConstraints = processRmSpecificConstraints;
     }
 
     public <T> T create(CObject constraint) {
@@ -36,7 +41,9 @@ public class RMObjectCreator {
         try {
             Object result = clazz.newInstance();
 
-            modelInfoLookup.processCreatedObject(result, constraint);
+            if(processRmSpecificConstraints) {
+                modelInfoLookup.processCreatedObject(result, constraint);
+            }
             return (T) result;
         } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException("error creating class " + constraint.getRmTypeName(), e);
