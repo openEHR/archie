@@ -45,7 +45,7 @@ public class RMQueryContextTest {
 
         RMQueryContext queryContext = getQueryContext();
         assertEquals(Lists.newArrayList(composition.getContext()), queryContext.findList("/context"));
-        DvText text = (DvText) queryContext.findList("/context/other_context/items[name/value = 'Qualification']/items[id5]/value").get(0);
+        DvText text = (DvText) queryContext.findList("/context/other_context/items[openehr:name/openehr:value = 'Qualification']/items[id5]/value").get(0);
         assertNotNull(text);
     }
 
@@ -91,8 +91,10 @@ public class RMQueryContextTest {
 
 
         //and check that retrieving a sub-element also retrieves more than one element
-        List<RMObjectWithPath> values = queryContext.findList("/context/other_context[id2]/items[id3]/items[id5]/value");
+        List<RMObjectWithPath> values = queryContext.findListWithPaths("/context/other_context[id2]/items[id3]/items[id5]/value");
         assertEquals(2, values.size());
+        assertEquals("/context/other_context[id2]/items[id3,1]/items[id5,2]/value", values.get(0).getPath());
+        assertEquals("/context/other_context[id2]/items[id3,2]/items[id5,2]/value", values.get(1).getPath());
     }
 
     @Test

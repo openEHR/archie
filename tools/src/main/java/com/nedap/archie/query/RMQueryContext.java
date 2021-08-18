@@ -12,6 +12,7 @@ import javax.xml.bind.Binder;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.namespace.NamespaceContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,7 +22,9 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * It's done by converting the RM objects into an XML-DOM using JAXB's Binder. XPATH is then evaluated against the DOM.
@@ -57,14 +60,14 @@ public class RMQueryContext {
             this.rootNode = rootNode;
             this.modelInfoLooup = lookup;
             this.binder = jaxbContext.createBinder();
-            domForQueries = createBlankDOMDocument(true);
+            domForQueries = createBlankDOMDocument(false);
 
             binder.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             //Marshall Query object to a blank DOM document.
             //Binder will maintains association between two views.
             binder.marshal( rootNode/*new JAXBElement<Query>(qname, Query.class, query)*/  , domForQueries);
 
-            firstXPathNode = domForQueries.getFirstChild().getNodeName();
+            firstXPathNode = ArchieNamespaceResolver.OPENEHR_NS_PREFIX + ":" + domForQueries.getFirstChild().getNodeName();
 
             //print to stdout
 //            Marshaller marshaller = jaxbContext.createMarshaller();
@@ -100,8 +103,6 @@ public class RMQueryContext {
 
             String convertedQuery = APathToXPathConverter.convertQueryToXPath(query, firstXPathNode);
             XPath xpath = xPathFactory.newXPath();
-
-
             xpath.setNamespaceContext(new ArchieNamespaceResolver(domForQueries));
             NodeList foundNodes = (NodeList) xpath.evaluate(convertedQuery, domForQueries, XPathConstants.NODESET);
 
@@ -123,6 +124,9 @@ public class RMQueryContext {
             //JAXB sometimes has trouble binding primitive values. Looks like a bug in Xerces
             //very annoying. Here's our workaround: lookup the parent node and manually get the correct attribute
             String nodeName = node.getNodeName();
+//            if(nodeName.contains(":")) {
+//                nodeName = nodeName.substring(nodeName.indexOf(":")+1);
+//            }
             //the parent usually can be found easily
             Object parent = binder.getJAXBNode(node.getParentNode());
             if(parent == null) {

@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * Created by pieter.bos on 04/11/15.
  */
-@XmlRootElement(name = "activity", namespace = "http://schemas.openehr.org/v1" )
+@XmlRootElement(name = "activity" )
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ACTIVITY", propOrder = {
         "description",

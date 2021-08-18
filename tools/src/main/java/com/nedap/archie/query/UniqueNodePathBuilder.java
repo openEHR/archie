@@ -24,9 +24,16 @@ public class UniqueNodePathBuilder {
             String archetypeNodeId = Optional.ofNullable(node.getAttributes().getNamedItem("archetype_node_id"))
                 .map(Node::getNodeValue)
                 .orElse(null);
-            String pathSegment = new PathSegment(node.getNodeName(), archetypeNodeId, findNodeIndex(node, parent)).toString();
+            String pathSegment = new PathSegment(removeNameSpace(node.getNodeName()), archetypeNodeId, findNodeIndex(node, parent)).toString();
             return constructPathInner(parent).append(pathSegment);
         }
+    }
+
+    private static String removeNameSpace(String nodeName) {
+        if(nodeName.contains(":")) {
+            return nodeName.substring(nodeName.indexOf(":")+1);
+        }
+        return nodeName;
     }
 
     private static Integer findNodeIndex(Node node, Node parent) {
