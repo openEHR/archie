@@ -1,6 +1,12 @@
 package com.nedap.archie.xml;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.aom.AuthoredResource;
+import com.nedap.archie.aom.LanguageSection;
+import com.nedap.archie.aom.ResourceDescription;
+import com.nedap.archie.aom.ResourceDescriptionItem;
+import com.nedap.archie.aom.TranslationDetails;
+import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.xml.types.XmlResourceDescriptionItem;
@@ -62,6 +68,7 @@ public class JAXBUtil {
     public static synchronized JAXBContext createRMContext() {
         try {
             List<Class<?>> classes = Lists.newArrayList(ArchieRMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
+            removeClasses(classes);
             return JAXBContext.newInstance(classes.toArray(new Class[0]));
         } catch (JAXBException e) {
             throw new RuntimeException(e);//programmer error, tests will fail
@@ -70,9 +77,19 @@ public class JAXBUtil {
 
     private static void removeClasses(List<Class<?>> classes) {
         //remove classes that are adapted to other classes anyway, particularly those using maps
-        classes.remove(ResourceDescription.class);
-        classes.remove(ResourceDescriptionItem.class);
-        classes.remove(LanguageSection.class);
+        removeAllInstances(classes, ResourceDescription.class);
+        removeAllInstances(classes, ResourceDescriptionItem.class);
+        removeAllInstances(classes, LanguageSection.class);
+        removeAllInstances(classes, ArchetypeTerminology.class);
+        removeAllInstances(classes, TranslationDetails.class);
+        removeAllInstances(classes, AuthoredResource.class);
+    }
+
+    private static <T> void removeAllInstances(List<T> something, T instance) {
+        boolean found;
+        do {
+             found = something.remove(instance);
+        } while(found);
     }
 
 }

@@ -214,8 +214,8 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         addClass(Link.class);
         addClass(Archetyped.class);
         addClass(ArchetypeHRID.class);
-       // addClass(AuthoredResource.class);
-       // addClass(TranslationDetails.class);
+        addClass(AuthoredResource.class);
+        addClass(TranslationDetails.class);
     }
 
     @Override

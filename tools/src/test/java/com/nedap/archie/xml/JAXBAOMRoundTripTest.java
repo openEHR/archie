@@ -95,6 +95,7 @@ public class JAXBAOMRoundTripTest {
 
         Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).createOperationalTemplate(true);
         Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
+        operationalTemplate.getOtherMetaData().put("test", "something");
         String xml = marshal(operationalTemplate);
         System.out.println(xml);
 
