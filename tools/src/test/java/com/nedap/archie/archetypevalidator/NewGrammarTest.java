@@ -1,5 +1,6 @@
 package com.nedap.archie.archetypevalidator;
 
+import com.google.common.base.Charsets;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.nedap.archie.adlparser.antlr2.Adl2BaseVisitor;
@@ -10,6 +11,7 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.apache.commons.io.input.BOMInputStream;
 import org.junit.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
@@ -26,7 +28,7 @@ import java.util.regex.Pattern;
 
 import static org.junit.Assert.fail;
 
-public class CkmNewGrammarTest {
+public class NewGrammarTest {
 
     private static final Logger log = LoggerFactory.getLogger(com.nedap.archie.archetypevalidator.BigArchetypeValidatorTest.class);
 
@@ -59,6 +61,7 @@ public class CkmNewGrammarTest {
         //VOKU, being adl attribute uniqueness, is being handled by setting the jackson parser to STRICT_DUPLICATE_CHECKS very well indeed
         archetypeIdsThatShouldHaveParserErrors.add("openEHR-TEST_PKG-ENTRY.VOKU_ac_code_duplicated_in_terminology.v1.0.0");
         archetypeIdsThatShouldHaveParserErrors.add("openEHR-TEST_PKG-ENTRY.VOKU_at_code_duplicated_in_terminology.v1.0.0");
+        archetypeIdsThatShouldHaveParserErrors.add("openehr-TEST_PKG-WHOLE.child_with_uid_and_other_metadata.v1.0.0");
     }
 
 
@@ -83,7 +86,7 @@ public class CkmNewGrammarTest {
                 errorListener.setLogEnabled(true);
 
 
-                Adl2Lexer lexer = new Adl2Lexer(CharStreams.fromStream(stream));
+                Adl2Lexer lexer = new Adl2Lexer(CharStreams.fromStream(new BOMInputStream(stream), Charsets.UTF_8));
                 lexer.addErrorListener(errorListener);
                 Adl2Parser parser = new Adl2Parser(new CommonTokenStream(lexer));
                 parser.addErrorListener(errorListener);

@@ -14,7 +14,7 @@ import cadl2_primitives, odin_values;
 //  ======================= Top-level _objects ========================
 //
 
-statement_block: statement+ EOF ;
+statement_block: statement+ ;
 
 // ------------------------- statements ---------------------------
 statement: declaration | assignment | assertion;
