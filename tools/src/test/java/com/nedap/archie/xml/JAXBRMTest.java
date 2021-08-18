@@ -6,8 +6,10 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.namespace.QName;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.time.Period;
@@ -25,7 +27,8 @@ public class JAXBRMTest {
         StringWriter writer = new StringWriter();
         Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        marshaller.marshal(element, writer);
+        JAXBElement<Element> element1 = new JAXBElement<>(new QName("http://schemas.openehr.org/v1", "element"), Element.class, null, element);
+        marshaller.marshal(element1, writer);
         String xml = writer.toString();
         assertTrue(xml, xml.contains("P10D"));
     }
@@ -46,7 +49,7 @@ public class JAXBRMTest {
     @Test
     public void parseDuration() throws Exception {
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                "<element archetype_node_id=\"id6\" xmlns:ns2=\"http://schemas.openehr.org/v1\">\n" +
+                "<element archetype_node_id=\"id6\" xmlns=\"http://schemas.openehr.org/v1\">\n" +
                 "    <name>\n" +
                 "        <value>duration</value>\n" +
                 "    </name>\n" +
@@ -62,7 +65,7 @@ public class JAXBRMTest {
     @Test
     public void parseNegativeDuration() throws Exception {
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                "<element archetype_node_id=\"id6\" xmlns:ns2=\"http://schemas.openehr.org/v1\">\n" +
+                "<element archetype_node_id=\"id6\" xmlns=\"http://schemas.openehr.org/v1\">\n" +
                 "    <name>\n" +
                 "        <value>duration</value>\n" +
                 "    </name>\n" +
