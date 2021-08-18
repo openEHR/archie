@@ -117,13 +117,26 @@ public class APathToXPathConverter {
         for(int i = 0; i < tree.getChildCount(); i++) {
             ParseTree child = tree.getChild(i);
             if(child instanceof TerminalNode) {
-                boolean shouldAppendSpace = literalsThatShouldHaveSpacing.contains(child.getText().toLowerCase());
-                if(shouldAppendSpace) {
-                    output.append(" ");
+                boolean continueIf = true;
+                if(!inPredicate && child.getText().equals("/")) {
+                    if(i + 1 < tree.getChildCount()) {
+                        if(!tree.getChild(i+1).getText().equals("/")) {
+                            output.append("/");
+                            output.append(ArchieNamespaceResolver.OPENEHR_NS_PREFIX);
+                            output.append(":");
+                            continueIf = false;
+                        }
+                    }
                 }
-                output.append(child.getText());
-                if(shouldAppendSpace) {
-                    output.append(" ");
+                if (continueIf) {
+                    boolean shouldAppendSpace = literalsThatShouldHaveSpacing.contains(child.getText().toLowerCase());
+                    if (shouldAppendSpace) {
+                        output.append(" ");
+                    }
+                    output.append(child.getText());
+                    if (shouldAppendSpace) {
+                        output.append(" ");
+                    }
                 }
             } else if (child instanceof AndExprContext) {
                 for(int j = 0; j < child.getChildCount(); j++) {
@@ -155,7 +168,7 @@ public class APathToXPathConverter {
                     output.append("position() = ");
                     output.append(child.getText());
                 } else if(filterExprContext.primaryExpr().Literal() != null) {
-                    output.append("name/value = ");
+                    output.append("openehr:name/openehr:value = ");
                     output.append(child.getText());
                 } else {
                     writeTree(output, child, inPredicate);

@@ -10,6 +10,7 @@ import com.nedap.archie.xml.types.XmlArchetypeTerminology;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.Map;
 public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminology, ArchetypeTerminology> {
 
     @Override
-    public XmlArchetypeTerminology marshal(ArchetypeTerminology terminology) throws Exception {
+    public XmlArchetypeTerminology marshal(ArchetypeTerminology terminology) {
         if(terminology == null) {
             return null;
         }
@@ -71,7 +72,7 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
     }
 
     @Override
-    public ArchetypeTerminology unmarshal(XmlArchetypeTerminology xmlTerminology) throws Exception {
+    public ArchetypeTerminology unmarshal(XmlArchetypeTerminology xmlTerminology) throws URISyntaxException {
         if(xmlTerminology == null) {
             return null;
         }
@@ -97,7 +98,7 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
         return result;
     }
 
-    private Map<String, Map<String, URI>> convertIntoTermBindingsMap(List<TermBindingSet> termBindings) throws Exception{
+    private Map<String, Map<String, URI>> convertIntoTermBindingsMap(List<TermBindingSet> termBindings) throws URISyntaxException {
         Map<String, Map<String, URI>> result = new LinkedHashMap<>();
         for(TermBindingSet set:termBindings) {
             Map<String, URI> termMap = StringDictionaryUtil.convertStringDictionaryListToUriMap(set.getItems());
