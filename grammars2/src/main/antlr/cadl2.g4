@@ -32,7 +32,9 @@ c_regular_object:
     | c_regular_primitive_object
     ;
 
-c_archetype_root: SYM_USE_ARCHETYPE rm_type_id '[' ID_CODE ',' ARCHETYPE_REF ']' c_occurrences? ;
+c_archetype_root: SYM_USE_ARCHETYPE rm_type_id '[' ID_CODE ',' archetype_ref ']' c_occurrences? ;
+
+archetype_ref : ARCHETYPE_HRID | ARCHETYPE_REF ;
 
 c_complex_object_proxy: SYM_USE_NODE rm_type_id '[' ID_CODE ']' c_occurrences? ADL_PATH ;
 

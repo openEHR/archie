@@ -27,7 +27,7 @@ fragment ADL_ABSOLUTE_PATH : ('/' ADL_PATH_SEGMENT)+;
 fragment ADL_RELATIVE_PATH : ADL_PATH_SEGMENT ('/' ADL_PATH_SEGMENT)+;
 
 fragment ADL_PATH_SEGMENT      : ALPHA_LC_ID ('[' ADL_PATH_ATTRIBUTE ']')?;
-fragment ADL_PATH_ATTRIBUTE    : ID_CODE | STRING | INTEGER | ARCHETYPE_REF;
+fragment ADL_PATH_ATTRIBUTE    : ID_CODE | STRING | INTEGER | ARCHETYPE_REF | ARCHETYPE_HRID;
 
 
 // ---------- ISO8601-based date/time/duration constraint patterns
