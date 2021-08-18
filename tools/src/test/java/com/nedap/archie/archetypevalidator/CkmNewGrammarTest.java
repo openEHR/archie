@@ -92,7 +92,10 @@ public class CkmNewGrammarTest {
                 Adl2Visitor visitor = new Adl2BaseVisitor() {
                     @Override
                     public Object visitArchetypeHrid(Adl2Parser.ArchetypeHridContext ctx) {
-                        archetypeId[0] = ctx.getText();
+                        if(archetypeId[0] == null) {
+                            //hack: only do this for the first one, to not find template overlays
+                            archetypeId[0] = ctx.getText();
+                        }
                         return visitChildren(ctx);
                     }
                 };
