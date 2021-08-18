@@ -51,12 +51,14 @@ fragment SECOND_PATTERN : 'ss' | 'SS' | '??' | 'XX' | 'xx'  ;
 // logical form - REGEX: '/' ( '\\/' | ~'/' )+ '/' | '^' ( '\\^' | ~'^' )+ '^';
 // The following is used to ensure REGEXes don't get mixed up with paths, which use '/' chars
 
-SLASH_REGEX: '/' SLASH_REGEX_CHAR+ '/';
-fragment SLASH_REGEX_CHAR: ~[/\n\r] | ESCAPE_SEQ | '\\/';
+//a
+// regexp can only exist between {}. It can optionally have an assumed value, by adding ;"value"
+CONTAINED_REGEXP: '{'WS* (SLASH_REGEXP | CARET_REGEXP) WS* (';' WS* STRING)? WS* '}';
+fragment SLASH_REGEXP: '/' SLASH_REGEXP_CHAR+ '/';
+fragment SLASH_REGEXP_CHAR: ~[/\n\r] | ESCAPE_SEQ | '\\/';
 
-CARET_REGEX: '^' CARET_REGEX_CHAR+ '^';
-fragment CARET_REGEX_CHAR: ~[^\n\r] | ESCAPE_SEQ | '\\^';
-
+fragment CARET_REGEXP: '^' CARET_REGEXP_CHAR+ '^';
+fragment CARET_REGEXP_CHAR: ~[^\n\r] | ESCAPE_SEQ | '\\^';
 
 // ---------- various ADL2 codes -------
 

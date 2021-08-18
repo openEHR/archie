@@ -46,8 +46,7 @@ c_duration: ( DURATION_CONSTRAINT_PATTERN ( '/' ( duration_interval_value | dura
     ;
 assumed_duration_value: ';' duration_value ;
 
-c_string: ( string_value | string_list_value | regex_constraint ) assumed_string_value? ;
-regex_constraint: SLASH_REGEX | CARET_REGEX ;
+c_string: ( string_value | string_list_value ) assumed_string_value? ;
 assumed_string_value: ';' string_value ;
 
 // ADL2 term types: [ac3], [ac3; at5], [at5]

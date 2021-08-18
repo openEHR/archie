@@ -52,11 +52,13 @@ c_regular_primitive_object: rm_type_id '[' ID_CODE ']' c_occurrences? ( SYM_MATC
 // We match regexes here, even though technically they are C_STRING instances. This is because the only
 // workable solution to match a regex unambiguously appears to be to match with enclosing {}, which means
 // as a C_OBJECT alternative, not as a C_STRING.
-c_attribute: (ADL_PATH | rm_attribute_id) c_existence? c_cardinality? ( SYM_MATCHES '{' c_objects '}' )? ;
+c_attribute: (ADL_PATH | rm_attribute_id) c_existence? c_cardinality? ( SYM_MATCHES ( '{' c_objects '}' | CONTAINED_REGEXP) )? ;
 
 c_attribute_tuple : '[' rm_attribute_id ( ',' rm_attribute_id )* ']' SYM_MATCHES '{' c_primitive_tuple ( ',' c_primitive_tuple )* '}' ;
 
-c_primitive_tuple : '[' '{' c_inline_primitive_object '}' ( ',' '{' c_inline_primitive_object '}' )* ']' ;
+c_primitive_tuple : '[' c_primitive_tuple_item ( ',' c_primitive_tuple_item )* ']' ;
+
+c_primitive_tuple_item: '{' c_inline_primitive_object '}' | CONTAINED_REGEXP;
 
 c_includes : SYM_INCLUDE assertion+ ;
 c_excludes : SYM_EXCLUDE assertion+ ;
