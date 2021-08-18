@@ -11,6 +11,7 @@ import java.util.Iterator;
  */
 class ArchieNamespaceResolver implements NamespaceContext {
 
+    public static final String OPENEHR_NS_PREFIX = "openehr";
     private final Document document;
 
     public ArchieNamespaceResolver(Document document) {
@@ -20,12 +21,17 @@ class ArchieNamespaceResolver implements NamespaceContext {
     public String getNamespaceURI(String prefix) {
         if (prefix.equals(XMLConstants.DEFAULT_NS_PREFIX)) {
             return document.lookupNamespaceURI(null);
+        } else if(prefix.equals(OPENEHR_NS_PREFIX)) {
+            return "http://schemas.openehr.org/v1";
         } else {
             return document.lookupNamespaceURI(prefix);
         }
     }
 
     public String getPrefix(String namespaceURI) {
+        if(namespaceURI.equalsIgnoreCase("http://schemas.openehr.org/v1")) {
+            return OPENEHR_NS_PREFIX;
+        }
         return document.lookupPrefix(namespaceURI);
     }
 

@@ -81,7 +81,7 @@ public class JAXBRMTest {
     @Test
     public void parseNegativePeriodDuration() throws Exception {
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                "<element archetype_node_id=\"id6\" xmlns:ns2=\"http://schemas.openehr.org/v1\">\n" +
+                "<element archetype_node_id=\"id6\" xmlns=\"http://schemas.openehr.org/v1\">\n" +
                 "    <name>\n" +
                 "        <value>duration</value>\n" +
                 "    </name>\n" +

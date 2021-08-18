@@ -67,7 +67,7 @@ public class RMQueryContext {
             //Binder will maintains association between two views.
             binder.marshal( rootNode/*new JAXBElement<Query>(qname, Query.class, query)*/  , domForQueries);
 
-            firstXPathNode = domForQueries.getFirstChild().getNodeName();
+            firstXPathNode = ArchieNamespaceResolver.OPENEHR_NS_PREFIX + ":" + domForQueries.getFirstChild().getNodeName();
 
             //print to stdout
 //            Marshaller marshaller = jaxbContext.createMarshaller();
@@ -124,6 +124,9 @@ public class RMQueryContext {
             //JAXB sometimes has trouble binding primitive values. Looks like a bug in Xerces
             //very annoying. Here's our workaround: lookup the parent node and manually get the correct attribute
             String nodeName = node.getNodeName();
+//            if(nodeName.contains(":")) {
+//                nodeName = nodeName.substring(nodeName.indexOf(":")+1);
+//            }
             //the parent usually can be found easily
             Object parent = binder.getJAXBNode(node.getParentNode());
             if(parent == null) {
