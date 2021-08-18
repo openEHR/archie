@@ -30,7 +30,7 @@ object_block :
     | object_reference_block
     ;
 
-object_value_block : ( '(' rm_type_id ')' )? '<' ( primitive_object | attr_vals? | keyed_object* ) '>' ;
+object_value_block : ( '(' rm_type_id ')' )? '<' ( primitive_object | attr_vals? | keyed_object* ) '>' | EMBEDDED_URI;
 
 keyed_object : '[' key_id ']' '=' object_block ;
 
