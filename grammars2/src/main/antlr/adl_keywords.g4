@@ -41,15 +41,14 @@ SYM_CLOSED      : [Cc][Ll][Oo][Ss][Ee][Dd] ;
 SYM_DEFAULT     : '_' [Dd] [Ee] [Ff] [Aa] [Uu] [Ll] [Tt] ;
 
 SYM_THEN     : [Tt][Hh][Ee][Nn] ;
-SYM_AND      : [Aa][Nn][Dd] | '∧' ;
+SYM_AND      : [Aa][Nn][Dd] | '∧';
 SYM_OR       : [Oo][Rr] | '∨' ;
 SYM_XOR      : [Xx][Oo][Rr] ;
-SYM_NOT      : [Nn][Oo][Tt] | '!' | '~' | '¬' ;
-SYM_IMPLIES  : [Ii][Mm][Pp][Ll][Ii][Ee][Ss] | '⇒' ;
-SYM_FOR_ALL  : 'for_all' | '∀' ;
+SYM_NOT      : [Nn][Oo][Tt] | '!' | '∼' | '~' | '¬';
+SYM_IMPLIES  : [Ii][Mm][Pp][Ll][Ii][Ee][Ss] | '®';
+SYM_FOR_ALL  : [Ff][Oo][Rr][_][Aa][Ll][Ll] | '∀';
+SYM_EXISTS   : [Ee][Xx][Ii][Ss][Tt][Ss];
 SYM_THERE_EXISTS: 'there_exists' | '∃' ;
-SYM_EXISTS   : 'exists' ;
-
 
 SYM_MATCHES : [Mm][Aa][Tt][Cc][Hh][Ee][Ss] | [Ii][Ss]'_'[Ii][Nn] | '∈';
 

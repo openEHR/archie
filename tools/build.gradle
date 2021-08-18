@@ -13,6 +13,7 @@ dependencies {
   testCompile project(':i18n')
   testCompile project(':test-rm')
   testCompile project(':referencemodels')
+  compile project(':grammars2')
 
   compile 'org.leadpony.justify:justify:3.1.0'
   compile 'org.glassfish:jakarta.json:2.0.1:module'

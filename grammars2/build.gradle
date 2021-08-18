@@ -1,0 +1,19 @@
+description = "new grammars for parsing ADL, ODIN and xpath"
+apply plugin: 'antlr'
+
+ext.antlrVersion = '4.9.2'
+
+generateGrammarSource { //antlr4
+  outputDirectory = new File("${project.buildDir}/generated-src/antlr/main/com/nedap/archie/adlparser/antlr2".toString())
+    arguments = ['-visitor', '-package', 'com.nedap.archie.adlparser.antlr2', '-encoding', 'utf-8'] + arguments
+}
+
+classes {
+  dependsOn generateGrammarSource
+}
+
+
+dependencies {
+  antlr "org.antlr:antlr4:${antlrVersion}"
+  compile 'org.antlr:antlr4-runtime:4.9.2'
+}

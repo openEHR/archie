@@ -7,4 +7,5 @@ target/
 .idea
 out/
 test-output/
+grammars2/gen
 grammars/gen
