@@ -129,9 +129,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
         if(flatParent != null) {
             for(ValueSet valueSet:terminology.getValueSets().values()) {
                 if(AOMUtils.getSpecialisationStatusFromCode(valueSet.getId(), terminologySpecialisationDepth) == CodeRedefinitionStatus.REDEFINED) {
-                    if(flatParent.getTerminology().getValueSets() == null) {
-
-                    } else {
+                    if(flatParent.getTerminology().getValueSets() != null) {
                         ValueSet parentValueSet = flatParent.getTerminology().getValueSets().get(AOMUtils.codeAtLevel(valueSet.getId(), terminologySpecialisationDepth - 1));
                         for(String member:valueSet.getMembers()) {
                             if(!AOMUtils.valueSetContainsCodeOrParent(parentValueSet.getMembers(), member)) {
