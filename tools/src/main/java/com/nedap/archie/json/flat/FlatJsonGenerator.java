@@ -86,7 +86,7 @@ public class FlatJsonGenerator {
         }
         Map<String, Object> result = new LinkedHashMap<>();
         CObject definition = archetype == null ? null : archetype.getDefinition();
-        buildPathsAndValuesInner(result,null, "/", rmObject, definition);
+        buildPathsAndValuesInner(result, null, "/", rmObject, definition, false);
 
         if(humanReadableFormat) {
             String rootName = modelInfoLookup.getNameFromRMObject(rmObject);
@@ -100,17 +100,13 @@ public class FlatJsonGenerator {
 
     }
 
-    private void buildPathsAndValuesInner(Map<String, Object> result, RMTypeInfo rmAttributeTypeInfo, String pathSoFar, OpenEHRBase rmObject, CObject cObject) throws DuplicateKeyException {
-        buildPathsAndValuesInner(result, rmAttributeTypeInfo, pathSoFar, rmObject, cObject, false);
-    }
-
     private void buildPathsAndValuesInner(Map<String, Object> result, RMTypeInfo rmAttributeTypeInfo, String pathSoFar, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) throws DuplicateKeyException {
 
         if(rmObject == null) {
             return;
         }
         RMTypeInfo typeInfo = modelInfoLookup.getTypeInfo(rmObject.getClass());
-        if(((!filterTypes || cObject == null) && pathSoFar.equalsIgnoreCase ("/")) || shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject, typeAlternativesPresent)) {
+        if(shouldAddTypeName(rmAttributeTypeInfo, rmObject, cObject, typeAlternativesPresent)) {
             storeValue(result, joinPath(pathSoFar, typeIdPropertyName, null, null, "/"), getTypeIdFromValue(rmObject));
         }
 
@@ -137,9 +133,19 @@ public class FlatJsonGenerator {
         }
     }
 
+    /**
+     * Determine if the type name attribute should be added.
+     *
+     * The type name attribute should be added if:
+     *  - The actual RM object is of a different type then the RM attribute type; AND
+     *  - One of the following conditions applies:
+     *     - {@link FlatJsonFormatConfiguration#getFilterTypes()}  is disabled
+     *     - The actual RM object is of a different type than specified in the archetype constraint
+     *       (or no archetype constraint is available)
+     *     - There are multiple alternative archetype constrains present.
+     */
     private boolean shouldAddTypeName(RMTypeInfo rmAttributeTypeInfo, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) {
-        return typeHasDescendants(rmAttributeTypeInfo) &&
-                !sameType(rmAttributeTypeInfo, rmObject) &&
+        return !sameType(rmAttributeTypeInfo, rmObject) &&
                 ( !filterTypes || !sameType(cObject, rmObject) || typeAlternativesPresent);
     }
 
