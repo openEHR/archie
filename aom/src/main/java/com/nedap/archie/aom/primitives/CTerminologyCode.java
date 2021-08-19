@@ -72,6 +72,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         this.constraintStatus = constraintStatus;
     }
 
+    @JsonIgnore
     public boolean isConstraintRequired() {
         return getConstraintStatus() == null || getConstraintStatus() == ConstraintStatus.REQUIRED;
     }

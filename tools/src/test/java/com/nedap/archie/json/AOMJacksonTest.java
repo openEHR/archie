@@ -6,6 +6,8 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.primitives.CDuration;
+import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.primitives.ConstraintStatus;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
@@ -84,5 +86,19 @@ public class AOMJacksonTest {
 
         CDuration parsedDuration = objectMapper.readValue(cDurationJson, CDuration.class);
         assertEquals(Lists.newArrayList(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), tenYearsTenSeconds)), parsedDuration.getConstraint());
+    }
+
+    @Test
+    public void cTerminologyCode() throws Exception {
+        CTerminologyCode cTermCode = new CTerminologyCode();
+        cTermCode.setConstraint(Lists.newArrayList("ac23"));
+        cTermCode.setConstraintStatus(ConstraintStatus.PREFERRED);
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        String json = objectMapper.writeValueAsString(cTermCode);
+
+        assertTrue(json.contains("\"constraint_status\" : \"preferred\""));
+        CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
+        assertEquals(cTermCode.getConstraint(), parsedTermCode.getConstraint());
+        assertEquals(ConstraintStatus.PREFERRED, parsedTermCode.getConstraintStatus());
     }
 }
