@@ -143,6 +143,9 @@ public class FlatJsonGenerator {
      *     - The actual RM object is of a different type than specified in the archetype constraint
      *       (or no archetype constraint is available)
      *     - There are multiple alternative archetype constrains present.
+     *
+     * Note that at the root node of the data and the archetype, rmAttributeTypeInfo will be null, and
+     * the type info therefore will always be added.
      */
     private boolean shouldAddTypeName(RMTypeInfo rmAttributeTypeInfo, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) {
         return !sameType(rmAttributeTypeInfo, rmObject) &&
