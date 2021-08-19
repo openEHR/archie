@@ -17,4 +17,8 @@ public enum ConstraintStatus {
     @JsonProperty("example")
     @XmlEnumValue("example")
     EXAMPLE;
+
+    public boolean cConformsTo(ConstraintStatus parent) {
+        return ordinal() <= parent.ordinal();
+    }
 }

@@ -74,7 +74,11 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
 
     @JsonIgnore
     public boolean isConstraintRequired() {
-        return getConstraintStatus() == null || getConstraintStatus() == ConstraintStatus.REQUIRED;
+        return getEffectiveConstraintStatus() == ConstraintStatus.REQUIRED;
+    }
+
+    public ConstraintStatus getEffectiveConstraintStatus() {
+        return constraintStatus == null ? ConstraintStatus.REQUIRED : constraintStatus;
     }
 
     @Override
@@ -183,11 +187,18 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         CTerminologyCode otherCode = (CTerminologyCode) other;
         List<String> valueSet = getValueSetExpanded();
         List<String> otherValueSet = otherCode.getValueSetExpanded();
+
         if(constraint.size() != 1) {
             return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
         }
         if(otherCode.constraint.size() != 1) {
             return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
+        }
+
+        if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus()) ) {
+            //PROBLEM: if this child CTerminologyCode has no constraint status, it should override its parent.
+            //it does not here!
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
         }
         String thisConstraint = constraint.get(0);
         String otherConstraint = otherCode.constraint.get(0);
