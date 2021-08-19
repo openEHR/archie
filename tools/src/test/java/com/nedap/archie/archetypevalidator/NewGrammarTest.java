@@ -3,10 +3,11 @@ package com.nedap.archie.archetypevalidator;
 import com.google.common.base.Charsets;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.nedap.archie.adlparser.antlr2.Adl2BaseVisitor;
-import com.nedap.archie.adlparser.antlr2.Adl2Lexer;
-import com.nedap.archie.adlparser.antlr2.Adl2Parser;
-import com.nedap.archie.adlparser.antlr2.Adl2Visitor;
+import com.nedap.archie.adlparser.antlr2.AdlParserBaseVisitor;
+import com.nedap.archie.adlparser.antlr2.AdlLexer;
+import com.nedap.archie.adlparser.antlr2.AdlParser;
+import com.nedap.archie.adlparser.antlr2.AdlParserVisitor;
+import com.nedap.archie.adlparser.antlr2.AdlLexer;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import org.antlr.v4.runtime.CharStreams;
@@ -86,36 +87,33 @@ public class NewGrammarTest {
                 errorListener.setLogEnabled(true);
 
 
-                Adl2Lexer lexer = new Adl2Lexer(CharStreams.fromStream(new BOMInputStream(stream), Charsets.UTF_8));
+                AdlLexer lexer = new AdlLexer(CharStreams.fromStream(new BOMInputStream(stream), Charsets.UTF_8));
                 lexer.addErrorListener(errorListener);
-                Adl2Parser parser = new Adl2Parser(new CommonTokenStream(lexer));
+                AdlParser parser = new AdlParser(new CommonTokenStream(lexer));
                 parser.addErrorListener(errorListener);
-                Adl2Parser.Adl2ArchetypeContext tree = parser.adl2Archetype(); // parse
-                final String[] archetypeId = {null};
-                Adl2Visitor visitor = new Adl2BaseVisitor() {
-                    @Override
-                    public Object visitArchetypeHrid(Adl2Parser.ArchetypeHridContext ctx) {
-                        if(archetypeId[0] == null) {
-                            //hack: only do this for the first one, to not find template overlays
-                            archetypeId[0] = ctx.getText();
-                        }
+                AdlParser.AdlObjectContext tree = parser.adlObject();// parse
+                final String[] archetypeIdArray = {null};
+                AdlParserBaseVisitor visitor = new AdlParserBaseVisitor() {
+                    @Override public Object visitHeader(AdlParser.HeaderContext ctx) {
+                        archetypeIdArray[0] = ctx.ARCHETYPE_HRID().getText();
                         return visitChildren(ctx);
                     }
                 };
-                visitor.visitAdl2Archetype(tree);
-                if(archetypeId[0] == null) {
+                visitor.visitAdlObject(tree);
+                String archetypeId = archetypeIdArray[0];
+                if(archetypeId == null) {
                     System.out.println("Couldn't determine archetype id for file " + file);
                     noArchetypeId++;
                 } else if (errors.hasNoErrors() &&
-                        archetypeIdsThatShouldHaveParserErrors.contains(archetypeId[0])) {
-                    System.out.println("FAIL Archetype has no errors, but should: " + archetypeId[0]);
+                        archetypeIdsThatShouldHaveParserErrors.contains(archetypeId)) {
+                    System.out.println("FAIL Archetype has no errors, but should: " + archetypeId);
                     shouldErrorParses++;
                 } else if (errors.hasErrors() &&
-                        !archetypeIdsThatShouldHaveParserErrors.contains(archetypeId[0])) {
-                    System.out.println("FAIL Archetype has errors, but should not: " + archetypeId[0]);
+                        !archetypeIdsThatShouldHaveParserErrors.contains(archetypeId)) {
+                    System.out.println("FAIL Archetype has errors, but should not: " + archetypeId);
                     errorShouldParse++;
                 } else {
-                    System.out.println("Archetype ok: " + archetypeId[0]);
+                    System.out.println("Archetype ok: " + archetypeId);
                     ok++;
                 }
 
