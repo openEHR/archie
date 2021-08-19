@@ -23,6 +23,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class is here only because there are two varaints of storing default values in OPTs,
+ * actually in different XSDs. I can merge the XSDs and make both variants work.
+ * However, only doing that if necessary. This class contains a commented out implementation
+ * in case that will be necessary, and will be removed otherwise.
+ */
 class DefaultValueConverter {
     //TODO: default values
 //
