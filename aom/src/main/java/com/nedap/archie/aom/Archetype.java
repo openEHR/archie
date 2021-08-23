@@ -2,6 +2,7 @@ package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.rmoverlay.RMAttributeVisibility;
 import com.nedap.archie.aom.rmoverlay.RMOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
@@ -280,6 +281,13 @@ public class Archetype extends AuthoredResource {
                     result.add(code);
                 }
 
+            }
+        }
+        if(rmOverlay != null && rmOverlay.getRmVisibility() != null) {
+            for (RMAttributeVisibility value : rmOverlay.getRmVisibility().values()) {
+                if(value.getAlias() != null) {
+                    result.add(value.getAlias().getCodeString());
+                }
             }
         }
 
