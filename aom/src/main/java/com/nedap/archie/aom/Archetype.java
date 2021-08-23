@@ -2,6 +2,7 @@ package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.rmoverlay.RMOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
@@ -46,7 +47,8 @@ import java.util.stream.Collectors;
         "buildUid",
         "rmRelease",
         "generated",
-        "otherMetaData"
+        "otherMetaData",
+        "rmOverlay"
 })
 public class Archetype extends AuthoredResource {
 
@@ -74,6 +76,10 @@ public class Archetype extends AuthoredResource {
     @XmlElement(name="other_meta_data")
     //TODO: this probably requires a custom XmlAdapter
     private Map<String, String> otherMetaData = new LinkedHashMap<>();
+
+    @XmlElement(name="rmOverlay")
+    //TODO: JAXB type adapter here, this contains just a map
+    private RMOverlay rmOverlay;
 
     public String getParentArchetypeId() {
         return parentArchetypeId;
@@ -332,5 +338,13 @@ public class Archetype extends AuthoredResource {
         int maximumIdCode = AOMUtils.getMaximumIdCode(specializationDepth, nodeId, getAllUsedCodes());
         return nodeId + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR + generateSpecializationDepthCodePrefix(specializationDepth-nodeIdSpecializationDepth-1) + (maximumIdCode+1);
 
+    }
+
+    public RMOverlay getRmOverlay() {
+        return rmOverlay;
+    }
+
+    public void setRmOverlay(RMOverlay rmOverlay) {
+        this.rmOverlay = rmOverlay;
     }
 }
