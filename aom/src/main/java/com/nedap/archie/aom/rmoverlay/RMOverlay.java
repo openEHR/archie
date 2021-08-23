@@ -8,27 +8,24 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
-@XmlType(name = "RM_ATTRIBUTE_VISIBILITY")
 public class RMOverlay extends ArchetypeModelObject {
 
     @Nullable
-    @XmlElement(name="rm_visibility")
-    Map<String,RmAttributeVisibility> rmVisibility = new LinkedHashMap<>();
+    Map<String, RMAttributeVisibility> rmVisibility = new LinkedHashMap<>();
 
     public RMOverlay() {
     }
 
-    public RMOverlay(Map<String, RmAttributeVisibility> rmVisibility) {
+    public RMOverlay(Map<String, RMAttributeVisibility> rmVisibility) {
         this.rmVisibility = rmVisibility;
     }
 
-    public Map<String, RmAttributeVisibility> getRmVisibility() {
+    public Map<String, RMAttributeVisibility> getRmVisibility() {
         return rmVisibility;
     }
 
-    public void setRmVisibility(Map<String, RmAttributeVisibility> rmVisibility) {
+    public void setRmVisibility(Map<String, RMAttributeVisibility> rmVisibility) {
         this.rmVisibility = rmVisibility;
     }
 

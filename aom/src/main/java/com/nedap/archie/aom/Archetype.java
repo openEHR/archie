@@ -11,6 +11,7 @@ import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
+import com.nedap.archie.xml.adapters.RMOverlayXmlAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -79,6 +80,7 @@ public class Archetype extends AuthoredResource {
 
     @XmlElement(name="rmOverlay")
     //TODO: JAXB type adapter here, this contains just a map
+    @XmlJavaTypeAdapter(RMOverlayXmlAdapter.class)
     private RMOverlay rmOverlay;
 
     public String getParentArchetypeId() {

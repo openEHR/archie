@@ -3,13 +3,15 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.ResourceAnnotations;
+import com.nedap.archie.aom.rmoverlay.RMOverlay;
+import com.nedap.archie.aom.rmoverlay.RMAttributeVisibility;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class AnnotationsFlattener {
+public class AnnotationsAndOverlaysFlattener {
 
-    public void flatten(Archetype parent, Archetype child, Archetype result) {
+    public void flattenAnnotations(Archetype parent, Archetype child, Archetype result) {
         if( (isAnnotationsEmpty(parent) && isAnnotationsEmpty(child))) {
             return;
         }
@@ -19,6 +21,90 @@ public class AnnotationsFlattener {
         mergeInAnnotations(parent, resultDocumentation);
         mergeInAnnotations(child, resultDocumentation);
     }
+
+    public void flattenRmOverlay(Archetype parent, Archetype child, Archetype result) {
+        if( (isRmOverlayEmpty(parent) && isRmOverlayEmpty(child))) {
+            return;
+        }
+        RMOverlay resultOverlay = ensureRmOverlayPresent(result);
+        Map<String, RMAttributeVisibility> resultVisibility = resultOverlay.getRmVisibility();
+
+        mergeInVisibility(parent, resultVisibility);
+        mergeInVisibility(child, resultVisibility);
+    }
+
+    public void addVisibilityWithPathPrefix(String pathPrefix, Archetype archetype, OperationalTemplate result) {
+        if(isRmOverlayEmpty(archetype)) {
+            return;
+        }
+        ensureRmOverlayPresent(result);
+
+        Map<String, RMAttributeVisibility> rmVisibilityToBeMergedIn = archetype.getRmOverlay().getRmVisibility();
+
+        for(String path: rmVisibilityToBeMergedIn.keySet()) {
+            String newPath = ensureNoSlashAtEnd(pathPrefix) + path;
+            result.getRmOverlay().getRmVisibility().put(newPath, (RMAttributeVisibility) rmVisibilityToBeMergedIn.get(path).clone());
+        }
+    }
+
+    public void addAnnotationsWithPathPrefix(String pathPrefix, Archetype archetype, OperationalTemplate result) {
+        if(isAnnotationsEmpty(archetype)) {
+            return;
+        }
+        Map<String, Map<String, Map<String, String>>> documentationToBeMergedIn = archetype.getAnnotations().getDocumentation();
+        for(String language: documentationToBeMergedIn.keySet()) {
+
+            Map<String, Map<String, String>> languageAnnotationsToBeMergedIn = documentationToBeMergedIn.get(language);
+            for(String path: languageAnnotationsToBeMergedIn.keySet()) {
+                String newPath = ensureNoSlashAtEnd(pathPrefix) + path;
+                merge(language, newPath, languageAnnotationsToBeMergedIn.get(path), result);
+            }
+        }
+    }
+
+    /* visibility private methods */
+    private void mergeInVisibility(Archetype toBeMergedIn, Map<String, RMAttributeVisibility> resultVisibility) {
+        if(!isRmOverlayEmpty(toBeMergedIn)) {
+            RMOverlay toBeMergedInRmOverlay = toBeMergedIn.getRmOverlay();
+            Map<String, RMAttributeVisibility> toBeMergedInRmVisibility = toBeMergedInRmOverlay.getRmVisibility();
+            mergeVisibility(resultVisibility, toBeMergedInRmVisibility);
+        }
+    }
+
+    private void mergeVisibility(Map<String, RMAttributeVisibility> resultVisibility, Map<String, RMAttributeVisibility> toBeMergedInRmVisibility) {
+        for(String path:toBeMergedInRmVisibility.keySet()) {
+            RMAttributeVisibility toBeMergedInVisibility = toBeMergedInRmVisibility.get(path);
+            RMAttributeVisibility targetVisibility = resultVisibility.get(path);
+            if(targetVisibility == null) {
+                targetVisibility = (RMAttributeVisibility) toBeMergedInVisibility.clone();
+                resultVisibility.put(path, targetVisibility);
+            } else {
+                //two visibilities. One should override the other?
+                targetVisibility = (RMAttributeVisibility) toBeMergedInVisibility.clone();
+                resultVisibility.put(path, targetVisibility);
+            }
+        }
+    }
+
+    private RMOverlay ensureRmOverlayPresent(Archetype result) {
+        if(result.getRmOverlay() == null) {
+            result.setRmOverlay(new RMOverlay());
+        }
+        if(result.getRmOverlay().getRmVisibility() == null) {
+            result.getRmOverlay().setRmVisibility(new LinkedHashMap<>());
+        }
+        return result.getRmOverlay();
+    }
+
+    private boolean isRmOverlayEmpty(Archetype archetype) {
+        return archetype.getRmOverlay() == null
+                || archetype.getRmOverlay().getRmVisibility() == null
+                || archetype.getRmOverlay().getRmVisibility().isEmpty();
+    }
+
+
+
+    /* annotations private methods */
 
     private ResourceAnnotations ensureAnnotationsPresent(Archetype result) {
         ResourceAnnotations resultAnnotation = result.getAnnotations();
@@ -81,22 +167,6 @@ public class AnnotationsFlattener {
                 archetype.getAnnotations().getDocumentation().isEmpty();
     }
 
-    public void addAnnotationsWithPathPrefix(String pathPrefix, Archetype archetype, OperationalTemplate result) {
-        if(isAnnotationsEmpty(archetype)) {
-            return;
-        }
-        Map<String, Map<String, Map<String, String>>> documentationToBeMergedIn = archetype.getAnnotations().getDocumentation();
-        for(String language: documentationToBeMergedIn.keySet()) {
-
-            Map<String, Map<String, String>> languageAnnotationsToBeMergedIn = documentationToBeMergedIn.get(language);
-            for(String path: languageAnnotationsToBeMergedIn.keySet()) {
-                String newPath = ensureNoSlashAtEnd(pathPrefix) + path;
-                merge(language, newPath, languageAnnotationsToBeMergedIn.get(path), result);
-            }
-        }
-
-    }
-
     private void merge(String language, String newPath, Map<String, String> annotationsMap, OperationalTemplate result) {
         ResourceAnnotations annotations = ensureAnnotationsPresent(result);
         Map<String, Map<String, String>> languageMap = annotations.getDocumentation().get(language);
@@ -113,6 +183,7 @@ public class AnnotationsFlattener {
         }
     }
 
+    /* shared private methods */
     private String ensureNoSlashAtEnd(String pathPrefix) {
         if(pathPrefix.endsWith("/")) {
             return pathPrefix.substring(0, pathPrefix.length() - 1);
