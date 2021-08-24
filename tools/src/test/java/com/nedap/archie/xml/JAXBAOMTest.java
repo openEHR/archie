@@ -8,10 +8,14 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.primitives.CDuration;
+import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.datetime.DateTimeParsers;
+import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.json.RMJacksonConfiguration;
+import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -96,5 +100,43 @@ public class JAXBAOMTest {
                 new Interval<TemporalAmount>(DateTimeParsers.parseDurationValue("-P10D"), DateTimeParsers.parseDurationValue("P10YT10S")),
                 constraint);
     }
+
+    @Test
+    public void rmOverlay() throws Exception {
+        Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openehr-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
+
+        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        StringWriter writer = new StringWriter();
+
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(archetype, writer);
+        
+        assertTrue(writer.toString().contains("<rm_overlay>\n" +
+                "        <rm_visibility>\n" +
+                "            <path>/subject</path>\n" +
+                "            <visibility>hide</visibility>\n" +
+                "            <alias>\n" +
+                "                <terminology_id>local</terminology_id>\n" +
+                "                <code_string>ad12</code_string>\n" +
+                "            </alias>\n" +
+                "        </rm_visibility>\n" +
+                "        <rm_visibility>\n" +
+                "            <path>/data[id2]/events[id3]/data[id4]/items[id5]</path>\n" +
+                "            <visibility>show</visibility>\n" +
+                "        </rm_visibility>\n" +
+                "        <rm_visibility>\n" +
+                "            <path>/data[id2]/events[id3]/data[id4]/items[id6]</path>\n" +
+                "            <visibility>show</visibility>\n" +
+                "        </rm_visibility>\n" +
+                "    </rm_overlay>"));
+
+        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
+
+        assertEquals(VisibilityType.HIDE, unmarshalled.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
+        assertEquals("ad12", unmarshalled.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
+
+    }
+
 
 }

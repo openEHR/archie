@@ -237,7 +237,8 @@ class OperationalTemplateCreator {
 
             String prefix = archetype.getArchetypeId().getConceptId() + "_";
             flattener.getRulesFlattener().combineRules(archetype, root.getArchetype(), prefix, prefix, rootToFill.getPath(), false);
-            flattener.getAnnotationsFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
+            flattener.getAnnotationsAndOverlaysFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
+            flattener.getAnnotationsAndOverlaysFlattener().addVisibilityWithPathPrefix(rootToFill.getPath(), archetype, result);
             //todo: do we have to put something in the terminology extracts?
             //templateResult.addTerminologyExtract(child.getNodeId(), archetype.getTerminology().);
         }
