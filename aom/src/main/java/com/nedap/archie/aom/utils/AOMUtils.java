@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 
 public class AOMUtils {
 
-    private static Pattern idCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
+    private static Pattern idCodePattern = Pattern.compile("(id|at|ac|ad)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
     private static Pattern adl14CodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
 
     public static int getSpecializationDepthFromCode(String code) {

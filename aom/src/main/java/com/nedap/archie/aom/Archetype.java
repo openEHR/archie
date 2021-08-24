@@ -2,6 +2,8 @@ package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
@@ -10,6 +12,7 @@ import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
+import com.nedap.archie.xml.adapters.RMOverlayXmlAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -46,7 +49,8 @@ import java.util.stream.Collectors;
         "buildUid",
         "rmRelease",
         "generated",
-        "otherMetaData"
+        "otherMetaData",
+        "rmOverlay"
 })
 public class Archetype extends AuthoredResource {
 
@@ -74,6 +78,11 @@ public class Archetype extends AuthoredResource {
     @XmlElement(name="other_meta_data")
     //TODO: this probably requires a custom XmlAdapter
     private Map<String, String> otherMetaData = new LinkedHashMap<>();
+
+    @XmlElement(name="rmOverlay")
+    //TODO: JAXB type adapter here, this contains just a map
+    @XmlJavaTypeAdapter(RMOverlayXmlAdapter.class)
+    private RmOverlay rmOverlay;
 
     public String getParentArchetypeId() {
         return parentArchetypeId;
@@ -274,6 +283,13 @@ public class Archetype extends AuthoredResource {
 
             }
         }
+        if(rmOverlay != null && rmOverlay.getRmVisibility() != null) {
+            for (RmAttributeVisibility value : rmOverlay.getRmVisibility().values()) {
+                if(value.getAlias() != null) {
+                    result.add(value.getAlias().getCodeString());
+                }
+            }
+        }
 
         return result;
     }
@@ -332,5 +348,13 @@ public class Archetype extends AuthoredResource {
         int maximumIdCode = AOMUtils.getMaximumIdCode(specializationDepth, nodeId, getAllUsedCodes());
         return nodeId + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR + generateSpecializationDepthCodePrefix(specializationDepth-nodeIdSpecializationDepth-1) + (maximumIdCode+1);
 
+    }
+
+    public RmOverlay getRmOverlay() {
+        return rmOverlay;
+    }
+
+    public void setRmOverlay(RmOverlay rmOverlay) {
+        this.rmOverlay = rmOverlay;
     }
 }
