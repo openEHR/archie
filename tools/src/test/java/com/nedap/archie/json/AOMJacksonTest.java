@@ -93,10 +93,10 @@ public class AOMJacksonTest {
     public void rmOverlay() throws Exception {
         Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openehr-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
         String json = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
-        System.out.println(json);
+
         Archetype parsed = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(json, Archetype.class);
-        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("\subject").getVisibility());
-        assertEquals("ad12", parsed.getRmOverlay().getRmVisibility().get("\subject").getAlias().getCodeString());
+        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
+        assertEquals("ad12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
 
         assertTrue(json.contains("  \"rm_overlay\" : {\n" +
                 "    \"rm_visibility\" : {\n" +

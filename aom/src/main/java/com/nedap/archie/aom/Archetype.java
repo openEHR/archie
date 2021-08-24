@@ -79,7 +79,7 @@ public class Archetype extends AuthoredResource {
     //TODO: this probably requires a custom XmlAdapter
     private Map<String, String> otherMetaData = new LinkedHashMap<>();
 
-    @XmlElement(name="rmOverlay")
+    @XmlElement(name="rm_overlay")
     //TODO: JAXB type adapter here, this contains just a map
     @XmlJavaTypeAdapter(RMOverlayXmlAdapter.class)
     private RmOverlay rmOverlay;

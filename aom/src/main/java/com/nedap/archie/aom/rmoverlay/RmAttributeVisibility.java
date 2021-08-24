@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
-@XmlType(name = "RM_ATTRIBUTE_VISIBILITY")
 public class RmAttributeVisibility extends ArchetypeModelObject {
 
     @Nullable
