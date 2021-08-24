@@ -364,6 +364,14 @@ public class AOMUtils {
                         if (metaModel.hasReferenceModelPath(((CObject) archetypeModelObject).getRmTypeName(), partial.getRemainingPath())) {
                             return true;
                         }
+                    } else if (archetypeModelObject instanceof CAttribute) {
+                        CAttribute attribute = (CAttribute) archetypeModelObject;
+                        //matched an attribute. So if even one object matches, return true
+                        for(CObject child:attribute.getChildren()) {
+                            if (metaModel.hasReferenceModelPath(child.getRmTypeName(), partial.getRemainingPath())) {
+                                return true;
+                            }
+                        }
                     }
                 }
             }

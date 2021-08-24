@@ -273,51 +273,36 @@ public class AOMPathQuery {
     }
 
     /**
-     * Find a partial match, also matching if halfway a query, including what has not yet been matched. Does not support finding through differential paths and use_archetype or use_node, unless
-     * used on an OperationalTemplate
-     * @param root
+     * Find a partial match, also matching if halfway a query, including what has not yet been matched and what has not
+     * Does not support finding through differential paths.
+     * So, use on an OperationalTemplate!
+     * @param root the CObject to find for
      * @return the partial match
      */
     public PartialMatch findPartial(CComplexObject root) {
 
         List<PathSegment> pathsMatched = new ArrayList<>();
-        List<PathSegment> toGo = new ArrayList<>(pathSegments);
+        List<PathSegment> remainingSegments = new ArrayList<>(pathSegments);
 
-        PathSegment segment = toGo.remove(0);
-        List<ArchetypeModelObject>  result = new ArrayList<>();
-        List<ArchetypeModelObject>  lastResult = new ArrayList<>();
-        result.add(root);
-        Object lastMatch = null;
-        PathSegment lastMatchedSegment = segment;
+        List<ArchetypeModelObject>  result = Lists.newArrayList(root);
+        List<ArchetypeModelObject>  lastResult;
 
-        while (segment != null) {
+        while (!remainingSegments.isEmpty()) {
             lastResult = result;
+            PathSegment segment = remainingSegments.remove(0);
             result = findOneSegment(segment, result, false);
 
             if (result.size() == 0) {
-                //no more matches, return partial match
-                toGo.add(0, segment);
-                return new PartialMatch(lastResult, PathUtil.getPath(pathsMatched), PathUtil.getPath(toGo));
-            }
-            pathsMatched.add(segment);
-            lastMatchedSegment = segment;
-            if(!toGo.isEmpty()) {
-                segment = toGo.remove(0);
+                //no more matches, return partial match.
+                //the last segment did not match anything, add it again!
+                remainingSegments.add(0, segment);
+                return new PartialMatch(lastResult, PathUtil.getPath(pathsMatched), PathUtil.getPath(remainingSegments));
             } else {
-                segment = null;
+                pathsMatched.add(segment);
             }
         }
-        if (result.size() > 0) {
-            //even for last segment found
-            if(!toGo.isEmpty()) {
-                pathsMatched.add(lastMatchedSegment);
-            }
-        } else {
-            //last segment not found, so put it back!
-            //toGo.add(segment);
-            result = lastResult;
-        }
-        return new PartialMatch(result, PathUtil.getPath(pathsMatched), PathUtil.getPath(toGo));
+        //full match, remainingSegments is empty
+        return new PartialMatch(result, PathUtil.getPath(pathsMatched), PathUtil.getPath(remainingSegments));
 
 
     }
