@@ -6,7 +6,7 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
-import com.nedap.archie.aom.rmoverlay.RMOverlay;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
@@ -188,7 +188,7 @@ public class ADLListener extends AdlBaseListener {
 
     @Override
     public void enterRmOverlaySection(AdlParser.RmOverlaySectionContext ctx) {
-        archetype.setRmOverlay(OdinObjectParser.convert(ctx.odin_text(), RMOverlay.class));
+        archetype.setRmOverlay(OdinObjectParser.convert(ctx.odin_text(), RmOverlay.class));
     }
 
     public void enterComponentTerminologiesSection(AdlParser.ComponentTerminologiesSectionContext ctx) {

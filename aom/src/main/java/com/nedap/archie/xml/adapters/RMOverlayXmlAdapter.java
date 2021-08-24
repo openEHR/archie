@@ -1,44 +1,44 @@
 package com.nedap.archie.xml.adapters;
 
-import com.nedap.archie.aom.rmoverlay.RMOverlay;
-import com.nedap.archie.aom.rmoverlay.RMAttributeVisibility;
-import com.nedap.archie.xml.types.XmlRMAttributeVisibility;
-import com.nedap.archie.xml.types.XmlRMOverlay;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
+import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.xml.types.XmlRmAttributeVisibility;
+import com.nedap.archie.xml.types.XmlRmOverlay;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMOverlayXmlAdapter extends XmlAdapter<XmlRMOverlay, RMOverlay> {
+public class RMOverlayXmlAdapter extends XmlAdapter<XmlRmOverlay, RmOverlay> {
     @Override
-    public RMOverlay unmarshal(XmlRMOverlay xmlRMOverlay) {
+    public RmOverlay unmarshal(XmlRmOverlay xmlRMOverlay) {
         if(xmlRMOverlay == null) {
             return null;
         }
-        RMOverlay result = new RMOverlay();
+        RmOverlay result = new RmOverlay();
         if(xmlRMOverlay.getRmVisibility() == null) {
             return result;
         }
-        for (XmlRMAttributeVisibility xmlVisibility : xmlRMOverlay.getRmVisibility()) {
-            result.getRmVisibility().put(xmlVisibility.getPath(), new RMAttributeVisibility(xmlVisibility.getVisibility(), xmlVisibility.getAlias()));
+        for (XmlRmAttributeVisibility xmlVisibility : xmlRMOverlay.getRmVisibility()) {
+            result.getRmVisibility().put(xmlVisibility.getPath(), new RmAttributeVisibility(xmlVisibility.getVisibility(), xmlVisibility.getAlias()));
         }
 
         return result;
     }
 
     @Override
-    public XmlRMOverlay marshal(RMOverlay rmOverlay) {
+    public XmlRmOverlay marshal(RmOverlay rmOverlay) {
         if(rmOverlay == null) {
             return null;
         }
-        XmlRMOverlay result = new XmlRMOverlay();
+        XmlRmOverlay result = new XmlRmOverlay();
         if(rmOverlay.getRmVisibility() == null) {
             return result;
         }
-        List<XmlRMAttributeVisibility> resultList = new ArrayList<>();
+        List<XmlRmAttributeVisibility> resultList = new ArrayList<>();
         for (String path:rmOverlay.getRmVisibility().keySet()) {
-            RMAttributeVisibility rmAttributeVisibility = rmOverlay.getRmVisibility().get(path);
-            resultList.add(new XmlRMAttributeVisibility(path, rmAttributeVisibility.getVisibility(), rmAttributeVisibility.getAlias()));
+            RmAttributeVisibility rmAttributeVisibility = rmOverlay.getRmVisibility().get(path);
+            resultList.add(new XmlRmAttributeVisibility(path, rmAttributeVisibility.getVisibility(), rmAttributeVisibility.getAlias()));
         }
         result.setRmVisibility(resultList);
 

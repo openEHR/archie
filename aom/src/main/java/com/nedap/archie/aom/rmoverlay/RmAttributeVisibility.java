@@ -8,17 +8,17 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 @XmlType(name = "RM_ATTRIBUTE_VISIBILITY")
-public class RMAttributeVisibility extends ArchetypeModelObject {
+public class RmAttributeVisibility extends ArchetypeModelObject {
 
     @Nullable
     private VisibilityType visibility;
     @Nullable
     private TerminologyCode alias;
 
-    public RMAttributeVisibility() {
+    public RmAttributeVisibility() {
     }
 
-    public RMAttributeVisibility(VisibilityType visibility, TerminologyCode alias) {
+    public RmAttributeVisibility(VisibilityType visibility, TerminologyCode alias) {
         this.visibility = visibility;
         this.alias = alias;
     }
@@ -43,7 +43,7 @@ public class RMAttributeVisibility extends ArchetypeModelObject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RMAttributeVisibility that = (RMAttributeVisibility) o;
+        RmAttributeVisibility that = (RmAttributeVisibility) o;
         return visibility == that.visibility &&
                 Objects.equals(alias, that.alias);
     }

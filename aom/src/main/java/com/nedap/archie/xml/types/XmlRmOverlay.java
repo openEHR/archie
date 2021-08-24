@@ -9,22 +9,22 @@ import java.util.List;
 
 @XmlType(name="RM_OVERLAY")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlRMOverlay {
+public class XmlRmOverlay {
     @XmlElement(name="rm_visibility")
-    private List<XmlRMAttributeVisibility> rmVisibility;
+    private List<XmlRmAttributeVisibility> rmVisibility;
 
-    public XmlRMOverlay() {
+    public XmlRmOverlay() {
     }
 
-    public XmlRMOverlay(List<XmlRMAttributeVisibility> visibility) {
+    public XmlRmOverlay(List<XmlRmAttributeVisibility> visibility) {
         this.rmVisibility = visibility;
     }
 
-    public List<XmlRMAttributeVisibility> getRmVisibility() {
+    public List<XmlRmAttributeVisibility> getRmVisibility() {
         return rmVisibility;
     }
 
-    public void setRmVisibility(List<XmlRMAttributeVisibility> rmVisibility) {
+    public void setRmVisibility(List<XmlRmAttributeVisibility> rmVisibility) {
         this.rmVisibility = rmVisibility;
     }
 }

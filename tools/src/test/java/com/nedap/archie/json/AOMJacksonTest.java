@@ -6,9 +6,12 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.primitives.CDuration;
+import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
+import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 
@@ -84,5 +87,35 @@ public class AOMJacksonTest {
 
         CDuration parsedDuration = objectMapper.readValue(cDurationJson, CDuration.class);
         assertEquals(Lists.newArrayList(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), tenYearsTenSeconds)), parsedDuration.getConstraint());
+    }
+
+    @Test
+    public void rmOverlay() throws Exception {
+        Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openehr-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
+        String json = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
+        System.out.println(json);
+        Archetype parsed = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(json, Archetype.class);
+        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("\subject").getVisibility());
+        assertEquals("ad12", parsed.getRmOverlay().getRmVisibility().get("\subject").getAlias().getCodeString());
+
+        assertTrue(json.contains("  \"rm_overlay\" : {\n" +
+                "    \"rm_visibility\" : {\n" +
+                "      \"/subject\" : {\n" +
+                "        \"visibility\" : \"hide\",\n" +
+                "        \"alias\" : {\n" +
+                "          \"@type\" : \"TerminologyCode\",\n" +
+                "          \"terminology_id\" : \"local\",\n" +
+                "          \"code_string\" : \"ad12\",\n" +
+                "          \"terminology_id_string\" : \"local\"\n" +
+                "        }\n" +
+                "      },\n" +
+                "      \"/data[id2]/events[id3]/data[id4]/items[id5]\" : {\n" +
+                "        \"visibility\" : \"show\"\n" +
+                "      },\n" +
+                "      \"/data[id2]/events[id3]/data[id4]/items[id6]\" : {\n" +
+                "        \"visibility\" : \"show\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  },"));
     }
 }

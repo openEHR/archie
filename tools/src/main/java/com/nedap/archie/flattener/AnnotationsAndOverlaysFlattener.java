@@ -3,8 +3,8 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.ResourceAnnotations;
-import com.nedap.archie.aom.rmoverlay.RMOverlay;
-import com.nedap.archie.aom.rmoverlay.RMAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
+import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,8 +26,8 @@ public class AnnotationsAndOverlaysFlattener {
         if( (isRmOverlayEmpty(parent) && isRmOverlayEmpty(child))) {
             return;
         }
-        RMOverlay resultOverlay = ensureRmOverlayPresent(result);
-        Map<String, RMAttributeVisibility> resultVisibility = resultOverlay.getRmVisibility();
+        RmOverlay resultOverlay = ensureRmOverlayPresent(result);
+        Map<String, RmAttributeVisibility> resultVisibility = resultOverlay.getRmVisibility();
 
         mergeInVisibility(parent, resultVisibility);
         mergeInVisibility(child, resultVisibility);
@@ -39,11 +39,11 @@ public class AnnotationsAndOverlaysFlattener {
         }
         ensureRmOverlayPresent(result);
 
-        Map<String, RMAttributeVisibility> rmVisibilityToBeMergedIn = archetype.getRmOverlay().getRmVisibility();
+        Map<String, RmAttributeVisibility> rmVisibilityToBeMergedIn = archetype.getRmOverlay().getRmVisibility();
 
         for(String path: rmVisibilityToBeMergedIn.keySet()) {
             String newPath = ensureNoSlashAtEnd(pathPrefix) + path;
-            result.getRmOverlay().getRmVisibility().put(newPath, (RMAttributeVisibility) rmVisibilityToBeMergedIn.get(path).clone());
+            result.getRmOverlay().getRmVisibility().put(newPath, (RmAttributeVisibility) rmVisibilityToBeMergedIn.get(path).clone());
         }
     }
 
@@ -63,32 +63,32 @@ public class AnnotationsAndOverlaysFlattener {
     }
 
     /* visibility private methods */
-    private void mergeInVisibility(Archetype toBeMergedIn, Map<String, RMAttributeVisibility> resultVisibility) {
+    private void mergeInVisibility(Archetype toBeMergedIn, Map<String, RmAttributeVisibility> resultVisibility) {
         if(!isRmOverlayEmpty(toBeMergedIn)) {
-            RMOverlay toBeMergedInRmOverlay = toBeMergedIn.getRmOverlay();
-            Map<String, RMAttributeVisibility> toBeMergedInRmVisibility = toBeMergedInRmOverlay.getRmVisibility();
+            RmOverlay toBeMergedInRmOverlay = toBeMergedIn.getRmOverlay();
+            Map<String, RmAttributeVisibility> toBeMergedInRmVisibility = toBeMergedInRmOverlay.getRmVisibility();
             mergeVisibility(resultVisibility, toBeMergedInRmVisibility);
         }
     }
 
-    private void mergeVisibility(Map<String, RMAttributeVisibility> resultVisibility, Map<String, RMAttributeVisibility> toBeMergedInRmVisibility) {
+    private void mergeVisibility(Map<String, RmAttributeVisibility> resultVisibility, Map<String, RmAttributeVisibility> toBeMergedInRmVisibility) {
         for(String path:toBeMergedInRmVisibility.keySet()) {
-            RMAttributeVisibility toBeMergedInVisibility = toBeMergedInRmVisibility.get(path);
-            RMAttributeVisibility targetVisibility = resultVisibility.get(path);
+            RmAttributeVisibility toBeMergedInVisibility = toBeMergedInRmVisibility.get(path);
+            RmAttributeVisibility targetVisibility = resultVisibility.get(path);
             if(targetVisibility == null) {
-                targetVisibility = (RMAttributeVisibility) toBeMergedInVisibility.clone();
+                targetVisibility = (RmAttributeVisibility) toBeMergedInVisibility.clone();
                 resultVisibility.put(path, targetVisibility);
             } else {
                 //two visibilities. One should override the other?
-                targetVisibility = (RMAttributeVisibility) toBeMergedInVisibility.clone();
+                targetVisibility = (RmAttributeVisibility) toBeMergedInVisibility.clone();
                 resultVisibility.put(path, targetVisibility);
             }
         }
     }
 
-    private RMOverlay ensureRmOverlayPresent(Archetype result) {
+    private RmOverlay ensureRmOverlayPresent(Archetype result) {
         if(result.getRmOverlay() == null) {
-            result.setRmOverlay(new RMOverlay());
+            result.setRmOverlay(new RmOverlay());
         }
         if(result.getRmOverlay().getRmVisibility() == null) {
             result.getRmOverlay().setRmVisibility(new LinkedHashMap<>());

@@ -2,8 +2,8 @@ package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.rmoverlay.RMAttributeVisibility;
-import com.nedap.archie.aom.rmoverlay.RMOverlay;
+import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
@@ -82,7 +82,7 @@ public class Archetype extends AuthoredResource {
     @XmlElement(name="rmOverlay")
     //TODO: JAXB type adapter here, this contains just a map
     @XmlJavaTypeAdapter(RMOverlayXmlAdapter.class)
-    private RMOverlay rmOverlay;
+    private RmOverlay rmOverlay;
 
     public String getParentArchetypeId() {
         return parentArchetypeId;
@@ -284,7 +284,7 @@ public class Archetype extends AuthoredResource {
             }
         }
         if(rmOverlay != null && rmOverlay.getRmVisibility() != null) {
-            for (RMAttributeVisibility value : rmOverlay.getRmVisibility().values()) {
+            for (RmAttributeVisibility value : rmOverlay.getRmVisibility().values()) {
                 if(value.getAlias() != null) {
                     result.add(value.getAlias().getCodeString());
                 }
@@ -350,11 +350,11 @@ public class Archetype extends AuthoredResource {
 
     }
 
-    public RMOverlay getRmOverlay() {
+    public RmOverlay getRmOverlay() {
         return rmOverlay;
     }
 
-    public void setRmOverlay(RMOverlay rmOverlay) {
+    public void setRmOverlay(RmOverlay rmOverlay) {
         this.rmOverlay = rmOverlay;
     }
 }

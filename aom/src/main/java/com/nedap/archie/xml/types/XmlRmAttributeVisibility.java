@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlType(name="RM_ATTRIBUTE_VISIBILITY")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlRMAttributeVisibility {
+public class XmlRmAttributeVisibility {
 
     private String path;
     @Nullable
@@ -19,10 +19,10 @@ public class XmlRMAttributeVisibility {
     @Nullable
     private TerminologyCode alias;
 
-    public XmlRMAttributeVisibility() {
+    public XmlRmAttributeVisibility() {
     }
 
-    public XmlRMAttributeVisibility(String path, @Nullable VisibilityType visibility, @Nullable TerminologyCode alias) {
+    public XmlRmAttributeVisibility(String path, @Nullable VisibilityType visibility, @Nullable TerminologyCode alias) {
         this.path = path;
         this.visibility = visibility;
         this.alias = alias;
