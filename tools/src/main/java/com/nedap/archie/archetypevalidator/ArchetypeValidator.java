@@ -74,6 +74,7 @@ public class ArchetypeValidator {
 
         validationsPhase3 = new ArrayList<>();
         validationsPhase3.add(new AnnotationsValidation());
+        validationsPhase3.add(new RmOverlayValidation());
         validationsPhase3.add(new FlatFormValidation());
 
     }

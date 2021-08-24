@@ -13,84 +13,89 @@ import cadl, odin;
 //  ============== Parser rules ==============
 //
 
-adl: ( archetype | template | template_overlay | operational_template ) EOF ;
+adl: ( archetype | template | templateOverlay | operationalTemplate ) EOF ;
 
 archetype: 
-    SYM_ARCHETYPE meta_data?
+    SYM_ARCHETYPE metaData?
     ARCHETYPE_HRID
-    specialization_section?
-    language_section
-    description_section
-    definition_section
-    rules_section?
-    terminology_section
-    annotations_section?
+    specializationSection?
+    languageSection
+    descriptionSection
+    definitionSection
+    rulesSection?
+    rmOverlaySection?
+    terminologySection
+    annotationsSection?
     ;
 
 template: 
-    SYM_TEMPLATE meta_data? 
+    SYM_TEMPLATE metaData?
     ARCHETYPE_HRID
-    specialization_section
-    language_section
-    description_section
-    definition_section
-    rules_section?
-    terminology_section
-    annotations_section?
-    (template_overlay)*
+    specializationSection
+    languageSection
+    descriptionSection
+    definitionSection
+    rulesSection?
+    rmOverlaySection?
+    terminologySection
+    annotationsSection?
+    (templateOverlay)*
     ;
 
-template_overlay: 
+templateOverlay:
     SYM_TEMPLATE_OVERLAY //this token includes the horizontal comment line
     ARCHETYPE_HRID
-    specialization_section
-    definition_section
-    terminology_section
+    specializationSection
+    definitionSection
+    rmOverlaySection?
+    terminologySection
     ;
 
-operational_template: 
-    SYM_OPERATIONAL_TEMPLATE meta_data? 
+operationalTemplate:
+    SYM_OPERATIONAL_TEMPLATE metaData?
     ARCHETYPE_HRID
-    specialization_section?
-    language_section
-    description_section
-    definition_section
-    rules_section?
-    terminology_section
-    annotations_section?
-    component_terminologies_section?
+    specializationSection?
+    languageSection
+    descriptionSection
+    definitionSection
+    rulesSection?
+    rmOverlaySection?
+    terminologySection
+    annotationsSection?
+    componentTerminologiesSection?
     ;
 
-specialization_section : SYM_SPECIALIZE archetype_ref ;
-language_section       : SYM_LANGUAGE odin_text ;
-description_section    : SYM_DESCRIPTION odin_text ;
-definition_section     : SYM_DEFINITION c_complex_object ;
-rules_section          : SYM_RULES assertion_list;
-terminology_section    : SYM_TERMINOLOGY odin_text ;
-annotations_section    : SYM_ANNOTATIONS odin_text ;
-component_terminologies_section: SYM_COMPONENT_TERMINOLOGIES odin_text ;
+specializationSection : SYM_SPECIALIZE archetype_ref ;
+languageSection       : SYM_LANGUAGE odin_text ;
+descriptionSection    : SYM_DESCRIPTION odin_text ;
+definitionSection     : SYM_DEFINITION c_complex_object ;
+rulesSection          : SYM_RULES assertion_list;
+terminologySection    : SYM_TERMINOLOGY odin_text ;
+annotationsSection    : SYM_ANNOTATIONS odin_text ;
+rmOverlaySection       : SYM_RM_OVERLAY odin_text ;
+componentTerminologiesSection: SYM_COMPONENT_TERMINOLOGIES odin_text ;
 
-meta_data: '(' meta_data_item  (';' meta_data_item )* ')' ;
+metaData: '(' metaDataItem  (';' metaDataItem )* ')' ;
 
-meta_data_item:
-      meta_data_tag_adl_version '=' VERSION_ID
-    | meta_data_tag_uid '=' GUID
-    | meta_data_tag_build_uid '=' GUID
-    | meta_data_tag_rm_release '=' VERSION_ID
-    | meta_data_tag_is_controlled
-    | meta_data_tag_is_generated
-    | identifier ( '=' meta_data_value )?
+metaDataItem:
+      metaDataTagAdlVersion '=' VERSION_ID
+    | metaDataTagUid '=' GUID
+    | metaDataTagBuildUid '=' GUID
+    | metaDataTagRmRelease '=' VERSION_ID
+    | metaDataTagIsControlled
+    | metaDataTagIsGenerated
+    | identifier ( '=' metaDataValue )?
     ;
 
-meta_data_value:
+metaDataValue:
       primitive_value
     | GUID
     | VERSION_ID
     ;
 
-meta_data_tag_adl_version   : 'adl_version' ;
-meta_data_tag_uid           : 'uid' ;
-meta_data_tag_build_uid     : 'build_uid' ;
-meta_data_tag_rm_release    : 'rm_release' ;
-meta_data_tag_is_controlled : 'controlled' ;
-meta_data_tag_is_generated  : 'generated' ;
+metaDataTagAdlVersion   : 'adl_version' ;
+metaDataTagUid           : 'uid' ;
+metaDataTagBuildUid     : 'build_uid' ;
+metaDataTagRmRelease    : 'rm_release' ;
+metaDataTagIsControlled : 'controlled' ;
+metaDataTagIsGenerated  : 'generated' ;
