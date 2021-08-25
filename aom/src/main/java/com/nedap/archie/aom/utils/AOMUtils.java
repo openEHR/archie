@@ -10,7 +10,6 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CAttributeTuple;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
@@ -355,11 +354,11 @@ public class AOMUtils {
                 return false;
             }
             //we have a partial match left, search for it in the RM
-            if(partial.getFound().isEmpty()) {
+            if(partial.getFoundObjects().isEmpty()) {
                 //not a partial match, find in the RM
                 return metaModel.hasReferenceModelPath(template.getDefinition().getRmTypeName(), partial.getRemainingPath());
             } else {
-                for (ArchetypeModelObject archetypeModelObject : partial.getFound()) {
+                for (ArchetypeModelObject archetypeModelObject : partial.getFoundObjects()) {
                     if (archetypeModelObject instanceof CObject) {
                         if (metaModel.hasReferenceModelPath(((CObject) archetypeModelObject).getRmTypeName(), partial.getRemainingPath())) {
                             return true;
