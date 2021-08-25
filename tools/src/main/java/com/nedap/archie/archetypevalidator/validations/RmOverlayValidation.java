@@ -27,7 +27,6 @@ public class RmOverlayValidation extends ArchetypeValidationBase {
                 if(rmOverlay.getRmVisibility() != null) {
                     for(String path:rmOverlay.getRmVisibility().keySet()) {
 
-                        boolean isArchetypePath = AOMUtils.isArchetypePath(path) ; //TODO: NO idea what the eiffel code here suggests it does
                         //we need the operational template to look up paths across included archetypes
                         //otherwise any path crossing an ARCHETYPE_ROOT will fail to lookup
                         Archetype operationalTemplate = repository.getOperationalTemplate(archetype.getArchetypeId().toString());
@@ -38,15 +37,6 @@ public class RmOverlayValidation extends ArchetypeValidationBase {
                         if(!AOMUtils.isPathInArchetypeOrRm(combinedModels.getSelectedModel(), path, operationalTemplate)) {
                             addMessage(ErrorType.VRANP, I18n.t("The path {0} referenced in the rm visibility does not exist in the flat archetype", path));
                         }
-                        /*if(isArchetypePath) {
-                            if(!(hasPath(path, operationalTemplate) || (flatParent != null && hasPath(path, flatParent)))) {
-                                addMessage(ErrorType.VRANP, I18n.t("The path {0} referenced in the rm visibility does not exist in the flat archetype", path));
-                            }
-                        } else { //TODO: this can also be referencemodel.has_path, but that's not implemented yet
-                            if(!combinedModels.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), path)) {
-                                addMessage(ErrorType.VRANP, I18n.t("The path {0} referenced in the rm visibility does not exist in the flat archetype or reference model", path));
-                            }
-                        }*/
 
                         TerminologyCode alias = rmOverlay.getRmVisibility().get(path).getAlias();
                         if(alias != null && alias.getCodeString() != null && alias.getCodeString().startsWith("ad")) {

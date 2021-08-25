@@ -347,7 +347,6 @@ public class AOMUtils {
         if(partial.getRemainingPath().isEmpty() || partial.getRemainingPath().equals("/")) {
             return true;
         } else {
-            //TODO: should we check isArchetypePath(partial.getRemainingPath()) ?
             if(isArchetypePath(partial.getRemainingPath())) {
                 // the remaining path is an archetype path, so cannot be found purely in the RM without
                 //further constraints
