@@ -67,6 +67,7 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
         appendDescription();
         appendDefinition();
         appendRules();
+        appendRmOverlay();
         appendTerminology();
         appendAnnotations();
 
@@ -87,6 +88,18 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
         builder.newline().append("rules").newIndentedLine();
         rulesSerializer.appendRules(archetype.getRules());
         builder.newUnindentedLine();
+    }
+
+    protected void appendRmOverlay() {
+        if(archetype.getRmOverlay() == null
+                || archetype.getRmOverlay().getRmVisibility() == null
+                || archetype.getRmOverlay().getRmVisibility().isEmpty()) {
+            return;
+        }
+        builder.newline().append("rm_overlay").newIndentedLine()
+                .odin(archetype.getRmOverlay())
+                .unindent();
+
     }
 
     protected void appendTerminology() {
