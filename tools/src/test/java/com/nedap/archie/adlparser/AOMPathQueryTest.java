@@ -7,6 +7,7 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.query.AOMPathQuery;
+import com.nedap.archie.query.PartialMatch;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -116,5 +117,39 @@ public class AOMPathQueryTest {
         // So this should give nothing back
         precision = dvQuantity.itemAtPath("/precision[1]");
         assertNull(precision);
+    }
+
+    @Test
+    public void findPartial() {
+        String queryString = "/context[id11]/other_context[id2]/items[qualification]/items[4]/value[1]";
+        AOMPathQuery query = new AOMPathQuery(queryString);
+        PartialMatch fullMatch = query.findPartial(archetype.getDefinition());
+        assertTrue("this should be a full match", fullMatch.isFullMatch());
+        assertEquals("only one object should be found", 1, fullMatch.getFoundObjects().size());
+        assertEquals("the matched string should be equal to the query", queryString, fullMatch.getPathMatched());
+        assertEquals("the remainder should be '/'", "/", fullMatch.getRemainingPath());
+
+        queryString = "/context[id11]/health_care_facility/name";
+        query = new AOMPathQuery(queryString);
+        PartialMatch partialMatch = query.findPartial(archetype.getDefinition());
+        assertFalse("this should be a partial match", partialMatch.isFullMatch());
+        assertEquals("only one object should be found", 1, partialMatch.getFoundObjects().size());
+        assertEquals(archetype.getDefinition().getAttribute("context").getChildren().get(0),
+                partialMatch.getFoundObjects().get(0));
+        assertEquals("the matched string should be equal to the first part of the query",
+                "/context[id11]", partialMatch.getPathMatched());
+        assertEquals("the remainder should contain the last part",
+                "/health_care_facility/name", partialMatch.getRemainingPath());
+
+        queryString = "/non_existing_path/with_extras";
+        query = new AOMPathQuery(queryString);
+        PartialMatch noMatch = query.findPartial(archetype.getDefinition());
+        assertFalse("this should be a partial match", noMatch.isFullMatch());
+        assertEquals("the root node should be found", 1, noMatch.getFoundObjects().size());
+        assertEquals(archetype.getDefinition(), noMatch.getFoundObjects().get(0));
+        assertEquals("the matched string should be empty",
+                "/", noMatch.getPathMatched());
+        assertEquals("the remainder should contain the full query",
+                queryString, noMatch.getRemainingPath());
     }
 }
