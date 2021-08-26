@@ -2,6 +2,7 @@ package com.nedap.archie.rules.evaluation.evaluators;
 
 import com.google.common.collect.Lists;
 import com.nedap.archie.query.RMObjectWithPath;
+import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.rules.evaluation.Evaluator;
@@ -9,7 +10,6 @@ import com.nedap.archie.rules.evaluation.RuleEvaluation;
 import com.nedap.archie.rules.evaluation.Value;
 import com.nedap.archie.rules.evaluation.ValueList;
 
-import javax.xml.xpath.XPathExpressionException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,11 +53,9 @@ public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
         String path = pathPrefix + statement.getPath();
 
         List<RMObjectWithPath> rmObjectsWithPath;
-        try {
-            rmObjectsWithPath = evaluation.getQueryContext().findListWithPaths(path);
-        } catch (XPathExpressionException e) {
-            throw new RuntimeException("error evaluating " + path, e);
-        }
+
+        rmObjectsWithPath = new RMPathQuery(path).findList(evaluation.getModelInfoLookup(), evaluation.getRMRoot());
+
         List<Value<?>> values = rmObjectsWithPath.stream().map(
             rmObjectWithPath ->
                 new Value<>(rmObjectWithPath.getObject(), Lists.newArrayList(rmObjectWithPath.getPath())))
