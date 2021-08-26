@@ -3,7 +3,10 @@ package com.nedap.archie.rules.evaluation;
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.creation.RMObjectCreator;
+import com.nedap.archie.query.RMObjectWithPath;
+import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rmobjectvalidator.APathQueryCache;
 import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.RuleElement;
 import com.nedap.archie.rules.RuleStatement;
@@ -16,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 /**
  * Created by pieter.bos on 31/03/16.
@@ -41,6 +45,8 @@ public class RuleEvaluation<T> {
     private ModelInfoLookup modelInfoLookup;
 
     private RMObjectCreator creator;
+
+    private APathQueryCache queryCache = new APathQueryCache();
 
     private final AssertionsFixer assertionsFixer;
 
@@ -147,6 +153,16 @@ public class RuleEvaluation<T> {
 
     public ModelInfoLookup getModelInfoLookup() {
         return modelInfoLookup;
+    }
+
+
+    public List<RMObjectWithPath> findListWithPaths(String path, Object object) {
+        return queryCache.getApathQuery(path).findList(getModelInfoLookup(), object);
+    }
+
+    public List<Object> findList(String path, Object object) {
+        List<RMObjectWithPath> parentsWithPath = findListWithPaths(path, object);
+        return parentsWithPath.stream().map( p -> p.getObject()).collect(Collectors.toList());
     }
 
 }

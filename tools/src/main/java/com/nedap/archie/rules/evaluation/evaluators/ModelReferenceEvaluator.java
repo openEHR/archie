@@ -54,7 +54,7 @@ public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
 
         List<RMObjectWithPath> rmObjectsWithPath;
 
-        rmObjectsWithPath = new RMPathQuery(path).findList(evaluation.getModelInfoLookup(), evaluation.getRMRoot());
+        rmObjectsWithPath = evaluation.findListWithPaths(path, evaluation.getRMRoot());
 
         List<Value<?>> values = rmObjectsWithPath.stream().map(
             rmObjectWithPath ->

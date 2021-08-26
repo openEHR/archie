@@ -84,8 +84,7 @@ public class AssertionsFixer {
     }
 
     private List<Object> findList(String path, Object object) {
-        List<RMObjectWithPath> parentsWithPath = new RMPathQuery(path).findList(ruleEvaluation.getModelInfoLookup(), object);
-        return parentsWithPath.stream().map( p -> p.getObject()).collect(Collectors.toList());
+        return ruleEvaluation.findList(path, object);
     }
 
 
