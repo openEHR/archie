@@ -23,6 +23,8 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
     private static volatile OpenEHRTerminologyAccess instance;
 
+    private static boolean READ_FROM_JSON = true;
+
     @JsonProperty
     private Map<String, TerminologyImpl> terminologiesByOpenEHRId = new LinkedHashMap<>();
     @JsonProperty
@@ -92,7 +94,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
     public static OpenEHRTerminologyAccess getInstance() {
         if(instance == null) {
-            createInstance(true);
+            createInstance(READ_FROM_JSON);
         }
         return instance;
     }
