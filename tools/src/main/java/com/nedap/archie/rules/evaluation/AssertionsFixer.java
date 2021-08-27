@@ -3,6 +3,8 @@ package com.nedap.archie.rules.evaluation;
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.creation.RMObjectCreator;
+import com.nedap.archie.query.RMObjectWithPath;
+import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import javax.xml.xpath.XPathExpressionException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by pieter.bos on 05/04/2017.
@@ -43,15 +46,14 @@ public class AssertionsFixer {
 
                 String pathOfParent = stripLastPathSegment(path);
                 String lastPathSegment = getLastPathSegment(path);
-                List<Object> parents = null;
 
-                parents = ruleEvaluation.getQueryContext().findList(pathOfParent);
-
-
-                while(parents.isEmpty()) {
+                List<Object> parents = findList(pathOfParent, ruleEvaluation.getRMRoot());
+                int i = 0;
+                while(parents.isEmpty() && i < 500) { //not more than 500 times because we do not want infinite loops, and 500 is a lot already here
                     //there's object missing in the RMObject. Construct it here.
                     constructMissingStructure(archetype, pathOfParent, lastPathSegment, parents);
-                    parents = ruleEvaluation.getQueryContext().findList(pathOfParent);
+                    parents = findList(pathOfParent, ruleEvaluation.getRMRoot());
+                    i++;
                 }
 
                 for(Object parent:parents) {
@@ -72,7 +74,6 @@ public class AssertionsFixer {
                     }
 
                     result = modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent);
-                    ruleEvaluation.refreshQueryContext();
                 }
             }
         } catch (XPathExpressionException e) {
@@ -82,6 +83,9 @@ public class AssertionsFixer {
         return result;
     }
 
+    private List<Object> findList(String path, Object object) {
+        return ruleEvaluation.findList(path, object);
+    }
 
 
     private void constructMissingStructure(Archetype archetype, String pathOfParent, String lastPathSegment, List<Object> parents) throws XPathExpressionException {
@@ -92,7 +96,7 @@ public class AssertionsFixer {
             //lookup parent of parent until found. Create empty RM object. Then repeat original query
             newLastPathSegment = getLastPathSegment(newPathOfParent);
             newPathOfParent = stripLastPathSegment(newPathOfParent);
-            parents = ruleEvaluation.getQueryContext().findList(newPathOfParent);
+            parents = findList(newPathOfParent, ruleEvaluation.getRMRoot());
         }
         List<ArchetypeModelObject> constraints;
         if (newPathOfParent.equals("/")) {
@@ -108,7 +112,6 @@ public class AssertionsFixer {
             newEmptyObject = constructEmptySimpleObject(newLastPathSegment, object, newEmptyObject);
 
             creator.addElementToListOrSetSingleValues(object, newLastPathSegment, Lists.newArrayList(newEmptyObject));
-            ruleEvaluation.refreshQueryContext();
         } else {
             CObject constraint = getCObjectFromResult(constraints);
             if (constraint != null) {
@@ -129,7 +132,6 @@ public class AssertionsFixer {
 
                 creator.addElementToListOrSetSingleValues(object, attributeName, Lists.newArrayList(newEmptyObject));
 
-                ruleEvaluation.refreshQueryContext();
             }
         }
     }
