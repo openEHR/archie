@@ -7,12 +7,16 @@ import java.util.Set;
 
 public class TermCodeImpl implements TermCode {
 
-    private final String terminologyId;
-    private final String language;
-    private final String codeString;
-    private final String description;
-    private final String groupName;
-    private final Set<String> groupIds;//TODO: still one group name. Change to multiple as well?
+    private String terminologyId;
+    private String language;
+    private String codeString;
+    private String description;
+    private String groupName;
+    private Set<String> groupIds;//TODO: still one group name. Change to multiple as well?
+
+    private TermCodeImpl() {
+
+    }
 
     public TermCodeImpl(String terminologyId, String language, String codeString, String description, String groupName, String groupId) {
         this.terminologyId = terminologyId;
