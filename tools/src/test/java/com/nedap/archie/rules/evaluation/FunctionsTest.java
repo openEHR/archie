@@ -56,7 +56,7 @@ public class FunctionsTest {
     }
 
     private <T> RuleEvaluation<T> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), archetype);
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
     }
 
     @Test
