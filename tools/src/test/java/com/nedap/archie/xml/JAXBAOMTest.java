@@ -66,7 +66,7 @@ public class JAXBAOMTest {
     @Test
     public void parseCDuration() throws Exception {
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                "<archetype is_generated=\"false\" is_differential=\"false\" xmlns:ns2=\"http://schemas.openehr.org/v1\">\n" +
+                "<archetype is_generated=\"false\" is_differential=\"false\" xmlns=\"http://schemas.openehr.org/v1\">\n" +
                 "    <description/>\n" +
                 "    <original_language>\n" +
                 "        <terminology_id>ISO_639-1</terminology_id>\n" +

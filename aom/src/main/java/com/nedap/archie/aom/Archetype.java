@@ -10,12 +10,18 @@ import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
+import com.nedap.archie.xml.adapters.StringDictionaryMapAdapter;
+import com.nedap.archie.xml.adapters.StringDictionaryUtil;
+import com.nedap.archie.xml.types.StringDictionaryItem;
 
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.LinkedHashMap;
@@ -46,7 +52,7 @@ import java.util.stream.Collectors;
         "buildUid",
         "rmRelease",
         "generated",
-        "otherMetaData"
+        "xmlOtherMetaData"
 })
 public class Archetype extends AuthoredResource {
 
@@ -70,10 +76,31 @@ public class Archetype extends AuthoredResource {
     private String rmRelease;
     @XmlAttribute(name="is_generated")
     private Boolean generated = false;
+    //this is a specific map type to make a JAXB-adapter work. ugly jaxb
+    //alternative: define an extra field, use hooks to fill it just in time instead
+    @XmlTransient
+    private LinkedHashMap<String, String> otherMetaData = new LinkedHashMap<>();
 
     @XmlElement(name="other_meta_data")
-    //TODO: this probably requires a custom XmlAdapter
-    private Map<String, String> otherMetaData = new LinkedHashMap<>();
+    @JsonIgnore
+    private List<StringDictionaryItem> xmlOtherMetaData;
+
+    // Invoked by Jaxb Marshaller after unmarshalling
+    public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+        if(xmlOtherMetaData != null) {
+            otherMetaData = StringDictionaryUtil.convertStringDictionaryListToStringMap(xmlOtherMetaData);
+        }
+    }
+
+    // Invoked by Jaxb Marshaller before marshalling
+    public boolean beforeMarshal(Marshaller marshaller) {
+        if(otherMetaData == null) {
+            xmlOtherMetaData = null;
+        } else {
+            xmlOtherMetaData = StringDictionaryUtil.convertStringMapIntoStringDictionaryList(otherMetaData);
+        }
+        return true;
+    }
 
     public String getParentArchetypeId() {
         return parentArchetypeId;
@@ -162,7 +189,7 @@ public class Archetype extends AuthoredResource {
     }
 
     public void setOtherMetaData(Map<String, String> otherMetaData) {
-        this.otherMetaData = otherMetaData;
+        this.otherMetaData = new LinkedHashMap<>(otherMetaData);
     }
 
     public void addOtherMetadata(String text, String value) {

@@ -42,7 +42,7 @@ public class XmlResourceDescription {
     private List<StringDictionaryItem> conversionDetails;
     @XmlElement(name = "other_details")
     private List<StringDictionaryItem> otherDetails;
-    @XmlElement(required = true, type = ResourceDescriptionItem.class)
+    @XmlElement(required = true, type = XmlResourceDescriptionItem.class)
     private List<XmlResourceDescriptionItem> details;
 
     public List<StringDictionaryItem> getOriginalAuthor() {
