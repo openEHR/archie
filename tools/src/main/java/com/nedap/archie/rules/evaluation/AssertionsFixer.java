@@ -47,12 +47,12 @@ public class AssertionsFixer {
                 String pathOfParent = stripLastPathSegment(path);
                 String lastPathSegment = getLastPathSegment(path);
 
-                List<Object> parents = findList(pathOfParent, ruleEvaluation.getRMRoot());
+                List<Object> parents = ruleEvaluation.findList(pathOfParent);
                 int i = 0;
                 while(parents.isEmpty() && i < 500) { //not more than 500 times because we do not want infinite loops, and 500 is a lot already here
                     //there's object missing in the RMObject. Construct it here.
                     constructMissingStructure(archetype, pathOfParent, lastPathSegment, parents);
-                    parents = findList(pathOfParent, ruleEvaluation.getRMRoot());
+                    parents = ruleEvaluation.findList(pathOfParent);
                     i++;
                 }
 
@@ -74,6 +74,7 @@ public class AssertionsFixer {
                     }
 
                     result = modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent);
+                    ruleEvaluation.refreshQueryContext();
                 }
             }
         } catch (XPathExpressionException e) {
@@ -81,10 +82,6 @@ public class AssertionsFixer {
         }
 
         return result;
-    }
-
-    private List<Object> findList(String path, Object object) {
-        return ruleEvaluation.findList(path, object);
     }
 
 
@@ -96,7 +93,7 @@ public class AssertionsFixer {
             //lookup parent of parent until found. Create empty RM object. Then repeat original query
             newLastPathSegment = getLastPathSegment(newPathOfParent);
             newPathOfParent = stripLastPathSegment(newPathOfParent);
-            parents = findList(newPathOfParent, ruleEvaluation.getRMRoot());
+            parents = ruleEvaluation.findList(newPathOfParent);
         }
         List<ArchetypeModelObject> constraints;
         if (newPathOfParent.equals("/")) {
@@ -112,6 +109,7 @@ public class AssertionsFixer {
             newEmptyObject = constructEmptySimpleObject(newLastPathSegment, object, newEmptyObject);
 
             creator.addElementToListOrSetSingleValues(object, newLastPathSegment, Lists.newArrayList(newEmptyObject));
+            ruleEvaluation.refreshQueryContext();
         } else {
             CObject constraint = getCObjectFromResult(constraints);
             if (constraint != null) {
@@ -131,6 +129,7 @@ public class AssertionsFixer {
                 }
 
                 creator.addElementToListOrSetSingleValues(object, attributeName, Lists.newArrayList(newEmptyObject));
+                ruleEvaluation.refreshQueryContext();
 
             }
         }

@@ -46,15 +46,19 @@ import static org.junit.Assert.assertTrue;
  */
 public class ParsedRulesEvaluationTest {
 
-    private ADLParser parser;
-    private Archetype archetype;
+    ADLParser parser;
+    Archetype archetype;
 
-    private TestUtil testUtil;
+    TestUtil testUtil;
 
     @Before
     public void setup() {
         testUtil = new TestUtil();
         parser = new ADLParser();
+    }
+
+    public Archetype getArchetype() {
+        return archetype;
     }
 
     @Test
@@ -73,7 +77,7 @@ public class ParsedRulesEvaluationTest {
 
     }
 
-    private Archetype parse(String filename) throws IOException, ADLParseException {
+    Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
@@ -635,7 +639,7 @@ public class ParsedRulesEvaluationTest {
         assertEquals(false, variables.get("arithmetic_boolean_operands_false").getObject(0));
     }
 
-    private RuleEvaluation<Pathable> getRuleEvaluation() {
+    RuleEvaluation<Pathable> getRuleEvaluation() {
         return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
     }
 
