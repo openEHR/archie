@@ -1,5 +1,8 @@
 package com.nedap.archie.terminology;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.terminology.openehr.*;
 
 import javax.xml.bind.JAXBContext;
@@ -20,7 +23,9 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
     private static volatile OpenEHRTerminologyAccess instance;
 
+    @JsonProperty
     private Map<String, TerminologyImpl> terminologiesByOpenEHRId = new LinkedHashMap<>();
+    @JsonProperty
     private Map<String, TerminologyImpl> terminologiesByExternalId = new LinkedHashMap<>();
 
     private static final String[] resourceNames = {
@@ -31,7 +36,20 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
     };
 
 
+
     private OpenEHRTerminologyAccess() {
+
+    }
+
+    private static OpenEHRTerminologyAccess parseFromJson() {
+        try(InputStream stream = OpenEHRTerminologyAccess.class.getResourceAsStream("/openEHR_RM/fullTermFile.json")) {
+            return new ObjectMapper().readValue(stream, OpenEHRTerminologyAccess.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void parseFromXml() {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Code.class, Codeset.class, Concept.class, Group.class, Terminology.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -74,14 +92,20 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
     public static OpenEHRTerminologyAccess getInstance() {
         if(instance == null) {
-            createInstance();
+            createInstance(true);
         }
         return instance;
     }
 
-    private static synchronized void createInstance() {
+
+    private static synchronized void createInstance(boolean fromJson) {
         if(instance == null) {
-            instance = new OpenEHRTerminologyAccess();
+            if(fromJson) {
+                instance = parseFromJson();
+            } else {
+                new OpenEHRTerminologyAccess();
+                instance.parseFromXml();
+            }
         }
     }
 
@@ -159,98 +183,6 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
         return codes.stream().filter(c -> c.getCodeString().equalsIgnoreCase(code)).findFirst().orElse(null);
     }
 
-    private static class TerminologyImpl {
-        private String terminologyId;
-        private String issuer;
-        private String openEhrId;
-        private Map<String, MultiLanguageTerm> termsById = new LinkedHashMap<>();
-
-        public TerminologyImpl(String issuer, String openEhrId, String terminologyId) {
-            this.issuer = issuer;
-            this.openEhrId = openEhrId;
-            this.terminologyId = terminologyId;
-        }
-
-        public String getTerminologyId() {
-            return terminologyId;
-        }
-
-        public String getIssuer() {
-            return issuer;
-        }
-
-        public String getOpenEhrId() {
-            return openEhrId;
-        }
-
-        public Map<String, MultiLanguageTerm> getTermsById() {
-            return termsById;
-        }
-
-        public TermCode getTermCode(String code, String language) {
-            MultiLanguageTerm multiLanguageTerm = this.termsById.get(code);
-            if(multiLanguageTerm != null) {
-                return multiLanguageTerm.getTermCodesByLanguage().get(language);
-            }
-            return null;
-        }
-
-        public MultiLanguageTerm getMultiLanguageTerm(String code) {
-            return this.termsById.get(code);
-        }
-
-        public List<TermCode> getAllTermsForLanguage(String language) {
-            return getTermsById().values().stream()
-                    .map(a -> a.getTermCodesByLanguage().get(language))
-                    .filter(t -> t != null)
-                    .collect(Collectors.toList());
-        }
-
-        public MultiLanguageTerm getOrCreateTermSet(String id) {
-            MultiLanguageTerm multiLanguageTerm = termsById.get(id);
-            if(multiLanguageTerm == null) {
-                multiLanguageTerm = new MultiLanguageTerm(terminologyId, id);
-                termsById.put(id, multiLanguageTerm);
-            }
-            return multiLanguageTerm;
-        }
-
-    }
-
-    private static class MultiLanguageTerm {
-        private String terminologyId;
-        private String termId;
-        private Map<String, TermCode> termCodesByLanguage = new LinkedHashMap<>();
-
-        public MultiLanguageTerm(String terminologyId, String termId) {
-            this.terminologyId = terminologyId;
-            this.termId = termId;
-        }
-
-        public String getTerminologyId() {
-            return terminologyId;
-        }
-
-        public String getTermId() {
-            return termId;
-        }
-
-        public Map<String, TermCode> getTermCodesByLanguage() {
-            return termCodesByLanguage;
-        }
-
-        public void addCode(TermCode code) {
-            TermCode termCode = termCodesByLanguage.get(code.getLanguage());
-            if(termCode != null) {
-                //sometimes terms occur twice. They mean the same, but are in two groups.
-                //todo: properly implement groups
-                termCode.getGroupIds().add(code.getGroupName());
-            } else {
-                termCodesByLanguage.put(code.getLanguage(), code);
-            }
-        }
-
-    }
 }
 
 
