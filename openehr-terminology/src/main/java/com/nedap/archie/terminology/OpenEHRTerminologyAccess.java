@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
 
 public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
-    private static volatile OpenEHRTerminologyAccess instance;
+    static volatile OpenEHRTerminologyAccess instance;
 
-    private static boolean READ_FROM_JSON = true;
+    static boolean READ_FROM_JSON = true;
 
     @JsonProperty
     private Map<String, TerminologyImpl> terminologiesByOpenEHRId = new LinkedHashMap<>();
@@ -105,7 +105,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
             if(fromJson) {
                 instance = parseFromJson();
             } else {
-                new OpenEHRTerminologyAccess();
+                instance = new OpenEHRTerminologyAccess();
                 instance.parseFromXml();
             }
         }

@@ -2,6 +2,7 @@ package com.nedap.archie.terminology;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,8 +19,17 @@ public class OpenEHRTerminologyAccessTest {
         termAccess = OpenEHRTerminologyAccess.getInstance();//should not throw an exception from parsing
     }
 
+    @After
+    public void reset() {
+        OpenEHRTerminologyAccess.READ_FROM_JSON = true;
+        OpenEHRTerminologyAccess.instance = null;
+
+    }
     @Test
     public void writeToJson() throws Exception {
+        //be sure to parse from XML!
+        OpenEHRTerminologyAccess.instance = null;
+        OpenEHRTerminologyAccess.READ_FROM_JSON = false;
         OpenEHRTerminologyAccess ac = OpenEHRTerminologyAccess.getInstance();
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
