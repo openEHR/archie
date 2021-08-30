@@ -198,7 +198,7 @@ public class RuleEvaluation<T> {
     }
 
     public List<Object> findList(String path) {
-        if(rmQueryContext == null) {
+        if(rmQueryContext != null) {
             try {
                 return rmQueryContext.findList(path);
             } catch (XPathExpressionException e) {
