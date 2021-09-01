@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * A helper class for parsing component terminologies. Not to be used outside of the parser
  */
-class ComponentTerminologiesHelper {
+public class ComponentTerminologiesHelper {
 
     private Map<String, ArchetypeTerminology> componentTerminologies = new ConcurrentHashMap<>();
 
