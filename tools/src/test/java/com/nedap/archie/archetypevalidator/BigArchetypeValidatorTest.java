@@ -4,7 +4,6 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.io.Resources;
-import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.FullArchetypeRepository;
@@ -16,6 +15,7 @@ import com.nedap.archie.rminfo.ReferenceModels;
 import org.apache.commons.io.FilenameUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openehr.adl.AdlV2Parser;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
@@ -111,7 +111,7 @@ public class BigArchetypeValidatorTest {
             Exception exception = null;
             ANTLRParserErrors errors = null;
             try (InputStream stream = getClass().getResourceAsStream("/" + file)) {
-                ADLParser parser = new ADLParser();
+                AdlV2Parser parser = new AdlV2Parser();
                 parser.setLogEnabled(false);
                 archetype = parser.parse(stream);
                 errors = parser.getErrors();
@@ -168,7 +168,7 @@ public class BigArchetypeValidatorTest {
             Exception exception = null;
             ANTLRParserErrors errors = null;
             try (InputStream stream = getClass().getResourceAsStream("/" + file)) {
-                ADLParser parser = new ADLParser();
+                AdlV2Parser parser = new AdlV2Parser();
                 parser.setLogEnabled(false);
                 archetype = parser.parse(stream);
                 errors = parser.getErrors();

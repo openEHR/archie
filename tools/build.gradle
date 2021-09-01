@@ -2,6 +2,7 @@ description = "tools that operate on the archie reference models and archetype o
 
 dependencies {
   compile project(':grammars')
+  compile project(':grammars2')
   compile project(':base')
   compile project(':aom')
   compile project(':bmm') 
