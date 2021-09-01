@@ -17,6 +17,8 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rules.Assertion;
@@ -31,6 +33,8 @@ import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -691,5 +695,78 @@ public class ParsedRulesEvaluationTest {
 
     }
 
+    @Test
+    public void dateMagnitude() throws Exception {
+        parse("date_magnitude.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Cluster root = new Cluster();
+        root.setArchetypeNodeId("id1");
+        Element element = new Element();
+        element.setArchetypeNodeId("id2");
+        element.setValue(new DvDate(LocalDate.of(2021, 6, 1)));
+        root.addItem(element);
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        VariableMap variables = ruleEvaluation.getVariableMap();
+
+        assertEquals(18779l+ DvDate.DAYS_BETWEEN_0001_AND_1970, variables.get("date_magnitude").getObject(0));
+    }
+
+    @Test
+    public void dateMagnitudeDifference() throws Exception {
+        parse("date_magnitude.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Cluster root = new Cluster();
+        root.setArchetypeNodeId("id1");
+        Element element = new Element();
+        element.setArchetypeNodeId("id2");
+        element.setValue(new DvDate(LocalDate.of(2021, 6, 20)));
+        root.addItem(element);
+        Element element2 = new Element();
+        element2.setArchetypeNodeId("id10");
+        element2.setValue(new DvDate(LocalDate.of(2021, 6, 1)));
+
+        root.addItem(element2);
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        VariableMap variables = ruleEvaluation.getVariableMap();
+
+        assertEquals(19l, variables.get("date_difference").getObject(0));
+    }
+
+    @Test
+    public void dateTimeMagnitudeDifference() throws Exception {
+        parse("date_magnitude.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Cluster root = new Cluster();
+        root.setArchetypeNodeId("id1");
+        Element element = new Element();
+        element.setArchetypeNodeId("id2");
+        element.setValue(new DvDateTime(LocalDateTime.of(2021, 6, 20, 0, 0, 40)));
+        root.addItem(element);
+        Element element2 = new Element();
+        element2.setArchetypeNodeId("id10");
+        element2.setValue(new DvDateTime(LocalDateTime.of(2021, 6, 20, 0, 0, 1)));
+
+        root.addItem(element2);
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        VariableMap variables = ruleEvaluation.getVariableMap();
+
+        assertEquals(39l, variables.get("date_difference").getObject(0));
+    }
+
+    @Test
+    public void dateTimeMagnitude() throws Exception {
+        parse("date_magnitude.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Cluster root = new Cluster();
+        root.setArchetypeNodeId("id1");
+        Element element = new Element();
+        element.setArchetypeNodeId("id2");
+        element.setValue(new DvDateTime(LocalDateTime.of(2021, 6, 1, 0, 0, 0)));
+        root.addItem(element);
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        VariableMap variables = ruleEvaluation.getVariableMap();
+
+        assertEquals(63758102400l, variables.get("date_magnitude").getObject(0));
+    }
 
 }
