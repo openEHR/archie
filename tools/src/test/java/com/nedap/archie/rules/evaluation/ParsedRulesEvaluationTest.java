@@ -17,6 +17,8 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rules.Assertion;
@@ -31,6 +33,8 @@ import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -46,15 +50,19 @@ import static org.junit.Assert.assertTrue;
  */
 public class ParsedRulesEvaluationTest {
 
-    private ADLParser parser;
-    private Archetype archetype;
+    ADLParser parser;
+    Archetype archetype;
 
-    private TestUtil testUtil;
+    TestUtil testUtil;
 
     @Before
     public void setup() {
         testUtil = new TestUtil();
         parser = new ADLParser();
+    }
+
+    public Archetype getArchetype() {
+        return archetype;
     }
 
     @Test
@@ -73,7 +81,7 @@ public class ParsedRulesEvaluationTest {
 
     }
 
-    private Archetype parse(String filename) throws IOException, ADLParseException {
+    Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
@@ -139,7 +147,7 @@ public class ParsedRulesEvaluationTest {
         assertEquals("the assertion should have succeeded", true, result.getResult());
         assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
         assertEquals(1, result.getRawResult().getPaths(0).size());
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", result.getRawResult().getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", result.getRawResult().getPaths(0).get(0));
 
     }
 
@@ -164,38 +172,38 @@ public class ParsedRulesEvaluationTest {
         assertEquals(false, extendedValidity.getObject(0));
         assertEquals(false, extendedValidity2.getObject(0));
         assertEquals(false, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
         quantity.setMagnitude(20d);
 
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
         assertEquals(true, extendedValidity.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
 
         extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
         assertEquals(true, extendedValidity2.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
 
         variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
         assertEquals(true, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
 
         quantity.setMagnitude(0d);
 
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
         assertEquals(true, extendedValidity.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
 
         extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
         assertEquals(false, extendedValidity2.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
 
         variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
         assertEquals(true, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
 
     }
 
@@ -487,7 +495,7 @@ public class ParsedRulesEvaluationTest {
         assertEquals(3, evaluationResult.getPathsThatMustExist().size());
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id6]/value/magnitude", evaluationResult.getPathsThatMustExist().get(1));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(2));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(2));
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals(0, evaluationResult.getSetPathValues().size());
 
@@ -574,8 +582,8 @@ public class ParsedRulesEvaluationTest {
 
         assertEquals(0, evaluationResult.getPathsThatMustExist().size());
         assertEquals(5, evaluationResult.getPathsThatMustNotExist().size());
-        assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3,1]/data[id4]/items[id5,1]/value/magnitude"));
-        assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3,2]/data[id4]/items[id6,2]/value/magnitude"));
+        assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude"));
+        assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3, 2]/data[id4]/items[id6, 2]/value/magnitude"));
         assertEquals(0, evaluationResult.getSetPathValues().size());
 
     }
@@ -635,8 +643,8 @@ public class ParsedRulesEvaluationTest {
         assertEquals(false, variables.get("arithmetic_boolean_operands_false").getObject(0));
     }
 
-    private RuleEvaluation<Pathable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), archetype);
+    RuleEvaluation<Pathable> getRuleEvaluation() {
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
     }
 
     @Test
@@ -667,14 +675,14 @@ public class ParsedRulesEvaluationTest {
         Map<String, Object> exampleInstance = generator.generate(opt);
         Cluster cluster = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);
         //correct case first
-        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), opt);
+        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), opt);
         DvCodedText codedText = (DvCodedText) cluster.itemAtPath("/items[1]/items[1]/value[1]");
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at4"));
         codedText.setValue("value 1");
         EvaluationResult result = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult assertionResult = result.getAssertionResults().get(0);
         assertTrue("The given validation rule should pass", assertionResult.getResult());
-        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
+        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
 
         //incorrect case next
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at26"));//wrong code!
@@ -682,10 +690,83 @@ public class ParsedRulesEvaluationTest {
         EvaluationResult falseResult = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult  falseAssertionResult = falseResult.getAssertionResults().get(0);
         assertFalse(falseAssertionResult.getResult());
-        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
+        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
 
 
     }
 
+    @Test
+    public void dateMagnitude() throws Exception {
+        parse("date_magnitude.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Cluster root = new Cluster();
+        root.setArchetypeNodeId("id1");
+        Element element = new Element();
+        element.setArchetypeNodeId("id2");
+        element.setValue(new DvDate(LocalDate.of(2021, 6, 1)));
+        root.addItem(element);
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        VariableMap variables = ruleEvaluation.getVariableMap();
+
+        assertEquals(18779l+ DvDate.DAYS_BETWEEN_0001_AND_1970, variables.get("date_magnitude").getObject(0));
+    }
+
+    @Test
+    public void dateMagnitudeDifference() throws Exception {
+        parse("date_magnitude.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Cluster root = new Cluster();
+        root.setArchetypeNodeId("id1");
+        Element element = new Element();
+        element.setArchetypeNodeId("id2");
+        element.setValue(new DvDate(LocalDate.of(2021, 6, 20)));
+        root.addItem(element);
+        Element element2 = new Element();
+        element2.setArchetypeNodeId("id10");
+        element2.setValue(new DvDate(LocalDate.of(2021, 6, 1)));
+
+        root.addItem(element2);
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        VariableMap variables = ruleEvaluation.getVariableMap();
+
+        assertEquals(19l, variables.get("date_difference").getObject(0));
+    }
+
+    @Test
+    public void dateTimeMagnitudeDifference() throws Exception {
+        parse("date_magnitude.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Cluster root = new Cluster();
+        root.setArchetypeNodeId("id1");
+        Element element = new Element();
+        element.setArchetypeNodeId("id2");
+        element.setValue(new DvDateTime(LocalDateTime.of(2021, 6, 20, 0, 0, 40)));
+        root.addItem(element);
+        Element element2 = new Element();
+        element2.setArchetypeNodeId("id10");
+        element2.setValue(new DvDateTime(LocalDateTime.of(2021, 6, 20, 0, 0, 1)));
+
+        root.addItem(element2);
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        VariableMap variables = ruleEvaluation.getVariableMap();
+
+        assertEquals(39l, variables.get("date_difference").getObject(0));
+    }
+
+    @Test
+    public void dateTimeMagnitude() throws Exception {
+        parse("date_magnitude.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Cluster root = new Cluster();
+        root.setArchetypeNodeId("id1");
+        Element element = new Element();
+        element.setArchetypeNodeId("id2");
+        element.setValue(new DvDateTime(LocalDateTime.of(2021, 6, 1, 0, 0, 0)));
+        root.addItem(element);
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        VariableMap variables = ruleEvaluation.getVariableMap();
+
+        assertEquals(63758102400l, variables.get("date_magnitude").getObject(0));
+    }
 
 }
