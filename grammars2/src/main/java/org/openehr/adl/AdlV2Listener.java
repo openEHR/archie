@@ -182,7 +182,6 @@ public class AdlV2Listener extends AdlParserBaseListener {
         @Override
         public void enterSpecializeSection(AdlParser.SpecializeSectionContext ctx) {
             if(ctx != null && ctx.ARCHETYPE_REF() != null) {
-                //TODO: HRID also matched REF!
                 archetype.setParentArchetypeId(ctx.ARCHETYPE_REF().getText());
             }
         }
