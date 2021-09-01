@@ -14,6 +14,7 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.adl.AdlV2Parser;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 import org.slf4j.Logger;
@@ -172,7 +173,7 @@ public class TestUtil {
             Archetype archetype;
             ANTLRParserErrors errors;
             try (InputStream stream = TestUtil.class.getResourceAsStream("/" + file)) {
-                ADLParser parser = new ADLParser();
+                AdlV2Parser parser = new AdlV2Parser();
                 parser.setLogEnabled(false);
                 archetype = parser.parse(stream);
                 errors = parser.getErrors();
