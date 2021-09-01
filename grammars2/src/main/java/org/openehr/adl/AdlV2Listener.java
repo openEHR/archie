@@ -199,8 +199,7 @@ public class AdlV2Listener extends AdlParserBaseListener {
         }
 
         private ArchieErrorListener getErrorListenerFor(ParserRuleContext context) {
-            //TODO: add line number offset!
-            return new ArchieErrorListener(errors);
+            return new ArchieErrorListener(errors, context.getStart().getLine()-1);
         }
 
         @Override

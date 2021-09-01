@@ -40,6 +40,15 @@ public class ANTLRParserErrors {
         warnings.add(new ANTLRParserMessage(error, shortMessage, line, charPositionInLine, length, offendingSymbol));
     }
 
+    public void addAll(ANTLRParserErrors otherErrors, int startingLineNumber) {
+        for(ANTLRParserMessage message:otherErrors.getWarnings()) {
+            message.setLineNumber(message.getLineNumber() + startingLineNumber);
+        }
+        for(ANTLRParserMessage message:otherErrors.getErrors()) {
+            message.setLineNumber(message.getLineNumber() + startingLineNumber);
+        }
+    }
+
     public void logToLogger() {
         for(ANTLRParserMessage message:warnings) {
             logger.warn(message.getMessage());

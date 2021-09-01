@@ -23,12 +23,19 @@ public class ArchieErrorListener implements ANTLRErrorListener {
     private static final Logger logger = LoggerFactory.getLogger(ArchieErrorListener.class);
     private final ANTLRParserErrors errors;
 
+    private int startingLineNumber = 0;
+
     public ArchieErrorListener() {
         errors = new ANTLRParserErrors();
     }
 
     public ArchieErrorListener(ANTLRParserErrors errors) {
         this.errors = errors;
+    }
+
+    public ArchieErrorListener(ANTLRParserErrors errors, int startingLineNumber) {
+        this.errors = errors;
+        this.startingLineNumber = startingLineNumber;
     }
 
     public boolean isLogEnabled() {
@@ -41,15 +48,15 @@ public class ArchieErrorListener implements ANTLRErrorListener {
 
     @Override
     public void syntaxError(Recognizer<?,?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
-        String error = String.format("syntax error at %d:%d: %s. msg: %s", line, charPositionInLine, offendingSymbol, msg);
+        String error = String.format("syntax error at %d:%d: %s. msg: %s", line + startingLineNumber, charPositionInLine, offendingSymbol, msg);
         if(logEnabled) {
             logger.warn(error);
         }
         if (offendingSymbol != null) {
             String offendingSymbolString = offendingSymbol.toString();
-            errors.addError(error, msg, line, charPositionInLine, offendingSymbolString.length(), offendingSymbolString);
+            errors.addError(error, msg, line + startingLineNumber, charPositionInLine, offendingSymbolString.length(), offendingSymbolString);
         } else {
-            errors.addError(error, msg, line, charPositionInLine);
+            errors.addError(error, msg, line + startingLineNumber, charPositionInLine);
         }
     }
 
@@ -80,5 +87,9 @@ public class ArchieErrorListener implements ANTLRErrorListener {
 
     public ANTLRParserErrors getErrors() {
         return errors;
+    }
+
+    public int getStartingLineNumber() {
+        return startingLineNumber;
     }
 }

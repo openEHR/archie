@@ -43,6 +43,10 @@ public class ANTLRParserMessage {
         return lineNumber;
     }
 
+    void setLineNumber(Integer lineNumber) {
+        this.lineNumber = lineNumber;
+    }
+
     public int getColumnNumber() {
         return columnNumber;
     }
