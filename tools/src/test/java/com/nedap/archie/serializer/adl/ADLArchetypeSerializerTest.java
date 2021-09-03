@@ -109,7 +109,7 @@ public class ADLArchetypeSerializerTest {
                 "    rm_visibility = <\n" +
                 "        [\"/subject\"] = <\n" +
                 "            visibility = <\"hide\">\n" +
-                "            alias = <[local::ad12]>\n" +
+                "            alias = <[local::at12]>\n" +
                 "        >\n" +
                 "        [\"/data[id2]/events[id3]/data[id4]/items[id5]\"] = <\n" +
                 "            visibility = <\"show\">\n" +
@@ -121,7 +121,7 @@ public class ADLArchetypeSerializerTest {
 
        Archetype parsed = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(serialized);
        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
-       assertEquals("ad12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
+       assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
    }
 
     private Archetype load(String resourceName) throws ADLParseException, IOException {

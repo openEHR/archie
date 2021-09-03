@@ -96,7 +96,7 @@ public class AOMJacksonTest {
 
         Archetype parsed = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(json, Archetype.class);
         assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
-        assertEquals("ad12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
+        assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
 
         assertTrue(json.contains("  \"rm_overlay\" : {\n" +
                 "    \"rm_visibility\" : {\n" +
@@ -105,7 +105,7 @@ public class AOMJacksonTest {
                 "        \"alias\" : {\n" +
                 "          \"@type\" : \"TerminologyCode\",\n" +
                 "          \"terminology_id\" : \"local\",\n" +
-                "          \"code_string\" : \"ad12\",\n" +
+                "          \"code_string\" : \"at12\",\n" +
                 "          \"terminology_id_string\" : \"local\"\n" +
                 "        }\n" +
                 "      },\n" +

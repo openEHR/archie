@@ -70,7 +70,7 @@ rm_overlay
 	rm_visibility = <
         ["/subject"] = <
             visibility = <"hide">
-            alias = <[local::ad12]>
+            alias = <[local::at12]>
         >
         ["/data[id2]/events[id3]/data[id4]/items[id5]"] = <
             visibility = <"show">

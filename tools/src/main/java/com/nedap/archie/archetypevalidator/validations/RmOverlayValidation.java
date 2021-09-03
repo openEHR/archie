@@ -35,7 +35,7 @@ public class RmOverlayValidation extends ArchetypeValidationBase {
                         }
 
                         TerminologyCode alias = rmOverlay.getRmVisibility().get(path).getAlias();
-                        if(alias != null && alias.getCodeString() != null && alias.getCodeString().startsWith("ad")) {
+                        if(alias != null && alias.getCodeString() != null && AOMUtils.isValueCode(alias.getCodeString())) {
                             if(operationalTemplate.getTerm(archetype.getDefinition(), alias.getCodeString(), archetype.getOriginalLanguage().getCodeString()) == null) {
                                 addMessage(ErrorType.VATID, I18n.t("The code {0} is missing in the terminology. It is defined in rm_visibility at path {1}", alias.getCodeString(), path));
                             }

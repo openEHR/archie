@@ -70,7 +70,7 @@ rm_overlay
 	rm_visibility = <
         ["/subject"] = <
             visibility = <"hide">
-            alias = <[local::ad12]>
+            alias = <[local::at12]>
         >
         ["/data[id2]/events[id3]/data[id4]/items[id5]"] = <
             visibility = <"show">
@@ -103,7 +103,7 @@ terminology
                 text = <"pressure difference">
                 description = <"testing 1 2 3 ">
             >
-			["ad12"] = <
+			["at12"] = <
                 text = <"some subject">
                 description = <"ingocnito mode activated">
             >

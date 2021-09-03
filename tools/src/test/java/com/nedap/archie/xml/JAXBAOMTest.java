@@ -117,7 +117,7 @@ public class JAXBAOMTest {
                 "            <visibility>hide</visibility>\n" +
                 "            <alias>\n" +
                 "                <terminology_id>local</terminology_id>\n" +
-                "                <code_string>ad12</code_string>\n" +
+                "                <code_string>at12</code_string>\n" +
                 "            </alias>\n" +
                 "        </rm_visibility>\n" +
                 "        <rm_visibility>\n" +
@@ -134,7 +134,7 @@ public class JAXBAOMTest {
         Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
 
         assertEquals(VisibilityType.HIDE, unmarshalled.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
-        assertEquals("ad12", unmarshalled.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
+        assertEquals("at12", unmarshalled.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
 
     }
 
