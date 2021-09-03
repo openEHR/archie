@@ -62,10 +62,7 @@ public class TerminologyFlattener {
     }
 
     private static void flattenValueSets(Map<String, ValueSet> childValueSets, Map<String, ValueSet> resultValueSets) {
-        for(String key:childValueSets.keySet()) {
-            ValueSet childValueSet = childValueSets.get(key);
-            resultValueSets.put(key, childValueSet);
-        }
+        resultValueSets.putAll(childValueSets);
     }
 
     private static ValueSet findMatchingValueSet(Map<String, ValueSet> resultValueSets, String specializedId) {

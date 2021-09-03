@@ -12,7 +12,6 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 import static org.junit.Assert.*;
@@ -34,7 +33,7 @@ public class TermCodeSpecializationTest {
         Flattener flattener = new Flattener(repo, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(child);
         ValueSet valueSet = opt.getTerminology().getValueSets().get("ac0.2");
-        assertEquals(new LinkedHashSet(Arrays.asList("at1", "at2", "at3", "at0.1")), valueSet.getMembers());
+        assertEquals(new LinkedHashSet<>(Arrays.asList("at1", "at2", "at3", "at0.1")), valueSet.getMembers());
     }
 
     @Test
