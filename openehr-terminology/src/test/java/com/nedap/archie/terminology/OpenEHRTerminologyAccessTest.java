@@ -2,13 +2,16 @@ package com.nedap.archie.terminology;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class OpenEHRTerminologyAccessTest {
 
@@ -34,9 +37,13 @@ public class OpenEHRTerminologyAccessTest {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
-        String t = mapper.writeValueAsString(ac);
-        OpenEHRTerminologyAccess parsed = mapper.readValue(t, OpenEHRTerminologyAccess.class);
-        System.out.println(t);
+        String json = mapper.writeValueAsString(ac);
+        OpenEHRTerminologyAccess parsed = mapper.readValue(json, OpenEHRTerminologyAccess.class);
+        //System.out.println(json);
+        try(InputStream stream = getClass().getResourceAsStream("/openEHR_RM/fullTermFile.json")) {
+            String includedJson = IOUtils.toString(stream, StandardCharsets.UTF_8);
+            assertEquals("XML and included terminology have gone out of sync. please regenerate json file!", json, includedJson);
+        }
     }
 
     @Test
