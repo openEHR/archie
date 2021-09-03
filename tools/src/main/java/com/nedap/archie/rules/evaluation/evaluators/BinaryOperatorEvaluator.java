@@ -508,7 +508,11 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     }
 
     private double convertToDouble(Object value) {
-        return value instanceof  Double ? (Double) value : ((Long) value).doubleValue();
+        if(value instanceof Number) {
+            return ((Number) value).doubleValue();
+        } else {
+            throw new IllegalArgumentException("Can only convert Numbers to double values");
+        }
     }
 
     @Override
