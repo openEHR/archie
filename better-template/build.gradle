@@ -1,0 +1,15 @@
+description = "A parser and converter for the Better Systems JSON template format"
+
+dependencies {
+  compile project(':grammars')
+  compile project(':base')
+  compile project(':aom')
+  compile project(':bmm') 
+  compile project(':path-queries')
+  compile project(':utils')
+  compile project(':tools')
+  compile project(':openehr-rm')
+  compile project(':archie-utils')
+  compile project(':i18n')
+  compile project(':referencemodels')
+}
