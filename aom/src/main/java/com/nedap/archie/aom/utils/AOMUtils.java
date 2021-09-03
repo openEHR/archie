@@ -14,7 +14,10 @@ import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
+import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.query.PartialMatch;
+import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
@@ -336,6 +339,38 @@ public class AOMUtils {
             }
         }
         return maximumIdCode;
+    }
+
+    public static boolean isPathInArchetypeOrRm(MetaModel metaModel, String path, Archetype template) {
+        AOMPathQuery aomPathQuery = new AOMPathQuery(path);
+        PartialMatch partial = aomPathQuery.findPartial(template.getDefinition());
+        if(partial.isFullMatch()) {
+            return true;
+        } else {
+            if(isArchetypePath(partial.getRemainingPath())) {
+                // the remaining path is an archetype path, so cannot be found purely in the RM without
+                //further constraints
+                return false;
+            }
+            //we have a partial match left, search for it in the RM
+            //in case there is no match at all, getFoundObjects() will contain the root node, so this is safe
+            for (ArchetypeModelObject archetypeModelObject : partial.getFoundObjects()) {
+                if (archetypeModelObject instanceof CObject) {
+                    if (metaModel.hasReferenceModelPath(((CObject) archetypeModelObject).getRmTypeName(), partial.getRemainingPath())) {
+                        return true;
+                    }
+                } else if (archetypeModelObject instanceof CAttribute) {
+                    CAttribute attribute = (CAttribute) archetypeModelObject;
+                    //matched an attribute. So if even one object matches, return true
+                    for(CObject child:attribute.getChildren()) {
+                        if (metaModel.hasReferenceModelPath(child.getRmTypeName(), partial.getRemainingPath())) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**

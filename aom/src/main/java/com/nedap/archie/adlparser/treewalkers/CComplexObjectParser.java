@@ -33,7 +33,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
         this.metaModels = metaModels;
     }
 
-    public RulesSection parseRules(Rules_sectionContext context) {
+    public RulesSection parseRules(RulesSectionContext context) {
         RulesSection result = new RulesSection();
 
         result.setContent(context.getText());
