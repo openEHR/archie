@@ -1,10 +1,12 @@
 package com.nedap.archie.rules.evaluation;
 
 import com.google.common.collect.Lists;
-import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeModelObject;
+import com.nedap.archie.aom.CAttribute;
+import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.CObject;
 import com.nedap.archie.creation.RMObjectCreator;
-import com.nedap.archie.query.RMObjectWithPath;
-import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import org.slf4j.Logger;
@@ -14,7 +16,6 @@ import javax.xml.xpath.XPathExpressionException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Created by pieter.bos on 05/04/2017.
@@ -39,53 +40,51 @@ public class AssertionsFixer {
     public Map<String, Object> fixAssertions(Archetype archetype, AssertionResult assertionResult) {
         Map<String, Object> result = new HashMap<>();
 
-        try {
-            Map<String, Value<?>> setPathValues = assertionResult.getSetPathValues();
-            for(String path:setPathValues.keySet()) {
-                Value<?> value = setPathValues.get(path);
 
-                String pathOfParent = stripLastPathSegment(path);
-                String lastPathSegment = getLastPathSegment(path);
+        Map<String, Value<?>> setPathValues = assertionResult.getSetPathValues();
+        for(String path:setPathValues.keySet()) {
+            Value<?> value = setPathValues.get(path);
 
-                List<Object> parents = ruleEvaluation.findList(pathOfParent);
-                int i = 0;
-                while(parents.isEmpty() && i < 500) { //not more than 500 times because we do not want infinite loops, and 500 is a lot already here
-                    //there's object missing in the RMObject. Construct it here.
-                    constructMissingStructure(archetype, pathOfParent, lastPathSegment, parents);
-                    parents = ruleEvaluation.findList(pathOfParent);
-                    i++;
-                }
+            String pathOfParent = stripLastPathSegment(path);
+            String lastPathSegment = getLastPathSegment(path);
 
-                for(Object parent:parents) {
-                    RMAttributeInfo attributeInfo = ruleEvaluation.getModelInfoLookup().getAttributeInfo(parent.getClass(), lastPathSegment);
-                    if(attributeInfo == null) {
-                        throw new IllegalStateException("attribute " + lastPathSegment + " does not exist on type " + parent.getClass());
-                    }
-                    if(value.getValue() == null) {
-                        creator.set(parent, lastPathSegment, Lists.newArrayList(value.getValue()));
-                    } else if(attributeInfo.getType().equals(Long.class) && value.getValue().getClass().equals(Double.class)) {
-                        Long convertedValue = ((Double) value.getValue()).longValue(); //TODO or should this round?
-                        creator.set(parent, lastPathSegment, Lists.newArrayList(convertedValue));
-                    } else if(attributeInfo.getType().equals(Double.class) && value.getValue().getClass().equals(Long.class)) {
-                        Double convertedValue = ((Long) value.getValue()).doubleValue(); //TODO or should this round?
-                        creator.set(parent, lastPathSegment, Lists.newArrayList(convertedValue));
-                    } else {
-                        creator.set(parent, lastPathSegment, Lists.newArrayList(value.getValue()));
-                    }
-
-                    result = modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent);
-                    ruleEvaluation.refreshQueryContext();
-                }
+            List<Object> parents = ruleEvaluation.findList(pathOfParent);
+            int i = 0;
+            while(parents.isEmpty() && i < 500) { //not more than 500 times because we do not want infinite loops, and 500 is a lot already here
+                //there's object missing in the RMObject. Construct it here.
+                constructMissingStructure(archetype, pathOfParent, lastPathSegment, parents);
+                parents = ruleEvaluation.findList(pathOfParent);
+                i++;
             }
-        } catch (XPathExpressionException e) {
-            logger.error("error fixing assertionResult {}", assertionResult, e);
+
+            for(Object parent:parents) {
+                RMAttributeInfo attributeInfo = ruleEvaluation.getModelInfoLookup().getAttributeInfo(parent.getClass(), lastPathSegment);
+                if(attributeInfo == null) {
+                    throw new IllegalStateException("attribute " + lastPathSegment + " does not exist on type " + parent.getClass());
+                }
+                if(value.getValue() == null) {
+                    creator.set(parent, lastPathSegment, Lists.newArrayList(value.getValue()));
+                } else if(attributeInfo.getType().equals(Long.class) && value.getValue().getClass().equals(Double.class)) {
+                    Long convertedValue = ((Double) value.getValue()).longValue(); //TODO or should this round?
+                    creator.set(parent, lastPathSegment, Lists.newArrayList(convertedValue));
+                } else if(attributeInfo.getType().equals(Double.class) && value.getValue().getClass().equals(Long.class)) {
+                    Double convertedValue = ((Long) value.getValue()).doubleValue(); //TODO or should this round?
+                    creator.set(parent, lastPathSegment, Lists.newArrayList(convertedValue));
+                } else {
+                    creator.set(parent, lastPathSegment, Lists.newArrayList(value.getValue()));
+                }
+
+                result = modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent);
+                ruleEvaluation.refreshQueryContext();
+            }
         }
+
 
         return result;
     }
 
 
-    private void constructMissingStructure(Archetype archetype, String pathOfParent, String lastPathSegment, List<Object> parents) throws XPathExpressionException {
+    private void constructMissingStructure(Archetype archetype, String pathOfParent, String lastPathSegment, List<Object> parents) {
         //TODO: this is great but not enough. Fix it by hardcoding support for DV_CODED_TEXT and DV_ORDINAL, here or in the FixableAssertionsChecker.
         String newPathOfParent = pathOfParent;
         String newLastPathSegment = lastPathSegment;
