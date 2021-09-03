@@ -13,7 +13,6 @@ import com.nedap.archie.paths.PathUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 

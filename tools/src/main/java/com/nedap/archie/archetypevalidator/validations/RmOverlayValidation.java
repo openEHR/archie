@@ -2,16 +2,12 @@ package com.nedap.archie.archetypevalidator.validations;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.AuthoredArchetype;
-import com.nedap.archie.aom.ResourceAnnotations;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationBase;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import com.nedap.archie.query.AOMPathQuery;
 import org.openehr.utils.message.I18n;
-
-import java.util.Map;
 
 public class RmOverlayValidation extends ArchetypeValidationBase {
 
@@ -48,18 +44,5 @@ public class RmOverlayValidation extends ArchetypeValidationBase {
                 }
             }
         }
-
-
     }
-
-    /**
-     * Check if the archetype has this path directly, or a specialized variant of this path
-     * @param path the path to check
-     * @param archetype the archetype to find the path in
-     * @return true if the archetype has the path, false if it does not
-     */
-    private boolean hasPath(String path, Archetype archetype) {
-        return ! new AOMPathQuery(path).findList(archetype.getDefinition(), true).isEmpty();
-    }
-
 }

@@ -344,7 +344,7 @@ public class AOMUtils {
     public static boolean isPathInArchetypeOrRm(MetaModel metaModel, String path, Archetype template) {
         AOMPathQuery aomPathQuery = new AOMPathQuery(path);
         PartialMatch partial = aomPathQuery.findPartial(template.getDefinition());
-        if(partial.getRemainingPath().isEmpty() || partial.getRemainingPath().equals("/")) {
+        if(partial.isFullMatch()) {
             return true;
         } else {
             if(isArchetypePath(partial.getRemainingPath())) {
@@ -353,22 +353,18 @@ public class AOMUtils {
                 return false;
             }
             //we have a partial match left, search for it in the RM
-            if(partial.getFoundObjects().isEmpty()) {
-                //not a partial match, find in the RM
-                return metaModel.hasReferenceModelPath(template.getDefinition().getRmTypeName(), partial.getRemainingPath());
-            } else {
-                for (ArchetypeModelObject archetypeModelObject : partial.getFoundObjects()) {
-                    if (archetypeModelObject instanceof CObject) {
-                        if (metaModel.hasReferenceModelPath(((CObject) archetypeModelObject).getRmTypeName(), partial.getRemainingPath())) {
+            //in case there is no match at all, getFoundObjects() will contain the root node, so this is safe
+            for (ArchetypeModelObject archetypeModelObject : partial.getFoundObjects()) {
+                if (archetypeModelObject instanceof CObject) {
+                    if (metaModel.hasReferenceModelPath(((CObject) archetypeModelObject).getRmTypeName(), partial.getRemainingPath())) {
+                        return true;
+                    }
+                } else if (archetypeModelObject instanceof CAttribute) {
+                    CAttribute attribute = (CAttribute) archetypeModelObject;
+                    //matched an attribute. So if even one object matches, return true
+                    for(CObject child:attribute.getChildren()) {
+                        if (metaModel.hasReferenceModelPath(child.getRmTypeName(), partial.getRemainingPath())) {
                             return true;
-                        }
-                    } else if (archetypeModelObject instanceof CAttribute) {
-                        CAttribute attribute = (CAttribute) archetypeModelObject;
-                        //matched an attribute. So if even one object matches, return true
-                        for(CObject child:attribute.getChildren()) {
-                            if (metaModel.hasReferenceModelPath(child.getRmTypeName(), partial.getRemainingPath())) {
-                                return true;
-                            }
                         }
                     }
                 }

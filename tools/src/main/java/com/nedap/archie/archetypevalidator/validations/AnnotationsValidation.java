@@ -3,17 +3,13 @@ package com.nedap.archie.archetypevalidator.validations;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.AuthoredArchetype;
-import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.ResourceAnnotations;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationBase;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.query.AOMPathQuery;
 import org.openehr.utils.message.I18n;
 
 import java.util.Map;
-
-
 
 public class AnnotationsValidation extends ArchetypeValidationBase {
 
