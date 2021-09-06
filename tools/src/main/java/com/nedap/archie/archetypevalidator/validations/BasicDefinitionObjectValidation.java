@@ -18,13 +18,13 @@ public class BasicDefinitionObjectValidation extends ValidatingVisitor {
         if(cObject.getOccurrences() != null) {
             validateOccurrences(cObject);
         }
-        if(cObject instanceof COrdered) {
-            validateCOrdered((COrdered) cObject);
+        if(cObject instanceof COrdered<?>) {
+            validateCOrdered((COrdered<?>) cObject);
         }
     }
 
     private void validateCOrdered(COrdered<?> cOrdered) {
-        for(Interval interval:cOrdered.getConstraint()) {
+        for(Interval<?> interval:cOrdered.getConstraint()) {
             if(!isValidInterval(interval)) {
                 this.addMessageWithPath(ErrorType.OTHER, cOrdered.path(), I18n.t("The constraint interval for this {0} has lower > upper, this is not allowed", cOrdered.getClass().getSimpleName()));
             }
@@ -51,7 +51,7 @@ public class BasicDefinitionObjectValidation extends ValidatingVisitor {
         }
     }
 
-    private boolean isValidInterval(Interval<? extends Comparable> interval) {
+    private boolean isValidInterval(Interval<?> interval) {
         if(interval.getUpper() != null && interval.getLower() != null &&
             !interval.isLowerUnbounded() &&
             !interval.isUpperUnbounded()){

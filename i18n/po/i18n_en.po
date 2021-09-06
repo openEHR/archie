@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-24 13:11+0200\n"
+"POT-Creation-Date: 2020-12-14 12:54+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -219,6 +219,11 @@ msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ValidationMessage.java:61
 msgid "Error"
+msgstr ""
+
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:155
+#, java-format
+msgid "Error in parent archetype. Fix those errors before continuing with this archetype: {0}"
 msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:39
@@ -654,7 +659,7 @@ msgstr ""
 msgid "TODO: something with leaf nodes"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:202
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:212
 #, java-format
 msgid "Template overlay {0} had validation errors"
 msgstr ""
@@ -780,6 +785,10 @@ msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:85
 msgid "The validation of a template overlay failed"
+msgstr ""
+
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:86
+msgid "The validation of the parent archetype failed"
 msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:13

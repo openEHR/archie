@@ -15,7 +15,10 @@ import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
+import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.query.PartialMatch;
+import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
@@ -201,39 +204,42 @@ public class AOMUtils {
         return false;
     }
 
-    public static boolean archetypeIdMatchesSlotExpression(String archetypeRef, ArchetypeSlot slot) {
-        boolean includePasses = false;
-
-        if(slot.getIncludes() != null && !slot.getIncludes().isEmpty()) {
+    public static boolean archetypeRefMatchesSlotExpression(String archetypeRef, ArchetypeSlot slot) {
+        if(!isSlotPresentAndOpen(slot.getIncludes()) && isSlotPresentAndOpen(slot.getExcludes())) {
             for (Assertion include : slot.getIncludes()) {
-                if (filterInclude(include.getExpression(), archetypeRef)) {
-                    includePasses = true;
+                if (matchesInclude(include.getExpression(), archetypeRef)) {
+                    return true;
                 }
             }
-        } else {
-            includePasses = true;
-        }
-        if(includePasses) {
-            if (slot.getExcludes() != null && !slot.getExcludes().isEmpty()) {
-                for (Assertion exclude : slot.getExcludes()) {
-                    if (filterExclude(exclude.getExpression(), archetypeRef)) {
-                        return false;
-                    }
+            return false;
+        } else if (!isSlotPresentAndOpen(slot.getExcludes()) && isSlotPresentAndOpen(slot.getIncludes())) {
+            for (Assertion exclude : slot.getExcludes()) {
+                if (matchesExclude(exclude.getExpression(), archetypeRef)) {
+                    return false;
                 }
             }
         }
-        return includePasses;
-
+        return true;
     }
 
-    private static boolean filterInclude(Expression expression, String archetypeRef) {
+    /**
+     * @return true if the contents of an archetype slot are present, but contains an open slot, false otherwise
+     */
+    public static boolean isSlotPresentAndOpen(List<Assertion> slotAssertions) {
+        if(slotAssertions == null || slotAssertions.isEmpty()) {
+            return false;
+        }
+        return slotAssertions.get(0).matchesAny();
+    }
+
+    private static boolean matchesInclude(Expression expression, String archetypeRef) {
         Boolean result = matchesExpression(expression, archetypeRef);
         return result == null ? true : result;
     }
 
-    private static boolean filterExclude(Expression expression, String archetypeRef) {
+    private static boolean matchesExclude(Expression expression, String archetypeRef) {
         Boolean result = matchesExpression(expression, archetypeRef);
-        return result == null ? true : !result;
+        return result == null ? false : result;
     }
 
     //TODO: because of the split in modules we cannot use the full RuleEvaluation here, which is a pity. So for now only the minor subset.
@@ -243,9 +249,9 @@ public class AOMUtils {
             if (binary.getOperator() == OperatorKind.matches) {
                 Expression rightOperand = binary.getRightOperand();
                 if (rightOperand instanceof Constraint) {
-                    Constraint constraint = (Constraint) rightOperand;
+                    Constraint<?> constraint = (Constraint<?>) rightOperand;
                     if(constraint.getItem() != null && constraint.getItem().getConstraint() != null && constraint.getItem().getConstraint().size() > 0 &&
-                            constraint.getItem().getConstraint().get(0) instanceof CString) {
+                            constraint.getItem() instanceof CString) {
                         String pattern = ((CString) constraint.getItem()).getConstraint().get(0);
                         if (pattern.startsWith("^") || pattern.startsWith("/")) {
                             //regexp
@@ -260,7 +266,6 @@ public class AOMUtils {
                     }
                 }
             }
-            //archetypeStream.filter(
         }
         return null;// unsupported expression type
     }
@@ -338,6 +343,38 @@ public class AOMUtils {
             }
         }
         return maximumIdCode;
+    }
+
+    public static boolean isPathInArchetypeOrRm(MetaModel metaModel, String path, Archetype template) {
+        AOMPathQuery aomPathQuery = new AOMPathQuery(path);
+        PartialMatch partial = aomPathQuery.findPartial(template.getDefinition());
+        if(partial.isFullMatch()) {
+            return true;
+        } else {
+            if(isArchetypePath(partial.getRemainingPath())) {
+                // the remaining path is an archetype path, so cannot be found purely in the RM without
+                //further constraints
+                return false;
+            }
+            //we have a partial match left, search for it in the RM
+            //in case there is no match at all, getFoundObjects() will contain the root node, so this is safe
+            for (ArchetypeModelObject archetypeModelObject : partial.getFoundObjects()) {
+                if (archetypeModelObject instanceof CObject) {
+                    if (metaModel.hasReferenceModelPath(((CObject) archetypeModelObject).getRmTypeName(), partial.getRemainingPath())) {
+                        return true;
+                    }
+                } else if (archetypeModelObject instanceof CAttribute) {
+                    CAttribute attribute = (CAttribute) archetypeModelObject;
+                    //matched an attribute. So if even one object matches, return true
+                    for(CObject child:attribute.getChildren()) {
+                        if (metaModel.hasReferenceModelPath(child.getRmTypeName(), partial.getRemainingPath())) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**

@@ -9,6 +9,7 @@ import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.composition.EventContext;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
+import com.nedap.archie.rm.datastructures.Item;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DataValue;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
@@ -50,13 +51,13 @@ public class RMObjectAttributesTest {
         Object actualOtherContext = getAttributeValueFromRMObject(actualContext, "other_context", modelInfoLookup);
         assertSame(expectedOtherContext, actualOtherContext);
 
-        List expectedItems = expectedOtherContext.getItems();
+        List<?> expectedItems = expectedOtherContext.getItems();
         Object actualItems = getAttributeValueFromRMObject(actualOtherContext, "items", modelInfoLookup);
         assertSame(expectedItems, actualItems);
 
         Cluster cluster = (Cluster) expectedItems.get(0);
 
-        List expectedClusterItems = cluster.getItems();
+        List<Item> expectedClusterItems = cluster.getItems();
         Object actualClusterItems = getAttributeValueFromRMObject(cluster, "items", modelInfoLookup);
         assertSame(expectedClusterItems, actualClusterItems);
 

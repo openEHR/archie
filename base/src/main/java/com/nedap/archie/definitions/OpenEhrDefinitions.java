@@ -28,4 +28,5 @@ package com.nedap.archie.definitions;
  */
 public class OpenEhrDefinitions  extends BasicDefinitions {
     public static final String LOCAL_TERMINOLOGY_ID = "local";
+    public static final String EHR_SCHEME = "ehr";
 }

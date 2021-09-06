@@ -1,6 +1,6 @@
 package com.nedap.archie.flattener;
 
-import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.kryo5.Kryo;
 import com.nedap.archie.util.KryoUtil;
 
 public class FlattenerConfiguration {
@@ -51,6 +51,15 @@ public class FlattenerConfiguration {
      * Only for Operational templates: replace any empty occurrences with effectiveOccurrences.
      */
     private boolean fillEmptyOccurrences = true;
+
+    /**
+     * Only for Operational templates: in case a used archetype in a slot is missing, switches the following behaviour:
+     * true: throw an exception
+     * false: skip replacing the archetype root with the archetype contents, and continue creating the operational tempalte
+     *
+     * Can be useful for archetype modeling purposes.
+     */
+    private boolean failOnMissingUsedArchetype = true;
 
     private FlattenerConfiguration() {
 
@@ -112,10 +121,10 @@ public class FlattenerConfiguration {
     public FlattenerConfiguration clone() {
         Kryo kryo = null;
         try {
-            kryo = KryoUtil.getPool().borrow();
+            kryo = KryoUtil.getPool().obtain();
             return kryo.copy(this);
         } finally {
-            KryoUtil.getPool().release(kryo);
+            KryoUtil.getPool().free(kryo);
         }
     }
 
@@ -157,5 +166,13 @@ public class FlattenerConfiguration {
 
     public void setFillEmptyOccurrences(boolean fillEmptyOccurrences) {
         this.fillEmptyOccurrences = fillEmptyOccurrences;
+    }
+
+    public boolean isFailOnMissingUsedArchetype() {
+        return failOnMissingUsedArchetype;
+    }
+
+    public void setFailOnMissingUsedArchetype(boolean failOnMissingUsedArchetype) {
+        this.failOnMissingUsedArchetype = failOnMissingUsedArchetype;
     }
 }

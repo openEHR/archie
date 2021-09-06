@@ -95,11 +95,11 @@ public class BinaryOperatorTest {
     private void testBinaryOperator(Object expected, ExpressionType type, Object left, Object right, OperatorKind operatorKind) {
         BinaryOperator operator = new BinaryOperator();
         operator.setOperator(operatorKind);
-        Constant leftConstant = new Constant(type, left);
-        Constant rightConstant = new Constant(type, right);
+        Constant<?> leftConstant = new Constant<>(type, left);
+        Constant<?> rightConstant = new Constant<>(type, right);
         operator.addOperand(leftConstant);
         operator.addOperand(rightConstant);
-        RuleEvaluation eval = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), null);//should be archetype, not very relevant here
+        RuleEvaluation<?> eval = new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), null);//should be archetype, not very relevant here
         assertEquals(expected, eval.evaluate(operator).getValueObjects().get(0));
     }
 

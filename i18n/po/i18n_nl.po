@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-24 13:11+0200\n"
+"POT-Creation-Date: 2020-12-14 12:54+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: ../bmm/src/main/java/org/openehr/bmm/persistence/validation/BmmMessageIds.java:56
 #, java-format
@@ -221,6 +221,11 @@ msgstr ""
 msgid "Error"
 msgstr "Fout"
 
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:155
+#, java-format
+msgid "Error in parent archetype. Fix those errors before continuing with this archetype: {0}"
+msgstr "Fout in het gespecialiseerde archetype. Los deze fout in het bovenliggende archetype eerst op, alvorens verder te gaan met dit archetype. De gevonden fouten: {0}"
+
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:39
 #, java-format
 msgid "Id code {0} in terminology is not a valid term code, should be id, ac or at, followed by digits"
@@ -352,7 +357,7 @@ msgstr "Het formaat van de RM release version {0} klopt niet. dit moet in het fo
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicChecks.java:69
 #, java-format
 msgid "RM type in id {0} does not match RM type in definition {1}"
-msgstr ""
+msgstr "Reference model type {0} correspondeert niet met het reference model type {1} in de definitie van het archetype"
 
 #: ../bmm/src/main/java/org/openehr/bmm/persistence/validation/BmmMessageIds.java:46
 #, java-format
@@ -654,7 +659,7 @@ msgstr "Syntaxfout: terminologie ontbreekt"
 msgid "TODO: something with leaf nodes"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:202
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:212
 #, java-format
 msgid "Template overlay {0} had validation errors"
 msgstr "Template overlay {0} heeft validatiefouten"
@@ -780,7 +785,11 @@ msgstr "Use_archetype met {0} klopt niet met het archetype slot met type {1} uit
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:85
 msgid "The validation of a template overlay failed"
-msgstr ""
+msgstr "De validate van een template overlay is niet geslaagd"
+
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:86
+msgid "The validation of the parent archetype failed"
+msgstr "Het bovenliggende archetype bevat een fout, en valideert daardoor niet. Daardoor kan dit archetype niet gevalideerd worden."
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:13
 #, java-format

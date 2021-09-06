@@ -40,7 +40,7 @@ public class FunctionEvaluator  implements Evaluator<Function> {
     }
 
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, Function function) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, Function function) {
         List<ValueList> argumentResults = new ArrayList<>();
 
         for(Expression argument: function.getArguments()) {
@@ -60,7 +60,7 @@ public class FunctionEvaluator  implements Evaluator<Function> {
 
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(Function.class);
     }
 }

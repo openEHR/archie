@@ -1,6 +1,7 @@
 package com.nedap.archie.testutil;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
@@ -125,7 +126,7 @@ public class TestUtil {
 
 
                 } else if (childObject1 instanceof CPrimitiveObject) {
-                    CPrimitiveObject primitiveChild = (CPrimitiveObject) childObject1;
+                    CPrimitiveObject<?, ?> primitiveChild = (CPrimitiveObject<?, ?>) childObject1;
                     List<CObject> childObjects2 = attribute2.getChildren().stream()
                         .filter(
                             o -> primitiveObjectMatches(primitiveChild, o)
@@ -139,11 +140,11 @@ public class TestUtil {
 
     }
 
-    private static boolean primitiveObjectMatches(CPrimitiveObject o1, CObject o2) {
-        return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject) o2).getConstraint(), o1.getConstraint());
+    private static boolean primitiveObjectMatches(CPrimitiveObject<?, ?> o1, CObject o2) {
+        return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject<?, ?>) o2).getConstraint(), o1.getConstraint());
     }
 
-    public static Archetype parseFailOnErrors(String resourceName) throws IOException {
+    public static Archetype parseFailOnErrors(String resourceName) throws IOException, ADLParseException {
         ADLParser parser = new ADLParser();
         try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
             if(stream == null) {
@@ -163,17 +164,27 @@ public class TestUtil {
             if(stream == null) {
                 throw new RuntimeException("Resource does not exist: " + resourceName);
             }
-            Archetype archetype = parser.parse(stream);
-            parser.getErrors().logToLogger();
-            assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
-            assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
+            try {
+                Archetype archetype = parser.parse(stream);
+                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+            } catch (ADLParseException ex) {
+                parser.getErrors().logToLogger();
+                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
+            }
         }
     }
 
     public static FullArchetypeRepository parseCKM() {
+        return parseCKM(".*\\.adls");
+    }
+
+    public static FullArchetypeRepository parseCKM(String filter) {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
         Reflections reflections = new Reflections("ckm-mirror", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(filter)));
+
         for(String file:adlFiles) {
             Archetype archetype;
             ANTLRParserErrors errors;
@@ -193,5 +204,6 @@ public class TestUtil {
         }
         return result;
     }
+
 
 }

@@ -2,6 +2,7 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import com.nedap.archie.rminfo.Invariant;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -22,7 +23,7 @@ import java.util.Objects;
         "type",
         "precision"
 })
-public class DvProportion extends DvAmount<Double> {
+public class DvProportion extends DvAmount<DvProportion, Double> {
 
     private Double numerator;
     private Double denominator;
@@ -34,12 +35,17 @@ public class DvProportion extends DvAmount<Double> {
     }
 
     public DvProportion(Double numerator, Double denominator, Long type) {
+        this(numerator, denominator, type, null);
+    }
+
+    public DvProportion(Double numerator, Double denominator, Long type, Long precision) {
         this.numerator = numerator;
         this.denominator = denominator;
         this.type = type;
+        this.precision = precision;
     }
 
-    public DvProportion(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Double numerator, Double denominator, Long type, @Nullable Long precision) {
+    public DvProportion(@Nullable List<ReferenceRange<DvProportion>> otherReferenceRanges, @Nullable DvInterval<DvProportion> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Double numerator, Double denominator, Long type, @Nullable Long precision) {
         super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
         this.numerator = numerator;
         this.denominator = denominator;
@@ -81,9 +87,13 @@ public class DvProportion extends DvAmount<Double> {
         this.precision = precision;
     }
 
+    private static boolean isInteger(Double value) {
+        return value == Math.floor(value) && !Double.isInfinite(value);
+    }
+
     @JsonIgnore
     public boolean isIntegral() {
-        return precision != null && precision == 0;
+        return numerator != null && denominator != null && isInteger(numerator) && isInteger(denominator);
     }
 
     @Override
@@ -114,4 +124,64 @@ public class DvProportion extends DvAmount<Double> {
     public int hashCode() {
         return Objects.hash(super.hashCode(), numerator, denominator, type, precision);
     }
+
+    @Invariant("Type_validity")
+    public boolean typeValid() {
+        if(type != null) {
+            return type >= 0 && type <= 4;
+        }
+        return true;
+    }
+
+    @Invariant("Precision_validity")
+    public boolean precisionValid() {
+        if(precision != null && precision == 0 && denominator != null && numerator != null) {
+            //what can possibly go wrong with double values here....
+           return isIntegral();
+        }
+        return true;
+    }
+
+    @Invariant(value = "Is_integral_validity", ignored = true) //not data validation, correctness validaiton
+    public boolean integralValidity() {
+        if(isIntegral() && denominator != null && numerator != null) {
+            return (numerator.equals(Math.floor(numerator)) || Double.isInfinite(numerator)) &&
+                    (denominator.equals(Math.floor(denominator)) || Double.isFinite(denominator));
+        }
+        return true;
+    }
+
+    @Invariant("Fraction_validity")
+    public boolean fractionValidity() {
+        if(type != null && (type.equals(ProportionKind.FRACTION.getPk()) || type.equals(ProportionKind.INTEGER_FRACTION.getPk()))) {
+            return isIntegral();
+        }
+        return true;
+    }
+
+    @Invariant("Unitary_validity")
+    public boolean unitaryValidity() {
+        if(type != null && denominator != null && type.equals(ProportionKind.UNITARY.getPk())) {
+            return denominator.equals(1d);
+        }
+        return true;
+    }
+
+    @Invariant("Percent_validity")
+    public boolean percentValidity() {
+        if(type != null && denominator != null && type.equals(ProportionKind.PERCENT.getPk())) {
+            return denominator.equals(100d);
+        }
+        return true;
+    }
+
+    @Invariant("Valid_denominator")
+    public boolean denominatorValid() {
+        if(denominator != null) {
+            return !denominator.equals(0d);
+        }
+        return true;
+    }
+
+
 }

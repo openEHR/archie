@@ -41,7 +41,7 @@ public class PathableUtil {
         Integer index = null;
 
         if (attributeValue instanceof Collection) {
-            Collection collection = (Collection) attributeValue;
+            Collection<?> collection = (Collection<?>) attributeValue;
 
             if (collection.size() > 1) {
                 int i = 1;

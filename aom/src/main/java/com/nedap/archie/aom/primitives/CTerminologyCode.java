@@ -2,6 +2,7 @@ package com.nedap.archie.aom.primitives;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.ArchieLanguageConfiguration;
+import com.nedap.archie.ValidationConfiguration;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
@@ -21,9 +22,12 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -87,20 +91,21 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             return true;
         }
         if(isConstraintRequired()) {
-            for (String constraint : getConstraint()) {
-                if (constraint.startsWith("at")) {
-                    if (value.getCodeString() != null && value.getCodeString().equals(constraint)) {
-                        return true;
-                    }
-                } else if (constraint.startsWith("ac")) {
-                    if (value.getTerminologyId() != null && value.getTerminologyId().equals(constraint)) {
-                        return true;
-                    }
-                }
+            if(value != null && value.getTerminologyId() != null && !value.getTerminologyId().equalsIgnoreCase("local") && !AOMUtils.isValueSetCode(value.getTerminologyId())) {
+                //this is a non-local terminology. If a term binding is there, we may be able to validate, if external, we wil not be able to
+                //so return true for now for non-local terminology values
+                //TODO: implement checking for direct term bindings later
+                //TODO: implement checking for include openehr-terminology
+                return !ValidationConfiguration.isFailOnUnknownTerminologyId();
+            }
+            List<String> values = this.getValueSetExpanded();
+            if(values != null && !values.isEmpty()) {
+                return value.getCodeString() != null && values.contains(value.getCodeString());
             }
         } else {
             return true;
         }
+
         return false;
     }
 
@@ -238,6 +243,22 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             }
             return ConformanceCheckResult.conforms();
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("{[");
+        boolean first = true;
+        for(String constraint:getConstraint()) {
+            if(!first) {
+                result.append(", ");
+            }
+            first = false;
+            result.append(constraint.toString());
+        }
+        result.append("]}");
+        return result.toString();
     }
 
 }

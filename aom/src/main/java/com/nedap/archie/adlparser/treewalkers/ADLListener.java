@@ -6,6 +6,7 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
@@ -43,8 +44,12 @@ public class ADLListener extends AdlBaseListener {
     @Override
     public void enterArchetype(ArchetypeContext ctx) {
         rootArchetype = new AuthoredArchetype();
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
+    }
+
+    private void setArchetype(Archetype archetype) {
+        this.archetype = archetype;
     }
 
     @Override
@@ -55,7 +60,7 @@ public class ADLListener extends AdlBaseListener {
     @Override
     public void enterTemplate(TemplateContext ctx) {
         rootArchetype = new Template();
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
@@ -65,7 +70,7 @@ public class ADLListener extends AdlBaseListener {
     }
 
     @Override
-    public void enterTemplate_overlay(Template_overlayContext ctx) {
+    public void enterTemplateOverlay(TemplateOverlayContext ctx) {
         TemplateOverlay overlay =  new TemplateOverlay();
         overlay.setDifferential(true);
         if(rootArchetype != null) {
@@ -79,15 +84,15 @@ public class ADLListener extends AdlBaseListener {
         } else {
             rootArchetype = overlay;
         }
-        archetype = overlay;
+        setArchetype(overlay);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
     @Override
-    public void enterOperational_template(Operational_templateContext ctx) {
+    public void enterOperationalTemplate(OperationalTemplateContext ctx) {
         rootArchetype = new OperationalTemplate();
         rootArchetype.setDifferential(false);//operational templates are flat by definition
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
@@ -101,7 +106,7 @@ public class ADLListener extends AdlBaseListener {
         }
     }
 
-    public void enterMeta_data_item(AdlParser.Meta_data_itemContext ctx) {
+    public void enterMetaDataItem(AdlParser.MetaDataItemContext ctx) {
         /*
          SYM_ADL_VERSION '=' VERSION_ID
         | SYM_UID '=' GUID
@@ -115,26 +120,26 @@ public class ADLListener extends AdlBaseListener {
         if(archetype instanceof AuthoredArchetype) {
             AuthoredArchetype authoredArchetype = (AuthoredArchetype) archetype;
 
-            if(ctx.meta_data_tag_adl_version() != null) {
+            if(ctx.metaDataTagAdlVersion() != null) {
                 authoredArchetype.setAdlVersion(ctx.VERSION_ID().getText());
             }
-            if(ctx.meta_data_tag_build_uid() != null) {
+            if(ctx.metaDataTagBuildUid() != null) {
                 authoredArchetype.setBuildUid(ctx.GUID().getText());
             }
-            if(ctx.meta_data_tag_rm_release() != null) {
+            if(ctx.metaDataTagRmRelease() != null) {
                 authoredArchetype.setRmRelease(ctx.VERSION_ID().getText());
             }
-            if(ctx.meta_data_tag_is_controlled() != null) {
+            if(ctx.metaDataTagIsControlled() != null) {
                 authoredArchetype.setControlled(true);
             }
-            if(ctx.meta_data_tag_is_generated() != null) {
+            if(ctx.metaDataTagIsGenerated() != null) {
                 authoredArchetype.setGenerated(true);
             }
-            if(ctx.meta_data_tag_uid() != null) {
+            if(ctx.metaDataTagUid() != null) {
                 authoredArchetype.setUid(ctx.GUID().getText());
             }
             else if(ctx.identifier() != null) {
-                authoredArchetype.addOtherMetadata(ctx.identifier().getText(), ctx.meta_data_value() == null ? null : ctx.meta_data_value().getText());
+                authoredArchetype.addOtherMetadata(ctx.identifier().getText(), ctx.metaDataValue() == null ? null : ctx.metaDataValue().getText());
             }
         }
 
@@ -144,43 +149,49 @@ public class ADLListener extends AdlBaseListener {
      * one level below: definition, language, etc.
      */
     @Override
-    public void enterDefinition_section(Definition_sectionContext ctx) {
+    public void enterDefinitionSection(DefinitionSectionContext ctx) {
         CComplexObject definition = cComplexObjectParser.parseComplexObject(ctx.c_complex_object());
         archetype.setDefinition(definition);
     }
 
     @Override
-    public void enterLanguage_section(Language_sectionContext ctx) {
+    public void enterLanguageSection(LanguageSectionContext ctx) {
         archetype.setAuthoredResourceContent(OdinObjectParser.convert(ctx.odin_text(), LanguageSection.class));
     }
 
     @Override
-    public void enterTerminology_section(Terminology_sectionContext ctx) {
+    public void enterTerminologySection(TerminologySectionContext ctx) {
         archetype.setTerminology(terminologyParser.parseTerminology(ctx));
     }
 
     @Override
-    public void enterDescription_section(AdlParser.Description_sectionContext ctx) {
+    public void enterDescriptionSection(AdlParser.DescriptionSectionContext ctx) {
         archetype.setDescription(OdinObjectParser.convert(ctx.odin_text(), ResourceDescription.class));
     }
 
     @Override
-    public void enterSpecialization_section(Specialization_sectionContext ctx) {
+    public void enterSpecializationSection(SpecializationSectionContext ctx) {
         if(ctx != null && ctx.archetype_ref() != null) {
             archetype.setParentArchetypeId(ctx.archetype_ref().getText());
         }
     }
 
-    public void enterRules_section(Rules_sectionContext ctx) {
+    @Override
+    public void enterRulesSection(RulesSectionContext ctx) {
         archetype.setRules(cComplexObjectParser.parseRules(ctx));
     }
 
-
-    public void enterAnnotations_section(AdlParser.Annotations_sectionContext ctx) {
+    @Override
+    public void enterAnnotationsSection(AdlParser.AnnotationsSectionContext ctx) {
         archetype.setAnnotations(OdinObjectParser.convert(ctx.odin_text(), ResourceAnnotations.class));
     }
 
-    public void enterComponent_terminologies_section(AdlParser.Component_terminologies_sectionContext ctx) {
+    @Override
+    public void enterRmOverlaySection(AdlParser.RmOverlaySectionContext ctx) {
+        archetype.setRmOverlay(OdinObjectParser.convert(ctx.odin_text(), RmOverlay.class));
+    }
+
+    public void enterComponentTerminologiesSection(AdlParser.ComponentTerminologiesSectionContext ctx) {
         if (!(archetype instanceof OperationalTemplate)) {
             throw new IllegalArgumentException("cannot add component terminologies to anything but an operational template");
         }

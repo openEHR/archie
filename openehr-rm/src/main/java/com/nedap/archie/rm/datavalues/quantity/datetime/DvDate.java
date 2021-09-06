@@ -31,7 +31,20 @@ import java.util.Objects;
 @XmlType(name = "DV_DATE", propOrder = {
         "value"
 })
-public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Temporal> {
+public class DvDate extends DvTemporal<DvDate, Long> implements SingleValuedDataValue<Temporal> {
+    /**
+     * The number of days in a 400 year cycle.
+     */
+    private static final int DAYS_PER_CYCLE = 146097;
+    /**
+     * The number of days from year zero to year 1970.
+     * There are five 400 year cycles from year zero to 2000.
+     * There are 7 leap years from 1970 to 2000.
+     * Year 0000 (we are using ISO, so year zero exists) is a leap year as well.
+     */
+    public static final long DAYS_BETWEEN_0001_AND_1970 = (DAYS_PER_CYCLE * 5L) - (30L * 365L + 7L) - (1L * 365L + 1L);
+
+
     //TODO: in XML this should be a string probably
     @XmlJavaTypeAdapter(DateXmlAdapter.class)
     private Temporal value;
@@ -55,7 +68,7 @@ public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Te
         setValue(DateTimeParsers.parseDateValue(iso8601Date));
     }
 
-    public DvDate(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, Temporal value) {
+    public DvDate(@Nullable List<ReferenceRange<DvDate>> otherReferenceRanges, @Nullable DvInterval<DvDate> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, Temporal value) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus, accuracy);
         this.value = value;
     }
@@ -85,14 +98,14 @@ public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Te
     @JsonIgnore
     @XmlTransient
     public Long getMagnitude() {
-        return value == null ? null : (long) LocalDate.from(value).toEpochDay();
+        return value == null ? null : (long) LocalDate.from(value).toEpochDay() + DAYS_BETWEEN_0001_AND_1970;
     }
 
     public void setMagnitude(Long magnitude) {
         if(magnitude == null) {
             value = null;
         } else {
-            value = LocalDate.ofEpochDay(magnitude);
+            value = LocalDate.ofEpochDay(magnitude - DAYS_BETWEEN_0001_AND_1970);
         }
     }
 

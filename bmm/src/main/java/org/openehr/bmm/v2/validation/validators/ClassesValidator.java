@@ -48,7 +48,7 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
         }
 
         // validate the properties
-        for (PBmmProperty property:pBmmClass.getProperties().values()) {
+        for (PBmmProperty<?> property:pBmmClass.getProperties().values()) {
             propertyValidator.validateProperty(pBmmClass, property);
         }
     }

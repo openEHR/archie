@@ -16,7 +16,7 @@ public class TerminologyParser extends BaseTreeWalker {
         super(errors);
     }
 
-    public ArchetypeTerminology parseTerminology(Terminology_sectionContext context) {
+    public ArchetypeTerminology parseTerminology(TerminologySectionContext context) {
         ArchetypeTerminology terminology = OdinObjectParser.convert(context.odin_text(), ArchetypeTerminology.class);
         return terminology;
     }

@@ -43,17 +43,17 @@ public class RMComparedWithBmmTest {
         typeNamesOverride.put("Interval.upper", "object");
 
         BmmRepository bmmRepository = BuiltinReferenceModels.getBmmRepository();
-        BmmModel model = bmmRepository.getModel("openehr_rm_1.0.4").getModel();
+        BmmModel model = bmmRepository.getModel("openehr_rm_1.1.0").getModel();
 
         List<ModelDifference> compared = new BmmComparison(extraParams, typeMap, typeNamesOverride).compare(model, ArchieRMInfoLookup.getInstance());
 
         compared.sort(Comparator.comparing((a) -> a.getClassName() + "." + a.getType().toString()));
         compared = compared.stream().filter((diff) -> {
                 BmmClass classDefinition = model.getClassDefinition(diff.getClassName());
-                return classDefinition == null ? true : !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.0.4");
+                return classDefinition == null ? true : !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.1.0");
             }).collect(Collectors.toList());
 
-        Set<ModelDifference> knownDifferences = new HashSet();
+        Set<ModelDifference> knownDifferences = new HashSet<>();
 
 
         //Needs a backwards incompatible fix, not changing now (and not important, new API is included)
@@ -79,6 +79,7 @@ public class RMComparedWithBmmTest {
         knownDifferences.add(new ModelDifference(ModelDifferenceType.ANCESTOR_DIFFERENCE, "", "DV_ORDERED", null));
         //same for interval
         knownDifferences.add(new ModelDifference(ModelDifferenceType.ANCESTOR_DIFFERENCE, "", "DV_INTERVAL", null));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_INTERVAL", "interval"));
 
         //TODO: not sure, looks the same to me
         knownDifferences.add(new ModelDifference(ModelDifferenceType.EXISTENCE_DIFFERENCE, "", "EHR", "contributions"));
@@ -140,6 +141,10 @@ public class RMComparedWithBmmTest {
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "IMPORTED_VERSION", "canonical_form"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "OBJECT_VERSION_ID", "extension"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "OBJECT_VERSION_ID", "root"));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "OBJECT_VERSION_ID", "object_id"));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "OBJECT_VERSION_ID", "version_tree_id"));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "OBJECT_VERSION_ID", "creating_system_id"));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "OBJECT_VERSION_ID", "is_branch"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "ORIGINAL_VERSION", "is_branch"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "ORIGINAL_VERSION", "canonical_form"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "UID_BASED_ID", "extension"));
@@ -150,6 +155,10 @@ public class RMComparedWithBmmTest {
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION", "data"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION", "preceding_version_uid"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION", "canonical_form"));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION_TREE_ID", "trunk_version"));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION_TREE_ID", "branch_number"));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION_TREE_ID", "branch_version"));
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "VERSION_TREE_ID", "is_branch"));
 
         //System.out.println(Joiner.on("\n").join(compared));
         List<ModelDifference> foundErrors = new ArrayList<>();

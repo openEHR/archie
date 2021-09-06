@@ -67,7 +67,7 @@ public class BmmJacksonUtil {
             }
         });
 
-        TypeResolverBuilder typeResolverBuilder = new BmmTypeResolverBuilder()
+        TypeResolverBuilder<?> typeResolverBuilder = new BmmTypeResolverBuilder()
                 .init(JsonTypeInfo.Id.NAME, new BmmTypeNaming())
                 .typeProperty("@type")
                 .typeIdVisibility(true)

@@ -32,16 +32,16 @@ public class DateTimeFormatters {
             .optionalEnd()
             .toFormatter();
 
-    public static final DateTimeFormatter ISO8601_OPTIONAL_MICROSECONDS = new DateTimeFormatterBuilder()
+    public static final DateTimeFormatter ISO8601_OPTIONAL_NANOSECONDS = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
-            // microseconds, decimal fraction, ISO 31-0: comma [,] or full stop [.]
-            .optionalStart() //micro seconds ,
+            // nanoseconds, decimal fraction, ISO 31-0: comma [,] or full stop [.]
+            .optionalStart() //nano seconds ,
             .appendLiteral(',')
-            .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 6, false)
-            .optionalEnd() //micro seconds ,
-            .optionalStart() //micro seconds .
-            .appendFraction(ChronoField.MICRO_OF_SECOND, 1, 6, true)
-            .optionalEnd() //micro seconds .
+            .appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, false)
+            .optionalEnd() //nano seconds ,
+            .optionalStart() //nano seconds .
+            .appendFraction(ChronoField.NANO_OF_SECOND, 1, 9, true)
+            .optionalEnd() //nano seconds .
             .toFormatter();
 
     public static final DateTimeFormatter ISO_8601_TIME = new DateTimeFormatterBuilder()
@@ -53,7 +53,7 @@ public class DateTimeFormatters {
             .optionalStart()
             .appendLiteral(':')
             .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
-            .append(ISO8601_OPTIONAL_MICROSECONDS)
+            .append(ISO8601_OPTIONAL_NANOSECONDS)
             .optionalEnd()
             .optionalEnd()
             .append(ISO8601_TIME_ZONE)
@@ -80,7 +80,7 @@ public class DateTimeFormatters {
             .appendValue(ChronoField.HOUR_OF_DAY, 2)
             .appendValue(ChronoField.MINUTE_OF_HOUR, 2)
             .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
-            .append(ISO8601_OPTIONAL_MICROSECONDS)
+            .append(ISO8601_OPTIONAL_NANOSECONDS)
             .append(ISO8601_TIME_ZONE)
             .toFormatter();
 

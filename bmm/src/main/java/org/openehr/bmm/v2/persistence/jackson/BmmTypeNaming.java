@@ -21,7 +21,7 @@ import java.io.IOException;
  */
 public class BmmTypeNaming extends ClassNameIdResolver {
 
-    private final static ImmutableBiMap<String, Class> classNaming = ImmutableBiMap.<String, Class>builder().
+    private final static ImmutableBiMap<String, Class<?>> classNaming = ImmutableBiMap.<String, Class<?>>builder().
         put("BMM_INCLUDE_SPEC", BmmIncludeSpec.class).
         put("P_BMM_CLASS", PBmmClass.class).
         put("P_BMM_CONTAINER_PROPERTY", PBmmContainerProperty.class).
@@ -43,7 +43,7 @@ public class BmmTypeNaming extends ClassNameIdResolver {
         put("P_BMM_TYPE", PBmmType.class).
         put("INTERVAL", Interval.class).build();
 
-    private final static ImmutableBiMap<Class, String>  inverseClassNaming = classNaming.inverse();
+    private final static ImmutableBiMap<Class<?>, String>  inverseClassNaming = classNaming.inverse();
 
     protected BmmTypeNaming() {
         super(TypeFactory.defaultInstance().constructType(OpenEHRBase.class), TypeFactory.defaultInstance());
@@ -72,7 +72,7 @@ public class BmmTypeNaming extends ClassNameIdResolver {
     @Override
     protected JavaType _typeFromId(String typeName, DatabindContext ctxt) throws IOException {
         String classKey = BmmDefinitions.typeNameToClassKey(typeName);
-        Class result =  classNaming.get(classKey);
+        Class<?> result =  classNaming.get(classKey);
         if (result != null) {
             TypeFactory typeFactory = (ctxt == null) ? _typeFactory : ctxt.getTypeFactory();
             return typeFactory.constructSpecializedType(_baseType, result);

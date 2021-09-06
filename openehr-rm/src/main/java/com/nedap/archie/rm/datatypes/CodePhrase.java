@@ -2,7 +2,10 @@ package com.nedap.archie.rm.datatypes;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.support.identification.TerminologyId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -18,7 +21,8 @@ import java.util.regex.Pattern;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CODE_PHRASE", propOrder = {
         "terminologyId",
-        "codeString"
+        "codeString",
+        "preferredTerm"
 })
 public class CodePhrase extends RMObject {
 
@@ -26,14 +30,22 @@ public class CodePhrase extends RMObject {
     private TerminologyId terminologyId;
     @XmlElement(name = "code_string")
     private String codeString;
+    @Nullable
+    @XmlElement(name = "preferred_term")
+    private String preferredTerm;
 
     public CodePhrase() {
 
     }
 
     public CodePhrase(TerminologyId terminologyId, String codeString) {
+        this(terminologyId, codeString, null);
+    }
+
+    public CodePhrase(TerminologyId terminologyId, String codeString, String preferredTerm) {
         this.terminologyId = terminologyId;
         this.codeString = codeString;
+        this.preferredTerm = preferredTerm;
     }
 
     /**
@@ -80,21 +92,36 @@ public class CodePhrase extends RMObject {
         this.codeString = codeString;
     }
 
+    public String getPreferredTerm() {
+        return preferredTerm;
+    }
+
+    public void setPreferredTerm(String preferredTerm) {
+        this.preferredTerm = preferredTerm;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CodePhrase that = (CodePhrase) o;
         return Objects.equals(terminologyId, that.terminologyId) &&
-                Objects.equals(codeString, that.codeString);
+                Objects.equals(codeString, that.codeString) &&
+                Objects.equals(preferredTerm, that.preferredTerm);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(terminologyId, codeString);
+        return Objects.hash(terminologyId, codeString, preferredTerm);
     }
 
     public String toString() {
-        return terminologyId + "::" + codeString;
+        return terminologyId + "::" + codeString;//TODO: preferredTerm?
+    }
+
+    @Invariant("Code_string_valid")
+    public boolean codeStringValid() {
+        return InvariantUtil.nullOrNotEmpty(codeString);
     }
 }

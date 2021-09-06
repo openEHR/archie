@@ -13,6 +13,6 @@ import java.lang.reflect.Method;
 public interface ModelNamingStrategy {
 
     String getAttributeName(Field field, Method method);
-    String getTypeName(Class clazz);
+    String getTypeName(Class<?> clazz);
 
 }

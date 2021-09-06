@@ -100,7 +100,7 @@ public class PBmmEqualsAssertions {
 
     }
 
-    public static void assertPropertyEquals(PBmmProperty pBmmProperty1, PBmmProperty pBmmProperty2) {
+    public static void assertPropertyEquals(PBmmProperty<?> pBmmProperty1, PBmmProperty<?> pBmmProperty2) {
 
         assertEquals(pBmmProperty1.getClass(), pBmmProperty2.getClass());
 

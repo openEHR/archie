@@ -28,7 +28,7 @@ public class APathToXPathConverter {
     private static Pattern idCodePattern = Pattern.compile("id(\\d|\\.\\d)+");
     private static Pattern numberPattern = Pattern.compile("\\d+");
     //warning: do NOT modify this set, only create it!
-    private static Set<String> literalsThatShouldHaveSpacing = new ImmutableSet.Builder().add("and", "or", ",", "-", "+", "*", "|", "<", ">", "<=", ">=").build();
+    private static Set<String> literalsThatShouldHaveSpacing = new ImmutableSet.Builder<String>().add("and", "or", ",", "-", "+", "*", "|", "<", ">", "<=", ">=").build();
 
 
     public static String convertQueryToXPath(String query, String firstNodeName) {

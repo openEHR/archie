@@ -26,7 +26,7 @@ public class BMMConstraintImposer implements ModelConstraintImposer {
 
     @Override
     public CAttribute getDefaultAttribute(String typeId, String attribute) {
-        BmmProperty property = model.propertyAtPath (typeId, attribute);
+        BmmProperty<?> property = model.propertyAtPath (typeId, attribute);
         if(property == null) {
             return null;
         }

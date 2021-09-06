@@ -39,6 +39,25 @@ public class Operator extends Expression {
         return operands.size() > 1 ? operands.get(1) : null;
     }
 
+    public void setLeftOperand(Expression operand) {
+        if(operands.isEmpty()) {
+            operands.add(operand);
+        } else {
+            operands.set(0, operand);
+        }
+    }
+
+    public void setRightOperand(Expression operand) {
+        if(operands.isEmpty()) {
+            operands.add(null);
+            operands.add(operand);
+        } else if (operands.size() == 1){
+            operands.add(operand);
+        } else {
+            operands.set(1, operand);
+        }
+    }
+
     public boolean isUnary() {
         return operands.size() == 1;
     }

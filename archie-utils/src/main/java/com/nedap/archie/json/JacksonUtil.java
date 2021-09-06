@@ -19,10 +19,12 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
+import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -110,7 +112,7 @@ public class JacksonUtil {
 
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
-        TypeResolverBuilder typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
+        TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
                 .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming())
                 .typeProperty(configuration.getTypePropertyName())
                 .typeIdVisibility(true)
@@ -138,14 +140,15 @@ public class JacksonUtil {
     static class ArchieTypeResolverBuilder extends ObjectMapper.DefaultTypeResolverBuilder
     {
 
-        private Set<Class> classesToNotAddTypeProperty;
+        private Set<Class<?>> classesToNotAddTypeProperty;
         public ArchieTypeResolverBuilder(RMJacksonConfiguration configuration)
         {
             super(ObjectMapper.DefaultTyping.NON_FINAL, BasicPolymorphicTypeValidator.builder()
                     .allowIfBaseType(OpenEHRBase.class).build());
             classesToNotAddTypeProperty = new HashSet<>();
             if(!configuration.isAlwaysIncludeTypeProperty()) {
-                List<RMTypeInfo> allTypes = ArchieRMInfoLookup.getInstance().getAllTypes();
+                List<RMTypeInfo> allTypes = new ArrayList<>(ArchieRMInfoLookup.getInstance().getAllTypes());
+                allTypes.addAll(ArchieAOMInfoLookup.getInstance().getAllTypes());
                 for(RMTypeInfo type:allTypes) {
                     if(type.getDirectDescendantClasses().isEmpty()) {
                         classesToNotAddTypeProperty.add(type.getJavaClass());

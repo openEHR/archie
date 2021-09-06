@@ -1,6 +1,5 @@
 package com.nedap.archie.adl14;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
@@ -14,11 +13,12 @@ import com.nedap.archie.aom.CPrimitiveTuple;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
+import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
+import com.nedap.archie.terminology.TermCode;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -101,13 +101,7 @@ public class PreviousConversionApplier {
                 newCreatedCode.setOriginalTerm(createdCode.getOriginalTerm());
                 converter.addCreatedCode(createdCode.getOriginalTerm().toString(), createdCode);
 
-                for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
-                    ArchetypeTerm term = new ArchetypeTerm();
-                    term.setCode(valueCode);
-                    term.setText("Term binding for " + createdCode.getGeneratedCode() + ", translation not known in ADL 1.4 -> ADL 2 converter");
-                    term.setDescription(term.getText());
-                    archetype.getTerminology().getTermDefinitions().get(language).put(valueCode, term);
-                }
+                ADL14TermConstraintConverter.addTermBindingCode(archetype, createdCode.getGeneratedCode(), uri, valueCode);
             }
         } catch (URISyntaxException e) {
             //TODO: warn? or add generated URL to CreatedCode?
@@ -129,9 +123,13 @@ public class PreviousConversionApplier {
             int index = attribute.getIndexOfChildWithMatchingRmTypeName(createdCode.getRmTypeName());
             if(index >= 0) {
                 CObject cObject = attribute.getChildren().get(index);
-                cObject.setNodeId(createdCode.getGeneratedCode());
-                //store the created code so it appears in the new conversion log as well
-                converter.addCreatedCode(createdCode.getGeneratedCode(), createdCode);
+                if(cObject.getNodeId() == null) {
+                    cObject.setNodeId(createdCode.getGeneratedCode());
+                    //store the created code so it appears in the new conversion log as well
+                    converter.addCreatedCode(createdCode.getGeneratedCode(), createdCode);
+                } else {
+                    this.converter.getConversionResult().getLog().addInfoWithLocation(ADL14ConversionMessageCode.INFO_PREVIOUSLY_CONVERTED_CODE_RENAMED, createdCode.getPathCreated());
+                }
 
             } else {
                 this.converter.getConversionResult().getLog().addInfoWithLocation(ADL14ConversionMessageCode.INFO_PREVIOUSLY_CONVERTED_CODE_DELETED, createdCode.getPathCreated());
@@ -154,17 +152,54 @@ public class PreviousConversionApplier {
         if(this.conversionLog == null) {
             return;
         }
+        removeUnusedValuesets();
+        removeUnusedValues();
+    }
+
+    private void removeUnusedValuesets() {
         Set<String> usedValueSets = gatherUsedValueSets(archetype.getDefinition());
         for(Map.Entry<String, ValueSet> valueSetEntry:this.conversionLog.getCreatedValueSets().entrySet()) {
             if(!usedValueSets.contains(valueSetEntry.getKey())) {
                 //ok, unused, remove it
                 archetype.getTerminology().getValueSets().remove(valueSetEntry.getKey());
-                for(String language:archetype.getTerminology().getTermDefinitions().keySet()) {
-                    archetype.getTerminology().getTermDefinitions().get(language).remove(valueSetEntry.getKey());
-                }
+                removeTerminologyEntry(valueSetEntry.getKey());
             }
         }
-        //TODO: Gather all unused term bindings and remove from archetype as well
+    }
+
+    private void removeUnusedValues() {
+        Set<String> usedCodes = archetype.getAllUsedCodes();
+        for(Map.Entry<String, CreatedCode> valueEntry:this.conversionLog.getCreatedCodes().entrySet()) {
+            if(valueEntry.getValue().getReasonForCreation() == ReasonForCodeCreation.CREATED_VALUE_FOR_EXTERNAL_TERM
+                    && !usedCodes.contains(valueEntry.getValue().getGeneratedCode())) {
+                //unused code found. Remove!
+                removeTerminologyEntry(valueEntry.getValue().getGeneratedCode());
+            }
+        }
+    }
+
+    private void removeTerminologyEntry(String code) {
+        archetype.getTerminology().getTermDefinitions().values().forEach(
+                map -> map.remove(code)
+        );
+
+        if(archetype.getTerminology().getTermBindings() != null) {
+
+            List<String> termCodeBindingsToRemove = new ArrayList<>();
+
+            for (String terminologyId: archetype.getTerminology().getTermBindings().keySet()) {
+                Map<String, URI> termBindings = archetype.getTerminology().getTermBindings().get(terminologyId);
+                termBindings.remove(code);
+                if(termBindings.isEmpty()) {
+                    termCodeBindingsToRemove.add(terminologyId);
+                }
+            }
+
+            for(String terminologyId:termCodeBindingsToRemove) {
+                archetype.getTerminology().getTermBindings().remove(terminologyId);
+            }
+        }
+
     }
 
     private Set<String> gatherUsedValueSets(CObject cObject) {
@@ -200,7 +235,9 @@ public class PreviousConversionApplier {
                         }
                     }
                     ValueSet set = findLocalValueSet(atCodes);
-                    result.add(set.getId());
+                    if(set != null) {
+                        result.add(set.getId());
+                    }
                 }
             }
             result.addAll(gatherUsedValueSets(child));

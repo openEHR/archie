@@ -9,8 +9,12 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.generic.PartyProxy;
+import com.nedap.archie.rm.generic.PartySelf;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -40,7 +44,7 @@ public abstract class Entry extends ContentItem {
     @Nullable
 
     @XmlElement(name = "workflow_id")
-    private ObjectRef workflowId;
+    private ObjectRef<? extends ObjectId> workflowId;
     private PartyProxy subject;
     @Nullable
     private PartyProxy provider;
@@ -52,7 +56,7 @@ public abstract class Entry extends ContentItem {
     public Entry() {
     }
 
-    public Entry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef workflowId, @Nullable List<Participation> otherParticipations) {
+    public Entry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<? extends ObjectId> workflowId, @Nullable List<Participation> otherParticipations) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
         this.language = language;
         this.encoding = encoding;
@@ -108,13 +112,17 @@ public abstract class Entry extends ContentItem {
     }
 
     @Nullable
-    public ObjectRef getWorkflowId() {
+    public ObjectRef<? extends ObjectId> getWorkflowId() {
         return workflowId;
     }
 
     @JsonAlias({"work_flow_id"})
-    public void setWorkflowId(@Nullable ObjectRef workflowId) {
+    public void setWorkflowId(@Nullable ObjectRef<? extends ObjectId> workflowId) {
         this.workflowId = workflowId;
+    }
+
+    public boolean subjectIsSelf() {
+        return subject instanceof PartySelf;
     }
 
     @Override
@@ -135,4 +143,31 @@ public abstract class Entry extends ContentItem {
     public int hashCode() {
         return Objects.hash(super.hashCode(), language, encoding, workflowId, subject, provider, otherParticipations);
     }
+
+    @Invariant("Language_valid")
+    public boolean languageValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "languages");
+    }
+
+    @Invariant("Encoding_valid")
+    public boolean encodingValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(encoding, "character sets");
+    }
+
+    @Invariant(value="Subject_validity", ignored = true)
+    public boolean subjectValid() {
+        return true;//this would be _exactly_ the same as the subjectIsSelf method
+    }
+
+    @Invariant(value="Other_participations_valid", ignored = true)
+    public boolean otherParticipationsValid() {
+        return InvariantUtil.nullOrNotEmpty(otherParticipations);
+    }
+
+    @Invariant(value="Is_archetypeRoot")
+    public boolean archetypeRoot() {
+        return isArchetypeRoot();
+    }
+
+
 }

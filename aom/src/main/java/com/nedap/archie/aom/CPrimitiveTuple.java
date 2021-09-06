@@ -8,14 +8,14 @@ import java.util.function.BiFunction;
  */
 @XmlType(name="C_PRIMITIVE_TUPLE")
 //TODO: because of how jaxb works, this might need work for members
-public class CPrimitiveTuple extends CSecondOrder<CPrimitiveObject> {
+public class CPrimitiveTuple extends CSecondOrder<CPrimitiveObject<?, ?>> {
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("[");
         boolean first = true;
-        for(CPrimitiveObject object:getMembers()) {
+        for(CPrimitiveObject<?, ?> object:getMembers()) {
             if(!first) {
                 result.append(", ");
             }
@@ -32,12 +32,9 @@ public class CPrimitiveTuple extends CSecondOrder<CPrimitiveObject> {
 
     private boolean allTupleMembersConform(CPrimitiveTuple other, BiFunction<String, String, Boolean> rmTypesConformant) {
         for(int i = 0; i < getMembers().size(); i++){
-            CPrimitiveObject member = getMember(i);
-            CPrimitiveObject otherMember = other.getMember(i);
-            if(!member.getClass().equals(otherMember.getClass())) {
-                return false;
-            }
-            if(!member.cConformsTo(otherMember, rmTypesConformant).doesConform()) {
+            CPrimitiveObject<?, ?> member = getMember(i);
+            CPrimitiveObject<?, ?> otherMember = other.getMember(i);
+            if(!member.getClass().equals(otherMember.getClass()) || !member.cConformsTo(otherMember, rmTypesConformant).doesConform()) {
                 return false;
             }
         }

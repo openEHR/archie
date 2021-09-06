@@ -1,0 +1,42 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-COMPOSITION.including_overlay.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Pieter Bos">
+	>
+
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"test.">
+			use = <"testing">
+			keywords = <"test", "rm_overlay">
+			misuse = <"">
+		>
+	>
+
+definition
+	COMPOSITION[id1] matches {	-- Report
+		content matches {
+		    use_archetype OBSERVATION[id2, openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1]
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Report">
+				description = <"Document to communicate information to others, commonly in response to a request from another party.">
+			>
+			["id2"] = <
+				text = <"included observation with overlay">
+				description = <"included observation with overlay.">
+			>
+        >
+	>

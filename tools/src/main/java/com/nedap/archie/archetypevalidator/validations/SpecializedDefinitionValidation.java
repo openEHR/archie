@@ -134,7 +134,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
                                 CAttribute parentAttribute = parentCComplexObject.getAttribute(attribute.getRmAttributeName());
                                 if(parentAttribute != null  && parentAttribute.getSocParent() == null) {
                                     for(CPrimitiveTuple primitiveTuple:tuple.getTuples()) {
-                                        CPrimitiveObject member = primitiveTuple.getMember(tuple.getMemberIndex(attribute.getRmAttributeName()));
+                                        CPrimitiveObject<?, ?> member = primitiveTuple.getMember(tuple.getMemberIndex(attribute.getRmAttributeName()));
                                         if(!hasConformingParent(parentAttribute, member)) {
                                             addMessageWithPath(ErrorType.VTPIN, attribute.getPath(),
                                                     I18n.t("Attribute {0} is a non-tuple attribute in the parent archetype, but a tuple attribute in the current archetype. That is not allowed", attribute.getRmAttributeName()));
@@ -210,7 +210,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
             addMessageWithPath(ErrorType.VARXID, root.getPath(),
                     I18n.t("Node ID {0} specialization depth does not conform to the archetype specialization depth {1}", root.getNodeId(), archetype.specializationDepth()));
             return false;
-        } else if (!AOMUtils.archetypeIdMatchesSlotExpression(root.getArchetypeRef(), slot)) {
+        } else if (!AOMUtils.archetypeRefMatchesSlotExpression(root.getArchetypeRef(), slot)) {
             addMessageWithPath(ErrorType.VARXS, root.path(),
                     I18n.t("Use_archetype {0} does not match the expression of the archetype slot it specialized in the parent", root.getArchetypeRef()));
             return false;

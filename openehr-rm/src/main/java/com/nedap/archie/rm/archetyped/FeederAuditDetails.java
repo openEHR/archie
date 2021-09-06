@@ -1,9 +1,12 @@
 package com.nedap.archie.rm.archetyped;
 
 import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.PartyIdentified;
 import com.nedap.archie.rm.generic.PartyProxy;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -32,17 +35,25 @@ public class FeederAuditDetails extends RMObject {
     @Nullable
     @XmlElement(name = "version_id")
     protected String versionId;
+    @Nullable
+    @XmlElement(name = "other_details")
+    private ItemStructure otherDetails;
 
     public FeederAuditDetails() {
     }
 
-    public FeederAuditDetails(String systemId, @Nullable PartyIdentified provider, @Nullable PartyIdentified location, @Nullable DvDateTime time, @Nullable PartyProxy subject, @Nullable String versionId) {
+    public FeederAuditDetails(String systemId) {
+        this.systemId = systemId;
+    }
+
+    public FeederAuditDetails(String systemId, @Nullable PartyIdentified provider, @Nullable PartyIdentified location, @Nullable DvDateTime time, @Nullable PartyProxy subject, @Nullable String versionId, @Nullable ItemStructure otherDetails) {
         this.systemId = systemId;
         this.location = location;
         this.provider = provider;
         this.subject = subject;
         this.time = time;
         this.versionId = versionId;
+        this.otherDetails = otherDetails;
     }
 
     public String getSystemId() {
@@ -93,6 +104,15 @@ public class FeederAuditDetails extends RMObject {
         this.versionId = versionId;
     }
 
+    @Nullable
+    public ItemStructure getOtherDetails() {
+        return otherDetails;
+    }
+
+    public void setOtherDetails(@Nullable ItemStructure otherDetails) {
+        this.otherDetails = otherDetails;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,11 +123,17 @@ public class FeederAuditDetails extends RMObject {
                 Objects.equals(provider, that.provider) &&
                 Objects.equals(subject, that.subject) &&
                 Objects.equals(time, that.time) &&
-                Objects.equals(versionId, that.versionId);
+                Objects.equals(versionId, that.versionId) &&
+                Objects.equals(otherDetails, that.otherDetails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(systemId, location, provider, subject, time, versionId);
+        return Objects.hash(systemId, location, provider, subject, time, versionId, otherDetails);
+    }
+
+    @Invariant("System_id_valid")
+    public boolean systemIdValid() {
+        return InvariantUtil.nullOrNotEmpty(systemId);
     }
 }

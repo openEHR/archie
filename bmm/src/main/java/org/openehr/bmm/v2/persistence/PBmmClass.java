@@ -23,7 +23,7 @@ public class PBmmClass extends PBmmBase {
     private String name;
     private List<String> ancestors;
     private Map<String, PBmmUnitaryType> ancestorDefs;
-    private Map<String, PBmmProperty> properties;
+    private Map<String, PBmmProperty<?>> properties;
     private Boolean isAbstract;
     private Map<String, PBmmGenericParameter> genericParameterDefs;
     private Boolean isOverride;
@@ -105,14 +105,14 @@ public class PBmmClass extends PBmmBase {
         this.ancestors = ancestors;
     }
 
-    public Map<String, PBmmProperty> getProperties() {
+    public Map<String, PBmmProperty<?>> getProperties() {
         if (properties == null) {
             properties = new LinkedHashMap<>();
         }
         return properties;
     }
 
-    public void setProperties(Map<String, PBmmProperty> properties) {
+    public void setProperties(Map<String, PBmmProperty<?>> properties) {
         this.properties = properties;
     }
 
@@ -219,8 +219,8 @@ public class PBmmClass extends PBmmBase {
         BmmClass bmmClass = classProcessor.getUnprocessedClassDefinition(getName());
         if (bmmClass != null) {
             // populate properties
-            for (PBmmProperty pBmmProperty : getProperties().values()) {
-                BmmProperty bmmProperty = pBmmProperty.createBmmProperty(classProcessor, bmmClass);
+            for (PBmmProperty<?> pBmmProperty : getProperties().values()) {
+                BmmProperty<?> bmmProperty = pBmmProperty.createBmmProperty(classProcessor, bmmClass);
                 if (bmmProperty != null) {
                     bmmClass.addProperty(bmmProperty);
                 } else {

@@ -61,7 +61,7 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
     }
 
     @Override
-    protected void validate(CPrimitiveObject cObject) {
+    protected void validate(CPrimitiveObject<?, ?> cObject) {
         CAttribute attribute = cObject.getParent();
         if(attribute.getDifferentialPath() == null) {
             CObject parentConstraint = attribute.getParent();

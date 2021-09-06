@@ -6,6 +6,8 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.generic.PartyIdentified;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -149,5 +151,20 @@ public class EventContext extends Pathable {
     @Override
     public int hashCode() {
         return Objects.hash(startTime, endTime, location, setting, otherContext, healthCareFacility, participations);
+    }
+
+    @Invariant("Setting_valid")
+    public boolean settingValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(setting, "setting");
+    }
+
+    @Invariant(value="Participations_validity", ignored = true)
+    public boolean participationsValid() {
+        return InvariantUtil.nullOrNotEmpty(participations);
+    }
+
+    @Invariant("Location_validity")
+    public boolean locationValid() {
+        return InvariantUtil.nullOrNotEmpty(location);
     }
 }

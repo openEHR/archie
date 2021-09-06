@@ -4,9 +4,8 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.base.Cardinality;
-import com.nedap.archie.base.Interval;
-import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,7 +32,7 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    protected void addTypes(Class baseClass) {
+    protected void addTypes(Class<?> baseClass) {
         addClass(com.nedap.archie.aom.primitives.COrdered.class);
         addClass(com.nedap.archie.aom.CSecondOrder.class);
         addClass(com.nedap.archie.aom.CAttributeTuple.class);
@@ -100,10 +99,12 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
         addClass(com.nedap.archie.rules.Expression.class);
         addClass(com.nedap.archie.rules.ArchetypeIdConstraint.class);
         addClass(com.nedap.archie.aom.primitives.CTime.class);
+        addClass(RmOverlay.class);
+        addClass(RmAttributeVisibility.class);
     }
 
     @Override
-    public Object convertToConstraintObject(Object object, CPrimitiveObject cPrimitiveObject) {
+    public Object convertToConstraintObject(Object object, CPrimitiveObject<?, ?> cPrimitiveObject) {
         throw new UnsupportedOperationException("not supported");//TODO: split this to different classes
     }
 
@@ -149,7 +150,7 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject) {
+    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject) {
         return true;
     }
 

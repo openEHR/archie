@@ -22,6 +22,12 @@ public class ADL14ConversionConfiguration {
     private boolean applyDiff = true;
 
 
+    /**
+     * ADL 1.4 contains no rm release version, 2 does. So one needs to be added. Set to the desired rm_release. Defaults to 1.1.0
+     */
+    private String rmRelease = "1.1.0";
+
+
     public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
         return terminologyConversionTemplates;
     }
@@ -56,5 +62,13 @@ public class ADL14ConversionConfiguration {
 
     public void setApplyDiff(boolean applyDiff) {
         this.applyDiff = applyDiff;
+    }
+
+    public String getRmRelease() {
+        return rmRelease;
+    }
+
+    public void setRmRelease(String rmRelease) {
+        this.rmRelease = rmRelease;
     }
 }

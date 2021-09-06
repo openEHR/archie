@@ -3,6 +3,7 @@ package com.nedap.archie.rm.directory;
 import com.nedap.archie.rm.changecontrol.VersionedObject;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.HierObjectId;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 
 import javax.xml.bind.annotation.XmlType;
@@ -16,7 +17,7 @@ public class VersionedFolder extends VersionedObject<Folder> {
     public VersionedFolder() {
     }
 
-    public VersionedFolder(HierObjectId uid, ObjectRef ownerId, DvDateTime timeCreated) {
+    public VersionedFolder(HierObjectId uid, ObjectRef<? extends ObjectId> ownerId, DvDateTime timeCreated) {
         super(uid, ownerId, timeCreated);
     }
 }

@@ -13,11 +13,11 @@ import java.util.List;
  */
 public class FunctionUtil {
 
-    public static double castToDouble(Value value) throws FunctionCallException {
+    public static double castToDouble(Value<?> value) throws FunctionCallException {
         if(value.getValue() instanceof Long) {
             return ((Long) value.getValue()).doubleValue();
         } else if (value.getValue() instanceof Double) {
-            return (double) value.getValue();
+            return (Double) value.getValue();
         }
         throw new FunctionCallException("cannot cast " + value.getValue().getClass() + " to a number");
     }

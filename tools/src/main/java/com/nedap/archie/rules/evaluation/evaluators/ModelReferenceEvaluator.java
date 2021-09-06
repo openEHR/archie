@@ -2,6 +2,7 @@ package com.nedap.archie.rules.evaluation.evaluators;
 
 import com.google.common.collect.Lists;
 import com.nedap.archie.query.RMObjectWithPath;
+import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.rules.evaluation.Evaluator;
@@ -9,7 +10,6 @@ import com.nedap.archie.rules.evaluation.RuleEvaluation;
 import com.nedap.archie.rules.evaluation.Value;
 import com.nedap.archie.rules.evaluation.ValueList;
 
-import javax.xml.xpath.XPathExpressionException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, ModelReference statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, ModelReference statement) {
 
 
         String variable = statement.getVariableReferencePrefix();
@@ -53,21 +53,19 @@ public class ModelReferenceEvaluator implements Evaluator<ModelReference> {
         String path = pathPrefix + statement.getPath();
 
         List<RMObjectWithPath> rmObjectsWithPath;
-        try {
-            rmObjectsWithPath = evaluation.getQueryContext().findListWithPaths(path);
-        } catch (XPathExpressionException e) {
-            throw new RuntimeException("error evaluating " + path, e);
-        }
-        List<Value> values = rmObjectsWithPath.stream().map(
+
+        rmObjectsWithPath = evaluation.findListWithPaths(path);
+
+        List<Value<?>> values = rmObjectsWithPath.stream().map(
             rmObjectWithPath ->
-                new Value(rmObjectWithPath.getObject(), Lists.newArrayList(rmObjectWithPath.getPath())))
+                new Value<>(rmObjectWithPath.getObject(), Lists.newArrayList(rmObjectWithPath.getPath())))
             .collect(Collectors.toList());
 
         return new ValueList(values);
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(ModelReference.class);
     }
 }

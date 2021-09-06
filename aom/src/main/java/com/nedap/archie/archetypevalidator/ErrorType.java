@@ -83,10 +83,8 @@ public enum ErrorType implements MessageCode {
     VACMCU(I18n.register("cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is ⇐ the cardinality upper bound.")),
     WOUC(I18n.register("code in terminology not used in archetype definition")),
     VALUESET_REDEFINITION_ERROR(I18n.register("A redefined value set can only be a subset of its parent value set, nothing can be added")),
-    OVERLAY_VALIDATION_FAILED(I18n.register("The validation of a template overlay failed"));
-
-
-
+    OVERLAY_VALIDATION_FAILED(I18n.register("The validation of a template overlay failed")),
+    PARENT_VALIDATION_FAILED(I18n.register("The validation of the parent archetype failed"));
 
     private final String description;
 

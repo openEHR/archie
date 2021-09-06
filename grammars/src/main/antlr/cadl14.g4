@@ -39,9 +39,9 @@ c_non_primitive_object:
 
 c_ordinal: ordinal_term  (',' ordinal_term)* (';' assumed_ordinal_value)?;
 
-assumed_ordinal_value: INTEGER;
+assumed_ordinal_value: INTEGER | REAL;
 
-ordinal_term: integer_value '|' c_terminology_code;
+ordinal_term: (integer_value | real_value) '|' c_terminology_code;
 
 c_archetype_root: SYM_USE_ARCHETYPE type_id '[' AT_CODE (SYM_COMMA archetype_ref)? ']' c_occurrences? ( SYM_MATCHES '{' c_attribute_def+ '}' )? ;
 
