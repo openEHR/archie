@@ -62,28 +62,7 @@ public class TerminologyFlattener {
     }
 
     private static void flattenValueSets(Map<String, ValueSet> childValueSets, Map<String, ValueSet> resultValueSets) {
-        for(String key:childValueSets.keySet()) {
-            ValueSet childValueSet = childValueSets.get(key);
-            ValueSet overriddenValueSet = findMatchingValueSet(resultValueSets, key);
-            if(overriddenValueSet == null) {
-                resultValueSets.put(key, childValueSet);
-            } else {
-                String originalId = overriddenValueSet.getId();
-                overriddenValueSet.setId(childValueSet.getId());
-                //we could just set the overridden value set to the new value and remove the old one
-                //but that would mean you could also add codes in a specialized archetype- and you cannot
-                Set<String> newMembers = new LinkedHashSet<>();
-                for(String member: overriddenValueSet.getMembers()) {
-                    if(childValueSet.getMembers().contains(member)) {
-                        //can only delete, not add members.
-                        newMembers.add(member);
-                    }
-                }
-                overriddenValueSet.setMembers(newMembers);
-                resultValueSets.remove(originalId);
-                resultValueSets.put(key, overriddenValueSet);
-            }
-        }
+        resultValueSets.putAll(childValueSets);
     }
 
     private static ValueSet findMatchingValueSet(Map<String, ValueSet> resultValueSets, String specializedId) {

@@ -17,6 +17,7 @@ import com.nedap.archie.aom.primitives.CDuration;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.primitives.CTime;
+import com.nedap.archie.aom.primitives.ConstraintStatus;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.serializer.odin.OdinValueParser;
 import org.antlr.v4.runtime.CharStreams;
@@ -124,6 +125,33 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
                 result.addConstraint(terminologyCodeContext.AT_CODE().getText());
             }
         }
+
+        if(terminologyCodeContext.identifier() != null) {
+            String constraintStatusText = terminologyCodeContext.identifier().getText();
+            switch (constraintStatusText.toLowerCase()) {
+                case "required":
+                    result.setConstraintStatus(ConstraintStatus.REQUIRED);
+                    break;
+                case "extensible":
+                    result.setConstraintStatus(ConstraintStatus.EXTENSIBLE);
+                    break;
+                case "preferred":
+                    result.setConstraintStatus(ConstraintStatus.PREFERRED);
+                    break;
+                case "example":
+                    result.setConstraintStatus(ConstraintStatus.EXAMPLE);
+                    break;
+                default:
+                    getErrors().addError("constraint status must be one of required, extensible, preferred or example, but was " + constraintStatusText,
+                            "Constraint status incorrect",
+                            terminologyCodeContext.getStart().getLine(),
+                            terminologyCodeContext.getStart().getCharPositionInLine(),
+                            constraintStatusText.length(),
+                            constraintStatusText
+                            );
+            }
+        }
+
         return result;
     }
 
