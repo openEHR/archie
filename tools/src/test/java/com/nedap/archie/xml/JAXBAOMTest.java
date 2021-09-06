@@ -8,13 +8,13 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.primitives.CDuration;
+import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.primitives.ConstraintStatus;
 import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.datetime.DateTimeParsers;
-import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.json.RMJacksonConfiguration;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,6 +65,28 @@ public class JAXBAOMTest {
         String xml = writer.toString();
         assertTrue(xml, xml.contains("-P10D"));
         assertTrue(xml, xml.contains("PT10S"));
+    }
+
+    @Test
+    public void testCTerminologyCode() throws Exception {
+
+        CTerminologyCode cTerminologyCode = new CTerminologyCode();
+        cTerminologyCode.setConstraint(Lists.newArrayList("ac23"));
+        cTerminologyCode.setConstraintStatus(ConstraintStatus.PREFERRED);
+        valueAttribute.addChild(cTerminologyCode);
+        StringWriter writer = new StringWriter();
+        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(archetype, writer);
+        String xml = writer.toString();
+
+        assertTrue(xml, xml.contains("<constraintStatus>preferred</constraintStatus>"));
+
+        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(xml));
+        CTerminologyCode parsedTerm = (CTerminologyCode) unmarshalled.getDefinition().getAttribute("value").getChildren().get(0);
+        assertEquals(cTerminologyCode.getConstraint(), parsedTerm.getConstraint());
+        assertEquals(ConstraintStatus.PREFERRED, parsedTerm.getConstraintStatus());
     }
 
     @Test

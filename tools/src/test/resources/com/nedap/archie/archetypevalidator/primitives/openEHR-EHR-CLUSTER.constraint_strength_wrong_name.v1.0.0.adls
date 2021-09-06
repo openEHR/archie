@@ -1,0 +1,78 @@
+archetype (adl_version=2.0.7; rm_release=1.0.2)
+	openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Pieter Bos">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Test constraint strength binding.">
+			keywords = <"ADL", "validation", "test">
+		>
+	>
+	lifecycle_state = <"unmanaged">
+	other_details = <
+		["regression"] = <"Constraint status incorrect">
+	>
+
+definition
+	CLUSTER[id1] matches {
+		items matches {
+		    ELEMENT[id2] matches {
+		        value matches {
+		            DV_CODED_TEXT[id3] matches {
+		                defining_code matches {doesnotexist [ac1]}
+		            }
+		        }
+		    }
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"root node">
+				description = <"root node">
+			>
+			["id2"] = <
+                text = <"element required strength">
+                description = <"element  required strength">
+            >
+            ["id4"] = <
+                text = <"element extensible strength">
+                description = <"element extensible strength">
+            >
+            ["id6"] = <
+                text = <"element preferred strength">
+                description = <"element preferred strength">
+            >
+            ["id8"] = <
+                text = <"element example strength">
+                description = <"element example strength">
+            >
+			["ac1"] = <
+                text = <"value set">
+                description = <"value set">
+            >
+            ["at1"] = <
+                text = <"value 1">
+                description = <"value 1">
+            >
+            ["at2"] = <
+                text = <"value 2">
+                description = <"value 2">
+            >
+		>
+	>
+	value_sets = <
+	    ["ac1"] = <
+	        id=<"ac1">
+	        members = <"at1", "at2">
+        >
+	>
