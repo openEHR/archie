@@ -34,6 +34,6 @@ public class DvEHRURI extends DvURI {
 
     @Invariant("Scheme_valid")
     public boolean schemeValid() {
-        return getValue() == null || getValue().getScheme().equalsIgnoreCase(OpenEhrDefinitions.EHR_SCHEME);
+        return getValue() == null || (getValue().getScheme() != null && getValue().getScheme().equalsIgnoreCase(OpenEhrDefinitions.EHR_SCHEME));
     }
 }
