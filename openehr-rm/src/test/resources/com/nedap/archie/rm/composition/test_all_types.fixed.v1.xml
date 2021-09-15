@@ -1,6 +1,6 @@
 <composition archetype_node_id="openEHR-EHR-COMPOSITION.test_all_types.v1"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns="http://schemas.openehr.org/v1">
+>
     <name>
         <value>Test all types</value>
     </name>

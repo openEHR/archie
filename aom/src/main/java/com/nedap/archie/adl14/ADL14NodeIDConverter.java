@@ -7,6 +7,7 @@ import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CString;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -95,6 +96,7 @@ public class ADL14NodeIDConverter {
 
         convertTermDefinitions(archetype, convertedCodes);
         convertAnnotations(archetype);
+        convertRmOverlay(archetype);
         previousConversionApplier.removeCreatedUnusedTermCodesAndValueSets();
         return new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
     }
@@ -114,6 +116,18 @@ public class ADL14NodeIDConverter {
         }
         archetype.setAnnotations(converted);
     }
+
+    private void convertRmOverlay(Archetype archetype) {
+        RmOverlay convertedOverlay = new RmOverlay();
+        convertedOverlay.setRmVisibility(new LinkedHashMap<>());
+        if(archetype.getRmOverlay() != null && archetype.getRmOverlay().getRmVisibility() != null) {
+            for(String path:archetype.getRmOverlay().getRmVisibility().keySet()) {
+                convertedOverlay.getRmVisibility().put(convertPath(path), archetype.getRmOverlay().getRmVisibility().get(path));
+            }
+        }
+        archetype.setRmOverlay(convertedOverlay);
+    }
+
 
     private void correctItemsCardinality(CObject cObject) {
         for(CAttribute attribute:cObject.getAttributes()) {

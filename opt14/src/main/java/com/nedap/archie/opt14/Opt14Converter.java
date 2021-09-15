@@ -54,6 +54,7 @@ public class Opt14Converter {
             TerminologyConverter.convertOntologies(opt14, opt2, config);
 
             new TConstraintApplier().apply(opt14, opt2);
+            new TViewConverter().apply(opt14, opt2);
             //System.out.println(ADLArchetypeSerializer.serialize(opt2, null, new ArchieRMObjectMapperProvider()));
 
             Template template = new Template();
