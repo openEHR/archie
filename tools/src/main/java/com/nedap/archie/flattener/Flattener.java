@@ -32,7 +32,7 @@ public class Flattener implements IAttributeFlattenerSupport {
     private final FlattenerConfiguration config;
 
     private RulesFlattener rulesFlattener = new RulesFlattener();
-    private AnnotationsFlattener annotationsFlattener = new AnnotationsFlattener();
+    private AnnotationsAndOverlaysFlattener annotationsAndOverlaysFlattener = new AnnotationsAndOverlaysFlattener();
 
     CAttributeFlattener cAttributeFlattener = new CAttributeFlattener(this);
     private TupleFlattener tupleFlattener = new TupleFlattener();
@@ -115,6 +115,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                 result = template;
                 //make an operational template by just filling complex object proxies and archetype slots
                 optCreator.fillSlots(template);
+                optCreator.expandValueSets((OperationalTemplate) result);
                 fillOptEmptyOccurrences(result);
                 TerminologyFlattener.filterLanguages(template, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
                 result = template;
@@ -165,7 +166,8 @@ public class Flattener implements IAttributeFlattenerSupport {
             result.setTerminology(clonedParent.getTerminology());
             result.setRules(clonedParent.getRules());
         }
-        new AnnotationsFlattener().flatten(parent, child, result);
+        annotationsAndOverlaysFlattener.flattenAnnotations(parent, child, result);
+        annotationsAndOverlaysFlattener.flattenRmOverlay(parent, child, result);
 
         //1. redefine structure
         //2. fill archetype slots if we are creating an operational template
@@ -189,6 +191,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         TerminologyFlattener.flattenTerminology(result, child);
 
         if(config.isCreateOperationalTemplate()) {
+            optCreator.expandValueSets((OperationalTemplate) result);
             TerminologyFlattener.filterLanguages((OperationalTemplate) result, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
         }
         result.getDefinition().setArchetype(result);
@@ -444,7 +447,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         return rulesFlattener;
     }
 
-    protected AnnotationsFlattener getAnnotationsFlattener() { return annotationsFlattener; }
+    protected AnnotationsAndOverlaysFlattener getAnnotationsAndOverlaysFlattener() { return annotationsAndOverlaysFlattener; }
 
     public OverridingArchetypeRepository getRepository() {
         return repository;

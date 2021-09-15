@@ -8,7 +8,7 @@ wrapper {
 }
 
 allprojects {
-  version = '1.0.0'
+  version = '1.0.2'
   group = 'com.nedap.healthcare.archie'
   ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
   //archivesBaseName = 'archie'
@@ -43,11 +43,11 @@ subprojects {
   }
 
   ext.reflectionsVersion = '0.9.12'
-  ext.jacksonVersion = '2.12.3'
+  ext.jacksonVersion = '2.12.5'
 
 
   dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.30'
+    compile 'org.slf4j:slf4j-api:1.7.32'
 
     compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
@@ -58,7 +58,7 @@ subprojects {
     compile "org.reflections:reflections:${reflectionsVersion}"
     compile 'com.esotericsoftware.kryo:kryo5:5.1.1'
 
-    compile('commons-io:commons-io:2.8.0'){
+    compile('commons-io:commons-io:2.11.0'){
       exclude group: 'commons-logging', module: 'commons-logging'
     }
     compile 'org.apache.commons:commons-text:1.9'
@@ -73,7 +73,7 @@ subprojects {
     implementation 'org.threeten:threeten-extra:1.6.0'
 
     testCompile 'junit:junit:4.+'
-    testCompile 'org.slf4j:slf4j-simple:1.7.30'
+    testCompile 'org.slf4j:slf4j-simple:1.7.32'
 
     compile 'com.github.zafarkhaja:java-semver:0.9.0'
 

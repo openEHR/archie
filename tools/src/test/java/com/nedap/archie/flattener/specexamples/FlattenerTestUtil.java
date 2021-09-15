@@ -15,12 +15,13 @@ public class FlattenerTestUtil {
 
     public static Archetype parse(String filename) throws IOException, ADLParseException {
         ADLParser parser = new ADLParser();
-        InputStream stream = FlattenerTestUtil.class.getResourceAsStream(filename);
-        if(stream == null) {
-            fail("cannot find file: " + filename);
+        try(InputStream stream = FlattenerTestUtil.class.getResourceAsStream(filename)) {
+            if (stream == null) {
+                fail("cannot find file: " + filename);
+            }
+            Archetype result = parser.parse(stream);
+            assertTrue("there should be no errors parsing " + filename + ", but was: " + parser.getErrors(), parser.getErrors().hasNoMessages());
+            return result;
         }
-        Archetype result = parser.parse(stream);
-        assertTrue("there should be no errors parsing " + filename + ", but was: " + parser.getErrors(), parser.getErrors().hasNoMessages());
-        return result;
     }
 }
