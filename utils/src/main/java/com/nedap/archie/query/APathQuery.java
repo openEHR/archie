@@ -75,6 +75,14 @@ public class APathQuery {
                             } else {
                                 pathSegment.setNodeId(expression);
                             }
+                        } else {
+                            if(equalityExprContext.relationalExpr(0).getText().equals("name/value") &&
+                                    equalityExprContext.getChild(1).getText().equals("=")) {
+                                String nameConstraint = equalityExprContext.relationalExpr(1).getText();
+                                nameConstraint = nameConstraint.replaceAll("^[\"\']|[\"\']$", "");
+                                pathSegment.setObjectNameConstraint(nameConstraint);
+                            }
+
                         }
 
                     }

@@ -16,6 +16,7 @@ public class PathSegment {
 
     private String nodeName;
     private String nodeId;
+    private String objectNameConstraint;
     // An explicit archetype ref from a C_ARCHETYPE_ROOT (use archetype...). null otherwise
     private String archetypeRef = null;
     private Integer index;
@@ -70,6 +71,14 @@ public class PathSegment {
         this.archetypeRef = archetypeRef;
     }
 
+    public String getObjectNameConstraint() {
+        return objectNameConstraint;
+    }
+
+    public void setObjectNameConstraint(String objectNameConstraint) {
+        this.objectNameConstraint = objectNameConstraint;
+    }
+
     public boolean hasIdCode() {
         return nodeId != null && nodeIdPattern.matcher(nodeId).matches();
     }
@@ -90,6 +99,10 @@ public class PathSegment {
     }
 
     public boolean hasExpressions() {
-        return nodeId != null || index != null;
+        return nodeId != null || index != null || objectNameConstraint != null;
+    }
+
+    public boolean hasObjectNameConstraint() {
+        return objectNameConstraint != null;
     }
 }

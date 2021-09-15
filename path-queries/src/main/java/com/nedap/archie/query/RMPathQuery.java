@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * For now only accepts rather simple xpath-like expressions.
@@ -36,6 +37,13 @@ public class RMPathQuery {
 
     //TODO: get diagnostic information about where the finder stopped in the path - could be very useful!
 
+    /**
+     * WARNING: this method has many quirks. Please use findList instead!
+     * Quirks include:
+     * - if at a certain level in the path several objects match, it will only search the first match
+     * - it includes a collection if it matches a collection attribute, in all other cases a single item
+     */
+    @Deprecated
     public <T> T find(ModelInfoLookup lookup, Object root) {
         Object currentObject = root;
         try {
@@ -65,22 +73,14 @@ public class RMPathQuery {
                 } else if (archetypeNodeIdFromObject != null) {
 
                     if (segment.hasExpressions()) {
-                        if (segment.hasIdCode()) {
-                            if (!archetypeNodeIdFromObject.equals(segment.getNodeId())) {
-                                return null;
-                            }
-                        } else if (segment.hasNumberIndex()) {
-                            int number = segment.getIndex();
-                            if (number != 1) {
-                                return null;
-                            }
-                        } else if (segment.hasArchetypeRef()) {
-                            //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
-                            //we support. Other things not so much
-                            if (!archetypeNodeIdFromObject.equals(segment.getNodeId())) {
-                                throw new IllegalArgumentException("cannot handle RM-queries with node names or archetype references yet");
-                            }
+                        Predicate<Object> predicate = RmPathQueryPredicateConverter.convert(segment, lookup);
 
+                        if(!predicate.test(currentObject)) {
+                            predicate = RmPathQueryPredicateConverter.convertWithoutNodeId(segment, lookup);
+                            //TODO: maybe build this ina  single predicate? BUt should we for something deprecated?
+                            if(!predicate.test(currentObject)) {
+                                return null;
+                            }
                         }
                     }
                 } else if (segment.hasNumberIndex()) {
@@ -100,6 +100,29 @@ public class RMPathQuery {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Deprecated //please remove as soon as no longer used!
+    private Object findRMObject(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection) {
+
+        if(segment.hasNumberIndex()) {
+            int number = segment.getIndex();
+            for(Object object:collection) {
+                if(number == 1) {
+                    return object;
+                }
+                number--;
+            }
+            return null;
+        }
+        for(Object o:collection) {
+            Predicate<Object> predicate = RmPathQueryPredicateConverter.convert(segment, lookup);
+
+            if(predicate.test(o)) {
+                return o;
+            }
+        }
+        return null;
     }
 
     /**
@@ -132,47 +155,15 @@ public class RMPathQuery {
                     if (currentRMObject == null) {
                         continue;
                     }
-                    String archetypeNodeIdFromObject = lookup.getArchetypeNodeIdFromRMObject(currentObject);
                     if (currentRMObject instanceof Collection) {
                         Collection<?> collection = (Collection<?>) currentRMObject;
                         if (!segment.hasExpressions()) {
                             addAllFromCollection(lookup, newCurrentObjects, collection, newPath);
                         } else {
-                            //TODO
                             newCurrentObjects.addAll(findRMObjectsWithPathCollection(lookup, segment, collection, newPath));
                         }
-                    } else if (archetypeNodeIdFromObject != null) {
-
-                        if (segment.hasExpressions()) {
-                            if (segment.hasIdCode()) {
-                                if (!archetypeNodeIdFromObject.equals(segment.getNodeId())) {
-                                    continue;
-                                }
-                            } else if (segment.hasNumberIndex()) {
-                                int number = segment.getIndex();
-                                if (number != 1) {
-                                    continue;
-                                }
-                            } else if (segment.hasArchetypeRef()) {
-                                //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
-                                //we support. Other things not so much
-                                if (!archetypeNodeIdFromObject.equals(segment.getNodeId())) {
-                                    continue;
-                                }
-
-                            }
-                            newCurrentObjects.add(createRMObjectWithPath(lookup, currentRMObject, newPath));
-                        }
-                    } else if (segment.hasNumberIndex()) {
-                        int number = segment.getIndex();
-                        if (number != 1) {
-                            continue;
-                        }
                     } else {
-                        //The object does not have an archetypeNodeId
-                        //in openehr, in archetypes everythign has node ids. Datavalues do not in the rm. a bit ugly if you ask
-                        //me, but that's why there's no 'if there's a nodeId set, this won't match!' code here.
-                        newCurrentObjects.add(createRMObjectWithPath(lookup, currentRMObject, newPath));
+                        newCurrentObjects.addAll(findRMObjectsWithPathCollection(lookup, segment, Lists.newArrayList(currentRMObject), newPath));
                     }
                 }
                 currentObjects = newCurrentObjects;
@@ -239,86 +230,51 @@ public class RMPathQuery {
 
     private Collection<RMObjectWithPath> findRMObjectsWithPathCollection(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection, String path) {
 
+        collection = getNumberedElement(segment, collection);
+
+        Predicate<Object> predicate = RmPathQueryPredicateConverter.convert(segment, lookup);
+        List<RMObjectWithPath> result = new ArrayList<>();
+        int i = 1;
+        for(Object object:collection) {
+
+            String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(object);
+            if(predicate.test(object)) {
+                result.add(new RMObjectWithPath(object, path + buildPathConstraint(collection.size() == 1 ? null : i, archetypeNodeId)));
+            }
+            i++;
+        }
+        if(result.isEmpty()) {
+            predicate = RmPathQueryPredicateConverter.convertWithoutNodeId(segment, lookup);
+
+            i = 1;
+            for (Object object : collection) {
+
+                String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(object);
+                if (predicate.test(object)) {
+                    result.add(new RMObjectWithPath(object, path + buildPathConstraint(collection.size() == 1 ? null : i, archetypeNodeId)));
+                }
+                i++;
+            }
+        }
+        return result;
+    }
+
+    private Collection<?> getNumberedElement(PathSegment segment, Collection<?> collection) {
         if(segment.hasNumberIndex()) {
             int number = segment.getIndex();
             int i = 1;
             for(Object object:collection) {
                 if(number == i) {
                     //TODO: check for other constraints as well
-                    return Lists.newArrayList(new RMObjectWithPath(object, path + buildPathConstraint(i-1, lookup.getArchetypeNodeIdFromRMObject(object))));
+                    ArrayList<Object> newCollection = new ArrayList<>();
+                    newCollection.add(object);
+                    collection = newCollection;
+                    break;
                 }
                 i++;
             }
         }
-        List<RMObjectWithPath> result = new ArrayList<>();
-        int i = 1;
-        for(Object object:collection) {
-            String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(object);
-
-            if (segment.hasIdCode()) {
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
-                }
-            } else if (segment.hasArchetypeRef()) {
-                //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
-                //we support. Other things not so much
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
-                }
-            } else {
-                if(equalsName(lookup.getNameFromRMObject(object), segment.getNodeId())) {
-                    result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
-                }
-            }
-            i++;
-        }
-        return result;
-    }
-
-    private Object findRMObject(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection) {
-
-        if(segment.hasNumberIndex()) {
-            int number = segment.getIndex();
-            for(Object object:collection) {
-                if(number == 1) {
-                    return object;
-                }
-                number--;
-            }
-            return null;
-        }
-        for(Object o:collection) {
-            String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(o);
-
-            if (segment.hasIdCode()) {
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    return o;
-                }
-            } else if (segment.hasArchetypeRef()) {
-                //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
-                //we support. Other things not so much
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    return o;
-                }
-            } else {
-                if(equalsName(lookup.getNameFromRMObject(o), segment.getNodeId())) {
-                    return o;
-                }
-            }
-        }
-        return null;
-    }
-
-    private boolean equalsName(String name, String nameFromQuery) {
-        //the grammar throws away whitespace. And it should, because it's kind of tricky otherwise. So match names without whitespace
-        //TODO: should this be case sensitive?
-        if(name == null) {
-            return false;
-        }
-        name = name.replaceAll("( |\\t|\\n|\\r)+", "");
-        nameFromQuery = nameFromQuery.replaceAll("( |\\t|\\n|\\r)+", "");
-        return name.equalsIgnoreCase(nameFromQuery);
-
+        return collection;
     }
 
     public List<PathSegment> getPathSegments() {
