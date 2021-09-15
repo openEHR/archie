@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
+import javax.xml.bind.Unmarshaller;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -250,5 +251,13 @@ public class ArchetypeID extends ObjectId {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), namespace, qualifiedRmEntity, domainConcept, rmOriginator, rmName, rmEntity, specialisation, versionId);
+    }
+
+    // after JAXB unmarshalling, set the field values correctly
+    public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+        if(this.rmName == null) {
+            parseValue(getValue());
+        }
+
     }
 }

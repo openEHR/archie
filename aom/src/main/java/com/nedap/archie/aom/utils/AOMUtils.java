@@ -35,12 +35,32 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AOMUtils {
 
     private static Pattern idCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
     private static Pattern adl14CodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
+
+    private static final Pattern namespacePattern = Pattern.compile("((?<namespace>.*)::)?");
+    private static final Pattern publisherPattern = Pattern.compile("(?<publisher>[^.-]*)");
+    private static final Pattern packagePattern = Pattern.compile("(?<package>[^.-]*)");
+    private static final Pattern classPattern = Pattern.compile("(?<class>[^.-]*)");
+    private static final Pattern conceptPattern = Pattern.compile("(?<concept>[^.]*)");
+    private static final Pattern releaseVersionPattern = Pattern.compile("(\\.v(?<version>[^-+]*))?");
+    private static final Pattern versionStatusPattern = Pattern.compile("(?<versionStatus>[^.\\d]*)?");
+    private static final Pattern buildStatusPattern = Pattern.compile("(\\.?(?<buildCount>\\d*))");
+    public static final Pattern ARCHETYPE_HRID_PATTERN = Pattern.compile(""
+            + namespacePattern
+            + publisherPattern
+            + "-" + packagePattern
+            + "-" + classPattern
+            + "\\." + conceptPattern
+            + releaseVersionPattern
+            + versionStatusPattern
+            + buildStatusPattern
+    );
 
     public static int getSpecializationDepthFromCode(String code) {
         if(code == null) {
@@ -54,6 +74,10 @@ public class AOMUtils {
 
     public static boolean isIdCode(String code) {
         return code.startsWith(AdlCodeDefinitions.ID_CODE_LEADER);
+    }
+
+    public static boolean isArchetypeRef(String archetypeRef) {
+        return ARCHETYPE_HRID_PATTERN.matcher(archetypeRef).matches();
     }
 
     public static boolean isValueCode(String code) {
