@@ -1,0 +1,115 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=1ab7d213-4d37-479f-84f0-2e645df9abc1; build_uid=66080a21-5f68-4a08-99eb-0fe75366090a)
+    openEHR-EHR-ADMIN_ENTRY.capacity_respect.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard Franke">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2018-01-17">
+    >
+    original_namespace = <"uk.org.clinicalmodels">
+    original_publisher = <"UK Clinical Models">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"uk.org.clinicalmodels">
+    custodian_organisation = <"UK Clinical Models">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Hildegard Franke, freshEHR Clinical Informatics Ltd.<hildi@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"FC0E75D962BDDE6C76546D52AF143A17">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For the capture and reporting of capacity and representation information in the context of the ReSPECT process.">
+            use = <"Use to record capacity adn representation information as part of the ReSPECT process.">
+            misuse = <"">
+            copyright = <"© Clinical Models UK">
+        >
+    >
+
+definition
+    ADMIN_ENTRY[id1] matches {    -- Capacity ReSPECT
+        data matches {
+            ITEM_TREE[id2] matches {    -- Tree
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Sufficient capacity
+                        value matches {
+                            DV_BOOLEAN[id9001]
+                        }
+                    }
+                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Lacks capacity in what way
+                        value matches {
+                            DV_TEXT[id9003]
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Legal proxy
+                        value matches {
+                            DV_CODED_TEXT[id9002] matches {
+                                defining_code matches {[ac9000]}    -- Legal proxy (synthesised)
+                            }
+                        }
+                    }
+                    allow_archetype CLUSTER[id8] matches {     -- Person holding parental responsibility
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Legal proxy (synthesised)">
+                description = <"Do they have a legal proxy (e.g. welfare attorney, person with parental responsibility) who can participate on their behalf in making the recommendations? (synthesised)">
+            >
+            ["id9"] = <
+                text = <"Lacks capacity in what way">
+                description = <"">
+            >
+            ["id8"] = <
+                text = <"Person holding parental responsibility">
+                description = <"Details of person holding parental responsibility in the case of a child.">
+            >
+            ["at7"] = <
+                text = <"Unknown">
+                description = <"It is not known whether the person has a legal proxy.">
+            >
+            ["at6"] = <
+                text = <"No">
+                description = <"The person does not have a legal proxy.">
+            >
+            ["at5"] = <
+                text = <"Yes">
+                description = <"The person has a legal proxy.">
+            >
+            ["id4"] = <
+                text = <"Legal proxy">
+                description = <"Do they have a legal proxy (e.g. welfare attorney, person with parental responsibility) who can participate on their behalf in making the recommendations?">
+            >
+            ["id3"] = <
+                text = <"Sufficient capacity">
+                description = <"Does the person have sufficient capacity to participate in making the recommendations on this plan?">
+            >
+            ["id2"] = <
+                text = <"Tree">
+                description = <"@ internal @">
+            >
+            ["id1"] = <
+                text = <"Capacity ReSPECT">
+                description = <"Summary of capacity and representation information at the time of completing ReSPECT process.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at5", "at6", "at7">
+        >
+    >

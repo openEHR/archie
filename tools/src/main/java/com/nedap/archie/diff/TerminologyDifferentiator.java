@@ -32,7 +32,7 @@ public class TerminologyDifferentiator {
         // so remove all from the terminology that have not been speciafically defined in the archetype resource description
         List<String> translationsToRemove = new ArrayList<>();
         for(String key: result.getTerminology().getTermDefinitions().keySet()) {
-            if(!result.getTranslations().containsKey(key) && !result.getTerminology().getOriginalLanguage().equals(key)) {
+            if(!(result.getTranslations() != null && result.getTranslations().containsKey(key)) && !key.equals(result.getTerminology().getOriginalLanguage())) {
                 translationsToRemove.add(key);
             }
         }
