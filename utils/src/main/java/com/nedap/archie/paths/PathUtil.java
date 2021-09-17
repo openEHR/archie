@@ -17,21 +17,7 @@ public class PathUtil {
             return "/";
         }
         for(PathSegment segment: pathSegments) {
-            result.append("/");
-            result.append(segment.getNodeName());
-            if(segment.getNodeId() != null && !segment.getNodeId().equals(AdlCodeDefinitions.PRIMITIVE_NODE_ID)) {
-                result.append("[");
-                result.append(segment.getNodeId());
-                if(segment.hasNumberIndex()) {
-                    result.append(",");
-                    result.append(segment.getIndex().toString());
-                }
-                result.append("]");
-            } else if (segment.hasNumberIndex()) {
-                result.append("[");
-                result.append(segment.getIndex());
-                result.append("]");
-            }
+           result.append(segment.toString());
         }
         return result.toString();
     }

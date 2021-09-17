@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.definitions.VersionStatus;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
@@ -49,24 +50,6 @@ public class ArchetypeHRID extends ArchetypeModelObject {
     private String buildCount;
     //TODO: XML attribute 'physical id', which is the full id
 
-    private static final Pattern namespacePattern = Pattern.compile("((?<namespace>.*)::)?");
-    private static final Pattern publisherPattern = Pattern.compile("(?<publisher>[^.-]*)");
-    private static final Pattern packagePattern = Pattern.compile("(?<package>[^.-]*)");
-    private static final Pattern classPattern = Pattern.compile("(?<class>[^.-]*)");
-    private static final Pattern conceptPattern = Pattern.compile("(?<concept>[^.]*)");
-    private static final Pattern releaseVersionPattern = Pattern.compile("(\\.v(?<version>[^-+]*))?");
-    private static final Pattern versionStatusPattern = Pattern.compile("(?<versionStatus>[^.\\d]*)?");
-    private static final Pattern buildStatusPattern = Pattern.compile("(\\.?(?<buildCount>\\d*))");
-    private static final Pattern archetypeHRIDPattern = Pattern.compile(""
-            + namespacePattern
-            + publisherPattern
-            + "-" + packagePattern
-            + "-" + classPattern
-            + "\\." + conceptPattern
-            + releaseVersionPattern
-            + versionStatusPattern
-            + buildStatusPattern
-    );
 
     public ArchetypeHRID() {
 
@@ -74,7 +57,7 @@ public class ArchetypeHRID extends ArchetypeModelObject {
 
     @JsonCreator
     public ArchetypeHRID(String value) {
-        Matcher m = archetypeHRIDPattern.matcher(value);
+        Matcher m = AOMUtils.ARCHETYPE_HRID_PATTERN.matcher(value);
 
         if(!m.matches()) {
             throw new IllegalArgumentException(value + " is not a valid archetype human readable id");

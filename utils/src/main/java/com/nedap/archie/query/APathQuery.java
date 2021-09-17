@@ -70,11 +70,22 @@ public class APathQuery {
                             String expression = equalityExprContext.getText();
                             if (isDigit.matcher(expression).matches()) {
                                 pathSegment.setIndex(Integer.parseInt(expression));
-                            } else if(expression.matches("\".*\"") || expression.matches("'.*'")) {
-                                pathSegment.setNodeId(expression.substring(1, expression.length()-1));
                             } else {
-                                pathSegment.setNodeId(expression);
+                                expression = expression.replaceAll("^[\"\']|[\"\']$", "");
+                                if(PathSegment.isIdCode(expression) || PathSegment.isArchetypeRef(expression)) {
+                                    pathSegment.setNodeId(expression);
+                                } else {
+                                    pathSegment.setObjectNameConstraint(expression);
+                                }
                             }
+                        } else {
+                            if(equalityExprContext.relationalExpr(0).getText().equals("name/value") &&
+                                    equalityExprContext.getChild(1).getText().equals("=")) {
+                                String nameConstraint = equalityExprContext.relationalExpr(1).getText();
+                                nameConstraint = nameConstraint.replaceAll("^[\"\']|[\"\']$", "");
+                                pathSegment.setObjectNameConstraint(nameConstraint);
+                            }
+
                         }
 
                     }
