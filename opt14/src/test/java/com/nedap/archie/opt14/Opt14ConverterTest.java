@@ -53,7 +53,7 @@ public class Opt14ConverterTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void respectFromRipple() throws Exception {
         testTemplate("/RESPECT_NSS-v0.opt",
                 "openEHR-EHR-ACTION.procedure.v1.4.1.adls",

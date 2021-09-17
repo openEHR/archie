@@ -75,7 +75,9 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
     }
 
     protected void appendAnnotations() {
-        if (archetype.getAnnotations()==null) return;
+        if (archetype.getAnnotations()==null || archetype.getAnnotations().getDocumentation() == null || archetype.getAnnotations().getDocumentation().isEmpty()) {
+            return;
+        }
         builder.newline().append("annotations").newIndentedLine()
                 .odin(archetype.getAnnotations())
                 .unindent();

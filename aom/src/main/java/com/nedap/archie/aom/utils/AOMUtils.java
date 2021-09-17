@@ -34,6 +34,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -292,6 +293,15 @@ public class AOMUtils {
             }
         }
         return null;// unsupported expression type
+    }
+
+    public static boolean matchesArchetypeRef(String archetypeRef, String archetypeId) {
+        ArchetypeHRID archetypeHRID = new ArchetypeHRID(archetypeId);
+        ArchetypeHRID archetypeHRIDRef = new ArchetypeHRID(archetypeRef);
+        return archetypeHRID.getIdUpToConcept().equals(archetypeHRIDRef.getIdUpToConcept()) &&
+                ((archetypeHRIDRef.getMajorVersion() == null) || Objects.equals(archetypeHRID.getMajorVersion(), archetypeHRIDRef.getMajorVersion())) &&
+                ((archetypeHRIDRef.getMinorVersion() == null) || Objects.equals(archetypeHRID.getMinorVersion(), archetypeHRIDRef.getMinorVersion())) &&
+                ((archetypeHRIDRef.getPatchVersion() == null) || Objects.equals(archetypeHRID.getPatchVersion(), archetypeHRIDRef.getPatchVersion()));
     }
 
     public static boolean codesConformant(String childNodeId, String parentNodeId) {
