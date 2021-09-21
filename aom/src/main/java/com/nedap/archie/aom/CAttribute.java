@@ -501,4 +501,16 @@ public class CAttribute extends ArchetypeConstraint {
 
         return result;
     }
+
+    public List<CObject> getChildrenByArchetypeRef(String archetypeRef) {
+        List<CObject> result = new ArrayList<>();
+        for(CObject child:children) {
+            if(child instanceof CArchetypeRoot) {
+                if (((CArchetypeRoot) child).getArchetypeRef().equals(archetypeRef)) {
+                    result.add(child);
+                }
+            }
+        }
+        return result;
+    }
 }

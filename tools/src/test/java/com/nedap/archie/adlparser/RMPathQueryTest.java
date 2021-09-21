@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * Test APath query with RM Objects
+ * Test Path query with RM Objects
  * Created by pieter.bos on 06/04/16.
  */
 public class RMPathQueryTest {

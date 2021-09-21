@@ -1,0 +1,286 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=b99802e4-3553-4a78-b146-7935a444cb70; build_uid=a1b18250-9cb6-4fc8-9db4-96350e8d5fb4)
+    openEHR-EHR-CLUSTER.medication_substance.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"NEHTA">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2015-10-21">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Helse Bergen HF, Norway (Editor)", "John Bennett, NEHTA, Australia", "Sharmila Biswas, Australia", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Sarah Gaunt, NEHTA, Australia", "Trina Gregory, cpc, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Mary Kelaher, NEHTA, Australia", "Robert L'egan, NEHTA, Australia", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Chris Pearce, Melbourne East GP Network, Australia", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "John Taylor, NEHTA, Australia", "Richard Townley-O'Neill, NEHTA, Australia (Editor)", "Kylie Young, The Royal Australian College of General Practitioners, Australia", "Ian McNicoll, freshEHR Clinical Informatics Ltd., UK">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"openEHR Foundation Medication archetypes http://www.openehr.org/knowledge">
+        ["2"] = <"NEHTA's Therapeutic Good Use Data Group from the NEHTA Website http://www.nehta.gov.au">
+        ["3"] = <"Intermountain Healthcare Medication order model, Personal Communication to Sam Heard by Dr Stan Huff.">
+        ["4"] = <"Royal Australian College of General Practitioners. Fact Sheet: Medicines List. 2010.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"48E7562836049F5F865845C7456F08D4">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details of a medication preparation, including ,where necessary, details of mutliple ingredients, in the context of an infusion or ad-hoc (extemperaneous) preparation. The majority of dose-based prescriptions will have their precise preparation determined by available ward stock, or by pharmacy supply, while with product-based prescribing, the medication name carries details of the form and strength of the preparation.">
+            keywords = <"medication", "order", "prescribe", "therapy", "substance", "drug", "therapeutic", "otc", "therapeutic good", "ad-hoc", "extemperaneous">
+            use = <"For recording details of a medication preparation with in the context of the original medication order INSTRUCTION and carrying the prescriber's intent, or in the context of a medication ACTION where it serves of a record of the prepartion actually supplied.">
+            misuse = <"Use in pharmacy stock-control is out-of-scope of the design of this archetype.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] occurrences matches {0..1} matches {    -- Medication substance
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id133] occurrences matches {0..1} matches {    -- Substance name
+                value matches {
+                    DV_TEXT[id9003] 
+                }
+            }
+            ELEMENT[id72] matches {    -- Form
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+            ELEMENT[id143] occurrences matches {0..1} matches {    -- Category
+                value matches {
+                    DV_CODED_TEXT[id9005] matches {
+                        defining_code matches {[ac9000; at148]}    -- Category (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id116] occurrences matches {0..1} matches {    -- Strength
+                value matches {
+                    DV_QUANTITY[id9006] matches {
+                        property matches {[at9001]}    -- Qualified real
+                        magnitude matches {|>=0.0|}
+                        units matches {"1"}
+                    }
+                }
+            }
+            ELEMENT[id117] occurrences matches {0..1} matches {    -- Strength unit
+                value matches {
+                    DV_TEXT[id9007] 
+                }
+            }
+            CLUSTER[id118] occurrences matches {0..1} matches {    -- Diluent
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id125] occurrences matches {0..1} matches {    -- Diluent amount
+                        value matches {
+                            DV_QUANTITY[id9008] matches {
+                                property matches {[at9001]}    -- Qualified real
+                                magnitude matches {|>=0.0|}
+                                units matches {"1"}
+                            }
+                        }
+                    }
+                    ELEMENT[id126] occurrences matches {0..1} matches {    -- Diluent unit
+                        value matches {
+                            DV_TEXT[id9009] 
+                        }
+                    }
+                }
+            }
+            CLUSTER[id127] matches {    -- Ingredient
+                items cardinality matches {1..*; unordered} matches {
+                    allow_archetype CLUSTER[id139] occurrences matches {0..1} matches {     -- Ingredient substance
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.medication_substance(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                    }
+                    ELEMENT[id140] occurrences matches {0..1} matches {    -- Ingredient amount
+                        value matches {
+                            DV_QUANTITY[id9010] matches {
+                                property matches {[at9001]}    -- Qualified real
+                                magnitude matches {|>=0.0|}
+                                units matches {"1"}
+                            }
+                        }
+                    }
+                    ELEMENT[id141] occurrences matches {0..1} matches {    -- Ingredient amount unit
+                        value matches {
+                            DV_TEXT[id9011] 
+                        }
+                    }
+                    ELEMENT[id128] occurrences matches {0..1} matches {    -- Role
+                        value matches {
+                            DV_CODED_TEXT[id9012] matches {
+                                defining_code matches {[ac9002]}    -- Role (synthesised)
+                            }
+                            DV_TEXT[id9013] 
+                        }
+                    }
+                }
+            }
+            ELEMENT[id134] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9014] 
+                }
+            }
+            allow_archetype CLUSTER[id142] matches {     -- Substance details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Category (synthesised)">
+                description = <"The nature of a compound product, consisting of multiple ingredients. (synthesised)">
+            >
+            ["at9001"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["ac9002"] = <
+                text = <"Role (synthesised)">
+                description = <"The role of the ingredient within the mixture or infusion. (synthesised)">
+            >
+            ["at148"] = <
+                text = <"Product">
+                description = <"The substance is a manufactured product, containing one or more ingredients.">
+            >
+            ["at147"] = <
+                text = <"Ingredient">
+                description = <"The substance is an individual ingredient of the medication.">
+            >
+            ["at146"] = <
+                text = <"Single-substance  product">
+                description = <"The substance is a manufactured product containing a single ingredient.">
+            >
+            ["at145"] = <
+                text = <"Combination product">
+                description = <"The preparation consists of a number of ingredients which are pre-combined by the manufacturer.">
+            >
+            ["at144"] = <
+                text = <"Ad-hoc mixture">
+                description = <"The substance is composed of a mixture of ingredients specificied within this order.">
+            >
+            ["id143"] = <
+                text = <"Category">
+                description = <"The nature of a compound product, consisting of multiple ingredients.">
+            >
+            ["id142"] = <
+                text = <"Substance details">
+                description = <"Further details about the medicatin preparation.">
+            >
+            ["id141"] = <
+                text = <"Ingredient amount unit">
+                description = <"The dose unit of the ingredient amount.">
+            >
+            ["id140"] = <
+                text = <"Ingredient amount">
+                description = <"The value of the amount of the ingredient as a real number.">
+            >
+            ["id139"] = <
+                text = <"Ingredient substance">
+                description = <"Details of ingredient substance.">
+            >
+            ["id134"] = <
+                text = <"Description">
+                description = <"A text description of the substance  where it is not possible to describe this fully using numerical strengths and amounts.">
+            >
+            ["id133"] = <
+                text = <"Substance name">
+                description = <"The name of the medication substance. This item should be coded if possible.">
+            >
+            ["id128"] = <
+                text = <"Role">
+                description = <"The role of the ingredient within the mixture or infusion.">
+            >
+            ["id127"] = <
+                text = <"Ingredient">
+                description = <"Details of an ingredient used to make up a mixed preparation or infuson.">
+            >
+            ["id126"] = <
+                text = <"Diluent unit">
+                description = <"The unit for the preparation diluent.">
+            >
+            ["id125"] = <
+                text = <"Diluent amount">
+                description = <"The value of the amount of diluent as a real number.">
+            >
+            ["id118"] = <
+                text = <"Diluent">
+                description = <"The strength of any diluent used as part of the preparation.">
+            >
+            ["id117"] = <
+                text = <"Strength unit">
+                description = <"The dose unit of the medication substance strength.">
+            >
+            ["id116"] = <
+                text = <"Strength">
+                description = <"The value of the strength of medication as a real number.">
+            >
+            ["at88"] = <
+                text = <"Colouring">
+                description = <"The ingredient is used to colour the substance.">
+            >
+            ["at87"] = <
+                text = <"Preservative">
+                description = <"The ingredient is present to prolong the life of the substance.">
+            >
+            ["at86"] = <
+                text = <"Propellent">
+                description = <"Inert propellent.">
+            >
+            ["at85"] = <
+                text = <"Diluent">
+                description = <"Inert diluent.">
+            >
+            ["at84"] = <
+                text = <"Adjuvant">
+                description = <"The chemical is active but aids the therapeutic effect of another ingredient.">
+            >
+            ["at83"] = <
+                text = <"Toxic">
+                description = <"This chemical is toxic and has no therapeutic effect.">
+            >
+            ["at82"] = <
+                text = <"Electrolyte">
+                description = <"This ingredient is an electrolyte.">
+            >
+            ["at81"] = <
+                text = <"Therapeutic">
+                description = <"The chemical has a known and desired effect which is positive.">
+            >
+            ["at75"] = <
+                text = <"Ingredient">
+                description = <"Details of an ingredient used to make up a mixed preparation or infuson.">
+            >
+            ["id72"] = <
+                text = <"Form">
+                description = <"The formulation or presentation of the medication.">
+            >
+            ["id1"] = <
+                text = <"Medication substance">
+                description = <"The strength and form of the medication substance, including details of specific ingredients where required by an ad-hoc preparation or infusion.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9001"] = <http://openehr.org/id/380>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at81", "at82", "at83", "at84", "at85", "at86", "at87", "at88", "at75">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at148", "at144", "at147", "at145", "at146">
+        >
+    >

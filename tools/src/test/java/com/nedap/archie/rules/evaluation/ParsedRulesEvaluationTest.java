@@ -137,7 +137,7 @@ public abstract class ParsedRulesEvaluationTest {
         assertEquals("the assertion should have succeeded", true, result.getResult());
         assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
         assertEquals(1, result.getRawResult().getPaths(0).size());
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", result.getRawResult().getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", result.getRawResult().getPaths(0).get(0));
 
     }
 
@@ -162,38 +162,38 @@ public abstract class ParsedRulesEvaluationTest {
         assertEquals(false, extendedValidity.getObject(0));
         assertEquals(false, extendedValidity2.getObject(0));
         assertEquals(false, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
         quantity.setMagnitude(20d);
 
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
         assertEquals(true, extendedValidity.getObject(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
 
         extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
         assertEquals(true, extendedValidity2.getObject(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
 
         variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
         assertEquals(true, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
 
         quantity.setMagnitude(0d);
 
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
         assertEquals(true, extendedValidity.getObject(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
 
         extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
         assertEquals(false, extendedValidity2.getObject(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
 
         variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
         assertEquals(true, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
 
     }
 
@@ -485,7 +485,7 @@ public abstract class ParsedRulesEvaluationTest {
         assertEquals(3, evaluationResult.getPathsThatMustExist().size());
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id6]/value/magnitude", evaluationResult.getPathsThatMustExist().get(1));
-        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(2));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(2));
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals(0, evaluationResult.getSetPathValues().size());
 
@@ -672,7 +672,7 @@ public abstract class ParsedRulesEvaluationTest {
         EvaluationResult result = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult assertionResult = result.getAssertionResults().get(0);
         assertTrue("The given validation rule should pass", assertionResult.getResult());
-        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
+        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
 
         //incorrect case next
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at26"));//wrong code!
@@ -680,7 +680,7 @@ public abstract class ParsedRulesEvaluationTest {
         EvaluationResult falseResult = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult  falseAssertionResult = falseResult.getAssertionResults().get(0);
         assertFalse(falseAssertionResult.getResult());
-        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
+        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
 
 
     }
