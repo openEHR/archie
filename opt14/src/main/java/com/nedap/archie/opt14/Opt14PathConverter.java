@@ -5,20 +5,16 @@ import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.CArchetypeRoot;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.flattener.ArchetypeHRIDMap;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
 import com.nedap.archie.query.APathQuery;
-import com.nedap.archie.query.ComplexObjectProxyReplacement;
 import com.nedap.archie.query.PartialMatch;
-import com.nedap.archie.rm.archetyped.Link;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -42,7 +38,7 @@ public class Opt14PathConverter {
     public void convertPaths(Template template, OperationalTemplate opt) {
         this.template = template;
         if(template.getRmOverlay() != null && template.getRmOverlay().getRmVisibility() != null) {
-            Map<String, RmAttributeVisibility> newRmVisibility = template.getRmOverlay().getRmVisibility();
+            Map<String, RmAttributeVisibility> newRmVisibility = new LinkedHashMap<>();
             Map<String, RmAttributeVisibility> rmVisibility = template.getRmOverlay().getRmVisibility();
             for(String path:rmVisibility.keySet()) {
                 PartialMatch partial = findPartial(new APathQuery(path), opt.getDefinition());
@@ -85,10 +81,14 @@ public class Opt14PathConverter {
 
     private String convertPath(String path, PartialMatch partial, ArchetypeModelObject archetypeModelObject) {
         String newPath;
+        String remainingPath = partial.getRemainingPath();
+        if(Objects.equals(remainingPath, "/")) {
+            remainingPath = "";
+        }
         if(archetypeModelObject instanceof CAttribute) {
-            newPath = ((CAttribute) archetypeModelObject).getPath() + partial.getRemainingPath();
+            newPath = ((CAttribute) archetypeModelObject).getPath() + remainingPath;
         } else if (archetypeModelObject instanceof CObject){
-            newPath = ((CObject) archetypeModelObject).getPath() + partial.getRemainingPath();
+            newPath = ((CObject) archetypeModelObject).getPath() + remainingPath;
         } else {
             newPath = path;
         }

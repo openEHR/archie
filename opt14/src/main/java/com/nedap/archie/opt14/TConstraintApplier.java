@@ -25,6 +25,7 @@ class TConstraintApplier {
             for(TATTRIBUTE attribute: constraints.getAttributes()) {
                 String diffPath = attribute.getDifferentialPath();
                 if(diffPath.startsWith("[")) {
+                    //TODO: remove this hack
                     //sometimes these paths start with a root node constraint. Sice there's only one
                     //and we don't support that, strip that here.
                     diffPath = diffPath.substring(diffPath.indexOf(']')+1);

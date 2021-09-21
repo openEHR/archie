@@ -67,6 +67,7 @@ public class Opt14Converter {
             template.setParentArchetypeId(opt14.getDefinition().getArchetypeId().getValue());
             template.setTerminology(opt2.getTerminology());
             AnnotationsConverter.convertAnnotations(opt14, opt2);
+            template.setRmOverlay(opt2.getRmOverlay());
             if(opt14.getUid() != null) {
                 template.setUid(opt14.getUid().getValue());
             }
@@ -103,7 +104,7 @@ public class Opt14Converter {
 
                 try {
                     OperationalTemplate generatedOpt2 = (OperationalTemplate) new Flattener(adl2Archetypes, metaModels, FlattenerConfiguration.forOperationalTemplate()).flatten(convertedTemplate);
-                    new Opt14PathConverter().convertPaths(convertedTemplate, opt2);
+                    new Opt14PathConverter().convertPaths(convertedTemplate, generatedOpt2);
                 } catch (Exception e) {
                     converted.getConversionResults().get(0).getLog().addError(Opt14ConversionMessage.PATH_CONVERSION_ERROR, e.getMessage());
                 }

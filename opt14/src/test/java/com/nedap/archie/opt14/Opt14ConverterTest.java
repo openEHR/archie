@@ -74,7 +74,7 @@ public class Opt14ConverterTest {
         testTemplate("/ePrescription.opt");
     }
 
-    private ValidationResult testTemplate(String templateFileName, String... sourceArchetypes) throws IOException, ADLParseException, JAXBException {
+    private ValidationResult testTemplate(String templateFileName) throws IOException, ADLParseException, JAXBException {
 //        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
 //        for(String sourcefile:sourceArchetypes) {
 //            repository.addArchetype(parseAdl2(sourcefile));
@@ -92,7 +92,7 @@ public class Opt14ConverterTest {
                 }
             }
             Template convertedTemplate = (Template) convert.getConversionResults().get(0).getArchetype();
-            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate));
+            System.out.println(ADLArchetypeSerializer.serialize(convertedTemplate, new RepoFlatArchetypeProvider(repository)::getFlatArchetype, null));
 
             OperationalTemplate opt2 = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels())
                     .createOperationalTemplate(true)

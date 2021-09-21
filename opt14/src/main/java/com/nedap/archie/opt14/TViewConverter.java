@@ -33,10 +33,18 @@ public class TViewConverter {
                 }
                 for (TVIEW.Constraints constraints : view.getConstraints()) {
                     for (TVIEW.Constraints.Items item : constraints.getItems()) {
-                        RmAttributeVisibility attributeVisibility = rmVisibility.get(constraints.getPath());
+
+                        String path = constraints.getPath();
+                        if(path.startsWith("[")) {
+                            //TODO: remove this hack
+                            // sometimes these paths start with a root node constraint. Sice there's only one
+                            //and we don't support that, strip that here.
+                            path = path.substring(path.indexOf(']')+1);
+                        }
+                        RmAttributeVisibility attributeVisibility = rmVisibility.get(path);
                         if(attributeVisibility == null) {
                             attributeVisibility = new RmAttributeVisibility();
-                            rmVisibility.put(constraints.getPath(), attributeVisibility);
+                            rmVisibility.put(path, attributeVisibility);
                         }
                         switch (item.getId()) {
                             case "pass_through":
