@@ -1,0 +1,807 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=32802688-cbff-4d61-970d-da85810e6a07; build_uid=a3f2f974-a21b-4177-acd0-f3de1699aa05)
+    openEHR-EHR-INSTRUCTION.medication_order.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"NEHTA">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2015-10-21">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, National ICT Norway, Norway (openEHR Editor)", "John Bennett, NEHTA, Australia", "SBhusan Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sarah Gaunt, NEHTA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Trina Gregory, cpc, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Mary Kelaher, NEHTA, Australia", "Robert L'egan, NEHTA, Australia", "Russell Leftwich, Russell B Leftwich MD, United States", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Chris Pearce, Melbourne East GP Network, Australia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Anoop Shah, University College London, United Kingdom", "Iztok Stotl, UKCLJ, Slovenia", "Norwegian Review Summary, National ICT Norway, Norway", "John Taylor, NEHTA, Australia", "Richard Townley-O'Neill, NEHTA, Australia (Editor)", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal", "Kylie Young, The Royal Australian College of General Practitioners, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Medication instruction, Draft Archetype [Internet]. nehta, Australia, nehta Clinical Knowledge Manager [cited: 2015-12-15]. Available from: http://dcm.nehta.org.au/ckm/#showArchetype_1013.1.838">
+        ["2"] = <"Intermountain Healthcare Medication order model, Personal Communication to Sam Heard by Dr Stan Huff.">
+        ["3"] = <"Royal Australian College of General Practitioners. Fact Sheet: Medicines List. 2010.">
+        ["4"] = <"NHS HSCIC Messaging Implementation Manual (GP2GP messages) http://www.uktcregistration.nss.cfh.nhs.uk/trud3">
+        ["5"] = <"Standards for medication and medical device records – technical annex [Internet]. RCP London. [cited 2015 Dec 15]. Available from: https://www.rcplondon.ac.uk/projects/outputs/standards-medication-and-medical-device-records-technical-annex">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"6B5A7E7C137E9AC00A52EE9481BEC73E">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the instructions for use of a medication, vaccine or other therapeutic item.">
+            keywords = <"medication", "order", "prescribe", "therapy", "substance", "drug", "therapeutic", "otc", "therapeutic good", "pharmaceutical", "product", "posology">
+            use = <"Use to record the instructions for use of a medication, vaccine or other therapeutic item.
+    
+    It is intended to be used for any type of medication and related order, whether prescribed by a health professional or available for purchase 'over the counter'. The scope of this medication archetype also includes orders for vaccinations or other therapeutic goods, such as bandages or other items that are applied or administered to have a therapeutic effect which have a common pattern for data recording.
+    
+    This archetype is designed to be used in a number of clinical contexts, including but not limited to:
+    - a record in a clinical consultation (COMPOSITION.encounter); 
+    - a written prescription by a physician, dentist, nurse practitioner, or other designated health professional for a medication to be dispensed and administered (within a COMPOSITION.prescription);
+    - an item in a current medication list, prescription or drug chart (within COMPOSITION.medication_list); and
+    - an item in a summary document such as transfer of care (COMPOSITION.transfer_summary) or a referral (COMPOSITION.request). 
+    
+    In most cases the order will be simple - for a single item with uncomplicated instructions for dispensing and administration. However this archetype is also designed to allow for more complex orders. For example:
+    - a reducing dose of predisolone over a period of weeks;
+    - titration of insulin, with dosing dependent on test results;
+    - multiple medications prescribed simultaneously as part of a single drug regimen, such as a triple therapy for peptic ulcer; and
+    - intravenous administration of medications or nutrition supplements.  
+    
+    The archetype has been designed to allow for a range of complexity, from:
+    - simple narrative instructions for orders like 'furosemide 40mg two tablets in the morning and one at lunch' to ensure compatibility with existing systems; through to
+    - structured detail for dose, route and timing to represent a fully computable specification.
+    
+    It has also been designed so that a single medication order structure can represent:
+    - complex sequential medication orders using the same preparation strength to be supported within a single order structure; and
+    - multiple medication orders can be chained in circumstances where different medications or preparations need to be given sequentially. 
+    
+    The amount of the medication is usually represented in terms of a number and corresponding dose unit, however there can also be a narrative statement to ensure compatibility with existing systems and also coverage of all scenarios.
+    
+    Cluster archetypes have been used to represent some of the content for two reasons:
+    - in situations where the content has been identified as being also used in other clinical contexts, in particular the paired ACTION.medication archetype for recording actual dispensing, administration etc; and
+    - to remove less commonly used content from the core archetype framework.">
+            misuse = <"Not to be used to record the activities related to carrying out the order for medication, vaccine or therapeutic good, such as details about actual administration or dispensing. Use the ACTION.medication for this purpose.
+    
+    Not to be used to record the ordering of blood products. Use the INSTRUCTION.transfusion for this purpose.
+    
+    Not to be used to record the order for insertion of implants or medical devices such as pacemakers and defibrillators. Use the INSTRUCTION.procedure for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    INSTRUCTION[id1] matches {    -- Medication order
+        activities cardinality matches {0..*; unordered} matches {
+            ACTIVITY[id2] matches {    -- Order
+                description matches {
+                    ITEM_TREE[id3] matches {    -- Tree
+                        items cardinality matches {1..*} matches {
+                            ELEMENT[id71] matches {    -- Medication item
+                                value matches {
+                                    DV_TEXT[id9005] 
+                                }
+                            }
+                            allow_archetype CLUSTER[id144] occurrences matches {0..1} matches {     -- Preparation details
+                                include
+                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.medication_substance(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                            }
+                            ELEMENT[id92] matches {    -- Route
+                                value matches {
+                                    DV_TEXT[id9006] 
+                                }
+                            }
+                            ELEMENT[id10] occurrences matches {0..1} matches {    -- Dose directions description
+                                value matches {
+                                    DV_TEXT[id9007] 
+                                }
+                            }
+                            ELEMENT[id48] occurrences matches {0..1} matches {    -- Parsable dose directions
+                                value matches {
+                                    DV_PARSABLE[id9008] matches {
+                                        formalism matches {"text/html", "text/plain", "text/xml", "text/rtf"}
+                                    }
+                                }
+                            }
+                            ELEMENT[id110] occurrences matches {0..1} matches {    -- Dose amount description
+                                value matches {
+                                    DV_TEXT[id9009] 
+                                }
+                            }
+                            ELEMENT[id56] occurrences matches {0..1} matches {    -- Dose timing description
+                                value matches {
+                                    DV_TEXT[id9010] 
+                                }
+                            }
+                            CLUSTER[id57] matches {    -- Dose direction
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id58] occurrences matches {0..1} matches {    -- Direction sequence
+                                        value matches {
+                                            DV_COUNT[id9011] matches {
+                                                magnitude matches {|>=1|}
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id59] matches {    -- Dose pattern
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id165] occurrences matches {0..1} matches {    -- Pattern sequence
+                                                value matches {
+                                                    DV_COUNT[id9012] matches {
+                                                        magnitude matches {|>=1|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id145] occurrences matches {0..1} matches {    -- Dose amount
+                                                value matches {
+                                                    DV_QUANTITY[id9013] matches {
+                                                        property matches {[at9000]}    -- Qualified real
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"1"}
+                                                    }
+                                                    DV_INTERVAL<DV_QUANTITY>[id9014] matches {
+                                                        upper matches {
+                                                            DV_QUANTITY[id9015] matches {
+                                                                property matches {[at9000]}    -- Qualified real
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"1"}
+                                                            }
+                                                        }
+                                                        lower matches {
+                                                            DV_QUANTITY[id9016] matches {
+                                                                property matches {[at9000]}    -- Qualified real
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"1"}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id146] occurrences matches {0..1} matches {    -- Dose unit
+                                                value matches {
+                                                    DV_TEXT[id9017] 
+                                                }
+                                            }
+                                            allow_archetype CLUSTER[id38] occurrences matches {0..1} matches {     -- Dose timing
+                                                include
+                                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.timing_daily(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                                            }
+                                            ELEMENT[id135] occurrences matches {0..1} matches {    -- Infusion administration rate
+                                                value matches {
+                                                    DV_QUANTITY[id9018] matches {
+                                                        property matches {[at9001]}    -- Flow rate, volume
+                                                        [magnitude, units] matches {
+                                                            [{|>=0.0|}, {"l/h"}],
+                                                            [{|>=0.0|}, {"ml/min"}],
+                                                            [{|>=0.0|}, {"ml/s"}],
+                                                            [{|>=0.0|}, {"ml/h"}]
+                                                        }
+                                                    }
+                                                    DV_TEXT[id9019] 
+                                                }
+                                            }
+                                            ELEMENT[id103] occurrences matches {0..1} matches {    -- Dose administration duration
+                                                value matches {
+                                                    DV_DURATION[id9020] matches {
+                                                        value matches {PDTHMS/|>=PT0S|}
+                                                    }
+                                                }
+                                            }
+                                            allow_archetype CLUSTER[id157] occurrences matches {0..1} matches {     -- Conditional administration
+                                                include
+                                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.conditional_medication_rules(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id67] occurrences matches {0..1} matches {    -- Direction duration
+                                        value matches {
+                                            DV_CODED_TEXT[id9021] matches {
+                                                defining_code matches {[ac9002]}    -- Direction duration (synthesised)
+                                            }
+                                            DV_DURATION[id9022] matches {
+                                                value matches {|>=PT0S|}
+                                            }
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id91] occurrences matches {0..1} matches {     -- Direction repetition
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.timing_repetition(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                                    }
+                                }
+                            }
+                            CLUSTER[id63] occurrences matches {0..1} matches {    -- Medication safety
+                                items cardinality matches {1..*; unordered} matches {
+                                    CLUSTER[id52] matches {    -- Maximum dose
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id131] occurrences matches {0..1} matches {    -- Maximum amount
+                                                value matches {
+                                                    DV_QUANTITY[id9023] matches {
+                                                        property matches {[at9000]}    -- Qualified real
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"1"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id147] occurrences matches {0..1} matches {    -- Maximum amount dose unit
+                                                value matches {
+                                                    DV_TEXT[id9024] 
+                                                }
+                                            }
+                                            ELEMENT[id54] occurrences matches {0..1} matches {    -- Allowed period
+                                                value matches {
+                                                    DV_DURATION[id9025] matches {
+                                                        value matches {|>=PT0S|}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id65] occurrences matches {0..1} matches {    -- Exceptional dose override?
+                                        value matches {
+                                            DV_BOOLEAN[id9026] matches {
+                                                value matches {True, False}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id163] occurrences matches {0..1} matches {    -- Override reason
+                                        value matches {
+                                            DV_TEXT[id9027] 
+                                        }
+                                    }
+                                    CLUSTER[id151] occurrences matches {0..1} matches {    -- Dose goal
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id166] occurrences matches {0..1} matches {    -- Goal
+                                                value matches {
+                                                    DV_TEXT[id9028] 
+                                                }
+                                            }
+                                            ELEMENT[id152] occurrences matches {0..1} matches {    -- Total daily dose amount
+                                                value matches {
+                                                    DV_QUANTITY[id9029] matches {
+                                                        property matches {[at9000]}    -- Qualified real
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"1"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id153] occurrences matches {0..1} matches {    -- Total daily dose unit
+                                                value matches {
+                                                    DV_TEXT[id9030] 
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            ELEMENT[id45] matches {    -- Additional instruction
+                                value matches {
+                                    DV_TEXT[id9031] 
+                                }
+                            }
+                            ELEMENT[id106] matches {    -- Patient guidance
+                                value matches {
+                                    DV_TEXT[id9032] 
+                                }
+                            }
+                            ELEMENT[id108] matches {    -- Monitoring instruction
+                                value matches {
+                                    DV_TEXT[id9033] 
+                                }
+                            }
+                            ELEMENT[id19] matches {    -- Clinical indication
+                                value matches {
+                                    DV_TEXT[id9034] 
+                                }
+                            }
+                            ELEMENT[id149] matches {    -- Therapeutic intent
+                                value matches {
+                                    DV_TEXT[id9035] 
+                                }
+                            }
+                            CLUSTER[id114] occurrences matches {0..1} matches {    -- Order details
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Order start date/time
+                                        value matches {
+                                            DV_DATE_TIME[id9036] 
+                                        }
+                                    }
+                                    ELEMENT[id14] occurrences matches {0..1} matches {    -- Order stop date/time
+                                        value matches {
+                                            DV_DATE_TIME[id9037] 
+                                        }
+                                    }
+                                    ELEMENT[id12] matches {    -- Order start criterion
+                                        value matches {
+                                            DV_TEXT[id9038] 
+                                        }
+                                    }
+                                    ELEMENT[id17] matches {    -- Order stop criterion
+                                        value matches {
+                                            DV_TEXT[id9039] 
+                                        }
+                                    }
+                                    ELEMENT[id61] occurrences matches {0..1} matches {    -- Administrations already complete
+                                        value matches {
+                                            DV_COUNT[id9040] 
+                                        }
+                                    }
+                                    ELEMENT[id51] occurrences matches {0..1} matches {    -- Duration of course already complete
+                                        value matches {
+                                            DV_DURATION[id9041] matches {
+                                                value matches {PWDTH/|>=PT0S|}
+                                            }
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id113] matches {     -- Course summary
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.medication_course_summary(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                                    }
+                                }
+                            }
+                            allow_archetype CLUSTER[id70] matches {     -- Authorisation directions
+                                include
+                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.medication_authorisation(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                            }
+                            CLUSTER[id130] occurrences matches {0..1} matches {    -- Dispense directions
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id107] matches {    -- Dispense instruction
+                                        value matches {
+                                            DV_TEXT[id9042] 
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id66] matches {     -- Dispense amount
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.medication_supply_amount(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                                    }
+                                    ELEMENT[id133] occurrences matches {0..1} matches {    -- Substitution direction
+                                        value matches {
+                                            DV_CODED_TEXT[id9043] matches {
+                                                defining_code matches {[ac9003]}    -- Substitution direction (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id155] occurrences matches {0..1} matches {    -- Non-substitution reason
+                                        value matches {
+                                            DV_TEXT[id9044] 
+                                        }
+                                    }
+                                    ELEMENT[id140] occurrences matches {0..1} matches {    -- Priority
+                                        value matches {
+                                            DV_TEXT[id9045] 
+                                        }
+                                    }
+                                    ELEMENT[id156] occurrences matches {0..1} matches {    -- Start date
+                                        value matches {
+                                            DV_DATE_TIME[id9046] 
+                                        }
+                                    }
+                                    ELEMENT[id162] occurrences matches {0..1} matches {    -- Expiry date
+                                        value matches {
+                                            DV_DATE_TIME[id9047] 
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id171] matches {     -- Dispense details
+                                        include
+                                            archetype_id/value matches {/.*/}
+                                    }
+                                }
+                            }
+                            CLUSTER[id134] occurrences matches {0..1} matches {    -- Administration directions
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id109] matches {    -- Administration instruction
+                                        value matches {
+                                            DV_TEXT[id9048] 
+                                        }
+                                    }
+                                    ELEMENT[id137] occurrences matches {0..1} matches {    -- Infusion purpose
+                                        value matches {
+                                            DV_CODED_TEXT[id9049] matches {
+                                                defining_code matches {[ac9004]}    -- Infusion purpose (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id93] occurrences matches {0..1} matches {    -- Body site
+                                        value matches {
+                                            DV_TEXT[id9050] 
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id94] occurrences matches {0..1} matches {     -- Structured body site
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-CLUSTER\.anatomical_location_clock(-[a-zA-Z0-9_]+)*\.v0\..*|openEHR-EHR-CLUSTER\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                    ELEMENT[id95] matches {    -- Delivery method
+                                        value matches {
+                                            DV_TEXT[id9051] 
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id96] matches {     -- Delivery device details
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                }
+                            }
+                            allow_archetype CLUSTER[id167] matches {     -- Additional details
+                                include
+                                    archetype_id/value matches {/.*/}
+                            }
+                            ELEMENT[id168] occurrences matches {0..1} matches {    -- Comment
+                                value matches {
+                                    DV_TEXT[id9052] 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id6] matches {    -- Dose amount description
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id5] matches {    -- Order identifier
+                        value matches {
+                            DV_IDENTIFIER[id9053] 
+                        }
+                    }
+                    ELEMENT[id136] matches {    -- Dosage formula
+                        value matches {
+                            DV_TEXT[id9054] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id9] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["at9001"] = <
+                text = <"Flow rate, volume">
+                description = <"Flow rate, volume">
+            >
+            ["ac9002"] = <
+                text = <"Direction duration (synthesised)">
+                description = <"The duration of this dose direction. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Substitution direction (synthesised)">
+                description = <"Permission for substitution with a bioequivalent medication. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Infusion purpose (synthesised)">
+                description = <"The purpose of the infusion. (synthesised)">
+            >
+            ["id171"] = <
+                text = <"Dispense details">
+                description = <"Further details related to dispense directions.">
+            >
+            ["at170"] = <
+                text = <"Not permitted">
+                description = <"Substitution of the Medication with a bioequivalent medication is not allowed.">
+            >
+            ["at169"] = <
+                text = <"Permitted">
+                description = <"Substitution of the Medication with a bioequivalent medication is allowed.">
+            >
+            ["id168"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the medication order not captured in other fields.">
+            >
+            ["id167"] = <
+                text = <"Additional details">
+                description = <"Additional structured details about the medication order not captured in other fields.">
+            >
+            ["id166"] = <
+                text = <"Goal">
+                description = <"Description of the goal.">
+            >
+            ["id165"] = <
+                text = <"Pattern sequence">
+                description = <"The intended sequence of this dose pattern within the overall sequence of dose directions.">
+            >
+            ["at164"] = <
+                text = <"Nutritional infusion">
+                description = <"The infusion provides parenteral nutrition.">
+            >
+            ["id163"] = <
+                text = <"Override reason">
+                description = <"The reason for a maximum dose override.">
+            >
+            ["id162"] = <
+                text = <"Expiry date">
+                description = <"The date after which the prescription is no longer valid to be dispensed.">
+            >
+            ["id157"] = <
+                text = <"Conditional administration">
+                description = <"Details of dose amount / administration rate dependent on specific conditions.">
+            >
+            ["id156"] = <
+                text = <"Start date">
+                description = <"The date after which the medication is permitted to be dispensed for the first time.">
+            >
+            ["id155"] = <
+                text = <"Non-substitution reason">
+                description = <"The reason why a medication should not be substituted at dispense.">
+            >
+            ["id153"] = <
+                text = <"Total daily dose unit">
+                description = <"The dose unit associated with the total daily dose amount.">
+            >
+            ["id152"] = <
+                text = <"Total daily dose amount">
+                description = <"The amount of medication which is intended to be taken each day if the medication is administered as intended.">
+            >
+            ["id151"] = <
+                text = <"Dose goal">
+                description = <"Details about the proposed total daily amount of medication.">
+            >
+            ["id149"] = <
+                text = <"Therapeutic intent">
+                description = <"The overall therapeutic intent of the medication.">
+            >
+            ["id147"] = <
+                text = <"Maximum amount dose unit">
+                description = <"The dose unit for the maximum amount allowed.">
+            >
+            ["id146"] = <
+                text = <"Dose unit">
+                description = <"The dose unit of the amount of medication.">
+            >
+            ["id145"] = <
+                text = <"Dose amount">
+                description = <"The value of the amount of medication as a real number.">
+            >
+            ["id144"] = <
+                text = <"Preparation details">
+                description = <"Structured details about the strength and form of the overall preparation.">
+            >
+            ["id140"] = <
+                text = <"Priority">
+                description = <"An indicator of the urgency with which the medication should be dispensed.">
+            >
+            ["at139"] = <
+                text = <"Active medication infusion">
+                description = <"The infusion carries an active pharmaceutical ingredient.">
+            >
+            ["at138"] = <
+                text = <"Baseline electrolyte infusion">
+                description = <"The infusion provides baseline hydration.">
+            >
+            ["id137"] = <
+                text = <"Infusion purpose">
+                description = <"The purpose of the infusion.">
+            >
+            ["id136"] = <
+                text = <"Dosage formula">
+                description = <"The formula used to calculate the Dose amount or administration rate where this is dependent on some other factor such as patient weight. For example: 10mg/kg/day.">
+            >
+            ["id135"] = <
+                text = <"Infusion administration rate">
+                description = <"The rate at which the medication infusion is to be administered.">
+            >
+            ["id134"] = <
+                text = <"Administration directions">
+                description = <"Details about the administration of the medication, vaccine or other therapeutic good.">
+            >
+            ["id133"] = <
+                text = <"Substitution direction">
+                description = <"Permission for substitution with a bioequivalent medication.">
+            >
+            ["id131"] = <
+                text = <"Maximum amount">
+                description = <"The maximum amount of medication allowed in the allowed period.">
+            >
+            ["id130"] = <
+                text = <"Dispense directions">
+                description = <"Directions about the dispensing of the medication, vaccine or other therapeutic good.">
+            >
+            ["id114"] = <
+                text = <"Order details">
+                description = <"Details about the intended course of the medication.">
+            >
+            ["id113"] = <
+                text = <"Course summary">
+                description = <"Summary information about the medication, such as current status or key dates, generally used in non-prescription contexts.">
+            >
+            ["id110"] = <
+                text = <"Dose amount description">
+                description = <"The narrative description of the dose amount of the medication, vaccine or other therapeutic item.">
+            >
+            ["id109"] = <
+                text = <"Administration instruction">
+                description = <"An additional instruction directed primarily at the person administering the medication, vaccine or therapeutic good.">
+            >
+            ["id108"] = <
+                text = <"Monitoring instruction">
+                description = <"An additional instruction which gives advice on appropriate monitoring of the medication.">
+            >
+            ["id107"] = <
+                text = <"Dispense instruction">
+                description = <"An additional instruction directed primarily at the person dispensing the medication, vaccine or therapeutic good.">
+            >
+            ["id106"] = <
+                text = <"Patient guidance">
+                description = <"An additional instruction directed primarily at the patient or carers.">
+            >
+            ["id103"] = <
+                text = <"Dose administration duration">
+                description = <"The period of time over which a single dose of the medication or vaccine should be administered.">
+            >
+            ["id96"] = <
+                text = <"Delivery device details">
+                description = <"Details of the medical device used to assist delivery of the medication.">
+            >
+            ["id95"] = <
+                text = <"Delivery method">
+                description = <"The method by which the medication is to be delivered.">
+            >
+            ["id94"] = <
+                text = <"Structured body site">
+                description = <"Structured description of the site of administration  of the medication, vaccine or therapeutic good.">
+            >
+            ["id93"] = <
+                text = <"Body site">
+                description = <"Identification of the site of administration of the medication, vaccine or therapeutic good.">
+            >
+            ["id92"] = <
+                text = <"Route">
+                description = <"The route of administration.">
+            >
+            ["id91"] = <
+                text = <"Direction repetition">
+                description = <"Structured details about pattern of repetition for each set of daily dose directions.">
+            >
+            ["id71"] = <
+                text = <"Medication item">
+                description = <"Identification of the medication, vaccine or other therapeutic item being ordered.">
+            >
+            ["id70"] = <
+                text = <"Authorisation directions">
+                description = <"Details of authorisation of the medication, vaccine or other therapeutic good.">
+            >
+            ["at69"] = <
+                text = <"Indefinite - Do not discontinue">
+                description = <"The direction should be continued indefinitely and discontinuation is not recommended.">
+            >
+            ["at68"] = <
+                text = <"Indefinite">
+                description = <"The direction should be continued indefinitely.">
+            >
+            ["id67"] = <
+                text = <"Direction duration">
+                description = <"The duration of this dose direction.">
+            >
+            ["id66"] = <
+                text = <"Dispense amount">
+                description = <"Details about the amount of the medication, vaccine or other therapeutic good to be dispensed.">
+            >
+            ["id65"] = <
+                text = <"Exceptional dose override?">
+                description = <"Confirmation by the prescriber that the normal dose has been overridden due to exceptional circumstances?">
+            >
+            ["id63"] = <
+                text = <"Medication safety">
+                description = <"Details about medication safety for the medication, vaccine or other therapeutic item.">
+            >
+            ["id61"] = <
+                text = <"Administrations already complete">
+                description = <"The number of administrations of the medication, vaccine or other therapeutic good that have been completed, as part of the proposed overall course but prior to the issue of this order.">
+            >
+            ["id59"] = <
+                text = <"Dose pattern">
+                description = <"The combination of a medication amount associated with a single medication timing.">
+            >
+            ["id58"] = <
+                text = <"Direction sequence">
+                description = <"The intended sequence of this dose direction within the overall sequence of dose directions.">
+            >
+            ["id57"] = <
+                text = <"Dose direction">
+                description = <"Details about a dose direction for the medication order.">
+            >
+            ["id56"] = <
+                text = <"Dose timing description">
+                description = <"The narrative description of the dose frequency and other timing of the medication, vaccine or other therapeutic item.">
+            >
+            ["id54"] = <
+                text = <"Allowed period">
+                description = <"The period of time during which the maximum dose is calculated.">
+            >
+            ["id52"] = <
+                text = <"Maximum dose">
+                description = <"Details about the maximum dose allowed over a defined period.">
+            >
+            ["id51"] = <
+                text = <"Duration of course already complete">
+                description = <"The time period during which the patient has already been using the medication, vaccine or other therapeutic good, as a part of the proposed overall course but prior to the issue of this order.">
+            >
+            ["id48"] = <
+                text = <"Parsable dose directions">
+                description = <"The structured, parsable and computable representation of the dose directions.">
+            >
+            ["id45"] = <
+                text = <"Additional instruction">
+                description = <"An additional instruction on how to use the medication, vaccine or other therapeutic good.">
+            >
+            ["id38"] = <
+                text = <"Dose timing">
+                description = <"Structured details about the timing of a single use or administration.">
+            >
+            ["id19"] = <
+                text = <"Clinical indication">
+                description = <"The clinical reason for ordering the medication, vaccine or other therapeutic good.">
+            >
+            ["id17"] = <
+                text = <"Order stop criterion">
+                description = <"A condition which, when met, requires the cessation of administration or use.">
+            >
+            ["id14"] = <
+                text = <"Order stop date/time">
+                description = <"The date and optional time to cease use of the medication, vaccine or other therapeutic good.">
+            >
+            ["id13"] = <
+                text = <"Order start date/time">
+                description = <"The date and optional time to commence use of the medication, vaccine or other therapeutic good.">
+            >
+            ["id12"] = <
+                text = <"Order start criterion">
+                description = <"A condition which, when met, requires the commencement of administration or use.">
+            >
+            ["id10"] = <
+                text = <"Dose directions description">
+                description = <"Complete narrative description about how the medication is to be used.">
+            >
+            ["id9"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id6"] = <
+                text = <"Dose amount description">
+                description = <"The amount and units of the medication, vaccine or other therapeutic good to be used or administered at one time.">
+            >
+            ["id5"] = <
+                text = <"Order identifier">
+                description = <"Unique identifier for the medication order.">
+            >
+            ["id3"] = <
+                text = <"Tree">
+                description = <"@ internal @">
+            >
+            ["id2"] = <
+                text = <"Order">
+                description = <"Order.">
+            >
+            ["id1"] = <
+                text = <"Medication order">
+                description = <"Instructions for use of a medication, vaccine or other therapeutic item.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/380>
+            ["at9001"] = <http://openehr.org/id/126>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at68", "at69">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at138", "at139", "at164">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at169", "at170">
+        >
+    >

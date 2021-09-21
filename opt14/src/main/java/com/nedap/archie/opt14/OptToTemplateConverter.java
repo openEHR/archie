@@ -74,7 +74,18 @@ class OptToTemplateConverter {
 
         TemplateOverlay overlay = new TemplateOverlay();
         overlay.setArchetypeId(new ArchetypeHRID(cRoot14.getArchetypeRef()));
-        overlay.getArchetypeId().setConceptId(overlay.getArchetypeId().getConceptId() + "ovl-1");
+        int overlayIndex = 1;
+        String overlayId = null;
+        ArchetypeHRID ovlFullId = null;
+        do {
+            overlayId = overlay.getArchetypeId().getConceptId() + "_ovl-" + overlayIndex;
+            ovlFullId = (ArchetypeHRID) overlay.getArchetypeId().clone();
+            ovlFullId.setConceptId(overlayId);
+            overlayIndex++;
+        }
+        while(template.getTemplateOverlay(ovlFullId.getFullId()) != null);
+
+        overlay.getArchetypeId().setConceptId(overlayId);
         overlay.setParentArchetypeId(cRoot14.getArchetypeRef());
         overlay.setDefinition(templateRoot);
         overlay.setTerminology(opt2.getComponentTerminologies().get(cRoot14.getArchetypeRef()));

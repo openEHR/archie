@@ -2,15 +2,7 @@ package com.nedap.archie.opt14;
 
 import com.google.common.base.Strings;
 import com.nedap.archie.adl14.ADL14ConversionConfiguration;
-import com.nedap.archie.aom.ArchetypeHRID;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.OperationalTemplate;
-import com.nedap.archie.aom.Template;
-import com.nedap.archie.aom.TemplateOverlay;
+import com.nedap.archie.aom.*;
 
 import static com.nedap.archie.opt14.BaseTypesConverter.convertCardinality;
 import static com.nedap.archie.opt14.BaseTypesConverter.convertMultiplicity;
@@ -82,10 +74,18 @@ class DefinitionConverter {
             return convertPrimitive((CPRIMITIVEOBJECT) cobject14);
         } else if (cobject14 instanceof CDOMAINTYPE) {
             return DomainTypeConverter.convertDomainType((CDOMAINTYPE) cobject14);
+        } else if (cobject14 instanceof CONSTRAINTREF) {
+            return convertConstraintRef((CONSTRAINTREF) cobject14);
         }
         throw new IllegalArgumentException("unknown COBJECT subtype: " + cobject14.getClass());
     }
 
+    private CObject convertConstraintRef(CONSTRAINTREF cobject14) {
+        CComplexObjectProxy proxy = new CComplexObjectProxy();
+        proxy.setTargetPath(cobject14.getReference());
+        setObjectBasics(cobject14, proxy);
+        return proxy;
+    }
 
 
     private CObject convertSlot(ARCHETYPESLOT cobject14) {

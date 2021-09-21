@@ -1,0 +1,1344 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated)
+    openEHR-EHR-OBSERVATION.blood_pressure.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Sebastian Garde, Jasmin Buck">
+                ["organisation"] = <"Central Queensland University, University of Heidelberg">
+            >
+        >
+        ["zh-cn"] = <
+            language = <[ISO_639-1::zh-cn]>
+            author = <
+                ["name"] = <"Chunlan Ma">
+                ["organisation"] = <"Ocean Informatics">
+            >
+        >
+        ["ja"] = <
+            language = <[ISO_639-1::ja]>
+            author = <
+                ["name"] = <"Shinji Kobayashi">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"22/03/2006">
+    >
+    other_contributors = <"Koray Atalag, University of Auckland, New Zealand", "Knut Bernstein, MEDIQ, Denmark", "Marja Buur, Medisch Centrum Alkmaar, Netherlands", "Rong Chen, Cambio Healthcare Systems, Sweden", "Beatriz de Faria Leão, Zilics, Brazil", "Paul Donaldson, Nursing Informatics Australia, Australia", "Jose Florez Arango, Universidad de Antioquia, Colombia", "Gerard Freriks, ERC, Netherlands", "Sebastian Garde, Ocean Informatics, Germany", "Anneke Goossen, Results 4 Care, Netherlands", "Sam Heard, Ocean Informatics, Australia", "Karsten Heusser, Hannover Medical School, Germany", "Omer Hotomaroglu, Turkey", "Evelyn Hovenga, EJSH Consulting, Australia", "Derek Hoy, United Kingdom", "Pieter Hummel, Medisch Centrum Alkmaar, Netherlands", "Eugene Igras, IRIS Systems, Inc., Canada", "Sundaresan Jagannathan, Scottish NHS, United Kingdom", "Andrew James, University of Toronto, Canada", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Rohan Martin, Ambulance Victoria, Australia", "Ian McNicoll, Ocean Informatics, United Kingdom", "Jeroen Meintjens, Medisch Centrum Alkmaar, Netherlands", "Udo Müller-Oest, CompuGROUP Software, Germany", "Melvin Reynolds, United Kingdom", "Tony Shannon, NHS, United Kingdom", "Hwei-Yee Tai, Tan Tock Seng Hospital, Singapore", "Stef Verlinden, Vivici, Netherlands", "Soon Ghee Yap, Singapore Health Services Pte Ltd, Singapore">
+    lifecycle_state = <"AuthorDraft">
+    references = <
+        ["1"] = <"O'Brien E, Asmar R, Beilin L, et al. European Society of Hypertension recommendations for conventional, ambulatory and home blood pressure measurement. Journal of Hypertension [Internet]. 2003 [cited 2009 Jul 30] ; 21(5):821-848. Available from http://www.bhsoc.org/bp_monitors/ESH_BP_rec.pdf">
+        ["2"] = <"Perloff D, Grim C, Flack J, Frohlich ED, Hill M, McDonald M, Morgenstern BZ. Human blood pressure determination by sphygmomanometry. Circulation [Internet]. 1993 [cited 2009 Jul 29] 88 (5): 2460.  Available from: http://circ.ahajournals.org/cgi/reprint/88/5/2460">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"D2C5F2928F1B4D9D717A6BA03CE968DF">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the systemic arterial blood pressure of an individual. ">
+            keywords = <"observations", "measurement", "bp", "vital signs", "mean arterial pressure", "pulse pressure", "systolic", "diastolic", "RR", "NIBP">
+            use = <"Use to record all representations of systemic arterial blood pressure measurement, no matter which method or body location is used to record it. The archetype is intended to capture blood pressure measurements in all clinical scenarios - for example, self-measurement with a home blood pressure machine; an emergency assessment of systolic using palpation and a sphygmomanometer; measurements taken in clinical consultations or during exercise stress testing; and a series of measurements made by a machine in Intensive Care.
+    There is a rich state model that supports interpretation of measurements through identifying patient position, exercise, confounding factors and angle of a tilt table in research.
+    Named events have been limited to average over a 24 hour period, however templates can further constrain the default 'any event' to cater for specific requirements for blood pressure measurements such as recording Blood Pressure against specific points in time, or over a range of intervals (+/- mathematical functions).">
+            misuse = <"Not to be used for intravenous pressure.
+    Not to be used for the measurement of arterial blood pressure which is NOT a surrogate for arterial pressure in the systemic circulation eg specific measurement of right Pulmonary artery pressure.
+    Use OBSERVATION.intravascular_pressure and related specialisations in both of these situations.">
+            copyright = <"copyright (c) 2009 openEHR Foundation">
+        >
+        ["ja"] = <
+            language = <[ISO_639-1::ja]>
+            purpose = <"*To record the systemic blood pressure of a person. The measurement records the systolic and the diastolic pressure by some means suitable for the result to be seen as a surrogate for the general and systemic blood pressure.(en)">
+            keywords = <"*observations(en)", "*blood pressure(en)", "*measurement(en)">
+            use = <"*All blood pressure measurements are recorded using this archetype. There is a rich state model for use with exercise ECGs and Tilt Table measurements.(en)">
+            misuse = <"*Not to be used for intravascular pressure.(en)">
+            copyright = <"copyright (c) 2009 openEHR Foundation">
+        >
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Dient der Dokumentation des systemischen Blutdrucks einer Person. Die Messung zeichnet den systolischen und diastolischen Blutdruck auf geeignete Art und Weise auf, sodass das Resultat der Messung als charakteristisch für den tatsächlichen systemischen Blutdruck angesehen werden kann.">
+            use = <"Alle Blutdruckmessungen werden unter Zuhilfenahme dieses Archetypen dokumentiert. Der Archetyp beinhaltet ein umfassendes Status-Modell z.B. bei Durchführung von Belastungs-EKGs und Kipptischuntersuchungen.">
+            misuse = <"Nicht zu Benutzen zur Dokumentation des intravaskulären Drucks.">
+            copyright = <"copyright (c) 2009 openEHR Foundation">
+        >
+        ["zh-cn"] = <
+            language = <[ISO_639-1::zh-cn]>
+            purpose = <"*To record the systemic blood pressure of a person. The measurement records the systolic and the diastolic pressure by some means suitable for the result to be seen as a surrogate for the general and systemic blood pressure.(en)">
+            keywords = <"*observations(en)", "*blood pressure(en)", "*measurement(en)">
+            use = <"*All blood pressure measurements are recorded using this archetype. There is a rich state model for use with exercise ECGs and Tilt Table measurements.(en)">
+            misuse = <"*Not to be used for intravascular pressure.(en)">
+            copyright = <"copyright (c) 2009 openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Blood Pressure
+        data matches {
+            HISTORY[id2] matches {    -- history
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id7] matches {    -- any event
+                        data matches {
+                            ITEM_TREE[id4] matches {    -- blood pressure
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Systolic
+                                        value matches {
+                                            DV_QUANTITY[id9009] matches {
+                                                property matches {[at9000]}    -- Pressure
+                                                magnitude matches {|0.0..<1000.0|}
+                                                units matches {"mm[Hg]"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Diastolic
+                                        value matches {
+                                            DV_QUANTITY[id9010] matches {
+                                                property matches {[at9000]}    -- Pressure
+                                                magnitude matches {|0.0..<1000.0|}
+                                                units matches {"mm[Hg]"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id1007] occurrences matches {0..1} matches {    -- Mean Arterial Pressure
+                                        value matches {
+                                            DV_QUANTITY[id9011] matches {
+                                                property matches {[at9000]}    -- Pressure
+                                                magnitude matches {|0.0..<1000.0|}
+                                                units matches {"mm[Hg]"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id1008] occurrences matches {0..1} matches {    -- Pulse Pressure
+                                        value matches {
+                                            DV_QUANTITY[id9012] matches {
+                                                property matches {[at9000]}    -- Pressure
+                                                magnitude matches {|0.0..<1000.0|}
+                                                units matches {"mm[Hg]"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id34] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9013]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id8] matches {    -- state structure
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Position
+                                        value matches {
+                                            DV_CODED_TEXT[id9014] matches {
+                                                defining_code matches {[ac9001; at1002]}    -- Position (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id1053] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9015]
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id1031] occurrences matches {0..1} matches {     -- Exertion
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.level_of_exertion(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                    ELEMENT[id1044] occurrences matches {0..1} matches {    -- Sleep status
+                                        value matches {
+                                            DV_CODED_TEXT[id9016] matches {
+                                                defining_code matches {[ac9002; at1045]}    -- Sleep status (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id1006] occurrences matches {0..1} matches {    -- Tilt
+                                        value matches {
+                                            DV_QUANTITY[id9017] matches {
+                                                property matches {[at9003]}    -- Angle, plane
+                                                magnitude matches {|-90.0..90.0|; 0.0}
+                                                units matches {"°"; "°"}
+                                                precision matches {0; 0}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    INTERVAL_EVENT[id1043] occurrences matches {0..1} matches {    -- 24 hour average
+                        math_function matches {
+                            DV_CODED_TEXT[id9018] matches {
+                                defining_code matches {[at9004]}    -- mean
+                            }
+                        }
+                        width matches {
+                            DV_DURATION[id9019] matches {
+                                value matches {PT24H; PT24H}
+                            }
+                        }
+                        data matches {
+                            use_node ITEM_TREE[id9020] /data[id2]/events[id7]/data[id4]
+                        }
+                        state matches {
+                            use_node ITEM_TREE[id9021] /data[id2]/events[id7]/state[id8]
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id12] matches {    -- list structure
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id14] occurrences matches {0..1} matches {    -- Cuff size
+                        value matches {
+                            DV_CODED_TEXT[id9022] matches {
+                                defining_code matches {[ac9005]}    -- Cuff size (synthesised)
+                            }
+                        }
+                    }
+                    CLUSTER[id1034] occurrences matches {0..1} matches {    -- Location
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id15] occurrences matches {0..1} matches {    -- Location of measurement
+                                value matches {
+                                    DV_CODED_TEXT[id9023] matches {
+                                        defining_code matches {[ac9006]}    -- Location of measurement (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id1035] occurrences matches {0..1} matches {    -- Specific location
+                                value matches {
+                                    DV_TEXT[id9024]
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id1036] occurrences matches {0..1} matches {    -- Method
+                        value matches {
+                            DV_CODED_TEXT[id9025] matches {
+                                defining_code matches {[ac9007]}    -- Method (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id1039] occurrences matches {0..1} matches {    -- Mean Arterial Pressure Formula
+                        value matches {
+                            DV_TEXT[id9026]
+                        }
+                    }
+                    ELEMENT[id1011] occurrences matches {0..1} matches {    -- Diastolic endpoint
+                        value matches {
+                            DV_CODED_TEXT[id9027] matches {
+                                defining_code matches {[ac9008]}    -- Diastolic endpoint (synthesised)
+                            }
+                        }
+                    }
+                    allow_archetype CLUSTER[id1026] occurrences matches {0..1} matches {     -- Device
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["at9000"] = <
+                text = <"* Pressure (en)">
+                description = <"* Pressure (en)">
+            >
+            ["ac9001"] = <
+                text = <"*Position(en) (synthesised)">
+                description = <"*The position of the subject at the time of measurement(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Sleep status(en) (synthesised)">
+                description = <"*Sleep status - supports interpretation of 24 hour ambulatory blood pressure records. (en) (synthesised)">
+            >
+            ["at9003"] = <
+                text = <"* Angle, plane (en)">
+                description = <"* Angle, plane (en)">
+            >
+            ["at9004"] = <
+                text = <"* mean (en)">
+                description = <"* mean (en)">
+            >
+            ["ac9005"] = <
+                text = <"*Cuff size(en) (synthesised)">
+                description = <"*The size of the cuff used for blood pressure measurement(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"*Location of measurement(en) (synthesised)">
+                description = <"*Common body locations where blood pressure is recorded(en) (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"*New element(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"*Diastolic endpoint(en) (synthesised)">
+                description = <"*Record which Korotkoff sound is used for determining diastolic pressure using auscultative method(en) (synthesised)">
+            >
+            ["at1054"] = <
+                text = <"*Intra-arterial(en)">
+                description = <"*Invasive measurement via transducer access line within an artery. Location of the transducer can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["id1053"] = <
+                text = <"*Confounding factors(en)">
+                description = <"*Comment on and record other incidental factors that may be contributing to the blood pressure measurement.  For example, level of anxiety or 'white coat syndrome'; pain or fever; changes in atmospheric pressure etc.(en)">
+            >
+            ["at1052"] = <
+                text = <"*Toe(en)">
+                description = <"*A toe of the subject.   Identification of the toe can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["at1046"] = <
+                text = <"*Sleeping(en)">
+                description = <"*Subject is in the natural state of bodily rest(en)">
+            >
+            ["at1045"] = <
+                text = <"*Alert & awake(en)">
+                description = <"*Subject is fully conscious(en)">
+            >
+            ["id1044"] = <
+                text = <"*Sleep status(en)">
+                description = <"*Sleep status - supports interpretation of 24 hour ambulatory blood pressure records. (en)">
+            >
+            ["id1043"] = <
+                text = <"*24 hour average (en)">
+                description = <"*Estimate of the average blood pressure over a 24 hour period(en)">
+            >
+            ["at1041"] = <
+                text = <"*Invasive(en)">
+                description = <"*Method of measuring blood pressure internally ie involving penetration of the skin and measuring inside blood vessels(en)">
+            >
+            ["at1040"] = <
+                text = <"*Machine(en)">
+                description = <"*Method of measuring blood pressure externally, using a blood pressure machine(en)">
+            >
+            ["id1039"] = <
+                text = <"*Mean Arterial Pressure Formula(en)">
+                description = <"*Formula used to calculate the MAP (if recorded in data)(en)">
+            >
+            ["at1038"] = <
+                text = <"*Palpation(en)">
+                description = <"*Method of measuring blood pressure externally, using palpation (usually of the brachial or radial arteries)(en)">
+            >
+            ["at1037"] = <
+                text = <"*Auscultation(en)">
+                description = <"*Method of measuring blood pressure externally, using a stethoscope and Korotkoff sounds(en)">
+            >
+            ["id1036"] = <
+                text = <"*New element(en)">
+                description = <"**(en)">
+            >
+            ["id1035"] = <
+                text = <"*Specific location(en)">
+                description = <"*Detailed description about the site of the measurement of the blood pressure(en)">
+            >
+            ["id1034"] = <
+                text = <"*New cluster(en)">
+                description = <"**(en)">
+            >
+            ["at1033"] = <
+                text = <"*Finger(en)">
+                description = <"*A finger of the subject.  Identification of the finger can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["at1032"] = <
+                text = <"*Left ankle(en)">
+                description = <"*The left ankle of the subject(en)">
+            >
+            ["id1031"] = <
+                text = <"*Exertion  (en)">
+                description = <"*Details about physical activity undertaken at the time of blood pressure measurement(en)">
+            >
+            ["at1027"] = <
+                text = <"*Right ankle(en)">
+                description = <"*The right ankle of the subject(en)">
+            >
+            ["id1026"] = <
+                text = <"*Device(en)">
+                description = <"*Details about sphygmomanometer or other device used to measure the blood pressure(en)">
+            >
+            ["at1022"] = <
+                text = <"*Left wrist(en)">
+                description = <"*The left wrist of the subject(en)">
+            >
+            ["at1021"] = <
+                text = <"*Right wrist(en)">
+                description = <"*The right wrist of the subject(en)">
+            >
+            ["at1020"] = <
+                text = <"*Neonatal(en)">
+                description = <"*A cuff used for a neonate, assuming cuff is the appropriate size for maturity and birthweight of the neonate(en)">
+            >
+            ["at1019"] = <
+                text = <"*Infant(en)">
+                description = <"*A cuff used for infants - bladder approx 5cm x 15cm(en)">
+            >
+            ["at1015"] = <
+                text = <"*Lying with tilt to left(en)">
+                description = <"*Lying flat with some lateral tilt, usually angled towards the left side.   Commonly required in the last trimester of pregnancy to relieve aortocaval compression.(en)">
+            >
+            ["at1013"] = <
+                text = <"*Phase V(en)">
+                description = <"*The fifth Korotkoff sound is identified by absence of sounds as the cuff pressure drops below the diastolic blood pressure(en)">
+            >
+            ["at1012"] = <
+                text = <"*Phase IV(en)">
+                description = <"*The fourth Korotkoff sound is identified as an abrupt muffling of sounds(en)">
+            >
+            ["id1011"] = <
+                text = <"*Diastolic endpoint(en)">
+                description = <"*Record which Korotkoff sound is used for determining diastolic pressure using auscultative method(en)">
+            >
+            ["at1010"] = <
+                text = <"*Paediatric/Child(en)">
+                description = <"*A cuff that is appropriate for a child or adult with a thin arm - bladder approx 8cm x 21cm.(en)">
+            >
+            ["at1009"] = <
+                text = <"*Small Adult(en)">
+                description = <"*A cuff used for a small adult - bladder approx 10cm x 24cm(en)">
+            >
+            ["id1008"] = <
+                text = <"Pulsdruck">
+                description = <"Der Abstand zwischen dem systolischen und dem diastolischen Blutdruckwert. Beschreibt die Druckwelle, die mit jedem Herzschlag durch das Blutgefäßsystem läuft.">
+            >
+            ["id1007"] = <
+                text = <"*Mean Arterial Pressure(en)">
+                description = <"*The average arterial pressure that occurs over the entire course of the heart contraction and relaxation cycle.   (en)">
+            >
+            ["id1006"] = <
+                text = <"*Tilt(en)">
+                description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement(en)">
+            >
+            ["at1004"] = <
+                text = <"*Lying(en)">
+                description = <"*Lying flat at the time of blood pressure measurement.(en)">
+            >
+            ["at1003"] = <
+                text = <"Zurückgelehnt">
+                description = <"Patient 45 Grad zurückgelehnt zum Zeitpunkt der Blutdruckmessung">
+            >
+            ["at1002"] = <
+                text = <"Sitzend">
+                description = <"Sitzend zum Zeitpunkt der Blutdruckmessung">
+            >
+            ["at1001"] = <
+                text = <"Stehend">
+                description = <"Stehend zum Zeitpunkt der Blutdruckmessung">
+            >
+            ["id34"] = <
+                text = <"Kommentar">
+                description = <"Kommentar zur Blutdruckmessung">
+            >
+            ["at29"] = <
+                text = <"Linkes Bein">
+                description = <"Linkes Bein des Patienten">
+            >
+            ["at28"] = <
+                text = <"*Right leg(en)">
+                description = <"*The right leg of the person(en)">
+            >
+            ["at27"] = <
+                text = <"Linker Arm">
+                description = <"Der linke Arm der Person">
+            >
+            ["at26"] = <
+                text = <"Rechter Arm">
+                description = <"Der rechte Arm der Person">
+            >
+            ["at18"] = <
+                text = <"*Adult(en)">
+                description = <"*A cuff that is standard for an adult - bladder approx 13cm x 30cm(en)">
+            >
+            ["at17"] = <
+                text = <"*Large Adult(en)">
+                description = <"*A cuff for adults with larger arms - bladder approx 16cm x 38cm(en)">
+            >
+            ["at16"] = <
+                text = <"*Adult Thigh(en)">
+                description = <"*A cuff used for an adult thigh - bladder approx 20cm x 42cm(en)">
+            >
+            ["id15"] = <
+                text = <"*Location of measurement(en)">
+                description = <"*Common body locations where blood pressure is recorded(en)">
+            >
+            ["id14"] = <
+                text = <"*Cuff size(en)">
+                description = <"*The size of the cuff used for blood pressure measurement(en)">
+            >
+            ["id12"] = <
+                text = <"Listenstruktur">
+                description = <"Listenstruktur">
+            >
+            ["id9"] = <
+                text = <"*Position(en)">
+                description = <"*The position of the subject at the time of measurement(en)">
+            >
+            ["id8"] = <
+                text = <"*state structure(en)">
+                description = <"*@ internal @(en)">
+            >
+            ["id7"] = <
+                text = <"*any event(en)">
+                description = <"*Default event(en)">
+            >
+            ["id6"] = <
+                text = <"Diastolisch">
+                description = <"Der minimale systemische arterielle Blutdruck eines Zyklus - gemessen in der diastolischen oder Entspannungsphase des Herzens.">
+            >
+            ["id5"] = <
+                text = <"Systolisch">
+                description = <"Der höchste arterielle Blutdruck eines Zyklus - gemessen in der systolischen oder Kontraktionsphase des Herzens.">
+            >
+            ["id4"] = <
+                text = <"Blutdruck">
+                description = <"*@ internal @(en)">
+            >
+            ["id2"] = <
+                text = <"Historie">
+                description = <"Historie">
+            >
+            ["id1"] = <
+                text = <"*Blood Pressure(en)">
+                description = <"*The local measurement of arterial blood pressure which is a surrogate for arterial pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.(en)">
+            >
+        >
+        ["ja"] = <
+            ["at9000"] = <
+                text = <"圧力">
+                description = <"圧力">
+            >
+            ["ac9001"] = <
+                text = <"*Position(en) (synthesised)">
+                description = <"*The position of the subject at the time of measurement(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Sleep status(en) (synthesised)">
+                description = <"*Sleep status - supports interpretation of 24 hour ambulatory blood pressure records. (en) (synthesised)">
+            >
+            ["at9003"] = <
+                text = <"平面角">
+                description = <"平面角">
+            >
+            ["at9004"] = <
+                text = <"平均値">
+                description = <"平均値">
+            >
+            ["ac9005"] = <
+                text = <"*Cuff size(en) (synthesised)">
+                description = <"*The size of the cuff used for blood pressure measurement(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"*Location of measurement(en) (synthesised)">
+                description = <"*Common body locations where blood pressure is recorded(en) (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"*New element(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"*Diastolic endpoint(en) (synthesised)">
+                description = <"*Record which Korotkoff sound is used for determining diastolic pressure using auscultative method(en) (synthesised)">
+            >
+            ["at1054"] = <
+                text = <"*Intra-arterial(en)">
+                description = <"*Invasive measurement via transducer access line within an artery. Location of the transducer can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["id1053"] = <
+                text = <"*Confounding factors(en)">
+                description = <"*Comment on and record other incidental factors that may be contributing to the blood pressure measurement.  For example, level of anxiety or 'white coat syndrome'; pain or fever; changes in atmospheric pressure etc.(en)">
+            >
+            ["at1052"] = <
+                text = <"*Toe(en)">
+                description = <"*A toe of the subject.   Identification of the toe can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["at1046"] = <
+                text = <"*Sleeping(en)">
+                description = <"*Subject is in the natural state of bodily rest(en)">
+            >
+            ["at1045"] = <
+                text = <"*Alert & awake(en)">
+                description = <"*Subject is fully conscious(en)">
+            >
+            ["id1044"] = <
+                text = <"*Sleep status(en)">
+                description = <"*Sleep status - supports interpretation of 24 hour ambulatory blood pressure records. (en)">
+            >
+            ["id1043"] = <
+                text = <"*24 hour average (en)">
+                description = <"*Estimate of the average blood pressure over a 24 hour period(en)">
+            >
+            ["at1041"] = <
+                text = <"*Invasive(en)">
+                description = <"*Method of measuring blood pressure internally ie involving penetration of the skin and measuring inside blood vessels(en)">
+            >
+            ["at1040"] = <
+                text = <"*Machine(en)">
+                description = <"*Method of measuring blood pressure externally, using a blood pressure machine(en)">
+            >
+            ["id1039"] = <
+                text = <"*Mean Arterial Pressure Formula(en)">
+                description = <"*Formula used to calculate the MAP (if recorded in data)(en)">
+            >
+            ["at1038"] = <
+                text = <"*Palpation(en)">
+                description = <"*Method of measuring blood pressure externally, using palpation (usually of the brachial or radial arteries)(en)">
+            >
+            ["at1037"] = <
+                text = <"*Auscultation(en)">
+                description = <"*Method of measuring blood pressure externally, using a stethoscope and Korotkoff sounds(en)">
+            >
+            ["id1036"] = <
+                text = <"*New element(en)">
+                description = <"**(en)">
+            >
+            ["id1035"] = <
+                text = <"*Specific location(en)">
+                description = <"*Detailed description about the site of the measurement of the blood pressure(en)">
+            >
+            ["id1034"] = <
+                text = <"*New cluster(en)">
+                description = <"**(en)">
+            >
+            ["at1033"] = <
+                text = <"*Finger(en)">
+                description = <"*A finger of the subject.  Identification of the finger can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["at1032"] = <
+                text = <"*Left ankle(en)">
+                description = <"*The left ankle of the subject(en)">
+            >
+            ["id1031"] = <
+                text = <"*Exertion  (en)">
+                description = <"*Details about physical activity undertaken at the time of blood pressure measurement(en)">
+            >
+            ["at1027"] = <
+                text = <"*Right ankle(en)">
+                description = <"*The right ankle of the subject(en)">
+            >
+            ["id1026"] = <
+                text = <"*Device(en)">
+                description = <"*Details about sphygmomanometer or other device used to measure the blood pressure(en)">
+            >
+            ["at1022"] = <
+                text = <"*Left wrist(en)">
+                description = <"*The left wrist of the subject(en)">
+            >
+            ["at1021"] = <
+                text = <"*Right wrist(en)">
+                description = <"*The right wrist of the subject(en)">
+            >
+            ["at1020"] = <
+                text = <"*Neonatal(en)">
+                description = <"*A cuff used for a neonate, assuming cuff is the appropriate size for maturity and birthweight of the neonate(en)">
+            >
+            ["at1019"] = <
+                text = <"*Infant(en)">
+                description = <"*A cuff used for infants - bladder approx 5cm x 15cm(en)">
+            >
+            ["at1015"] = <
+                text = <"*Lying with tilt to left(en)">
+                description = <"*Lying flat with some lateral tilt, usually angled towards the left side.   Commonly required in the last trimester of pregnancy to relieve aortocaval compression.(en)">
+            >
+            ["at1013"] = <
+                text = <"*Phase V(en)">
+                description = <"*The fifth Korotkoff sound is identified by absence of sounds as the cuff pressure drops below the diastolic blood pressure(en)">
+            >
+            ["at1012"] = <
+                text = <"*Phase IV(en)">
+                description = <"*The fourth Korotkoff sound is identified as an abrupt muffling of sounds(en)">
+            >
+            ["id1011"] = <
+                text = <"*Diastolic endpoint(en)">
+                description = <"*Record which Korotkoff sound is used for determining diastolic pressure using auscultative method(en)">
+            >
+            ["at1010"] = <
+                text = <"*Paediatric/Child(en)">
+                description = <"*A cuff that is appropriate for a child or adult with a thin arm - bladder approx 8cm x 21cm.(en)">
+            >
+            ["at1009"] = <
+                text = <"*Small Adult(en)">
+                description = <"*A cuff used for a small adult - bladder approx 10cm x 24cm(en)">
+            >
+            ["id1008"] = <
+                text = <"脈圧">
+                description = <"1回の収縮サイクルでの血圧の変動">
+            >
+            ["id1007"] = <
+                text = <"*Mean Arterial Pressure(en)">
+                description = <"*The average arterial pressure that occurs over the entire course of the heart contraction and relaxation cycle.   (en)">
+            >
+            ["id1006"] = <
+                text = <"*Tilt(en)">
+                description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement(en)">
+            >
+            ["at1004"] = <
+                text = <"*Lying(en)">
+                description = <"*Lying flat at the time of blood pressure measurement.(en)">
+            >
+            ["at1003"] = <
+                text = <"斜位">
+                description = <"*Person reclining at 45 degrees at the time of blood pressure measurement(en)">
+            >
+            ["at1002"] = <
+                text = <"座位">
+                description = <"*Sitting on bed or chair at the time of blood pressure measurement(en)">
+            >
+            ["at1001"] = <
+                text = <"立位">
+                description = <"*Standing at the time of blood pressure measurement(en)">
+            >
+            ["id34"] = <
+                text = <"コメント">
+                description = <"血圧測定のコメント">
+            >
+            ["at29"] = <
+                text = <"左脚">
+                description = <"*The left leg of the person(en)">
+            >
+            ["at28"] = <
+                text = <"*Right leg(en)">
+                description = <"*The right leg of the person(en)">
+            >
+            ["at27"] = <
+                text = <"左腕">
+                description = <"*The left arm of the person(en)">
+            >
+            ["at26"] = <
+                text = <"右腕">
+                description = <"*The right arm of the person(en)">
+            >
+            ["at18"] = <
+                text = <"*Adult(en)">
+                description = <"*A cuff that is standard for an adult - bladder approx 13cm x 30cm(en)">
+            >
+            ["at17"] = <
+                text = <"*Large Adult(en)">
+                description = <"*A cuff for adults with larger arms - bladder approx 16cm x 38cm(en)">
+            >
+            ["at16"] = <
+                text = <"*Adult thigh(en)">
+                description = <"*A cuff used for an adult thigh - bladder approx 20cm x 42cm(en)">
+            >
+            ["id15"] = <
+                text = <"*Location of measurement(en)">
+                description = <"*Common body locations where blood pressure is recorded(en)">
+            >
+            ["id14"] = <
+                text = <"*Cuff size(en)">
+                description = <"*The size of the cuff used for blood pressure measurement(en)">
+            >
+            ["id12"] = <
+                text = <"*list structure(en)">
+                description = <"*list structure(en)">
+            >
+            ["id9"] = <
+                text = <"*Position(en)">
+                description = <"*The position of the subject at the time of measurement(en)">
+            >
+            ["id8"] = <
+                text = <"*state structure(en)">
+                description = <"*@ internal @(en)">
+            >
+            ["id7"] = <
+                text = <"*any event(en)">
+                description = <"*Default event(en)">
+            >
+            ["id6"] = <
+                text = <"拡張期">
+                description = <"1つ以上の脈の間で最低値を示す全身の動脈圧 - 心機図の拡張期で測定される">
+            >
+            ["id5"] = <
+                text = <"収縮期">
+                description = <"1つ以上の脈の間で最高値を示す全身の動脈圧 - 心機図の収縮期で測定される">
+            >
+            ["id4"] = <
+                text = <"血圧">
+                description = <"*@ internal @(en)">
+            >
+            ["id2"] = <
+                text = <"*history(en)">
+                description = <"*history Structural node(en)">
+            >
+            ["id1"] = <
+                text = <"*Blood Pressure(en)">
+                description = <"*The local measurement of arterial blood pressure which is a surrogate for arterial pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.(en)">
+            >
+        >
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Pressure">
+                description = <"Pressure">
+            >
+            ["ac9001"] = <
+                text = <"Position (synthesised)">
+                description = <"The position of the subject at the time of measurement. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Sleep status (synthesised)">
+                description = <"Sleep status - supports interpretation of 24 hour ambulatory blood pressure records.  (synthesised)">
+            >
+            ["at9003"] = <
+                text = <"Angle, plane">
+                description = <"Angle, plane">
+            >
+            ["at9004"] = <
+                text = <"mean">
+                description = <"mean">
+            >
+            ["ac9005"] = <
+                text = <"Cuff size (synthesised)">
+                description = <"The size of the cuff used for blood pressure measurement.   (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Location of measurement (synthesised)">
+                description = <"Common body sites where blood pressure is recorded. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Method (synthesised)">
+                description = <"Method of measurement of blood pressure. (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Diastolic endpoint (synthesised)">
+                description = <"Record which Korotkoff sound is used for determining diastolic pressure using auscultative method. (synthesised)">
+            >
+            ["at1054"] = <
+                text = <"Intra-arterial">
+                description = <"Invasive measurement via transducer access line within an artery. Location of the transducer can be recorded in 'Specific Location' data element, if required.">
+            >
+            ["id1053"] = <
+                text = <"Confounding factors">
+                description = <"Comment on and record other incidental factors that may be contributing to the blood pressure measurement.  For example, level of anxiety or 'white coat syndrome'; pain or fever; changes in atmospheric pressure etc.">
+            >
+            ["at1052"] = <
+                text = <"Toe">
+                description = <"A toe of the subject.   Identification of the toe can be recorded in 'Specific Location' data element, if required.">
+            >
+            ["at1046"] = <
+                text = <"Sleeping">
+                description = <"Subject is in the natural state of bodily rest.">
+            >
+            ["at1045"] = <
+                text = <"Alert & awake">
+                description = <"Subject is fully conscious.">
+            >
+            ["id1044"] = <
+                text = <"Sleep status">
+                description = <"Sleep status - supports interpretation of 24 hour ambulatory blood pressure records. ">
+            >
+            ["id1043"] = <
+                text = <"24 hour average ">
+                description = <"Estimate of the average blood pressure over a 24 hour period.">
+            >
+            ["at1041"] = <
+                text = <"Invasive">
+                description = <"Method of measuring blood pressure internally ie involving penetration of the skin and measuring inside blood vessels.">
+            >
+            ["at1040"] = <
+                text = <"Machine">
+                description = <"Method of measuring blood pressure externally, using a blood pressure machine.">
+            >
+            ["id1039"] = <
+                text = <"Mean Arterial Pressure Formula">
+                description = <"Formula used to calculate the MAP (if recorded in data).">
+            >
+            ["at1038"] = <
+                text = <"Palpation">
+                description = <"Method of measuring blood pressure externally, using palpation (usually of the brachial or radial arteries).">
+            >
+            ["at1037"] = <
+                text = <"Auscultation">
+                description = <"Method of measuring blood pressure externally, using a stethoscope and Korotkoff sounds.">
+            >
+            ["id1036"] = <
+                text = <"Method">
+                description = <"Method of measurement of blood pressure.">
+            >
+            ["id1035"] = <
+                text = <"Specific location">
+                description = <"Specific details about the body site where blood pressure is recorded.">
+            >
+            ["id1034"] = <
+                text = <"Location">
+                description = <"Body location where blood pressure is measured.  Use 'Location of measurement' to select from common sites.  Use 'Specific location' to record more specific details or a site that is not in the common set or to refer to an external terminology.">
+            >
+            ["at1033"] = <
+                text = <"Finger">
+                description = <"A finger of the subject.  Identification of the finger can be recorded in 'Specific Location' data element, if required.">
+            >
+            ["at1032"] = <
+                text = <"Left ankle">
+                description = <"The left ankle of the subject.">
+            >
+            ["id1031"] = <
+                text = <"Exertion  ">
+                description = <"Details about physical activity undertaken at the time of blood pressure.measurement.">
+            >
+            ["at1027"] = <
+                text = <"Right ankle">
+                description = <"The right ankle of the subject.">
+            >
+            ["id1026"] = <
+                text = <"Device">
+                description = <"Details about sphygmomanometer or other device used to measure the blood pressure.">
+            >
+            ["at1022"] = <
+                text = <"Left wrist">
+                description = <"The left wrist of the subject.">
+            >
+            ["at1021"] = <
+                text = <"Right wrist">
+                description = <"The right wrist of the subject.">
+            >
+            ["at1020"] = <
+                text = <"Neonatal">
+                description = <"A cuff used for a neonate, assuming cuff is the appropriate size for maturity and birthweight of the neonate.">
+            >
+            ["at1019"] = <
+                text = <"Infant">
+                description = <"A cuff used for infants - bladder approx 5cm x 15cm.">
+            >
+            ["at1015"] = <
+                text = <"Lying with tilt to left">
+                description = <"Lying flat with some lateral tilt, usually angled towards the left side.   Commonly required in the last trimester of pregnancy to relieve aortocaval compression.">
+            >
+            ["at1013"] = <
+                text = <"Phase V">
+                description = <"The fifth Korotkoff sound is identified by absence of sounds as the cuff pressure drops below the diastolic blood pressure.">
+            >
+            ["at1012"] = <
+                text = <"Phase IV">
+                description = <"The fourth Korotkoff sound is identified as an abrupt muffling of sounds.">
+            >
+            ["id1011"] = <
+                text = <"Diastolic endpoint">
+                description = <"Record which Korotkoff sound is used for determining diastolic pressure using auscultative method.">
+            >
+            ["at1010"] = <
+                text = <"Paediatric/Child">
+                description = <"A cuff that is appropriate for a child or adult with a thin arm - bladder approx 8cm x 21cm.">
+            >
+            ["at1009"] = <
+                text = <"Small Adult">
+                description = <"A cuff used for a small adult - bladder approx 10cm x 24cm.">
+            >
+            ["id1008"] = <
+                text = <"Pulse Pressure">
+                description = <"The difference between the systolic and diastolic pressure.">
+            >
+            ["id1007"] = <
+                text = <"Mean Arterial Pressure">
+                description = <"The average arterial pressure that occurs over the entire course of the heart contraction and relaxation cycle.">
+            >
+            ["id1006"] = <
+                text = <"Tilt">
+                description = <"The craniocaudal tilt of the surface on which the person is lying at the time of measurement.">
+            >
+            ["at1004"] = <
+                text = <"Lying">
+                description = <"Lying flat at the time of blood pressure measurement.">
+            >
+            ["at1003"] = <
+                text = <"Reclining">
+                description = <"Reclining at the time of blood pressure measurement.">
+            >
+            ["at1002"] = <
+                text = <"Sitting">
+                description = <"Sitting (for example on bed or chair) at the time of blood pressure measurement.">
+            >
+            ["at1001"] = <
+                text = <"Standing">
+                description = <"Standing at the time of blood pressure measurement.">
+            >
+            ["id34"] = <
+                text = <"Comment">
+                description = <"Comment on blood pressure measurement.">
+            >
+            ["at29"] = <
+                text = <"Left thigh">
+                description = <"The left thigh of the person.">
+            >
+            ["at28"] = <
+                text = <"Right thigh">
+                description = <"The right thigh of the person.">
+            >
+            ["at27"] = <
+                text = <"Left arm">
+                description = <"The left arm of the person.">
+            >
+            ["at26"] = <
+                text = <"Right arm">
+                description = <"The right arm of the person.">
+            >
+            ["at18"] = <
+                text = <"Adult">
+                description = <"A cuff that is standard for an adult - bladder approx 13cm x 30cm.">
+            >
+            ["at17"] = <
+                text = <"Large Adult">
+                description = <"A cuff for adults with larger arms - bladder approx 16cm x 38cm.">
+            >
+            ["at16"] = <
+                text = <"Adult Thigh">
+                description = <"A cuff used for an adult thigh - bladder approx 20cm x 42cm.">
+            >
+            ["id15"] = <
+                text = <"Location of measurement">
+                description = <"Common body sites where blood pressure is recorded.">
+            >
+            ["id14"] = <
+                text = <"Cuff size">
+                description = <"The size of the cuff used for blood pressure measurement.  ">
+            >
+            ["id12"] = <
+                text = <"list structure">
+                description = <"list structure">
+            >
+            ["id9"] = <
+                text = <"Position">
+                description = <"The position of the subject at the time of measurement.">
+            >
+            ["id8"] = <
+                text = <"state structure">
+                description = <"@ internal @">
+            >
+            ["id7"] = <
+                text = <"any event">
+                description = <"Default event">
+            >
+            ["id6"] = <
+                text = <"Diastolic">
+                description = <"Minimum systemic arterial blood pressure - measured in the diastolic or relaxation phase of the heart cycle.">
+            >
+            ["id5"] = <
+                text = <"Systolic">
+                description = <"Peak systemic arterial blood pressure  - measured in systolic or contraction phase of the heart cycle.">
+            >
+            ["id4"] = <
+                text = <"blood pressure">
+                description = <"@ internal @">
+            >
+            ["id2"] = <
+                text = <"history">
+                description = <"history Structural node">
+            >
+            ["id1"] = <
+                text = <"Blood Pressure">
+                description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
+            >
+        >
+        ["zh-cn"] = <
+            ["at9000"] = <
+                text = <"* Pressure (en)">
+                description = <"* Pressure (en)">
+            >
+            ["ac9001"] = <
+                text = <"*Position(en) (synthesised)">
+                description = <"*The position of the subject at the time of measurement(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Sleep status(en) (synthesised)">
+                description = <"*Sleep status - supports interpretation of 24 hour ambulatory blood pressure records. (en) (synthesised)">
+            >
+            ["at9003"] = <
+                text = <"* Angle, plane (en)">
+                description = <"* Angle, plane (en)">
+            >
+            ["at9004"] = <
+                text = <"* mean (en)">
+                description = <"* mean (en)">
+            >
+            ["ac9005"] = <
+                text = <"*Cuff size(en) (synthesised)">
+                description = <"*The size of the cuff used for blood pressure measurement(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"*Location of measurement(en) (synthesised)">
+                description = <"*Common body locations where blood pressure is recorded(en) (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"*New element(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"*Diastolic endpoint(en) (synthesised)">
+                description = <"*Record which Korotkoff sound is used for determining diastolic pressure using auscultative method(en) (synthesised)">
+            >
+            ["at1054"] = <
+                text = <"*Intra-arterial(en)">
+                description = <"*Invasive measurement via transducer access line within an artery. Location of the transducer can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["id1053"] = <
+                text = <"*Confounding factors(en)">
+                description = <"*Comment on and record other incidental factors that may be contributing to the blood pressure measurement.  For example, level of anxiety or 'white coat syndrome'; pain or fever; changes in atmospheric pressure etc.(en)">
+            >
+            ["at1052"] = <
+                text = <"*Toe(en)">
+                description = <"*A toe of the subject.   Identification of the toe can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["at1046"] = <
+                text = <"*Sleeping(en)">
+                description = <"*Subject is in the natural state of bodily rest(en)">
+            >
+            ["at1045"] = <
+                text = <"*Alert & awake(en)">
+                description = <"*Subject is fully conscious(en)">
+            >
+            ["id1044"] = <
+                text = <"*Sleep status(en)">
+                description = <"*Sleep status - supports interpretation of 24 hour ambulatory blood pressure records. (en)">
+            >
+            ["id1043"] = <
+                text = <"*24 hour average (en)">
+                description = <"*Estimate of the average blood pressure over a 24 hour period(en)">
+            >
+            ["at1041"] = <
+                text = <"*Invasive(en)">
+                description = <"*Method of measuring blood pressure internally ie involving penetration of the skin and measuring inside blood vessels(en)">
+            >
+            ["at1040"] = <
+                text = <"*Machine(en)">
+                description = <"*Method of measuring blood pressure externally, using a blood pressure machine(en)">
+            >
+            ["id1039"] = <
+                text = <"*Mean Arterial Pressure Formula(en)">
+                description = <"*Formula used to calculate the MAP (if recorded in data)(en)">
+            >
+            ["at1038"] = <
+                text = <"*Palpation(en)">
+                description = <"*Method of measuring blood pressure externally, using palpation (usually of the brachial or radial arteries)(en)">
+            >
+            ["at1037"] = <
+                text = <"*Auscultation(en)">
+                description = <"*Method of measuring blood pressure externally, using a stethoscope and Korotkoff sounds(en)">
+            >
+            ["id1036"] = <
+                text = <"*New element(en)">
+                description = <"**(en)">
+            >
+            ["id1035"] = <
+                text = <"*Specific location(en)">
+                description = <"*Detailed description about the site of the measurement of the blood pressure(en)">
+            >
+            ["id1034"] = <
+                text = <"*New cluster(en)">
+                description = <"**(en)">
+            >
+            ["at1033"] = <
+                text = <"*Finger(en)">
+                description = <"*A finger of the subject.  Identification of the finger can be recorded in 'Specific Location' data element, if required.(en)">
+            >
+            ["at1032"] = <
+                text = <"*Left ankle(en)">
+                description = <"*The left ankle of the subject(en)">
+            >
+            ["id1031"] = <
+                text = <"*Exertion  (en)">
+                description = <"*Details about physical activity undertaken at the time of blood pressure measurement(en)">
+            >
+            ["at1027"] = <
+                text = <"*Right ankle(en)">
+                description = <"*The right ankle of the subject(en)">
+            >
+            ["id1026"] = <
+                text = <"*Device(en)">
+                description = <"*Details about sphygmomanometer or other device used to measure the blood pressure(en)">
+            >
+            ["at1022"] = <
+                text = <"*Left wrist(en)">
+                description = <"*The left wrist of the subject(en)">
+            >
+            ["at1021"] = <
+                text = <"*Right wrist(en)">
+                description = <"*The right wrist of the subject(en)">
+            >
+            ["at1020"] = <
+                text = <"*Neonatal(en)">
+                description = <"*A cuff used for a neonate, assuming cuff is the appropriate size for maturity and birthweight of the neonate(en)">
+            >
+            ["at1019"] = <
+                text = <"*Infant(en)">
+                description = <"*A cuff used for infants - bladder approx 5cm x 15cm(en)">
+            >
+            ["at1015"] = <
+                text = <"*Lying with tilt to left(en)">
+                description = <"*Lying flat with some lateral tilt, usually angled towards the left side.   Commonly required in the last trimester of pregnancy to relieve aortocaval compression.(en)">
+            >
+            ["at1013"] = <
+                text = <"*Phase V(en)">
+                description = <"*The fifth Korotkoff sound is identified by absence of sounds as the cuff pressure drops below the diastolic blood pressure(en)">
+            >
+            ["at1012"] = <
+                text = <"*Phase IV(en)">
+                description = <"*The fourth Korotkoff sound is identified as an abrupt muffling of sounds(en)">
+            >
+            ["id1011"] = <
+                text = <"*Diastolic endpoint(en)">
+                description = <"*Record which Korotkoff sound is used for determining diastolic pressure using auscultative method(en)">
+            >
+            ["at1010"] = <
+                text = <"*Paediatric/Child(en)">
+                description = <"*A cuff that is appropriate for a child or adult with a thin arm - bladder approx 8cm x 21cm.(en)">
+            >
+            ["at1009"] = <
+                text = <"*Small Adult(en)">
+                description = <"*A cuff used for a small adult - bladder approx 10cm x 24cm(en)">
+            >
+            ["id1008"] = <
+                text = <"脉压">
+                description = <"*The variation in pressure over one contraction cycle(en)">
+            >
+            ["id1007"] = <
+                text = <"*Mean Arterial Pressure(en)">
+                description = <"*The average arterial pressure that occurs over the entire course of the heart contraction and relaxation cycle.   (en)">
+            >
+            ["id1006"] = <
+                text = <"*Tilt(en)">
+                description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement(en)">
+            >
+            ["at1004"] = <
+                text = <"*Lying(en)">
+                description = <"*Lying flat at the time of blood pressure measurement.(en)">
+            >
+            ["at1003"] = <
+                text = <"侧卧位">
+                description = <"测量血压时身体处于45度角侧卧位">
+            >
+            ["at1002"] = <
+                text = <"坐位">
+                description = <"测量血压时身体处于坐位">
+            >
+            ["at1001"] = <
+                text = <"立位">
+                description = <"测量血压时身体处于站立体位">
+            >
+            ["id34"] = <
+                text = <"注释">
+                description = <"有关血压值的注释">
+            >
+            ["at29"] = <
+                text = <"左腿">
+                description = <"被测试者左下肢">
+            >
+            ["at28"] = <
+                text = <"*Right leg(en)">
+                description = <"*The right leg of the person(en)">
+            >
+            ["at27"] = <
+                text = <"左臂">
+                description = <"被测试者左臂">
+            >
+            ["at26"] = <
+                text = <"右臂">
+                description = <"被测试者右臂">
+            >
+            ["at18"] = <
+                text = <"*Adult(en)">
+                description = <"*A cuff that is standard for an adult - bladder approx 13cm x 30cm(en)">
+            >
+            ["at17"] = <
+                text = <"*Large Adult(en)">
+                description = <"*A cuff for adults with larger arms - bladder approx 16cm x 38cm(en)">
+            >
+            ["at16"] = <
+                text = <"*Adult Thigh(en)">
+                description = <"*A cuff used for an adult thigh - bladder approx 20cm x 42cm(en)">
+            >
+            ["id15"] = <
+                text = <"*Location of measurement(en)">
+                description = <"*Common body locations where blood pressure is recorded(en)">
+            >
+            ["id14"] = <
+                text = <"*Cuff size(en)">
+                description = <"*The size of the cuff used for blood pressure measurement(en)">
+            >
+            ["id12"] = <
+                text = <"*list structure(en)">
+                description = <"*list structure(en)">
+            >
+            ["id9"] = <
+                text = <"*Position(en)">
+                description = <"*The position of the subject at the time of measurement(en)">
+            >
+            ["id8"] = <
+                text = <"*state structure(en)">
+                description = <"*@ internal @(en)">
+            >
+            ["id7"] = <
+                text = <"*any event(en)">
+                description = <"*Default event(en)">
+            >
+            ["id6"] = <
+                text = <"舒张压">
+                description = <"一个血液循环周期中，系统性动脉血压最低值。 舒张期血压">
+            >
+            ["id5"] = <
+                text = <"收缩压">
+                description = <"一个血液循环周期中，系统性动脉血压高峰值。 收缩期血压">
+            >
+            ["id4"] = <
+                text = <"血压">
+                description = <"*@ internal @(en)">
+            >
+            ["id2"] = <
+                text = <"*history(en)">
+                description = <"*history Structural node(en)">
+            >
+            ["id1"] = <
+                text = <"*Blood Pressure(en)">
+                description = <"*The local measurement of arterial blood pressure which is a surrogate for arterial pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.(en)">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/125>
+            ["at9003"] = <http://openehr.org/id/497>
+            ["at9004"] = <http://openehr.org/id/146>
+        >
+        ["SNOMED-CT"] = <
+            ["id1"] = <http://SNOMED-CT.org/ver/2003/id/163020007>
+            ["id5"] = <http://SNOMED-CT.org/ver/2003/id/163030003>
+            ["id6"] = <http://SNOMED-CT.org/ver/2003/id/163031004>
+            ["id14"] = <http://SNOMED-CT.org/ver/2003/id/246153002>
+        >
+    >
+    value_sets = <
+        ["ac9008"] = <
+            id = <"ac9008">
+            members = <"at1012", "at1013">
+        >
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at1037", "at1038", "at1040", "at1041">
+        >
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at1045", "at1046">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at1001", "at1002", "at1003", "at1004", "at1015">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at26", "at27", "at28", "at29", "at1021", "at1022", "at1027", "at1032", "at1033", "at1052", "at1054">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at16", "at17", "at18", "at1009", "at1010", "at1019", "at1020">
+        >
+    >

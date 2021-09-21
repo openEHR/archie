@@ -12,7 +12,9 @@ import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.json.ArchieRMObjectMapperProvider;
+import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -23,68 +25,60 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertTrue;
 
 import com.nedap.archie.opt14.schema.*;
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
 
 public class Opt14ConverterTest {
 
+    InMemoryFullArchetypeRepository repository;
+
+    @Before
+    public void readArchetypes() throws ADLParseException, IOException {
+        Reflections reflections = new Reflections("adl2", new ResourcesScanner());
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
+        repository = new InMemoryFullArchetypeRepository();
+        MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
+        for(String adlFile:adlFiles) {
+            try(InputStream stream = getClass().getResourceAsStream("/" + adlFile)) {
+                Archetype parsed = new ADLParser(metaModels).parse(stream);
+                repository.addArchetype(parsed);
+            }
+        }
+    }
+
     @Test
     public void procedureList() throws Exception {
-        testTemplate("/procedure_list.opt",
-                "openEHR-EHR-ACTION.procedure.v1.4.1.adls",
-                "openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls",
-                "openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls");
+        testTemplate("/procedure_list.opt");
     }
 
     @Test
     public void vitalSigns() throws Exception {
-        ValidationResult result = testTemplate("/vital_signs.opt",
-                "openEHR-EHR-COMPOSITION.encounter.v1.0.7.adls",
-                "openEHR-EHR-OBSERVATION.body_temperature.v2.1.2.adls",
-                "openEHR-EHR-OBSERVATION.blood_pressure.v2.0.8.adls",
-                "openEHR-EHR-OBSERVATION.body_mass_index.v2.0.6.adls",
-                "openEHR-EHR-OBSERVATION.height.v2.0.8.adls",
-                "openEHR-EHR-OBSERVATION.body_weight.v2.1.6.adls",
-                "openEHR-EHR-OBSERVATION.pulse.v2.0.4.adls",
-                "openEHR-EHR-OBSERVATION.respiration.v2.0.9.adls",
-                "openEHR-EHR-OBSERVATION.pulse_oximetry.v1.1.3.adls");
+        ValidationResult result = testTemplate("/vital_signs.opt");
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void respectFromRipple() throws Exception {
-        testTemplate("/RESPECT_NSS-v0.opt",
-                "openEHR-EHR-ACTION.procedure.v1.4.1.adls",
-                "openEHR-EHR-COMPOSITION.health_summary.v1.0.1.adls",
-                "openEHR-EHR-SECTION.procedures_rcp.v1.0.0.adls",
-                "openEHR-EHR-COMPOSITION.report.v1.0.0.adls",
-                "openEHR-EHR-SECTION.respect_headings.v0.0.1-alpha.adls",
-                "openEHR-EHR-ADMIN_ENTRY.respect_summary.v0.0.1-alpha.adls",
-                "openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.2.adls",
-                "openEHR-EHR-EVALUATION.advance_planning_documentation.v0.0.1-alpha.adls",
-                "openEHR-EHR-ADMIN_ENTRY.care_preference_uk.v1.0.0.adls",
-                "openEHR-EHR-EVALUATION.care_preference_uk.v1.0.0.adls",
-                "openEHR-EHR-EVALUATION.recommendation.v1.1.3-alpha.adls",
-                "openEHR-EHR-EVALUATION.cpr_decision_uk.v0.0.1-alpha.adls",
-                "openEHR-EHR-ADMIN_ENTRY.capacity_respect.v0.0.1-alpha.adls",
-                "openEHR-EHR-ADMIN_ENTRY.involvement_respect.v0.0.1-alpha.adls",
-                "openEHR-EHR-ACTION.service.v0.0.1-alpha.adls",
-                "openEHR-EHR-CLUSTER.practitioner_cc.v0.0.1-alpha.adls",
-                "openEHR-EHR-CLUSTER.practitioner_role_cc.v0.0.1-alpha.adls",
-                "openEHR-EHR-CLUSTER.name_cc.v0.0.1-alpha.adls",
-                " openEHR-EHR-CLUSTER.identifier_cc.v0.0.1-alpha.adls",
-                "openEHR-EHR-ADMIN_ENTRY.careteam_cc.v0.0.1-alpha.adls",
-                "openEHR-EHR-CLUSTER.contact_cc.v0.0.1-alpha.adls",
-                "openEHR-EHR-CLUSTER.telecom_cc.v0.0.1-alpha.adls");
+        testTemplate("/RESPECT_NSS-v0.opt");
+    }
+
+    @Test
+    public void ePrescription() throws Exception {
+        testTemplate("/ePrescription.opt");
     }
 
     private ValidationResult testTemplate(String templateFileName, String... sourceArchetypes) throws IOException, ADLParseException, JAXBException {
-        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        for(String sourcefile:sourceArchetypes) {
-            repository.addArchetype(parseAdl2(sourcefile));
-        }
+//        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+//        for(String sourcefile:sourceArchetypes) {
+//            repository.addArchetype(parseAdl2(sourcefile));
+//        }
 
         JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();

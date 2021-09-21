@@ -4,6 +4,7 @@ import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.datetime.DateTimeParsers;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
@@ -15,6 +16,9 @@ import com.nedap.archie.rm.support.identification.TerminologyId;
 
 import com.nedap.archie.opt14.schema.*;
 
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAccessor;
+import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,9 +52,53 @@ class BaseTypesConverter {
         if(range == null) {
             return null;
         }
-        return new com.nedap.archie.base.Interval<Long>(
+        return new com.nedap.archie.base.Interval<>(
                 range.getLower() == null ? null : range.getLower().longValue() ,
                 range.getUpper() == null ? null : range.getUpper().longValue() ,
+                range.isLowerIncluded() == null ? true : range.isLowerIncluded(),
+                range.isUpperIncluded() == null ? true : range.isUpperIncluded());
+    }
+
+    public static com.nedap.archie.base.Interval<TemporalAmount> convertInterval(IntervalOfDuration range) {
+        if(range == null) {
+            return null;
+        }
+        return new com.nedap.archie.base.Interval<>(
+                range.getLower() == null ? null : DateTimeParsers.parseDurationValue(range.getLower()),
+                range.getUpper() == null ? null : DateTimeParsers.parseDurationValue(range.getUpper()),
+                range.isLowerIncluded() == null ? true : range.isLowerIncluded(),
+                range.isUpperIncluded() == null ? true : range.isUpperIncluded());
+    }
+
+    public static com.nedap.archie.base.Interval<Temporal> convertInterval(IntervalOfDate range) {
+        if(range == null) {
+            return null;
+        }
+        return new com.nedap.archie.base.Interval<>(
+                range.getLower() == null ? null : DateTimeParsers.parseDateValue(range.getLower()),
+                range.getUpper() == null ? null : DateTimeParsers.parseDateValue(range.getUpper()),
+                range.isLowerIncluded() == null ? true : range.isLowerIncluded(),
+                range.isUpperIncluded() == null ? true : range.isUpperIncluded());
+    }
+
+    public static com.nedap.archie.base.Interval<TemporalAccessor> convertInterval(IntervalOfDateTime range) {
+        if(range == null) {
+            return null;
+        }
+        return new com.nedap.archie.base.Interval<>(
+                range.getLower() == null ? null : DateTimeParsers.parseDateTimeValue(range.getLower()),
+                range.getUpper() == null ? null : DateTimeParsers.parseDateTimeValue(range.getUpper()),
+                range.isLowerIncluded() == null ? true : range.isLowerIncluded(),
+                range.isUpperIncluded() == null ? true : range.isUpperIncluded());
+    }
+
+    public static com.nedap.archie.base.Interval<TemporalAccessor> convertInterval(IntervalOfTime range) {
+        if(range == null) {
+            return null;
+        }
+        return new com.nedap.archie.base.Interval<>(
+                range.getLower() == null ? null : DateTimeParsers.parseTimeValue(range.getLower()),
+                range.getUpper() == null ? null : DateTimeParsers.parseTimeValue(range.getUpper()),
                 range.isLowerIncluded() == null ? true : range.isLowerIncluded(),
                 range.isUpperIncluded() == null ? true : range.isUpperIncluded());
     }

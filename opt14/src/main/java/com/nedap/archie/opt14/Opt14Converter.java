@@ -12,6 +12,9 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.diff.Differentiator;
+import com.nedap.archie.flattener.Flattener;
+import com.nedap.archie.flattener.FlattenerConfiguration;
+
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModels;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nedap.archie.opt14.schema.*;
+import org.openehr.utils.message.MessageDescriptor;
 
 /**
  * TODO:
@@ -69,8 +73,6 @@ public class Opt14Converter {
 
             DescriptionConverter.convert(opt14, template);
             new OptToTemplateConverter().convert(opt2, template);
-            //template.setDefinition(opt2.getDefinition());
-            //TODO: convert to template overlays here
 
             RepoFlatArchetypeProvider flatParentProvider = new RepoFlatArchetypeProvider(adl2Archetypes);
             new NodeIdFixerBeforeConversion().fixNodeIds(template, flatParentProvider);
@@ -98,7 +100,15 @@ public class Opt14Converter {
                 }
                 adl2ConversionResult.setArchetype(convertedTemplate);
                 convertedTemplate.setTemplateOverlays(newOverlays);
+
+                try {
+                    OperationalTemplate generatedOpt2 = (OperationalTemplate) new Flattener(adl2Archetypes, metaModels, FlattenerConfiguration.forOperationalTemplate()).flatten(convertedTemplate);
+                    new Opt14PathConverter().convertPaths(convertedTemplate, opt2);
+                } catch (Exception e) {
+                    converted.getConversionResults().get(0).getLog().addError(Opt14ConversionMessage.PATH_CONVERSION_ERROR, e.getMessage());
+                }
             }
+
             return converted;
         } catch (IOException e) {
             throw new RuntimeException(e);
