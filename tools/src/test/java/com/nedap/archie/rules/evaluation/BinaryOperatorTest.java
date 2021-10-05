@@ -50,7 +50,6 @@ public class BinaryOperatorTest {
     @Test
     public void plusReal() {
         testBinaryOperator(7d, ExpressionType.REAL, 4d, 3d, OperatorKind.plus);
-
     }
 
     @Test
@@ -89,6 +88,18 @@ public class BinaryOperatorTest {
         testBinaryOperator(true, ExpressionType.BOOLEAN, true, false, OperatorKind.or);
         testBinaryOperator(true, ExpressionType.BOOLEAN, false, true, OperatorKind.or);
         testBinaryOperator(true, ExpressionType.BOOLEAN, true, true, OperatorKind.or);
+    }
+
+    @Test
+    public void integerLongConversion() {
+        //integers must be automatically converted to Longs in ConstantEvaluator
+        testBinaryOperator(8l, ExpressionType.INTEGER, 2, 3l, OperatorKind.exponent);
+    }
+
+    @Test
+    public void floatToDoubleConversion() {
+        //floats must be automatically converted to Doubles in ConstantEvaluator
+        testBinaryOperator(8.0d, ExpressionType.INTEGER, 2.0f, 3l, OperatorKind.exponent);
     }
 
 
