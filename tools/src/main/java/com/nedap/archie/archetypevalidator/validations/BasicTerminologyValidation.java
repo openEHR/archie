@@ -131,12 +131,17 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
                 if(AOMUtils.getSpecialisationStatusFromCode(valueSet.getId(), terminologySpecialisationDepth) == CodeRedefinitionStatus.REDEFINED) {
                     if(flatParent.getTerminology().getValueSets() != null) {
                         ValueSet parentValueSet = flatParent.getTerminology().getValueSets().get(AOMUtils.codeAtLevel(valueSet.getId(), terminologySpecialisationDepth - 1));
-                        for(String member:valueSet.getMembers()) {
-                            if(!AOMUtils.valueSetContainsCodeOrParent(parentValueSet.getMembers(), member)) {
-                                addMessage(ErrorType.VALUESET_REDEFINITION_ERROR,
-                                        I18n.t("value code {0} is used in redefined value set {1}, but not present in its parent value set with members {2}", member, valueSet.getId(), parentValueSet.getMembers()));
-                            }
+                        if(parentValueSet == null) {
+                            addMessage(ErrorType.VALUESET_REDEFINITION_ERROR,
+                                    I18n.t("value set {0} has a specialized code, but the valueset it specialized cannot be found in the flat parent", valueSet.getId()));
+                        } else {
+                            for(String member:valueSet.getMembers()) {
+                                if(!AOMUtils.valueSetContainsCodeOrParent(parentValueSet.getMembers(), member)) {
+                                    addMessage(ErrorType.VALUESET_REDEFINITION_ERROR,
+                                            I18n.t("value code {0} is used in redefined value set {1}, but not present in its parent value set with members {2}", member, valueSet.getId(), parentValueSet.getMembers()));
+                                }
 
+                            }
                         }
                     }
                 }
