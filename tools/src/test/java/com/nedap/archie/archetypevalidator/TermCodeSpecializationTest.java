@@ -100,6 +100,20 @@ public class TermCodeSpecializationTest {
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0");
         assertFalse(validationResult.toString(), validationResult.passes());
-        assertTrue("VPOV error should be present in " + validationResult, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent());
+        assertTrue("VALUESET_REDEFINITION_ERROR error should be present in " + validationResult, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent());
+    }
+
+    @Test
+    public void nonExistingParentValueSet() throws IOException, ADLParseException {
+        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.incorrect_parent_valueset_code.v1.0.0.adls");
+        InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
+        repo.addArchetype(parent);
+        repo.addArchetype(child);
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        repo.compile(archetypeValidator);
+        ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.incorrect_parent_valueset_code.v1.0.0");
+        assertFalse(validationResult.toString(), validationResult.passes());
+        assertTrue("VALUESET_REDEFINITION_ERROR error should be present in " + validationResult, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent());
     }
 }
