@@ -86,7 +86,12 @@ public class JacksonUtil {
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         objectMapper.enable(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS);
         if(!configuration.isSerializeEmptyCollections()) {
-            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+            objectMapper.setDefaultPropertyInclusion(
+                    JsonInclude.Value.construct(
+                            JsonInclude.Include.CUSTOM,
+                            JsonInclude.Include.USE_DEFAULTS,
+                            ExcludeEmptyCollectionsFilter.class,
+                            null));
         }
         if(configuration.isFailOnUnknownProperties()) {
             objectMapper.enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
