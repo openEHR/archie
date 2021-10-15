@@ -25,6 +25,8 @@ public class JSONSchemaCreator {
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
 
+    private boolean fullReferences = false;
+
     /**
      * Whether to allow any additional properties in the openEHR json.
      */
@@ -192,7 +194,7 @@ public class JSONSchemaCreator {
             }
         }
 
-        properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string").add("pattern", "^" + typeName ));
+        properties.add("_type", jsonFactory.createObjectBuilder().add("type", "string").add("const",  typeName ));
         JsonObjectBuilder definition = jsonFactory.createObjectBuilder()
                 .add("type", "object")
                 .add("required", required)
@@ -407,10 +409,14 @@ public class JSONSchemaCreator {
             if(typeFileName.equals(packageFileName)) {
                 return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
             } else {
-                if(typeFileName.getBaseUri().equals(packageFileName.getBaseUri())) {
-                    return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getFilename() + "#/definitions/" + type);
+                if(fullReferences) {
+                    return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getBaseUri() + typeFileName.getFilename() + "#/definitions/" + type);
                 } else {
-                    return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getId() + "#/definitions/" + type);
+                    if (typeFileName.getBaseUri().equals(packageFileName.getBaseUri())) {
+                        return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getFilename() + "#/definitions/" + type);
+                    } else {
+                        return jsonFactory.createObjectBuilder().add("$ref", typeFileName.getId() + "#/definitions/" + type);
+                    }
                 }
             }
         }
@@ -445,6 +451,11 @@ public class JSONSchemaCreator {
 
     public JSONSchemaCreator withBaseUri(String baseUri) {
         this.baseUri = baseUri;
+        return this;
+    }
+
+    public JSONSchemaCreator withFullReferences(boolean fullReferences) {
+        this.fullReferences = fullReferences;
         return this;
     }
 
