@@ -1,5 +1,3 @@
-description = "tools that operate on the archie reference models and archetype object model"
-
 buildscript {
     repositories {
         mavenCentral()
@@ -8,6 +6,12 @@ buildscript {
         classpath 'com.nedap.healthcare.archie:archie-all:0.19.0'
     }
 }
+
+plugins {
+    id 'base'
+}
+
+description = "tools that operate on the archie reference models and archetype object model"
 
 import com.nedap.archie.json.JSONSchemaCreator;
 import com.nedap.archie.json.JsonSchemaUriProvider;
