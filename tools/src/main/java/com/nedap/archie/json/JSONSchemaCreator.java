@@ -31,9 +31,8 @@ public class JSONSchemaCreator {
      * Whether to allow any additional properties in the openEHR json.
      */
     private boolean allowAdditionalProperties;
-    private boolean splitInPackages = false;
 
-    private JsonSchemaUriProvider uriProvider = this::getSingleFileName;
+    private JsonSchemaUriProvider uriProvider = new SingleFileNameUriProvider();
     private String baseUri = "https://specifications.openehr.org/releases/ITS-JSON/latest/components/RM/Release-1.1.0/";
 
 
@@ -93,13 +92,10 @@ public class JSONSchemaCreator {
      */
     public Map<JsonSchemaUri, JsonObject> create(BmmModel bmm) {
         this.bmmModel = bmm;
-        JsonSchemaUri mainFileName = new JsonSchemaUri(baseUri, this.splitInPackages ?
-                bmm.getSchemaId() + JSON_SCHEMA_FILE_EXTENSION :
-                bmm.getSchemaId() + "_all" + JSON_SCHEMA_FILE_EXTENSION);
+        JsonSchemaUri mainFileName = this.uriProvider.provideMainFileUri();
         //create the definitions and the root if/else base
 
         JsonArrayBuilder allOfArray = jsonFactory.createArrayBuilder();
-
 
         allOfArray.add(createRequiredArray("_type"));
 
@@ -435,11 +431,10 @@ public class JSONSchemaCreator {
     }
 
     public JSONSchemaCreator splitInMultipleFiles(boolean splitInPackages) {
-        this.splitInPackages = splitInPackages;
         if(splitInPackages) {
-            this.uriProvider = this::getBmmFileName;
+            this.uriProvider = new BmmPackageNameUriProvider();
         } else {
-            this.uriProvider = this::getSingleFileName;
+            this.uriProvider = new SingleFileNameUriProvider();
         }
         return this;
     }
@@ -459,12 +454,32 @@ public class JSONSchemaCreator {
         return this;
     }
 
-    private JsonSchemaUri getSingleFileName(BmmClass clazz) {
-        return new JsonSchemaUri(baseUri, clazz.getBmmModel().getSchemaId() + "_all" + JSON_SCHEMA_FILE_EXTENSION);
+    private class SingleFileNameUriProvider implements JsonSchemaUriProvider {
+
+        @Override
+        public JsonSchemaUri provideJsonSchemaUrl(BmmClass clazz) {
+            return new JsonSchemaUri(baseUri, clazz.getBmmModel().getSchemaId() + "_all" + JSON_SCHEMA_FILE_EXTENSION);
+        }
+
+        @Override
+        public JsonSchemaUri provideMainFileUri() {
+            return  new JsonSchemaUri(baseUri,
+                    bmmModel.getSchemaId() + "_all" + JSON_SCHEMA_FILE_EXTENSION);
+        }
     }
 
-    private JsonSchemaUri getBmmFileName(BmmClass clazz) {
-        return new JsonSchemaUri(baseUri, clazz.getSourceSchemaId() + JSON_SCHEMA_FILE_EXTENSION);
+    private class BmmPackageNameUriProvider implements JsonSchemaUriProvider {
+
+        @Override
+        public JsonSchemaUri provideJsonSchemaUrl(BmmClass clazz) {
+            return new JsonSchemaUri(baseUri,
+                    clazz.getSourceSchemaId() + JSON_SCHEMA_FILE_EXTENSION);
+        }
+
+        @Override
+        public JsonSchemaUri provideMainFileUri() {
+            return new JsonSchemaUri(baseUri, bmmModel.getSchemaId() + JSON_SCHEMA_FILE_EXTENSION);
+        }
     }
 
     private class SchemaBuilder {
