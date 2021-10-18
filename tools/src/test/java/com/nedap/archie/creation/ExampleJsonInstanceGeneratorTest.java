@@ -52,7 +52,7 @@ public class ExampleJsonInstanceGeneratorTest {
 
         Map<String, Object> structure = structureGenerator.generate(opt);
         String s = serializeToJson(structure, true);
-        System.out.println(s);
+        //System.out.println(s);
 
         Map<String, Object> data = (Map<String, Object>) structure.get("data");
         assertEquals("HISTORY", data.get(TYPE_PROPERTY_NAME));
