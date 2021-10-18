@@ -22,7 +22,9 @@ odin_text :
 
 attr_vals : ( attr_val ';'? )+ ;
 
-attr_val : attribute_id '=' object_block ;
+attr_val : odin_object_key '=' object_block ;
+
+odin_object_key : identifier | ALPHA_UNDERSCORE_ID ;
 
 object_block :
       object_value_block

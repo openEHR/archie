@@ -50,7 +50,6 @@ public class BinaryOperatorTest {
     @Test
     public void plusReal() {
         testBinaryOperator(7d, ExpressionType.REAL, 4d, 3d, OperatorKind.plus);
-
     }
 
     @Test
@@ -91,6 +90,18 @@ public class BinaryOperatorTest {
         testBinaryOperator(true, ExpressionType.BOOLEAN, true, true, OperatorKind.or);
     }
 
+    @Test
+    public void integerLongConversion() {
+        //integers must be automatically converted to Longs in ConstantEvaluator
+        testBinaryOperator(8l, ExpressionType.INTEGER, 2, 3l, OperatorKind.exponent);
+    }
+
+    @Test
+    public void floatToDoubleConversion() {
+        //floats must be automatically converted to Doubles in ConstantEvaluator
+        testBinaryOperator(8.0d, ExpressionType.INTEGER, 2.0f, 3l, OperatorKind.exponent);
+    }
+
 
     private void testBinaryOperator(Object expected, ExpressionType type, Object left, Object right, OperatorKind operatorKind) {
         BinaryOperator operator = new BinaryOperator();
@@ -99,7 +110,7 @@ public class BinaryOperatorTest {
         Constant<?> rightConstant = new Constant<>(type, right);
         operator.addOperand(leftConstant);
         operator.addOperand(rightConstant);
-        RuleEvaluation<?> eval = new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), null);//should be archetype, not very relevant here
+        RuleEvaluation<?> eval = new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), null);//should be archetype, not very relevant here
         assertEquals(expected, eval.evaluate(operator).getValueObjects().get(0));
     }
 

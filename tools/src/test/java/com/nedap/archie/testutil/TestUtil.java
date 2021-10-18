@@ -158,6 +158,23 @@ public class TestUtil {
         }
     }
 
+    public static void parseExpectErrorCode(String resourceName, String errorCode) throws IOException {
+        ADLParser parser = new ADLParser();
+        try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
+            if(stream == null) {
+                throw new RuntimeException("Resource does not exist: " + resourceName);
+            }
+            try {
+                Archetype archetype = parser.parse(stream);
+                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+            } catch (ADLParseException ex) {
+                parser.getErrors().logToLogger();
+                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
+            }
+        }
+    }
+
     public static FullArchetypeRepository parseCKM() {
         return parseCKM(".*\\.adls");
     }

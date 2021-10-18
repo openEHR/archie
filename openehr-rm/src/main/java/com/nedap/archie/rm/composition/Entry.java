@@ -10,6 +10,7 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.generic.PartyProxy;
 import com.nedap.archie.rm.generic.PartySelf;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.Invariant;
@@ -43,7 +44,7 @@ public abstract class Entry extends ContentItem {
     @Nullable
 
     @XmlElement(name = "workflow_id")
-    private ObjectRef<?> workflowId;
+    private ObjectRef<? extends ObjectId> workflowId;
     private PartyProxy subject;
     @Nullable
     private PartyProxy provider;
@@ -55,7 +56,7 @@ public abstract class Entry extends ContentItem {
     public Entry() {
     }
 
-    public Entry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<?> workflowId, @Nullable List<Participation> otherParticipations) {
+    public Entry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<? extends ObjectId> workflowId, @Nullable List<Participation> otherParticipations) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
         this.language = language;
         this.encoding = encoding;
@@ -111,12 +112,12 @@ public abstract class Entry extends ContentItem {
     }
 
     @Nullable
-    public ObjectRef<?> getWorkflowId() {
+    public ObjectRef<? extends ObjectId> getWorkflowId() {
         return workflowId;
     }
 
     @JsonAlias({"work_flow_id"})
-    public void setWorkflowId(@Nullable ObjectRef<?> workflowId) {
+    public void setWorkflowId(@Nullable ObjectRef<? extends ObjectId> workflowId) {
         this.workflowId = workflowId;
     }
 

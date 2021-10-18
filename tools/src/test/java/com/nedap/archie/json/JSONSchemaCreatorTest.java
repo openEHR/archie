@@ -5,11 +5,10 @@ import org.junit.Test;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonWriterFactory;
-import javax.json.stream.JsonGenerator;
-import javax.json.stream.JsonGeneratorFactory;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonWriterFactory;
+import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
