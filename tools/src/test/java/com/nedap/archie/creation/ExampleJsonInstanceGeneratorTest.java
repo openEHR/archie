@@ -14,6 +14,7 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.json.JsonSchemaValidator;
+import com.nedap.archie.json.JsonSchemaValidator2;
 import com.nedap.archie.json.RMJacksonConfiguration;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Observation;
@@ -23,6 +24,7 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
+import org.everit.json.schema.ValidationException;
 import org.junit.Test;
 import org.leadpony.justify.api.Problem;
 import org.openehr.bmm.core.BmmModel;
@@ -152,8 +154,8 @@ public class ExampleJsonInstanceGeneratorTest {
         int rmObjectValidatorRan = 0, rmObjectValidatorFailed = 0;
         repository.compile(BuiltinReferenceModels.getMetaModels());
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
-        JsonSchemaValidator firstValidator = new JsonSchemaValidator(model, true);
-        JsonSchemaValidator secondValidator = new JsonSchemaValidator(model,false);
+        JsonSchemaValidator2 firstValidator = new JsonSchemaValidator2(model, true);
+        JsonSchemaValidator2 secondValidator = new JsonSchemaValidator2(model,false);
 
         ObjectMapper archieObjectMapper = getArchieObjectMapper();
         List<String> rmValidationErrors = new ArrayList<>();
@@ -178,25 +180,26 @@ public class ExampleJsonInstanceGeneratorTest {
                     numberCreated++;
 
                     jsonSchemaValidationRan++;
-                    List<Problem> problems = firstValidator.validate(json);
-                    if(problems.size() > 0) {
+                    try {
+                        firstValidator.validate(json);
+                    } catch (ValidationException e) {
                         logger.error("validation failed for {}", result.getArchetypeId());
-                        logger.error(Joiner.on("\n").join(problems));
+                        logger.error(e.toJSON().toString());
                         jsonSchemaValidationFailed++;
                         continue;
                     }
+
                     //logger.info("first validation ok for {}", result.getArchetypeId());
 
                     String serializedAgain = archieObjectMapper.writeValueAsString(parsed);
                     secondJsonSchemaValidationRan++;
-                    List<Problem> secondProblems = secondValidator.validate(serializedAgain);
-
-                    if(secondProblems.size() > 0) {
+                    try {
+                        firstValidator.validate(serializedAgain);
+                    } catch (ValidationException e) {
                         logger.error("second validation failed for {}", result.getArchetypeId());
-                        logger.error(Joiner.on("\n").join(secondProblems));
+                        logger.error(e.toJSON().toString());
                         reserializedJsonSchemaValidationFailed++;
-                    } else {
-                       // logger.info("second validation ok for {}", result.getArchetypeId());
+                        continue;
                     }
 
                 } catch (Exception e) {
