@@ -206,4 +206,11 @@ public class BmmPackage extends BmmPackageContainer implements Serializable {
     public String toString() {
         return name;
     }
+
+    public String getFullPath() {
+        if(parent != null) {
+            return getParent().getFullPath() + "." + getName();
+        }
+        return getName();
+    }
 }
