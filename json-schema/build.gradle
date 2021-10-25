@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'com.nedap.healthcare.archie:archie-all:0.19.0'
@@ -18,8 +19,8 @@ import com.nedap.archie.json.JsonSchemaUriProvider;
 import com.nedap.archie.json.JsonSchemaUri;
 import com.nedap.archie.json.ItsJsonUriProvider;
 import org.openehr.referencemodels.BuiltinReferenceModels;
-import javax.json.*;
-import javax.json.stream.JsonGenerator;
+import jakarta.json.*;
+import jakarta.json.stream.JsonGenerator;
 import org.openehr.bmm.core.BmmClass;
 
 
