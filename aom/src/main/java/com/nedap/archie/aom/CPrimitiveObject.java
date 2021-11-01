@@ -7,6 +7,7 @@ import com.nedap.archie.rminfo.ModelInfoLookup;
 import org.openehr.utils.message.I18n;
 
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -26,8 +27,10 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
     public static final String PRIMITIVE_NODE_ID_VALUE = "id9999";
 
+    @Nullable
     private Boolean enumeratedTypeConstraint;
 
+    @Nullable
     public abstract ValueType getAssumedValue();
 
     public abstract void setAssumedValue(ValueType assumedValue);
