@@ -2,6 +2,7 @@ package com.nedap.archie.json;
 
 import com.google.common.base.Charsets;
 import org.everit.json.schema.Schema;
+import org.everit.json.schema.ValidationException;
 import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -85,10 +86,10 @@ public class JsonSchemaValidator2 {
     /**
      * Validate the given json against the schema
      * @param json the json
-     * @return the list of problems found during validation, or an empty list if the json validated
-     * @throws IOException
+     * @throws IOException on json parsing errors
+     * @throws ValidationException if any validation errors occurred
      */
-    public void validate(String json) throws IOException {
+    public void validate(String json) throws IOException, ValidationException {
         JSONObject jsonObject = new JSONObject(new JSONTokener(json));
         schema.validate(jsonObject);
 
