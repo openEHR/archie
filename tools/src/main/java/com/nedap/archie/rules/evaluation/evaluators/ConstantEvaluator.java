@@ -15,7 +15,16 @@ import java.util.List;
 public class ConstantEvaluator implements Evaluator<Constant<?>> {
     @Override
     public ValueList evaluate(RuleEvaluation<?> evaluation, Constant<?> statement) {
-        return new ValueList(statement.getValue(), PrimitiveType.fromExpressionType(statement.getType()));
+        return new ValueList(convertNumber(statement.getValue()), PrimitiveType.fromExpressionType(statement.getType()));
+    }
+
+    private Object convertNumber(Object value) {
+        if(value instanceof Integer) {
+            return ((Integer) value).longValue();
+        } else if(value instanceof Float) {
+            return ((Float) value).doubleValue();
+        }
+        return value;
     }
 
     @Override

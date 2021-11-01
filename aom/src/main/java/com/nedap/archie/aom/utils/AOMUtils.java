@@ -11,10 +11,14 @@ import com.nedap.archie.aom.CAttributeTuple;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.primitives.CString;
+import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
+import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.query.PartialMatch;
+import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
@@ -27,7 +31,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class AOMUtils {
@@ -338,6 +345,38 @@ public class AOMUtils {
         return maximumIdCode;
     }
 
+    public static boolean isPathInArchetypeOrRm(MetaModel metaModel, String path, Archetype template) {
+        AOMPathQuery aomPathQuery = new AOMPathQuery(path);
+        PartialMatch partial = aomPathQuery.findPartial(template.getDefinition());
+        if(partial.isFullMatch()) {
+            return true;
+        } else {
+            if(isArchetypePath(partial.getRemainingPath())) {
+                // the remaining path is an archetype path, so cannot be found purely in the RM without
+                //further constraints
+                return false;
+            }
+            //we have a partial match left, search for it in the RM
+            //in case there is no match at all, getFoundObjects() will contain the root node, so this is safe
+            for (ArchetypeModelObject archetypeModelObject : partial.getFoundObjects()) {
+                if (archetypeModelObject instanceof CObject) {
+                    if (metaModel.hasReferenceModelPath(((CObject) archetypeModelObject).getRmTypeName(), partial.getRemainingPath())) {
+                        return true;
+                    }
+                } else if (archetypeModelObject instanceof CAttribute) {
+                    CAttribute attribute = (CAttribute) archetypeModelObject;
+                    //matched an attribute. So if even one object matches, return true
+                    for(CObject child:attribute.getChildren()) {
+                        if (metaModel.hasReferenceModelPath(child.getRmTypeName(), partial.getRemainingPath())) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      * Given a code such as 'id4.1.0.0.1', return the nearest code that exists in a parent. In this example,
      * returns id4.1, so removes all zeros.
@@ -365,5 +404,47 @@ public class AOMUtils {
             return false;
         }
         return adl14CodePattern.matcher(code).matches();
+    }
+
+    /**
+     * Returns the expanded set of members of a value set, replacing any ac-codes with at-codes if this is a flat archetype
+     * replaces each ac-code in valueSet with its expanded list of at-codes in allValueSets.
+     *
+     * @param allValueSets all value sets in the given archetype or component terminology that applies here
+     * @param valueSet the ValueSet to expand
+     * @return the expanded value set, where each ac code has been replaced with a number of at codes.
+     */
+    public static Set<String> getExpandedValueSetMembers(Map<String, ValueSet> allValueSets, ValueSet valueSet) {
+        Set<String> result = new LinkedHashSet<>();
+        for(String member:valueSet.getMembers()) {
+            if(AOMUtils.isValueSetCode(member)) {
+                ValueSet includedValueSet = allValueSets.get(member);
+                if(includedValueSet == null) {
+                    result.add(member);//cannot expand that which we cannot find
+                } else {
+                    //TODO: potential loop here, resulting in StackOverflowexception. Add validation somewhere?
+                    result.addAll(getExpandedValueSetMembers(allValueSets, includedValueSet));
+                }
+            } else {
+                result.add(member);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns true of the given value set members contain the given code, or if code is a specialization of one of the
+     * codes of the value set. False otherwise.
+     * @param valueSetMembers the value set members to check against
+     * @param code the code to check
+     * @return true if code is part of valueSetMembers or a specialisation of one of its members, false otherwise
+     */
+    public static boolean valueSetContainsCodeOrParent(Collection<String> valueSetMembers, String code) {
+        for(String value:valueSetMembers) {
+            if(AOMUtils.codesConformant(code, value)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

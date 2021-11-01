@@ -37,6 +37,9 @@ ontology
                 ["at0000"] = <
                     text = <"termbinding">
                     description = <"unknown">
+                    extra_item = <"extra_value">
+                    Extra_item_2 = <"extra_value">
+                    _Extra_item_2 = <"extra_value">
                 >
                 ["at0001"] = <
                     text = <"coded text">
