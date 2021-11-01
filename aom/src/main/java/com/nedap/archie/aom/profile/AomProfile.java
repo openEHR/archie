@@ -1,5 +1,6 @@
 package com.nedap.archie.aom.profile;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 import java.util.Map;
@@ -17,8 +18,10 @@ public class AomProfile {
      */
     private String profileName;
 
+    @Nullable
     private List<String> rmSchemaPattern;
 
+    @Nullable
     private String archetypeVisualiseDescendantsOf;
 
     /**
@@ -26,19 +29,23 @@ public class AomProfile {
      * for them in an archetype. E.g. &lt;value = "String", key = "ISO8601_DATE"&gt; means that if RM property
      * TYPE.some_property is of type String, an ISO8601_DATE is allowed at that position in the archetype.
      */
+    @Nullable
     private Map<String, String> aomRmTypeSubstitutions;
     /**
      * List of mappings of lifecycle state names used in archetypes to AOM lifecycle state names. value = AOM
      * lifecycle state; key = source lifecycle state.
      */
+    @Nullable
     private Map<String, String> aomLifecycleMappings;
 
     /**
      * Mappings from AOM built-in types to actual types in RM: whenever the type name is encountered in
      * an archetype, it is mapped to a specific RM type.
      */
+    @Nullable
     private Map<String, AomTypeMapping> aomRmTypeMappings;
 
+    @Nullable
     private Map<String, String> rmPrimitiveTypeEquivalences;
 
     private AomTerminologyProfile terminologyProfile;

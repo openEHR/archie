@@ -1,7 +1,10 @@
 package com.nedap.archie.aom;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+
+import com.esotericsoftware.kryo.kryo5.util.Null;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -27,8 +30,10 @@ public class OperationalTemplate extends AuthoredArchetype {
      * terminology extracts from subarchetypes, for example snomed codes, multiple choice thingies, etc
      */
     @XmlElement(name="terminology_extracts") //TODO: requires an adapter for JAXB to work
+    @Nullable
     private Map<String, ArchetypeTerminology> terminologyExtracts = new ConcurrentHashMap<>();//TODO: is this correct?
     @XmlElement(name="component_terminologies") //TODO: requires an adapter for JAXB to work
+    @Nullable
     private Map<String, ArchetypeTerminology> componentTerminologies = new ConcurrentHashMap<>();
 
 
