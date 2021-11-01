@@ -20,7 +20,7 @@ public class ExcludeEmptyCollectionsFilter {
             return ((Collection) o).size() == 0;
         }
 
-        if (o.getClass().isArray()) {
+        if (o instanceof Object[]) {
             return ((Object[]) o).length == 0;
         }
 
