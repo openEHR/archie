@@ -1,5 +1,6 @@
 package com.nedap.archie.aom.profile;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 /**
@@ -20,6 +21,7 @@ public class AomTypeMapping {
     /**
      * List of mappings of properties of this type to another type.
      */
+    @Nullable
     private Map<String, AomPropertyMapping> propertyMappings;
 
     /**

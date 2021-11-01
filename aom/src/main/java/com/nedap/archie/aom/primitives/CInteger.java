@@ -3,6 +3,7 @@ package com.nedap.archie.aom.primitives;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.Interval;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -19,7 +20,9 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CInteger extends COrdered<Long> {
     @XmlElement(name="assumed_value")
+    @Nullable
     private Long assumedValue;
+    @Nullable
     private List<Interval<Long>> constraint = new ArrayList<>();
 
     @Override

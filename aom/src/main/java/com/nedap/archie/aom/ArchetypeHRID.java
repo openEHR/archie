@@ -7,6 +7,7 @@ import com.google.common.base.Strings;
 import com.nedap.archie.definitions.VersionStatus;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -32,6 +33,7 @@ import java.util.regex.Pattern;
 })
 public class ArchetypeHRID extends ArchetypeModelObject {
 
+    @Nullable
     private String namespace;
     @XmlAttribute(name="rm_publisher")
     private String rmPublisher;

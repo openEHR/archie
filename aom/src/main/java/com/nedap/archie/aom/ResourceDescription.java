@@ -3,6 +3,7 @@ package com.nedap.archie.aom;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.base.terminology.TerminologyCode;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,20 +16,33 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ResourceDescription extends ArchetypeModelObject {
 
     private Map<String, String> originalAuthor = new ConcurrentHashMap<>();
+    @Nullable
     private String originalNamespace;
+    @Nullable
     private String originalPublisher;
+    @Nullable
     private List<String> otherContributors = new ArrayList<>();
     private TerminologyCode lifecycleState;
+    @Nullable
     private String custodianNamespace;
+    @Nullable
     private String custodianOrganisation;
+    @Nullable
     private String copyright;
+    @Nullable
     private String licence;
+    @Nullable
     private Map<String, String> ipAcknowledgements = new ConcurrentHashMap<>();
+    @Nullable
     private Map<String, String> references = new ConcurrentHashMap<>();
+    @Nullable
     private String resourcePackageUri;
+    @Nullable
     private Map<String, String> conversionDetails = new ConcurrentHashMap<>();
+    @Nullable
     private Map<String, String> otherDetails = new ConcurrentHashMap<>();
 
+    @Nullable
     private Map<String, ResourceDescriptionItem>  details = new ConcurrentHashMap<>();
 
     public Map<String, String> getOriginalAuthor() {

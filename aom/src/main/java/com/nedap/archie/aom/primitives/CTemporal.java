@@ -1,11 +1,14 @@
 package com.nedap.archie.aom.primitives;
 
+import javax.annotation.Nullable;
+
 /**
  * TODO: cConformsTo for temporal and date types
  * Created by pieter.bos on 15/10/15.
  */
 public abstract class CTemporal<T> extends COrdered<T>{
 
+    @Nullable
     private String patternedConstraint;
 
     public String getPatternedConstraint() {
