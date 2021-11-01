@@ -468,7 +468,6 @@ class_definitions = <
 			["namespace"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"namespace">
 				type = <"String">
-				is_mandatory = <True>
 			>
 			["rm_publisher"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"rm_publisher">
