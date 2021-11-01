@@ -183,7 +183,7 @@ public class ModelInfoLookupToPBmmConverter {
 
             PBmmContainerProperty property = new PBmmContainerProperty();
             setBasicsForProperty(attribute, property);
-            property.setCardinality(Interval.upperUnbounded(0, true));
+            //property.setCardinality(Interval.upperUnbounded(0, true));
             PBmmContainerType pBmmType = new PBmmContainerType();
             if(typeInCollection.startsWith("INTERVAL")) {
                 //generics!
@@ -195,11 +195,9 @@ public class ModelInfoLookupToPBmmConverter {
             property.setTypeDef(pBmmType);
             return property;
         } else {
-            PBmmProperty property = new PBmmSingleProperty();
+            PBmmSingleProperty property = new PBmmSingleProperty();
             setBasicsForProperty(attribute, property);
-            PBmmSimpleType pBmmType = new PBmmSimpleType();
-            pBmmType.setType(typeInCollection);
-            property.setTypeDef(pBmmType);
+            property.setType(typeInCollection);
             return property;
         }
     }
