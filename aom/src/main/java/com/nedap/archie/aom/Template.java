@@ -1,5 +1,8 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,8 +18,10 @@ import java.util.List;
 @XmlRootElement(name="archetype")
 public class Template extends AuthoredArchetype {
 
+    @Nullable
     private List<TemplateOverlay> templateOverlays = new ArrayList<>();
 
+    @JsonAlias("overlays")
     public List<TemplateOverlay> getTemplateOverlays() {
         return templateOverlays;
     }
