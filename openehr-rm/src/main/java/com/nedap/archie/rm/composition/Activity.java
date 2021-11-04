@@ -65,6 +65,7 @@ public class Activity extends Locatable {
 
     public void setDescription(ItemStructure description) {
         this.description = description;
+        setThisAsParent(description, "description");
     }
 
     public DvParsable getTiming() {
