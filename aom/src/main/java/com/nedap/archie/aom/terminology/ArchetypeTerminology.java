@@ -6,6 +6,7 @@ import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.utils.AOMUtils;
 
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -35,11 +36,13 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
     private Map<String, Map<String, ArchetypeTerm>> termDefinitions = new ConcurrentHashMap<>();
     //@XmlElement(name="term_bindings")
     @XmlTransient//TODO!
+    @Nullable
     private Map<String, Map<String, URI>> termBindings = new ConcurrentHashMap<>();
     //@XmlElement(name="terminology_extracts")
     @XmlTransient//TODO!
     private Map<String, Map<String, ArchetypeTerm>> terminologyExtracts = new ConcurrentHashMap<>();
     @XmlElement(name="value_sets")
+    @Nullable
     private Map<String, ValueSet> valueSets = new ConcurrentHashMap<>();
 
     @JsonIgnore

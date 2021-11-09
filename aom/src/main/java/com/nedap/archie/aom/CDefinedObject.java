@@ -1,5 +1,6 @@
 package com.nedap.archie.aom;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -13,6 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 public abstract class CDefinedObject<T> extends CObject {
 
     @XmlElement(name="default_value") //TODO: this will not deserialize, it needs possible classes
+    @Nullable
     private T defaultValue;
 
     public T getDefaultValue() {

@@ -35,6 +35,7 @@ import java.util.stream.Collectors;
  */
 public class BmmGenericType extends BmmDefinedType implements Serializable {
 
+
     /**
      * Generic parameters of the root_type in this type specifier. The order must match the order of the owning class’s
      * formal generic parameter declarations.
