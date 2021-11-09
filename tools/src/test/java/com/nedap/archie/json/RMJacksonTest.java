@@ -1,14 +1,16 @@
 package com.nedap.archie.json;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Composition;
+import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 
 import java.io.InputStream;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -76,5 +78,57 @@ public class RMJacksonTest {
 
         String s = objectMapper.writeValueAsString(dvDuration);
         assertTrue(s.contains("-P10Y10DT12H20S"));
+    }
+
+    @Test
+    public void emptyDvTextIsIcnluded() throws JsonProcessingException {
+        RMJacksonConfiguration configuration = new RMJacksonConfiguration();
+        configuration.setSerializeEmptyCollections(false);
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
+        DvText dvText = new DvText("");
+
+
+        String actualJson = objectMapper.writeValueAsString(dvText);
+        assertEquals(
+                        removeWhiteSpaces("{\n"
+                                + "  \"@type\" : \"DV_TEXT\",\n"
+                                + "  \"value\" : \"\"\n"
+                                + "}"), removeWhiteSpaces(actualJson));
+    }
+
+    @Test
+    public void emptyCollectionIsNotIncluded() throws JsonProcessingException {
+        RMJacksonConfiguration configuration = new RMJacksonConfiguration();
+        configuration.setSerializeEmptyCollections(false);
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
+        DvText dvText = new DvText("");
+        dvText.setMappings(new ArrayList<>());
+
+
+        String actualJson = objectMapper.writeValueAsString(dvText);
+        assertEquals(
+                removeWhiteSpaces("{\n"
+                        + "  \"@type\" : \"DV_TEXT\",\n"
+                        + "  \"value\" : \"\"\n"
+                        + "}"), removeWhiteSpaces(actualJson));
+    }
+
+    @Test
+    public void emptyCollectionInCollection() throws JsonProcessingException {
+        RMJacksonConfiguration configuration = new RMJacksonConfiguration();
+        configuration.setSerializeEmptyCollections(false);
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
+        Map<String, Map<String, String>> map = new LinkedHashMap<>();
+        map.put("test", new LinkedHashMap<>());
+
+
+        String actualJson = objectMapper.writeValueAsString(map);
+        assertEquals(
+                removeWhiteSpaces("{\"test\":{}}"),
+                removeWhiteSpaces(actualJson));
+    }
+
+    String removeWhiteSpaces(String input) {
+        return input.replaceAll("\\s+", "");
     }
 }
