@@ -1,0 +1,235 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated)
+    openEHR-EHR-ADMIN_ENTRY.care_preference_uk.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"Ocean Informatics, UK">
+        ["email"] = <"ian.mcnicoll@oceaninformatics.com">
+        ["date"] = <"2013-10-18">
+    >
+    lifecycle_state = <"AuthorDraft">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"C5960D7D916C7B842999F533023D6EF3">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the subject's preferred locations of care, in the context of long-term condiitons or end of life care, and other special requests.">
+            use = <"">
+            misuse = <"">
+            copyright = <"© Clinical Models UK">
+        >
+    >
+
+definition
+    ADMIN_ENTRY[id1] matches {    -- Preferred priorities of care
+        data matches {
+            ITEM_TREE[id2] matches {    -- Tree
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id4] occurrences matches {0..2} matches {    -- Preferred place of care
+                        name matches {
+                            DV_CODED_TEXT[id9004] matches {
+                                defining_code matches {[ac9000]}    -- Preferred place of care (synthesised)
+                            }
+                        }
+                        value matches {
+                            DV_CODED_TEXT[id9005] matches {
+                                defining_code matches {[ac9001]}    -- Preferred place of care (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id16] occurrences matches {0..2} matches {    -- Preferred place of death
+                        name matches {
+                            DV_CODED_TEXT[id9006] matches {
+                                defining_code matches {[ac9002]}    -- Preferred place of death (synthesised)
+                            }
+                        }
+                        value matches {
+                            DV_CODED_TEXT[id9007] matches {
+                                defining_code matches {[ac9003]}    -- Preferred place of death (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id31] matches {    -- Personal or cultural requests
+                        value matches {
+                            DV_TEXT[id9008] 
+                        }
+                    }
+                    ELEMENT[id27] occurrences matches {0..1} matches {    -- Date last updated
+                        value matches {
+                            DV_DATE_TIME[id9009] 
+                        }
+                    }
+                    ELEMENT[id30] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            DV_TEXT[id9010] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Preferred place of care (synthesised)">
+                description = <"The subject's preferred place of care. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Preferred place of care (synthesised)">
+                description = <"The subject's preferred place of care. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Preferred place of death (synthesised)">
+                description = <"The subject's preferred place of death (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Preferred place of death (synthesised)">
+                description = <"The subject's preferred place of death (synthesised)">
+            >
+            ["id31"] = <
+                text = <"Personal or cultural requests">
+                description = <"Other specifc requests or preferences.">
+            >
+            ["id30"] = <
+                text = <"Comment">
+                description = <"Any additional comments about the subject's place of care preferences">
+            >
+            ["at29"] = <
+                text = <"Preferred place of death (second choice)">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Preferred place of death (first choice)">
+                description = <"*">
+            >
+            ["id27"] = <
+                text = <"Date last updated">
+                description = <"The date that the preferences were first stated or last updated.">
+            >
+            ["at26"] = <
+                text = <"Preferred place of death: patient undecided">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Preferred place of death: discussion not appropriate">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Preferred place of death discussed with patient">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Preferred place of death: patient unable to express preference">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"Preferred place of death: residential home">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Preferred place of death: nursing home">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Preferred place of death: hospital">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Preferred place of death: community hospital">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Preferred place of death: hospice">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Preferred place of death: home">
+                description = <"*">
+            >
+            ["id16"] = <
+                text = <"Preferred place of death">
+                description = <"The subject's preferred place of death">
+            >
+            ["at15"] = <
+                text = <"Preferred place of care - patient unable to express preference">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Preferred place of care - discussion not appropriate">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Preferred place of care - patient declined to participate">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Preferred place of care - residential home">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Preferred place of care - nursing home">
+                description = <"*">
+            >
+            ["at10"] = <
+                text = <"Preferred place of care - hospital">
+                description = <"*">
+            >
+            ["at9"] = <
+                text = <"Preferred place of care - community hospital">
+                description = <"*">
+            >
+            ["at8"] = <
+                text = <"Preferred place of care - hospice">
+                description = <"*">
+            >
+            ["at7"] = <
+                text = <"Preferred place of care - home">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"Preferred place of care (second choice)">
+                description = <"*">
+            >
+            ["at5"] = <
+                text = <"Preferred place of care (first choice)">
+                description = <"Preferred place of care (first choice)">
+            >
+            ["id4"] = <
+                text = <"Preferred place of care">
+                description = <"The subject's preferred place of care.">
+            >
+            ["id2"] = <
+                text = <"Tree">
+                description = <"@ internal @">
+            >
+            ["id1"] = <
+                text = <"Preferred priorities of care">
+                description = <"The subject's preferred priorities of care and special requests.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at28", "at29">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at7", "at8", "at9", "at10", "at11", "at12", "at13", "at14", "at15">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at5", "at6">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at17", "at18", "at19", "at20", "at21", "at22", "at23", "at24", "at25", "at26">
+        >
+    >

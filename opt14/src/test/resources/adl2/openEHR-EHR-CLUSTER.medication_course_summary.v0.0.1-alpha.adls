@@ -1,0 +1,195 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=c5a66d77-2a93-4d0d-9f55-10ac3df59b05; build_uid=01ee809e-809a-478a-97bb-445cdad67233)
+    openEHR-EHR-CLUSTER.medication_course_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"ian@freshehr.com">
+        ["date"] = <"2015-11-01">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Medication item, Draft Archetype [Internet]. UK Clinical Models, UK Clinical Models Clinical Knowledge Manager [cited: 2015-11-01]. Available from: http://clinicalmodels.org.uk/ckm/#showArchetype_1051.32.3">
+        ["2"] = <"Medication event summary, Draft Archetype [Internet]. UK Clinical Models, UK Clinical Models Clinical Knowledge Manager [cited: 2015-11-01]. Available from: http://clinicalmodels.org.uk/ckm/#showArchetype_1051.32.140">
+        ["3"] = <"Medication order status valueset[Internet]. HL7 FHIR , HL7 FHIR DSTU2 [cited: 2015-11-01]. Available from https://www.hl7.org/fhir/valueset-medication-order-status.html">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"1E7D6F795F76E5D62071822152161AFE">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To provide an overall summary of the status and key dates, related to a medication order.">
+            use = <"Use within the context of a medication order Instruction where a summary of the overallcourse is required. This will normally be where the order is is being used within the context of a medicaton summary list, and not  in the context of an orderable prescription record, where medication ctions will normally carry the primary record of the status of the order and key date information.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Medication course summary
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Course status
+                value matches {
+                    DV_CODED_TEXT[id9002] matches {
+                        defining_code matches {[ac9000]}    -- Course status (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id3] matches {    -- Key course dates
+                name matches {
+                    DV_CODED_TEXT[id9003] matches {
+                        defining_code matches {[ac9001]}    -- Key course dates (synthesised)
+                    }
+                }
+                value matches {
+                    DV_DATE_TIME[id9004] 
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Course status (synthesised)">
+                description = <"The overall status of this order. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Key course dates (synthesised)">
+                description = <"Key medication event dates. (synthesised)">
+            >
+            ["at28"] = <
+                text = <"Draft">
+                description = <"The medication order has been made but further processes e.g. sign-off or verification are required before it becomes actionable.">
+            >
+            ["at27"] = <
+                text = <"Suspended">
+                description = <"Actions reuulting from the order are to be temporarily halted, but are expected to continue later. May also be called 'on-hold'.">
+            >
+            ["at26"] = <
+                text = <"Obsolete">
+                description = <"This medication order has been superseded by another.">
+            >
+            ["at25"] = <
+                text = <"Completed">
+                description = <"The medication course has been completed.">
+            >
+            ["at24"] = <
+                text = <"Never active">
+                description = <"A medication which was ordered or authorised but has been cancelled prior to being issued, dispensed or adiminstered.">
+            >
+            ["at23"] = <
+                text = <"Stopped">
+                description = <"This is a medication that has previously been issued, dispensed or administered but has now been discontinued.">
+            >
+            ["at22"] = <
+                text = <"Active">
+                description = <"This is an active medication.">
+            >
+            ["at21"] = <
+                text = <"Date changed">
+                description = <"The date at which the medication instruction was modified.">
+            >
+            ["at20"] = <
+                text = <"Date last reviewed">
+                description = <"The date at which the medication order was last reviewed.">
+            >
+            ["at19"] = <
+                text = <"Date reviewed">
+                description = <"The date at which the medication order was reviewed.">
+            >
+            ["at18"] = <
+                text = <"Date administration withheld">
+                description = <"The data at which administration of a medication was withheld or suspended.">
+            >
+            ["at17"] = <
+                text = <"Date administered">
+                description = <"The date at which a medication was administered.">
+            >
+            ["at16"] = <
+                text = <"Date dispensed">
+                description = <"The date at which a medication was dispensed.">
+            >
+            ["at15"] = <
+                text = <"Date prescription issued">
+                description = <"The date at which a medication prescription was issued i.e the physical or electronic prescription token was created.">
+            >
+            ["at14"] = <
+                text = <"Date authorised">
+                description = <"The date at which the medication was authorised or re-authorised.">
+            >
+            ["at13"] = <
+                text = <"Date discontinued">
+                description = <"The date at which the medication was discontinued.">
+            >
+            ["at12"] = <
+                text = <"Date last administered">
+                description = <"The date at which the medication was last administered.">
+            >
+            ["at11"] = <
+                text = <"Date first administered">
+                description = <"The date at which the medication was first administered to the patient.">
+            >
+            ["at10"] = <
+                text = <"Date last dispensed">
+                description = <"The date at which the medication was last dispensed.">
+            >
+            ["at9"] = <
+                text = <"Date first dispensed">
+                description = <"The date at which the medicaton was first physically dispensed.">
+            >
+            ["at8"] = <
+                text = <"Date last authorised">
+                description = <"The data at which the medication was last authorised.The date at which the medication was first authorised.For a repeat prescription, authorisation refers to the creation of the repeat prescription 'master' which is followed by the production of one or more prescription issues. Authorisation is generally only given for a limited period or limited number of issues, after which re-authorisation is required.">
+            >
+            ["at7"] = <
+                text = <"Date first authorised">
+                description = <"The date at which the medication was first authorised.For a repeat prescription, authorisation refers to the creation of the repeat prescription 'master' which is followed by the production of one or more prescription issues.">
+            >
+            ["at6"] = <
+                text = <"Date last prescription issued">
+                description = <"The date at which the medication prescription was last issued. This refers to the prescription 'token' electronic or paper which authorises supply of a medication.">
+            >
+            ["at5"] = <
+                text = <"Date first prescription issued">
+                description = <"The date at which the medication was first issued. 'Issued' refers to the prescription 'token' electronic or paper which authorises supply of a medication.">
+            >
+            ["at4"] = <
+                text = <"Date ordered/recommended">
+                description = <"The data at which the medication course was first ordered or recommended.">
+            >
+            ["id3"] = <
+                text = <"Key course dates">
+                description = <"Key medication event dates.">
+            >
+            ["id2"] = <
+                text = <"Course status">
+                description = <"The overall status of this order.">
+            >
+            ["id1"] = <
+                text = <"Medication course summary">
+                description = <"Overall summary of the medication course.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at4", "at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13", "at14", "at15", "at16", "at17", "at18", "at19", "at20", "at21">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at22", "at23", "at24", "at25", "at26", "at27", "at28">
+        >
+    >

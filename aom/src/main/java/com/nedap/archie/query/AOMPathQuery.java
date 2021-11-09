@@ -13,6 +13,7 @@ import com.nedap.archie.paths.PathUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -198,23 +199,36 @@ public class AOMPathQuery {
     }
 
     protected ArchetypeModelObject findOneMatchingObject(CAttribute attribute, PathSegment pathSegment, boolean matchSpecializedNodes) {
-        if (pathSegment.hasIdCode() || pathSegment.hasArchetypeRef()) {
+        List<ArchetypeModelObject> result = new ArrayList<>();
+
+        if (pathSegment.hasIdCode()) {
             if(matchSpecializedNodes) {
                 return attribute.getPossiblySpecializedChild(pathSegment.getNodeId());
             }
             return attribute.getChild(pathSegment.getNodeId());
+        } else if (pathSegment.hasArchetypeRef()) {
+            List<CObject> children = attribute.getChildrenByArchetypeRef(pathSegment.getNodeId());
+            if(pathSegment.getObjectNameConstraint() != null) {
+                for(CObject child:children) {
+                    if(Objects.equals(pathSegment.getObjectNameConstraint(), child.getMeaning())) {
+                        return child;
+                    }
+                }
+            }
+            if(!children.isEmpty()) {
+                return children.get(0);
+            }
+            return null;
         } else if (pathSegment.hasNumberIndex()) {
             // APath path numbers start at 1 instead of 0
             int index = pathSegment.getIndex() - 1;
             return index < attribute.getChildren().size() ? attribute.getChildren().get(index) : null;
-        } else if (pathSegment.getNodeId() != null) {
-            return attribute.getChildByMeaning(pathSegment.getNodeId());//TODO: the ANTLR grammar removes all whitespace. what to do here?
+        } else if (pathSegment.getObjectNameConstraint() != null) {
+            return attribute.getChildByMeaning(pathSegment.getObjectNameConstraint());//TODO: the ANTLR grammar removes all whitespace. what to do here?
         } else {
             return attribute;
         }
     }
-
-    //TODO: get diagnostic information about where the finder stopped in the path - could be very useful!
 
 
     public List<PathSegment> getPathSegments() {

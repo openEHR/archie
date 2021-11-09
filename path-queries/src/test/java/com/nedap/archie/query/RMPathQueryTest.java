@@ -2,6 +2,7 @@ package com.nedap.archie.query;
 
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
+import com.nedap.archie.rm.datavalues.DvText;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -73,5 +74,24 @@ public class RMPathQueryTest {
         cluster.addItem(elementAt0002_3);
         assertEquals(elementAt0001, cluster.itemAtPath("/items[at0001]"));
         assertEquals(elementAt0002_3, cluster.itemAtPath("/items[at0002.3]"));
+    }
+
+    @Test
+    public void andNameIs() {
+        Cluster cluster = new Cluster();
+        cluster.setArchetypeNodeId("at0000");
+        cluster.setName(new DvText("my name"));
+        Element elementAt0001 = new Element();
+        elementAt0001.setName(new DvText("some element"));
+        elementAt0001.setArchetypeNodeId("at0001");
+        Element elementAt0001_2 = new Element();
+        elementAt0001_2.setName(new DvText("some other element"));
+        elementAt0001_2.setArchetypeNodeId("at0001");
+
+        cluster.addItem(elementAt0001);
+        cluster.addItem(elementAt0001_2);
+        APathQuery query = new APathQuery("/items[at0001 and name/value='some element']");
+        assertEquals(elementAt0001, cluster.itemAtPath("/items[at0001 and name/value='some element']"));
+        assertEquals(elementAt0001_2, cluster.itemAtPath("/items[at0001 and name/value='some other element']"));
     }
 }
