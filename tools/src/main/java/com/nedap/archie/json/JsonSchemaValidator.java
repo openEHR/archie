@@ -58,9 +58,8 @@ public class JsonSchemaValidator {
                 .withBaseUri("http://something/")
                 //the validator can actually handle a schema split in multiple files, but
                 //Justify's implementation is not perfect, causing some extra memory use that might be better to avoid.
-                .splitInMultipleFiles(true)
+                .splitInMultipleFiles(false)
                 .withFullReferences(true)
-                .withJsonSchemaUriProvider(new ItsJsonUriProvider("http://something/", "main.json"))
                 .create(bmmModel)
                 .forEach( (uri, schema) -> schemaFiles.put(uri.getId(), schema));
         //The first entry in schemaFiles is guaranteed to be the main schema by the JSONSchemaCreator.
