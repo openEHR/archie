@@ -2,6 +2,8 @@ package com.nedap.archie.json;
 
 import com.google.common.base.Charsets;
 import org.leadpony.justify.api.JsonSchema;
+import org.leadpony.justify.api.JsonSchemaReader;
+import org.leadpony.justify.api.JsonSchemaReaderFactory;
 import org.leadpony.justify.api.JsonValidationService;
 import org.leadpony.justify.api.Problem;
 import org.leadpony.justify.api.ProblemHandler;
@@ -12,8 +14,12 @@ import jakarta.json.JsonReader;
 import jakarta.json.JsonStructure;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -27,7 +33,15 @@ import java.util.List;
  */
 public class JsonSchemaValidator {
 
+    /** The generated json schema files, in memory */
+    private final Map<String, JsonObject> schemaFiles;
+    /** a cache of earlier resolved schemas, to not cause too many performance problems */
+    private final Map<String, JsonSchema> resolvedSchemas = new LinkedHashMap<>();
+    /** the single resolved schema */
     JsonSchema schema;
+
+    private JsonSchemaReaderFactory readerFactory;
+    private JsonValidationService service;
 
     /**
      * Creates a JsonSchemaValidator that validates against the json schema created from the given Bmm Model
@@ -38,12 +52,65 @@ public class JsonSchemaValidator {
      * @param allowAdditionalProperties whether to allow additional properties in the JSON
      */
     public JsonSchemaValidator(BmmModel bmmModel, boolean allowAdditionalProperties) {
-        JsonObject schemaJson = new JSONSchemaCreator().allowAdditionalProperties(allowAdditionalProperties).create(bmmModel);
+        schemaFiles = new LinkedHashMap<>();
+        new JSONSchemaCreator()
+                .allowAdditionalProperties(allowAdditionalProperties)
+                .withBaseUri("http://something/")
+                //the validator can actually handle a schema split in multiple files, but
+                //Justify's implementation is not perfect, causing some extra memory use that might be better to avoid.
+                .splitInMultipleFiles(false)
+                .withFullReferences(true)
+                .create(bmmModel)
+                .forEach( (uri, schema) -> schemaFiles.put(uri.getId(), schema));
+        //The first entry in schemaFiles is guaranteed to be the main schema by the JSONSchemaCreator.
+        JsonObject schemaJson = schemaFiles.values().iterator().next();
 
-        JsonValidationService service = JsonValidationService.newInstance();
-        schema = service.readSchema(createByteArrayInputStream(schemaJson.toString()));
+
+        service = JsonValidationService.newInstance();
+        //the following is for multi-file validation only, and can be skipped altogether to validate just a single-file
+        //schema
+        readerFactory = service
+                .createSchemaReaderFactoryBuilder()
+                .withSchemaResolver(this::resolveSchema)
+                .build();
+
+        try (JsonSchemaReader schemaReader = readerFactory
+                .createSchemaReader(createByteArrayInputStream(schemaJson.toString()))) {
+            schema = schemaReader.read();
+        }
 
     }
+
+
+    /**
+     * Resolves the referenced JSON schema.
+     *
+     * @param uri the identifier of the referenced JSON schema.
+     * @return referenced JSON schema.
+     */
+    private JsonSchema resolveSchema(URI uri) {
+
+        String filename = uri.toString().split("#")[0];
+        JsonSchema resolvedSchema = resolvedSchemas.get(filename);
+        if(resolvedSchema != null) {
+            return resolvedSchema;
+        }
+        JsonObject schema = schemaFiles.get(filename);
+        if ( schema == null ) {
+            return null;
+        }
+        try (JsonSchemaReader reader = readerFactory.createSchemaReader(createByteArrayInputStream(schema.toString()))) {
+            resolvedSchema = reader.read();
+            //this caching approach is not perfect: as part of reader.read(), it will call this same function again to
+            //resolve any referenced schemas, before returning frmo reader.read().
+            //this can mean the result is not yet cached, and will be generated twice. Not something that can be easily fixed
+            // however if no cache is used at all, there will be OutOfMemoryExceptions or very long runtime.
+            resolvedSchemas.put(filename, resolvedSchema);
+            return resolvedSchema;
+        }
+
+    }
+
 
     private ByteArrayInputStream createByteArrayInputStream(String json) {
         return new ByteArrayInputStream(json.getBytes(Charsets.UTF_8));
@@ -57,7 +124,6 @@ public class JsonSchemaValidator {
      */
     public List<Problem> validate(String json) throws IOException {
 
-        JsonValidationService service = JsonValidationService.newInstance();
         List<Problem> allProblems = new ArrayList<>();
         ProblemHandler problemHandler = new ProblemHandler() {
             @Override
