@@ -12,7 +12,7 @@ plugins {
     id 'base'
 }
 
-description = "tools that operate on the archie reference models and archetype object model"
+description = "A tool that generates the official ITS-JSON json schema from the BMM files"
 
 import com.nedap.archie.json.JSONSchemaCreator;
 import com.nedap.archie.json.JsonSchemaUriProvider;
@@ -99,10 +99,6 @@ abstract class JsonSchemaCreationTask extends DefaultTask {
                 }
             }
             fileName = split[split.length-1];
-         //   def directory = versionDir.dir(outputDir)
-          //  if(!directory.getAsFile().exists()) {
-           //     directory.getAsFile().mkdir();
-           // }
             versionDir.file(fileName).getAsFile().withWriter { writer ->
                 jsonWriterFactory.createWriter(writer).write(schema);
             }

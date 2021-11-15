@@ -75,7 +75,7 @@ public class ItsJsonUriProvider implements JsonSchemaUriProvider {
         }
 
         for(String name:names.keySet()) {
-            if(fullPath.contains(name)) {
+            if(fullPath.startsWith(name)) {
                 return prefix + names.get(name) + "/";
             }
         }
@@ -83,13 +83,6 @@ public class ItsJsonUriProvider implements JsonSchemaUriProvider {
     }
 
     public JsonSchemaUri provideJsonSchemaUrl(BmmClass bmmClass) {
-//        return new JsonSchemaUri(baseUri, bmmClass.getPackagePath() + ".json");
-//        System.out.println(bmmClass.getPackage().getFullPath());
-//        System.out.println(bmmClass.getName());
-//        System.out.println(bmmClass.getBmmModel().getSchemaName());
-//        System.out.println(bmmClass.getSourceSchemaId());
-//        System.out.println(getName(bmmClass) + bmmClass.getName() + ".json");
-
         return new JsonSchemaUri(baseUri, getName(bmmClass) + bmmClass.getName() + ".json");
     }
 

@@ -115,23 +115,23 @@ public class JSONSchemaCreator {
             allOfArray.add(ifObject);
         }
 
-        Map<JsonSchemaUri, SchemaBuilder> schemas = new LinkedHashMap<>();
+        Map<JsonSchemaUri, SchemaBuilder> schemaBuilders = new LinkedHashMap<>();
 
         SchemaBuilder mainSchemaBuilder = new SchemaBuilder(mainFileName);
-        schemas.put(mainFileName, mainSchemaBuilder);
+        schemaBuilders.put(mainFileName, mainSchemaBuilder);
         mainSchemaBuilder.getSchema().add("allOf", allOfArray);
 
         for(BmmClass bmmClass: bmm.getClassDefinitions().values()) {
             if (!bmmClass.isAbstract() && !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase())) {
-                SchemaBuilder schema = getOrCreateDefinitions(schemas, bmmClass);
+                SchemaBuilder schema = getOrCreateDefinitions(schemaBuilders, bmmClass);
                 schema.getDefinitions().add(BmmDefinitions.typeNameToClassKey(bmmClass.getName()), createClass(bmmClass));
             }
         }
 
         Map<JsonSchemaUri, JsonObject> result = new LinkedHashMap<>();
         //put the main schema first
-        for(SchemaBuilder schema:schemas.values()) {
-            result.put(schema.getUri(), schema.build());
+        for(SchemaBuilder schemaBuilder:schemaBuilders.values()) {
+            result.put(schemaBuilder.getUri(), schemaBuilder.build());
         }
 
         return result;
@@ -400,7 +400,7 @@ public class JSONSchemaCreator {
         } else {
             JsonSchemaUri typeFileName = uriProvider.provideJsonSchemaUrl(bmmClass);
             if(typeFileName == null) {
-                throw new RuntimeException();
+                throw new RuntimeException("The URI Provider in the json schema creator returned null; that is not allowed");
             }
             if(typeFileName.equals(packageFileName)) {
                 return jsonFactory.createObjectBuilder().add("$ref", "#/definitions/" + type);
