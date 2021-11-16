@@ -17,12 +17,10 @@ import com.nedap.archie.json.JsonSchemaValidator;
 import com.nedap.archie.json.RMJacksonConfiguration;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Test;
 import org.leadpony.justify.api.Problem;
 import org.openehr.bmm.core.BmmModel;
@@ -52,7 +50,7 @@ public class ExampleJsonInstanceGeneratorTest {
 
         Map<String, Object> structure = structureGenerator.generate(opt);
         String s = serializeToJson(structure, true);
-        System.out.println(s);
+        //System.out.println(s);
 
         Map<String, Object> data = (Map<String, Object>) structure.get("data");
         assertEquals("HISTORY", data.get(TYPE_PROPERTY_NAME));
@@ -185,18 +183,17 @@ public class ExampleJsonInstanceGeneratorTest {
                         jsonSchemaValidationFailed++;
                         continue;
                     }
+
                     //logger.info("first validation ok for {}", result.getArchetypeId());
 
                     String serializedAgain = archieObjectMapper.writeValueAsString(parsed);
                     secondJsonSchemaValidationRan++;
                     List<Problem> secondProblems = secondValidator.validate(serializedAgain);
-
                     if(secondProblems.size() > 0) {
                         logger.error("second validation failed for {}", result.getArchetypeId());
                         logger.error(Joiner.on("\n").join(secondProblems));
                         reserializedJsonSchemaValidationFailed++;
-                    } else {
-                       // logger.info("second validation ok for {}", result.getArchetypeId());
+                        continue;
                     }
 
                 } catch (Exception e) {
