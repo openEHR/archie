@@ -8,6 +8,8 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.ResourceDescription;
+import com.nedap.archie.aom.Template;
+import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.aom.primitives.CDuration;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.primitives.ConstraintStatus;
@@ -185,7 +187,6 @@ public class JAXBAOMTest {
         assertEquals("second test value", unmarshalled.getOtherMetaData().get("second test key"));
     }
 
-
     @Test
     public void opt2Xml() throws Exception {
         //create an empty archetype
@@ -219,8 +220,6 @@ public class JAXBAOMTest {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(opt2, writer);
 
-        System.out.println(writer);
-
         assertTrue(writer.toString().contains("<component_terminologies archetype_id=\"openEHR-EHR-CLUSTER.non_existing_test-archetype.v1.0.0\">\n" +
                 "        <term_definitions language=\"en\">\n" +
                 "            <items id=\"id2\">\n" +
@@ -234,6 +233,63 @@ public class JAXBAOMTest {
         OperationalTemplate unmarshalled = (OperationalTemplate) unmarshaller.unmarshal(new StringReader(writer.toString()));
         assertEquals(terms.get("id2").getText(), unmarshalled.getComponentTerminologies().get("openEHR-EHR-CLUSTER.non_existing_test-archetype.v1.0.0").getTermDefinition("en", "id2").getText());
         assertEquals(terms.get("id2").getText(), unmarshalled.getTerminologyExtracts().get("openEHR-EHR-CLUSTER.non_existing_test-archetype_2.v1.0.0").getTermDefinition("en", "id2").getText());
+
+    }
+
+    @Test
+    public void templateXml() throws Exception {
+        //create an empty archetype
+        Template template = new Template();
+        template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-ELEMENT.test.v0.0.1"));
+        ResourceDescription resourceDescription = new ResourceDescription();
+        template.setDescription(resourceDescription);
+
+        template.setOriginalLanguage(TerminologyCode.createFromString("[ISO_639-1::en]"));
+        elementRootNode = new CComplexObject();
+        elementRootNode.setNodeId("id1");
+        elementRootNode.setRmTypeName("ELEMENT");
+        valueAttribute = new CAttribute("value");
+        elementRootNode.addAttribute(valueAttribute);
+        archetype.setDefinition(elementRootNode);
+        ArchetypeTerminology terminology = new ArchetypeTerminology();
+        terminology.setOwnerArchetype(template);
+        Map<String, ArchetypeTerm> terms = new LinkedHashMap<>();
+        terms.put("id2", new ArchetypeTerm("id2", "test term", "test term"));
+        terminology.getTermDefinitions().put("en", terms);
+        template.setTerminology(terminology);
+
+        TemplateOverlay overlay = new TemplateOverlay();
+        overlay.setArchetypeId(new ArchetypeHRID("openEHR-EHR-ELEMENT.test.v0.0.1"));
+        overlay.setParentArchetypeId("openEHR-EHR-ELEMENT.parent.v0.0.1");
+        ResourceDescription overlayResourceDescription = new ResourceDescription();
+        overlay.setDescription(overlayResourceDescription);
+        overlay.setDefinition(new CComplexObject());
+        overlay.getDefinition().setNodeId("id1.1");
+        overlay.setOriginalLanguage(TerminologyCode.createFromString("[ISO_639-1::en]"));
+
+        template.addTemplateOverlay(overlay);
+
+        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        StringWriter writer = new StringWriter();
+
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(template, writer);
+
+        assertTrue(writer.toString().contains(" <template_overlay is_generated=\"false\" is_differential=\"false\">\n" +
+                "        <description/>\n" +
+                "        <original_language>\n" +
+                "            <terminology_id>ISO_639-1</terminology_id>\n" +
+                "            <code_string>en</code_string>\n" +
+                "        </original_language>\n" +
+                "        <archetype_id concept_id=\"test\" rm_publisher=\"openEHR\" rm_package=\"EHR\" rm_class=\"ELEMENT\" release_version=\"0.0.1\" version_status=\"RELEASED\" build_count=\"\"/>\n" +
+                "        <parent_archetype_id>openEHR-EHR-ELEMENT.parent.v0.0.1</parent_archetype_id>\n" +
+                "        <definition node_id=\"id1.1\"/>\n" +
+                "    </template_overlay>"));
+
+        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Template unmarshalled = (Template) unmarshaller.unmarshal(new StringReader(writer.toString()));
+        assertEquals("one template overlay should have been unmarshalled", 1, unmarshalled.getTemplateOverlays().size());
+        assertEquals("openEHR-EHR-ELEMENT.test.v0.0.1", unmarshalled.getTemplateOverlays().get(0).getArchetypeId().getFullId());
 
     }
 
