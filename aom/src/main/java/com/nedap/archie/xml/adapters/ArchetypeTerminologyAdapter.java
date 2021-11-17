@@ -36,6 +36,9 @@ public class ArchetypeTerminologyAdapter extends XmlAdapter<XmlArchetypeTerminol
         xmlTerminology.setTermDefinitions(convertIntoCodeDefinitionSetList(terminology.getTermDefinitions()));
         xmlTerminology.setTermBindings(convertIntoTermBindingSetList(terminology.getTermBindings()));
         xmlTerminology.setValueSets(convertIntoValueSetList(terminology.getValueSets()));
+        if(terminology.getOwnerArchetype() != null && terminology.getOwnerArchetype().getArchetypeId() != null) {
+            xmlTerminology.setArchetypeId(terminology.getOwnerArchetype().getArchetypeId().toString());
+        }
         return xmlTerminology;
     }
 

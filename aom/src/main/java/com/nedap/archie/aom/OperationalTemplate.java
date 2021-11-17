@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="OPERATIONAL_TEMPLATE")
-@XmlRootElement(name="archetype")
+@XmlRootElement(name="operational_template")
 public class OperationalTemplate extends AuthoredArchetype {
 
     /**

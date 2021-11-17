@@ -42,7 +42,6 @@ import java.util.stream.Collectors;
  *
  * Created by pieter.bos on 15/10/15.
  */
-@XmlRootElement(name="archetype")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ARCHETYPE", propOrder = {
         "archetypeId",
