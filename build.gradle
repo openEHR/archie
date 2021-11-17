@@ -56,7 +56,7 @@ subprojects {
     compile 'com.google.guava:guava:31.0.1-jre'
 
     compile "org.reflections:reflections:${reflectionsVersion}"
-    compile 'com.esotericsoftware.kryo:kryo5:5.1.1'
+    compile 'com.esotericsoftware.kryo:kryo5:5.2.0'
 
     compile('commons-io:commons-io:2.11.0'){
       exclude group: 'commons-logging', module: 'commons-logging'
