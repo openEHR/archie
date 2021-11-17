@@ -12,7 +12,7 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="TEMPLATE")
-@XmlRootElement(name="archetype")
+@XmlRootElement(name="template")
 public class Template extends AuthoredArchetype {
 
     private List<TemplateOverlay> templateOverlays = new ArrayList<>();
