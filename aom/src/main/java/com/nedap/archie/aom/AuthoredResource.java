@@ -41,6 +41,7 @@ public abstract class AuthoredResource extends ArchetypeModelObject {
 
     private LanguageSection content = new LanguageSection();
 
+    @Nullable
     private ResourceAnnotations annotations;
 
     @XmlElement(name="is_controlled")

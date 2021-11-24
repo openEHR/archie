@@ -4,6 +4,7 @@ package com.nedap.archie.aom;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlType;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
      * The members List of CSecondOrder contains the attribute names.
      */
 
+    @Nullable
     private List<CPrimitiveTuple> tuples = new ArrayList<>();
 
     public List<CPrimitiveTuple> getTuples() {
