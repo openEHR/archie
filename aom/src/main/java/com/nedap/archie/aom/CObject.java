@@ -1,5 +1,6 @@
 package com.nedap.archie.aom;
 
+import com.esotericsoftware.kryo.kryo5.util.Null;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
@@ -10,6 +11,7 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.paths.PathSegment;
 import org.openehr.utils.message.I18n;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -40,6 +42,7 @@ public abstract class CObject extends ArchetypeConstraint {
     @XmlAttribute(name="rm_type_name")
     private String rmTypeName;
     @XmlElement(name="occurrences")
+    @Nullable
     private MultiplicityInterval occurrences;
     @XmlAttribute(name="node_id")
     private String nodeId;
@@ -47,6 +50,7 @@ public abstract class CObject extends ArchetypeConstraint {
     private Boolean deprecated;
 
     @XmlElement(name="sibling_order")
+    @Nullable
     private SiblingOrder siblingOrder;
 
 
