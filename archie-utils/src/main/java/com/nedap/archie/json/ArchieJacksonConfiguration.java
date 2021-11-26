@@ -10,6 +10,7 @@ public class ArchieJacksonConfiguration {
     private boolean failOnUnknownProperties = false;
     private boolean serializeEmptyCollections = true;
     private boolean archetypeBooleanIsPrefix = true;
+    private boolean addPatternConstraintTypo = false;
 
     public ArchieJacksonConfiguration() {
 
@@ -98,6 +99,23 @@ public class ArchieJacksonConfiguration {
      */
     public boolean isArchetypeBooleanIsPrefix() {
         return archetypeBooleanIsPrefix;
+    }
+
+    /**
+     * Return whether pattern constraint should be named patterned constraint for backwards compatibility
+     * @return whether pattern constraint should be named patterned constraint for backwards compatibility
+     */
+    public boolean isAddPatternConstraintTypo() {
+        return addPatternConstraintTypo;
+    }
+
+    /**
+     * Set whether pattern constraint should be named patterned constraint for backwards compatibility
+     * @param addPatternConstraintTypo whether pattern constraint should be named patterned constraint for backwards compatibility
+     */
+
+    public void setAddPatternConstraintTypo(boolean addPatternConstraintTypo) {
+        this.addPatternConstraintTypo = addPatternConstraintTypo;
     }
 
     @Override

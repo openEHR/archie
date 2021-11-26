@@ -21,6 +21,7 @@ import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.AuthoredResource;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.primitives.CTemporal;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
@@ -117,11 +118,15 @@ public class JacksonUtil {
             module.setMixInAnnotation(Pathable.class, DontSerializePathMixin.class);
         }
         if(configuration.isArchetypeBooleanIsPrefix()) {
-            module.setMixInAnnotation(Archetype.class, ArchetypeMixin.class);
-            module.setMixInAnnotation(ArchetypeSlot.class, ArchetypeSlotMixin.class);
-            module.setMixInAnnotation(AuthoredResource.class, AuthoredResourceMixin.class);
-            module.setMixInAnnotation(CObject.class, CObjectMixin.class);
-            module.setMixInAnnotation(CPrimitiveObject.class, CPrimitiveObjectMixin.class);
+            module.setMixInAnnotation(Archetype.class, IsPrefixArchetypeMixin.class);
+            module.setMixInAnnotation(ArchetypeSlot.class, IsPrefixArchetypeSlotMixin.class);
+            module.setMixInAnnotation(AuthoredResource.class, IsPrefixAuthoredResourceMixin.class);
+            module.setMixInAnnotation(CObject.class, IsPrefixCObjectMixin.class);
+            module.setMixInAnnotation(CPrimitiveObject.class, IsPrefixCPrimitiveObjectMixin.class);
+        }
+
+        if(configuration.isAddPatternConstraintTypo()) {
+            module.setMixInAnnotation(CTemporal.class, PatternConstraintCTemporalMixin.class);
         }
 
         if(!configuration.isAddPathProperty() || !configuration.isAddExtraFieldsInArchetypeId() || configuration.isArchetypeBooleanIsPrefix()) {

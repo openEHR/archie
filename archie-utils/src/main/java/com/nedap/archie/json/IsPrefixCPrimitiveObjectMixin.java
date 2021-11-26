@@ -3,7 +3,7 @@ package com.nedap.archie.json;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class CPrimitiveObjectMixin {
+public abstract class IsPrefixCPrimitiveObjectMixin {
 
     @JsonProperty("is_enumerated_type_constraint")
     @JsonAlias("enumerated_type_constraint")
