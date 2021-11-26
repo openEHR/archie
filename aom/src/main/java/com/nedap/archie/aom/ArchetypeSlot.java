@@ -1,5 +1,6 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.rules.Assertion;
 
 import javax.annotation.Nullable;
@@ -41,6 +42,7 @@ public class ArchetypeSlot extends CObject {
         this.excludes = excludes;
     }
 
+    @JsonAlias("is_closed")
     public boolean isClosed() {
         return closed;
     }
