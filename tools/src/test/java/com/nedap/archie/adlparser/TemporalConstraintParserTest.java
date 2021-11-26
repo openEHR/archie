@@ -30,10 +30,10 @@ public class TemporalConstraintParserTest extends PrimitivesConstraintParserTest
 
     @Test
     public void durationPattern() {
-        assertEquals("Pw", this.<CDuration>getAttribute("duration_attr1").getPatternedConstraint());
+        assertEquals("Pw", this.<CDuration>getAttribute("duration_attr1").getPatternConstraint());
         //		duration_attr33 matches {PdThms/|P38W..P39W4D|}
         assertDurationInterval(new Interval<>(Period.ofWeeks(38), Period.ofWeeks(39).plus(Period.ofDays(4))), "duration_attr33");
-        assertEquals("PdThms", this.<CDuration>getAttribute("duration_attr33").getPatternedConstraint());
+        assertEquals("PdThms", this.<CDuration>getAttribute("duration_attr33").getPatternConstraint());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class TemporalConstraintParserTest extends PrimitivesConstraintParserTest
     public void assumedValues() throws Exception {
         archetype = getAssumedValuesArchetype();
         CDate dateAttr4 = getAttribute("date_attr4");
-        assertEquals("yyyy-??-XX", dateAttr4.getPatternedConstraint());
+        assertEquals("yyyy-??-XX", dateAttr4.getPatternConstraint());
         assertEquals(1995, dateAttr4.getAssumedValue().get(ChronoField.YEAR));
         assertEquals(3, dateAttr4.getAssumedValue().get(ChronoField.MONTH_OF_YEAR));
 
