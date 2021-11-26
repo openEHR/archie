@@ -1,5 +1,6 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
@@ -95,6 +96,7 @@ public class Archetype extends AuthoredResource {
         this.parentArchetypeId = parentArchetypeId;
     }
 
+    @JsonAlias("is_differential")
     public boolean isDifferential() {
         return differential;
     }

@@ -63,7 +63,7 @@ public class AOMJacksonTest {
     public void cDuration() throws Exception {
         CDuration cDuration = new CDuration();
         cDuration.addConstraint(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), Duration.of(10, ChronoUnit.SECONDS)));
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String cDurationJson = objectMapper.writeValueAsString(cDuration);
         assertTrue(cDurationJson.contains("-PT10H"));
         assertTrue(cDurationJson.contains("PT10S"));
@@ -78,7 +78,7 @@ public class AOMJacksonTest {
         CDuration cDuration = new CDuration();
         PeriodDuration tenYearsTenSeconds = PeriodDuration.of(Period.of(10, 0, 0), Duration.of(10, ChronoUnit.SECONDS));
         cDuration.addConstraint(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), tenYearsTenSeconds));
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String cDurationJson = objectMapper.writeValueAsString(cDuration);
         assertTrue(cDurationJson.contains("-PT10H"));
         assertTrue(cDurationJson.contains("P10YT10S"));
@@ -93,7 +93,7 @@ public class AOMJacksonTest {
         CTerminologyCode cTermCode = new CTerminologyCode();
         cTermCode.setConstraint(Lists.newArrayList("ac23"));
         cTermCode.setConstraintStatus(ConstraintStatus.PREFERRED);
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String json = objectMapper.writeValueAsString(cTermCode);
 
         assertTrue(json.contains("\"constraint_status\" : \"preferred\""));
@@ -105,9 +105,9 @@ public class AOMJacksonTest {
     @Test
     public void rmOverlay() throws Exception {
         Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
-        String json = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
+        String json = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
 
-        Archetype parsed = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(json, Archetype.class);
+        Archetype parsed = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(json, Archetype.class);
         assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
         assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
 

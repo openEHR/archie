@@ -1,6 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.esotericsoftware.kryo.kryo5.util.Null;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
@@ -47,6 +48,7 @@ public abstract class CObject extends ArchetypeConstraint {
     @XmlAttribute(name="node_id")
     private String nodeId;
     @XmlAttribute(name="is_deprecated")
+    @Nullable
     private Boolean deprecated;
 
     @XmlElement(name="sibling_order")
@@ -78,6 +80,7 @@ public abstract class CObject extends ArchetypeConstraint {
         this.nodeId = nodeId;
     }
 
+    @JsonAlias("is_deprecated")
     public Boolean getDeprecated() {
         return deprecated;
     }

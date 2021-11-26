@@ -58,7 +58,7 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
     @Override
     public ObjectMapper getOutputOdinObjectMapper() {
         ODINMapper odinMapper = new ODINMapper();
-        RMJacksonConfiguration config = RMJacksonConfiguration.createStandardsCompliant();
+        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
         config.setAlwaysIncludeTypeProperty(false);
         config.setSerializeEmptyCollections(false);
         JacksonUtil.configureObjectMapper(odinMapper, config);
@@ -73,7 +73,7 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
 
     @Override
     public ObjectMapper getJsonObjectMapper() {
-        RMJacksonConfiguration config = RMJacksonConfiguration.createStandardsCompliant();
+        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
         config.setAlwaysIncludeTypeProperty(false);
         config.setSerializeEmptyCollections(false);
         return JacksonUtil.getObjectMapper(config);
