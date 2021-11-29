@@ -9,6 +9,7 @@ import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -35,14 +36,18 @@ public class CAttribute extends ArchetypeConstraint {
 
     @XmlAttribute(name="rm_attribute_name")
     private String rmAttributeName;
+    @Nullable
     private MultiplicityInterval existence;
     @XmlElement(name="differential_path")
+    @Nullable
     private String differentialPath;
     @XmlElement(name="is_multiple")
     private boolean multiple;
 
+    @Nullable
     private Cardinality cardinality;
 
+    @Nullable
     private List<CObject> children = new ArrayList<>();
 
     public CAttribute() {

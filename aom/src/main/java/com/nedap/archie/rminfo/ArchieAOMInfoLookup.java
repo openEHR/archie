@@ -6,6 +6,7 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
+import com.nedap.archie.aom.rmoverlay.VisibilityType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -101,6 +102,7 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
         addClass(com.nedap.archie.aom.primitives.CTime.class);
         addClass(RmOverlay.class);
         addClass(RmAttributeVisibility.class);
+        addClass(VisibilityType.class);
     }
 
     @Override

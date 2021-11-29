@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.query.AOMPathQuery;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,9 +25,11 @@ import java.util.stream.Collectors;
 })
 public class CComplexObject extends CDefinedObject<OpenEHRBase> {
 
+    @Nullable
     private List<CAttribute> attributes = new ArrayList<>();
 
     @XmlElement(name="attributeTuples")
+    @Nullable
     private List<CAttributeTuple> attributeTuples = new ArrayList<>();
 
     @JsonIgnore
