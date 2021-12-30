@@ -71,6 +71,15 @@ public class AOMJacksonTest {
     }
 
     @Test
+    public void archetypeSlot() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
+            System.out.println(serialized);
+        }
+    }
+
+    @Test
     public void cDuration() throws Exception {
         CDuration cDuration = new CDuration();
         cDuration.addConstraint(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), Duration.of(10, ChronoUnit.SECONDS)));
