@@ -2,6 +2,7 @@ package com.nedap.archie.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.primitives.CDuration;
@@ -12,6 +13,7 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.threeten.extra.PeriodDuration;
 
 import java.io.InputStream;
@@ -56,6 +58,15 @@ public class AOMJacksonTest {
             String reserialized = JacksonUtil.getObjectMapper().writeValueAsString(archetype);
             System.out.println(reserialized);
             JacksonUtil.getObjectMapper().readValue(reserialized, Archetype.class);
+        }
+    }
+
+    @Test
+    public void motricityIndex() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
+            System.out.println(serialized);
         }
     }
 
