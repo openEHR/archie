@@ -8,10 +8,12 @@ import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rules.Assertion;
 import org.openehr.utils.message.I18n;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SpecializedDefinitionValidation extends ValidatingVisitor {
     public SpecializedDefinitionValidation() {
@@ -109,6 +111,27 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
     private void validateConformsTo(CObject cObject, CObject parentCObject) {
 
         ConformanceCheckResult conformanceCheckResult = cObject.cConformsTo(parentCObject, combinedModels::rmTypesConformant);
+        if (!conformanceCheckResult.doesConform() && conformanceCheckResult.getErrorType().equals(ErrorType.VSONCO)) {
+            // Edge case: if sum of all occurrences of all redefined object nodes conforms to occurrences of parent object node
+            // this is valid and should not result in the error
+            MultiplicityInterval parentOccurrences = parentCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+            List<CObject> allRedefinedCObjects = cObject.getParent().getChildren().stream().filter(
+                    child -> AOMUtils.codesConformant(child.getNodeId(), parentCObject.getNodeId())
+                            && !child.getNodeId().equals(parentCObject.getNodeId())
+            ).collect(Collectors.toList());
+            Integer redefinedLowerOccurrences = 0;
+            Integer redefinedUpperOccurrences = 0;
+            for (CObject redefinedObject : allRedefinedCObjects) {
+                MultiplicityInterval redefinedOccurrences = redefinedObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+                redefinedLowerOccurrences += redefinedOccurrences.getLower();
+                redefinedUpperOccurrences += redefinedOccurrences.getUpper();
+            }
+
+            if (redefinedLowerOccurrences >= parentOccurrences.getLower() && redefinedUpperOccurrences <= parentOccurrences.getUpper()) {
+                conformanceCheckResult = ConformanceCheckResult.conforms();
+            }
+        }
+
         if(!conformanceCheckResult.doesConform()) {
             if(conformanceCheckResult.getErrorType() != null) {
                 addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
