@@ -95,6 +95,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         this.classLoader = classLoader;
         addTypes(baseClass);
         addSuperAndSubclassInfo();
+        addAlternativeTypeNames();
         inConstructor = false;
     }
 
@@ -152,6 +153,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
             //could be done more efficiently by only updating for the added class and parents/descendants, but
             //should not be a problem to do it this way
             addSuperAndSubclassInfo();
+            addAlternativeTypeNames();
         }
     }
 
