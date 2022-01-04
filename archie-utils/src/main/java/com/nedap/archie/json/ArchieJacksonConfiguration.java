@@ -11,6 +11,7 @@ public class ArchieJacksonConfiguration {
     private boolean serializeEmptyCollections = true;
     private boolean archetypeBooleanIsPrefix = true;
     private boolean addPatternConstraintTypo = false;
+    private boolean standardsCompliantExpressionClassNames = true;
 
     public ArchieJacksonConfiguration() {
 
@@ -22,6 +23,7 @@ public class ArchieJacksonConfiguration {
         configuration.setAlwaysIncludeTypeProperty(false);
         configuration.setAddPathProperty(false);
         configuration.setAddExtraFieldsInArchetypeId(false);
+        configuration.setStandardsCompliantExpressionClassNames(true);
         return configuration;
     }
 
@@ -31,6 +33,7 @@ public class ArchieJacksonConfiguration {
         configuration.setAlwaysIncludeTypeProperty(true);
         configuration.setAddPathProperty(true);
         configuration.setAddExtraFieldsInArchetypeId(true);
+        configuration.setStandardsCompliantExpressionClassNames(true);
         return configuration;
     }
 
@@ -118,6 +121,28 @@ public class ArchieJacksonConfiguration {
         this.addPatternConstraintTypo = addPatternConstraintTypo;
     }
 
+    /**
+     * Return  whether the expression/rule part of the AOM should use standards compliant class names, or whether it should
+     * revert back to the old behaviour, which is an older standard without the 'EXPR_' prefix that is in the standard
+     * If the new setting (standards compliant) is used, the parser will still allow both the old and new format, so this
+     * will affect the serialized json only.
+     * @return true for the standards compliant class names, false otherwise
+     */
+    public boolean isStandardsCompliantExpressionClassNames() {
+        return standardsCompliantExpressionClassNames;
+    }
+
+    /**
+     * Set whether the expression/rule part of the AOM should use standards compliant class names, or whether it should
+     * revert back to the old behaviour, which is an older standard without the 'EXPR_' prefix that is in the standard.
+     * If the new setting (standards compliant) is used, the parser will still allow both the old and new format, so this
+     * will affect the serialized json only.
+     * @param standardsCompliantExpressionClassNames true for the standards compliant class names, false otherwise
+     */
+    public void setStandardsCompliantExpressionClassNames(boolean standardsCompliantExpressionClassNames) {
+        this.standardsCompliantExpressionClassNames = standardsCompliantExpressionClassNames;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,11 +153,14 @@ public class ArchieJacksonConfiguration {
                 addExtraFieldsInArchetypeId == that.addExtraFieldsInArchetypeId &&
                 failOnUnknownProperties == that.failOnUnknownProperties &&
                 serializeEmptyCollections == that.serializeEmptyCollections &&
+                archetypeBooleanIsPrefix == that.archetypeBooleanIsPrefix &&
+                addPatternConstraintTypo == that.addPatternConstraintTypo &&
+                standardsCompliantExpressionClassNames == that.standardsCompliantExpressionClassNames &&
                 Objects.equals(typePropertyName, that.typePropertyName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typePropertyName, alwaysIncludeTypeProperty, addPathProperty, addExtraFieldsInArchetypeId, failOnUnknownProperties, serializeEmptyCollections);
+        return Objects.hash(typePropertyName, alwaysIncludeTypeProperty, addPathProperty, addExtraFieldsInArchetypeId, failOnUnknownProperties, serializeEmptyCollections, archetypeBooleanIsPrefix, addPatternConstraintTypo, standardsCompliantExpressionClassNames);
     }
 }
