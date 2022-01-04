@@ -49,8 +49,6 @@ public class JacksonUtil {
     //threadsafe, can be cached
     private static final ConcurrentHashMap<ArchieJacksonConfiguration, ObjectMapper> objectMapperByConfiguration = new ConcurrentHashMap<>();
 
-    private static final String DEFAULT_TYPE_PARAMETER = "@type";
-
     /**
      * Get an object mapper that works with Archie RM and AOM objects. It will be cached in a static variable for
      * performance reasons
@@ -138,7 +136,7 @@ public class JacksonUtil {
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
         TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
-                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming())
+                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming(configuration.isStandardsCompliantExpressionClassNames()))
                 .typeProperty(configuration.getTypePropertyName())
                 .typeIdVisibility(true)
                 .inclusion(JsonTypeInfo.As.PROPERTY);
@@ -164,6 +162,7 @@ public class JacksonUtil {
      */
     static class ArchieTypeResolverBuilder extends ObjectMapper.DefaultTypeResolverBuilder
     {
+
 
         private Set<Class<?>> classesToNotAddTypeProperty;
         public ArchieTypeResolverBuilder(ArchieJacksonConfiguration configuration)
