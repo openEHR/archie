@@ -23,7 +23,6 @@ public class ArchieJacksonConfiguration {
         configuration.setAlwaysIncludeTypeProperty(false);
         configuration.setAddPathProperty(false);
         configuration.setAddExtraFieldsInArchetypeId(false);
-        configuration.setStandardsCompliantExpressionClassNames(true);
         return configuration;
     }
 
@@ -33,7 +32,6 @@ public class ArchieJacksonConfiguration {
         configuration.setAlwaysIncludeTypeProperty(true);
         configuration.setAddPathProperty(true);
         configuration.setAddExtraFieldsInArchetypeId(true);
-        configuration.setStandardsCompliantExpressionClassNames(true);
         return configuration;
     }
 
@@ -88,8 +86,11 @@ public class ArchieJacksonConfiguration {
     /**
      * Set whether to add the is_ prefix on boolean fields in the AOM. Set to true for standard compliance, false
      * for fallback for earlier behaviour
+     * the new behaviour can always parse the old behaviour.
+     * Marked deprecated since in some future version the old format will be removed.
      * @param archetypeBooleanIsPrefix whether to add the is_prefix on boolean fields
      */
+    @Deprecated
     public void setArchetypeBooleanIsPrefix(boolean archetypeBooleanIsPrefix) {
         this.archetypeBooleanIsPrefix = archetypeBooleanIsPrefix;
     }
@@ -98,6 +99,7 @@ public class ArchieJacksonConfiguration {
     /**
      * GET whether to add the is_ prefix on boolean fields in the AOM. Set to true for standard compliance, false
      * for fallback for earlier behaviour
+     * the new behaviour can always parse the old behaviour.
      * @return whether to add the is_prefix on boolean fields
      */
     public boolean isArchetypeBooleanIsPrefix() {
@@ -106,6 +108,7 @@ public class ArchieJacksonConfiguration {
 
     /**
      * Return whether pattern constraint should be named patterned constraint for backwards compatibility
+     * the new behaviour can always parse the old behaviour
      * @return whether pattern constraint should be named patterned constraint for backwards compatibility
      */
     public boolean isAddPatternConstraintTypo() {
@@ -114,9 +117,11 @@ public class ArchieJacksonConfiguration {
 
     /**
      * Set whether pattern constraint should be named patterned constraint for backwards compatibility
+     * the new behaviour can always parse the old behaviour
+     * Marked deprecated since in some future version the old format will be removed.
      * @param addPatternConstraintTypo whether pattern constraint should be named patterned constraint for backwards compatibility
      */
-
+    @Deprecated
     public void setAddPatternConstraintTypo(boolean addPatternConstraintTypo) {
         this.addPatternConstraintTypo = addPatternConstraintTypo;
     }
@@ -126,6 +131,7 @@ public class ArchieJacksonConfiguration {
      * revert back to the old behaviour, which is an older standard without the 'EXPR_' prefix that is in the standard
      * If the new setting (standards compliant) is used, the parser will still allow both the old and new format, so this
      * will affect the serialized json only.
+     * Defaults to true
      * @return true for the standards compliant class names, false otherwise
      */
     public boolean isStandardsCompliantExpressionClassNames() {
@@ -137,8 +143,11 @@ public class ArchieJacksonConfiguration {
      * revert back to the old behaviour, which is an older standard without the 'EXPR_' prefix that is in the standard.
      * If the new setting (standards compliant) is used, the parser will still allow both the old and new format, so this
      * will affect the serialized json only.
+     * Defaults to true, so calling this is only to disable it and is marked deprecated, so the old behaviour can at some point
+     * be removed
      * @param standardsCompliantExpressionClassNames true for the standards compliant class names, false otherwise
      */
+    @Deprecated
     public void setStandardsCompliantExpressionClassNames(boolean standardsCompliantExpressionClassNames) {
         this.standardsCompliantExpressionClassNames = standardsCompliantExpressionClassNames;
     }
