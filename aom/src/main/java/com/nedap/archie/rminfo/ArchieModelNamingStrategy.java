@@ -95,7 +95,7 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
             case "Constraint":
             case "ArchetypeIdConstraint":
             case "ModelReference":
-                return Lists.newArrayList(getAlternativeTypeNames(clazz));
+                return Lists.newArrayList(convertToUpperSnakeCase(clazz));
 
         }
         return Collections.emptyList();
