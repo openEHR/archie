@@ -71,7 +71,21 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
             }
         });
         addSuperAndSubclassInfo();
+        addAlternativeTypeNames();
         inConstructor = false;
+    }
+
+    /**
+     * Adds bindings to alternative type names, for parsing backwards compatible JSON with
+     * old incompatible type names
+     */
+    private void addAlternativeTypeNames() {
+        for(Class clazz:this.classesToRmTypeInfo.keySet()) {
+            for(String alternativeName:namingStrategy.getAlternativeTypeNames(clazz)) {
+                String originalName = namingStrategy.getTypeName(clazz);
+                this.rmTypeNamesToRmTypeInfo.put(alternativeName, rmTypeNamesToRmTypeInfo.get(originalName));
+            }
+        }
     }
 
     public ReflectionModelInfoLookup(ModelNamingStrategy namingStrategy, Class<?> baseClass, ClassLoader classLoader, boolean addAttributesWithoutField) {
