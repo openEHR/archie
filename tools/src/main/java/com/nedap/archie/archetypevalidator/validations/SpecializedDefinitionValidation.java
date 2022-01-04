@@ -116,6 +116,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
             conformanceCheckResult = childNodesConformToParent(cObject, parentCObject, conformanceCheckResult);
         }
 
+
         if(!conformanceCheckResult.doesConform()) {
             if(conformanceCheckResult.getErrorType() != null) {
                 addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
@@ -168,11 +169,14 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
         // Edge case: if sum of all occurrences of all redefined object nodes conforms to occurrences of parent object node
         // this is valid and should not result in the error
         MultiplicityInterval parentOccurrencesInterval = parentCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
-
         List<CObject> allChildNodes = childCObject.getParent().getChildren().stream().filter(
-                child -> AOMUtils.codesConformant(child.getNodeId(), parentCObject.getNodeId())
+                child -> child.nodeIdConformsTo(parentCObject)
                         && !child.getNodeId().equals(parentCObject.getNodeId())
-        ).collect(Collectors.toList());
+        ).collect(Collectors.toList()); // All child nodes in the child archetype
+        allChildNodes.addAll(((CAttribute) flatParent.itemAtPath(parentCObject.getParent().getPath())).getChildren().stream().filter(
+                child -> child.nodeIdConformsTo(parentCObject)
+                        && !child.getNodeId().equals(parentCObject.getNodeId())
+        ).collect(Collectors.toList())); // All child nodes in the flattened parent archetype
         MultiplicityInterval allChildNodesOccurrencesInterval = new MultiplicityInterval(0, 0);
         for (CObject childNode : allChildNodes) {
             if (allChildNodesOccurrencesInterval.isOpen()) {
