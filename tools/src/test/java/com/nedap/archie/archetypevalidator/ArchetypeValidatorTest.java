@@ -233,6 +233,27 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void specialisationWithRedefinedAndExcludedMandatoryMultiNode() throws Exception {
+        Archetype parentArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent_with_mandatory_elements.v1.0.0.adls");
+
+        Archetype childArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.child_redefines_mandatory_elements.v1.0.0.adls");
+        Archetype grandchildArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.grandchild_redefines_mandatory_elements.v1.0.0.adls");
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        repository.addArchetype(parentArchetype);
+        repository.addArchetype(childArchetype);
+        repository.addArchetype(grandchildArchetype);
+
+        {
+            ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
+        }
+        {
+            ValidationResult validationResult = new ArchetypeValidator(models).validate(grandchildArchetype, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
+        }
+    }
+
 
     private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
