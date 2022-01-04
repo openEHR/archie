@@ -116,7 +116,6 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
             conformanceCheckResult = childNodesConformToParent(cObject, parentCObject, conformanceCheckResult);
         }
 
-
         if(!conformanceCheckResult.doesConform()) {
             if(conformanceCheckResult.getErrorType() != null) {
                 addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
@@ -167,43 +166,43 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
         }
 
         // Edge case: if sum of all occurrences of all redefined object nodes conforms to occurrences of parent object node
-        // this is valid and should not result in the error
-        MultiplicityInterval parentOccurrencesInterval = parentCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
-        List<CObject> allChildNodes = childCObject.getParent().getChildren().stream().filter(
+        // it is valid to exclude the parent object node
+        MultiplicityInterval parentNodeOccurrences = parentCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+        List<CObject> allRedefinedNodes = childCObject.getParent().getChildren().stream().filter(
                 child -> child.nodeIdConformsTo(parentCObject)
                         && !child.getNodeId().equals(parentCObject.getNodeId())
         ).collect(Collectors.toList()); // All child nodes in the child archetype
-        allChildNodes.addAll(((CAttribute) flatParent.itemAtPath(parentCObject.getParent().getPath())).getChildren().stream().filter(
+        allRedefinedNodes.addAll(((CAttribute) flatParent.itemAtPath(parentCObject.getParent().getPath())).getChildren().stream().filter(
                 child -> child.nodeIdConformsTo(parentCObject)
                         && !child.getNodeId().equals(parentCObject.getNodeId())
         ).collect(Collectors.toList())); // All child nodes in the flattened parent archetype
-        MultiplicityInterval allChildNodesOccurrencesInterval = new MultiplicityInterval(0, 0);
-        for (CObject childNode : allChildNodes) {
-            if (allChildNodesOccurrencesInterval.isOpen()) {
+        MultiplicityInterval allRedefinedNodeOccurrencesSummed = new MultiplicityInterval(0, 0);
+        for (CObject childNode : allRedefinedNodes) {
+            if (allRedefinedNodeOccurrencesSummed.isOpen()) {
                 break;
             }
             MultiplicityInterval redefinedOccurrences = childNode.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
-            Integer lower = allChildNodesOccurrencesInterval.getLower();
-            Integer upper = allChildNodesOccurrencesInterval.getUpper();
-            if (!allChildNodesOccurrencesInterval.isLowerUnbounded()) {
+            if (!allRedefinedNodeOccurrencesSummed.isLowerUnbounded()) {
+                Integer lower = allRedefinedNodeOccurrencesSummed.getLower();
                 if (redefinedOccurrences.getLower() != null) {
-                    allChildNodesOccurrencesInterval.setLower(lower + redefinedOccurrences.getLower());
+                    allRedefinedNodeOccurrencesSummed.setLower(lower + redefinedOccurrences.getLower());
                 } else {
-                    allChildNodesOccurrencesInterval.setLowerUnbounded(true);
-                    allChildNodesOccurrencesInterval.setLower(null);
+                    allRedefinedNodeOccurrencesSummed.setLowerUnbounded(true);
+                    allRedefinedNodeOccurrencesSummed.setLower(null);
                 }
             }
-            if (!allChildNodesOccurrencesInterval.isUpperUnbounded()) {
+            if (!allRedefinedNodeOccurrencesSummed.isUpperUnbounded()) {
+                Integer upper = allRedefinedNodeOccurrencesSummed.getUpper();
                 if (redefinedOccurrences.getUpper() != null) {
-                    allChildNodesOccurrencesInterval.setUpper(upper + redefinedOccurrences.getUpper());
+                    allRedefinedNodeOccurrencesSummed.setUpper(upper + redefinedOccurrences.getUpper());
                 } else {
-                    allChildNodesOccurrencesInterval.setUpperUnbounded(true);
-                    allChildNodesOccurrencesInterval.setUpper(null);
+                    allRedefinedNodeOccurrencesSummed.setUpperUnbounded(true);
+                    allRedefinedNodeOccurrencesSummed.setUpper(null);
                 }
             }
         }
 
-        if (parentOccurrencesInterval.contains(allChildNodesOccurrencesInterval)) {
+        if (parentNodeOccurrences.contains(allRedefinedNodeOccurrencesSummed)) {
             return ConformanceCheckResult.conforms();
         }
         return conformanceCheckResult;
