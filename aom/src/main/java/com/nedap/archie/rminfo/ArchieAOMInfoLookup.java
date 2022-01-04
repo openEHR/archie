@@ -42,7 +42,7 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
                 //Relatively expensive operation, so make sure every instance is created only once.
                 instance = instances.get(standardCompliantExpressionNames);
                 if(instance == null) {
-                    instance = new ArchieAOMInfoLookup();
+                    instance = new ArchieAOMInfoLookup(standardCompliantExpressionNames);
                     instances.put(standardCompliantExpressionNames, instance);
                 }
             }
