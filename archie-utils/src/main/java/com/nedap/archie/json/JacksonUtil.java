@@ -21,6 +21,7 @@ import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.AuthoredResource;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.RulesSection;
 import com.nedap.archie.aom.primitives.CTemporal;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rm.archetyped.Pathable;
@@ -109,15 +110,12 @@ public class JacksonUtil {
 
 
         SimpleModule module = new SimpleModule();
-        boolean registerModule = false;
         if(!configuration.isAddExtraFieldsInArchetypeId()) {
             module.setMixInAnnotation(ArchetypeID.class, FixArchetypeIDMixin.class);
-            registerModule = true;
         }
 
         if(!configuration.isAddPathProperty()) {
             module.setMixInAnnotation(Pathable.class, DontSerializePathMixin.class);
-            registerModule = true;
         }
         if(configuration.isArchetypeBooleanIsPrefix()) {
             module.setMixInAnnotation(Archetype.class, IsPrefixArchetypeMixin.class);
@@ -125,21 +123,20 @@ public class JacksonUtil {
             module.setMixInAnnotation(AuthoredResource.class, IsPrefixAuthoredResourceMixin.class);
             module.setMixInAnnotation(CObject.class, IsPrefixCObjectMixin.class);
             module.setMixInAnnotation(CPrimitiveObject.class, IsPrefixCPrimitiveObjectMixin.class);
-            registerModule = true;
         }
 
         if(configuration.isAddPatternConstraintTypo()) {
             module.setMixInAnnotation(CTemporal.class, PatternConstraintCTemporalMixin.class);
-            registerModule = true;
         }
         if(!configuration.isStandardsCompliantExpressionClassNames()) {
             module.addSerializer(OperatorKind.class, new OldOperatorKindSerializer());
-            registerModule = true;
+        } else {
+            module.setMixInAnnotation(RulesSection.class, RulesSectionMixin.class);
         }
+        //make rules parsing work both for a list and a RulesSection object
+        module.addDeserializer(RulesSection.class, new RulesSectionDeserializer());
 
-        if(registerModule) {
-            objectMapper.registerModule(module);
-        }
+        objectMapper.registerModule(module);
 
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
