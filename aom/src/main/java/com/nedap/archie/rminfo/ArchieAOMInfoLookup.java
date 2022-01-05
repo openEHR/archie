@@ -1,5 +1,6 @@
 package com.nedap.archie.rminfo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.CObject;
@@ -12,22 +13,39 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by pieter.bos on 06/07/16.
  */
 public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
 
-    private static ArchieAOMInfoLookup instance;
+    private static final ConcurrentHashMap<Boolean, ArchieAOMInfoLookup> instances = new ConcurrentHashMap<>();
+    public static final boolean STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING = true;
 
     public ArchieAOMInfoLookup() {
-        super(new ArchieModelNamingStrategy(), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
+        super(new ArchieModelNamingStrategy(STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
+    }
 
+    public ArchieAOMInfoLookup(boolean standardCompliantExpressionNames) {
+        super(new ArchieModelNamingStrategy(standardCompliantExpressionNames), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
     }
 
     public static ArchieAOMInfoLookup getInstance() {
+        return getInstance(STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING);
+    }
+
+    public static ArchieAOMInfoLookup getInstance(boolean standardCompliantExpressionNames) {
+        ArchieAOMInfoLookup instance = instances.get(standardCompliantExpressionNames);
         if(instance == null) {
-            instance = new ArchieAOMInfoLookup();
+            synchronized (ArchieAOMInfoLookup.class) {
+                //Relatively expensive operation, so make sure every instance is created only once.
+                instance = instances.get(standardCompliantExpressionNames);
+                if(instance == null) {
+                    instance = new ArchieAOMInfoLookup(standardCompliantExpressionNames);
+                    instances.put(standardCompliantExpressionNames, instance);
+                }
+            }
         }
         return instance;
     }

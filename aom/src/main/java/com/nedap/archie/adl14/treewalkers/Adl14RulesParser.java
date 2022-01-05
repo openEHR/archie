@@ -138,7 +138,7 @@ public class Adl14RulesParser extends BaseTreeWalker {
 
     private Expression parseBooleanNotExpression(BooleanNotExpressionContext context) {
         if(context.SYM_NOT() != null) {
-            return new UnaryOperator(ExpressionType.BOOLEAN, OperatorKind.not, parseBooleanNotExpression(context.booleanNotExpression()));
+            return new UnaryOperator(ExpressionType.BOOLEAN, OperatorKind.not, context.SYM_NOT().getText(), parseBooleanNotExpression(context.booleanNotExpression()));
         } else {
             return parseBooleanConstraintExpression(context.booleanConstraintExpression());
         }
@@ -180,7 +180,7 @@ public class Adl14RulesParser extends BaseTreeWalker {
         } else {
             cPrimitiveObject = primitivesConstraintParser.parseRegex(context.CONTAINED_REGEXP());
         }
-        return new BinaryOperator(ExpressionType.BOOLEAN, OperatorKind.matches, modelReference, new Constraint<>(cPrimitiveObject));
+        return new BinaryOperator(ExpressionType.BOOLEAN, OperatorKind.matches, context.SYM_MATCHES().getText(), modelReference, new Constraint<>(cPrimitiveObject));
     }
 
     private Expression parseEqualityExpression(EqualityExpressionContext context) {
@@ -190,7 +190,8 @@ public class Adl14RulesParser extends BaseTreeWalker {
             if(left.getType() != null && right.getType() != null && left.getType() != right.getType()) {
                 throw new IllegalArgumentException("arithmetic relop expression with different types: " + left.getType() + " + " + right.getType());
             }
-            return new BinaryOperator(left.getType(), OperatorKind.parse(context.equalityBinop().getText()), left, right);
+            String operatorString = context.equalityBinop().getText();
+            return new BinaryOperator(left.getType(), OperatorKind.parse(operatorString), operatorString, left, right);
         } else {
             return parseRelOpExpression(context.relOpExpression());
         }
@@ -203,7 +204,8 @@ public class Adl14RulesParser extends BaseTreeWalker {
             if(left.getType() != null && right.getType() != null && left.getType() != right.getType()) {
                 throw new IllegalArgumentException("arithmetic relop expression with different types: " + left.getType() + " + " + right.getType());
             }
-            return new BinaryOperator(left.getType(), OperatorKind.parse(context.relationalBinop().getText()), left, right);
+            String operatorString = context.relationalBinop().getText();
+            return new BinaryOperator(left.getType(), OperatorKind.parse(operatorString), operatorString, left, right);
         } else {
             return parseArithmeticExpression(context.arithmeticExpression());
         }
@@ -214,15 +216,18 @@ public class Adl14RulesParser extends BaseTreeWalker {
         if(context.plusMinusBinop() != null) {
             Expression left = parseArithmeticExpression(context.arithmeticExpression().get(0));
             Expression right = parseArithmeticExpression(context.arithmeticExpression().get(1));
-            return new BinaryOperator(right.getType(), OperatorKind.parse(context.plusMinusBinop().getText()), left, right);
+            String operatorString = context.plusMinusBinop().getText();
+            return new BinaryOperator(right.getType(), OperatorKind.parse(operatorString), operatorString, left, right);
         } else if(context.multBinop() != null) {
             Expression left = parseArithmeticExpression(context.arithmeticExpression().get(0));
             Expression right = parseArithmeticExpression(context.arithmeticExpression().get(1));
-            return new BinaryOperator(right.getType(), OperatorKind.parse(context.multBinop().getText()), left, right);
+            String operatorString = context.multBinop().getText();
+            return new BinaryOperator(right.getType(), OperatorKind.parse(operatorString), operatorString, left, right);
         } else if(context.powBinop() != null) {
             Expression left = parseArithmeticExpression(context.arithmeticExpression().get(0));
             Expression right = parseArithmeticExpression(context.arithmeticExpression().get(1));
-            return new BinaryOperator(right.getType(), OperatorKind.parse(context.powBinop().getText()), left, right);
+            String operatorString = context.powBinop().getText();
+            return new BinaryOperator(right.getType(), OperatorKind.parse(operatorString), operatorString, left, right);
         }else {
             return parseExpressionLeaf(context.expressionLeaf());
         }
@@ -242,7 +247,7 @@ public class Adl14RulesParser extends BaseTreeWalker {
         else if(context.adlRulesPath() != null) {
             ModelReference reference = parseModelReference(context.adlRulesPath());
             if(context.SYM_EXISTS() != null) {
-                return new UnaryOperator(ExpressionType.BOOLEAN, OperatorKind.exists, reference);
+                return new UnaryOperator(ExpressionType.BOOLEAN, OperatorKind.exists, context.SYM_EXISTS().getText(), reference);
             } else {
                 return reference;
             }
@@ -253,7 +258,7 @@ public class Adl14RulesParser extends BaseTreeWalker {
             return expression;
         }
         else if(context.expressionLeaf() != null) { // - arithmetic expression
-            return new UnaryOperator(ExpressionType.REAL, OperatorKind.minus, parseExpressionLeaf(context.expressionLeaf()));
+            return new UnaryOperator(ExpressionType.REAL, OperatorKind.minus, "-", parseExpressionLeaf(context.expressionLeaf()));
         }
         else if(context.variableReference() != null) {
             return parseVariableReference(context.variableReference());

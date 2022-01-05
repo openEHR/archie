@@ -21,6 +21,7 @@ import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.AuthoredResource;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.RulesSection;
 import com.nedap.archie.aom.primitives.CTemporal;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rm.archetyped.Pathable;
@@ -28,6 +29,7 @@ import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.rules.OperatorKind;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,8 +50,6 @@ public class JacksonUtil {
 
     //threadsafe, can be cached
     private static final ConcurrentHashMap<ArchieJacksonConfiguration, ObjectMapper> objectMapperByConfiguration = new ConcurrentHashMap<>();
-
-    private static final String DEFAULT_TYPE_PARAMETER = "@type";
 
     /**
      * Get an object mapper that works with Archie RM and AOM objects. It will be cached in a static variable for
@@ -128,17 +128,20 @@ public class JacksonUtil {
         if(configuration.isAddPatternConstraintTypo()) {
             module.setMixInAnnotation(CTemporal.class, PatternConstraintCTemporalMixin.class);
         }
-
-        if(!configuration.isAddPathProperty() || !configuration.isAddExtraFieldsInArchetypeId() || configuration.isArchetypeBooleanIsPrefix()) {
-            objectMapper.registerModule(module);
+        if(!configuration.isStandardsCompliantExpressionClassNames()) {
+            module.addSerializer(OperatorKind.class, new OldOperatorKindSerializer());
+        } else {
+            module.setMixInAnnotation(RulesSection.class, RulesSectionMixin.class);
         }
+        //make rules parsing work both for a list and a RulesSection object
+        module.addDeserializer(RulesSection.class, new RulesSectionDeserializer());
 
-
+        objectMapper.registerModule(module);
 
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
         TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
-                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming())
+                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming(configuration.isStandardsCompliantExpressionClassNames()))
                 .typeProperty(configuration.getTypePropertyName())
                 .typeIdVisibility(true)
                 .inclusion(JsonTypeInfo.As.PROPERTY);
@@ -164,6 +167,7 @@ public class JacksonUtil {
      */
     static class ArchieTypeResolverBuilder extends ObjectMapper.DefaultTypeResolverBuilder
     {
+
 
         private Set<Class<?>> classesToNotAddTypeProperty;
         public ArchieTypeResolverBuilder(ArchieJacksonConfiguration configuration)
