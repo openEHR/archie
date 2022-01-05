@@ -85,6 +85,11 @@ public class BmmComparison {
             if(!isIgnorableModelParam(classDefinition.getName(), attributeInfo.getRmName())) {
                 BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeInfo.getRmName());
                 if (bmmProperty == null) {
+                    if (attributeInfo.getTypeNameInCollection().toLowerCase().startsWith("bool")) {
+                        bmmProperty = classDefinition.getFlatProperties().get("is_" + attributeInfo.getRmName());
+                    }
+                }
+                if(bmmProperty == null) {
                     result.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM,
                             MessageFormat.format("class {0}: ModelInfoLookup property {1} is missing in BMM", classDefinition.getType().getTypeName(), attributeInfo.getRmName()),
                             typeInfo.getRmName(),
@@ -95,7 +100,11 @@ public class BmmComparison {
             }
         }
         for(BmmProperty<?> property: classDefinition.getFlatProperties().values()) {
-            if(!typeInfo.getAttributes().containsKey(property.getName())) {
+            boolean propertyFound = typeInfo.getAttributes().containsKey(property.getName());
+            if(!propertyFound && property.getName().startsWith("is_")) {
+                propertyFound = typeInfo.getAttributes().containsKey(property.getName().replaceFirst("^is_", ""));
+            }
+            if(!propertyFound) {
                 String propertyDescription = property.getComputed() ? "computed property" : "property";
                 result.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_MODEL,
                         MessageFormat.format("class {1}: BMM {0} {2} is missing in Model", propertyDescription, classDefinition.getType().getTypeName(), property.getName()),

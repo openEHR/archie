@@ -1,17 +1,27 @@
 package com.nedap.archie.json;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.primitives.CDuration;
+import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.primitives.ConstraintStatus;
 import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.base.Interval;
+import com.nedap.archie.rules.BinaryOperator;
+import com.nedap.archie.rules.Constraint;
+import com.nedap.archie.rules.Expression;
+import com.nedap.archie.rules.ModelReference;
+import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.threeten.extra.PeriodDuration;
 
 import java.io.InputStream;
@@ -58,6 +68,81 @@ public class AOMJacksonTest {
             JacksonUtil.getObjectMapper().readValue(reserialized, Archetype.class);
         }
     }
+
+    @Test
+    public void motricityIndex() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
+            System.out.println(serialized);
+            assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
+            assertTrue(serialized.contains("\"operator\" : \"op_eq\","));
+            assertTrue(serialized.contains("EXPR_ARCHETYPE_REF"));
+        }
+    }
+
+    @Test
+    public void motricityIndexOldFormat() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
+            config.setStandardsCompliantExpressionClassNames(false);
+            String serialized = JacksonUtil.getObjectMapper(config).writeValueAsString(archetype);
+            System.out.println(serialized);
+            assertTrue(serialized.contains("\"BINARY_OPERATOR\""));
+            assertTrue(serialized.contains("\"operator\" : \"eq\","));
+            assertTrue(serialized.contains("\"MODEL_REFERENCE\""));
+            ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
+            newConfig.setStandardsCompliantExpressionClassNames(true);
+            Archetype parsedArchetype = JacksonUtil.getObjectMapper(config).readValue(serialized, Archetype.class);
+        }
+    }
+
+    @Test
+    public void archetypeSlot() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+            String serialized = objectMapper.writeValueAsString(archetype);
+            //System.out.println(serialized);
+            assertTrue(serialized.contains("\"EXPR_BINARY_OPERATOR\""));
+            assertTrue(serialized.contains("\"EXPR_ARCHETYPE_REF\""));
+            assertTrue(serialized.contains("\"operator\" : \"op_matches\","));
+            assertArchetypeSlot(objectMapper, serialized);
+        }
+    }
+
+    private void assertArchetypeSlot(ObjectMapper objectMapper, String serialized) throws JsonProcessingException {
+        Archetype parsedArchetype = objectMapper.readValue(serialized, Archetype.class);
+        ArchetypeSlot slot = parsedArchetype.itemAtPath("/content[id8]");
+        BinaryOperator operator = (BinaryOperator) slot.getIncludes().get(0).getExpression();
+        assertEquals(OperatorKind.matches, operator.getOperator());
+        assertEquals("archetype_id/value", ((ModelReference) operator.getLeftOperand()).getPath());
+        CString idConstraint = (CString) ((Constraint) operator.getRightOperand()).getItem();
+        assertEquals("/openEHR-EHR-INSTRUCTION\\.medication\\.v1/", idConstraint.getConstraint().get(0));
+    }
+
+    @Test
+    public void archetypeSlotOldExpressionClassNames() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
+            config.setStandardsCompliantExpressionClassNames(false);
+            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(config);
+            String serialized = objectMapper.writeValueAsString(archetype);
+            //System.out.println(serialized);
+            assertFalse(serialized.contains("EXPR_BINARY_OPERATOR"));
+            assertFalse(serialized.contains("EXPR_ARCHETYPE_REF"));
+            assertTrue(serialized.contains("\"operator\" : \"matches\","));
+            assertTrue(serialized.contains("\"BINARY_OPERATOR\""));
+            assertTrue(serialized.contains("\"MODEL_REFERENCE\""));
+            assertArchetypeSlot(objectMapper, serialized);
+            //and it should be parsable with the new syntax as well
+            assertArchetypeSlot(JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()), serialized);
+
+        }
+    }
+
 
     @Test
     public void cDuration() throws Exception {
