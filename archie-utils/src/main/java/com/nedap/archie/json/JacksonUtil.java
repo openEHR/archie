@@ -28,6 +28,7 @@ import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.rules.OperatorKind;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -108,12 +109,15 @@ public class JacksonUtil {
 
 
         SimpleModule module = new SimpleModule();
+        boolean registerModule = false;
         if(!configuration.isAddExtraFieldsInArchetypeId()) {
             module.setMixInAnnotation(ArchetypeID.class, FixArchetypeIDMixin.class);
+            registerModule = true;
         }
 
         if(!configuration.isAddPathProperty()) {
             module.setMixInAnnotation(Pathable.class, DontSerializePathMixin.class);
+            registerModule = true;
         }
         if(configuration.isArchetypeBooleanIsPrefix()) {
             module.setMixInAnnotation(Archetype.class, IsPrefixArchetypeMixin.class);
@@ -121,17 +125,21 @@ public class JacksonUtil {
             module.setMixInAnnotation(AuthoredResource.class, IsPrefixAuthoredResourceMixin.class);
             module.setMixInAnnotation(CObject.class, IsPrefixCObjectMixin.class);
             module.setMixInAnnotation(CPrimitiveObject.class, IsPrefixCPrimitiveObjectMixin.class);
+            registerModule = true;
         }
 
         if(configuration.isAddPatternConstraintTypo()) {
             module.setMixInAnnotation(CTemporal.class, PatternConstraintCTemporalMixin.class);
+            registerModule = true;
+        }
+        if(!configuration.isStandardsCompliantExpressionClassNames()) {
+            module.addSerializer(OperatorKind.class, new OldOperatorKindSerializer());
+            registerModule = true;
         }
 
-        if(!configuration.isAddPathProperty() || !configuration.isAddExtraFieldsInArchetypeId() || configuration.isArchetypeBooleanIsPrefix()) {
+        if(registerModule) {
             objectMapper.registerModule(module);
         }
-
-
 
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 

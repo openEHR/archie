@@ -76,6 +76,7 @@ public class AOMJacksonTest {
             String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
             System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
+            assertTrue(serialized.contains("\"operator\" : \"op_eq\","));
             assertTrue(serialized.contains("EXPR_ARCHETYPE_REF"));
         }
     }
@@ -89,6 +90,7 @@ public class AOMJacksonTest {
             String serialized = JacksonUtil.getObjectMapper(config).writeValueAsString(archetype);
             System.out.println(serialized);
             assertTrue(serialized.contains("\"BINARY_OPERATOR\""));
+            assertTrue(serialized.contains("\"operator\" : \"eq\","));
             assertTrue(serialized.contains("\"MODEL_REFERENCE\""));
             ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
             newConfig.setStandardsCompliantExpressionClassNames(true);
@@ -105,6 +107,7 @@ public class AOMJacksonTest {
             //System.out.println(serialized);
             assertTrue(serialized.contains("\"EXPR_BINARY_OPERATOR\""));
             assertTrue(serialized.contains("\"EXPR_ARCHETYPE_REF\""));
+            assertTrue(serialized.contains("\"operator\" : \"op_matches\","));
             assertArchetypeSlot(objectMapper, serialized);
         }
     }
@@ -130,6 +133,7 @@ public class AOMJacksonTest {
             //System.out.println(serialized);
             assertFalse(serialized.contains("EXPR_BINARY_OPERATOR"));
             assertFalse(serialized.contains("EXPR_ARCHETYPE_REF"));
+            assertTrue(serialized.contains("\"operator\" : \"matches\","));
             assertTrue(serialized.contains("\"BINARY_OPERATOR\""));
             assertTrue(serialized.contains("\"MODEL_REFERENCE\""));
             assertArchetypeSlot(objectMapper, serialized);
