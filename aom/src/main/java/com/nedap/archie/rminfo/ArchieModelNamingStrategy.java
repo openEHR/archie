@@ -59,6 +59,8 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
                     return "EXPR_ARCHETYPE_ID_CONSTRAINT";
                 case "ModelReference":
                     return "EXPR_ARCHETYPE_REF";
+                case "RuleStatement":
+                    return "STATEMENT";
 
             }
         }
@@ -95,6 +97,7 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
             case "Constraint":
             case "ArchetypeIdConstraint":
             case "ModelReference":
+            case "RuleStatement":
                 return Lists.newArrayList(convertToUpperSnakeCase(clazz));
 
         }
