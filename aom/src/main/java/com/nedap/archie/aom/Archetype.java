@@ -1,5 +1,6 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
@@ -14,6 +15,7 @@ import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
 import com.nedap.archie.xml.adapters.RMOverlayXmlAdapter;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -55,6 +57,7 @@ import java.util.stream.Collectors;
 public class Archetype extends AuthoredResource {
 
     @XmlElement(name="parent_archetype_id")
+    @Nullable
     private String parentArchetypeId;
     @XmlAttribute(name="is_differential")
     private boolean differential = false;
@@ -64,9 +67,11 @@ public class Archetype extends AuthoredResource {
     private CComplexObject definition;
     @XmlJavaTypeAdapter(ArchetypeTerminologyAdapter.class)
     private ArchetypeTerminology terminology;
+    @Nullable
     private RulesSection rules = null;
 
     @XmlAttribute(name="adl_version")
+    @Nullable
     private String adlVersion;
     @XmlElement(name="build_uid")
     private String buildUid;
@@ -91,6 +96,7 @@ public class Archetype extends AuthoredResource {
         this.parentArchetypeId = parentArchetypeId;
     }
 
+    @JsonAlias("is_differential")
     public boolean isDifferential() {
         return differential;
     }

@@ -1,5 +1,6 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
@@ -41,9 +42,11 @@ public abstract class AuthoredResource extends ArchetypeModelObject {
 
     private LanguageSection content = new LanguageSection();
 
+    @Nullable
     private ResourceAnnotations annotations;
 
     @XmlElement(name="is_controlled")
+    @JsonAlias("is_controlled")
     public Boolean getControlled() {
         return controlled;
     }

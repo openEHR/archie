@@ -16,12 +16,20 @@ import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeSlot;
+import com.nedap.archie.aom.AuthoredResource;
+import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.RulesSection;
+import com.nedap.archie.aom.primitives.CTemporal;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.rules.OperatorKind;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,9 +49,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class JacksonUtil {
 
     //threadsafe, can be cached
-    private static final ConcurrentHashMap<RMJacksonConfiguration, ObjectMapper> objectMapperByConfiguration = new ConcurrentHashMap<>();
-
-    private static final String DEFAULT_TYPE_PARAMETER = "@type";
+    private static final ConcurrentHashMap<ArchieJacksonConfiguration, ObjectMapper> objectMapperByConfiguration = new ConcurrentHashMap<>();
 
     /**
      * Get an object mapper that works with Archie RM and AOM objects. It will be cached in a static variable for
@@ -51,10 +57,10 @@ public class JacksonUtil {
      * @return
      */
     public static ObjectMapper getObjectMapper() {
-        return getObjectMapper(new RMJacksonConfiguration());
+        return getObjectMapper(new ArchieJacksonConfiguration());
     }
 
-    public static ObjectMapper getObjectMapper(RMJacksonConfiguration configuration) {
+    public static ObjectMapper getObjectMapper(ArchieJacksonConfiguration configuration) {
         ObjectMapper objectMapper = objectMapperByConfiguration.get(configuration);
         if(objectMapper == null) {
             objectMapper = new ObjectMapper();
@@ -71,10 +77,10 @@ public class JacksonUtil {
      * @param objectMapper
      */
     public static void configureObjectMapper(ObjectMapper objectMapper) {
-        configureObjectMapper(objectMapper, new RMJacksonConfiguration());
+        configureObjectMapper(objectMapper, new ArchieJacksonConfiguration());
     }
 
-    public static void configureObjectMapper(ObjectMapper objectMapper, RMJacksonConfiguration configuration) {
+    public static void configureObjectMapper(ObjectMapper objectMapper, ArchieJacksonConfiguration configuration) {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.enable(SerializationFeature.FLUSH_AFTER_WRITE_VALUE);
         objectMapper.disable(SerializationFeature.WRITE_NULL_MAP_VALUES);
@@ -111,14 +117,31 @@ public class JacksonUtil {
         if(!configuration.isAddPathProperty()) {
             module.setMixInAnnotation(Pathable.class, DontSerializePathMixin.class);
         }
-        if(!configuration.isAddPathProperty() || !configuration.isAddExtraFieldsInArchetypeId()) {
-            objectMapper.registerModule(module);
+        if(configuration.isArchetypeBooleanIsPrefix()) {
+            module.setMixInAnnotation(Archetype.class, IsPrefixArchetypeMixin.class);
+            module.setMixInAnnotation(ArchetypeSlot.class, IsPrefixArchetypeSlotMixin.class);
+            module.setMixInAnnotation(AuthoredResource.class, IsPrefixAuthoredResourceMixin.class);
+            module.setMixInAnnotation(CObject.class, IsPrefixCObjectMixin.class);
+            module.setMixInAnnotation(CPrimitiveObject.class, IsPrefixCPrimitiveObjectMixin.class);
         }
+
+        if(configuration.isAddPatternConstraintTypo()) {
+            module.setMixInAnnotation(CTemporal.class, PatternConstraintCTemporalMixin.class);
+        }
+        if(!configuration.isStandardsCompliantExpressionClassNames()) {
+            module.addSerializer(OperatorKind.class, new OldOperatorKindSerializer());
+        } else {
+            module.setMixInAnnotation(RulesSection.class, RulesSectionMixin.class);
+        }
+        //make rules parsing work both for a list and a RulesSection object
+        module.addDeserializer(RulesSection.class, new RulesSectionDeserializer());
+
+        objectMapper.registerModule(module);
 
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
         TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
-                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming())
+                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming(configuration.isStandardsCompliantExpressionClassNames()))
                 .typeProperty(configuration.getTypePropertyName())
                 .typeIdVisibility(true)
                 .inclusion(JsonTypeInfo.As.PROPERTY);
@@ -145,8 +168,9 @@ public class JacksonUtil {
     static class ArchieTypeResolverBuilder extends ObjectMapper.DefaultTypeResolverBuilder
     {
 
+
         private Set<Class<?>> classesToNotAddTypeProperty;
-        public ArchieTypeResolverBuilder(RMJacksonConfiguration configuration)
+        public ArchieTypeResolverBuilder(ArchieJacksonConfiguration configuration)
         {
             super(ObjectMapper.DefaultTyping.NON_FINAL, BasicPolymorphicTypeValidator.builder()
                     .allowIfBaseType(OpenEHRBase.class).build());

@@ -14,7 +14,7 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.json.JsonSchemaValidator;
-import com.nedap.archie.json.RMJacksonConfiguration;
+import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Observation;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
@@ -70,7 +70,7 @@ public class ExampleJsonInstanceGeneratorTest {
         assertEquals("POINT_EVENT", ((Map) events.get(1)).get(TYPE_PROPERTY_NAME));
         assertEquals("INTERVAL_EVENT", ((Map) events.get(2)).get(TYPE_PROPERTY_NAME));
 
-        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), templateId -> null).validate(JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
+        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), templateId -> null).validate(JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
         assertEquals(new ArrayList<>(), validated);
 
     }
@@ -94,7 +94,7 @@ public class ExampleJsonInstanceGeneratorTest {
     }
 
     private ObjectMapper getArchieObjectMapper() {
-        RMJacksonConfiguration configuration = new RMJacksonConfiguration();
+        ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
         configuration.setTypePropertyName("_type");
         configuration.setAddExtraFieldsInArchetypeId(false);
         configuration.setAddPathProperty(false);

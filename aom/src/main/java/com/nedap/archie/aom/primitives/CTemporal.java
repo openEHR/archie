@@ -1,26 +1,29 @@
 package com.nedap.archie.aom.primitives;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 /**
  * TODO: cConformsTo for temporal and date types
  * Created by pieter.bos on 15/10/15.
  */
 public abstract class CTemporal<T> extends COrdered<T>{
 
-    private String patternedConstraint;
+    @JsonAlias("patterned_constraint")
+    private String patternConstraint;
 
-    public String getPatternedConstraint() {
-        return patternedConstraint;
+    public String getPatternConstraint() {
+        return patternConstraint;
     }
 
-    public void setPatternedConstraint(String patternedConstraint) {
-        this.patternedConstraint = patternedConstraint;
+    public void setPatternConstraint(String patternConstraint) {
+        this.patternConstraint = patternConstraint;
     }
 
     public boolean isValidValue(T value) {
-        if(getConstraint().isEmpty() && patternedConstraint == null) {
+        if(getConstraint().isEmpty() && patternConstraint == null) {
             return true;
         }
-        if(patternedConstraint == null) {
+        if(patternConstraint == null) {
             return super.isValidValue(value);
         } else {
             //TODO: find a library that validates ISO 8601 patterns
