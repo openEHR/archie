@@ -8,7 +8,7 @@ wrapper {
 }
 
 allprojects {
-  version = '1.0.2'
+  version = '1.0.3'
   group = 'com.nedap.healthcare.archie'
   ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
   //archivesBaseName = 'archie'
@@ -23,9 +23,11 @@ gradle.ext.ossrhPasswordSafe = hasProperty('ossrhPassword') ? ossrhPassword : ""
 gradle.ext.shouldSign = hasProperty('signing.keyId')
 gradle.ext.isParallel = hasProperty('org.gradle.parallel') ? project.property('org.gradle.parallel') == 'true' : false
 
+apply from: "${gradleScriptDir}/publish-maven.gradle"
+
 subprojects {
   apply plugin: 'java-library'
-  //apply from: "${gradleScriptDir}/publish-maven.gradle"
+
 
  // plugins {
    //   id 'com.github.ben-manes.versions' version '0.13.0'
