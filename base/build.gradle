@@ -2,5 +2,5 @@ description = "Base classes for an OpenEHR implementation"
 
 dependencies {
 	//only for the xpath grammar. perhaps include it here?
-	compile project(':grammars')
+	api project(':grammars')
 }
