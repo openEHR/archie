@@ -1,10 +1,12 @@
 apply plugin: 'maven-publish'
 if(gradle.ext.shouldSign) {
   apply plugin: 'signing'
-}
-
-if(gradle.ext.shouldSign) {
-
+  signing {
+    afterEvaluate { project ->
+      useGpgCmd()
+      sign publishing.publications
+    }
+  }
 }
 //define the repositories on global level, not per project, or you get many of them
 publishing {
@@ -26,12 +28,7 @@ publishing {
     }
   }
 }
-signing {
-  afterEvaluate { project ->
-    useGpgCmd()
-    sign publishing.publications
-  }
-}
+
 
 //now uploading will have to be configured on a per subproject basis
 subprojects {
