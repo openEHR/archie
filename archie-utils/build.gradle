@@ -1,7 +1,7 @@
 description = "Utils for the Archie OpenEHR library"
 
 dependencies {
-	compile project(':base')
-	compile project(':aom')
-  	compile project(':openehr-rm')
+	api project(':base')
+	api project(':aom')
+  	api project(':openehr-rm')
 }
