@@ -103,7 +103,7 @@ public class OdinBaseVisitorTest {
         validatePrimitiveType(root, "a_string_attribute", "a string value");
         validatePrimitiveType(root, "a_boolean_attribute", false);
         OdinAttribute attribute = validatePrimitiveType(root, "a_integer_attribute", "1");
-        assertEquals(new Integer(1), attribute.getIntegerObject().getAsInteger());
+        assertEquals(Integer.valueOf(1), attribute.getIntegerObject().getAsInteger());
         attribute = validatePrimitiveType(root, "a_real_attribute", "-3.05e-10");
         assertEquals(new Float(-3.05e-10), attribute.getRealObject().getAsFloat());
         attribute = validatePrimitiveType(root, "a_char_attribute", "c");
@@ -398,7 +398,7 @@ public class OdinBaseVisitorTest {
         OdinAttribute cardinality = item.getAttributeAtIndex(2);
         assertEquals("cardinality", cardinality.getName());
         assertEquals("|>=1|", cardinality.getIntegerIntervalObject().getIntervalExpression());
-        assertEquals(new Integer(1), cardinality.getIntegerIntervalObject().getLow().getAsInteger());
+        assertEquals(Integer.valueOf(1), cardinality.getIntegerIntervalObject().getLow().getAsInteger());
         assertFalse(cardinality.getIntegerIntervalObject().isExcludeLowerBound());
 
         //Validate properties."item".isMandatory
@@ -439,7 +439,7 @@ public class OdinBaseVisitorTest {
         OdinAttribute participationCardinality = participation.getAttributeAtIndex(2);
         assertEquals("cardinality", participationCardinality.getName());
         assertEquals("|>=0|", participationCardinality.getIntegerIntervalObject().getIntervalExpression());
-        assertEquals(new Integer(0), participationCardinality.getIntegerIntervalObject().getLow().getAsInteger());
+        assertEquals(Integer.valueOf(0), participationCardinality.getIntegerIntervalObject().getLow().getAsInteger());
         assertFalse(participationCardinality.getIntegerIntervalObject().isExcludeLowerBound());
     }
 

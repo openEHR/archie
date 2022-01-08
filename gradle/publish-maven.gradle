@@ -1,105 +1,91 @@
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 if(gradle.ext.shouldSign) {
   apply plugin: 'signing'
-}
-
-install {
-  repositories.mavenInstaller {
-    customizePom(pom, project)
-  }
-}
-
-if(gradle.ext.shouldSign) {
   signing {
+    afterEvaluate { project ->
       useGpgCmd()
-      sign configurations.archives
-  }  
+      sign publishing.publications
+    }
+  }
 }
-
-//upload to sonatype configuration
-uploadArchives {
+//define the repositories on global level, not per project, or you get many of them
+publishing {
   repositories {
-    mavenDeployer {
-      if(gradle.ext.shouldSign) {
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-      }
+    maven {
+      name = "ossrh"
+      //  if(gradle.ext.shouldSign) {
+      //    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+      //  }
+      // change URLs to point to your repos, e.g. http://my.org/repo
+      def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+      def snapshotsRepoUrl = 'ttps://oss.sonatype.org/content/repositories/snapshots/'
+      url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
-      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication(userName: gradle.ext.ossrhUsernameSafe, password: gradle.ext.ossrhPasswordSafe)
-      }
-
-      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication(userName: gradle.ext.ossrhUsernameSafe, password: gradle.ext.ossrhPasswordSafe)
-      }
-      customizePom(pom, project)
-      pom.whenConfigured { generatedPom ->
-        if(gradle.ext.isParallel) {
-          logger.error('build error: this build file cannot yet upload to maven central with parallel builds enabled')
-          throw new InvalidUserDataException('build error: this build file cannot yet upload to maven central with parallel builds enabled')
-        }
+      credentials {
+        username = project.hasProperty('ossrhUsername') ? ossrhUsername : "Unknown user"
+        password = project.hasProperty('ossrhPassword') ? ossrhPassword : "Unknown password"
       }
     }
   }
 }
 
 
+//now uploading will have to be configured on a per subproject basis
+subprojects {
 
-def customizePom(pom, gradleProject) {
-  pom.whenConfigured { generatedPom ->
+  publishing {
 
-    //description is required for publishing, so enforce it
-    if(gradleProject.description == null || gradleProject.description == '') {
-      logger.error('build error: description required for release to maven central, but not set for subproject ' + gradleProject.name)
-      throw new InvalidUserDataException('build error: description required for release to maven central, but not set for subproject ' + gradleProject.name)
-    }
-
-    // eliminate test-scoped dependencies (no need in maven central poms)
-    generatedPom.dependencies.removeAll { dep ->
-      dep.scope == "test"
-    }
-
-    // sort to make pom dependencies order consistent to ease comparison of older poms
-    generatedPom.dependencies = generatedPom.dependencies.sort { dep ->
-      "$dep.scope:$dep.groupId:$dep.artifactId"
-    }
-
-    // add all items necessary for maven central publication
-    generatedPom.project {
-      name = gradleProject.name
-      description = gradleProject.description
-      url = "https://github.com/openEHR/archie"
-      organization {
-        name = "Nedap Healthcare"
-        url = "http://www.nedap-healthcare.com"
-      }
-      licenses {
-        license {
-          name "Apache License, Version 2.0"
-          url "http://www.apache.org/licenses/LICENSE-2.0"
-          distribution "repo"
+    publications {
+      "$project.name"(MavenPublication) {
+        afterEvaluate {
+          from components.java
+          artifact sourcesJar
+          artifact javadocJar
+          artifactId = project.name
+          pom {
+            name = project.name
+            description = project.description
+          }
         }
-      }
-      scm {
-        url = "https://github.com/openEHR/archie"
-        connection = "scm:git:git://github.com/openEHR/archie"
-        developerConnection = "scm:git:git://github.com/openEHR/archie"
-      }
-      developers {
-        developer {
-          id = "pieterbos"
-          name = "Pieter Bos"
-          email = "pieter.bos@nedap.com"
+
+        pom {
+
+          url = "https://github.com/openEHR/archie"
+          organization {
+            name = "Nedap Healthcare"
+            url = "http://www.nedap-healthcare.com"
+          }
+          licenses {
+            license {
+              name = "Apache License, Version 2.0"
+              url = "http://www.apache.org/licenses/LICENSE-2.0"
+              distribution = "repo"
+            }
+          }
+          scm {
+            url = "https://github.com/openEHR/archie"
+            connection = "scm:git:git://github.com/openEHR/archie"
+            developerConnection = "scm:git:git://github.com/openEHR/archie"
+          }
+          developers {
+            developer {
+              id = "pieterbos"
+              name = "Pieter Bos"
+              email = "pieter.bos@nedap.com"
+            }
+            developer {
+              id = "tanja.dejong"
+              name = "Tanja de Jong"
+              email = "tanja.dejong@nedap.com"
+            }
+          }
+          issueManagement {
+            system = "Github"
+            url = "https://github.com/openEHR/archie/issues"
+          }
         }
-        developer {
-          id = "tanja.dejong"
-          name = "Tanja de Jong"
-          email = "tanja.dejong@nedap.com"
-        }
-      }
-      issueManagement {
-        system = "Github"
-        url = "https://github.com/openEHR/archie/issues"
       }
     }
   }
+
 }
