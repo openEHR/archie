@@ -1,12 +1,7 @@
 package com.nedap.archie.rminfo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeHRID;
-import com.nedap.archie.aom.AuthoredResource;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.TranslationDetails;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CBoolean;
 import com.nedap.archie.aom.primitives.CDate;
 import com.nedap.archie.aom.primitives.CDateTime;
@@ -291,6 +286,15 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
             Locatable locatable = (Locatable) createdObject;
             locatable.setArchetypeNodeId(constraint.getNodeId());
             locatable.setNameAsString(constraint.getMeaning());
+            if(constraint != null && constraint instanceof CArchetypeRoot) {
+                CArchetypeRoot root = (CArchetypeRoot) constraint;
+                if(root.getArchetypeRef() != null) {
+                    Archetyped details = new Archetyped();
+                    details.setArchetypeId(new ArchetypeID(root.getArchetypeRef()));
+                    details.setRmVersion("1.1.0");
+                    locatable.setArchetypeDetails(details);
+                }
+            }
         }
     }
 
