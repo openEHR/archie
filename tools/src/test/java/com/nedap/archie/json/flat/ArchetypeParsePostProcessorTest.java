@@ -12,7 +12,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class ArchetypeParsePostProcessorTest {
     @Test
-    public void optProcessorTest() throws Exception {
+    public void setTupleParents() throws Exception {
         RMJacksonConfiguration config = RMJacksonConfiguration.createStandardsCompliant();
         config.setTypePropertyName("@type");
         try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/json/snaq_rc_opt.js")) {
