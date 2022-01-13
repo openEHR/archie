@@ -28,6 +28,6 @@ import java.io.Serializable;
  */
 public class CharObject extends PrimitiveObject<String> implements Serializable {
     public Character getAsChar() {
-        return new Character(getValue().charAt(0));
+        return getValue().charAt(0);
     }
 }
