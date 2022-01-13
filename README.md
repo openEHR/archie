@@ -49,7 +49,7 @@ You need Java 8 to build. Check out the source and type:
 To install to your local maven repository for use in other gradle or maven projects:
 
 ```sh
-./gradlew install
+./gradlew publishToMavenLocal
 ```
 
 ## Contents
