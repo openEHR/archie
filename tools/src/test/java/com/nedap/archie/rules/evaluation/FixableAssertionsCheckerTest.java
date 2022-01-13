@@ -45,7 +45,7 @@ public class FixableAssertionsCheckerTest {
     }
 
     @Test
-    public void fixableMatche   s() throws Exception {
+    public void fixableMatches() throws Exception {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("fixable_matches.adls"));
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
