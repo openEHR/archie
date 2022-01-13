@@ -291,6 +291,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
                 if(root.getArchetypeRef() != null) {
                     Archetyped details = new Archetyped();
                     details.setArchetypeId(new ArchetypeID(root.getArchetypeRef()));
+                    details.setRmVersion("1.1.0");
                     locatable.setArchetypeDetails(details);
                 }
             }
