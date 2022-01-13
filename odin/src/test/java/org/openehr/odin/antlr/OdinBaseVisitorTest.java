@@ -105,9 +105,9 @@ public class OdinBaseVisitorTest {
         OdinAttribute attribute = validatePrimitiveType(root, "a_integer_attribute", "1");
         assertEquals(Integer.valueOf(1), attribute.getIntegerObject().getAsInteger());
         attribute = validatePrimitiveType(root, "a_real_attribute", "-3.05e-10");
-        assertEquals(new Float(-3.05e-10), attribute.getRealObject().getAsFloat());
+        assertEquals(Float.valueOf(-3.05e-10f), attribute.getRealObject().getAsFloat());
         attribute = validatePrimitiveType(root, "a_char_attribute", "c");
-        assertEquals(new Character('c'), attribute.getCharacterObject().getAsChar());
+        assertEquals(Character.valueOf('c'), attribute.getCharacterObject().getAsChar());
         attribute = validatePrimitiveType(root, "a_term_code_attribute", "[ISO_639-1::en]");
         attribute = validatePrimitiveType(root, "a_date_attribute", "2007-11-31");
         attribute = validatePrimitiveType(root, "a_time_attribute", "16:23:54,5+2221");
