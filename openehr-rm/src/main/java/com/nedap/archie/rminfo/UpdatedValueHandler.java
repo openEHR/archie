@@ -1,6 +1,7 @@
 package com.nedap.archie.rminfo;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Strings;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
@@ -85,6 +86,10 @@ public class UpdatedValueHandler {
                 }
             }
         }
+        if(ordinal.getSymbol() != null && ordinal.getSymbol().getDefiningCode() != null) {
+            //also fix the DvCodedText inside the DvOrdinal
+            result.putAll(fixDvCodedText(rmObject, archetype, pathOfParent));
+        }
 
         return result;
     }
@@ -133,6 +138,12 @@ public class UpdatedValueHandler {
             codedText.setValue(value);
             result.put(path + "/value", value);
         }
+        if(codedText.getDefiningCode() != null &&  (codedText.getDefiningCode().getTerminologyId() == null || Strings.isNullOrEmpty(codedText.getDefiningCode().getTerminologyId().getValue()))) {
+            //TODO: only if at-code?
+            codedText.getDefiningCode().setTerminologyId(new TerminologyId("local"));
+            result.put(path + "/defining_code/terminology_id/value", "local");
+        }
+
         return result;
     }
 
@@ -145,8 +156,8 @@ public class UpdatedValueHandler {
                 if(child instanceof CTerminologyCode) {
                     String value = ((CTerminologyCode) child).getConstraint().get(0);
                     if(value.startsWith("ac")) {
-                        codedText.getDefiningCode().setTerminologyId(new TerminologyId(value));
-                        result.put(path + "/defining_code/terminology_id/value", value);
+                        codedText.getDefiningCode().setTerminologyId(new TerminologyId("local"));
+                        result.put(path + "/defining_code/terminology_id/value", "local");
                     }
                 }
             }
