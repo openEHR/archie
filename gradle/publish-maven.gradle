@@ -13,10 +13,7 @@ publishing {
   repositories {
     maven {
       name = "ossrh"
-      //  if(gradle.ext.shouldSign) {
-      //    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-      //  }
-      // change URLs to point to your repos, e.g. http://my.org/repo
+      // OSSRH URLS
       def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
       def snapshotsRepoUrl = 'ttps://oss.sonatype.org/content/repositories/snapshots/'
       url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
@@ -37,10 +34,9 @@ subprojects {
 
     publications {
       "$project.name"(MavenPublication) {
+
         afterEvaluate {
           from components.java
-          artifact sourcesJar
-          artifact javadocJar
           artifactId = project.name
           pom {
             name = project.name

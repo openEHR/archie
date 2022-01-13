@@ -25,9 +25,10 @@ gradle.ext.isParallel = hasProperty('org.gradle.parallel') ? project.property('o
 
 apply from: "${gradleScriptDir}/publish-maven.gradle"
 
+
+
 subprojects {
   apply plugin: 'java-library'
-
 
  // plugins {
    //   id 'com.github.ben-manes.versions' version '0.13.0'
@@ -46,6 +47,12 @@ subprojects {
 
   ext.reflectionsVersion = '0.9.12'
   ext.jacksonVersion = '2.12.5'
+
+
+  java {
+    withJavadocJar()
+    withSourcesJar()
+  }
 
 
   dependencies {
@@ -87,20 +94,7 @@ subprojects {
       options.encoding = 'UTF-8'
   }
 
-  //configure the jar files: sources and javaod
-  task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-  }
 
-  task sourcesJar(type: Jar) {
-      classifier = 'sources'
-      from sourceSets.main.allSource
-  }
-
-  artifacts {
-      archives javadocJar, sourcesJar
-  }
 
   test {
     if(JavaVersion.current() != JavaVersion.VERSION_1_8) {
