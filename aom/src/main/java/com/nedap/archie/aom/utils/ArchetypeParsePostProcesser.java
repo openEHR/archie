@@ -51,6 +51,7 @@ public class ArchetypeParsePostProcesser {
                 workList.addAll(attribute.getChildren());
             }
             if(cObject instanceof CComplexObject) {
+                //TODO: fix tuple so it has proper multiple references to the separate structures, instead of a complete duplication of data in json
                 CComplexObject cComplexObject = (CComplexObject) cObject;
                 for(CAttributeTuple tuple: cComplexObject.getAttributeTuples()) {
                     for(CAttribute attribute:tuple.getMembers()) {
@@ -58,6 +59,18 @@ public class ArchetypeParsePostProcesser {
                         attribute.setParent(cObject);
                         workList.addAll(attribute.getChildren());
                         cComplexObject.replaceAttribute(attribute);
+                    }
+                    for(CPrimitiveTuple primitiveTuple:tuple.getTuples()) {
+                        int index = 0;
+                        for(CPrimitiveObject object:primitiveTuple.getMembers()) {
+                            if(index < tuple.getMembers().size()) {
+                                CAttribute attribute = tuple.getMember(index);
+                                object.setSocParent(tuple);
+                                object.setParent(attribute);
+                                index++;
+                            }
+
+                        }
                     }
                 }
 
