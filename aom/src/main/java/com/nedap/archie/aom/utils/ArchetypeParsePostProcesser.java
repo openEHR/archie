@@ -55,6 +55,8 @@ public class ArchetypeParsePostProcesser {
                 for(CAttributeTuple tuple: cComplexObject.getAttributeTuples()) {
                     for(CAttribute attribute:tuple.getMembers()) {
                         attribute.setSocParent(tuple);
+                        attribute.setParent(cObject);
+                        workList.addAll(attribute.getChildren());
                         cComplexObject.replaceAttribute(attribute);
                     }
                 }
