@@ -74,9 +74,7 @@ public class DvDuration extends DvAmount<DvDuration, Double> implements SingleVa
 		if(value == null) {
 			return null;
 		}
-		LocalDateTime start = LocalDateTime.of(1970, 1, 1, 0, 0);
-		LocalDateTime end = start.plus(value);
-		return ChronoUnit.MILLIS.between(start, end) / 1000d;
+		return TimeDefinitions.convertPeriodToSeconds(value);
     }
 
 
