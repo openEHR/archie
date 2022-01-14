@@ -62,16 +62,16 @@ subprojects {
     api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
 
-    api 'com.google.guava:guava:31.0.1-jre'
+    implementation 'com.google.guava:guava:31.0.1-jre'
 
-    api "org.reflections:reflections:${reflectionsVersion}"
-    api 'com.esotericsoftware.kryo:kryo5:5.2.1'
+    implementation "org.reflections:reflections:${reflectionsVersion}"
+    implementation 'com.esotericsoftware.kryo:kryo5:5.2.1'
 
-    api('commons-io:commons-io:2.11.0'){
+    implementation('commons-io:commons-io:2.11.0'){
       exclude group: 'commons-logging', module: 'commons-logging'
     }
-    api 'org.apache.commons:commons-text:1.9'
-    api 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.apache.commons:commons-text:1.9'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     //java 10 no longer has these included by default, so explicit dependency is needed.
     api 'javax.xml.bind:jaxb-api:2.3.1'
