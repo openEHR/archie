@@ -20,4 +20,5 @@ public class DvDurationTest {
 		assertNotEquals(dvDurationOne, dvDurationFour);
 		assertEquals(dvDurationFour, dvDurationFive);
 	}
+
 }
