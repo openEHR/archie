@@ -8,7 +8,7 @@ wrapper {
 }
 
 allprojects {
-  version = '1.0.2'
+  version = '1.0.3'
   group = 'com.nedap.healthcare.archie'
   ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
   //archivesBaseName = 'archie'
@@ -23,9 +23,12 @@ gradle.ext.ossrhPasswordSafe = hasProperty('ossrhPassword') ? ossrhPassword : ""
 gradle.ext.shouldSign = hasProperty('signing.keyId')
 gradle.ext.isParallel = hasProperty('org.gradle.parallel') ? project.property('org.gradle.parallel') == 'true' : false
 
+apply from: "${gradleScriptDir}/publish-maven.gradle"
+
+
+
 subprojects {
-  apply plugin: 'java'
-  apply from: "${gradleScriptDir}/publish-maven.gradle"
+  apply plugin: 'java-library'
 
  // plugins {
    //   id 'com.github.ben-manes.versions' version '0.13.0'
@@ -46,36 +49,42 @@ subprojects {
   ext.jacksonVersion = '2.12.5'
 
 
+  java {
+    withJavadocJar()
+    withSourcesJar()
+  }
+
+
   dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.32'
+    api 'org.slf4j:slf4j-api:1.7.32'
 
-    compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
-    compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    api "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
 
-    compile 'com.google.guava:guava:31.0.1-jre'
+    implementation 'com.google.guava:guava:31.0.1-jre'
 
-    compile "org.reflections:reflections:${reflectionsVersion}"
-    compile 'com.esotericsoftware.kryo:kryo5:5.1.1'
+    implementation "org.reflections:reflections:${reflectionsVersion}"
+    implementation 'com.esotericsoftware.kryo:kryo5:5.2.1'
 
-    compile('commons-io:commons-io:2.11.0'){
+    implementation('commons-io:commons-io:2.11.0'){
       exclude group: 'commons-logging', module: 'commons-logging'
     }
-    compile 'org.apache.commons:commons-text:1.9'
-    compile 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.apache.commons:commons-text:1.9'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     //java 10 no longer has these included by default, so explicit dependency is needed.
-    compile 'javax.xml.bind:jaxb-api:2.3.1'
-    compile 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    runtime 'com.sun.xml.bind:jaxb-impl:2.3.3'
-    compile 'javax.activation:activation:1.1.1'
+    api 'javax.xml.bind:jaxb-api:2.3.1'
+    api 'com.sun.xml.bind:jaxb-core:2.3.0.1'
+    runtimeOnly 'com.sun.xml.bind:jaxb-impl:2.3.3'
+    api 'javax.activation:activation:1.1.1'
 
-    implementation 'org.threeten:threeten-extra:1.7.0'
+    api 'org.threeten:threeten-extra:1.7.0'
 
-    testCompile 'junit:junit:4.+'
-    testCompile 'org.slf4j:slf4j-simple:1.7.32'
+    testImplementation 'junit:junit:4.+'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.32'
 
-    compile 'com.github.zafarkhaja:java-semver:0.9.0'
+    api 'com.github.zafarkhaja:java-semver:0.9.0'
 
 
   }
@@ -85,22 +94,20 @@ subprojects {
       options.encoding = 'UTF-8'
   }
 
-  //configure the jar files: sources and javaod
-  task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-  }
 
-  task sourcesJar(type: Jar) {
-      classifier = 'sources'
-      from sourceSets.main.allSource
-  }
-
-  artifacts {
-      archives javadocJar, sourcesJar
-  }
 
   test {
+    if(JavaVersion.current() != JavaVersion.VERSION_1_8) {
+      jvmArgs = ['--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+                 , '--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED'
+                 , '--add-opens', 'java.base/java.net=ALL-UNNAMED'
+                 , '--add-opens', 'java.base/java.nio=ALL-UNNAMED'
+                 , '--add-opens', 'java.base/java.time=ALL-UNNAMED'
+                 , '--add-opens', 'java.base/java.util=ALL-UNNAMED'
+                 , '--add-opens', 'java.base/java.util.concurrent.atomic=ALL-UNNAMED'
+                 , '--add-opens', 'java.base/sun.nio.ch=ALL-UNNAMED'
+                 , '--add-opens', 'java.base/sun.util.calendar=ALL-UNNAMED']
+    }
    testLogging {
       events "failed"
       exceptionFormat "full"
