@@ -16,7 +16,7 @@ public class TimeDefinitions {
     public static double NOMINAL_SECONDS_IN_MONTH = NOMINAL_DAYS_IN_MONTH * (long) SECONDS_IN_DAY;
     public static double NOMINAL_SECONDS_IN_YEAR = NOMINAL_DAYS_IN_YEAR * (long) SECONDS_IN_DAY;
 
-    public static Double convertPeriodToSeconds(TemporalAmount amount) {
+    public static Double convertTemporalAmountToSeconds(TemporalAmount amount) {
         double result = 0d;
         for(TemporalUnit unit:amount.getUnits()) {
             if(unit instanceof ChronoUnit) {

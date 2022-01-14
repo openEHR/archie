@@ -8,7 +8,6 @@ import com.nedap.archie.rm.datavalues.quantity.DvAmount;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
 import com.nedap.archie.xml.adapters.DurationXmlAdapter;
-import org.threeten.extra.Seconds;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,10 +15,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAmount;
-import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Objects;
 
@@ -74,7 +70,7 @@ public class DvDuration extends DvAmount<DvDuration, Double> implements SingleVa
 		if(value == null) {
 			return null;
 		}
-		return TimeDefinitions.convertPeriodToSeconds(value);
+		return TimeDefinitions.convertTemporalAmountToSeconds(value);
     }
 
 
