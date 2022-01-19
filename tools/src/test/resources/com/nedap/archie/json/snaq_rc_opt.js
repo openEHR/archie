@@ -1,8 +1,8 @@
 {
-  "@type": "OPERATIONAL_TEMPLATE",
+  "_type": "OPERATIONAL_TEMPLATE",
   "adl_version": "2.0.5",
   "archetype_id": {
-    "@type": "ARCHETYPE_HRID",
+    "_type": "ARCHETYPE_HRID",
     "build_count": "",
     "concept_id": "snaq_rc_report",
     "release_version": "1.0.0",
@@ -19,7 +19,7 @@
   },
   "component_terminologies": {
     "openEHR-EHR-ELEMENT.weight.v1.0.0": {
-      "@type": "ARCHETYPE_TERMINOLOGY",
+      "_type": "ARCHETYPE_TERMINOLOGY",
       "concept_code": "id1",
       "original_language": "nl",
       "term_bindings": {
@@ -28,13 +28,13 @@
       "term_definitions": {
         "nl": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "code": "id1",
             "description": "Gewicht",
             "text": "Gewicht"
           },
           "openEHR-EHR-ELEMENT.weight.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "code": "id1",
             "description": "Gewicht",
             "text": "Gewicht"
@@ -49,7 +49,7 @@
       }
     },
     "openEHR-EHR-OBSERVATION.snaq_rc.v1.0.0": {
-      "@type": "ARCHETYPE_TERMINOLOGY",
+      "_type": "ARCHETYPE_TERMINOLOGY",
       "concept_code": "id1",
       "original_language": "nl",
       "term_bindings": {
@@ -58,157 +58,157 @@
       "term_definitions": {
         "nl": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Short Nutritional Assessment Questionnaire for Residential care - Vroege herkenning en behandeling van ondervoeding in verpleeg- en verzorgingshuizen",
             "text": "SNAQ RC"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Any event",
             "text": "Any event"
           },
           "id10": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Bent u onbedoeld afgevallen?",
             "text": "Bent u onbedoeld afgevallen?"
           },
           "id11": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Hebt u hulp van een ander nodig bij het eten?",
             "text": "Hebt u hulp van een ander nodig bij het eten?"
           },
           "id12": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Had u de afgelopen maand een verminderde eetlust?",
             "text": "Had u de afgelopen maand een verminderde eetlust?"
           },
           "id13": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Bereken de Body Mass Index (BMI)",
             "text": "BMI"
           },
           "id14": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "De betekenis van de BMI-score",
             "text": "Betekenis BMI"
           },
           "id15": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Totaalscore",
             "text": "Totaalscore"
           },
           "id16": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Acties",
             "text": "Acties"
           },
           "ac1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Bent u onbedoeld afgevallen?",
             "text": "Bent u onbedoeld afgevallen?"
           },
           "ac2": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Risico op ondervoeding",
             "text": "Risico op ondervoeding"
           },
           "ac3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Acties",
             "text": "Acties"
           },
           "at1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "> 6 kg in de laatste 6 maanden",
             "text": "> 6 kg in de laatste 6 maanden"
           },
           "at2": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "> 3 kg in de afgelopen maand",
             "text": "> 3 kg in de afgelopen maand"
           },
           "at3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "nee",
             "text": "nee"
           },
           "at4": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "ja",
             "text": "ja"
           },
           "at5": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "nee",
             "text": "nee"
           },
           "at6": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "BMI beneden 20",
             "text": "< 20"
           },
           "at7": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "BMI van 20 tot 22",
             "text": "20 - 22"
           },
           "at8": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "BMI van 22 tot 28",
             "text": "22 - 28"
           },
           "at9": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "BMI boven 28 is overgewicht",
             "text": "> 28 (overgewicht)"
           },
           "at10": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Niet ondervoed",
             "text": "Niet ondervoed"
           },
           "at11": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Risico op ondervoeding",
             "text": "Risico op ondervoeding"
           },
           "at12": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Ondervoed",
             "text": "Ondervoed"
           },
           "at13": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Geen actie",
             "text": "Geen actie"
           },
           "at14": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "- 2 - 3 x per dag tussentijdse verstrekking\n                        • Motiveren, evt. brochure\n                        • Globale monitoring van de inname",
             "text": "• 2 - 3 x per dag tussentijdse verstrekking\n                        • Motiveren, evt. brochure\n                        • Globale monitoring van de inname"
           },
           "at15": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "• 2 - 3 x per dag tussentijdse verstrekking + verrijken hoofdmaaltijden + globale monitoring van de inname\n                        • Melden bij arts voor inschakelen diëtetiek\n                        • <= 3 werkdagen na screening diëtist in consult\n                        • <= 8 werkdagen na screening start behandeling\n                        • 5 werkdagen na start van de behandeling evaluatie",
             "text": "• 2 - 3 x per dag tussentijdse verstrekking + verrijken hoofdmaaltijden + globale monitoring van de inname\n                        • Melden bij arts voor inschakelen diëtetiek\n                        • <= 3 werkdagen na screening diëtist in consult\n                        • <= 8 werkdagen na screening start behandeling\n                        • 5 werkdagen na start van de behandeling evaluatie"
           },
           "id29": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Lengte",
             "text": "Lengte"
           },
           "id33": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Lengte",
             "text": "Lengte"
           },
           "id30": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Gewicht",
             "text": "Gewicht"
           },
           "openEHR-EHR-OBSERVATION.snaq_rc.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Short Nutritional Assessment Questionnaire for Residential care - Vroege herkenning en behandeling van ondervoeding in verpleeg- en verzorgingshuizen",
             "text": "SNAQ RC"
           }
@@ -219,7 +219,7 @@
       },
       "value_sets": {
         "ac1": {
-          "@type": "VALUE_SET",
+          "_type": "VALUE_SET",
           "id": "ac1",
           "members": [
             "at1",
@@ -228,7 +228,7 @@
           ]
         },
         "ac2": {
-          "@type": "VALUE_SET",
+          "_type": "VALUE_SET",
           "id": "ac2",
           "members": [
             "at10",
@@ -237,7 +237,7 @@
           ]
         },
         "ac3": {
-          "@type": "VALUE_SET",
+          "_type": "VALUE_SET",
           "id": "ac3",
           "members": [
             "at13",
@@ -248,7 +248,7 @@
       }
     },
     "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-      "@type": "ARCHETYPE_TERMINOLOGY",
+      "_type": "ARCHETYPE_TERMINOLOGY",
       "concept_code": "id1.1",
       "differential": false,
       "original_language": "en",
@@ -258,156 +258,156 @@
       "term_definitions": {
         "en": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Narrative summary or overview about a patient, specifically from the perspective of a healthcare provider, and with or without associated interpretations.",
             "text": "Clinical Synopsis"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "The summary, assessment, conclusions or evaluation of the clinical findings.",
             "text": "Synopsis"
           },
           "id3.1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Assessment or remarks about the clinical finding",
             "text": "Assessment / remarks"
           },
           "id1.1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Describe an assessment or remarks for a clinical finding. This can for example be a more detailed interpretation of\n    \t\t\t\ta finding, or the meaning of a finding for a patiënt.",
             "text": "Assessment / remarks"
           },
           "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Describe an assessment or remarks for a clinical finding. This can for example be a more detailed interpretation of\n    \t\t\t\ta finding, or the meaning of a finding for a patiënt.",
             "text": "Assessment / remarks"
           }
         },
         "fa": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "خلاصه یا مروری تشریحی دربازه بیمار بویژه از نظز ارایه کننده مراقبت بهداشتی با یا بدون تفسیرهای مربوطه ",
             "text": "خلاصه بالینی"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "خلاصه ، ارزیابی ، نتیجه ، یا ارزشیابی یافته های بالینی",
             "text": "خلاصه"
           },
           "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "خلاصه یا مروری تشریحی دربازه بیمار بویژه از نظز ارایه کننده مراقبت بهداشتی با یا بدون تفسیرهای مربوطه ",
             "text": "خلاصه بالینی"
           }
         },
         "ar-sy": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "ملخص بالرواية أو نظرة عامة عن المريض, خاصة من وجهة نظر مقدم الخدمة الصحية, مع إرفاق أو عدم إرفاق تفسيرات ",
             "text": "المختصر السريري"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "الملخص, التقييم, الاستنتاجات أو التقييم للموجودات السريرية",
             "text": "المختصر"
           },
           "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "ملخص بالرواية أو نظرة عامة عن المريض, خاصة من وجهة نظر مقدم الخدمة الصحية, مع إرفاق أو عدم إرفاق تفسيرات ",
             "text": "المختصر السريري"
           }
         },
         "de": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Zusammenfassung oder Übersicht einer Patientengeschichte, speziell aus der Sicht eines Gesundheitsdienstleisters, evtl. mit dazugehörigen Interpretationen.",
             "text": "Klinische Synopsis"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Die Zusammenfassung, Beurteilung, Aussagen or Auswertung des klinischen Befunds.",
             "text": "Synopsis"
           },
           "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Zusammenfassung oder Übersicht einer Patientengeschichte, speziell aus der Sicht eines Gesundheitsdienstleisters, evtl. mit dazugehörigen Interpretationen.",
             "text": "Klinische Synopsis"
           }
         },
         "es-ar": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Sumario narrativo o visión global acerca de un paciente, específicamente desde la perspectiva de un profesional del cuidado de la salud, con o sin interpretaciones asociadas.",
             "text": "Sinopsis Clínica"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "El sumario, la impresión diagnóstica y las conclusiones sobre los hallazgos clínicos.",
             "text": "Sinopsis"
           },
           "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Sumario narrativo o visión global acerca de un paciente, específicamente desde la perspectiva de un profesional del cuidado de la salud, con o sin interpretaciones asociadas.",
             "text": "Sinopsis Clínica"
           }
         },
         "pt-br": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Resumo narrativo ou visão geral sobre um paciente, especificamente a partir da perspectiva de um profissional de saúde, e com ou sem interpretações associadas.",
             "text": "Sinopse Clínica"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": " O sumário, a avaliação, conclusões ou avaliação dos achados clínicos.",
             "text": "Sinopse"
           },
           "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Resumo narrativo ou visão geral sobre um paciente, especificamente a partir da perspectiva de um profissional de saúde, e com ou sem interpretações associadas.",
             "text": "Sinopse Clínica"
           }
         },
         "zh-cn": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "从医疗保健服务提供着的角度，手工综合并记录关于患者的叙述型摘要或概述，且带有或没有相关联的解释。",
             "text": "临床提要"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "对于临床所见（临床发现）进行的概括、评估、总结或评价。",
             "text": "提要"
           },
           "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "从医疗保健服务提供着的角度，手工综合并记录关于患者的叙述型摘要或概述，且带有或没有相关联的解释。",
             "text": "临床提要"
           }
         },
         "nl": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Samenvatting, beoordeling, conclusies of evaluaties bij de meting.",
             "text": "Klinische Synopsis"
           },
           "id3": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "De samenvatting, beoordeling, conclusies of evaluaties van de bevindingen.",
             "text": "Synopsis"
           },
           "id3.1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Beoordeling van de meting of opmerkingen over de meting",
             "text": "Beoordeling / opmerkingen"
           },
           "id1.1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Beschrijf hier eventueel de klinische beoordeling of opmerkingen van het resultaat van de meting.\n                    Dit kan bijvoorbeeld een uitgebreidere interpretatie van het resultaat zijn, of de betekenis van het resultaat voor de cliënt.",
             "text": "Beoordeling / opmerkingen"
           },
           "openEHR-EHR-EVALUATION.clinical_assessment_or_remarks.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "description": "Beschrijf hier eventueel de klinische beoordeling of opmerkingen van het resultaat van de meting.\n                    Dit kan bijvoorbeeld een uitgebreidere interpretatie van het resultaat zijn, of de betekenis van het resultaat voor de cliënt.",
             "text": "Beoordeling / opmerkingen"
           }
@@ -421,7 +421,7 @@
       }
     },
     "openEHR-EHR-ELEMENT.height.v1.0.0": {
-      "@type": "ARCHETYPE_TERMINOLOGY",
+      "_type": "ARCHETYPE_TERMINOLOGY",
       "concept_code": "id1",
       "original_language": "nl",
       "term_bindings": {
@@ -430,13 +430,13 @@
       "term_definitions": {
         "nl": {
           "id1": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "code": "id1",
             "description": "Lengte",
             "text": "Lengte"
           },
           "openEHR-EHR-ELEMENT.height.v1.0.0": {
-            "@type": "ARCHETYPE_TERM",
+            "_type": "ARCHETYPE_TERM",
             "code": "id1",
             "description": "Lengte",
             "text": "Lengte"
@@ -452,13 +452,13 @@
     }
   },
   "definition": {
-    "@type": "C_COMPLEX_OBJECT",
+    "_type": "C_COMPLEX_OBJECT",
     "rm_type_name": "COMPOSITION",
     "node_id": "id1.1.1.1",
     "path": "/",
     "logical_path": "/",
     "term": {
-      "@type": "ARCHETYPE_TERM",
+      "_type": "ARCHETYPE_TERM",
       "description": "SNAQ RC",
       "text": "SNAQ RC"
     },
@@ -467,14 +467,14 @@
     "any_allowed": false,
     "attributes": [
       {
-        "@type": "C_ATTRIBUTE",
+        "_type": "C_ATTRIBUTE",
         "rm_attribute_name": "category",
         "path": "/category",
         "logical_path": "/category",
         "multiple": false,
         "mandatory": true,
         "existence": {
-          "@type": "MULTIPLICITY_INTERVAL",
+          "_type": "MULTIPLICITY_INTERVAL",
           "lower": 1,
           "lower_included": true,
           "lower_unbounded": false,
@@ -488,7 +488,7 @@
         },
         "children": [
           {
-            "@type": "C_COMPLEX_OBJECT",
+            "_type": "C_COMPLEX_OBJECT",
             "rm_type_name": "DV_CODED_TEXT",
             "node_id": "id8",
             "path": "/category[id8]",
@@ -498,14 +498,14 @@
             "any_allowed": false,
             "attributes": [
               {
-                "@type": "C_ATTRIBUTE",
+                "_type": "C_ATTRIBUTE",
                 "rm_attribute_name": "defining_code",
                 "path": "/category[id8]/defining_code",
                 "logical_path": "/category[id8]/defining_code",
                 "multiple": false,
                 "mandatory": true,
                 "existence": {
-                  "@type": "MULTIPLICITY_INTERVAL",
+                  "_type": "MULTIPLICITY_INTERVAL",
                   "lower": 1,
                   "lower_included": true,
                   "lower_unbounded": false,
@@ -519,7 +519,7 @@
                 },
                 "children": [
                   {
-                    "@type": "C_TERMINOLOGY_CODE",
+                    "_type": "C_TERMINOLOGY_CODE",
                     "allowed": true,
                     "attributes": [
 
@@ -537,7 +537,7 @@
                       {
                         "code": "at1",
                         "term": {
-                          "@type": "ARCHETYPE_TERM",
+                          "_type": "ARCHETYPE_TERM",
                           "description": "event",
                           "text": "event"
                         }
@@ -557,14 +557,14 @@
         "prohibited": false
       },
       {
-        "@type": "C_ATTRIBUTE",
+        "_type": "C_ATTRIBUTE",
         "rm_attribute_name": "context",
         "path": "/context",
         "logical_path": "/context",
         "multiple": false,
         "mandatory": false,
         "existence": {
-          "@type": "MULTIPLICITY_INTERVAL",
+          "_type": "MULTIPLICITY_INTERVAL",
           "lower": 0,
           "lower_included": true,
           "lower_unbounded": false,
@@ -578,7 +578,7 @@
         },
         "children": [
           {
-            "@type": "C_COMPLEX_OBJECT",
+            "_type": "C_COMPLEX_OBJECT",
             "rm_type_name": "EVENT_CONTEXT",
             "node_id": "id9",
             "path": "/context[id9]",
@@ -588,14 +588,14 @@
             "any_allowed": false,
             "attributes": [
               {
-                "@type": "C_ATTRIBUTE",
+                "_type": "C_ATTRIBUTE",
                 "rm_attribute_name": "other_context",
                 "path": "/context[id9]/other_context",
                 "logical_path": "/context[id9]/other_context",
                 "multiple": false,
                 "mandatory": false,
                 "existence": {
-                  "@type": "MULTIPLICITY_INTERVAL",
+                  "_type": "MULTIPLICITY_INTERVAL",
                   "lower": 0,
                   "lower_included": true,
                   "lower_unbounded": false,
@@ -609,7 +609,7 @@
                 },
                 "children": [
                   {
-                    "@type": "C_COMPLEX_OBJECT",
+                    "_type": "C_COMPLEX_OBJECT",
                     "rm_type_name": "ITEM_TREE",
                     "node_id": "id2",
                     "path": "/context[id9]/other_context[id2]",
@@ -619,14 +619,14 @@
                     "any_allowed": false,
                     "attributes": [
                       {
-                        "@type": "C_ATTRIBUTE",
+                        "_type": "C_ATTRIBUTE",
                         "rm_attribute_name": "items",
                         "path": "/context[id9]/other_context[id2]/items",
                         "logical_path": "/context[id9]/other_context[id2]/items",
                         "multiple": true,
                         "mandatory": false,
                         "existence": {
-                          "@type": "MULTIPLICITY_INTERVAL",
+                          "_type": "MULTIPLICITY_INTERVAL",
                           "lower": 0,
                           "lower_included": true,
                           "lower_unbounded": false,
@@ -639,9 +639,9 @@
                           "upper_unbounded": false
                         },
                         "cardinality": {
-                          "@type": "CARDINALITY",
+                          "_type": "CARDINALITY",
                           "interval": {
-                            "@type": "MULTIPLICITY_INTERVAL",
+                            "_type": "MULTIPLICITY_INTERVAL",
                             "lower": 0,
                             "lower_included": true,
                             "lower_unbounded": false,
@@ -657,13 +657,13 @@
                         },
                         "children": [
                           {
-                            "@type": "C_COMPLEX_OBJECT",
+                            "_type": "C_COMPLEX_OBJECT",
                             "rm_type_name": "ELEMENT",
                             "node_id": "id3",
                             "path": "/context[id9]/other_context[id2]/items[id3]",
                             "logical_path": "/context[id9]/other_context[id2]/items[Report ID]",
                             "term": {
-                              "@type": "ARCHETYPE_TERM",
+                              "_type": "ARCHETYPE_TERM",
                               "description": "Identificerende informatie over deze rapportage",
                               "text": "Rapportage ID"
                             },
@@ -671,7 +671,7 @@
                             "allowed": true,
                             "any_allowed": false,
                             "occurrences": {
-                              "@type": "MULTIPLICITY_INTERVAL",
+                              "_type": "MULTIPLICITY_INTERVAL",
                               "lower": 0,
                               "lower_included": true,
                               "lower_unbounded": false,
@@ -685,14 +685,14 @@
                             },
                             "attributes": [
                               {
-                                "@type": "C_ATTRIBUTE",
+                                "_type": "C_ATTRIBUTE",
                                 "rm_attribute_name": "value",
                                 "path": "/context[id9]/other_context[id2]/items[id3]/value",
                                 "logical_path": "/context[id9]/other_context[id2]/items[Report ID]/value",
                                 "multiple": false,
                                 "mandatory": false,
                                 "existence": {
-                                  "@type": "MULTIPLICITY_INTERVAL",
+                                  "_type": "MULTIPLICITY_INTERVAL",
                                   "lower": 0,
                                   "lower_included": true,
                                   "lower_unbounded": false,
@@ -706,7 +706,7 @@
                                 },
                                 "children": [
                                   {
-                                    "@type": "C_COMPLEX_OBJECT",
+                                    "_type": "C_COMPLEX_OBJECT",
                                     "rm_type_name": "DV_TEXT",
                                     "node_id": "id10",
                                     "path": "/context[id9]/other_context[id2]/items[id3]/value[id10]",
@@ -732,13 +732,13 @@
                             "prohibited": false
                           },
                           {
-                            "@type": "C_COMPLEX_OBJECT",
+                            "_type": "C_COMPLEX_OBJECT",
                             "rm_type_name": "ELEMENT",
                             "node_id": "id6",
                             "path": "/context[id9]/other_context[id2]/items[id6]",
                             "logical_path": "/context[id9]/other_context[id2]/items[Status]",
                             "term": {
-                              "@type": "ARCHETYPE_TERM",
+                              "_type": "ARCHETYPE_TERM",
                               "description": "De status van de rapportage. Let op, dit is niet de status van een van de onderdelen van de rappotage",
                               "text": "Status"
                             },
@@ -746,7 +746,7 @@
                             "allowed": true,
                             "any_allowed": false,
                             "occurrences": {
-                              "@type": "MULTIPLICITY_INTERVAL",
+                              "_type": "MULTIPLICITY_INTERVAL",
                               "lower": 0,
                               "lower_included": true,
                               "lower_unbounded": false,
@@ -760,14 +760,14 @@
                             },
                             "attributes": [
                               {
-                                "@type": "C_ATTRIBUTE",
+                                "_type": "C_ATTRIBUTE",
                                 "rm_attribute_name": "value",
                                 "path": "/context[id9]/other_context[id2]/items[id6]/value",
                                 "logical_path": "/context[id9]/other_context[id2]/items[Status]/value",
                                 "multiple": false,
                                 "mandatory": false,
                                 "existence": {
-                                  "@type": "MULTIPLICITY_INTERVAL",
+                                  "_type": "MULTIPLICITY_INTERVAL",
                                   "lower": 0,
                                   "lower_included": true,
                                   "lower_unbounded": false,
@@ -781,7 +781,7 @@
                                 },
                                 "children": [
                                   {
-                                    "@type": "C_COMPLEX_OBJECT",
+                                    "_type": "C_COMPLEX_OBJECT",
                                     "rm_type_name": "DV_TEXT",
                                     "node_id": "id11",
                                     "path": "/context[id9]/other_context[id2]/items[id6]/value[id11]",
@@ -807,7 +807,7 @@
                             "prohibited": false
                           },
                           {
-                            "@type": "ARCHETYPE_SLOT",
+                            "_type": "ARCHETYPE_SLOT",
                             "allowed": true,
                             "attributes": [
 
@@ -818,20 +818,20 @@
                             ],
                             "includes": [
                               {
-                                "@type": "ASSERTION",
+                                "_type": "ASSERTION",
                                 "expression": {
-                                  "@type": "BINARY_OPERATOR",
+                                  "_type": "BINARY_OPERATOR",
                                   "left_operand": {
-                                    "@type": "MODEL_REFERENCE",
+                                    "_type": "MODEL_REFERENCE",
                                     "path": "archetype_id/value",
                                     "precedence_overridden": false
                                   },
                                   "operator": "matches",
                                   "precedence_overridden": false,
                                   "right_operand": {
-                                    "@type": "CONSTRAINT",
+                                    "_type": "CONSTRAINT",
                                     "item": {
-                                      "@type": "C_STRING",
+                                      "_type": "C_STRING",
                                       "allowed": true,
                                       "attributes": [
 
@@ -860,7 +860,7 @@
                             "logical_path": "/context[id9]/other_context[id2]/items[Extension]",
                             "node_id": "id7",
                             "occurrences": {
-                              "@type": "MULTIPLICITY_INTERVAL",
+                              "_type": "MULTIPLICITY_INTERVAL",
                               "lower": 0,
                               "lower_included": true,
                               "lower_unbounded": false,
@@ -876,7 +876,7 @@
                             "required": false,
                             "rm_type_name": "CLUSTER",
                             "term": {
-                              "@type": "ARCHETYPE_TERM",
+                              "_type": "ARCHETYPE_TERM",
                               "description": "Extra informatie nodig om de context te beschrijven of te voldoen met andere modellen of formalismes.",
                               "text": "Uitbreiding"
                             }
@@ -903,14 +903,14 @@
         "prohibited": false
       },
       {
-        "@type": "C_ATTRIBUTE",
+        "_type": "C_ATTRIBUTE",
         "rm_attribute_name": "content",
         "path": "/content",
         "logical_path": "/content",
         "multiple": true,
         "mandatory": false,
         "existence": {
-          "@type": "MULTIPLICITY_INTERVAL",
+          "_type": "MULTIPLICITY_INTERVAL",
           "lower": 0,
           "lower_included": true,
           "lower_unbounded": false,
@@ -923,9 +923,9 @@
           "upper_unbounded": false
         },
         "cardinality": {
-          "@type": "CARDINALITY",
+          "_type": "CARDINALITY",
           "interval": {
-            "@type": "MULTIPLICITY_INTERVAL",
+            "_type": "MULTIPLICITY_INTERVAL",
             "lower": 0,
             "lower_included": true,
             "lower_unbounded": false,
@@ -941,13 +941,13 @@
         },
         "children": [
           {
-            "@type": "C_ARCHETYPE_ROOT",
+            "_type": "C_ARCHETYPE_ROOT",
             "rm_type_name": "OBSERVATION",
             "node_id": "id0.0.100.1",
             "path": "/content[id0.0.100.1]",
             "logical_path": "/content[id0.0.100.1]",
             "term": {
-              "@type": "ARCHETYPE_TERM",
+              "_type": "ARCHETYPE_TERM",
               "description": "Short Nutritional Assessment Questionnaire for Residential care - Vroege herkenning en behandeling van ondervoeding in verpleeg- en verzorgingshuizen",
               "text": "SNAQ RC"
             },
@@ -955,7 +955,7 @@
             "allowed": true,
             "any_allowed": false,
             "occurrences": {
-              "@type": "MULTIPLICITY_INTERVAL",
+              "_type": "MULTIPLICITY_INTERVAL",
               "lower": 1,
               "lower_included": true,
               "lower_unbounded": false,
@@ -969,14 +969,14 @@
             },
             "attributes": [
               {
-                "@type": "C_ATTRIBUTE",
+                "_type": "C_ATTRIBUTE",
                 "rm_attribute_name": "data",
                 "path": "/content[id0.0.100.1]/data",
                 "logical_path": "/content[id0.0.100.1]/data",
                 "multiple": false,
                 "mandatory": true,
                 "existence": {
-                  "@type": "MULTIPLICITY_INTERVAL",
+                  "_type": "MULTIPLICITY_INTERVAL",
                   "lower": 1,
                   "lower_included": true,
                   "lower_unbounded": false,
@@ -990,7 +990,7 @@
                 },
                 "children": [
                   {
-                    "@type": "C_COMPLEX_OBJECT",
+                    "_type": "C_COMPLEX_OBJECT",
                     "rm_type_name": "HISTORY",
                     "node_id": "id2",
                     "path": "/content[id0.0.100.1]/data[id2]",
@@ -1000,14 +1000,14 @@
                     "any_allowed": false,
                     "attributes": [
                       {
-                        "@type": "C_ATTRIBUTE",
+                        "_type": "C_ATTRIBUTE",
                         "rm_attribute_name": "events",
                         "path": "/content[id0.0.100.1]/data[id2]/events",
                         "logical_path": "/content[id0.0.100.1]/data[id2]/events",
                         "multiple": true,
                         "mandatory": false,
                         "existence": {
-                          "@type": "MULTIPLICITY_INTERVAL",
+                          "_type": "MULTIPLICITY_INTERVAL",
                           "lower": 0,
                           "lower_included": true,
                           "lower_unbounded": false,
@@ -1020,9 +1020,9 @@
                           "upper_unbounded": false
                         },
                         "cardinality": {
-                          "@type": "CARDINALITY",
+                          "_type": "CARDINALITY",
                           "interval": {
-                            "@type": "MULTIPLICITY_INTERVAL",
+                            "_type": "MULTIPLICITY_INTERVAL",
                             "lower": 1,
                             "lower_included": true,
                             "lower_unbounded": false,
@@ -1038,13 +1038,13 @@
                         },
                         "children": [
                           {
-                            "@type": "C_COMPLEX_OBJECT",
+                            "_type": "C_COMPLEX_OBJECT",
                             "rm_type_name": "EVENT",
                             "node_id": "id3",
                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]",
                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]",
                             "term": {
-                              "@type": "ARCHETYPE_TERM",
+                              "_type": "ARCHETYPE_TERM",
                               "description": "Any event",
                               "text": "Any event"
                             },
@@ -1053,14 +1053,14 @@
                             "any_allowed": false,
                             "attributes": [
                               {
-                                "@type": "C_ATTRIBUTE",
+                                "_type": "C_ATTRIBUTE",
                                 "rm_attribute_name": "data",
                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data",
                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data",
                                 "multiple": false,
                                 "mandatory": true,
                                 "existence": {
-                                  "@type": "MULTIPLICITY_INTERVAL",
+                                  "_type": "MULTIPLICITY_INTERVAL",
                                   "lower": 1,
                                   "lower_included": true,
                                   "lower_unbounded": false,
@@ -1074,7 +1074,7 @@
                                 },
                                 "children": [
                                   {
-                                    "@type": "C_COMPLEX_OBJECT",
+                                    "_type": "C_COMPLEX_OBJECT",
                                     "rm_type_name": "ITEM_TREE",
                                     "node_id": "id4",
                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]",
@@ -1083,7 +1083,7 @@
                                     "allowed": true,
                                     "any_allowed": false,
                                     "occurrences": {
-                                      "@type": "MULTIPLICITY_INTERVAL",
+                                      "_type": "MULTIPLICITY_INTERVAL",
                                       "lower": 1,
                                       "lower_included": true,
                                       "lower_unbounded": false,
@@ -1097,14 +1097,14 @@
                                     },
                                     "attributes": [
                                       {
-                                        "@type": "C_ATTRIBUTE",
+                                        "_type": "C_ATTRIBUTE",
                                         "rm_attribute_name": "items",
                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items",
                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items",
                                         "multiple": true,
                                         "mandatory": false,
                                         "existence": {
-                                          "@type": "MULTIPLICITY_INTERVAL",
+                                          "_type": "MULTIPLICITY_INTERVAL",
                                           "lower": 0,
                                           "lower_included": true,
                                           "lower_unbounded": false,
@@ -1117,9 +1117,9 @@
                                           "upper_unbounded": false
                                         },
                                         "cardinality": {
-                                          "@type": "CARDINALITY",
+                                          "_type": "CARDINALITY",
                                           "interval": {
-                                            "@type": "MULTIPLICITY_INTERVAL",
+                                            "_type": "MULTIPLICITY_INTERVAL",
                                             "lower": 0,
                                             "lower_included": true,
                                             "lower_unbounded": false,
@@ -1135,13 +1135,13 @@
                                         },
                                         "children": [
                                           {
-                                            "@type": "C_COMPLEX_OBJECT",
+                                            "_type": "C_COMPLEX_OBJECT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id10",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "Bent u onbedoeld afgevallen?",
                                               "text": "Bent u onbedoeld afgevallen?"
                                             },
@@ -1149,7 +1149,7 @@
                                             "allowed": true,
                                             "any_allowed": false,
                                             "occurrences": {
-                                              "@type": "MULTIPLICITY_INTERVAL",
+                                              "_type": "MULTIPLICITY_INTERVAL",
                                               "lower": 1,
                                               "lower_included": true,
                                               "lower_unbounded": false,
@@ -1163,14 +1163,14 @@
                                             },
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -1184,7 +1184,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_ORDINAL",
                                                     "node_id": "id20",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]",
@@ -1194,14 +1194,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "value",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]/value",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]/value",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -1215,7 +1215,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 2,
                                                             "attributes": [
@@ -1223,7 +1223,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 2,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -1240,7 +1240,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 2,
                                                             "attributes": [
@@ -1248,7 +1248,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 2,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -1265,7 +1265,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 0,
                                                             "attributes": [
@@ -1273,7 +1273,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -1293,14 +1293,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "symbol",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]/symbol",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]/symbol",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -1314,7 +1314,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -1332,7 +1332,7 @@
                                                               {
                                                                 "code": "at1",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "> 6 kg in de laatste 6 maanden",
                                                                   "text": "> 6 kg in de laatste 6 maanden"
                                                                 }
@@ -1340,7 +1340,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -1358,7 +1358,7 @@
                                                               {
                                                                 "code": "at2",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "> 3 kg in de afgelopen maand",
                                                                   "text": "> 3 kg in de afgelopen maand"
                                                                 }
@@ -1366,7 +1366,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -1384,7 +1384,7 @@
                                                               {
                                                                 "code": "at3",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "nee",
                                                                   "text": "nee"
                                                                 }
@@ -1397,21 +1397,21 @@
                                                     ],
                                                     "attribute_tuples": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE_TUPLE",
+                                                        "_type": "C_ATTRIBUTE_TUPLE",
                                                         "member_names": [
                                                           "value",
                                                           "symbol"
                                                         ],
                                                         "members": [
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "value",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]/value",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]/value",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -1425,7 +1425,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 2,
                                                                 "attributes": [
@@ -1433,7 +1433,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 2,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -1450,7 +1450,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 2,
                                                                 "attributes": [
@@ -1458,7 +1458,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 2,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -1475,7 +1475,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -1483,7 +1483,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -1503,14 +1503,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "symbol",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]/symbol",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value[id20]/symbol",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -1524,7 +1524,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -1542,7 +1542,7 @@
                                                                   {
                                                                     "code": "at1",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "> 6 kg in de laatste 6 maanden",
                                                                       "text": "> 6 kg in de laatste 6 maanden"
                                                                     }
@@ -1550,7 +1550,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -1568,7 +1568,7 @@
                                                                   {
                                                                     "code": "at2",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "> 3 kg in de afgelopen maand",
                                                                       "text": "> 3 kg in de afgelopen maand"
                                                                     }
@@ -1576,7 +1576,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -1594,7 +1594,7 @@
                                                                   {
                                                                     "code": "at3",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "nee",
                                                                       "text": "nee"
                                                                     }
@@ -1607,10 +1607,10 @@
                                                         ],
                                                         "tuples": [
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 2,
                                                                 "attributes": [
@@ -1618,7 +1618,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 2,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -1635,7 +1635,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -1653,7 +1653,7 @@
                                                                   {
                                                                     "code": "at1",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "> 6 kg in de laatste 6 maanden",
                                                                       "text": "> 6 kg in de laatste 6 maanden"
                                                                     }
@@ -1663,10 +1663,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 2,
                                                                 "attributes": [
@@ -1674,7 +1674,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 2,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -1691,7 +1691,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -1709,7 +1709,7 @@
                                                                   {
                                                                     "code": "at2",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "> 3 kg in de afgelopen maand",
                                                                       "text": "> 3 kg in de afgelopen maand"
                                                                     }
@@ -1719,10 +1719,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -1730,7 +1730,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -1747,7 +1747,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -1765,7 +1765,7 @@
                                                                   {
                                                                     "code": "at3",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "nee",
                                                                       "text": "nee"
                                                                     }
@@ -1789,13 +1789,13 @@
                                             "prohibited": false
                                           },
                                           {
-                                            "@type": "C_COMPLEX_OBJECT",
+                                            "_type": "C_COMPLEX_OBJECT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id11",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "Hebt u hulp van een ander nodig bij het eten?",
                                               "text": "Hebt u hulp van een ander nodig bij het eten?"
                                             },
@@ -1803,7 +1803,7 @@
                                             "allowed": true,
                                             "any_allowed": false,
                                             "occurrences": {
-                                              "@type": "MULTIPLICITY_INTERVAL",
+                                              "_type": "MULTIPLICITY_INTERVAL",
                                               "lower": 1,
                                               "lower_included": true,
                                               "lower_unbounded": false,
@@ -1817,14 +1817,14 @@
                                             },
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -1838,7 +1838,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_ORDINAL",
                                                     "node_id": "id21",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]",
@@ -1848,14 +1848,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "value",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]/value",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]/value",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -1869,7 +1869,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 1,
                                                             "attributes": [
@@ -1877,7 +1877,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 1,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -1894,7 +1894,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 0,
                                                             "attributes": [
@@ -1902,7 +1902,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -1922,14 +1922,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "symbol",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]/symbol",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]/symbol",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -1943,7 +1943,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -1961,7 +1961,7 @@
                                                               {
                                                                 "code": "at4",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "ja",
                                                                   "text": "ja"
                                                                 }
@@ -1969,7 +1969,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -1987,7 +1987,7 @@
                                                               {
                                                                 "code": "at5",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "nee",
                                                                   "text": "nee"
                                                                 }
@@ -2000,21 +2000,21 @@
                                                     ],
                                                     "attribute_tuples": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE_TUPLE",
+                                                        "_type": "C_ATTRIBUTE_TUPLE",
                                                         "member_names": [
                                                           "value",
                                                           "symbol"
                                                         ],
                                                         "members": [
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "value",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]/value",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]/value",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -2028,7 +2028,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -2036,7 +2036,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -2053,7 +2053,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -2061,7 +2061,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -2081,14 +2081,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "symbol",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]/symbol",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value[id21]/symbol",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -2102,7 +2102,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -2120,7 +2120,7 @@
                                                                   {
                                                                     "code": "at4",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "ja",
                                                                       "text": "ja"
                                                                     }
@@ -2128,7 +2128,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -2146,7 +2146,7 @@
                                                                   {
                                                                     "code": "at5",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "nee",
                                                                       "text": "nee"
                                                                     }
@@ -2159,10 +2159,10 @@
                                                         ],
                                                         "tuples": [
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -2170,7 +2170,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -2187,7 +2187,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -2205,7 +2205,7 @@
                                                                   {
                                                                     "code": "at4",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "ja",
                                                                       "text": "ja"
                                                                     }
@@ -2215,10 +2215,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -2226,7 +2226,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -2243,7 +2243,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -2261,7 +2261,7 @@
                                                                   {
                                                                     "code": "at5",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "nee",
                                                                       "text": "nee"
                                                                     }
@@ -2285,13 +2285,13 @@
                                             "prohibited": false
                                           },
                                           {
-                                            "@type": "C_COMPLEX_OBJECT",
+                                            "_type": "C_COMPLEX_OBJECT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id12",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "Had u de afgelopen maand een verminderde eetlust?",
                                               "text": "Had u de afgelopen maand een verminderde eetlust?"
                                             },
@@ -2299,7 +2299,7 @@
                                             "allowed": true,
                                             "any_allowed": false,
                                             "occurrences": {
-                                              "@type": "MULTIPLICITY_INTERVAL",
+                                              "_type": "MULTIPLICITY_INTERVAL",
                                               "lower": 1,
                                               "lower_included": true,
                                               "lower_unbounded": false,
@@ -2313,14 +2313,14 @@
                                             },
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -2334,7 +2334,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_ORDINAL",
                                                     "node_id": "id22",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]",
@@ -2344,14 +2344,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "value",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]/value",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]/value",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -2365,7 +2365,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 1,
                                                             "attributes": [
@@ -2373,7 +2373,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 1,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -2390,7 +2390,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 0,
                                                             "attributes": [
@@ -2398,7 +2398,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -2418,14 +2418,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "symbol",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]/symbol",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]/symbol",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -2439,7 +2439,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -2457,7 +2457,7 @@
                                                               {
                                                                 "code": "at4",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "ja",
                                                                   "text": "ja"
                                                                 }
@@ -2465,7 +2465,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -2483,7 +2483,7 @@
                                                               {
                                                                 "code": "at5",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "nee",
                                                                   "text": "nee"
                                                                 }
@@ -2496,21 +2496,21 @@
                                                     ],
                                                     "attribute_tuples": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE_TUPLE",
+                                                        "_type": "C_ATTRIBUTE_TUPLE",
                                                         "member_names": [
                                                           "value",
                                                           "symbol"
                                                         ],
                                                         "members": [
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "value",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]/value",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]/value",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -2524,7 +2524,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -2532,7 +2532,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -2549,7 +2549,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -2557,7 +2557,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -2577,14 +2577,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "symbol",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]/symbol",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value[id22]/symbol",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -2598,7 +2598,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -2616,7 +2616,7 @@
                                                                   {
                                                                     "code": "at4",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "ja",
                                                                       "text": "ja"
                                                                     }
@@ -2624,7 +2624,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -2642,7 +2642,7 @@
                                                                   {
                                                                     "code": "at5",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "nee",
                                                                       "text": "nee"
                                                                     }
@@ -2655,10 +2655,10 @@
                                                         ],
                                                         "tuples": [
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -2666,7 +2666,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -2683,7 +2683,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -2701,7 +2701,7 @@
                                                                   {
                                                                     "code": "at4",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "ja",
                                                                       "text": "ja"
                                                                     }
@@ -2711,10 +2711,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -2722,7 +2722,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -2739,7 +2739,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -2757,7 +2757,7 @@
                                                                   {
                                                                     "code": "at5",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "nee",
                                                                       "text": "nee"
                                                                     }
@@ -2781,13 +2781,13 @@
                                             "prohibited": false
                                           },
                                           {
-                                            "@type": "C_ARCHETYPE_ROOT",
+                                            "_type": "C_ARCHETYPE_ROOT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id29",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "Lengte",
                                               "text": "Lengte"
                                             },
@@ -2796,14 +2796,14 @@
                                             "any_allowed": false,
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -2817,7 +2817,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_QUANTITY",
                                                     "node_id": "id2",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]",
@@ -2827,14 +2827,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "magnitude",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/magnitude",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/magnitude",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -2848,14 +2848,14 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_REAL",
+                                                            "_type": "C_REAL",
                                                             "allowed": true,
                                                             "attributes": [
 
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0.0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -2875,14 +2875,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "units",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/units",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/units",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -2896,7 +2896,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_STRING",
+                                                            "_type": "C_STRING",
                                                             "allowed": true,
                                                             "assumed_value": "cm",
                                                             "attributes": [
@@ -2916,14 +2916,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "precision",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/precision",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/precision",
                                                         "multiple": false,
                                                         "mandatory": false,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 0,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -2937,7 +2937,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 0,
                                                             "attributes": [
@@ -2945,7 +2945,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -2967,7 +2967,7 @@
                                                     ],
                                                     "attribute_tuples": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE_TUPLE",
+                                                        "_type": "C_ATTRIBUTE_TUPLE",
                                                         "member_names": [
                                                           "magnitude",
                                                           "units",
@@ -2975,14 +2975,14 @@
                                                         ],
                                                         "members": [
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "magnitude",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/magnitude",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/magnitude",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -2996,14 +2996,14 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_REAL",
+                                                                "_type": "C_REAL",
                                                                 "allowed": true,
                                                                 "attributes": [
 
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0.0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3023,14 +3023,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "units",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/units",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/units",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -3044,7 +3044,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_STRING",
+                                                                "_type": "C_STRING",
                                                                 "allowed": true,
                                                                 "assumed_value": "cm",
                                                                 "attributes": [
@@ -3064,14 +3064,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "precision",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/precision",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value[id2]/precision",
                                                             "multiple": false,
                                                             "mandatory": false,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 0,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -3085,7 +3085,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -3093,7 +3093,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3115,17 +3115,17 @@
                                                         ],
                                                         "tuples": [
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_REAL",
+                                                                "_type": "C_REAL",
                                                                 "allowed": true,
                                                                 "attributes": [
 
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0.0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3142,7 +3142,7 @@
                                                                 "rm_type_name": "real"
                                                               },
                                                               {
-                                                                "@type": "C_STRING",
+                                                                "_type": "C_STRING",
                                                                 "allowed": true,
                                                                 "assumed_value": "cm",
                                                                 "attributes": [
@@ -3159,7 +3159,7 @@
                                                                 "rm_type_name": "string"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -3167,7 +3167,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3201,13 +3201,13 @@
                                             "prohibited": false
                                           },
                                           {
-                                            "@type": "C_ARCHETYPE_ROOT",
+                                            "_type": "C_ARCHETYPE_ROOT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id30",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "Gewicht",
                                               "text": "Gewicht"
                                             },
@@ -3216,14 +3216,14 @@
                                             "any_allowed": false,
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -3237,7 +3237,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_QUANTITY",
                                                     "node_id": "id2",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]",
@@ -3247,14 +3247,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "magnitude",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/magnitude",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/magnitude",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -3268,14 +3268,14 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_REAL",
+                                                            "_type": "C_REAL",
                                                             "allowed": true,
                                                             "attributes": [
 
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0.0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -3295,14 +3295,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "units",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/units",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/units",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -3316,7 +3316,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_STRING",
+                                                            "_type": "C_STRING",
                                                             "allowed": true,
                                                             "assumed_value": "kg",
                                                             "attributes": [
@@ -3336,14 +3336,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "precision",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/precision",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/precision",
                                                         "multiple": false,
                                                         "mandatory": false,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 0,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -3357,7 +3357,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 1,
                                                             "attributes": [
@@ -3365,7 +3365,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 1,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -3387,7 +3387,7 @@
                                                     ],
                                                     "attribute_tuples": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE_TUPLE",
+                                                        "_type": "C_ATTRIBUTE_TUPLE",
                                                         "member_names": [
                                                           "magnitude",
                                                           "units",
@@ -3395,14 +3395,14 @@
                                                         ],
                                                         "members": [
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "magnitude",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/magnitude",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/magnitude",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -3416,14 +3416,14 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_REAL",
+                                                                "_type": "C_REAL",
                                                                 "allowed": true,
                                                                 "attributes": [
 
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0.0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3443,14 +3443,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "units",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/units",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/units",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -3464,7 +3464,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_STRING",
+                                                                "_type": "C_STRING",
                                                                 "allowed": true,
                                                                 "assumed_value": "kg",
                                                                 "attributes": [
@@ -3484,14 +3484,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "precision",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/precision",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value[id2]/precision",
                                                             "multiple": false,
                                                             "mandatory": false,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 0,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -3505,7 +3505,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -3513,7 +3513,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3535,17 +3535,17 @@
                                                         ],
                                                         "tuples": [
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_REAL",
+                                                                "_type": "C_REAL",
                                                                 "allowed": true,
                                                                 "attributes": [
 
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0.0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3562,7 +3562,7 @@
                                                                 "rm_type_name": "real"
                                                               },
                                                               {
-                                                                "@type": "C_STRING",
+                                                                "_type": "C_STRING",
                                                                 "allowed": true,
                                                                 "assumed_value": "kg",
                                                                 "attributes": [
@@ -3579,7 +3579,7 @@
                                                                 "rm_type_name": "string"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -3587,7 +3587,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3621,13 +3621,13 @@
                                             "prohibited": false
                                           },
                                           {
-                                            "@type": "C_COMPLEX_OBJECT",
+                                            "_type": "C_COMPLEX_OBJECT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id13",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "Bereken de Body Mass Index (BMI)",
                                               "text": "BMI"
                                             },
@@ -3635,7 +3635,7 @@
                                             "allowed": true,
                                             "any_allowed": false,
                                             "occurrences": {
-                                              "@type": "MULTIPLICITY_INTERVAL",
+                                              "_type": "MULTIPLICITY_INTERVAL",
                                               "lower": 1,
                                               "lower_included": true,
                                               "lower_unbounded": false,
@@ -3649,14 +3649,14 @@
                                             },
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -3670,7 +3670,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_QUANTITY",
                                                     "node_id": "id23",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]",
@@ -3680,14 +3680,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "magnitude",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/magnitude",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/magnitude",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -3701,14 +3701,14 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_REAL",
+                                                            "_type": "C_REAL",
                                                             "allowed": true,
                                                             "attributes": [
 
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0.0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -3728,14 +3728,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "units",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/units",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/units",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -3749,7 +3749,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_STRING",
+                                                            "_type": "C_STRING",
                                                             "allowed": true,
                                                             "assumed_value": "kg/m2",
                                                             "attributes": [
@@ -3769,14 +3769,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "precision",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/precision",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/precision",
                                                         "multiple": false,
                                                         "mandatory": false,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 0,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -3790,7 +3790,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 1,
                                                             "attributes": [
@@ -3798,7 +3798,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 1,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -3820,7 +3820,7 @@
                                                     ],
                                                     "attribute_tuples": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE_TUPLE",
+                                                        "_type": "C_ATTRIBUTE_TUPLE",
                                                         "member_names": [
                                                           "magnitude",
                                                           "units",
@@ -3828,14 +3828,14 @@
                                                         ],
                                                         "members": [
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "magnitude",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/magnitude",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/magnitude",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -3849,14 +3849,14 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_REAL",
+                                                                "_type": "C_REAL",
                                                                 "allowed": true,
                                                                 "attributes": [
 
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0.0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3876,14 +3876,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "units",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/units",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/units",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -3897,7 +3897,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_STRING",
+                                                                "_type": "C_STRING",
                                                                 "allowed": true,
                                                                 "assumed_value": "kg/m2",
                                                                 "attributes": [
@@ -3917,14 +3917,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "precision",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/precision",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value[id23]/precision",
                                                             "multiple": false,
                                                             "mandatory": false,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 0,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -3938,7 +3938,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -3946,7 +3946,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3968,17 +3968,17 @@
                                                         ],
                                                         "tuples": [
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_REAL",
+                                                                "_type": "C_REAL",
                                                                 "allowed": true,
                                                                 "attributes": [
 
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0.0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -3995,7 +3995,7 @@
                                                                 "rm_type_name": "real"
                                                               },
                                                               {
-                                                                "@type": "C_STRING",
+                                                                "_type": "C_STRING",
                                                                 "allowed": true,
                                                                 "assumed_value": "kg/m2",
                                                                 "attributes": [
@@ -4012,7 +4012,7 @@
                                                                 "rm_type_name": "string"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -4020,7 +4020,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4053,13 +4053,13 @@
                                             "prohibited": false
                                           },
                                           {
-                                            "@type": "C_COMPLEX_OBJECT",
+                                            "_type": "C_COMPLEX_OBJECT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id14",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "De betekenis van de BMI-score",
                                               "text": "Betekenis BMI"
                                             },
@@ -4067,7 +4067,7 @@
                                             "allowed": true,
                                             "any_allowed": false,
                                             "occurrences": {
-                                              "@type": "MULTIPLICITY_INTERVAL",
+                                              "_type": "MULTIPLICITY_INTERVAL",
                                               "lower": 1,
                                               "lower_included": true,
                                               "lower_unbounded": false,
@@ -4081,14 +4081,14 @@
                                             },
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -4102,7 +4102,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_ORDINAL",
                                                     "node_id": "id24",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]",
@@ -4112,14 +4112,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "value",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]/value",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]/value",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -4133,7 +4133,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 2,
                                                             "attributes": [
@@ -4141,7 +4141,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 2,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -4158,7 +4158,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 1,
                                                             "attributes": [
@@ -4166,7 +4166,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 1,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -4183,7 +4183,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 0,
                                                             "attributes": [
@@ -4191,7 +4191,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -4208,7 +4208,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 0,
                                                             "attributes": [
@@ -4216,7 +4216,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -4236,14 +4236,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "symbol",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]/symbol",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]/symbol",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -4257,7 +4257,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -4275,7 +4275,7 @@
                                                               {
                                                                 "code": "at6",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "BMI beneden 20",
                                                                   "text": "< 20"
                                                                 }
@@ -4283,7 +4283,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -4301,7 +4301,7 @@
                                                               {
                                                                 "code": "at7",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "BMI van 20 tot 22",
                                                                   "text": "20 - 22"
                                                                 }
@@ -4309,7 +4309,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -4327,7 +4327,7 @@
                                                               {
                                                                 "code": "at8",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "BMI van 22 tot 28",
                                                                   "text": "22 - 28"
                                                                 }
@@ -4335,7 +4335,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -4353,7 +4353,7 @@
                                                               {
                                                                 "code": "at9",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "BMI boven 28 is overgewicht",
                                                                   "text": "> 28 (overgewicht)"
                                                                 }
@@ -4366,21 +4366,21 @@
                                                     ],
                                                     "attribute_tuples": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE_TUPLE",
+                                                        "_type": "C_ATTRIBUTE_TUPLE",
                                                         "member_names": [
                                                           "value",
                                                           "symbol"
                                                         ],
                                                         "members": [
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "value",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]/value",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]/value",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -4394,7 +4394,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 2,
                                                                 "attributes": [
@@ -4402,7 +4402,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 2,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4419,7 +4419,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -4427,7 +4427,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4444,7 +4444,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -4452,7 +4452,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4469,7 +4469,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -4477,7 +4477,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4497,14 +4497,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "symbol",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]/symbol",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value[id24]/symbol",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -4518,7 +4518,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -4536,7 +4536,7 @@
                                                                   {
                                                                     "code": "at6",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "BMI beneden 20",
                                                                       "text": "< 20"
                                                                     }
@@ -4544,7 +4544,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -4562,7 +4562,7 @@
                                                                   {
                                                                     "code": "at7",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "BMI van 20 tot 22",
                                                                       "text": "20 - 22"
                                                                     }
@@ -4570,7 +4570,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -4588,7 +4588,7 @@
                                                                   {
                                                                     "code": "at8",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "BMI van 22 tot 28",
                                                                       "text": "22 - 28"
                                                                     }
@@ -4596,7 +4596,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -4614,7 +4614,7 @@
                                                                   {
                                                                     "code": "at9",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "BMI boven 28 is overgewicht",
                                                                       "text": "> 28 (overgewicht)"
                                                                     }
@@ -4627,10 +4627,10 @@
                                                         ],
                                                         "tuples": [
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 2,
                                                                 "attributes": [
@@ -4638,7 +4638,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 2,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4655,7 +4655,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -4673,7 +4673,7 @@
                                                                   {
                                                                     "code": "at6",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "BMI beneden 20",
                                                                       "text": "< 20"
                                                                     }
@@ -4683,10 +4683,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -4694,7 +4694,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4711,7 +4711,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -4729,7 +4729,7 @@
                                                                   {
                                                                     "code": "at7",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "BMI van 20 tot 22",
                                                                       "text": "20 - 22"
                                                                     }
@@ -4739,10 +4739,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -4750,7 +4750,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4767,7 +4767,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -4785,7 +4785,7 @@
                                                                   {
                                                                     "code": "at8",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "BMI van 22 tot 28",
                                                                       "text": "22 - 28"
                                                                     }
@@ -4795,10 +4795,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -4806,7 +4806,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -4823,7 +4823,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -4841,7 +4841,7 @@
                                                                   {
                                                                     "code": "at9",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "BMI boven 28 is overgewicht",
                                                                       "text": "> 28 (overgewicht)"
                                                                     }
@@ -4865,13 +4865,13 @@
                                             "prohibited": false
                                           },
                                           {
-                                            "@type": "C_COMPLEX_OBJECT",
+                                            "_type": "C_COMPLEX_OBJECT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id15",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "Totaalscore",
                                               "text": "Totaalscore"
                                             },
@@ -4879,7 +4879,7 @@
                                             "allowed": true,
                                             "any_allowed": false,
                                             "occurrences": {
-                                              "@type": "MULTIPLICITY_INTERVAL",
+                                              "_type": "MULTIPLICITY_INTERVAL",
                                               "lower": 1,
                                               "lower_included": true,
                                               "lower_unbounded": false,
@@ -4893,14 +4893,14 @@
                                             },
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -4914,7 +4914,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_ORDINAL",
                                                     "node_id": "id25",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]",
@@ -4924,14 +4924,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "value",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]/value",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]/value",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -4945,7 +4945,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 0,
                                                             "attributes": [
@@ -4953,7 +4953,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 0,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -4970,7 +4970,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 1,
                                                             "attributes": [
@@ -4978,7 +4978,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 1,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -4995,7 +4995,7 @@
                                                             "rm_type_name": "integer"
                                                           },
                                                           {
-                                                            "@type": "C_INTEGER",
+                                                            "_type": "C_INTEGER",
                                                             "allowed": true,
                                                             "assumed_value": 2,
                                                             "attributes": [
@@ -5003,7 +5003,7 @@
                                                             ],
                                                             "constraint": [
                                                               {
-                                                                "@type": "INTERVAL",
+                                                                "_type": "INTERVAL",
                                                                 "lower": 2,
                                                                 "lower_included": true,
                                                                 "lower_unbounded": false,
@@ -5023,14 +5023,14 @@
                                                         "prohibited": false
                                                       },
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "symbol",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]/symbol",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]/symbol",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -5044,7 +5044,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -5062,7 +5062,7 @@
                                                               {
                                                                 "code": "at10",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "Niet ondervoed",
                                                                   "text": "Niet ondervoed"
                                                                 }
@@ -5070,7 +5070,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -5088,7 +5088,7 @@
                                                               {
                                                                 "code": "at11",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "Risico op ondervoeding",
                                                                   "text": "Risico op ondervoeding"
                                                                 }
@@ -5096,7 +5096,7 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -5114,7 +5114,7 @@
                                                               {
                                                                 "code": "at12",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "Ondervoed",
                                                                   "text": "Ondervoed"
                                                                 }
@@ -5127,21 +5127,21 @@
                                                     ],
                                                     "attribute_tuples": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE_TUPLE",
+                                                        "_type": "C_ATTRIBUTE_TUPLE",
                                                         "member_names": [
                                                           "value",
                                                           "symbol"
                                                         ],
                                                         "members": [
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "value",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]/value",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]/value",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -5155,7 +5155,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -5163,7 +5163,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -5180,7 +5180,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -5188,7 +5188,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -5205,7 +5205,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 2,
                                                                 "attributes": [
@@ -5213,7 +5213,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 2,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -5233,14 +5233,14 @@
                                                             "prohibited": false
                                                           },
                                                           {
-                                                            "@type": "C_ATTRIBUTE",
+                                                            "_type": "C_ATTRIBUTE",
                                                             "rm_attribute_name": "symbol",
                                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]/symbol",
                                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id15]/value[id25]/symbol",
                                                             "multiple": false,
                                                             "mandatory": true,
                                                             "existence": {
-                                                              "@type": "MULTIPLICITY_INTERVAL",
+                                                              "_type": "MULTIPLICITY_INTERVAL",
                                                               "lower": 1,
                                                               "lower_included": true,
                                                               "lower_unbounded": false,
@@ -5254,7 +5254,7 @@
                                                             },
                                                             "children": [
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -5272,7 +5272,7 @@
                                                                   {
                                                                     "code": "at10",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "Niet ondervoed",
                                                                       "text": "Niet ondervoed"
                                                                     }
@@ -5280,7 +5280,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -5298,7 +5298,7 @@
                                                                   {
                                                                     "code": "at11",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "Risico op ondervoeding",
                                                                       "text": "Risico op ondervoeding"
                                                                     }
@@ -5306,7 +5306,7 @@
                                                                 ]
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -5324,7 +5324,7 @@
                                                                   {
                                                                     "code": "at12",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "Ondervoed",
                                                                       "text": "Ondervoed"
                                                                     }
@@ -5337,10 +5337,10 @@
                                                         ],
                                                         "tuples": [
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 0,
                                                                 "attributes": [
@@ -5348,7 +5348,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 0,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -5365,7 +5365,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -5383,7 +5383,7 @@
                                                                   {
                                                                     "code": "at10",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "Niet ondervoed",
                                                                       "text": "Niet ondervoed"
                                                                     }
@@ -5393,10 +5393,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 1,
                                                                 "attributes": [
@@ -5404,7 +5404,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 1,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -5421,7 +5421,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -5439,7 +5439,7 @@
                                                                   {
                                                                     "code": "at11",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "Risico op ondervoeding",
                                                                       "text": "Risico op ondervoeding"
                                                                     }
@@ -5449,10 +5449,10 @@
                                                             ]
                                                           },
                                                           {
-                                                            "@type": "C_PRIMITIVE_TUPLE",
+                                                            "_type": "C_PRIMITIVE_TUPLE",
                                                             "members": [
                                                               {
-                                                                "@type": "C_INTEGER",
+                                                                "_type": "C_INTEGER",
                                                                 "allowed": true,
                                                                 "assumed_value": 2,
                                                                 "attributes": [
@@ -5460,7 +5460,7 @@
                                                                 ],
                                                                 "constraint": [
                                                                   {
-                                                                    "@type": "INTERVAL",
+                                                                    "_type": "INTERVAL",
                                                                     "lower": 2,
                                                                     "lower_included": true,
                                                                     "lower_unbounded": false,
@@ -5477,7 +5477,7 @@
                                                                 "rm_type_name": "integer"
                                                               },
                                                               {
-                                                                "@type": "C_TERMINOLOGY_CODE",
+                                                                "_type": "C_TERMINOLOGY_CODE",
                                                                 "allowed": true,
                                                                 "attributes": [
 
@@ -5495,7 +5495,7 @@
                                                                   {
                                                                     "code": "at12",
                                                                     "term": {
-                                                                      "@type": "ARCHETYPE_TERM",
+                                                                      "_type": "ARCHETYPE_TERM",
                                                                       "description": "Ondervoed",
                                                                       "text": "Ondervoed"
                                                                     }
@@ -5519,13 +5519,13 @@
                                             "prohibited": false
                                           },
                                           {
-                                            "@type": "C_COMPLEX_OBJECT",
+                                            "_type": "C_COMPLEX_OBJECT",
                                             "rm_type_name": "ELEMENT",
                                             "node_id": "id16",
                                             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id16]",
                                             "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id16]",
                                             "term": {
-                                              "@type": "ARCHETYPE_TERM",
+                                              "_type": "ARCHETYPE_TERM",
                                               "description": "Acties",
                                               "text": "Acties"
                                             },
@@ -5533,7 +5533,7 @@
                                             "allowed": true,
                                             "any_allowed": false,
                                             "occurrences": {
-                                              "@type": "MULTIPLICITY_INTERVAL",
+                                              "_type": "MULTIPLICITY_INTERVAL",
                                               "lower": 0,
                                               "lower_included": true,
                                               "lower_unbounded": false,
@@ -5547,14 +5547,14 @@
                                             },
                                             "attributes": [
                                               {
-                                                "@type": "C_ATTRIBUTE",
+                                                "_type": "C_ATTRIBUTE",
                                                 "rm_attribute_name": "value",
                                                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id16]/value",
                                                 "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id16]/value",
                                                 "multiple": false,
                                                 "mandatory": false,
                                                 "existence": {
-                                                  "@type": "MULTIPLICITY_INTERVAL",
+                                                  "_type": "MULTIPLICITY_INTERVAL",
                                                   "lower": 0,
                                                   "lower_included": true,
                                                   "lower_unbounded": false,
@@ -5568,7 +5568,7 @@
                                                 },
                                                 "children": [
                                                   {
-                                                    "@type": "C_COMPLEX_OBJECT",
+                                                    "_type": "C_COMPLEX_OBJECT",
                                                     "rm_type_name": "DV_CODED_TEXT",
                                                     "node_id": "id26",
                                                     "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id16]/value[id26]",
@@ -5578,14 +5578,14 @@
                                                     "any_allowed": false,
                                                     "attributes": [
                                                       {
-                                                        "@type": "C_ATTRIBUTE",
+                                                        "_type": "C_ATTRIBUTE",
                                                         "rm_attribute_name": "defining_code",
                                                         "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id16]/value[id26]/defining_code",
                                                         "logical_path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id16]/value[id26]/defining_code",
                                                         "multiple": false,
                                                         "mandatory": true,
                                                         "existence": {
-                                                          "@type": "MULTIPLICITY_INTERVAL",
+                                                          "_type": "MULTIPLICITY_INTERVAL",
                                                           "lower": 1,
                                                           "lower_included": true,
                                                           "lower_unbounded": false,
@@ -5599,7 +5599,7 @@
                                                         },
                                                         "children": [
                                                           {
-                                                            "@type": "C_TERMINOLOGY_CODE",
+                                                            "_type": "C_TERMINOLOGY_CODE",
                                                             "allowed": true,
                                                             "attributes": [
 
@@ -5617,7 +5617,7 @@
                                                               {
                                                                 "code": "at13",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "Geen actie",
                                                                   "text": "Geen actie"
                                                                 }
@@ -5625,7 +5625,7 @@
                                                               {
                                                                 "code": "at14",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "- 2 - 3 x per dag tussentijdse verstrekking\n                        • Motiveren, evt. brochure\n                        • Globale monitoring van de inname",
                                                                   "text": "• 2 - 3 x per dag tussentijdse verstrekking\n                        • Motiveren, evt. brochure\n                        • Globale monitoring van de inname"
                                                                 }
@@ -5633,7 +5633,7 @@
                                                               {
                                                                 "code": "at15",
                                                                 "term": {
-                                                                  "@type": "ARCHETYPE_TERM",
+                                                                  "_type": "ARCHETYPE_TERM",
                                                                   "description": "• 2 - 3 x per dag tussentijdse verstrekking + verrijken hoofdmaaltijden + globale monitoring van de inname\n                        • Melden bij arts voor inschakelen diëtetiek\n                        • <= 3 werkdagen na screening diëtist in consult\n                        • <= 8 werkdagen na screening start behandeling\n                        • 5 werkdagen na start van de behandeling evaluatie",
                                                                   "text": "• 2 - 3 x per dag tussentijdse verstrekking + verrijken hoofdmaaltijden + globale monitoring van de inname\n                        • Melden bij arts voor inschakelen diëtetiek\n                        • <= 3 werkdagen na screening diëtist in consult\n                        • <= 8 werkdagen na screening start behandeling\n                        • 5 werkdagen na start van de behandeling evaluatie"
                                                                 }
@@ -5696,13 +5696,13 @@
             "prohibited": false
           },
           {
-            "@type": "C_ARCHETYPE_ROOT",
+            "_type": "C_ARCHETYPE_ROOT",
             "rm_type_name": "EVALUATION",
             "node_id": "id0.0.101",
             "path": "/content[id0.0.101]",
             "logical_path": "/content[Assessment / remarks]",
             "term": {
-              "@type": "ARCHETYPE_TERM",
+              "_type": "ARCHETYPE_TERM",
               "description": "Beschrijf hier eventueel de klinische beoordeling of opmerkingen van het resultaat van de meting.\n                    Dit kan bijvoorbeeld een uitgebreidere interpretatie van het resultaat zijn, of de betekenis van het resultaat voor de cliënt.",
               "text": "Beoordeling / opmerkingen"
             },
@@ -5710,7 +5710,7 @@
             "allowed": true,
             "any_allowed": false,
             "occurrences": {
-              "@type": "MULTIPLICITY_INTERVAL",
+              "_type": "MULTIPLICITY_INTERVAL",
               "lower": 0,
               "lower_included": true,
               "lower_unbounded": false,
@@ -5724,14 +5724,14 @@
             },
             "attributes": [
               {
-                "@type": "C_ATTRIBUTE",
+                "_type": "C_ATTRIBUTE",
                 "rm_attribute_name": "data",
                 "path": "/content[id0.0.101]/data",
                 "logical_path": "/content[Assessment / remarks]/data",
                 "multiple": false,
                 "mandatory": true,
                 "existence": {
-                  "@type": "MULTIPLICITY_INTERVAL",
+                  "_type": "MULTIPLICITY_INTERVAL",
                   "lower": 1,
                   "lower_included": true,
                   "lower_unbounded": false,
@@ -5745,7 +5745,7 @@
                 },
                 "children": [
                   {
-                    "@type": "C_COMPLEX_OBJECT",
+                    "_type": "C_COMPLEX_OBJECT",
                     "rm_type_name": "ITEM_TREE",
                     "node_id": "id2",
                     "path": "/content[id0.0.101]/data[id2]",
@@ -5755,14 +5755,14 @@
                     "any_allowed": false,
                     "attributes": [
                       {
-                        "@type": "C_ATTRIBUTE",
+                        "_type": "C_ATTRIBUTE",
                         "rm_attribute_name": "items",
                         "path": "/content[id0.0.101]/data[id2]/items",
                         "logical_path": "/content[Assessment / remarks]/data[id2]/items",
                         "multiple": true,
                         "mandatory": false,
                         "existence": {
-                          "@type": "MULTIPLICITY_INTERVAL",
+                          "_type": "MULTIPLICITY_INTERVAL",
                           "lower": 0,
                           "lower_included": true,
                           "lower_unbounded": false,
@@ -5775,9 +5775,9 @@
                           "upper_unbounded": false
                         },
                         "cardinality": {
-                          "@type": "CARDINALITY",
+                          "_type": "CARDINALITY",
                           "interval": {
-                            "@type": "MULTIPLICITY_INTERVAL",
+                            "_type": "MULTIPLICITY_INTERVAL",
                             "lower": 1,
                             "lower_included": true,
                             "lower_unbounded": false,
@@ -5793,13 +5793,13 @@
                         },
                         "children": [
                           {
-                            "@type": "C_COMPLEX_OBJECT",
+                            "_type": "C_COMPLEX_OBJECT",
                             "rm_type_name": "ELEMENT",
                             "node_id": "id3.1",
                             "path": "/content[id0.0.101]/data[id2]/items[id3.1]",
                             "logical_path": "/content[Assessment / remarks]/data[id2]/items[Assessment / remarks]",
                             "term": {
-                              "@type": "ARCHETYPE_TERM",
+                              "_type": "ARCHETYPE_TERM",
                               "description": "Beoordeling van de meting of opmerkingen over de meting",
                               "text": "Beoordeling / opmerkingen"
                             },
@@ -5808,14 +5808,14 @@
                             "any_allowed": false,
                             "attributes": [
                               {
-                                "@type": "C_ATTRIBUTE",
+                                "_type": "C_ATTRIBUTE",
                                 "rm_attribute_name": "value",
                                 "path": "/content[id0.0.101]/data[id2]/items[id3.1]/value",
                                 "logical_path": "/content[Assessment / remarks]/data[id2]/items[Assessment / remarks]/value",
                                 "multiple": false,
                                 "mandatory": false,
                                 "existence": {
-                                  "@type": "MULTIPLICITY_INTERVAL",
+                                  "_type": "MULTIPLICITY_INTERVAL",
                                   "lower": 0,
                                   "lower_included": true,
                                   "lower_unbounded": false,
@@ -5829,7 +5829,7 @@
                                 },
                                 "children": [
                                   {
-                                    "@type": "C_COMPLEX_OBJECT",
+                                    "_type": "C_COMPLEX_OBJECT",
                                     "rm_type_name": "DV_TEXT",
                                     "node_id": "id4",
                                     "path": "/content[id0.0.101]/data[id2]/items[id3.1]/value[id4]",
@@ -5883,16 +5883,16 @@
     "prohibited": false
   },
   "description": {
-    "@type": "RESOURCE_DESCRIPTION",
+    "_type": "RESOURCE_DESCRIPTION",
     "conversion_details": {
 
     },
     "copyright": "www.stuurgroepondervoeding.nl",
     "details": {
       "nl": {
-        "@type": "RESOURCE_DESCRIPTION_ITEM",
+        "_type": "RESOURCE_DESCRIPTION_ITEM",
         "language": {
-          "@type": "TerminologyCode",
+          "_type": "TerminologyCode",
           "code_string": "nl",
           "terminology_id": "ISO_639-1",
           "terminology_id_string": "ISO_639-1"
@@ -5906,7 +5906,7 @@
 
     },
     "lifecycle_state": {
-      "@type": "TerminologyCode",
+      "_type": "TerminologyCode",
       "code_string": "unmanaged"
     },
     "original_author": {
@@ -5925,7 +5925,7 @@
   "differential": false,
   "generated": true,
   "original_language": {
-    "@type": "TerminologyCode",
+    "_type": "TerminologyCode",
     "code_string": "nl",
     "terminology_id": "ISO_639-1",
     "terminology_id_string": "ISO_639-1"
@@ -5936,12 +5936,12 @@
   "parent_archetype_id": "openEHR-EHR-COMPOSITION.report-result-with-synopsis.v1",
   "rm_release": "1.0.2",
   "rules": {
-    "@type": "RULES_SECTION",
+    "_type": "RULES_SECTION",
     "rules": [
       {
-        "@type": "EXPRESSION_VARIABLE",
+        "_type": "EXPRESSION_VARIABLE",
         "expression": {
-          "@type": "MODEL_REFERENCE",
+          "_type": "MODEL_REFERENCE",
           "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id30]/value/magnitude",
           "precedence_overridden": false
         },
@@ -5949,18 +5949,18 @@
         "type": "REAL"
       },
       {
-        "@type": "EXPRESSION_VARIABLE",
+        "_type": "EXPRESSION_VARIABLE",
         "expression": {
-          "@type": "BINARY_OPERATOR",
+          "_type": "BINARY_OPERATOR",
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id29]/value/magnitude",
             "precedence_overridden": false
           },
           "operator": "divide",
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "CONSTANT",
+            "_type": "CONSTANT",
             "precedence_overridden": false,
             "type": "INTEGER",
             "value": 100
@@ -5972,23 +5972,23 @@
         "type": "REAL"
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id30]/value/magnitude",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id30]/value/magnitude",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -6001,15 +6001,15 @@
               "operator": "and",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id29]/value/magnitude",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id29]/value/magnitude",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -6025,13 +6025,13 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "BINARY_OPERATOR",
+                  "_type": "BINARY_OPERATOR",
                   "left_operand": {
-                    "@type": "MODEL_REFERENCE",
+                    "_type": "MODEL_REFERENCE",
                     "path": "/data[id2]/events[id3]/data[id4]/items[id13]/value/magnitude",
                     "precedence_overridden": false,
                     "variable_reference_prefix": "snaq_rc_item"
@@ -6039,11 +6039,11 @@
                   "operator": "eq",
                   "precedence_overridden": false,
                   "right_operand": {
-                    "@type": "BINARY_OPERATOR",
+                    "_type": "BINARY_OPERATOR",
                     "left_operand": {
-                      "@type": "VARIABLE_REFERENCE",
+                      "_type": "VARIABLE_REFERENCE",
                       "declaration": {
-                        "@type": "VARIABLE_DECLARATION",
+                        "_type": "VARIABLE_DECLARATION",
                         "name": "snaq_rc_weight"
                       },
                       "precedence_overridden": false
@@ -6051,11 +6051,11 @@
                     "operator": "divide",
                     "precedence_overridden": false,
                     "right_operand": {
-                      "@type": "BINARY_OPERATOR",
+                      "_type": "BINARY_OPERATOR",
                       "left_operand": {
-                        "@type": "VARIABLE_REFERENCE",
+                        "_type": "VARIABLE_REFERENCE",
                         "declaration": {
-                          "@type": "VARIABLE_DECLARATION",
+                          "_type": "VARIABLE_DECLARATION",
                           "name": "snaq_rc_height"
                         },
                         "precedence_overridden": false
@@ -6063,9 +6063,9 @@
                       "operator": "multiply",
                       "precedence_overridden": true,
                       "right_operand": {
-                        "@type": "VARIABLE_REFERENCE",
+                        "_type": "VARIABLE_REFERENCE",
                         "declaration": {
-                          "@type": "VARIABLE_DECLARATION",
+                          "_type": "VARIABLE_DECLARATION",
                           "name": "snaq_rc_height"
                         },
                         "precedence_overridden": false
@@ -6079,9 +6079,9 @@
                 "operator": "and",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "BINARY_OPERATOR",
+                  "_type": "BINARY_OPERATOR",
                   "left_operand": {
-                    "@type": "MODEL_REFERENCE",
+                    "_type": "MODEL_REFERENCE",
                     "path": "/data[id2]/events[id3]/data[id4]/items[id13]/value/units",
                     "precedence_overridden": false,
                     "variable_reference_prefix": "snaq_rc_item"
@@ -6089,7 +6089,7 @@
                   "operator": "eq",
                   "precedence_overridden": false,
                   "right_operand": {
-                    "@type": "CONSTANT",
+                    "_type": "CONSTANT",
                     "precedence_overridden": false,
                     "type": "STRING",
                     "value": "kg/m2"
@@ -6102,9 +6102,9 @@
               "operator": "and",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id13]/value/precision",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -6112,7 +6112,7 @@
                 "operator": "eq",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 1
@@ -6126,31 +6126,31 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id30]/value/magnitude",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id30]/value/magnitude",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -6163,15 +6163,15 @@
               "operator": "and",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id29]/value/magnitude",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id29]/value/magnitude",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -6187,13 +6187,13 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "BINARY_OPERATOR",
+                  "_type": "BINARY_OPERATOR",
                   "left_operand": {
-                    "@type": "MODEL_REFERENCE",
+                    "_type": "MODEL_REFERENCE",
                     "path": "/data[id2]/events[id3]/data[id4]/items[id13]/value/magnitude",
                     "precedence_overridden": false,
                     "variable_reference_prefix": "snaq_rc_item"
@@ -6201,11 +6201,11 @@
                   "operator": "eq",
                   "precedence_overridden": false,
                   "right_operand": {
-                    "@type": "BINARY_OPERATOR",
+                    "_type": "BINARY_OPERATOR",
                     "left_operand": {
-                      "@type": "VARIABLE_REFERENCE",
+                      "_type": "VARIABLE_REFERENCE",
                       "declaration": {
-                        "@type": "VARIABLE_DECLARATION",
+                        "_type": "VARIABLE_DECLARATION",
                         "name": "snaq_rc_weight"
                       },
                       "precedence_overridden": false
@@ -6213,11 +6213,11 @@
                     "operator": "divide",
                     "precedence_overridden": false,
                     "right_operand": {
-                      "@type": "BINARY_OPERATOR",
+                      "_type": "BINARY_OPERATOR",
                       "left_operand": {
-                        "@type": "VARIABLE_REFERENCE",
+                        "_type": "VARIABLE_REFERENCE",
                         "declaration": {
-                          "@type": "VARIABLE_DECLARATION",
+                          "_type": "VARIABLE_DECLARATION",
                           "name": "snaq_rc_height"
                         },
                         "precedence_overridden": false
@@ -6225,9 +6225,9 @@
                       "operator": "multiply",
                       "precedence_overridden": true,
                       "right_operand": {
-                        "@type": "VARIABLE_REFERENCE",
+                        "_type": "VARIABLE_REFERENCE",
                         "declaration": {
-                          "@type": "VARIABLE_DECLARATION",
+                          "_type": "VARIABLE_DECLARATION",
                           "name": "snaq_rc_height"
                         },
                         "precedence_overridden": false
@@ -6241,9 +6241,9 @@
                 "operator": "and",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "BINARY_OPERATOR",
+                  "_type": "BINARY_OPERATOR",
                   "left_operand": {
-                    "@type": "MODEL_REFERENCE",
+                    "_type": "MODEL_REFERENCE",
                     "path": "/data[id2]/events[id3]/data[id4]/items[id13]/value/units",
                     "precedence_overridden": false,
                     "variable_reference_prefix": "snaq_rc_item"
@@ -6251,7 +6251,7 @@
                   "operator": "eq",
                   "precedence_overridden": false,
                   "right_operand": {
-                    "@type": "CONSTANT",
+                    "_type": "CONSTANT",
                     "precedence_overridden": false,
                     "type": "STRING",
                     "value": "kg/m2"
@@ -6264,9 +6264,9 @@
               "operator": "and",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id13]/value/precision",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -6274,7 +6274,7 @@
                 "operator": "eq",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 1
@@ -6298,9 +6298,9 @@
         ]
       },
       {
-        "@type": "EXPRESSION_VARIABLE",
+        "_type": "EXPRESSION_VARIABLE",
         "expression": {
-          "@type": "MODEL_REFERENCE",
+          "_type": "MODEL_REFERENCE",
           "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id13]/value/magnitude",
           "precedence_overridden": false
         },
@@ -6308,17 +6308,17 @@
         "type": "REAL"
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_bmi"
                 },
                 "precedence_overridden": false
@@ -6326,7 +6326,7 @@
               "operator": "lt",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 20
@@ -6336,9 +6336,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id14]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -6346,9 +6346,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -6375,25 +6375,25 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_bmi"
                 },
                 "precedence_overridden": false
@@ -6401,7 +6401,7 @@
               "operator": "lt",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 20
@@ -6411,9 +6411,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id14]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -6421,9 +6421,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -6460,19 +6460,19 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "VARIABLE_REFERENCE",
+                  "_type": "VARIABLE_REFERENCE",
                   "declaration": {
-                    "@type": "VARIABLE_DECLARATION",
+                    "_type": "VARIABLE_DECLARATION",
                     "name": "snaq_rc_bmi"
                   },
                   "precedence_overridden": false
@@ -6480,7 +6480,7 @@
                 "operator": "ge",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 20
@@ -6490,11 +6490,11 @@
               "operator": "and",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "VARIABLE_REFERENCE",
+                  "_type": "VARIABLE_REFERENCE",
                   "declaration": {
-                    "@type": "VARIABLE_DECLARATION",
+                    "_type": "VARIABLE_DECLARATION",
                     "name": "snaq_rc_bmi"
                   },
                   "precedence_overridden": false
@@ -6502,7 +6502,7 @@
                 "operator": "lt",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 22
@@ -6515,9 +6515,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id14]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -6525,9 +6525,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -6554,27 +6554,27 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "VARIABLE_REFERENCE",
+                  "_type": "VARIABLE_REFERENCE",
                   "declaration": {
-                    "@type": "VARIABLE_DECLARATION",
+                    "_type": "VARIABLE_DECLARATION",
                     "name": "snaq_rc_bmi"
                   },
                   "precedence_overridden": false
@@ -6582,7 +6582,7 @@
                 "operator": "ge",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 20
@@ -6592,11 +6592,11 @@
               "operator": "and",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "VARIABLE_REFERENCE",
+                  "_type": "VARIABLE_REFERENCE",
                   "declaration": {
-                    "@type": "VARIABLE_DECLARATION",
+                    "_type": "VARIABLE_DECLARATION",
                     "name": "snaq_rc_bmi"
                   },
                   "precedence_overridden": false
@@ -6604,7 +6604,7 @@
                 "operator": "lt",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 22
@@ -6617,9 +6617,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id14]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -6627,9 +6627,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -6665,19 +6665,19 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "VARIABLE_REFERENCE",
+                  "_type": "VARIABLE_REFERENCE",
                   "declaration": {
-                    "@type": "VARIABLE_DECLARATION",
+                    "_type": "VARIABLE_DECLARATION",
                     "name": "snaq_rc_bmi"
                   },
                   "precedence_overridden": false
@@ -6685,7 +6685,7 @@
                 "operator": "ge",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 22
@@ -6695,11 +6695,11 @@
               "operator": "and",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "VARIABLE_REFERENCE",
+                  "_type": "VARIABLE_REFERENCE",
                   "declaration": {
-                    "@type": "VARIABLE_DECLARATION",
+                    "_type": "VARIABLE_DECLARATION",
                     "name": "snaq_rc_bmi"
                   },
                   "precedence_overridden": false
@@ -6707,7 +6707,7 @@
                 "operator": "lt",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 28
@@ -6720,9 +6720,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id14]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -6730,9 +6730,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -6759,27 +6759,27 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "VARIABLE_REFERENCE",
+                  "_type": "VARIABLE_REFERENCE",
                   "declaration": {
-                    "@type": "VARIABLE_DECLARATION",
+                    "_type": "VARIABLE_DECLARATION",
                     "name": "snaq_rc_bmi"
                   },
                   "precedence_overridden": false
@@ -6787,7 +6787,7 @@
                 "operator": "ge",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 22
@@ -6797,11 +6797,11 @@
               "operator": "and",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "BINARY_OPERATOR",
+                "_type": "BINARY_OPERATOR",
                 "left_operand": {
-                  "@type": "VARIABLE_REFERENCE",
+                  "_type": "VARIABLE_REFERENCE",
                   "declaration": {
-                    "@type": "VARIABLE_DECLARATION",
+                    "_type": "VARIABLE_DECLARATION",
                     "name": "snaq_rc_bmi"
                   },
                   "precedence_overridden": false
@@ -6809,7 +6809,7 @@
                 "operator": "lt",
                 "precedence_overridden": false,
                 "right_operand": {
-                  "@type": "CONSTANT",
+                  "_type": "CONSTANT",
                   "precedence_overridden": false,
                   "type": "INTEGER",
                   "value": 28
@@ -6822,9 +6822,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id14]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -6832,9 +6832,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -6870,17 +6870,17 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_bmi"
                 },
                 "precedence_overridden": false
@@ -6888,7 +6888,7 @@
               "operator": "ge",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 28
@@ -6898,9 +6898,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id14]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -6908,9 +6908,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -6937,25 +6937,25 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_bmi"
                 },
                 "precedence_overridden": false
@@ -6963,7 +6963,7 @@
               "operator": "ge",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 28
@@ -6973,9 +6973,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id14]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -6983,9 +6983,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -7021,22 +7021,22 @@
         ]
       },
       {
-        "@type": "EXPRESSION_VARIABLE",
+        "_type": "EXPRESSION_VARIABLE",
         "expression": {
-          "@type": "BINARY_OPERATOR",
+          "_type": "BINARY_OPERATOR",
           "left_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id10]/value/value",
                 "precedence_overridden": false
               },
               "operator": "plus",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id11]/value/value",
                 "precedence_overridden": false
               },
@@ -7045,7 +7045,7 @@
             "operator": "plus",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "MODEL_REFERENCE",
+              "_type": "MODEL_REFERENCE",
               "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id12]/value/value",
               "precedence_overridden": false
             },
@@ -7054,7 +7054,7 @@
           "operator": "plus",
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]/data[id2]/events[id3]/data[id4]/items[id14]/value/value",
             "precedence_overridden": false
           },
@@ -7064,17 +7064,17 @@
         "type": "INTEGER"
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_snaq_score"
                 },
                 "precedence_overridden": false
@@ -7082,7 +7082,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 0
@@ -7092,9 +7092,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7102,9 +7102,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -7131,25 +7131,25 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_snaq_score"
                 },
                 "precedence_overridden": false
@@ -7157,7 +7157,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 0
@@ -7167,9 +7167,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7177,9 +7177,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -7215,17 +7215,17 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_snaq_score"
                 },
                 "precedence_overridden": false
@@ -7233,7 +7233,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 1
@@ -7243,9 +7243,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7253,9 +7253,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -7282,25 +7282,25 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_snaq_score"
                 },
                 "precedence_overridden": false
@@ -7308,7 +7308,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 1
@@ -7318,9 +7318,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7328,9 +7328,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -7366,17 +7366,17 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_snaq_score"
                 },
                 "precedence_overridden": false
@@ -7384,7 +7384,7 @@
               "operator": "ge",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 2
@@ -7394,9 +7394,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7404,9 +7404,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -7433,25 +7433,25 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "VARIABLE_REFERENCE",
+                "_type": "VARIABLE_REFERENCE",
                 "declaration": {
-                  "@type": "VARIABLE_DECLARATION",
+                  "_type": "VARIABLE_DECLARATION",
                   "name": "snaq_rc_snaq_score"
                 },
                 "precedence_overridden": false
@@ -7459,7 +7459,7 @@
               "operator": "ge",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 2
@@ -7469,9 +7469,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7479,9 +7479,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -7517,23 +7517,23 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "UNARY_OPERATOR",
+              "_type": "UNARY_OPERATOR",
               "left_operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -7544,15 +7544,15 @@
                 "unary": true
               },
               "operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -7570,17 +7570,17 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "UNARY_OPERATOR",
+              "_type": "UNARY_OPERATOR",
               "left_operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -7591,15 +7591,15 @@
                 "unary": true
               },
               "operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -7618,31 +7618,31 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "UNARY_OPERATOR",
+              "_type": "UNARY_OPERATOR",
               "left_operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -7653,15 +7653,15 @@
                 "unary": true
               },
               "operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -7679,17 +7679,17 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "UNARY_OPERATOR",
+              "_type": "UNARY_OPERATOR",
               "left_operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -7700,15 +7700,15 @@
                 "unary": true
               },
               "operand": {
-                "@type": "UNARY_OPERATOR",
+                "_type": "UNARY_OPERATOR",
                 "left_operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
                 },
                 "operand": {
-                  "@type": "MODEL_REFERENCE",
+                  "_type": "MODEL_REFERENCE",
                   "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                   "precedence_overridden": false,
                   "variable_reference_prefix": "snaq_rc_item"
@@ -7737,21 +7737,21 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "UNARY_OPERATOR",
+              "_type": "UNARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
               },
               "operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7764,15 +7764,15 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "UNARY_OPERATOR",
+              "_type": "UNARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
               },
               "operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7786,29 +7786,29 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "UNARY_OPERATOR",
+              "_type": "UNARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
               },
               "operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7821,15 +7821,15 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "UNARY_OPERATOR",
+              "_type": "UNARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
               },
               "operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7853,15 +7853,15 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7869,7 +7869,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 0
@@ -7879,9 +7879,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]/value/defining_code",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7889,9 +7889,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -7918,23 +7918,23 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7942,7 +7942,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 0
@@ -7952,9 +7952,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]/value/defining_code",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -7962,9 +7962,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -8001,15 +8001,15 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -8017,7 +8017,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 1
@@ -8027,9 +8027,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]/value/defining_code",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -8037,9 +8037,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -8066,23 +8066,23 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -8090,7 +8090,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 1
@@ -8100,9 +8100,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]/value/defining_code",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -8110,9 +8110,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -8149,15 +8149,15 @@
         ]
       },
       {
-        "@type": "ASSERTION",
+        "_type": "ASSERTION",
         "expression": {
-          "@type": "FOR_ALL_STATEMENT",
+          "_type": "FOR_ALL_STATEMENT",
           "assertion": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -8165,7 +8165,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 2
@@ -8175,9 +8175,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]/value/defining_code",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -8185,9 +8185,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -8214,23 +8214,23 @@
             "unary": false
           },
           "left_operand": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "operator": "for_all",
           "path_expression": {
-            "@type": "MODEL_REFERENCE",
+            "_type": "MODEL_REFERENCE",
             "path": "/content[id0.0.100.1]",
             "precedence_overridden": false
           },
           "precedence_overridden": false,
           "right_operand": {
-            "@type": "BINARY_OPERATOR",
+            "_type": "BINARY_OPERATOR",
             "left_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id15]/value/value",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -8238,7 +8238,7 @@
               "operator": "eq",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTANT",
+                "_type": "CONSTANT",
                 "precedence_overridden": false,
                 "type": "INTEGER",
                 "value": 2
@@ -8248,9 +8248,9 @@
             "operator": "implies",
             "precedence_overridden": false,
             "right_operand": {
-              "@type": "BINARY_OPERATOR",
+              "_type": "BINARY_OPERATOR",
               "left_operand": {
-                "@type": "MODEL_REFERENCE",
+                "_type": "MODEL_REFERENCE",
                 "path": "/data[id2]/events[id3]/data[id4]/items[id16]/value/defining_code",
                 "precedence_overridden": false,
                 "variable_reference_prefix": "snaq_rc_item"
@@ -8258,9 +8258,9 @@
               "operator": "matches",
               "precedence_overridden": false,
               "right_operand": {
-                "@type": "CONSTRAINT",
+                "_type": "CONSTRAINT",
                 "item": {
-                  "@type": "C_TERMINOLOGY_CODE",
+                  "_type": "C_TERMINOLOGY_CODE",
                   "allowed": true,
                   "attributes": [
 
@@ -8300,7 +8300,7 @@
   },
   "specialized": true,
   "terminology": {
-    "@type": "ARCHETYPE_TERMINOLOGY",
+    "_type": "ARCHETYPE_TERMINOLOGY",
     "concept_code": "id1.1.1.1",
     "differential": false,
     "original_language": "nl",
@@ -8312,170 +8312,170 @@
     "term_definitions": {
       "ar-sy": {
         "id1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "وثيقة لتوصيل المعلومات للآخرين, عادة كاستجابة لطلب من طرف آخر.",
           "text": "تقرير"
         },
         "id3": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "معلومات التعريف حول التقرير",
           "text": "العنصر التعريفي الفريد للتقرير"
         },
         "id6": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "حالة التقرير بشكل كلي. و لا تمثل هذه الحالة جزءا من التقرير و إنما جميعه ككل.",
           "text": "الحالة"
         },
         "id7": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*Additional information required to capture local context or to align with other reference models/formalisms.(en)",
           "text": "*Extension(en)"
         },
         "at1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*event (en)",
           "text": "*event (en)"
         },
         "id1.1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*Document to communicate information to others about the result of a test  or assessment.(en)",
           "text": "*Result Report(en)"
         }
       },
       "sl": {
         "id1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*Document to communicate information to others, commonly in response to a request from another party.(en)",
           "text": "Poročilo"
         },
         "id3": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*Identification information about the report.(en)",
           "text": "ID Poročila"
         },
         "id6": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*The status of the entire report. Note: This is not the status of any of the report components.(en)",
           "text": "Status"
         },
         "id7": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*Additional information required to capture local context or to align with other reference models/formalisms.(en)",
           "text": "*Extension(en)"
         },
         "at1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*event (en)",
           "text": "*event (en)"
         }
       },
       "en": {
         "id1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Document to communicate information to others, commonly in response to a request from another party.",
           "text": "Report"
         },
         "id3": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Identification information about the report.",
           "text": "Report ID"
         },
         "id6": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "The status of the entire report. Note: This is not the status of any of the report components.",
           "text": "Status"
         },
         "id7": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Additional information required to capture local context or to align with other reference models/formalisms.",
           "text": "Extension"
         },
         "at1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "event",
           "text": "event"
         },
         "id1.1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Document to communicate information to others about the result of a test  or assessment.",
           "text": "Result Report"
         }
       },
       "es-ar": {
         "id1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Documento para comunicar información a otros, comunmente en respuesta a la solicitud de un tercero.",
           "text": "Informe"
         },
         "id3": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Información para la identificación del informe.",
           "text": "ID del informe"
         },
         "id6": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "El estado del informe como un todo. Nota: no se refiere al estado de alguno de los componentes del informe.",
           "text": "Estado"
         },
         "id7": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*Additional information required to capture local context or to align with other reference models/formalisms.(en)",
           "text": "*Extension(en)"
         },
         "at1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "*event (en)",
           "text": "*event (en)"
         }
       },
       "nl": {
         "id1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Document om informatie met anderen te communiceren, vaak op verzoek van een andere partij.",
           "text": "Rapportage"
         },
         "id3": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Identificerende informatie over deze rapportage",
           "text": "Rapportage ID"
         },
         "id6": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "De status van de rapportage. Let op, dit is niet de status van een van de onderdelen van de rappotage",
           "text": "Status"
         },
         "id7": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Extra informatie nodig om de context te beschrijven of te voldoen met andere modellen of formalismes.",
           "text": "Uitbreiding"
         },
         "at1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "event",
           "text": "event"
         },
         "id1.1.1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Rapportage met resultaat van een meting en beoordeling",
           "text": "Rapportage met resultaat van een meting en beoordeling"
         },
         "id0.0.100": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Een observatie",
           "text": "Een observatie"
         },
         "id0.0.101": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Beschrijf hier eventueel de klinische beoordeling of opmerkingen van het resultaat van de meting.\n                    Dit kan bijvoorbeeld een uitgebreidere interpretatie van het resultaat zijn, of de betekenis van het resultaat voor de cliënt.",
           "text": "Beoordeling / opmerkingen"
         },
         "id1.1.1.1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "SNAQ RC",
           "text": "SNAQ RC"
         },
         "id0.0.100.1": {
-          "@type": "ARCHETYPE_TERM",
+          "_type": "ARCHETYPE_TERM",
           "description": "Short Nutritional Assessment Questionnaire for Residential care - Vroege herkenning en behandeling van ondervoeding in verpleeg- en verzorgingshuizen",
           "text": "SNAQ RC"
         }

@@ -79,6 +79,8 @@ import java.util.Map;
  */
 public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
 
+    public static final String RM_VERSION = "1.1.0";
+
     private static ArchieRMInfoLookup instance;
 
     private ArchieRMInfoLookup() {
@@ -291,7 +293,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
                 if(root.getArchetypeRef() != null) {
                     Archetyped details = new Archetyped();
                     details.setArchetypeId(new ArchetypeID(root.getArchetypeRef()));
-                    details.setRmVersion("1.1.0");
+                    details.setRmVersion(RM_VERSION);
                     locatable.setArchetypeDetails(details);
                 }
             }

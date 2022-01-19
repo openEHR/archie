@@ -13,8 +13,7 @@ import static org.junit.Assert.assertNotNull;
 public class ArchetypeParsePostProcessorTest {
     @Test
     public void setTupleParents() throws Exception {
-        RMJacksonConfiguration config = RMJacksonConfiguration.createStandardsCompliant();
-        config.setTypePropertyName("@type");
+        RMJacksonConfiguration config = RMJacksonConfiguration.createConfigForJavascriptUsage();
         try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/json/snaq_rc_opt.js")) {
             OperationalTemplate template = JacksonUtil.getObjectMapper(config).readValue(stream, OperationalTemplate.class);
             ArchetypeParsePostProcesser.fixArchetype(template);

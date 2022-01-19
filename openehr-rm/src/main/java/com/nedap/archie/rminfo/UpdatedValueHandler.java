@@ -7,6 +7,7 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
@@ -138,10 +139,12 @@ public class UpdatedValueHandler {
             codedText.setValue(value);
             result.put(path + "/value", value);
         }
-        if(codedText.getDefiningCode() != null &&  (codedText.getDefiningCode().getTerminologyId() == null || Strings.isNullOrEmpty(codedText.getDefiningCode().getTerminologyId().getValue()))) {
-            //TODO: only if at-code?
-            codedText.getDefiningCode().setTerminologyId(new TerminologyId("local"));
-            result.put(path + "/defining_code/terminology_id/value", "local");
+        if(codedText.getDefiningCode() != null &&
+                (codedText.getDefiningCode().getTerminologyId() == null || Strings.isNullOrEmpty(codedText.getDefiningCode().getTerminologyId().getValue()))) {
+            if(AOMUtils.isValueCode(codedText.getDefiningCode().getCodeString())) {
+                codedText.getDefiningCode().setTerminologyId(new TerminologyId("local"));
+                result.put(path + "/defining_code/terminology_id/value", "local");
+            }
         }
 
         return result;
