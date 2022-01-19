@@ -14,6 +14,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import javax.xml.bind.Marshaller;
 import java.io.StringReader;
@@ -40,7 +41,7 @@ public class JAXBRMRoundTripTest {
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser(new RMConstraintImposer());
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
     }
 
     @Test
