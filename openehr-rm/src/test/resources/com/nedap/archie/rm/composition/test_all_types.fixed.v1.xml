@@ -3,7 +3,6 @@
     <name>
         <value>Test all types</value>
     </name>
-    <!-- the following is currently not supported by ARCHIE unmarshalling as of 14.7.2019 -->
     <archetype_details>
         <archetype_id>
             <value>openEHR-EHR-COMPOSITION.test_all_types.v1</value>

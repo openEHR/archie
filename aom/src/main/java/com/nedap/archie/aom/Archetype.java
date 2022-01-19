@@ -81,11 +81,11 @@ public class Archetype extends AuthoredResource {
     //this is a specific map type to make a JAXB-adapter work. ugly jaxb
     //alternative: define an extra field, use hooks to fill it just in time instead
     @XmlTransient
-    private LinkedHashMap<String, String> otherMetaData = new LinkedHashMap<>();
+    private Map<String, String> otherMetaData = new LinkedHashMap<>();
 
     @XmlElement(name="other_meta_data")
     @JsonIgnore
-    private List<StringDictionaryItem> xmlOtherMetaData;
+    private transient List<StringDictionaryItem> xmlOtherMetaData;
 
     // Invoked by Jaxb Marshaller after unmarshalling
     public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
@@ -195,7 +195,7 @@ public class Archetype extends AuthoredResource {
     }
 
     public void setOtherMetaData(Map<String, String> otherMetaData) {
-        this.otherMetaData = new LinkedHashMap<>(otherMetaData);
+        this.otherMetaData = otherMetaData;
     }
 
     public void addOtherMetadata(String text, String value) {

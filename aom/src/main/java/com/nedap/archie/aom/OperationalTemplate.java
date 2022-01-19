@@ -4,6 +4,8 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -37,14 +39,16 @@ public class OperationalTemplate extends AuthoredArchetype {
      * terminology extracts from subarchetypes, for example snomed codes, multiple choice thingies, etc
      */
     @XmlTransient
-    private Map<String, ArchetypeTerminology> terminologyExtracts = new ConcurrentHashMap<>();//TODO: is this correct?
+    private Map<String, ArchetypeTerminology> terminologyExtracts = new ConcurrentHashMap<>();
     @XmlTransient
     private Map<String, ArchetypeTerminology> componentTerminologies = new ConcurrentHashMap<>();
 
     @XmlElement(name="terminology_extracts")
-    private List<XmlArchetypeTerminology> xmlTerminologyExtracts;
+    @JsonIgnore
+    private transient List<XmlArchetypeTerminology> xmlTerminologyExtracts;
     @XmlElement(name="component_terminologies")
-    private List<XmlArchetypeTerminology> xmlComponentTerminologies;
+    @JsonIgnore
+    private transient List<XmlArchetypeTerminology> xmlComponentTerminologies;
 
     @Override
     public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {

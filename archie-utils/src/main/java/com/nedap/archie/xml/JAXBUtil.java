@@ -45,6 +45,7 @@ public class JAXBUtil {
                 classes.addAll(ArchieRMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
                 //extra classes from the adapters package that are not directly referenced.\
                 classes.add(XmlResourceDescriptionItem.class);
+                removeClasses(classes);
                 archieJaxbContext = JAXBContext.newInstance(classes.toArray(new Class[0]));
             } catch (JAXBException e) {
                 throw new RuntimeException(e);//programmer error, tests will fail
@@ -57,6 +58,7 @@ public class JAXBUtil {
             List<Class<?>> classes = Lists.newArrayList(ArchieAOMInfoLookup.getInstance().getRmTypeNameToClassMap().values());
             //extra classes from the adapters package that are not directly referenced.\
             classes.add(XmlResourceDescriptionItem.class);
+            removeClasses(classes);
             return JAXBContext.newInstance(classes.toArray(new Class[0]));
         } catch (JAXBException e) {
             throw new RuntimeException(e);//programmer error, tests will fail
