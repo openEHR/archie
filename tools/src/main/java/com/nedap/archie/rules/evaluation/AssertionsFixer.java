@@ -74,7 +74,7 @@ public class AssertionsFixer {
                     creator.set(parent, lastPathSegment, Lists.newArrayList(value.getValue()));
                 }
 
-                result = modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent);
+                result.putAll(modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent));
                 ruleEvaluation.refreshQueryContext();
             }
         }
