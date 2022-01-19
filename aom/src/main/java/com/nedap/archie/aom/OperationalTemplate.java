@@ -45,10 +45,12 @@ public class OperationalTemplate extends AuthoredArchetype {
 
     @XmlElement(name="terminology_extracts")
     @JsonIgnore
-    private transient List<XmlArchetypeTerminology> xmlTerminologyExtracts;
+    //this field should be marked transient, but JAXB will not allow it.
+    private List<XmlArchetypeTerminology> xmlTerminologyExtracts;
     @XmlElement(name="component_terminologies")
     @JsonIgnore
-    private transient List<XmlArchetypeTerminology> xmlComponentTerminologies;
+    //this field should be marked transient, but JAXB will not allow it.
+    private List<XmlArchetypeTerminology> xmlComponentTerminologies;
 
     @Override
     public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {

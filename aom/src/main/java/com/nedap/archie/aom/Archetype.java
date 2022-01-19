@@ -85,7 +85,8 @@ public class Archetype extends AuthoredResource {
 
     @XmlElement(name="other_meta_data")
     @JsonIgnore
-    private transient List<StringDictionaryItem> xmlOtherMetaData;
+    //this field should be marked transient, but JAXB will not allow it.
+    private List<StringDictionaryItem> xmlOtherMetaData;
 
     // Invoked by Jaxb Marshaller after unmarshalling
     public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
