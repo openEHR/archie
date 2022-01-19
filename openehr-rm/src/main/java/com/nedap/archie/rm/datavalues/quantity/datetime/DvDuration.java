@@ -27,7 +27,7 @@ import java.util.Objects;
 @XmlType(name = "DV_DURATION", propOrder = {
 		"value"
 })
-public class DvDuration extends DvAmount<DvDuration, Long> implements SingleValuedDataValue<TemporalAmount> {
+public class DvDuration extends DvAmount<DvDuration, Double> implements SingleValuedDataValue<TemporalAmount> {
 
 	@XmlJavaTypeAdapter(DurationXmlAdapter.class)
 	private TemporalAmount value;
@@ -66,8 +66,11 @@ public class DvDuration extends DvAmount<DvDuration, Long> implements SingleValu
     @XmlTransient
     @Override
     @JsonIgnore
-    public Long getMagnitude() {
-        return null; //no magnitude defined in spec
+    public Double getMagnitude() {
+		if(value == null) {
+			return null;
+		}
+		return TimeDefinitions.convertTemporalAmountToSeconds(value);
     }
 
 
