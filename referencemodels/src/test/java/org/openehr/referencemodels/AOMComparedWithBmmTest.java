@@ -26,6 +26,12 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Compares the AOM with the official BMM.
+ *
+ * For now the test is ignored and it can be run manually. it is possible to fix that, but then we need a certified ok AOM BMM,
+ * and need to adapt this test to accept known model differences.
+ */
 public class AOMComparedWithBmmTest {
 
     @Test

@@ -4,7 +4,7 @@ package com.nedap.archie.rules;
  * Operator Def used to conform to the newer expression language specification. Not used except for json (de)serialization
  * use OperatorKind intead!
  */
-public class OperatorDef {
+public abstract class OperatorDef {
     private String identifier;
 
     public OperatorDef() {

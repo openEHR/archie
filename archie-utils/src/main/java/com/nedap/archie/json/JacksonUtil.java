@@ -128,10 +128,10 @@ public class JacksonUtil {
         if(configuration.isAddPatternConstraintTypo()) {
             module.setMixInAnnotation(CTemporal.class, PatternConstraintCTemporalMixin.class);
         }
-        if(!configuration.isStandardsCompliantExpressionClassNames()) {
-            module.addSerializer(OperatorKind.class, new OldOperatorKindSerializer());
-        } else {
+        if(configuration.isStandardsCompliantExpressions()) {
             module.setMixInAnnotation(RulesSection.class, RulesSectionMixin.class);
+        } else {
+            module.addSerializer(OperatorKind.class, new OldOperatorKindSerializer());
         }
         //make rules parsing work both for a list and a RulesSection object
         module.addDeserializer(RulesSection.class, new RulesSectionDeserializer());
@@ -141,7 +141,7 @@ public class JacksonUtil {
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
         TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
-                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming(configuration.isStandardsCompliantExpressionClassNames()))
+                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming(configuration.isStandardsCompliantExpressions()))
                 .typeProperty(configuration.getTypePropertyName())
                 .typeIdVisibility(true)
                 .inclusion(JsonTypeInfo.As.PROPERTY);

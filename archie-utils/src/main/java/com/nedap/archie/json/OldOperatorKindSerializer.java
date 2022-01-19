@@ -12,7 +12,8 @@ public class OldOperatorKindSerializer extends JsonSerializer<OperatorKind> {
     public void serialize(OperatorKind value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
         if(value == null) {
             gen.writeNull();
+        } else {
+            gen.writeString(value.name());
         }
-        gen.writeString(value.name());
     }
 }

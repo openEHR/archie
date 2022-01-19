@@ -11,7 +11,7 @@ public class ArchieJacksonConfiguration {
     private boolean serializeEmptyCollections = true;
     private boolean archetypeBooleanIsPrefix = true;
     private boolean addPatternConstraintTypo = false;
-    private boolean standardsCompliantExpressionClassNames = true;
+    private boolean standardsCompliantExpressions = true;
 
     public ArchieJacksonConfiguration() {
 
@@ -134,8 +134,8 @@ public class ArchieJacksonConfiguration {
      * Defaults to true
      * @return true for the standards compliant class names, false otherwise
      */
-    public boolean isStandardsCompliantExpressionClassNames() {
-        return standardsCompliantExpressionClassNames;
+    public boolean isStandardsCompliantExpressions() {
+        return standardsCompliantExpressions;
     }
 
     /**
@@ -145,11 +145,11 @@ public class ArchieJacksonConfiguration {
      * will affect the serialized json only.
      * Defaults to true, so calling this is only to disable it and is marked deprecated, so the old behaviour can at some point
      * be removed
-     * @param standardsCompliantExpressionClassNames true for the standards compliant class names, false otherwise
+     * @param standardsCompliantExpressions true for the standards compliant class names, false otherwise
      */
     @Deprecated
-    public void setStandardsCompliantExpressionClassNames(boolean standardsCompliantExpressionClassNames) {
-        this.standardsCompliantExpressionClassNames = standardsCompliantExpressionClassNames;
+    public void setStandardsCompliantExpressions(boolean standardsCompliantExpressions) {
+        this.standardsCompliantExpressions = standardsCompliantExpressions;
     }
 
     @Override
@@ -164,12 +164,12 @@ public class ArchieJacksonConfiguration {
                 serializeEmptyCollections == that.serializeEmptyCollections &&
                 archetypeBooleanIsPrefix == that.archetypeBooleanIsPrefix &&
                 addPatternConstraintTypo == that.addPatternConstraintTypo &&
-                standardsCompliantExpressionClassNames == that.standardsCompliantExpressionClassNames &&
+                standardsCompliantExpressions == that.standardsCompliantExpressions &&
                 Objects.equals(typePropertyName, that.typePropertyName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typePropertyName, alwaysIncludeTypeProperty, addPathProperty, addExtraFieldsInArchetypeId, failOnUnknownProperties, serializeEmptyCollections, archetypeBooleanIsPrefix, addPatternConstraintTypo, standardsCompliantExpressionClassNames);
+        return Objects.hash(typePropertyName, alwaysIncludeTypeProperty, addPathProperty, addExtraFieldsInArchetypeId, failOnUnknownProperties, serializeEmptyCollections, archetypeBooleanIsPrefix, addPatternConstraintTypo, standardsCompliantExpressions);
     }
 }

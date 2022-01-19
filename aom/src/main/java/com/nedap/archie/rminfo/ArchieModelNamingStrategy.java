@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,6 +27,21 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
         this.standardsCompliantExpressionNames = standardCompliantExpressionNames;
     }
 
+    private static HashMap<String, String> rulesArchieToStandardTypeNamesMap = new HashMap<>();
+    {
+        rulesArchieToStandardTypeNamesMap.put("Operator", "EXPR_OPERATOR");
+        rulesArchieToStandardTypeNamesMap.put("UnaryOperator", "EXPR_UNARY_OPERATOR");
+        rulesArchieToStandardTypeNamesMap.put("BinaryOperator", "EXPR_BINARY_OPERATOR");
+        rulesArchieToStandardTypeNamesMap.put("Leaf", "EXPR_LITERAL");
+        rulesArchieToStandardTypeNamesMap.put("Function", "EXPR_FUNCTION");
+        rulesArchieToStandardTypeNamesMap.put("VariableReference", "EXPR_VARIABLE_REF");
+        rulesArchieToStandardTypeNamesMap.put("Constant", "EXPR_CONSTANT");
+        rulesArchieToStandardTypeNamesMap.put("Constraint", "EXPR_CONSTRAINT");
+        rulesArchieToStandardTypeNamesMap.put("ArchetypeIdConstraint", "EXPR_ARCHETYPE_ID_CONSTRAINT");
+        rulesArchieToStandardTypeNamesMap.put("ModelReference", "EXPR_ARCHETYPE_REF");
+        rulesArchieToStandardTypeNamesMap.put("RuleStatement", "STATEMENT");
+    }
+
     @Override
     public String getTypeName(Class<?> clazz) {
         // For some RM objects the name is an exception on the snakecase -> uppercase strategy
@@ -38,30 +54,8 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
             default:
         }
         if(standardsCompliantExpressionNames) {
-            switch (name) {
-                case "Operator":
-                    return "EXPR_OPERATOR";
-                case "UnaryOperator":
-                    return "EXPR_UNARY_OPERATOR";
-                case "BinaryOperator":
-                    return "EXPR_BINARY_OPERATOR";
-                case "Leaf":
-                    return "EXPR_LITERAL";
-                case "Function":
-                    return "EXPR_FUNCTION";
-                case "VariableReference":
-                    return "EXPR_VARIABLE_REF";
-                case "Constant":
-                    return "EXPR_CONSTANT";
-                case "Constraint":
-                    return "EXPR_CONSTRAINT";
-                case "ArchetypeIdConstraint":
-                    return "EXPR_ARCHETYPE_ID_CONSTRAINT";
-                case "ModelReference":
-                    return "EXPR_ARCHETYPE_REF";
-                case "RuleStatement":
-                    return "STATEMENT";
-
+            if(rulesArchieToStandardTypeNamesMap.containsKey(name)) {
+                return rulesArchieToStandardTypeNamesMap.get(name);
             }
         }
         return convertToUpperSnakeCase(clazz);
@@ -86,20 +80,8 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
             return Collections.emptyList();
         }
         String name = clazz.getSimpleName();
-        switch (name) {
-            case "Operator":
-            case "UnaryOperator":
-            case "BinaryOperator":
-            case "Leaf":
-            case "Function":
-            case "VariableReference":
-            case "Constant":
-            case "Constraint":
-            case "ArchetypeIdConstraint":
-            case "ModelReference":
-            case "RuleStatement":
-                return Lists.newArrayList(convertToUpperSnakeCase(clazz));
-
+        if(rulesArchieToStandardTypeNamesMap.containsKey(name)) {
+            return Lists.newArrayList(convertToUpperSnakeCase(clazz));
         }
         return Collections.emptyList();
     }

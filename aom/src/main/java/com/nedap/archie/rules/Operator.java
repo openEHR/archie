@@ -50,13 +50,13 @@ public class Operator extends Expression {
     }
 
     public OperatorDef getOperatorDef() {
-        return operator == null ? null : new OperatorDef(operator.getIdentifier());
+        return operator == null ? null : new OperatorDefBuiltin(operator.getIdentifier());
     }
 
     public void setOperatorDef(OperatorDef operatorDef) {
         if(operatorDef != null) {
             if(operatorDef.getIdentifier() != null) {
-                operator = OperatorKind.parse(operatorDef.getIdentifier());
+                operator = OperatorKind.parseFromIdentifier(operatorDef.getIdentifier());
             }
         }
     }

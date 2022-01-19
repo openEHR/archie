@@ -15,7 +15,6 @@ import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
-import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
@@ -87,7 +86,7 @@ public class AOMJacksonTest {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
-            config.setStandardsCompliantExpressionClassNames(false);
+            config.setStandardsCompliantExpressions(false);
             String serialized = JacksonUtil.getObjectMapper(config).writeValueAsString(archetype);
            // System.out.println(serialized);
             assertTrue(serialized.contains("\"BINARY_OPERATOR\""));
@@ -95,7 +94,7 @@ public class AOMJacksonTest {
             assertTrue(serialized.contains("\"MODEL_REFERENCE\""));
             assertTrue(serialized.contains("\"rules\" : {"));
             ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
-            newConfig.setStandardsCompliantExpressionClassNames(true);
+            newConfig.setStandardsCompliantExpressions(true);
             Archetype parsedArchetype = JacksonUtil.getObjectMapper(config).readValue(serialized, Archetype.class);
         }
     }
@@ -129,7 +128,7 @@ public class AOMJacksonTest {
         try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
-            config.setStandardsCompliantExpressionClassNames(false);
+            config.setStandardsCompliantExpressions(false);
             ObjectMapper objectMapper = JacksonUtil.getObjectMapper(config);
             String serialized = objectMapper.writeValueAsString(archetype);
             //System.out.println(serialized);
