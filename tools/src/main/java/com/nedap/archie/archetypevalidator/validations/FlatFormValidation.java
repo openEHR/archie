@@ -1,15 +1,15 @@
 package com.nedap.archie.archetypevalidator.validations;
 
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
 import com.nedap.archie.base.Cardinality;
+import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 import org.openehr.utils.message.I18n;
@@ -17,6 +17,7 @@ import org.openehr.utils.message.I18n;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FlatFormValidation extends ValidatingVisitor {
 

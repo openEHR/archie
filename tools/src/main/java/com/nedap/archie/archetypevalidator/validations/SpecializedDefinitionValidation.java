@@ -8,10 +8,13 @@ import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.base.Interval;
+import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rules.Assertion;
 import org.openehr.utils.message.I18n;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SpecializedDefinitionValidation extends ValidatingVisitor {
     public SpecializedDefinitionValidation() {
@@ -107,8 +110,11 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
     }
 
     private void validateConformsTo(CObject cObject, CObject parentCObject) {
-
         ConformanceCheckResult conformanceCheckResult = cObject.cConformsTo(parentCObject, combinedModels::rmTypesConformant);
+//        if (!conformanceCheckResult.doesConform()) {
+//            conformanceCheckResult = childNodesConformToParent(cObject, parentCObject, conformanceCheckResult);
+//        }
+
         if(!conformanceCheckResult.doesConform()) {
             if(conformanceCheckResult.getErrorType() != null) {
                 addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
@@ -152,6 +158,54 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
 
 
     }
+
+//    private ConformanceCheckResult childNodesConformToParent(CObject childCObject, CObject parentCObject, ConformanceCheckResult conformanceCheckResult) {
+//        if (!conformanceCheckResult.getErrorType().equals(ErrorType.VSONCO)) {
+//            return conformanceCheckResult;
+//        }
+//
+//        // Edge case: if sum of all occurrences of all redefined object nodes conforms to occurrences of parent object node
+//        // it is valid to exclude the parent object node
+//        MultiplicityInterval parentNodeOccurrences = parentCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+//        List<CObject> allRedefinedNodes = childCObject.getParent().getChildren().stream().filter(
+//                child -> child.nodeIdConformsTo(parentCObject)
+//                        && !child.getNodeId().equals(parentCObject.getNodeId())
+//        ).collect(Collectors.toList()); // All child nodes in the child archetype
+//        allRedefinedNodes.addAll(((CAttribute) flatParent.itemAtPath(parentCObject.getParent().getPath())).getChildren().stream().filter(
+//                child -> child.nodeIdConformsTo(parentCObject)
+//                        && !child.getNodeId().equals(parentCObject.getNodeId())
+//        ).collect(Collectors.toList())); // All child nodes in the flattened parent archetype
+//        MultiplicityInterval allRedefinedNodeOccurrencesSummed = new MultiplicityInterval(0, 0);
+//        for (CObject childNode : allRedefinedNodes) {
+//            if (allRedefinedNodeOccurrencesSummed.isOpen()) {
+//                break;
+//            }
+//            MultiplicityInterval redefinedOccurrences = childNode.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+//            if (!allRedefinedNodeOccurrencesSummed.isLowerUnbounded()) {
+//                Integer lower = allRedefinedNodeOccurrencesSummed.getLower();
+//                if (redefinedOccurrences.getLower() != null) {
+//                    allRedefinedNodeOccurrencesSummed.setLower(lower + redefinedOccurrences.getLower());
+//                } else {
+//                    allRedefinedNodeOccurrencesSummed.setLowerUnbounded(true);
+//                    allRedefinedNodeOccurrencesSummed.setLower(null);
+//                }
+//            }
+//            if (!allRedefinedNodeOccurrencesSummed.isUpperUnbounded()) {
+//                Integer upper = allRedefinedNodeOccurrencesSummed.getUpper();
+//                if (redefinedOccurrences.getUpper() != null) {
+//                    allRedefinedNodeOccurrencesSummed.setUpper(upper + redefinedOccurrences.getUpper());
+//                } else {
+//                    allRedefinedNodeOccurrencesSummed.setUpperUnbounded(true);
+//                    allRedefinedNodeOccurrencesSummed.setUpper(null);
+//                }
+//            }
+//        }
+//
+//        if (parentNodeOccurrences.contains(allRedefinedNodeOccurrencesSummed)) {
+//            return ConformanceCheckResult.conforms();
+//        }
+//        return conformanceCheckResult;
+//    }
 
     private boolean hasConformingParent(CAttribute parentAttribute, CPrimitiveObject<?, ?> member) {
         for(CObject parentCObject:parentAttribute.getChildren()) {
