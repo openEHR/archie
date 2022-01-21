@@ -42,9 +42,6 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
                 if(conformanceCheckResult.getErrorType() != null) {
                     addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
                             conformanceCheckResult.getError());
-                } else {
-                    addMessageWithPath(ErrorType.VUNK, cObject.path(),
-                            I18n.t("Conformance error: {0}", conformanceCheckResult.getError()));
                 }
             }
         }
