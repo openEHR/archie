@@ -87,7 +87,7 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
         }
         List<CObject> allRedefinedNodes = childCObject.getParent().getChildren().stream().filter(
                 child -> child.nodeIdConformsTo(parentCObject)
-                        && !child.getNodeId().equals(parentCObject.getNodeId())
+
         ).collect(Collectors.toList()); // All child nodes in the child archetype
         MultiplicityInterval allRedefinedNodeOccurrencesSummed = new MultiplicityInterval(0, 0);
         for (CObject childNode : allRedefinedNodes) {
