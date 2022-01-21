@@ -351,6 +351,12 @@ public class Flattener implements IAttributeFlattenerSupport {
         }
         if(newObject instanceof ArchetypeSlot && specialized instanceof CArchetypeRoot) {
             newObject = (CObject) specialized.clone();
+            if(newObject.getOccurrences() == null && parent.getOccurrences() != null) {
+                newObject.setOccurrences(parent.getOccurrences());
+            }
+            if(newObject.getDeprecated() == null && parent.getDeprecated() != null) {
+                newObject.setDeprecated(parent.getDeprecated());
+            }
         }
         return newObject;
     }
