@@ -8,6 +8,7 @@ import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import org.openehr.utils.message.I18n;
 
@@ -26,6 +27,9 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
 
     @Override
     protected void validate(CObject cObject) {
+        if(cObject.getParent() == null) {
+            return;
+        }
         // validate specialised nodes
         if (checkSpecializedNodeHasMatchingPathInParent(cObject)) {
             String flatPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), flatParent.specializationDepth());
@@ -79,15 +83,20 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
     }
 
     private ConformanceCheckResult childNodesConformToParent(CObject childCObject, CObject parentCObject) {
-        // Occurrences do not conform, but there is an edge case: if the sum of all occurrences of all redefined object
-        // nodes conforms to occurrences of parent object node it is valid to exclude the parent object node
-        MultiplicityInterval parentNodeOccurrences = parentCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
         if (childCObject.getParent() == null) {
             return ConformanceCheckResult.conforms();
         }
+
+        MultiplicityInterval parentNodeOccurrences = parentCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+        MultiplicityInterval childNodeOccurrences = childCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+
+        if(parentCObject.getNodeId().equals(childCObject.getNodeId()) && parentNodeOccurrences.equals(childNodeOccurrences)) {
+            //this is the parent node appearing in the flattened child archetype without change in occurrence. That is guaranteed to be valid
+            return ConformanceCheckResult.conforms();
+        }
+
         List<CObject> allRedefinedNodes = childCObject.getParent().getChildren().stream().filter(
                 child -> child.nodeIdConformsTo(parentCObject)
-
         ).collect(Collectors.toList()); // All child nodes in the child archetype
         MultiplicityInterval allRedefinedNodeOccurrencesSummed = new MultiplicityInterval(0, 0);
         for (CObject childNode : allRedefinedNodes) {
@@ -113,6 +122,14 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
                     allRedefinedNodeOccurrencesSummed.setUpper(null);
                 }
             }
+        }
+        MultiplicityInterval cardinality = childCObject.getParent().getCardinality() == null ? null : childCObject.getParent().getCardinality().getInterval();
+        if(cardinality == null) {
+            cardinality = combinedModels.referenceModelPropMultiplicity(childCObject.getParent().getParent().getRmTypeName(), childCObject.getParent().getRmAttributeName());
+        }
+        if(cardinality != null && !cardinality.isUpperUnbounded()) {
+            allRedefinedNodeOccurrencesSummed.setUpperUnbounded(false);
+            allRedefinedNodeOccurrencesSummed.setUpper(cardinality.getUpper());
         }
 
         if (parentNodeOccurrences.contains(allRedefinedNodeOccurrencesSummed)) {
