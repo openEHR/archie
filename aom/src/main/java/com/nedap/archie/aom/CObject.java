@@ -277,9 +277,6 @@ public abstract class CObject extends ArchetypeConstraint {
         if(!nodeIdConformsTo(other)) {
             return ConformanceCheckResult.fails(ErrorType.VSONI, I18n.t("Node id {0} does not conform to {1}", this.getNodeId(), other.getNodeId()));
         }
-//        if(!occurrencesConformsTo(other)) {
-//            return ConformanceCheckResult.fails(ErrorType.VSONCO, I18n.t("Occurrences {0} does not conform to {1}", this.getOccurrences(), other.getOccurrences()));
-//        }
         if(!typeNameConformsTo(other, rmTypesConformant)) {
             return ConformanceCheckResult.fails(ErrorType.VSONCT, I18n.t("type name {0} does not conform to {1}", this.getRmTypeName(), other.getRmTypeName()));
         }
