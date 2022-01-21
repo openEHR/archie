@@ -118,6 +118,9 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
         if (parentNodeOccurrences.contains(allRedefinedNodeOccurrencesSummed)) {
             return ConformanceCheckResult.conforms();
         }
-        return ConformanceCheckResult.fails(ErrorType.VSONCO, I18n.t("Occurrences {0} does not conform to {1}", childCObject.getOccurrences(), parentCObject.getOccurrences()));
+        return ConformanceCheckResult.fails(ErrorType.VSONCO, I18n.t("Occurrences {0}, which is the sum of {1}, does not conform to {2}",
+                allRedefinedNodeOccurrencesSummed,
+                allRedefinedNodes.stream().map(c -> c.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity).toString()).collect(Collectors.joining(", ")),
+                parentCObject.getOccurrences()));
     }
 }
