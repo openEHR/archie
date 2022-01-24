@@ -8,7 +8,6 @@ import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import org.openehr.utils.message.I18n;
 
@@ -124,7 +123,8 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
         if(cardinality == null) {
             cardinality = combinedModels.referenceModelPropMultiplicity(childCObject.getParent().getParent().getRmTypeName(), childCObject.getParent().getRmAttributeName());
         }
-        if(cardinality != null && !cardinality.isUpperUnbounded()) {
+        if(cardinality != null && !cardinality.isUpperUnbounded() &&
+                (allRedefinedNodeOccurrencesSummed.isUpperUnbounded() || allRedefinedNodeOccurrencesSummed.getUpper() > cardinality.getUpper())) {
             allRedefinedNodeOccurrencesSummed.setUpperUnbounded(false);
             allRedefinedNodeOccurrencesSummed.setUpper(cardinality.getUpper());
         }
