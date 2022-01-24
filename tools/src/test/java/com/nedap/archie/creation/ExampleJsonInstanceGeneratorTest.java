@@ -94,7 +94,7 @@ public class ExampleJsonInstanceGeneratorTest {
     }
 
     private ObjectMapper getArchieObjectMapper() {
-        ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
+        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
         configuration.setTypePropertyName("_type");
         configuration.setAddExtraFieldsInArchetypeId(false);
         configuration.setAddPathProperty(false);

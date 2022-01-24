@@ -39,12 +39,10 @@ import static org.junit.Assert.*;
  */
 public class AOMJacksonTest {
 
-
-
     @Test
     public void parseDeliriumObservationScreening() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream("delirium_observation_screening.json")) {
-            Archetype archetype = JacksonUtil.getObjectMapper().readValue(stream, Archetype.class);
+            Archetype archetype = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration()).readValue(stream, Archetype.class);
             System.out.println(archetype);
             assertTrue(archetype.getGenerated());
             assertThat(archetype.getArchetypeId().getFullId(), is("openEHR-EHR-GENERIC_ENTRY.delirium_observation_screening.v1.0.0"));
@@ -61,10 +59,11 @@ public class AOMJacksonTest {
     @Test
     public void roundTripDeliriumObservationScreening() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream("delirium_observation_screening.json")) {
-            Archetype archetype = JacksonUtil.getObjectMapper().readValue(stream, Archetype.class);
-            String reserialized = JacksonUtil.getObjectMapper().writeValueAsString(archetype);
-            System.out.println(reserialized);
-            JacksonUtil.getObjectMapper().readValue(reserialized, Archetype.class);
+            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+            Archetype archetype = objectMapper.readValue(stream, Archetype.class);
+            String reserialized = objectMapper.writeValueAsString(archetype);
+            //System.out.println(reserialized);
+            objectMapper.readValue(reserialized, Archetype.class);
         }
     }
 
@@ -131,7 +130,7 @@ public class AOMJacksonTest {
             config.setStandardsCompliantExpressions(false);
             ObjectMapper objectMapper = JacksonUtil.getObjectMapper(config);
             String serialized = objectMapper.writeValueAsString(archetype);
-            //System.out.println(serialized);
+            System.out.println(serialized);
             assertFalse(serialized.contains("EXPR_BINARY_OPERATOR"));
             assertFalse(serialized.contains("EXPR_ARCHETYPE_REF"));
             assertTrue(serialized.contains("\"operator\" : \"matches\","));

@@ -1,10 +1,12 @@
 package com.nedap.archie.rules;
 
+import com.nedap.archie.aom.ArchetypeModelObject;
+
 /**
  * Operator Def used to conform to the newer expression language specification. Not used except for json (de)serialization
  * use OperatorKind intead!
  */
-public abstract class OperatorDef {
+public abstract class OperatorDef extends ArchetypeModelObject {
     private String identifier;
 
     public OperatorDef() {

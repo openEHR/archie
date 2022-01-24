@@ -53,11 +53,11 @@ public class JacksonUtil {
 
     /**
      * Get an object mapper that works with Archie RM and AOM objects. It will be cached in a static variable for
-     * performance reasons
-     * @return
+     * performance reasons. returns a standards compliant version of the object mapper.
+     * @return the requested object mapper.
      */
     public static ObjectMapper getObjectMapper() {
-        return getObjectMapper(new ArchieJacksonConfiguration());
+        return getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
     }
 
     public static ObjectMapper getObjectMapper(ArchieJacksonConfiguration configuration) {
@@ -74,10 +74,11 @@ public class JacksonUtil {
     /**
      * Configure an existing object mapper to work with Archie RM and AOM Objects.
      * Indentation is enabled. Feel free to disable again in your own code.
-     * @param objectMapper
+     * Creates a standards compliant version of the object mapper
+     * @param objectMapper the object mapper to configure
      */
     public static void configureObjectMapper(ObjectMapper objectMapper) {
-        configureObjectMapper(objectMapper, new ArchieJacksonConfiguration());
+        configureObjectMapper(objectMapper, ArchieJacksonConfiguration.createStandardsCompliant());
     }
 
     public static void configureObjectMapper(ObjectMapper objectMapper, ArchieJacksonConfiguration configuration) {
@@ -146,7 +147,7 @@ public class JacksonUtil {
                 .typeIdVisibility(true)
                 .inclusion(JsonTypeInfo.As.PROPERTY);
 
-        //@type is always allowed as an extra property, even if we don't expect it.
+        //_type is always allowed as an extra property, even if we don't expect it.
         objectMapper.addHandler(new DeserializationProblemHandler() {
             @Override
             public boolean handleUnknownProperty(DeserializationContext ctxt, JsonParser p, JsonDeserializer<?> deserializer, Object beanOrClass, String propertyName) throws IOException {

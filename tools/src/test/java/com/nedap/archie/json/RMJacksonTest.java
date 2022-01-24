@@ -22,7 +22,7 @@ public class RMJacksonTest {
     @Test
     public void parseEhrBaseJsonExample() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream("pablos_example.json")) {
-            ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
+            ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
             configuration.setTypePropertyName("_type");
             Composition parsed = JacksonUtil.getObjectMapper(configuration).readValue(stream, Composition.class);
             assertEquals("__THIS_SHOULD_BE_MODIFIED_BY_THE_TEST_::piri.ehrscape.com::1", parsed.getUid().getValue());
@@ -81,8 +81,8 @@ public class RMJacksonTest {
     }
 
     @Test
-    public void emptyDvTextIsIcnluded() throws JsonProcessingException {
-        ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
+    public void emptyDvTextIsIncluded() throws JsonProcessingException {
+        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
         configuration.setSerializeEmptyCollections(false);
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
         DvText dvText = new DvText("");
@@ -91,14 +91,14 @@ public class RMJacksonTest {
         String actualJson = objectMapper.writeValueAsString(dvText);
         assertEquals(
                         removeWhiteSpaces("{\n"
-                                + "  \"@type\" : \"DV_TEXT\",\n"
+                                + "  \"_type\" : \"DV_TEXT\",\n"
                                 + "  \"value\" : \"\"\n"
                                 + "}"), removeWhiteSpaces(actualJson));
     }
 
     @Test
     public void emptyCollectionIsNotIncluded() throws JsonProcessingException {
-        ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
+        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();;
         configuration.setSerializeEmptyCollections(false);
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
         DvText dvText = new DvText("");
@@ -108,14 +108,14 @@ public class RMJacksonTest {
         String actualJson = objectMapper.writeValueAsString(dvText);
         assertEquals(
                 removeWhiteSpaces("{\n"
-                        + "  \"@type\" : \"DV_TEXT\",\n"
+                        + "  \"_type\" : \"DV_TEXT\",\n"
                         + "  \"value\" : \"\"\n"
                         + "}"), removeWhiteSpaces(actualJson));
     }
 
     @Test
     public void emptyCollectionInCollection() throws JsonProcessingException {
-        ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
+        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();;
         configuration.setSerializeEmptyCollections(false);
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
         Map<String, Map<String, String>> map = new LinkedHashMap<>();

@@ -109,6 +109,8 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
         addClass(com.nedap.archie.aom.CComplexObject.class);
         addClass(com.nedap.archie.rules.VariableDeclaration.class);
         addClass(com.nedap.archie.rules.Operator.class);
+        addClass(com.nedap.archie.rules.OperatorDef.class);
+        addClass(com.nedap.archie.rules.OperatorDefBuiltin.class);
         addClass(com.nedap.archie.rules.BinaryOperator.class);
         addClass(com.nedap.archie.rules.ForAllStatement.class);
         addClass(com.nedap.archie.aom.Archetype.class);

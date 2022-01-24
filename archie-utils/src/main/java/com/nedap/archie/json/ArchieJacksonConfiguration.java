@@ -13,10 +13,38 @@ public class ArchieJacksonConfiguration {
     private boolean addPatternConstraintTypo = false;
     private boolean standardsCompliantExpressions = true;
 
-    public ArchieJacksonConfiguration() {
+    private ArchieJacksonConfiguration() {
 
     }
 
+    /**
+     * Creates a legacy Archie jackson configuration, for backwards compatible output.
+     * Has a couple of property naming differences and uses "@type" as a type property.
+     * <br>
+     * Do not use unless you need the json output to be backwards compatible with old archie versions or other applications
+     * expecting this format.
+     * <br>
+     * It can parse both the standards compliant and legacy version of the archie output, as long as it uses "_type".
+     * The only thing non-standard it cannot parse is "@type" instead of "_type"
+     * Optionally modify config as necessary before using.
+     * @return a legacy Archie Jackson configuration
+     */
+    @Deprecated
+    public static ArchieJacksonConfiguration createLegacyConfiguration() {
+        ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
+        configuration.setTypePropertyName("@type");
+        configuration.setArchetypeBooleanIsPrefix(false);
+        configuration.setStandardsCompliantExpressions(false);
+        configuration.setAddPatternConstraintTypo(true);
+        return configuration;
+    }
+
+    /**
+     * Creates a standards compliant jackson configuration for Archie.
+     * It can parse both the standards compliant and legacy version of the archie output, as long as it uses "_type"
+     * Optionally modify config as necessary before using.
+     * @return a legacy Archie Jackson configuration
+     */
     public static ArchieJacksonConfiguration createStandardsCompliant() {
         ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
         configuration.setTypePropertyName("_type");
@@ -26,6 +54,20 @@ public class ArchieJacksonConfiguration {
         return configuration;
     }
 
+    /**
+     * Creates a standards compliant jackson configuration for Archie, with some extra fields added for easier usage in
+     * environments where there is no RM implementation
+     * <br>
+     * Extra fields include:
+     * <ul>
+     *   <li>path properties everywhere in the RM, so they do not have to be calculated at runtime</li>
+     *   <li>the "_type" is included always on all classes, not just when strictly necessary</li>
+     *   <li>The archetype id has some extra fields so no parser is necessary on client side</li>
+     * </ul>
+     * It can parse both the standards compliant and legacy version of the archie output, as long as it uses "_type"
+     * Optionally modify config as necessary before using.
+     * @return a legacy Archie Jackson configuration
+     */
     public static ArchieJacksonConfiguration createConfigForJavascriptUsage() {
         ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
         configuration.setTypePropertyName("_type");
