@@ -144,6 +144,7 @@ public class ArchetypeValidator {
         archetype = cloneAndPreprocess(combinedModels, archetype);//this clones the actual archetype so the source does not get changed
         Archetype flatParent = null;
         if(archetype.isSpecialized()) {
+            checkForInfiniteLoopInSpecialisation(repository, archetype);
             ValidationResult parentValidationResult = repository.compileAndRetrieveValidationResult(archetype.getParentArchetypeId(), this);
             combinedModels.selectModel(archetype);
             if(parentValidationResult != null) {
@@ -236,6 +237,25 @@ public class ArchetypeValidator {
             }
         }
         return messages;
+    }
+
+    private void checkForInfiniteLoopInSpecialisation(FullArchetypeRepository repository, Archetype archetype) {
+        List<String> archetypesInSpecialisationTree = new ArrayList<>();
+        archetypesInSpecialisationTree.add(archetype.getArchetypeId().getFullId());
+        Archetype childArchetype;
+        Archetype specialisationCheck = archetype;
+        while (specialisationCheck.getParentArchetypeId() != null) {
+            childArchetype = specialisationCheck;
+            specialisationCheck = repository.getArchetype(specialisationCheck.getParentArchetypeId());
+            if (specialisationCheck == null) {
+                // Parent cannot be found, will fail later in the validation
+                break;
+            }
+            if (archetypesInSpecialisationTree.contains(specialisationCheck.getArchetypeId().getFullId())) {
+                throw new UnsupportedOperationException("Infinite loop caused by specialising: " + specialisationCheck.getArchetypeId().getFullId() + " in " + childArchetype.getArchetypeId().getFullId());
+            }
+            archetypesInSpecialisationTree.add(specialisationCheck.getArchetypeId().getFullId());
+        }
     }
 
 }

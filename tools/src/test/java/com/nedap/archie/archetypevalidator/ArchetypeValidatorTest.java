@@ -233,6 +233,22 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void infiniteSpecialisationTreeLoopTest() throws IOException, ADLParseException {
+        Archetype child1 = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1.adls");
+        Archetype child2 = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1.adls");
+
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(child1);
+            repository.addArchetype(child2);
+
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            UnsupportedOperationException e = assertThrows(UnsupportedOperationException.class, () -> archetypeValidator.validate(child1, repository));
+            assertEquals("Infinite loop caused by specialising: openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1 in openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1", e.getMessage());
+        }
+    }
+
 
     private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
