@@ -244,8 +244,9 @@ public class ArchetypeValidatorTest {
             repository.addArchetype(child2);
 
             ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
-            UnsupportedOperationException e = assertThrows(UnsupportedOperationException.class, () -> archetypeValidator.validate(child1, repository));
-            assertEquals("Infinite loop caused by specialising: openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1 in openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1", e.getMessage());
+            ValidationResult result = archetypeValidator.validate(child1, repository);
+            assertFalse(result.passes());
+            assertEquals("Infinite loop caused by specialising: openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1 in openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1", result.getErrors().get(0).getMessage());
         }
     }
 

@@ -259,7 +259,7 @@ public class ArchetypeValidator {
             if (archetypesInSpecialisationTree.contains(specialisationCheck.getArchetypeId().getFullId())) {
                 ValidationResult validationResult = new ValidationResult(archetype);
                 List<ValidationMessage> messages = new ArrayList<>();
-                ValidationMessage validationMessage = new ValidationMessage(ErrorType.OTHER, "Infinite loop caused by specialising: " + specialisationCheck.getArchetypeId().getFullId() + " in " + childArchetype.getArchetypeId().getFullId());
+                ValidationMessage validationMessage = new ValidationMessage(ErrorType.OTHER, null, "Infinite loop caused by specialising: " + specialisationCheck.getArchetypeId().getFullId() + " in " + childArchetype.getArchetypeId().getFullId());
                 messages.add(validationMessage);
                 validationResult.setErrors(messages);
                 validationResult.setSourceArchetype(archetype);
