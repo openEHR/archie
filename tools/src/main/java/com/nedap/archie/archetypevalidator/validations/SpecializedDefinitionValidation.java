@@ -8,13 +8,10 @@ import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.base.Interval;
-import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rules.Assertion;
 import org.openehr.utils.message.I18n;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SpecializedDefinitionValidation extends ValidatingVisitor {
     public SpecializedDefinitionValidation() {

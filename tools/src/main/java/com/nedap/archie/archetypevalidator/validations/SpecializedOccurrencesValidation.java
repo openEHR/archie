@@ -38,10 +38,8 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
             }
             ConformanceCheckResult conformanceCheckResult = childNodesConformToParent(cObject, parentCObject);
             if (!conformanceCheckResult.doesConform()) {
-                if(conformanceCheckResult.getErrorType() != null) {
-                    addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
-                            conformanceCheckResult.getError());
-                }
+                addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
+                        conformanceCheckResult.getError());
             }
         }
     }
