@@ -107,8 +107,8 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
     }
 
     private void validateConformsTo(CObject cObject, CObject parentCObject) {
-
         ConformanceCheckResult conformanceCheckResult = cObject.cConformsTo(parentCObject, combinedModels::rmTypesConformant);
+
         if(!conformanceCheckResult.doesConform()) {
             if(conformanceCheckResult.getErrorType() != null) {
                 addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
