@@ -75,10 +75,10 @@ public class ArchetypeValidator {
         validationsPhase2.add(new SpecializedDefinitionValidation());
 
         validationsPhase3 = new ArrayList<>();
+        validationsPhase3.add(new SpecializedOccurrencesValidation());
         validationsPhase3.add(new AnnotationsValidation());
         validationsPhase3.add(new RmOverlayValidation());
         validationsPhase3.add(new FlatFormValidation());
-
     }
 
     public void setRemoveZeroOccurrencesConstraintsComingFromParents(boolean value) {
