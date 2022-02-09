@@ -8,6 +8,7 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -42,6 +43,7 @@ public class CAttribute extends ArchetypeConstraint {
     @Nullable
     private String differentialPath;
     @XmlElement(name="is_multiple")
+    @RMProperty("is_multiple")
     private boolean multiple;
 
     @Nullable

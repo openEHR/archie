@@ -6,6 +6,7 @@ import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
 import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rminfo.RMProperty;
 import org.openehr.utils.message.I18n;
 
 
@@ -43,6 +44,7 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
     public abstract void addConstraint(Constraint constraint);
 
     @JsonAlias("is_enumerated_type_constraint")
+    @RMProperty("is_enumerated_type_constraint")
     public Boolean getEnumeratedTypeConstraint() {
         return enumeratedTypeConstraint;
     }

@@ -23,7 +23,6 @@ public class RMJacksonTest {
     public void parseEhrBaseJsonExample() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream("pablos_example.json")) {
             ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
-            configuration.setTypePropertyName("_type");
             Composition parsed = JacksonUtil.getObjectMapper(configuration).readValue(stream, Composition.class);
             assertEquals("__THIS_SHOULD_BE_MODIFIED_BY_THE_TEST_::piri.ehrscape.com::1", parsed.getUid().getValue());
             assertEquals("openEHR-EHR-COMPOSITION.report-mnd.v1", parsed.getArchetypeNodeId());

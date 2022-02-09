@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.rminfo.RMProperty;
 
 
 import javax.annotation.Nullable;
@@ -26,6 +27,7 @@ import java.util.List;
 @XmlType(name="ARCHETYPE_TERMINOLOGY_TEST")
 public class ArchetypeTerminology extends ArchetypeModelObject {
 
+    @RMProperty("is_differential")
     private Boolean differential;
     @XmlElement(name="original_language")
     private String originalLanguage;

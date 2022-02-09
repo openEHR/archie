@@ -72,13 +72,31 @@ public class AOMJacksonTest {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
             String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
-           // System.out.println(serialized);
+            //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
             assertTrue(serialized.contains("\"operator\" : \"op_eq\","));
             assertTrue(serialized.contains("EXPR_ARCHETYPE_REF"));
             assertTrue(serialized.contains("\"rules\" : [ {"));
+            Archetype parsedArchetype = JacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
+            assertEquals(8, parsedArchetype.getRules().getRules().size());
         }
     }
+
+    /**
+     * Parse the old json format, but with rules as a direct list instead of a RulesSection objeet in between.
+     * @throws Exception
+     */
+    @Test
+    public void motricityIndexRulesOldFormatAsList() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("motricity_index_legacy_format_rules_section_as_array.json")) {
+            ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
+            config.setStandardsCompliantExpressions(false);
+            Archetype parsedArchetype = JacksonUtil.getObjectMapper(config).readValue(stream, Archetype.class);
+            assertEquals(8, parsedArchetype.getRules().getRules().size());
+
+        }
+    }
+
 
     @Test
     public void motricityIndexOldFormat() throws Exception {
@@ -87,7 +105,7 @@ public class AOMJacksonTest {
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
             config.setStandardsCompliantExpressions(false);
             String serialized = JacksonUtil.getObjectMapper(config).writeValueAsString(archetype);
-           // System.out.println(serialized);
+            System.out.println(serialized);
             assertTrue(serialized.contains("\"BINARY_OPERATOR\""));
             assertTrue(serialized.contains("\"operator\" : \"eq\","));
             assertTrue(serialized.contains("\"MODEL_REFERENCE\""));
@@ -95,6 +113,7 @@ public class AOMJacksonTest {
             ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
             newConfig.setStandardsCompliantExpressions(true);
             Archetype parsedArchetype = JacksonUtil.getObjectMapper(config).readValue(serialized, Archetype.class);
+            assertEquals(8, parsedArchetype.getRules().getRules().size());
         }
     }
 

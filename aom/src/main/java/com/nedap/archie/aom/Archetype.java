@@ -12,6 +12,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
 import com.nedap.archie.xml.adapters.RMOverlayXmlAdapter;
 
@@ -60,6 +61,7 @@ public class Archetype extends AuthoredResource {
     @Nullable
     private String parentArchetypeId;
     @XmlAttribute(name="is_differential")
+    @RMProperty("is_differential")
     private boolean differential = false;
     @XmlElement(name = "archetype_id")
     private ArchetypeHRID archetypeId;
@@ -78,6 +80,7 @@ public class Archetype extends AuthoredResource {
     @XmlAttribute(name="rm_release")
     private String rmRelease;
     @XmlAttribute(name="is_generated")
+    @RMProperty("is_generated")
     private Boolean generated = false;
 
     @XmlElement(name="other_meta_data")
