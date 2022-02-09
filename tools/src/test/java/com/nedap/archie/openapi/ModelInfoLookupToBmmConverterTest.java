@@ -73,9 +73,6 @@ public class ModelInfoLookupToBmmConverterTest {
 //                new AttributeReference("ARCHETYPE_CONSTRAINT", "soc_parent")
 //        );
 
-
-
-
         BmmRepository bmmRepository = new BmmRepository();
         try(InputStream stream = getClass().getResourceAsStream("openehr_base_for_aom.bmm")) {
             PBmmSchema baseShema = BmmOdinParser.convert(stream);
@@ -94,7 +91,12 @@ public class ModelInfoLookupToBmmConverterTest {
         BmmValidationResult bmmValidationResult = bmmSchemaConverter.validateConvertAndAddToRepo(schema);
         assertTrue(bmmValidationResult.getLogger().toString(), bmmValidationResult.passes());
 
-        JsonObject jsonObject = new OpenAPIModelCreator().allowAdditionalProperties(true).create(bmmValidationResult.getModel());
+        JsonObject jsonObject = new OpenAPIModelCreator()
+                .allowAdditionalProperties(true)
+                .withTypePropertyName("@type")
+                .writeOneOf(true)
+                .withExampleRootTypeName("Archetype")
+                .create(bmmValidationResult.getModel());
         Map<String, Object> config = new HashMap();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         JsonWriterFactory jsonWriterFactory = Json.createWriterFactory(config);

@@ -55,6 +55,7 @@ public class OpenAPIModelCreator {
     private Map<String, Set<String>> addAttributesFromParent;
 
     private boolean allowAdditionalProperties;
+    private String exampleRootTypeName = "Composition";
 
 
     public OpenAPIModelCreator() {
@@ -69,6 +70,10 @@ public class OpenAPIModelCreator {
         primitiveTypeMapping.put("character", () -> createType("string"));
         primitiveTypeMapping.put("hash", () -> createType("object"));
         primitiveTypeMapping.put("string", () -> createType("string"));
+        primitiveTypeMapping.put("date", () -> createType("string").add("format", "date"));
+        primitiveTypeMapping.put("date_time", () -> createType("string").add("format", "date_time"));
+        primitiveTypeMapping.put("time", () -> createType("string").add("format", "time"));
+        primitiveTypeMapping.put("duration", () -> createType("string"));
         primitiveTypeMapping.put("iso8601_date", () -> createType("string").add("format", "date"));
         primitiveTypeMapping.put("iso8601_date_time", () -> createType("string").add("format", "date-time"));
         primitiveTypeMapping.put("iso8601_time", () -> createType("string").add("format", "time"));
@@ -184,7 +189,7 @@ public class OpenAPIModelCreator {
                                                     .add("description", "default")
                                                     .add("content", jsonFactory.createObjectBuilder()
                                                         .add("application/json", jsonFactory.createObjectBuilder()
-                                                            .add("schema", createReference("COMPOSITION"))
+                                                            .add("schema", createReference(exampleRootTypeName))
                                                         )
                                                     )
                                                 )
@@ -203,6 +208,10 @@ public class OpenAPIModelCreator {
 
     private boolean shouldClassBeIncluded(BmmClass bmmClass) {
         return !ignoredTypes.contains(BmmDefinitions.typeNameToClassKey(bmmClass.getName())) && !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase());
+    }
+
+    private boolean shouldClassBeIncluded(String className) {
+        return !ignoredTypes.contains(BmmDefinitions.typeNameToClassKey(className)) && !primitiveTypeMapping.containsKey(className.toLowerCase());
     }
 
     private void addClass(JsonObjectBuilder definitions, BmmClass bmmClass) {
@@ -387,14 +396,12 @@ public class OpenAPIModelCreator {
 
                 JsonArrayBuilder oneOfArray = jsonFactory.createArrayBuilder();
                 for (String descendant : descendants) {
-                    JsonObjectBuilder typeReference = createReference(descendant);
-                    oneOfArray.add(typeReference);
-                    descendantsMappings.add(descendant, createReferenceTarget(descendant));
+                    if(shouldClassBeIncluded(descendant)) {
+                        JsonObjectBuilder typeReference = createReference(descendant);
+                        oneOfArray.add(typeReference);
+                        descendantsMappings.add(descendant, createReferenceTarget(descendant));
+                    }
                 }
-
-
-
-
 
                 polymorphicReference.add("discriminator",
                         jsonFactory.createObjectBuilder()
@@ -484,6 +491,11 @@ public class OpenAPIModelCreator {
 
     public OpenAPIModelCreator writeOneOf(boolean writeOneOf) {
         this.writeOneOf = writeOneOf;
+        return this;
+    }
+
+    public OpenAPIModelCreator withExampleRootTypeName(String exampleRootTypeName) {
+        this.exampleRootTypeName = exampleRootTypeName;
         return this;
     }
 
