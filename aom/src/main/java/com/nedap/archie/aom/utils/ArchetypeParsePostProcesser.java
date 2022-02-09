@@ -62,10 +62,10 @@ public class ArchetypeParsePostProcesser {
                     }
                     for(CPrimitiveTuple primitiveTuple:tuple.getTuples()) {
                         int index = 0;
-                        for(CPrimitiveObject object:primitiveTuple.getMembers()) {
+                        for(CPrimitiveObject<?, ?> object:primitiveTuple.getMembers()) {
                             if(index < tuple.getMembers().size()) {
                                 CAttribute attribute = tuple.getMember(index);
-                                object.setSocParent(tuple);
+                                object.setSocParent(primitiveTuple);
                                 object.setParent(attribute);
                                 index++;
                             }

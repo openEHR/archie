@@ -107,7 +107,7 @@ public class UpdatedValueHandler {
             OperationalTemplate template = (OperationalTemplate) archetype;
 
             String archetypePath = convertRMObjectPathToArchetypePath(pathOfParent);
-            result.putAll(setTerminologyFromArchetype(archetype, codedText, archetypePath, path));
+            //result.putAll(setTerminologyFromArchetype(archetype, codedText, archetypePath, path));
 
             ArchetypeTerm termDefinition = getTermDefinition(template, details, codedText);
             result.putAll(setDvCodedTextValue(codedText, termDefinition, path));

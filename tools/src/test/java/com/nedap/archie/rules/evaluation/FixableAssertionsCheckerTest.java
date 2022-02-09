@@ -97,7 +97,7 @@ public class FixableAssertionsCheckerTest {
 
         Locatable root = (Locatable) testUtil.constructEmptyRMObject(archetype.getDefinition());
         EvaluationResult evaluate = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals("There are five values that must be set", 7, evaluate.getSetPathValues().size());
+        assertEquals("There are seven values that must be set", 7, evaluate.getSetPathValues().size());
 
         //assert that paths must be set to specific values
         assertEquals("test string", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id5]/value/value").getValue());

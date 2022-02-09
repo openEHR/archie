@@ -288,7 +288,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
             Locatable locatable = (Locatable) createdObject;
             locatable.setArchetypeNodeId(constraint.getNodeId());
             locatable.setNameAsString(constraint.getMeaning());
-            if(constraint != null && constraint instanceof CArchetypeRoot) {
+            if(constraint instanceof CArchetypeRoot) {
                 CArchetypeRoot root = (CArchetypeRoot) constraint;
                 if(root.getArchetypeRef() != null) {
                     Archetyped details = new Archetyped();
