@@ -35,7 +35,7 @@ import static org.junit.Assert.assertTrue;
 public class AOMComparedWithBmmTest {
 
     @Test
-    //@Ignore
+    @Ignore
     public void testAOM() throws Exception{
         Map<String, String> typeMap =  new HashMap<>();
         typeMap.put("Any", "OPEN_EHRBASE");
