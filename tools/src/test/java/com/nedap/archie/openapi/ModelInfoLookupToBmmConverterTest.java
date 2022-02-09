@@ -14,6 +14,7 @@ import org.openehr.bmm.v2.persistence.odin.BmmOdinSerializer;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmSchemaConverter;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
+import org.w3c.dom.Attr;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -64,14 +65,7 @@ public class ModelInfoLookupToBmmConverterTest {
     @Test
     public void testAomOpenAPI() throws Exception {
         Set<AttributeReference> ignoredAttributes = Sets.newHashSet();
-//                new AttributeReference("C_OBJECT", "archetype"),
-//                new AttributeReference("C_COMPLEX_OBJECT", "archetype"),
-//                new AttributeReference("C_ATTRIBUTE", "archetype"),
-//                new AttributeReference("ARCHETYPE_TERMINOLOGY", "owner_archetype"),
-//                new AttributeReference("TEMPLATE_OVERLAY", "owning_template"),
-//                new AttributeReference("ARCHETYPE_CONSTRAINT", "parent"),
-//                new AttributeReference("ARCHETYPE_CONSTRAINT", "soc_parent")
-//        );
+        ignoredAttributes.add(new AttributeReference("C_PRIMITIVE_OBJECT", "node_id"));
 
         BmmRepository bmmRepository = new BmmRepository();
         try(InputStream stream = getClass().getResourceAsStream("openehr_base_for_aom.bmm")) {
@@ -91,12 +85,18 @@ public class ModelInfoLookupToBmmConverterTest {
         BmmValidationResult bmmValidationResult = bmmSchemaConverter.validateConvertAndAddToRepo(schema);
         assertTrue(bmmValidationResult.getLogger().toString(), bmmValidationResult.passes());
 
-        JsonObject jsonObject = new OpenAPIModelCreator()
+        OpenAPIModelCreator creator = new OpenAPIModelCreator()
                 .allowAdditionalProperties(true)
                 .withTypePropertyName("@type")
                 .writeOneOf(true)
-                .withExampleRootTypeName("Archetype")
-                .create(bmmValidationResult.getModel());
+                .withExampleRootTypeName("Archetype");
+
+        creator.addIgnoredType("OBJECT_REF");
+        creator.addIgnoredType("LOCATABLE_REF");
+        creator.addIgnoredType("PARTY_REF");
+        creator.addIgnoredType("ACCESS_GROUP_REF");
+
+        JsonObject jsonObject = creator.create(bmmValidationResult.getModel());
         Map<String, Object> config = new HashMap();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         JsonWriterFactory jsonWriterFactory = Json.createWriterFactory(config);

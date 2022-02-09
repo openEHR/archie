@@ -79,6 +79,7 @@ public class OpenAPIModelCreator {
         primitiveTypeMapping.put("iso8601_time", () -> createType("string").add("format", "time"));
         primitiveTypeMapping.put("iso8601_duration", () -> createType("string"));
         primitiveTypeMapping.put("proportion_kind", () -> createType("integer"));//TODO: proper enum support
+        primitiveTypeMapping.put("operator_kind", () -> createType("string"));//TODO: proper enum support
 
         rootTypes = new ArrayList<>();
         rootTypes.add("COMPOSITION");
@@ -497,6 +498,10 @@ public class OpenAPIModelCreator {
     public OpenAPIModelCreator withExampleRootTypeName(String exampleRootTypeName) {
         this.exampleRootTypeName = exampleRootTypeName;
         return this;
+    }
+
+    public void addIgnoredType(String ignoredType) {
+        this.ignoredTypes.add(ignoredType);
     }
 
     /**
