@@ -4,6 +4,8 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.primitives.CInteger;
+import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
@@ -18,14 +20,17 @@ import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
+import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.support.identification.TerminologyId;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.xpath.XPathExpressionException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.xpath.XPathExpressionException;
 
 public class UpdatedValueHandler {
 
@@ -34,6 +39,44 @@ public class UpdatedValueHandler {
     public static Map<String, Object> pathHasBeenUpdated(Object rmObject, Archetype archetype, String pathOfParent, Object parent) {
         if(parent instanceof CodePhrase) {
             return fixCodePhrase(rmObject, archetype, pathOfParent);
+        }
+        if (parent instanceof DvQuantity) {
+            return fixDvQuantity(rmObject, archetype, pathOfParent);
+        }
+
+        return new HashMap<>();
+    }
+
+    private static Map<String, Object> fixDvQuantity(Object rmObject, Archetype archetype, String pathOfParent) {
+        try {
+            Map<String, Object> result = new HashMap<>();
+
+            RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent);
+            DvQuantity quantity = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+
+            OperationalTemplate template = (OperationalTemplate) archetype;
+
+            CAttribute units = template.getDefinition().itemAtPath(pathOfParent + "/units");
+            CAttribute precision = template.getDefinition().itemAtPath(pathOfParent + "/precision");
+
+            if (units.getChildren().size() != 1 || precision.getChildren().size() != 1)
+                return result; // Only fix if there is 1 unit and 1 precision, don't assume anything otherwise
+
+            // Fix units
+            CString cString = (CString) units.getChildren().get(0);
+            String assumedUnitValue = cString.getAssumedValue();
+            quantity.setUnits(assumedUnitValue);
+            result.put(pathOfParent + "/units", assumedUnitValue);
+
+            // Fix precision
+            CInteger cInteger = (CInteger) units.getChildren().get(0);
+            long assumedPrecisionValue = cInteger.getAssumedValue();
+            quantity.setPrecision(assumedPrecisionValue);
+            result.put(pathOfParent + "/precision", assumedPrecisionValue);
+
+            return result;
+        } catch (Exception e) {
+            logger.warn("cannot fix DvQuantity", e);
         }
 
         return new HashMap<>();
