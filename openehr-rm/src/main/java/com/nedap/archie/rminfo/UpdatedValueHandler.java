@@ -49,37 +49,60 @@ public class UpdatedValueHandler {
 
     private static Map<String, Object> fixDvQuantity(Object rmObject, Archetype archetype, String pathOfParent) {
         try {
-            Map<String, Object> result = new HashMap<>();
-
-            RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent);
-            DvQuantity quantity = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
-
-            OperationalTemplate template = (OperationalTemplate) archetype;
-
-            CAttribute units = template.getDefinition().itemAtPath(pathOfParent + "/units");
-            CAttribute precision = template.getDefinition().itemAtPath(pathOfParent + "/precision");
-
-            if (units.getChildren().size() != 1 || precision.getChildren().size() != 1)
-                return result; // Only fix if there is 1 unit and 1 precision, don't assume anything otherwise
-
-            // Fix units
-            CString cString = (CString) units.getChildren().get(0);
-            String assumedUnitValue = cString.getAssumedValue();
-            quantity.setUnits(assumedUnitValue);
-            result.put(pathOfParent + "/units", assumedUnitValue);
-
-            // Fix precision
-            CInteger cInteger = (CInteger) units.getChildren().get(0);
-            long assumedPrecisionValue = cInteger.getAssumedValue();
-            quantity.setPrecision(assumedPrecisionValue);
-            result.put(pathOfParent + "/precision", assumedPrecisionValue);
-
-            return result;
+            // TODO Check for magnitude?
+            // TODO Check if this fix actually needs to occur
+            return fixForMagnitude(rmObject, (OperationalTemplate) archetype, pathOfParent);
         } catch (Exception e) {
             logger.warn("cannot fix DvQuantity", e);
         }
 
         return new HashMap<>();
+    }
+
+    private static Map<String, Object> fixForMagnitude(Object rmObject, OperationalTemplate template, String pathOfParent) {
+        Map<String, Object> result = new HashMap<>();
+
+        RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent);
+        DvQuantity quantity = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+
+        CAttribute units = template.getDefinition().itemAtPath(pathOfParent + "/units");
+        CAttribute precision = template.getDefinition().itemAtPath(pathOfParent + "/precision");
+
+        if (units.getChildren().size() != 1) return result; // Only fix if there is 1 unit
+
+        // Fix units
+        CString cString = (CString) units.getChildren().get(0);
+        List<String> cStringConstraint = cString.getConstraint();
+        if(cStringConstraint != null && cStringConstraint.size() == 1) {
+            String constraint = cStringConstraint.get(0);
+            if(!CString.isRegexConstraint(constraint)) {
+                quantity.setUnits(constraint);
+                result.put(pathOfParent + "/units", constraint);
+            }
+        }
+
+        if (precision.getChildren().size() != 1)
+            return result; // Only fix if there is 1 precision
+
+        // Fix precision
+        CInteger cInteger = (CInteger) precision.getChildren().get(0);
+
+        List<Interval<Long>> cIntegerConstraint = cInteger.getConstraint();
+
+        if (cIntegerConstraint != null && cIntegerConstraint.size() == 1) {
+            Interval<Long> interval = cIntegerConstraint.get(0);
+            long value;
+            if (interval.isUpperUnbounded()) {
+                value = -1;
+            } else if (interval.isUpperIncluded() && interval.getUpper() != null) {
+                value = interval.getUpper();
+            } else if (interval.getUpper() != null) {
+                value = interval.getUpper() -1 ;
+            } else throw new IllegalStateException("upper bound was not available");
+            quantity.setPrecision(value);
+            result.put(pathOfParent + "/precision", value);
+        }
+        return result;
     }
 
     private static Map<String, Object> fixCodePhrase(Object rmObject, Archetype archetype, String pathOfParent) {
