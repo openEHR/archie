@@ -96,29 +96,18 @@ public class UpdatedValueHandler {
     }
 
     private static Map<String, Object> fixDvCodedText(Object rmObject, Archetype archetype, String pathOfParent) throws XPathExpressionException {
-        Map<String, Object> result = new HashMap<>();
-
         String path = pathOfParent.replace("/defining_code", "");
         RMPathQuery rmPathQuery = new RMPathQuery(path);
         DvCodedText codedText = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
         Archetyped details = findLastArchetypeDetails(rmObject, pathOfParent);
+        ArchetypeTerm termDefinition;
         if(details != null && archetype instanceof OperationalTemplate) {
-
             OperationalTemplate template = (OperationalTemplate) archetype;
-
-            String archetypePath = convertRMObjectPathToArchetypePath(pathOfParent);
-            //result.putAll(setTerminologyFromArchetype(archetype, codedText, archetypePath, path));
-
-            ArchetypeTerm termDefinition = getTermDefinition(template, details, codedText);
-            result.putAll(setDvCodedTextValue(codedText, termDefinition, path));
-            //setValueFromTermDefinition(codedText, details, template);
+            termDefinition = getTermDefinition(template, details, codedText);
         } else {
-            //result.putAll(setDefaultTermDefinitionInCodedText(archetype, codedText, pathOfParent));
-            ArchetypeTerm termDefinition = archetype.getTerminology().getTermDefinition(ArchieLanguageConfiguration.getMeaningAndDescriptionLanguage(), codedText.getDefiningCode().getCodeString());
-            result.putAll(setDvCodedTextValue(codedText, termDefinition, path));
+            termDefinition = archetype.getTerminology().getTermDefinition(ArchieLanguageConfiguration.getMeaningAndDescriptionLanguage(), codedText.getDefiningCode().getCodeString());
         }
-
-        return result;
+        return setDvCodedTextValue(codedText, termDefinition, path);
     }
 
     private static ArchetypeTerm getTermDefinition(OperationalTemplate template, Archetyped details, DvCodedText codedText) {
@@ -150,24 +139,6 @@ public class UpdatedValueHandler {
         return result;
     }
 
-    private static Map<String, Object> setTerminologyFromArchetype(Archetype archetype, DvCodedText codedText, String s, String path) {
-        Map<String, Object> result = new HashMap<>();
-        ArchetypeModelObject archetypeModelObject = archetype.itemAtPath(s);
-        if(archetypeModelObject instanceof CAttribute) {
-            CAttribute definingCodeConstraint = (CAttribute) archetypeModelObject;
-            for(CObject child:definingCodeConstraint.getChildren()) {
-                if(child instanceof CTerminologyCode) {
-                    String value = ((CTerminologyCode) child).getConstraint().get(0);
-                    if(value.startsWith("ac")) {
-                        codedText.getDefiningCode().setTerminologyId(new TerminologyId("local"));
-                        result.put(path + "/defining_code/terminology_id/value", "local");
-                    }
-                }
-            }
-        }
-        return result;
-    }
-
     public static Archetyped findLastArchetypeDetails(Object rmObject, String path) throws XPathExpressionException {
         APathQuery query = new APathQuery(path);
         for(int i = query.getPathSegments().size();i > 0; i--) {
@@ -185,18 +156,5 @@ public class UpdatedValueHandler {
             }
         }
         return null;
-    }
-
-    /**
-     * Convert an RM path query into an AOM path query. Not a complete implementation though. this could actually be useful in more places.
-     * @param path
-     * @return
-     */
-    public static String convertRMObjectPathToArchetypePath(String path) {
-        APathQuery query = new APathQuery(path);
-        for(PathSegment segment:query.getPathSegments()) {
-            segment.setIndex(null);
-        }
-        return Joiner.on("").join(query.getPathSegments());
     }
 }
