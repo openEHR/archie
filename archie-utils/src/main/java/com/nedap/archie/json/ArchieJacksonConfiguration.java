@@ -3,10 +3,10 @@ package com.nedap.archie.json;
 import java.util.Objects;
 
 public class ArchieJacksonConfiguration {
-    private String typePropertyName = "@type";
-    private boolean alwaysIncludeTypeProperty = true;
-    private boolean addPathProperty = true;
-    private boolean addExtraFieldsInArchetypeId = true;
+    private String typePropertyName = "_type";
+    private boolean alwaysIncludeTypeProperty = false;
+    private boolean addPathProperty = false;
+    private boolean addExtraFieldsInArchetypeId = false;
     private boolean failOnUnknownProperties = false;
     private boolean serializeEmptyCollections = true;
     private boolean archetypeBooleanIsPrefix = true;
@@ -33,9 +33,13 @@ public class ArchieJacksonConfiguration {
     public static ArchieJacksonConfiguration createLegacyConfiguration() {
         ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
         configuration.setTypePropertyName("@type");
+        configuration.setAlwaysIncludeTypeProperty(true);
         configuration.setArchetypeBooleanIsPrefix(false);
+        configuration.setAddPathProperty(true);
         configuration.setStandardsCompliantExpressions(false);
         configuration.setAddPatternConstraintTypo(true);
+        configuration.setAddPathProperty(true);
+        configuration.setAddExtraFieldsInArchetypeId(true);
         return configuration;
     }
 
@@ -46,12 +50,7 @@ public class ArchieJacksonConfiguration {
      * @return a legacy Archie Jackson configuration
      */
     public static ArchieJacksonConfiguration createStandardsCompliant() {
-        ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
-        configuration.setTypePropertyName("_type");
-        configuration.setAlwaysIncludeTypeProperty(false);
-        configuration.setAddPathProperty(false);
-        configuration.setAddExtraFieldsInArchetypeId(false);
-        return configuration;
+        return new ArchieJacksonConfiguration();
     }
 
     /**
@@ -70,7 +69,6 @@ public class ArchieJacksonConfiguration {
      */
     public static ArchieJacksonConfiguration createConfigForJavascriptUsage() {
         ArchieJacksonConfiguration configuration = new ArchieJacksonConfiguration();
-        configuration.setTypePropertyName("_type");
         configuration.setAlwaysIncludeTypeProperty(true);
         configuration.setAddPathProperty(true);
         configuration.setAddExtraFieldsInArchetypeId(true);
