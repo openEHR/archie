@@ -307,6 +307,16 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
+    public void setArchetypeNodeId(Object rmObject, String newNodeId) {
+        if(rmObject instanceof Locatable) {
+            Locatable locatable = (Locatable) rmObject;
+            locatable.setArchetypeNodeId(newNodeId);
+        } else {
+            throw new UnsupportedOperationException("Cannot set a Node Id unless given object is a Locatable");
+        }
+    }
+
+    @Override
     public String getArchetypeIdFromArchetypedRmObject(Object rmObject) {
         if(rmObject instanceof Locatable) {
             Locatable locatable = (Locatable) rmObject;
