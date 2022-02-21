@@ -76,12 +76,16 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
 
     @Override
     public List<String> getAlternativeTypeNames(Class<?> clazz) {
-        if(!standardsCompliantExpressionNames) {
-            return Collections.emptyList();
-        }
+
         String name = clazz.getSimpleName();
         if(rulesArchieToStandardTypeNamesMap.containsKey(name)) {
-            return Lists.newArrayList(convertToUpperSnakeCase(clazz));
+            if(standardsCompliantExpressionNames) {
+                return Lists.newArrayList(convertToUpperSnakeCase(clazz));
+            } else {
+                if(rulesArchieToStandardTypeNamesMap.containsKey(name)) {
+                    return Lists.newArrayList(rulesArchieToStandardTypeNamesMap.get(name));
+                }
+            }
         }
         return Collections.emptyList();
     }

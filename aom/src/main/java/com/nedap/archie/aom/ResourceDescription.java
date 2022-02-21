@@ -1,6 +1,5 @@
 package com.nedap.archie.aom;
 
-import com.esotericsoftware.kryo.kryo5.util.Null;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.base.terminology.TerminologyCode;
 

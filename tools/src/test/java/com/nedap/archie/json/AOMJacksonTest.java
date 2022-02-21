@@ -79,6 +79,11 @@ public class AOMJacksonTest {
             assertTrue(serialized.contains("\"rules\" : [ {"));
             Archetype parsedArchetype = JacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
             assertEquals(8, parsedArchetype.getRules().getRules().size());
+
+            ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
+            newConfig.setStandardsCompliantExpressions(false);
+            Archetype parsedArchetype2 = JacksonUtil.getObjectMapper(newConfig).readValue(serialized, Archetype.class);
+            assertEquals(8, parsedArchetype2.getRules().getRules().size());
         }
     }
 

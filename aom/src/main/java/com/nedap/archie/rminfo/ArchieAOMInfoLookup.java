@@ -1,6 +1,5 @@
 package com.nedap.archie.rminfo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.CObject;
@@ -36,18 +35,7 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     public static ArchieAOMInfoLookup getInstance(boolean standardCompliantExpressionNames) {
-        ArchieAOMInfoLookup instance = instances.get(standardCompliantExpressionNames);
-        if(instance == null) {
-            synchronized (ArchieAOMInfoLookup.class) {
-                //Relatively expensive operation, so make sure every instance is created only once.
-                instance = instances.get(standardCompliantExpressionNames);
-                if(instance == null) {
-                    instance = new ArchieAOMInfoLookup(standardCompliantExpressionNames);
-                    instances.put(standardCompliantExpressionNames, instance);
-                }
-            }
-        }
-        return instance;
+        return instances.computeIfAbsent(standardCompliantExpressionNames, s -> new ArchieAOMInfoLookup(s));
     }
 
     @Override

@@ -75,6 +75,17 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         inConstructor = false;
     }
 
+    public ReflectionModelInfoLookup(ModelNamingStrategy namingStrategy, Class<?> baseClass, ClassLoader classLoader, boolean addAttributesWithoutField) {
+        this.namingStrategy = namingStrategy;
+        this.addAttributesWithoutField = addAttributesWithoutField;
+
+        this.classLoader = classLoader;
+        addTypes(baseClass);
+        addSuperAndSubclassInfo();
+        addAlternativeTypeNames();
+        inConstructor = false;
+    }
+
     /**
      * Adds bindings to alternative type names, for parsing backwards compatible JSON with
      * old incompatible type names
@@ -86,17 +97,6 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                 this.rmTypeNamesToRmTypeInfo.put(alternativeName, rmTypeNamesToRmTypeInfo.get(originalName));
             }
         }
-    }
-
-    public ReflectionModelInfoLookup(ModelNamingStrategy namingStrategy, Class<?> baseClass, ClassLoader classLoader, boolean addAttributesWithoutField) {
-        this.namingStrategy = namingStrategy;
-        this.addAttributesWithoutField = addAttributesWithoutField;
-
-        this.classLoader = classLoader;
-        addTypes(baseClass);
-        addSuperAndSubclassInfo();
-        addAlternativeTypeNames();
-        inConstructor = false;
     }
 
     /**
