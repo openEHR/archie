@@ -102,6 +102,30 @@ public class AOMJacksonTest {
         }
     }
 
+    /**
+     * Parse the old json format, but with rules as a direct list instead of a RulesSection objeet in between.
+     * @throws Exception
+     */
+    @Test
+    public void motriciyIndexJavascriptFormat() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createConfigForJavascriptUsage()).writeValueAsString(archetype);
+            System.out.println(serialized);
+            assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
+            assertTrue(serialized.contains("\"operator\" : \"op_eq\","));
+            assertTrue(serialized.contains("EXPR_ARCHETYPE_REF"));
+            assertTrue(serialized.contains("\"rules\" : [ {"));
+            Archetype parsedArchetype = JacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
+            assertEquals(8, parsedArchetype.getRules().getRules().size());
+
+            ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
+            newConfig.setStandardsCompliantExpressions(false);
+            Archetype parsedArchetype2 = JacksonUtil.getObjectMapper(newConfig).readValue(serialized, Archetype.class);
+            assertEquals(8, parsedArchetype2.getRules().getRules().size());
+        }
+    }
+
 
     @Test
     public void motricityIndexOldFormat() throws Exception {

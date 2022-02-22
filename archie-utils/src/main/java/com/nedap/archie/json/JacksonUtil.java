@@ -185,6 +185,13 @@ public class JacksonUtil {
                     }
                 }
             }
+            if(configuration.isAlwaysIncludeTypeProperty() && configuration.isStandardsCompliantExpressions()) {
+                //bit of a hack: the RulesSection is serialized as a List if configuration.isStandardsCompliantExpressions()
+                //but then because it is actually a RulesSection class, jackson wants to add type information.
+                //this will make it serialize ["ARRAY_LIST", [...]], which is incorrect.
+                //so do not add type info for the RulesSection, it will be just a list anyway.
+                classesToNotAddTypeProperty.add(RulesSection.class);
+            }
         }
 
         @Override
