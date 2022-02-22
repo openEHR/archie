@@ -35,7 +35,7 @@ public class CompositionTest {
     @Test
     public void testJsonLegacyConfig() throws IOException {
         Composition expected = parseJson("validation_composition_test.v0.json");
-        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createConfigForJavascriptUsage();
+        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createLegacyConfiguration();
 
         Composition actual = processComposition(expected, config);
         assertEquals(expected, actual);

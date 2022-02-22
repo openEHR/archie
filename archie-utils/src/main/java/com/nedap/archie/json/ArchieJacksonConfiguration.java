@@ -38,7 +38,6 @@ public class ArchieJacksonConfiguration {
         configuration.setAddPathProperty(true);
         configuration.setStandardsCompliantExpressions(false);
         configuration.setAddPatternConstraintTypo(true);
-        configuration.setAddPathProperty(true);
         configuration.setAddExtraFieldsInArchetypeId(true);
         return configuration;
     }
