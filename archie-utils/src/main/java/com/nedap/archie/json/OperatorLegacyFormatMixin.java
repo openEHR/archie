@@ -11,5 +11,6 @@ public interface OperatorLegacyFormatMixin {
     Expression getRightOperand();
     @JsonIgnore(false)
     OperatorKind getOperator();
-
+    @JsonIgnore(false)
+    boolean isUnary();
 }
