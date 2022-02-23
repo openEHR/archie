@@ -16,6 +16,7 @@ public class Operator extends Expression {
 
     private String symbol;
 
+    @JsonIgnore
     public OperatorKind getOperator() {
         return operator;
     }
@@ -33,11 +34,13 @@ public class Operator extends Expression {
         this.operands = operands;
     }
 
-    public Expression getLeftOperand() {
+    @JsonIgnore
+    protected Expression getFirstOperand() {
         return operands.size() > 0 ? operands.get(0) : null;
     }
 
-    public Expression getRightOperand() {
+    @JsonIgnore
+    protected Expression getSecondOperand() {
         return operands.size() > 1 ? operands.get(1) : null;
     }
 
@@ -80,6 +83,7 @@ public class Operator extends Expression {
         }
     }
 
+    @JsonIgnore //this field should not be in the json
     public boolean isUnary() {
         return operands.size() == 1;
     }

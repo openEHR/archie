@@ -204,7 +204,7 @@ class FixableAssertionsChecker {
             variableValue.setType(PrimitiveType.ObjectReference);
 
             forAllVariables.put(forAllStatement.getVariableName(), variableValue);
-            checkAssertionForFixablePatterns(assertionResult, forAllStatement.getRightOperand(), i);
+            checkAssertionForFixablePatterns(assertionResult, forAllStatement.getAssertion(), i);
             i++;
         }
         forAllVariables.put(forAllStatement.getVariableName(), null);

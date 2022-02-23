@@ -16,4 +16,12 @@ public class BinaryOperator extends Operator {
         addOperand(leftOperand);
         addOperand(rightOperand);
     }
+
+    public Expression getLeftOperand() {
+        return super.getFirstOperand();
+    }
+
+    public Expression getRightOperand() {
+        return super.getSecondOperand();
+    }
 }

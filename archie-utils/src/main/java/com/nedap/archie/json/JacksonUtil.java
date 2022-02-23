@@ -29,6 +29,7 @@ import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.rules.Operator;
 import com.nedap.archie.rules.OperatorKind;
 
 import java.io.IOException;
@@ -133,6 +134,7 @@ public class JacksonUtil {
             module.setMixInAnnotation(RulesSection.class, RulesSectionMixin.class);
         } else {
             module.addSerializer(OperatorKind.class, new OldOperatorKindSerializer());
+            module.setMixInAnnotation(Operator.class, OperatorLegacyFormatMixin.class);
         }
         //make rules parsing work both for a list and a RulesSection object
         module.addDeserializer(RulesSection.class, new RulesSectionDeserializer());

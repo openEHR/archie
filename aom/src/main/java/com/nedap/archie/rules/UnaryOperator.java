@@ -1,5 +1,7 @@
 package com.nedap.archie.rules;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Created by pieter.bos on 27/10/15.
  */
@@ -17,6 +19,7 @@ public class UnaryOperator extends Operator {
     }
 
     public Expression getOperand() {
-        return super.getLeftOperand();
+        return super.getFirstOperand();
     }
+
 }

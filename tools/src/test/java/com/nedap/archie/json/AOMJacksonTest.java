@@ -2,6 +2,7 @@ package com.nedap.archie.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
@@ -74,7 +75,10 @@ public class AOMJacksonTest {
             String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
             //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
-            assertTrue(serialized.contains("\"operator\" : \"op_eq\","));
+            assertTrue(serialized.contains("\"operator_def\" : {\n" +
+                    "          \"_type\" : \"OPERATOR_DEF_BUILTIN\",\n" +
+                    "          \"identifier\" : \"op_plus\"\n" +
+                    "        }"));
             assertTrue(serialized.contains("EXPR_ARCHETYPE_REF"));
             assertTrue(serialized.contains("\"rules\" : [ {"));
             Archetype parsedArchetype = JacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
@@ -111,9 +115,8 @@ public class AOMJacksonTest {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
             String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createConfigForJavascriptUsage()).writeValueAsString(archetype);
-            System.out.println(serialized);
+            //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
-            assertTrue(serialized.contains("\"operator\" : \"op_eq\","));
             assertTrue(serialized.contains("EXPR_ARCHETYPE_REF"));
             assertTrue(serialized.contains("\"rules\" : [ {"));
             Archetype parsedArchetype = JacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
@@ -150,12 +153,14 @@ public class AOMJacksonTest {
     public void archetypeSlot() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
-            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+            ObjectMapper objectMapper = new ObjectMapper();
+            JacksonUtil.configureObjectMapper(objectMapper, ArchieJacksonConfiguration.createStandardsCompliant());
+            objectMapper.disable(SerializationFeature.INDENT_OUTPUT);
             String serialized = objectMapper.writeValueAsString(archetype);
             //System.out.println(serialized);
             assertTrue(serialized.contains("\"EXPR_BINARY_OPERATOR\""));
             assertTrue(serialized.contains("\"EXPR_ARCHETYPE_REF\""));
-            assertTrue(serialized.contains("\"operator\" : \"op_matches\","));
+            assertTrue(serialized.contains("\"operator_def\":{\"_type\":\"OPERATOR_DEF_BUILTIN\",\"identifier\":\"op_matches\"}"));
             assertArchetypeSlot(objectMapper, serialized);
         }
     }
