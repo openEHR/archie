@@ -1,5 +1,7 @@
 package com.nedap.archie.aom;
 
+import com.nedap.archie.rminfo.RMProperty;
+
 import java.util.Objects;
 
 /**
@@ -7,6 +9,7 @@ import java.util.Objects;
  */
 public class SiblingOrder extends ArchetypeModelObject {
 
+    @RMProperty("is_before")
     private boolean before;
     private String siblingNodeId;
 

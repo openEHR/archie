@@ -15,6 +15,8 @@ import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
+import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
+import org.openehr.bmm.v2.persistence.jackson.BmmJacksonUtil;
 import org.openehr.odin.jackson.ODINMapper;
 
 import java.io.IOException;
@@ -42,11 +44,11 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
         odinRmSupport.setMixInAnnotation(ItemTree.class, OdinParsingItemTreeMixin.class);
         odinMapper.registerModule(odinRmSupport);
 
-        //ignore the @type field when not needed
+        //ignore the _type field when not needed
         odinMapper.addHandler(new DeserializationProblemHandler() {
             @Override
             public boolean handleUnknownProperty(DeserializationContext ctxt, JsonParser p, JsonDeserializer<?> deserializer, Object beanOrClass, String propertyName) throws IOException {
-                if (propertyName.equalsIgnoreCase("@type")) {
+                if (propertyName.equalsIgnoreCase(AdlOdinToJsonConverter.TYPE_PROPERTY_NAME)) {
                     return true;
                 }
                 return super.handleUnknownProperty(ctxt, p, deserializer, beanOrClass, propertyName);
@@ -58,7 +60,7 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
     @Override
     public ObjectMapper getOutputOdinObjectMapper() {
         ODINMapper odinMapper = new ODINMapper();
-        RMJacksonConfiguration config = RMJacksonConfiguration.createStandardsCompliant();
+        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
         config.setAlwaysIncludeTypeProperty(false);
         config.setSerializeEmptyCollections(false);
         JacksonUtil.configureObjectMapper(odinMapper, config);
@@ -73,7 +75,7 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
 
     @Override
     public ObjectMapper getJsonObjectMapper() {
-        RMJacksonConfiguration config = RMJacksonConfiguration.createStandardsCompliant();
+        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
         config.setAlwaysIncludeTypeProperty(false);
         config.setSerializeEmptyCollections(false);
         return JacksonUtil.getObjectMapper(config);

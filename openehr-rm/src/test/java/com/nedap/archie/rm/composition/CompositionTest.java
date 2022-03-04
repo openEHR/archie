@@ -2,7 +2,7 @@ package com.nedap.archie.rm.composition;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.json.RMJacksonConfiguration;
+import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Test;
 
@@ -26,16 +26,16 @@ public class CompositionTest {
     @Test
     public void testJsonStandardConfig() throws IOException {
         Composition expected = parseJson("validation_composition_test.v0.json");
-        RMJacksonConfiguration standardConfig = RMJacksonConfiguration.createStandardsCompliant();
+        ArchieJacksonConfiguration standardConfig = ArchieJacksonConfiguration.createStandardsCompliant();
 
         Composition actual = processComposition(expected, standardConfig);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testJsonDefaultConfig() throws IOException {
+    public void testJsonLegacyConfig() throws IOException {
         Composition expected = parseJson("validation_composition_test.v0.json");
-        RMJacksonConfiguration config = new RMJacksonConfiguration();
+        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createLegacyConfiguration();
 
         Composition actual = processComposition(expected, config);
         assertEquals(expected, actual);
@@ -44,13 +44,13 @@ public class CompositionTest {
     @Test
     public void testJsonJavascriptConfig() throws IOException {
         Composition expected = parseJson("validation_composition_test.v0.json");
-        RMJacksonConfiguration javascriptConfig = RMJacksonConfiguration.createConfigForJavascriptUsage();
+        ArchieJacksonConfiguration javascriptConfig = ArchieJacksonConfiguration.createConfigForJavascriptUsage();
 
         Composition actual = processComposition(expected, javascriptConfig);
         assertEquals(expected, actual);
     }
 
-    private Composition processComposition(Composition original, RMJacksonConfiguration configuration) throws IOException {
+    private Composition processComposition(Composition original, ArchieJacksonConfiguration configuration) throws IOException {
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
 
         StringWriter json = new StringWriter();
@@ -59,7 +59,7 @@ public class CompositionTest {
     }
 
     private Composition parseJson(String resourceName) throws IOException {
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         return objectMapper.readValue(getClass().getResourceAsStream(resourceName), Composition.class);
     }
 }

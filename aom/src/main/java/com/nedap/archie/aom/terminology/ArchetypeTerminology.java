@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.rminfo.RMProperty;
 
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -25,6 +27,7 @@ import java.util.List;
 @XmlType(name="ARCHETYPE_TERMINOLOGY_TEST")
 public class ArchetypeTerminology extends ArchetypeModelObject {
 
+    @RMProperty("is_differential")
     private Boolean differential;
     @XmlElement(name="original_language")
     private String originalLanguage;
@@ -33,10 +36,13 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
     @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
     private Map<String, Map<String, ArchetypeTerm>> termDefinitions = new ConcurrentHashMap<>();
     @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
+    @Nullable
     private Map<String, Map<String, URI>> termBindings = new ConcurrentHashMap<>();
     @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
+    @Nullable
     private Map<String, Map<String, ArchetypeTerm>> terminologyExtracts = new ConcurrentHashMap<>();
     @XmlElement(name="value_sets")
+    @Nullable
     private Map<String, ValueSet> valueSets = new ConcurrentHashMap<>();
 
     @JsonIgnore
