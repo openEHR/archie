@@ -22,10 +22,11 @@ import java.io.IOException;
 public class OpenEHRTypeNaming extends ClassNameIdResolver {
 
     private ModelInfoLookup rmInfoLookup = ArchieRMInfoLookup.getInstance();
-    private ModelInfoLookup aomInfoLookup = ArchieAOMInfoLookup.getInstance();
+    private ModelInfoLookup aomInfoLookup;
 
-    protected OpenEHRTypeNaming() {
+    protected OpenEHRTypeNaming(boolean standardsCompliantExpressionClassNames) {
         super(TypeFactory.defaultInstance().constructType(OpenEHRBase.class), TypeFactory.defaultInstance());
+        aomInfoLookup = ArchieAOMInfoLookup.getInstance(standardsCompliantExpressionClassNames);
     }
 
     public JsonTypeInfo.Id getMechanism() {

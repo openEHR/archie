@@ -14,6 +14,9 @@ public class Operator extends Expression {
 
     private List<Expression> operands = new ArrayList<>();
 
+    private String symbol;
+
+    @JsonIgnore
     public OperatorKind getOperator() {
         return operator;
     }
@@ -31,12 +34,34 @@ public class Operator extends Expression {
         this.operands = operands;
     }
 
-    public Expression getLeftOperand() {
+    @JsonIgnore
+    protected Expression getFirstOperand() {
         return operands.size() > 0 ? operands.get(0) : null;
     }
 
-    public Expression getRightOperand() {
+    @JsonIgnore
+    protected Expression getSecondOperand() {
         return operands.size() > 1 ? operands.get(1) : null;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public OperatorDef getOperatorDef() {
+        return operator == null ? null : new OperatorDefBuiltin(operator.getIdentifier());
+    }
+
+    public void setOperatorDef(OperatorDef operatorDef) {
+        if(operatorDef != null) {
+            if(operatorDef.getIdentifier() != null) {
+                operator = OperatorKind.parseFromIdentifier(operatorDef.getIdentifier());
+            }
+        }
     }
 
     public void setLeftOperand(Expression operand) {
@@ -58,6 +83,7 @@ public class Operator extends Expression {
         }
     }
 
+    @JsonIgnore //this field should not be in the json
     public boolean isUnary() {
         return operands.size() == 1;
     }

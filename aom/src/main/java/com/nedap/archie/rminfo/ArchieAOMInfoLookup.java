@@ -6,29 +6,36 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
+import com.nedap.archie.aom.rmoverlay.VisibilityType;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by pieter.bos on 06/07/16.
  */
 public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
 
-    private static ArchieAOMInfoLookup instance;
+    private static final ConcurrentHashMap<Boolean, ArchieAOMInfoLookup> instances = new ConcurrentHashMap<>();
+    public static final boolean STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING = true;
 
     public ArchieAOMInfoLookup() {
-        super(new ArchieModelNamingStrategy(), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
+        super(new ArchieModelNamingStrategy(STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
+    }
 
+    public ArchieAOMInfoLookup(boolean standardCompliantExpressionNames) {
+        super(new ArchieModelNamingStrategy(standardCompliantExpressionNames), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
     }
 
     public static ArchieAOMInfoLookup getInstance() {
-        if(instance == null) {
-            instance = new ArchieAOMInfoLookup();
-        }
-        return instance;
+        return getInstance(STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING);
+    }
+
+    public static ArchieAOMInfoLookup getInstance(boolean standardCompliantExpressionNames) {
+        return instances.computeIfAbsent(standardCompliantExpressionNames, s -> new ArchieAOMInfoLookup(s));
     }
 
     @Override
@@ -90,6 +97,8 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
         addClass(com.nedap.archie.aom.CComplexObject.class);
         addClass(com.nedap.archie.rules.VariableDeclaration.class);
         addClass(com.nedap.archie.rules.Operator.class);
+        addClass(com.nedap.archie.rules.OperatorDef.class);
+        addClass(com.nedap.archie.rules.OperatorDefBuiltin.class);
         addClass(com.nedap.archie.rules.BinaryOperator.class);
         addClass(com.nedap.archie.rules.ForAllStatement.class);
         addClass(com.nedap.archie.aom.Archetype.class);
@@ -101,6 +110,7 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
         addClass(com.nedap.archie.aom.primitives.CTime.class);
         addClass(RmOverlay.class);
         addClass(RmAttributeVisibility.class);
+        addClass(VisibilityType.class);
     }
 
     @Override

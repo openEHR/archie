@@ -58,7 +58,7 @@ public  class ExampleJsonInstanceGenerator {
     private boolean useTypeNameWhenTermMissing = false;
     private boolean addUniqueNamesForSiblingNodes = false;
 
-    private String typePropertyName = "@type";
+    private String typePropertyName = "_type";
 
     OpenEhrRmInstanceGenerator openEhrRmInstanceGenerator;
 

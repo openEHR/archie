@@ -60,7 +60,7 @@ public class BmmJacksonUtil {
         objectMapper.addHandler(new DeserializationProblemHandler() {
             @Override
             public boolean handleUnknownProperty(DeserializationContext ctxt, JsonParser p, JsonDeserializer<?> deserializer, Object beanOrClass, String propertyName) throws IOException {
-                if (propertyName.equalsIgnoreCase("@type")) {
+                if (propertyName.equalsIgnoreCase("_type")) {
                     return true;
                 }
                 return super.handleUnknownProperty(ctxt, p, deserializer, beanOrClass, propertyName);
@@ -69,7 +69,7 @@ public class BmmJacksonUtil {
 
         TypeResolverBuilder<?> typeResolverBuilder = new BmmTypeResolverBuilder()
                 .init(JsonTypeInfo.Id.NAME, new BmmTypeNaming())
-                .typeProperty("@type")
+                .typeProperty("_type")
                 .typeIdVisibility(true)
                 .inclusion(JsonTypeInfo.As.PROPERTY);
 

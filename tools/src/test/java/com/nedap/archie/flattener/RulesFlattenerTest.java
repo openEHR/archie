@@ -91,7 +91,7 @@ public class RulesFlattenerTest {
         assertEquals(ForAllStatement.class, biggerThan90.getExpression().getClass());
         assertEquals("/content[id5]/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", ((ModelReference) ((Function) flattenedPathArguments.getExpression()).getArguments().get(0)).getPath());
         assertEquals("/content[id5]/data[id2]/events[id3]/data[id4]/items[id6]/value/magnitude", ((ModelReference) ((Function) flattenedPathArguments.getExpression()).getArguments().get(1)).getPath());
-        assertEquals("/content[id5]", ((ModelReference)((ForAllStatement)biggerThan90.getExpression()).getLeftOperand()).getPath());
+        assertEquals("/content[id5]", ((ModelReference)((ForAllStatement)biggerThan90.getExpression()).getPathExpression()).getPath());
 
         //test that we can actually parse the output
         ADLParser parser = new ADLParser();
