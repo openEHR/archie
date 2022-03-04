@@ -2,8 +2,8 @@ package com.nedap.archie.json.flat;
 
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
+import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.json.RMJacksonConfiguration;
 import org.junit.Test;
 
 import java.io.InputStream;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 public class ArchetypeParsePostProcessorTest {
     @Test
     public void setTupleParents() throws Exception {
-        RMJacksonConfiguration config = RMJacksonConfiguration.createConfigForJavascriptUsage();
+        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createConfigForJavascriptUsage();
         try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/json/snaq_rc_opt.js")) {
             OperationalTemplate template = JacksonUtil.getObjectMapper(config).readValue(stream, OperationalTemplate.class);
             ArchetypeParsePostProcesser.fixArchetype(template);

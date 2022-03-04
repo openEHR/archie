@@ -24,7 +24,7 @@ public class RulesSectionDeserializer extends JsonDeserializer<RulesSection> {
             RulesSection section = new RulesSection();
             section.setRules(list);
             return section;
-        } else if(p.currentToken() == JsonToken.START_OBJECT) {
+        } else if(p.currentToken() == JsonToken.START_OBJECT || p.currentToken() == JsonToken.FIELD_NAME) { //when encountering a field name, that too means we are in an object
             CustomRulesSection parsed = ctxt.readValue(p, CustomRulesSection.class);
             if(parsed == null) {
                 return null; //should not happen, just to be defensive.
