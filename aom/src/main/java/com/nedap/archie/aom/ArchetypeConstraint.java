@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
     @JsonIgnore //ignore these field in popular object mappers
     private transient ArchetypeConstraint parent;
     @JsonIgnore //ignore these field in popular object mappers, otherwise we get infinite loops
+    @Nullable
     private transient CSecondOrder<?> socParent;
 
     @JsonIgnore

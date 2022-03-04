@@ -2,7 +2,7 @@ package com.nedap.archie.rm.changecontrol;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.json.RMJacksonConfiguration;
+import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
@@ -26,7 +26,7 @@ public class ContributionTest {
         expected.setVersions(versions);
 
         StringWriter sw = new StringWriter();
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(RMJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         objectMapper.writeValue(sw, expected);
 
         Contribution actual = objectMapper.readValue(sw.toString(), Contribution.class);

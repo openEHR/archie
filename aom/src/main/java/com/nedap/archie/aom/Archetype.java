@@ -1,5 +1,6 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
@@ -11,11 +12,13 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
 import com.nedap.archie.xml.adapters.RMOverlayXmlAdapter;
 import com.nedap.archie.xml.adapters.StringDictionaryUtil;
 import com.nedap.archie.xml.types.StringDictionaryItem;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -59,8 +62,10 @@ import java.util.stream.Collectors;
 public class Archetype extends AuthoredResource {
 
     @XmlElement(name="parent_archetype_id")
+    @Nullable
     private String parentArchetypeId;
     @XmlAttribute(name="is_differential")
+    @RMProperty("is_differential")
     private boolean differential = false;
     @XmlElement(name = "archetype_id")
     private ArchetypeHRID archetypeId;
@@ -68,15 +73,18 @@ public class Archetype extends AuthoredResource {
     private CComplexObject definition;
     @XmlJavaTypeAdapter(ArchetypeTerminologyAdapter.class)
     private ArchetypeTerminology terminology;
+    @Nullable
     private RulesSection rules = null;
 
     @XmlAttribute(name="adl_version")
+    @Nullable
     private String adlVersion;
     @XmlElement(name="build_uid")
     private String buildUid;
     @XmlAttribute(name="rm_release")
     private String rmRelease;
     @XmlAttribute(name="is_generated")
+    @RMProperty("is_generated")
     private Boolean generated = false;
     //this is a specific map type to make a JAXB-adapter work. ugly jaxb
     //alternative: define an extra field, use hooks to fill it just in time instead
@@ -117,6 +125,7 @@ public class Archetype extends AuthoredResource {
         this.parentArchetypeId = parentArchetypeId;
     }
 
+    @JsonAlias("is_differential")
     public boolean isDifferential() {
         return differential;
     }

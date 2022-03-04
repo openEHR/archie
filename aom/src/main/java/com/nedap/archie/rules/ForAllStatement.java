@@ -29,10 +29,10 @@ public class ForAllStatement extends Operator {
     }
 
     public Expression getPathExpression() {
-        return getLeftOperand();
+        return getFirstOperand();
     }
 
     public Expression getAssertion() {
-        return getRightOperand();
+        return getSecondOperand();
     }
 }

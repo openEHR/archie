@@ -18,6 +18,7 @@ import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import org.openehr.utils.message.I18n;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -38,9 +39,11 @@ import java.util.stream.Collectors;
 public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> {
 
     @XmlElement(name="assumed_value")
+    @Nullable
     private TerminologyCode assumedValue;
     private List<String> constraint = new ArrayList<>();
 
+    @Nullable
     private ConstraintStatus constraintStatus;
 
     @Override

@@ -7,6 +7,7 @@ import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import org.openehr.utils.message.I18n;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,6 +25,7 @@ import java.util.function.BiFunction;
 public class CString extends CPrimitiveObject<String, String> {
 
     @XmlElement(name="assumed_value")
+    @Nullable
     private String assumedValue;
     private List<String> constraint = new ArrayList<>();
 

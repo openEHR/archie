@@ -22,6 +22,7 @@ import java.util.function.BiFunction;
 @XmlType(name="C_BOOLEAN")
 public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
     @XmlElement(name="assumed_value")
+    @Nullable
     private Boolean assumedValue;
     @Nullable
     private List<Boolean> constraint = new ArrayList<>();
