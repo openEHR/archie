@@ -166,19 +166,21 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     public List<String> getValueSetExpanded() {
         List<String> result = new ArrayList<>();
         Archetype archetype = getArchetype();
-        if(archetype == null) {
+        ArchetypeTerminology terminology = null;
+        if(archetype != null) {
             //ideally this would not happen, but no reference to archetype exists in leaf constraints in rules so far
             //so for now fix it so it doesn't throw a NullPointerException
-            return result;
+            terminology = archetype.getTerminology(this);
         }
-        ArchetypeTerminology terminology = archetype.getTerminology(this);
         for(String constraint:getConstraint()) {
             if(constraint.startsWith("at")) {
                 result.add(constraint);
             } else if (constraint.startsWith("ac")) {
-                ValueSet acValueSet = terminology.getValueSets().get(constraint);
-                if(acValueSet != null) {
-                    result.addAll(AOMUtils.getExpandedValueSetMembers(terminology.getValueSets(), acValueSet));
+                if(terminology != null) {
+                    ValueSet acValueSet = terminology.getValueSets().get(constraint);
+                    if (acValueSet != null) {
+                        result.addAll(AOMUtils.getExpandedValueSetMembers(terminology.getValueSets(), acValueSet));
+                    }
                 }
             }
         }
