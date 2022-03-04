@@ -33,15 +33,12 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
     private String originalLanguage;
     @XmlElement(name="concept_code")
     private String conceptCode;
-    @XmlTransient//TODO!
-    //@XmlElement(name="term_definitions")
+    @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
     private Map<String, Map<String, ArchetypeTerm>> termDefinitions = new ConcurrentHashMap<>();
-    //@XmlElement(name="term_bindings")
-    @XmlTransient//TODO!
+    @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
     @Nullable
     private Map<String, Map<String, URI>> termBindings = new ConcurrentHashMap<>();
-    //@XmlElement(name="terminology_extracts")
-    @XmlTransient//TODO!
+    @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
     @Nullable
     private Map<String, Map<String, ArchetypeTerm>> terminologyExtracts = new ConcurrentHashMap<>();
     @XmlElement(name="value_sets")

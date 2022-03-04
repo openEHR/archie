@@ -218,8 +218,8 @@ public class ExampleJsonInstanceGeneratorTest {
         assertEquals("Example JSON schema serialized from RM implementation should not fail", 0, reserializedJsonSchemaValidationFailed);
         assertEquals("RMObjectValidator should not fail", 0, rmObjectValidatorFailed);
         assertEquals("no exceptions should occur during schema validation", 0, generatedException);
-        assertEquals("example data from all archetypes should be validated", 404, jsonSchemaValidationRan);
-        assertEquals("example data from all archetypes should be validated from the rm", 404, secondJsonSchemaValidationRan);
+        assertEquals("example data from all archetypes should be validated", 403, jsonSchemaValidationRan);
+        assertEquals("example data from all archetypes should be validated from the rm", 403, secondJsonSchemaValidationRan);
 
     }
 

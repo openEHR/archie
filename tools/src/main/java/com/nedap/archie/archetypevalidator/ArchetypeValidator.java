@@ -18,7 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by pieter.bos on 31/03/2017.
@@ -73,10 +75,10 @@ public class ArchetypeValidator {
         validationsPhase2.add(new SpecializedDefinitionValidation());
 
         validationsPhase3 = new ArrayList<>();
+        validationsPhase3.add(new SpecializedOccurrencesValidation());
         validationsPhase3.add(new AnnotationsValidation());
         validationsPhase3.add(new RmOverlayValidation());
         validationsPhase3.add(new FlatFormValidation());
-
     }
 
     public void setRemoveZeroOccurrencesConstraintsComingFromParents(boolean value) {
@@ -144,6 +146,10 @@ public class ArchetypeValidator {
         archetype = cloneAndPreprocess(combinedModels, archetype);//this clones the actual archetype so the source does not get changed
         Archetype flatParent = null;
         if(archetype.isSpecialized()) {
+            ValidationResult infiniteLoopResult = checkForInfiniteLoopInSpecialisation(repository, archetype);
+            if (!infiniteLoopResult.passes()) {
+                return infiniteLoopResult;
+            }
             ValidationResult parentValidationResult = repository.compileAndRetrieveValidationResult(archetype.getParentArchetypeId(), this);
             combinedModels.selectModel(archetype);
             if(parentValidationResult != null) {
@@ -236,6 +242,32 @@ public class ArchetypeValidator {
             }
         }
         return messages;
+    }
+
+    private ValidationResult checkForInfiniteLoopInSpecialisation(FullArchetypeRepository repository, Archetype archetype) {
+        Set<String> archetypesInSpecialisationTree = new HashSet<>();
+        archetypesInSpecialisationTree.add(archetype.getArchetypeId().getFullId());
+        Archetype childArchetype;
+        Archetype specialisationCheck = archetype;
+        while (specialisationCheck.getParentArchetypeId() != null) {
+            childArchetype = specialisationCheck;
+            specialisationCheck = repository.getArchetype(specialisationCheck.getParentArchetypeId());
+            if (specialisationCheck == null) {
+                // Parent cannot be found, will fail later in the validation
+                break;
+            }
+            if (archetypesInSpecialisationTree.contains(specialisationCheck.getArchetypeId().getFullId())) {
+                ValidationResult validationResult = new ValidationResult(archetype);
+                List<ValidationMessage> messages = new ArrayList<>();
+                ValidationMessage validationMessage = new ValidationMessage(ErrorType.OTHER, null, "Infinite loop caused by specialising: " + specialisationCheck.getArchetypeId().getFullId() + " in " + childArchetype.getArchetypeId().getFullId());
+                messages.add(validationMessage);
+                validationResult.setErrors(messages);
+                validationResult.setSourceArchetype(archetype);
+                return validationResult;
+            }
+            archetypesInSpecialisationTree.add(specialisationCheck.getArchetypeId().getFullId());
+        }
+        return new ValidationResult(archetype);
     }
 
 }
