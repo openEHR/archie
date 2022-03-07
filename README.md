@@ -18,7 +18,7 @@ You can depend on parts of Archie, or the entire library at once. If you want th
 
 ```gradle
 dependencies {
-    compile 'com.nedap.healthcare.archie:archie-all:1.0.4'
+    compile 'com.nedap.healthcare.archie:archie-all:2.0.0'
 }
 ```
 
@@ -28,11 +28,11 @@ or if you use maven, in your pom.xml
 <dependency>
     <groupId>com.nedap.healthcare.archie</groupId>
     <artifactId>archie-all</artifactId>
-    <version>1.0.4</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
-If you want to depend on just the AOM and BMM, without any reference model implementation, depend on com.nedap.healthcare.archie:tools:1.0.4 and com.nedap.healthcare.archie:referencemodels:1.0.4 instead
+If you want to depend on just the AOM and BMM, without any reference model implementation, depend on com.nedap.healthcare.archie:tools:2.0.0 and com.nedap.healthcare.archie:referencemodels:2.0.0 instead
 
 
 ## Build
@@ -343,7 +343,7 @@ public void walk(CObject cobject) {
 
 ## Reference Model tools
 
-Archie contains an implementation of the openEHR reference model version 1.0.4. It does not yet contain the task planning part. It also contains tools to work with reference model objects.
+Archie contains an implementation of the openEHR reference model version 2.0.0. It does not yet contain the task planning part. It also contains tools to work with reference model objects.
 
 ### Reference model object creation
 
