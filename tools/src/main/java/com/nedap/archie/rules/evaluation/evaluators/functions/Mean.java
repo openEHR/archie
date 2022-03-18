@@ -1,5 +1,6 @@
 package com.nedap.archie.rules.evaluation.evaluators.functions;
 
+import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.rules.evaluation.FunctionCallException;
 import com.nedap.archie.rules.evaluation.FunctionImplementation;
 import com.nedap.archie.rules.evaluation.Value;
@@ -28,6 +29,7 @@ public class Mean implements FunctionImplementation {
                 result.addValue(((Number) value.getValue()).doubleValue()/arguments.size(), value.getPaths());
             }
         }
+        result.setType(PrimitiveType.Real);
         return result;
     }
 }
