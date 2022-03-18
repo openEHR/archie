@@ -10,6 +10,7 @@ import com.nedap.archie.rm.datastructures.Item;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
 
@@ -40,6 +41,7 @@ public class FunctionsTest {
         Observation root = new Observation();
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         ValueList min = ruleEvaluation.getVariableMap().get("min");
+        assertEquals(PrimitiveType.Real, min.getType());
         assertEquals("min should work", 3.0, (Double) min.getValues().get(0).getValue(), 0.001);
     }
 
@@ -52,6 +54,7 @@ public class FunctionsTest {
         Observation root = new Observation();
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         ValueList max = ruleEvaluation.getVariableMap().get("max");
+        assertEquals(PrimitiveType.Real, max.getType());
         assertEquals("max should work", 2.0, (Double) max.getValues().get(0).getValue(), 0.001);
     }
 
@@ -84,6 +87,7 @@ public class FunctionsTest {
 
         ruleEvaluation.evaluate(rmObject, archetype.getRules().getRules());
         ValueList flatSum = ruleEvaluation.getVariableMap().get("flat_sum");
+        assertEquals(PrimitiveType.Real, flatSum.getType());
         assertEquals("flat_sum should work", 122.6, (Double) flatSum.getValues().get(0).getValue(), 0.001);
     }
 
@@ -105,6 +109,7 @@ public class FunctionsTest {
 
         ruleEvaluation.evaluate(rmObject, archetype.getRules().getRules());
         ValueList sum = ruleEvaluation.getVariableMap().get("sum");
+        assertEquals(PrimitiveType.Real, sum.getType());
         assertEquals("sum should work", 65+21+3.3, (Double) sum.getValues().get(0).getValue(), 0.001);
     }
 
@@ -124,6 +129,7 @@ public class FunctionsTest {
 
         ruleEvaluation.evaluate(rmObject, archetype.getRules().getRules());
         ValueList mean = ruleEvaluation.getVariableMap().get("mean");
+        assertEquals(PrimitiveType.Real, mean.getType());
         assertEquals("mean should work", (65+21+3.3)/3, (Double) mean.getValues().get(0).getValue(), 0.001);
     }
     @Test
@@ -135,6 +141,7 @@ public class FunctionsTest {
         Observation root = new Observation();
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         ValueList valueWhenUndefined = ruleEvaluation.getVariableMap().get("value_when_undefined");
+        assertEquals(PrimitiveType.Real, valueWhenUndefined.getType());
         assertEquals("value when undefined should be set", 10.0d, (Double) valueWhenUndefined.getObject(0), 0.00001d);
     }
 
@@ -150,6 +157,7 @@ public class FunctionsTest {
 
         ruleEvaluation.evaluate(rmObject, archetype.getRules().getRules());
         ValueList valueWhenUndefined = ruleEvaluation.getVariableMap().get("value_when_undefined");
+        assertEquals(PrimitiveType.Real, valueWhenUndefined.getType());
         assertEquals("value when undefined should be set to original value", 65d, (Double) valueWhenUndefined.getObject(0), 0.00001d);
     }
 
@@ -164,6 +172,9 @@ public class FunctionsTest {
         ValueList roundedUp = ruleEvaluation.getVariableMap().get("round_up");
         ValueList roundedDown = ruleEvaluation.getVariableMap().get("round_down");
         ValueList roundedNonDecimal = ruleEvaluation.getVariableMap().get("round_non_decimal");
+        assertEquals(PrimitiveType.Integer, roundedUp.getType());
+        assertEquals(PrimitiveType.Integer, roundedDown.getType());
+        assertEquals(PrimitiveType.Integer, roundedNonDecimal.getType());
         assertEquals("round should round up", 2L, (long) (Long) roundedUp.getValues().get(0).getValue());
         assertEquals("round should round down", 1L, (long) (Long) roundedDown.getValues().get(0).getValue());
         assertEquals("round non-decimal should also work", 3L, (long) (Long) roundedNonDecimal.getValues().get(0).getValue());
@@ -187,6 +198,7 @@ public class FunctionsTest {
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
         ruleEvaluation.evaluate(rmObject, archetype.getRules().getRules());
         ValueList roundMultiple = ruleEvaluation.getVariableMap().get("round_multiple");
+        assertEquals(PrimitiveType.Integer, roundMultiple.getType());
         assertEquals("rounds each value in a value list", 2, roundMultiple.getValues().size());
         assertEquals("first value is rounded", 65L, (long) (Long) roundMultiple.getValues().get(0).getValue());
         assertEquals("second value is rounded", 46L, (long) (Long) roundMultiple.getValues().get(1).getValue());
@@ -204,6 +216,7 @@ public class FunctionsTest {
 
         ruleEvaluation.evaluate(rmObject, archetype.getRules().getRules());
         ValueList ceilPath = ruleEvaluation.getVariableMap().get("ceil_path");
+        assertEquals(PrimitiveType.Integer, ceilPath.getType());
         assertEquals("ceil should round up", 14L, ceilPath.getValues().get(0).getValue());
     }
 
@@ -219,6 +232,7 @@ public class FunctionsTest {
 
         ruleEvaluation.evaluate(rmObject, archetype.getRules().getRules());
         ValueList floorPath = ruleEvaluation.getVariableMap().get("floor_path");
+        assertEquals(PrimitiveType.Integer, floorPath.getType());
         assertEquals("floor should round down", 13L, floorPath.getValues().get(0).getValue());
     }
 }
