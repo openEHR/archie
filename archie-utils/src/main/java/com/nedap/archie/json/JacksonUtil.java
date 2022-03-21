@@ -111,7 +111,7 @@ public class JacksonUtil {
         objectMapper.registerModule(new ArchieDurationModule());
 
 
-        SimpleModule module = new SimpleModule();
+        SimpleModule module = new SimpleModule("archie-module");
         if(!configuration.isAddExtraFieldsInArchetypeId()) {
             module.setMixInAnnotation(ArchetypeID.class, FixArchetypeIDMixin.class);
         }
