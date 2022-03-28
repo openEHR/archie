@@ -1,0 +1,39 @@
+archetype (adl_version=2.0.5; rm_release=1.0.4; generated)
+    openEHR-EHR-COMPOSITION.bloedglucose_composition.v1.0.0
+
+language
+    original_language = <[ISO_639-1::nl]>
+
+description
+    original_author = <
+        ["name"] = <"Accordis">
+    >
+    lifecycle_state = <"unmanaged">
+    details = <
+        ["nl"] = <
+            language = <[ISO-639_1::nl]>
+            purpose = <"Vastleggen van de Bloedglucose dagcurve">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {    -- Bloedglucose meting
+        content matches {
+            use_archetype OBSERVATION[id2, openEHR-EHR-OBSERVATION.bloedsuiker.v1] occurrences matches {0..1}
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1"] = <
+                text = <"Bloedglucose meting">
+                description = <"">
+                code = <"id1">
+            >
+            ["id2"] = <
+                text = <"Meting">
+                description = <"">
+            >
+        >
+    >

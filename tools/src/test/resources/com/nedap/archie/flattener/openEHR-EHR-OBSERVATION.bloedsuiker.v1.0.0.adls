@@ -1,0 +1,153 @@
+template (adl_version=2.0.5; rm_release=1.0.4; generated)
+    openEHR-EHR-OBSERVATION.bloedsuiker.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2
+
+language
+    original_language = <[ISO_639-1::nl]>
+
+description
+    original_author = <
+        ["name"] = <"Joost Holslag">
+    >
+    lifecycle_state = <"unmanaged">
+    details = <
+        ["nl"] = <
+            language = <[ISO-639_1::nl]>
+            purpose = <"Bloedsuikermeting">
+        >
+    >
+
+definition
+    OBSERVATION[id1.1] matches {    -- Bloedsuikermeting
+        /data[id2]/events matches {
+            EVENT[id3] matches {    -- *Any event(en)
+                /data[id4]/items matches {
+                    ELEMENT[id6] occurrences matches {0}     -- Naam van de Test
+                    allow_archetype CLUSTER[id66] closed
+                    ELEMENT[id74] occurrences matches {0}     -- *Overall test status(en)
+                    ELEMENT[id76] occurrences matches {0}     -- *Overall test status timestamp(en)
+                    ELEMENT[id78] occurrences matches {0}     -- *Diagnostic service category(en)
+                    ELEMENT[id101] occurrences matches {0}     -- *Clinical information provided(en)
+                    use_archetype CLUSTER[id98.1, openEHR-EHR-CLUSTER.laboratory_test_analyte-ovl.v1.0.0] occurrences matches {1} 
+                    ELEMENT[id58] occurrences matches {0}     -- *Conclusion(en)
+                    ELEMENT[id99] occurrences matches {0}     -- *Test diagnosis(en)
+                    allow_archetype CLUSTER[id123] closed
+                    allow_archetype CLUSTER[id119] closed
+                    ELEMENT[id102] occurrences matches {0}     -- *Comment(en)
+                }
+                state matches {
+                    ITEM_TREE[id113] occurrences matches {0}     -- Tree
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id5] occurrences matches {0}     -- Tree
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1.1"] = <
+                text = <"Bloedsuikermeting">
+                description = <"Bloedsuikermeting">
+                code = <"id1">
+            >
+            ["id98.1"] = <
+                text = <"De bloedsuiker waarde">
+                description = <"">
+            >
+        >
+    >
+
+annotations
+    documentation = <
+        ["nl"] = <
+            ["/data[id2]/events[id3]/data[id4]/items[id98.1]/items[id25.1]"] = <
+                ["type"] = <"hidden">
+            >
+            ["/data[id2]/events[id3]/data[id4]/items[id98.1]/items[id29.1]"] = <
+                ["type"] = <"hidden">
+            >
+        >
+    >
+
+------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-CLUSTER.laboratory_test_analyte-ovl.v1.0.0
+
+specialize
+    openEHR-EHR-CLUSTER.laboratory_test_analyte.v1.1
+
+definition
+    CLUSTER[id1.1] matches {
+        items matches {
+            ELEMENT[id28] occurrences matches {0} 
+            ELEMENT[id25.1] occurrences matches {1} matches {
+                value matches {
+                    DV_CODED_TEXT[id9006.1] matches {
+                        defining_code matches {[at0.9000]}
+                    }
+                }
+            }
+            ELEMENT[id2.1] occurrences matches {1} matches {
+                value matches {
+                    DV_QUANTITY[id0.2] occurrences matches {1} matches {
+                        units matches {"mmol/l"}
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id15] closed
+            ELEMENT[id5] occurrences matches {0} 
+            ELEMENT[id29.1] occurrences matches {1} matches {
+                value matches {
+                    DV_CODED_TEXT[id0.9001] matches {
+                        defining_code matches {[at0.9002]}
+                    }
+                }
+            }
+            ELEMENT[id26] occurrences matches {0} 
+            ELEMENT[id6] occurrences matches {0} 
+            ELEMENT[id7] occurrences matches {0} 
+            ELEMENT[id27] occurrences matches {0} 
+            ELEMENT[id4] occurrences matches {0} 
+            after [id27]
+            ELEMENT[id4.1] occurrences matches {0..1} 
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1.1"] = <
+                text = <"Laboratorium analyt uitslag">
+                description = <"Het resultaat van een laboratorium test voor een bepaling van een enkele bepaling.">
+            >
+            ["id25.1"] = <
+                text = <"Naam van het Analyt">
+                description = <"De naam van de analyt uitslag">
+            >
+            ["at0.9000"] = <
+                text = <"Bloedsuiker">
+                description = <"Bloedsuiker">
+            >
+            ["id2.1"] = <
+                text = <"Bloedsuiker">
+                description = <"De gemeten bloedsuiker waarde.">
+            >
+            ["id4.1"] = <
+                text = <"Opmerking">
+                description = <"Extra beschrijving van de analyt uitslag, die niet past binnen andere velden.">
+            >
+            ["id29.1"] = <
+                text = <"Testmethode">
+                description = <"Omschrijving van de methode die gebruikt is als onderzoek voor specifiek dit analyt.">
+            >
+            ["at0.9002"] = <
+                text = <"Bloedglucosemeter">
+                description = <"Middels draagbare (capillaire) bloedglucosemeter">
+            >
+        >
+    >
