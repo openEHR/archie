@@ -426,8 +426,8 @@ public class Flattener implements IAttributeFlattenerSupport {
      * @return
      */
     protected Flattener getNewFlattener() {
-        return new Flattener(repository, metaModels, config);
-                //.createOperationalTemplate(false); //do not create operational template except at the end.
+        return new Flattener(repository, metaModels, config)
+                .createOperationalTemplate(false); //do not create operational template except at the end.
     }
 
     private Flattener useComplexObjectForArchetypeSlotReplacement(boolean useComplexObjectForArchetypeSlotReplacement) {
