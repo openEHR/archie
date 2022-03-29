@@ -45,6 +45,7 @@ class OperationalTemplateCreator {
         result.setOriginalLanguage(clone.getOriginalLanguage());
         result.setTranslations(clone.getTranslations());
         result.setAnnotations(clone.getAnnotations());
+        result.setRmOverlay(clone.getRmOverlay());
 
         return result;
     }
@@ -190,10 +191,12 @@ class OperationalTemplateCreator {
     }
 
     private void fillArchetypeRoot(CArchetypeRoot root, OperationalTemplate result) {
-        if(flattener.getCreateOperationalTemplate()) {
+        if(flattener.getCreateOperationalTemplate() && ( root.getAttributes() == null || root.getAttributes().isEmpty()) ) {
             String archetypeRef = root.getArchetypeRef();
             String newArchetypeRef = archetypeRef;
-            Archetype archetype = flattener.getRepository().getArchetype(archetypeRef);
+            OverridingArchetypeRepository repository = flattener.getRepository();
+
+            Archetype archetype = repository.getArchetype(archetypeRef);
             if(archetype instanceof TemplateOverlay){
                 //we want to be able to check which archetype this is in the UI. If it's an overlay, that means retrieving the non-operational template
                 //which is a hassle.
@@ -208,7 +211,6 @@ class OperationalTemplateCreator {
                     return;
                 }
             }
-
             archetype = flattener.getNewFlattener().flatten(archetype);
 
             //
