@@ -8,45 +8,37 @@ import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 public class ComplexFlattenerTest {
-    private static Archetype report;
-    private static Archetype reportResult;
+    private static Archetype simpleTestCluster;
+    private static Archetype simpleTestObservation;
+    private static Archetype observationTemplateWithOverlay;
+    private static Archetype compositionWithIncludedTemplate;
 
-    private static Archetype labTestResult;
-    private static Archetype labTestAnalyte;
-    private static Archetype bloodSugarObservationTemplate;
-    private static Archetype bloodSugarIncludeTemplateWithOverlay;
     private static SimpleArchetypeRepository repository;
 
-    private ReferenceModels models;
 
     private Flattener flattener;
 
     @Before
     public void setup() throws Exception {
-        models = BuiltinReferenceModels.getAvailableModelInfoLookups();
+        ReferenceModels models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 
-        report = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report.v1.adls"));
-        reportResult = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report-result.v1.adls"));
-
-        labTestResult = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.2.adls"));
-        labTestAnalyte = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.laboratory_test_analyte.v1.1.5.adls"));
-        bloodSugarObservationTemplate = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.bloedsuiker.v1.0.0.adls"));
-        bloodSugarIncludeTemplateWithOverlay = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.bloedglucose_composition.v1.0.0.adls"));
+        simpleTestCluster = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.simple_test_cluster.v1.0.0.adls"));
+        simpleTestObservation = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.simple_test_observation.v1.0.0.adls"));
+        observationTemplateWithOverlay = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.specialized_template_observation.v1.0.0.adls"));
+        compositionWithIncludedTemplate = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.composition_with_included_template.v1.0.0.adls"));
 
         repository = new InMemoryFullArchetypeRepository();
-        repository.addArchetype(report);
-        repository.addArchetype(reportResult);
 
-        repository.addArchetype(labTestResult);
-        repository.addArchetype(labTestAnalyte);
-        repository.addArchetype(bloodSugarObservationTemplate);
-        repository.addArchetype(bloodSugarIncludeTemplateWithOverlay);
+        repository.addArchetype(simpleTestCluster);
+        repository.addArchetype(simpleTestObservation);
+        repository.addArchetype(observationTemplateWithOverlay);
+        repository.addArchetype(compositionWithIncludedTemplate);
 
         flattener = new Flattener(repository, models).createOperationalTemplate(true);
     }
 
     @Test
     public void testTemplateWithOverlayAsUseArchetype() {
-        Archetype flattened = flattener.flatten(bloodSugarIncludeTemplateWithOverlay);
+        Archetype flattened = flattener.flatten(compositionWithIncludedTemplate);
     }
 }
