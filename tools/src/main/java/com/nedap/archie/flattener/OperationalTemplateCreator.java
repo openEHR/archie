@@ -22,6 +22,7 @@ import java.util.Stack;
 class OperationalTemplateCreator {
 
     private final Flattener flattener;
+    private Stack<Archetype> currentArchetypeStack = new Stack<>();
 
     OperationalTemplateCreator(Flattener flattener) {
         this.flattener = flattener;
@@ -45,6 +46,7 @@ class OperationalTemplateCreator {
         result.setOriginalLanguage(clone.getOriginalLanguage());
         result.setTranslations(clone.getTranslations());
         result.setAnnotations(clone.getAnnotations());
+        result.setRmOverlay(clone.getRmOverlay());
 
         return result;
     }
@@ -144,19 +146,20 @@ class OperationalTemplateCreator {
         if(!getConfig().isFillArchetypeRoots()) {
             return;
         }
-        Stack<CObject> workList = new Stack<>();
-        workList.push(result.getDefinition());
-        while(!workList.isEmpty()) {
-            CObject object = workList.pop();
-            for(CAttribute attribute:object.getAttributes()) {
-                for(CObject child:attribute.getChildren()) {
-                    if(child instanceof CArchetypeRoot) { //use_archetype
-                        fillArchetypeRoot((CArchetypeRoot) child, result);
-                    }
-                    workList.push(child);
+        fillArchetypeRoots(result.getDefinition(), result);
+    }
+    private void fillArchetypeRoots(CObject cObject, OperationalTemplate result) {
+
+        for(CAttribute attribute:cObject.getAttributes()) {
+            for(CObject child:attribute.getChildren()) {
+                if(child instanceof CArchetypeRoot) { //use_archetype
+                    fillArchetypeRoot((CArchetypeRoot) child, result);
+                } else {
+                    fillArchetypeRoots(child, result);
                 }
             }
         }
+
     }
 
     private void fillComplexObjectProxies(OperationalTemplate result) {
@@ -190,10 +193,28 @@ class OperationalTemplateCreator {
     }
 
     private void fillArchetypeRoot(CArchetypeRoot root, OperationalTemplate result) {
-        if(flattener.getCreateOperationalTemplate()) {
+        if(flattener.getCreateOperationalTemplate() && ( root.getAttributes() == null || root.getAttributes().isEmpty()) ) {
             String archetypeRef = root.getArchetypeRef();
             String newArchetypeRef = archetypeRef;
-            Archetype archetype = flattener.getRepository().getArchetype(archetypeRef);
+            OverridingArchetypeRepository repository = flattener.getRepository();
+
+
+            if(!currentArchetypeStack.isEmpty()) {
+                Archetype currentArchetype = currentArchetypeStack.peek();
+                if (currentArchetype instanceof TemplateOverlay) {
+                    currentArchetype = ((TemplateOverlay) currentArchetype).getOwningTemplate();
+                }
+                if (currentArchetype instanceof Template) {
+                    Template template = (Template) currentArchetype;
+                    repository = new OverridingArchetypeRepository(repository);
+                    for (TemplateOverlay overlay : template.getTemplateOverlays()) {
+                        repository.addExtraArchetype(overlay);
+                    }
+                }
+            }
+
+            Archetype archetype = repository.getArchetype(archetypeRef);
+            currentArchetypeStack.push(archetype);
             if(archetype instanceof TemplateOverlay){
                 //we want to be able to check which archetype this is in the UI. If it's an overlay, that means retrieving the non-operational template
                 //which is a hassle.
@@ -208,7 +229,6 @@ class OperationalTemplateCreator {
                     return;
                 }
             }
-
             archetype = flattener.getNewFlattener().flatten(archetype);
 
             //
@@ -256,6 +276,10 @@ class OperationalTemplateCreator {
             flattener.getAnnotationsAndOverlaysFlattener().addVisibilityWithPathPrefix(rootToFill.getPath(), archetype, result);
             //todo: do we have to put something in the terminology extracts?
             //templateResult.addTerminologyExtract(child.getNodeId(), archetype.getTerminology().);
+
+            fillArchetypeRoots(root, result);
+            currentArchetypeStack.pop();
+
         }
 
     }
