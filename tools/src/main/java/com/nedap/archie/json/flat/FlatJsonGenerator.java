@@ -1,7 +1,6 @@
 package com.nedap.archie.json.flat;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
@@ -18,11 +17,9 @@ import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAmount;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -244,18 +241,18 @@ public class FlatJsonGenerator {
             }
         } else if (child instanceof Collection) {
 
-            Map<String, Integer> amountsPerNodeId = new HashMap<>();
-            for(Object c: (Collection<?>) child) {
+            int numberOfNonLocatables = 1; //1-based, sorry
 
-                int numberOfNonLocatables = 1; //1-based, sory
+            Integer numberOfPreviousOccurrences = null;
+
+            for (Object c : (Collection<?>) child) {
+
                 String archetypeNodeId = modelInfoLookup.getArchetypeNodeIdFromRMObject(c);
-                if(archetypeNodeId != null) {
-                    Integer numberOfPreviousOccurrences = amountsPerNodeId.get(archetypeNodeId);
+                if (archetypeNodeId != null) {
                     addAttribute(result, pathSoFar, parent, c, attributeName, numberOfPreviousOccurrences, cAttribute);
-                    numberOfPreviousOccurrences = numberOfPreviousOccurrences == null ? 1: numberOfPreviousOccurrences + 1;
-                    amountsPerNodeId.put(archetypeNodeId, numberOfPreviousOccurrences);
+                    numberOfPreviousOccurrences = numberOfPreviousOccurrences == null ? 1 : numberOfPreviousOccurrences + 1;
                 } else {
-                    addAttribute(result, pathSoFar, parent, c, attributeName, numberOfNonLocatables == 1 ? null: numberOfNonLocatables, cAttribute);
+                    addAttribute(result, pathSoFar, parent, c, attributeName, numberOfNonLocatables == 1 ? null : numberOfNonLocatables, cAttribute);
                     numberOfNonLocatables++;
                 }
             }
