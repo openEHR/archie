@@ -13,6 +13,7 @@ public class FlatJsonFormatConfiguration {
     private boolean writePipesForPrimitiveTypes = false;
     private IndexNotation indexNotation = IndexNotation.AFTER_A_COLON;
     private String typeIdPropertyName = "_type";
+    private boolean separateIndicesPerNodeId = true;
     private Set<AttributeReference> ignoredAttributes;
     private boolean filterNames = true;
     private AttributeReference nameProperty;
@@ -38,6 +39,7 @@ public class FlatJsonFormatConfiguration {
         config.setWritePipesForPrimitiveTypes(false);
         config.setIndexNotation(IndexNotation.BRACKETED);
         config.setTypeIdPropertyName("@type");
+        config.setSeparateIndicesPerNodeId(false);
         return config;
     }
 
@@ -100,6 +102,14 @@ public class FlatJsonFormatConfiguration {
      */
     public void setTypeIdPropertyName(String typeIdPropertyName) {
         this.typeIdPropertyName = typeIdPropertyName;
+    }
+
+    public boolean isSeparateIndicesPerNodeId() {
+        return separateIndicesPerNodeId;
+    }
+
+    public void setSeparateIndicesPerNodeId(boolean separateIndicesPerNodeId) {
+        this.separateIndicesPerNodeId = separateIndicesPerNodeId;
     }
 
     /**

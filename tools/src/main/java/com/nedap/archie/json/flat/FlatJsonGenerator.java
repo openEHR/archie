@@ -44,6 +44,7 @@ public class FlatJsonGenerator {
     private final boolean humanReadableFormat;
     private final IndexNotation indexNotation;
     private final String typeIdPropertyName;
+    private final boolean separateIndicesPerNodeId;
     private boolean filterNames;
     private boolean filterTypes;
     private IgnoredAttribute nameProperty;
@@ -60,6 +61,7 @@ public class FlatJsonGenerator {
         this.humanReadableFormat = false;//TODO: this is quite a bit of work to do properly, so definately not doing this now.
         this.indexNotation = config.getIndexNotation();
         this.typeIdPropertyName = config.getTypeIdPropertyName();
+        this.separateIndicesPerNodeId = config.isSeparateIndicesPerNodeId();
         this.filterNames = config.getFilterNames();
         this.filterTypes = config.getFilterTypes();
         ignoredAttributes = config.getIgnoredAttributes().stream()
@@ -243,23 +245,30 @@ public class FlatJsonGenerator {
                 storeValue(result, newPath, archetypeId);
             }
         } else if (child instanceof Collection) {
+            if(separateIndicesPerNodeId) {
+                Map<String, Integer> amountsPerNodeId = new HashMap<>();
+                for (Object c : (Collection<?>) child) {
 
-            Map<String, Integer> amountsPerNodeId = new HashMap<>();
-            for(Object c: (Collection<?>) child) {
-
-                int numberOfNonLocatables = 1; //1-based, sory
-                String archetypeNodeId = modelInfoLookup.getArchetypeNodeIdFromRMObject(c);
-                if(archetypeNodeId != null) {
-                    Integer numberOfPreviousOccurrences = amountsPerNodeId.get(archetypeNodeId);
-                    addAttribute(result, pathSoFar, parent, c, attributeName, numberOfPreviousOccurrences, cAttribute);
-                    numberOfPreviousOccurrences = numberOfPreviousOccurrences == null ? 1: numberOfPreviousOccurrences + 1;
-                    amountsPerNodeId.put(archetypeNodeId, numberOfPreviousOccurrences);
-                } else {
-                    addAttribute(result, pathSoFar, parent, c, attributeName, numberOfNonLocatables == 1 ? null: numberOfNonLocatables, cAttribute);
-                    numberOfNonLocatables++;
+                    int numberOfNonLocatables = 1; //1-based, sory
+                    String archetypeNodeId = modelInfoLookup.getArchetypeNodeIdFromRMObject(c);
+                    if (archetypeNodeId != null) {
+                        Integer numberOfPreviousOccurrences = amountsPerNodeId.get(archetypeNodeId);
+                        addAttribute(result, pathSoFar, parent, c, attributeName, numberOfPreviousOccurrences, cAttribute);
+                        numberOfPreviousOccurrences = numberOfPreviousOccurrences == null ? 1 : numberOfPreviousOccurrences + 1;
+                        amountsPerNodeId.put(archetypeNodeId, numberOfPreviousOccurrences);
+                    } else {
+                        addAttribute(result, pathSoFar, parent, c, attributeName, numberOfNonLocatables == 1 ? null : numberOfNonLocatables, cAttribute);
+                        numberOfNonLocatables++;
+                    }
+                }
+                //TODO: do we need Map-support as well?
+            } else {
+                int collectionIndex = 1;
+                for (Object c : (Collection<?>) child) {
+                    addAttribute(result, pathSoFar, parent, c, attributeName, collectionIndex, cAttribute);
+                    collectionIndex++;
                 }
             }
-            //TODO: do we need Map-support as well?
         } else if(child != null) {
             String newPath = joinPath(pathSoFar, attributeName, null, index, writePipesForPrimitiveTypes ? "|" : "/");
 
