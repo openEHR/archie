@@ -1,19 +1,20 @@
 package com.nedap.archie.json.flat;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
-import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.creation.ExampleJsonInstanceGenerator;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Observation;
+import com.nedap.archie.rm.datastructures.Cluster;
+import com.nedap.archie.rm.datastructures.Element;
+import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
 import org.junit.Test;
@@ -21,6 +22,7 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static junit.framework.TestCase.assertEquals;
@@ -106,7 +108,7 @@ public class FlatJsonGeneratorTest {
         //type property
         assertEquals("OBSERVATION", stringObjectMap.get("/@type"));
         //just a string
-        assertEquals("Systolic", stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/name/value"));
+        assertEquals("Systolic", stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/name/value"));
         //ignored field
         assertFalse(stringObjectMap.containsKey("/data[id2]/archetype_node_id"));
         //ignored field
@@ -114,10 +116,41 @@ public class FlatJsonGeneratorTest {
         //date time format
         assertEquals("2018-01-01T12:00:00Z", stringObjectMap.get("/data[id2]/origin/value"));
         //numbers
-        assertEquals(0.0d, (Double) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude"), EPSILON);
-        assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/precision")).longValue());
+        assertEquals(0.0d, (Double) stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/value/magnitude"), EPSILON);
+        assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/value/precision")).longValue());
         //test indices
-        assertEquals("Systolic", stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5]/name/value"));
+        assertEquals("Systolic", stringObjectMap.get("/data[id2]/events[id7,2]/data[id4]/items[id5,1]/name/value"));
+    }
+
+    @Test
+    public void continuesIndices() throws Exception {
+        Cluster cluster = new Cluster();
+        cluster.addItem(new Element("id2", null, new DvText("First")));
+        cluster.addItem(new Element("id3", null, new DvCount(2L)));
+        cluster.addItem(new Element("id2", null, new DvText("Third")));
+        cluster.addItem(new Element("id3", null, new DvCount(4L)));
+
+        FlatJsonFormatConfiguration config = FlatJsonFormatConfiguration.nedapInternalFormat();
+        Map<String, Object> stringObjectMap = new FlatJsonGenerator(ArchieRMInfoLookup.getInstance(), config).buildPathsAndValues(cluster);
+
+        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+
+        Map<String, Object> expected = new LinkedHashMap<>();
+        expected.put("/@type", "CLUSTER");
+        expected.put("/items[id2,1]/@type", "ELEMENT");
+        expected.put("/items[id2,1]/value/@type", "DV_TEXT");
+        expected.put("/items[id2,1]/value/value", "First");
+        expected.put("/items[id3,2]/@type", "ELEMENT");
+        expected.put("/items[id3,2]/value/@type", "DV_COUNT");
+        expected.put("/items[id3,2]/value/magnitude", 2L);
+        expected.put("/items[id2,3]/@type", "ELEMENT");
+        expected.put("/items[id2,3]/value/@type", "DV_TEXT");
+        expected.put("/items[id2,3]/value/value", "Third");
+        expected.put("/items[id3,4]/@type", "ELEMENT");
+        expected.put("/items[id3,4]/value/@type", "DV_COUNT");
+        expected.put("/items[id3,4]/value/magnitude", 4L);
+
+        assertEquals(expected, stringObjectMap);
     }
 
     @Test
@@ -143,8 +176,8 @@ public class FlatJsonGeneratorTest {
         //date time format
         assertEquals("2018-01-01T12:00:00Z", stringObjectMap.get("/data[id2]/origin/value"));
         //numbers
-        assertEquals(0.0d, (Double) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude"), EPSILON);
-        assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/precision")).longValue());
+        assertEquals(0.0d, (Double) stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/value/magnitude"), EPSILON);
+        assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/value/precision")).longValue());
         //no name
         assertNull(stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5]/name/value"));
     }
@@ -195,8 +228,8 @@ public class FlatJsonGeneratorTest {
         //date time format
         assertEquals("2018-01-01T12:00:00Z", stringObjectMap.get("/data[id2]/origin/value"));
         //numbers
-        assertEquals(0.0d, (Double) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/magnitude"), EPSILON);
-        assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7]/data[id4]/items[id5]/value/precision")).longValue());
+        assertEquals(0.0d, (Double) stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/value/magnitude"), EPSILON);
+        assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/value/precision")).longValue());
         //no name
         assertNull(stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5]/name/value"));
     }
@@ -216,9 +249,9 @@ public class FlatJsonGeneratorTest {
         System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
         //the one data value
-        assertEquals("true", stringObjectMap.get("/items[id2]/value/value"));
+        assertEquals("true", stringObjectMap.get("/items[id2,1]/value/value"));
         //the type
-        assertEquals("DV_BOOLEAN", stringObjectMap.get("/items[id2]/value/@type"));
+        assertEquals("DV_BOOLEAN", stringObjectMap.get("/items[id2,1]/value/@type"));
         //and nothing else!
         assertEquals(2, stringObjectMap.size());
 
