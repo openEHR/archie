@@ -35,12 +35,12 @@ public class Operator extends Expression {
     }
 
     @JsonIgnore
-    protected Expression getFirstOperand() {
+    public Expression getFirstOperand() {
         return operands.size() > 0 ? operands.get(0) : null;
     }
 
     @JsonIgnore
-    protected Expression getSecondOperand() {
+    public Expression getSecondOperand() {
         return operands.size() > 1 ? operands.get(1) : null;
     }
 
