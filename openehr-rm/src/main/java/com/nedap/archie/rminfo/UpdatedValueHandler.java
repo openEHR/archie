@@ -3,15 +3,17 @@ package com.nedap.archie.rminfo;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.CAttribute;
+import com.nedap.archie.aom.CAttributeTuple;
+import com.nedap.archie.aom.CPrimitiveTuple;
+import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
-import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
@@ -20,6 +22,7 @@ import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
+import com.nedap.archie.rm.datavalues.quantity.DvProportion;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 
@@ -42,6 +45,33 @@ public class UpdatedValueHandler {
         }
         if (parent instanceof DvQuantity) {
             return fixDvQuantity(rmObject, archetype, pathOfParent);
+        }
+        if (parent instanceof DvProportion) {
+            return fixDvProportion(rmObject, archetype, pathOfParent);
+        }
+        return new HashMap<>();
+    }
+
+    private static Map<String, Object> fixDvProportion(Object rmObject, Archetype archetype, String pathOfParent) {
+        try {
+            OperationalTemplate template = (OperationalTemplate) archetype;
+            Map<String, Object> result = new HashMap<>();
+
+            RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent);
+
+            DvProportion proportion = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+
+            // TODO Figure out how to not hardcode these
+            proportion.setDenominator(100.0);
+            result.put(pathOfParent + "/denominator", 100.0);
+            proportion.setType(2L);
+            result.put(pathOfParent + "/type", 2L);
+            proportion.setPrecision(1L);
+            result.put(pathOfParent + "/precision", 1L);
+
+            return result;
+        } catch (Exception e) {
+            logger.warn("cannot fix DvProportion", e);
         }
 
         return new HashMap<>();
