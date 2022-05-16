@@ -73,10 +73,22 @@ terminology
 				text = <"Blood Pressure">
 				description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
 			>
+			["id3"] = <
+                text = <"Event">
+                description = <"">
+            >
 			["id5"] = <
 				text = <"systolic">
 				description = <"Systolic Pressure">
 			>
+			["id6"] = <
+                text = <"diastolic pressure">
+                description = <"diastolic pressure">
+            >
+            ["id7"] = <
+                text = <"difference between systolic and diastolic. For testing purposes :)">
+                description = <"difference between systolic and diastolic. For testing purposes :)">
+            >
 		>
 	>
 

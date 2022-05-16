@@ -3,6 +3,8 @@ package com.nedap.archie.archetypevalidator;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.flattener.Flattener;
+import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
@@ -299,6 +301,21 @@ public class ArchetypeValidatorTest {
             ValidationResult result = archetypeValidator.validate(child1, repository);
             assertFalse(result.passes());
             assertEquals("Infinite loop caused by specialising: openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1 in openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1", result.getErrors().get(0).getMessage());
+        }
+    }
+
+    @Test
+    public void validateChildWithExcludedAnnotatedElement() throws IOException, ADLParseException {
+        Archetype parent = parse("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_annotations.v1.adls");
+        Archetype childWithMissingAnnotatedElement = parse( "/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_child_with_removed_annotated_element.v1.0.0.adls");
+
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        repository.addArchetype(parent);
+        repository.addArchetype(childWithMissingAnnotatedElement);
+
+        {
+            ValidationResult validationResult = new ArchetypeValidator(models).validate(childWithMissingAnnotatedElement, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
         }
     }
 
