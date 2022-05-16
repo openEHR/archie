@@ -46,7 +46,7 @@ subprojects {
   }
 
   ext.reflectionsVersion = '0.9.12'
-  ext.jacksonVersion = '2.13.2'
+  ext.jacksonVersion = '2.13.3'
 
 
   java {
