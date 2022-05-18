@@ -56,8 +56,9 @@ definition
 	}
 
 rules
-    -- Only show ELEMENT[id9] if [id5]/value equals A (do not show if there is no value or the value is not A)
-    not exists /data[id2]/events[id3]/data[id4]/items[id5]/value or not /data[id2]/events[id3]/data[id4]/items[id5]/value matches {[at1]} implies not exists /data[id2]/events[id3]/data[id4]/items[id9]
+    -- Only show ELEMENT[id7/9] if [id5]/value equals A (do not show if there is no value or the value is not A)
+    not exists /data[id2]/events[id3]/data[id4]/items[id5]/value or not /data[id2]/events[id3]/data[id4]/items[id5]/value matches {[at1]} implies not exists /data[id2]/events[id3]/data[id4]/items[id7]
+    not /data[id2]/events[id3]/data[id4]/items[id5]/value matches {[at1]} or not exists /data[id2]/events[id3]/data[id4]/items[id5]/value implies not exists /data[id2]/events[id3]/data[id4]/items[id9]
 
 terminology
 	term_definitions = <

@@ -627,12 +627,14 @@ public abstract class ParsedRulesEvaluationTest {
         root.getData().getEvents().get(0).setData(null);
 
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(1, evaluationResult.getAssertionResults().size());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
         assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
 
         // Check that there is one path that must not exist
-        assertEquals(1, evaluationResult.getPathsThatMustNotExist().size());
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(0));
+        assertEquals(2, evaluationResult.getPathsThatMustNotExist().size());
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id7]", evaluationResult.getPathsThatMustNotExist().get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(1));
     }
 
     @Test
@@ -648,12 +650,14 @@ public abstract class ParsedRulesEvaluationTest {
         ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setValue("B");
 
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(1, evaluationResult.getAssertionResults().size());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
         assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
 
         // Check that there is one path that must not exist
-        assertEquals(1, evaluationResult.getPathsThatMustNotExist().size());
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(0));
+        assertEquals(2, evaluationResult.getPathsThatMustNotExist().size());
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id7]", evaluationResult.getPathsThatMustNotExist().get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(1));
     }
 
     @Test
@@ -669,8 +673,9 @@ public abstract class ParsedRulesEvaluationTest {
         ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setValue("A");
 
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(1, evaluationResult.getAssertionResults().size());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
         assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
 
         // Check that there is one path that must not exist
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
