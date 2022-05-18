@@ -148,7 +148,6 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             }
         }
 
-
         checkisBoolean(leftValues, rightValues);
 
         ValueList result = new ValueList();
@@ -162,12 +161,18 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             }
         } else if (leftValues.size() == 1) {
             Value<Boolean> leftValue = (Value<Boolean>) leftValues.get(0);
+            if (rightValues.isEmpty()) {
+                result.addValue(evaluateBoolean(statement, leftValue.getValue(), null), leftValue.getPaths());
+            }
             for(Value<?> rightValue:rightValues.getValues()) {
                 List<String> paths = getPaths(leftValue, rightValue);
                 result.addValue(evaluateBoolean(statement, leftValue.getValue(), ((Value<Boolean>) rightValue).getValue()), paths);
             }
         } else if (rightValues.size() == 1) {
             Value<Boolean>  rightValue = (Value<Boolean>) rightValues.get(0);
+            if (leftValues.isEmpty()) {
+                result.addValue(evaluateBoolean(statement, null, rightValue.getValue()), rightValue.getPaths());
+            }
             for(Value<?> leftValue:leftValues.getValues()) {
                 List<String> paths = getPaths(leftValue, rightValue);
                 result.addValue(evaluateBoolean(statement, ((Value<Boolean>) leftValue).getValue(), rightValue.getValue()), paths);
