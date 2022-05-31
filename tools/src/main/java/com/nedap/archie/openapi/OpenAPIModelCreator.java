@@ -368,6 +368,19 @@ public class OpenAPIModelCreator {
             BmmGenericType genericType = (BmmGenericType) type;
             if (isJSPrimitive(genericType)) {
                 return getJSPrimitive(genericType);
+            } else if (genericType.getBaseClass().getName().equalsIgnoreCase("Hash")) {
+                JsonObjectBuilder reference = createPolymorphicReference(genericType.getBaseClass());
+                if ( genericType.getGenericParameters() != null && genericType.getGenericParameters().size() > 1 ) {
+                    BmmType valueType = genericType.getGenericParameters().get(1);
+                    //TODO: is this correct?
+                    reference.add("additionalProperties",
+                            createPolymorphicReference(bmmModel.getClassDefinition(valueType.getTypeName())));
+                } else {
+                    reference.add("additionalProperties", true);
+                }
+                return reference;
+
+
             } else {
                 return createPolymorphicReference(genericType.getBaseClass());
             }
