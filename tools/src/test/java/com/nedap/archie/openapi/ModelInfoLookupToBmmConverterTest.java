@@ -95,6 +95,7 @@ public class ModelInfoLookupToBmmConverterTest {
         creator.addIgnoredType("LOCATABLE_REF");
         creator.addIgnoredType("PARTY_REF");
         creator.addIgnoredType("ACCESS_GROUP_REF");
+        creator.ignoreAncestors("MULTIPLICITY_INTERVAL");
 
         JsonObject jsonObject = creator.create(bmmValidationResult.getModel());
         Map<String, Object> config = new HashMap();

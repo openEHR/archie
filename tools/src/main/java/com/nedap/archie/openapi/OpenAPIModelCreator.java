@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.nedap.archie.aom.profile.AomProfiles;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.json.flat.AttributeReference;
 import org.openehr.bmm.core.*;
@@ -56,7 +57,11 @@ public class OpenAPIModelCreator {
 
     private boolean allowAdditionalProperties;
     private String exampleRootTypeName = "Composition";
-
+    /**
+      *A set containing all the type names that should be exported flat, without any ancestry.
+      *  Useful to map a type hierarchy that cannot be properly mapped to OpenAPI
+      */
+    private HashSet<String> ignoredAncestors;
 
     public OpenAPIModelCreator() {
         primitiveTypeMapping = new HashMap<>();
@@ -111,6 +116,7 @@ public class OpenAPIModelCreator {
 
         addAttributesFromParent = new HashMap<>();
         ignoredAttributes = new HashSet<>();
+        ignoredAncestors = new HashSet<>();
         Map<String, Object> config = new HashMap();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
@@ -131,7 +137,6 @@ public class OpenAPIModelCreator {
             attributes.add(ref.getAttributeName());
 
         });
-        this.addAttributesFromParent = addAttributesFromParent;
     }
 
     public JsonObject create(BmmModel bmm) {
@@ -221,13 +226,18 @@ public class OpenAPIModelCreator {
         String typeName = convertTypeName(originalTypeName);
 
         BmmClass flatBmmClass = bmmClass; //NO flattening!
+
         JsonArrayBuilder required = jsonFactory.createArrayBuilder();
         JsonObjectBuilder properties = jsonFactory.createObjectBuilder();
 
         boolean hasRequiredProperties = false;
         boolean atLeastOneProperty = false;
-        for (String propertyName : flatBmmClass.getProperties().keySet()) {
-            BmmProperty bmmProperty = flatBmmClass.getProperties().get(propertyName);
+        Map<String, BmmProperty<?>> bmmProperties = flatBmmClass.getProperties();
+        if(this.ignoredAncestors.contains(bmmClassName)) {
+            bmmProperties = bmmClass.getFlatProperties();
+        }
+        for (String propertyName : bmmProperties.keySet()) {
+            BmmProperty bmmProperty = bmmProperties.get(propertyName);
             if(bmmProperty.getComputed()) {
                 continue;//don't output this
             } else if (ignoredAttributes.contains(new AttributeReference(bmmClassName, propertyName))) {
@@ -280,6 +290,8 @@ public class OpenAPIModelCreator {
                 polymorphicArray.add(createReference(ancestor));
                 addedAncestors = true;
             }
+        } else if (ignoredAncestors.contains(bmmClassName)) {
+            addedAncestors = false;
         } else {
             for (BmmDefinedType ancestor : bmmClass.getAncestors().values()) {
                 if (!shouldAncestorBeIgnored(ancestor)) {
@@ -534,4 +546,7 @@ public class OpenAPIModelCreator {
         }
     }
 
+    public void ignoreAncestors(String multiplicity_interval) {
+        this.ignoredAncestors.add(multiplicity_interval);
+    }
 }
