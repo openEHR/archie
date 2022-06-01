@@ -374,7 +374,8 @@ public class OpenAPIModelCreator {
                     BmmType valueType = genericType.getGenericParameters().get(1);
                     //TODO: is this correct?
                     reference.add("additionalProperties",
-                            createPolymorphicReference(bmmModel.getClassDefinition(valueType.getTypeName())));
+                            createPropertyDef(valueType));
+                            //createPolymorphicReference(bmmModel.getClassDefinition(valueType.getTypeName())));
                 } else {
                     reference.add("additionalProperties", true);
                 }
