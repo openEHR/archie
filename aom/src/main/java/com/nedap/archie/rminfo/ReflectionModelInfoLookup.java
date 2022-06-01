@@ -153,14 +153,14 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         for(Field field: fieldsByName.values()) {
             addRMAttributeInfo(clazz, typeInfo, typeToken, field);
         }
-        if(addAttributesWithoutField) {
-            Set<Method> getters = ReflectionUtils.getAllMethods(clazz, (method) -> method.getName().startsWith("get") || method.getName().startsWith("is"));
-            for (Method getMethod : getters) {
-                if(shouldAdd(getMethod)) {
-                    addRMAttributeInfo(clazz, typeInfo, typeToken, getMethod, fieldsByName);
-                }
+
+        Set<Method> getters = ReflectionUtils.getAllMethods(clazz, (method) -> method.getName().startsWith("get") || method.getName().startsWith("is"));
+        for (Method getMethod : getters) {
+            if(shouldAddMethodWithoutField(getMethod)) {
+                addRMAttributeInfo(clazz, typeInfo, typeToken, getMethod, fieldsByName);
             }
         }
+
     }
 
     private void addInvariantChecks(Class clazz, RMTypeInfo typeInfo) {
@@ -178,6 +178,22 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         }
 
     }
+
+    protected boolean shouldAddMethodWithoutField(Method method) {
+        if(!this.addAttributesWithoutField) {
+            return false;
+        }
+        if(method == null) {
+            return true;
+        }
+        //do not add invariants
+        if(method.getAnnotation(Invariant.class) != null) {
+            return false;
+        }
+        //do not add private or protected properties, they will result in errors
+        return Modifier.isPublic(method.getModifiers()) && method.getAnnotation(RMPropertyIgnore.class) == null;
+    }
+
 
     protected boolean shouldAdd(Method method) {
         if(method == null) {
@@ -230,7 +246,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     typeInCollection,
                     this.namingStrategy.getTypeName(typeInCollection),
                     isNullable(clazz, getMethod, field),
-                    getMethod.getDeclaringClass().equals(clazz),
+                    !getMethod.getDeclaringClass().equals(clazz),
                     getMethod,
                     setMethod,
                     addMethod,
@@ -516,5 +532,9 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
     public Object convertConstrainedPrimitiveToRMObject(Object object) {
         //TODO: this should take an AttributeInfo as param, so to be able to pick the right object
         return object;
+    }
+
+    public boolean isAddAttributesWithoutField() {
+        return addAttributesWithoutField;
     }
 }

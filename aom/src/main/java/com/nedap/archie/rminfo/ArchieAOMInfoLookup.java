@@ -6,7 +6,10 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
+import com.nedap.archie.aom.terminology.ArchetypeTerm;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -159,6 +162,29 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
         List<RMPackageId> result = new ArrayList<>();
         result.add(new RMPackageId("OpenEHR", "AOM"));
         return result;
+    }
+
+    @Override
+    protected boolean shouldAddMethodWithoutField(Method method) {
+        if(method != null && method.getDeclaringClass().equals(ArchetypeTerm.class)) {
+            if(method.getName().equals("getDescription") ||
+                method.getName().equals("getText")) {
+                return true;
+            } else if(!this.isAddAttributesWithoutField()) {
+                return false;
+            }
+        } else if(!this.isAddAttributesWithoutField()) {
+            return false;
+        }
+        if(method == null) {
+            return true;
+        }
+        //do not add invariants
+        if(method.getAnnotation(Invariant.class) != null) {
+            return false;
+        }
+        //do not add private or protected properties, they will result in errors
+        return Modifier.isPublic(method.getModifiers()) && method.getAnnotation(RMPropertyIgnore.class) == null;
     }
 
 }
