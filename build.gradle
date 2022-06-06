@@ -76,7 +76,7 @@ subprojects {
     //java 10 no longer has these included by default, so explicit dependency is needed.
     api 'javax.xml.bind:jaxb-api:2.3.1'
     api 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    runtimeOnly 'com.sun.xml.bind:jaxb-impl:2.3.3'
+    runtimeOnly 'com.sun.xml.bind:jaxb-impl:4.0.0'
     api 'javax.activation:activation:1.1.1'
 
     api 'org.threeten:threeten-extra:1.7.0'
