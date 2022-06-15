@@ -95,6 +95,11 @@ public class ModelInfoLookupToBmmConverterTest {
         creator.addIgnoredType("LOCATABLE_REF");
         creator.addIgnoredType("PARTY_REF");
         creator.addIgnoredType("ACCESS_GROUP_REF");
+        //TODO: these should not be present by default, but should be added to the RM generator!
+        creator.removeIgnoredType("TRANSLATION_DETAILS");
+        creator.removeIgnoredType("AUTHORED_RESOURCE");
+        creator.removeIgnoredType("RESOURCE_DESCRIPTION");
+        creator.removeIgnoredType("RESOURCE_DESCRIPTION_ITEM");
         creator.ignoreAncestors("MULTIPLICITY_INTERVAL");
         //this is not picked up correctly by generics (and it shouldn't be), so needs manual mapping
         creator.overrideType("MULTIPLICITY_INTERVAL", "lower", "integer");

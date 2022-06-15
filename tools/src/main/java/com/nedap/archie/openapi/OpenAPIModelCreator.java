@@ -537,6 +537,10 @@ public class OpenAPIModelCreator {
         this.ignoredTypes.add(ignoredType);
     }
 
+    public void removeIgnoredType(String ignoredType) {
+        this.ignoredTypes.remove(ignoredType);
+    }
+
     /**
      * Converts OpenEHR type naming to UpperCamelCase, as it should be for OpenAPI specs
      * @param typeName
