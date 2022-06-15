@@ -91,10 +91,13 @@ public class ModelInfoLookupToBmmConverterTest {
                 .writeOneOf(true)
                 .withExampleRootTypeName("Archetype");
 
+        //not part of the AOM, but get added because of reasons, remove them.
         creator.addIgnoredType("OBJECT_REF");
         creator.addIgnoredType("LOCATABLE_REF");
         creator.addIgnoredType("PARTY_REF");
         creator.addIgnoredType("ACCESS_GROUP_REF");
+        //this class should not be added, it is an internal Archie construct and not used in json
+        creator.addIgnoredType("LANGUAGE_SECTION");
         //TODO: these should not be present by default, but should be added to the RM generator!
         creator.removeIgnoredType("TRANSLATION_DETAILS");
         creator.removeIgnoredType("AUTHORED_RESOURCE");

@@ -1,19 +1,13 @@
 package com.nedap.archie.rminfo;
 
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by pieter.bos on 06/07/16.
@@ -21,6 +15,8 @@ import java.util.Map;
 public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
 
     private static ArchieAOMInfoLookup instance;
+
+    private Set<Method> methodsToAddAsFields = new HashSet<>();
 
     public ArchieAOMInfoLookup() {
         super(new ArchieModelNamingStrategy(), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
@@ -36,6 +32,15 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
 
     @Override
     protected void addTypes(Class<?> baseClass) {
+        try {
+            methodsToAddAsFields = new HashSet<>();
+            methodsToAddAsFields.add(AuthoredResource.class.getMethod("getTranslations"));
+            methodsToAddAsFields.add(AuthoredResource.class.getMethod("getOriginalLanguage"));
+            methodsToAddAsFields.add(ArchetypeTerm.class.getMethod("getDescription"));
+            methodsToAddAsFields.add(ArchetypeTerm.class.getMethod("getText"));
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
         addClass(com.nedap.archie.aom.primitives.COrdered.class);
         addClass(com.nedap.archie.aom.CSecondOrder.class);
         addClass(com.nedap.archie.aom.CAttributeTuple.class);
@@ -166,13 +171,8 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
 
     @Override
     protected boolean shouldAddMethodWithoutField(Method method) {
-        if(method != null && method.getDeclaringClass().equals(ArchetypeTerm.class)) {
-            if(method.getName().equals("getDescription") ||
-                method.getName().equals("getText")) {
-                return true;
-            } else if(!this.isAddAttributesWithoutField()) {
-                return false;
-            }
+        if(method != null && methodsToAddAsFields.contains(method)) {
+            return true;
         } else if(!this.isAddAttributesWithoutField()) {
             return false;
         }
