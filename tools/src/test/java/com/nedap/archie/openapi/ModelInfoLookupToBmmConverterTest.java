@@ -69,8 +69,8 @@ public class ModelInfoLookupToBmmConverterTest {
 
         BmmRepository bmmRepository = new BmmRepository();
         try(InputStream stream = getClass().getResourceAsStream("openehr_base_for_aom.bmm")) {
-            PBmmSchema baseShema = BmmOdinParser.convert(stream);
-            bmmRepository.addPersistentSchema(baseShema);
+            PBmmSchema baseSchema = BmmOdinParser.convert(stream);
+            bmmRepository.addPersistentSchema(baseSchema);
         }
         BmmSchemaConverter bmmSchemaConverter = new BmmSchemaConverter(bmmRepository);
         bmmSchemaConverter.validateAndConvertRepository();
@@ -96,6 +96,9 @@ public class ModelInfoLookupToBmmConverterTest {
         creator.addIgnoredType("PARTY_REF");
         creator.addIgnoredType("ACCESS_GROUP_REF");
         creator.ignoreAncestors("MULTIPLICITY_INTERVAL");
+        //this is not picked up correctly by generics (and it shouldn't be), so needs manual mapping
+        creator.overrideType("MULTIPLICITY_INTERVAL", "lower", "integer");
+        creator.overrideType("MULTIPLICITY_INTERVAL", "upper", "integer");
 
         JsonObject jsonObject = creator.create(bmmValidationResult.getModel());
         Map<String, Object> config = new HashMap();

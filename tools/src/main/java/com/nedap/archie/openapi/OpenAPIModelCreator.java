@@ -6,6 +6,7 @@ import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.nedap.archie.aom.profile.AomProfiles;
+import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.json.flat.AttributeReference;
 import org.openehr.bmm.core.*;
@@ -17,6 +18,8 @@ import jakarta.json.JsonBuilderFactory;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import org.threeten.extra.PeriodDuration;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -62,6 +65,7 @@ public class OpenAPIModelCreator {
       *  Useful to map a type hierarchy that cannot be properly mapped to OpenAPI
       */
     private HashSet<String> ignoredAncestors;
+    private Map<AttributeReference, String> typeOverrides = new HashMap<>();
 
     public OpenAPIModelCreator() {
         primitiveTypeMapping = new HashMap<>();
@@ -255,7 +259,7 @@ public class OpenAPIModelCreator {
                 }
                 atLeastOneProperty = true;
             } else {
-                atLeastOneProperty = addPropertyDef(required, properties, propertyName, bmmProperty);
+                atLeastOneProperty = addPropertyDef(required, properties, propertyName, bmmClass, bmmProperty);
             }
         }
 
@@ -266,7 +270,7 @@ public class OpenAPIModelCreator {
             Map<String, BmmProperty<?>> flatProperties = bmmClass.getFlatProperties();
             for(String propertyName : propertiesToAddFromParent) {
                 BmmProperty<?> bmmProperty = flatProperties.get(propertyName);
-                atLeastOneProperty = addPropertyDef(required, properties, propertyName, bmmProperty);
+                atLeastOneProperty = addPropertyDef(required, properties, propertyName, bmmClass, bmmProperty);
             }
         }
 
@@ -325,9 +329,9 @@ public class OpenAPIModelCreator {
         }
     }
 
-    private boolean addPropertyDef(JsonArrayBuilder required, JsonObjectBuilder properties, String propertyName, BmmProperty bmmProperty) {
+    private boolean addPropertyDef(JsonArrayBuilder required, JsonObjectBuilder properties, String propertyName, BmmClass bmmClass, BmmProperty bmmProperty) {
         boolean atLeastOneProperty;
-        JsonObjectBuilder propertyDef = createPropertyDef(bmmProperty.getType());
+        JsonObjectBuilder propertyDef = createPropertyDef(bmmClass, bmmProperty, bmmProperty.getType());
         extendPropertyDef(propertyDef, bmmProperty);
         properties.add(propertyName, propertyDef);
 
@@ -353,8 +357,11 @@ public class OpenAPIModelCreator {
         }
     }
 
-    private JsonObjectBuilder createPropertyDef(BmmType type) {
-
+    private JsonObjectBuilder createPropertyDef(BmmClass clazz, BmmProperty property, BmmType type) {
+        String possiblyOverriddenType = getTypeOverride(clazz.getName(), property.getName());
+        if(possiblyOverriddenType != null) {
+            return createType(possiblyOverriddenType);
+        }
         if (type instanceof BmmParameterType) {
             return createType("object");
             //nothing more to be done
@@ -375,7 +382,7 @@ public class OpenAPIModelCreator {
             }
             return jsonFactory.createObjectBuilder()
                     .add("type", "array")
-                    .add("items", createPropertyDef(containerType.getBaseType()));
+                    .add("items", createPropertyDef(clazz, property, containerType.getBaseType()));
         } else if (type instanceof BmmGenericType) {
             BmmGenericType genericType = (BmmGenericType) type;
             if (isJSPrimitive(genericType)) {
@@ -386,7 +393,7 @@ public class OpenAPIModelCreator {
                     BmmType valueType = genericType.getGenericParameters().get(1);
                     //TODO: is this correct?
                     reference.add("additionalProperties",
-                            createPropertyDef(valueType));
+                            createPropertyDef(clazz, property, valueType));
                             //createPolymorphicReference(bmmModel.getClassDefinition(valueType.getTypeName())));
                 } else {
                     reference.add("additionalProperties", true);
@@ -548,5 +555,13 @@ public class OpenAPIModelCreator {
 
     public void ignoreAncestors(String multiplicity_interval) {
         this.ignoredAncestors.add(multiplicity_interval);
+    }
+
+    public void overrideType(String className, String propertyName, String overridenType) {
+        typeOverrides.put(new AttributeReference(className, propertyName), overridenType);
+    }
+
+    private String getTypeOverride(String className, String propertyName) {
+        return typeOverrides.get(new AttributeReference(className, propertyName));
     }
 }
