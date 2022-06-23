@@ -3,6 +3,8 @@ package com.nedap.archie.rmobjectvalidator;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeConstraint;
 
+import java.util.Objects;
+
 /**
  * Created by pieter.bos on 02/09/15.
  */
@@ -115,5 +117,23 @@ public class RMObjectValidationMessage {
             return archetype.getArchetypeId().getFullId();
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RMObjectValidationMessage that = (RMObjectValidationMessage) o;
+        return Objects.equals(archetypePath, that.archetypePath) &&
+                Objects.equals(path, that.path) &&
+                Objects.equals(humanReadableArchetypePath, that.humanReadableArchetypePath) &&
+                Objects.equals(message, that.message) &&
+                Objects.equals(archetypeId, that.archetypeId) &&
+                type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(archetypePath, path, humanReadableArchetypePath, message, archetypeId, type);
     }
 }
