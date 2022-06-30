@@ -7,13 +7,7 @@ import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Creates operational templates. Not to be used externally, use the Flattener with the right parameters to
@@ -190,6 +184,9 @@ class OperationalTemplateCreator {
         }
     }
 
+    /**
+     * Only fillArchetypeRoot if this is not done yet
+     */
     private void fillArchetypeRoot(CArchetypeRoot root, OperationalTemplate result) {
         if(flattener.getCreateOperationalTemplate() && ( root.getAttributes() == null || root.getAttributes().isEmpty()) ) {
             String archetypeRef = root.getArchetypeRef();
