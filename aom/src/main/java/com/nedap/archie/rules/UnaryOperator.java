@@ -20,4 +20,8 @@ public class UnaryOperator extends Operator {
         return super.getFirstOperand();
     }
 
+    public void setOperand(Expression operand) {
+        super.setFirstOperand(operand);
+    }
+
 }
