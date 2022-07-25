@@ -60,6 +60,20 @@ definition
 											}
 										}
 									}
+									CLUSTER[id81] matches {	-- Repeatable cluster
+										items matches {
+											ELEMENT[id82] occurrences matches {0..1} matches {	-- First element
+												value matches {
+													DV_BOOLEAN[id83] 
+												}
+											}
+											ELEMENT[id84] occurrences matches {0..1} matches {	-- Second element
+												value matches {
+													DV_TEXT[id85] 
+												}
+											}
+										}
+									}
 								}
 							}
 						}
@@ -74,6 +88,10 @@ rules
 	/data[id2]/events[id3]/data[id4]/items[id6]/value/defining_code matches {[at1]}
 	/data[id2]/events[id3]/data[id4]/items[id7]/value/symbol matches {[at6]}
 	/data[id2]/events[id3]/data[id4]/items[id8]/null_flavour/defining_code matches {[at1]}
+    for_all $cluster in /data[id2]/events[id3]/data[id4]/items[id81]
+          ($cluster/items[id82]/value/value implies
+            $cluster/items[id84]/value/value matches {"The boolean is true"})
+
 
 terminology
 	term_definitions = <
@@ -85,6 +103,18 @@ terminology
 			["at1"] = <
 				text = <"Option 1">
 				description = <"Option 1">
+			>
+			["id81"] = <
+				text = <"Repeatable cluster">
+				description = <"">
+			>
+			["id82"] = <
+				text = <"First element">
+				description = <"">
+			>
+			["id84"] = <
+				text = <"Second element">
+				description = <"">
 			>
 		>
 	>
