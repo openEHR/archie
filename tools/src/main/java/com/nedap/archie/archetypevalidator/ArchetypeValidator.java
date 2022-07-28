@@ -156,7 +156,7 @@ public class ArchetypeValidator {
                 if(parentValidationResult.passes()) {
                     flatParent = parentValidationResult.getFlattened();
                     if(flatParent instanceof Template) {
-                        Template parentTemplate = (Template) flatParent;
+                        Template parentTemplate = (Template) parentValidationResult.getSourceArchetype();
                         parentTemplate.getTemplateOverlays().forEach(
                                 extraRepository::addExtraArchetype
                         );
