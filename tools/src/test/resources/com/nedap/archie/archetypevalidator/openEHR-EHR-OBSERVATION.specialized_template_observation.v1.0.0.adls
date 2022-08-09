@@ -32,7 +32,6 @@ terminology
             ["id1.1"] = <
                 text = <"Test Observation Template">
                 description = <"Test Observation Template">
-                code = <"id1">
             >
             ["id7.1"] = <
                 text = <"Template overlay Cluster">
@@ -61,7 +60,6 @@ terminology
             ["id1.1"] = <
                 text = <"Simple test cluster">
                 description = <"For simple testing">
-                code = <"id1">
             >
             ["id2.1"] = <
                 text = <"Just a DV_TEXT that is specialized in a Template Overlay">
