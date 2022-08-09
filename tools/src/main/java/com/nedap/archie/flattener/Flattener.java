@@ -135,7 +135,6 @@ public class Flattener implements IAttributeFlattenerSupport {
         this.child = toFlatten.clone();//just to be sure, so we don't have to copy more things deeper down
 
 
-
         if(child instanceof Template) {
             Template childTemplate = (Template) child;
             for(TemplateOverlay overlay:childTemplate.getTemplateOverlays()) {
@@ -149,6 +148,8 @@ public class Flattener implements IAttributeFlattenerSupport {
             //parent needs flattening first
             Flattener parentFlattener = getNewFlattenerForParent();
             parent = parentFlattener.flatten(parent);
+            // Add the template overlays from the parents (if any) to the repository,
+            // so template overlays specializing other template overlays can be flattened.
             parentFlattener.getRepository().getExtraArchetypes().forEach(
                     a -> repository.addExtraArchetype(a)
             );
