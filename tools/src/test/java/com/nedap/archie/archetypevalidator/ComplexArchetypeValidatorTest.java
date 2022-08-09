@@ -2,10 +2,8 @@ package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,9 +23,6 @@ public class ComplexArchetypeValidatorTest {
 
     private static InMemoryFullArchetypeRepository repository;
 
-
-    private Flattener flattener;
-
     @Before
     public void setup() throws Exception {
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();
@@ -45,8 +40,6 @@ public class ComplexArchetypeValidatorTest {
         repository.addArchetype(observationTemplateWithOverlay);
         repository.addArchetype(specializedObservationTemplateWithOverlay);
         repository.addArchetype(compositionWithIncludedTemplate);
-
-        flattener = new Flattener(repository, models).createOperationalTemplate(true);
     }
 
     @Test

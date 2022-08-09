@@ -119,22 +119,6 @@ public class ArchetypeValidator {
             extraRepository = new OverridingInMemFullArchetypeRepository(repository);
         }
         repository = extraRepository;
-//        if(archetype instanceof Template) {
-//            //in the case of a template store the overlays in the extraRepository separate from the rest of the archetypes
-//            //later they can be retrieved and handled as extra archetypes, that are not top level archetypes usable in other
-//            //archetypes that are not templates
-//            //TODO: can we specialize templates? In that case we need more work to get any template overlays defined in
-//            //the parent template in this repo as well
-//
-//            for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
-//                extraRepository.addExtraArchetype(overlay);
-//            }
-//            for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
-//                //validate the overlays first, but make sure to do that only once (so don't call this same method!)
-//                extraRepository.compileAndRetrieveValidationResult(overlay.getArchetypeId().toString(), this);
-//                combinedModels.selectModel(archetype);
-//            }
-//        }
 
         combinedModels.selectModel(archetype);
 
@@ -157,6 +141,7 @@ public class ArchetypeValidator {
                     flatParent = parentValidationResult.getFlattened();
                     if(flatParent instanceof Template) {
                         Template parentTemplate = (Template) parentValidationResult.getSourceArchetype();
+                        // Add the template overlays from the parent to the extraRepository
                         parentTemplate.getTemplateOverlays().forEach(
                                 extraRepository::addExtraArchetype
                         );
@@ -178,8 +163,6 @@ public class ArchetypeValidator {
             //in the case of a template store the overlays in the extraRepository separate from the rest of the archetypes
             //later they can be retrieved and handled as extra archetypes, that are not top level archetypes usable in other
             //archetypes that are not templates
-            //TODO: can we specialize templates? In that case we need more work to get any template overlays defined in
-            //the parent template in this repo as well
 
             for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
                 extraRepository.addExtraArchetype(overlay);
