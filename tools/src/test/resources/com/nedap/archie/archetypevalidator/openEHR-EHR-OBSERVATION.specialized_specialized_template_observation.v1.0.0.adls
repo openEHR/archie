@@ -32,7 +32,6 @@ terminology
             ["id1.1.1"] = <
                 text = <"Specialized Test Observation Template">
                 description = <"For testing">
-                code = <"id1">
             >
         >
     >
@@ -53,7 +52,6 @@ terminology
             ["id1.1.1"] = <
                 text = <"Simple test cluster">
                 description = <"For simple testing">
-                code = <"id1">
             >
         >
     >
