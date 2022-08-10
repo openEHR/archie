@@ -18,10 +18,7 @@ import com.nedap.archie.paths.PathUtil;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.PartialMatch;
-import com.nedap.archie.rminfo.MetaModel;
-import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMAttributeInfo;
-import com.nedap.archie.rminfo.RMTypeInfo;
+import com.nedap.archie.rminfo.*;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
@@ -443,6 +440,30 @@ public class AOMUtils {
         for(String value:valueSetMembers) {
             if(AOMUtils.codesConformant(code, value)) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if the parent attribute of the given CObject is a container attribute.
+     *
+     * @see MetaModelInterface#isMultiple(String, String)
+     */
+    public static boolean parentIsMultiple(CObject cObject, Archetype flatParentArchetype, MetaModels metaModels) {
+        if(cObject.getParent() != null) {
+
+            CAttribute parent = cObject.getParent();
+            CObject owningObject = parent.getParent();
+            if (parent.getDifferentialPath() != null && flatParentArchetype != null) {
+                CAttribute attributeFromParent = (CAttribute) AOMUtils.getDifferentialPathFromParent(flatParentArchetype, parent);
+                if(attributeFromParent != null) {
+                    owningObject = attributeFromParent.getParent();
+                }
+
+            }
+            if(owningObject != null) {
+                return metaModels.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
             }
         }
         return false;
