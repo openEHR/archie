@@ -1,12 +1,10 @@
 package com.nedap.archie.adl14;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.log.ConvertedCodeResult;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CArchetypeRoot;
 import com.nedap.archie.aom.CAttribute;
@@ -38,6 +36,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.nedap.archie.aom.utils.AOMUtils.parentIsMultiple;
 
 public class ADL14NodeIDConverter {
 
@@ -82,6 +82,8 @@ public class ADL14NodeIDConverter {
     public ADL2ConversionLog convert() {
         metaModels.selectModel(archetype);
         correctItemsCardinality(archetype.getDefinition());
+        List<String> unnecessaryCodes = findUnnecessaryCodes(archetype.getDefinition(),
+                archetype.getTerminology().getTermDefinitions().get(archetype.getOriginalLanguage().getCodeString()));
         convert(archetype.getDefinition());
         if(previousConversionApplier != null) {
             //tricky stuff here:
@@ -101,7 +103,7 @@ public class ADL14NodeIDConverter {
         convertTermBindings(archetype);
         generateMissingNodeIds(archetype.getDefinition());
 
-        convertTermDefinitions(archetype, convertedCodes);
+        convertTermDefinitions(archetype, convertedCodes, unnecessaryCodes);
         previousConversionApplier.removeCreatedUnusedTermCodesAndValueSets();
         return new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
     }
@@ -123,7 +125,35 @@ public class ADL14NodeIDConverter {
 
     }
 
-    public static void convertTermDefinitions(Archetype archetype, Map<String, ConvertedCodeResult> convertedCodes) {
+    /**
+     * Find which node identifiers don't need to be in the archetype terminology in ADL2.
+     * 
+     * The identifiers of single object nodes defined under single-valued attributes don't need terminology definitions,
+     * so filter those which have a short text and "@ internal @" in the description in the original language.
+     * 
+     * @see <a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_node_identifiers_2">ADL2 - 4.3.4.1. Node Identifiers</a>
+     */
+    private List<String> findUnnecessaryCodes(CObject cObject, Map<String, ArchetypeTerm> originalLanguageTermDefinitions) {
+        List<String> result = new ArrayList<>();
+
+        String code = cObject.getNodeId();
+        ArchetypeTerm term = originalLanguageTermDefinitions.get(code);
+        if (term != null && term.getText() != null && term.getText().length() < 19
+                && term.getDescription() != null && term.getDescription().contains("@ internal @")) {
+            if (!cObject.isRootNode() && !parentIsMultiple(cObject, flatParentArchetype, metaModels)) {
+                result.add(code);
+            }
+        }
+
+        for (CAttribute attribute : cObject.getAttributes()) {
+            for (CObject child : attribute.getChildren()) {
+                result.addAll(findUnnecessaryCodes(child, originalLanguageTermDefinitions));
+            }
+        }
+        return result;
+    }
+
+    public static void convertTermDefinitions(Archetype archetype, Map<String, ConvertedCodeResult> convertedCodes, List<String> unnecessaryCodes) {
         //process the codes in alphabetical order, high to low, to prevent overwriting codes
         //even better would probably be to create an empty terminology and separate all new+converted codes and old codes
         //instead of doing this in place. Worth a refactor perhaps?
@@ -131,12 +161,11 @@ public class ADL14NodeIDConverter {
         Comparator<ConvertedCodeResult> comparator = Comparator.comparing(r -> r.getOriginalCode());
         sortedCodes.sort(comparator.reversed());
 
-
         for(ConvertedCodeResult convertedCode: sortedCodes) {
             for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
                 Map<String, ArchetypeTerm> terms = archetype.getTerminology().getTermDefinitions().get(language);
                 ArchetypeTerm term = terms.remove(convertedCode.getOriginalCode());
-                if (term != null) {
+                if (term != null && !unnecessaryCodes.contains(convertedCode.getOriginalCode())) {
                     for (String newCode : convertedCode.getConvertedCodes()) {
                         ArchetypeTerm newTerm = new ArchetypeTerm();
                         newTerm.setCode(newCode);
