@@ -3,13 +3,17 @@ package com.nedap.archie.rminfo;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.aom.*;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.CAttribute;
+import com.nedap.archie.aom.CAttributeTuple;
+import com.nedap.archie.aom.CPrimitiveTuple;
+import com.nedap.archie.aom.OperationalTemplate;
+import com.nedap.archie.aom.primitives.CInteger;
+import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
-import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
@@ -18,14 +22,18 @@ import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
+import com.nedap.archie.rm.datavalues.quantity.DvProportion;
+import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.support.identification.TerminologyId;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.xpath.XPathExpressionException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.xpath.XPathExpressionException;
 
 public class UpdatedValueHandler {
 
@@ -35,8 +43,96 @@ public class UpdatedValueHandler {
         if(parent instanceof CodePhrase) {
             return fixCodePhrase(rmObject, archetype, pathOfParent);
         }
+        if (parent instanceof DvQuantity) {
+            return fixDvQuantity(rmObject, archetype, pathOfParent);
+        }
+        if (parent instanceof DvProportion) {
+            return fixDvProportion(rmObject, archetype, pathOfParent);
+        }
+        return new HashMap<>();
+    }
+
+    private static Map<String, Object> fixDvProportion(Object rmObject, Archetype archetype, String pathOfParent) {
+        try {
+            OperationalTemplate template = (OperationalTemplate) archetype;
+            Map<String, Object> result = new HashMap<>();
+
+            RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent);
+
+            DvProportion proportion = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+
+            // TODO Figure out how to not hardcode these
+            proportion.setDenominator(100.0);
+            result.put(pathOfParent + "/denominator", 100.0);
+            proportion.setType(2L);
+            result.put(pathOfParent + "/type", 2L);
+            proportion.setPrecision(1L);
+            result.put(pathOfParent + "/precision", 1L);
+
+            return result;
+        } catch (Exception e) {
+            logger.warn("cannot fix DvProportion", e);
+        }
 
         return new HashMap<>();
+    }
+
+    private static Map<String, Object> fixDvQuantity(Object rmObject, Archetype archetype, String pathOfParent) {
+        try {
+            // TODO Check for magnitude?
+            // TODO Check if this fix actually needs to occur
+            return fixForMagnitude(rmObject, (OperationalTemplate) archetype, pathOfParent);
+        } catch (Exception e) {
+            logger.warn("cannot fix DvQuantity", e);
+        }
+
+        return new HashMap<>();
+    }
+
+    private static Map<String, Object> fixForMagnitude(Object rmObject, OperationalTemplate template, String pathOfParent) {
+        Map<String, Object> result = new HashMap<>();
+
+        RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent);
+        DvQuantity quantity = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+
+        CAttribute units = template.getDefinition().itemAtPath(pathOfParent + "/units");
+        CAttribute precision = template.getDefinition().itemAtPath(pathOfParent + "/precision");
+
+        if (units.getChildren().size() != 1) return result; // Only fix if there is 1 unit
+
+        // Fix units
+        CString cString = (CString) units.getChildren().get(0);
+        List<String> cStringConstraint = cString.getConstraint();
+        if(cStringConstraint != null && cStringConstraint.size() == 1) {
+            String constraint = cStringConstraint.get(0);
+            if(!CString.isRegexConstraint(constraint)) {
+                quantity.setUnits(constraint);
+                result.put(pathOfParent + "/units", constraint);
+            }
+        }
+
+        if (precision.getChildren().size() != 1)
+            return result; // Only fix if there is 1 precision
+
+        // Fix precision
+        CInteger cInteger = (CInteger) precision.getChildren().get(0);
+
+        List<Interval<Long>> cIntegerConstraint = cInteger.getConstraint();
+
+        if (cIntegerConstraint != null && cIntegerConstraint.size() == 1) {
+            Interval<Long> interval = cIntegerConstraint.get(0);
+            long value;
+            if (interval.isUpperUnbounded()) {
+                value = -1;
+            } else if (interval.isUpperIncluded() && interval.getUpper() != null) {
+                value = interval.getUpper();
+            } else if (interval.getUpper() != null) {
+                value = interval.getUpper() -1 ;
+            } else throw new IllegalStateException("upper bound was not available");
+            quantity.setPrecision(value);
+            result.put(pathOfParent + "/precision", value);
+        }
+        return result;
     }
 
     private static Map<String, Object> fixCodePhrase(Object rmObject, Archetype archetype, String pathOfParent) {
