@@ -32,7 +32,15 @@ public class ForAllStatement extends Operator {
         return getFirstOperand();
     }
 
+    public void setPathExpression(Expression pathExpression) {
+        super.setFirstOperand(pathExpression);
+    }
+
     public Expression getAssertion() {
         return getSecondOperand();
+    }
+
+    public void setAssertion(Expression assertion) {
+        super.setSecondOperand(assertion);
     }
 }
