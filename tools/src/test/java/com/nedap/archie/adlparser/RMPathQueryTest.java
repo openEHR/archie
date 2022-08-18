@@ -99,6 +99,14 @@ public class RMPathQueryTest {
         for(RMObjectWithPath value:values) {
             assertEquals(value.getObject(), new RMPathQuery(value.getPath()).findList(modelInfoLookup, composition).get(0).getObject());
         }
+
+        // check that one result is returned when specifying an index, and with the correct path
+        values = new RMPathQuery("/context[id11]/other_context[id2]/items[id3,1]/items[id5]/value").findList(modelInfoLookup, composition);
+        assertEquals(1, values.size());
+        assertEquals("/context/other_context[id2]/items[id3, 1]/items[id5, 2]/value", values.get(0).getPath());
+        for(RMObjectWithPath value:values) {
+            assertEquals(value.getObject(), new RMPathQuery(value.getPath()).findList(modelInfoLookup, composition).get(0).getObject());
+        }
     }
 
 
