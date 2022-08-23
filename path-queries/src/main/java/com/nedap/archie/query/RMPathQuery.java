@@ -245,7 +245,7 @@ public class RMPathQuery {
             for(Object object:collection) {
                 if(number == i) {
                     //TODO: check for other constraints as well
-                    return Lists.newArrayList(new RMObjectWithPath(object, path + buildPathConstraint(i-1, lookup.getArchetypeNodeIdFromRMObject(object))));
+                    return Lists.newArrayList(new RMObjectWithPath(object, path + buildPathConstraint(i, lookup.getArchetypeNodeIdFromRMObject(object))));
                 }
                 i++;
             }
