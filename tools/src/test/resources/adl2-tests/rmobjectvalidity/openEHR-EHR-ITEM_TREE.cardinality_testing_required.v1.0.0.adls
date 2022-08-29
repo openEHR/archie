@@ -19,22 +19,14 @@ description
 definition
     ITEM_TREE[id1] matches {    -- Cardinality Testing
         items cardinality matches {1..2; unique} matches {
-            CLUSTER[id5] occurrences matches {0..1} matches {    -- Cluster 1
-                items matches {
-                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Text 1
-                        value matches {
-                            DV_TEXT[id8] 
-                        }
-                    }
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- Text 1
+                value matches {
+                    DV_TEXT[id8]
                 }
             }
-            CLUSTER[id6] occurrences matches {0..1} matches {    -- Cluster 2
-                items matches {
-                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Text 2
-                        value matches {
-                            DV_TEXT[id14] 
-                        }
-                    }
+            ELEMENT[id13] occurrences matches {0..1} matches {    -- Text 2
+                value matches {
+                    DV_TEXT[id14]
                 }
             }
         }
@@ -47,14 +39,6 @@ terminology
                 text = <"Cardinality Testing required">
                 description = <"Cardinality testing required">
                 code = <"id1">
-            >
-            ["id5"] = <
-                text = <"Cluster 1">
-                description = <"">
-            >
-            ["id6"] = <
-                text = <"Cluster 2">
-                description = <"">
             >
             ["id7"] = <
                 text = <"Text 1">

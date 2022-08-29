@@ -91,8 +91,8 @@ public class RmObjectValidatorTest {
         OperationalTemplate opt = createOpt(archetype);
 
         ItemTree itemTree = (ItemTree) testUtil.constructEmptyRMObject(archetype.getDefinition());
-        ((DvText) ((Element) ((Cluster) itemTree.getItems().get(0)).getItems().get(0)).getValue()).setValue("Text 1");
-        ((DvText) ((Element) ((Cluster) itemTree.getItems().get(1)).getItems().get(0)).getValue()).setValue("Text 2");
+        ((DvText) ((Element) itemTree.getItems().get(0)).getValue()).setValue("Text 1");
+        ((DvText) ((Element) itemTree.getItems().get(1)).getValue()).setValue("Text 2");
 
         validator.setRunInvariantChecks(false);
         List<RMObjectValidationMessage> validationMessages = validator.validate(opt, itemTree);
