@@ -9,8 +9,11 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
+import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
+import com.nedap.archie.rm.datastructures.Item;
+import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvProportion;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
@@ -62,6 +65,41 @@ public class RmObjectValidatorTest {
         validationMessages = validator.validate(opt, element);
         assertEquals("There should be 0 errors", 0, validationMessages.size());
 
+    }
+
+    @Test
+    public void cardinalityValidationMessageTypeRequired() throws Exception {
+        Archetype archetype = parse("/adl2-tests/rmobjectvalidity/openEHR-EHR-ITEM_TREE.cardinality_testing_required.v1.0.0.adls");
+        OperationalTemplate opt = createOpt(archetype);
+
+        ItemTree itemTree = (ItemTree) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        List<Item> items = itemTree.getItems();
+        items.remove(0);
+        items.remove(0);
+
+        validator.setRunInvariantChecks(false);
+        List<RMObjectValidationMessage> validationMessages = validator.validate(opt, itemTree);
+        assertEquals("There should be 1 error", 1, validationMessages.size());
+        assertEquals("Attribute does not match cardinality 1..2", validationMessages.get(0).getMessage());
+        // Type should be REQUIRED
+        assertEquals(RMObjectValidationMessageType.REQUIRED, validationMessages.get(0).getType());
+    }
+
+    @Test
+    public void cardinalityValidationMessageTypeDefault() throws Exception {
+        Archetype archetype = parse("/adl2-tests/rmobjectvalidity/openEHR-EHR-ITEM_TREE.cardinality_testing_optional.v1.0.0.adls");
+        OperationalTemplate opt = createOpt(archetype);
+
+        ItemTree itemTree = (ItemTree) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        ((DvText) ((Element) ((Cluster) itemTree.getItems().get(0)).getItems().get(0)).getValue()).setValue("Text 1");
+        ((DvText) ((Element) ((Cluster) itemTree.getItems().get(1)).getItems().get(0)).getValue()).setValue("Text 2");
+
+        validator.setRunInvariantChecks(false);
+        List<RMObjectValidationMessage> validationMessages = validator.validate(opt, itemTree);
+        assertEquals("There should be 1 error", 1, validationMessages.size());
+        assertEquals("Attribute does not match cardinality 0..1", validationMessages.get(0).getMessage());
+        // Type should be DEFAULT
+        assertEquals(RMObjectValidationMessageType.DEFAULT, validationMessages.get(0).getType());
     }
 
     private OperationalTemplate createOpt(Archetype archetype) {
