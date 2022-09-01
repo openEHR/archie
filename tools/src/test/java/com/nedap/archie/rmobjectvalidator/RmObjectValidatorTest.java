@@ -68,8 +68,8 @@ public class RmObjectValidatorTest {
     }
 
     @Test
-    public void cardinalityValidationMessageTypeRequired() throws Exception {
-        Archetype archetype = parse("/adl2-tests/rmobjectvalidity/openEHR-EHR-ITEM_TREE.cardinality_testing_required.v1.0.0.adls");
+    public void cardinalityMismatchValidation() throws Exception {
+        Archetype archetype = parse("/adl2-tests/rmobjectvalidity/openEHR-EHR-ITEM_TREE.cardinality_testing.v1.0.0.adls");
         OperationalTemplate opt = createOpt(archetype);
 
         ItemTree itemTree = (ItemTree) testUtil.constructEmptyRMObject(archetype.getDefinition());
@@ -82,24 +82,7 @@ public class RmObjectValidatorTest {
         assertEquals("There should be 1 error", 1, validationMessages.size());
         assertEquals("Attribute does not match cardinality 1..2", validationMessages.get(0).getMessage());
         // Type should be REQUIRED
-        assertEquals(RMObjectValidationMessageType.REQUIRED, validationMessages.get(0).getType());
-    }
-
-    @Test
-    public void cardinalityValidationMessageTypeDefault() throws Exception {
-        Archetype archetype = parse("/adl2-tests/rmobjectvalidity/openEHR-EHR-ITEM_TREE.cardinality_testing_optional.v1.0.0.adls");
-        OperationalTemplate opt = createOpt(archetype);
-
-        ItemTree itemTree = (ItemTree) testUtil.constructEmptyRMObject(archetype.getDefinition());
-        ((DvText) ((Element) itemTree.getItems().get(0)).getValue()).setValue("Text 1");
-        ((DvText) ((Element) itemTree.getItems().get(1)).getValue()).setValue("Text 2");
-
-        validator.setRunInvariantChecks(false);
-        List<RMObjectValidationMessage> validationMessages = validator.validate(opt, itemTree);
-        assertEquals("There should be 1 error", 1, validationMessages.size());
-        assertEquals("Attribute does not match cardinality 0..1", validationMessages.get(0).getMessage());
-        // Type should be DEFAULT
-        assertEquals(RMObjectValidationMessageType.DEFAULT, validationMessages.get(0).getType());
+        assertEquals(RMObjectValidationMessageType.CARDINALITY_MISMATCH, validationMessages.get(0).getType());
     }
 
     private OperationalTemplate createOpt(Archetype archetype) {

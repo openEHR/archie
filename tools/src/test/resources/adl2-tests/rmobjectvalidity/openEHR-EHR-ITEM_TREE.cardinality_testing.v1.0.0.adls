@@ -1,5 +1,5 @@
 archetype (adl_version=2.0.5; rm_release=1.0.4)
-    openEHR-EHR-ITEM_TREE.cardinality_testing_required.v1.0.0
+    openEHR-EHR-ITEM_TREE.cardinality_testing.v1.0.0
 
 language
     original_language = <[ISO_639-1::en]>
@@ -36,8 +36,8 @@ terminology
     term_definitions = <
         ["en"] = <
             ["id1"] = <
-                text = <"Cardinality Testing required">
-                description = <"Cardinality testing required">
+                text = <"Cardinality Testing">
+                description = <"Cardinality testing">
                 code = <"id1">
             >
             ["id7"] = <
