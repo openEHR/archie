@@ -21,7 +21,7 @@ public class RMMultiplicityValidation {
             if (cardinality != null) {
                 if (!cardinality.getInterval().has(collectionValue.size())) {
                     String message = RMObjectValidationMessageIds.rm_CARDINALITY_MISMATCH.getMessage(cardinality.getInterval().toString());
-                    return Lists.newArrayList(new RMObjectValidationMessage(attribute, pathSoFar, message));
+                    return Lists.newArrayList(new RMObjectValidationMessage(attribute, pathSoFar, message, RMObjectValidationMessageType.CARDINALITY_MISMATCH));
                 }
             }
         } else {
