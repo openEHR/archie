@@ -146,7 +146,13 @@ public class Flattener implements IAttributeFlattenerSupport {
 
         if(parent.getParentArchetypeId() != null) {
             //parent needs flattening first
-            parent = getNewFlattenerForParent().flatten(parent);
+            Flattener parentFlattener = getNewFlattenerForParent();
+            parent = parentFlattener.flatten(parent);
+            // Add the template overlays from the parents (if any) to the repository,
+            // so template overlays specializing other template overlays can be flattened.
+            parentFlattener.getRepository().getExtraArchetypes().forEach(
+                    a -> repository.addExtraArchetype(a)
+            );
         }
 
 
