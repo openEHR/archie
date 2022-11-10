@@ -2,6 +2,7 @@ package com.nedap.archie.query;
 
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -102,10 +103,14 @@ public class RMPathQuery {
         }
     }
 
+    public <T> List<RMObjectWithPath> findList(ModelInfoLookup lookup, Object root) {
+        return findList(lookup, root, false);
+    }
+
     /**
      * You will want to use RMQueryContext in many cases. For perforamnce reasons, this could still be useful
      */
-    public <T> List<RMObjectWithPath> findList(ModelInfoLookup lookup, Object root) {
+    public <T> List<RMObjectWithPath> findList(ModelInfoLookup lookup, Object root, boolean matchSpecialisedNodes) {
         List<RMObjectWithPath> currentObjects = Lists.newArrayList(new RMObjectWithPath(root, "/"));
         try {
             for (PathSegment segment : pathSegments) {
@@ -139,7 +144,7 @@ public class RMPathQuery {
                             addAllFromCollection(lookup, newCurrentObjects, collection, newPath);
                         } else {
                             //TODO
-                            newCurrentObjects.addAll(findRMObjectsWithPathCollection(lookup, segment, collection, newPath));
+                            newCurrentObjects.addAll(findRMObjectsWithPathCollection(lookup, segment, collection, newPath, matchSpecialisedNodes));
                         }
                     } else if (archetypeNodeIdFromObject != null) {
 
@@ -237,7 +242,7 @@ public class RMPathQuery {
         return archetypeNodeId != null && !archetypeNodeId.equals(AdlCodeDefinitions.PRIMITIVE_NODE_ID);
     }
 
-    private Collection<RMObjectWithPath> findRMObjectsWithPathCollection(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection, String path) {
+    private Collection<RMObjectWithPath> findRMObjectsWithPathCollection(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection, String path, boolean matchSpecialisedNodes) {
 
         if(segment.hasNumberIndex()) {
             int number = segment.getIndex();
@@ -256,9 +261,17 @@ public class RMPathQuery {
             String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(object);
 
             if (segment.hasIdCode()) {
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
+                // TODO: If matchedSpecialised, do something else
+                if (matchSpecialisedNodes) {
+                    if (AOMUtils.codesConformant(archetypeNodeId, segment.getNodeId())) {
+                        result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
+                    }
+                } else {
+                    if (segment.getNodeId().equals(archetypeNodeId)) {
+                        result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
+                    }
                 }
+
             } else if (segment.hasArchetypeRef()) {
                 //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
                 //we support. Other things not so much
