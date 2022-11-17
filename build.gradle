@@ -59,7 +59,7 @@ subprojects {
     api 'org.slf4j:slf4j-api:1.7.36'
 
     api "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
-    api "com.fasterxml.jackson.core:jackson-databind:2.13.4.2"
+    api "com.fasterxml.jackson.core:jackson-databind:2.14.0"
     api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
 
     implementation 'com.google.guava:guava:31.1-jre'
