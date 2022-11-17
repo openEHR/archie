@@ -47,7 +47,11 @@ public class AOMPathQuery {
     }
 
     public <T extends ArchetypeModelObject> T find(CComplexObject root) {
-       List<T> list = findList(root);
+        return find(root, false);
+    }
+
+    public <T extends ArchetypeModelObject> T find(CComplexObject root, boolean matchSpecializedNodes) {
+       List<T> list = findList(root, matchSpecializedNodes);
         if(list.isEmpty()) {
             return null;
         } else if (list.size() == 1) {

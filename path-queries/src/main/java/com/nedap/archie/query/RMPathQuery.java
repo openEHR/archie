@@ -28,10 +28,16 @@ import java.util.List;
 public class RMPathQuery {
 
     private List<PathSegment> pathSegments = new ArrayList<>();
+    private final boolean matchSpecialisedNodes;
 
     public RMPathQuery(String query) {
         pathSegments = new APathQuery(query).getPathSegments();
+        matchSpecialisedNodes = false;
+    }
 
+    public RMPathQuery(String query, boolean matchSpecialisedNodes) {
+        pathSegments = new APathQuery(query).getPathSegments();
+        this.matchSpecialisedNodes = matchSpecialisedNodes;
     }
 
 
@@ -103,14 +109,10 @@ public class RMPathQuery {
         }
     }
 
-    public <T> List<RMObjectWithPath> findList(ModelInfoLookup lookup, Object root) {
-        return findList(lookup, root, false);
-    }
-
     /**
      * You will want to use RMQueryContext in many cases. For perforamnce reasons, this could still be useful
      */
-    public <T> List<RMObjectWithPath> findList(ModelInfoLookup lookup, Object root, boolean matchSpecialisedNodes) {
+    public <T> List<RMObjectWithPath> findList(ModelInfoLookup lookup, Object root) {
         List<RMObjectWithPath> currentObjects = Lists.newArrayList(new RMObjectWithPath(root, "/"));
         try {
             for (PathSegment segment : pathSegments) {
@@ -144,7 +146,7 @@ public class RMPathQuery {
                             addAllFromCollection(lookup, newCurrentObjects, collection, newPath);
                         } else {
                             //TODO
-                            newCurrentObjects.addAll(findRMObjectsWithPathCollection(lookup, segment, collection, newPath, matchSpecialisedNodes));
+                            newCurrentObjects.addAll(findRMObjectsWithPathCollection(lookup, segment, collection, newPath));
                         }
                     } else if (archetypeNodeIdFromObject != null) {
 
@@ -242,7 +244,7 @@ public class RMPathQuery {
         return archetypeNodeId != null && !archetypeNodeId.equals(AdlCodeDefinitions.PRIMITIVE_NODE_ID);
     }
 
-    private Collection<RMObjectWithPath> findRMObjectsWithPathCollection(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection, String path, boolean matchSpecialisedNodes) {
+    private Collection<RMObjectWithPath> findRMObjectsWithPathCollection(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection, String path) {
 
         if(segment.hasNumberIndex()) {
             int number = segment.getIndex();
@@ -261,7 +263,6 @@ public class RMPathQuery {
             String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(object);
 
             if (segment.hasIdCode()) {
-                // TODO: If matchedSpecialised, do something else
                 if (matchSpecialisedNodes) {
                     if (AOMUtils.codesConformant(archetypeNodeId, segment.getNodeId())) {
                         result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
@@ -302,10 +303,15 @@ public class RMPathQuery {
         }
         for(Object o:collection) {
             String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(o);
-
             if (segment.hasIdCode()) {
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    return o;
+                if (matchSpecialisedNodes) {
+                    if (AOMUtils.codesConformant(archetypeNodeId, segment.getNodeId())) {
+                        return o;
+                    }
+                } else {
+                    if (segment.getNodeId().equals(archetypeNodeId)) {
+                        return o;
+                    }
                 }
             } else if (segment.hasArchetypeRef()) {
                 //operational templates in RM Objects have their archetype node ID set to an archetype ref. That

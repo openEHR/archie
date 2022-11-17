@@ -21,21 +21,9 @@ import com.nedap.archie.xml.types.StringDictionaryItem;
 import javax.annotation.Nullable;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -258,8 +246,16 @@ public class Archetype extends AuthoredResource {
         return new AOMPathQuery(path).find(getDefinition());
     }
 
+    public <T extends ArchetypeModelObject> T itemAtPathIncludeSpecialised(String path) {
+        return new AOMPathQuery(path).find(getDefinition(), true);
+    }
+
     public List<ArchetypeModelObject> itemsAtPath(String path) {
         return new AOMPathQuery(path).findList(getDefinition());
+    }
+
+    public List<ArchetypeModelObject> itemsAtPathIncludeSpecialised(String path) {
+        return new AOMPathQuery(path).findList(getDefinition(), true);
     }
 
     public boolean hasPath(String path) {

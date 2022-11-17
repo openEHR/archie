@@ -4,7 +4,6 @@ import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.query.RMObjectWithPath;
-import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.APathQueryCache;
@@ -21,7 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 /**
@@ -179,7 +177,8 @@ public class RuleEvaluation<T> {
 
     public List<RMObjectWithPath> findListWithPaths(String path) {
         if(rmQueryContext == null) {
-            return queryCache.getApathQuery(path).findList(getModelInfoLookup(), getRMRoot());
+            // TODO: check if this boolean should go here or (somehow) be passed through
+            return queryCache.getApathQuery(path, true).findList(getModelInfoLookup(), getRMRoot());
         } else {
             try {
                 return rmQueryContext.findListWithPaths(path);
