@@ -4,12 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 
 import java.io.InputStream;
-import java.time.Duration;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -127,7 +128,38 @@ public class RMJacksonTest {
                 removeWhiteSpaces(actualJson));
     }
 
+    @Test
+    public void serializeDvDateTime() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        DvDateTime dateTime = new DvDateTime(LocalDateTime.of(2015, 1, 1, 12, 10, 12, 0));
+        String dateTimeString = objectMapper.writeValueAsString(dateTime);
+        assertTrue(dateTimeString.contains("\"2015-01-01T12:10:12\""));
+        DvDateTime parsedDateTime = objectMapper.readValue(dateTimeString, DvDateTime.class);
+        assertEquals(dateTime.getValue(), parsedDateTime.getValue());
+
+        DvDateTime date = new DvDateTime(LocalDate.of(2015, 1, 1));
+        String dateString = objectMapper.writeValueAsString(date);
+        assertTrue(dateString.contains("\"2015-01-01\""));
+        DvDateTime parsedDate = objectMapper.readValue(dateString, DvDateTime.class);
+        assertEquals(date.getValue(), parsedDate.getValue());
+
+        DvDateTime yearMonth = new DvDateTime(YearMonth.of(2015, 1));
+        String yearMonthString = objectMapper.writeValueAsString(yearMonth);
+        assertTrue(yearMonthString.contains("\"2015-01\""));
+        DvDateTime parsedYearMonth = objectMapper.readValue(yearMonthString, DvDateTime.class);
+        assertEquals(yearMonth.getValue(), parsedYearMonth.getValue());
+
+        DvDateTime year = new DvDateTime(Year.of(2015));
+        String yearString = objectMapper.writeValueAsString(year);
+        assertTrue(yearString, yearString.contains("\"2015\""));
+        DvDateTime parsedYear = objectMapper.readValue(yearString, DvDateTime.class);
+        assertEquals(year.getValue(), parsedYear.getValue());
+    }
+
     String removeWhiteSpaces(String input) {
         return input.replaceAll("\\s+", "");
     }
+
+
+
 }
