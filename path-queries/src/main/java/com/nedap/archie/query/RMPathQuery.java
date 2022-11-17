@@ -2,6 +2,7 @@ package com.nedap.archie.query;
 
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -27,10 +28,16 @@ import java.util.List;
 public class RMPathQuery {
 
     private List<PathSegment> pathSegments = new ArrayList<>();
+    private final boolean matchSpecialisedNodes;
 
     public RMPathQuery(String query) {
         pathSegments = new APathQuery(query).getPathSegments();
+        matchSpecialisedNodes = false;
+    }
 
+    public RMPathQuery(String query, boolean matchSpecialisedNodes) {
+        pathSegments = new APathQuery(query).getPathSegments();
+        this.matchSpecialisedNodes = matchSpecialisedNodes;
     }
 
 
@@ -256,9 +263,16 @@ public class RMPathQuery {
             String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(object);
 
             if (segment.hasIdCode()) {
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
+                if (matchSpecialisedNodes) {
+                    if (AOMUtils.codesConformant(archetypeNodeId, segment.getNodeId())) {
+                        result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
+                    }
+                } else {
+                    if (segment.getNodeId().equals(archetypeNodeId)) {
+                        result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
+                    }
                 }
+
             } else if (segment.hasArchetypeRef()) {
                 //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
                 //we support. Other things not so much
@@ -289,10 +303,15 @@ public class RMPathQuery {
         }
         for(Object o:collection) {
             String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(o);
-
             if (segment.hasIdCode()) {
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    return o;
+                if (matchSpecialisedNodes) {
+                    if (AOMUtils.codesConformant(archetypeNodeId, segment.getNodeId())) {
+                        return o;
+                    }
+                } else {
+                    if (segment.getNodeId().equals(archetypeNodeId)) {
+                        return o;
+                    }
                 }
             } else if (segment.hasArchetypeRef()) {
                 //operational templates in RM Objects have their archetype node ID set to an archetype ref. That

@@ -13,9 +13,13 @@ public class APathQueryCache {
     private HashMap<String, RMPathQuery> queryCache = new HashMap<>();
 
     public RMPathQuery getApathQuery(String query) {
+       return getApathQuery(query, false);
+    }
+
+    public RMPathQuery getApathQuery(String query, boolean matchSpecialisedNodes) {
         RMPathQuery result = queryCache.get(query);
         if (result == null) {
-            result = new RMPathQuery(query);
+            result = new RMPathQuery(query, matchSpecialisedNodes);
             queryCache.put(query, result);
         }
         return result;

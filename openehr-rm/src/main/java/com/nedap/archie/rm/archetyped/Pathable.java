@@ -50,8 +50,21 @@ public abstract class Pathable extends RMObject {
         return new RMPathQuery(s).find(ArchieRMInfoLookup.getInstance(), this);
     }
 
+    public Object itemAtPathMatchSpecialisedNodes(String s) {
+        return new RMPathQuery(s, true).find(ArchieRMInfoLookup.getInstance(), this);
+    }
+
     public List<Object> itemsAtPath(String s) {
         List<RMObjectWithPath> objects = new RMPathQuery(s).findList(ArchieRMInfoLookup.getInstance(), this);
+        List<Object> result = new ArrayList<>();
+        for (RMObjectWithPath object : objects) {
+            result.add(object.getObject());
+        }
+        return result;
+    }
+
+    public List<Object> itemsAtPathMatchSpecialisedNodes(String s) {
+        List<RMObjectWithPath> objects = new RMPathQuery(s, true).findList(ArchieRMInfoLookup.getInstance(), this);
         List<Object> result = new ArrayList<>();
         for (RMObjectWithPath object : objects) {
             result.add(object.getObject());
