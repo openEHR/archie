@@ -39,9 +39,17 @@ public class Operator extends Expression {
         return operands.size() > 0 ? operands.get(0) : null;
     }
 
+    protected void setFirstOperand(Expression firstOperand) {
+        setLeftOperand(firstOperand);
+    }
+
     @JsonIgnore
     protected Expression getSecondOperand() {
         return operands.size() > 1 ? operands.get(1) : null;
+    }
+
+    protected void setSecondOperand(Expression secondOperand) {
+        setRightOperand(secondOperand);
     }
 
     public String getSymbol() {

@@ -8,7 +8,7 @@ wrapper {
 }
 
 allprojects {
-  version = '2.0.1'
+  version = '2.0.5'
   group = 'com.nedap.healthcare.archie'
   ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
   //archivesBaseName = 'archie'
@@ -46,7 +46,7 @@ subprojects {
   }
 
   ext.reflectionsVersion = '0.9.12'
-  ext.jacksonVersion = '2.13.2'
+  ext.jacksonVersion = '2.13.4'
 
 
   java {
@@ -70,7 +70,7 @@ subprojects {
     implementation('commons-io:commons-io:2.11.0'){
       exclude group: 'commons-logging', module: 'commons-logging'
     }
-    implementation 'org.apache.commons:commons-text:1.9'
+    implementation 'org.apache.commons:commons-text:1.10.0'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     //java 10 no longer has these included by default, so explicit dependency is needed.
@@ -79,7 +79,7 @@ subprojects {
     runtimeOnly 'com.sun.xml.bind:jaxb-impl:2.3.3'
     api 'javax.activation:activation:1.1.1'
 
-    api 'org.threeten:threeten-extra:1.7.0'
+    api 'org.threeten:threeten-extra:1.7.1'
 
     testImplementation 'junit:junit:4.+'
     testImplementation 'org.slf4j:slf4j-simple:1.7.36'

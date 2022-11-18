@@ -77,8 +77,8 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
 
     private ValueList evaluateImplies(RuleEvaluation<?> evaluation, BinaryOperator statement) {
         ValueList leftValue = evaluation.evaluate(statement.getLeftOperand());
+        ValueList rightValue = evaluation.evaluate(statement.getRightOperand());
         if(leftValue.getSingleBooleanResult()) {
-            ValueList rightValue  = evaluation.evaluate(statement.getRightOperand());
             return rightValue;
         } else {
             //if the left operand evaluates to false, this implies nothing and the result is true
