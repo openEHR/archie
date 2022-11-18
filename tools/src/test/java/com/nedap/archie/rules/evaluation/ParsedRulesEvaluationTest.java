@@ -631,7 +631,7 @@ public abstract class ParsedRulesEvaluationTest {
         assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
         assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
 
-        // Check that there is one path that must not exist
+        // Check that when no answer is given, both paths should not exist
         assertEquals(2, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id7]", evaluationResult.getPathsThatMustNotExist().get(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(1));
@@ -643,7 +643,7 @@ public abstract class ParsedRulesEvaluationTest {
         RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
 
         Observation root = (Observation) testUtil.constructEmptyRMObject(archetype.getDefinition());
-        // Simulate selecting the option that should hide another element
+        // Simulate selecting the option that should hide the elements
         root.getData().getEvents().get(0).getData().getItems().remove(2);
         root.getData().getEvents().get(0).getData().getItems().remove(1);
         ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setDefiningCode(new CodePhrase(new TerminologyId("ac1"), "at2"));
@@ -654,7 +654,7 @@ public abstract class ParsedRulesEvaluationTest {
         assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
         assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
 
-        // Check that there is one path that must not exist
+        // Check that when answer B is given, both paths should not exist
         assertEquals(2, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id7]", evaluationResult.getPathsThatMustNotExist().get(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(1));
@@ -677,7 +677,7 @@ public abstract class ParsedRulesEvaluationTest {
         assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
         assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
 
-        // Check that there is one path that must not exist
+        // Check that when answer A is given, both paths should exist, so no path must not exist
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
     }
 
