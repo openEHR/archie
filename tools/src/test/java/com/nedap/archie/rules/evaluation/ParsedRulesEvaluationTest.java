@@ -615,7 +615,70 @@ public abstract class ParsedRulesEvaluationTest {
         assertEquals(0, evaluationResult.getPathsThatMustExist().size());
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals(0, evaluationResult.getSetPathValues().size());
+    }
 
+    @Test
+    public void orNoData() throws Exception {
+        parse("or.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+
+        Observation root = (Observation) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        // Simulate using evaluate without providing any data
+        root.getData().getEvents().get(0).setData(null);
+
+        EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
+
+        // Check that there is one path that must not exist
+        assertEquals(2, evaluationResult.getPathsThatMustNotExist().size());
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id7]", evaluationResult.getPathsThatMustNotExist().get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(1));
+    }
+
+    @Test
+    public void orSelectPathNotExists() throws Exception {
+        parse("or.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+
+        Observation root = (Observation) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        // Simulate selecting the option that should hide another element
+        root.getData().getEvents().get(0).getData().getItems().remove(2);
+        root.getData().getEvents().get(0).getData().getItems().remove(1);
+        ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setDefiningCode(new CodePhrase(new TerminologyId("ac1"), "at2"));
+        ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setValue("B");
+
+        EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
+
+        // Check that there is one path that must not exist
+        assertEquals(2, evaluationResult.getPathsThatMustNotExist().size());
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id7]", evaluationResult.getPathsThatMustNotExist().get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(1));
+    }
+
+    @Test
+    public void orSelectPathExists() throws Exception {
+        parse("or.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+
+        Observation root = (Observation) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        // Simulate selecting the option that should hide another element
+        root.getData().getEvents().get(0).getData().getItems().remove(2);
+        root.getData().getEvents().get(0).getData().getItems().remove(1);
+        ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setDefiningCode(new CodePhrase(new TerminologyId("ac1"), "at1"));
+        ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setValue("A");
+
+        EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
+
+        // Check that there is one path that must not exist
+        assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
     }
 
     @Test
