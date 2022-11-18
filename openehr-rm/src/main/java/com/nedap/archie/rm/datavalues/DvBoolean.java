@@ -16,6 +16,13 @@ public class DvBoolean extends DataValue implements SingleValuedDataValue<Boolea
 
     private Boolean value;
 
+    public DvBoolean() {
+    }
+
+    public DvBoolean(Boolean value) {
+        this.value = value;
+    }
+
     @Override
     public Boolean getValue() {
         return value;
