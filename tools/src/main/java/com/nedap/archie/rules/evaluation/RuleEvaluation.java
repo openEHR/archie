@@ -177,8 +177,7 @@ public class RuleEvaluation<T> {
 
     public List<RMObjectWithPath> findListWithPaths(String path) {
         if(rmQueryContext == null) {
-            // TODO: check if this boolean should go here or (somehow) be passed through
-            return queryCache.getApathQuery(path, true).findList(getModelInfoLookup(), getRMRoot());
+            return queryCache.getApathQuery(path).findList(getModelInfoLookup(), getRMRoot());
         } else {
             try {
                 return rmQueryContext.findListWithPaths(path);

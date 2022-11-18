@@ -33,7 +33,7 @@ public class RMPathQueryTest {
 
 
     private TestUtil testUtil;
-    private Archetype archetype, archetype_specialised, archetype_specialised_again;
+    private Archetype archetype, archetype_specialised, archetype_specialised_twice;
     private Pathable root;
 
     @Before
@@ -150,11 +150,11 @@ public class RMPathQueryTest {
         InMemoryFullArchetypeRepository inMemoryFullArchetypeRepository = new InMemoryFullArchetypeRepository();
         inMemoryFullArchetypeRepository.addArchetype(archetype);
         archetype_specialised = TestUtil.parseFailOnErrors("/basic_specialised.adls");
-        archetype_specialised_again = TestUtil.parseFailOnErrors("/basic_specialised2.adls");
+        archetype_specialised_twice = TestUtil.parseFailOnErrors("/basic_specialised2.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
-        inMemoryFullArchetypeRepository.addArchetype(archetype_specialised_again);
+        inMemoryFullArchetypeRepository.addArchetype(archetype_specialised_twice);
         Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised_again);
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised_twice);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
         List<RMObjectWithPath> listId5 = new RMPathQuery("/context/other_context[id2]/items[id3]/items[id5]", true).findList(ArchieRMInfoLookup.getInstance(), root);

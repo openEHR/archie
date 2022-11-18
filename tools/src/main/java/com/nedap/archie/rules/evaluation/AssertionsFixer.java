@@ -91,10 +91,9 @@ public class AssertionsFixer {
         }
         List<ArchetypeModelObject> constraints;
         if (newPathOfParent.equals("/")) {
-            // TODO: specifically test these "IncludeSpecialised" things
-            constraints = archetype.itemsAtPathIncludeSpecialised("/" + newLastPathSegment);
+            constraints = archetype.itemsAtPath("/" + newLastPathSegment);
         } else {
-            constraints = archetype.itemsAtPathIncludeSpecialised(newPathOfParent + "/" + newLastPathSegment);
+            constraints = archetype.itemsAtPath(newPathOfParent + "/" + newLastPathSegment);
         }
 
         if (constraintsHasNoComplexObjects(constraints)) {

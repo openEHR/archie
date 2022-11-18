@@ -10,13 +10,18 @@ import java.util.HashMap;
  */
 public class APathQueryCache {
 
-    private HashMap<String, RMPathQuery> queryCache = new HashMap<>();
+    private final boolean matchSpecialisedNodes;
+    private final HashMap<String, RMPathQuery> queryCache = new HashMap<>();
 
-    public RMPathQuery getApathQuery(String query) {
-       return getApathQuery(query, false);
+    public APathQueryCache() {
+        this(false);
     }
 
-    public RMPathQuery getApathQuery(String query, boolean matchSpecialisedNodes) {
+    public APathQueryCache(boolean matchSpecialisedNodes) {
+        this.matchSpecialisedNodes = matchSpecialisedNodes;
+    }
+
+    public RMPathQuery getApathQuery(String query) {
         RMPathQuery result = queryCache.get(query);
         if (result == null) {
             result = new RMPathQuery(query, matchSpecialisedNodes);

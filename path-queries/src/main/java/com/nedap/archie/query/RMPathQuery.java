@@ -31,8 +31,7 @@ public class RMPathQuery {
     private final boolean matchSpecialisedNodes;
 
     public RMPathQuery(String query) {
-        pathSegments = new APathQuery(query).getPathSegments();
-        matchSpecialisedNodes = false;
+        this(query, false);
     }
 
     public RMPathQuery(String query, boolean matchSpecialisedNodes) {
