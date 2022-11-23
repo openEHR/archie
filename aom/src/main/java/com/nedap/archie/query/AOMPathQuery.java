@@ -47,7 +47,7 @@ public class AOMPathQuery {
     }
 
     public <T extends ArchetypeModelObject> T find(CComplexObject root) {
-       List<T> list = findList(root);
+        List<T> list = findList(root);
         if(list.isEmpty()) {
             return null;
         } else if (list.size() == 1) {
@@ -227,7 +227,7 @@ public class AOMPathQuery {
      * Useful mainly when flattening, probably does not have many other uses
      */
     public CComplexObjectProxy findAnyInternalReference(CComplexObject root) {
-       return (CComplexObjectProxy) findMatchingPredicate(root, (o) -> o instanceof CComplexObjectProxy);
+        return (CComplexObjectProxy) findMatchingPredicate(root, (o) -> o instanceof CComplexObjectProxy);
     }
 
     /**
