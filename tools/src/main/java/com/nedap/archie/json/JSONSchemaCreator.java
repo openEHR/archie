@@ -67,9 +67,10 @@ public class JSONSchemaCreator {
         rootTypes.add("CLUSTER");
         rootTypes.add("CAPABILITY");
         rootTypes.add("PERSON");
-        rootTypes.add("ADDRESS");
         rootTypes.add("ROLE");
         rootTypes.add("ORGANISATION");
+        rootTypes.add("AGENT");
+        rootTypes.add("GROUP");
         rootTypes.add("PARTY_IDENTITY");
         rootTypes.add("ITEM_TREE");
         rootTypes.add("CONTRIBUTION");
@@ -77,6 +78,13 @@ public class JSONSchemaCreator {
         rootTypes.add("EHR_STATUS");
         rootTypes.add("ORIGINAL_VERSION");
         rootTypes.add("IMPORTED_VERSION");
+        rootTypes.add("HISTORY");
+        rootTypes.add("ITEM_TABLE");
+        rootTypes.add("ITEM_LIST");
+        rootTypes.add("ITEM_TREE");
+        rootTypes.add("ITEM_SINGLE");
+        rootTypes.add("ITEM_TABLE");
+        rootTypes.add("ELEMENT");
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
@@ -423,6 +431,11 @@ public class JSONSchemaCreator {
     private JsonObjectBuilder createReference(BmmClass classContainingReference, String type) {
         JsonSchemaUri packageFileName = classContainingReference == null ? new JsonSchemaUri("", "") : uriProvider.provideJsonSchemaUrl(classContainingReference);
         return createRootlevelReference(packageFileName, type);
+    }
+
+    public JSONSchemaCreator setRootTypes(List<String> rootTypes) {
+        this.rootTypes = rootTypes;
+        return this;
     }
 
     public JSONSchemaCreator allowAdditionalProperties(boolean allowAdditionalProperties) {
