@@ -10,11 +10,8 @@ import jakarta.json.JsonBuilderFactory;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.function.Supplier;
 
 public class JSONSchemaCreator {
@@ -24,6 +21,7 @@ public class JSONSchemaCreator {
     private List<String> rootTypes;
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
+    private Set<String> ignoredAttributes;
 
     private boolean fullReferences = false;
 
@@ -85,6 +83,10 @@ public class JSONSchemaCreator {
         rootTypes.add("ITEM_SINGLE");
         rootTypes.add("ITEM_TABLE");
         rootTypes.add("ELEMENT");
+
+        ignoredAttributes = new HashSet<>();
+        ignoredAttributes.add("DV_QUANTITY.property");
+
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
@@ -170,7 +172,9 @@ public class JSONSchemaCreator {
             BmmProperty<?> bmmProperty = flatProperties.get(propertyName);
             if(bmmProperty.getComputed()) {
                 continue;//don't output this
-            } else if((typeName.equalsIgnoreCase("POINT_EVENT") || typeName.equalsIgnoreCase("INTERVAL_EVENT")) &&
+            } else if (ignoredAttributes.contains(typeName + "." + propertyName)) {
+                continue; //don't output this either
+            } if((typeName.equalsIgnoreCase("POINT_EVENT") || typeName.equalsIgnoreCase("INTERVAL_EVENT")) &&
                     propertyName.equalsIgnoreCase("data")) {
                 //we don't handle generics yet, and it's very tricky with the current BMM indeed. So, just manually hack this
                 JsonObjectBuilder propertyDef = createPolymorphicReference(bmmClass, bmmModel.getClassDefinition("ITEM_STRUCTURE"));
