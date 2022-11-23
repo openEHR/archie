@@ -44,7 +44,7 @@ public final class PBmmSimpleType extends PBmmUnitaryType {
         } else if (simpleClassDef instanceof BmmSimpleClass) {
             return new BmmSimpleType((BmmSimpleClass) simpleClassDef);
         } else {
-            throw new RuntimeException("BmmClass " + type + " should be a simple type, but was " + simpleClassDef.getClass().getSimpleName());
+            throw new RuntimeException("BmmClass " + type + ", referenced from classDefinition " + (classDefinition == null ? "null" : classDefinition.getName()) + "  should be a simple type, but was " + simpleClassDef.getClass().getSimpleName());
         }
     }
 
