@@ -1,33 +1,34 @@
 package com.nedap.archie.adlparser;
 
-import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.ArchetypeModelObject;
+import com.nedap.archie.aom.CAttribute;
+import com.nedap.archie.aom.CAttributeTuple;
+import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.flattener.Flattener;
-import com.nedap.archie.flattener.FlattenerConfiguration;
-import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by pieter.bos on 19/10/15.
  */
 public class DefinitionTest {
 
-    private Archetype archetype, archetype_specialised, archetype_specialised_twice;
+    private Archetype archetype;
 
     @Before
     public void setup() throws Exception {
-        archetype = TestUtil.parseFailOnErrors("/basic.adl");
-        archetype_specialised = TestUtil.parseFailOnErrors("/basic_specialised.adls");
-        archetype_specialised_twice = TestUtil.parseFailOnErrors("/basic_specialised2.adls");
+        archetype = TestUtil.parseFailOnErrors("/basic.adl");;
     }
 
     @Test
@@ -125,29 +126,4 @@ public class DefinitionTest {
         assertEquals("kg", kilograms.getConstraint().get(0));
 
     }
-
-    @Test
-    public void itemsAtPathTest() {
-        List<ArchetypeModelObject> list = archetype.itemsAtPath("/context[id11]/other_context[id2]/items[id3]/items[id5]");
-        assertEquals(1, list.size());
-        assertEquals(CComplexObject.class, list.get(0).getClass());
-        CComplexObject element = (CComplexObject) list.get(0);
-        assertEquals("id5", element.getNodeId());
-    }
-
-    @Test
-    public void itemsAtPathIncludeSpecialisedTest() {
-        InMemoryFullArchetypeRepository inMemoryFullArchetypeRepository = new InMemoryFullArchetypeRepository();
-        inMemoryFullArchetypeRepository.addArchetype(archetype);
-        inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
-        inMemoryFullArchetypeRepository.addArchetype(archetype_specialised_twice);
-
-        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised_twice);
-
-        List<ArchetypeModelObject> list = opt.itemsAtPathIncludeSpecialised("/context[id11]/other_context[id2]/items[id3]/items[id5]");
-        // TODO: looks like a bug: the items contain the elements 5.1 and 5.1.1, but itemsAtPathIncludeSpecialised only returns 5.1.
-        assertEquals(2, list.size());
-    }
-
 }

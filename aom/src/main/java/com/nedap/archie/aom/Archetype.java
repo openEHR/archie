@@ -246,16 +246,8 @@ public class Archetype extends AuthoredResource {
         return new AOMPathQuery(path).find(getDefinition());
     }
 
-    public <T extends ArchetypeModelObject> T itemAtPathIncludeSpecialised(String path) {
-        return new AOMPathQuery(path).find(getDefinition(), true);
-    }
-
     public List<ArchetypeModelObject> itemsAtPath(String path) {
         return new AOMPathQuery(path).findList(getDefinition());
-    }
-
-    public List<ArchetypeModelObject> itemsAtPathIncludeSpecialised(String path) {
-        return new AOMPathQuery(path).findList(getDefinition(), true);
     }
 
     public boolean hasPath(String path) {
