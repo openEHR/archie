@@ -257,9 +257,9 @@ class_definitions = <
 				type_def = <
 					container_type = <"List">
 					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"EVENT">
-						generic_parameters = <"T">
-					>
+                        root_type = <"EVENT">
+                        generic_parameters = <"T">
+                    >
 				>
 				cardinality = <|>=1|>
 			>
@@ -1056,7 +1056,6 @@ class_definitions = <
 					root_type = <"Hash">
 					generic_parameters = <"String", "String">
 				>
-				is_mandatory = <True>
 			>
 		>
 	>

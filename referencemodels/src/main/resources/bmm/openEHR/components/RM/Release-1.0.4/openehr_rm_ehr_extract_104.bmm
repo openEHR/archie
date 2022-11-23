@@ -231,11 +231,11 @@ class_definitions = <
 				type = <"String">
 				is_im_runtime = <True>
 			>
-			["other_ids"] = (P_BMM_CONTAINER_PROPERTY) <
+			["other_ids"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"other_ids">
 				type_def = <
-					container_type = <"Hash">
-					type = <"String">
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
 				>
 				is_im_runtime = <True>
 			>
@@ -477,11 +477,11 @@ class_definitions = <
 				type = <"String">
 				is_im_runtime = <True>
 			>
-			["other_details"] = (P_BMM_CONTAINER_PROPERTY) <
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"other_details">
 				type_def = <
-					container_type = <"Hash">
-					type = <"String">
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
 				>
 			>
 			["item"] = (P_BMM_SINGLE_PROPERTY) <
