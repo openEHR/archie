@@ -70,7 +70,7 @@ packages = <
 			["identification"] = <
 				name = <"identification">
 				classes = <"OBJECT_REF", "OBJECT_ID", "UID", "LOCATABLE_REF", "PARTY_REF", "TERMINOLOGY_ID", 
-					"UID_BASED_ID", "GENERIC_ID", "ARCHETYPE_ID", "ARCHETYPE_HRID", "TEMPLATE_ID", "OBJECT_VERSION_ID", 
+					"UID_BASED_ID", "GENERIC_ID", "ARCHETYPE_ID", "TEMPLATE_ID", "OBJECT_VERSION_ID",
 					"HIER_OBJECT_ID", "VERSION_TREE_ID", "INTERNET_ID", "UUID", "ISO_OID"
 				>
 			>
@@ -148,12 +148,14 @@ primitive_types = <
 
 	["Iso8601_type"] = <
 		name = <"Iso8601_type">
+		is_abstract = <True>
 		documentation = <"Parent of ISO8601 types.">
-		ancestors = <"Any">
+		ancestors = <"Ordered">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
 				type = <"String">
+				is_mandatory = <True>
 			>
 		>
 	>
@@ -244,7 +246,6 @@ primitive_types = <
 			["uri"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"uri">
 				type = <"Uri">
-				is_mandatory = <True>
 			>
 		>
 	>
@@ -441,11 +442,6 @@ class_definitions = <
 	
 	["ARCHETYPE_ID"] = <
 		name = <"ARCHETYPE_ID">
-		ancestors = <"OBJECT_ID">
-	>
-	
-	["ARCHETYPE_HRID"] = <
-		name = <"ARCHETYPE_HRID">
 		ancestors = <"OBJECT_ID">
 	>
 	
