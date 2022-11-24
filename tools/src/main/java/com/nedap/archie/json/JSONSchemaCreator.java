@@ -10,11 +10,8 @@ import jakarta.json.JsonBuilderFactory;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.function.Supplier;
 
 public class JSONSchemaCreator {
@@ -24,6 +21,7 @@ public class JSONSchemaCreator {
     private List<String> rootTypes;
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
+    private Set<String> ignoredAttributes;
 
     private boolean fullReferences = false;
 
@@ -67,9 +65,10 @@ public class JSONSchemaCreator {
         rootTypes.add("CLUSTER");
         rootTypes.add("CAPABILITY");
         rootTypes.add("PERSON");
-        rootTypes.add("ADDRESS");
         rootTypes.add("ROLE");
         rootTypes.add("ORGANISATION");
+        rootTypes.add("AGENT");
+        rootTypes.add("GROUP");
         rootTypes.add("PARTY_IDENTITY");
         rootTypes.add("ITEM_TREE");
         rootTypes.add("CONTRIBUTION");
@@ -77,6 +76,17 @@ public class JSONSchemaCreator {
         rootTypes.add("EHR_STATUS");
         rootTypes.add("ORIGINAL_VERSION");
         rootTypes.add("IMPORTED_VERSION");
+        rootTypes.add("HISTORY");
+        rootTypes.add("ITEM_TABLE");
+        rootTypes.add("ITEM_LIST");
+        rootTypes.add("ITEM_TREE");
+        rootTypes.add("ITEM_SINGLE");
+        rootTypes.add("ITEM_TABLE");
+        rootTypes.add("ELEMENT");
+
+        ignoredAttributes = new HashSet<>();
+        ignoredAttributes.add("DV_QUANTITY.property");
+
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
@@ -162,7 +172,9 @@ public class JSONSchemaCreator {
             BmmProperty<?> bmmProperty = flatProperties.get(propertyName);
             if(bmmProperty.getComputed()) {
                 continue;//don't output this
-            } else if((typeName.equalsIgnoreCase("POINT_EVENT") || typeName.equalsIgnoreCase("INTERVAL_EVENT")) &&
+            } else if (ignoredAttributes.contains(typeName + "." + propertyName)) {
+                continue; //don't output this either
+            } if((typeName.equalsIgnoreCase("POINT_EVENT") || typeName.equalsIgnoreCase("INTERVAL_EVENT")) &&
                     propertyName.equalsIgnoreCase("data")) {
                 //we don't handle generics yet, and it's very tricky with the current BMM indeed. So, just manually hack this
                 JsonObjectBuilder propertyDef = createPolymorphicReference(bmmClass, bmmModel.getClassDefinition("ITEM_STRUCTURE"));
@@ -243,7 +255,9 @@ public class JSONSchemaCreator {
                 .add("items", createPropertyDef(classContainingProperty, containerType.getBaseType()));
         } else if (type instanceof BmmGenericType) {
             BmmGenericType genericType = (BmmGenericType) type;
-            if (isJSPrimitive(genericType)) {
+            if (genericType.getBaseClass().getName().equalsIgnoreCase("hash")) {
+                return getHash(classContainingProperty, genericType);
+            } else if (isJSPrimitive(genericType)) {
                 return getJSPrimitive(genericType);
             } else {
                 return createPolymorphicReference(classContainingProperty, genericType.getBaseClass());
@@ -252,6 +266,18 @@ public class JSONSchemaCreator {
         }
         throw new IllegalArgumentException("type must be a BmmType, but was " + type.getClass().getSimpleName());
 
+    }
+
+    private JsonObjectBuilder getHash(BmmClass classContainingProperty, BmmGenericType genericType) {
+        if(genericType.getGenericParameters().size() == 2) {
+            BmmType keyType = genericType.getGenericParameters().get(0);
+            BmmType valueType = genericType.getGenericParameters().get(1);
+            JsonObjectBuilder object = createType("object");
+            object.add("additionalProperties", createPropertyDef(classContainingProperty, valueType));
+            return object;
+        } else {
+            return getJSPrimitive(genericType);
+        }
     }
 
     /**
@@ -423,6 +449,11 @@ public class JSONSchemaCreator {
     private JsonObjectBuilder createReference(BmmClass classContainingReference, String type) {
         JsonSchemaUri packageFileName = classContainingReference == null ? new JsonSchemaUri("", "") : uriProvider.provideJsonSchemaUrl(classContainingReference);
         return createRootlevelReference(packageFileName, type);
+    }
+
+    public JSONSchemaCreator setRootTypes(List<String> rootTypes) {
+        this.rootTypes = rootTypes;
+        return this;
     }
 
     public JSONSchemaCreator allowAdditionalProperties(boolean allowAdditionalProperties) {
