@@ -5,7 +5,7 @@
 -- 	keywords:    reference model, meta-model, archetypes
 -- 	author:      Thomas Beale <thomas.beale@openEHR.org>
 -- 	support:     https://openehr.atlassian.net/projects/SPECPR
--- 	copyright:   Copyright (c) 2016 openEHR Foundation <https://www.openEHR.org>
+-- 	copyright:   Copyright (c) 2020 openEHR Foundation <https://www.openEHR.org>
 -- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
@@ -20,15 +20,15 @@ bmm_version = <"2.3">
 ------------------------------------------------------
 rm_publisher = <"openehr">
 schema_name = <"proc_task_planning">
-rm_release = <"1.0.0">
+rm_release = <"1.6.0">
 model_name = <"TASK_PLANNING">
 
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"1.0.0.1">
+schema_revision = <"1.6.0.1">
 schema_lifecycle_state = <"development">
-schema_description = <"openEHR Release 1.0.0 Task Management schema">
+schema_description = <"openEHR Release 1.6.0 Task Planning schema">
 schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 
 ------------------------------------------------------
@@ -36,10 +36,10 @@ schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 ------------------------------------------------------
 includes = <
 	["1"] = <
-		id = <"openehr_rm_ehr_1.0.4">
+		id = <"openehr_rm_ehr_1.1.0">
 	>
 	["2"] = <
-		id = <"openehr_rm_demographic_1.0.4">
+		id = <"openehr_rm_demographic_1.1.0">
 	>
 	["3"] = <
 		id = <"openehr_lang_1.0.0">
@@ -55,8 +55,8 @@ packages = <
 	["org.openehr.proc.task_planning"] = <
 		name = <"org.openehr.proc.task_planning">
 		classes = <"SYSTEM_CALL", "PARAMETER_MAPPING", "PARAMETER_DEF", "QUERY_CALL", "API_CALL",
-			"TASK_LIFECYCLE", "TIME_SPECIFIER", "CLOCK_TIME", "CALENDAR_TIME", "CUSTOMARY_TIME",  
-			"TEMPORAL_RELATION", "RESUME_TYPE"
+			"TASK_LIFECYCLE", "TIME_SPECIFIER", "CLOCK_TIME", "CUSTOMARY_TIME",  
+			"TEMPORAL_RELATION", "RESUME_TYPE", "PLAN_TIME_ORIGIN"
 		>
 		packages = <
 			["definition"] = <
@@ -69,11 +69,12 @@ packages = <
 					"BOOLEAN_CONTEXT_EXPRESSION", "CONTEXT_CONSTANT", "EXTERNAL_VARIABLE", "LOCAL_VARIABLE",
 					"EVENT_VARIABLE", "STATE_VARIABLE", "CONTINUOUS_EVENT_VARIABLE",
 
-					"PLAN_CALENDAR", "PLAN_TIMELINE", "CALENDAR_ENTRY", "TASK_REPEAT",
+					"PLAN_CALENDAR", "PLAN_TIMELINE", "CALENDAR_ENTRY", "TASK_REPEAT", "ORDER_REF",
 
 					"TASK_ACTION", "PERFORMABLE_ACTION", "DISPATCHABLE_ACTION", 
 					"DEFINED_ACTION", "SYSTEM_REQUEST", "EXTERNAL_REQUEST", "LINKED_PLAN", "HAND_OFF", "SUB_PLAN", 
-					"DATASET_SPEC", "RESOURCE_PARTICIPATION",
+					"DATASET_SPEC", "CAPTURE_DATASET_SPEC", "REVIEW_DATASET_SPEC", "DATASET_COMMIT_GROUP",
+					"RESOURCE_PARTICIPATION",
 
 					"CHOICE_GROUP", "CHOICE_BRANCH", "ADHOC_GROUP", "ADHOC_BRANCH", "OVERRIDE_TYPE",
 					"CONDITION_GROUP", "CONDITION_BRANCH", "DECISION_GROUP", "DECISION_BRANCH", "EVENT_GROUP", "EVENT_BRANCH", 
@@ -81,7 +82,7 @@ packages = <
 					"SUBJECT_PRECONDITION", "TASK_COSTING", "EXECUTION_TYPE",
 
 					"TASK_WAIT", "TIMELINE_MOMENT", "MANUAL_NOTIFICATION", "SYSTEM_NOTIFICATION", "TASK_TRANSITION",
-					"PLAN_EVENT", "TIMER_EVENT", "CALENDAR_EVENT", "DELAY_EVENT", "STATE_TRIGGER",
+					"EVENT", "PLAN_EVENT", "TIMER_EVENT", "CALENDAR_EVENT", "STATE_TRIGGER",
 					"REMINDER", "TIMER_WAIT", "EVENT_WAIT", "EVENT_ACTION", "RESUME_ACTION", "CALLBACK_WAIT", "CALLBACK_NOTIFICATION"
 				> 
 			>
@@ -120,7 +121,15 @@ class_definitions = <
 	["TASK_LIFECYCLE"] = (P_BMM_ENUMERATION_INTEGER) <
 		name = <"TASK_LIFECYCLE">
 		ancestors = <"Integer">
-		item_names = <"planned", "available", "cancelled", "aborted", "abandoned", "underway", "suspended", "resumed", "completed">
+		item_names = <"planned", "available", "cancelled", "abandoned", "underway", "suspended", "completed">
+		item_values = <0, 1, 2, 4, 5, 6, 8>
+	>
+
+	["PLAN_TIME_ORIGIN"] = (P_BMM_ENUMERATION_INTEGER) <
+		name = <"PLAN_TIME_ORIGIN">
+		ancestors = <"Integer">
+		item_names = <"current_work_plan", "current_task_plan", "inner_repeat_section", "outer_repeat_section">
+		item_values = <0, 1, 2, 3>
 	>
 
 	["SYSTEM_CALL"] = <
@@ -222,30 +231,30 @@ class_definitions = <
 				name = <"expressions">
 				type_def = <
 					container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"CONTEXT_EXPRESSION">
-                        generic_parameters = <"EXPR_TYPE_DEF">
-                    >
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"CONTEXT_EXPRESSION">
+						generic_parameters = <"EXPR_TYPE_DEF">
+					>
 				>
 			>
 			["variables"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"variables">
 				type_def = <
 					container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"CONTEXT_VARIABLE">
-                        generic_parameters = <"EXPR_TYPE_DEF">
-                    >
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"CONTEXT_VARIABLE">
+						generic_parameters = <"EXPR_TYPE_DEF">
+					>
 				>
 			>
 			["constants"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"constants">
 				type_def = <
 					container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"CONTEXT_CONSTANT">
-                        generic_parameters = <"EXPR_TYPE_DEF">
-                    >
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"CONTEXT_CONSTANT">
+						generic_parameters = <"EXPR_TYPE_DEF">
+					>
 				>
 			>
 		>
@@ -412,13 +421,13 @@ class_definitions = <
 			>
 			["care_pathway"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"care_pathway">
-				type = <"DV_IDENTIFIER">
+				type = <"ITEM_STRUCTURE">
 			>
 			["order_list"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"order_list">
 				type_def = <
 					container_type = <"List">
-					type = <"LOCATABLE_REF">
+					type = <"ORDER_REF">
 				>
 				cardinality = <|>=0|>
 			>
@@ -444,17 +453,17 @@ class_definitions = <
 				name = <"event_wait_states">
 				type_def = <
 					container_type = <"List">
-                    type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"EVENT_WAIT">
-                        generic_parameters = <"EVENT">
-                    >
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"EVENT_WAIT">
+						generic_parameters = <"EVENT">
+					>
 				>
 			>
 			["top_level_plans"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"top_level_plans">
 				type_def = <
 					container_type = <"List">
-					type = <"UID_BASED_ID">
+					type = <"TASK_PLAN">
 				>
 				cardinality = <|>=1|>
 			>
@@ -465,6 +474,10 @@ class_definitions = <
 					type = <"DV_TEXT">
 				>
 				cardinality = <|>=0|>
+			>
+			["classification"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"classification">
+				type = <"ITEM_STRUCTURE">
 			>
 			["context"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"context">
@@ -488,7 +501,7 @@ class_definitions = <
 			>
 			["guideline"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"guideline">
-				type = <"DV_IDENTIFIER">
+				type = <"ITEM_STRUCTURE">
 			>
 			["best_practice_ref"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"best_practice_ref">
@@ -575,6 +588,29 @@ class_definitions = <
 		>
 	>
 
+	["ORDER_REF"] = <
+		name = <"ORDER_REF">
+		ancestors = <"LOCATABLE">
+		properties = <
+			["order_tag"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"order_tag">
+				type = <"String">
+			>
+			["order_ref"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"order_ref">
+				type = <"LOCATABLE_REF">
+			>
+			["instruction_archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"instruction_archetype_id">
+				type = <"String">
+			>
+			["action_archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"action_archetype_id">
+				type = <"String">
+			>
+		>
+	>
+
 	["TASK_PARTICIPATION"] = <
 		name = <"TASK_PARTICIPATION">
 		properties = <
@@ -619,10 +655,6 @@ class_definitions = <
 				name = <"repeat_spec">
 				type = <"TASK_REPEAT">
 			>
-			["other_details"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"other_details">
-				type = <"ITEM_STRUCTURE">
-			>
 			["wait_spec"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"wait_spec">
 				type = <"TASK_WAIT">
@@ -631,9 +663,29 @@ class_definitions = <
 				name = <"review_dataset">
 				type_def = <
 					container_type = <"List">
-					type = <"DATASET_SPEC">
+					type = <"REVIEW_DATASET_SPEC">
 				>
 				cardinality = <|>=0|>
+			>
+			["reminders"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reminders">
+				type_def = <
+					container_type = <"List">
+					type = <"REMINDER">
+				>
+				cardinality = <|>=0|>
+			>
+			["classification"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"classification">
+				type = <"ITEM_STRUCTURE">
+			>
+			["guideline_step"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"guideline_step">
+				type = <"String">
+			>
+			["other_details"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"other_details">
+				type = <"ITEM_STRUCTURE">
 			>
 		>
 	>
@@ -651,6 +703,10 @@ class_definitions = <
 			["terminate_condition"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"terminate_condition">
 				type = <"PLAN_EVENT">
+			>
+            ["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Iso8601_duration">
 			>
 		>
 	>
@@ -680,7 +736,7 @@ class_definitions = <
 
 	["EXECUTION_TYPE"] = (P_BMM_ENUMERATION_INTEGER) <
 		name = <"EXECUTION_TYPE">
-		ancestors = <"Integer", ...>
+		ancestors = <"Integer">
 		item_names = <"sequential", "parallel">
 	>
 
@@ -699,6 +755,14 @@ class_definitions = <
 				name = <"action">
 				type = <"T">
 				is_mandatory = <True>
+			>
+			["order_tags"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"order_tags">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
 			>
 		>
 	>
@@ -739,7 +803,7 @@ class_definitions = <
 				name = <"capture_dataset">
 				type_def = <
 					container_type = <"List">
-					type = <"DATASET_SPEC">
+					type = <"CAPTURE_DATASET_SPEC">
 				>
 				cardinality = <|>=0|>
 			>
@@ -890,10 +954,6 @@ class_definitions = <
 		name = <"DATASET_SPEC">
 		ancestors = <"LOCATABLE">
 		properties = <
-			["other_details"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"other_details">
-				type = <"ITEM_STRUCTURE">
-			>
 			["form_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"form_id">
 				type = <"String">
@@ -901,6 +961,58 @@ class_definitions = <
 			["template_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"template_id">
 				type = <"String">
+			>
+			["populating_call"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"populating_call">
+				type = <"SYSTEM_CALL">
+            >
+			["form_section_path"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"form_section_path">
+				type = <"String">
+            >
+			["other_details"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"other_details">
+				type = <"ITEM_STRUCTURE">
+			>
+		>
+	>
+
+	["CAPTURE_DATASET_SPEC"] = <
+		name = <"CAPTURE_DATASET_SPEC">
+		ancestors = <"DATASET_SPEC">
+		properties = <
+			["commit_group"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"commit_group">
+				type = <"DATASET_COMMIT_GROUP">
+			>
+		>
+	>
+
+	["DATASET_COMMIT_GROUP"] = <
+		name = <"DATASET_COMMIT_GROUP">
+		properties = <
+			["group_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"group_id">
+				type = <"String">
+			>
+			["completion_step"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"completion_step">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["REVIEW_DATASET_SPEC"] = <
+		name = <"REVIEW_DATASET_SPEC">
+		ancestors = <"DATASET_SPEC">
+		properties = <
+			["capture_datasets"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"capture_datasets">
+				type_def = <
+					container_type = <"List">
+					type = <"CAPTURE_DATASET_SPEC">
+				>
+				cardinality = <|>=0|>
 			>
 		>
 	>
@@ -952,6 +1064,10 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
+			["timeout"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timeout">
+				type = <"TIMER_WAIT">
+			>
 		>
 	>
 
@@ -970,6 +1086,16 @@ class_definitions = <
 	["ADHOC_GROUP"] = <
 		name = <"ADHOC_GROUP">
 		ancestors = <"CHOICE_GROUP">
+		properties = <
+			["members"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"members">
+				type_def = <
+					container_type = <"List">
+					type = <"ADHOC_BRANCH">
+				>
+				cardinality = <|>=0|>
+			>
+		>
 	>
 
 	["ADHOC_BRANCH"] = <
@@ -1043,10 +1169,6 @@ class_definitions = <
 		name = <"EVENT_GROUP">
 		ancestors = <"CHOICE_GROUP">
 		properties = <
-			["timeout"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"timeout">
-				type = <"TIMER_WAIT">
-			>
 			["members"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"members">
 				type_def = <
@@ -1070,19 +1192,6 @@ class_definitions = <
 	["TASK_WAIT"] = <
 		name = <"TASK_WAIT">
 		properties = <
--- Not present in spec - removed
---			["wait_spec"] = (P_BMM_SINGLE_PROPERTY) <
---				name = <"wait_spec">
---				type = <"TEMPORAL_RELATION">
---			>
-			["timeout"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"timeout">
-				type = <"TIMER_WAIT">
-			>
-			["start_window"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"start_window">
-				type = <"REMINDER">
-			>
 			["events"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"events">
 				type_def = <
@@ -1095,14 +1204,32 @@ class_definitions = <
 				name = <"event_relation">
 				type = <"TEMPORAL_RELATION">
 			>
+			["timeout"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timeout">
+				type = <"TIMER_WAIT">
+			>
+			["next_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"next_state">
+				type = <"TASK_LIFECYCLE">
+			>
 		>
+	>
+
+	["EVENT"] = <
+		name = <"EVENT">
+		ancestors = <"LOCATABLE">
+		is_abstract = <True>
 	>
 
 	["PLAN_EVENT"] = <
 		name = <"PLAN_EVENT">
-		ancestors = <"LOCATABLE">
+		ancestors = <"EVENT">
 		is_abstract = <True>
 		properties = <
+			["delay"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"delay">
+				type = <"Iso8601_duration">
+			>
 			["other_details"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"other_details">
 				type = <"ITEM_STRUCTURE">
@@ -1121,6 +1248,10 @@ class_definitions = <
 			["fixed_time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"fixed_time">
 				type = <"TIME_SPECIFIER">
+			>
+			["timeline_origin"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timeline_origin">
+				type = <"PLAN_TIME_ORIGIN">
 			>
 		>
 	>
@@ -1147,7 +1278,7 @@ class_definitions = <
 
 	["CALLBACK_NOTIFICATION"] = <
 		name = <"CALLBACK_NOTIFICATION">
-		ancestors = <"PLAN_EVENT">
+		ancestors = <"EVENT">
 		properties = <
 			["task_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"task_id">
@@ -1218,22 +1349,6 @@ class_definitions = <
 		>
 	>
 
-	["DELAY_EVENT"] = <
-		name = <"DELAY_EVENT">
-		ancestors = <"PLAN_EVENT">
-		properties = <
-			["delay"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"delay">
-				type = <"Iso8601_duration">
-				is_mandatory = <True>
-			>
-			["source"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"source">
-				type = <"UID_BASED_ID">
-			>
-		>
-	>
-
 	["STATE_TRIGGER"] = <
 		name = <"STATE_TRIGGER">
 		ancestors = <"PLAN_EVENT">
@@ -1264,7 +1379,7 @@ class_definitions = <
 
 	["REMINDER"] = <
 		name = <"REMINDER">
-		ancestors = <"TIMER_WAIT">
+		ancestors = <"EVENT_WAIT">
 	>
 
 	["TIMER_WAIT"] = <
@@ -1290,6 +1405,14 @@ class_definitions = <
 				name = <"fail_action">
 				type = <"EVENT_ACTION">
 			>
+			["custom_actions"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"custom_actions">
+				type_def = <
+					container_type = <"List">
+					type = <"EVENT_ACTION">
+				>
+				cardinality = <|>=0|>
+			>
 		>
 	>
 
@@ -1311,6 +1434,10 @@ class_definitions = <
 			["message"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"message">
 				type = <"DV_TEXT">
+			>
+			["receiver_thread_next_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"receiver_thread_next_state">
+				type = <"TASK_LIFECYCLE">
 			>
 		>
 	>
@@ -1363,18 +1490,6 @@ class_definitions = <
 			["time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time">
 				type = <"Iso8601_time">
-				is_mandatory = <True>
-			>
-		>
-	>
-
-	["CALENDAR_TIME"] = <
-		name = <"CALENDAR_TIME">
-		ancestors = <"TIME_SPECIFIER">
-		properties = <
-			["time"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"time">
-				type = <"Iso8601_date_time">
 				is_mandatory = <True>
 			>
 		>
