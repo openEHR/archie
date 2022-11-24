@@ -255,7 +255,9 @@ public class JSONSchemaCreator {
                 .add("items", createPropertyDef(classContainingProperty, containerType.getBaseType()));
         } else if (type instanceof BmmGenericType) {
             BmmGenericType genericType = (BmmGenericType) type;
-            if (isJSPrimitive(genericType)) {
+            if (genericType.getBaseClass().getName().equalsIgnoreCase("hash")) {
+                return getHash(classContainingProperty, genericType);
+            } else if (isJSPrimitive(genericType)) {
                 return getJSPrimitive(genericType);
             } else {
                 return createPolymorphicReference(classContainingProperty, genericType.getBaseClass());
@@ -264,6 +266,18 @@ public class JSONSchemaCreator {
         }
         throw new IllegalArgumentException("type must be a BmmType, but was " + type.getClass().getSimpleName());
 
+    }
+
+    private JsonObjectBuilder getHash(BmmClass classContainingProperty, BmmGenericType genericType) {
+        if(genericType.getGenericParameters().size() == 2) {
+            BmmType keyType = genericType.getGenericParameters().get(0);
+            BmmType valueType = genericType.getGenericParameters().get(1);
+            JsonObjectBuilder object = createType("object");
+            object.add("additionalProperties", createPropertyDef(classContainingProperty, valueType));
+            return object;
+        } else {
+            return getJSPrimitive(genericType);
+        }
     }
 
     /**
