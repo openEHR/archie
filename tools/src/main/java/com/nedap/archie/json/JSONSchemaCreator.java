@@ -46,6 +46,7 @@ public class JSONSchemaCreator {
         primitiveTypeMapping.put("character", () -> createType("string"));
         primitiveTypeMapping.put("hash", () -> createType("object"));
         primitiveTypeMapping.put("string", () -> createType("string"));
+        primitiveTypeMapping.put("uri", () -> createType("string").add("format", "uri-reference"));
         primitiveTypeMapping.put("iso8601_date", () -> createType("string").add("format", "date"));
         primitiveTypeMapping.put("iso8601_date_time", () -> createType("string").add("format", "date-time"));
         primitiveTypeMapping.put("iso8601_time", () -> createType("string").add("format", "time"));
