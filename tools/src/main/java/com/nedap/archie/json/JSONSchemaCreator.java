@@ -189,6 +189,7 @@ public class JSONSchemaCreator {
                 JsonObjectBuilder propertyDef = createPropertyDef(bmmClass, bmmProperty.getType());
                 propertyDef.add("format", "uri-reference");
                 properties.add(propertyName, propertyDef);
+                required.add(propertyName);
                 atLeastOneProperty = true;
             } else {
                 JsonObjectBuilder propertyDef = createPropertyDef(bmmClass, bmmProperty.getType());
@@ -249,6 +250,8 @@ public class JSONSchemaCreator {
                 JsonObjectBuilder string = createType("string");
                 string.add("contentEncoding", "base64");
                 return string;
+            } else  if (containerType.getContainerType().getName().equalsIgnoreCase("hash")) {
+                return getHash(classContainingProperty, containerType);
             }
             return jsonFactory.createObjectBuilder()
                 .add("type", "array")
@@ -266,6 +269,13 @@ public class JSONSchemaCreator {
         }
         throw new IllegalArgumentException("type must be a BmmType, but was " + type.getClass().getSimpleName());
 
+    }
+
+    private JsonObjectBuilder getHash(BmmClass classContainingProperty, BmmContainerType containerType) {
+        BmmType valueType = containerType.getBaseType();
+        JsonObjectBuilder object = createType("object");
+        object.add("additionalProperties", createPropertyDef(classContainingProperty, valueType));
+        return object;
     }
 
     private JsonObjectBuilder getHash(BmmClass classContainingProperty, BmmGenericType genericType) {
