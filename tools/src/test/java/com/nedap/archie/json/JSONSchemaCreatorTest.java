@@ -17,7 +17,7 @@ public class JSONSchemaCreatorTest {
     @Test
     public void createSchema() {
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
-        Map<JsonSchemaUri, JsonObject> schemas = new JSONSchemaCreator().create(model);
+        Map<JsonSchemaUri, JsonObject> schemas = new OpenEHRRmJSONSchemaCreator().create(model);
 
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
@@ -38,7 +38,7 @@ public class JSONSchemaCreatorTest {
     @Test
     public void createSchemaWithoutAdditionalProperties() {
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
-        Map<JsonSchemaUri, JsonObject> schemas = new JSONSchemaCreator().allowAdditionalProperties(false).create(model);
+        Map<JsonSchemaUri, JsonObject> schemas = new OpenEHRRmJSONSchemaCreator().allowAdditionalProperties(false).create(model);
 
 
         Map<String, Object> config = new HashMap<>();
@@ -51,7 +51,7 @@ public class JSONSchemaCreatorTest {
     @Test
     public void createMultiFileSchemaWithoutAdditionalProperties() {
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
-        Map<JsonSchemaUri, JsonObject> schemas = new JSONSchemaCreator().allowAdditionalProperties(false).splitInMultipleFiles(true).create(model);
+        Map<JsonSchemaUri, JsonObject> schemas = new OpenEHRRmJSONSchemaCreator().allowAdditionalProperties(false).splitInMultipleFiles(true).create(model);
 
 
         Map<String, Object> config = new HashMap<>();

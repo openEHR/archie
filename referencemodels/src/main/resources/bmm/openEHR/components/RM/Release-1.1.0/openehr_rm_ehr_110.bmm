@@ -117,13 +117,13 @@ class_definitions = <
 				type = <"OBJECT_REF">
 			>
 			["folders"] = (P_BMM_CONTAINER_PROPERTY) <
-                name = <"folders">
-                type_def = <
-                    container_type = <"List">
-                    type = <"OBJECT_REF">
-                >
-                cardinality = <|>=0|>
-            >
+					name = <"folders">
+					type_def = <
+							container_type = <"List">
+							type = <"OBJECT_REF">
+					>
+					cardinality = <|>=0|>
+			>
 			["compositions"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"compositions">
 				type_def = <
@@ -467,6 +467,7 @@ class_definitions = <
 			["action_archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"action_archetype_id">
 				type = <"String">
+				is_mandatory = <True>
 			>
 		>
 	>

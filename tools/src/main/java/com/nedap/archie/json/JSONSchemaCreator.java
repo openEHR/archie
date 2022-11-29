@@ -10,11 +10,8 @@ import jakarta.json.JsonBuilderFactory;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.function.Supplier;
 
 public class JSONSchemaCreator {
@@ -24,6 +21,8 @@ public class JSONSchemaCreator {
     private List<String> rootTypes;
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
+    private Set<String> ignoredAttributes;
+    private Set<String> ignoredClasses;
 
     private boolean fullReferences = false;
 
@@ -48,35 +47,13 @@ public class JSONSchemaCreator {
         primitiveTypeMapping.put("character", () -> createType("string"));
         primitiveTypeMapping.put("hash", () -> createType("object"));
         primitiveTypeMapping.put("string", () -> createType("string"));
+        primitiveTypeMapping.put("uri", () -> createType("string").add("format", "uri-reference"));
         primitiveTypeMapping.put("iso8601_date", () -> createType("string").add("format", "date"));
         primitiveTypeMapping.put("iso8601_date_time", () -> createType("string").add("format", "date-time"));
         primitiveTypeMapping.put("iso8601_time", () -> createType("string").add("format", "time"));
         primitiveTypeMapping.put("iso8601_duration", () -> createType("string"));
         primitiveTypeMapping.put("proportion_kind", () -> createType("integer"));//TODO: proper enum support
 
-        rootTypes = new ArrayList<>();
-        rootTypes.add("COMPOSITION");
-        rootTypes.add("OBSERVATION");
-        rootTypes.add("EVALUATION");
-        rootTypes.add("ACTIVITY");
-        rootTypes.add("ACTION");
-        rootTypes.add("SECTION");
-        rootTypes.add("INSTRUCTION");
-        rootTypes.add("INSTRUCTION_DETAILS");
-        rootTypes.add("ADMIN_ENTRY");
-        rootTypes.add("CLUSTER");
-        rootTypes.add("CAPABILITY");
-        rootTypes.add("PERSON");
-        rootTypes.add("ADDRESS");
-        rootTypes.add("ROLE");
-        rootTypes.add("ORGANISATION");
-        rootTypes.add("PARTY_IDENTITY");
-        rootTypes.add("ITEM_TREE");
-        rootTypes.add("CONTRIBUTION");
-        rootTypes.add("EHR");
-        rootTypes.add("EHR_STATUS");
-        rootTypes.add("ORIGINAL_VERSION");
-        rootTypes.add("IMPORTED_VERSION");
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
         jsonFactory = Json.createBuilderFactory(config);
@@ -122,7 +99,9 @@ public class JSONSchemaCreator {
         mainSchemaBuilder.getSchema().add("allOf", allOfArray);
 
         for(BmmClass bmmClass: bmm.getClassDefinitions().values()) {
-            if (!bmmClass.isAbstract() && !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase())) {
+            if (!bmmClass.isAbstract() &&
+                    !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase()) &&
+                !ignoredClasses.contains(bmmClass.getName().toLowerCase())) {
                 SchemaBuilder schema = getOrCreateDefinitions(schemaBuilders, bmmClass);
                 schema.getDefinitions().add(BmmDefinitions.typeNameToClassKey(bmmClass.getName()), createClass(bmmClass));
             }
@@ -162,7 +141,9 @@ public class JSONSchemaCreator {
             BmmProperty<?> bmmProperty = flatProperties.get(propertyName);
             if(bmmProperty.getComputed()) {
                 continue;//don't output this
-            } else if((typeName.equalsIgnoreCase("POINT_EVENT") || typeName.equalsIgnoreCase("INTERVAL_EVENT")) &&
+            } else if (ignoredAttributes.contains(typeName + "." + propertyName)) {
+                continue; //don't output this either
+            } if((typeName.equalsIgnoreCase("POINT_EVENT") || typeName.equalsIgnoreCase("INTERVAL_EVENT")) &&
                     propertyName.equalsIgnoreCase("data")) {
                 //we don't handle generics yet, and it's very tricky with the current BMM indeed. So, just manually hack this
                 JsonObjectBuilder propertyDef = createPolymorphicReference(bmmClass, bmmModel.getClassDefinition("ITEM_STRUCTURE"));
@@ -177,6 +158,7 @@ public class JSONSchemaCreator {
                 JsonObjectBuilder propertyDef = createPropertyDef(bmmClass, bmmProperty.getType());
                 propertyDef.add("format", "uri-reference");
                 properties.add(propertyName, propertyDef);
+                required.add(propertyName);
                 atLeastOneProperty = true;
             } else {
                 JsonObjectBuilder propertyDef = createPropertyDef(bmmClass, bmmProperty.getType());
@@ -237,13 +219,17 @@ public class JSONSchemaCreator {
                 JsonObjectBuilder string = createType("string");
                 string.add("contentEncoding", "base64");
                 return string;
+            } else  if (containerType.getContainerType().getName().equalsIgnoreCase("hash")) {
+                return getHash(classContainingProperty, containerType);
             }
             return jsonFactory.createObjectBuilder()
                 .add("type", "array")
                 .add("items", createPropertyDef(classContainingProperty, containerType.getBaseType()));
         } else if (type instanceof BmmGenericType) {
             BmmGenericType genericType = (BmmGenericType) type;
-            if (isJSPrimitive(genericType)) {
+            if (genericType.getBaseClass().getName().equalsIgnoreCase("hash")) {
+                return getHash(classContainingProperty, genericType);
+            } else if (isJSPrimitive(genericType)) {
                 return getJSPrimitive(genericType);
             } else {
                 return createPolymorphicReference(classContainingProperty, genericType.getBaseClass());
@@ -252,6 +238,25 @@ public class JSONSchemaCreator {
         }
         throw new IllegalArgumentException("type must be a BmmType, but was " + type.getClass().getSimpleName());
 
+    }
+
+    private JsonObjectBuilder getHash(BmmClass classContainingProperty, BmmContainerType containerType) {
+        BmmType valueType = containerType.getBaseType();
+        JsonObjectBuilder object = createType("object");
+        object.add("additionalProperties", createPropertyDef(classContainingProperty, valueType));
+        return object;
+    }
+
+    private JsonObjectBuilder getHash(BmmClass classContainingProperty, BmmGenericType genericType) {
+        if(genericType.getGenericParameters().size() == 2) {
+            BmmType keyType = genericType.getGenericParameters().get(0);
+            BmmType valueType = genericType.getGenericParameters().get(1);
+            JsonObjectBuilder object = createType("object");
+            object.add("additionalProperties", createPropertyDef(classContainingProperty, valueType));
+            return object;
+        } else {
+            return getJSPrimitive(genericType);
+        }
     }
 
     /**
@@ -425,6 +430,11 @@ public class JSONSchemaCreator {
         return createRootlevelReference(packageFileName, type);
     }
 
+    public JSONSchemaCreator setRootTypes(List<String> rootTypes) {
+        this.rootTypes = rootTypes;
+        return this;
+    }
+
     public JSONSchemaCreator allowAdditionalProperties(boolean allowAdditionalProperties) {
         this.allowAdditionalProperties = allowAdditionalProperties;
         return this;
@@ -453,6 +463,18 @@ public class JSONSchemaCreator {
         this.fullReferences = fullReferences;
         return this;
     }
+
+    public void setIgnoredAttributes(HashSet<String> ignoredAttributes) {
+        this.ignoredAttributes = ignoredAttributes;
+    }
+
+    public void setIgnoredClasses(HashSet<String> ignoredClasses) {
+        this.ignoredClasses = new HashSet<>();
+        for(String ignoredClass:ignoredClasses) {
+            this.ignoredClasses.add(ignoredClass.toLowerCase());
+        }
+    }
+
 
     private class SingleFileNameUriProvider implements JsonSchemaUriProvider {
 
