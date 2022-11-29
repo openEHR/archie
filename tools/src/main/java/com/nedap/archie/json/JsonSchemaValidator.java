@@ -53,7 +53,7 @@ public class JsonSchemaValidator {
      */
     public JsonSchemaValidator(BmmModel bmmModel, boolean allowAdditionalProperties) {
         schemaFiles = new LinkedHashMap<>();
-        new JSONSchemaCreator()
+        new OpenEHRRmJSONSchemaCreator()
                 .allowAdditionalProperties(allowAdditionalProperties)
                 .withBaseUri("http://something/")
                 //the validator can actually handle a schema split in multiple files, but

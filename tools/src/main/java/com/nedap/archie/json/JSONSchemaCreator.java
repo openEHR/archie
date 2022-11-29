@@ -22,6 +22,7 @@ public class JSONSchemaCreator {
     private BmmModel bmmModel;
     private final JsonBuilderFactory jsonFactory;
     private Set<String> ignoredAttributes;
+    private Set<String> ignoredClasses;
 
     private boolean fullReferences = false;
 
@@ -52,41 +53,6 @@ public class JSONSchemaCreator {
         primitiveTypeMapping.put("iso8601_time", () -> createType("string").add("format", "time"));
         primitiveTypeMapping.put("iso8601_duration", () -> createType("string"));
         primitiveTypeMapping.put("proportion_kind", () -> createType("integer"));//TODO: proper enum support
-
-        rootTypes = new ArrayList<>();
-        rootTypes.add("COMPOSITION");
-        rootTypes.add("OBSERVATION");
-        rootTypes.add("EVALUATION");
-        rootTypes.add("ACTIVITY");
-        rootTypes.add("ACTION");
-        rootTypes.add("SECTION");
-        rootTypes.add("INSTRUCTION");
-        rootTypes.add("INSTRUCTION_DETAILS");
-        rootTypes.add("ADMIN_ENTRY");
-        rootTypes.add("CLUSTER");
-        rootTypes.add("CAPABILITY");
-        rootTypes.add("PERSON");
-        rootTypes.add("ROLE");
-        rootTypes.add("ORGANISATION");
-        rootTypes.add("AGENT");
-        rootTypes.add("GROUP");
-        rootTypes.add("PARTY_IDENTITY");
-        rootTypes.add("ITEM_TREE");
-        rootTypes.add("CONTRIBUTION");
-        rootTypes.add("EHR");
-        rootTypes.add("EHR_STATUS");
-        rootTypes.add("ORIGINAL_VERSION");
-        rootTypes.add("IMPORTED_VERSION");
-        rootTypes.add("HISTORY");
-        rootTypes.add("ITEM_TABLE");
-        rootTypes.add("ITEM_LIST");
-        rootTypes.add("ITEM_TREE");
-        rootTypes.add("ITEM_SINGLE");
-        rootTypes.add("ITEM_TABLE");
-        rootTypes.add("ELEMENT");
-
-        ignoredAttributes = new HashSet<>();
-        ignoredAttributes.add("DV_QUANTITY.property");
 
         Map<String, Object> config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
@@ -133,7 +99,9 @@ public class JSONSchemaCreator {
         mainSchemaBuilder.getSchema().add("allOf", allOfArray);
 
         for(BmmClass bmmClass: bmm.getClassDefinitions().values()) {
-            if (!bmmClass.isAbstract() && !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase())) {
+            if (!bmmClass.isAbstract() &&
+                    !primitiveTypeMapping.containsKey(bmmClass.getName().toLowerCase()) &&
+                !ignoredClasses.contains(bmmClass.getName().toLowerCase())) {
                 SchemaBuilder schema = getOrCreateDefinitions(schemaBuilders, bmmClass);
                 schema.getDefinitions().add(BmmDefinitions.typeNameToClassKey(bmmClass.getName()), createClass(bmmClass));
             }
@@ -495,6 +463,18 @@ public class JSONSchemaCreator {
         this.fullReferences = fullReferences;
         return this;
     }
+
+    public void setIgnoredAttributes(HashSet<String> ignoredAttributes) {
+        this.ignoredAttributes = ignoredAttributes;
+    }
+
+    public void setIgnoredClasses(HashSet<String> ignoredClasses) {
+        this.ignoredClasses = new HashSet<>();
+        for(String ignoredClass:ignoredClasses) {
+            this.ignoredClasses.add(ignoredClass.toLowerCase());
+        }
+    }
+
 
     private class SingleFileNameUriProvider implements JsonSchemaUriProvider {
 
