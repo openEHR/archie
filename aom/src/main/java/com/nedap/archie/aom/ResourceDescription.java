@@ -18,6 +18,7 @@ public class ResourceDescription extends ArchetypeModelObject {
     private Map<String, String> originalAuthor = new ConcurrentHashMap<>();
     @Nullable
     private String originalNamespace;
+    @Nullable
     private String originalPublisher;
     @Nullable
     private List<String> otherContributors = new ArrayList<>();
