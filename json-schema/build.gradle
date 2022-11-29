@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.nedap.healthcare.archie:archie-all:2.0.0'
+        classpath 'com.nedap.healthcare.archie:archie-all:2.0.5'
     }
 }
 

@@ -53,6 +53,8 @@ public class BuiltinReferenceModels {
                 "bmm/openEHR/original/Release-1.0.2/openehr_ehr_102.bmm",
                 "bmm/openEHR/components/LANG/Release-1.0.0/openehr_lang_100.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_ehr_104.bmm",
+                "bmm/openEHR/components/PROC/Release-1.5.0/openehr_proc_task_planning_150.bmm",
+                "bmm/openEHR/components/PROC/Release-1.6.0/openehr_proc_task_planning_160.bmm",
                 "bmm/openEHR/components/PROC/latest/openehr_proc_task_planning_110.bmm",
                 "bmm/openEHR/original/Release-1.0.2/openehr_rm_102.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_structures_104.bmm",
