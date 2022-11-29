@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.nedap.healthcare.archie:archie-all:2.0.0'
+        classpath 'com.nedap.healthcare.archie:archie-all:2.0.5'
     }
 }
 
@@ -13,7 +13,7 @@ plugins {
 
 description = "A tool that generates the official ITS-JSON json schema from the BMM files"
 
-import com.nedap.archie.json.JSONSchemaCreator;
+import com.nedap.archie.json.OpenEHRRmJSONSchemaCreator;
 import com.nedap.archie.json.JsonSchemaUriProvider;
 import com.nedap.archie.json.JsonSchemaUri;
 import com.nedap.archie.json.ItsJsonUriProvider;
@@ -36,34 +36,34 @@ abstract class JsonSchemaCreationTask extends DefaultTask {
         def rm104 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         def rm103 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.3").getModel();
 
-        def schemas110Multi = new JSONSchemaCreator()
+        def schemas110Multi = new OpenEHRRmJSONSchemaCreator()
                 .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
                 .splitInMultipleFiles(true)
                 .withJsonSchemaUriProvider(new ItsJsonUriProvider("https://specifications.openehr.org/releases/ITS-JSON/latest/components/", "RM/Release-1.1.0/main.json"))
                 .withFullReferences(true)
                 .create(rm110);
-        def schemas104Multi = new JSONSchemaCreator()
+        def schemas104Multi = new OpenEHRRmJSONSchemaCreator()
                 .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
                 .splitInMultipleFiles(true)
                 .withJsonSchemaUriProvider(new ItsJsonUriProvider("https://specifications.openehr.org/releases/ITS-JSON/latest/components/", "RM/Release-1.0.4/main.json"))
                 .withFullReferences(true)
                 .create(rm104);
-        def schemas103Multi = new JSONSchemaCreator()
+        def schemas103Multi = new OpenEHRRmJSONSchemaCreator()
                 .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
                 .splitInMultipleFiles(true)
                 .withJsonSchemaUriProvider(new ItsJsonUriProvider("https://specifications.openehr.org/releases/ITS-JSON/latest/components/", "RM/Release-1.0.3/main.json"))
                 .withFullReferences(true)
                 .create(rm103);
 
-        def schemas110 = new JSONSchemaCreator()
+        def schemas110 = new OpenEHRRmJSONSchemaCreator()
                 .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
                 .splitInMultipleFiles(false)
                 .create(rm110);
-        def schemas104 = new JSONSchemaCreator()
+        def schemas104 = new OpenEHRRmJSONSchemaCreator()
                 .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
                 .splitInMultipleFiles(false)
                 .create(rm104);
-        def schemas103 = new JSONSchemaCreator()
+        def schemas103 = new OpenEHRRmJSONSchemaCreator()
                 .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
                 .splitInMultipleFiles(false)
                 .create(rm103);

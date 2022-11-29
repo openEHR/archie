@@ -210,7 +210,6 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         addClass(TerminologyId.class);
         addClass(Link.class);
         addClass(Archetyped.class);
-        addClass(ArchetypeHRID.class);
         addClass(AuthoredResource.class);
         addClass(TranslationDetails.class);
     }
