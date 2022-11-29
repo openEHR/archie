@@ -70,7 +70,7 @@ packages = <
 			["identification"] = <
 				name = <"identification">
 				classes = <"OBJECT_REF", "OBJECT_ID", "UID", "LOCATABLE_REF", "PARTY_REF", "TERMINOLOGY_ID", 
-					"UID_BASED_ID", "GENERIC_ID", "ARCHETYPE_ID", "ARCHETYPE_HRID", "TEMPLATE_ID", "OBJECT_VERSION_ID", 
+					"UID_BASED_ID", "GENERIC_ID", "ARCHETYPE_ID", "TEMPLATE_ID", "OBJECT_VERSION_ID", 
 					"HIER_OBJECT_ID", "VERSION_TREE_ID", "INTERNET_ID", "UUID", "ISO_OID"
 				>
 			>

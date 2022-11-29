@@ -59,7 +59,7 @@ packages = <
 			>
 			["archetype"] = <
 				name = <"archetype">
-				classes = <"AUTHORED_ARCHETYPE", "ARCHETYPE", "TEMPLATE", "TEMPLATE_OVERLAY", "OPERATIONAL_TEMPLATE">
+				classes = <"ARCHETYPE_HRID", "AUTHORED_ARCHETYPE", "ARCHETYPE", "TEMPLATE", "TEMPLATE_OVERLAY", "OPERATIONAL_TEMPLATE">
 			>
 			["constraint_model"] = <
 				name = <"constraint_model">
@@ -1020,6 +1020,24 @@ class_definitions = <
             >
         >
     >
+
+
+	--
+	--------------------- base.base_types.definitions ------------------
+	--
+
+	["VALIDITY_KIND"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"VALIDITY_KIND">
+		ancestors = <"String">
+		item_names = <"mandatory", "optional", "prohibited">
+	>
+
+	["VERSION_STATUS"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"VERSION_STATUS">
+		ancestors = <"String">
+		item_names = <"alpha", "beta", "release_candidate", "released", "build">
+	>
+
 
 
 	--

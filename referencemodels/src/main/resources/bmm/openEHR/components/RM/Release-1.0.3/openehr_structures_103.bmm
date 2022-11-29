@@ -257,9 +257,9 @@ class_definitions = <
 				type_def = <
 					container_type = <"List">
 					type_def = (P_BMM_GENERIC_TYPE) <
-                        root_type = <"EVENT">
-                        generic_parameters = <"T">
-                    >
+						root_type = <"EVENT">
+						generic_parameters = <"T">
+					>
 				>
 				cardinality = <|>=1|>
 			>

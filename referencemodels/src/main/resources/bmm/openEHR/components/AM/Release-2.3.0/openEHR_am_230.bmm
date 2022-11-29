@@ -61,7 +61,7 @@ packages = <
 			>
 			["archetype"] = <
 				name = <"archetype">
-				classes = <"AUTHORED_ARCHETYPE", "ARCHETYPE", "TEMPLATE", "TEMPLATE_OVERLAY", "OPERATIONAL_TEMPLATE">
+				classes = <"ARCHETYPE_HRID", "AUTHORED_ARCHETYPE", "ARCHETYPE", "TEMPLATE", "TEMPLATE_OVERLAY", "OPERATIONAL_TEMPLATE">
 			>
 			["constraint_model"] = <
 				name = <"constraint_model">
