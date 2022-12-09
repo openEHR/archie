@@ -28,14 +28,15 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
         builder.append("allow_archetype")
                 .append(" ")
                 .append(cobj.getRmTypeName()).append("[").append(cobj.getNodeId()).append("]");
+        if(cobj.isClosed()) {
+            builder.append(" closed");
+        }
         if (cobj.getOccurrences() != null) {
             builder.append(" occurrences matches {");
             ArchetypeSerializeUtils.buildOccurrences(builder, cobj.getOccurrences());
             builder.append("}");
         }
-        if (cobj.isClosed()) {
-            builder.append(" closed");
-        } else {
+        if (!cobj.isClosed()) {
             appendMatches(cobj);
         }
         builder.unindent();
