@@ -1,6 +1,5 @@
 package com.nedap.archie.terminology;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.terminology.openehr.*;
@@ -10,7 +9,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -131,13 +129,21 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
         return Collections.emptyList();
     }
 
-    private static Pattern openEHRTermIdPattern = Pattern.compile("http://openehr.org/id/(?<id>[0-9]+)");
+    private static final Pattern openEHRTermIdPattern = Pattern.compile("http://openehr.org/id/(?<id>[0-9]+)");
+
+    public String parseTerminologyURI(String uri) {
+        Matcher matcher = openEHRTermIdPattern.matcher(uri);
+        if(matcher.matches()) {
+            return matcher.group("id");
+        }
+        return null;
+    }
 
     @Override
     public TermCode getTermByTerminologyURI(String uri, String language) {
-        Matcher matcher = openEHRTermIdPattern.matcher(uri);
-        if(matcher.matches()) {
-            return getTerm("openehr", matcher.group("id"), language);
+        String code = parseTerminologyURI(uri);
+        if(code != null) {
+            return getTerm("openehr", code, language);
         }
         return null;
     }
