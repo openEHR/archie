@@ -11,11 +11,10 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.TerminologyCodeWithArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
 import org.openehr.utils.message.I18n;
 
 import javax.annotation.Nullable;
@@ -26,9 +25,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.function.BiFunction;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -94,14 +91,22 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             return true;
         }
         if(isConstraintRequired()) {
-            if(value != null && value.getTerminologyId() != null && !value.getTerminologyId().equalsIgnoreCase("local") && !AOMUtils.isValueSetCode(value.getTerminologyId())) {
-                //this is a non-local terminology. If a term binding is there, we may be able to validate, if external, we wil not be able to
-                //so return true for now for non-local terminology values
+            if (value == null) return false;
+
+            List<String> values;
+            String terminologyId = value.getTerminologyId();
+            if (terminologyId == null || terminologyId.equalsIgnoreCase("local") || AOMUtils.isValueSetCode(value.getTerminologyId())) {
+                values = this.getValueSetExpanded();
+            } else if (terminologyId.equalsIgnoreCase("openehr")) {
+                values = this.getOpenEHRValueSetExpanded();
+            } else {
+                // This is not a local nor an openehr terminology.
+                // If a term binding is there, we may be able to validate, if external, we wil not be able to.
+                // Return true for now for non-local terminology values.
                 //TODO: implement checking for direct term bindings later
-                //TODO: implement checking for include openehr-terminology
                 return !ValidationConfiguration.isFailOnUnknownTerminologyId();
             }
-            List<String> values = this.getValueSetExpanded();
+
             if(values != null && !values.isEmpty()) {
                 return value.getCodeString() != null && values.contains(value.getCodeString());
             }
@@ -161,17 +166,21 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     private void setTerms(List<TerminologyCodeWithArchetypeTerm> terms) {
         //hack for jackson to work
     }
+    
+    private ArchetypeTerminology getTerminology() {
+        Archetype archetype = getArchetype();
+        if(archetype != null) {
+            //ideally this would not happen, but no reference to archetype exists in leaf constraints in rules so far
+            //so for now fix it so it doesn't throw a NullPointerException
+            return archetype.getTerminology(this);
+        }
+        return null;
+    }
 
     @JsonIgnore
     public List<String> getValueSetExpanded() {
         List<String> result = new ArrayList<>();
-        Archetype archetype = getArchetype();
-        ArchetypeTerminology terminology = null;
-        if(archetype != null) {
-            //ideally this would not happen, but no reference to archetype exists in leaf constraints in rules so far
-            //so for now fix it so it doesn't throw a NullPointerException
-            terminology = archetype.getTerminology(this);
-        }
+        ArchetypeTerminology terminology = getTerminology();
         for(String constraint:getConstraint()) {
             if(constraint.startsWith("at")) {
                 result.add(constraint);
@@ -185,6 +194,29 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             }
         }
         return result;
+    }
+    
+    private List<String> getOpenEHRValueSetExpanded() {
+        List<String> atCodes = getValueSetExpanded();
+        ArchetypeTerminology terminology = getTerminology();
+        OpenEHRTerminologyAccess terminologyAccess = OpenEHRTerminologyAccess.getInstance();
+        List<String> result = new ArrayList<>();
+        
+        if(terminology == null) {
+            return result;
+        }
+        
+        for(String atCode : atCodes) {
+            URI termBinding = terminology.getTermBinding("openehr", atCode);
+            if (termBinding != null) {
+                String code = terminologyAccess.parseTerminologyURI(termBinding.toString());
+                if (code != null) {
+                    result.add(code);
+                }
+            }
+        }
+        
+        return result;        
     }
 
     @Override
