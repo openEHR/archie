@@ -306,14 +306,14 @@ public class CComplexObjectParser extends BaseTreeWalker {
 
     private ArchetypeSlot parseArchetypeSlot(Archetype_slotContext slotContext) {
         ArchetypeSlot slot = new ArchetypeSlot();
-        C_archetype_slot_headContext headContext = slotContext.c_archetype_slot_head();
-        slot.setNodeId(headContext.c_archetype_slot_id().ID_CODE().getText());
-        slot.setRmTypeName(headContext.c_archetype_slot_id().type_id().getText());
-        if(headContext.c_archetype_slot_id().SYM_CLOSED() != null) {
+
+        slot.setNodeId(slotContext.ID_CODE().getText());
+        slot.setRmTypeName(slotContext.type_id().getText());
+        if(slotContext.SYM_CLOSED() != null) {
             slot.setClosed(true);
         }
-        if (headContext.c_occurrences() != null) {
-            slot.setOccurrences(parseMultiplicityInterval(headContext.c_occurrences()));
+        if (slotContext.c_occurrences() != null) {
+            slot.setOccurrences(parseMultiplicityInterval(slotContext.c_occurrences()));
         }
         RulesParser assertionParser = new RulesParser(getErrors());
         if (slotContext.c_excludes() != null) {

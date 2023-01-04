@@ -270,7 +270,7 @@ public class ADLDefinitionSerializerTest {
         archetype = loadRoot("adl2-tests/features/aom_structures/slots/openEHR-EHR-SECTION.slot_closed.v1.0.0.adls");
         slot = archetype.itemAtPath("/items[id2]");
         serialized = serializeConstraint(slot);
-        assertEquals("\n    allow_archetype OBSERVATION[id2] closed occurrences matches {0..1}", serialized);
+        assertEquals("\n    allow_archetype OBSERVATION[id2] closed", serialized);
     }
 
     @Test
