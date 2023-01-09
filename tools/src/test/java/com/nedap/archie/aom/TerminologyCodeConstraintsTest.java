@@ -20,10 +20,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import java.util.EnumSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.net.URI;
+import java.util.*;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -39,10 +37,18 @@ public class TerminologyCodeConstraintsTest {
     @Before
     public void setupArchetype() {
         archetype = new AuthoredArchetype();
+
         ArchetypeTerminology terminology = new ArchetypeTerminology();
+        terminology.setTermBindings(new HashMap<String, Map<String, URI>>() {{
+            put("openehr", new HashMap<String, URI>() {{
+                put("at9000", URI.create("http://openehr.org/id/532"));
+            }});
+        }});
         archetype.setTerminology(terminology);
+
         Map<String, ValueSet> valueSets = new LinkedHashMap<>();
         terminology.setValueSets(valueSets);
+
         ValueSet ac12 = new ValueSet();
         ac12.setId("ac12");
         ac12.setMembers(Sets.newHashSet("at23", "at24"));
@@ -83,6 +89,26 @@ public class TerminologyCodeConstraintsTest {
         ValidationConfiguration.setFailOnUnknownTerminologyId(true);
         assertFalse(code.isValidValue(TerminologyCode.createFromString("[snomedct::72489423]")));
         assertFalse(code.isValidValue(TerminologyCode.createFromString("[anything::atall]")));
+    }
+
+    @Test
+    public void openEHRTerminology() {
+        CTerminologyCode code = new CTerminologyCode();
+        code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
+        code.addConstraint("at9000");
+        code.setConstraintStatus(ConstraintStatus.REQUIRED);
+
+        DvCodedText text = new DvCodedText();
+        text.setValue("does not matter for this validation");
+        text.setDefiningCode(new CodePhrase("[openehr::532]"));
+        assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        text.setDefiningCode(new CodePhrase("[openehr::999]"));
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        text.setDefiningCode(new CodePhrase());
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        text.setDefiningCode(null);
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), null));
     }
 
     @Test
