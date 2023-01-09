@@ -48,7 +48,7 @@ public abstract class ParsedRulesEvaluationTest {
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser();
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
     }
 
     public Archetype getArchetype() {
@@ -744,8 +744,38 @@ public abstract class ParsedRulesEvaluationTest {
         AssertionResult  falseAssertionResult = falseResult.getAssertionResults().get(0);
         assertFalse(falseAssertionResult.getResult());
         assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
+    }
 
+    @Test
+    public void termBindingConstraint() throws IOException, ADLParseException {
+        parse("matches_term_binding.adls");
 
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Pathable root = (Pathable) testUtil.constructEmptyRMObject(archetype.getDefinition());
+
+        // Rule with single term
+        DvCodedText codedText = (DvCodedText) root.itemAtPath("items[id2]/value[id3]");
+        codedText.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "526"));
+        EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+
+        codedText.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "527"));
+        evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertFalse(evaluationResult.getAssertionResults().get(0).getResult());
+
+        // Rule with value set
+        DvCodedText codedText2 = (DvCodedText) root.itemAtPath("items[id4]/value[id5]");
+        codedText2.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "526"));
+        EvaluationResult evaluationResult2 = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult2.getAssertionResults().size());
+        assertTrue(evaluationResult2.getAssertionResults().get(1).getResult());
+
+        codedText2.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "528"));
+        evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertFalse(evaluationResult.getAssertionResults().get(1).getResult());
     }
 
 }
