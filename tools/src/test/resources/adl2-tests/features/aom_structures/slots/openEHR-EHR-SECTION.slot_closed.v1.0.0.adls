@@ -17,7 +17,7 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"Closed archetype slot with occurrences">
+			purpose = <"Closed archetype slot">
 			keywords = <"ADL", "test", "slots">
 		>
 	>
