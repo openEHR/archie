@@ -11,9 +11,9 @@ blocks:
         - name: Java 8 build
           commands:
             - sem-version java 11
-            - ./gradlew clean compile testCompile
+            - ./gradlew clean compileJava compileTestJava
             - sem-version java 1.8
-            - ./gradlew test
+            - ./gradlew check
         - name: Java 11 build
           commands:
             - sem-version java 11
