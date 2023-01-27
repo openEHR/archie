@@ -79,7 +79,7 @@ subprojects {
     runtimeOnly 'com.sun.xml.bind:jaxb-impl:2.3.3'
     api 'javax.activation:activation:1.1.1'
 
-    api 'org.threeten:threeten-extra:1.7.1'
+    api 'org.threeten:threeten-extra:1.7.2'
 
     testImplementation 'junit:junit:4.+'
     testImplementation 'org.slf4j:slf4j-simple:1.7.36'
