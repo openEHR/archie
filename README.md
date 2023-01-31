@@ -40,7 +40,9 @@ If you want to depend on just the AOM and BMM, without any reference model imple
 [![Build Status](https://travis-ci.org/openEHR/archie.svg?branch=master)](https://travis-ci.org/openEHR/archie)
 [![codecov](https://codecov.io/gh/openEHR/archie/branch/master/graph/badge.svg)](https://codecov.io/gh/openEHR/archie)
 
-You need Java 8 to build. Check out the source and type:
+You need Java 11 or higher to build. When compiled, the library works on JDK 8, but building is not supported on that version.
+
+To build, Check out the source and type:
 
 ```sh
 ./gradlew build
