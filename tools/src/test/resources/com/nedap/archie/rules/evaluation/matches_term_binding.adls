@@ -1,0 +1,63 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+    openEHR-EHR-CLUSTER.matches_term_binding.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Mathijs Hudepohl">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Test for rules, simple constant arithmetics">
+            keywords = <"ADL", "test">
+        >
+    >
+    lifecycle_state = <"published">
+    other_details = <
+        ["regression"] = <"PASS">
+    >
+    copyright = <"copyright © 2004 openEHR Foundation <http://www.openEHR.org>">
+
+definition
+    CLUSTER[id1] matches {
+        items matches {
+            ELEMENT[id2] occurrences matches {1} matches {
+                value matches {
+                    DV_CODED_TEXT[id3]
+                }
+            }
+            ELEMENT[id4] occurrences matches {1} matches {
+                value matches {
+                    DV_CODED_TEXT[id5]
+                }
+            }
+        }
+    }
+
+rules
+    /items[id2]/value/defining_code matches {[at9000]}
+    /items[id4]/value/defining_code matches {[ac3]}
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at9004"] = <http://openehr.org/id/245>
+            ["at9000"] = <http://openehr.org/id/526>
+            ["at9001"] = <http://openehr.org/id/527>
+            ["at9002"] = <http://openehr.org/id/528>
+            ["at9003"] = <http://openehr.org/id/529>
+            ["at9005"] = <http://openehr.org/id/530>
+            ["at9006"] = <http://openehr.org/id/531>
+            ["at9007"] = <http://openehr.org/id/532>
+        >
+    >
+    value_sets = <
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at9000", "at9001">
+        >
+    >
+
