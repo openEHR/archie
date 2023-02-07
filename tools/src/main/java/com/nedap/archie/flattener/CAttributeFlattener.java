@@ -8,7 +8,6 @@ import com.nedap.archie.paths.PathUtil;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
-import com.nedap.archie.rminfo.RMAttributeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -174,42 +173,63 @@ public class CAttributeFlattener {
      *
      * after[id3]
      * ELEMENT[id2]
+     * ELEMENT[id0.1]
+     * before[id4]
      * ELEMENT[id3.1]
      *
-     * Reorder it and remove sibling orders:
+     * Where id3.1 itself is inside a block reordered with sibling nodes. So, reorder it and remove sibling orders:
      *
      * ELEMENT[id3.1]
      * ELEMENT[id2]
+     * ELEMENT[id0.1]
+     * ELEMENT[id4]
      *
      * If sibling order do not refer to specialized nodes at this level, leaves them alone
      * @param parent the attribute to reorder the child nodes for
      */
     private void reorderSiblingOrdersReferringToSameLevel(CAttribute parent) {
+        SiblingOrder anchor = null;
         for(CObject cObject:new ArrayList<>(parent.getChildren())) {
             if(cObject.getSiblingOrder() != null) {
+                //a new sibling order replaces the anchor
+                anchor = null;
+
                 String matchingNodeId = findCObjectMatchingSiblingOrder(cObject.getSiblingOrder(), parent.getChildren());
                 if(matchingNodeId != null) {
                     parent.removeChild(cObject.getNodeId());
                     SiblingOrder siblingOrder = new SiblingOrder();
                     siblingOrder.setSiblingNodeId(matchingNodeId);
                     siblingOrder.setBefore(cObject.getSiblingOrder().isBefore());
+                    anchor = nextAnchor(siblingOrder, cObject);;
                     parent.addChild(cObject, siblingOrder);
                     cObject.setSiblingOrder(null);//unset sibling order, it has been processed already
                 }
+            } else if (anchor != null) {
+                parent.removeChild(cObject.getNodeId());
+                parent.addChild(cObject, anchor);
+                anchor = nextAnchor(anchor, cObject);
             }
         }
     }
 
     /**
-     * Find the CObject in the given list of cObjects that matches with the given sibling order
-     * @param siblingOrder
-     * @param cObjectList
-     * @return
+     * Find the CObject in the given list of cObjects of which the node id is the same or a specialization of the node id in the given sibling order
+     * Only returns CObjects that appear after a sibling order, either the sibling order of the CObject itself or one before the resulting CObject
+     *
+     * Returns null if no matching CObject can be found
+     *
+     * @param siblingOrder the sibling order to find a match for
+     * @param cObjectList the list of CObjects to search
+     * @return the node id of the found matching CObject
      */
     private String findCObjectMatchingSiblingOrder(SiblingOrder siblingOrder, List<CObject> cObjectList) {
+        SiblingOrder foundSiblingOrder = null;
         for(CObject object:cObjectList) {
-            if(AOMUtils.isOverriddenIdCode(object.getNodeId(), siblingOrder.getSiblingNodeId())) {
+            if(foundSiblingOrder != null && AOMUtils.isOverriddenIdCode(object.getNodeId(), siblingOrder.getSiblingNodeId())) {
                 return object.getNodeId();
+            }
+            if(object.getSiblingOrder() != null) {
+                foundSiblingOrder = object.getSiblingOrder();
             }
         }
         return null;
