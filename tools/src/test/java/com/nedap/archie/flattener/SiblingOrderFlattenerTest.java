@@ -90,6 +90,20 @@ public class SiblingOrderFlattenerTest {
 
     }
 
+    @Test
+    public void reorderBasedOnRedefinedAttributes() throws IOException, ADLParseException {
+        repository = new InMemoryFullArchetypeRepository();
+        Archetype siblingOrderParent = parse("openEHR-EHR-OBSERVATION.siblingorderparent.v1.0.0.adls");
+        repository.addArchetype(siblingOrderParent);
+
+        Archetype flatChild =  parseAndFlatten("openEHR-EHR-OBSERVATION.siblingorderchild.v1.0.0.adls");
+        List<CObject> children = flatChild.getDefinition().getAttribute("data").getChild("id2").getAttribute("events").getChild("id3").getAttribute("data").getChild("id4").getAttribute("items").getChildren();
+        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        assertEquals(
+                Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8", "id7"),
+                nodeIds
+        );
+    }
 
     /**
      * Test an edge case where a before[id3] and a ELEMENT[id3.1] appear in the same child
