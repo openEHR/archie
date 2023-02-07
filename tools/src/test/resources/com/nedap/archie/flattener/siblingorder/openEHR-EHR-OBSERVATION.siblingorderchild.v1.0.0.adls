@@ -1,8 +1,8 @@
 archetype (adl_version=2.0.5; rm_release=1.0.4; generated)
-    openEHR-EHR-OBSERVATION.siblingorderchild.v1.0.0
+    openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0
 
 specialize
-    openEHR-EHR-OBSERVATION.siblingorderparent.v1.0.0
+    openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0
 
 language
     original_language = <[ISO_639-1::en]>
@@ -20,8 +20,8 @@ description
     >
 
 definition
-    OBSERVATION[id1.1] matches {    -- SiblingOrderChild
-        /data[id2]/events[id3]/data[id4]/items matches {
+    CLUSTER[id1.1] matches {    -- SiblingOrderChild
+        /items matches {
             -- CLUSTER [id5] (from parent)
             CLUSTER[id6] occurrences matches {1}     -- Cluster 2
             CLUSTER[id7] occurrences matches {0}     -- Cluster 3
