@@ -178,13 +178,13 @@ public class CAttributeFlattener {
      * ELEMENT[id3.1]
      *
      * Where id3.1 itself is inside a block reordered with sibling nodes. So, reorder it and remove sibling orders:
+     * If a sibling order does not refer to specialized nodes at this level, this function leaves them alone (in this example before[id4])
      *
      * ELEMENT[id3.1]
      * ELEMENT[id2]
      * ELEMENT[id0.1]
      * ELEMENT[id4]
      *
-     * If sibling order do not refer to specialized nodes at this level, leaves them alone
      * @param parent the attribute to reorder the child nodes for
      */
     private void reorderSiblingOrdersReferringToSameLevel(CAttribute parent) {
