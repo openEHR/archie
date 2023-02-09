@@ -34,6 +34,5 @@ public interface ArchetypeRepository {
             return isChildOf(parent, nextChild);
         }
         return false;
-
     }
 }
