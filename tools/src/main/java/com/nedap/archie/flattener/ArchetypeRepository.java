@@ -29,7 +29,7 @@ public interface ArchetypeRepository {
         if(child.getArchetypeId().equals(parent.getArchetypeId()) || child.getArchetypeId().toString().equals(parent.getArchetypeId().getSemanticId())) {
             return true;
         }
-        Archetype nextChild = getArchetype(child.getParentArchetypeId());
+        Archetype nextChild = child.getParentArchetypeId() == null ? null : getArchetype(child.getParentArchetypeId());
         if(nextChild != null) {
             return isChildOf(parent, nextChild);
         }
