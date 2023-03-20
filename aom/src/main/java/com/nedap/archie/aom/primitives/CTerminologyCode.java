@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.BiFunction;
 
 /**
@@ -298,4 +299,22 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         return result.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CTerminologyCode)) return false;
+        if (!super.equals(o)) return false;
+        CTerminologyCode that = (CTerminologyCode) o;
+        return Objects.equals(assumedValue, that.assumedValue) &&
+                Objects.equals(constraint, that.constraint) &&
+                constraintStatus == that.constraintStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint,
+                constraintStatus);
+    }
 }
