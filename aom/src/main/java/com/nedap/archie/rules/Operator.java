@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 27/10/15.
@@ -98,5 +99,24 @@ public class Operator extends Expression {
 
     public void addOperand(Expression expression) {
         operands.add(expression);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Operator)) return false;
+        if (!super.equals(o)) return false;
+        Operator operator1 = (Operator) o;
+        return operator == operator1.operator &&
+                Objects.equals(operands, operator1.operands) &&
+                Objects.equals(symbol, operator1.symbol);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(),
+                operator,
+                operands,
+                symbol);
     }
 }
