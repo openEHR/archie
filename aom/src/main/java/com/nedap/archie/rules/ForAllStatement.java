@@ -1,5 +1,7 @@
 package com.nedap.archie.rules;
 
+import java.util.Objects;
+
 /**
  * Created by pieter.bos on 10/05/16.
  */
@@ -42,5 +44,19 @@ public class ForAllStatement extends Operator {
 
     public void setAssertion(Expression assertion) {
         super.setSecondOperand(assertion);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ForAllStatement)) return false;
+        if (!super.equals(o)) return false;
+        ForAllStatement that = (ForAllStatement) o;
+        return Objects.equals(variableName, that.variableName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), variableName);
     }
 }
