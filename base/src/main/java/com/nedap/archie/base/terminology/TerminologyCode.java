@@ -111,11 +111,17 @@ public class TerminologyCode extends OpenEHRBase {
         if (this == o) return true;
         if (!(o instanceof TerminologyCode)) return false;
         TerminologyCode that = (TerminologyCode) o;
-        return Objects.equals(terminologyId, that.terminologyId) && Objects.equals(terminologyVersion, that.terminologyVersion) && Objects.equals(codeString, that.codeString) && Objects.equals(uri, that.uri);
+        return Objects.equals(terminologyId, that.terminologyId) &&
+                Objects.equals(terminologyVersion, that.terminologyVersion) &&
+                Objects.equals(codeString, that.codeString) &&
+                Objects.equals(uri, that.uri);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(terminologyId, terminologyVersion, codeString, uri);
+        return Objects.hash(terminologyId,
+                terminologyVersion,
+                codeString,
+                uri);
     }
 }

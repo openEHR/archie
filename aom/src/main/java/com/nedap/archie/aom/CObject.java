@@ -367,11 +367,20 @@ public abstract class CObject extends ArchetypeConstraint {
         if (!(o instanceof CObject)) return false;
         if (!super.equals(o)) return false;
         CObject cObject = (CObject) o;
-        return Objects.equals(rmTypeName, cObject.rmTypeName) && Objects.equals(occurrences, cObject.occurrences) && Objects.equals(nodeId, cObject.nodeId) && Objects.equals(deprecated, cObject.deprecated) && Objects.equals(siblingOrder, cObject.siblingOrder);
+        return Objects.equals(rmTypeName, cObject.rmTypeName) &&
+                Objects.equals(occurrences, cObject.occurrences) &&
+                Objects.equals(nodeId, cObject.nodeId) &&
+                Objects.equals(deprecated, cObject.deprecated) &&
+                Objects.equals(siblingOrder, cObject.siblingOrder);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), rmTypeName, occurrences, nodeId, deprecated, siblingOrder);
+        return Objects.hash(super.hashCode(),
+                rmTypeName,
+                occurrences,
+                nodeId,
+                deprecated,
+                siblingOrder);
     }
 }

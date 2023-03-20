@@ -60,11 +60,14 @@ public class CTime extends CTemporal<TemporalAccessor> {
         if (!(o instanceof CTime)) return false;
         if (!super.equals(o)) return false;
         CTime cTime = (CTime) o;
-        return Objects.equals(assumedValue, cTime.assumedValue) && Objects.equals(constraint, cTime.constraint);
+        return Objects.equals(assumedValue, cTime.assumedValue) &&
+                Objects.equals(constraint, cTime.constraint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), assumedValue, constraint);
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint);
     }
 }

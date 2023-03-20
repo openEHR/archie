@@ -60,11 +60,14 @@ public class CDateTime extends CTemporal<TemporalAccessor> {
         if (!(o instanceof CDateTime)) return false;
         if (!super.equals(o)) return false;
         CDateTime cDateTime = (CDateTime) o;
-        return Objects.equals(assumedValue, cDateTime.assumedValue) && Objects.equals(constraint, cDateTime.constraint);
+        return Objects.equals(assumedValue, cDateTime.assumedValue) &&
+                Objects.equals(constraint, cDateTime.constraint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), assumedValue, constraint);
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint);
     }
 }

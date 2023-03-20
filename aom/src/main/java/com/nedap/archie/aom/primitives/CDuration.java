@@ -60,11 +60,14 @@ public class CDuration extends CTemporal<TemporalAmount> {
         if (!(o instanceof CDuration)) return false;
         if (!super.equals(o)) return false;
         CDuration cDuration = (CDuration) o;
-        return Objects.equals(assumedValue, cDuration.assumedValue) && Objects.equals(constraint, cDuration.constraint);
+        return Objects.equals(assumedValue, cDuration.assumedValue) &&
+                Objects.equals(constraint, cDuration.constraint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), assumedValue, constraint);
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint);
     }
 }

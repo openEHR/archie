@@ -79,11 +79,14 @@ public class CInteger extends COrdered<Long> {
         if (!(o instanceof CInteger)) return false;
         if (!super.equals(o)) return false;
         CInteger cInteger = (CInteger) o;
-        return Objects.equals(assumedValue, cInteger.assumedValue) && Objects.equals(constraint, cInteger.constraint);
+        return Objects.equals(assumedValue, cInteger.assumedValue) &&
+                Objects.equals(constraint, cInteger.constraint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), assumedValue, constraint);
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint);
     }
 }

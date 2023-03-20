@@ -34,11 +34,14 @@ public class Function extends Expression {
         if (!(o instanceof Function)) return false;
         if (!super.equals(o)) return false;
         Function function = (Function) o;
-        return Objects.equals(functionName, function.functionName) && Objects.equals(arguments, function.arguments);
+        return Objects.equals(functionName, function.functionName) &&
+                Objects.equals(arguments, function.arguments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), functionName, arguments);
+        return Objects.hash(super.hashCode(),
+                functionName,
+                arguments);
     }
 }

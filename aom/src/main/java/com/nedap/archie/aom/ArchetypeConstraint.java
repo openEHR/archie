@@ -87,7 +87,8 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
         if (this == o) return true;
         if (!(o instanceof ArchetypeConstraint)) return false;
         ArchetypeConstraint that = (ArchetypeConstraint) o;
-        return Objects.equals(parent, that.parent) && Objects.equals(socParent, that.socParent);
+        return Objects.equals(parent, that.parent) &&
+                Objects.equals(socParent, that.socParent);
     }
 
     @Override

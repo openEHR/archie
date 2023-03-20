@@ -85,11 +85,14 @@ public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
         if (!(o instanceof CBoolean)) return false;
         if (!super.equals(o)) return false;
         CBoolean cBoolean = (CBoolean) o;
-        return Objects.equals(assumedValue, cBoolean.assumedValue) && Objects.equals(constraint, cBoolean.constraint);
+        return Objects.equals(assumedValue, cBoolean.assumedValue) &&
+                Objects.equals(constraint, cBoolean.constraint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), assumedValue, constraint);
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint);
     }
 }

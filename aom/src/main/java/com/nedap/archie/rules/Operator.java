@@ -107,11 +107,16 @@ public class Operator extends Expression {
         if (!(o instanceof Operator)) return false;
         if (!super.equals(o)) return false;
         Operator operator1 = (Operator) o;
-        return operator == operator1.operator && Objects.equals(operands, operator1.operands) && Objects.equals(symbol, operator1.symbol);
+        return operator == operator1.operator &&
+                Objects.equals(operands, operator1.operands) &&
+                Objects.equals(symbol, operator1.symbol);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), operator, operands, symbol);
+        return Objects.hash(super.hashCode(),
+                operator,
+                operands,
+                symbol);
     }
 }

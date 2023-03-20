@@ -58,11 +58,14 @@ public class ModelReference extends Leaf {
         if (!(o instanceof ModelReference)) return false;
         if (!super.equals(o)) return false;
         ModelReference that = (ModelReference) o;
-        return Objects.equals(variableReferencePrefix, that.variableReferencePrefix) && Objects.equals(path, that.path);
+        return Objects.equals(variableReferencePrefix, that.variableReferencePrefix)
+                && Objects.equals(path, that.path);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), variableReferencePrefix, path);
+        return Objects.hash(super.hashCode(),
+                variableReferencePrefix,
+                path);
     }
 }

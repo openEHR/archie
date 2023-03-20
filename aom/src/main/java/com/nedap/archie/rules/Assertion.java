@@ -92,11 +92,18 @@ public final class Assertion extends RuleStatement {
         if (!(o instanceof Assertion)) return false;
         if (!super.equals(o)) return false;
         Assertion assertion = (Assertion) o;
-        return Objects.equals(stringExpression, assertion.stringExpression) && Objects.equals(expression, assertion.expression) && Objects.equals(tag, assertion.tag) && Objects.equals(variables, assertion.variables);
+        return Objects.equals(stringExpression, assertion.stringExpression) &&
+                Objects.equals(expression, assertion.expression) &&
+                Objects.equals(tag, assertion.tag) &&
+                Objects.equals(variables, assertion.variables);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), stringExpression, expression, tag, variables);
+        return Objects.hash(super.hashCode(),
+                stringExpression,
+                expression,
+                tag,
+                variables);
     }
 }

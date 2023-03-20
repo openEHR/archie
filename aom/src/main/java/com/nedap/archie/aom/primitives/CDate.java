@@ -60,11 +60,14 @@ public class CDate extends CTemporal<Temporal> {
         if (!(o instanceof CDate)) return false;
         if (!super.equals(o)) return false;
         CDate cDate = (CDate) o;
-        return Objects.equals(assumedValue, cDate.assumedValue) && Objects.equals(constraint, cDate.constraint);
+        return Objects.equals(assumedValue, cDate.assumedValue) &&
+                Objects.equals(constraint, cDate.constraint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), assumedValue, constraint);
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint);
     }
 }

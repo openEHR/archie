@@ -42,11 +42,16 @@ public class QueryVariable extends VariableDeclaration {
         if (!(o instanceof QueryVariable)) return false;
         if (!super.equals(o)) return false;
         QueryVariable that = (QueryVariable) o;
-        return Objects.equals(context, that.context) && Objects.equals(queryId, that.queryId) && Objects.equals(queryArgs, that.queryArgs);
+        return Objects.equals(context, that.context) &&
+                Objects.equals(queryId, that.queryId) &&
+                Objects.equals(queryArgs, that.queryArgs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), context, queryId, queryArgs);
+        return Objects.hash(super.hashCode(),
+                context,
+                queryId,
+                queryArgs);
     }
 }

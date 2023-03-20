@@ -55,11 +55,14 @@ public class CReal extends COrdered<Double> {
         if (!(o instanceof CReal)) return false;
         if (!super.equals(o)) return false;
         CReal cReal = (CReal) o;
-        return Objects.equals(assumedValue, cReal.assumedValue) && Objects.equals(constraint, cReal.constraint);
+        return Objects.equals(assumedValue, cReal.assumedValue) &&
+                Objects.equals(constraint, cReal.constraint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), assumedValue, constraint);
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint);
     }
 }

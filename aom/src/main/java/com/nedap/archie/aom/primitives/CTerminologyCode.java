@@ -305,11 +305,16 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         if (!(o instanceof CTerminologyCode)) return false;
         if (!super.equals(o)) return false;
         CTerminologyCode that = (CTerminologyCode) o;
-        return Objects.equals(assumedValue, that.assumedValue) && Objects.equals(constraint, that.constraint) && constraintStatus == that.constraintStatus;
+        return Objects.equals(assumedValue, that.assumedValue) &&
+                Objects.equals(constraint, that.constraint) &&
+                constraintStatus == that.constraintStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), assumedValue, constraint, constraintStatus);
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint,
+                constraintStatus);
     }
 }
