@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.BiFunction;
 
 /**
@@ -360,4 +361,17 @@ public abstract class CObject extends ArchetypeConstraint {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CObject)) return false;
+        if (!super.equals(o)) return false;
+        CObject cObject = (CObject) o;
+        return Objects.equals(rmTypeName, cObject.rmTypeName) && Objects.equals(occurrences, cObject.occurrences) && Objects.equals(nodeId, cObject.nodeId) && Objects.equals(deprecated, cObject.deprecated) && Objects.equals(siblingOrder, cObject.siblingOrder);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), rmTypeName, occurrences, nodeId, deprecated, siblingOrder);
+    }
 }
