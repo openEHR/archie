@@ -365,7 +365,6 @@ public abstract class CObject extends ArchetypeConstraint {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CObject)) return false;
-        if (!super.equals(o)) return false;
         CObject cObject = (CObject) o;
         return Objects.equals(rmTypeName, cObject.rmTypeName) &&
                 Objects.equals(occurrences, cObject.occurrences) &&

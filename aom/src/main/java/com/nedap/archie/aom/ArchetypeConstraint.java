@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -80,19 +79,5 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
     public Archetype getArchetype() {
         ArchetypeConstraint constraint = getParent();
         return constraint == null ? null : constraint.getArchetype();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ArchetypeConstraint)) return false;
-        ArchetypeConstraint that = (ArchetypeConstraint) o;
-        return Objects.equals(parent, that.parent) &&
-                Objects.equals(socParent, that.socParent);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(parent, socParent);
     }
 }
