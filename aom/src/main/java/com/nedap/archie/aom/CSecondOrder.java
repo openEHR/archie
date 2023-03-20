@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -37,5 +38,18 @@ public class CSecondOrder<T extends ArchetypeConstraint> extends ArchetypeModelO
     public void addMember(T member) {
         members.add(member);
         setThisAsSocParent(member);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CSecondOrder)) return false;
+        CSecondOrder<?> that = (CSecondOrder<?>) o;
+        return Objects.equals(members, that.members);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(members);
     }
 }

@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -51,5 +52,22 @@ public class CDateTime extends CTemporal<TemporalAccessor> {
     @Override
     public void addConstraint(Interval<TemporalAccessor> constraint) {
         this.constraint.add(constraint);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CDateTime)) return false;
+        if (!super.equals(o)) return false;
+        CDateTime cDateTime = (CDateTime) o;
+        return Objects.equals(assumedValue, cDateTime.assumedValue) &&
+                Objects.equals(constraint, cDateTime.constraint);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(),
+                assumedValue,
+                constraint);
     }
 }
