@@ -16,12 +16,6 @@ public class RulesDifferentiator {
             return;
         }
 
-        if (result.getRules().getRules().size() == flatParent.getRules().getRules().size()) {
-            // If the amount of rules is the same, can you assume there are no new rules in the child archetype?
-            result.setRules(null);
-            return;
-        }
-
         List<RuleStatement> rulesToRemove = new ArrayList<>();
         for (RuleStatement rule : result.getRules().getRules()) {
             if (flatParent.getRules().getRules().contains(rule)) {
