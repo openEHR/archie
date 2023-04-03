@@ -30,6 +30,9 @@ public class RulesDifferentiatorTest {
         inMemoryFullArchetypeRepository.compile(BuiltinReferenceModels.getMetaModels());
         Archetype result = inMemoryFullArchetypeRepository.getFlattenedArchetype(CHILD_ARCHETYPE_ID);
         Archetype flatParent = inMemoryFullArchetypeRepository.getFlattenedArchetype(PARENT_ARCHETYPE_ID);
+
+        assertEquals(2, result.getRules().getRules().size());
+
         new RulesDifferentiator().differentiate(result, flatParent);
 
         // Tests
@@ -52,6 +55,9 @@ public class RulesDifferentiatorTest {
         inMemoryFullArchetypeRepository.compile(BuiltinReferenceModels.getMetaModels());
         Archetype result = inMemoryFullArchetypeRepository.getFlattenedArchetype(GRANDCHILD_ARCHETYPE_ID);
         Archetype flatParent = inMemoryFullArchetypeRepository.getFlattenedArchetype(CHILD_ARCHETYPE_ID);
+
+        assertEquals(3, result.getRules().getRules().size());
+
         new RulesDifferentiator().differentiate(result, flatParent);
 
         // Tests
