@@ -1,0 +1,62 @@
+archetype (adl_version=2.0.5; rm_release=1.0.4; generated)
+    openEHR-EHR-OBSERVATION.rules_grandchild.v0.0.1
+
+specialize
+    openEHR-EHR-OBSERVATION.rules_child.v0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Vera">
+    >
+    lifecycle_state = <"DRAFT">
+    details = <
+        ["en"] = <
+            language = <[ISO-639_1::en]>
+            purpose = <"Rules child archetype testing">
+        >
+    >
+
+definition
+    OBSERVATION[id1.1.1] matches {    -- RulesGrandchild
+        /data[id2]/events[id3]/data[id4]/items matches {
+            after [id7]
+            ELEMENT[id0.0.2] occurrences matches {0..1} matches {    -- Count 4
+                value matches {
+                    DV_COUNT[id0.0.3]
+                }
+            }
+            ELEMENT[id0.0.4] occurrences matches {0..1} matches {    -- Sum 3
+                value matches {
+                    DV_COUNT[id0.0.5]
+                }
+            }
+        }
+    }
+
+rules
+    /data[id2]/events[id3]/data[id4]/items[id0.0.4]/value/magnitude = round(
+        /data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude + 
+        /data[id2]/events[id3]/data[id4]/items[id0.0.2]/value/magnitude)
+
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"RulesGrandchild">
+                description = <"Rules child archetype">
+                code = <"id1">
+            >
+            ["id0.0.2"] = <
+                text = <"Count 4">
+                description = <"">
+            >
+            ["id0.0.4"] = <
+                text = <"Sum 3">
+                description = <"">
+            >
+        >
+    >
