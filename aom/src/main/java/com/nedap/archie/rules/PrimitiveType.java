@@ -39,6 +39,12 @@ public enum PrimitiveType {
                 return Integer;
             case REAL:
                 return Real;
+            case DATE:
+                return Date;
+            case TIME:
+                return Time;
+            case DATETIME:
+                return DateTime;
         }
         return null;
     }

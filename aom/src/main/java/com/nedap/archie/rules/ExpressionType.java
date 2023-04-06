@@ -5,7 +5,7 @@ package com.nedap.archie.rules;
  * Created by pieter.bos on 27/10/15.
  */
 public enum ExpressionType {
-     BOOLEAN, STRING, INTEGER, REAL;
+     BOOLEAN, STRING, INTEGER, REAL, DATE, TIME, DATETIME;
 
     public static ExpressionType fromString(String string) {
         switch(string) {
@@ -17,6 +17,12 @@ public enum ExpressionType {
                 return INTEGER;
             case "Real":
                 return REAL;
+            case "Date":
+                return DATE;
+            case "Time":
+                return TIME;
+            case "DateTime":
+                return DATETIME;
         }
         return null;
     }
@@ -31,6 +37,12 @@ public enum ExpressionType {
                 return "Integer";
             case REAL:
                 return "Real";
+            case DATE:
+                return "Date";
+            case TIME:
+                return "Time";
+            case DATETIME:
+                return "DateTime";
         }
         return null;
     }

@@ -36,6 +36,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
 
     private BinaryBooleanOperandEvaluator booleanOperandEvaluator = new BinaryBooleanOperandEvaluator(this);
     private BinaryStringOperandEvaluator stringOperandEvaluator = new BinaryStringOperandEvaluator(this);
+    private BinaryTemporalOperandEvaluator dateOperandEvaluator = new BinaryTemporalOperandEvaluator(this);
 
     private final ModelInfoLookup lookup; //for now only the archie rm model for rule evaluation
 
@@ -317,7 +318,6 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         ValueList leftValues = evaluation.evaluate(statement.getLeftOperand());
         ValueList rightValues = evaluation.evaluate(statement.getRightOperand());
 
-
         ValueList possibleNullResult = handlePossibleNullRelOpResult(statement, leftValues, rightValues);
         if(possibleNullResult != null) {
             possibleNullResult.setType(PrimitiveType.Boolean);
@@ -347,6 +347,16 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             //according to the xpath spec, at least one pair from both collections must exist that matches the condition.
             //want otherwise? Use for_all/every
             result.addValue(stringOperandEvaluator.evaluateMultipleValuesStringRelOp(statement, leftValues, rightValues));
+
+            return result;
+        } else if (List.of(PrimitiveType.Date, PrimitiveType.Time, PrimitiveType.DateTime).contains(leftValues.getType()) ||
+                List.of(PrimitiveType.Date, PrimitiveType.Time, PrimitiveType.DateTime).contains(rightValues.getType())) {
+            ValueList result = new ValueList();
+            result.setType(PrimitiveType.Boolean);
+
+            //according to the xpath spec, at least one pair from both collections must exist that matches the condition.
+            //want otherwise? Use for_all/every
+            result.addValue(dateOperandEvaluator.evaluateMultipleValuesDateRelOp(statement, leftValues, rightValues));
 
             return result;
         } else {

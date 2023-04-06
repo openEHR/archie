@@ -8,6 +8,13 @@ import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Test;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.TemporalAmount;
+import java.util.Calendar;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -75,6 +82,39 @@ public class BinaryOperatorTest {
     @Test
     public void exponentReal() {
         testBinaryOperator(8d, ExpressionType.REAL, 2d, 3d, OperatorKind.exponent);
+    }
+
+    @Test
+    public void greaterThan() {
+        LocalDate date1 = LocalDate.of(2022, 01, 01);
+        LocalDate date2 = LocalDate.of(2022, 01, 02);
+        testBinaryOperator(false, ExpressionType.DATE, date1, date2, OperatorKind.gt);
+        testBinaryOperator(true, ExpressionType.DATE, date2, date1, OperatorKind.gt);
+    }
+
+    @Test
+    public void greaterEqual() {
+
+    }
+
+    @Test
+    public void lesserThan() {
+
+    }
+
+    @Test
+    public void lesserEqual() {
+
+    }
+
+    @Test
+    public void equal() {
+
+    }
+
+    @Test
+    public void notEqual() {
+
     }
 
     @Test
