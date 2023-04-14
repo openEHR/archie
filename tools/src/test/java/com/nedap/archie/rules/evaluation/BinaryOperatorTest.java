@@ -8,9 +8,7 @@ import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Test;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Period;
+import java.time.*;
 import java.time.temporal.TemporalAmount;
 import java.util.Calendar;
 import java.util.Date;
@@ -86,10 +84,23 @@ public class BinaryOperatorTest {
 
     @Test
     public void greaterThan() {
-        LocalDate date1 = LocalDate.of(2022, 01, 01);
-        LocalDate date2 = LocalDate.of(2022, 01, 02);
-        testBinaryOperator(false, ExpressionType.DATE, date1, date2, OperatorKind.gt);
-        testBinaryOperator(true, ExpressionType.DATE, date2, date1, OperatorKind.gt);
+        // Date
+        LocalDate d1 = LocalDate.of(2022, 1, 1);
+        LocalDate d2 = LocalDate.of(2022, 1, 2);
+        testBinaryOperator(false, ExpressionType.DATE, d1, d2, OperatorKind.gt);
+        testBinaryOperator(true, ExpressionType.DATE, d2, d1, OperatorKind.gt);
+
+        // Time
+        LocalTime t1 = LocalTime.of(12, 0);
+        LocalTime t2 = LocalTime.of(12, 15);
+        testBinaryOperator(false, ExpressionType.TIME, t1, t2, OperatorKind.gt);
+        testBinaryOperator(true, ExpressionType.TIME, t2, t1, OperatorKind.gt);
+
+        // DateTime
+        LocalDateTime dt1 = LocalDateTime.of(d1, t1);
+        LocalDateTime dt2 = LocalDateTime.of(d1, t2);
+        testBinaryOperator(false, ExpressionType.DATETIME, dt1, dt2, OperatorKind.gt);
+        testBinaryOperator(true, ExpressionType.DATETIME, dt2, dt1, OperatorKind.gt);
     }
 
     @Test
