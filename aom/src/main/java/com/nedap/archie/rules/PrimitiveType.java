@@ -45,6 +45,8 @@ public enum PrimitiveType {
                 return Time;
             case DATETIME:
                 return DateTime;
+            case DURATION:
+                return Duration;
         }
         return null;
     }
