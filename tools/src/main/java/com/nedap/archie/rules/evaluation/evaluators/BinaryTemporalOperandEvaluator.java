@@ -5,10 +5,7 @@ import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.rules.evaluation.Value;
 import com.nedap.archie.rules.evaluation.ValueList;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.temporal.Temporal;
 import java.util.List;
 
@@ -42,7 +39,7 @@ public class BinaryTemporalOperandEvaluator {
     }
 
     /**
-     * Evaluate values that are an instance of Temporal (LocalDate, LocalDateTime, OffsetDateTime and ZonedDateTime)
+     * Evaluate values that are an instance of Temporal (LocalDate, LocalTime, LocalDateTime, OffsetDateTime and ZonedDateTime)
      *
      * @param operator the operator of the expression
      * @param left left value
@@ -51,7 +48,7 @@ public class BinaryTemporalOperandEvaluator {
      * @return
      */
     private Boolean evaluateBooleanRelOp(OperatorKind operator, Temporal left, Temporal right) {
-        if (left.getClass().equals(right.getClass())) {
+        if (!left.getClass().equals(right.getClass())) {
             throw new IllegalArgumentException("non matching classes not supported: " + left.getClass().getSimpleName() + " and " + right.getClass().getSimpleName() + ".");
         }
 
@@ -76,6 +73,8 @@ public class BinaryTemporalOperandEvaluator {
     private Boolean isBefore(Temporal left, Temporal right) {
         if (left instanceof LocalDate && right instanceof LocalDate) {
             return ((LocalDate) left).isBefore((LocalDate) right);
+        } else if (left instanceof LocalTime && right instanceof LocalTime) {
+            return ((LocalTime) left).isBefore((LocalTime) right);
         } else if (left instanceof LocalDateTime && right instanceof LocalDateTime) {
             return ((LocalDateTime) left).isBefore((LocalDateTime) right);
         } else if (left instanceof OffsetDateTime && right instanceof OffsetDateTime) {
@@ -90,6 +89,8 @@ public class BinaryTemporalOperandEvaluator {
     private Boolean isAfter(Temporal left, Temporal right) {
         if (left instanceof LocalDate && right instanceof LocalDate) {
             return ((LocalDate) left).isAfter((LocalDate) right);
+        } else if (left instanceof LocalTime && right instanceof LocalTime) {
+            return ((LocalTime) left).isAfter((LocalTime) right);
         } else if (left instanceof LocalDateTime && right instanceof LocalDateTime) {
             return ((LocalDateTime) left).isAfter((LocalDateTime) right);
         } else if (left instanceof OffsetDateTime && right instanceof OffsetDateTime) {
@@ -104,6 +105,8 @@ public class BinaryTemporalOperandEvaluator {
     private Boolean isEqual(Temporal left, Temporal right) {
         if (left instanceof LocalDate && right instanceof LocalDate) {
             return ((LocalDate) left).isEqual((LocalDate) right);
+        } else if (left instanceof LocalTime && right instanceof LocalTime) {
+            return !isBefore(left, right) && !isAfter(left, right);
         } else if (left instanceof LocalDateTime && right instanceof LocalDateTime) {
             return ((LocalDateTime) left).isEqual((LocalDateTime) right);
         } else if (left instanceof OffsetDateTime && right instanceof OffsetDateTime) {
