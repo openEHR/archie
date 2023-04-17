@@ -5,13 +5,9 @@ import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constant;
 import com.nedap.archie.rules.ExpressionType;
 import com.nedap.archie.rules.OperatorKind;
-import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Test;
 
 import java.time.*;
-import java.time.temporal.TemporalAmount;
-import java.util.Calendar;
-import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
