@@ -45,7 +45,7 @@ public class BinaryTemporalAmountOperandEvaluator {
      * @param left left value
      * @param right right value
      *
-     * @return
+     * @return A {@link Boolean} result of the comparison
      */
     private Boolean evaluateBooleanRelOp(OperatorKind operator, TemporalAmount left, TemporalAmount right) {
         if (!left.getClass().equals(right.getClass())) {
@@ -72,7 +72,7 @@ public class BinaryTemporalAmountOperandEvaluator {
 
     private Boolean isLess(TemporalAmount left, TemporalAmount right) {
         if (left instanceof Period && right instanceof Period) {
-            return ((Period) left).minus(right).isNegative();
+            return periodToDaysEstimate((Period) left) - periodToDaysEstimate((Period) right) < 0;
         } else if (left instanceof Duration && right instanceof Duration) {
             return ((Duration) left).minus((Duration) right).isNegative();
         } else {
@@ -82,7 +82,7 @@ public class BinaryTemporalAmountOperandEvaluator {
 
     private Boolean isGreater(TemporalAmount left, TemporalAmount right) {
         if (left instanceof Period && right instanceof Period) {
-            return ((Period) right).minus(left).isNegative();
+            return periodToDaysEstimate((Period) left) - periodToDaysEstimate((Period) right) > 0;
         } else if (left instanceof Duration && right instanceof Duration) {
             return ((Duration) right).minus((Duration) left).isNegative();
         } else {
@@ -92,11 +92,25 @@ public class BinaryTemporalAmountOperandEvaluator {
 
     private Boolean isEqual(TemporalAmount left, TemporalAmount right) {
         if (left instanceof Period && right instanceof Period) {
-            return ((Period) right).minus(left).isZero();
+            return periodToDaysEstimate((Period) left) - periodToDaysEstimate((Period) right) == 0;
         } else if (left instanceof Duration && right instanceof Duration) {
             return ((Duration) right).minus((Duration) left).isZero();
         } else {
             throw new IllegalArgumentException("TemporalAmount class not supported: " + left.getClass().getSimpleName());
         }
+    }
+
+    /**
+     * Period is not really comparable as it depends on what date it's used with.
+     * Example: 30 days is not always 1 month.
+     * <p>
+     * This method calculates the estimated amount of days in a Period, so it can be used to compare.
+     *
+     * @param period The period of which the estimated days should be returned.
+     * @return An estimated amount of days for the given Period.
+     */
+    private int periodToDaysEstimate(Period period) {
+        if (period == null) return 0;
+        return (period.getYears() * 12 + period.getMonths()) * 30 + period.getDays();
     }
 }

@@ -45,7 +45,7 @@ public class BinaryTemporalOperandEvaluator {
      * @param left left value
      * @param right right value
      *
-     * @return
+     * @return A {@link Boolean} result of the comparison
      */
     private Boolean evaluateBooleanRelOp(OperatorKind operator, Temporal left, Temporal right) {
         if (!left.getClass().equals(right.getClass())) {
