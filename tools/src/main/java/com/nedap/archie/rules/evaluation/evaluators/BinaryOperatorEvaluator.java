@@ -36,6 +36,8 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
 
     private BinaryBooleanOperandEvaluator booleanOperandEvaluator = new BinaryBooleanOperandEvaluator(this);
     private BinaryStringOperandEvaluator stringOperandEvaluator = new BinaryStringOperandEvaluator(this);
+    private BinaryTemporalOperandEvaluator temporalOperandEvaluator = new BinaryTemporalOperandEvaluator(this);
+    private BinaryTemporalAmountOperandEvaluator temporalAmountOperandEvaluator = new BinaryTemporalAmountOperandEvaluator(this);
 
     private final ModelInfoLookup lookup; //for now only the archie rm model for rule evaluation
 
@@ -317,7 +319,6 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         ValueList leftValues = evaluation.evaluate(statement.getLeftOperand());
         ValueList rightValues = evaluation.evaluate(statement.getRightOperand());
 
-
         ValueList possibleNullResult = handlePossibleNullRelOpResult(statement, leftValues, rightValues);
         if(possibleNullResult != null) {
             possibleNullResult.setType(PrimitiveType.Boolean);
@@ -347,6 +348,26 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             //according to the xpath spec, at least one pair from both collections must exist that matches the condition.
             //want otherwise? Use for_all/every
             result.addValue(stringOperandEvaluator.evaluateMultipleValuesStringRelOp(statement, leftValues, rightValues));
+
+            return result;
+        } else if (PrimitiveType.Date.equals(leftValues.getType()) || PrimitiveType.Date.equals(rightValues.getType()) ||
+                PrimitiveType.Time.equals(leftValues.getType()) || PrimitiveType.Time.equals(rightValues.getType()) ||
+                PrimitiveType.DateTime.equals(leftValues.getType()) || PrimitiveType.DateTime.equals(rightValues.getType())) {
+            ValueList result = new ValueList();
+            result.setType(PrimitiveType.Boolean);
+
+            //according to the xpath spec, at least one pair from both collections must exist that matches the condition.
+            //want otherwise? Use for_all/every
+            result.addValue(temporalOperandEvaluator.evaluateMultipleValuesDateRelOp(statement, leftValues, rightValues));
+
+            return result;
+        } else if (PrimitiveType.Duration.equals(leftValues.getType()) || PrimitiveType.Duration.equals(rightValues.getType())) {
+            ValueList result = new ValueList();
+            result.setType(PrimitiveType.Boolean);
+
+            //according to the xpath spec, at least one pair from both collections must exist that matches the condition.
+            //want otherwise? Use for_all/every
+            result.addValue(temporalAmountOperandEvaluator.evaluateMultipleValuesDateRelOp(statement, leftValues, rightValues));
 
             return result;
         } else {
