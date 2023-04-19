@@ -22,9 +22,8 @@ description
 definition
     CLUSTER[id1.1] matches {    -- SiblingOrderChild
         /items matches {
-            -- CLUSTER [id5] (from parent)
-            CLUSTER[id6] occurrences matches {1}     -- Cluster 2
             CLUSTER[id7] occurrences matches {0}     -- Cluster 3
+            CLUSTER[id6] occurrences matches {1}     -- Cluster 2
             before [id5]
             CLUSTER[id0.2] occurrences matches {0..1}     -- New Cluster in child 1
             before [id6]
@@ -33,6 +32,9 @@ definition
             CLUSTER[id0.8] occurrences matches {0..1}     -- New Cluster in child 3
             after [id6]
             CLUSTER[id0.9] occurrences matches {0..1}     -- New Cluster in child 4
+            CLUSTER[id8] occurrences matches {0}     -- Cluster 4
+            CLUSTER[id8.1]
+            -- CLUSTER[id8.1] occurrences matches {1} matches {    -- Cluster 4 spec
         }
     }
 
@@ -58,6 +60,14 @@ terminology
             >
             ["id0.9"] = <
                 text = <"New Cluster in child 4">
+                description = <"">
+            >
+            ["id8.1"] = <
+                text = <"Cluster 4 spec">
+                description = <"">
+            >
+            ["id0.10"] = <
+                text = <"Text">
                 description = <"">
             >
         >
