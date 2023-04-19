@@ -9,8 +9,7 @@ import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Flattens attributes, taking sibling order into account.
@@ -80,8 +79,12 @@ public class CAttributeFlattener {
             return childCloned;
         } else {
 
+            int specializationLevelOfParent = attributeInSpecialization.getArchetype().specializationDepth()-1;
             attributeInParent.setExistence(FlattenerUtil.getPossiblyOverridenValue(attributeInParent.getExistence(), attributeInSpecialization.getExistence()));
             attributeInParent.setCardinality(FlattenerUtil.getPossiblyOverridenValue(attributeInParent.getCardinality(), attributeInSpecialization.getCardinality()));
+
+            // a list of all node ids that have been excluded in this operation
+            Set<String> excludedNodeIds = new HashSet<>();
 
             if (attributeInSpecialization.getChildren().size() > 0 && attributeInSpecialization.getChildren().get(0) instanceof CPrimitiveObject) {
                 //in case of a primitive object, just replace all nodes
@@ -112,12 +115,13 @@ public class CAttributeFlattener {
                         anchor = specializedChildCObject.getSiblingOrder();
                     }
 
+                    CObject specializedObject = null;
                     if (anchor != null) {
-                        mergeObjectIntoAttribute(attributeInParent, specializedChildCObject, matchingParentObject, attributeInSpecialization.getChildren(), anchor);
+                        specializedObject = mergeObjectIntoAttribute(attributeInParent, specializedChildCObject, matchingParentObject, attributeInSpecialization.getChildren(), anchor);
                         anchor = nextAnchor(anchor, specializedChildCObject);
                     } else { //no sibling order, apply default rules
                         //add to end
-                        CObject specializedObject = flattener.createSpecializeCObject(attributeInParent, matchingParentObject, specializedChildCObject);
+                        specializedObject = flattener.createSpecializeCObject(attributeInParent, matchingParentObject, specializedChildCObject);
                         if(matchingParentObject == null) {
                             //extension nodes should be added to the last position
                             attributeInParent.addChild(specializedObject);
@@ -126,6 +130,23 @@ public class CAttributeFlattener {
                             if(shouldRemoveParent(specializedChildCObject, matchingParentObject, attributeInSpecialization.getChildren())) {
                                 attributeInParent.removeChild(matchingParentObject.getNodeId());
                             }
+                        }
+                    }
+
+                    if(matchingParentObject != null && true) { //TODO: this is non-standard backwards compatible behaviour. Make configurable, default off!
+                        boolean thisNodeIsExclusion = false;
+                        if (Objects.equals(specializedObject.getNodeId(), matchingParentObject.getNodeId()) &&
+                                specializedObject.getOccurrences() != null && specializedObject.getOccurrences().isProhibited() &&
+                                (matchingParentObject.getOccurrences() == null || !matchingParentObject.getOccurrences().isProhibited())
+                        ) {
+                            excludedNodeIds.add(specializedObject.getNodeId());
+                            thisNodeIsExclusion = true;
+                        }
+
+                        if (!thisNodeIsExclusion && excludedNodeIds.contains(AOMUtils.codeAtLevel(specializedChildCObject.getNodeId(), specializationLevelOfParent))) {
+                            //because of this particular specialization, the parent object was excluded, so occurrences matches {0} in the specialized archetype
+                            //but a modification of the parent node is done after that in the specialized archetype
+                            specializedObject.setOccurrences(specializedChildCObject.getOccurrences());
                         }
                     }
                 }
@@ -158,13 +179,15 @@ public class CAttributeFlattener {
      * @param matchingParentObject the matching parent CObject for the given specializedChildObject
      * @param allSpecializedChildren all the specialized children in the same container as specialedChildCObject
      * @param siblingOrder the sibling order where to add the specializedChild to. Directly adds, no preprocessing or anchor support in this method, you must do that before.
+     * @return the created Specialised object, that also has been added to the parentAttribute
      */
-    private void mergeObjectIntoAttribute(CAttribute parentAttribute, CObject specializedChildCObject, CObject matchingParentObject, List<CObject> allSpecializedChildren, SiblingOrder siblingOrder) {
+    private CObject mergeObjectIntoAttribute(CAttribute parentAttribute, CObject specializedChildCObject, CObject matchingParentObject, List<CObject> allSpecializedChildren, SiblingOrder siblingOrder) {
         CObject specializedObject = flattener.createSpecializeCObject(parentAttribute, matchingParentObject, specializedChildCObject);
         if (shouldRemoveParent(specializedChildCObject, matchingParentObject, allSpecializedChildren)) {
             parentAttribute.removeChild(matchingParentObject.getNodeId());
         }
         parentAttribute.addChild(specializedObject, siblingOrder);
+        return specializedObject;
     }
 
 
