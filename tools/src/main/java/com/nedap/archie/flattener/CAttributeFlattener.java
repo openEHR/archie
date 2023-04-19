@@ -109,7 +109,6 @@ public class CAttributeFlattener {
                     //find matching attributeInParent and create the child node with it
                     CObject matchingParentObject = findMatchingParentCObject(specializedChildCObject, parentCObjects);
 
-
                     if(specializedChildCObject.getSiblingOrder() != null) {
                         //new sibling order, update the anchor
                         anchor = specializedChildCObject.getSiblingOrder();
@@ -133,7 +132,8 @@ public class CAttributeFlattener {
                         }
                     }
 
-                    if(matchingParentObject != null && true) { //TODO: this is non-standard backwards compatible behaviour. Make configurable, default off!
+                    // Checks for
+                    if(flattener.getConfig().isAllowSpecializationAfterExclusion() && matchingParentObject != null) {
                         boolean thisNodeIsExclusion = false;
                         if (Objects.equals(specializedObject.getNodeId(), matchingParentObject.getNodeId()) &&
                                 specializedObject.getOccurrences() != null && specializedObject.getOccurrences().isProhibited() &&

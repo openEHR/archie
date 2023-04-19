@@ -100,7 +100,7 @@ public class SiblingOrderFlattenerTest {
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
         assertEquals(
-                Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id8", "id8.1", "id0.8", "id7"),
+                Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8", "id7"),
                 nodeIds
         );
     }
@@ -115,7 +115,7 @@ public class SiblingOrderFlattenerTest {
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
         assertEquals(
-                Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id8.1", "id0.8"),
+                Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8"),
                 nodeIds
         );
     }
