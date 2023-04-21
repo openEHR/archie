@@ -22,8 +22,8 @@ description
 definition
     CLUSTER[id1.1] matches {    -- SiblingOrderChild
         /items matches {
-            CLUSTER[id7] occurrences matches {0}     -- Cluster 3
             CLUSTER[id6] occurrences matches {1}     -- Cluster 2
+            CLUSTER[id7] occurrences matches {0}     -- Cluster 3
             before [id5]
             CLUSTER[id0.2] occurrences matches {0..1}     -- New Cluster in child 1
             before [id6]

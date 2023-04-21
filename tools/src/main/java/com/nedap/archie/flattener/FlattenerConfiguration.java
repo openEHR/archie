@@ -62,7 +62,7 @@ public class FlattenerConfiguration {
     private boolean failOnMissingUsedArchetype = true;
 
     /**
-     * Only for Operational templates: officially, objects can only be excluded (occurrences matches {0}) after any
+     * Officially, objects can only be excluded (occurrences matches {0}) after any
      * specializations. If any object is specialized after the exclusion of the parent object, the specialization is ignored.
      * This was not ignored before, so this config can be used to reproduce previous behaviour.
      *
