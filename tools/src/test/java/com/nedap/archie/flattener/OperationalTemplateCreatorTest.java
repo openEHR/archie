@@ -100,14 +100,14 @@ public class OperationalTemplateCreatorTest {
     @Test
     public void allowSpecializationBeforeExclusionEnabled() throws Exception {
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        Archetype parentArchetype = parse("openEHR-EHR-OBSERVATION.siblingorderparent.v1.0.0.adls");
+        Archetype parentArchetype = parse("/com/nedap/archie/flattener/siblingorder/openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
         repository.addArchetype(parentArchetype);
 
         FlattenerConfiguration config = FlattenerConfiguration.forOperationalTemplate();
         // Explicitly set it to true, even though it's default
         config.setAllowSpecializationAfterExclusion(true);
 
-        Archetype flatChild =  parseAndCreateOPTWithConfig("openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0", repository, config);
+        Archetype flatChild =  parseAndCreateOPTWithConfig("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls", repository, config);
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
         assertEquals(
@@ -119,13 +119,13 @@ public class OperationalTemplateCreatorTest {
     @Test
     public void allowSpecializationBeforeExclusionDisabled() throws Exception {
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        Archetype parentArchetype = parse("openEHR-EHR-OBSERVATION.siblingorderparent.v1.0.0.adls");
+        Archetype parentArchetype = parse("/com/nedap/archie/flattener/siblingorder/openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
         repository.addArchetype(parentArchetype);
 
         FlattenerConfiguration config = FlattenerConfiguration.forOperationalTemplate();
         config.setAllowSpecializationAfterExclusion(false);
 
-        Archetype flatChild =  parseAndCreateOPTWithConfig("openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0", repository, config);
+        Archetype flatChild =  parseAndCreateOPTWithConfig("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls", repository, config);
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
         assertEquals(
@@ -143,7 +143,7 @@ public class OperationalTemplateCreatorTest {
         return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), config).flatten(parse(fileName));
     }
 
-    private Archetype parse(String fileName) throws IOException, ADLParseException {
-        return FlattenerTestUtil.parse("/com/nedap/archie/flattener/siblingorder/" + fileName);
+    private Archetype parse(String filePath) throws IOException, ADLParseException {
+        return FlattenerTestUtil.parse(filePath);
     }
 }
