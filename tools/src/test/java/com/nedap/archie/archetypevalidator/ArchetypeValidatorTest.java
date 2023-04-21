@@ -302,6 +302,25 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void specializationAfterExclusionTest() throws IOException, ADLParseException {
+        Archetype parent = parse("/com/nedap/archie/flattener/siblingorder/openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
+        Archetype childWithSpecializationAfterExclusion = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls");
+
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(parent);
+            repository.addArchetype(childWithSpecializationAfterExclusion);
+
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult result = archetypeValidator.validate(childWithSpecializationAfterExclusion, repository);
+            assertTrue(result.passes());
+            assertEquals(2, result.getErrors().size());
+            assertEquals("Object with node id id5.1 should be specialized before excluding the parent node", result.getErrors().get(0).getMessage());
+            assertEquals("Object with node id id7.1 should be specialized before excluding the parent node", result.getErrors().get(1).getMessage());
+        }
+    }
+
     private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
