@@ -25,6 +25,11 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
     }
 
     @Override
+    protected void beginValidation() {
+        excludedNodeIds.clear();
+    }
+
+    @Override
     public void validate() {
         //only run these if the archetype is specialized and the parent has been found and flattened
         if(archetype.isSpecialized() && flatParent != null) {
