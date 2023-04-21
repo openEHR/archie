@@ -61,6 +61,16 @@ public class FlattenerConfiguration {
      */
     private boolean failOnMissingUsedArchetype = true;
 
+    /**
+     * Officially, objects can only be excluded (occurrences matches {0}) after any
+     * specializations. If any object is specialized after the exclusion of the parent object, the specialization is ignored.
+     * This was not ignored before, so this config can be used to reproduce previous behaviour.
+     *
+     * Deprecated because this should be fixed in archetypes, rather than allowing it in a configuration.
+     */
+    @Deprecated
+    private boolean allowSpecializationAfterExclusion = true;
+
     private FlattenerConfiguration() {
 
     }
@@ -174,5 +184,13 @@ public class FlattenerConfiguration {
 
     public void setFailOnMissingUsedArchetype(boolean failOnMissingUsedArchetype) {
         this.failOnMissingUsedArchetype = failOnMissingUsedArchetype;
+    }
+
+    public boolean isAllowSpecializationAfterExclusion() {
+        return allowSpecializationAfterExclusion;
+    }
+
+    public void setAllowSpecializationAfterExclusion(boolean allowSpecializationAfterExclusion) {
+        this.allowSpecializationAfterExclusion = allowSpecializationAfterExclusion;
     }
 }

@@ -449,6 +449,11 @@ public class Flattener implements IAttributeFlattenerSupport {
         return metaModels;
     }
 
+    @Override
+    public FlattenerConfiguration getConfig() {
+        return config;
+    }
+
 
     public boolean getCreateOperationalTemplate() {
         return config.isCreateOperationalTemplate();
