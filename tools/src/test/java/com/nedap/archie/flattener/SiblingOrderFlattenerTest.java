@@ -93,10 +93,10 @@ public class SiblingOrderFlattenerTest {
     @Test
     public void reorderBasedOnRedefinedAttributes() throws IOException, ADLParseException {
         repository = new InMemoryFullArchetypeRepository();
-        Archetype siblingOrderParent = parse("openEHR-EHR-OBSERVATION.siblingorderparent.v1.0.0.adls");
+        Archetype siblingOrderParent = parse("openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
         repository.addArchetype(siblingOrderParent);
 
-        Archetype flatChild =  parseAndFlatten("openEHR-EHR-OBSERVATION.siblingorderchild.v1.0.0.adls");
+        Archetype flatChild =  parseAndFlatten("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
         assertEquals(
@@ -108,10 +108,10 @@ public class SiblingOrderFlattenerTest {
     @Test
     public void reorderBasedOnRedefinedAttributesOPT() throws IOException, ADLParseException {
         repository = new InMemoryFullArchetypeRepository();
-        Archetype siblingOrderParent = parse("openEHR-EHR-OBSERVATION.siblingorderparent.v1.0.0.adls");
+        Archetype siblingOrderParent = parse("openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
         repository.addArchetype(siblingOrderParent);
 
-        Archetype flatChild =  parseAndCreateOPT("openEHR-EHR-OBSERVATION.siblingorderchild.v1.0.0.adls");
+        Archetype flatChild =  parseAndCreateOPT("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
         assertEquals(
@@ -123,10 +123,10 @@ public class SiblingOrderFlattenerTest {
     @Test
     public void reorderBasedOnRedefinedAttributesRemoveZeroOccurrences() throws IOException, ADLParseException {
         repository = new InMemoryFullArchetypeRepository();
-        Archetype siblingOrderParent = parse("openEHR-EHR-OBSERVATION.siblingorderparent.v1.0.0.adls");
+        Archetype siblingOrderParent = parse("openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
         repository.addArchetype(siblingOrderParent);
 
-        Archetype flatChild =  parseAndFlattenRemoveZeroOccurrences("openEHR-EHR-OBSERVATION.siblingorderchild.v1.0.0.adls");
+        Archetype flatChild =  parseAndFlattenRemoveZeroOccurrences("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
         assertEquals(
