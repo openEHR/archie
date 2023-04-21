@@ -8,4 +8,6 @@ public interface IAttributeFlattenerSupport {
 
     CObject createSpecializeCObject(CAttribute attribute, CObject parent, CObject specialized);
     public MetaModels getMetaModels();
+
+    public FlattenerConfiguration getConfig();
 }
