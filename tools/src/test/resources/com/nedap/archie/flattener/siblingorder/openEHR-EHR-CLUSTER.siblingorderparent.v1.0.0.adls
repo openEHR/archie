@@ -20,9 +20,9 @@ definition
     CLUSTER[id1] matches {    -- SiblingOrderParent
 
         items matches {
-            CLUSTER[id5] occurrences matches {0..1}     -- Cluster 1
-            CLUSTER[id6] occurrences matches {0..1}     -- Cluster 2
-            CLUSTER[id7] occurrences matches {0..1}     -- Cluster 3
+            CLUSTER[id5] occurrences matches {0..*}     -- Cluster 1
+            CLUSTER[id6] occurrences matches {0..*}     -- Cluster 2
+            CLUSTER[id7] occurrences matches {0..*}     -- Cluster 3
         }
 
     }
