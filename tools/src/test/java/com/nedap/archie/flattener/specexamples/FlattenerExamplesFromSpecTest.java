@@ -134,15 +134,23 @@ public class FlattenerExamplesFromSpecTest {
         Archetype emptyObservation = parse("openEHR-EHR-OBSERVATION.empty_observation.v1.0.0.adls");
         repository.addArchetype(emptyObservation);
 
-        Archetype mandatory = parse("openEHR-EHR-OBSERVATION.protocol_mandatory.v1.0.0.adls");
-        Archetype exclusion = parse("openEHR-EHR-OBSERVATION.protocol_exclusion.v1.0.0.adls");
+        Archetype mandatory = parse("openEHR-EHR-OBSERVATION.uid_protocol_mandatory.v1.0.0.adls");
+        Archetype exclusion = parse("openEHR-EHR-OBSERVATION.uid_protocol_exclusion.v1.0.0.adls");
 
         Archetype mandatoryFlat = new Flattener(repository, models).flatten(mandatory);
         Archetype exclusionFlat = new Flattener(repository, models).flatten(exclusion);
 
+        CAttribute mandatoryUid = mandatoryFlat.getDefinition().getAttribute("uid");
+        assertTrue(mandatoryUid.getExistence().isMandatory());
+        assertEquals(1, mandatoryUid.getChildren().size());
+
         CAttribute mandatoryProtocol = mandatoryFlat.getDefinition().getAttribute("protocol");
         assertTrue(mandatoryProtocol.getExistence().isMandatory());
         assertEquals(1, mandatoryProtocol.getChildren().size());
+
+        CAttribute prohibitedUid = exclusionFlat.getDefinition().getAttribute("uid");
+        assertNotNull(prohibitedUid); //according to spec, prohibited existence should be logically removed (meaning not actually removed)
+        assertTrue(prohibitedUid.getChildren().isEmpty());
 
         CAttribute prohibitedProtocol = exclusionFlat.getDefinition().getAttribute("protocol");
         assertNotNull(prohibitedProtocol); //according to spec, prohibited existence should be logically removed (meaning not actually removed)
