@@ -6,6 +6,8 @@ import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 
@@ -35,12 +37,22 @@ public class MetadataTest {
 
     @Test
     public void metadataTest() throws Exception {
-        //(adl_version=2.0.5; rm_release=1.0.2)
-        assertEquals("2.0.5", archetype.getAdlVersion());
+        //(adl_version=2.0.5-alpha; rm_release=1.0.2; generated; controlled; uid=a2bc5e00-c67e-4d7e-bb87-b3b74cdefd00; build_uid=B430138C-1DD2-42EF-B54C-633909437054;
+        // adl_version=1.0;rm_release= 2;generated= 3;controlled = 4.4.4;uid=5;build_uid=6.0.0;identifier=a2bc5e00-c67e-4d7e-bb87-b3b74cdefd00)
+        assertEquals("2.0.5-alpha", archetype.getAdlVersion());
         assertEquals("1.0.2", archetype.getRmRelease());
         assertTrue(archetype.getGenerated());
         assertTrue(archetype.getControlled());
+        assertEquals("a2bc5e00-c67e-4d7e-bb87-b3b74cdefd00", archetype.getUid());
         assertEquals("B430138C-1DD2-42EF-B54C-633909437054", archetype.getBuildUid());
+        Map<String, String> otherMetadata = archetype.getOtherMetaData();
+        assertEquals("1.0", otherMetadata.get("adl_version"));
+        assertEquals("2", otherMetadata.get("rm_release"));
+        assertEquals("3", otherMetadata.get("generated"));
+        assertEquals("4.4.4", otherMetadata.get("controlled"));
+        assertEquals("5", otherMetadata.get("uid"));
+        assertEquals("6.0.0", otherMetadata.get("build_uid"));
+        assertEquals("a2bc5e00-c67e-4d7e-bb87-b3b74cdefd00", otherMetadata.get("identifier"));
     }
 
 }

@@ -78,12 +78,6 @@ componentTerminologiesSection: SYM_COMPONENT_TERMINOLOGIES odin_text ;
 metaData: '(' metaDataItem  (';' metaDataItem )* ')' ;
 
 metaDataItem:
-      metaDataTagAdlVersion '=' VERSION_ID
-    | metaDataTagUid '=' GUID
-    | metaDataTagBuildUid '=' GUID
-    | metaDataTagRmRelease '=' VERSION_ID
-    | metaDataTagIsControlled
-    | metaDataTagIsGenerated
     | identifier ( '=' metaDataValue )?
     ;
 
@@ -92,10 +86,3 @@ metaDataValue:
     | GUID
     | VERSION_ID
     ;
-
-metaDataTagAdlVersion   : 'adl_version' ;
-metaDataTagUid           : 'uid' ;
-metaDataTagBuildUid     : 'build_uid' ;
-metaDataTagRmRelease    : 'rm_release' ;
-metaDataTagIsControlled : 'controlled' ;
-metaDataTagIsGenerated  : 'generated' ;
