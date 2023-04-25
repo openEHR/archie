@@ -9,6 +9,7 @@ description
 
 definition
     OBSERVATION[id1] ∈ {                -- observation
+        uid                             -- existence not changed from reference model
         protocol ∈ {                    -- existence not changed from reference model
             ITEM_TREE[id2]              -- some content
         }
