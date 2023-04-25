@@ -48,8 +48,8 @@ public class DifferentiatorExamplesFromSpecTest {
     //9.4.1 in definitions specs
     @Test
     public void existenceRedefinition() throws Exception {
-        diffTestUtil.test("openEHR-EHR-OBSERVATION.empty_observation.v1.0.0.adls", "openEHR-EHR-OBSERVATION.protocol_mandatory.v1.0.0.adls");
-        diffTestUtil.test("openEHR-EHR-OBSERVATION.empty_observation.v1.0.0.adls", "openEHR-EHR-OBSERVATION.protocol_exclusion.v1.0.0.adls");
+        diffTestUtil.test("openEHR-EHR-OBSERVATION.empty_observation.v1.0.0.adls", "openEHR-EHR-OBSERVATION.uid_protocol_mandatory.v1.0.0.adls");
+        diffTestUtil.test("openEHR-EHR-OBSERVATION.empty_observation.v1.0.0.adls", "openEHR-EHR-OBSERVATION.uid_protocol_exclusion.v1.0.0.adls");
     }
 
 
