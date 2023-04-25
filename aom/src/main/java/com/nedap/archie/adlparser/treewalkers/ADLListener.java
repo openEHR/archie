@@ -2,6 +2,7 @@ package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
@@ -108,41 +109,40 @@ public class ADLListener extends AdlBaseListener {
 
     public void enterMetaDataItem(AdlParser.MetaDataItemContext ctx) {
         /*
-         SYM_ADL_VERSION '=' VERSION_ID
-        | SYM_UID '=' GUID
-        | SYM_BUILD_UID '=' GUID
-        | SYM_RM_RELEASE '=' VERSION_ID
-        | SYM_IS_CONTROLLED
-        | SYM_IS_GENERATED
         | identifier ( '=' meta_data_value )?
-
          */
         if(archetype instanceof AuthoredArchetype) {
             AuthoredArchetype authoredArchetype = (AuthoredArchetype) archetype;
+            String identifier = ctx.identifier().getText();
+            String metaDataValue = ctx.metaDataValue() != null ? ctx.metaDataValue().getText() : null;
 
-            if(ctx.metaDataTagAdlVersion() != null) {
-                authoredArchetype.setAdlVersion(ctx.VERSION_ID().getText());
-            }
-            if(ctx.metaDataTagBuildUid() != null) {
-                authoredArchetype.setBuildUid(ctx.GUID().getText());
-            }
-            if(ctx.metaDataTagRmRelease() != null) {
-                authoredArchetype.setRmRelease(ctx.VERSION_ID().getText());
-            }
-            if(ctx.metaDataTagIsControlled() != null) {
-                authoredArchetype.setControlled(true);
-            }
-            if(ctx.metaDataTagIsGenerated() != null) {
-                authoredArchetype.setGenerated(true);
-            }
-            if(ctx.metaDataTagUid() != null) {
-                authoredArchetype.setUid(ctx.GUID().getText());
-            }
-            else if(ctx.identifier() != null) {
-                authoredArchetype.addOtherMetadata(ctx.identifier().getText(), ctx.metaDataValue() == null ? null : ctx.metaDataValue().getText());
+            if(metaDataValue != null) {
+                // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
+                String versionIdRegex = "[0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?";
+                String guidRegex = "[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+";
+
+                // Check if metadataItem matches tag ADL version
+                if(identifier.equals("adl_version") && metaDataValue.matches(versionIdRegex)) {
+                    authoredArchetype.setAdlVersion(metaDataValue);
+                } else if(identifier.equals("rm_release") && metaDataValue.matches(versionIdRegex)) {
+                    authoredArchetype.setRmRelease(metaDataValue);
+                } else if(identifier.equals("uid") && metaDataValue.matches(guidRegex)) {
+                    authoredArchetype.setUid(metaDataValue);
+                } else if(identifier.equals("build_uid") && metaDataValue.matches(guidRegex)) {
+                    authoredArchetype.setBuildUid(metaDataValue);
+                } else{
+                    authoredArchetype.addOtherMetadata(identifier, metaDataValue);
+                }
+            } else {
+                if(identifier.equals("controlled")) {
+                    authoredArchetype.setControlled(true);
+                } else if(identifier.equals("generated")) {
+                    authoredArchetype.setGenerated(true);
+                } else {
+                    authoredArchetype.addOtherMetadata(identifier, null);
+                }
             }
         }
-
     }
 
     /**
