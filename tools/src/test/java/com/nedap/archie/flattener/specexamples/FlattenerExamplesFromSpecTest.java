@@ -134,8 +134,8 @@ public class FlattenerExamplesFromSpecTest {
         Archetype emptyObservation = parse("openEHR-EHR-OBSERVATION.empty_observation.v1.0.0.adls");
         repository.addArchetype(emptyObservation);
 
-        Archetype mandatory = parse("openEHR-EHR-OBSERVATION.uid_protocol_mandatory.v1.0.0.adls");
-        Archetype exclusion = parse("openEHR-EHR-OBSERVATION.uid_protocol_exclusion.v1.0.0.adls");
+        Archetype mandatory = parse("openEHR-EHR-OBSERVATION.protocol_mandatory.v1.0.0.adls");
+        Archetype exclusion = parse("openEHR-EHR-OBSERVATION.protocol_exclusion.v1.0.0.adls");
 
         Archetype mandatoryFlat = new Flattener(repository, models).flatten(mandatory);
         Archetype exclusionFlat = new Flattener(repository, models).flatten(exclusion);
