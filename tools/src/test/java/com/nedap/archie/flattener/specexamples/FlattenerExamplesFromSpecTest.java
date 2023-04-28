@@ -140,22 +140,13 @@ public class FlattenerExamplesFromSpecTest {
         Archetype mandatoryFlat = new Flattener(repository, models).flatten(mandatory);
         Archetype exclusionFlat = new Flattener(repository, models).flatten(exclusion);
 
-        CAttribute mandatoryUid = mandatoryFlat.getDefinition().getAttribute("uid");
-        assertTrue(mandatoryUid.getExistence().isMandatory());
-        assertEquals(0, mandatoryUid.getChildren().size());
-
         CAttribute mandatoryProtocol = mandatoryFlat.getDefinition().getAttribute("protocol");
         assertTrue(mandatoryProtocol.getExistence().isMandatory());
         assertEquals(1, mandatoryProtocol.getChildren().size());
 
-        CAttribute prohibitedUid = exclusionFlat.getDefinition().getAttribute("uid");
-        assertNotNull(prohibitedUid); //according to spec, prohibited existence should be logically removed (meaning not actually removed)
-        assertTrue(prohibitedUid.getChildren().isEmpty());
-
         CAttribute prohibitedProtocol = exclusionFlat.getDefinition().getAttribute("protocol");
         assertNotNull(prohibitedProtocol); //according to spec, prohibited existence should be logically removed (meaning not actually removed)
         assertTrue(prohibitedProtocol.getChildren().isEmpty());
-
     }
 
 

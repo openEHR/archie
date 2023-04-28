@@ -2,20 +2,27 @@ package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
+import com.nedap.archie.definitions.OpenEhrDefinitions;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.checkerframework.checker.guieffect.qual.UI;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static com.nedap.archie.definitions.OpenEhrDefinitions.*;
 
 /**
  * ANTLR listener for an ADLS file. Uses the listener construction for the topmost elements, switches to custom treewalker
@@ -111,36 +118,61 @@ public class ADLListener extends AdlBaseListener {
         /*
         | identifier ( '=' meta_data_value )?
          */
-        if(archetype instanceof AuthoredArchetype) {
+        if (archetype instanceof AuthoredArchetype) {
             AuthoredArchetype authoredArchetype = (AuthoredArchetype) archetype;
             String identifier = ctx.identifier().getText();
             String metaDataValue = ctx.metaDataValue() != null ? ctx.metaDataValue().getText() : null;
 
-            if(metaDataValue != null) {
-                // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
-                String versionIdRegex = "[0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?";
-                String guidRegex = "[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+";
+            // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
+            Pattern versionIdRegex = Pattern.compile("[0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?");
+            Pattern guidRegex = Pattern.compile("[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+");
 
-                // Check if metadataItem matches tag ADL version
-                if(identifier.equals("adl_version") && metaDataValue.matches(versionIdRegex)) {
-                    authoredArchetype.setAdlVersion(metaDataValue);
-                } else if(identifier.equals("rm_release") && metaDataValue.matches(versionIdRegex)) {
-                    authoredArchetype.setRmRelease(metaDataValue);
-                } else if(identifier.equals("uid") && metaDataValue.matches(guidRegex)) {
-                    authoredArchetype.setUid(metaDataValue);
-                } else if(identifier.equals("build_uid") && metaDataValue.matches(guidRegex)) {
-                    authoredArchetype.setBuildUid(metaDataValue);
-                } else{
+            switch (identifier) {
+                case ADL_VERSION:
+                    if (metaDataValue != null && versionIdRegex.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setAdlVersion(metaDataValue);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + ADL_VERSION + "' with an invalid version id: " + metaDataValue);
+                    }
+                    break;
+                case RM_RELEASE:
+                    if (metaDataValue != null && versionIdRegex.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setRmRelease(metaDataValue);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + RM_RELEASE + "' with an invalid version id: " + metaDataValue);
+                    }
+                    break;
+                case BUILD_UID:
+                    if (metaDataValue != null && guidRegex.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setBuildUid(metaDataValue);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + BUILD_UID + "' with an invalid guid: " + metaDataValue);
+                    }
+                    break;
+                case UID:
+                    if (metaDataValue != null && guidRegex.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setUid(metaDataValue);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + UID + "' with an invalid guid: " + metaDataValue);
+                    }
+                    break;
+                case CONTROLLED:
+                    if (metaDataValue == null) {
+                        authoredArchetype.setControlled(true);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + CONTROLLED + "' with a value assignment while expecting none");
+                    }
+                    break;
+                case GENERATED:
+                    if (metaDataValue == null) {
+                        authoredArchetype.setGenerated(true);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + GENERATED + "' with a value assignment while expecting none");
+                    }
+                    break;
+                default:
                     authoredArchetype.addOtherMetadata(identifier, metaDataValue);
-                }
-            } else {
-                if(identifier.equals("controlled")) {
-                    authoredArchetype.setControlled(true);
-                } else if(identifier.equals("generated")) {
-                    authoredArchetype.setGenerated(true);
-                } else {
-                    authoredArchetype.addOtherMetadata(identifier, null);
-                }
+                    break;
             }
         }
     }
