@@ -1,0 +1,23 @@
+archetype (adl_version; rm_release=1-1-1-1-1; generated=1; controlled=1.0.0; uid=1.0.0-rc; build_uid)
+	openEHR-EHR-COMPOSITION.invalid_metadata.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Eline Brader">
+	>
+
+definition
+	COMPOSITION[id1] -- test invalid metadata
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"test invalid metadata">
+				description = <"">
+			>
+		>
+	>
