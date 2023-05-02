@@ -231,6 +231,23 @@ public abstract class ParsedRulesEvaluationTest {
         assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
     }
 
+    @Test
+    public void fixableAssertionsBrokenRules() throws Exception {
+        parse("fixable_assertions_broken_rules.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+
+        Pathable root = (Pathable) testUtil.constructEmptyRMObject(archetype.getDefinition());
+
+        ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+
+        List<AssertionResult> assertionResults = ruleEvaluation.getEvaluationResult().getAssertionResults();
+        assertEquals("one assertion should have been checked", 2, assertionResults.size());
+        AssertionResult result = assertionResults.get(0);
+
+        assertEquals("the assertion should have succeeded", false, result.getResult());
+        assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
+    }
+
     public Pathable constructTwoBloodPressureObservations() {
         Pathable root = (Pathable) testUtil.constructEmptyRMObject(archetype.getDefinition());
 
