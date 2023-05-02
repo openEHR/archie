@@ -5,7 +5,6 @@ import com.nedap.archie.aom.primitives.CString;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Assertion object.
@@ -84,26 +83,5 @@ public final class Assertion extends RuleStatement {
             }
         }
         return false;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Assertion)) return false;
-        if (!super.equals(o)) return false;
-        Assertion assertion = (Assertion) o;
-        return Objects.equals(stringExpression, assertion.stringExpression) &&
-                Objects.equals(expression, assertion.expression) &&
-                Objects.equals(tag, assertion.tag) &&
-                Objects.equals(variables, assertion.variables);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(),
-                stringExpression,
-                expression,
-                tag,
-                variables);
     }
 }

@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -52,22 +51,5 @@ public class CDate extends CTemporal<Temporal> {
     @Override
     public void addConstraint(Interval<Temporal> constraint) {
         this.constraint.add(constraint);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CDate)) return false;
-        if (!super.equals(o)) return false;
-        CDate cDate = (CDate) o;
-        return Objects.equals(assumedValue, cDate.assumedValue) &&
-                Objects.equals(constraint, cDate.constraint);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(),
-                assumedValue,
-                constraint);
     }
 }
