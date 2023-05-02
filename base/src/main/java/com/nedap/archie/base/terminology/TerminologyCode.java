@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.net.URI;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -104,24 +103,5 @@ public class TerminologyCode extends OpenEHRBase {
 
     public void setUri(URI uri) {
         this.uri = uri;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TerminologyCode)) return false;
-        TerminologyCode that = (TerminologyCode) o;
-        return Objects.equals(terminologyId, that.terminologyId) &&
-                Objects.equals(terminologyVersion, that.terminologyVersion) &&
-                Objects.equals(codeString, that.codeString) &&
-                Objects.equals(uri, that.uri);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(terminologyId,
-                terminologyVersion,
-                codeString,
-                uri);
     }
 }

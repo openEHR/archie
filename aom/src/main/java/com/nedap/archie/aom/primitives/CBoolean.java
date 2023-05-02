@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.BiFunction;
 
 /**
@@ -77,22 +76,5 @@ public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
             }
         }
         return ConformanceCheckResult.conforms();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CBoolean)) return false;
-        if (!super.equals(o)) return false;
-        CBoolean cBoolean = (CBoolean) o;
-        return Objects.equals(assumedValue, cBoolean.assumedValue) &&
-                Objects.equals(constraint, cBoolean.constraint);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(),
-                assumedValue,
-                constraint);
     }
 }
