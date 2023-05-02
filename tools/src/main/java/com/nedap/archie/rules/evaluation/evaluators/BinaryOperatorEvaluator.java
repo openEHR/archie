@@ -32,6 +32,9 @@ import static com.nedap.archie.rules.evaluation.evaluators.FunctionUtil.checkAnd
  */
 public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     private static final double EPSILON = 0.00001d;
+    private static final EnumSet<PrimitiveType> SUPPORTED_TEMPORAL_TYPES = EnumSet.of(PrimitiveType.Date, PrimitiveType.Time, PrimitiveType.DateTime);
+    private static final EnumSet<PrimitiveType> SUPPORTED_TEMPORAL_AMOUNT_TYPES = EnumSet.of(PrimitiveType.Duration);
+
     private final Archetype archetype;
 
     private BinaryBooleanOperandEvaluator booleanOperandEvaluator = new BinaryBooleanOperandEvaluator(this);
@@ -350,9 +353,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             result.addValue(stringOperandEvaluator.evaluateMultipleValuesStringRelOp(statement, leftValues, rightValues));
 
             return result;
-        } else if (PrimitiveType.Date.equals(leftValues.getType()) || PrimitiveType.Date.equals(rightValues.getType()) ||
-                PrimitiveType.Time.equals(leftValues.getType()) || PrimitiveType.Time.equals(rightValues.getType()) ||
-                PrimitiveType.DateTime.equals(leftValues.getType()) || PrimitiveType.DateTime.equals(rightValues.getType())) {
+        } else if (SUPPORTED_TEMPORAL_TYPES.contains(leftValues.getType()) || SUPPORTED_TEMPORAL_TYPES.contains(rightValues.getType())) {
             ValueList result = new ValueList();
             result.setType(PrimitiveType.Boolean);
 
@@ -361,7 +362,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             result.addValue(temporalOperandEvaluator.evaluateMultipleValuesDateRelOp(statement, leftValues, rightValues));
 
             return result;
-        } else if (PrimitiveType.Duration.equals(leftValues.getType()) || PrimitiveType.Duration.equals(rightValues.getType())) {
+        } else if (SUPPORTED_TEMPORAL_AMOUNT_TYPES.contains(leftValues.getType()) || SUPPORTED_TEMPORAL_AMOUNT_TYPES.contains(rightValues.getType())) {
             ValueList result = new ValueList();
             result.setType(PrimitiveType.Boolean);
 
