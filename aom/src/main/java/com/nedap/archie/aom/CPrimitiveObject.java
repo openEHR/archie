@@ -157,18 +157,5 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
         return true; //primitive nodes are leafs.
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CPrimitiveObject)) return false;
-        if (!super.equals(o)) return false;
-        CPrimitiveObject<?, ?> that = (CPrimitiveObject<?, ?>) o;
-        return Objects.equals(enumeratedTypeConstraint, that.enumeratedTypeConstraint);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), enumeratedTypeConstraint);
-    }
 }
 

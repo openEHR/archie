@@ -12,7 +12,6 @@ import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -71,22 +70,5 @@ public class CInteger extends COrdered<Long> {
             }
         }
         return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CInteger)) return false;
-        if (!super.equals(o)) return false;
-        CInteger cInteger = (CInteger) o;
-        return Objects.equals(assumedValue, cInteger.assumedValue) &&
-                Objects.equals(constraint, cInteger.constraint);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(),
-                assumedValue,
-                constraint);
     }
 }

@@ -1,7 +1,5 @@
 package com.nedap.archie.rules;
 
-import java.util.Objects;
-
 /**
  * Created by pieter.bos on 27/10/15.
  */
@@ -50,22 +48,5 @@ public class ModelReference extends Leaf {
 
     public void setVariableReferencePrefix(String variableReferencePrefix) {
         this.variableReferencePrefix = variableReferencePrefix;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ModelReference)) return false;
-        if (!super.equals(o)) return false;
-        ModelReference that = (ModelReference) o;
-        return Objects.equals(variableReferencePrefix, that.variableReferencePrefix)
-                && Objects.equals(path, that.path);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(),
-                variableReferencePrefix,
-                path);
     }
 }
