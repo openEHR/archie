@@ -32,6 +32,9 @@ import static com.nedap.archie.definitions.OpenEhrDefinitions.*;
  */
 public class ADLListener extends AdlBaseListener {
 
+    private static final Pattern VERSION_ID_REGEX = Pattern.compile("[0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?");
+    private static final Pattern GUID_REGEX = Pattern.compile("[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+");
+
     private ANTLRParserErrors errors;
 
     private Archetype rootArchetype;
@@ -124,33 +127,30 @@ public class ADLListener extends AdlBaseListener {
             String metaDataValue = ctx.metaDataValue() != null ? ctx.metaDataValue().getText() : null;
 
             // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
-            Pattern versionIdRegex = Pattern.compile("[0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?");
-            Pattern guidRegex = Pattern.compile("[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+");
-
             switch (identifier) {
                 case ADL_VERSION:
-                    if (metaDataValue != null && versionIdRegex.matcher(metaDataValue).matches()) {
+                    if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
                         authoredArchetype.setAdlVersion(metaDataValue);
                     } else {
                         errors.addError("Encountered metadata tag '" + ADL_VERSION + "' with an invalid version id: " + metaDataValue);
                     }
                     break;
                 case RM_RELEASE:
-                    if (metaDataValue != null && versionIdRegex.matcher(metaDataValue).matches()) {
+                    if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
                         authoredArchetype.setRmRelease(metaDataValue);
                     } else {
                         errors.addError("Encountered metadata tag '" + RM_RELEASE + "' with an invalid version id: " + metaDataValue);
                     }
                     break;
                 case BUILD_UID:
-                    if (metaDataValue != null && guidRegex.matcher(metaDataValue).matches()) {
+                    if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
                         authoredArchetype.setBuildUid(metaDataValue);
                     } else {
                         errors.addError("Encountered metadata tag '" + BUILD_UID + "' with an invalid guid: " + metaDataValue);
                     }
                     break;
                 case UID:
-                    if (metaDataValue != null && guidRegex.matcher(metaDataValue).matches()) {
+                    if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
                         authoredArchetype.setUid(metaDataValue);
                     } else {
                         errors.addError("Encountered metadata tag '" + UID + "' with an invalid guid: " + metaDataValue);
