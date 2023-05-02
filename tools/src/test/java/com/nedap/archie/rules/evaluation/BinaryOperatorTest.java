@@ -6,6 +6,7 @@ import com.nedap.archie.rules.Constant;
 import com.nedap.archie.rules.ExpressionType;
 import com.nedap.archie.rules.OperatorKind;
 import org.junit.Test;
+import org.threeten.extra.PeriodDuration;
 
 import java.time.*;
 
@@ -108,6 +109,16 @@ public class BinaryOperatorTest {
         Duration d2 = d1.plus(Duration.ofSeconds(1));
         testBinaryOperator(false, ExpressionType.DURATION, d1, d2, OperatorKind.gt);
         testBinaryOperator(true, ExpressionType.DURATION, d2, d1, OperatorKind.gt);
+
+        // PeriodDuration
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p1, d1), PeriodDuration.of(p1, d2), OperatorKind.gt);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1, d2), PeriodDuration.of(p1, d1), OperatorKind.gt);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(p2), OperatorKind.gt);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p2), PeriodDuration.of(p1), OperatorKind.gt);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(d1), PeriodDuration.of(d2), OperatorKind.gt);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d2), PeriodDuration.of(d1), OperatorKind.gt);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(d2), PeriodDuration.of(p1), OperatorKind.gt);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(d2), OperatorKind.gt);
     }
 
     @Test
@@ -150,6 +161,22 @@ public class BinaryOperatorTest {
         testBinaryOperator(false, ExpressionType.DURATION, d1, d3, OperatorKind.ge);
         testBinaryOperator(true, ExpressionType.DURATION, d3, d1, OperatorKind.ge);
         testBinaryOperator(true, ExpressionType.DURATION, d1, d2, OperatorKind.ge);
+
+        // PeriodDuration
+        Period p4 = Period.ofDays(1);
+        Duration d4 = Duration.ofDays(1);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p1, d1), PeriodDuration.of(p1, d3), OperatorKind.ge);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1, d3), PeriodDuration.of(p1, d2), OperatorKind.ge);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1, d2), PeriodDuration.of(p1, d1), OperatorKind.ge);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(p3), OperatorKind.ge);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(p1), OperatorKind.ge);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(p2), OperatorKind.ge);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(d1), PeriodDuration.of(d3), OperatorKind.ge);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d1), PeriodDuration.of(d2), OperatorKind.ge);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d2), PeriodDuration.of(d1), OperatorKind.ge);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(d2), PeriodDuration.of(p1), OperatorKind.ge);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d4), PeriodDuration.of(p4), OperatorKind.ge);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(d1), OperatorKind.ge);
     }
 
     @Test
@@ -183,6 +210,16 @@ public class BinaryOperatorTest {
         Duration d2 = d1.plus(Duration.ofSeconds(1));
         testBinaryOperator(true, ExpressionType.DURATION, d1, d2, OperatorKind.lt);
         testBinaryOperator(false, ExpressionType.DURATION, d2, d1, OperatorKind.lt);
+
+        // PeriodDuration
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1, d1), PeriodDuration.of(p1, d2), OperatorKind.lt);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p1, d2), PeriodDuration.of(p1, d1), OperatorKind.lt);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(p2), OperatorKind.lt);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p2), PeriodDuration.of(p1), OperatorKind.lt);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d1), PeriodDuration.of(d2), OperatorKind.lt);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(d2), PeriodDuration.of(d1), OperatorKind.lt);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d2), PeriodDuration.of(p1), OperatorKind.lt);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(d2), OperatorKind.lt);
     }
 
     @Test
@@ -225,6 +262,22 @@ public class BinaryOperatorTest {
         testBinaryOperator(true, ExpressionType.DURATION, d1, d3, OperatorKind.le);
         testBinaryOperator(false, ExpressionType.DURATION, d3, d1, OperatorKind.le);
         testBinaryOperator(true, ExpressionType.DURATION, d1, d2, OperatorKind.le);
+
+        // PeriodDuration
+        Period p4 = Period.ofDays(1);
+        Duration d4 = Duration.ofDays(1);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1, d1), PeriodDuration.of(p1, d3), OperatorKind.le);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p1, d3), PeriodDuration.of(p1, d2), OperatorKind.le);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1, d2), PeriodDuration.of(p1, d1), OperatorKind.le);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(p3), OperatorKind.le);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p3), PeriodDuration.of(p1), OperatorKind.le);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(p2), OperatorKind.le);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d1), PeriodDuration.of(d3), OperatorKind.le);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(d3), PeriodDuration.of(d1), OperatorKind.le);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d1), PeriodDuration.of(d2), OperatorKind.le);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d2), PeriodDuration.of(p1), OperatorKind.le);
+        testBinaryOperator(false, ExpressionType.DURATION, PeriodDuration.of(p1), PeriodDuration.of(d1), OperatorKind.le);
+        testBinaryOperator(true, ExpressionType.DURATION, PeriodDuration.of(d4), PeriodDuration.of(p4), OperatorKind.le);
     }
 
     @Test

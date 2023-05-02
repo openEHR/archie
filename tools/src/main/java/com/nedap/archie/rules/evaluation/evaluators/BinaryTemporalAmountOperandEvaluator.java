@@ -4,6 +4,7 @@ import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.rules.evaluation.Value;
 import com.nedap.archie.rules.evaluation.ValueList;
+import org.threeten.extra.PeriodDuration;
 
 import java.time.*;
 import java.time.temporal.TemporalAmount;
@@ -75,6 +76,8 @@ public class BinaryTemporalAmountOperandEvaluator {
             return periodToDaysEstimate((Period) left) - periodToDaysEstimate((Period) right) < 0;
         } else if (left instanceof Duration && right instanceof Duration) {
             return ((Duration) left).minus((Duration) right).isNegative();
+        } else if (left instanceof PeriodDuration && right instanceof PeriodDuration) {
+            return periodDurationToSecondsEstimate((PeriodDuration) left) - periodDurationToSecondsEstimate((PeriodDuration) right) < 0;
         } else {
             throw new IllegalArgumentException("TemporalAmount class not supported: " + left.getClass().getSimpleName());
         }
@@ -85,6 +88,8 @@ public class BinaryTemporalAmountOperandEvaluator {
             return periodToDaysEstimate((Period) left) - periodToDaysEstimate((Period) right) > 0;
         } else if (left instanceof Duration && right instanceof Duration) {
             return ((Duration) right).minus((Duration) left).isNegative();
+        } else if (left instanceof PeriodDuration && right instanceof PeriodDuration) {
+            return periodDurationToSecondsEstimate((PeriodDuration) left) - periodDurationToSecondsEstimate((PeriodDuration) right) > 0;
         } else {
             throw new IllegalArgumentException("TemporalAmount class not supported: " + left.getClass().getSimpleName());
         }
@@ -94,7 +99,9 @@ public class BinaryTemporalAmountOperandEvaluator {
         if (left instanceof Period && right instanceof Period) {
             return periodToDaysEstimate((Period) left) - periodToDaysEstimate((Period) right) == 0;
         } else if (left instanceof Duration && right instanceof Duration) {
-            return ((Duration) right).minus((Duration) left).isZero();
+            return right.equals(left);
+        } else if (left instanceof PeriodDuration && right instanceof PeriodDuration) {
+            return periodDurationToSecondsEstimate((PeriodDuration) left) - periodDurationToSecondsEstimate((PeriodDuration) right) == 0;
         } else {
             throw new IllegalArgumentException("TemporalAmount class not supported: " + left.getClass().getSimpleName());
         }
@@ -112,5 +119,19 @@ public class BinaryTemporalAmountOperandEvaluator {
     private int periodToDaysEstimate(Period period) {
         if (period == null) return 0;
         return (period.getYears() * 12 + period.getMonths()) * 30 + period.getDays();
+    }
+
+    private int periodDurationToSecondsEstimate(PeriodDuration periodDuration) {
+        int seconds = 0;
+
+        if (periodDuration.getPeriod() != null && !periodDuration.getPeriod().isZero()) {
+            seconds += periodToDaysEstimate(periodDuration.getPeriod()) * (24 * 60 * 60);
+        }
+
+        if (periodDuration.getDuration() != null && !periodDuration.getDuration().isZero()) {
+            seconds += periodDuration.getDuration().getSeconds();
+        }
+
+        return seconds;
     }
 }
