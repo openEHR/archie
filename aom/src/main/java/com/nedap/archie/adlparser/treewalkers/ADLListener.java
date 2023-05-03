@@ -2,19 +2,27 @@ package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
+import com.nedap.archie.definitions.OpenEhrDefinitions;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.checkerframework.checker.guieffect.qual.UI;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static com.nedap.archie.definitions.OpenEhrDefinitions.*;
 
 /**
  * ANTLR listener for an ADLS file. Uses the listener construction for the topmost elements, switches to custom treewalker
@@ -23,6 +31,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by pieter.bos on 19/10/15.
  */
 public class ADLListener extends AdlBaseListener {
+
+    private static final Pattern VERSION_ID_REGEX = Pattern.compile("[0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?");
+    private static final Pattern GUID_REGEX = Pattern.compile("[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+");
 
     private ANTLRParserErrors errors;
 
@@ -108,41 +119,62 @@ public class ADLListener extends AdlBaseListener {
 
     public void enterMetaDataItem(AdlParser.MetaDataItemContext ctx) {
         /*
-         SYM_ADL_VERSION '=' VERSION_ID
-        | SYM_UID '=' GUID
-        | SYM_BUILD_UID '=' GUID
-        | SYM_RM_RELEASE '=' VERSION_ID
-        | SYM_IS_CONTROLLED
-        | SYM_IS_GENERATED
         | identifier ( '=' meta_data_value )?
-
          */
-        if(archetype instanceof AuthoredArchetype) {
+        if (archetype instanceof AuthoredArchetype) {
             AuthoredArchetype authoredArchetype = (AuthoredArchetype) archetype;
+            String identifier = ctx.identifier().getText();
+            String metaDataValue = ctx.metaDataValue() != null ? ctx.metaDataValue().getText() : null;
 
-            if(ctx.metaDataTagAdlVersion() != null) {
-                authoredArchetype.setAdlVersion(ctx.VERSION_ID().getText());
-            }
-            if(ctx.metaDataTagBuildUid() != null) {
-                authoredArchetype.setBuildUid(ctx.GUID().getText());
-            }
-            if(ctx.metaDataTagRmRelease() != null) {
-                authoredArchetype.setRmRelease(ctx.VERSION_ID().getText());
-            }
-            if(ctx.metaDataTagIsControlled() != null) {
-                authoredArchetype.setControlled(true);
-            }
-            if(ctx.metaDataTagIsGenerated() != null) {
-                authoredArchetype.setGenerated(true);
-            }
-            if(ctx.metaDataTagUid() != null) {
-                authoredArchetype.setUid(ctx.GUID().getText());
-            }
-            else if(ctx.identifier() != null) {
-                authoredArchetype.addOtherMetadata(ctx.identifier().getText(), ctx.metaDataValue() == null ? null : ctx.metaDataValue().getText());
+            // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
+            switch (identifier) {
+                case ADL_VERSION:
+                    if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setAdlVersion(metaDataValue);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + ADL_VERSION + "' with an invalid version id: " + metaDataValue);
+                    }
+                    break;
+                case RM_RELEASE:
+                    if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setRmRelease(metaDataValue);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + RM_RELEASE + "' with an invalid version id: " + metaDataValue);
+                    }
+                    break;
+                case BUILD_UID:
+                    if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setBuildUid(metaDataValue);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + BUILD_UID + "' with an invalid guid: " + metaDataValue);
+                    }
+                    break;
+                case UID:
+                    if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setUid(metaDataValue);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + UID + "' with an invalid guid: " + metaDataValue);
+                    }
+                    break;
+                case CONTROLLED:
+                    if (metaDataValue == null) {
+                        authoredArchetype.setControlled(true);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + CONTROLLED + "' with a value assignment while expecting none");
+                    }
+                    break;
+                case GENERATED:
+                    if (metaDataValue == null) {
+                        authoredArchetype.setGenerated(true);
+                    } else {
+                        errors.addError("Encountered metadata tag '" + GENERATED + "' with a value assignment while expecting none");
+                    }
+                    break;
+                default:
+                    authoredArchetype.addOtherMetadata(identifier, metaDataValue);
+                    break;
             }
         }
-
     }
 
     /**
