@@ -32,10 +32,15 @@ import static com.nedap.archie.rules.evaluation.evaluators.FunctionUtil.checkAnd
  */
 public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     private static final double EPSILON = 0.00001d;
+    private static final EnumSet<PrimitiveType> SUPPORTED_TEMPORAL_TYPES = EnumSet.of(PrimitiveType.Date, PrimitiveType.Time, PrimitiveType.DateTime);
+    private static final EnumSet<PrimitiveType> SUPPORTED_TEMPORAL_AMOUNT_TYPES = EnumSet.of(PrimitiveType.Duration);
+
     private final Archetype archetype;
 
     private BinaryBooleanOperandEvaluator booleanOperandEvaluator = new BinaryBooleanOperandEvaluator(this);
     private BinaryStringOperandEvaluator stringOperandEvaluator = new BinaryStringOperandEvaluator(this);
+    private BinaryTemporalOperandEvaluator temporalOperandEvaluator = new BinaryTemporalOperandEvaluator(this);
+    private BinaryTemporalAmountOperandEvaluator temporalAmountOperandEvaluator = new BinaryTemporalAmountOperandEvaluator(this);
 
     private final ModelInfoLookup lookup; //for now only the archie rm model for rule evaluation
 
@@ -317,7 +322,6 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         ValueList leftValues = evaluation.evaluate(statement.getLeftOperand());
         ValueList rightValues = evaluation.evaluate(statement.getRightOperand());
 
-
         ValueList possibleNullResult = handlePossibleNullRelOpResult(statement, leftValues, rightValues);
         if(possibleNullResult != null) {
             possibleNullResult.setType(PrimitiveType.Boolean);
@@ -347,6 +351,24 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
             //according to the xpath spec, at least one pair from both collections must exist that matches the condition.
             //want otherwise? Use for_all/every
             result.addValue(stringOperandEvaluator.evaluateMultipleValuesStringRelOp(statement, leftValues, rightValues));
+
+            return result;
+        } else if (SUPPORTED_TEMPORAL_TYPES.contains(leftValues.getType()) || SUPPORTED_TEMPORAL_TYPES.contains(rightValues.getType())) {
+            ValueList result = new ValueList();
+            result.setType(PrimitiveType.Boolean);
+
+            //according to the xpath spec, at least one pair from both collections must exist that matches the condition.
+            //want otherwise? Use for_all/every
+            result.addValue(temporalOperandEvaluator.evaluateMultipleValuesDateRelOp(statement, leftValues, rightValues));
+
+            return result;
+        } else if (SUPPORTED_TEMPORAL_AMOUNT_TYPES.contains(leftValues.getType()) || SUPPORTED_TEMPORAL_AMOUNT_TYPES.contains(rightValues.getType())) {
+            ValueList result = new ValueList();
+            result.setType(PrimitiveType.Boolean);
+
+            //according to the xpath spec, at least one pair from both collections must exist that matches the condition.
+            //want otherwise? Use for_all/every
+            result.addValue(temporalAmountOperandEvaluator.evaluateMultipleValuesDateRelOp(statement, leftValues, rightValues));
 
             return result;
         } else {
