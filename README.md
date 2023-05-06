@@ -1,7 +1,7 @@
 # Archie: openEHR Library
 
 Archie is an openEHR Library written in Java, which can be used to implement openEHR tools and systems. See http://www.openehr.org for information about openEHR.
-Archie works with the most recent versions of openEHR. This includes Archetype Definition Language version 2 (ADL2). See https://specifications.openehr.org/releases/AM/Release-2.2.0/ADL2.html for information on ADL2.
+Archie works with the most recent versions of openEHR. This includes Archetype Definition Language version 2 (ADL2). See https://specifications.openehr.org/releases/AM/latest/ADL2.html for information on ADL2.
 It contains an ADL2 parser and an Archetype Object Model (AOM) implementation, as well as the EHR part of the reference model implementation. For more information on the AOM see https://specifications.openehr.org/releases/AM/latest/AOM2.html.
 
 It uses the ANTLR adl-grammar written by Thomas Beale at https://github.com/openehr/adl-antlr.
