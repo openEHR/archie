@@ -1,8 +1,8 @@
 # Archie: openEHR Library
 
 Archie is an openEHR Library written in Java, which can be used to implement openEHR tools and systems. See http://www.openehr.org for information about openEHR.
-Archie works with the most recent versions of openEHR. This includes ADL version 2.
-It contains an ADL 2 parser and an archetype object model implementation, as well as the EHR part of the reference model implementation.
+Archie works with the most recent versions of openEHR. This includes Archetype Definition Language version 2 (ADL2). See https://specifications.openehr.org/releases/AM/latest/ADL2.html for information on ADL2.
+It contains an ADL2 parser and an Archetype Object Model (AOM) implementation, as well as the EHR part of the reference model implementation. For more information on the AOM see https://specifications.openehr.org/releases/AM/latest/AOM2.html.
 
 It uses the ANTLR adl-grammar written by Thomas Beale at https://github.com/openehr/adl-antlr.
 
@@ -14,7 +14,7 @@ Version 0.4 of archie is a major update that requires changes in your code to up
 
 ## Dependency
 
-You can depend on parts of Archie, or the entire library at once. If you want the entire library, including the Archetype Object Model, ADL parser, all tools and openEHR reference model implementation, you can do in gradle:
+You can depend on parts of Archie, or the entire library at once. If you want the entire library, including the AOM, ADL parser, all tools and openEHR reference model implementation, you can do in gradle:
 
 ```gradle
 dependencies {
@@ -156,7 +156,7 @@ The reflection based metadata contains ModelInfoLookup classes. They are derived
 ### Operational templates
 
 You can create operational templates of your archetypes. Think of operational templates as something you generate from an archetype or template to more easily work with it. If you are creating an EHR implementation, these will likely be the most useful form of archetypes to work with.
-openEHR Archetypes allow you to reuse structures inside your archetypes at several places. It also allows to embed other archetypes inside your archetype. Without operational templates, you would need to build support for these structures into all of your tools. Operational templates fix this for you, by replacing the proxies for structure and embedded archetypes in the archetype with a copy of the actual embedded structure. For more information about operational templates, see (the documentation at the openEHR website)[http://openehr.org/releases/AM/latest/docs/OPT2/OPT2.html].
+openEHR Archetypes allow you to reuse structures inside your archetypes at several places. It also allows to embed other archetypes inside your archetype. Without operational templates, you would need to build support for these structures into all of your tools. Operational templates fix this for you, by replacing the proxies for structure and embedded archetypes in the archetype with a copy of the actual embedded structure. For more information about operational templates, see (the documentation at the openEHR website)[https://specifications.openehr.org/releases/AM/latest/OPT2.html].
 Note that ADL 2 operational templates is fundamentally different from the ADL 1.4 OET/OPT format. What you used to achieve with OET/OPT is now built into ADL 2 as templates in combination with the operational template creation. See (the openEHR specification on templates)[http://openehr.org/releases/AM/latest/docs/ADL2/ADL2.html#_templates] on how to work with them.
 
 To create an Operational Template:
@@ -452,7 +452,7 @@ The following features are experimental. This means its working or API will like
 
 ## Importing and converting ADL 1.4 files
 
-Starting from version 0.7, Archie can import ADL 1.4 files, and convert them to ADL 2. To do so, do the following:
+Starting from version 0.7, Archie can import ADL 1.4 files, and convert them to ADL2. To do so, do the following:
 
 ```java
 ADL14ConversionConfiguration conversionConfiguration = new ADL14ConversionConfiguration();
@@ -475,22 +475,22 @@ for(String file:fileNames) {
 ADL2ConversionResultList resultList = converter.convert(archetypes);
 for(ADL2ConversionResult adl2ConversionResult:resultList.getConversionResults()) {
    if(adl2ConversionResult.getException() == null) {
-       // convertedArchetype is the ADL 2 conversion result. Additional warning messages in adl2ConversionResult.getLog()
+       // convertedArchetype is the ADL2 conversion result. Additional warning messages in adl2ConversionResult.getLog()
        Archetype convertedArchetype = adl2ConversionResult.getArchetype();
    }
 }
 ```
 
-The converted archetypes are now in ADL 2, differential form. Note that it's a good idea to run these trough the archetype validator, especially if they are specialized archetypes. tooling for ADL 1.4 specialized archetypes often has limited validations, meaning that they often contain errors.
+The converted archetypes are now in ADL2, differential form. Note that it's a good idea to run these trough the archetype validator, especially if they are specialized archetypes. tooling for ADL 1.4 specialized archetypes often has limited validations, meaning that they often contain errors.
 
 In case an archetype has been specialized, you will need to supply both the specialized archetype and its parent to the converter at the same time to allow for conversion to succeed, otherwise there will be an exception in the ADL2ConversionResult.
 
-In ADL 2, at some nodes node ids are required where they are optional in ADL 1.4. As a result, the converter needs to generate new id codes. This has not yet been standardized. This is the reason you cannot yet expect all tools to generate the exact same or even entirely compatible ADL 2 archetypes. So use this tool carefully.
+In ADL2, at some nodes node ids are required where they are optional in ADL 1.4. As a result, the converter needs to generate new id codes. This has not yet been standardized. This is the reason you cannot yet expect all tools to generate the exact same or even entirely compatible ADL2 archetypes. So use this tool carefully.
 
 
 ### Storing the conversion log for later use
 
-One use case of this converter is to integrate it in modeling tools, so that modeling can still be ADL 1.4, but the output can be both ADL 1.4 and ADL 2. To ensure the tool generates the exact same node ids even after edits in ADL 1.4, a conversion log is generated that is output as the result of the conversion. It can be used as the input for a next conversion of the same archetypes, to ensure the same node ids are generated for the same nodes. To do so:
+One use case of this converter is to integrate it in modeling tools, so that modeling can still be ADL 1.4, but the output can be both ADL 1.4 and ADL2. To ensure the tool generates the exact same node ids even after edits in ADL 1.4, a conversion log is generated that is output as the result of the conversion. It can be used as the input for a next conversion of the same archetypes, to ensure the same node ids are generated for the same nodes. To do so:
 
 ```
 ADL2ConversionResultList resultList = converter.convert(archetypes, resultList.getConversionLog());
@@ -500,7 +500,7 @@ The conversion log can be serialized to a file for storage using Jackson, so it 
 
 ### Conversion Configuration
 
-You may have noticed an instance of `ADL14ConversionConfiguration` in the previous example. In this configuration the mapping from term codes as used in ADL 1.4 to term URIs as used in ADL 2 can be specified. See the `ConversionConfigForTest.java` file for an example on how this works, and how this can be serialized to a file, and the file `/tools/src/test/java/com/nedap/archie/adl14/configuration.json` for an example of a simple serialized configuration that contains sane defaults for snomed, loinc and openehr URIs.
+You may have noticed an instance of `ADL14ConversionConfiguration` in the previous example. In this configuration the mapping from term codes as used in ADL 1.4 to term URIs as used in ADL2 can be specified. See the `ConversionConfigForTest.java` file for an example on how this works, and how this can be serialized to a file, and the file `/tools/src/test/java/com/nedap/archie/adl14/configuration.json` for an example of a simple serialized configuration that contains sane defaults for snomed, loinc and openehr URIs.
 
 If you leave the configuration empty, the converter will fall back to a default URI conversion.
 
