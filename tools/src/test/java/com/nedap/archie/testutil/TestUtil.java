@@ -1,6 +1,7 @@
 package com.nedap.archie.testutil;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
@@ -143,7 +144,7 @@ public class TestUtil {
         return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject<?, ?>) o2).getConstraint(), o1.getConstraint());
     }
 
-    public static Archetype parseFailOnErrors(String resourceName) throws IOException {
+    public static Archetype parseFailOnErrors(String resourceName) throws IOException, ADLParseException {
         ADLParser parser = new ADLParser();
         try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
             if(stream == null) {
@@ -154,6 +155,23 @@ public class TestUtil {
             assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
             assertNotNull(archetype);
             return archetype;
+        }
+    }
+
+    public static void parseExpectErrorCode(String resourceName, String errorCode) throws IOException {
+        ADLParser parser = new ADLParser();
+        try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
+            if(stream == null) {
+                throw new RuntimeException("Resource does not exist: " + resourceName);
+            }
+            try {
+                Archetype archetype = parser.parse(stream);
+                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+            } catch (ADLParseException ex) {
+                parser.getErrors().logToLogger();
+                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
+            }
         }
     }
 

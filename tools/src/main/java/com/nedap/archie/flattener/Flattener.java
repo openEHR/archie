@@ -32,7 +32,7 @@ public class Flattener implements IAttributeFlattenerSupport {
     private final FlattenerConfiguration config;
 
     private RulesFlattener rulesFlattener = new RulesFlattener();
-    private AnnotationsFlattener annotationsFlattener = new AnnotationsFlattener();
+    private AnnotationsAndOverlaysFlattener annotationsAndOverlaysFlattener = new AnnotationsAndOverlaysFlattener();
 
     CAttributeFlattener cAttributeFlattener = new CAttributeFlattener(this);
     private TupleFlattener tupleFlattener = new TupleFlattener();
@@ -115,6 +115,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                 result = template;
                 //make an operational template by just filling complex object proxies and archetype slots
                 optCreator.fillSlots(template);
+                optCreator.expandValueSets((OperationalTemplate) result);
                 fillOptEmptyOccurrences(result);
                 TerminologyFlattener.filterLanguages(template, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
                 result = template;
@@ -145,7 +146,13 @@ public class Flattener implements IAttributeFlattenerSupport {
 
         if(parent.getParentArchetypeId() != null) {
             //parent needs flattening first
-            parent = getNewFlattenerForParent().flatten(parent);
+            Flattener parentFlattener = getNewFlattenerForParent();
+            parent = parentFlattener.flatten(parent);
+            // Add the template overlays from the parents (if any) to the repository,
+            // so template overlays specializing other template overlays can be flattened.
+            parentFlattener.getRepository().getExtraArchetypes().forEach(
+                    a -> repository.addExtraArchetype(a)
+            );
         }
 
 
@@ -165,7 +172,8 @@ public class Flattener implements IAttributeFlattenerSupport {
             result.setTerminology(clonedParent.getTerminology());
             result.setRules(clonedParent.getRules());
         }
-        new AnnotationsFlattener().flatten(parent, child, result);
+        annotationsAndOverlaysFlattener.flattenAnnotations(parent, child, result);
+        annotationsAndOverlaysFlattener.flattenRmOverlay(parent, child, result);
 
         //1. redefine structure
         //2. fill archetype slots if we are creating an operational template
@@ -189,6 +197,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         TerminologyFlattener.flattenTerminology(result, child);
 
         if(config.isCreateOperationalTemplate()) {
+            optCreator.expandValueSets((OperationalTemplate) result);
             TerminologyFlattener.filterLanguages((OperationalTemplate) result, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
         }
         result.getDefinition().setArchetype(result);
@@ -348,6 +357,12 @@ public class Flattener implements IAttributeFlattenerSupport {
         }
         if(newObject instanceof ArchetypeSlot && specialized instanceof CArchetypeRoot) {
             newObject = (CObject) specialized.clone();
+            if(newObject.getOccurrences() == null && parent.getOccurrences() != null) {
+                newObject.setOccurrences(parent.getOccurrences());
+            }
+            if(newObject.getDeprecated() == null && parent.getDeprecated() != null) {
+                newObject.setDeprecated(parent.getDeprecated());
+            }
         }
         return newObject;
     }
@@ -417,8 +432,7 @@ public class Flattener implements IAttributeFlattenerSupport {
      * @return
      */
     protected Flattener getNewFlattener() {
-        return new Flattener(repository, metaModels, config)
-                .createOperationalTemplate(false); //do not create operational template except at the end.
+        return new Flattener(repository, metaModels, config);
     }
 
     private Flattener useComplexObjectForArchetypeSlotReplacement(boolean useComplexObjectForArchetypeSlotReplacement) {
@@ -435,6 +449,11 @@ public class Flattener implements IAttributeFlattenerSupport {
         return metaModels;
     }
 
+    @Override
+    public FlattenerConfiguration getConfig() {
+        return config;
+    }
+
 
     public boolean getCreateOperationalTemplate() {
         return config.isCreateOperationalTemplate();
@@ -444,7 +463,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         return rulesFlattener;
     }
 
-    protected AnnotationsFlattener getAnnotationsFlattener() { return annotationsFlattener; }
+    protected AnnotationsAndOverlaysFlattener getAnnotationsAndOverlaysFlattener() { return annotationsAndOverlaysFlattener; }
 
     public OverridingArchetypeRepository getRepository() {
         return repository;

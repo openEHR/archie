@@ -1,0 +1,65 @@
+archetype (adl_version=2.0.7; rm_release=1.0.2)
+	openEHR-EHR-CLUSTER.constraint_strength_change_valueset_code.v1.0.0
+
+specialise
+    openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Peter Gummer">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Test VACDF validity check, should be triggered when an ac-code used in the definition is not in the terminology.">
+			keywords = <"ADL", "validation", "test">
+			copyright = <"copyright (c) 2008 The openEHR Foundation">
+		>
+	>
+	other_details = <
+		["regression"] = <"VPOV">
+	>
+	lifecycle_state = <"unmanaged">
+
+definition
+	CLUSTER[id1.1] matches {
+		/items[id2]/value[id3]/defining_code matches {[ac0.2]} -- required - invalid
+		/items[id4]/value[id5]/defining_code matches {[ac0.2]} -- extensible - valid?
+		/items[id6]/value[id7]/defining_code matches {[ac0.2]} -- preferred - valid
+		/items[id8]/value[id9]/defining_code matches {[ac0.2]} -- example - valid
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"root node">
+				description = <"root node">
+			>
+			["ac1.1"] = <
+                text = <"extended value set 1">
+                description = <"extended value set 1">
+            >
+			["ac0.2"] = <
+                text = <"new value set 2">
+                description = <"new value set 2">
+            >
+            ["at0.1"] = <
+                text = <"value 3">
+                description = <"value 3">
+            >
+		>
+	>
+	value_sets = <
+	    ["ac1.1"] = <
+	        id=<"ac1.1">
+	        members = <"at1", "at2">
+        >
+        ["ac0.2"] = <
+            id=<"ac0.2">
+            members = <"at1", "at0.1">
+        >
+	>

@@ -1,11 +1,17 @@
 package com.nedap.archie.terminology;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import org.apache.commons.io.IOUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class OpenEHRTerminologyAccessTest {
 
@@ -14,6 +20,30 @@ public class OpenEHRTerminologyAccessTest {
     @Before
     public void getInstance() {
         termAccess = OpenEHRTerminologyAccess.getInstance();//should not throw an exception from parsing
+    }
+
+    @After
+    public void reset() {
+        OpenEHRTerminologyAccess.READ_FROM_JSON = true;
+        OpenEHRTerminologyAccess.instance = null;
+
+    }
+    @Test
+    public void writeToJson() throws Exception {
+        //be sure to parse from XML!
+        OpenEHRTerminologyAccess.instance = null;
+        OpenEHRTerminologyAccess.READ_FROM_JSON = false;
+        OpenEHRTerminologyAccess ac = OpenEHRTerminologyAccess.getInstance();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        String json = mapper.writeValueAsString(ac);
+        OpenEHRTerminologyAccess parsed = mapper.readValue(json, OpenEHRTerminologyAccess.class);
+        //System.out.println(json);
+        try(InputStream stream = getClass().getResourceAsStream("/openEHR_RM/fullTermFile.json")) {
+            String includedJson = IOUtils.toString(stream, StandardCharsets.UTF_8);
+            assertEquals("XML and included terminology have gone out of sync. please regenerate json file!", json, includedJson);
+        }
     }
 
     @Test

@@ -8,3 +8,4 @@ target/
 out/
 test-output/
 grammars/gen
+grammars/src/main/antlr/gen/

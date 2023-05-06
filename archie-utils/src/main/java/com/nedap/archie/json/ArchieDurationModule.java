@@ -15,7 +15,7 @@ import java.time.temporal.TemporalAmount;
 public class ArchieDurationModule extends SimpleModule {
 
     public ArchieDurationModule() {
-        super(PackageVersion.VERSION);
+        super("archie-duration-module");
 
         addDeserializer(TemporalAmount.class, new com.nedap.archie.json.DurationDeserializer());
 

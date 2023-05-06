@@ -3,6 +3,7 @@ package com.nedap.archie.rm.changecontrol;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.generic.AuditDetails;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
 import com.nedap.archie.rminfo.Invariant;
@@ -29,7 +30,7 @@ import java.util.Objects;
 
 })
 public abstract class Version<Type> extends RMObject {
-    private ObjectRef<?> contribution;
+    private ObjectRef<? extends ObjectId> contribution;
     @Nullable
 
     private String signature;
@@ -39,17 +40,17 @@ public abstract class Version<Type> extends RMObject {
     public Version() {
     }
 
-    public Version(AuditDetails commitAudit, ObjectRef<?> contribution, @Nullable String signature) {
+    public Version(AuditDetails commitAudit, ObjectRef<? extends ObjectId> contribution, @Nullable String signature) {
         this.contribution = contribution;
         this.signature = signature;
         this.commitAudit = commitAudit;
     }
 
-    public ObjectRef<?> getContribution() {
+    public ObjectRef<? extends ObjectId> getContribution() {
         return contribution;
     }
 
-    public void setContribution(ObjectRef<?> contribution) {
+    public void setContribution(ObjectRef<? extends ObjectId> contribution) {
         this.contribution = contribution;
     }
 

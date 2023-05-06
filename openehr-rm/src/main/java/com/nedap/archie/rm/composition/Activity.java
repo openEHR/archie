@@ -45,14 +45,14 @@ public class Activity extends Locatable {
     public Activity() {
     }
 
-    public Activity(String archetypeNodeId, DvText name, ItemStructure description, @Nullable DvParsable timing, @Nullable String actionArchetypeId) {
+    public Activity(String archetypeNodeId, DvText name, ItemStructure description, @Nullable DvParsable timing, String actionArchetypeId) {
         super(archetypeNodeId, name);
         this.description = description;
         this.timing = timing;
         this.actionArchetypeId = actionArchetypeId;
     }
 
-    public Activity(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, ItemStructure description, @Nullable DvParsable timing, @Nullable String actionArchetypeId) {
+    public Activity(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, ItemStructure description, @Nullable DvParsable timing, String actionArchetypeId) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
         this.description = description;
         this.timing = timing;
@@ -65,6 +65,7 @@ public class Activity extends Locatable {
 
     public void setDescription(ItemStructure description) {
         this.description = description;
+        setThisAsParent(description, "description");
     }
 
     public DvParsable getTiming() {
@@ -74,13 +75,12 @@ public class Activity extends Locatable {
     public void setTiming(DvParsable timing) {
         this.timing = timing;
     }
-
-    @Nullable
+    
     public String getActionArchetypeId() {
         return actionArchetypeId;
     }
 
-    public void setActionArchetypeId(@Nullable String actionArchetypeId) {
+    public void setActionArchetypeId( String actionArchetypeId) {
         this.actionArchetypeId = actionArchetypeId;
     }
 

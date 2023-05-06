@@ -1,7 +1,10 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
@@ -9,22 +12,18 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
+import com.nedap.archie.xml.adapters.RMOverlayXmlAdapter;
+import com.nedap.archie.xml.adapters.StringDictionaryUtil;
+import com.nedap.archie.xml.types.StringDictionaryItem;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Nullable;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -34,7 +33,6 @@ import java.util.stream.Collectors;
  *
  * Created by pieter.bos on 15/10/15.
  */
-@XmlRootElement(name="archetype")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ARCHETYPE", propOrder = {
         "archetypeId",
@@ -46,13 +44,16 @@ import java.util.stream.Collectors;
         "buildUid",
         "rmRelease",
         "generated",
-        "otherMetaData"
+        "xmlOtherMetaData",
+        "rmOverlay"
 })
 public class Archetype extends AuthoredResource {
 
     @XmlElement(name="parent_archetype_id")
+    @Nullable
     private String parentArchetypeId;
     @XmlAttribute(name="is_differential")
+    @RMProperty("is_differential")
     private boolean differential = false;
     @XmlElement(name = "archetype_id")
     private ArchetypeHRID archetypeId;
@@ -60,20 +61,49 @@ public class Archetype extends AuthoredResource {
     private CComplexObject definition;
     @XmlJavaTypeAdapter(ArchetypeTerminologyAdapter.class)
     private ArchetypeTerminology terminology;
+    @Nullable
     private RulesSection rules = null;
 
     @XmlAttribute(name="adl_version")
+    @Nullable
     private String adlVersion;
     @XmlElement(name="build_uid")
     private String buildUid;
     @XmlAttribute(name="rm_release")
     private String rmRelease;
     @XmlAttribute(name="is_generated")
+    @RMProperty("is_generated")
     private Boolean generated = false;
+    //this is a specific map type to make a JAXB-adapter work. ugly jaxb
+    //alternative: define an extra field, use hooks to fill it just in time instead
+    @XmlTransient
+    private Map<String, String> otherMetaData = new LinkedHashMap<>();
 
     @XmlElement(name="other_meta_data")
-    //TODO: this probably requires a custom XmlAdapter
-    private Map<String, String> otherMetaData = new LinkedHashMap<>();
+    @JsonIgnore
+    //this field should be marked transient, but JAXB will not allow it.
+    private List<StringDictionaryItem> xmlOtherMetaData;
+
+    // Invoked by Jaxb Marshaller after unmarshalling
+    public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+        if(xmlOtherMetaData != null) {
+            otherMetaData = StringDictionaryUtil.convertStringDictionaryListToStringMap(xmlOtherMetaData);
+        }
+    }
+
+    // Invoked by Jaxb Marshaller before marshalling
+    public boolean beforeMarshal(Marshaller marshaller) {
+        if(otherMetaData == null) {
+            xmlOtherMetaData = null;
+        } else {
+            xmlOtherMetaData = StringDictionaryUtil.convertStringMapIntoStringDictionaryList(otherMetaData);
+        }
+        return true;
+    }
+
+    @XmlElement(name="rm_overlay")
+    @XmlJavaTypeAdapter(RMOverlayXmlAdapter.class)
+    private RmOverlay rmOverlay;
 
     public String getParentArchetypeId() {
         return parentArchetypeId;
@@ -83,6 +113,7 @@ public class Archetype extends AuthoredResource {
         this.parentArchetypeId = parentArchetypeId;
     }
 
+    @JsonAlias("is_differential")
     public boolean isDifferential() {
         return differential;
     }
@@ -274,6 +305,13 @@ public class Archetype extends AuthoredResource {
 
             }
         }
+        if(rmOverlay != null && rmOverlay.getRmVisibility() != null) {
+            for (RmAttributeVisibility value : rmOverlay.getRmVisibility().values()) {
+                if(value.getAlias() != null) {
+                    result.add(value.getAlias().getCodeString());
+                }
+            }
+        }
 
         return result;
     }
@@ -332,5 +370,13 @@ public class Archetype extends AuthoredResource {
         int maximumIdCode = AOMUtils.getMaximumIdCode(specializationDepth, nodeId, getAllUsedCodes());
         return nodeId + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR + generateSpecializationDepthCodePrefix(specializationDepth-nodeIdSpecializationDepth-1) + (maximumIdCode+1);
 
+    }
+
+    public RmOverlay getRmOverlay() {
+        return rmOverlay;
+    }
+
+    public void setRmOverlay(RmOverlay rmOverlay) {
+        this.rmOverlay = rmOverlay;
     }
 }

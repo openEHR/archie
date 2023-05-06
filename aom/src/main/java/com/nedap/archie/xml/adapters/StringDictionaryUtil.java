@@ -53,11 +53,11 @@ public class StringDictionaryUtil {
         return termMap;
     }
 
-    public static Map<String, String> convertStringDictionaryListToStringMap(List<StringDictionaryItem> items) {
+    public static LinkedHashMap<String, String> convertStringDictionaryListToStringMap(List<StringDictionaryItem> items) {
         if(items == null) {
             return null;
         }
-        Map<String, String> termMap = new LinkedHashMap<>();
+        LinkedHashMap<String, String> termMap = new LinkedHashMap<>();
         for(StringDictionaryItem term:items) {
             termMap.put(term.getId(),term.getValue());
         }

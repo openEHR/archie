@@ -29,6 +29,7 @@ import java.util.List;
  */
 public class AdlOdinToJsonConverter {
 
+    public static final String TYPE_PROPERTY_NAME = "_type";
     private static ObjectMapper objectMapper = new ObjectMapper();
     private     StringBuilder output = new StringBuilder();
 
@@ -53,11 +54,11 @@ public class AdlOdinToJsonConverter {
             objectMapper.disable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
         }
 
-        //ignore the @type field when not needed
+        //ignore the type field when not needed
         objectMapper.addHandler(new DeserializationProblemHandler() {
             @Override
             public boolean handleUnknownProperty(DeserializationContext ctxt, JsonParser p, JsonDeserializer<?> deserializer, Object beanOrClass, String propertyName) throws IOException {
-                if (propertyName.equalsIgnoreCase("@type")) {
+                if (propertyName.equalsIgnoreCase(TYPE_PROPERTY_NAME)) {
                     return true;
                 }
                 return super.handleUnknownProperty(ctxt, p, deserializer, beanOrClass, propertyName);
@@ -97,7 +98,7 @@ public class AdlOdinToJsonConverter {
             }
             first = false;
             output.append('"');
-            output.append(attrValContext.attribute_id().getText());
+            output.append(attrValContext.odin_object_key().getText());
             output.append('"');
             output.append(':');
             output(attrValContext.object_block());
@@ -106,7 +107,7 @@ public class AdlOdinToJsonConverter {
     }
 
     private void outputTypeId(Type_idContext type_idContext) {
-        outputEscaped("@type");
+        outputEscaped("_type");
         output.append(":");
         outputEscaped(type_idContext.getText());//we might need to remove the generics from the type id if present
     }
@@ -142,7 +143,7 @@ public class AdlOdinToJsonConverter {
                 output(listContext);
 
             } else {
-                output.append("{ \"@type\": \"INTERVAL\" ");
+                output.append("{ \"_type\": \"INTERVAL\" ");
                 Primitive_interval_valueContext intervalCtx = primitiveObjectContext.primitive_interval_value();
 
                 if(intervalCtx.date_interval_value() != null) {

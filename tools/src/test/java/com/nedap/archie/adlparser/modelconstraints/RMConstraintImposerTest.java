@@ -28,8 +28,8 @@ public class RMConstraintImposerTest {
         Cardinality cardinality = attribute.getCardinality();
         assertNull(cardinality);
         MultiplicityInterval existence = attribute.getExistence();
-        assertEquals(new Integer(1), existence.getLower());
-        assertEquals(new Integer(1), existence.getUpper());
+        assertEquals(Integer.valueOf(1), existence.getLower());
+        assertEquals(Integer.valueOf(1), existence.getUpper());
 
         assertFalse(attribute.isMultiple());
     }
@@ -40,14 +40,14 @@ public class RMConstraintImposerTest {
         CAttribute attribute = archetype.getDefinition().getAttribute("data").getChild("id2").getAttribute("items");
         Cardinality cardinality = attribute.getCardinality();
         assertNotNull(cardinality);
-        assertEquals(new Integer(0), cardinality.getInterval().getLower());
+        assertEquals(Integer.valueOf(0), cardinality.getInterval().getLower());
         assertTrue(cardinality.getInterval().isLowerIncluded());
         assertTrue(cardinality.getInterval().isUpperIncluded());
         assertTrue(attribute.isMultiple());
 
         MultiplicityInterval existence = attribute.getExistence();
-        assertEquals(new Integer(0), existence.getLower());
-        assertEquals(new Integer(1), existence.getUpper());
+        assertEquals(Integer.valueOf(0), existence.getLower());
+        assertEquals(Integer.valueOf(1), existence.getUpper());
     }
 
     @Test
@@ -57,14 +57,14 @@ public class RMConstraintImposerTest {
         CAttribute attribute = archetype.getDefinition().getAttribute("data").getChild("id2").getAttribute("items").getChild("id3").getAttribute("items");
         Cardinality cardinality = attribute.getCardinality();
         assertNotNull(cardinality);
-        assertEquals(new Integer(1), cardinality.getInterval().getLower());
+        assertEquals(Integer.valueOf(1), cardinality.getInterval().getLower());
         assertTrue(cardinality.getInterval().isLowerIncluded());
         assertTrue(cardinality.getInterval().isUpperUnbounded());
         assertTrue(attribute.isMultiple());
 
         MultiplicityInterval existence = attribute.getExistence();
-        assertEquals(new Integer(1), existence.getLower());
-        assertEquals(new Integer(1), existence.getUpper());
+        assertEquals(Integer.valueOf(1), existence.getLower());
+        assertEquals(Integer.valueOf(1), existence.getUpper());
     }
 
 
@@ -74,8 +74,8 @@ public class RMConstraintImposerTest {
         Cardinality cardinality = attribute.getCardinality();
         assertNull(cardinality);
         MultiplicityInterval existence = attribute.getExistence();
-        assertEquals(new Integer(0), existence.getLower());
-        assertEquals(new Integer(1), existence.getUpper());
+        assertEquals(Integer.valueOf(0), existence.getLower());
+        assertEquals(Integer.valueOf(1), existence.getUpper());
 
         assertFalse(attribute.isMultiple());
     }

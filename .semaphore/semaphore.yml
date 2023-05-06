@@ -10,25 +10,27 @@ blocks:
       jobs:
         - name: Java 8 build
           commands:
+            - sem-version java 11
+            - ./gradlew clean compileJava compileTestJava
             - sem-version java 1.8
-            - ./gradlew clean build
-        - name: Java 9 build
-          commands:
-            - sem-version java 9
-            - ./gradlew clean build
-        - name: Java 10 build
-          commands:
-            - sem-version java 10
-            - ./gradlew clean build
+            - ./gradlew check
         - name: Java 11 build
           commands:
             - sem-version java 11
             - ./gradlew clean build
+        - name: Java 17 build
+          commands:
+            - sem-version java 17
+            - ./gradlew clean build
             - ./gradlew jacocoRootReport
-            - >-
-              bash <(curl -s https://codecov.io/bash) -f
-              ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml -t
-              "$ARCHIE_CODECOV_TOKEN"
+            - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
+            - curl -Os https://uploader.codecov.io/latest/linux/codecov
+            - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+            - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+            - gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
+            - shasum -a 256 -c codecov.SHA256SUM
+            - chmod +x codecov
+            - ./codecov -f ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml -t "$ARCHIE_CODECOV_TOKEN"
       prologue:
         commands:
           - checkout

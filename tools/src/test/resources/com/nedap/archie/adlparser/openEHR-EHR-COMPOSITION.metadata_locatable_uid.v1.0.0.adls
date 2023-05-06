@@ -1,0 +1,34 @@
+archetype (adl_version=2.0.5-alpha; rm_release= 1.0.2; generated; controlled; uid =a2bc5e00-c67e-4d7e-bb87-b3b74cdefd00; build_uid = B430138C-1DD2-42EF-B54C-633909437054;reviewed_by ; Pieter=007; Bos=0.0.7; bbb007=b-b-b0-0-7)
+	openEHR-EHR-COMPOSITION.metadata_locatable_uid.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Eline Brader">
+	>
+
+definition
+	COMPOSITION[id1] matches {	-- test mandatory locatable uid
+        uid existence matches {1}
+        content matches {
+            EVALUATION[id2] matches { -- test excluded locatable uid
+                uid existence matches {0}
+            }
+        }
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"test mandatory locatable uid">
+				description = <"">
+			>
+            ["id2"] = <
+                text = <"test excluded locatable uid">
+                description = <"">
+            >
+		>
+	>

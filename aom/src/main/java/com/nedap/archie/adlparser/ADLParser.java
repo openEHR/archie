@@ -70,19 +70,20 @@ public class ADLParser {
         this.modelConstraintImposer = null;
     }
 
-    public Archetype parse(String adl) {
+    public Archetype parse(String adl) throws ADLParseException {
         return parse(CharStreams.fromString(adl));
     }
 
-    public Archetype parse(InputStream stream) throws IOException {
+    public Archetype parse(InputStream stream) throws ADLParseException, IOException {
         return parse(CharStreams.fromStream(new BOMInputStream(stream), Charset.availableCharsets().get("UTF-8")));
     }
 
-    public Archetype parse(CharStream stream) {
+    public Archetype parse(CharStream stream) throws ADLParseException {
 
         errors = new ANTLRParserErrors();
         errorListener = new ArchieErrorListener(errors);
         errorListener.setLogEnabled(logEnabled);
+        Archetype result = null;
 
         lexer = new AdlLexer(stream);
         lexer.addErrorListener(errorListener);
@@ -90,26 +91,33 @@ public class ADLParser {
         parser.addErrorListener(errorListener);
         tree = parser.adl(); // parse
 
-        ADLListener listener = new ADLListener(errors, metaModels);
-        walker= new ParseTreeWalker();
-        walker.walk(listener, tree);
-        Archetype result = listener.getArchetype();
-        //set some values that are not directly in ODIN or ADL
-        ArchetypeParsePostProcesser.fixArchetype(result);
+        try {
+            ADLListener listener = new ADLListener(errors, metaModels);
+            walker = new ParseTreeWalker();
+            walker.walk(listener, tree);
+            result = listener.getArchetype();
+            //set some values that are not directly in ODIN or ADL
+            ArchetypeParsePostProcesser.fixArchetype(result);
 
-        if(modelConstraintImposer != null && result.getDefinition() != null) {
-            modelConstraintImposer.imposeConstraints(result.getDefinition());
-        } else if (metaModels != null) {
-            metaModels.selectModel(result);
-            if(metaModels.getSelectedBmmModel() != null) {
-                ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
-                imposer.setSingleOrMultiple(result.getDefinition());
-            } else if (metaModels.getSelectedModelInfoLookup() != null) {
-                ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
-                imposer.setSingleOrMultiple(result.getDefinition());
+            if (modelConstraintImposer != null && result.getDefinition() != null) {
+                modelConstraintImposer.imposeConstraints(result.getDefinition());
+            } else if (metaModels != null) {
+                metaModels.selectModel(result);
+                if (metaModels.getSelectedBmmModel() != null) {
+                    ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
+                    imposer.setSingleOrMultiple(result.getDefinition());
+                } else if (metaModels.getSelectedModelInfoLookup() != null) {
+                    ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
+                    imposer.setSingleOrMultiple(result.getDefinition());
+                }
+            }
+            return result;
+        } finally {
+            if (errors.hasErrors()) {
+                throw new ADLParseException(errors, result);
             }
         }
-        return result;
+
 
     }
 

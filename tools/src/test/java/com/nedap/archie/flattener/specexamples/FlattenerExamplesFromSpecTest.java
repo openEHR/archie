@@ -147,7 +147,6 @@ public class FlattenerExamplesFromSpecTest {
         CAttribute prohibitedProtocol = exclusionFlat.getDefinition().getAttribute("protocol");
         assertNotNull(prohibitedProtocol); //according to spec, prohibited existence should be logically removed (meaning not actually removed)
         assertTrue(prohibitedProtocol.getChildren().isEmpty());
-
     }
 
 

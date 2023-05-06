@@ -1,9 +1,13 @@
 package com.nedap.archie.rminfo;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.google.common.collect.Lists;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by pieter.bos on 29/03/16.
@@ -11,7 +15,32 @@ import java.lang.reflect.Method;
  */
 public class ArchieModelNamingStrategy implements ModelNamingStrategy {
 
-    public static final PropertyNamingStrategy.SnakeCaseStrategy snakeCaseStrategy = new PropertyNamingStrategy.SnakeCaseStrategy();
+    public static final PropertyNamingStrategies.SnakeCaseStrategy snakeCaseStrategy = new PropertyNamingStrategies.SnakeCaseStrategy();
+
+    private final boolean standardsCompliantExpressionNames;
+
+    public ArchieModelNamingStrategy() {
+        standardsCompliantExpressionNames = true;
+    }
+
+    public ArchieModelNamingStrategy(boolean standardCompliantExpressionNames) {
+        this.standardsCompliantExpressionNames = standardCompliantExpressionNames;
+    }
+
+    private static HashMap<String, String> rulesArchieToStandardTypeNamesMap = new HashMap<>();
+    {
+        rulesArchieToStandardTypeNamesMap.put("Operator", "EXPR_OPERATOR");
+        rulesArchieToStandardTypeNamesMap.put("UnaryOperator", "EXPR_UNARY_OPERATOR");
+        rulesArchieToStandardTypeNamesMap.put("BinaryOperator", "EXPR_BINARY_OPERATOR");
+        rulesArchieToStandardTypeNamesMap.put("Leaf", "EXPR_LITERAL");
+        rulesArchieToStandardTypeNamesMap.put("Function", "EXPR_FUNCTION");
+        rulesArchieToStandardTypeNamesMap.put("VariableReference", "EXPR_VARIABLE_REF");
+        rulesArchieToStandardTypeNamesMap.put("Constant", "EXPR_CONSTANT");
+        rulesArchieToStandardTypeNamesMap.put("Constraint", "EXPR_CONSTRAINT");
+        rulesArchieToStandardTypeNamesMap.put("ArchetypeIdConstraint", "EXPR_ARCHETYPE_ID_CONSTRAINT");
+        rulesArchieToStandardTypeNamesMap.put("ModelReference", "EXPR_ARCHETYPE_REF");
+        rulesArchieToStandardTypeNamesMap.put("RuleStatement", "STATEMENT");
+    }
 
     @Override
     public String getTypeName(Class<?> clazz) {
@@ -23,9 +52,18 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
             case "UIDBasedId":
                 return "UID_BASED_ID";
             default:
-
         }
-        String result = snakeCaseStrategy.translate(clazz.getSimpleName()).toUpperCase();
+        if(standardsCompliantExpressionNames) {
+            if(rulesArchieToStandardTypeNamesMap.containsKey(name)) {
+                return rulesArchieToStandardTypeNamesMap.get(name);
+            }
+        }
+        return convertToUpperSnakeCase(clazz);
+    }
+
+    private String convertToUpperSnakeCase(Class<?> clazz) {
+        String name = clazz.getSimpleName();
+        String result = snakeCaseStrategy.translate(name).toUpperCase();
 
         // For some AOM objects (ie. CComplexObject and CAttribute), the name cannot be gotten
         // through the normal snakecase -> uppercase strategy
@@ -33,6 +71,23 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
             result = result.replaceFirst("C", "C_");
         }
         return result;
+    }
+
+
+    @Override
+    public List<String> getAlternativeTypeNames(Class<?> clazz) {
+
+        String name = clazz.getSimpleName();
+        if(rulesArchieToStandardTypeNamesMap.containsKey(name)) {
+            if(standardsCompliantExpressionNames) {
+                return Lists.newArrayList(convertToUpperSnakeCase(clazz));
+            } else {
+                if(rulesArchieToStandardTypeNamesMap.containsKey(name)) {
+                    return Lists.newArrayList(rulesArchieToStandardTypeNamesMap.get(name));
+                }
+            }
+        }
+        return Collections.emptyList();
     }
 
     @Override

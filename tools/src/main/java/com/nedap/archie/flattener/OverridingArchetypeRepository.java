@@ -39,4 +39,8 @@ public class OverridingArchetypeRepository implements ArchetypeRepository {
         overrides.getAllArchetypes().forEach((a) -> result.put(a.getArchetypeId().toString(), a));
         return new ArrayList<>(result.values());
     }
+
+    public List<Archetype> getExtraArchetypes() {
+        return overrides.getAllArchetypes();
+    }
 }

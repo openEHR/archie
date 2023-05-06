@@ -8,10 +8,8 @@ import com.nedap.archie.paths.PathUtil;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
-import com.nedap.archie.rminfo.RMAttributeInfo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Flattens attributes, taking sibling order into account.
@@ -81,8 +79,12 @@ public class CAttributeFlattener {
             return childCloned;
         } else {
 
+            int specializationLevelOfParent = attributeInSpecialization.getArchetype().specializationDepth()-1;
             attributeInParent.setExistence(FlattenerUtil.getPossiblyOverridenValue(attributeInParent.getExistence(), attributeInSpecialization.getExistence()));
             attributeInParent.setCardinality(FlattenerUtil.getPossiblyOverridenValue(attributeInParent.getCardinality(), attributeInSpecialization.getCardinality()));
+
+            // a list of all node ids that have been excluded in this operation
+            Set<String> excludedNodeIds = new HashSet<>();
 
             if (attributeInSpecialization.getChildren().size() > 0 && attributeInSpecialization.getChildren().get(0) instanceof CPrimitiveObject) {
                 //in case of a primitive object, just replace all nodes
@@ -107,18 +109,18 @@ public class CAttributeFlattener {
                     //find matching attributeInParent and create the child node with it
                     CObject matchingParentObject = findMatchingParentCObject(specializedChildCObject, parentCObjects);
 
-
                     if(specializedChildCObject.getSiblingOrder() != null) {
                         //new sibling order, update the anchor
                         anchor = specializedChildCObject.getSiblingOrder();
                     }
 
+                    CObject specializedObject = null;
                     if (anchor != null) {
-                        mergeObjectIntoAttribute(attributeInParent, specializedChildCObject, matchingParentObject, attributeInSpecialization.getChildren(), anchor);
+                        specializedObject = mergeObjectIntoAttribute(attributeInParent, specializedChildCObject, matchingParentObject, attributeInSpecialization.getChildren(), anchor);
                         anchor = nextAnchor(anchor, specializedChildCObject);
                     } else { //no sibling order, apply default rules
                         //add to end
-                        CObject specializedObject = flattener.createSpecializeCObject(attributeInParent, matchingParentObject, specializedChildCObject);
+                        specializedObject = flattener.createSpecializeCObject(attributeInParent, matchingParentObject, specializedChildCObject);
                         if(matchingParentObject == null) {
                             //extension nodes should be added to the last position
                             attributeInParent.addChild(specializedObject);
@@ -127,6 +129,24 @@ public class CAttributeFlattener {
                             if(shouldRemoveParent(specializedChildCObject, matchingParentObject, attributeInSpecialization.getChildren())) {
                                 attributeInParent.removeChild(matchingParentObject.getNodeId());
                             }
+                        }
+                    }
+
+                    // Checks for
+                    if(flattener.getConfig().isAllowSpecializationAfterExclusion() && matchingParentObject != null) {
+                        boolean thisNodeIsExclusion = false;
+                        if (Objects.equals(specializedObject.getNodeId(), matchingParentObject.getNodeId()) &&
+                                specializedObject.getOccurrences() != null && specializedObject.getOccurrences().isProhibited() &&
+                                (matchingParentObject.getOccurrences() == null || !matchingParentObject.getOccurrences().isProhibited())
+                        ) {
+                            excludedNodeIds.add(specializedObject.getNodeId());
+                            thisNodeIsExclusion = true;
+                        }
+
+                        if (!thisNodeIsExclusion && excludedNodeIds.contains(AOMUtils.codeAtLevel(specializedChildCObject.getNodeId(), specializationLevelOfParent))) {
+                            //because of this particular specialization, the parent object was excluded, so occurrences matches {0} in the specialized archetype
+                            //but a modification of the parent node is done after that in the specialized archetype
+                            specializedObject.setOccurrences(specializedChildCObject.getOccurrences());
                         }
                     }
                 }
@@ -159,13 +179,15 @@ public class CAttributeFlattener {
      * @param matchingParentObject the matching parent CObject for the given specializedChildObject
      * @param allSpecializedChildren all the specialized children in the same container as specialedChildCObject
      * @param siblingOrder the sibling order where to add the specializedChild to. Directly adds, no preprocessing or anchor support in this method, you must do that before.
+     * @return the created Specialised object, that also has been added to the parentAttribute
      */
-    private void mergeObjectIntoAttribute(CAttribute parentAttribute, CObject specializedChildCObject, CObject matchingParentObject, List<CObject> allSpecializedChildren, SiblingOrder siblingOrder) {
+    private CObject mergeObjectIntoAttribute(CAttribute parentAttribute, CObject specializedChildCObject, CObject matchingParentObject, List<CObject> allSpecializedChildren, SiblingOrder siblingOrder) {
         CObject specializedObject = flattener.createSpecializeCObject(parentAttribute, matchingParentObject, specializedChildCObject);
         if (shouldRemoveParent(specializedChildCObject, matchingParentObject, allSpecializedChildren)) {
             parentAttribute.removeChild(matchingParentObject.getNodeId());
         }
         parentAttribute.addChild(specializedObject, siblingOrder);
+        return specializedObject;
     }
 
 
@@ -174,42 +196,63 @@ public class CAttributeFlattener {
      *
      * after[id3]
      * ELEMENT[id2]
+     * ELEMENT[id0.1]
+     * before[id4]
      * ELEMENT[id3.1]
      *
-     * Reorder it and remove sibling orders:
+     * Where id3.1 itself is inside a block reordered with sibling nodes. So, reorder it and remove sibling orders:
+     * If a sibling order does not refer to specialized nodes at this level, this function leaves them alone (in this example before[id4])
      *
      * ELEMENT[id3.1]
      * ELEMENT[id2]
+     * ELEMENT[id0.1]
+     * ELEMENT[id4]
      *
-     * If sibling order do not refer to specialized nodes at this level, leaves them alone
      * @param parent the attribute to reorder the child nodes for
      */
     private void reorderSiblingOrdersReferringToSameLevel(CAttribute parent) {
+        SiblingOrder anchor = null;
         for(CObject cObject:new ArrayList<>(parent.getChildren())) {
             if(cObject.getSiblingOrder() != null) {
+                //a new sibling order replaces the anchor
+                anchor = null;
+
                 String matchingNodeId = findCObjectMatchingSiblingOrder(cObject.getSiblingOrder(), parent.getChildren());
                 if(matchingNodeId != null) {
                     parent.removeChild(cObject.getNodeId());
                     SiblingOrder siblingOrder = new SiblingOrder();
                     siblingOrder.setSiblingNodeId(matchingNodeId);
                     siblingOrder.setBefore(cObject.getSiblingOrder().isBefore());
+                    anchor = nextAnchor(siblingOrder, cObject);;
                     parent.addChild(cObject, siblingOrder);
                     cObject.setSiblingOrder(null);//unset sibling order, it has been processed already
                 }
+            } else if (anchor != null) {
+                parent.removeChild(cObject.getNodeId());
+                parent.addChild(cObject, anchor);
+                anchor = nextAnchor(anchor, cObject);
             }
         }
     }
 
     /**
-     * Find the CObject in the given list of cObjects that matches with the given sibling order
-     * @param siblingOrder
-     * @param cObjectList
-     * @return
+     * Find the CObject in the given list of cObjects of which the node id is the same or a specialization of the node id in the given sibling order
+     * Only returns CObjects that appear after a sibling order, either the sibling order of the CObject itself or one before the resulting CObject
+     *
+     * Returns null if no matching CObject can be found
+     *
+     * @param siblingOrder the sibling order to find a match for
+     * @param cObjectList the list of CObjects to search
+     * @return the node id of the found matching CObject
      */
     private String findCObjectMatchingSiblingOrder(SiblingOrder siblingOrder, List<CObject> cObjectList) {
+        SiblingOrder foundSiblingOrder = null;
         for(CObject object:cObjectList) {
-            if(AOMUtils.isOverriddenIdCode(object.getNodeId(), siblingOrder.getSiblingNodeId())) {
+            if(foundSiblingOrder != null && AOMUtils.isOverriddenIdCode(object.getNodeId(), siblingOrder.getSiblingNodeId())) {
                 return object.getNodeId();
+            }
+            if(object.getSiblingOrder() != null) {
+                foundSiblingOrder = object.getSiblingOrder();
             }
         }
         return null;

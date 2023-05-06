@@ -25,6 +25,7 @@ import java.util.List;
  */
 public class OdinToJsonConverter {
 
+    public static final String TYPE_PROPERTY_NAME = "_type";
     private static ObjectMapper objectMapper = new ObjectMapper();
     private     StringBuilder output = new StringBuilder();
 
@@ -71,7 +72,7 @@ public class OdinToJsonConverter {
             }
             first = false;
             output.append('"');
-            output.append(attrValContext.attribute_id().getText());
+            output.append(attrValContext.odin_object_key().getText());
             output.append('"');
             output.append(':');
             output(attrValContext.object_block());
@@ -80,7 +81,7 @@ public class OdinToJsonConverter {
     }
 
     private void outputTypeId(Type_idContext type_idContext) {
-        outputEscaped("@type");
+        outputEscaped(TYPE_PROPERTY_NAME);
         output.append(":");
         outputEscaped(type_idContext.getText());//we might need to remove the generics from the type id if present
     }
@@ -116,7 +117,7 @@ public class OdinToJsonConverter {
                 output(listContext);
 
             } else {
-                output.append("{ \"@type\": \"INTERVAL\" ");
+                output.append("{ \"_type\": \"INTERVAL\" ");
                 Primitive_interval_valueContext intervalCtx = primitiveObjectContext.primitive_interval_value();
 
                 if(intervalCtx.date_interval_value() != null) {

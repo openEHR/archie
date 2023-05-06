@@ -3,12 +3,11 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.aom.terminology.ValueSet;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Creates operational templates. Not to be used externally, use the Flattener with the right parameters to
@@ -40,6 +39,7 @@ class OperationalTemplateCreator {
         result.setOriginalLanguage(clone.getOriginalLanguage());
         result.setTranslations(clone.getTranslations());
         result.setAnnotations(clone.getAnnotations());
+        result.setRmOverlay(clone.getRmOverlay());
 
         return result;
     }
@@ -54,6 +54,16 @@ class OperationalTemplateCreator {
         closeArchetypeSlots(archetype);
         fillArchetypeRoots(archetype);
         fillComplexObjectProxies(archetype);
+    }
+
+    static void expandValueSets(OperationalTemplate operationalTemplate) {
+        List<ArchetypeTerminology> terminologies = Arrays.asList(operationalTemplate.getTerminology());
+       // terminologies.addAll(operationalTemplate.getComponentTerminologies().values());
+        for(ArchetypeTerminology terminology:terminologies) {
+            for(ValueSet valueSet:terminology.getValueSets().values()) {
+                valueSet.setMembers(AOMUtils.getExpandedValueSetMembers(terminology.getValueSets(), valueSet));
+            }
+        }
     }
 
     /** Zero occurrences and existence constraint processing when creating OPT templates. Removes attributes */
@@ -174,11 +184,16 @@ class OperationalTemplateCreator {
         }
     }
 
+    /**
+     * Only fillArchetypeRoot if this is not done yet
+     */
     private void fillArchetypeRoot(CArchetypeRoot root, OperationalTemplate result) {
-        if(flattener.getCreateOperationalTemplate()) {
+        if(flattener.getCreateOperationalTemplate() && ( root.getAttributes() == null || root.getAttributes().isEmpty()) ) {
             String archetypeRef = root.getArchetypeRef();
             String newArchetypeRef = archetypeRef;
-            Archetype archetype = flattener.getRepository().getArchetype(archetypeRef);
+            OverridingArchetypeRepository repository = flattener.getRepository();
+
+            Archetype archetype = repository.getArchetype(archetypeRef);
             if(archetype instanceof TemplateOverlay){
                 //we want to be able to check which archetype this is in the UI. If it's an overlay, that means retrieving the non-operational template
                 //which is a hassle.
@@ -193,7 +208,6 @@ class OperationalTemplateCreator {
                     return;
                 }
             }
-
             archetype = flattener.getNewFlattener().flatten(archetype);
 
             //
@@ -237,7 +251,8 @@ class OperationalTemplateCreator {
 
             String prefix = archetype.getArchetypeId().getConceptId() + "_";
             flattener.getRulesFlattener().combineRules(archetype, root.getArchetype(), prefix, prefix, rootToFill.getPath(), false);
-            flattener.getAnnotationsFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
+            flattener.getAnnotationsAndOverlaysFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
+            flattener.getAnnotationsAndOverlaysFlattener().addVisibilityWithPathPrefix(rootToFill.getPath(), archetype, result);
             //todo: do we have to put something in the terminology extracts?
             //templateResult.addTerminologyExtract(child.getNodeId(), archetype.getTerminology().);
         }

@@ -2,6 +2,9 @@ package com.nedap.archie.aom.primitives;
 
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
+import org.openehr.utils.message.I18n;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,6 +22,7 @@ import java.util.function.BiFunction;
 @XmlType(name="C_BOOLEAN")
 public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
     @XmlElement(name="assumed_value")
+    @Nullable
     private Boolean assumedValue;
     @Nullable
     private List<Boolean> constraint = new ArrayList<>();
@@ -50,26 +54,27 @@ public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
     }
 
     @Override
-    public boolean cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypeNamesConformant) {
-        if(!super.cConformsTo(other, rmTypeNamesConformant)) {
-            return false;
+    public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypeNamesConformant) {
+        ConformanceCheckResult superResult = super.cConformsTo(other, rmTypeNamesConformant);
+        if(!superResult.doesConform()) {
+            return superResult;
         }
         //now guaranteed to be the same class
 
         CBoolean otherBoolean = (CBoolean) other;
         if(otherBoolean.constraint.isEmpty()) {
-            return true;
+            return ConformanceCheckResult.conforms();
         }
 
         if(!(constraint.size() <= otherBoolean.constraint.size())) {
-            return false;
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("A specialised boolean constraint cannot include the same number of more constraints than its parent"));
         }
 
         for(Boolean constraint:constraint) {
             if(!otherBoolean.constraint.contains(constraint)) {
-                return false;
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("A specialised boolean constraint cannot add a constraint not in its parent"));
             }
         }
-        return true;
+        return ConformanceCheckResult.conforms();
     }
 }

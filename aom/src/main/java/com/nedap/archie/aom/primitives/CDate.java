@@ -4,6 +4,7 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.xml.adapters.DateIntervalXmlAdapter;
 import com.nedap.archie.xml.adapters.DateXmlAdapter;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -22,6 +23,7 @@ public class CDate extends CTemporal<Temporal> {
 
     @XmlJavaTypeAdapter(DateXmlAdapter.class)
     @XmlElement(name="assumed_value")
+    @Nullable
     private Temporal assumedValue;
     @XmlJavaTypeAdapter(DateIntervalXmlAdapter.class)
     private List<Interval<Temporal>> constraint = new ArrayList<>();

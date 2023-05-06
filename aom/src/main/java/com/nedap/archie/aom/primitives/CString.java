@@ -3,7 +3,11 @@ package com.nedap.archie.aom.primitives;
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
+import org.openehr.utils.message.I18n;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -21,6 +25,7 @@ import java.util.function.BiFunction;
 public class CString extends CPrimitiveObject<String, String> {
 
     @XmlElement(name="assumed_value")
+    @Nullable
     private String assumedValue;
     private List<String> constraint = new ArrayList<>();
 
@@ -90,23 +95,24 @@ public class CString extends CPrimitiveObject<String, String> {
     }
 
     @Override
-    public boolean cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
-        if(!super.cConformsTo(other, rmTypesConformant)) {
-            return false;
+    public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
+        ConformanceCheckResult superResult = super.cConformsTo(other, rmTypesConformant);
+        if(!superResult.doesConform()) {
+            return superResult;
         }
         //now guaranteed to be the same class
 
         CString otherString = (CString) other;
         if(otherString.constraint.isEmpty()) {
-            return true;
+            return ConformanceCheckResult.conforms();
         }
 
         for(String constraint:constraint) {
             if(!hasMatchingConstraint(constraint, otherString)) {
-                return false;
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("No matching constraint found in parent for contraint {0}", constraint));
             }
         }
-        return true;
+        return ConformanceCheckResult.conforms();
     }
 
     private boolean hasMatchingConstraint(String constraint, CString otherString) {

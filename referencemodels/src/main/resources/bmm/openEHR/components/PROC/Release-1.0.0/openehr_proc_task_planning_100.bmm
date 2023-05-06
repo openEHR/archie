@@ -222,30 +222,30 @@ class_definitions = <
 				name = <"expressions">
 				type_def = <
 					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"CONTEXT_EXPRESSION">
-						generic_parameters = <"EXPR_TYPE_DEF">
-					>
+                    type_def = (P_BMM_GENERIC_TYPE) <
+                        root_type = <"CONTEXT_EXPRESSION">
+                        generic_parameters = <"EXPR_TYPE_DEF">
+                    >
 				>
 			>
 			["variables"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"variables">
 				type_def = <
 					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"CONTEXT_VARIABLE">
-						generic_parameters = <"EXPR_TYPE_DEF">
-					>
+                    type_def = (P_BMM_GENERIC_TYPE) <
+                        root_type = <"CONTEXT_VARIABLE">
+                        generic_parameters = <"EXPR_TYPE_DEF">
+                    >
 				>
 			>
 			["constants"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"constants">
 				type_def = <
 					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"CONTEXT_CONSTANT">
-						generic_parameters = <"EXPR_TYPE_DEF">
-					>
+                    type_def = (P_BMM_GENERIC_TYPE) <
+                        root_type = <"CONTEXT_CONSTANT">
+                        generic_parameters = <"EXPR_TYPE_DEF">
+                    >
 				>
 			>
 		>
@@ -440,14 +440,14 @@ class_definitions = <
 				>
 				cardinality = <|>=1|>
 			>
-		    ["event_wait_states"] = (P_BMM_CONTAINER_PROPERTY) <
+			["event_wait_states"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"event_wait_states">
 				type_def = <
 					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"EVENT_WAIT">
-						generic_parameters = <"EVENT">
-					>
+                    type_def = (P_BMM_GENERIC_TYPE) <
+                        root_type = <"EVENT_WAIT">
+                        generic_parameters = <"EVENT">
+                    >
 				>
 			>
 			["top_level_plans"] = (P_BMM_CONTAINER_PROPERTY) <

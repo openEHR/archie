@@ -1,0 +1,113 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.nedap.healthcare.archie:archie-all:2.0.5'
+    }
+}
+
+plugins {
+    id 'base'
+}
+
+description = "A tool that generates the official ITS-JSON json schema from the BMM files"
+
+import com.nedap.archie.json.OpenEHRRmJSONSchemaCreator;
+import com.nedap.archie.json.JsonSchemaUriProvider;
+import com.nedap.archie.json.JsonSchemaUri;
+import com.nedap.archie.json.ItsJsonUriProvider;
+import org.openehr.referencemodels.BuiltinReferenceModels;
+import jakarta.json.*;
+import jakarta.json.stream.JsonGenerator;
+import org.openehr.bmm.core.BmmClass;
+
+
+abstract class JsonSchemaCreationTask extends DefaultTask {
+
+    private final FileSystemOperations fileSystemOperations
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDir();
+
+    @TaskAction
+    def generateSchema() {
+        def rm110 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.1.0").getModel();
+        def rm104 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
+        def rm103 = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.3").getModel();
+
+        def schemas110Multi = new OpenEHRRmJSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
+                .splitInMultipleFiles(true)
+                .withJsonSchemaUriProvider(new ItsJsonUriProvider("https://specifications.openehr.org/releases/ITS-JSON/latest/components/", "RM/Release-1.1.0/main.json"))
+                .withFullReferences(true)
+                .create(rm110);
+        def schemas104Multi = new OpenEHRRmJSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
+                .splitInMultipleFiles(true)
+                .withJsonSchemaUriProvider(new ItsJsonUriProvider("https://specifications.openehr.org/releases/ITS-JSON/latest/components/", "RM/Release-1.0.4/main.json"))
+                .withFullReferences(true)
+                .create(rm104);
+        def schemas103Multi = new OpenEHRRmJSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
+                .splitInMultipleFiles(true)
+                .withJsonSchemaUriProvider(new ItsJsonUriProvider("https://specifications.openehr.org/releases/ITS-JSON/latest/components/", "RM/Release-1.0.3/main.json"))
+                .withFullReferences(true)
+                .create(rm103);
+
+        def schemas110 = new OpenEHRRmJSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
+                .splitInMultipleFiles(false)
+                .create(rm110);
+        def schemas104 = new OpenEHRRmJSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
+                .splitInMultipleFiles(false)
+                .create(rm104);
+        def schemas103 = new OpenEHRRmJSONSchemaCreator()
+                .withBaseUri("https://specifications.openehr.org/releases/ITS-JSON/latest/components/")
+                .splitInMultipleFiles(false)
+                .create(rm103);
+        def config = new HashMap<>();
+        config.put(JsonGenerator.PRETTY_PRINTING, true);
+        def jsonWriterFactory = Json.createWriterFactory(config);
+
+        printSchemas("components", schemas110, jsonWriterFactory);
+        printSchemas("components", schemas104, jsonWriterFactory);
+        printSchemas("components", schemas103, jsonWriterFactory);
+        printSchemas("components", schemas110Multi, jsonWriterFactory);
+        printSchemas("components", schemas104Multi, jsonWriterFactory);
+        printSchemas("components", schemas103Multi, jsonWriterFactory);
+
+    }
+
+    def printSchemas(String version, Map<JsonSchemaUri, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
+        for(JsonSchemaUri name:schemas.keySet()) {
+            def schema = schemas.get(name);
+            def versionDir = getOutputDir().get().dir(version)
+            if(!versionDir.getAsFile().exists()) {
+                versionDir.getAsFile().mkdir();
+            }
+            System.out.println(name.getFilename());
+            def split = name.getFilename().split("/");
+            def fileName = null;
+            for(int i = 0; i < split.length-1;i++) {
+                String dir = split[i];
+                versionDir = versionDir.dir(dir);
+                if(!versionDir.getAsFile().exists()) {
+                    versionDir.getAsFile().mkdir();
+                }
+            }
+            fileName = split[split.length-1];
+            versionDir.file(fileName).getAsFile().withWriter { writer ->
+                jsonWriterFactory.createWriter(writer).write(schema);
+            }
+        }
+    }
+}
+
+// Create a task using the task type
+tasks.register('generateJsonSchema', JsonSchemaCreationTask) {
+    outputDir = file(layout.buildDirectory.dir('schemaOutput'))
+}
+
+

@@ -9,7 +9,7 @@ public class ValidationConfiguration {
     private static boolean failOnUnknownTerminologyId = false;
 
     /**
-     * Set whether to fail validation or not if in CTerminologyCode.isValidValue(), an uknown terminology is encountered
+     * Set whether to fail validation or not if in CTerminologyCode.isValidValue(), an unknown terminology is encountered
      * Since Archie does not validate external terminologies at all, this currently means all terminologies with id "local",
      * including "openehr" until that is implemented.
      * Sets this globally for the entire JVM!
