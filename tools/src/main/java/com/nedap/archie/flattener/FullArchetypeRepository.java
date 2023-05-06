@@ -10,7 +10,7 @@ import com.nedap.archie.rminfo.ReferenceModels;
 
 import java.util.List;
 
-public interface FullArchetypeRepository extends ArchetypeRepository {
+public interface FullArchetypeRepository extends ArchetypeRepository, OperationalTemplateProvider {
 
     Archetype getFlattenedArchetype(String archetypeId);
 
@@ -52,15 +52,37 @@ public interface FullArchetypeRepository extends ArchetypeRepository {
      * @return
      */
     default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModels models) {
-        ValidationResult validationResult = getValidationResult(archetypeId);
-        if(validationResult != null) {
-            return validationResult;
-        }
         Archetype archetype = getArchetype(archetypeId);
         if(archetype == null) {
             return null;
         }
+        ValidationResult validationResult = getValidationResult(archetype.getArchetypeId().getFullId());
+
+        if(validationResult != null) {
+            //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
+            return validationResult;
+        }
+
         ArchetypeValidator validator = new ArchetypeValidator(models);
+        return validator.validate(archetype, this);
+    }
+
+    /**
+     * validate the validation result if necessary, and return either the newly validated one or
+     * the existing validation result
+     * @return
+     */
+    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, ArchetypeValidator validator) {
+        Archetype archetype = getArchetype(archetypeId);
+        if(archetype == null) {
+            return null;
+        }
+        ValidationResult validationResult = getValidationResult(archetype.getArchetypeId().getFullId());
+
+        if(validationResult != null) {
+            //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
+            return validationResult;
+        }
         return validator.validate(archetype, this);
     }
 

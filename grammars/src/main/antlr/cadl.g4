@@ -34,14 +34,7 @@ c_archetype_root: SYM_USE_ARCHETYPE type_id '[' ID_CODE (SYM_COMMA archetype_ref
 
 c_complex_object_proxy: SYM_USE_NODE type_id '[' ID_CODE ']' c_occurrences? adl_path ;
 
-archetype_slot:
-      c_archetype_slot_head SYM_MATCHES '{' c_includes? c_excludes? '}'
-    | c_archetype_slot_head
-    ;
-
-c_archetype_slot_head: c_archetype_slot_id c_occurrences? ;
-
-c_archetype_slot_id: SYM_ALLOW_ARCHETYPE type_id '[' ID_CODE ']' SYM_CLOSED? ;
+archetype_slot: SYM_ALLOW_ARCHETYPE type_id '[' ID_CODE ']' (( c_occurrences? ( SYM_MATCHES '{' c_includes? c_excludes? '}' )? ) | SYM_CLOSED ) ;
 
 c_attribute_def:
       c_attribute

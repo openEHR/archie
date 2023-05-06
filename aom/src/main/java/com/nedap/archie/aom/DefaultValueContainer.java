@@ -19,6 +19,10 @@ public class DefaultValueContainer extends OpenEHRBase {
     private String format;
     private String content;
 
+    public DefaultValueContainer() {
+        
+    }
+
     public DefaultValueContainer(String format, String content) {
         this.format = format;
         this.content = content;

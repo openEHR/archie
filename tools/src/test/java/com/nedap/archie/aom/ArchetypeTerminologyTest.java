@@ -1,6 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
@@ -23,7 +24,7 @@ public class ArchetypeTerminologyTest {
     }
     
     @Test
-    public void termForUseArchetype() throws IOException {
+    public void termForUseArchetype() throws IOException, ADLParseException {
         //getting the term for a use archetype is a bit of a tricky situation - it's not for the 'id1' code,
         //it's for the code in the parent. So do some specific test here
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();

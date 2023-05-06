@@ -58,7 +58,7 @@ public  class ExampleJsonInstanceGenerator {
     private boolean useTypeNameWhenTermMissing = false;
     private boolean addUniqueNamesForSiblingNodes = false;
 
-    private String typePropertyName = "@type";
+    private String typePropertyName = "_type";
 
     OpenEhrRmInstanceGenerator openEhrRmInstanceGenerator;
 
@@ -258,7 +258,8 @@ public  class ExampleJsonInstanceGenerator {
             }
         }
         //not abstract or cannot find a non-abstract subclass. Return the original parameters
-        return rmTypeName;
+        //throw away any potential generics information, not useful in JSON
+        return rmTypeName.replaceAll("\\<.*\\>$", "");
     }
 
     private void addRequiredPropertiesFromBmm(Map<String, Object> result, BmmClass classDefinition) {

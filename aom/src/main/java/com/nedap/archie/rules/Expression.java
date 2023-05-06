@@ -3,7 +3,7 @@ package com.nedap.archie.rules;
 /**
  * Created by pieter.bos on 27/10/15.
  */
-public class Expression extends RuleElement {
+public abstract class Expression extends RuleElement {
     /**
      * If true, this statement originally was placed between ()-signs
      */

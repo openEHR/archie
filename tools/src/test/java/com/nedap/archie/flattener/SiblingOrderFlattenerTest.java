@@ -1,6 +1,7 @@
 package com.nedap.archie.flattener;
 
 import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
 
 import com.nedap.archie.aom.ArchetypeSlot;
@@ -89,6 +90,50 @@ public class SiblingOrderFlattenerTest {
 
     }
 
+    @Test
+    public void reorderBasedOnRedefinedAttributes() throws IOException, ADLParseException {
+        repository = new InMemoryFullArchetypeRepository();
+        Archetype siblingOrderParent = parse("openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
+        repository.addArchetype(siblingOrderParent);
+
+        Archetype flatChild =  parseAndFlatten("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
+        List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
+        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        assertEquals(
+                Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8", "id7"),
+                nodeIds
+        );
+    }
+
+    @Test
+    public void reorderBasedOnRedefinedAttributesOPT() throws IOException, ADLParseException {
+        repository = new InMemoryFullArchetypeRepository();
+        Archetype siblingOrderParent = parse("openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
+        repository.addArchetype(siblingOrderParent);
+
+        Archetype flatChild =  parseAndCreateOPT("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
+        List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
+        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        assertEquals(
+                Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8"),
+                nodeIds
+        );
+    }
+
+    @Test
+    public void reorderBasedOnRedefinedAttributesRemoveZeroOccurrences() throws IOException, ADLParseException {
+        repository = new InMemoryFullArchetypeRepository();
+        Archetype siblingOrderParent = parse("openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
+        repository.addArchetype(siblingOrderParent);
+
+        Archetype flatChild =  parseAndFlattenRemoveZeroOccurrences("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
+        List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
+        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        assertEquals(
+                Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8"),
+                nodeIds
+        );
+    }
 
     /**
      * Test an edge case where a before[id3] and a ELEMENT[id3.1] appear in the same child
@@ -122,6 +167,28 @@ public class SiblingOrderFlattenerTest {
     }
 
     @Test
+    public void trickyEdgeCase3() throws Exception {
+        Archetype flat =  parseAndFlatten("openEHR-EHR-CLUSTER.sibling_order_redefined_node_id_2.v1.0.0.adls");
+        List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
+        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        assertEquals(
+                Lists.newArrayList("id0.6", "id3.1", "id0.5", "id0.8", "id0.7", "id2", "id4", "id5"),
+                nodeIds
+        );
+    }
+
+    @Test
+    public void trickyEdgeCase4() throws Exception {
+        Archetype flat =  parseAndFlatten("openEHR-EHR-CLUSTER.sibling_order_redefined_node_id_3.v1.0.0.adls");
+        List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
+        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        assertEquals(
+                Lists.newArrayList("id0.6", "id0.5", "id0.8", "id3.1", "id0.7", "id2", "id4", "id5"),
+                nodeIds
+        );
+    }
+
+    @Test
     public void orderArchetypeSlotFilling() throws Exception {
         repository = new InMemoryFullArchetypeRepository();
         Archetype slotFillerTarget = parentArchetype;
@@ -143,11 +210,11 @@ public class SiblingOrderFlattenerTest {
 
     }
 
-    private Archetype parse(String fileName) throws IOException {
+    private Archetype parse(String fileName) throws IOException, ADLParseException {
         return FlattenerTestUtil.parse("/com/nedap/archie/flattener/siblingorder/" + fileName);
     }
 
-    private Archetype parseAndFlatten(String fileName) throws IOException {
+    private Archetype parseAndFlatten(String fileName) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());
@@ -155,5 +222,26 @@ public class SiblingOrderFlattenerTest {
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
         return new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).flatten(parse(fileName));
+    }
+
+    private Archetype parseAndCreateOPT(String fileName) throws IOException, ADLParseException {
+        Archetype result = parse(fileName);
+        ReferenceModels models = new ReferenceModels();
+        models.registerModel(ArchieRMInfoLookup.getInstance());
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
+        assertTrue(validationResult.getErrors().toString(), validationResult.passes());
+
+        return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(parse(fileName));
+    }
+
+    private Archetype parseAndFlattenRemoveZeroOccurrences(String fileName) throws IOException, ADLParseException {
+        Archetype result = parse(fileName);
+        ReferenceModels models = new ReferenceModels();
+        models.registerModel(ArchieRMInfoLookup.getInstance());
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
+        assertTrue(validationResult.getErrors().toString(), validationResult.passes());
+        FlattenerConfiguration config = FlattenerConfiguration.forFlattened();
+        config.setRemoveZeroOccurrencesObjects(true);
+        return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), config).flatten(parse(fileName));
     }
 }

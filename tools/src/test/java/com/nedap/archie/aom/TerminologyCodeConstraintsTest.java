@@ -3,8 +3,8 @@ package com.nedap.archie.aom;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.nedap.archie.ValidationConfiguration;
-import com.nedap.archie.rules.evaluation.DummyRulesPrimitiveObjectParent;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.primitives.ConstraintStatus;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.base.terminology.TerminologyCode;
@@ -15,12 +15,13 @@ import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rules.evaluation.DummyRulesPrimitiveObjectParent;
 import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.net.URI;
+import java.util.*;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -36,10 +37,18 @@ public class TerminologyCodeConstraintsTest {
     @Before
     public void setupArchetype() {
         archetype = new AuthoredArchetype();
+
         ArchetypeTerminology terminology = new ArchetypeTerminology();
+        terminology.setTermBindings(new HashMap<String, Map<String, URI>>() {{
+            put("openehr", new HashMap<String, URI>() {{
+                put("at9000", URI.create("http://openehr.org/id/532"));
+            }});
+        }});
         archetype.setTerminology(terminology);
+
         Map<String, ValueSet> valueSets = new LinkedHashMap<>();
         terminology.setValueSets(valueSets);
+
         ValueSet ac12 = new ValueSet();
         ac12.setId("ac12");
         ac12.setMembers(Sets.newHashSet("at23", "at24"));
@@ -83,6 +92,26 @@ public class TerminologyCodeConstraintsTest {
     }
 
     @Test
+    public void openEHRTerminology() {
+        CTerminologyCode code = new CTerminologyCode();
+        code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
+        code.addConstraint("at9000");
+        code.setConstraintStatus(ConstraintStatus.REQUIRED);
+
+        DvCodedText text = new DvCodedText();
+        text.setValue("does not matter for this validation");
+        text.setDefiningCode(new CodePhrase("[openehr::532]"));
+        assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        text.setDefiningCode(new CodePhrase("[openehr::999]"));
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        text.setDefiningCode(new CodePhrase());
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        text.setDefiningCode(null);
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), null));
+    }
+
+    @Test
     public void terminologyCodeConstraint() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
@@ -98,11 +127,47 @@ public class TerminologyCodeConstraintsTest {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
         code.addConstraint("at23");
+        termCodeAssertions(code);
+    }
+
+    @Test
+    public void requiredBindingStrength() {
+        //DV_CODED_TEXT can be constrained by a C_TERMINOLOGY_CONSTRAINT, according to lots of DV_ORDINAL usage in the CKM
+        CTerminologyCode code = new CTerminologyCode();
+        code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
+        code.addConstraint("at23");
+        code.setConstraintStatus(ConstraintStatus.REQUIRED);
+        termCodeAssertions(code);
+    }
+
+    @Test
+    public void otherBindingStrength() {
+        //DV_CODED_TEXT can be constrained by a C_TERMINOLOGY_CONSTRAINT, according to lots of DV_ORDINAL usage in the CKM
+        CTerminologyCode code = new CTerminologyCode();
+        code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
+        code.addConstraint("at23");
+        Set<ConstraintStatus> nonRequiredBindings = EnumSet.of(ConstraintStatus.EXTENSIBLE, ConstraintStatus.EXAMPLE, ConstraintStatus.PREFERRED);
+        for(ConstraintStatus status:nonRequiredBindings) {
+            code.setConstraintStatus(status);
+            DvCodedText text = new DvCodedText();
+            text.setValue("does not matter for this validation");
+            text.setDefiningCode(new CodePhrase("[local::at23]"));
+            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            text.setDefiningCode(new CodePhrase("[local::at24]"));
+            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            text.setDefiningCode(new CodePhrase("[local:at0.3.25]"));
+            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            text.setDefiningCode(new CodePhrase("[snomed:123657]"));
+            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        }
+    }
+
+    private void termCodeAssertions(CTerminologyCode code) {
         DvCodedText text = new DvCodedText();
         text.setValue("does not matter for this validation");
-        text.setDefiningCode(new CodePhrase("[ac12::at23]"));
+        text.setDefiningCode(new CodePhrase("[local::at23]"));
         assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
-        text.setDefiningCode(new CodePhrase("[ac13::at24]"));
+        text.setDefiningCode(new CodePhrase("[local::at24]"));
         assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
         text.setDefiningCode(new CodePhrase());
         assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));

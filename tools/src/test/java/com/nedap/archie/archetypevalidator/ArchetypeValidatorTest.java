@@ -1,5 +1,6 @@
 package com.nedap.archie.archetypevalidator;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
@@ -8,6 +9,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.util.List;
@@ -197,8 +199,129 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void parentWithDifferentRmRelease() throws IOException, ADLParseException {
+        //the parent has an older RM Release than the parent, and the child contains a couple of new features
+        //not available in the parent. One could say the parent needs to be upgraded to the new version
+        //however this has some actual use cases where the parent in the CKM still has the old version, and you want
+        //to use new features like DV_SCALE - as in this particular example. So this should just work.
+        Archetype child = parse("/com/nedap/archie/archetypevalidator/rm_version/openEHR-EHR-CLUSTER.child.v0.0.1.adls");
+        Archetype parent = parse("/com/nedap/archie/archetypevalidator/rm_version/openEHR-EHR-CLUSTER.parent.v1.1.0.adls");
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(child);
+            repository.addArchetype(parent);
 
-    private Archetype parse(String filename) throws IOException {
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validatedChild = archetypeValidator.validate(child, repository);
+            ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
+
+            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+        }
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(child);
+            repository.addArchetype(parent);
+            
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
+            ValidationResult validatedChild = archetypeValidator.validate(child, repository);
+
+            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+        }
+    }
+
+    @Test
+    public void specialisationWithRedefinedAndExcludedMandatoryMultiNode() throws Exception {
+        Archetype parentArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent_with_mandatory_elements.v1.0.0.adls");
+        Archetype childArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.child_redefines_mandatory_elements.v1.0.0.adls");
+        Archetype grandchildArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.grandchild_redefines_mandatory_elements.v1.0.0.adls");
+
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        repository.addArchetype(parentArchetype);
+        repository.addArchetype(childArchetype);
+        repository.addArchetype(grandchildArchetype);
+
+        {
+            ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
+        }
+        {
+            ValidationResult validationResult = new ArchetypeValidator(models).validate(grandchildArchetype, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
+        }
+    }
+
+    @Test
+    public void specialisationWithRedefinedAndExcludedMandatoryMultiNodeFails() throws Exception {
+        Archetype parentArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent_with_mandatory_elements.v1.0.0.adls");
+        Archetype childArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.child_redefines_mandatory_elements_fails.v1.0.0.adls");
+
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        repository.addArchetype(parentArchetype);
+        repository.addArchetype(childArchetype);
+
+        {
+            ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
+            assertFalse(validationResult.toString(), validationResult.passes());
+            assertEquals("Occurrences 3..5, which is the sum of 2..3, 1..2, 0..0, does not conform to 1..4", validationResult.getErrors().get(0).getMessage());
+        }
+    }
+
+    @Test
+    public void specialisationOfDvTextToDvTextAndDvCodedText() throws Exception {
+        Archetype parentArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.2.0.adls");
+        Archetype childArchetype = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.child_redefines_dvtext.v1.0.0.adls");
+
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        repository.addArchetype(parentArchetype);
+        repository.addArchetype(childArchetype);
+
+        {
+            ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
+            assertTrue(validationResult.toString(), validationResult.passes());
+        }
+    }
+
+    @Test
+    public void infiniteSpecialisationTreeLoopTest() throws IOException, ADLParseException {
+        Archetype child1 = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1.adls");
+        Archetype child2 = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1.adls");
+
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(child1);
+            repository.addArchetype(child2);
+
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult result = archetypeValidator.validate(child1, repository);
+            assertFalse(result.passes());
+            assertEquals("Infinite loop caused by specialising: openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1 in openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1", result.getErrors().get(0).getMessage());
+        }
+    }
+
+    @Test
+    public void specializationAfterExclusionTest() throws IOException, ADLParseException {
+        Archetype parent = parse("/com/nedap/archie/flattener/siblingorder/openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
+        Archetype childWithSpecializationAfterExclusion = parse("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls");
+
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(parent);
+            repository.addArchetype(childWithSpecializationAfterExclusion);
+
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult result = archetypeValidator.validate(childWithSpecializationAfterExclusion, repository);
+            assertTrue(result.passes());
+            assertEquals(2, result.getErrors().size());
+            assertEquals("Object with node id id5.1 should be specialized before excluding the parent node", result.getErrors().get(0).getMessage());
+            assertEquals("Object with node id id7.1 should be specialized before excluding the parent node", result.getErrors().get(1).getMessage());
+        }
+    }
+
+    private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;

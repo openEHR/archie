@@ -1,13 +1,18 @@
 package com.nedap.archie.serializer.adl;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.rmoverlay.VisibilityType;
+import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author markopi
@@ -95,11 +100,35 @@ public class ADLArchetypeSerializerTest {
         assertThat(serialized, containsString("[\"local_name\"] = <\"consultation start time\">"));
    }
 
-    private Archetype load(String resourceName) throws IOException {
+   @Test
+   public void rmOverlay() throws Exception {
+        Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
+        String serialized = ADLArchetypeSerializer.serialize(archetype);
+
+        assertTrue(serialized.contains("rm_overlay\n" +
+                "    rm_visibility = <\n" +
+                "        [\"/subject\"] = <\n" +
+                "            visibility = <\"hide\">\n" +
+                "            alias = <[local::at12]>\n" +
+                "        >\n" +
+                "        [\"/data[id2]/events[id3]/data[id4]/items[id5]\"] = <\n" +
+                "            visibility = <\"show\">\n" +
+                "        >\n" +
+                "        [\"/data[id2]/events[id3]/data[id4]/items[id6]\"] = <\n" +
+                "            visibility = <\"show\">\n" +
+                "        >\n" +
+                "    >"));
+
+       Archetype parsed = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(serialized);
+       assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
+       assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
+   }
+
+    private Archetype load(String resourceName) throws ADLParseException, IOException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
     }
 
-    private Archetype loadRoot(String resourceName) throws IOException {
+    private Archetype loadRoot(String resourceName) throws ADLParseException, IOException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
     }
 

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.nedap.archie.base.OpenEHRBase;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,6 +25,7 @@ public class TerminologyCode extends OpenEHRBase {
     @XmlElement(name="terminology_id")
     private String terminologyId;
     @XmlElement(name="terminology_version")
+    @Nullable
     private String terminologyVersion;
     @XmlElement(name="code_string")
     private String codeString;

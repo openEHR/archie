@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by pieter.bos on 15/10/15.
  */
 @JsonPropertyOrder({"text", "description", "other_items"})
-@JsonIgnoreProperties("@type")
+@JsonIgnoreProperties({"@type", "_type"})
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(name="ARCHETYPE_TERM")
 public class ArchetypeTerm extends ArchetypeModelObject implements Map<String, String> {

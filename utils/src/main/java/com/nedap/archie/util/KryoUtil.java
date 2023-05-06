@@ -2,7 +2,9 @@ package com.nedap.archie.util;
 
 import com.esotericsoftware.kryo.kryo5.Kryo;
 import com.esotericsoftware.kryo.kryo5.util.Pool;
+import com.nedap.archie.kryo.URISerializer;
 
+import java.net.URI;
 
 /**
  * Created by pieter.bos on 03/11/15.
@@ -20,6 +22,7 @@ public class KryoUtil {
                 kryo.setRegistrationRequired(false);
                 kryo.setReferences(true);
                 kryo.setCopyReferences(true);
+                kryo.addDefaultSerializer(URI.class, URISerializer.class);
                 return kryo;
             }
         };

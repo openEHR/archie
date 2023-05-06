@@ -64,11 +64,11 @@ public enum ErrorType implements MessageCode {
     VSANCE(I18n.register("specialised archetype attribute node existence conformance: the existence of a redefined attribute node in a specialised archetype, if stated, must conform to the existence of the corresponding node in the flat parent archetype, by having an identical range, or a range wholly contained by the latter.")),
     VSANCC(I18n.register("specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.")),
     VSONCT(I18n.register("specialised archetype object node reference type conformance: the reference model type of a redefined object node in a specialised archetype must conform to the reference model type in the corresponding node in the flat parent archetype by either being identical, or conforming via an inheritance relationship in the relevant reference model.")),
-    VSONCO(I18n.register("specialised archetype redefine object node occurrences validity: the occurrences of a redefined object node in a specialised archetype, if stated, must conform to the occurrences in the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.")),
+    VSONCO(I18n.register("specialised object node occurrences validity: the sum of the lower occurrences and the sum of the upper occurrences of all objects redefining a node in a specialised archetype, must be contained in the occurrences interval of the corresponding node in the flat parent archetype.")),
     @Deprecated//TODO: not in spec why this is deprecated
     VSONI(I18n.register("specialised archetype redefined object node identifier validity: if an object node in a specialised archetype is a redefinition of a node in the flat parent according to VSONIR, and the parent node carries a node identifier, it must carry a node identifier specalised at the level of the child archetype. Otherwise it must carry the same node identifier (or none) as the corresponding parent node.")),
-    VPOV(I18n.register("TODO: something with leaf nodes")),
-    VUNK(I18n.register("TODO: something with leaf nodes")),
+    VPOV(I18n.register("Primitive object specialisation validation failed")),
+    VUNK(I18n.register("Unknown conformance error")),
     SEXLU(I18n.register("Syntax error: existence must be one of 0..0, 0..1, or 1..1")),
     SEXLMG(I18n.register("Syntax error: existence must be one of 0..0, 0..1, or 1..1")),
     VTVSUQ(I18n.register("value-set members unique. The member codes of a value set must be unique within the value set")),
@@ -82,6 +82,7 @@ public enum ErrorType implements MessageCode {
     VACSO(I18n.register("single-valued attribute child object occurrences validity: the occurrences of a child object of a single-valued attribute cannot have an upper limit greater than 1.")),
     VACMCU(I18n.register("cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is ⇐ the cardinality upper bound.")),
     WOUC(I18n.register("code in terminology not used in archetype definition")),
+    VALUESET_REDEFINITION_ERROR(I18n.register("A redefined value set can only be a subset of its parent value set, nothing can be added")),
     OVERLAY_VALIDATION_FAILED(I18n.register("The validation of a template overlay failed")),
     PARENT_VALIDATION_FAILED(I18n.register("The validation of the parent archetype failed"));
 

@@ -1,5 +1,6 @@
 package com.nedap.archie.flattener;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
@@ -19,7 +20,7 @@ public class InMemoryFullArchetypeRepositoryTest {
     InMemoryFullArchetypeRepository inMemoryFullArchetypeRepository;
 
     @Before
-    public void setup() throws IOException {
+    public void setup() throws IOException, ADLParseException {
         //Create versioned archetypes
         List<Archetype> archetypes = new ArrayList<>();
         archetypes.add(new ADLParser().parse(

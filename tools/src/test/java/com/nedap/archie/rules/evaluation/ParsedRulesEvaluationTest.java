@@ -1,7 +1,7 @@
 package com.nedap.archie.rules.evaluation;
 
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.creation.ExampleJsonInstanceGenerator;
@@ -18,13 +18,11 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.ExpressionVariable;
 import com.nedap.archie.rules.RuleStatement;
 import com.nedap.archie.rules.VariableDeclaration;
 import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -35,25 +33,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by pieter.bos on 01/04/16.
  */
-public class ParsedRulesEvaluationTest {
+public abstract class ParsedRulesEvaluationTest {
 
-    private ADLParser parser;
-    private Archetype archetype;
+    ADLParser parser;
+    Archetype archetype;
 
-    private TestUtil testUtil;
+    TestUtil testUtil;
 
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser();
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+    }
+
+    public Archetype getArchetype() {
+        return archetype;
     }
 
     @Test
@@ -72,7 +71,7 @@ public class ParsedRulesEvaluationTest {
 
     }
 
-    private Archetype parse(String filename) throws IOException {
+    Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
@@ -138,7 +137,7 @@ public class ParsedRulesEvaluationTest {
         assertEquals("the assertion should have succeeded", true, result.getResult());
         assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
         assertEquals(1, result.getRawResult().getPaths(0).size());
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", result.getRawResult().getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", result.getRawResult().getPaths(0).get(0));
 
     }
 
@@ -163,38 +162,38 @@ public class ParsedRulesEvaluationTest {
         assertEquals(false, extendedValidity.getObject(0));
         assertEquals(false, extendedValidity2.getObject(0));
         assertEquals(false, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
         quantity.setMagnitude(20d);
 
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
         assertEquals(true, extendedValidity.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
 
         extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
         assertEquals(true, extendedValidity2.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
 
         variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
         assertEquals(true, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
 
         quantity.setMagnitude(0d);
 
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         extendedValidity = ruleEvaluation.getVariableMap().get("extended_validity");
         assertEquals(true, extendedValidity.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity.getPaths(0).get(0));
 
         extendedValidity2 = ruleEvaluation.getVariableMap().get("extended_validity_2");
         assertEquals(false, extendedValidity2.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", extendedValidity2.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", extendedValidity2.getPaths(0).get(0));
 
         variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
         assertEquals(true, variableMatches.getObject(0));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", variableMatches.getPaths(0).get(0));
 
     }
 
@@ -486,7 +485,7 @@ public class ParsedRulesEvaluationTest {
         assertEquals(3, evaluationResult.getPathsThatMustExist().size());
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id6]/value/magnitude", evaluationResult.getPathsThatMustExist().get(1));
-        assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(2));
+        assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(2));
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals(0, evaluationResult.getSetPathValues().size());
 
@@ -573,8 +572,8 @@ public class ParsedRulesEvaluationTest {
 
         assertEquals(0, evaluationResult.getPathsThatMustExist().size());
         assertEquals(5, evaluationResult.getPathsThatMustNotExist().size());
-        assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3,1]/data[id4]/items[id5,1]/value/magnitude"));
-        assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3,2]/data[id4]/items[id6,2]/value/magnitude"));
+        assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude"));
+        assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3, 2]/data[id4]/items[id6, 2]/value/magnitude"));
         assertEquals(0, evaluationResult.getSetPathValues().size());
 
     }
@@ -616,7 +615,70 @@ public class ParsedRulesEvaluationTest {
         assertEquals(0, evaluationResult.getPathsThatMustExist().size());
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals(0, evaluationResult.getSetPathValues().size());
+    }
 
+    @Test
+    public void orNoData() throws Exception {
+        parse("or.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+
+        Observation root = (Observation) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        // Simulate using evaluate without providing any data
+        root.getData().getEvents().get(0).setData(null);
+
+        EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
+
+        // Check that when no answer is given, both paths should not exist
+        assertEquals(2, evaluationResult.getPathsThatMustNotExist().size());
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id7]", evaluationResult.getPathsThatMustNotExist().get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(1));
+    }
+
+    @Test
+    public void orSelectPathNotExists() throws Exception {
+        parse("or.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+
+        Observation root = (Observation) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        // Simulate selecting the option that should hide the elements
+        root.getData().getEvents().get(0).getData().getItems().remove(2);
+        root.getData().getEvents().get(0).getData().getItems().remove(1);
+        ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setDefiningCode(new CodePhrase(new TerminologyId("ac1"), "at2"));
+        ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setValue("B");
+
+        EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
+
+        // Check that when answer B is given, both paths should not exist
+        assertEquals(2, evaluationResult.getPathsThatMustNotExist().size());
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id7]", evaluationResult.getPathsThatMustNotExist().get(0));
+        assertEquals("/data[id2]/events[id3]/data[id4]/items[id9]", evaluationResult.getPathsThatMustNotExist().get(1));
+    }
+
+    @Test
+    public void orSelectPathExists() throws Exception {
+        parse("or.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+
+        Observation root = (Observation) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        // Simulate selecting the option that should hide another element
+        root.getData().getEvents().get(0).getData().getItems().remove(2);
+        root.getData().getEvents().get(0).getData().getItems().remove(1);
+        ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setDefiningCode(new CodePhrase(new TerminologyId("ac1"), "at1"));
+        ((DvCodedText) ((Element) root.getData().getEvents().get(0).getData().getItems().get(0)).getValue()).setValue("A");
+
+        EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
+
+        // Check that when answer A is given, both paths should exist, so no path must not exist
+        assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
     }
 
     @Test
@@ -634,8 +696,8 @@ public class ParsedRulesEvaluationTest {
         assertEquals(false, variables.get("arithmetic_boolean_operands_false").getObject(0));
     }
 
-    private RuleEvaluation<Pathable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), archetype);
+    RuleEvaluation<Pathable> getRuleEvaluation() {
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
     }
 
     @Test
@@ -654,7 +716,7 @@ public class ParsedRulesEvaluationTest {
     }
 
     @Test
-    public void flattenedRules() throws IOException {
+    public void flattenedRules() throws IOException, ADLParseException {
         Archetype valueSet = parse("matches_valueset.adls");
         Archetype parent = parse("termcodeparent.adls");
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
@@ -666,14 +728,14 @@ public class ParsedRulesEvaluationTest {
         Map<String, Object> exampleInstance = generator.generate(opt);
         Cluster cluster = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);
         //correct case first
-        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), opt);
+        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), opt);
         DvCodedText codedText = (DvCodedText) cluster.itemAtPath("/items[1]/items[1]/value[1]");
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at4"));
         codedText.setValue("value 1");
         EvaluationResult result = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult assertionResult = result.getAssertionResults().get(0);
         assertTrue("The given validation rule should pass", assertionResult.getResult());
-        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
+        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
 
         //incorrect case next
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at26"));//wrong code!
@@ -681,10 +743,39 @@ public class ParsedRulesEvaluationTest {
         EvaluationResult falseResult = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult  falseAssertionResult = falseResult.getAssertionResults().get(0);
         assertFalse(falseAssertionResult.getResult());
-        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2]/items[id2]/value/defining_code"));
-
-
+        assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
     }
 
+    @Test
+    public void termBindingConstraint() throws IOException, ADLParseException {
+        parse("matches_term_binding.adls");
+
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+        Pathable root = (Pathable) testUtil.constructEmptyRMObject(archetype.getDefinition());
+
+        // Rule with single term
+        DvCodedText codedText = (DvCodedText) root.itemAtPath("items[id2]/value[id3]");
+        codedText.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "526"));
+        EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
+
+        codedText.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "527"));
+        evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertFalse(evaluationResult.getAssertionResults().get(0).getResult());
+
+        // Rule with value set
+        DvCodedText codedText2 = (DvCodedText) root.itemAtPath("items[id4]/value[id5]");
+        codedText2.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "526"));
+        EvaluationResult evaluationResult2 = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult2.getAssertionResults().size());
+        assertTrue(evaluationResult2.getAssertionResults().get(1).getResult());
+
+        codedText2.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "528"));
+        evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertFalse(evaluationResult.getAssertionResults().get(1).getResult());
+    }
 
 }

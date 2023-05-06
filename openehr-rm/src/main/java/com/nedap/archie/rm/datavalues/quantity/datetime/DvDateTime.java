@@ -35,6 +35,8 @@ import java.util.Objects;
 })
 public class DvDateTime extends DvTemporal<DvDateTime, Long> implements SingleValuedDataValue<TemporalAccessor> {
 
+	public static final long SECONDS_BETWEEN_0001_AND_1970 = DvDate.DAYS_BETWEEN_0001_AND_1970 * 24L * 60L * 60L; //this is wrong!
+
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
 	private TemporalAccessor value;
 
@@ -85,9 +87,9 @@ public class DvDateTime extends DvTemporal<DvDateTime, Long> implements SingleVa
 			return null;
 		}
 		if (value.query(TemporalQueries.zone()) != null) {
-			return ZonedDateTime.from(value).toEpochSecond();
+			return ZonedDateTime.from(value).toEpochSecond() + SECONDS_BETWEEN_0001_AND_1970;
 		} else {
-			return LocalDateTime.from(value).toEpochSecond(ZoneOffset.UTC);
+			return LocalDateTime.from(value).toEpochSecond(ZoneOffset.UTC) + SECONDS_BETWEEN_0001_AND_1970;
 		}
 	}
 
@@ -95,7 +97,7 @@ public class DvDateTime extends DvTemporal<DvDateTime, Long> implements SingleVa
 		if (magnitude == null) {
 			value = null;
 		} else {
-			value = LocalDateTime.ofEpochSecond(magnitude, 0, ZoneOffset.UTC);
+			value = LocalDateTime.ofEpochSecond(magnitude - SECONDS_BETWEEN_0001_AND_1970, 0, ZoneOffset.UTC);
 		}
 	}
 

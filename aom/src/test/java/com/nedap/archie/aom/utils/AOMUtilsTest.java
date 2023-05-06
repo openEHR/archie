@@ -14,4 +14,5 @@ public class AOMUtilsTest {
         assertEquals("id1.1", AOMUtils.codeAtLevel("id1.1.1", 1));
         assertEquals("id1", AOMUtils.codeAtLevel("id1.0.1", 1));
     }
+
 }

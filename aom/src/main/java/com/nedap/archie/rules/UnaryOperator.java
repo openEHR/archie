@@ -9,13 +9,19 @@ public class UnaryOperator extends Operator {
 
     }
 
-    public UnaryOperator(ExpressionType type, OperatorKind operator, Expression operand) {
+    public UnaryOperator(ExpressionType type, OperatorKind operator, String operatorSymbol, Expression operand) {
         setType(type);
         setOperator(operator);
+        setSymbol(operatorSymbol);
         addOperand(operand);
     }
 
     public Expression getOperand() {
-        return super.getLeftOperand();
+        return super.getFirstOperand();
     }
+
+    public void setOperand(Expression operand) {
+        super.setFirstOperand(operand);
+    }
+
 }
