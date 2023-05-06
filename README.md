@@ -60,7 +60,7 @@ To install to your local maven repository for use in other gradle or maven proje
     + [Checking for parse errors](#checking-for-parse-errors)
     + [Creating an Archetype Repository](#creating-an-archetype-repository)
     + [Reference model metadata](#reference-model-metadata)
-    + [Operational templates](#operational-templates)
+    + [Operational Templates](#operational-templates)
     + [Terminology: texts, term bindings and descriptions for your archetypes](#terminology-texts-term-bindings-and-descriptions-for-your-archetypes)
     + [Diffing archetypes](#diffing-archetypes)
     + [Serializing to ADL](#serializing-to-adl)
@@ -151,11 +151,11 @@ You may have noticed a call to ```BuiltinReferenceModels.getMetaModels()```. Thi
 The BMM models are a file containing metadata in a form defined by the openEHR specifications.
 The reflection based metadata contains ModelInfoLookup classes. They are derived from an implementation of a reference model. Note that the ModelInfoLookup classes are only added if you depended on them. If you depended on archie-all, you're all set.
 
-### Operational templates
+### Operational Templates
 
-You can create operational templates of your archetypes. Think of operational templates as something you generate from an archetype or template to more easily work with it. If you are creating an EHR implementation, these will likely be the most useful form of archetypes to work with.
-openEHR Archetypes allow you to reuse structures inside your archetypes at several places. It also allows to embed other archetypes inside your archetype. Without operational templates, you would need to build support for these structures into all of your tools. Operational templates fix this for you, by replacing the proxies for structure and embedded archetypes in the archetype with a copy of the actual embedded structure. For more information about operational templates, see (the documentation at the openEHR website)[https://specifications.openehr.org/releases/AM/latest/OPT2.html].
-Note that ADL 2 operational templates is fundamentally different from the ADL 1.4 OET/OPT format. What you used to achieve with OET/OPT is now built into ADL 2 as templates in combination with the operational template creation. See (the openEHR specification on templates)[http://openehr.org/releases/AM/latest/docs/ADL2/ADL2.html#_templates] on how to work with them.
+You can create Operation Templates of your archetypes. Think of Operation Templates as something you generate from an archetype or template to more easily work with it. If you are creating an EHR implementation, these will likely be the most useful form of archetypes to work with.
+openEHR Archetypes allow you to reuse structures inside your archetypes at several places. It also allows to embed other archetypes inside your archetype. Without Operation Templates, you would need to build support for these structures into all of your tools. Operational Templates fix this for you, by replacing the proxies for structure and embedded archetypes in the archetype with a copy of the actual embedded structure. For more information about Operation Templates, see (the documentation at the openEHR website)[https://specifications.openehr.org/releases/AM/latest/OPT2.html].
+Note that ADL 2 Operation Templates is fundamentally different from the ADL 1.4 OET/OPT format. What you used to achieve with OET/OPT is now built into ADL 2 as templates in combination with the Operational Template creation. See (the openEHR specification on templates)[http://openehr.org/releases/AM/latest/docs/ADL2/ADL2.html#_templates] on how to work with them.
 
 To create an Operational Template:
 
@@ -182,7 +182,7 @@ ArchetypeTerm term = cobject.getTerm();
 logger.info("and the archetype term text in Dutch is: " + term.getText());
 ```
 
-This just works in all cases - with the normal terminology of an unflattened archetype and with component terminologies from operational templates.
+This just works in all cases - with the normal terminology of an unflattened archetype and with component terminologies from Operation Templates.
 
 Of couse, you can also specify the language yourself:
 
@@ -440,7 +440,7 @@ RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstan
 List<RMObjectValidationMessage> validationMessages = validator.validate(operationalTemplate, rmObject);
 ```
 
-The RM Object validator only works on operational templates, not on differential or flattened forms of archetypes. You can create an operational template from any archetype see [Operational templates](#operational-templates).
+The RM Object validator only works on Operation Templates, not on differential or flattened forms of archetypes. You can create an Operational Template from any archetype see [Operational Templates](#operational-templates).
 
 Note that it is possible the API of the messages is still unstable and will likely change in future versions.
 
