@@ -154,8 +154,8 @@ The reflection based metadata contains ModelInfoLookup classes. They are derived
 ### Operational templates
 
 You can create operational templates of your archetypes. Think of operational templates as something you generate from an archetype or template to more easily work with it. If you are creating an EHR implementation, these will likely be the most useful form of archetypes to work with.
-OpenEHR Archetypes allow you to reuse structures inside your archetypes at several places. It also allows to embed other archetypes inside your archetype. Without operational templates, you would need to build support for these structures into all of your tools. Operational templates fix this for you, by replacing the proxies for structure and embedded archetypes in the archetype with a copy of the actual embedded structure. For more information about operational templates, see (the documentation at the OpenEHR website)[http://openehr.org/releases/AM/latest/docs/OPT2/OPT2.html].
-Note that ADL 2 operational templates is fundamentally different from the ADL 1.4 OET/OPT format. What you used to achieve with OET/OPT is now built into ADL 2 as templates in combination with the operational template creation. See (the OpenEHR specification on templates)[http://openehr.org/releases/AM/latest/docs/ADL2/ADL2.html#_templates] on how to work with them.
+openEHR Archetypes allow you to reuse structures inside your archetypes at several places. It also allows to embed other archetypes inside your archetype. Without operational templates, you would need to build support for these structures into all of your tools. Operational templates fix this for you, by replacing the proxies for structure and embedded archetypes in the archetype with a copy of the actual embedded structure. For more information about operational templates, see (the documentation at the openEHR website)[http://openehr.org/releases/AM/latest/docs/OPT2/OPT2.html].
+Note that ADL 2 operational templates is fundamentally different from the ADL 1.4 OET/OPT format. What you used to achieve with OET/OPT is now built into ADL 2 as templates in combination with the operational template creation. See (the openEHR specification on templates)[http://openehr.org/releases/AM/latest/docs/ADL2/ADL2.html#_templates] on how to work with them.
 
 To create an Operational Template:
 
@@ -343,7 +343,7 @@ public void walk(CObject cobject) {
 
 ## Reference Model tools
 
-Archie contains an implementation of the OpenEHR reference model version 1.0.4. It does not yet contain the task planning part. It also contains tools to work with reference model objects.
+Archie contains an implementation of the openEHR reference model version 1.0.4. It does not yet contain the task planning part. It also contains tools to work with reference model objects.
 
 ### Reference model object creation
 
@@ -568,13 +568,13 @@ Note that it requires a MetaModels class. This contains the Metadata of the refe
 
 ### Reference Model Metadata
 
-Archetype tools require metadata about the used reference model to operate. This can be the OpenEHR reference model, but it can also be something else. Archie has two concepts to define this metadata: Reflection based metadata and BMM metadata. Above is a short description of how to load the built-in metadata. This should be enough for most users. However, if you want to add new reference models or reference model metadata, you need this paragraph.
+Archetype tools require metadata about the used reference model to operate. This can be the openEHR reference model, but it can also be something else. Archie has two concepts to define this metadata: Reflection based metadata and BMM metadata. Above is a short description of how to load the built-in metadata. This should be enough for most users. However, if you want to add new reference models or reference model metadata, you need this paragraph.
 
 The MetaModels class is an abstraction over these two types of models. Construct this, and it will automatically select the available metadata model. Note that if a BMM model is present for your archetype, it will use that if possible.
 
-Reflection based metadata bases its metadata on an actual reference model implementation in Java. Two are included, the ArchieRMInfoLookup, for the OpenEHR Reference Model, and the TestRMInfoLookup, for the openEHR Test models. You can register these on a ReferenceModels class, see the code in the previous paragraph for an example
+Reflection based metadata bases its metadata on an actual reference model implementation in Java. Two are included, the ArchieRMInfoLookup, for the openEHR Reference Model, and the TestRMInfoLookup, for the openEHR Test models. You can register these on a ReferenceModels class, see the code in the previous paragraph for an example
 
-The BMM model is not based on an actual implementation, but on a file containing the metadata. The specifications of BMM are part of OpenEHR and can be found at http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html.
+The BMM model is not based on an actual implementation, but on a file containing the metadata. The specifications of BMM are part of openEHR and can be found at http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html.
 
 To use, parse your own BMM files, then load the AOM Profiles.
 
