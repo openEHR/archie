@@ -1,4 +1,4 @@
-# Archie: OpenEHR Library
+# Archie: openEHR Library
 
 Archie is an openEHR Library written in Java, which can be used to implement openEHR tools and systems. See http://www.openehr.org for information about openEHR.
 Archie works with the most recent versions of openEHR. This includes ADL version 2.
@@ -14,7 +14,7 @@ Version 0.4 of archie is a major update that requires changes in your code to up
 
 ## Dependency
 
-You can depend on parts of Archie, or the entire library at once. If you want the entire library, including the Archetype Object Model, ADL parser, all tools and OpenEHR reference model implementation, you can do in gradle:
+You can depend on parts of Archie, or the entire library at once. If you want the entire library, including the Archetype Object Model, ADL parser, all tools and openEHR reference model implementation, you can do in gradle:
 
 ```gradle
 dependencies {
@@ -89,7 +89,7 @@ To install to your local maven repository for use in other gradle or maven proje
 
 ## Archetypes
 
-The base of OpenEHR are archetypes. Archie allows you to work with them, and defines tools to create and validate them.
+The base of openEHR are archetypes. Archie allows you to work with them, and defines tools to create and validate them.
 
 ### Parsing and Archetype queries
 
@@ -148,7 +148,7 @@ The validation result contains the validation result, listing any errors in the 
 ### Reference model metadata
 
 You may have noticed a call to ```BuiltinReferenceModels.getMetaModels()```. This retrieves the metadata for the reference models, which are needed to validate and flatten archetypes. Archie contains two types of metamodels: BMM, and reflection based metadata.
-The BMM models are a file containing metadata in a form defined by the OpenEHR specifications.
+The BMM models are a file containing metadata in a form defined by the openEHR specifications.
 The reflection based metadata contains ModelInfoLookup classes. They are derived from an implementation of a reference model. Note that the ModelInfoLookup classes are only added if you depended on them. If you depended on archie-all, you're all set.
 
 ### Operational templates
