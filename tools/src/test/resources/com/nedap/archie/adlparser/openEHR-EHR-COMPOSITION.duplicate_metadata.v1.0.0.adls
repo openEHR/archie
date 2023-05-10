@@ -1,0 +1,23 @@
+archetype (adl_version=1.0.0; rm_release; rm_release=1.0.0; generated; generated; controlled; controlled=1; uid=1-1-1-1-1; uid; build_uid=1-1-1-1-1; build_uid=2-2-2-2-2; reviewed; reviewed; by; pieter=0.0.7; pieter; bos=0.0.7; bos=1-1-1-1-1)
+	openEHR-EHR-COMPOSITION.duplicate_metadata.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Eline Brader">
+	>
+
+definition
+	COMPOSITION[id1] -- test duplicate metadata
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"test duplicate metadata">
+				description = <"">
+			>
+		>
+	>

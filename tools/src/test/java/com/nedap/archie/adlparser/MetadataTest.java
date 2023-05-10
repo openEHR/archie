@@ -69,12 +69,28 @@ public class MetadataTest {
         try {
             TestUtil.parseFailOnErrors("/com/nedap/archie/adlparser/openEHR-EHR-COMPOSITION.invalid_metadata.v1.0.0.adls");
         } catch (ADLParseException ex) {
-            assertEquals("Error: Encountered metadata tag 'adl_version' with an invalid version id: null\n" +
-                            "Error: Encountered metadata tag 'rm_release' with an invalid version id: 1-1-1-1-1\n" +
+            assertEquals("Error: Encountered metadata tag 'adl_version' with an invalid value: null. Value should match pattern: [0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?\n" +
+                            "Error: Encountered metadata tag 'rm_release' with an invalid value: 1-1-1-1-1. Value should match pattern: [0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?\n" +
                             "Error: Encountered metadata tag 'generated' with a value assignment while expecting none\n" +
                             "Error: Encountered metadata tag 'controlled' with a value assignment while expecting none\n" +
-                            "Error: Encountered metadata tag 'uid' with an invalid guid: 1.0.0-rc\n" +
-                            "Error: Encountered metadata tag 'build_uid' with an invalid guid: null\n",
+                            "Error: Encountered metadata tag 'uid' with an invalid value: 1.0.0-rc. Value should match pattern: [0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+\n" +
+                            "Error: Encountered metadata tag 'build_uid' with an invalid value: null. Value should match pattern: [0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+\n",
+                    ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testDuplicateMetadata() throws IOException {
+        try {
+            TestUtil.parseFailOnErrors("/com/nedap/archie/adlparser/openEHR-EHR-COMPOSITION.duplicate_metadata.v1.0.0.adls");
+        } catch (ADLParseException ex) {
+            assertEquals("Error: Encountered metadata tag 'rm_release' with an invalid value: null. Value should match pattern: [0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?\n" +
+                            "Error: Encountered additional metadata tag for 'generated' while only single is allowed\n" +
+                            "Error: Encountered additional metadata tag for 'controlled' while only single is allowed\n" +
+                            "Error: Encountered metadata tag 'uid' with an invalid value: null. Value should match pattern: [0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+\n" +
+                            "Error: Encountered additional declaration for metadata tag 'build_uid' while only single is allowed\n" +
+                            "Error: Encountered additional declaration for metadata tag 'pieter' while only single is allowed\n" +
+                            "Error: Encountered additional declaration for metadata tag 'bos' while only single is allowed\n",
                     ex.getMessage());
         }
     }
