@@ -2,20 +2,17 @@ package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
-import com.nedap.archie.definitions.OpenEhrDefinitions;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.checkerframework.checker.guieffect.qual.UI;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
@@ -129,49 +126,29 @@ public class ADLListener extends AdlBaseListener {
             // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
             switch (identifier) {
                 case ADL_VERSION:
-                    if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
-                        authoredArchetype.setAdlVersion(metaDataValue);
-                    } else {
-                        errors.addError("Encountered metadata tag '" + ADL_VERSION + "' with an invalid version id: " + metaDataValue);
-                    }
+                    setMetaDataItemWithValue(authoredArchetype::getAdlVersion, authoredArchetype::setAdlVersion, VERSION_ID_REGEX, ADL_VERSION, metaDataValue);
                     break;
                 case RM_RELEASE:
-                    if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
-                        authoredArchetype.setRmRelease(metaDataValue);
-                    } else {
-                        errors.addError("Encountered metadata tag '" + RM_RELEASE + "' with an invalid version id: " + metaDataValue);
-                    }
+                    setMetaDataItemWithValue(authoredArchetype::getRmRelease, authoredArchetype::setRmRelease, VERSION_ID_REGEX, RM_RELEASE, metaDataValue);
                     break;
                 case BUILD_UID:
-                    if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
-                        authoredArchetype.setBuildUid(metaDataValue);
-                    } else {
-                        errors.addError("Encountered metadata tag '" + BUILD_UID + "' with an invalid guid: " + metaDataValue);
-                    }
+                    setMetaDataItemWithValue(authoredArchetype::getBuildUid, authoredArchetype::setBuildUid, GUID_REGEX, BUILD_UID, metaDataValue);
                     break;
                 case UID:
-                    if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
-                        authoredArchetype.setUid(metaDataValue);
-                    } else {
-                        errors.addError("Encountered metadata tag '" + UID + "' with an invalid guid: " + metaDataValue);
-                    }
+                    setMetaDataItemWithValue(authoredArchetype::getUid, authoredArchetype::setUid, GUID_REGEX, UID, metaDataValue);
                     break;
                 case CONTROLLED:
-                    if (metaDataValue == null) {
-                        authoredArchetype.setControlled(true);
-                    } else {
-                        errors.addError("Encountered metadata tag '" + CONTROLLED + "' with a value assignment while expecting none");
-                    }
+                    setMetaDataItemWithoutValue(authoredArchetype::getControlled, authoredArchetype::setControlled, CONTROLLED, metaDataValue);
                     break;
                 case GENERATED:
-                    if (metaDataValue == null) {
-                        authoredArchetype.setGenerated(true);
-                    } else {
-                        errors.addError("Encountered metadata tag '" + GENERATED + "' with a value assignment while expecting none");
-                    }
+                    setMetaDataItemWithoutValue(authoredArchetype::getGenerated, authoredArchetype::setGenerated, GENERATED, metaDataValue);
                     break;
                 default:
-                    authoredArchetype.addOtherMetadata(identifier, metaDataValue);
+                    if (authoredArchetype.getOtherMetaData().containsKey(identifier)) {
+                        errors.addError("Encountered additional declaration for metadata tag '" + identifier + "' while only single is allowed");
+                    } else {
+                        authoredArchetype.addOtherMetadata(identifier, metaDataValue);
+                    }
                     break;
             }
         }
@@ -254,5 +231,42 @@ public class ADLListener extends AdlBaseListener {
         return errors;
     }
 
+    /**
+     * Sets MetaDataItem with identifier and value in archetype.
+     *
+     * @param getExistingValue Get method for value of the identifier in archetype to check whether this readily exists
+     * @param setNewValue      Set method for value of the identifier in archetype to set the new value if it does not exist
+     * @param valuePattern     Pattern to which the value should match
+     * @param identifier       Identifier of the MetaDataItem
+     * @param newValue         New value to set for the identifier
+     */
+    private void setMetaDataItemWithValue(Supplier<String> getExistingValue, Consumer<String> setNewValue, Pattern valuePattern, String identifier, String newValue) {
+        if (newValue != null && valuePattern.matcher(newValue).matches()) {
+            if (getExistingValue.get() != null) {
+                errors.addError("Encountered additional declaration for metadata tag '" + identifier + "' while only single is allowed");
+            } else {
+                setNewValue.accept(newValue);
+            }
+        } else {
+            errors.addError("Encountered metadata tag '" + identifier + "' with an invalid value: " + newValue + ". Value should match pattern: " + valuePattern.pattern());
+        }
+    }
 
+    /**
+     * Sets MetaDataItem with identifier and no value. Identifier has boolean value which will only be set to true whenever conditions are met.
+     *
+     * @param getExistingBoolean Get method for boolean of the identifier in archetype to check whether boolean was readily set to true
+     * @param setBooleanTrue     Set method for boolean of the identifier in archetype to set the boolean to true if not done before
+     * @param identifier         Identifier of the MetaDataItem
+     * @param unexpectedValue    Expected to be null because identifier should not have a value
+     */
+    private void setMetaDataItemWithoutValue(Supplier<Boolean> getExistingBoolean, Consumer<Boolean> setBooleanTrue, String identifier, String unexpectedValue) {
+        if (getExistingBoolean.get() != null && getExistingBoolean.get()) {
+            errors.addError("Encountered additional metadata tag for '" + identifier + "' while only single is allowed");
+        } else if (unexpectedValue == null) {
+            setBooleanTrue.accept(Boolean.TRUE);
+        } else {
+            errors.addError("Encountered metadata tag '" + identifier + "' with a value assignment while expecting none");
+        }
+    }
 }
