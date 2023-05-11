@@ -36,9 +36,11 @@ public class BmmJacksonUtil {
      */
     public static ObjectMapper getObjectMapper() {
         if(objectMapper == null) {
-            objectMapper = new ObjectMapper();
-            configureObjectMapper(objectMapper);
-
+            ObjectMapper newObjectMapper = new ObjectMapper();
+            configureObjectMapper(newObjectMapper);
+            // Assign to the static variable after configuration, so it can't be accessed by other thread before it is
+            // fully configured.
+            objectMapper = newObjectMapper;
         }
         return objectMapper;
     }
