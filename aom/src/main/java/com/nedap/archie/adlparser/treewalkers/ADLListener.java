@@ -247,8 +247,7 @@ public class ADLListener extends AdlBaseListener {
     }
 
     private void addError(String message, String shortMessage, ParserRuleContext identifierContext) {
-        errors.addError(message,
-                shortMessage,
+        errors.addError(message, shortMessage,
                 identifierContext.getStart().getLine(),
                 identifierContext.getStart().getCharPositionInLine(),
                 identifierContext.getStart().getText().length(),

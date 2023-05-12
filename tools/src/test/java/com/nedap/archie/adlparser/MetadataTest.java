@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -84,8 +85,24 @@ public class MetadataTest {
                             "Error: Encountered metadata tag 'build_uid' with an invalid guid: null\n" +
                             "Error: Encountered another metadata tag for 'pieter' whilst single allowed\n",
                     ex.getMessage());
-            ANTLRParserMessage adlVersionError = ex.getErrors().getErrors().get(0);
+
+            List<ANTLRParserMessage> errors = ex.getErrors().getErrors();
+            // Assert first error
+            ANTLRParserMessage adlVersionError = errors.get(0);
+            assertEquals("adl_version", adlVersionError.getOffendingSymbol());
+            assertEquals("incorrect header metadata format", adlVersionError.getShortMessage());
+            assertEquals("Encountered metadata tag 'adl_version' with an invalid version id: null", adlVersionError.getMessage());
             assertEquals(1, adlVersionError.getLineNumber());
+            assertEquals(11, adlVersionError.getColumnNumber());
+            assertEquals(11, (int) adlVersionError.getLength());
+            // Assert last error
+            ANTLRParserMessage pieterError = errors.get(errors.size() - 1);
+            assertEquals("pieter", pieterError.getOffendingSymbol());
+            assertEquals("only one header metadata tag allowed", pieterError.getShortMessage());
+            assertEquals("Encountered another metadata tag for 'pieter' whilst single allowed", pieterError.getMessage());
+            assertEquals(1, pieterError.getLineNumber());
+            assertEquals(177, pieterError.getColumnNumber());
+            assertEquals(6, (int) pieterError.getLength());
         }
     }
 }
