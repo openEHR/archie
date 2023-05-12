@@ -12,6 +12,7 @@ import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.HashSet;
@@ -124,7 +125,7 @@ public class ADLListener extends AdlBaseListener {
             String identifier = ctx.identifier().getText();
             String metaDataValue = ctx.metaDataValue() != null ? ctx.metaDataValue().getText() : null;
             // Check if identifier is declared only once
-            checkMetaDataIdentifier(identifier);
+            checkMetaDataIdentifier(identifier, ctx.identifier());
 
             // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
             switch (identifier) {
@@ -132,42 +133,54 @@ public class ADLListener extends AdlBaseListener {
                     if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
                         authoredArchetype.setAdlVersion(metaDataValue);
                     } else {
-                        errors.addError("Encountered metadata tag '" + ADL_VERSION + "' with an invalid version id: " + metaDataValue);
+                        addError("Encountered metadata tag '" + ADL_VERSION + "' with an invalid version id: " + metaDataValue,
+                                "incorrect header metadata format",
+                                ctx.identifier());
                     }
                     break;
                 case RM_RELEASE:
                     if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
                         authoredArchetype.setRmRelease(metaDataValue);
                     } else {
-                        errors.addError("Encountered metadata tag '" + RM_RELEASE + "' with an invalid version id: " + metaDataValue);
+                        addError("Encountered metadata tag '" + RM_RELEASE + "' with an invalid version id: " + metaDataValue,
+                                "incorrect header metadata format",
+                                ctx.identifier());
                     }
                     break;
                 case BUILD_UID:
                     if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
                         authoredArchetype.setBuildUid(metaDataValue);
                     } else {
-                        errors.addError("Encountered metadata tag '" + BUILD_UID + "' with an invalid guid: " + metaDataValue);
+                        addError("Encountered metadata tag '" + BUILD_UID + "' with an invalid guid: " + metaDataValue,
+                                "incorrect header metadata format",
+                                ctx.identifier());
                     }
                     break;
                 case UID:
                     if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
                         authoredArchetype.setUid(metaDataValue);
                     } else {
-                        errors.addError("Encountered metadata tag '" + UID + "' with an invalid guid: " + metaDataValue);
+                        addError("Encountered metadata tag '" + UID + "' with an invalid guid: " + metaDataValue,
+                                "incorrect header metadata format",
+                                ctx.identifier());
                     }
                     break;
                 case CONTROLLED:
                     if (metaDataValue == null) {
                         authoredArchetype.setControlled(true);
                     } else {
-                        errors.addError("Encountered metadata tag '" + CONTROLLED + "' with a value assignment while expecting none");
+                        addError("Encountered metadata tag '" + CONTROLLED + "' with a value assignment while expecting none",
+                                "incorrect header metadata format",
+                                ctx.identifier());
                     }
                     break;
                 case GENERATED:
                     if (metaDataValue == null) {
                         authoredArchetype.setGenerated(true);
                     } else {
-                        errors.addError("Encountered metadata tag '" + GENERATED + "' with a value assignment while expecting none");
+                        addError("Encountered metadata tag '" + GENERATED + "' with a value assignment while expecting none",
+                                "incorrect header metadata format",
+                                ctx.identifier());
                     }
                     break;
                 default:
@@ -223,12 +236,23 @@ public class ADLListener extends AdlBaseListener {
         archetype.setRmOverlay(OdinObjectParser.convert(ctx.odin_text(), RmOverlay.class));
     }
 
-    private void checkMetaDataIdentifier(String identifier) {
+    private void checkMetaDataIdentifier(String identifier, IdentifierContext identifierContext) {
         if(seenMetaDataIdentifiers.contains(identifier)) {
-            errors.addError("Encountered another metadata tag for '" + identifier + "' whilst single allowed");
+            addError("Encountered another metadata tag for '" + identifier + "' whilst single allowed",
+                    "only one header metadata tag allowed",
+                    identifierContext);
         } else {
             seenMetaDataIdentifiers.add(identifier);
         }
+    }
+
+    private void addError(String message, String shortMessage, ParserRuleContext identifierContext) {
+        errors.addError(message,
+                shortMessage,
+                identifierContext.getStart().getLine(),
+                identifierContext.getStart().getCharPositionInLine(),
+                identifierContext.getStart().getText().length(),
+                identifierContext.getStart().getText());
     }
 
     public void enterComponentTerminologiesSection(AdlParser.ComponentTerminologiesSectionContext ctx) {
