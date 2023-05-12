@@ -1,5 +1,6 @@
 package com.nedap.archie.adlparser;
 
+import com.nedap.archie.antlr.errors.ANTLRParserMessage;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.aom.CAttribute;
@@ -68,14 +69,23 @@ public class MetadataTest {
     public void testInvalidMetadata() throws IOException {
         try {
             TestUtil.parseFailOnErrors("/com/nedap/archie/adlparser/openEHR-EHR-COMPOSITION.invalid_metadata.v1.0.0.adls");
+            fail();
         } catch (ADLParseException ex) {
             assertEquals("Error: Encountered metadata tag 'adl_version' with an invalid version id: null\n" +
+                            "Error: Encountered another metadata tag for 'adl_version' whilst single allowed\n" +
+                            "Error: Encountered another metadata tag for 'adl_version' whilst single allowed\n" +
+                            "Error: Encountered metadata tag 'adl_version' with an invalid version id: null\n" +
+                            "Error: Encountered another metadata tag for 'rm_release' whilst single allowed\n" +
                             "Error: Encountered metadata tag 'rm_release' with an invalid version id: 1-1-1-1-1\n" +
+                            "Error: Encountered another metadata tag for 'generated' whilst single allowed\n" +
                             "Error: Encountered metadata tag 'generated' with a value assignment while expecting none\n" +
                             "Error: Encountered metadata tag 'controlled' with a value assignment while expecting none\n" +
                             "Error: Encountered metadata tag 'uid' with an invalid guid: 1.0.0-rc\n" +
-                            "Error: Encountered metadata tag 'build_uid' with an invalid guid: null\n",
+                            "Error: Encountered metadata tag 'build_uid' with an invalid guid: null\n" +
+                            "Error: Encountered another metadata tag for 'pieter' whilst single allowed\n",
                     ex.getMessage());
+            ANTLRParserMessage adlVersionError = ex.getErrors().getErrors().get(0);
+            assertEquals(1, adlVersionError.getLineNumber());
         }
     }
 }
