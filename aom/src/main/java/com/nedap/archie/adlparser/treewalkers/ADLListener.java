@@ -2,24 +2,21 @@ package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
-import com.nedap.archie.definitions.OpenEhrDefinitions;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.checkerframework.checker.guieffect.qual.UI;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 import static com.nedap.archie.definitions.OpenEhrDefinitions.*;
@@ -39,6 +36,7 @@ public class ADLListener extends AdlBaseListener {
 
     private Archetype rootArchetype;
 
+    Set<String> seenMetaDataIdentifiers = new HashSet<>();
     private Archetype archetype;
     private CComplexObjectParser cComplexObjectParser;
     private TerminologyParser terminologyParser;
@@ -125,6 +123,8 @@ public class ADLListener extends AdlBaseListener {
             AuthoredArchetype authoredArchetype = (AuthoredArchetype) archetype;
             String identifier = ctx.identifier().getText();
             String metaDataValue = ctx.metaDataValue() != null ? ctx.metaDataValue().getText() : null;
+            // Check if identifier is declared only once
+            checkMetaDataIdentifier(identifier);
 
             // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
             switch (identifier) {
@@ -223,6 +223,14 @@ public class ADLListener extends AdlBaseListener {
         archetype.setRmOverlay(OdinObjectParser.convert(ctx.odin_text(), RmOverlay.class));
     }
 
+    private void checkMetaDataIdentifier(String identifier) {
+        if(seenMetaDataIdentifiers.contains(identifier)) {
+            errors.addError("Encountered another metadata tag for '" + identifier + "' whilst single allowed");
+        } else {
+            seenMetaDataIdentifiers.add(identifier);
+        }
+    }
+
     public void enterComponentTerminologiesSection(AdlParser.ComponentTerminologiesSectionContext ctx) {
         if (!(archetype instanceof OperationalTemplate)) {
             throw new IllegalArgumentException("cannot add component terminologies to anything but an operational template");
@@ -244,7 +252,6 @@ public class ADLListener extends AdlBaseListener {
         }
     }
 
-
     /* getters for result */
     public Archetype getArchetype() {
         return rootArchetype;
@@ -253,6 +260,4 @@ public class ADLListener extends AdlBaseListener {
     public ANTLRParserErrors getErrors() {
         return errors;
     }
-
-
 }
