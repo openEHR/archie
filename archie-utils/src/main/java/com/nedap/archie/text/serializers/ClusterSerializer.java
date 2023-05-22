@@ -10,8 +10,7 @@ public class ClusterSerializer implements RmSerializer<Cluster> {
     @Override
     public void serialize(Cluster data, RmToTextSerializer serializer) {
         serializer.append("#### ");
-        serializer.append(data.getName());
-        serializer.append("\n");
+        new LocatableSerializer().serialize(data, serializer);
         for(Item item: data.getItems()) {
             serializer.append(item);
             serializer.append("\n");

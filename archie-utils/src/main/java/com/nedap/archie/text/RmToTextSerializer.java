@@ -5,7 +5,12 @@ import com.nedap.archie.text.serializers.*;
 import com.nedap.archie.text.serializers.action.ActivitySerializer;
 import com.nedap.archie.text.serializers.action.InstructionDetailsSerializer;
 import com.nedap.archie.text.serializers.action.IsmTransitionSerializer;
+import com.nedap.archie.text.serializers.audit.FeederAuditDetailsSerializer;
+import com.nedap.archie.text.serializers.audit.FeederAuditSerializer;
 import com.nedap.archie.text.serializers.datatypes.*;
+import com.nedap.archie.text.serializers.demographic.PartyIdentifiedSerializer;
+import com.nedap.archie.text.serializers.demographic.PartyRelatedSerializer;
+import com.nedap.archie.text.serializers.demographic.PartySelfSerializer;
 import com.nedap.archie.text.serializers.entries.*;
 
 import java.util.HashMap;
@@ -30,6 +35,10 @@ public class RmToTextSerializer {
         addSerializer(new ItemTreeSerializer());
         addSerializer(new SectionSerializer());
 
+        //composition extra classes
+        addSerializer(new EventContextSerializer());
+        addSerializer(new ParticipationSerializer());
+
         //entries
         addSerializer(new EvaluationSerializer());
         addSerializer(new ObservationSerializer());
@@ -43,6 +52,11 @@ public class RmToTextSerializer {
         addSerializer(new InstructionDetailsSerializer());
         addSerializer(new IsmTransitionSerializer());
 
+        //references to demographics
+        addSerializer(new PartyIdentifiedSerializer());
+        addSerializer(new PartyRelatedSerializer());
+        addSerializer(new PartySelfSerializer());
+
         //data values
         addSerializer(new DvBooleanSerializer());
         addSerializer(new DvCodedTextSerializer());
@@ -55,6 +69,12 @@ public class RmToTextSerializer {
         addSerializer(new DvQuantitySerializer());
         addSerializer(new DvTextSerializer());
         addSerializer(new DvTimeSerializer());
+        addSerializer(new DvIdentifierSerializer());
+
+        //Feeder audits
+        addSerializer(new FeederAuditSerializer());
+        addSerializer(new FeederAuditDetailsSerializer());
+
         fallbackSerializer = new ReflectionRmSerializer();
         stringBuilder = new StringBuilder();
     }

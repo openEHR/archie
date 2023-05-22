@@ -6,15 +6,16 @@ import com.nedap.archie.rm.datastructures.History;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.serializers.LocatableSerializer;
 
 public class ObservationSerializer implements RmSerializer<Observation> {
     @Override
     public void serialize(Observation data, RmToTextSerializer serializer) {
         serializer.append("### ");
 
-        serializer.append(data.getName());
-        serializer.append("\n");
+        new LocatableSerializer().serialize(data, serializer);
         writeHistory(data.getData(), serializer);
+
         serializer.append("\n");
         writeHistory(data.getState(), serializer);
         serializer.append(data.getProtocol());

@@ -10,8 +10,7 @@ public class SectionSerializer implements RmSerializer<Section> {
     @Override
     public void serialize(Section data, RmToTextSerializer serializer) {
         serializer.append("## ");
-        serializer.append(data.getName());
-        serializer.append("\n");
+        new LocatableSerializer().serialize(data, serializer);
         for(ContentItem item: data.getItems()) {
             serializer.append(item);
             serializer.append("\n");

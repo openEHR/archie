@@ -10,8 +10,8 @@ public class ItemTreeSerializer implements RmSerializer<ItemTree> {
     @Override
     public void serialize(ItemTree data, RmToTextSerializer serializer) {
         serializer.append("#### ");
-        serializer.append(data.getName());
-        serializer.append("\n");
+        new LocatableSerializer().serialize(data, serializer);
+
         for(Item item: data.getItems()) {
             serializer.append(item);
             serializer.append("\n");

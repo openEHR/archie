@@ -3,12 +3,13 @@ package com.nedap.archie.text.serializers.entries;
 import com.nedap.archie.rm.composition.Action;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.serializers.LocatableSerializer;
 
 public class ActionSerializer implements RmSerializer<Action> {
     @Override
     public void serialize(Action data, RmToTextSerializer serializer) {
-        serializer.append(data.getName());
-        serializer.append("\n");
+        serializer.append("### ");
+        new LocatableSerializer().serialize(data, serializer);
         serializer.append(data.getDescription());
         serializer.append("\n");
         serializer.append(data.getProtocol());
