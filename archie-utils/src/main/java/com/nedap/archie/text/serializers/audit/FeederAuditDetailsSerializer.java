@@ -3,31 +3,21 @@ package com.nedap.archie.text.serializers.audit;
 import com.nedap.archie.rm.archetyped.FeederAuditDetails;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
+import org.openehr.utils.message.I18n;
 
 public class FeederAuditDetailsSerializer implements RmSerializer<FeederAuditDetails> {
     @Override
     public void serialize(FeederAuditDetails data, RmToTextSerializer serializer) {
-        if(data.getOtherDetails() != null) {
-            serializer.append(data.getOtherDetails());
-            serializer.append("\n");
-        }
-        if(data.getSystemId() != null) {
-            serializer.append("bronsysteem: ");
-            serializer.append(data.getSystemId());
-            serializer.append("\n");
-        }
-        if(data.getLocation() != null) {
-            serializer.append("locatie: " );
-            serializer.append(data.getLocation());
-            serializer.append("\n");
-        }
+        serializer.appendIfNotNull(I18n.t("Originating system"), data.getSystemId());
+        serializer.appendIfNotNull(I18n.t("Location"), data.getLocation());
+
         if(data.getTime() != null) {
             serializer.append(data.getTime());
             serializer.append("\n");
         }
-        if(data.getProvider() != null) {
-            serializer.append("zorgaanbieder: " );
-            serializer.append(data.getProvider());
+        serializer.appendIfNotNull(I18n.t("Audit provider"), data.getProvider());
+        if(data.getOtherDetails() != null) {
+            serializer.append(data.getOtherDetails());
             serializer.append("\n");
         }
     }

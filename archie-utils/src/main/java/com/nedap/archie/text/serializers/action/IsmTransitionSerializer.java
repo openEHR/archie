@@ -4,27 +4,17 @@ import com.nedap.archie.rm.composition.IsmTransition;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
+import org.openehr.utils.message.I18n;
 
 public class IsmTransitionSerializer implements RmSerializer<IsmTransition> {
     @Override
     public void serialize(IsmTransition data, RmToTextSerializer serializer) {
-        if(data.getTransition() != null) {
-            serializer.append("transitie: ");
-            serializer.append(data.getTransition());
-            serializer.append("\n");
-        }
-        if(data.getCareflowStep() != null) {
-            serializer.append("stap: ");
-            serializer.append(data.getCareflowStep());
-        }
-        if(data.getCurrentState() != null) {
-            serializer.append("huidige toestand: ");
-            serializer.append(data.getCurrentState());
-        }
+        serializer.appendIfNotNull(I18n.t("State transition"), data.getTransition());
+        serializer.appendIfNotNull(I18n.t("Care flow step"), data.getCareflowStep());
+        serializer.appendIfNotNull(I18n.t("Current state"), data.getCurrentState());
         if(data.getReason() != null) {
             for(DvText reason: data.getReason()) {
-                serializer.append("reden: ");
-                serializer.append(reason);
+                serializer.appendIfNotNull(I18n.t("State transition reason"), data.getCurrentState());
             }
         }
     }
