@@ -24,7 +24,10 @@ public class ReflectionRmSerializer {
             return;
         }
         for(RMAttributeInfo attribute: typeInfo.getAttributes().values()) {
-            if(attribute.getRmName().equalsIgnoreCase("parent")) {
+            if(attribute.getRmName().equalsIgnoreCase("parent") ||
+                attribute.getRmName().equalsIgnoreCase("path") ||
+                    attribute.getRmName().equalsIgnoreCase("archetype_node_id")) {
+                //ignore parent to prevent endless loops. Ignore path and archetype node id because these are very technical fields
                 continue;
             }
             serializer.append(attribute.getRmName());

@@ -3,13 +3,13 @@ package com.nedap.archie.text.serializers.entries;
 import com.nedap.archie.rm.composition.AdminEntry;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
-import com.nedap.archie.text.serializers.LocatableSerializer;
+import com.nedap.archie.text.serializers.LocatableUtil;
 
 public class AdminEntrySerializer implements RmSerializer<AdminEntry> {
     @Override
     public void serialize(AdminEntry data, RmToTextSerializer serializer) {
         serializer.append("### ");
-        new LocatableSerializer().serialize(data, serializer);
+        LocatableUtil.serialize(data, serializer);
         serializer.append(data.getData());
         serializer.append("\n");
     }

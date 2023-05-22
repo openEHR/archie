@@ -10,7 +10,7 @@ public class ItemListSerializer implements RmSerializer<ItemList> {
     @Override
     public void serialize(ItemList data, RmToTextSerializer serializer) {
         serializer.append("#### ");
-        new LocatableSerializer().serialize(data, serializer);
+        LocatableUtil.serialize(data, serializer);
         for(Item item: data.getItems()) {
             serializer.append(item);
             serializer.append("\n");

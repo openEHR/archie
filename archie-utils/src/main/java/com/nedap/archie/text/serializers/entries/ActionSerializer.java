@@ -3,14 +3,14 @@ package com.nedap.archie.text.serializers.entries;
 import com.nedap.archie.rm.composition.Action;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
-import com.nedap.archie.text.serializers.LocatableSerializer;
+import com.nedap.archie.text.serializers.LocatableUtil;
 import org.openehr.utils.message.I18n;
 
 public class ActionSerializer implements RmSerializer<Action> {
     @Override
     public void serialize(Action data, RmToTextSerializer serializer) {
         serializer.append("### ");
-        new LocatableSerializer().serialize(data, serializer);
+        LocatableUtil.serialize(data, serializer);
         serializer.appendIfNotNull(I18n.t("Description"), data.getDescription());
         serializer.appendIfNotNull(I18n.t("Protocol"), data.getProtocol());
         serializer.appendIfNotNull(I18n.t("Instruction details"), data.getInstructionDetails());

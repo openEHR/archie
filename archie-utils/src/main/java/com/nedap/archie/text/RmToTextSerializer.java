@@ -28,6 +28,8 @@ public class RmToTextSerializer {
 
     public RmToTextSerializer() {
         serializers = new HashMap<>();
+
+        //composition and data structures
         addSerializer(new ClusterSerializer());
         addSerializer(new CompositionSerializer());
         addSerializer(new ElementSerializer());
@@ -70,11 +72,17 @@ public class RmToTextSerializer {
         addSerializer(new DvTextSerializer());
         addSerializer(new DvTimeSerializer());
         addSerializer(new DvIdentifierSerializer());
+        addSerializer(new DvIntervalSerializer());
+
+        //supporting DV-classes
+        addSerializer(new ReferenceRangeSerializer());
 
         //Feeder audits
         addSerializer(new FeederAuditSerializer());
         addSerializer(new FeederAuditDetailsSerializer());
 
+        //if no serializer is known, just serialize every field
+        //better would be to filter on non-technical attributes - However currently this works without the BMM
         fallbackSerializer = new ReflectionRmSerializer();
         stringBuilder = new StringBuilder();
     }

@@ -6,7 +6,7 @@ import com.nedap.archie.rm.datastructures.History;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
-import com.nedap.archie.text.serializers.LocatableSerializer;
+import com.nedap.archie.text.serializers.LocatableUtil;
 import org.openehr.utils.message.I18n;
 
 public class ObservationSerializer implements RmSerializer<Observation> {
@@ -14,7 +14,7 @@ public class ObservationSerializer implements RmSerializer<Observation> {
     public void serialize(Observation data, RmToTextSerializer serializer) {
         serializer.append("### ");
 
-        new LocatableSerializer().serialize(data, serializer);
+        LocatableUtil.serialize(data, serializer);
         writeHistory(data.getData(), serializer);
 
         serializer.append("\n");

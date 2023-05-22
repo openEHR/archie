@@ -16,6 +16,7 @@ public class DvTimeSerializer implements RmSerializer<DvTime> {
             return;
         }
         serializer.append(DateTimeSerializerFormatters.ISO_8601_TIME.format(data.getValue()));
+        DvQuantifiedUtil.serialize(data, serializer);
     }
 
     @Override

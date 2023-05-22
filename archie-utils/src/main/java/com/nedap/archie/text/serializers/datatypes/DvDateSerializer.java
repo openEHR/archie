@@ -15,6 +15,7 @@ public class DvDateSerializer implements RmSerializer<DvDate> {
             return;
         }
         serializer.append(DateTimeSerializerFormatters.ISO_8601_DATE.format(data.getValue()));
+        DvQuantifiedUtil.serialize(data, serializer);
     }
 
     @Override

@@ -15,6 +15,8 @@ public class DvCountSerializer implements RmSerializer<DvCount> {
             return;
         }
         serializer.append(Long.toString(data.getMagnitude()));
+        serializer.append("\n");
+        DvQuantifiedUtil.serialize(data, serializer);
         //TODO: all the other fields, reference ranges, normal ranges, status, etc.
     }
 
