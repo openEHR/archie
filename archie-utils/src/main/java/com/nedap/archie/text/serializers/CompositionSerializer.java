@@ -4,6 +4,7 @@ import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.composition.ContentItem;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
+import org.openehr.utils.message.I18n;
 
 public class CompositionSerializer implements RmSerializer<Composition> {
 
@@ -16,14 +17,8 @@ public class CompositionSerializer implements RmSerializer<Composition> {
             serializer.append(item);
             serializer.append("\n");
         }
-        if(data.getComposer() != null) {
-            serializer.append("auteur: ");
-            serializer.append(data.getComposer());
-            serializer.append("\n");
-        }
-        if(data.getContext() != null) {
-            serializer.append(data.getContext());
-        }
+        serializer.appendIfNotNull(I18n.t("Composer"), data.getComposer());
+        serializer.appendIfNotNull(I18n.t("## Context"), data.getContext());
         //not written for now: language, territory
 
     }

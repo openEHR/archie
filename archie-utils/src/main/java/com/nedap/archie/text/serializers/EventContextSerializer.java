@@ -9,26 +9,11 @@ public class EventContextSerializer implements RmSerializer<EventContext> {
     @Override
     public void serialize(EventContext data, RmToTextSerializer serializer) {
 
-        if(data.getLocation() != null) {
-            serializer.append("locatie: ");
-            serializer.append(data.getLocation());
-            serializer.append("\n");
-        }
-        if(data.getStartTime() != null) {
-            serializer.append("starttijd: ");
-            serializer.append(data.getStartTime());
-            serializer.append("\n");
-        }
-        if(data.getEndTime() != null) {
-            serializer.append("eindtijd: ");
-            serializer.append(data.getEndTime());
-            serializer.append("\n");
-        }
-        if(data.getSetting() != null) {
-            serializer.append("setting: ");
-            serializer.append(data.getSetting());
-            serializer.append("\n");
-        }
+        serializer.appendIfNotNull("Location", data.getLocation());
+        serializer.appendIfNotNull("Start time", data.getStartTime());
+        serializer.appendIfNotNull("End time", data.getEndTime());
+        serializer.appendIfNotNull("Setting", data.getSetting());
+
         if(data.getParticipations() != null && !data.getParticipations().isEmpty()) {
             serializer.append("##### participations");
             for(Participation participation:data.getParticipations()) {

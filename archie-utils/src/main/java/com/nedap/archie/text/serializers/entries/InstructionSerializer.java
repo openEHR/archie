@@ -5,6 +5,7 @@ import com.nedap.archie.rm.composition.Instruction;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
 import com.nedap.archie.text.serializers.LocatableSerializer;
+import org.openehr.utils.message.I18n;
 
 public class InstructionSerializer implements RmSerializer<Instruction> {
     @Override
@@ -17,15 +18,10 @@ public class InstructionSerializer implements RmSerializer<Instruction> {
                 serializer.append("\n");
             }
         }
-        if(data.getProtocol() != null) {
-            serializer.append(data.getProtocol());
-            serializer.append("\n");
-        }
-        if(data.getExpiryTime() != null) {
-            serializer.append("verloopdatum: ");
-            serializer.append(data.getExpiryTime());
-            serializer.append("\n");
-        }
+        serializer.appendIfNotNull(I18n.t("Protocol"), data.getProtocol());
+        serializer.appendIfNotNull(I18n.t("Expiry time"), data.getExpiryTime());
+
+
         //TODO: wf definition - but we do not know the format here!
     }
 

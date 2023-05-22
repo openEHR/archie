@@ -7,6 +7,7 @@ import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToTextSerializer;
 import com.nedap.archie.text.serializers.LocatableSerializer;
+import org.openehr.utils.message.I18n;
 
 public class ObservationSerializer implements RmSerializer<Observation> {
     @Override
@@ -26,7 +27,7 @@ public class ObservationSerializer implements RmSerializer<Observation> {
             if(data.getEvents() != null) {
                 for(Event<ItemStructure> event: data.getEvents()) {
                     //TODO: event name: probably not interesting, although sometimes it could be!
-                    serializer.append("Moment van observatie:");
+                    serializer.append(I18n.t("Time of observation"));
                     serializer.append(event.getTime());
                     serializer.append("\n");
                     serializer.append(event.getData());

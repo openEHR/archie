@@ -96,6 +96,24 @@ public class RmToTextSerializer {
         }
     }
 
+    public void appendIfNotNull(String name, RMObject data) {
+        if(data != null) {
+            append(name);
+            append(": ");
+            append(data);
+            append("\n");
+        }
+    }
+
+    public void appendIfNotNull(String name, String data) {
+        if(data != null) {
+            append(name);
+            append(": ");
+            append(data);
+            append("\n");
+        }
+    }
+
     public String toString() {
         return stringBuilder.toString();
     }
@@ -103,4 +121,6 @@ public class RmToTextSerializer {
     public void append(String toWrite) {
         stringBuilder.append(toWrite);
     }
+
+
 }
