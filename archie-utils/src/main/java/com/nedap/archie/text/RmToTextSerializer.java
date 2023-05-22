@@ -2,9 +2,11 @@ package com.nedap.archie.text;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.text.serializers.*;
+import com.nedap.archie.text.serializers.action.ActivitySerializer;
+import com.nedap.archie.text.serializers.action.InstructionDetailsSerializer;
+import com.nedap.archie.text.serializers.action.IsmTransitionSerializer;
 import com.nedap.archie.text.serializers.datatypes.*;
-import com.nedap.archie.text.serializers.entries.EvaluationSerializer;
-import com.nedap.archie.text.serializers.entries.ObservationSerializer;
+import com.nedap.archie.text.serializers.entries.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +33,15 @@ public class RmToTextSerializer {
         //entries
         addSerializer(new EvaluationSerializer());
         addSerializer(new ObservationSerializer());
+        addSerializer(new InstructionSerializer());
+        addSerializer(new ActionSerializer());
+        addSerializer(new GenericEntrySerializer());
+        addSerializer(new AdminEntrySerializer());
+
+        //classes used in Action and Instruction
+        addSerializer(new ActivitySerializer());
+        addSerializer(new InstructionDetailsSerializer());
+        addSerializer(new IsmTransitionSerializer());
 
         //data values
         addSerializer(new DvBooleanSerializer());
