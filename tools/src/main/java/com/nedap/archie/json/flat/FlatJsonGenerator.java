@@ -79,13 +79,23 @@ public class FlatJsonGenerator {
      */
 
     public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject) throws DuplicateKeyException {
-        return buildPathsAndValues(rmObject, null, null);
+        return buildPathsAndValues(rmObject, null);
     }
 
     public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject, OperationalTemplate archetype, String language) throws DuplicateKeyException {
+        String previousLanguage = ArchieLanguageConfiguration.getThreadLocalDescriptiongAndMeaningLanguage();
         if(language != null) {
             ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(language);
         }
+
+        try {
+            return buildPathsAndValues(rmObject, archetype);
+        } finally {
+            ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(previousLanguage);
+        }
+    }
+
+    public Map<String, Object> buildPathsAndValues(OpenEHRBase rmObject, OperationalTemplate archetype) throws DuplicateKeyException {
         Map<String, Object> result = new LinkedHashMap<>();
         CObject definition = archetype == null ? null : archetype.getDefinition();
         buildPathsAndValuesInner(result, null, "/", rmObject, definition, false);
@@ -99,7 +109,6 @@ public class FlatJsonGenerator {
             }
         }
         return result;
-
     }
 
     private void buildPathsAndValuesInner(Map<String, Object> result, RMTypeInfo rmAttributeTypeInfo, String pathSoFar, OpenEHRBase rmObject, CObject cObject, boolean typeAlternativesPresent) throws DuplicateKeyException {
