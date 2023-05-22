@@ -13,12 +13,12 @@ public class FeederAuditDetailsSerializer implements RmSerializer<FeederAuditDet
 
         if(data.getTime() != null) {
             serializer.append(data.getTime());
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
         serializer.appendIfNotNull(I18n.t("Audit provider"), data.getProvider());
         if(data.getOtherDetails() != null) {
             serializer.append(data.getOtherDetails());
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
     }
 

@@ -13,7 +13,7 @@ public class PartyIdentifiedSerializer implements RmSerializer<PartyIdentified> 
         if(data.getIdentifiers() != null) {
             for (DvIdentifier identifier : data.getIdentifiers()) {
                 serializer.append(identifier);
-                serializer.append("\n");
+                serializer.appendNewLine();
             }
         }
     }

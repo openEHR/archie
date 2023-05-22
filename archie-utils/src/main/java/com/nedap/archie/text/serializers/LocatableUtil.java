@@ -8,7 +8,7 @@ public class LocatableUtil {
 
     public static void serialize(Locatable data, RmToTextSerializer serializer) {
         serializer.append(data.getName());
-        serializer.append("\n");
+        serializer.appendNewLine();
         if(data.getFeederAudit() != null) {
             serializer.append(data.getFeederAudit());
         }

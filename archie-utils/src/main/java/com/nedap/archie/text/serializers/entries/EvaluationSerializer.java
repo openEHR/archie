@@ -11,7 +11,7 @@ public class EvaluationSerializer implements RmSerializer<Evaluation> {
         serializer.append("### ");
         LocatableUtil.serialize(data, serializer);
         serializer.append(data.getData());
-        serializer.append("\n");
+        serializer.appendNewLine();
         serializer.append(data.getProtocol());
     }
 

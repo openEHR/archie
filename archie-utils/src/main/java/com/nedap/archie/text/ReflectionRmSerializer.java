@@ -46,7 +46,7 @@ public class ReflectionRmSerializer {
             } catch (InvocationTargetException e) {
                 //...
             }
-            serializer.append("\n");
+            serializer.appendNewLine();
 
         }
     }

@@ -81,6 +81,7 @@ public class RmToTextSerializerTest {
 
     private ExampleJsonInstanceGenerator createExampleJsonInstanceGenerator() {
         ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        structureGenerator.setAddTwoInstancesWherePossible(false);
         structureGenerator.setTypePropertyName(TYPE_PROPERTY_NAME);
         return structureGenerator;
     }

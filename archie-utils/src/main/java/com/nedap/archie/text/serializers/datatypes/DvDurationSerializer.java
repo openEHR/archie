@@ -15,7 +15,7 @@ public class DvDurationSerializer implements RmSerializer<DvDuration> {
             return;
         }
         serializer.append(DateTimeSerializerFormatters.serializeDuration(data.getValue()));
-        serializer.append("\n");
+        serializer.appendNewLine();
         DvQuantifiedUtil.serialize(data, serializer);
     }
 

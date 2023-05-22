@@ -109,7 +109,23 @@ public class RmToTextSerializer {
             append(name);
             append(": ");
             append(data);
+            appendNewLine();
+        }
+    }
+
+    /**
+     * Append a header with the data, if data is not null
+     * @param headerString the markdown header string, for example '## ' or '#### '
+     * @param name
+     * @param data
+     */
+    public void appendWithHeaderIfNotNull(String headerString, String name, RMObject data) {
+        if(data != null) {
+            append(headerString);
+            append(name);
             append("\n");
+            append(data);
+            appendNewLine();
         }
     }
 
@@ -118,8 +134,12 @@ public class RmToTextSerializer {
             append(name);
             append(": ");
             append(data);
-            append("\n");
+            appendNewLine();
         }
+    }
+
+    public void appendNewLine() {
+        append("  \n");
     }
 
     public String toString() {

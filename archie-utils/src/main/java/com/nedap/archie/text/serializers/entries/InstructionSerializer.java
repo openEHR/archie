@@ -15,7 +15,7 @@ public class InstructionSerializer implements RmSerializer<Instruction> {
         if(data.getActivities() != null) {
             for(Activity activity:data.getActivities()) {
                 serializer.append(activity);
-                serializer.append("\n");
+                serializer.appendNewLine();
             }
         }
         serializer.appendIfNotNull(I18n.t("Protocol"), data.getProtocol());

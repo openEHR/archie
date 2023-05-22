@@ -17,7 +17,7 @@ public class ObservationSerializer implements RmSerializer<Observation> {
         LocatableUtil.serialize(data, serializer);
         writeHistory(data.getData(), serializer);
 
-        serializer.append("\n");
+        serializer.appendNewLine();
         writeHistory(data.getState(), serializer);
         serializer.append(data.getProtocol());
     }
@@ -27,9 +27,8 @@ public class ObservationSerializer implements RmSerializer<Observation> {
             if(data.getEvents() != null) {
                 for(Event<ItemStructure> event: data.getEvents()) {
                     //TODO: event name: probably not interesting, although sometimes it could be!
-                    serializer.append(I18n.t("Time of observation"));
-                    serializer.append(event.getTime());
-                    serializer.append("\n");
+                    serializer.appendIfNotNull(I18n.t("Time of observation"), event.getTime());
+                    serializer.append("\n\n");
                     serializer.append(event.getData());
                     serializer.append(event.getState());
                 }

@@ -13,7 +13,7 @@ public class SectionSerializer implements RmSerializer<Section> {
         LocatableUtil.serialize(data, serializer);
         for(ContentItem item: data.getItems()) {
             serializer.append(item);
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
     }
 

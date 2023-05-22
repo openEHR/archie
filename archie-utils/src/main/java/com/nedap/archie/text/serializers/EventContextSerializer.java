@@ -18,7 +18,7 @@ public class EventContextSerializer implements RmSerializer<EventContext> {
             serializer.append("##### participations");
             for(Participation participation:data.getParticipations()) {
                 serializer.append(participation);
-                serializer.append("\n");
+                serializer.appendNewLine();
             }
         }
         if(data.getOtherContext() != null) {

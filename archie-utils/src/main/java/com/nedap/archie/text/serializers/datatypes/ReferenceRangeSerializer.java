@@ -10,7 +10,7 @@ public class ReferenceRangeSerializer implements RmSerializer<ReferenceRange> {
     public void serialize(ReferenceRange data, RmToTextSerializer serializer) {
         serializer.append(data.getRange());
         if(data.getMeaning() != null) {
-            serializer.append("\n");
+            serializer.appendNewLine();
             serializer.appendIfNotNull(I18n.t("Meaning"), data.getMeaning());
         }
 

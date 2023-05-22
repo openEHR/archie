@@ -15,7 +15,7 @@ public class ItemTreeSerializer implements RmSerializer<ItemTree> {
 
         for(Item item: data.getItems()) {
             serializer.append(item);
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
     }
 

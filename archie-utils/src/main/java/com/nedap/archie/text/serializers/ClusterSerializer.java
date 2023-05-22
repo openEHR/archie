@@ -13,7 +13,7 @@ public class ClusterSerializer implements RmSerializer<Cluster> {
         LocatableUtil.serialize(data, serializer);
         for(Item item: data.getItems()) {
             serializer.append(item);
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
     }
 

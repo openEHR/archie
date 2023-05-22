@@ -12,13 +12,14 @@ public class CompositionSerializer implements RmSerializer<Composition> {
     public void serialize(Composition data, RmToTextSerializer serializer) {
         serializer.append("# ");
         LocatableUtil.serialize(data, serializer);
+        serializer.appendIfNotNull(I18n.t("Composer"), data.getComposer());
 
         for(ContentItem item: data.getContent()) {
             serializer.append(item);
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
-        serializer.appendIfNotNull(I18n.t("Composer"), data.getComposer());
-        serializer.appendIfNotNull(I18n.t("## Context"), data.getContext());
+
+        serializer.appendWithHeaderIfNotNull("## ", I18n.t("Context"), data.getContext());
         //not written for now: language, territory
 
     }

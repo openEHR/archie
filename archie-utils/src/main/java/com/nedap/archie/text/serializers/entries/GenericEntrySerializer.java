@@ -11,7 +11,7 @@ public class GenericEntrySerializer implements RmSerializer<GenericEntry> {
         serializer.append("### ");
         LocatableUtil.serialize(data, serializer);
         serializer.append(data.getData());
-        serializer.append("\n");
+        serializer.appendNewLine();
     }
 
     @Override

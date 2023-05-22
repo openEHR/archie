@@ -14,7 +14,7 @@ public class ItemListSerializer implements RmSerializer<ItemList> {
         //LocatableUtil.serialize(data, serializer);
         for(Item item: data.getItems()) {
             serializer.append(item);
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
     }
 

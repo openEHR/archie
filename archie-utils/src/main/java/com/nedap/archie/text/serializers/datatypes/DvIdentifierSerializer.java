@@ -11,22 +11,22 @@ public class DvIdentifierSerializer implements RmSerializer<DvIdentifier> {
         if(data.getType() != null) {
             serializer.append("Type: ");
             serializer.append(data.getType());
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
         if(data.getId() != null) {
             serializer.append("Id: ");
             serializer.append(data.getId());
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
         if(data.getIssuer() != null) {
             serializer.append("Uitgever: ");
             serializer.append(data.getIssuer());
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
         if(data.getAssigner() != null) {
             serializer.append("Toekenner: ");
             serializer.append(data.getAssigner());
-            serializer.append("\n");
+            serializer.appendNewLine();
         }
     }
 
