@@ -54,6 +54,10 @@ public class ArchieLanguageConfiguration {
         currentLogicalPathLanguage.set(language);
     }
 
+    public static String getThreadLocalDescriptiongAndMeaningLanguage() {
+        return currentMeaningAndDescriptionLanguage.get();
+    }
+
     /*
      * Override the language used in descriptions and meanings, on a thread local basis
      * @Param language the language to use
