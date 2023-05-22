@@ -7,7 +7,7 @@ import com.nedap.archie.text.RmToTextSerializer;
 public class InstructionDetailsSerializer implements RmSerializer<InstructionDetails> {
     @Override
     public void serialize(InstructionDetails data, RmToTextSerializer serializer) {
-        serializer.writeToText(data.getWfDetails());
+        serializer.append(data.getWfDetails());
         //TODO: reference to instruction?
     }
 

@@ -7,15 +7,15 @@ import com.nedap.archie.text.RmToTextSerializer;
 public class ActionSerializer implements RmSerializer<Action> {
     @Override
     public void serialize(Action data, RmToTextSerializer serializer) {
-        serializer.writeToText(data.getName());
+        serializer.append(data.getName());
         serializer.append("\n");
-        serializer.writeToText(data.getDescription());
+        serializer.append(data.getDescription());
         serializer.append("\n");
-        serializer.writeToText(data.getProtocol());
+        serializer.append(data.getProtocol());
         serializer.append("\n");
-        serializer.writeToText(data.getInstructionDetails());
+        serializer.append(data.getInstructionDetails());
         serializer.append("\n");
-        serializer.writeToText(data.getIsmTransition());
+        serializer.append(data.getIsmTransition());
         serializer.append("\n");
     }
 

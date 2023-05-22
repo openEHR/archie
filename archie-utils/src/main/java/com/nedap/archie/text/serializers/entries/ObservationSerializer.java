@@ -12,12 +12,12 @@ public class ObservationSerializer implements RmSerializer<Observation> {
     public void serialize(Observation data, RmToTextSerializer serializer) {
         serializer.append("### ");
 
-        serializer.writeToText(data.getName());
+        serializer.append(data.getName());
         serializer.append("\n");
         writeHistory(data.getData(), serializer);
         serializer.append("\n");
         writeHistory(data.getState(), serializer);
-        serializer.writeToText(data.getProtocol());
+        serializer.append(data.getProtocol());
     }
 
     private void writeHistory(History<ItemStructure> data, RmToTextSerializer serializer) {
@@ -26,10 +26,10 @@ public class ObservationSerializer implements RmSerializer<Observation> {
                 for(Event<ItemStructure> event: data.getEvents()) {
                     //TODO: event name: probably not interesting, although sometimes it could be!
                     serializer.append("Moment van observatie:");
-                    serializer.writeToText(event.getTime());
+                    serializer.append(event.getTime());
                     serializer.append("\n");
-                    serializer.writeToText(event.getData());
-                    serializer.writeToText(event.getState());
+                    serializer.append(event.getData());
+                    serializer.append(event.getState());
                 }
             }
         }

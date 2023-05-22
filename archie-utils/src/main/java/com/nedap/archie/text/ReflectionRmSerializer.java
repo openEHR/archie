@@ -1,7 +1,6 @@
 package com.nedap.archie.text;
 
 import com.nedap.archie.rm.RMObject;
-import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
@@ -35,7 +34,7 @@ public class ReflectionRmSerializer {
                 if(result == null) {
                     serializer.append(" - ");
                 } else if(result instanceof RMObject) {
-                    serializer.writeToText((RMObject) result);
+                    serializer.append((RMObject) result);
                 } else {
                     serializer.append(result.toString());
                 }

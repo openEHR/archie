@@ -63,7 +63,7 @@ public class RmToTextSerializer {
         serializers.put(serializer.getSerializedClass(), serializer);
     }
 
-    public void writeToText(RMObject object){
+    public void append(RMObject object){
         if(object == null) {
             return;
         }

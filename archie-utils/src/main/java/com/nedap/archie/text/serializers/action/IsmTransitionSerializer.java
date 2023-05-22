@@ -10,21 +10,21 @@ public class IsmTransitionSerializer implements RmSerializer<IsmTransition> {
     public void serialize(IsmTransition data, RmToTextSerializer serializer) {
         if(data.getTransition() != null) {
             serializer.append("transitie: ");
-            serializer.writeToText(data.getTransition());
+            serializer.append(data.getTransition());
             serializer.append("\n");
         }
         if(data.getCareflowStep() != null) {
             serializer.append("stap: ");
-            serializer.writeToText(data.getCareflowStep());
+            serializer.append(data.getCareflowStep());
         }
         if(data.getCurrentState() != null) {
             serializer.append("huidige toestand: ");
-            serializer.writeToText(data.getCurrentState());
+            serializer.append(data.getCurrentState());
         }
         if(data.getReason() != null) {
             for(DvText reason: data.getReason()) {
                 serializer.append("reden: ");
-                serializer.writeToText(reason);
+                serializer.append(reason);
             }
         }
     }

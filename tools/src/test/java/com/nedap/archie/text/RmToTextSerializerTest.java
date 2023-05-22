@@ -13,16 +13,11 @@ import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -41,7 +36,7 @@ public class RmToTextSerializerTest {
 
         Observation observation = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class);
         RmToTextSerializer rmToTextSerializer = new RmToTextSerializer();
-        rmToTextSerializer.writeToText(observation);
+        rmToTextSerializer.append(observation);
         System.out.println(rmToTextSerializer.toString());
 
     }

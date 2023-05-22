@@ -1,6 +1,5 @@
 package com.nedap.archie.text.serializers;
 
-import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Item;
 import com.nedap.archie.rm.datastructures.ItemList;
 import com.nedap.archie.text.RmSerializer;
@@ -11,10 +10,10 @@ public class ItemListSerializer implements RmSerializer<ItemList> {
     @Override
     public void serialize(ItemList data, RmToTextSerializer serializer) {
         serializer.append("#### ");
-        serializer.writeToText(data.getName());
+        serializer.append(data.getName());
         serializer.append("\n");
         for(Item item: data.getItems()) {
-            serializer.writeToText(item);
+            serializer.append(item);
             serializer.append("\n");
         }
     }

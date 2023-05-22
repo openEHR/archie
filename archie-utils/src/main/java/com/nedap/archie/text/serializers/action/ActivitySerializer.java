@@ -7,10 +7,10 @@ import com.nedap.archie.text.RmToTextSerializer;
 public class ActivitySerializer implements RmSerializer<Activity> {
     @Override
     public void serialize(Activity data, RmToTextSerializer serializer) {
-        serializer.writeToText(data.getName());
+        serializer.append(data.getName());
         serializer.append("\n");
         if(data.getDescription() != null) {
-            serializer.writeToText(data.getDescription());
+            serializer.append(data.getDescription());
             serializer.append("\n");
         }
         if(data.getActionArchetypeId() != null) {
