@@ -9,8 +9,9 @@ public class ItemListSerializer implements RmSerializer<ItemList> {
 
     @Override
     public void serialize(ItemList data, RmToTextSerializer serializer) {
-        serializer.append("#### ");
-        LocatableUtil.serialize(data, serializer);
+        //name is rarely used, neither is feeder audit - do not show, is confusing
+        //serializer.append("#### ");
+        //LocatableUtil.serialize(data, serializer);
         for(Item item: data.getItems()) {
             serializer.append(item);
             serializer.append("\n");
