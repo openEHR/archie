@@ -14,7 +14,7 @@ public class ActionSerializer implements RmSerializer<Action> {
         serializer.appendIfNotNull(I18n.t("Description"), data.getDescription());
         serializer.appendIfNotNull(I18n.t("Protocol"), data.getProtocol());
         serializer.appendIfNotNull(I18n.t("Instruction details"), data.getInstructionDetails());
-        serializer.appendIfNotNull(I18n.t("State transition"), data.getIsmTransition());
+        serializer.appendWithHeaderIfNotNull("##### ", I18n.t("State transition"), data.getIsmTransition());
     }
 
     @Override

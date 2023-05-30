@@ -11,8 +11,7 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.rm.composition.Composition;
-import com.nedap.archie.rm.composition.Observation;
+import com.nedap.archie.rm.composition.*;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -39,7 +38,7 @@ public class RmToMarkdownSerializerTest {
         RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
         rmToMarkdownSerializer.append(observation);
         String serialized = rmToMarkdownSerializer.toString();
-        System.out.println(serialized);
+
         assertTrue(serialized, serialized.contains("Systolic: 0.0mm[Hg]  \n")); //'  \n' = newline in Markdown
         assertTrue(serialized, serialized.contains("Position: Standing  \n")); //'  \n' = newline in Markdown
         assertTrue(serialized, serialized.contains("### Blood Pressure"));
@@ -87,6 +86,61 @@ public class RmToMarkdownSerializerTest {
         assertTrue(serialized, serialized.contains("#### Exertion"));
 
     }
+
+    @Test
+    public void evaluation() throws Exception {
+        OperationalTemplate opt = createOPT("/ckm-mirror/local/archetypes/entry/evaluation/openEHR-EHR-EVALUATION.recommendation.v1.1.0.adls");
+        ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
+
+        Map<String, Object> structure = structureGenerator.generate(opt);
+        String s = serializeToJson(structure, true);
+
+        Evaluation evaluation = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Evaluation.class);
+        RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
+        rmToMarkdownSerializer.append(evaluation);
+        String serialized = rmToMarkdownSerializer.toString();
+        assertTrue(serialized, serialized.contains("### Recommendation"));
+        assertTrue(serialized, serialized.contains("Recommendation: string  \n")); //'  \n' = newline in Markdown
+        assertTrue(serialized, serialized.contains("Rationale: string  \n")); //'  \n' = newline in Markdown
+
+
+    }
+
+    @Test
+    public void instruction() throws Exception {
+        OperationalTemplate opt = createOPT("/ckm-mirror/local/archetypes/entry/instruction/openEHR-EHR-INSTRUCTION.medication_order.v1.0.1.adls");
+        ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
+
+        Map<String, Object> structure = structureGenerator.generate(opt);
+        String s = serializeToJson(structure, true);
+
+        Instruction instruction = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Instruction.class);
+        RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
+        rmToMarkdownSerializer.append(instruction);
+        String serialized = rmToMarkdownSerializer.toString();
+        assertTrue(serialized, serialized.contains("### Medication order  "));
+        assertTrue(serialized, serialized.contains("#### Preparation details  "));
+        assertTrue(serialized, serialized.contains("Substitution direction: Permitted  \n")); //'  \n' = newline in Markdown
+    }
+
+    @Test
+    public void action() throws Exception {
+        OperationalTemplate opt = createOPT("/ckm-mirror/local/archetypes/entry/action/openEHR-EHR-ACTION.medication.v0.0.1-alpha.adls");
+        ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
+
+        Map<String, Object> structure = structureGenerator.generate(opt);
+        String s = serializeToJson(structure, true);
+
+        Action instruction = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Action.class);
+        RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
+        rmToMarkdownSerializer.append(instruction);
+        String serialized = rmToMarkdownSerializer.toString();
+        assertTrue(serialized, serialized.contains("### Medication"));
+        assertTrue(serialized, serialized.contains("Sequence number: 42  \n"));
+        assertTrue(serialized, serialized.contains("##### State transition"));
+        assertTrue(serialized, serialized.contains("Care flow step: Medication recommended  "));
+    }
+
 
     private ExampleJsonInstanceGenerator createExampleJsonInstanceGenerator() {
         ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
