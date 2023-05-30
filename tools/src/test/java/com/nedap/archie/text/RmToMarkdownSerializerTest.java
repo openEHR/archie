@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RmToMarkdownSerializerTest {
 
@@ -37,7 +38,11 @@ public class RmToMarkdownSerializerTest {
         Observation observation = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class);
         RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
         rmToMarkdownSerializer.append(observation);
-        System.out.println(rmToMarkdownSerializer.toString());
+        String serialized = rmToMarkdownSerializer.toString();
+        System.out.println(serialized);
+        assertTrue(serialized, serialized.contains("Systolic: 0.0mm[Hg]  \n")); //'  \n' = newline in Markdown
+        assertTrue(serialized, serialized.contains("Position: Standing  \n")); //'  \n' = newline in Markdown
+        assertTrue(serialized, serialized.contains("### Blood Pressure"));
 
     }
 
@@ -72,7 +77,14 @@ public class RmToMarkdownSerializerTest {
 
         RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
         rmToMarkdownSerializer.append(composition);
-        System.out.println(rmToMarkdownSerializer);
+        String serialized = rmToMarkdownSerializer.toString();
+
+        assertTrue(serialized, serialized.contains("Systolic: 0.0mm[Hg]  \n")); //'  \n' = newline in Markdown
+        assertTrue(serialized, serialized.contains("Position: Standing  \n")); //'  \n' = newline in Markdown
+        assertTrue(serialized, serialized.contains("# Blood pressure composition"));
+        assertTrue(serialized, serialized.contains("## Context"));
+        assertTrue(serialized, serialized.contains("### Blood pressure"));
+        assertTrue(serialized, serialized.contains("#### Exertion"));
 
     }
 

@@ -32,6 +32,6 @@ public class DvIdentifierSerializer implements RmSerializer<DvIdentifier> {
 
     @Override
     public Class getSerializedClass() {
-        return null;
+        return DvIdentifier.class;
     }
 }
