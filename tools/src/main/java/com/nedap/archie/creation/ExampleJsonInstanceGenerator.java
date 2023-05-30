@@ -61,6 +61,7 @@ public  class ExampleJsonInstanceGenerator {
     private String typePropertyName = "_type";
 
     OpenEhrRmInstanceGenerator openEhrRmInstanceGenerator;
+    private boolean addTwoInstancesWherePossible = true;
 
     public ExampleJsonInstanceGenerator(MetaModels models, String language) {
         this.language = language;
@@ -106,6 +107,17 @@ public  class ExampleJsonInstanceGenerator {
         this.openEhrRmInstanceGenerator.setTypePropertyName(typePropertyName);
     }
 
+    public boolean isAddTwoInstancesWherePossible() {
+        return addTwoInstancesWherePossible;
+    }
+
+    /**
+     * Set whether the example data should contain two instances where this is possible, or just one
+     * @param addTwoInstancesWherePossible true if the result should contain two instances, false if one
+     */
+    public void setAddTwoInstancesWherePossible(boolean addTwoInstancesWherePossible) {
+        this.addTwoInstancesWherePossible = addTwoInstancesWherePossible;
+    }
 
     public boolean isAddUniqueNamesForSiblingNodes() {
         return addUniqueNamesForSiblingNodes;
@@ -146,7 +158,7 @@ public  class ExampleJsonInstanceGenerator {
                 int occurrences = Math.max(1, multiplicityInterval.getLower());
                 if(multiplicityInterval.isProhibited()) {
                     occurrences = 0;
-                } else if(multiplicityInterval.has(2) && occurrences <= 1) {
+                } else if(addTwoInstancesWherePossible && multiplicityInterval.has(2) && occurrences <= 1) {
                     if(attribute.getCardinality() == null || attribute.getCardinality().getInterval().isUpperUnbounded()) {
                         occurrences = 2 ; //indicate that multiple of these can be added by adding 2 of them if the cardinality is x..*
                     }
