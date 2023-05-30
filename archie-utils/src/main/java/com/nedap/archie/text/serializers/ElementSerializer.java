@@ -2,13 +2,13 @@ package com.nedap.archie.text.serializers;
 
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.text.RmSerializer;
-import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.RmToMarkdownSerializer;
 import org.openehr.utils.message.I18n;
 
 public class ElementSerializer implements RmSerializer<Element> {
 
     @Override
-    public void serialize(Element data, RmToTextSerializer serializer) {
+    public void serialize(Element data, RmToMarkdownSerializer serializer) {
         serializer.append(data.getName());
         serializer.append(": ");
 

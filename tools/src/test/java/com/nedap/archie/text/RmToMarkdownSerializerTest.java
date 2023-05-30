@@ -4,12 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.nedap.archie.adlparser.ADLParseException;
-import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.creation.ExampleJsonInstanceGenerator;
 import com.nedap.archie.flattener.Flattener;
-import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
@@ -20,12 +18,11 @@ import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class RmToTextSerializerTest {
+public class RmToMarkdownSerializerTest {
 
     private static final String TYPE_PROPERTY_NAME = "_type";
     @Test
@@ -38,9 +35,9 @@ public class RmToTextSerializerTest {
         //System.out.println(s);
 
         Observation observation = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class);
-        RmToTextSerializer rmToTextSerializer = new RmToTextSerializer();
-        rmToTextSerializer.append(observation);
-        System.out.println(rmToTextSerializer.toString());
+        RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
+        rmToMarkdownSerializer.append(observation);
+        System.out.println(rmToMarkdownSerializer.toString());
 
     }
 
@@ -73,9 +70,9 @@ public class RmToTextSerializerTest {
 
         Composition composition = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Composition.class);
 
-        RmToTextSerializer rmToTextSerializer = new RmToTextSerializer();
-        rmToTextSerializer.append(composition);
-        System.out.println(rmToTextSerializer);
+        RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
+        rmToMarkdownSerializer.append(composition);
+        System.out.println(rmToMarkdownSerializer);
 
     }
 

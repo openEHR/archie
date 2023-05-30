@@ -3,13 +3,13 @@ package com.nedap.archie.text.serializers;
 import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.composition.ContentItem;
 import com.nedap.archie.text.RmSerializer;
-import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.RmToMarkdownSerializer;
 import org.openehr.utils.message.I18n;
 
 public class CompositionSerializer implements RmSerializer<Composition> {
 
     @Override
-    public void serialize(Composition data, RmToTextSerializer serializer) {
+    public void serialize(Composition data, RmToMarkdownSerializer serializer) {
         serializer.append("# ");
         LocatableUtil.serialize(data, serializer);
         serializer.appendIfNotNull(I18n.t("Composer"), data.getComposer());

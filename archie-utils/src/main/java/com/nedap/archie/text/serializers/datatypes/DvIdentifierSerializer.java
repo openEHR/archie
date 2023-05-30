@@ -2,12 +2,12 @@ package com.nedap.archie.text.serializers.datatypes;
 
 import com.nedap.archie.rm.datavalues.DvIdentifier;
 import com.nedap.archie.text.RmSerializer;
-import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.RmToMarkdownSerializer;
 
 public class DvIdentifierSerializer implements RmSerializer<DvIdentifier> {
 
     @Override
-    public void serialize(DvIdentifier data, RmToTextSerializer serializer) {
+    public void serialize(DvIdentifier data, RmToMarkdownSerializer serializer) {
         if(data.getType() != null) {
             serializer.append("Type: ");
             serializer.append(data.getType());

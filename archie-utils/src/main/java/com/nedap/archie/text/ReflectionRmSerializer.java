@@ -14,7 +14,7 @@ public class ReflectionRmSerializer {
     public ReflectionRmSerializer() {
         this.modelLookup = ArchieRMInfoLookup.getInstance();
     }
-    public void serialize(RMObject object, RmToTextSerializer serializer) {
+    public void serialize(RMObject object, RmToMarkdownSerializer serializer) {
         if(object == null) {
             return;
         }

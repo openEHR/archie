@@ -2,11 +2,11 @@ package com.nedap.archie.text.serializers.datatypes;
 
 import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
 import com.nedap.archie.text.RmSerializer;
-import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.RmToMarkdownSerializer;
 
 public class DvOrdinalSerializer implements RmSerializer<DvOrdinal> {
     @Override
-    public void serialize(DvOrdinal data, RmToTextSerializer serializer) {
+    public void serialize(DvOrdinal data, RmToMarkdownSerializer serializer) {
         if(data.getValue() != null) {
             serializer.append(Long.toString(data.getValue()));
             serializer.append(" - ");

@@ -1,16 +1,13 @@
 package com.nedap.archie.text.serializers.datatypes;
 
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
 import com.nedap.archie.text.RmSerializer;
-import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.RmToMarkdownSerializer;
 import org.openehr.utils.message.I18n;
 
 public class DvQuantitySerializer implements RmSerializer<DvQuantity> {
     @Override
-    public void serialize(DvQuantity data, RmToTextSerializer serializer) {
+    public void serialize(DvQuantity data, RmToMarkdownSerializer serializer) {
         if(data.getMagnitude() == null) {
             serializer.append("data niet gevuld");
         } else {

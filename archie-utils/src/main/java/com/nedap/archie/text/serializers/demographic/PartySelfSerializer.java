@@ -2,12 +2,12 @@ package com.nedap.archie.text.serializers.demographic;
 
 import com.nedap.archie.rm.generic.PartySelf;
 import com.nedap.archie.text.RmSerializer;
-import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.RmToMarkdownSerializer;
 import org.openehr.utils.message.I18n;
 
 public class PartySelfSerializer implements RmSerializer<PartySelf> {
     @Override
-    public void serialize(PartySelf data, RmToTextSerializer serializer) {
+    public void serialize(PartySelf data, RmToMarkdownSerializer serializer) {
         serializer.append(I18n.t("The person themselves\n"));
     }
 

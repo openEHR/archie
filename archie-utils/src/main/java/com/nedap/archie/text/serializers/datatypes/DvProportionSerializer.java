@@ -1,16 +1,13 @@
 package com.nedap.archie.text.serializers.datatypes;
 
 import com.nedap.archie.rm.datavalues.quantity.DvProportion;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.datavalues.quantity.ProportionKind;
-import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
 import com.nedap.archie.text.RmSerializer;
-import com.nedap.archie.text.RmToTextSerializer;
-import org.openehr.utils.message.I18n;
+import com.nedap.archie.text.RmToMarkdownSerializer;
 
 public class DvProportionSerializer implements RmSerializer<DvProportion> {
     @Override
-    public void serialize(DvProportion data, RmToTextSerializer serializer) {
+    public void serialize(DvProportion data, RmToMarkdownSerializer serializer) {
         if(data.getType() == null) {
             serializeFraction(data, serializer);
         } else if (data.getType() == ProportionKind.PERCENT.getPk()) {
@@ -24,7 +21,7 @@ public class DvProportionSerializer implements RmSerializer<DvProportion> {
         //TODO: other formats - maybe just a number sometimes?
     }
 
-    private static void serializeFraction(DvProportion data, RmToTextSerializer serializer) {
+    private static void serializeFraction(DvProportion data, RmToMarkdownSerializer serializer) {
         if(data.getNumerator() == null) {
             serializer.append("-");
         } else {

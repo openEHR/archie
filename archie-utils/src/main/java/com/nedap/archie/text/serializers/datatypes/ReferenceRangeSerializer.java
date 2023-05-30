@@ -2,12 +2,12 @@ package com.nedap.archie.text.serializers.datatypes;
 
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
 import com.nedap.archie.text.RmSerializer;
-import com.nedap.archie.text.RmToTextSerializer;
+import com.nedap.archie.text.RmToMarkdownSerializer;
 import org.openehr.utils.message.I18n;
 
 public class ReferenceRangeSerializer implements RmSerializer<ReferenceRange> {
     @Override
-    public void serialize(ReferenceRange data, RmToTextSerializer serializer) {
+    public void serialize(ReferenceRange data, RmToMarkdownSerializer serializer) {
         serializer.append(data.getRange());
         if(data.getMeaning() != null) {
             serializer.appendNewLine();

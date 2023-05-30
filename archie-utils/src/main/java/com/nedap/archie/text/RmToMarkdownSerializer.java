@@ -1,5 +1,6 @@
 package com.nedap.archie.text;
 
+import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.text.serializers.*;
 import com.nedap.archie.text.serializers.action.ActivitySerializer;
@@ -19,14 +20,14 @@ import java.util.Map;
 /**
  * Converts instances of the openEHR RM to human readable text
  */
-public class RmToTextSerializer {
+public class RmToMarkdownSerializer {
 
     Map<Class, RmSerializer> serializers;
     ReflectionRmSerializer fallbackSerializer;
 
     StringBuilder stringBuilder;
 
-    public RmToTextSerializer() {
+    public RmToMarkdownSerializer() {
         serializers = new HashMap<>();
 
         //composition and data structures
