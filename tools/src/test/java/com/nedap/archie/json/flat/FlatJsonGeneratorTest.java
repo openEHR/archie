@@ -1,6 +1,7 @@
 package com.nedap.archie.json.flat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
@@ -17,6 +18,7 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
+import org.junit.After;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
@@ -33,6 +35,11 @@ public class FlatJsonGeneratorTest {
 
     private static final String BLOOD_PRESSURE_PATH = "/ckm-mirror/local/archetypes/entry/observation/openEHR-EHR-OBSERVATION.blood_pressure.v1.1.0.adls";
     private static final double EPSILON = 0.00000001d;
+
+    @After
+    public void tearDown() {
+        ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(null);
+    }
 
     @Test
     public void testBloodPressureExample() throws Exception {
@@ -232,6 +239,29 @@ public class FlatJsonGeneratorTest {
         assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/value/precision")).longValue());
         //no name
         assertNull(stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5]/name/value"));
+    }
+
+    @Test
+    public void restoresThreadLocalDescriptiongAndMeaningLanguage() throws  Exception {
+        OperationalTemplate bloodPressureOpt = parseBloodPressure();
+        FlatJsonFormatConfiguration config = FlatJsonFormatConfiguration.nedapInternalFormat();
+
+        MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
+        metaModels.selectModel(bloodPressureOpt);
+
+        ExampleJsonInstanceGenerator exampleJsonInstanceGenerator = new ExampleJsonInstanceGenerator(metaModels, "en");
+        exampleJsonInstanceGenerator.setTypePropertyName("_type");
+        Map<String, Object> generatedExample = exampleJsonInstanceGenerator.generate(bloodPressureOpt);
+        ObjectMapper objectMapper = metaModels.getSelectedModel().getJsonObjectMapper();
+        String jsonRmObject = objectMapper.writeValueAsString(generatedExample);
+        Observation bloodPressure = objectMapper.readValue(jsonRmObject, Observation.class);
+
+        ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("nl");
+
+        new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), config).buildPathsAndValues(bloodPressure, bloodPressureOpt, "en");
+
+        // The ThreadLocalDescriptiongAndMeaningLanguage should be restored to nl after the buildPathsAndValues call.
+        assertEquals("nl", ArchieLanguageConfiguration.getThreadLocalDescriptiongAndMeaningLanguage());
     }
 
     /**
