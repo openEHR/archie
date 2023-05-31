@@ -1,5 +1,6 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
+import com.nedap.archie.flattener.OperationalTemplateProvider;
 import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.composition.Entry;
@@ -12,6 +13,7 @@ import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
+import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
 
 import java.util.List;
 
@@ -19,9 +21,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class InvariantTestUtil {
+    private static final OperationalTemplateProvider optProvider = new DummyOperationalTemplateProvider("example");
 
     public static void assertValid(Object object) {
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null);
+        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider);
         List<RMObjectValidationMessage> messages = validator.validate(object);
         assertTrue("object should be valid, was not: " + messages, messages.isEmpty());
     }
@@ -31,7 +34,7 @@ public class InvariantTestUtil {
     }
 
     public static void assertInvariantInvalid(Object object, String invariantName, String rmTypeName, String path) {
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null);
+        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider);
         List<RMObjectValidationMessage> messages = validator.validate(object);
         assertEquals(messages.toString(), 1, messages.size());
         assertEquals("Invariant " + invariantName + " failed on type " + rmTypeName, messages.get(0).getMessage());
