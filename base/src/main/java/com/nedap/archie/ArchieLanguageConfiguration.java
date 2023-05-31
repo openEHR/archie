@@ -54,6 +54,17 @@ public class ArchieLanguageConfiguration {
         currentLogicalPathLanguage.set(language);
     }
 
+    /**
+     * Get the overridden language for descriptions and meanings in the current thread.
+     *
+     * In general you should use the {@link #getMeaningAndDescriptionLanguage()} function
+     * as it will automatically fall back to the default setting when no thread specific
+     * language is set.
+     */
+    public static String getThreadLocalDescriptiongAndMeaningLanguage() {
+        return currentMeaningAndDescriptionLanguage.get();
+    }
+
     /*
      * Override the language used in descriptions and meanings, on a thread local basis
      * @Param language the language to use
