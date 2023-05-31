@@ -1,40 +1,26 @@
 package com.nedap.archie.creation;
 
-import com.nedap.archie.adlparser.modelconstraints.BMMConstraintImposer;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.OperationalTemplate;
-import com.nedap.archie.aom.primitives.CBoolean;
-import com.nedap.archie.aom.primitives.CDate;
-import com.nedap.archie.aom.primitives.CDateTime;
-import com.nedap.archie.aom.primitives.CDuration;
-import com.nedap.archie.aom.primitives.CInteger;
-import com.nedap.archie.aom.primitives.CReal;
-import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.primitives.CTime;
+import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.aom.profile.AomProfile;
 import com.nedap.archie.aom.profile.AomPropertyMapping;
 import com.nedap.archie.aom.profile.AomTypeMapping;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
-import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModels;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
+import org.threeten.extra.PeriodDuration;
 
-import java.net.URI;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * generates an example structure for any model based on an operational template + a BMM model + the AOP profile
@@ -388,49 +374,15 @@ public  class ExampleJsonInstanceGenerator {
                 return true;
             }
         } else if (child instanceof CInteger) {
-            CInteger integer = (CInteger) child;
-            if (integer.getConstraint() != null && !integer.getConstraint().isEmpty()) {
-                Interval<Long> longInterval = integer.getConstraint().get(0);
-                if(longInterval.isUpperUnbounded() && longInterval.isLowerUnbounded()) {
-                    return 42;
-                } else if(longInterval.isUpperUnbounded()) {
-                    return longInterval.getLower() + 1;
-                } else if (longInterval.isLowerUnbounded()) {
-                    return longInterval.getUpper() - 1;
-                } else {
-                    if(longInterval.isLowerIncluded()) {
-                        return longInterval.getLower();
-                    } else {
-                        return longInterval.getUpper() + 1;
-                    }
-                }
-            } else {
-                return 42;
-            }
+            return getValueForCOrdered((CInteger) child, 42L, v -> v + 1, v -> v - 1);
         } else if (child instanceof CReal) {
-            CReal real = (CReal) child;
-            if (real.getConstraint() != null && !real.getConstraint().isEmpty()) {
-                Interval<Double> doubleInterval = real.getConstraint().get(0);
-                if(doubleInterval.isUpperUnbounded() && doubleInterval.isLowerUnbounded()) {
-                    return 42.0d;
-                } else if(doubleInterval.isUpperUnbounded()) {
-                    return doubleInterval.getLower() + 1.0d;
-                } else if (doubleInterval.isLowerUnbounded()) {
-                    return doubleInterval.getUpper() - 1.0d;
-                } else {
-                    if(doubleInterval.isLowerIncluded()) {
-                        return doubleInterval.getLower();
-                    } else {
-                        return doubleInterval.getUpper() + 1.0d;
-                    }
-                }
-            } else {
-                return 42.0d;
-            }
+            return getValueForCOrdered((CReal) child, 42.0d, v -> v + 1.0, v -> v - 1.0);
         } else if (child instanceof CTerminologyCode) {
             return generateTerminologyCode( (CTerminologyCode) child);
         } else if (child instanceof CDuration) {
-            return "PT12m";
+            return getValueForCOrdered((CDuration) child, Duration.ofMinutes(12),
+                    v -> PeriodDuration.from(v).plus(PeriodDuration.of(Duration.ofSeconds(1))),
+                    v -> PeriodDuration.from(v).minus(PeriodDuration.of(Duration.ofSeconds(1)))).toString();
         } else if (child instanceof CDate) {
             return "2018-01-01";
         } else if (child instanceof CTime) {
@@ -442,7 +394,26 @@ public  class ExampleJsonInstanceGenerator {
         }
     }
 
-
+    private <T> T getValueForCOrdered(COrdered<T> cOrdered, T defaultValue, Function<T, T> plusFunction, Function<T, T> minusFunction) {
+        if (cOrdered.getConstraint() != null && !cOrdered.getConstraint().isEmpty()) {
+            Interval<T> interval = cOrdered.getConstraint().get(0);
+            if(interval.isUpperUnbounded() && interval.isLowerUnbounded()) {
+                return defaultValue;
+            } else if(interval.isUpperUnbounded()) {
+                return plusFunction.apply(interval.getLower());
+            } else if (interval.isLowerUnbounded()) {
+                return minusFunction.apply(interval.getUpper());
+            } else {
+                if(interval.isLowerIncluded()) {
+                    return interval.getLower();
+                } else {
+                    return plusFunction.apply(interval.getLower());
+                }
+            }
+        } else {
+            return defaultValue;
+        }
+    }
 
     protected Object generateTerminologyCode(CTerminologyCode child) {
 
