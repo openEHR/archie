@@ -12,14 +12,17 @@ import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
+import com.nedap.archie.flattener.OperationalTemplateProvider;
+import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.json.JsonSchemaValidator;
-import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Observation;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
+import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
+import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.leadpony.justify.api.Problem;
@@ -33,6 +36,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -42,6 +47,10 @@ public class ExampleJsonInstanceGeneratorTest {
     private static Logger logger = LoggerFactory.getLogger(ExampleJsonInstanceGeneratorTest.class);
 
     private static final String TYPE_PROPERTY_NAME = "_type";
+
+    private static final Pattern REGEX_VALIDATION_ERROR = Pattern.compile("The value \"/.*/\" must be \"/.*/\"");
+
+    private static final OperationalTemplateProvider optProvider = new DummyOperationalTemplateProvider("archetype-slot");
 
     @Test
     public void bloodPressure() throws Exception {
@@ -70,7 +79,8 @@ public class ExampleJsonInstanceGeneratorTest {
         assertEquals("POINT_EVENT", ((Map) events.get(1)).get(TYPE_PROPERTY_NAME));
         assertEquals("INTERVAL_EVENT", ((Map) events.get(2)).get(TYPE_PROPERTY_NAME));
 
-        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), templateId -> null).validate(JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
+        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider)
+                .validate(opt, JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
         assertEquals(new ArrayList<>(), validated);
 
     }
@@ -166,10 +176,18 @@ public class ExampleJsonInstanceGeneratorTest {
                     json = mapper.writeValueAsString(example);
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
-                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null).validate(parsed);
+                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider).validate(template, parsed);
+
+                    // Ignore some validations errors caused by unsupported features in the ExampleJsonInstanceGenerator
+                    validated.removeIf(m -> m.getType().equals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH)); // Filling the correct archetype in the slot is not supported
+                    validated.removeIf(m -> m.getMessage().contains("The value local::term code must be")); // Cannot generate values for non-local value sets
+                    validated.removeIf(m -> m.getPath().endsWith("/is_integral[id9999]") && m.getMessage().equals("The value true must be false")); // Calculated value
+                    validated.removeIf(m -> m.getPath().endsWith("/offset/value[id9999]")); // Calculated value
+                    validated.removeIf(m -> REGEX_VALIDATION_ERROR.matcher(m.getMessage()).matches()); // Cannot fill values with a regular expression as constraint
+
                     rmObjectValidatorRan++;
                     if(!validated.isEmpty()) {
-                        rmValidationErrors.add("error in " + result.getArchetypeId() + ": " + validated);
+                        rmValidationErrors.add("error in " + result.getArchetypeId() + ":\n    " + validated.stream().map(RMObjectValidationMessage::toString).collect(Collectors.joining("\n    ")));
                         rmObjectValidatorFailed++;
                     }
                     //assertEquals("error in " + result.getArchetypeId(), new ArrayList<>(), validated);
