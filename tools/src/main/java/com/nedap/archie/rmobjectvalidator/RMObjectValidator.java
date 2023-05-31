@@ -3,13 +3,7 @@ package com.nedap.archie.rmobjectvalidator;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.OperationalTemplate;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.flattener.OperationalTemplateProvider;
 import com.nedap.archie.query.RMObjectWithPath;
@@ -89,7 +83,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         if(cobject == null) {
             //add default validations
             for (RMObjectWithPath objectWithPath : rmObjects) {
-                validateObjectWithPath(result, cobject, path, objectWithPath);
+                validateUnconstrainedObjectWithPath(result, path, objectWithPath);
             }
         }
         else if (cobject instanceof CPrimitiveObject) {
@@ -104,7 +98,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 }
             }
             for (RMObjectWithPath objectWithPath : rmObjects) {
-                validateObjectWithPath(result, cobject, path, objectWithPath);
+                validateConstrainedObjectWithPath(result, cobject, path, objectWithPath);
             }
         }
         return result;
@@ -148,6 +142,16 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         return result;
     }
 
+    private void validateUnconstrainedObjectWithPath(List<RMObjectValidationMessage> result, String path, RMObjectWithPath objectWithPath) {
+        Object rmObject = objectWithPath.getObject();
+        String archetypeId = lookup.getArchetypeIdFromArchetypedRmObject(rmObject);
+        if (archetypeId != null) {
+            validateArchetypedObject(result, null, path, objectWithPath, archetypeId);
+        } else {
+            validateObjectAttributes(result, null, path, objectWithPath);
+        }
+    }
+
     private void validateArchetypeSlot(List<RMObjectWithPath> rmObjects, String path, CObject cobject, List<RMObjectValidationMessage> result) {
         ArchetypeSlot slot = (ArchetypeSlot) cobject;
         for (RMObjectWithPath objectWithPath : rmObjects) {
@@ -164,57 +168,68 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                             RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH);
                 }
                 //but do continue validation!
-                OperationalTemplate operationalTemplate = operationalTemplateProvider.getOperationalTemplate(archetypeId);
-                if(operationalTemplate != null) {
-                    //occurrences already validated, so nothing left to validate from the archetyepe root
-                    //from now on, validate from the root of the found OPT
-                    CObject newRoot = operationalTemplate.getDefinition();
-                    validateObjectWithPath(result, newRoot, path, objectWithPath);
-                } else {
-                    this.addMessage(slot, objectWithPath.getPath(),
-                            RMObjectValidationMessageIds.rm_ARCHETYPE_NOT_FOUND.getMessage(archetypeId),
-                            RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND);
-                    //but continue validating the RM Objects, of course
-                    validateObjectWithPath(result, cobject, path, objectWithPath);
-                }
+                validateArchetypedObject(result, cobject, path, objectWithPath, archetypeId);
             } else {
                 this.addMessage(slot, objectWithPath.getPath(),
                         RMObjectValidationMessageIds.rm_SLOT_WITHOUT_ARCHETYPE_ID.getMessage(),
                         RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH);
                 //but continue validating the RM Objects, of course
-                validateObjectWithPath(result, cobject, path, objectWithPath);
+                validateConstrainedObjectWithPath(result, cobject, path, objectWithPath);
             }
         }
     }
 
-    private void validateObjectWithPath(List<RMObjectValidationMessage> result, CObject cobject, String path, RMObjectWithPath objectWithPath){
-        if(cobject == null) {
-            Object rmObject = objectWithPath.getObject();
-            if(rmObject != null) {
-                RMTypeInfo typeInfo = lookup.getTypeInfo(rmObject.getClass());
-                if (typeInfo != null) {
-                    List<CAttribute> defaultAttributes = RMObjectValidationUtil.getDefaultAttributeConstraints(typeInfo.getRmName(), Lists.newArrayList(), lookup, constraintImposer);
-                    validateCAttributes(result, path, objectWithPath, rmObject, null, defaultAttributes);
-                }
-            }
+    private void validateArchetypedObject(List<RMObjectValidationMessage> result, CObject cobject, String path, RMObjectWithPath objectWithPath, String archetypeId) {
+        OperationalTemplate operationalTemplate = operationalTemplateProvider.getOperationalTemplate(archetypeId);
+        if (operationalTemplate != null) {
+            //occurrences already validated, so nothing left to validate from the archetyepe root
+            //from now on, validate from the root of the found OPT
+            CObject newRoot = operationalTemplate.getDefinition();
+            validateConstrainedObjectWithPath(result, newRoot, path, objectWithPath);
         } else {
-            Class<?> classInConstraint = this.lookup.getClass(cobject.getRmTypeName());
-            if (!classInConstraint.isAssignableFrom(objectWithPath.getObject().getClass())) {
-                //not a matching constraint. Cannot validate. add error message and stop validating.
-                //If another constraint is present, that one will succeed
-                result.add(new RMObjectValidationMessage(
-                        cobject,
-                        objectWithPath.getPath(),
-                        RMObjectValidationMessageIds.rm_INCORRECT_TYPE.getMessage(cobject.getRmTypeName(), objectWithPath.getObject().getClass().getSimpleName()),
-                        RMObjectValidationMessageType.WRONG_TYPE)
-                );
+            this.addMessage(cobject, objectWithPath.getPath(),
+                    RMObjectValidationMessageIds.rm_ARCHETYPE_NOT_FOUND.getMessage(archetypeId),
+                    RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND);
+            //but continue validating the RM Objects, of course
+            if (cobject != null) {
+                validateConstrainedObjectWithPath(result, cobject, path, objectWithPath);
             } else {
-                Object rmObject = objectWithPath.getObject();
-                List<CAttribute> attributes = new ArrayList<>(cobject.getAttributes());
-                attributes.addAll(RMObjectValidationUtil.getDefaultAttributeConstraints(cobject, attributes, lookup, constraintImposer));
-                validateCAttributes(result, path, objectWithPath, rmObject, cobject, attributes);
+                validateObjectAttributes(result, null, path, objectWithPath);
             }
         }
+    }
+
+    private void validateConstrainedObjectWithPath(List<RMObjectValidationMessage> result, CObject cobject, String path, RMObjectWithPath objectWithPath) {
+        Class<?> classInConstraint = this.lookup.getClass(cobject.getRmTypeName());
+        if (!classInConstraint.isAssignableFrom(objectWithPath.getObject().getClass())) {
+            //not a matching constraint. Cannot validate. add error message and stop validating.
+            //If another constraint is present, that one will succeed
+            result.add(new RMObjectValidationMessage(
+                    cobject,
+                    objectWithPath.getPath(),
+                    RMObjectValidationMessageIds.rm_INCORRECT_TYPE.getMessage(cobject.getRmTypeName(), objectWithPath.getObject().getClass().getSimpleName()),
+                    RMObjectValidationMessageType.WRONG_TYPE)
+            );
+        } else {
+            validateObjectAttributes(result, cobject, path, objectWithPath);
+        }
+    }
+
+    private void validateObjectAttributes(List<RMObjectValidationMessage> result, CObject cobject, String path, RMObjectWithPath objectWithPath) {
+        Object rmObject = objectWithPath.getObject();
+        List<CAttribute> attributes;
+        if (cobject == null) {
+            RMTypeInfo typeInfo = lookup.getTypeInfo(rmObject.getClass());
+            if (typeInfo != null) {
+                attributes = RMObjectValidationUtil.getDefaultAttributeConstraints(typeInfo.getRmName(), Lists.newArrayList(), lookup, constraintImposer);
+            } else {
+                return; // Type unknown, nothing to validate
+            }
+        } else {
+            attributes = new ArrayList<>(cobject.getAttributes());
+            attributes.addAll(RMObjectValidationUtil.getDefaultAttributeConstraints(cobject, attributes, lookup, constraintImposer));
+        }
+        validateCAttributes(result, path, objectWithPath, rmObject, cobject, attributes);
     }
 
     private void validateCAttributes(List<RMObjectValidationMessage> result, String path, RMObjectWithPath objectWithPath, Object rmObject, CObject cObject, List<CAttribute> attributes) {
