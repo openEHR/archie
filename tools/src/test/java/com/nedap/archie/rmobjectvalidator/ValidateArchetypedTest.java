@@ -59,6 +59,7 @@ public class ValidateArchetypedTest {
     public void testArchetypedOtherDetails() {
         Element element = (Element) testUtil.constructEmptyRMObject(elementArchetype.getDefinition());
         DvProportion dvProportion = (DvProportion) element.getValue();
+        dvProportion.setNumerator(3D);
         dvProportion.setDenominator(4D);
         dvProportion.setType(3L);
 
@@ -79,14 +80,10 @@ public class ValidateArchetypedTest {
 
         validator.setRunInvariantChecks(false);
         List<RMObjectValidationMessage> validationMessages = validator.validate(elementOpt, element);
-        assertEquals("There should be 2 errors", 2, validationMessages.size());
-        assertEquals("There should be a validation message about the numerator", "Attribute numerator of class DV_PROPORTION does not match existence 1..1", validationMessages.get(0).getMessage());
-        assertEquals("The path should be correct", "/value/numerator", validationMessages.get(0).getPath());
-        assertEquals("The archetype path should be correct", "/value[id2]/numerator", validationMessages.get(0).getArchetypePath());
-
-        assertEquals("Attribute does not match cardinality 1..2", validationMessages.get(1).getMessage());
-        // Type should be REQUIRED
-        assertEquals(RMObjectValidationMessageType.CARDINALITY_MISMATCH, validationMessages.get(1).getType());
+        assertEquals("There should be 1 error", 1, validationMessages.size());
+        assertEquals("Attribute does not match cardinality 1..2", validationMessages.get(0).getMessage());
+        assertEquals("The path should be correct", "/feeder_audit/originating_system_audit/other_details[id1]/items", validationMessages.get(0).getPath());
+        assertEquals(RMObjectValidationMessageType.CARDINALITY_MISMATCH, validationMessages.get(0).getType());
     }
 
     private OperationalTemplate createOpt(Archetype archetype) {
