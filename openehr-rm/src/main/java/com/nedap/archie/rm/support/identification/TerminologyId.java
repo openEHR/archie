@@ -27,5 +27,31 @@ public class TerminologyId extends ObjectId {
         this(terminologyId, null);
     }
 
+    public String getName() {
+        String[] valueParts = getValueAsParts();
+        if (valueParts != null && valueParts.length >= 1) {
+            return valueParts[0];
+        } else {
+            return null;
+        }
+    }
+
+    public String getVersionId() {
+        String[] valueParts = getValueAsParts();
+        if (valueParts != null && valueParts.length >= 2) {
+            return valueParts[1];
+        } else {
+            return null;
+        }
+    }
+
+    private String[] getValueAsParts() {
+        String value = getValue();
+        if (value != null) {
+            return value.split("[()]");
+        } else {
+            return null;
+        }
+    }
 
 }
