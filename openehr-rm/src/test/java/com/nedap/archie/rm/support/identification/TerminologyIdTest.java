@@ -10,27 +10,24 @@ public class TerminologyIdTest {
     public void createTerminologyIdWithNameAndVersionSuccessfully() {
         TerminologyId terminologyId = new TerminologyId("name", "version");
         assertEquals("name(version)", terminologyId.getValue());
-        assertNotNull(terminologyId.name());
-        assertEquals("name", terminologyId.name());
-        assertNotNull(terminologyId.versionId());
-        assertEquals("version", terminologyId.versionId());
+        assertEquals("name", terminologyId.getName());
+        assertEquals("version", terminologyId.getVersionId());
     }
 
     @Test
     public void createTerminologyIdWithOnlyNameSuccessfully() {
         TerminologyId terminologyId = new TerminologyId("name");
         assertEquals("name", terminologyId.getValue());
-        assertNotNull(terminologyId.name());
-        assertEquals("name", terminologyId.name());
-        assertNull(terminologyId.versionId());
+        assertEquals("name", terminologyId.getName());
+        assertNull(terminologyId.getVersionId());
     }
 
     @Test
     public void createTerminologyIdWithNoNameOrVersionSuccessfully() {
         TerminologyId terminologyId = new TerminologyId();
         assertNull(terminologyId.getValue());
-        assertNull(terminologyId.name());
-        assertNull(terminologyId.versionId());
+        assertNull(terminologyId.getName());
+        assertNull(terminologyId.getVersionId());
     }
 
 }

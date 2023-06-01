@@ -27,7 +27,7 @@ public class TerminologyId extends ObjectId {
         this(terminologyId, null);
     }
 
-    public String name() {
+    public String getName() {
         String[] valueParts = getValueAsParts();
         if (valueParts != null && valueParts.length >= 1) {
             return valueParts[0];
@@ -36,7 +36,7 @@ public class TerminologyId extends ObjectId {
         }
     }
 
-    public String versionId() {
+    public String getVersionId() {
         String[] valueParts = getValueAsParts();
         if (valueParts != null && valueParts.length >= 2) {
             return valueParts[1];
