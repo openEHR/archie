@@ -19,6 +19,8 @@ public class NodeIdValidation extends ValidatingVisitor {
     //for every id code, it's path
     private HashMap<String, String> nodeIds = new HashMap<>();
 
+    private HashMap<String, String> nodeIdsWithoutPrefix = new HashMap<>();
+
     public NodeIdValidation() {
         super();
     }
@@ -37,11 +39,27 @@ public class NodeIdValidation extends ValidatingVisitor {
             addMessageWithPath(ErrorType.VCOID, cObject.getPath(),
                     I18n.t("C_OBJECT with RM type {0} must have a node id", cObject.getRmTypeName()));
         }
-        else if(!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(cObject.getNodeId()) && archetypeSpecialisationDepth == AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) && nodeIds.containsKey(cObject.getNodeId())) {
+        else if(!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(cObject.getNodeId()) &&
+                archetypeSpecialisationDepth == AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) &&
+                nodeIds.containsKey(cObject.getNodeId())) {
             //every node id in a single archetype must be unique or a primitive object, or a occurrences matches {0} because sometimes that's the only way
             addMessageWithPath(ErrorType.VCOSU, cObject.getPath(), I18n.t("Node id {0} already used in path {1}", cObject.getNodeId(), nodeIds.get(cObject.getNodeId())));
+        } else if (!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(cObject.getNodeId()) &&
+                archetypeSpecialisationDepth == AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) &&
+                nodeIds.containsKey(stripPrefix(cObject.getNodeId()))) {
+            addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS, cObject.getPath(), I18n.t("Node id {0} already used in path {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4", cObject.getNodeId(), nodeIds.get(cObject.getNodeId())));
         }
         nodeIds.put(cObject.getNodeId(), cObject.getPath());
+        if(!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(cObject.getNodeId())) {
+            nodeIdsWithoutPrefix.put(stripPrefix(cObject.getNodeId()), cObject.getPath());
+        }
+    }
+
+    private String stripPrefix(String nodeId) {
+        if(AOMUtils.isValidCode(nodeId)) {
+            return nodeId.substring(2);
+        }
+        return nodeId;
     }
 
 
