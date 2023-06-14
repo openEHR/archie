@@ -126,7 +126,6 @@ public class RMComparedWithBmmTest {
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "IMPORTED_VERSION", "lifecycle_state"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "IMPORTED_VERSION", "data"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "IMPORTED_VERSION", "preceding_version_uid"));
-        knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "IMPORTED_VERSION", "branch"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "IMPORTED_VERSION", "canonical_form"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "OBJECT_VERSION_ID", "extension"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "OBJECT_VERSION_ID", "root"));
