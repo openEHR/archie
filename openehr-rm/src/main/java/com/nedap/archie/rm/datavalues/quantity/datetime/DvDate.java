@@ -8,6 +8,8 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
+import com.nedap.archie.rminfo.PropertyType;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.DateXmlAdapter;
 
 import javax.annotation.Nullable;
@@ -97,6 +99,7 @@ public class DvDate extends DvTemporal<DvDate, Long> implements SingleValuedData
     @Override
     @JsonIgnore
     @XmlTransient
+    @RMProperty(value = "magnitude", computed = PropertyType.COMPUTED)
     public Long getMagnitude() {
         return value == null ? null : (long) LocalDate.from(value).toEpochDay() + DAYS_BETWEEN_0001_AND_1970;
     }
