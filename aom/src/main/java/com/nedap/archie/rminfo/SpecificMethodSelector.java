@@ -8,7 +8,7 @@ import java.util.function.BinaryOperator;
  *
  * This will return the method with the most specific declaring class and return type.
  *
- * This will throw a IllegalArgumentException if the methods are incompatible or similar.
+ * This will throw an IllegalArgumentException if the methods are incompatible or similar.
  */
 class SpecificMethodSelector implements BinaryOperator<Method> {
     public Method apply(Method method1, Method method2) {
