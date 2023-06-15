@@ -10,6 +10,8 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
+import com.nedap.archie.rminfo.PropertyType;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.DateTimeXmlAdapter;
 
 import javax.annotation.Nullable;
@@ -82,6 +84,7 @@ public class DvDateTime extends DvTemporal<DvDateTime, Long> implements SingleVa
 	@Override
 	@XmlTransient
 	@JsonIgnore
+	@RMProperty(value = "magnitude", computed = PropertyType.COMPUTED)
 	public Long getMagnitude() {
 		if (value == null) {
 			return null;
