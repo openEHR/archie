@@ -3,7 +3,7 @@ package com.nedap.archie.adlparser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import org.junit.Test;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -25,7 +25,7 @@ public class LargeSetOfADLsTest {
 
     @Test
     public void parseLots() throws Exception {
-        Reflections reflections = new Reflections("adl2-tests", new ResourcesScanner());
+        Reflections reflections = new Reflections("adl2-tests", Scanners.Resources);
         List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
 
         Map<String, Exception> exceptions = new LinkedHashMap<>();

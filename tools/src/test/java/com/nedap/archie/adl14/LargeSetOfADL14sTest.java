@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,7 +101,7 @@ public class LargeSetOfADL14sTest {
 
     @Test
     public void parseLots() throws Exception {
-        Reflections reflections = new Reflections("adl14", new ResourcesScanner());
+        Reflections reflections = new Reflections("adl14", Scanners.Resources);
         List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adl")));
 
         Map<String, Exception> exceptions = new LinkedHashMap<>();
