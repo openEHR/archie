@@ -96,6 +96,7 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
         this.terminologyExtracts = terminologyExtracts;
     }
 
+    @JsonIgnore
     public Archetype getOwnerArchetype() {
         return ownerArchetype;
     }
