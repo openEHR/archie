@@ -15,7 +15,7 @@ import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -181,7 +181,7 @@ public class TestUtil {
 
     public static FullArchetypeRepository parseCKM(String filter) {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
-        Reflections reflections = new Reflections("ckm-mirror", new ResourcesScanner());
+        Reflections reflections = new Reflections("ckm-mirror", Scanners.Resources);
 
         List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(filter)));
 
