@@ -7,7 +7,10 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,9 +32,13 @@ public class DvEhrUriInvariantTest {
         RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null);
         List<RMObjectValidationMessage> messages = validator.validate(new DvEHRURI(""));
         assertEquals(messages.toString(), 2, messages.size());
-        assertEquals("Invariant Value_valid failed on type DV_EHR_URI", messages.get(0).getMessage());
+
+        Set<String> expectedMessages = new HashSet<>();
+        expectedMessages.add("Invariant Scheme_valid failed on type DV_EHR_URI");
+        expectedMessages.add("Invariant Value_valid failed on type DV_EHR_URI");
+        assertEquals(expectedMessages, messages.stream().map(RMObjectValidationMessage::getMessage).collect(Collectors.toSet()));
+
         assertEquals("/", messages.get(0).getPath());
-        assertEquals("Invariant Scheme_valid failed on type DV_EHR_URI", messages.get(1).getMessage());
         assertEquals("/", messages.get(1).getPath());
     }
 
