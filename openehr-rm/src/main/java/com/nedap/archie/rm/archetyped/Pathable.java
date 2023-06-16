@@ -108,6 +108,7 @@ public abstract class Pathable extends RMObject {
         }
     }
 
+    @JsonIgnore
     protected String getParentAttributeName() {
         return parentAttributeName;
     }
