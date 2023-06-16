@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -52,6 +51,7 @@ public class CComplexObject extends CDefinedObject<OpenEHRBase> {
     }
 
     @Override
+    @JsonIgnore
     public Archetype getArchetype() {
         if(archetype == null) {
             CAttribute parent = getParent();

@@ -91,6 +91,7 @@ public class DvQuantity extends DvAmount<DvQuantity, Double> {
     }
 
     @Deprecated
+    @JsonIgnore
     public CodePhrase getProperty() {
         return property;
     }
