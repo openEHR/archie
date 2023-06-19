@@ -4,7 +4,7 @@ import com.google.common.reflect.TypeToken;
 import com.nedap.archie.aom.CPrimitiveObject;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.Scanners;
 import org.reflections.util.ClasspathHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +56,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         this.namingStrategy = namingStrategy;
 
         this.classLoader = classLoader;
-        Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
+        Reflections reflections = new Reflections(packageName, Scanners.SubTypes.filterResultsBy(s -> true));
         Set<String> typeNames = reflections.getAllTypes();
 
         typeNames.forEach(typeName -> {
@@ -130,7 +130,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
      * @param baseClass
      */
     protected <T> void addSubtypesOf(Class<T> baseClass) {
-        Reflections reflections = new Reflections(ClasspathHelper.forClass(baseClass), new SubTypesScanner(false));
+        Reflections reflections = new Reflections(ClasspathHelper.forClass(baseClass), Scanners.SubTypes.filterResultsBy(s -> true));
         Set<Class<? extends T>> classes = reflections.getSubTypesOf(baseClass);
 
         classes.forEach(this::addClass);
