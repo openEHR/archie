@@ -1,7 +1,10 @@
 package com.nedap.archie.rm.support.identification;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -27,5 +30,35 @@ public class TerminologyId extends ObjectId {
         this(terminologyId, null);
     }
 
+    @JsonIgnore
+    @XmlTransient
+    public String getName() {
+        String[] valueParts = getValueAsParts();
+        if (valueParts != null && valueParts.length >= 1) {
+            return valueParts[0];
+        } else {
+            return null;
+        }
+    }
+
+    @JsonIgnore
+    @XmlTransient
+    public String getVersionId() {
+        String[] valueParts = getValueAsParts();
+        if (valueParts != null && valueParts.length >= 2) {
+            return valueParts[1];
+        } else {
+            return null;
+        }
+    }
+
+    private String[] getValueAsParts() {
+        String value = getValue();
+        if (value != null) {
+            return value.split("[()]");
+        } else {
+            return null;
+        }
+    }
 
 }
