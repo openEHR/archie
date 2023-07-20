@@ -8,6 +8,10 @@ generateGrammarSource { //antlr4
     arguments = ['-visitor', '-package', 'com.nedap.archie.adlparser.antlr', '-encoding', 'utf-8'] + arguments
 }
 
+sourcesJar {
+  dependsOn generateGrammarSource
+}
+
 classes {
   dependsOn generateGrammarSource
 }
