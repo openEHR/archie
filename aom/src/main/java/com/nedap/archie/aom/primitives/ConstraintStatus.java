@@ -2,7 +2,7 @@ package com.nedap.archie.aom.primitives;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.bind.annotation.XmlEnumValue;
+import jakarta.xml.bind.annotation.XmlEnumValue;
 
 public enum ConstraintStatus {
     @JsonProperty("required")
