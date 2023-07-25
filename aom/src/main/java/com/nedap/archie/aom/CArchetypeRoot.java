@@ -2,8 +2,8 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.paths.PathSegment;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -4,10 +4,10 @@ import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.base.terminology.TerminologyCode;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlType;
 
 @XmlType(name="RM_ATTRIBUTE_VISIBILITY")
 @XmlAccessorType(XmlAccessType.FIELD)
