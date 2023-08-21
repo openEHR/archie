@@ -11,10 +11,15 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.rm.archetyped.FeederAudit;
+import com.nedap.archie.rm.archetyped.FeederAuditDetails;
 import com.nedap.archie.rm.composition.*;
+import com.nedap.archie.rm.datastructures.Element;
+import com.nedap.archie.rm.datastructures.ItemList;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.integration.GenericEntry;
 import com.nedap.archie.testutil.TestUtil;
@@ -22,6 +27,7 @@ import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -211,6 +217,72 @@ public class RmToMarkdownSerializerTest {
                 "  \n" +
                 "Function of participant: some function 2  \n" +
                 "Mode of participant: some mode 2  \n"));
+    }
+
+    @Test
+    public void compositionSection() throws Exception {
+        Composition composition = new Composition();
+        composition.setName(new DvText("composition name"));
+        EventContext context = new EventContext();
+        composition.setContext(context);
+        Section section = new Section();
+        section.setNameAsString("section");
+        Section innerSection = new Section();
+        innerSection.setNameAsString("inner section");
+        section.addItem(innerSection);
+        composition.addContent(section);
+
+        RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
+        rmToMarkdownSerializer.append(composition);
+        String serialized = rmToMarkdownSerializer.toString();
+
+        assertTrue(serialized, serialized.startsWith("# composition name  \n" +
+                "## section  \n" +
+                "## inner section  \n" +
+                "  \n" +
+                "  \n" +
+                "## Context\n" +
+                "  "));
+    }
+
+    @Test
+    public void compositionFeederAudit() throws Exception {
+        Composition composition = new Composition();
+        composition.setName(new DvText("composition name"));
+
+        FeederAudit feederAudit = new FeederAudit();
+        FeederAuditDetails systemAudit = new FeederAuditDetails();
+        systemAudit.setSystemId("some system");
+        systemAudit.setTime(new DvDateTime(LocalDateTime.of(2023, 5, 1, 10, 23, 5)));
+        ItemList otherDetails = new ItemList();
+        Element content = new Element();
+        content.setNameAsString("system audit name");
+        content.setNullFlavour(new DvCodedText("unknown", "at26"));
+        otherDetails.addItem(content);
+        systemAudit.setOtherDetails(otherDetails);
+        feederAudit.setFeederSystemAudit(systemAudit);
+        feederAudit.setOriginatingSystemAudit(systemAudit);
+        composition.setFeederAudit(feederAudit);
+
+        RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
+        rmToMarkdownSerializer.append(composition);
+        String serialized = rmToMarkdownSerializer.toString();
+
+        assertTrue(serialized, serialized.startsWith("# composition name  \n" +
+                "#### Originating system audit  \n" +
+                "Originating system: some system  \n" +
+                "time: 1 May 2023, 10:23:05  \n" +
+                "##### other details  \n" +
+                "system audit name: No value. Reason: unknown  \n" +
+                "  \n" +
+                "  \n" +
+                "#### Feeder system audit  \n" +
+                "Originating system: some system  \n" +
+                "time: 1 May 2023, 10:23:05  \n" +
+                "##### other details  \n" +
+                "system audit name: No value. Reason: unknown  \n" +
+                "  \n" +
+                "  "));
     }
 
 

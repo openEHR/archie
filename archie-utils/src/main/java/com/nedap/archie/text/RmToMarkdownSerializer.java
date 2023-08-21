@@ -115,16 +115,16 @@ public class RmToMarkdownSerializer {
     }
 
     /**
-     * Append a header with the data, if data is not null
+     * Append a header with the data, if data is not null. Adds a newline after the header
      * @param headerString the markdown header string, for example '## ' or '#### '
-     * @param name
-     * @param data
+     * @param name the name to serialize as the name of the header
+     * @param data the data to further serialize.
      */
     public void appendWithHeaderIfNotNull(String headerString, String name, RMObject data) {
         if(data != null) {
             append(headerString);
             append(name);
-            append("\n");
+            appendNewLine();
             append(data);
             appendNewLine();
         }

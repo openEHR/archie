@@ -8,12 +8,14 @@ import org.openehr.utils.message.I18n;
 public class FeederAuditSerializer implements RmSerializer<FeederAudit> {
     @Override
     public void serialize(FeederAudit data, RmToMarkdownSerializer serializer) {
-        serializer.append("##### ");
-        serializer.appendIfNotNull(
+
+        serializer.appendWithHeaderIfNotNull(
+                "#### ",
                 I18n.t("Originating system audit"),
                 data.getOriginatingSystemAudit());
 
-        serializer.appendIfNotNull(
+        serializer.appendWithHeaderIfNotNull(
+                "#### ",
                 I18n.t("Feeder system audit"),
                 data.getFeederSystemAudit());
     }

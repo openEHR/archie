@@ -16,7 +16,7 @@ public class ElementSerializer implements RmSerializer<Element> {
             serializer.append(data.getValue());
         } else {
             if(data.getNullFlavour() != null) {
-                serializer.append(I18n.t("Element is empty. Reason: "));
+                serializer.append(I18n.t("No value. Reason: "));
                 serializer.append(data.getNullFlavour());
                 if(data.getNullReason() != null) {
                     serializer.append(" ");
