@@ -159,7 +159,7 @@ public class ADL14Converter {
     }
 
     private void addDefaultOccurrencesCardinalityExistence(Archetype convertedArchetype) {
-        new ADL14DefaultMultiplicitiesSetter().setDefaults(convertedArchetype);
+        new ADL14DefaultMultiplicitiesSetter(metaModels).setDefaults(convertedArchetype);
     }
 
     private void moveOidToMetadata(Archetype convertedArchetype, String oid, String oidFieldName) {

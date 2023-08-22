@@ -5,6 +5,8 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModels;
 
 /**
  * Sets the default occurrences, cardinality and existence with ADL 1.4 rules, if not explicitly set
@@ -13,7 +15,14 @@ import com.nedap.archie.base.MultiplicityInterval;
  */
 public class ADL14DefaultMultiplicitiesSetter {
 
+    private final MetaModels metaModels;
+
+    public ADL14DefaultMultiplicitiesSetter(MetaModels metaModels) {
+        this.metaModels = metaModels;
+    }
+
     public void setDefaults(Archetype archetype) {
+        metaModels.selectModel(archetype);
         correctItemsCardinality(archetype.getDefinition());
     }
 
@@ -30,7 +39,8 @@ public class ADL14DefaultMultiplicitiesSetter {
                 attribute.setExistence(new MultiplicityInterval(1, 1));
             }*/
             for(CObject child:attribute.getChildren()) {
-                if(child.getOccurrences() == null) {
+                if(child.getOccurrences() == null &&
+                        metaModels.isMultiple(cObject.getRmTypeName(), attribute.getRmAttributeName())) {
                     child.setOccurrences(new MultiplicityInterval(1, 1));
                 }
                 correctItemsCardinality(child);
