@@ -9,9 +9,13 @@ import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModels;
 
 /**
- * Sets the default occurrences, cardinality and existence with ADL 1.4 rules, if not explicitly set
- * in a given Archetype. Useful for conversion to ADL 2, where the default values are different, and
- * it is good to start with the correct values already present
+ * Sets the default occurrences with ADL 1.4 rules, if not explicitly set in a given Archetype.
+ * Useful for conversion to ADL 2, where the default values are different, and it is good to start
+ * with the correct values already present.
+ *
+ * Cardinality and existence are also specified to have a default value. However, this is not used
+ * in practice (source, several openEHR community members). Adding that to the conversion would
+ * lead to problems. So these are left out.
  */
 public class ADL14DefaultMultiplicitiesSetter {
 
@@ -23,10 +27,10 @@ public class ADL14DefaultMultiplicitiesSetter {
 
     public void setDefaults(Archetype archetype) {
         metaModels.selectModel(archetype);
-        correctItemsCardinality(archetype.getDefinition());
+        correctItemsMultiplicities(archetype.getDefinition());
     }
 
-    private void correctItemsCardinality(CObject cObject) {
+    private void correctItemsMultiplicities(CObject cObject) {
         for(CAttribute attribute:cObject.getAttributes()) {
             // according to the specification, the following lines must be added.
             // however, in practice this is not followed, and adding it would
@@ -43,7 +47,7 @@ public class ADL14DefaultMultiplicitiesSetter {
                         metaModels.isMultiple(cObject.getRmTypeName(), attribute.getRmAttributeName())) {
                     child.setOccurrences(new MultiplicityInterval(1, 1));
                 }
-                correctItemsCardinality(child);
+                correctItemsMultiplicities(child);
             }
         }
 

@@ -124,7 +124,7 @@ public class ADL14Converter {
         new ADL14DescriptionConverter().convert(convertedArchetype);
         setCorrectVersions(convertedArchetype);
         convertHeader(convertedArchetype);
-        addDefaultOccurrencesCardinalityExistence(convertedArchetype);
+        addDefaultMultiplicities(convertedArchetype);
 
 
         ADL2ConversionResult result = new ADL2ConversionResult(convertedArchetype);
@@ -158,7 +158,7 @@ public class ADL14Converter {
         }
     }
 
-    private void addDefaultOccurrencesCardinalityExistence(Archetype convertedArchetype) {
+    private void addDefaultMultiplicities(Archetype convertedArchetype) {
         new ADL14DefaultMultiplicitiesSetter(metaModels).setDefaults(convertedArchetype);
     }
 
