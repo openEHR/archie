@@ -75,6 +75,29 @@ public class RmToMarkdownSerializerTest {
     }
 
     @Test
+    public void dutchBloodPressure() throws Exception {
+        OperationalTemplate opt = createOPT("/ckm-mirror/local/archetypes/entry/observation/openEHR-EHR-OBSERVATION.blood_pressure.v1.1.0.adls");
+        ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator("nl");
+        I18n.setCurrentLocale(Locale.forLanguageTag("nl"));
+
+        Map<String, Object> structure = structureGenerator.generate(opt);
+        String s = serializeToJson(structure, true);
+        //System.out.println(s);
+
+        Observation observation = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class);
+        RmToMarkdownSerializer rmToMarkdownSerializer = new RmToMarkdownSerializer();
+        rmToMarkdownSerializer.append(observation);
+        String serialized = rmToMarkdownSerializer.toString();
+
+        assertTrue(serialized, serialized.contains("Systole: 0.0mm[Hg]  \n")); //'  \n' = newline in Markdown
+        assertTrue(serialized, serialized.contains("Houding: Staand  \n")); //'  \n' = newline in Markdown
+        assertTrue(serialized, serialized.contains("### Bloeddruk"));
+        //and a Dutch translation from the I18n po file
+        assertTrue(serialized, serialized.contains("Tijd van observatie: 1 jan. 2018 12:00:00"));
+
+    }
+
+    @Test
     public void bloodPressureComposition() throws Exception {
         Archetype report = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.report.v1.adls");
         Archetype reportResult = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.report-result.v1.adls");
@@ -303,7 +326,10 @@ public class RmToMarkdownSerializerTest {
 
 
     private ExampleJsonInstanceGenerator createExampleJsonInstanceGenerator() {
-        ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        return createExampleJsonInstanceGenerator("en");
+    }
+    private ExampleJsonInstanceGenerator createExampleJsonInstanceGenerator(String language) {
+        ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), language);
         structureGenerator.setAddTwoInstancesWherePossible(false);
         structureGenerator.setTypePropertyName(TYPE_PROPERTY_NAME);
         return structureGenerator;
