@@ -16,7 +16,7 @@ public class FeederAuditDetailsSerializer implements RmSerializer<FeederAuditDet
         }
         serializer.appendIfNotNull(I18n.t("Audit provider"), data.getProvider());
         if(data.getOtherDetails() != null) {
-            serializer.appendWithHeaderIfNotNull("##### ", "other details", data.getOtherDetails());
+            serializer.appendWithHeaderIfNotNull("##### ", I18n.t("other details"), data.getOtherDetails());
         }
     }
 

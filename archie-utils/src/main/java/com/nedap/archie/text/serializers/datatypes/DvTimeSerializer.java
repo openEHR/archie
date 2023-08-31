@@ -14,7 +14,7 @@ public class DvTimeSerializer implements RmSerializer<DvTime> {
     @Override
     public void serialize(DvTime data, RmToMarkdownSerializer serializer) {
         if(data.getValue() == null) {
-            serializer.append("data niet gevuld");
+            serializer.append(I18n.t("no value"));
             return;
         }
         serializer.append(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(I18n.getCurrentLocale())

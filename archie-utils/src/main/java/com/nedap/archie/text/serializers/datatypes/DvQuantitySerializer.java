@@ -9,7 +9,7 @@ public class DvQuantitySerializer implements RmSerializer<DvQuantity> {
     @Override
     public void serialize(DvQuantity data, RmToMarkdownSerializer serializer) {
         if(data.getMagnitude() == null) {
-            serializer.append(I18n.t("No data entered"));
+            serializer.append(I18n.t("no magnitude"));
         } else {
             serializer.append(Double.toString(data.getMagnitude()));
         }

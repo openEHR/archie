@@ -15,7 +15,7 @@ public class DvDateTimeSerializer implements RmSerializer<DvDateTime> {
     @Override
     public void serialize(DvDateTime data, RmToMarkdownSerializer serializer) {
         if(data.getValue() == null) {
-            serializer.append("data niet gevuld");
+            serializer.append(I18n.t("no value"));
             return;
         }
 

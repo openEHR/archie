@@ -3,12 +3,13 @@ package com.nedap.archie.text.serializers.datatypes;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToMarkdownSerializer;
+import org.openehr.utils.message.I18n;
 
 public class DvCountSerializer implements RmSerializer<DvCount> {
     @Override
     public void serialize(DvCount data, RmToMarkdownSerializer serializer) {
         if(data.getMagnitude() == null) {
-            serializer.append("data niet gevuld");
+            serializer.append(I18n.t("no magnitude"));
             return;
         }
         serializer.append(Long.toString(data.getMagnitude()));

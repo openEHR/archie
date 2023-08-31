@@ -4,18 +4,22 @@ import com.nedap.archie.rm.composition.EventContext;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToMarkdownSerializer;
+import org.openehr.utils.message.I18n;
 
 public class EventContextSerializer implements RmSerializer<EventContext> {
     @Override
     public void serialize(EventContext data, RmToMarkdownSerializer serializer) {
 
-        serializer.appendIfNotNull("Location", data.getLocation());
-        serializer.appendIfNotNull("Start time", data.getStartTime());
-        serializer.appendIfNotNull("End time", data.getEndTime());
-        serializer.appendIfNotNull("Setting", data.getSetting());
+        serializer.appendIfNotNull(I18n.t("Location"), data.getLocation());
+        serializer.appendIfNotNull(I18n.t("Start time"), data.getStartTime());
+        serializer.appendIfNotNull(I18n.t("End time"), data.getEndTime());
+        serializer.appendIfNotNull(I18n.t("Setting"), data.getSetting());
 
         if(data.getParticipations() != null && !data.getParticipations().isEmpty()) {
-            serializer.append("##### participations  \n");
+
+            serializer.append("##### ");
+            serializer.append(I18n.t("participations"));
+            serializer.appendNewLine();
             for(Participation participation:data.getParticipations()) {
                 serializer.append(participation);
                 serializer.appendNewLine();
