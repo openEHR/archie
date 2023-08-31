@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 14:55+0200\n"
+"POT-Creation-Date: 2023-08-31 15:06+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -10,12 +10,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: ../bmm/src/main/java/org/openehr/bmm/persistence/validation/BmmMessageIds.java:56
 #, java-format
 msgid "''rm_schemas_load_list'' config setting mentions non-existent schema {0}"
-msgstr ""
+msgstr "De instelling ‘’rm_schemas_load_list’’ bevat een schema dat niet bestaat: {0}"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/MultiplicitiesValidation.java:42
 msgid "A cardinality must have an interval - in this case it is null"
@@ -185,7 +185,7 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/action/IsmTransitionSerializer.java:13
 msgid "Care flow step"
-msgstr ""
+msgstr "Stap in zorgproces"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:76
 #, java-format
@@ -210,7 +210,7 @@ msgstr "Code {0} uit de terminologie is niet gebruikt in de definitie van het ar
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/CompositionSerializer.java:15
 msgid "Composer"
-msgstr ""
+msgstr "Opsteller"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:150
 #, java-format
@@ -219,7 +219,7 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/CompositionSerializer.java:22
 msgid "Context"
-msgstr ""
+msgstr "Context"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:59
 #, java-format
@@ -228,12 +228,12 @@ msgstr "Kan parent object voor {0} niet vinden. Deze melding is waarschijnlijk e
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/action/IsmTransitionSerializer.java:14
 msgid "Current state"
-msgstr ""
+msgstr "Huidige toestand"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/entries/ActionSerializer.java:14
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/action/ActivitySerializer.java:14
 msgid "Description"
-msgstr ""
+msgstr "Beschrijving"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/DefinitionStructureValidation.java:67
 #, java-format
@@ -270,7 +270,7 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/EventContextSerializer.java:15
 msgid "End time"
-msgstr ""
+msgstr "Eindtijd"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ValidationMessage.java:61
 msgid "Error"
@@ -290,15 +290,15 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/entries/InstructionSerializer.java:22
 msgid "Expiry time"
-msgstr ""
+msgstr "Verlooptijd"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/audit/FeederAuditSerializer.java:19
 msgid "Feeder system audit"
-msgstr ""
+msgstr "Audit van aanleverend systeem"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/ParticipationSerializer.java:11
 msgid "Function of participant"
-msgstr ""
+msgstr "Functie van de deelnemer"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:40
 #, java-format
@@ -323,7 +323,7 @@ msgstr "Fout in root node id {0}: Dit moet kloppen met de specialization depth v
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/entries/ActionSerializer.java:16
 msgid "Instruction details"
-msgstr ""
+msgstr "Details van de instructie"
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:131
 #, java-format
@@ -337,18 +337,16 @@ msgstr "Taal {0} is opgenomen bij de vertalingen, maar ontbreekt in de terminolo
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/EventContextSerializer.java:13
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/audit/FeederAuditDetailsSerializer.java:12
-#, fuzzy
 msgid "Location"
-msgstr "Documentatie"
+msgstr "Locatie"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvQuantifiedUtil.java:11
 msgid "Magnitude status"
-msgstr ""
+msgstr "Status van hoeveelheid"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/ReferenceRangeSerializer.java:14
-#, fuzzy
 msgid "Meaning"
-msgstr "Waarschuwing"
+msgstr "Betekenis"
 
 #: ../bmm/src/main/java/org/openehr/bmm/persistence/validation/BmmMessageIds.java:49
 #, java-format
@@ -361,8 +359,8 @@ msgid "Message at {0} ({1}):  {2}"
 msgstr "Bericht bij {0} ({1}): {2}"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/ParticipationSerializer.java:12
-msgid "Mode of participant"
-msgstr ""
+msgid "Mode of participation"
+msgstr "Manier van deelnemen"
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:11
 #, java-format
@@ -377,11 +375,11 @@ msgstr "Meerdere waarden voor Tuple constraint {0}: {1}"
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/demographic/PartyRelatedSerializer.java:12
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/demographic/PartyIdentifiedSerializer.java:12
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvBooleanSerializer.java:15
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #: ../bmm/src/main/java/org/openehr/bmm/persistence/validation/BmmMessageIds.java:55
 msgid "No ''rm_schemas_load_list'' config setting found; attempting to load all schemas (change via Tools>Options)"
@@ -399,7 +397,7 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/ElementSerializer.java:19
 msgid "No value. Reason: "
-msgstr ""
+msgstr "Geen waarde. Reden: "
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:243
 #, java-format
@@ -412,9 +410,9 @@ msgid "Node id {0} already used in path {1}"
 msgstr "Node id {0} is al gebruikt in pad {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:281
-#, fuzzy, java-format
+#, java-format
 msgid "Node id {0} does not conform to {1}"
-msgstr "Node id {0} klopt niet bij de node id {1} uit het archetype dat gespecialiseerd wordt"
+msgstr "Node id {0} klopt niet met {1}"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:299
 #, java-format
@@ -501,7 +499,7 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/ParticipationSerializer.java:14
 msgid "Performer"
-msgstr ""
+msgstr "Uitvoerder"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:70
 msgid "Primitive object specialisation validation failed"
@@ -510,7 +508,7 @@ msgstr ""
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/entries/InstructionSerializer.java:21
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/entries/ActionSerializer.java:15
 msgid "Protocol"
-msgstr ""
+msgstr "Protocol"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/AuthoredArchetypeMetadataChecks.java:64
 #, java-format
@@ -797,7 +795,7 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/EventContextSerializer.java:16
 msgid "Setting"
-msgstr ""
+msgstr "Setting"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:317
 #, java-format
@@ -810,16 +808,16 @@ msgstr "Attributen die maar één waarde kunnen bevatten mogen geen cardinalitei
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/EventContextSerializer.java:14
 msgid "Start time"
-msgstr ""
+msgstr "Starttijd"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/entries/ActionSerializer.java:17
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/action/IsmTransitionSerializer.java:12
 msgid "State transition"
-msgstr ""
+msgstr "Toestandsovergang"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/action/IsmTransitionSerializer.java:17
 msgid "State transition reason"
-msgstr ""
+msgstr "Reden van toestandsovergang"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:72
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:73
@@ -864,22 +862,22 @@ msgid "Term binding key {0} points to a path that cannot be found in the archety
 msgstr "Het pad {0} uit een term binding kan niet worden gevonden in het archetype"
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:19
-#, fuzzy, java-format
+#, java-format
 msgid "The Archetype with id {0} cannot be found"
-msgstr "Archetype met id {0} is gebruikt met use_archetype, maar het archetype kon niet worden gevonden"
+msgstr "Archetype met id {0} kan niet worden gevonden"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:31
 msgid "The adl_version top-level meta-data item must exist and consist of a valid 3-part version identifier."
 msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:17
-#, fuzzy, java-format
+#, java-format
 msgid "The archetype id {0} does not match the possible archetype ids."
-msgstr "Use_archetype met {0} klopt niet met het archetype slot met type {1} uit het gespecialiseerde archetype"
+msgstr "Use_archetype met {0} klopt niet met de mogelijke archetype kids"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicDefinitionObjectValidation.java:40
 msgid "The attribute cardinality interval has lower > upper, this is not allowed"
-msgstr ""
+msgstr "Het attribuut cardinality interval heeft lower > upper. Dat is niet toegestaan"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/FlatFormValidation.java:55
 #, java-format
@@ -955,13 +953,13 @@ msgid "The path {0} referenced in the annotations does not exist in the flat arc
 msgstr "Het pad {0} gebruikt in de annotations bestaat niet in het flattened archetype of referentiemodel"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/RmOverlayValidation.java:34
-#, fuzzy, java-format
+#, java-format
 msgid "The path {0} referenced in the rm visibility does not exist in the flat archetype"
-msgstr "Het pad {0} gebruikt in de annotations bestaat niet in het flattened archetype"
+msgstr "Het pad {0} gebruikt in de rm visibility bestaat niet in het flattened archetype"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/demographic/PartySelfSerializer.java:11
 msgid "The person themselves "
-msgstr ""
+msgstr "De persoon zelf"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:134
 #, java-format
@@ -969,9 +967,9 @@ msgid "The primitive object of type {0} does not conform null"
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:136
-#, fuzzy, java-format
+#, java-format
 msgid "The primitive object of type {0} does not conform to non-primitive object with type {1}"
-msgstr "Primitive object met RM type {0} klopt niet bij primitive object met RM type {1} in het archetype dat gespecialiseerd wordt"
+msgstr "Primitive object met RM type {0} klopt niet bij niet primitief object met type {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:30
 msgid "The rm_release top-level meta-data item must exist and consist of a valid 3-part version identifier."
@@ -1011,11 +1009,11 @@ msgstr "De waarde {0} moet {1} zijn"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/ParticipationSerializer.java:13
 msgid "Time"
-msgstr ""
+msgstr "Tijd"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/entries/ObservationSerializer.java:30
 msgid "Time of observation"
-msgstr ""
+msgstr "Tijd van observatie"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/AuthoredArchetypeMetadataChecks.java:49
 #, java-format
@@ -1034,11 +1032,11 @@ msgstr "Type met naam {0} bestaat niet"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvQuantitySerializer.java:19
 msgid "Units display name"
-msgstr ""
+msgstr "Weergavenaam van eenheid"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvQuantitySerializer.java:17
 msgid "Units system"
-msgstr ""
+msgstr "Systeem van eenheid"
 
 #: ../bmm/src/main/java/org/openehr/bmm/persistence/validation/BmmMessageIds.java:54
 #, java-format
@@ -1099,7 +1097,7 @@ msgstr "Waarschuwing"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvBooleanSerializer.java:15
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:49
 msgid "achetype code specialisation level validity. Each archetype term ('at' code) and constraint code ('ac' code) used in the archetype definition section must have a specialisation level no greater than the specialisation level of the archetype."
@@ -1194,9 +1192,9 @@ msgid "child CTerminology code contains more than one constraint, that is not va
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:279
-#, fuzzy, java-format
+#, java-format
 msgid "child terminology constraint value code {0} does not conform to parent constraint with value code {0}"
-msgstr "De cardinaliteit {0} van dit attribuut komt niet overeen met de cardinaliteit van het attribuut dat gespecializeerd wordt: {1}"
+msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:263
 #, java-format
@@ -1204,9 +1202,9 @@ msgid "child terminology constraint value code {0} is not contained in {1}, or a
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:259
-#, fuzzy, java-format
+#, java-format
 msgid "child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}"
-msgstr "De cardinaliteit {0} van dit attribuut komt niet overeen met de cardinaliteit van het attribuut dat gespecializeerd wordt: {1}"
+msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:84
 msgid "code in terminology not used in archetype definition"
@@ -1262,7 +1260,7 @@ msgstr "kleiner dan {0}"
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvQuantitySerializer.java:12
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvCountSerializer.java:12
 msgid "no magnitude"
-msgstr ""
+msgstr "geen waarde"
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvDateSerializer.java:17
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvBooleanSerializer.java:12
@@ -1270,7 +1268,7 @@ msgstr ""
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvDateTimeSerializer.java:18
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/datatypes/DvDurationSerializer.java:16
 msgid "no value"
-msgstr ""
+msgstr "geen waarde"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:47
 msgid "node id must be defined in flat terminology"
@@ -1298,7 +1296,7 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/audit/FeederAuditDetailsSerializer.java:19
 msgid "other details"
-msgstr ""
+msgstr "verdere details"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:237
 #, java-format
@@ -1307,7 +1305,7 @@ msgstr ""
 
 #: ../archie-utils/src/main/java/com/nedap/archie/text/serializers/EventContextSerializer.java:21
 msgid "participations"
-msgstr ""
+msgstr "deelnemers"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:52
 msgid "resource detail key does not match resource detail item language"
@@ -1408,9 +1406,9 @@ msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:130
 #: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:284
-#, fuzzy, java-format
+#, java-format
 msgid "type name {0} does not conform to {1}"
-msgstr "Type {0} klopt niet met type {1} uit het gespecialiseerde archetype"
+msgstr "Typenaam {0} klopt niet met {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:77
 msgid "use_node path validity: the path mentioned in a use_node statement must refer to an object node defined elsewhere in the same archetype or any of its specialisation parent archetypes, that is not itself an internal reference node, and which carries a node identifier if one is needed at the reference point."
@@ -1435,9 +1433,9 @@ msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:119
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:123
-#, fuzzy, java-format
+#, java-format
 msgid "value code {0} is used in value set {1}, but not present in terminology"
-msgstr "de code {0} van een value bestaat niet in de terminologie"
+msgstr "de waarde-code {0} is gebruikt in waarde {1}, maar is niet aanwezig in de terminologie"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:48
 msgid "value set assumed value code validity. Each value code (at-code) used as an assumed_value for a value set in a term constraint in the archetype definition must exist in the value set definition in the terminology for the identified value set."
@@ -1450,9 +1448,9 @@ msgstr "de code {0} van een value set bestaat niet in de terminologie"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:110
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:114
-#, fuzzy, java-format
+#, java-format
 msgid "value set code {0} is used in value set {1}, but not present in terminology"
-msgstr "de code {0} van een value set bestaat niet in de terminologie"
+msgstr "de waardeset-code {0} is gebruikt in waardeset {1}, maar is niet aanwezig in de terminologie"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:136
 #, java-format

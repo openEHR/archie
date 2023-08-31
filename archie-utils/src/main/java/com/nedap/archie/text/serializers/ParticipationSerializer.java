@@ -9,7 +9,7 @@ public class ParticipationSerializer implements RmSerializer<Participation> {
     @Override
     public void serialize(Participation data, RmToMarkdownSerializer serializer) {
         serializer.appendIfNotNull(I18n.t("Function of participant"), data.getFunction());
-        serializer.appendIfNotNull(I18n.t("Mode of participant"), data.getMode());
+        serializer.appendIfNotNull(I18n.t("Mode of participation"), data.getMode());
         serializer.appendIfNotNull(I18n.t("Time"), data.getTime());
         serializer.appendIfNotNull(I18n.t("Performer"), data.getPerformer());
     }
