@@ -4,6 +4,7 @@ import com.nedap.archie.datetime.DateTimeSerializerFormatters;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
 import com.nedap.archie.text.RmSerializer;
 import com.nedap.archie.text.RmToMarkdownSerializer;
+import org.openehr.utils.message.I18n;
 
 import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +17,8 @@ public class DvTimeSerializer implements RmSerializer<DvTime> {
             serializer.append("data niet gevuld");
             return;
         }
-        serializer.append(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(data.getValue()));
+        serializer.append(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(I18n.getCurrentLocale())
+                .format(data.getValue()));
         DvQuantifiedUtil.serialize(data, serializer);
     }
 

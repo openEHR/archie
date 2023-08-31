@@ -1,5 +1,6 @@
 package com.nedap.archie.text;
 
+import com.esotericsoftware.kryo.kryo5.serializers.DefaultSerializers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -23,13 +24,17 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.integration.GenericEntry;
 import com.nedap.archie.testutil.TestUtil;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.utils.message.I18n;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -38,6 +43,17 @@ import static org.junit.Assert.assertTrue;
 public class RmToMarkdownSerializerTest {
 
     private static final String TYPE_PROPERTY_NAME = "_type";
+
+    @Before
+    public void setLocale() {
+        I18n.setCurrentLocale(Locale.ENGLISH);
+    }
+
+    @After
+    public void unsetLocale() {
+        I18n.setCurrentLocale(null);
+    }
+
     @Test
     public void bloodPressure() throws Exception {
         OperationalTemplate opt = createOPT("/ckm-mirror/local/archetypes/entry/observation/openEHR-EHR-OBSERVATION.blood_pressure.v1.1.0.adls");
@@ -210,7 +226,7 @@ public class RmToMarkdownSerializerTest {
         rmToMarkdownSerializer.append(composition);
         String serialized = rmToMarkdownSerializer.toString();
 
-        assertTrue(serialized, serialized.startsWith("# composition name  \n## Context\n" +
+        assertTrue(serialized, serialized.startsWith("# composition name  \n## Context  \n" +
                 "##### participations  \n" +
                 "Function of participant: some function  \n" +
                 "Mode of participant: some mode  \n" +
@@ -241,7 +257,7 @@ public class RmToMarkdownSerializerTest {
                 "## inner section  \n" +
                 "  \n" +
                 "  \n" +
-                "## Context\n" +
+                "## Context  \n" +
                 "  "));
     }
 
@@ -268,21 +284,21 @@ public class RmToMarkdownSerializerTest {
         rmToMarkdownSerializer.append(composition);
         String serialized = rmToMarkdownSerializer.toString();
 
-        assertTrue(serialized, serialized.startsWith("# composition name  \n" +
+        assertEquals(serialized, "# composition name  \n" +
                 "#### Originating system audit  \n" +
                 "Originating system: some system  \n" +
-                "time: 1 May 2023, 10:23:05  \n" +
+                "time: May 1, 2023, 10:23:05 AM  \n" +
                 "##### other details  \n" +
                 "system audit name: No value. Reason: unknown  \n" +
                 "  \n" +
                 "  \n" +
                 "#### Feeder system audit  \n" +
                 "Originating system: some system  \n" +
-                "time: 1 May 2023, 10:23:05  \n" +
+                "time: May 1, 2023, 10:23:05 AM  \n" +
                 "##### other details  \n" +
                 "system audit name: No value. Reason: unknown  \n" +
                 "  \n" +
-                "  "));
+                "  \n");
     }
 
 
