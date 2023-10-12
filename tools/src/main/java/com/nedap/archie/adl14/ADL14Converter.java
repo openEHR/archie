@@ -124,6 +124,7 @@ public class ADL14Converter {
         new ADL14DescriptionConverter().convert(convertedArchetype);
         setCorrectVersions(convertedArchetype);
         convertHeader(convertedArchetype);
+        addDefaultMultiplicities(convertedArchetype);
 
 
         ADL2ConversionResult result = new ADL2ConversionResult(convertedArchetype);
@@ -155,6 +156,10 @@ public class ADL14Converter {
                 convertedArchetype.setBuildUid(null);
             }
         }
+    }
+
+    private void addDefaultMultiplicities(Archetype convertedArchetype) {
+        new ADL14DefaultMultiplicitiesSetter(metaModels).setDefaults(convertedArchetype);
     }
 
     private void moveOidToMetadata(Archetype convertedArchetype, String oid, String oidFieldName) {
