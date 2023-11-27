@@ -1,0 +1,57 @@
+archetype (adl_version=2.0.7; rm_release=1.0.2)
+	openEHR-EHR-OBSERVATION.VCOSU_duplicate_node_id.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Pieter Bos">
+	>
+	lifecycle_state = <"draft">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Test VCOSU validity check, triggered a duplicate node id">
+			keywords = <"ADL", "test">
+		>
+	>
+	other_details = <
+		["regression"] = <"ADL14_INCOMPATIBLE_NODE_IDS">
+	>
+
+definition
+	OBSERVATION[id1] matches {
+	    name matches {
+            DV_TEXT[id4] matches {
+                values matches {[ac4]}
+            }
+	    }
+	    data matches {
+            HISTORY[id2] matches {	-- history
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {0..*}
+                }
+            }
+        }
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+            ["id1"] = <
+                description = <"test entry">
+                text = <"test entry">
+            >
+            ["id2"] = <
+                description = <"test entry 2">
+                text = <"test entry 2">
+            >
+		>
+    >
+    value_sets = <
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at2", "at3", "at5">
+        >
+    >
