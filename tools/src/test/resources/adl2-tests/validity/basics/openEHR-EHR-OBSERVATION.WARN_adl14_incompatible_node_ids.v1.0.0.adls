@@ -1,5 +1,5 @@
 archetype (adl_version=2.0.7; rm_release=1.0.2)
-	openEHR-EHR-OBSERVATION.VCOSU_duplicate_node_id.v1.0.0
+	openEHR-EHR-OBSERVATION.WARN_adl14_incompatible_node_ids.v1.0.0
 
 language
 	original_language = <[ISO_639-1::en]>
@@ -12,7 +12,7 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"Test VCOSU validity check, triggered a duplicate node id">
+			purpose = <"Test ADL14_INCOMPATIBLE_NODE_IDS">
 			keywords = <"ADL", "test">
 		>
 	>
@@ -23,8 +23,8 @@ description
 definition
 	OBSERVATION[id1] matches {
 	    name matches {
-            DV_TEXT[id4] matches {
-                values matches {[ac4]}
+            DV_CODED_TEXT[id4] matches {
+                defining_code matches {[ac4]}
             }
 	    }
 	    data matches {
@@ -47,11 +47,31 @@ terminology
                 description = <"test entry 2">
                 text = <"test entry 2">
             >
+            ["id3"] = <
+                description = <"test entry 3">
+                text = <"test entry 3">
+            >
+            ["ac4"] = <
+                description = <"value set 1">
+                text = <"value set 1">
+            >
+            ["at2"] = <
+                description = <"value 1">
+                text = <"value 1">
+            >
+            ["at3"] = <
+                description = <"value 2">
+                text = <"value 2">
+            >
+            ["at4"] = <
+                description = <"value 3">
+                text = <"value 3">
+            >
 		>
     >
     value_sets = <
         ["ac4"] = <
             id = <"ac4">
-            members = <"at2", "at3", "at5">
+            members = <"at2", "at3", "at4">
         >
     >

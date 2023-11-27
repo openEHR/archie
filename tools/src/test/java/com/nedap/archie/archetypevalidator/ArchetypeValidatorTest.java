@@ -321,6 +321,22 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void incompatibleNodeIdValidationTest() throws IOException, ADLParseException {
+        Archetype archetypeWithIncompatibleNodeId = parse("/adl2-tests/validity/basics/openEHR-EHR-OBSERVATION.WARN_adl14_incompatible_node_ids.v1.0.0.adls");
+
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(archetypeWithIncompatibleNodeId);
+
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult result = archetypeValidator.validate(archetypeWithIncompatibleNodeId, repository);
+            assertTrue(result.passes());
+            assertEquals(1, result.getErrors().size());
+            assertEquals("Object with node id id5.1 should be specialized before excluding the parent node", result.getErrors().get(0).getMessage());
+        }
+    }
+
     private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
