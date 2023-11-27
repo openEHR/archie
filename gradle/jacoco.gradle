@@ -20,8 +20,8 @@ subprojects {
 
   jacocoTestReport {
       reports {
-          xml.enabled = true
-          html.enabled = true
+          xml.required = true
+          html.required = true
       }
       additionalSourceDirs.from = sourceSets.main.allSource.srcDirs
       sourceDirectories.from = sourceSets.main.allSource.srcDirs
@@ -43,9 +43,9 @@ task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
     classDirectories.from =  subprojects.sourceSets.main.output
     executionData.from = subprojects.findAll {!it.sourceSets.test.java.isEmpty()}.jacocoTestReport.executionData
     reports {
-        html.enabled = true
-        xml.enabled = true
-        csv.enabled = false
+        html.required = true
+        xml.required = true
+        csv.required = false
     }
 
     afterEvaluate {

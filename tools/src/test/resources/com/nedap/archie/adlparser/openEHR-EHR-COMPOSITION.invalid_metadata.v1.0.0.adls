@@ -1,4 +1,4 @@
-archetype (adl_version; rm_release=1-1-1-1-1; generated=1; controlled=1.0.0; uid=1.0.0-rc; build_uid)
+archetype (adl_version; adl_version=1.0.0; adl_version; rm_release=1.0.0; rm_release=1-1-1-1-1; generated; generated=1; controlled=1.0.0; uid=1.0.0-rc; build_uid; pieter=0.0.7; pieter=0.0.7)
 	openEHR-EHR-COMPOSITION.invalid_metadata.v1.0.0
 
 language

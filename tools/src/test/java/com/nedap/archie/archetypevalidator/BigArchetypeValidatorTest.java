@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,7 +101,7 @@ public class BigArchetypeValidatorTest {
 
     private FullArchetypeRepository parseAll() {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
-        Reflections reflections = new Reflections("adl2-tests", new ResourcesScanner());
+        Reflections reflections = new Reflections("adl2-tests", Scanners.Resources);
         List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
         for(String file:adlFiles) {
             if (file.contains("legacy_adl_1.4")) {
@@ -146,7 +146,7 @@ public class BigArchetypeValidatorTest {
 
     public void testInner(MetaModels metaModels) {
 
-        Reflections reflections = new Reflections("adl2-tests.validity", new ResourcesScanner());
+        Reflections reflections = new Reflections("adl2-tests.validity", Scanners.Resources);
         List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
 
 

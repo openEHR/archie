@@ -196,7 +196,7 @@ public class ArchetypeValidator {
             result.addOverlayValidations(extraArchetypeRepository.getAllValidationResults());
             for(ValidationResult subResult:extraArchetypeRepository.getAllValidationResults()) {
                 if(!subResult.passes()) {
-                    result.getErrors().add(new ValidationMessage(ErrorType.OVERLAY_VALIDATION_FAILED, I18n.t("Template overlay {0} had validation errors", subResult.getArchetypeId())));
+                    result.getErrors().add(new ValidationMessage(ErrorType.OVERLAY_VALIDATION_FAILED, null, I18n.t("Template overlay {0} had validation errors", subResult.getArchetypeId())));
                 }
             }
         }
@@ -211,7 +211,7 @@ public class ArchetypeValidator {
                 } catch (Exception e) {
                     //this is probably an error in an included archetype, so ignore it here
                     //the other archetype will not validate
-                    ValidationMessage message = new ValidationMessage(ErrorType.OTHER, "Error during Operational template creation. This does not necessarily mean the current archetype has a problem, but perhaps one that is included with use_archetype: " + e);
+                    ValidationMessage message = new ValidationMessage(ErrorType.OTHER, null, "Error during Operational template creation. This does not necessarily mean the current archetype has a problem, but perhaps one that is included with use_archetype: " + e);
                     message.setWarning(true);
                     messages.add(message);
                 }
@@ -220,7 +220,7 @@ public class ArchetypeValidator {
                     messages.addAll(runValidations(flattened, repository, settings, flatParent, validationsPhase3));
                 }
             } catch (Exception e) {
-                messages.add(new ValidationMessage(ErrorType.OTHER, "flattening failed with exception " + e));
+                messages.add(new ValidationMessage(ErrorType.OTHER, null, "flattening failed with exception " + e));
                 logger.error("error during validation", e);
             }
         }

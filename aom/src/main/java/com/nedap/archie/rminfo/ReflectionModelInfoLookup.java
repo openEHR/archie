@@ -4,18 +4,14 @@ import com.google.common.reflect.TypeToken;
 import com.nedap.archie.aom.CPrimitiveObject;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.Scanners;
 import org.reflections.util.ClasspathHelper;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -60,7 +56,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         this.namingStrategy = namingStrategy;
 
         this.classLoader = classLoader;
-        Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
+        Reflections reflections = new Reflections(packageName, Scanners.SubTypes.filterResultsBy(s -> true));
         Set<String> typeNames = reflections.getAllTypes();
 
         typeNames.forEach(typeName -> {
@@ -134,7 +130,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
      * @param baseClass
      */
     protected <T> void addSubtypesOf(Class<T> baseClass) {
-        Reflections reflections = new Reflections(ClasspathHelper.forClass(baseClass), new SubTypesScanner(false));
+        Reflections reflections = new Reflections(ClasspathHelper.forClass(baseClass), Scanners.SubTypes.filterResultsBy(s -> true));
         Set<Class<? extends T>> classes = reflections.getSubTypesOf(baseClass);
 
         classes.forEach(this::addClass);
@@ -171,10 +167,12 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         }
         if(addAttributesWithoutField) {
             Set<Method> getters = ReflectionUtils.getAllMethods(clazz, (method) -> method.getName().startsWith("get") || method.getName().startsWith("is"));
-            for (Method getMethod : getters) {
-                if(shouldAdd(getMethod)) {
-                    addRMAttributeInfo(clazz, typeInfo, typeToken, getMethod, fieldsByName);
-                }
+            Map<String, Method> gettersByName = getters.stream()
+                    .filter(this::shouldAdd)
+                    // Only use the most specific method for each name
+                    .collect(Collectors.toMap(Method::getName, method -> method, new SpecificMethodSelector()));
+            for (Method getMethod : gettersByName.values()) {
+                addRMAttributeInfo(clazz, typeInfo, typeToken, getMethod, fieldsByName);
             }
         }
     }
