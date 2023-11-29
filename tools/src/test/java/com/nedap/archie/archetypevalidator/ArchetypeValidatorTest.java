@@ -332,8 +332,8 @@ public class ArchetypeValidatorTest {
             ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
             ValidationResult result = archetypeValidator.validate(archetypeWithIncompatibleNodeId, repository);
             assertTrue(result.passes());
-            assertEquals(1, result.getErrors().size());
-            assertEquals("Object with node id id5.1 should be specialized before excluding the parent node", result.getErrors().get(0).getMessage());
+            assertEquals(4, result.getErrors().size());
+            assertEquals("Node id ac4 already used in path /name[id4] with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(0).getMessage());
         }
     }
 
