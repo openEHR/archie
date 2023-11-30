@@ -85,7 +85,7 @@ public enum ErrorType implements MessageCode {
     VALUESET_REDEFINITION_ERROR(I18n.register("A redefined value set can only be a subset of its parent value set, nothing can be added")),
     OVERLAY_VALIDATION_FAILED(I18n.register("The validation of a template overlay failed")),
     PARENT_VALIDATION_FAILED(I18n.register("The validation of the parent archetype failed")),
-    ADL14_INCOMPATIBLE_NODE_IDS(I18n.register("Node id numbers should be unique without their ac, at or id-prefix, to ensure the possiblity of conversion to ADL 1.4"));
+    ADL14_INCOMPATIBLE_NODE_IDS(I18n.register("Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of conversion to ADL 1.4"));
 
     private final String description;
 

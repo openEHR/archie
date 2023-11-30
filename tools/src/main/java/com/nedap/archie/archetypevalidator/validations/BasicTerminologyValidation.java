@@ -57,6 +57,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
                 if (archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(term.getCode()) &&
                         nodeIdsWithoutPrefix.containsKey(AOMUtils.stripPrefix(term.getCode()))) {
                     addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS,
+                            null,
                             I18n.t("Node id {0} already used in terminology as {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4",
                                     term.getCode(), nodeIdsWithoutPrefix.get(AOMUtils.stripPrefix(term.getCode()))));
                 }
