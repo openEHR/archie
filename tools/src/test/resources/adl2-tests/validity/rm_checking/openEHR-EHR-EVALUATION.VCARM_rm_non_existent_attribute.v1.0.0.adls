@@ -26,11 +26,11 @@ description
 definition
 	EVALUATION[id1] matches {	-- Some evaluation
 		data matches {
-			ITEM_TREE[id5] matches {
+			ITEM_TREE[id10] matches {
 				items matches {
 					ELEMENT[id3] matches {	-- An Element
 						value matches {
-							DV_TEXT[id6] 
+							DV_TEXT[id9]
 						}
 					}
 					ELEMENT[id4] occurrences matches {0..1} matches {	-- Another Element

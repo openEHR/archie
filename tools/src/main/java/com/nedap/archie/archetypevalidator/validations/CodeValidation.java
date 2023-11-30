@@ -21,6 +21,7 @@ public class CodeValidation extends ValidatingVisitor {
     }
 
     private HashMap<String, String> nodeIdsWithoutPrefix = new HashMap<>();
+    private HashMap<String, String> termCodesWithoutPrefix = new HashMap<>();
 
     @Override
     protected void beginValidation() {
@@ -47,8 +48,19 @@ public class CodeValidation extends ValidatingVisitor {
             }
         }
 
-        if(!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(cObject.getNodeId())) {
-            nodeIdsWithoutPrefix.put(AOMUtils.stripPrefix(cObject.getNodeId()), cObject.getPath());
+        if (!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(nodeId)) {
+            // Save the node id prefix to check for overlapping constraints later
+            nodeIdsWithoutPrefix.put(AOMUtils.stripPrefix(nodeId), cObject.getPath());
+
+            if(archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(nodeId)) {
+                String nonUniqueNodeId = archetype.getTerminology().getNonUniqueNodeIdWithoutPrefix(nodeId);
+                if(nonUniqueNodeId != null) {
+                    addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS,
+                            null,
+                            I18n.t("Node id {0} already used in terminology as {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4",
+                                    nodeId, nonUniqueNodeId));
+                }
+            }
         }
     }
 
@@ -59,6 +71,7 @@ public class CodeValidation extends ValidatingVisitor {
         for(String constraint:cTerminologyCode.getConstraint()) {
             int codeSpecializationDepth = AOMUtils.getSpecializationDepthFromCode(constraint);
 
+            // Check if any constraints within CObjects have overlapping node ids
             if (!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(constraint) &&
                     archetypeSpecializationDepth == codeSpecializationDepth &&
                     nodeIdsWithoutPrefix.containsKey(AOMUtils.stripPrefix(constraint))) {
