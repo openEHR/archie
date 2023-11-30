@@ -1,0 +1,112 @@
+archetype (adl_version=2.0.7; rm_release=1.0.2)
+    openEHR-EHR-OBSERVATION.WARN_adl14_incompatible_node_ids.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Pieter Bos">
+	>
+	lifecycle_state = <"draft">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Test ADL14_INCOMPATIBLE_NODE_IDS">
+			keywords = <"ADL", "test">
+		>
+	>
+	other_details = <
+		["regression"] = <"ADL14_INCOMPATIBLE_NODE_IDS">
+	>
+
+definition
+	OBSERVATION[id1] matches {
+	    name matches {
+            DV_CODED_TEXT[id4] matches {
+                defining_code matches {[ac4]}
+            }
+	    }
+	    data matches {
+            HISTORY[id2] matches {	-- history
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3]     -- test entry 3
+                    POINT_EVENT[id7] matches {    -- PE
+                        data matches {
+                            ITEM_TREE[id8] matches {
+                                items matches {
+                                    ELEMENT[id9] matches {    -- Element
+                                        value matches {
+                                            DV_CODED_TEXT[id12] matches {
+                                                defining_code matches {[ac11]}    -- value set 2
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+            ["id1"] = <
+                text = <"test entry">
+                description = <"test entry">
+            >
+            ["id2"] = <
+                text = <"test entry 2">
+                description = <"test entry 2">
+            >
+            ["id3"] = <
+                text = <"test entry 3">
+                description = <"test entry 3">
+            >
+            ["ac4"] = <
+                text = <"value set 1">
+                description = <"value set 1">
+            >
+            ["at2"] = <
+                text = <"value 1">
+                description = <"value 1">
+            >
+            ["at3"] = <
+                text = <"value 2">
+                description = <"value 2">
+            >
+            ["at4"] = <
+                text = <"value 3">
+                description = <"value 3">
+            >
+            ["id7"] = <
+                text = <"PE">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"Element">
+                description = <"">
+            >
+            ["ac11"] = <
+                text = <"value set 2">
+                description = <"value set 2">
+            >
+            ["at12"] = <
+                text = <"value 4">
+                description = <"value 4">
+            >
+		>
+    >
+    value_sets = <
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at2", "at3", "at4">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at12", ...>
+        >
+    >
