@@ -42,6 +42,15 @@ definition
                                             }
                                         }
                                     }
+                                    ELEMENT[id13] matches {    -- Element 2
+                                        value matches {
+                                            DV_ORDINAL[id14] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at15]}]
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -98,6 +107,18 @@ terminology
                 text = <"value 4">
                 description = <"value 4">
             >
+            ["ac12"] = <
+                text = <"value set 2">
+                description = <"value set 2">
+            >
+            ["id13"] = <
+                text = <"Element 2">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"value 5">
+                description = <"value 5">
+            >
 		>
     >
     value_sets = <
@@ -108,5 +129,9 @@ terminology
         ["ac11"] = <
             id = <"ac11">
             members = <"at12", ...>
+        >
+        ["ac12"] = <
+            id = <"ac12">
+            members = <"at15", ...>
         >
     >

@@ -330,12 +330,13 @@ public class ArchetypeValidatorTest {
             ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
             ValidationResult result = archetypeValidator.validate(archetypeWithIncompatibleNodeId, repository);
             assertTrue(result.passes());
-            assertEquals(5, result.getErrors().size());
+            assertEquals(6, result.getErrors().size());
             assertEquals("Node id id4 already used in terminology as ac4 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(0).getMessage());
             assertEquals("Node id id2 already used in terminology as at2 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(1).getMessage());
             assertEquals("Node id ac4 already used in path /name[id4] with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(2).getMessage());
             assertEquals("Node id id3 already used in terminology as at3 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(3).getMessage());
             assertEquals("Node id id12 already used in terminology as at12 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(4).getMessage());
+            // Yet another case where both codes are only mentioned in the terminology and not in the definiton... Like at12 and ac12 right now
         }
     }
 
