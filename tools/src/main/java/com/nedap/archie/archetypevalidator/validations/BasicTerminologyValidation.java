@@ -11,6 +11,7 @@ import com.nedap.archie.query.AOMPathQuery;
 import org.openehr.utils.message.I18n;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +36,10 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
     private void validateFormatAndSpecializationLevelOfCodes() {
         int terminologySpecialisationDepth = archetype.getTerminology().specialisationDepth();
         for(Map<String, ArchetypeTerm> languageSpecificTerminology:archetype.getTerminology().getTermDefinitions().values()) {
+
+            // Create a map to keep track of used node ids without prefix to warn about duplicates
+            HashMap<String, String> nodeIdsWithoutPrefix = new HashMap<>();
+
             for(ArchetypeTerm term:languageSpecificTerminology.values()) {
                 if(!AOMUtils.isValidCode(term.getCode())) {
                     addMessage(ErrorType.VATCV, I18n.t("Id code {0} in terminology is not a valid term code, should be id, ac or at, followed by digits", term.getCode()));
@@ -48,6 +53,15 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
                         addMessage(ErrorType.VTSD, I18n.t("Id code {0} in terminology is of a different specialization depth than the archetype", term.getCode()));
                     }
                 }
+
+                if (archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(term.getCode()) &&
+                        nodeIdsWithoutPrefix.containsKey(AOMUtils.stripPrefix(term.getCode()))) {
+                    addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS,
+                            null,
+                            I18n.t("Node id {0} already used in terminology as {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4",
+                                    term.getCode(), nodeIdsWithoutPrefix.get(AOMUtils.stripPrefix(term.getCode()))));
+                }
+                nodeIdsWithoutPrefix.put(AOMUtils.stripPrefix(term.getCode()), term.getCode());
             }
         }
 
@@ -164,6 +178,5 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
             }
         }
     }
-
 
 }
