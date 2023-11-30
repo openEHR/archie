@@ -321,6 +321,23 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void incompatibleNodeIdValidationTest() throws IOException, ADLParseException {
+        Archetype archetypeWithIncompatibleNodeId = parse("/adl2-tests/validity/basics/openEHR-EHR-OBSERVATION.WARN_adl14_incompatible_node_ids.v1.0.0.adls");
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(archetypeWithIncompatibleNodeId);
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult result = archetypeValidator.validate(archetypeWithIncompatibleNodeId, repository);
+            assertTrue(result.passes());
+            assertEquals(4, result.getErrors().size());
+            assertEquals("Node id at2 already used in terminology as id2 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(0).getMessage());
+            assertEquals("Node id at3 already used in terminology as id3 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(1).getMessage());
+            assertEquals("Node id at4 already used in terminology as ac4 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(2).getMessage());
+            assertEquals("Node id ac4 already used in path /name[id4] with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(3).getMessage());
+        }
+    }
+
     private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
