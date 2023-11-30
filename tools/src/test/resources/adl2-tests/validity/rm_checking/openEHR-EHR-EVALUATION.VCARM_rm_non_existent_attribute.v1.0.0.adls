@@ -36,7 +36,7 @@ definition
 					ELEMENT[id4] occurrences matches {0..1} matches {	-- Another Element
 						value matches {
 							DV_CODED_TEXT[id7] matches {
-								refining_code matches {[ac1]}		-- Another Element
+								refining_code matches {[ac8]}		-- Another Element
 							}
 						}
 					}
@@ -68,15 +68,15 @@ terminology
 				text = <"coded item #2">
 				description = <"coded item #2">
 			>
-			["ac1"] = <
+			["ac8"] = <
 				text = <"Another Element">
 				description = <"Another Element">
 			>
 		>
 	>
 	value_sets = <
-		["ac1"] = <
-			id = <"ac1">
+		["ac8"] = <
+			id = <"ac8">
 			members = <"at5", "at6">
 		>
 	>

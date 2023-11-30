@@ -22,8 +22,6 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
         super();
     }
 
-    private HashMap<String, String> nodeIdsWithoutPrefix = new HashMap<>();
-
     @Override
     public void validate() {
 
@@ -38,6 +36,10 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
     private void validateFormatAndSpecializationLevelOfCodes() {
         int terminologySpecialisationDepth = archetype.getTerminology().specialisationDepth();
         for(Map<String, ArchetypeTerm> languageSpecificTerminology:archetype.getTerminology().getTermDefinitions().values()) {
+
+            // Create a map to keep track of used node ids without prefix to warn about duplicates
+            HashMap<String, String> nodeIdsWithoutPrefix = new HashMap<>();
+
             for(ArchetypeTerm term:languageSpecificTerminology.values()) {
                 if(!AOMUtils.isValidCode(term.getCode())) {
                     addMessage(ErrorType.VATCV, I18n.t("Id code {0} in terminology is not a valid term code, should be id, ac or at, followed by digits", term.getCode()));
@@ -60,7 +62,6 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
                 }
                 nodeIdsWithoutPrefix.put(AOMUtils.stripPrefix(term.getCode()), term.getCode());
             }
-            nodeIdsWithoutPrefix.clear();
         }
 
     }

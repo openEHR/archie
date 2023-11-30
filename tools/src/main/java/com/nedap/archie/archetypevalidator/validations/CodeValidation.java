@@ -23,6 +23,11 @@ public class CodeValidation extends ValidatingVisitor {
     private HashMap<String, String> nodeIdsWithoutPrefix = new HashMap<>();
 
     @Override
+    protected void beginValidation() {
+        nodeIdsWithoutPrefix.clear();
+    }
+
+    @Override
     public void validate(CObject cObject) {
         if(cObject instanceof CTerminologyCode) {
             validate((CTerminologyCode) cObject);
