@@ -73,6 +73,8 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[127] = "Object moet van type {0} zijn, maar is van type {1}";
     t[128] = "The occurrences upper limit of the C_OBJECT {0} was {1}, which is greater than the parent attribute cardinality {2}";
     t[129] = "De bovenste limiet van de occurrences van dit C_OBJECT {0} was {1}. Dat is groter dan de cardinaliteit van het attribuut dat deze C_OBJECT bevat, {2}";
+    t[138] = "Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of conversion to ADL 1.4";
+    t[139] = "Node id nummers moeten uniek zijn zonder hun ac, at of id-prefix, om conversie naar ADL 1.4 mogelijk te maken";
     t[140] = "value-set id defined. The identifying code of a value set must be defined in the term definitions of the terminology of the current archetype";
     t[141] = "value-set id gedefinieerd. De identificerende code van een value set moet in de termdefinities van de terminologie van dit archetype opgenomen zijn.";
     t[142] = "The cardinality of Attribute {0}.{1} is the same as in the reference model - this is not allowed due to strict multiplicities validation being enabled";

@@ -196,6 +196,35 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
         }
     }
 
+    /**
+     * Check if the given node id without prefix (id, at or ac) already exists in the terminology as a term with a different prefix
+     * e.g. check if node id 'id12' already exists in the terminology as for example 'at12' or 'ac12'
+     * @param nodeId the node id to look for in the terminology
+     * @return the term from the terminology that has the same node id without prefix
+     */
+    public String getNonUniqueNodeIdWithoutPrefix(String nodeId) {
+        if(getTermDefinitions() == null) {
+            return null;
+        }
+        if(getOriginalLanguage() == null) {
+            for (String language : getTermDefinitions().keySet()) {
+                for (String term : getTermDefinitions().get(language).keySet()) {
+                    if (!nodeId.equals(term) && AOMUtils.stripPrefix(nodeId).equals(AOMUtils.stripPrefix(term))) {
+                        return term;
+                    }
+                }
+            }
+        } else {
+            Map<String, ArchetypeTerm> termDefinitionsForLanguage = getTermDefinitions().get(getOriginalLanguage());
+            for (String term : termDefinitionsForLanguage.keySet()) {
+                if (!nodeId.equals(term) && AOMUtils.stripPrefix(nodeId).equals(AOMUtils.stripPrefix(term))) {
+                    return term;
+                }
+            }
+        }
+        return null;
+    }
+
     public boolean hasIdCode(String code) {
         return AOMUtils.isIdCode(code) && hasCode(code);
     }

@@ -39,7 +39,7 @@ terminology
 				text = <"root node">
 				description = <"root node">
 			>
-			["ac1.1"] = <
+			["ac1.2"] = <
                 text = <"extended value set 1">
                 description = <"extended value set 1">
             >
@@ -54,8 +54,8 @@ terminology
 		>
 	>
 	value_sets = <
-	    ["ac1.1"] = <
-	        id=<"ac1.1">
+	    ["ac1.2"] = <
+	        id=<"ac1.2">
 	        members = <"at1", "at2">
         >
         ["ac0.2"] = <
