@@ -2,7 +2,6 @@ package com.nedap.archie.archetypevalidator.validations;
 
 import com.google.common.base.Joiner;
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -10,22 +9,12 @@ import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
 import org.openehr.utils.message.I18n;
 
-import java.util.HashMap;
-
 import static com.nedap.archie.aom.utils.AOMUtils.parentIsMultiple;
 
 public class CodeValidation extends ValidatingVisitor {
 
     public CodeValidation() {
         super();
-    }
-
-    private HashMap<String, String> nodeIdsWithoutPrefix = new HashMap<>();
-    private HashMap<String, String> termCodesWithoutPrefix = new HashMap<>();
-
-    @Override
-    protected void beginValidation() {
-        nodeIdsWithoutPrefix.clear();
     }
 
     @Override
@@ -47,21 +36,6 @@ public class CodeValidation extends ValidatingVisitor {
                         I18n.t("Node id {0} is used in the archetype, but missing in the terminology", nodeId));
             }
         }
-
-        if (!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(nodeId)) {
-            // Save the node id prefix to check for overlapping constraints later
-            nodeIdsWithoutPrefix.put(AOMUtils.stripPrefix(nodeId), cObject.getPath());
-
-            if(archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(nodeId)) {
-                String nonUniqueNodeId = archetype.getTerminology().getNonUniqueNodeIdWithoutPrefix(nodeId);
-                if(nonUniqueNodeId != null) {
-                    addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS,
-                            null,
-                            I18n.t("Node id {0} already used in terminology as {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4",
-                                    nodeId, nonUniqueNodeId));
-                }
-            }
-        }
     }
 
     public void validate(CTerminologyCode cTerminologyCode) {
@@ -69,18 +43,8 @@ public class CodeValidation extends ValidatingVisitor {
         int archetypeSpecializationDepth = archetype.specializationDepth();
 
         for(String constraint:cTerminologyCode.getConstraint()) {
-            int codeSpecializationDepth = AOMUtils.getSpecializationDepthFromCode(constraint);
-
-            // Check if any constraints within CObjects have overlapping node ids
-            if (!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(constraint) &&
-                    archetypeSpecializationDepth == codeSpecializationDepth &&
-                    nodeIdsWithoutPrefix.containsKey(AOMUtils.stripPrefix(constraint))) {
-                addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS, cTerminologyCode.getPath(),
-                        I18n.t("Node id {0} already used in path {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4",
-                                constraint, nodeIdsWithoutPrefix.get(AOMUtils.stripPrefix(constraint))));
-            }
-
             if(AOMUtils.isValueSetCode(constraint)) {
+                int codeSpecializationDepth = AOMUtils.getSpecializationDepthFromCode(constraint);
                 if(codeSpecializationDepth > archetypeSpecializationDepth) {
                     addMessageWithPath(ErrorType.VATCD, cTerminologyCode.path(), I18n.t("Code {0} from the C_TERMINOLOGY_CODE constraint has specialization depth {1}, but this must be no greater than {2}",
                             constraint, codeSpecializationDepth, archetypeSpecializationDepth));
@@ -103,6 +67,7 @@ public class CodeValidation extends ValidatingVisitor {
 
 
             } else if (AOMUtils.isValueCode(constraint)) {
+                int codeSpecializationDepth = AOMUtils.getSpecializationDepthFromCode(constraint);
                 if(codeSpecializationDepth > archetypeSpecializationDepth) {
                     addMessageWithPath(ErrorType.VATCD, cTerminologyCode.path(), I18n.t("Code {0} from the C_TERMINOLOGY_CODE constraint has specialization depth {1}, but this must be no greater than {2}",
                             constraint, codeSpecializationDepth, archetypeSpecializationDepth));

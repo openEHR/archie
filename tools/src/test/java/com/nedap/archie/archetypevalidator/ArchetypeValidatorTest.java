@@ -331,12 +331,12 @@ public class ArchetypeValidatorTest {
             ValidationResult result = archetypeValidator.validate(archetypeWithIncompatibleNodeId, repository);
             assertTrue(result.passes());
             assertEquals(6, result.getErrors().size());
-            assertEquals("Node id id4 already used in terminology as ac4 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(0).getMessage());
-            assertEquals("Node id id2 already used in terminology as at2 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(1).getMessage());
-            assertEquals("Node id ac4 already used in path /name[id4] with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(2).getMessage());
-            assertEquals("Node id id3 already used in terminology as at3 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(3).getMessage());
-            assertEquals("Node id id12 already used in terminology as at12 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(4).getMessage());
-            // Yet another case where both codes are only mentioned in the terminology and not in the definiton... Like at12 and ac12 right now
+            assertEquals("Node id at12 already used in archetype as id12 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(0).getMessage());
+            assertEquals("Node id at2 already used in archetype as id2 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(1).getMessage());
+            assertEquals("Node id at3 already used in archetype as id3 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(2).getMessage());
+            assertEquals("Node id at4 already used in archetype as id4 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(3).getMessage());
+            assertEquals("Node id ac4 already used in archetype as at4 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(4).getMessage());
+            assertEquals("Node id ac12 already used in archetype as at12 with a different at, id or ac prefix. Will not be convertible to ADL 1.4", result.getErrors().get(5).getMessage());
         }
     }
 

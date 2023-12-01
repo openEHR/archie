@@ -99,8 +99,6 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[191] = "Use_node, hergebruik van een deel van het archetype, verwijst naar type {0}, maar dat klopt niet met type {1} zoals gevonden uit het pad";
     t[202] = "greater than {0}";
     t[203] = "groter dan {0}";
-    t[206] = "Node id {0} already used in terminology as {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4";
-    t[207] = "Node id {0} wordt al gebruikt in terminologie als {1} met een andere at, id of ac prefix. Kan niet naar ADL 1.4 geconverteerd worden";
     t[210] = "Use_archetype specializes an archetype root pointing to {0}, but the archetype {1} is not a descendant";
     t[211] = "Use_archetype {1} specialiseert een andere use_archetype die verwijst naar {0}. Maar het archeytpe {1} specialiseert niet {0}";
     t[216] = "Use_archetype points to type {0}, which is not conformant for type {1} of the archetype root used";
@@ -155,8 +153,6 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[341] = "Syntaxfout: terminologie ontbreekt";
     t[342] = "Archetype referenced in use_archetype points to class {0}, which does not exist in this reference model";
     t[343] = "Het archetype waarnaar use_archetype verwijst, verwijst naar klasse {0}. Deze klasse bestaat niet in het referentiemodel";
-    t[348] = "Node id {0} already used in path {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4";
-    t[349] = "Node id {0} wordt al gebruikt in pad {1} met een andere at, id of ac prefix. Kan niet naar ADL 1.4 geconverteerd worden";
     t[352] = "the given id code is not valid";
     t[353] = "de gegeven id code is niet geldig";
     t[354] = "Id code {0} in terminology is not a valid term code, should be id, ac or at, followed by digits";
