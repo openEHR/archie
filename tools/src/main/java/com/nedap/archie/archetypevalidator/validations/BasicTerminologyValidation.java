@@ -11,9 +11,7 @@ import com.nedap.archie.query.AOMPathQuery;
 import org.openehr.utils.message.I18n;
 
 import java.net.URI;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class BasicTerminologyValidation extends ArchetypeValidationBase {
 
@@ -29,6 +27,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
         validateTerminologyBindings();
         validateValueSets();
         warnAboutUnusedValues();
+        warnAboutDuplicateNodeIdsWithoutPrefix();
 
     }
 
@@ -165,5 +164,20 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
         }
     }
 
+    private void warnAboutDuplicateNodeIdsWithoutPrefix() {
+        Map<String, String> usedCodesMap = new HashMap<>();
+        for (String usedCode : archetype.getAllUsedCodes()) {
+            if (archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(usedCode)) {
+                String usedCodeWithoutPrefix = AOMUtils.stripPrefix(usedCode);
+                if (usedCodesMap.get(usedCodeWithoutPrefix) != null) {
+                    addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS,
+                            null,
+                            I18n.t("Node id {0} already used in archetype as {1} with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4",
+                                    usedCode, usedCodesMap.get(usedCodeWithoutPrefix)));
+                }
+                usedCodesMap.put(usedCodeWithoutPrefix, usedCode);
+            }
+        }
+    }
 
 }

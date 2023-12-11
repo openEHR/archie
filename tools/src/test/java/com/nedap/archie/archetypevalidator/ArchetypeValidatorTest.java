@@ -321,6 +321,25 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void incompatibleNodeIdValidationTest() throws IOException, ADLParseException {
+        Archetype archetypeWithIncompatibleNodeId = parse("/adl2-tests/validity/basics/openEHR-EHR-OBSERVATION.WARN_adl14_incompatible_node_ids.v1.0.0.adls");
+        {
+            InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+            repository.addArchetype(archetypeWithIncompatibleNodeId);
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ValidationResult result = archetypeValidator.validate(archetypeWithIncompatibleNodeId, repository);
+            assertTrue(result.passes());
+            assertEquals(6, result.getErrors().size());
+            assertEquals("Node id at12 already used in archetype as id12 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(0).getMessage());
+            assertEquals("Node id at2 already used in archetype as id2 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(1).getMessage());
+            assertEquals("Node id at3 already used in archetype as id3 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(2).getMessage());
+            assertEquals("Node id at4 already used in archetype as id4 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(3).getMessage());
+            assertEquals("Node id ac4 already used in archetype as at4 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(4).getMessage());
+            assertEquals("Node id ac12 already used in archetype as at12 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(5).getMessage());
+        }
+    }
+
     private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());

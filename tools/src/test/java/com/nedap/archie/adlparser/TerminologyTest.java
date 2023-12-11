@@ -43,9 +43,9 @@ public class TerminologyTest {
 		>
 	>
          */
-        URI uri = archetype.getTerminology().getTermBinding("openehr", "at1");
+        URI uri = archetype.getTerminology().getTermBinding("openehr", "at17");
         assertEquals(new URI("http://openehr.org/id/433"), uri);
         assertNull(archetype.getTerminology().getTermBinding("openehr", "at2"));
-        assertNull(archetype.getTerminology().getTermBinding("closedehr", "at1"));
+        assertNull(archetype.getTerminology().getTermBinding("closedehr", "at17"));
     }
 }
