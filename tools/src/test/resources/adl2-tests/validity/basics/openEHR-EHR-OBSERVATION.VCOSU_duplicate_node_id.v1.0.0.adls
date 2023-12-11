@@ -22,25 +22,25 @@ description
 
 definition
 	OBSERVATION[id1] matches {
-	    data matches {
-            HISTORY[id2] matches {	-- history
-                events cardinality matches {1..*; unordered} matches {
-                    EVENT[id2] occurrences matches {0..*}
-                }
-            }
-        }
+		data matches {
+			HISTORY[id2] matches {	-- history
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[id2] occurrences matches {0..*}
+				}
+			}
+		}
 	}
 
 terminology
 	term_definitions = <
 		["en"] = <
-            ["id1"] = <
-                description = <"test entry">
-                text = <"test entry">
-            >
-            ["id2"] = <
-                description = <"test entry 2">
-                text = <"test entry 2">
-            >
+			["id1"] = <
+				description = <"test entry">
+				text = <"test entry">
+			>
+			["id2"] = <
+				description = <"test entry 2">
+				text = <"test entry 2">
+			>
 		>
 	>

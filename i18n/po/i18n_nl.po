@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-01 11:40+0100\n"
+"POT-Creation-Date: 2023-12-11 10:35+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -326,13 +326,13 @@ msgid "Node ID {0} specialization depth does not conform to the archetype specia
 msgstr "De specialization depth van node id {0} klopt niet bij de specialization depth {1} van het archetype"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:88
-msgid "Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of conversion to ADL 1.4"
-msgstr "Node id nummers moeten uniek zijn zonder hun ac, at of id-prefix, om conversie naar ADL 1.4 mogelijk te maken"
+msgid "Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of converting the archetype to ADL 1.4"
+msgstr "Node id nummers moeten uniek zijn zonder hun ac, at of id-prefix, om conversie van het archetype naar ADL 1.4 mogelijk te maken"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:175
-#, fuzzy, java-format
-msgid "Node id {0} already used in archetype as {1} with a different at, id or ac prefix. Will not be convertible to ADL 1.4"
-msgstr "Node id {0} wordt al gebruikt in het archetype als {1} met een andere at, id of ac prefix. Kan niet naar ADL 1.4 geconverteerd worden"
+#, java-format
+msgid "Node id {0} already used in archetype as {1} with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4"
+msgstr "Node id {0} wordt al gebruikt in het archetype als {1} met een andere at, id of ac prefix. Het archetype kan niet naar ADL 1.4 geconverteerd worden"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/NodeIdValidation.java:42
 #, java-format
