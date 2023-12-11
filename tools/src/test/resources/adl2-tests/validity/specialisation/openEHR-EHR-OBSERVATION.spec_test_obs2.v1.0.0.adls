@@ -38,7 +38,7 @@ definition
 									ELEMENT[id5] matches {	-- element 2
 										value matches {
 											DV_CODED_TEXT[id15] matches {
-												defining_code matches {[ac3]}		-- element 2
+												defining_code matches {[ac30]}		-- element 2
 											}
 										}
 									}
@@ -105,15 +105,15 @@ terminology
 				text = <"ref set X">
 				description = <"ref set X">
 			>
-			["ac3"] = <
+			["ac30"] = <
 				text = <"element 2">
 				description = <"element 2">
 			>
 		>
 	>
 	value_sets = <
-		["ac3"] = <
-			id = <"ac3">
+		["ac30"] = <
+			id = <"ac30">
 			members = <"at6", "at7", "at8", "at9", "at10">
 		>
 	>

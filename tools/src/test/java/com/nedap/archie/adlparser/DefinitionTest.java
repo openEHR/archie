@@ -53,7 +53,7 @@ public class DefinitionTest {
 
         assertNull(code.getAssumedValue());
         assertEquals(1, code.getConstraint().size());
-        assertEquals("at1", code.getConstraint().get(0));
+        assertEquals("at17", code.getConstraint().get(0));
     }
 
     @Test
