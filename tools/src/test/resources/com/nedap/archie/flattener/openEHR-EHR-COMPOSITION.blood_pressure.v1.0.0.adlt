@@ -65,17 +65,17 @@ terminology
                 description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
             >
             ["id0.0.5"] = <
-                text = <"*Result Report(en)">
+                text = <"*Blood pressure(en)">
                 description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
             >
         >
         ["en"] = <
             ["id1.1.1"] = <
-                text = <"*Result Report(en)">
+                text = <"Blood pressure composition">
                 description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
             >
             ["id0.0.5"] = <
-                text = <"*Result Report(en)">
+                text = <"Blood pressure">
                 description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
             >
         >
@@ -85,7 +85,7 @@ terminology
                 description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
             >
             ["id0.0.5"] = <
-                text = <"*Result Report(en)">
+                text = <"*Blood pressure(en)">
                 description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
             >
         >
@@ -95,7 +95,7 @@ terminology
                 description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
             >
             ["id0.0.5"] = <
-                text = <"*Result Report(en)">
+                text = <"*Blood pressure(en)">
                 description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
             >
         >
