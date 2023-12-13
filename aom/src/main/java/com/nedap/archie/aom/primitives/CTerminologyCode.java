@@ -276,7 +276,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             return ConformanceCheckResult.conforms();
         } else {
             if(!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
-                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} does not conform to parent constraint with value code {0}", thisConstraint, otherConstraint));
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} does not conform to parent constraint with value code {1}", thisConstraint, otherConstraint));
             }
             return ConformanceCheckResult.conforms();
         }

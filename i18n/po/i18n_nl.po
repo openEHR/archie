@@ -57,9 +57,9 @@ msgid "ADL version {0} is an invalid format for a version, should be x.x.x-(rc|a
 msgstr "ADL-versie {0} is in een incorrect formaat. Dit zou een versie in het formaat x.x.x-(rc|alpha(x)?)? moeten zijn"
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:18
-#, fuzzy
+#, java-format
 msgid "An archetype slot was used in the archetype, but no archetype id was present in the data."
-msgstr "Archetype met id {0} is gebruikt met use_archetype, maar het archetype kon niet worden gevonden"
+msgstr "Een archetype slot is gebruikt in het archetype, maar er is geen archetype id aanwezig in de data."
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:320
 #, java-format
@@ -331,9 +331,9 @@ msgid "Node id {0} already used in path {1}"
 msgstr "Node id {0} is al gebruikt in pad {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:282
-#, fuzzy, java-format
+#, java-format
 msgid "Node id {0} does not conform to {1}"
-msgstr "Node id {0} klopt niet bij de node id {1} uit het archetype dat gespecialiseerd wordt"
+msgstr "Node id {0} komt niet overeen met {1} in het archetype dat gespecialiseerd wordt"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:294
 #, java-format
@@ -343,7 +343,7 @@ msgstr "Node id {0} is hier niet geldig"
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:299
 #, java-format
 msgid "Node id {0} is not valid here because it redefines an object illegally"
-msgstr "Node id {0} is hiet niet geldig omdat het een object herdefinieert waar dat niet is toegestaan"
+msgstr "Node id {0} is hier niet geldig omdat het een object herdefinieert waar dat niet is toegestaan"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:36
 #, java-format
@@ -366,14 +366,14 @@ msgid "Object with node id {0} should be specialized before excluding the parent
 msgstr "Object met node id {0} moet gespecialiseerd worden voordat de parent node excluded wordt"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:127
-#, fuzzy, java-format
+#, java-format
 msgid "Occurrences {0} does not conform to {1}"
-msgstr "Occurrences {0} klopt niet met de bijbehorende occurrences {1} in het archetype dat gespecialiseerd wordt"
+msgstr "Occurrences {0} komt niet overeen met {1} in het archetype dat gespecialiseerd wordt"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedOccurrencesValidation.java:133
-#, fuzzy, java-format
+#, java-format
 msgid "Occurrences {0}, which is the sum of {1}, does not conform to {2}"
-msgstr "Occurrences {0} klopt niet met de bijbehorende occurrences {1} in het archetype dat gespecialiseerd wordt"
+msgstr "Occurrences {0}, dat de som is van {1}, komt niet overeen met {2}"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/AuthoredArchetypeMetadataChecks.java:77
 msgid "Original language is missing in archetype"
@@ -733,18 +733,18 @@ msgid "Term binding key {0} points to a path that cannot be found in the archety
 msgstr "Het pad {0} uit een term binding kan niet worden gevonden in het archetype"
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:19
-#, fuzzy, java-format
+#, java-format
 msgid "The Archetype with id {0} cannot be found"
-msgstr "Archetype met id {0} is gebruikt met use_archetype, maar het archetype kon niet worden gevonden"
+msgstr "Het Archetype met id {0} kan niet worden gevonden"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:31
 msgid "The adl_version top-level meta-data item must exist and consist of a valid 3-part version identifier."
 msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:17
-#, fuzzy, java-format
+#, java-format
 msgid "The archetype id {0} does not match the possible archetype ids."
-msgstr "Use_archetype met {0} klopt niet met het archetype slot met type {1} uit het gespecialiseerde archetype"
+msgstr "Het archetype id {0} komt niet overeen met de mogelijke archetype ids"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicDefinitionObjectValidation.java:40
 msgid "The attribute cardinality interval has lower > upper, this is not allowed"
@@ -824,9 +824,9 @@ msgid "The path {0} referenced in the annotations does not exist in the flat arc
 msgstr "Het pad {0} gebruikt in de annotations bestaat niet in het flattened archetype of referentiemodel"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/RmOverlayValidation.java:34
-#, fuzzy, java-format
+#, java-format
 msgid "The path {0} referenced in the rm visibility does not exist in the flat archetype"
-msgstr "Het pad {0} gebruikt in de annotations bestaat niet in het flattened archetype"
+msgstr "Het pad {0} gebruikt in de rm weergave bestaat niet in het flattened archetype"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:134
 #, java-format
@@ -834,9 +834,9 @@ msgid "The primitive object of type {0} does not conform null"
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:136
-#, fuzzy, java-format
+#, java-format
 msgid "The primitive object of type {0} does not conform to non-primitive object with type {1}"
-msgstr "Primitive object met RM type {0} klopt niet bij primitive object met RM type {1} in het archetype dat gespecialiseerd wordt"
+msgstr "Het primitieve object van type {0} komt niet overeen met het niet-primitieve object met type {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:30
 msgid "The rm_release top-level meta-data item must exist and consist of a valid 3-part version identifier."
@@ -1039,9 +1039,9 @@ msgid "child CTerminology code contains more than one constraint, that is not va
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:280
-#, fuzzy, java-format
-msgid "child terminology constraint value code {0} does not conform to parent constraint with value code {0}"
-msgstr "De cardinaliteit {0} van dit attribuut komt niet overeen met de cardinaliteit van het attribuut dat gespecializeerd wordt: {1}"
+#, java-format
+msgid "child terminology constraint value code {0} does not conform to parent constraint with value code {1}"
+msgstr "code {0} in terminologie van specialisatie komt niet overeen met dat van de parent met code {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:264
 #, java-format
@@ -1049,9 +1049,9 @@ msgid "child terminology constraint value code {0} is not contained in {1}, or a
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:260
-#, fuzzy, java-format
+#, java-format
 msgid "child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}"
-msgstr "De cardinaliteit {0} van dit attribuut komt niet overeen met de cardinaliteit van het attribuut dat gespecializeerd wordt: {1}"
+msgstr "value set code {0} in terminologie van specialisatie komt niet overeen met dat van de parent met code {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:84
 msgid "code in terminology not used in archetype definition"
@@ -1232,9 +1232,9 @@ msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:130
 #: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:285
-#, fuzzy, java-format
+#, java-format
 msgid "type name {0} does not conform to {1}"
-msgstr "Type {0} klopt niet met type {1} uit het gespecialiseerde archetype"
+msgstr "Naam type {0} klopt niet overeen met {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:77
 msgid "use_node path validity: the path mentioned in a use_node statement must refer to an object node defined elsewhere in the same archetype or any of its specialisation parent archetypes, that is not itself an internal reference node, and which carries a node identifier if one is needed at the reference point."
@@ -1259,9 +1259,9 @@ msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:119
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:123
-#, fuzzy, java-format
+#, java-format
 msgid "value code {0} is used in value set {1}, but not present in terminology"
-msgstr "de code {0} van een value bestaat niet in de terminologie"
+msgstr "de code {0} is gebruikt in value set {1}, maar bestaat niet in de terminologie"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:48
 msgid "value set assumed value code validity. Each value code (at-code) used as an assumed_value for a value set in a term constraint in the archetype definition must exist in the value set definition in the terminology for the identified value set."
@@ -1274,9 +1274,9 @@ msgstr "de code {0} van een value set bestaat niet in de terminologie"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:110
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:114
-#, fuzzy, java-format
+#, java-format
 msgid "value set code {0} is used in value set {1}, but not present in terminology"
-msgstr "de code {0} van een value set bestaat niet in de terminologie"
+msgstr "de value set code {0} is gebruikt in value set {1}, maar bestaat niet in de terminologie"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:136
 #, java-format
