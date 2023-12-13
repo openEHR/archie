@@ -38,7 +38,7 @@ definition
 											ELEMENT[id5] occurrences matches {0..1} matches {	-- element
 												value matches {
 													DV_QUANTITY[id7] matches {
-														property matches {[at1]}
+														property matches {[at8]}
 														units matches {"kPa"}
 														magnitude matches {|>=0.0|}
 													}
@@ -82,7 +82,7 @@ terminology
 				text = <"cluster">
 				description = <"cluster">
 			>
-			["at1"] = <
+			["at8"] = <
 				text = <"Pressure">
 				description = <"Pressure">
 			>
@@ -90,6 +90,6 @@ terminology
 	>
 	term_bindings = <
 		["openehr"] = <
-			["at1"] = <http://openehr.org/id/125>
+			["at8"] = <http://openehr.org/id/125>
 		>
 	>
