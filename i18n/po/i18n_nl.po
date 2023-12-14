@@ -1040,7 +1040,7 @@ msgstr ""
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:280
 #, java-format
 msgid "child terminology constraint value code {0} does not conform to parent constraint with value code {1}"
-msgstr "code {0} in terminologie van specialisatie komt niet overeen met dat van de parent met code {1}"
+msgstr "child terminology constraint code {0} komt niet overeen met dat van de parent constraint met code {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:264
 #, java-format
