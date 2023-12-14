@@ -57,7 +57,6 @@ msgid "ADL version {0} is an invalid format for a version, should be x.x.x-(rc|a
 msgstr "ADL-versie {0} is in een incorrect formaat. Dit zou een versie in het formaat x.x.x-(rc|alpha(x)?)? moeten zijn"
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidationMessageIds.java:18
-#, java-format
 msgid "An archetype slot was used in the archetype, but no archetype id was present in the data."
 msgstr "Een archetype slot is gebruikt in het archetype, maar er is geen archetype id aanwezig in de data."
 
@@ -368,7 +367,7 @@ msgstr "Object met node id {0} moet gespecialiseerd worden voordat de parent nod
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:127
 #, java-format
 msgid "Occurrences {0} does not conform to {1}"
-msgstr "Occurrences {0} komt niet overeen met {1} in het archetype dat gespecialiseerd wordt"
+msgstr "Occurrences {0} komt niet overeen met {1}"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedOccurrencesValidation.java:133
 #, java-format
