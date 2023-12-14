@@ -332,7 +332,7 @@ msgstr "Node id {0} is al gebruikt in pad {1}"
 #: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:282
 #, java-format
 msgid "Node id {0} does not conform to {1}"
-msgstr "Node id {0} komt niet overeen met {1} in het archetype dat gespecialiseerd wordt"
+msgstr "Node id {0} komt niet overeen met {1}"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:294
 #, java-format
