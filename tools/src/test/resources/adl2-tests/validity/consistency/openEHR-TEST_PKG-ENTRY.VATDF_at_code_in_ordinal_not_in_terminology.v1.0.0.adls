@@ -26,7 +26,7 @@ definition
 		ordinal_attr_1 matches {
 			DV_ORDINAL[id2] matches {
 				[value, symbol] matches {
-					[{0}, {[at2]}],
+					[{0}, {[at6]}],
 					[{1}, {[at3]}],
 					[{2}, {[at4]}]
 				}
@@ -41,7 +41,7 @@ terminology
 				text = <"">
 				description = <"">
 			>
-			["at2"] = <
+			["at6"] = <
 				text = <"">
 				description = <"">
 			>
@@ -49,15 +49,15 @@ terminology
 				text = <"">
 				description = <"">
 			>
-			["ac1"] = <
+			["ac5"] = <
 				text = <"(empty string found in original archetype)">
 				description = <"(empty string found in original archetype)">
 			>
 		>
 	>
 	value_sets = <
-		["ac1"] = <
-			id = <"ac1">
-			members = <"at2", "at3">
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at6", "at3">
 		>
 	>

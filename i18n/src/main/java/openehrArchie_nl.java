@@ -113,6 +113,8 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[251] = "Node id {0} is hiet niet geldig omdat het een object herdefinieert waar dat niet is toegestaan";
     t[256] = "The path {0} referenced in the annotations does not exist in the flat archetype or reference model";
     t[257] = "Het pad {0} gebruikt in de annotations bestaat niet in het flattened archetype of referentiemodel";
+    t[260] = "Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of converting the archetype to ADL 1.4";
+    t[261] = "Node id nummers moeten uniek zijn zonder hun ac, at of id-prefix, om conversie van het archetype naar ADL 1.4 mogelijk te maken";
     t[262] = "Original language {0} is not defined in the terminology";
     t[263] = "Originele taal {0} ontbreekt in de terminologie";
     t[268] = "Archetype terminology not defined";
@@ -181,6 +183,8 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[397] = "Reference model type {0} correspondeert niet met het reference model type {1} in de definitie van het archetype";
     t[404] = "Original language is missing in archetype";
     t[405] = "Archetype heeft geen originele taal";
+    t[406] = "Node id {0} already used in archetype as {1} with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4";
+    t[407] = "Node id {0} wordt al gebruikt in het archetype als {1} met een andere at, id of ac prefix. Het archetype kan niet naar ADL 1.4 geconverteerd worden";
     t[408] = "Attribute {0} of class {1} does not match existence {2}";
     t[409] = "Attribuut {0} van class {1} komt niet overeen met existence {2}";
     t[410] = "at path: ";

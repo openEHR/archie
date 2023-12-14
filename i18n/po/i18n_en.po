@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-14 13:42+0100\n"
+"POT-Creation-Date: 2023-12-11 10:35+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -190,7 +190,7 @@ msgstr ""
 msgid "Code {0} from the C_TERMINOLOGY_CODE constraint is not defined in the terminology"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:162
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:161
 #, java-format
 msgid "Code {0} is in the terminology, but not used in the archetype"
 msgstr ""
@@ -254,13 +254,13 @@ msgid ""
 "{4}"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:40
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:39
 #, java-format
 msgid "Id code {0} in terminology is not a valid term code, should be id, ac or at, followed by digits"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:44
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:48
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:43
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:47
 #, java-format
 msgid "Id code {0} in terminology is of a different specialization depth than the archetype"
 msgstr ""
@@ -322,6 +322,15 @@ msgstr ""
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:243
 #, java-format
 msgid "Node ID {0} specialization depth does not conform to the archetype specialization depth {1}"
+msgstr ""
+
+#: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:88
+msgid "Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of converting the archetype to ADL 1.4"
+msgstr ""
+
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:175
+#, java-format
+msgid "Node id {0} already used in archetype as {1} with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4"
 msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/NodeIdValidation.java:42
@@ -711,12 +720,12 @@ msgstr ""
 msgid "Template overlay {0} had validation errors"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:84
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:83
 #, java-format
 msgid "Term binding key {0} in path format is not present in archetype"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:89
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:88
 #, java-format
 msgid "Term binding key {0} is not present in terminology"
 msgstr ""
@@ -1251,13 +1260,13 @@ msgstr ""
 msgid "value code validity. Each value code (at-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the flattened form of the current archetype."
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:141
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:140
 #, java-format
 msgid "value code {0} is used in redefined value set {1}, but not present in its parent value set with members {2}"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:119
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:123
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:118
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:122
 #, java-format
 msgid "value code {0} is used in value set {1}, but not present in terminology"
 msgstr ""
@@ -1266,18 +1275,18 @@ msgstr ""
 msgid "value set assumed value code validity. Each value code (at-code) used as an assumed_value for a value set in a term constraint in the archetype definition must exist in the value set definition in the terminology for the identified value set."
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:104
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:103
 #, java-format
 msgid "value set code {0} is not present in terminology"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:110
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:114
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:109
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:113
 #, java-format
 msgid "value set code {0} is used in value set {1}, but not present in terminology"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:136
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:135
 #, java-format
 msgid "value set {0} has a specialized code, but the valueset it specialized cannot be found in the flat parent"
 msgstr ""
