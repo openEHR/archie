@@ -825,7 +825,7 @@ msgstr "Het pad {0} gebruikt in de annotations bestaat niet in het flattened arc
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/RmOverlayValidation.java:34
 #, java-format
 msgid "The path {0} referenced in the rm visibility does not exist in the flat archetype"
-msgstr "Het pad {0} gebruikt in de rm weergave bestaat niet in het flattened archetype"
+msgstr "Het pad {0} gebruikt in de rm zichtbaarheid bestaat niet in het flattened archetype"
 
 #: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:134
 #, java-format
