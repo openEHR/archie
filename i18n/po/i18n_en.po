@@ -1048,7 +1048,7 @@ msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:279
 #, java-format
-msgid "child terminology constraint value code {0} does not conform to parent constraint with value code {0}"
+msgid "child terminology constraint value code {0} does not conform to parent constraint with value code {1}"
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:263
