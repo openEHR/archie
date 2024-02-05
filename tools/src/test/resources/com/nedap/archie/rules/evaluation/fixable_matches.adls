@@ -101,8 +101,8 @@ rules
 	/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol matches {[at12]}
 	/data[id2]/events[id3]/data[id4]/items[id17]/null_flavour/defining_code matches {[at10]}
   for_all $cluster in /data[id2]/events[id3]/data[id4]/items[id19]
-          ($cluster/items[id20]/value/value implies
-            $cluster/items[id22]/value/value matches {"The boolean is true"})
+    ($cluster/items[id20]/value/value implies
+      $cluster/items[id22]/value/value matches {"The boolean is true"})
 
 terminology
 	term_definitions = <

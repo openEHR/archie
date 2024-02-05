@@ -47,7 +47,7 @@ public class UpdatedValueHandler {
             if (pathOfParent.endsWith("value/defining_code") || pathOfParent.endsWith("null_flavour/defining_code")) {
                 return fixDvCodedText(rmObject, archetype, pathOfParent);
             } else if (pathOfParent.endsWith("symbol/defining_code")) {
-                return fixDvOrdinal(rmObject, archetype, pathOfParent);
+                return fixDvOrdinalOrScale(rmObject, archetype, pathOfParent);
             } else {
             }
         } catch (Exception e) {
@@ -57,16 +57,20 @@ public class UpdatedValueHandler {
         return new HashMap<>();
     }
 
-    private static Map<String, Object> fixDvOrdinal(Object rmObject, Archetype archetype, String pathOfParent) throws XPathExpressionException {
-        Map<String, Object> result = new HashMap<>();
-
+    private static Map<String, Object> fixDvOrdinalOrScale(Object rmObject, Archetype archetype, String pathOfParent) throws XPathExpressionException {
         RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent.replace("/symbol/defining_code", ""));
         DataValue archetypeModelObject = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
-        if (archetypeModelObject instanceof DvScale) {
-            return result;
+        if (archetypeModelObject instanceof DvOrdinal) {
+            return fixDvOrdinal(rmObject, archetype, pathOfParent, (DvOrdinal) archetypeModelObject);
+        } else if (archetypeModelObject instanceof DvScale) {
+            return fixDvScale(rmObject, archetype, pathOfParent, (DvScale) archetypeModelObject);
         }
-        DvOrdinal ordinal = (DvOrdinal) archetypeModelObject;
-        Long value = null;
+        return null;
+    }
+
+    private static Map<String, Object> fixDvOrdinal(Object rmObject, Archetype archetype, String pathOfParent, DvOrdinal ordinal) throws XPathExpressionException {
+        Map<String, Object> result = new HashMap<>();
+        Long value;
         CAttribute symbolAttribute = archetype.itemAtPath(pathOfParent.replace("/symbol/defining_code", "/symbol"));//TODO: remove all numeric indices from path!
         if (symbolAttribute != null) {
             CAttributeTuple socParent = (CAttributeTuple) symbolAttribute.getSocParent();
@@ -95,6 +99,44 @@ public class UpdatedValueHandler {
         }
         if(ordinal.getSymbol() != null && ordinal.getSymbol().getDefiningCode() != null) {
             //also fix the DvCodedText inside the DvOrdinal
+            result.putAll(fixDvCodedText(rmObject, archetype, pathOfParent));
+        }
+
+        return result;
+    }
+
+    private static Map<String, Object> fixDvScale(Object rmObject, Archetype archetype, String pathOfParent, DvScale scale) throws XPathExpressionException {
+        Map<String, Object> result = new HashMap<>();
+
+        Double value;
+        CAttribute symbolAttribute = archetype.itemAtPath(pathOfParent.replace("/symbol/defining_code", "/symbol"));//TODO: remove all numeric indices from path!
+        if (symbolAttribute != null) {
+            CAttributeTuple socParent = (CAttributeTuple) symbolAttribute.getSocParent();
+            if (socParent != null) {
+                int valueIndex = socParent.getMemberIndex("value");
+                int symbolIndex = socParent.getMemberIndex("symbol");
+                if (valueIndex != -1 && symbolIndex != -1) {
+                    for (CPrimitiveTuple tuple : socParent.getTuples()) {
+                        if (tuple.getMembers().get(symbolIndex).getConstraint().get(0).equals(scale.getSymbol().getDefiningCode().getCodeString())) {
+                            List<Interval<Double>> valueConstraint = (List<Interval<Double>>) tuple.getMembers().get(valueIndex).getConstraint();
+                            if(valueConstraint.size() == 1) {
+                                Interval<Double> interval  = valueConstraint.get(0);
+                                if(interval.getLower().equals(interval.getUpper()) && !interval.isLowerUnbounded() && !interval.isUpperUnbounded()) {
+                                    value = interval.getLower();
+                                    scale.setValue(value);
+                                    String pathToValue = pathOfParent.replace("/symbol/defining_code", "/value");
+                                    result.put(pathToValue, value);
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+        if(scale.getSymbol() != null && scale.getSymbol().getDefiningCode() != null) {
+            //also fix the DvCodedText inside the DvScale
             result.putAll(fixDvCodedText(rmObject, archetype, pathOfParent));
         }
 
