@@ -60,26 +60,38 @@ public class FixableAssertionsCheckerTest {
         ItemTree itemTree = (ItemTree) root.itemAtPath("/data[id2]/events[id3]/data[id4]");
 
         // Add a second cluster with the boolean set to true
-        Cluster cluster2 = new Cluster("id81", new DvText("Cluster"), new ArrayList<>());
+        Cluster cluster2 = new Cluster("id24", new DvText("Cluster"), new ArrayList<>());
         DvBoolean dvBoolean = new DvBoolean();
         dvBoolean.setValue(true);
-        cluster2.addItem(new Element("id82", new DvText("First element"), dvBoolean));
+        cluster2.addItem(new Element("id25", new DvText("First element"), dvBoolean));
         itemTree.addItem(cluster2);
 
         EvaluationResult evaluate = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals("There are eleven values that must be set", 11, evaluate.getSetPathValues().size());
+        assertEquals("There are eleven values that must be set", 12, evaluate.getSetPathValues().size());
 
         //assert that paths must be set to specific values
+        // DvText
         assertEquals("test string", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id5]/value/value").getValue());
-        assertEquals("at1", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id6]/value/defining_code/code_string").getValue());
-        assertEquals("local", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id6]/value/defining_code/terminology_id/value").getValue());
-        assertEquals("Option 1", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id6]/value/value").getValue());
-        assertEquals("at6", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id7]/value/symbol/defining_code/code_string").getValue());
-        assertEquals("local", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id7]/value/symbol/defining_code/terminology_id/value").getValue());
-        assertEquals(0l, evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id7]/value/value").getValue());
-        assertEquals("at1", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id8]/null_flavour/defining_code/code_string").getValue());
-        assertEquals("local", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id8]/null_flavour/defining_code/terminology_id/value").getValue());
-        assertEquals("Option 1", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id8]/null_flavour/value").getValue());
+        // DvCodedText
+        assertEquals("at10", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id7]/value/defining_code/code_string").getValue());
+        assertEquals("local", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id7]/value/defining_code/terminology_id/value").getValue());
+        assertEquals("Option 1", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id7]/value/value").getValue());
+        // DvOrdinal
+        assertEquals("at11", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id13]/value/symbol/defining_code/code_string").getValue());
+        assertEquals("local", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id13]/value/symbol/defining_code/terminology_id/value").getValue());
+        assertEquals(1l, evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id13]/value/value").getValue());
+        assertEquals("Option 2", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id13]/value/symbol/value"));
+        // DvScale
+        assertEquals("at12", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol/defining_code/code_string").getValue());
+        assertEquals("local", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol/defining_code/terminology_id/value").getValue());
+        assertEquals(2.5, evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id15]/value/value").getValue());
+        assertEquals("Option 3", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id15]/value/symbol/value"));
+        // DvCodedText with null flavour
+        assertEquals("at10", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id17]/null_flavour/defining_code/code_string").getValue());
+        assertEquals("local", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id17]/null_flavour/defining_code/terminology_id/value").getValue());
+        assertEquals("Option 1", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id17]/null_flavour/value").getValue());
+
+
         assertEquals("The boolean is true", evaluate.getSetPathValues().get("/data[id2]/events[id3, 1]/data[id4]/items[id81, 6]/items[id84]/value/value").getValue());
 
         //now assert that the RM Object cloned by rule evaluation has been modified with the new values for further evaluation
@@ -98,6 +110,7 @@ public class FixableAssertionsCheckerTest {
         //and of course the DV_ORDINAL and DV_CODED_TEXT should be constructed correctly, with the correct numeric respectively a textual value
         assertEquals(0l, ruleEvaluation.getRMRoot().itemAtPath("/data[id2]/events[id3]/data[id4]/items[id7]/value/value"));
         assertEquals("Option 1", ruleEvaluation.getRMRoot().itemAtPath("/data[id2]/events[id3]/data[id4]/items[id6]/value/value"));
+        assertEquals("Option 1", ruleEvaluation.getRMRoot().itemAtPath("/data[id2]/events[id3]/data[id4]/items[id9]/value/value"));
         assertEquals("Option 1", ruleEvaluation.getRMRoot().itemAtPath("/data[id2]/events[id3]/data[id4]/items[id8]/null_flavour/value"));
 
 

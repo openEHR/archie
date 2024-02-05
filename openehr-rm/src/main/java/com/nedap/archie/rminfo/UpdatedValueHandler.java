@@ -16,8 +16,10 @@ import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import com.nedap.archie.rm.datavalues.DataValue;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
+import com.nedap.archie.rm.datavalues.quantity.DvScale;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +61,11 @@ public class UpdatedValueHandler {
         Map<String, Object> result = new HashMap<>();
 
         RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent.replace("/symbol/defining_code", ""));
-        DvOrdinal ordinal = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+        DataValue archetypeModelObject = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+        if (archetypeModelObject instanceof DvScale) {
+            return result;
+        }
+        DvOrdinal ordinal = (DvOrdinal) archetypeModelObject;
         Long value = null;
         CAttribute symbolAttribute = archetype.itemAtPath(pathOfParent.replace("/symbol/defining_code", "/symbol"));//TODO: remove all numeric indices from path!
         if (symbolAttribute != null) {
