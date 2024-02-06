@@ -56,12 +56,11 @@ public class UpdatedValueHandler {
     }
 
     private static Map<String, Object> fixDvOrdinalOrDvScale(Object rmObject, Archetype archetype, String pathOfParent) throws XPathExpressionException {
+        Map<String, Object> result = new HashMap<>();
+
         RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent.replace("/symbol/defining_code", ""));
         DvOrdered ordered = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
-
-        Map<String, Object> result = new HashMap<>();
         Number value;
-
         CAttribute symbolAttribute = archetype.itemAtPath(pathOfParent.replace("/symbol/defining_code", "/symbol"));//TODO: remove all numeric indices from path!
         if (symbolAttribute != null) {
             CAttributeTuple socParent = (CAttributeTuple) symbolAttribute.getSocParent();
@@ -85,11 +84,9 @@ public class UpdatedValueHandler {
                                     String pathToValue = pathOfParent.replace("/symbol/defining_code", "/value");
                                     result.put(pathToValue, value);
                                 }
-
                             }
                         }
                     }
-
                 }
             }
         }
