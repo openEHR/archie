@@ -116,7 +116,7 @@ public class AuditDetails extends RMObject {
 
     @Invariant("Change_type_valid")
     public boolean changeTypeValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(changeType, "audit change type");
+        return InvariantUtil.belongsToTerminologyByGroupId(changeType, "audit_change_type");
     }
 
 

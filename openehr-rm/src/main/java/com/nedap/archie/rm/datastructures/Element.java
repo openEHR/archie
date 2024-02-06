@@ -107,7 +107,7 @@ public class Element extends Item implements SingleValuedDataValue<DataValue> {
 
     @Invariant("Inv_null_flavour_valid")
     public boolean nullFlavourValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(nullFlavour, "null flavours");
+        return InvariantUtil.belongsToTerminologyByGroupId(nullFlavour, "null_flavours");
     }
 
     @Invariant("Inv_null_reason_valid")

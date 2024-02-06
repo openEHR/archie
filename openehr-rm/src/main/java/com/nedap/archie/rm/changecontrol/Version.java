@@ -109,6 +109,6 @@ public abstract class Version<Type> extends RMObject {
 
     @Invariant("Lifecycle_state_valid")
     public boolean lifecycleStateValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(getLifecycleState(), "version lifecycle state");
+        return InvariantUtil.belongsToTerminologyByGroupId(getLifecycleState(), "version_lifecycle_state");
     }
 }

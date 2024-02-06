@@ -117,7 +117,7 @@ public abstract class DvOrdered<DataValueType extends DvOrdered<DataValueType>> 
 
     @Invariant("Normal_status_validity")
     public boolean normalStatusValidity() {
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(normalStatus, "normal statuses");
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(normalStatus, "normal_statuses");
     }
 
     @Invariant("Normal_range_and_status_consistency")

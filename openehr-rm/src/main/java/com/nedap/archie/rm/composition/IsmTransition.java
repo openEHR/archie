@@ -103,11 +103,11 @@ public class IsmTransition extends Pathable {
 
     @Invariant("Current_state_valid")
     public boolean currentStateValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(currentState, "instruction states");
+        return InvariantUtil.belongsToTerminologyByGroupId(currentState, "instruction_states");
     }
 
     @Invariant("Transition_valid")
     public boolean transitionValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(transition, "instruction transitions");
+        return InvariantUtil.belongsToTerminologyByGroupId(transition, "instruction_transitions");
     }
 }

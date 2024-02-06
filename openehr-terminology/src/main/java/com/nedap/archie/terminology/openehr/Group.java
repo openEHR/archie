@@ -8,15 +8,9 @@
 
 package com.nedap.archie.terminology.openehr;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -51,9 +45,9 @@ public class Group {
     @XmlAttribute(name = "name", required = true)
     @XmlSchemaType(name = "anySimpleType")
     protected String name;
-    @XmlAttribute(name = "id", required = true)
+    @XmlAttribute(name = "openehr_id", required = true)
     @XmlSchemaType(name = "anySimpleType")
-    protected String id;
+    protected String openehrId;
 
     /**
      * Gets the value of the concept property.
@@ -108,11 +102,11 @@ public class Group {
         this.name = value;
     }
 
-    public String getId() {
-        return id;
+    public String getOpenehrId() {
+        return openehrId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOpenehrId(String openehrId) {
+        this.openehrId = openehrId;
     }
 }

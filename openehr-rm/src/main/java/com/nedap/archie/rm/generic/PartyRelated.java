@@ -53,6 +53,6 @@ public class PartyRelated extends PartyIdentified {
 
     @Invariant("Relationship_valid")
     public boolean relationshipValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(relationship, "subject relationship");
+        return InvariantUtil.belongsToTerminologyByGroupId(relationship, "subject_relationship");
     }
 }

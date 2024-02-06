@@ -30,6 +30,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
     private static final String[] resourceNames = {
             "/openEHR_RM/en/openehr_terminology.xml",
+            "/openEHR_RM/es/openehr_terminology.xml",
             "/openEHR_RM/ja/openehr_terminology.xml",
             "/openEHR_RM/pt/openehr_terminology.xml",
             "/openEHR_RM/openehr_external_terminologies.xml",
@@ -57,7 +58,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
                 try (InputStream stream = getClass().getResourceAsStream(resourceName)) {
                     Terminology terminology = (Terminology) unmarshaller.unmarshal(stream);
                     for (Codeset codeSet : terminology.getCodeset()) {
-                        TerminologyImpl impl = getOrCreateTerminologyById(codeSet.getIssuer(), codeSet.getOpenehrId(), codeSet.getExternalId());
+                        TerminologyImpl impl = getOrCreateTerminologyById(codeSet.getIssuer(), codeSet.getOpenehrId(), codeSet.getExternalId(), codeSet.getName());
                         for (Code code : codeSet.getCode()) {
                             MultiLanguageTerm multiLanguageTerm = impl.getOrCreateTermSet(code.getValue());
                             multiLanguageTerm.addCode(new TermCodeImpl(codeSet.getExternalId(), terminology.getLanguage(), code.getValue(), code.getDescription()));
@@ -65,10 +66,10 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
                     }
                     for(Group group:terminology.getGroup()) {
                         //could be possible to move this up, but only useful if there are groups, so ok as is.
-                        TerminologyImpl impl = getOrCreateTerminologyById("openehr", "openehr", terminology.getName());
+                        TerminologyImpl impl = getOrCreateTerminologyById("openehr", "openehr", terminology.getName(), "openehr");
                         for (Concept concept : group.getConcept()) {
                             MultiLanguageTerm multiLanguageTerm = impl.getOrCreateTermSet(concept.getId().toString());
-                            multiLanguageTerm.addCode(new TermCodeImpl(terminology.getName(), terminology.getLanguage(), concept.getId().toString(), concept.getRubric(), group.getName(), group.getId()));
+                            multiLanguageTerm.addCode(new TermCodeImpl(terminology.getName(), terminology.getLanguage(), concept.getId().toString(), concept.getRubric(), group.getName(), group.getOpenehrId()));
                         }
                     }
 
@@ -80,10 +81,10 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
         }
     }
 
-    private TerminologyImpl getOrCreateTerminologyById(String issuer, String openEhrId, String externalId) {
+    private TerminologyImpl getOrCreateTerminologyById(String issuer, String openEhrId, String externalId, String name) {
         TerminologyImpl terminology = terminologiesByExternalId.get(externalId);
         if(terminology == null) {
-            terminology = new TerminologyImpl(issuer, openEhrId, externalId);
+            terminology = new TerminologyImpl(issuer, openEhrId, externalId, name);
             terminologiesByExternalId.put(externalId, terminology);
             terminologiesByOpenEHRId.put(openEhrId, terminology);
         }

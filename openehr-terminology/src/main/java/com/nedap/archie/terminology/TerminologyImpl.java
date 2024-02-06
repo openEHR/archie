@@ -9,16 +9,19 @@ class TerminologyImpl {
     private String terminologyId;
     private String issuer;
     private String openEhrId;
+
+    private String name;
     private Map<String, MultiLanguageTerm> termsById = new LinkedHashMap<>();
 
     /** for json creation */
     public TerminologyImpl() {
     }
 
-    public TerminologyImpl(String issuer, String openEhrId, String terminologyId) {
+    public TerminologyImpl(String issuer, String openEhrId, String terminologyId, String name) {
         this.issuer = issuer;
         this.openEhrId = openEhrId;
         this.terminologyId = terminologyId;
+        this.name = name;
     }
 
     public String getTerminologyId() {
@@ -31,6 +34,10 @@ class TerminologyImpl {
 
     public String getOpenEhrId() {
         return openEhrId;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Map<String, MultiLanguageTerm> getTermsById() {

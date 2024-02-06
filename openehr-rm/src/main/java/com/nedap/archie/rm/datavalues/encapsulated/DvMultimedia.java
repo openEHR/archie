@@ -185,13 +185,13 @@ public class DvMultimedia extends DvEncapsulated {
     @Invariant("Media_type_valid")
     public boolean mediaTypeValid() {
         //the second type is still in use in many archetypes, so needs to be supported here, or we need other migration strategies
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(mediaType, "media types") ||
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(mediaType, "media_types") ||
                 InvariantUtil.belongsToTerminologyByGroupId(mediaType, "MultiMedia");
     }
 
     @Invariant("Compression_algorithm_valid")
     public boolean compressionAlgorithmValid() {
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(compressionAlgorithm, "compression algorithms");
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(compressionAlgorithm, "compression_algorithms");
     }
 
     @Invariant("Integrity_check_validity")
@@ -204,7 +204,7 @@ public class DvMultimedia extends DvEncapsulated {
 
     @Invariant("Integrity_check_algorithm_validity")
     public boolean integrityCheckAlgorithmValid() {
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(integrityCheckAlgorithm, "integrity check algorithms");
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(integrityCheckAlgorithm, "integrity_check_algorithms");
     }
 
     @Invariant("Size_valid")

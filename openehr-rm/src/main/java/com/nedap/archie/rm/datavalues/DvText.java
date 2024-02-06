@@ -113,7 +113,7 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
     }
     @Invariant("Encoding_valid")
     public boolean encodingValid() {
-        return InvariantUtil.belongsToTerminologyByOpenEHRId(encoding, "character sets");
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(encoding, "character_sets");
     }
     @Invariant(value = "Mappings_valid", ignored = true)
     public boolean mappingsValid() {

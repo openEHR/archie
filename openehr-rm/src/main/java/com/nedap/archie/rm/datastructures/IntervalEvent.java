@@ -92,6 +92,6 @@ public class IntervalEvent<Type extends ItemStructure> extends Event<Type> {
 
     @Invariant("Math_function_validity")
     public boolean mathFunctionValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(mathFunction, "event math function");
+        return InvariantUtil.belongsToTerminologyByGroupId(mathFunction, "event_math_function");
     }
 }

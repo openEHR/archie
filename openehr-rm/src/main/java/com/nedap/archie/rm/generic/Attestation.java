@@ -118,7 +118,7 @@ public class Attestation extends AuditDetails {
     @Invariant(value = "Reason_valid", ignored = true)
     public boolean reasonValid() {
         if(reason instanceof DvCodedText) {
-            return InvariantUtil.belongsToTerminologyByGroupId((DvCodedText) reason, "attestation reason");
+            return InvariantUtil.belongsToTerminologyByGroupId((DvCodedText) reason, "attestation_reason");
         }
         return true;
     }

@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -96,7 +95,7 @@ public class TermMapping extends RMObject {
 
     @Invariant("Purpose_valid")
     public boolean purposeValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(purpose, "term mapping purpose");
+        return InvariantUtil.belongsToTerminologyByGroupId(purpose, "term_mapping_purpose");
     }
 
     @Invariant("Match_valid")

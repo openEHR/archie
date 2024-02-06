@@ -168,7 +168,7 @@ public class Composition extends Locatable {
 
     @Invariant("Category_validity")
     public boolean categoryValid() {
-        return InvariantUtil.belongsToTerminologyByGroupId(category, "composition category");
+        return InvariantUtil.belongsToTerminologyByGroupId(category, "composition_category");
     }
 
     @Invariant("Territory_valid")
