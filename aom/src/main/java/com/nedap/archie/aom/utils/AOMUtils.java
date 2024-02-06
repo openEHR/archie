@@ -72,6 +72,18 @@ public class AOMUtils {
         return idCodePattern.matcher(code).matches();
     }
 
+    /**
+     * Get the numeric node id from a valid id code without any prefix (like at, ac or id)
+     * @param nodeId the node id to strip the prefix of.
+     * @return the numeric node id without any prefix
+     */
+    public static String stripPrefix(String nodeId) {
+        if(AOMUtils.isValidCode(nodeId)) {
+            return nodeId.substring(2);
+        }
+        return nodeId;
+    }
+
     public static String pathAtSpecializationLevel(List<PathSegment> pathSegments, int level) {
         //todo: this doesn't clone the original
         for(PathSegment segment:pathSegments) {

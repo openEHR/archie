@@ -28,7 +28,7 @@ definition
 	OBSERVATION[id1.1] matches {	-- obs
 		/data/events[id3]/data/items[id4]/value matches {
 			DV_CODED_TEXT[id14] matches {
-				defining_code matches {[ac0.1]}		-- (added by post-parse processor)
+				defining_code matches {[ac0.6]}		-- (added by post-parse processor)
 			}
 		}
 	}
@@ -60,15 +60,15 @@ terminology
 				text = <"obs">
 				description = <"obs">
 			>
-			["ac0.1"] = <
+			["ac0.6"] = <
 				text = <"(added by post-parse processor)">
 				description = <"(added by post-parse processor)">
 			>
 		>
 	>
 	value_sets = <
-		["ac0.1"] = <
-			id = <"ac0.1">
+		["ac0.6"] = <
+			id = <"ac0.6">
 			members = <"at0.1", "at0.2", "at0.3", "at0.4", "at0.5">
 		>
 	>

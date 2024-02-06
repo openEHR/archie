@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.net.URI;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -39,9 +38,9 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         CAttribute defining_code = archetype.itemAtPath("/category[id10]/defining_code");
         CTerminologyCode termCode = (CTerminologyCode) defining_code.getChildren().get(0);
 
-        assertThat(termCode.getConstraint(), hasItem("at1"));
+        assertThat(termCode.getConstraint(), hasItem("at17"));
         assertThat(archetype.getDescription().getDetails().get("en").getKeywords(), hasItems("ADL", "test"));
-        assertThat(archetype.getTerminology().getTermBinding("openehr", "at1"),
+        assertThat(archetype.getTerminology().getTermBinding("openehr", "at17"),
                 equalTo(URI.create("http://openehr.org/id/433")));
 
         assertThat(archetype.getAnnotations().getDocumentation().get("en").get("/context/start_time").get("local_name"),
