@@ -1,127 +1,174 @@
-archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
-	openEHR-EHR-OBSERVATION.matches.v1.0.0
+archetype (adl_version=2.0.5; rm_release=1.1.0; generated)
+    openEHR-EHR-OBSERVATION.matches.v1.0.0
 
 language
-	original_language = <[ISO_639-1::en]>
+    original_language = <[ISO_639-1::en]>
 
 description
-	original_author = <
-		["name"] = <"Pieter Bos">
-	>
-	details = <
-		["en"] = <
-			language = <[ISO_639-1::en]>
-			purpose = <"Test for rules, simple constant arithmetics">
-			keywords = <"ADL", "test">
-		>
-	>
-	lifecycle_state = <"published">
-	other_details = <
-		["regression"] = <"PASS">
-	>
-	copyright = <"copyright © 2004 openEHR Foundation <http://www.openEHR.org>">
+    original_author = <
+        ["name"] = <"Pieter Bos">
+    >
+    lifecycle_state = <"published">
+    copyright = <"copyright © 2004 openEHR Foundation <http://www.openEHR.org>">
+    other_details = <
+        ["regression"] = <"PASS">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Test for rules, simple constant arithmetics">
+            keywords = <"ADL", "test">
+        >
+    >
 
 definition
-	OBSERVATION[id1] matches {	-- Body mass index
-		data matches {
-			HISTORY[id2] matches {
-				events cardinality matches {1..*; unordered} matches {
-					EVENT[id3] occurrences matches {1..*} matches {	-- Any event
-						data matches {
-							ITEM_TREE[id4] matches {
-								items cardinality matches {1..*; unordered} matches {
-									ELEMENT[id5] matches {
-										value matches {
-											DV_TEXT[id64]
-										}
-									}
-									ELEMENT[id6] matches {
-										value matches {
-											DV_CODED_TEXT[id54] matches {
-												defining_code matches {[ac1]}
-											}
-										}
-									}
-									ELEMENT[id7] matches {
-										value matches {
-											DV_ORDINAL[id75] matches {
-												[value, symbol] matches {
-													[{0}, {[at6]}],
-													[{1}, {[at7]}],
-													[{2}, {[at8]}]
-												}
-											}
-										}
-									}
-									ELEMENT[id8] matches {
-										null_flavour matches {
-											DV_CODED_TEXT[id80] matches {
-												defining_code matches {[ac1]}
-											}
-										}
-									}
-									CLUSTER[id81] matches {	-- Repeatable cluster
-										items matches {
-											ELEMENT[id82] occurrences matches {0..1} matches {	-- First element
-												value matches {
-													DV_BOOLEAN[id83] 
-												}
-											}
-											ELEMENT[id84] occurrences matches {0..1} matches {	-- Second element
-												value matches {
-													DV_TEXT[id85] 
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+    OBSERVATION[id1] matches {    -- Title
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {1..*} matches {    -- Event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id5] matches {    -- DvText
+                                        value matches {
+                                            DV_TEXT[id6]
+                                        }
+                                    }
+                                    ELEMENT[id7] matches {    -- DvCodedText
+                                        value matches {
+                                            DV_CODED_TEXT[id8] matches {
+                                                defining_code matches {[ac9]}    -- ValueSet
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] matches {    -- DvOrdinal
+                                        value matches {
+                                            DV_ORDINAL[id14] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}],
+                                                    [{2}, {[at12]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id15] matches {    -- DvScale
+                                        value matches {
+                                            DV_SCALE[id16] matches {
+                                                [value, symbol] matches {
+                                                    [{0.5}, {[at10]}],
+                                                    [{1.5}, {[at11]}],
+                                                    [{2.5}, {[at12]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id17] matches {    -- DvCodedText with null flavour
+                                        null_flavour matches {
+                                            DV_CODED_TEXT[id18] matches {
+                                                defining_code matches {[ac9]}    -- ValueSet
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id19] matches {    -- Cluster
+                                        items matches {
+                                            ELEMENT[id20] occurrences matches {0..1} matches {    -- DvBoolean
+                                                value matches {
+                                                    DV_BOOLEAN[id21]
+                                                }
+                                            }
+                                            ELEMENT[id22] occurrences matches {0..1} matches {    -- DvText in Cluster
+                                                value matches {
+                                                    DV_TEXT[id23]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 rules
-	/data[id2]/events[id3]/data[id4]/items[id5]/value/value matches {"test string"}
-	/data[id2]/events[id3]/data[id4]/items[id6]/value/defining_code matches {[at1]}
-	/data[id2]/events[id3]/data[id4]/items[id7]/value/symbol matches {[at6]}
-	/data[id2]/events[id3]/data[id4]/items[id8]/null_flavour/defining_code matches {[at1]}
-    for_all $cluster in /data[id2]/events[id3]/data[id4]/items[id81]
-          ($cluster/items[id82]/value/value implies
-            $cluster/items[id84]/value/value matches {"The boolean is true"})
+    /data[id2]/events[id3]/data[id4]/items[id5]/value/value matches {"test string"}
+    /data[id2]/events[id3]/data[id4]/items[id7]/value/defining_code matches {[at10]}
+    /data[id2]/events[id3]/data[id4]/items[id13]/value/symbol matches {[at11]}
+    /data[id2]/events[id3]/data[id4]/items[id15]/value/symbol matches {[at12]}
+    /data[id2]/events[id3]/data[id4]/items[id17]/null_flavour/defining_code matches {[at10]}
+    for_all $cluster in /data[id2]/events[id3]/data[id4]/items[id19]
+          ($cluster/items[id20]/value/value implies
+            $cluster/items[id22]/value/value matches {"The boolean is true"})
 
 
 terminology
-	term_definitions = <
-		["en"] = <
-			["id1"] = <
-				text = <"Blood Pressure">
-				description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
-			>
-			["at1"] = <
-				text = <"Option 1">
-				description = <"Option 1">
-			>
-			["id81"] = <
-				text = <"Repeatable cluster">
-				description = <"">
-			>
-			["id82"] = <
-				text = <"First element">
-				description = <"">
-			>
-			["id84"] = <
-				text = <"Second element">
-				description = <"">
-			>
-		>
-	>
-	value_sets = <
-		["ac1"] = <
-			id = <"ac1">
-			members = <"at1", "at2", "at3">
-		>
-	>
-
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Title">
+                description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
+            >
+            ["id3"] = <
+                text = <"Event">
+                description = <"">
+            >
+            ["id5"] = <
+                text = <"DvText">
+                description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
+            >
+            ["id7"] = <
+                text = <"DvCodedText">
+                description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
+            >
+            ["ac9"] = <
+                text = <"ValueSet">
+                description = <"">
+            >
+            ["at10"] = <
+                text = <"Option 1">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"Option 2">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"Option 3">
+                description = <"">
+            >
+            ["id13"] = <
+                text = <"DvOrdinal">
+                description = <"">
+            >
+            ["id15"] = <
+                text = <"DvScale">
+                description = <"">
+            >
+            ["id17"] = <
+                text = <"DvCodedText with null flavour">
+                description = <"">
+            >
+            ["id19"] = <
+                text = <"Cluster">
+                description = <"">
+            >
+            ["id20"] = <
+                text = <"DvBoolean">
+                description = <"">
+            >
+            ["id22"] = <
+                text = <"DvText in Cluster">
+                description = <"">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at10", "at11", "at12">
+        >
+    >
