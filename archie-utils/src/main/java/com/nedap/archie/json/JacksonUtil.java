@@ -83,6 +83,7 @@ public class JacksonUtil {
         objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         objectMapper.enable(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS);
+        objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS, true);
         if(!configuration.isSerializeEmptyCollections()) {
             objectMapper.setDefaultPropertyInclusion(
                     JsonInclude.Value.construct(
