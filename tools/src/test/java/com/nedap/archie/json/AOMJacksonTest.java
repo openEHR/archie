@@ -20,11 +20,14 @@ import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.threeten.extra.PeriodDuration;
 
+import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.time.Duration;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
@@ -269,4 +272,34 @@ public class AOMJacksonTest {
                 "    }\n" +
                 "  },"));
     }
+
+    @Test
+    public void parseS2AomJson() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream( "/S2/json/flat/s2-EHR-Action.medication.v1.2.2.json")) {
+
+            Archetype parsed = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(stream, Archetype.class);
+            assertNotNull(parsed);
+        }
+    }
+
+    @Ignore // for local testing
+    @Test
+    public void parseS2AomJsonAll() throws Exception {
+
+        ObjectMapper mapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+
+        Files.find(new File("../../ADL-exported/S2-S2_demo/json/flat").toPath(),
+                        1,
+                        (file, att) -> file.toString().endsWith(".json"))
+                .forEach(file -> {
+                    try (InputStream stream = Files.newInputStream(file)) {
+                        Archetype parsed = mapper.readValue(stream, Archetype.class);
+                        assertNotNull(parsed);
+                    } catch (Exception e) {
+                        System.out.println("Error parsing " + file.toString());
+                        throw new RuntimeException(e);
+                    }
+                });
+    }
+
 }
