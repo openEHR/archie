@@ -35,7 +35,7 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
         rulesArchieToStandardTypeNamesMap.put("Leaf", "EXPR_LEAF");
         rulesArchieToStandardTypeNamesMap.put("Function", "EXPR_FUNCTION");
         rulesArchieToStandardTypeNamesMap.put("VariableReference", "EXPR_VARIABLE_REF");
-        rulesArchieToStandardTypeNamesMap.put("Constant", "EXPR_CONSTANT");
+        rulesArchieToStandardTypeNamesMap.put("Constant", "EXPR_LITERAL");
         rulesArchieToStandardTypeNamesMap.put("Constraint", "EXPR_CONSTRAINT");
         rulesArchieToStandardTypeNamesMap.put("ArchetypeIdConstraint", "EXPR_ARCHETYPE_ID_CONSTRAINT");
         rulesArchieToStandardTypeNamesMap.put("ModelReference", "EXPR_ARCHETYPE_REF");

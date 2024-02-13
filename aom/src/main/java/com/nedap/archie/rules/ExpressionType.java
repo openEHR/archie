@@ -25,7 +25,7 @@ public enum ExpressionType {
                 return DATETIME;
             case "Duration":
                 return DURATION;
-            case "C_STRING":
+            case "CString":
                 return C_STRING;
         }
         return null;
@@ -50,7 +50,7 @@ public enum ExpressionType {
             case DURATION:
                 return "Duration";
             case C_STRING:
-                return "C_STRING";
+                return "CString";
         }
         return null;
     }
