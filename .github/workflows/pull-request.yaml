@@ -2,7 +2,7 @@ name: Gradle Build & Test
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 permissions:
   contents: read
