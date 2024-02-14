@@ -27,15 +27,15 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
         this.standardsCompliantExpressionNames = standardCompliantExpressionNames;
     }
 
-    private static HashMap<String, String> rulesArchieToStandardTypeNamesMap = new HashMap<>();
-    {
+    private static final HashMap<String, String> rulesArchieToStandardTypeNamesMap = new HashMap<>();
+    static {
         rulesArchieToStandardTypeNamesMap.put("Operator", "EXPR_OPERATOR");
         rulesArchieToStandardTypeNamesMap.put("UnaryOperator", "EXPR_UNARY_OPERATOR");
         rulesArchieToStandardTypeNamesMap.put("BinaryOperator", "EXPR_BINARY_OPERATOR");
-        rulesArchieToStandardTypeNamesMap.put("Leaf", "EXPR_LITERAL");
+        rulesArchieToStandardTypeNamesMap.put("Leaf", "EXPR_LEAF");
         rulesArchieToStandardTypeNamesMap.put("Function", "EXPR_FUNCTION");
         rulesArchieToStandardTypeNamesMap.put("VariableReference", "EXPR_VARIABLE_REF");
-        rulesArchieToStandardTypeNamesMap.put("Constant", "EXPR_CONSTANT");
+        rulesArchieToStandardTypeNamesMap.put("Constant", "EXPR_LITERAL");
         rulesArchieToStandardTypeNamesMap.put("Constraint", "EXPR_CONSTRAINT");
         rulesArchieToStandardTypeNamesMap.put("ArchetypeIdConstraint", "EXPR_ARCHETYPE_ID_CONSTRAINT");
         rulesArchieToStandardTypeNamesMap.put("ModelReference", "EXPR_ARCHETYPE_REF");

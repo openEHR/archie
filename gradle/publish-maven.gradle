@@ -12,16 +12,12 @@ if(gradle.ext.shouldSign) {
 publishing {
   repositories {
     maven {
-      name = "ossrh"
-      // OSSRH URLS
-      def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-      def snapshotsRepoUrl = 'ttps://oss.sonatype.org/content/repositories/snapshots/'
-      url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-
       credentials {
-        username = project.hasProperty('ossrhUsername') ? ossrhUsername : "Unknown user"
-        password = project.hasProperty('ossrhPassword') ? ossrhPassword : "Unknown password"
+        username mavenUser
+        password mavenPassword
       }
+
+      url = version.endsWith('SNAPSHOT') ? snapshotsRepoURL : releasesRepoURL
     }
   }
 }
