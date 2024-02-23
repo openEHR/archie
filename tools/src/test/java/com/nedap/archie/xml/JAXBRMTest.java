@@ -6,8 +6,8 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.time.Period;

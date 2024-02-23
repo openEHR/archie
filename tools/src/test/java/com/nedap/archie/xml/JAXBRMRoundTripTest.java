@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import javax.xml.bind.Marshaller;
+import jakarta.xml.bind.Marshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.time.LocalDate;

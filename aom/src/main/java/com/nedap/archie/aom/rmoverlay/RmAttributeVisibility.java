@@ -4,7 +4,7 @@ import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.base.terminology.TerminologyCode;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 public class RmAttributeVisibility extends ArchetypeModelObject {

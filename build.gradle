@@ -1,3 +1,14 @@
+buildscript {
+  repositories {
+    maven {
+      url = uri("https://plugins.gradle.org/m2/")
+    }
+  }
+  dependencies {
+    classpath("com.netflix.nebula:gradle-jakartaee-migration-plugin:0.17.0")
+  }
+}
+
 repositories {
   mavenCentral()
 }
@@ -29,10 +40,6 @@ apply from: "${gradleScriptDir}/publish-maven.gradle"
 
 subprojects {
   apply plugin: 'java-library'
-
- // plugins {
-   //   id 'com.github.ben-manes.versions' version '0.13.0'
- // }
 
   sourceCompatibility = '1.8'
   targetCompatibility = '1.8'
@@ -74,9 +81,8 @@ subprojects {
     implementation 'org.apache.commons:commons-lang3:3.14.0'
 
     //java 10 no longer has these included by default, so explicit dependency is needed.
-    api 'javax.xml.bind:jaxb-api:2.3.1'
-    api 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    runtimeOnly 'com.sun.xml.bind:jaxb-impl:2.3.3'
+    api 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+    runtimeOnly 'com.sun.xml.bind:jaxb-impl:4.0.3'
     api 'javax.activation:activation:1.1.1'
 
     api 'org.threeten:threeten-extra:1.7.2'

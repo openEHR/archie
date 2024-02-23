@@ -6,8 +6,8 @@ import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.xml.JAXBUtil;
 import org.junit.Test;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.StringWriter;
 
