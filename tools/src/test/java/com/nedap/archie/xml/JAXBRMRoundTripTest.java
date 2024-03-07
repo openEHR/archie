@@ -1,7 +1,6 @@
 package com.nedap.archie.xml;
 
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rm.datastructures.Cluster;
@@ -68,7 +67,7 @@ public class JAXBRMRoundTripTest {
         marshaller.marshal(cluster, writer);
         String xml = writer.toString();
         assertThat(xml, containsString(">12:00<"));
-        assertThat(xml, containsString(">2016-01-01T12:00<"));
+        assertThat(xml, containsString(">2016-01-01T12:00:00<"));
         assertThat(xml, containsString(">2016-01-01<"));
 
         System.out.println(xml);
