@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 
 /**
@@ -23,6 +24,11 @@ public class DateTimeXmlAdapter extends XmlAdapter<String, TemporalAccessor> {
     public String marshal(TemporalAccessor value) {
         if(value instanceof LocalDateTime || value instanceof ZonedDateTime || value instanceof OffsetDateTime) {
             return value.toString();
+        }
+        if(!value.isSupported(ChronoField.HOUR_OF_DAY) &&
+                !value.isSupported(ChronoField.MINUTE_OF_HOUR) &&
+                !value.isSupported(ChronoField.SECOND_OF_MINUTE)) {
+            return DateTimeSerializerFormatters.ISO_8601_DATE.format(value);
         }
         return DateTimeSerializerFormatters.ISO_8601_DATE_TIME.format(value);
     }
