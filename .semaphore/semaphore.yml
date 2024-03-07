@@ -3,17 +3,11 @@ name: Java
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu1804
+    os_image: ubuntu2004
 blocks:
   - name: Gradle
     task:
       jobs:
-        - name: Java 8 build
-          commands:
-            - sem-version java 11
-            - ./gradlew clean compileJava compileTestJava
-            - sem-version java 1.8
-            - ./gradlew check
         - name: Java 11 build
           commands:
             - sem-version java 11
