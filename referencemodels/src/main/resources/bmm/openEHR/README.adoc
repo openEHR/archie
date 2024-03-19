@@ -1,6 +1,6 @@
 # specifications-ITS-BMM
 
-BMM schemas for use with openEHR systems and tools. The repository is structured as follows:
+BMM schemas for use with openEHR systems, tools and applications. The repository is structured as follows:
 
 ----
 /original				# BMMs from original openEHR, prior to separated components
@@ -29,5 +29,5 @@ BMM schemas for use with openEHR systems and tools. The repository is structured
 	
 ----
 
-To use these files in tools, the recommended approach is to point the tool to the `components` (or `original`, if using Release 1.0.2) directory of a clone checkout area, and to manage a table of files identified by schema id (determined by meta-data inside the files), and to resolve the include references via this table.
+To use these files in tools, the recommended approach is to point the tool to the `components` (or `original`, if using Release 1.0.2) directory of a clone checkout area, and to manage a table of files identified by schema_id (determined by meta-data inside the files), and to resolve the include references via this table.
 

@@ -1,0 +1,201 @@
+-- 
+-- 	component:   openEHR Reference Model (RM)
+-- 	description: openEHR Reference Model schema. This file format is based on the BMM specification
+--  				http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale
+-- 	support:     https://openehr.atlassian.net/projects/SPECPR
+-- 	copyright:   Copyright (c) 2016 openEHR Foundation
+-- 	license:     Apache 2.0 License <http://www.apache.org/licenses/LICENSE-2.0.html>
+-- 
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.1">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"openehr">
+schema_name = <"base_base_types">
+rm_release = <"1.0.0">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"1.0.0.1">
+schema_lifecycle_state = <"stable">
+schema_description = <"openEHR Release 1.0.0 BASE model base types packages"> 
+schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.openehr.base.base_types"] = <
+		name = <"org.openehr.base.base_types">
+		packages = <
+			["definitions"] = <
+				name = <"definitions">
+				classes = <"VALIDITY_KIND">
+			>
+			["identification"] = <
+				name = <"identification">
+				classes = <"OBJECT_REF", "OBJECT_ID", "UID", "LOCATABLE_REF", "PARTY_REF", "TERMINOLOGY_ID", 
+					"UID_BASED_ID", "GENERIC_ID", "ARCHETYPE_ID", "TEMPLATE_ID", "OBJECT_VERSION_ID", 
+					"HIER_OBJECT_ID", "VERSION_TREE_ID", "INTERNET_ID", "UUID", "ISO_OID"
+				>
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	------------------------------------------------------------
+	------------------ base.base_types.identification ---------------
+	------------------------------------------------------------
+
+	["OBJECT_REF"] = <
+		name = <"OBJECT_REF">
+		ancestors = <"Any">
+		properties = <
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"id">
+				type = <"OBJECT_ID">
+				is_mandatory = <True>
+			>
+			["namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"namespace">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["LOCATABLE_REF"] = <
+		name = <"LOCATABLE_REF">
+		ancestors = <"OBJECT_REF">
+		properties = <
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"id">
+				type = <"UID_BASED_ID">
+				is_mandatory = <True>
+			>
+			["path"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"path">
+				type = <"String">
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+	["PARTY_REF"] = <
+		name = <"PARTY_REF">
+		ancestors = <"OBJECT_REF">
+	>
+
+	["OBJECT_ID"] = <
+		name = <"OBJECT_ID">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TERMINOLOGY_ID"] = <
+		name = <"TERMINOLOGY_ID">
+		ancestors = <"OBJECT_ID">
+	>
+	
+	["UID_BASED_ID"] = <
+		name = <"UID_BASED_ID">
+		ancestors = <"OBJECT_ID">
+		is_abstract = <True>
+	>
+	
+	["GENERIC_ID"] = <
+		name = <"GENERIC_ID">
+		ancestors = <"OBJECT_ID">
+		properties = <
+			["scheme"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"scheme">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["ARCHETYPE_ID"] = <
+		name = <"ARCHETYPE_ID">
+		ancestors = <"OBJECT_ID">
+	>
+	
+	["TEMPLATE_ID"] = <
+		name = <"TEMPLATE_ID">
+		ancestors = <"OBJECT_ID">
+	>
+	
+	["OBJECT_VERSION_ID"] = <
+		name = <"OBJECT_VERSION_ID">
+		ancestors = <"UID_BASED_ID">
+	>
+	
+	["HIER_OBJECT_ID"] = <
+		name = <"HIER_OBJECT_ID">
+		ancestors = <"UID_BASED_ID">
+	>
+	
+	["VERSION_TREE_ID"] = <
+		name = <"VERSION_TREE_ID">
+		ancestors = <"Any">
+	>
+	
+	["UID"] = <
+		name = <"UID">
+		is_abstract = <True>
+		ancestors = <"Any">
+	>
+	
+	["INTERNET_ID"] = <
+		name = <"INTERNET_ID">
+		ancestors = <"UID">
+	>
+	
+	["UUID"] = <
+		name = <"UUID">
+		ancestors = <"UID">
+	>
+	
+	["ISO_OID"] = <
+		name = <"ISO_OID">
+		ancestors = <"UID">
+	>
+	
+	--
+	--------------------- base.base_types.definitions ------------------
+	--
+
+	["VALIDITY_KIND"] = (P_BMM_ENUMERATION_INTEGER) <
+		name = <"VALIDITY_KIND">
+		ancestors = <"Integer">
+		item_names = <"mandatory", "optional", "prohibited">
+	>
+
+>

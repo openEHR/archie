@@ -1,20 +1,16 @@
 -- 
--- 	component:   openEHR BMM Implementation Technology Specification
--- 	description: openEHR LANG component formal expression. This file is an ODIN serialisation of
---               the BMM object meta-model classes found at 
---               https://www.openehr.org/releases/LANG/latest/p_bmm.html
+-- 	component:   openEHR Implementation Technology Specification (ITS)
+-- 	description: openEHR BASE Component schema. This file format is based on the BMM specification
+--  				http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
 -- 	author:      Thomas Beale <thomas.beale@openEHR.org>
--- 	support:     https://openehr.atlassian.net/issues/?filter=11117
--- 	copyright:   Copyright (c) 2009- openEHR Foundation <https://www.openEHR.org>
+-- 	support:     https://openehr.atlassian.net/projects/SPECPR
+-- 	copyright:   Copyright (c) 2016 openEHR Foundation <https://www.openEHR.org>
 -- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
--- Current BMM version can be found as the top version in the specification:
---     https://www.openehr.org/releases/LANG/latest/bmm_persistence.html#_amendment_record
---
 ------------------------------------------------------
 bmm_version = <"2.3">
 
@@ -23,23 +19,28 @@ bmm_version = <"2.3">
 -- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
 ------------------------------------------------------
 rm_publisher = <"openehr">
-schema_name = <"lang">
-rm_release = <"1.0.0">
+schema_name = <"base">
+rm_release = <"1.2.0">
 
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"1.0.0.1">
+schema_revision = <"1.2.0.1">
 schema_lifecycle_state = <"stable">
-schema_description = <"openEHR Release 1.0.0 LANG model"> 
+schema_description = <"openEHR Release 1.2.0 BASE model foundation and base types packages"> 
 schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 
 ------------------------------------------------------
--- inclusions
+-- includes
 ------------------------------------------------------
 includes = <
 	["1"] = <
-		id = <"openehr_lang_beom_1.0.0">
+		id = <"openehr_base_foundation_types_1.2.0">
+	>
+	["2"] = <
+		id = <"openehr_base_base_types_1.2.0">
+	>
+	["3"] = <
+		id = <"openehr_base_resource_1.2.0">
 	>
 >
-

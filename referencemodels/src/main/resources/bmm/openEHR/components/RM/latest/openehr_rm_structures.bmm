@@ -1,14 +1,14 @@
--- 
+--
 -- 	component:   openEHR BMM Implementation Technology Specification
--- 	description: openEHR RM component formal expression. This file is an ODIN serialisation of
---               the BMM object meta-model classes found at 
+-- 	description: openEHR Reference Model formal expression. This file is an ODIN serialisation of
+--               the BMM object meta-model classes found at
 --               https://www.openehr.org/releases/LANG/latest/p_bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
 -- 	author:      Thomas Beale <thomas.beale@openEHR.org>
 -- 	support:     https://openehr.atlassian.net/issues/?filter=11117
 -- 	copyright:   Copyright (c) 2009- openEHR Foundation <https://www.openEHR.org>
 -- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
--- 
+--
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
@@ -22,16 +22,16 @@ bmm_version = <"2.3">
 -- schema identification
 -- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
 ------------------------------------------------------
-schema_name = <"structures">
+schema_name = <"rm_structures">
 rm_publisher = <"openehr">
-rm_release = <"1.0.3">
+rm_release = <"1.2.0">
 
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"1.0.3.1">
+schema_revision = <"1.2.0.1">
 schema_lifecycle_state = <"stable">
-schema_description = <"openEHR Release 1.0.3 structures schema">
+schema_description = <"openEHR Release 1.2.0 structures schema">
 schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 
 ------------------------------------------------------
@@ -39,7 +39,7 @@ schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 ------------------------------------------------------
 includes = <
 	["1"] = <
-		id = <"openehr_basic_types_1.0.3">
+		id = <"openehr_rm_data_types_1.2.0">
 	>
 >
 
@@ -50,21 +50,21 @@ includes = <
 packages = <
 	["org.openehr.rm.data_structures"] = <
 		name = <"org.openehr.rm.data_structures">
-		classes = <"DATA_STRUCTURE", ...> 
+		classes = <"DATA_STRUCTURE", ...>
 		packages = <
 			["item_structure"] = <
 				name = <"item_structure">
-				classes = <"ITEM_STRUCTURE", "ITEM_SINGLE", "ITEM_TABLE", "ITEM_TREE", "ITEM_LIST"> 
+				classes = <"ITEM_STRUCTURE", "ITEM_SINGLE", "ITEM_TABLE", "ITEM_TREE", "ITEM_LIST">
 				packages = <
 					["representation"] = <
 						name = <"representation">
-						classes = <"ITEM", "CLUSTER", "ELEMENT"> 
+						classes = <"ITEM", "CLUSTER", "ELEMENT">
 					>
 				>
 			>
 			["history"] = <
 				name = <"history">
-				classes = <"HISTORY", "EVENT", "POINT_EVENT", "INTERVAL_EVENT"> 
+				classes = <"HISTORY", "EVENT", "POINT_EVENT", "INTERVAL_EVENT">
 			>
 		>
 	>
@@ -73,23 +73,19 @@ packages = <
 		packages = <
 			["generic"] = <
 				name = <"generic">
-				classes = <"PARTICIPATION", "PARTY_PROXY", "PARTY_SELF", "PARTY_IDENTIFIED", "PARTY_RELATED", "AUDIT_DETAILS", "ATTESTATION", "REVISION_HISTORY", "REVISION_HISTORY_ITEM"> 
+				classes = <"PARTICIPATION", "PARTY_PROXY", "PARTY_SELF", "PARTY_IDENTIFIED", "PARTY_RELATED", "AUDIT_DETAILS", "ATTESTATION", "REVISION_HISTORY", "REVISION_HISTORY_ITEM">
 			>
 			["archetyped"] = <
 				name = <"archetyped">
-				classes = <"PATHABLE", "LOCATABLE", "LINK", "ARCHETYPED", "FEEDER_AUDIT", "FEEDER_AUDIT_DETAILS"> 
+				classes = <"PATHABLE", "LOCATABLE", "LINK", "ARCHETYPED", "FEEDER_AUDIT", "FEEDER_AUDIT_DETAILS">
 			>
 			["change_control"] = <
 				name = <"change_control">
-				classes = <"VERSIONED_OBJECT", "CONTRIBUTION", "VERSION", "ORIGINAL_VERSION", "IMPORTED_VERSION"> 
+				classes = <"VERSIONED_OBJECT", "CONTRIBUTION", "VERSION", "ORIGINAL_VERSION", "IMPORTED_VERSION">
 			>
 			["directory"] = <
 				name = <"directory">
-				classes = <"FOLDER"> 
-			>
-			["resource"] = <
-				name = <"resource">
-				classes = <"AUTHORED_RESOURCE", "TRANSLATION_DETAILS", "RESOURCE_DESCRIPTION", "RESOURCE_DESCRIPTION_ITEM"> 
+				classes = <"FOLDER">
 			>
 		>
 	>
@@ -151,7 +147,7 @@ class_definitions = <
 
 	["ITEM_TABLE"] = <
 		name = <"ITEM_TABLE">
-		ancestors = <"ITEM_STRUCTURE", ...>
+		ancestors = <"ITEM_STRUCTURE">
 		properties = <
 			["rows"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"rows">
@@ -166,7 +162,7 @@ class_definitions = <
 
 	["ITEM_TREE"] = <
 		name = <"ITEM_TREE">
-		ancestors = <"ITEM_STRUCTURE", ...>
+		ancestors = <"ITEM_STRUCTURE">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -185,13 +181,13 @@ class_definitions = <
 
 	["ITEM"] = <
 		name = <"ITEM">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		is_abstract = <True>
 	>
 
 	["CLUSTER"] = <
 		name = <"CLUSTER">
-		ancestors = <"ITEM", ...>
+		ancestors = <"ITEM">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -207,7 +203,7 @@ class_definitions = <
 
 	["ELEMENT"] = <
 		name = <"ELEMENT">
-		ancestors = <"ITEM", ...>
+		ancestors = <"ITEM">
 		properties = <
 			["null_flavour"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"null_flavour">
@@ -216,6 +212,10 @@ class_definitions = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
 				type = <"DATA_VALUE">
+			>
+			["null_reason"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"null_reason">
+				type = <"DV_TEXT">
 			>
 		>
 	>
@@ -226,7 +226,7 @@ class_definitions = <
 
 	["HISTORY"] = <
 		name = <"HISTORY">
-		ancestors = <"DATA_STRUCTURE", ...>
+		ancestors = <"DATA_STRUCTURE">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -268,7 +268,7 @@ class_definitions = <
 
 	["EVENT"] = <
 		name = <"EVENT">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		is_abstract = <True>
 		generic_parameter_defs = <
 			["T"] = <
@@ -302,7 +302,7 @@ class_definitions = <
 
 	["POINT_EVENT"] = <
 		name = <"POINT_EVENT">
-		ancestors = <"EVENT", ...>
+		ancestors = <"EVENT">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -312,7 +312,7 @@ class_definitions = <
 
 	["INTERVAL_EVENT"] = <
 		name = <"INTERVAL_EVENT">
-		ancestors = <"EVENT", ...>
+		ancestors = <"EVENT">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -343,7 +343,7 @@ class_definitions = <
 
 	["REVISION_HISTORY"] = <
 		name = <"REVISION_HISTORY">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -359,7 +359,7 @@ class_definitions = <
 
 	["REVISION_HISTORY_ITEM"] = <
 		name = <"REVISION_HISTORY_ITEM">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["version_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"version_id">
@@ -380,7 +380,7 @@ class_definitions = <
 
 	["AUDIT_DETAILS"] = <
 		name = <"AUDIT_DETAILS">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system_id">
@@ -411,7 +411,7 @@ class_definitions = <
 
 	["ATTESTATION"] = <
 		name = <"ATTESTATION">
-		ancestors = <"AUDIT_DETAILS", ...>
+		ancestors = <"AUDIT_DETAILS">
 		properties = <
 			["attested_view"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"attested_view">
@@ -444,7 +444,7 @@ class_definitions = <
 
 	["PARTICIPATION"] = <
 		name = <"PARTICIPATION">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["function"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"function">
@@ -474,7 +474,7 @@ class_definitions = <
 	["PARTY_PROXY"] = <
 		name = <"PARTY_PROXY">
 		is_abstract = <True>
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["external_ref"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"external_ref">
@@ -486,7 +486,7 @@ class_definitions = <
 
 	["PARTY_IDENTIFIED"] = <
 		name = <"PARTY_IDENTIFIED">
-		ancestors = <"PARTY_PROXY", ...>
+		ancestors = <"PARTY_PROXY">
 		properties = <
 			["name"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"name">
@@ -506,7 +506,7 @@ class_definitions = <
 
 	["PARTY_RELATED"] = <
 		name = <"PARTY_RELATED">
-		ancestors = <"PARTY_IDENTIFIED", ...>
+		ancestors = <"PARTY_IDENTIFIED">
 		properties = <
 			["relationship"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"relationship">
@@ -518,7 +518,7 @@ class_definitions = <
 
 	["PARTY_SELF"] = <
 		name = <"PARTY_SELF">
-		ancestors = <"PARTY_PROXY", ...>
+		ancestors = <"PARTY_PROXY">
 	>
 
 	------------------------------------------------------------
@@ -528,13 +528,13 @@ class_definitions = <
 	["PATHABLE"] = <
 		name = <"PATHABLE">
 		is_abstract = <True>
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 
 	["LOCATABLE"] = <
 		name = <"LOCATABLE">
 		is_abstract = <True>
-		ancestors = <"PATHABLE", ...>
+		ancestors = <"PATHABLE">
 		properties = <
 			["uid"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"uid">
@@ -575,7 +575,7 @@ class_definitions = <
 
 	["LINK"] = <
 		name = <"LINK">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["meaning"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"meaning">
@@ -597,7 +597,7 @@ class_definitions = <
 
 	["ARCHETYPED"] = <
 		name = <"ARCHETYPED">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"archetype_id">
@@ -621,7 +621,7 @@ class_definitions = <
 
 	["FEEDER_AUDIT"] = <
 		name = <"FEEDER_AUDIT">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["originating_system_item_ids"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"originating_system_item_ids">
@@ -662,7 +662,7 @@ class_definitions = <
 
 	["FEEDER_AUDIT_DETAILS"] = <
 		name = <"FEEDER_AUDIT_DETAILS">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system_id">
@@ -695,6 +695,10 @@ class_definitions = <
 				type = <"String">
 				is_im_runtime = <True>
 			>
+			["other_details"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"other_details">
+				type = <"ITEM_STRUCTURE">
+			>
 		>
 	>
 
@@ -704,7 +708,7 @@ class_definitions = <
 
 	["FOLDER"] = <
 		name = <"FOLDER">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["folders"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"folders">
@@ -722,6 +726,10 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
+			["details"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"details">
+				type = <"ITEM_STRUCTURE">
+			>
 		>
 	>
 
@@ -731,7 +739,7 @@ class_definitions = <
 
 	["CONTRIBUTION"] = <
 		name = <"CONTRIBUTION">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["uid"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"uid">
@@ -760,7 +768,7 @@ class_definitions = <
 
 	["VERSIONED_OBJECT"] = <
 		name = <"VERSIONED_OBJECT">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -790,13 +798,13 @@ class_definitions = <
 
 	["VERSION"] = <
 		name = <"VERSION">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
+		is_abstract = <True>
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
 			>
 		>
-		is_abstract = <True>
 		properties = <
 			["contribution"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"contribution">
@@ -820,7 +828,7 @@ class_definitions = <
 
 	["ORIGINAL_VERSION"] = <
 		name = <"ORIGINAL_VERSION">
-		ancestors = <"VERSION", ...>
+		ancestors = <"VERSION">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -869,7 +877,7 @@ class_definitions = <
 
 	["IMPORTED_VERSION"] = <
 		name = <"IMPORTED_VERSION">
-		ancestors = <"VERSION", ...>
+		ancestors = <"VERSION">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -888,175 +896,4 @@ class_definitions = <
 		>
 	>
 
-	["AUTHORED_RESOURCE"] = <
-		name = <"AUTHORED_RESOURCE">
-		ancestors = <"Any", ...>
-		is_abstract = <True>
-		properties = <
-			["original_language"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"original_language">
-				type = <"CODE_PHRASE">
-				is_mandatory = <True>
-			>
-			["is_controlled"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"is_controlled">
-				type = <"Boolean">
-			>
-			["translations"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"translations">
-				type_def = <
-					container_type = <"List">
-					type = <"TRANSLATION_DETAILS">
-				>
-				cardinality = <|>=1|>
-			>
-			["description"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"description">
-				type = <"RESOURCE_DESCRIPTION">
-			>
-			["revision_history"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"revision_history">
-				type = <"REVISION_HISTORY">
-			>
-		>
-	>
-
-	["TRANSLATION_DETAILS"] = <
-		name = <"TRANSLATION_DETAILS">
-		ancestors = <"Any", ...>
-		properties = <
-			["language"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"language">
-				type = <"CODE_PHRASE">
-				is_mandatory = <True>
-			>
-			["author"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"author">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
-				is_mandatory = <True>
-			>
-			["accreditation"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"accreditation">
-				type = <"String">
-			>
-			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"other_details">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
-			>
-		>
-	>
-
-	["RESOURCE_DESCRIPTION"] = <
-		name = <"RESOURCE_DESCRIPTION">
-		ancestors = <"Any", ...>
-		properties = <
-			["original_author"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"original_author">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
-				is_mandatory = <True>
-			>
-			["other_contributors"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"other_contributors">
-				type_def = <
-					container_type = <"List">
-					type = <"String">
-				>
-				cardinality = <|>=0|>
-			>
-			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"lifecycle_state">
-				type = <"String">
-				is_mandatory = <True>
-			>
-			["resource_package_uri"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"resource_package_uri">
-				type = <"String">
-			>
-			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"other_details">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
-			>
-			["parent_resource"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"parent_resource">
-				type = <"AUTHORED_RESOURCE">
-				is_mandatory = <True>
-			>
-			["details"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"details">
-				type_def = <
-					container_type = <"List">
-					type = <"RESOURCE_DESCRIPTION_ITEM">
-				>
-				is_mandatory = <True>
-			>
-		>
-	>
-
-	["RESOURCE_DESCRIPTION_ITEM"] = <
-		name = <"RESOURCE_DESCRIPTION_ITEM">
-		ancestors = <"Any", ...>
-		properties = <
-			["language"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"language">
-				type = <"CODE_PHRASE">
-				is_mandatory = <True>
-			>
-			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"purpose">
-				type = <"String">
-				is_mandatory = <True>
-			>
-			["keywords"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"keywords">
-				type_def = <
-					container_type = <"List">
-					type = <"String">
-				>
-				cardinality = <|>=0|>
-			>
-			["use"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"use">
-				type = <"String">
-			>
-			["misuse"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"misuse">
-				type = <"String">
-			>
-			["copyright"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"copyright">
-				type = <"String">
-			>
-			["original_resource_uri"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"original_resource_uri">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"Hash">
-						generic_parameters = <"String", "String">
-					>
-				>
-				cardinality = <|>=0|>
-			>
-			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"other_details">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
-			>
-		>
-	>
 >
-
