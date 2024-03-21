@@ -31,6 +31,15 @@ schema_description = <"openEHR Release 1.0.4 BASE model base types packages">
 schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 
 ------------------------------------------------------
+-- includes
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"openehr_base_foundation_types_1.0.4">
+	>
+>
+
+------------------------------------------------------
 -- packages
 ------------------------------------------------------
 packages = <

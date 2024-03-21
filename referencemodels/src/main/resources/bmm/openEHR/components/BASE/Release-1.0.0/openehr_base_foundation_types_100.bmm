@@ -52,7 +52,7 @@ packages = <
 				classes = <"Interval">
 			>
 			["time"] = <
-				name = <"iso8601_time">
+				name = <"time">
 				classes = <
 					"Date", "Time", "Date_time", "Duration",
 					"Iso8601_type", "Iso8601_date", "Iso8601_time", "Iso8601_date_time", "Iso8601_duration"

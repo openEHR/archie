@@ -40,7 +40,7 @@ schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 ------------------------------------------------------
 includes = <
     ["1"] = <
-        id = <"openehr_base_base_types_1.0.0">
+        id = <"openehr_base_base_types_1.1.0">
     >
     ["2"] = <
         id = <"openehr_lang_beom_1.0.0">
@@ -1168,7 +1168,6 @@ class_definitions = <
 					root_type = <"Hash">
 					generic_parameters = <"String", "RESOURCE_DESCRIPTION_ITEM">
 				>
-				cardinality = <|>=1|>
 			>
 		>
 	>
