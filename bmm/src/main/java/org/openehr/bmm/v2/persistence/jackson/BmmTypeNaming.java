@@ -25,6 +25,7 @@ public class BmmTypeNaming extends ClassNameIdResolver {
         put("BMM_INCLUDE_SPEC", BmmIncludeSpec.class).
         put("P_BMM_CLASS", PBmmClass.class).
         put("P_BMM_CONTAINER_PROPERTY", PBmmContainerProperty.class).
+            put("P_BMM_INDEXED_CONTAINER_PROPERTY", PBmmIndexedContainerProperty.class).
         put("P_BMM_ENUMERATION", PBmmEnumeration.class).
         put("P_BMM_ENUMERATION_STRING", PBmmEnumerationString.class).
         put("P_BMM_ENUMERATION_INTEGER", PBmmEnumerationInteger.class).
@@ -33,6 +34,7 @@ public class BmmTypeNaming extends ClassNameIdResolver {
         put("P_BMM_GENERIC_TYPE", PBmmGenericType.class).
         put("P_BMM_OPEN_TYPE", PBmmOpenType.class).
         put("P_BMM_CONTAINER_TYPE", PBmmContainerType.class).
+            put("P_BMM_INDEXED_CONTAINER_TYPE", PBmmIndexedContainerType.class).
         put("P_BMM_PACKAGE", PBmmPackage.class).
         put("P_BMM_PROPERTY", PBmmProperty.class).
         put("P_BMM_SCHEMA", PBmmSchema.class).
