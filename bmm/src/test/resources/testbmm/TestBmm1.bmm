@@ -283,6 +283,20 @@ class_definitions = <
         >
     >
 
+    ["TypeWithHashMap"] = <
+        name = <"TypeWithHashMap">
+        properties = <
+            ["employees"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                name = <"employees">
+                type_def = <
+                    container_type = <"Hash">
+                    index_type = <"String">
+                    type = <"Party">
+                >
+            >
+        >
+    >
+
     ["ProportionKind"] = (P_BMM_ENUMERATION_INTEGER) <
         name = <"ProportionKind">
         ancestors = <"Integer", ...>
