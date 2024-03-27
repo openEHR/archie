@@ -590,27 +590,28 @@ class_definitions = <
 		properties = <
 			["original_language"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"original_language">
-				type_ref = <
-					type = <"Terminology_code">
-					value_constraint = <"openEHR::languages">
-				>
+				type = <"Terminology_code">
 				is_mandatory = <True>
 			>
 			["is_controlled"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"is_controlled">
 				type = <"Boolean">
 			>
-			["translations"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"translations">
-				type_def = <
-					container_type = <"List">
-					type = <"TRANSLATION_DETAILS">
-				>
-				cardinality = <|>=1|>
-			>
+            ["translations"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                name = <"translations">
+                type_def = <
+                   container_type = <"Hash">
+                   index_type = <"String">
+                   type = <"TRANSLATION_DETAILS">
+                >
+            >
 			["description"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"description">
 				type = <"RESOURCE_DESCRIPTION">
+			>
+			["annotations"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"annotations">
+				type = <"RESOURCE_ANNOTATIONS">
 			>
 		>
 	>
@@ -621,45 +622,53 @@ class_definitions = <
 		properties = <
 			["language"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"language">
-				type_ref = <
-					type = <"Terminology_code">
-					value_constraint = <"openEHR::languages">
-				>
+				type = <"Terminology_code">
 				is_mandatory = <True>
 			>
-			["author"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"author">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
+			["author"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                name = <"author">
+                type_def = <
+                   container_type = <"Hash">
+                   index_type = <"String">
+                   type = <"String">
+                >
 				is_mandatory = <True>
 			>
 			["accreditation"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"accreditation">
 				type = <"String">
 			>
-			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"other_details">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
+			["version_last_translated"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version_last_translated">
+				type = <"String">
+			>
+			["other_details"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                 name = <"other_details">
+                 type_def = <
+                     container_type = <"Hash">
+                     index_type = <"String">
+                     type = <"String">
+                 >
 			>
 		>
 	>
 
 	["RESOURCE_DESCRIPTION"] = <
 		name = <"RESOURCE_DESCRIPTION">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
-			["original_author"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"original_author">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
+			["original_author"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                name = <"original_author">
+                type_def = <
+                    container_type = <"Hash">
+                    index_type = <"String">
+                    type = <"String">
+                >
 				is_mandatory = <True>
+			>
+			["original_namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_namespace">
+				type = <"String">
 			>
 			["other_contributors"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"other_contributors">
@@ -668,6 +677,22 @@ class_definitions = <
 					type = <"String">
 				>
 				cardinality = <|>=0|>
+			>
+			["custodian_namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"custodian_namespace">
+				type = <"String">
+			>
+			["custodian_organisation"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"custodian_organisation">
+				type = <"String">
+			>
+			["copyright"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"copyright">
+				type = <"String">
+			>
+			["licence"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"licence">
+				type = <"String">
 			>
 			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"lifecycle_state">
@@ -678,26 +703,51 @@ class_definitions = <
 				name = <"resource_package_uri">
 				type = <"String">
 			>
-			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"other_details">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
+			["ip_acknowledgements"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                name = <"ip_acknowledgements">
+                type_def = <
+                    container_type = <"Hash">
+                    index_type = <"String">
+                    type = <"String">
+                >
+			>
+
+			["references"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                 name = <"references">
+                 type_def = <
+                     container_type = <"Hash">
+                     index_type = <"String">
+                     type = <"String">
+                 >
+			>
+			["conversion_details"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+               name = <"conversion_details">
+               type_def = <
+                   container_type = <"Hash">
+                   index_type = <"String">
+                   type = <"String">
+               >
+			>
+			["other_details"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                 name = <"other_details">
+                 type_def = <
+                     container_type = <"Hash">
+                     index_type = <"String">
+                     type = <"String">
+                 >
 			>
 			["parent_resource"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"parent_resource">
 				type = <"AUTHORED_RESOURCE">
 				is_mandatory = <True>
 			>
-			["details"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"details">
-				type_def = <
-					container_type = <"List">
-					type = <"RESOURCE_DESCRIPTION_ITEM">
-				>
-				is_mandatory = <True>
-				cardinality = <|>=1|>
+			["details"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                name = <"details">
+                type_def = <
+                    container_type = <"Hash">
+                    index_type = <"String">
+                    type = <"RESOURCE_DESCRIPTION_ITEM">
+                >
 			>
 		>
 	>
@@ -708,10 +758,7 @@ class_definitions = <
 		properties = <
 			["language"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"language">
-				type_ref = <
-					type = <"Terminology_code">
-					value_constraint = <"openEHR::languages">
-				>
+				type = <"Terminology_code">
 				is_mandatory = <True>
 			>
 			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
@@ -735,28 +782,21 @@ class_definitions = <
 				name = <"misuse">
 				type = <"String">
 			>
-			["copyright"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"copyright">
-				type = <"String">
+            ["original_resource_uri"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+                name = <"original_resource_uri">
+                type_def = <
+                    container_type = <"Hash">
+                    index_type = <"String">
+                    type = <"String">
+                >
 			>
-			["original_resource_uri"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"original_resource_uri">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"Hash">
-						generic_parameters = <"String", "String">
-					>
-				>
-				cardinality = <|>=0|>
-			>
-			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+			["other_details"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
 				name = <"other_details">
-				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
-				>
-				is_mandatory = <True>
+                type_def = <
+                    container_type = <"Hash">
+                    index_type = <"String">
+                    type = <"String">
+                >
 			>
 		>
 	>
