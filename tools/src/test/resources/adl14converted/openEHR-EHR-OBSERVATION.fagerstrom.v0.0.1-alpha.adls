@@ -1,0 +1,302 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=34026fc4-b577-4b85-aaa9-c77e0aef379f; build_uid=e235734a-2fce-4e24-a790-0536f803f607)
+    openEHR-EHR-OBSERVATION.fagerstrom.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2016-06-06">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Heatherton TF, Kozlowski LT, Frecker RC, Fagerström KO. The Fagerström Test for Nicotine Dependence: a revision of the Fagerström Tolerance Questionnaire. Br J Addict. 1991 Sep; 86 (9):1119-27. PubMed PMID: 1932883.">
+        ["2"] = <"Pomerleau CS, Majchrzak MJ, Pomerleau OF. Nicotine dependence and the Fagerström Tolerance Questionnaire: a brief review. J Subst Abuse. 1989;1(4):471-7. Review. PubMed PMID: 2485293.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+        ["MD5-CAM-1.0.1"] = <"E249C8B15A260DDBB25FCC9A4539A746">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To assess physical dependence on nicotine.">
+            keywords = <"nicotine", "tobacco", "smoking", "dependence", "fagerstrom">
+            use = <"Use to estimate a individual's level of nicotine dependence once they have been identified as a cigarette smoker.
+    
+    This test may be used by the physician to document indications for prescribing medication for nicotine withdrawal.
+    
+    While openEHR archetypes are all freely available under an open license, the specific content of this Fagerström test for nicotine dependence archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners:
+    - The Fagerström Tolerance Questionnaire was developed by Karl-Olov Fagerström. This instrument was modified to the Fagerström Test for Nicotine Dependence by Todd Heatherton, et al. in 1991. The FTND is copyrighted by Taylor and Francis Ltd., but may be reproduced without permission, as available from the source reference (Heatherton, et al., 1991).">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Fagerström test for nicotine dependence
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[id3] occurrences matches {0..1} matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Morning cigarette
+                                        value matches {
+                                            DV_ORDINAL[id9006] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at6]}],
+                                                    [{3}, {[at8]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Difficult to refrain
+                                        value matches {
+                                            DV_ORDINAL[id9007] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Hate to give up
+                                        value matches {
+                                            DV_ORDINAL[id9008] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at13]}],
+                                                    [{1}, {[at14]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id16] occurrences matches {0..1} matches {    -- Daily consumption
+                                        value matches {
+                                            DV_ORDINAL[id9009] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at16]}],
+                                                    [{1}, {[at17]}],
+                                                    [{2}, {[at18]}],
+                                                    [{3}, {[at19]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id21] occurrences matches {0..1} matches {    -- Early morning pattern
+                                        value matches {
+                                            DV_ORDINAL[id9010] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at21]}],
+                                                    [{1}, {[at22]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id24] occurrences matches {0..1} matches {    -- During illness
+                                        value matches {
+                                            DV_ORDINAL[id9011] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at24]}],
+                                                    [{1}, {[at25]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id27] occurrences matches {0..1} matches {    -- Total
+                                        value matches {
+                                            DV_COUNT[id9012] matches {
+                                                magnitude matches {|0..10|}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id28] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id29] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Morning cigarette (synthesised)">
+                description = <"How soon after you wake up do you smoke your first cigarette? (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Difficult to refrain (synthesised)">
+                description = <"Do you find it difficult to refrain from smoking in places where it is forbidden (e.g., in church, at the library, in cinema, etc)? (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Hate to give up (synthesised)">
+                description = <"Which cigarette would you hate most to give up? (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Daily consumption (synthesised)">
+                description = <"How many cigarettes per day do you smoke? (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Early morning pattern (synthesised)">
+                description = <"Do you smoke more during the first hours after waking than during the rest of the day? (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"During illness (synthesised)">
+                description = <"Do you smoke even when you are ill enough to be in bed most of the day? (synthesised)">
+            >
+            ["id29"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id27"] = <
+                text = <"Total">
+                description = <"Aggregate total from all components.">
+            >
+            ["at25"] = <
+                text = <"Yes">
+                description = <"Smoke continues, even if ill enough to be in bed most of the day.">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"Not smoking if ill enough to be in bed most of the day.">
+            >
+            ["id24"] = <
+                text = <"During illness">
+                description = <"Do you smoke even when you are ill enough to be in bed most of the day?">
+            >
+            ["at22"] = <
+                text = <"Yes">
+                description = <"Smoke more during the first hours after waking.">
+            >
+            ["at21"] = <
+                text = <"No">
+                description = <"Not smoking more during the first hours after waking.">
+            >
+            ["id21"] = <
+                text = <"Early morning pattern">
+                description = <"Do you smoke more during the first hours after waking than during the rest of the day?">
+            >
+            ["at19"] = <
+                text = <"31 or more">
+                description = <"Smoking >30 cigarettes per day.">
+            >
+            ["at18"] = <
+                text = <"21-30">
+                description = <"Smoking 21-30 cigarettes per day.">
+            >
+            ["at17"] = <
+                text = <"11-20">
+                description = <"Smoking 11-20 cigarettes per day.">
+            >
+            ["at16"] = <
+                text = <"10 or Less">
+                description = <"Smoking <=10 cigarettes per day.">
+            >
+            ["id16"] = <
+                text = <"Daily consumption">
+                description = <"How many cigarettes per day do you smoke?">
+            >
+            ["at14"] = <
+                text = <"The first in the morning">
+                description = <"First cigarette in the morning would be most difficult to give up.">
+            >
+            ["at13"] = <
+                text = <"Any other">
+                description = <"Any cigarette other than the first cigarette in the morning would be most difficult to give up.">
+            >
+            ["id13"] = <
+                text = <"Hate to give up">
+                description = <"Which cigarette would you hate most to give up?">
+            >
+            ["at11"] = <
+                text = <"Yes">
+                description = <"It is difficult to refrain from smoking.">
+            >
+            ["at10"] = <
+                text = <"No">
+                description = <"It is not difficult to refrain from smoking.">
+            >
+            ["id10"] = <
+                text = <"Difficult to refrain">
+                description = <"Do you find it difficult to refrain from smoking in places where it is forbidden (e.g., in church, at the library, in cinema, etc)?">
+            >
+            ["at8"] = <
+                text = <"Within 5 Minutes">
+                description = <"First cigarette is smoked in the first 5 minutes after waking.">
+            >
+            ["at7"] = <
+                text = <"Within 31-60 Minutes">
+                description = <"First cigarette is smoked between 31 and 60 minutes after waking.">
+            >
+            ["at6"] = <
+                text = <"Within 6-30 Minutes">
+                description = <"First cigarette is smoked between 6 and 30 minutes after waking.">
+            >
+            ["at5"] = <
+                text = <"After 60 Minutes">
+                description = <"First cigarette is smoked more than 60 minutes after waking.">
+            >
+            ["id5"] = <
+                text = <"Morning cigarette">
+                description = <"How soon after you wake up do you smoke your first cigarette?">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Fagerström test for nicotine dependence">
+                description = <"Standard instrument for assessing physical dependence on nicotine.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at13", "at14">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at10", "at11">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at5", "at7", "at6", "at8">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at24", "at25">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at21", "at22">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at16", "at17", "at18", "at19">
+        >
+    >

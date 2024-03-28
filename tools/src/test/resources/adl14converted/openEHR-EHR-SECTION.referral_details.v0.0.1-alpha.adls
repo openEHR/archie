@@ -1,0 +1,58 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=839ab12c-eb0b-310a-86a4-bd4931c45211; build_uid=8c03f19d-3153-4693-a7dc-51e43a8da0eb)
+    openEHR-EHR-SECTION.referral_details.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2010-03-07">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heath Frankel, Ocean Informatics, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"CAB38CA743E31011F6C58590DF59D955">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To demonstrate a design pattern for representation of a request for a referral.">
+            keywords = <"referral", "request">
+            use = <"Use within a COMPOSITION related to referral, such as COMPOSITION.request.
+    Supporting summary information can be added alongside this SECTION.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    SECTION[id1] matches {    -- Referral details
+        items cardinality matches {0..*; unordered} matches {
+            allow_archetype INSTRUCTION[id2] matches {     -- Referral request
+                include
+                    archetype_id/value matches {/openEHR-EHR-INSTRUCTION\.service_request\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id2"] = <
+                text = <"Referral request">
+                description = <"Slot constrained to specifically include archetypes representing referral requests.">
+            >
+            ["id1"] = <
+                text = <"Referral details">
+                description = <"To demonstrate a design pattern for the representation of Referral details within a 'Request for service' composition.">
+            >
+        >
+    >

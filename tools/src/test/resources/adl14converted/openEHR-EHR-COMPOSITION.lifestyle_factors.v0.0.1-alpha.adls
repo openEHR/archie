@@ -1,0 +1,111 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=4598a143-5cf0-42fa-9ae5-2b653c34063a; build_uid=d9d9ec2d-68c5-449c-b54b-e4098b3363ba)
+    openEHR-EHR-COMPOSITION.lifestyle_factors.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics, Australia">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2013-06-12">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    references = <
+        ["1"] = <"Derived from: Lifestyle factors, Draft archetype [Internet]. Australian Digital Health Agency (NEHTA), ADHA Clinical Knowledge Manager. Authored: 2013 Jun 12. Available at: http://dcm.nehta.org.au/ckm#showArchetype_1013.1.1323_2 (discontinued)">
+    >
+    other_details = <
+        ["current_contact"] = <"Dr Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"310F1C477CEDA8D1EB5C14D1C1F6B211">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a persistent and evolving summary record of information about lifestyle choices and activities that may influence clinical decision-making and care provision.">
+            keywords = <"life", "style", "lifestyle", "risk", "factor", "tobacco", "smoking", "alcohol", "binge", "diet", "exercise">
+            use = <"Use to record a persistent and evolving summary record of information about relevant lifestyle choices and activities that may influence clinical decision-making and care provision.
+    
+    The scope of this record can includes, but is not limited to:
+    - an overview of smoking and tobacco use;
+    - an overview of alcohol consumption;
+    - an overview of substance use;
+    - an overview of physical activity;
+    - an overview of diet and nutrition; and when relevant,
+    - an overview of sexual history.
+    
+    The intent of this COMPOSITION is for use as a persistent summary, however it has been identified that for implementation the archetype also needs additional attributes related to the context of the event. As a result, the COMPOSITION has been temporarily modified as an EVENT COMPOSITION which allows addition of an Items SLOT into which additional context-related archetypes can be included. This new requirement for context-related attributes in the Persistent COMPOSITION has been requested as a future openEHR Reference Model update.
+    
+    Initial design of this archetype was funded by the iCareNet Antenatal Shared Care Plan project, Northern Territory, Australia.">
+            misuse = <"Not to record a series of OBSERVATIONS about current activity, such as might be used to create a daily diary of alcohol consumption or activity in a specific exercise session.">
+            copyright = <"© National E-Health Transition Authority, openEHR Foundation">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {    -- Lifestyle Factors
+        category matches {
+            DV_CODED_TEXT[id9001] matches {
+                defining_code matches {[at9000]}    -- event
+            }
+        }
+        context matches {
+            EVENT_CONTEXT[id9002] matches {
+                other_context matches {
+                    ITEM_TREE[id3] matches {
+                        items cardinality matches {0..*; unordered} matches {
+                            allow_archetype ITEM[id4] matches {     -- Items
+                                include
+                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.document_entry_metadata(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        content cardinality matches {1..*; unordered} matches {
+            allow_archetype EVALUATION[id5] matches {     -- Factors
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.alcohol_use_summary(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-EVALUATION\.nutrition_summary(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-EVALUATION\.physical_activity_summary(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-EVALUATION\.substance_use_summary(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-EVALUATION\.exposure(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-EVALUATION\.alcohol_use_summary(-[a-zA-Z0-9_]+)*\.v0\..*|openEHR-EHR-EVALUATION\.exposure(-[a-zA-Z0-9_]+)*\.v0\..*|openEHR-EHR-EVALUATION\.physical_activity_summary(-[a-zA-Z0-9_]+)*\.v0\..*|openEHR-EHR-EVALUATION\.tobacco_smoking_summary(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            allow_archetype EVALUATION[id2] matches {     -- Absence
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.absence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"event">
+                description = <"event">
+            >
+            ["id5"] = <
+                text = <"Factors">
+                description = <"Summary information about each lifestyle factor.">
+            >
+            ["id4"] = <
+                text = <"Items">
+                description = <"Additional COMPOSITION related data.">
+            >
+            ["id2"] = <
+                text = <"Absence">
+                description = <"Statement about the absence of lifestyle factor information.">
+            >
+            ["id1"] = <
+                text = <"Lifestyle Factors">
+                description = <"A persistent and evolving summary record of information about lifestyle factors that may influence clinical decision-making and care provision.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/433>
+        >
+    >

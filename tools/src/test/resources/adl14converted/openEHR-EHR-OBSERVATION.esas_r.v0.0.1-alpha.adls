@@ -1,0 +1,396 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=e0b84085-0bb6-4843-8fe7-ee2267ba02c6; build_uid=27b6ac9c-d619-4ec6-9e73-ac5fddd02110)
+    openEHR-EHR-OBSERVATION.esas_r.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"John Tore Valand">
+                ["organisation"] = <"Haukeland Universitetssjukehus">
+                ["email"] = <"john.tore.valand@helse-bergen.no">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"John Tore Valand">
+        ["organisation"] = <"Helse Bergen HF">
+        ["date"] = <"2019-03-28">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"1.Watanabe SM, Nekolaichuk C, Beaumont C, Johnson L, Myers J, Strasser F. A multi-centre comparison of two numerical versions of the Edmonton Symptom Assessment System in palliative care patients J Pain Symptom Manage 2011; 41:456-468.">
+        ["2"] = <"2. Bruera E, Kuehn N, Miller MJ, Selmser P, Macmillan K. The Edmonton Symptom Assessment System (ESAS): a simple method for the assessment of palliative care patients. J Palliat Care 1991; 7:6-9.">
+        ["3"] = <"Guidelines:">
+        ["4"] = <"http://www.palliative.org/NewPC/_pdfs/tools/3C7%20ESAS-r%20guidelines%20Aug%2022%202014.pdf">
+        ["5"] = <"Norwegian translation:">
+        ["6"] = <"https://helse-bergen.no/kompetansesenter-i-lindrande-behandling/palliasjon-verktoy-for-helsepersonell/esas-symptomregistrering">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"667820FF6EDA5796F02AAB633B73CA94">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere en profil av alvorlighetsgrad av symptomer på et tidspunkt.">
+            use = <"Brukes for å registrere en profil av alvorlighetsgrad av symptomer på et tidspunkt.
+    
+    ESAS er utviklet for å følge består av ni av de vanligste symptomer palliative pasienter kan oppleve: Smerte, slapphet, døsighet, kvalme, matlyst, tung pust, depresjon, angst og velvære. Det er også et åpent felt for pasientspesifikke symtom eller plage.
+    
+    ESAS-r er ment for å følge pasientens perspektiver på symptomer. I noen tilfeller kan det være nødvendig å få en klinikers perspektiv. ESAS-r gir en profil av symptomers alvorlighetsgrad på et tidspunkt. Gjentagende målinger bidrar til å følge utvikling av symtomenes alvorlighetsgrad over tid.
+    
+    Dersom det ikke er mulig å gradere et symptom, kan klinikeren bruke null flavour \"Not appliccable\" for å indikere at et symptom ikke kan vurderes.
+    
+    Edmonton Symptom Assessment System - revidert versjon (ESAS-r)(1) erstatter ESAS (2). ESAS-r er fritt tilgjengelig for bruk, sammen med passende erkjennelse av dens kilde.">
+            misuse = <"Esas-r er bare en del av en holistisk klinisk evaluering. Den er ikke en fullstendig symtomvurdering.
+    
+    Brukes ikke for å registrere et enkelt symptom, bruk arketypen CLUSTER.symptom_sign (Symptom) for dette formålet.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a profile of symptom severity at a point in time.">
+            use = <"Use to record a profile of symptom severity at a point in time.
+    
+    The ESAS is a tool that was developed to assist in the assessment of nine symptoms that are common in palliative care patients: pain, tiredness, drowsiness, nausea, lack of appetite, depression, anxiety, shortness of breath, and wellbeing. There is also a blank scale for patient-specific symptoms. 
+    
+    The ESAS-r is intended to capture the patient’s perspective on symptoms. However, in some situations it may be necessary to obtain a caregiver’s perspective. The ESAS-r provides a profile of symptom severity at a point in time. Repeated assessments may help to track changes in symptom severity over time. 
+    
+    If it is not possible to rate a symptom, the caregiver may use the null flavour 'Not applicable' to indicate 'Unable to assess' on the relevant symptom.
+    
+    The revised Edmonton Symptom Assessment System Revised (ESAS-r)(1) replaces the ESAS (2). The ESAS-r is freely available for use, with appropriate acknowledgement of its source.">
+            misuse = <"The ESAS-r is only one part of a holistic clinical assessment. It is not a complete symptom assessment in itself. 
+    
+    Not to be used to record a single symptom only, use the CLUSTER.symptom_sign archetype for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Revised Edmonton Symptom Assessment System (ESAS-r)
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {0..*; unordered} matches {
+                    POINT_EVENT[id3] matches {    -- Any point in time event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Pain
+                                        value matches {
+                                            DV_QUANTITY[id9001] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Tiredness
+                                        value matches {
+                                            DV_QUANTITY[id9002] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Drowsiness
+                                        value matches {
+                                            DV_QUANTITY[id9003] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Nausea
+                                        value matches {
+                                            DV_QUANTITY[id9004] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Lack of Appetite
+                                        value matches {
+                                            DV_QUANTITY[id9005] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Shortness of Breath
+                                        value matches {
+                                            DV_QUANTITY[id9006] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id11] occurrences matches {0..1} matches {    -- Depression
+                                        value matches {
+                                            DV_QUANTITY[id9007] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id12] occurrences matches {0..1} matches {    -- Anxiety
+                                        value matches {
+                                            DV_QUANTITY[id9008] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Well-being
+                                        value matches {
+                                            DV_QUANTITY[id9009] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..10.0|}
+                                                units matches {"1"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id15] matches {    -- Other problem
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id17] occurrences matches {0..1} matches {    -- Problem name
+                                                value matches {
+                                                    DV_TEXT[id9010] 
+                                                }
+                                            }
+                                            ELEMENT[id18] occurrences matches {0..1} matches {    -- Severity rating
+                                                value matches {
+                                                    DV_QUANTITY[id9011] matches {
+                                                        property matches {[at9000]}    -- Qualified real
+                                                        magnitude matches {|0.0..10.0|}
+                                                        units matches {"1"}
+                                                        precision matches {0}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id19] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id20] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["at9000"] = <
+                text = <"* Qualified real (en)">
+                description = <"* Qualified real (en)">
+            >
+            ["id20"] = <
+                text = <"Tilleggsinformasjon">
+                description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+                comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
+            >
+            ["id18"] = <
+                text = <"Symptomintensitet">
+                description = <"Graden av plager av \"Annet problem\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ingen annet problem\" og 10 representerer \"Verst tenkelig annet problem\".">
+            >
+            ["id17"] = <
+                text = <"Navn på problem">
+                description = <"Navn på annet problem. For eksempel forstoppelse.">
+            >
+            ["id15"] = <
+                text = <"Annet problem">
+                description = <"Annet symptom eller plage.">
+            >
+            ["id13"] = <
+                text = <"Velvære">
+                description = <"Graden av plager av \"Velvære\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Best tenkelig velvære\" og 10 representerer \"Verst tenkelig velvære\".
+    
+    Velvære=hvordan du har det alt tatt i betraktning.">
+            >
+            ["id12"] = <
+                text = <"Angst">
+                description = <"Graden av plager av \"Angst\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ingen angst\" og 10 representerer \"Verst tenkelig angst\".
+    
+    Angst=å føle seg urolig.">
+            >
+            ["id11"] = <
+                text = <"Depresjon">
+                description = <"Graden av plager av \"Depresjon\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ingen depresjon\" og 10 representerer \"Verst tenkelig depresjon\".
+    
+    Depresjon=å føle seg nedstemt.">
+            >
+            ["id10"] = <
+                text = <"Tung pust">
+                description = <"Graden av plager av \"Tung pust\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ingen tung pust\" og 10 representerer \"Verst tenkelig tung pust\".">
+            >
+            ["id9"] = <
+                text = <"Nedsatt matlyst">
+                description = <"Graden av plager av \"Nedsatt matlyst\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ikke nedsatt matlyst\" og 10 representerer \"Verst tenkelig nedsatt matlyst\".">
+            >
+            ["id8"] = <
+                text = <"Kvalme">
+                description = <"Graden av plager av \"Kvalme\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ingen kvalme\" og 10 representerer \"Verst tenkelig kvalme\".">
+            >
+            ["id7"] = <
+                text = <"Døsighet">
+                description = <"Graden av plager av \"Døsighet\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ingen døsighet\" og 10 representerer \"Verst tenkelig døsighet\".
+    
+    Døsighet=å føle seg søvnig.">
+            >
+            ["id6"] = <
+                text = <"Slapphet">
+                description = <"Graden av plager av \"Slapphet\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ingen slapphet\" og 10 representerer \"Verst tenkelig slapphet\".
+    
+    Slapphet=mangel på krefter.">
+            >
+            ["id5"] = <
+                text = <"Smerte">
+                description = <"Graden av plager av \"Smerte\" på en skala fra 0 til 10.">
+                comment = <"0 representerer \"Ingen smerte\" og 10 representerer \"Verst tenkelig smerte\".">
+            >
+            ["id3"] = <
+                text = <"Uspesifisert tidspunkthendelse">
+                description = <"Standard, uspesifisert tidspunkt som kan defineres mer eksplisitt i et templat eller i en applikasjon.">
+            >
+            ["id1"] = <
+                text = <"Edmonton Symptom Assessment System - revidert versjon (ESAS-r)">
+                description = <"The revised Edmonton Symptom Assessment System (ESAS-r), er et selvrapporteringsskjema for ni av de vanligste symptomene palliative pasienter kan oppleve. Smerte, slapphet, døsighet, kvalme, matlyst, tung pust, depresjon, angst og velvære.">
+            >
+        >
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id18"] = <
+                text = <"Severity rating">
+                description = <"Rating of the severity of 'Other problem' on a 0 to 10 scale.">
+                comment = <"0 represents 'No other problem' and 10 represents 'Worst possible other problem'.">
+            >
+            ["id17"] = <
+                text = <"Problem name">
+                description = <"Name of other problem. For example constipation.">
+            >
+            ["id15"] = <
+                text = <"Other problem">
+                description = <"Other symptom or problem.">
+            >
+            ["id13"] = <
+                text = <"Well-being">
+                description = <"Rating of the severity of 'Well-being' on a 0 to 10 scale.">
+                comment = <"0 represents 'Best well-being' and 10 represents 'Worst possible well-being'.
+    
+    Well-being = how you feel overall.">
+            >
+            ["id12"] = <
+                text = <"Anxiety">
+                description = <"Rating of the severity of 'Anxiety' on a 0 to 10 scale.">
+                comment = <"0 represents 'No anxiety' and 10 represents 'Worst possible anxiety'.
+    
+    Anxiety = feeling nervous.">
+            >
+            ["id11"] = <
+                text = <"Depression">
+                description = <"Rating of the severity of 'Depression' on a 0 to 10 scale.">
+                comment = <"0 represents 'No depression' and 10 represents 'Worst possible depression'.
+    
+    Depression = feeling sad.">
+            >
+            ["id10"] = <
+                text = <"Shortness of Breath">
+                description = <"Rating of the severity of 'Shortness of Breath' on a 0 to 10 scale.">
+                comment = <"0 represents 'No shortness of breath' and 10 represents 'Worst possible shortness of breath'.">
+            >
+            ["id9"] = <
+                text = <"Lack of Appetite">
+                description = <"Rating of the severity of 'Lack of Appetite' on a 0 to 10 scale.">
+                comment = <"0 represents 'No lack of appetite' and 10 represents 'Worst possible lack of appetite'.">
+            >
+            ["id8"] = <
+                text = <"Nausea">
+                description = <"Rating of the severity of 'Nausea' on a 0 to 10 scale.">
+                comment = <"0 represents 'No nausea' and 10 represents 'Worst possible nausea'.">
+            >
+            ["id7"] = <
+                text = <"Drowsiness">
+                description = <"Rating of the severity of 'Drowsiness' on a 0 to 10 scale.">
+                comment = <"0 represents 'No drowsiness' and 10 represents 'Worst possible drowsiness'.
+    
+    Drowsiness = feeling sleepy.">
+            >
+            ["id6"] = <
+                text = <"Tiredness">
+                description = <"Rating of the severity of 'Tiredness' on a 0 to 10 scale.">
+                comment = <"0 represents 'No tiredness' and 10 represents 'Worst possible tiredness'.
+    
+    Tiredness = lack of energy.">
+            >
+            ["id5"] = <
+                text = <"Pain">
+                description = <"Rating of the severity of 'Pain' on a 0 to 10 scale.">
+                comment = <"0 represents 'No pain' and 10 represents 'Worst possible pain'.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Revised Edmonton Symptom Assessment System (ESAS-r)">
+                description = <"The ESAS-r is a tool that was developed to assist in the assessment of nine symptoms that are common in palliative care patients: pain, tiredness, drowsiness, nausea, lack of
+    appetite, depression, anxiety, shortness of breath, and wellbeing.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/380>
+        >
+    >

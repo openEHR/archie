@@ -1,0 +1,280 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=c4ef831a-deaa-3968-97d9-fb3744e9394e; build_uid=a970511b-e052-4ffc-81c4-aac412df0a7f)
+    openEHR-EHR-SECTION.soap.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Adriana Kitajima, Débora Farage, Fernanda Maia, Laíse Figueiredo, Marivan Abrahão">
+                ["organisation"] = <"Core Consulting">
+                ["email"] = <"contato@coreconsulting.com.br">
+            >
+            accreditation = <"Hospital Alemão Oswaldo Cruz (HAOC)">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2006-06-27">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Ian McNicoll, freshEHR Clinical Informatics", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Weed LL. Medical records that guide and teach. New Engl J Med: 1987; 278:593-9 and 278:652-657">
+        ["2"] = <"Weed LL Medical records, medical education and patient care. Press of the Case Western Reserve University, 1969 ">
+        ["3"] = <"http://www.prorec.it/documenti/EPR_EHR/NHS-Update-POMR-SOAP.doc">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"31AD546EB7847D6253B395CFFF28FC5C">
+    >
+    details = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para cabeçalhos SOAP no registro com baseado no estilo de registro orientado a problema de Lawrence Weed.">
+            keywords = <"subjetivo", "objetivo", "avaliação", "plano", "educação", "problema", "orientado">
+            use = <"Para registros orientados a problema estruturados">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For SOAP(E) headings in the record based on the problem oriented recording style of Lawrence Weed.">
+            keywords = <"subjective", "objective", "assessment", "plan", "education", "problem", "oriented">
+            use = <"For structured problem oriented records.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    SECTION[id1] matches {    -- SOAP(E)
+        items cardinality matches {0..*; unordered} matches {
+            SECTION[id2] occurrences matches {0..1} matches {    -- S
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype OBSERVATION[id7]
+                    allow_archetype SECTION[id8] occurrences matches {0..1} matches {     -- Subsections
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+            SECTION[id3] occurrences matches {0..1} matches {    -- O
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype OBSERVATION[id9] matches {     -- Observations and physical exam
+                        include
+                            archetype_id/value matches {/openEHR-EHR-OBSERVATION\.exam\.v1\..*|openEHR-EHR-OBSERVATION\.blood_pressure\.v2\..*|openEHR-EHR-OBSERVATION\.pulse\.v1\..*|openEHR-EHR-OBSERVATION\.pulse_oximetry\.v1\..*|openEHR-EHR-OBSERVATION\.body_temperature\.v2\..*|openEHR-EHR-OBSERVATION\.respiration\.v1\..*/}
+                    }
+                    allow_archetype SECTION[id10] occurrences matches {0..1} matches {     -- Subsections
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+            SECTION[id4] occurrences matches {0..1} matches {    -- A
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype EVALUATION[id11] matches {     -- Assessment, summary and diagnoses
+                        include
+                            archetype_id/value matches {/openEHR-EHR-EVALUATION\.problem_diagnosis\.v1\..*|openEHR-EHR-EVALUATION\.differential_diagnosis\.v0\..*|openEHR-EHR-EVALUATION\.clinical_synopsis\.v1\..*/}
+                    }
+                    allow_archetype SECTION[id12] occurrences matches {0..1} matches {     -- Subsections
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+            SECTION[id5] occurrences matches {0..1} matches {    -- P
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype INSTRUCTION[id13] matches {     -- Planned actions
+                        include
+                            archetype_id/value matches {/openEHR-EHR-INSTRUCTION\.service_request\.v1\..*|openEHR-EHR-INSTRUCTION\.medication_order\.v2\..*|openEHR-EHR-INSTRUCTION\.notification\.v0\..*|openEHR-EHR-INSTRUCTION\.care_plan_request\.v0\..*/}
+                    }
+                    allow_archetype ACTION[id14] matches {     -- Actions taken
+                        include
+                            archetype_id/value matches {/openEHR-EHR-ACTION\.care_plan\.v0\..*|openEHR-EHR-ACTION\.service\.v0\..*|openEHR-EHR-ACTION\.procedure\.v1\..*|openEHR-EHR-ACTION\.health_education\.v1\..*|openEHR-EHR-ACTION\.review\.v1\..*|openEHR-EHR-ACTION\.medication\.v1\..*|openEHR-EHR-ACTION\.informed_consent\.v0\..*/}
+                    }
+                    allow_archetype ADMIN_ENTRY[id16] matches {     -- Administrative notes
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    allow_archetype SECTION[id15] occurrences matches {0..1} matches {     -- Subsections
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+            SECTION[id6] occurrences matches {0..1} matches {    -- E
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype INSTRUCTION[id17] matches {     -- Planned educational activities
+                        include
+                            archetype_id/value matches {/openEHR-EHR-INSTRUCTION\.health_education_request\.v0\..*/}
+                    }
+                    allow_archetype ACTION[id18] matches {     -- Educational activities
+                        include
+                            archetype_id/value matches {/openEHR-EHR-INSTRUCTION\.health_education_request\.v0\..*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["pt-br"] = <
+            ["id18"] = <
+                text = <"Atividades educacionais">
+                description = <"Recursos educacionais centrados no paciente que tenham sido entregues p. ex. entrega de folheto de cessação do tabagismo.">
+            >
+            ["id17"] = <
+                text = <"Atividades educacionais planejadas">
+                description = <"Recursos educacionais para pacientes que foram instruídos ou planejados.">
+            >
+            ["id16"] = <
+                text = <"Notas administrativas">
+                description = <"Notas administrativas.">
+            >
+            ["id15"] = <
+                text = <"Subseções">
+                description = <"Mais detalhes.">
+            >
+            ["id14"] = <
+                text = <"Ações tomadas">
+                description = <"Ações que devem ser empreendidas p. ex. medicamento imediatamente administrado.">
+            >
+            ["id13"] = <
+                text = <"Ações planejadas">
+                description = <"Ações planejadas ou que foram instruídas. p.ex ordens.">
+            >
+            ["id12"] = <
+                text = <"Subseções">
+                description = <"*">
+            >
+            ["id11"] = <
+                text = <"Avaliação, resumo e diagnósticos">
+                description = <"Avaliações acumulativas ou avaliações dos problemas apresentados pelo paciente, incluindo diagnósticos.">
+            >
+            ["id10"] = <
+                text = <"Subseções">
+                description = <"Mais detalhes.">
+            >
+            ["id9"] = <
+                text = <"Observações e exame físico">
+                description = <"Achados clínicos advindos da observação ou exame físico.">
+            >
+            ["id8"] = <
+                text = <"Subseções">
+                description = <"Mais detalhes.">
+            >
+            ["id7"] = <
+                text = <"Estória e relatórios da pessoa ou outros">
+                description = <"História clínica subjetiva obtida do paciente ou de outros">
+            >
+            ["id6"] = <
+                text = <"Educação">
+                description = <"Componentes educacionais ofertados.">
+            >
+            ["id5"] = <
+                text = <"Plano">
+                description = <"Plano feitos ou procedimentos realizados.">
+            >
+            ["id4"] = <
+                text = <"Avaliação">
+                description = <"A avaliação feita pelo clínico.">
+            >
+            ["id3"] = <
+                text = <"Objetivo">
+                description = <"Achados objetivos ou observações feitas pelo clínico.">
+            >
+            ["id2"] = <
+                text = <"Subjetivo">
+                description = <"Achados subjetivos ou estória contada pela pessoa.">
+            >
+            ["id1"] = <
+                text = <"SOAP(E)">
+                description = <"Cabeçalho orientado ao problema no registro do problema apresentado pelo paciente ou cliente">
+            >
+        >
+        ["en"] = <
+            ["id18"] = <
+                text = <"Educational activities">
+                description = <"Patient-centrededucational resources which have been delivered e.g. smoking cessation leaflet given.">
+            >
+            ["id17"] = <
+                text = <"Planned educational activities">
+                description = <"Patient educational resources which have been ordered or planned.">
+            >
+            ["id16"] = <
+                text = <"Administrative notes">
+                description = <"Administrative notes.">
+            >
+            ["id15"] = <
+                text = <"Subsections">
+                description = <"Additional structured detail.">
+            >
+            ["id14"] = <
+                text = <"Actions taken">
+                description = <"Actions which have been undertaken e.g. medication immediately administered.">
+            >
+            ["id13"] = <
+                text = <"Planned actions">
+                description = <"Actions which are planned or have been instructed. e.g orders.">
+            >
+            ["id12"] = <
+                text = <"Subsections">
+                description = <"Additional structured detail.">
+            >
+            ["id11"] = <
+                text = <"Assessment, summary and diagnoses">
+                description = <"Summative assessments or evaluations of the issues presented by the patient, including diagnoses.">
+            >
+            ["id10"] = <
+                text = <"Subsections">
+                description = <"Additional structured detail.">
+            >
+            ["id9"] = <
+                text = <"Observations and physical exam">
+                description = <"Clinical findings arrived at through observation or physical examination.">
+            >
+            ["id8"] = <
+                text = <"Subsections">
+                description = <"Additional structured detail.">
+            >
+            ["id7"] = <
+                text = <"Story and reports from the person and others">
+                description = <"Subjective clinical history taken from the patient or others.">
+            >
+            ["id6"] = <
+                text = <"E">
+                description = <"Educational components offered.">
+            >
+            ["id5"] = <
+                text = <"P">
+                description = <"Plans made or procedures carried out.">
+            >
+            ["id4"] = <
+                text = <"A">
+                description = <"The assessment made by the clinician.">
+            >
+            ["id3"] = <
+                text = <"O">
+                description = <"The objective findings or observations made by the clinician.">
+            >
+            ["id2"] = <
+                text = <"S">
+                description = <"The subjective findings or story told by the person.">
+            >
+            ["id1"] = <
+                text = <"SOAP(E)">
+                description = <"Problem-oriented heading in the record of the problem presented by the patient or client.">
+            >
+        >
+    >

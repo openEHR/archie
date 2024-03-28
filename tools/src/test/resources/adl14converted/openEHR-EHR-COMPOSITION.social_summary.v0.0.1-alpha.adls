@@ -1,0 +1,105 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=8b0073a3-2bb7-4f39-98e8-7c8d44e87d87; build_uid=7971a608-f4f4-4644-a32f-bbc34e156cf4)
+    openEHR-EHR-COMPOSITION.social_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics, Australia">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2013-06-12">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    references = <
+        ["1"] = <"Derived from: Social Summary, Draft archetype [Internet]. Australian Digital Health Agency (NEHTA), ADHA Clinical Knowledge Manager. Authored: 2013Jun 12. Available at: http://dcm.nehta.org.au/ckm#showArchetype_1013.1.1324_2 (discontinued)">
+    >
+    other_details = <
+        ["current_contact"] = <"Dr Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"2BE70A8D1C92475DFB77F9FD4AF450F2">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a  persistent and evolving summary record of information about social circumstances and experiences that may impact an individual's health.">
+            keywords = <"social", "family", "education", "occupation", "environment", "housing", "finances">
+            use = <"Use to record a  persistent and evolving summary record of information about social circumstances or experiences that may have a potential impact on an individual's health.
+    
+    This archetype has been designed primarily to hold the EVALUATION.social_summary archetype as the framework to contain nested, detailed CLUSTER archetypes, each of which will describe the various aspects of the specific social circumstances or experiences in detail.
+    
+    The scope of Social Summary record/document can include, but is not limited to:
+    - an overview;
+    - household details;
+    - housing details;
+    - education and training details;
+    - occupation details; and
+    - domestic/family violence information.
+    
+    The intent of this COMPOSITION is for use as a persistent summary, however it has been identified that for implementation the archetype also needs additional attributes related to the context of the event. As a result, the COMPOSITION has been temporarily modified as an EVENT COMPOSITION which allows addition of an Items SLOT into which additional context-related archetypes can be included. This new requirement for context-related attributes in the Persistent COMPOSITION has been requested as a future openEHR Reference Model update.
+    
+    Initial design of this archetype was funded by the Hearing Health project, Northern Territory, Australia.">
+            misuse = <"">
+            copyright = <"© Australian Digital Health Agency, openEHR Foundation">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {    -- Social Summary
+        category matches {
+            DV_CODED_TEXT[id9001] matches {
+                defining_code matches {[at9000]}    -- event
+            }
+        }
+        context matches {
+            EVENT_CONTEXT[id9002] matches {
+                other_context matches {
+                    ITEM_TREE[id3] matches {
+                        items cardinality matches {0..*; unordered} matches {
+                            allow_archetype ITEM[id4] matches {     -- Items
+                                include
+                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.document_entry_metadata(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        content cardinality matches {1..*; unordered} matches {
+            allow_archetype EVALUATION[id2] matches {     -- Social Summary
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.social_summary(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"event">
+                description = <"event">
+            >
+            ["id4"] = <
+                text = <"Items">
+                description = <"Additional COMPOSITION related data.">
+            >
+            ["id2"] = <
+                text = <"Social Summary">
+                description = <"Summary information about social circumstances or experiences that may have a potential impact on an individual's health.">
+            >
+            ["id1"] = <
+                text = <"Social Summary">
+                description = <"A persistent and evolving summary record of information about social circumstances and experiences that may impact an individual's health.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/433>
+        >
+    >

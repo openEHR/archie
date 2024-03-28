@@ -1,0 +1,108 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=69876541-af05-38de-8427-02b634d3e2ea; build_uid=d1bd88a5-bdf0-449f-b6bb-d39da593db17)
+    openEHR-EHR-EVALUATION.pregnancy_bf_status.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2012-12-02">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Sam Heard, Ocean Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, heather.leslie@atomicainformatics.com">
+        ["MD5-CAM-1.0.1"] = <"F69BA467EE086906B0B5D1BB94D9E169">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record that a woman is currently pregnant or is currently breast feeding only.">
+            keywords = <"pregnant", "pregnancy", "breast feeding">
+            use = <"Use to flag the positive, currently pregnant, and/or currently breast feeding state, within a clinical system.
+    
+    If the woman is no longer pregnant and/or breast feeding, then this flag should be removed.
+    
+    This archetype has been designed to trigger decision support and therapeutic precautions in clinical systems, without necessarily having knowledge of details about the pregnancy or breast feeding.">
+            misuse = <"Not to be used to record the positive exclusion of pregnancy or breast feeding - use specific EVALUATION.exclusion archetypes for this purpose.
+    
+    Not to be used to record details about a specific pregnancy - use EVALUATION.pregnancy for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Pregnancy/breast feeding status
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Pregnant
+                        value matches {
+                            DV_BOOLEAN[id9000] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Breast feeding
+                        value matches {
+                            DV_BOOLEAN[id9001] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id5] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Last updated
+                        value matches {
+                            DV_DATE_TIME[id9002] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id7] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id7"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id6"] = <
+                text = <"Last updated">
+                description = <"Date and optional time when the pregnancy and /or breast feeding statement was last updated.">
+            >
+            ["id4"] = <
+                text = <"Breast feeding">
+                description = <"The woman is breast feeding.">
+                comment = <"Record as True if there is knowledge that the woman is currently breastfeeding.">
+            >
+            ["id3"] = <
+                text = <"Pregnant">
+                description = <"The woman is pregnant.">
+                comment = <"Record as True if there is clinical opinion or confirmation by diagnostic test of a positive pregnancy state. ">
+            >
+            ["id1"] = <
+                text = <"Pregnancy/breast feeding status">
+                description = <"Record of the positive state of pregnancy or breast feeding.">
+            >
+        >
+    >

@@ -1,0 +1,310 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=9bcbd27d-409e-4247-aedd-b9b9804d15ab; build_uid=36592e69-28d1-4922-bc96-5d49b75c1b56)
+    openEHR-EHR-CLUSTER.diagnosekategorier_smertereg.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::nb]>
+
+description
+    original_author = <
+        ["name"] = <"Silje Ljosland Bakke">
+        ["organisation"] = <"Nasjonal IKT HF, Norway">
+        ["email"] = <"silje.ljosland.bakke@nasjonalikt.no">
+        ["date"] = <"2018-11-05">
+    >
+    original_namespace = <"no.nasjonalikt">
+    original_publisher = <"Nasjonal IKT">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"no.nasjonalikt">
+    custodian_organisation = <"Nasjonal IKT">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"828E6CEF051EA5E3B322D4DABE0BF663">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å understøtte registrering av diagnosekategorier for Smerteregisteret.">
+            use = <"Brukes for å understøtte registrering av diagnosekategorier for Smerteregisteret.">
+            misuse = <"Brukes ikke for noen andre formål enn å understøtte registrering av diagnosekategorier for Smerteregisteret.">
+            copyright = <"© Nasjonal IKT HF">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Diagnosekategorier smerteregisteret
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {1} matches {    -- 3a. Smertekategori
+                value matches {
+                    DV_CODED_TEXT[id9007] matches {
+                        defining_code matches {[ac9000]}    -- 3a. Smertekategori (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- 3b. Diagnosekategori (3a: Akutt smerte)
+                value matches {
+                    DV_CODED_TEXT[id9008] matches {
+                        defining_code matches {[ac9001]}    -- 3b. Diagnosekategori (3a: Akutt smerte) (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id16] occurrences matches {0..1} matches {    -- 3b. Diagnosekategori (3a: Langvarig smerte > 3 mnd/Palliativ)
+                value matches {
+                    DV_CODED_TEXT[id9009] matches {
+                        defining_code matches {[ac9002]}    -- 3b. Diagnosekategori (3a: Langvarig smerte > 3 mnd/Palliativ) (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id8] occurrences matches {0..1} matches {    -- Prosedyrekode (3b: Kirurgi)
+                value matches {
+                    DV_CODED_TEXT[id9010] matches {
+                        defining_code matches {[ac11]}    -- NCSP
+                    }
+                }
+            }
+            ELEMENT[id11] occurrences matches {0..1} matches {    -- 3b i. Diagnosesubkategori (3b: Primær)
+                value matches {
+                    DV_CODED_TEXT[id9011] matches {
+                        defining_code matches {[ac9003]}    -- 3b i. Diagnosesubkategori (3b: Primær) (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id17] occurrences matches {0..1} matches {    -- 3b i. Diagnosesubkategori (3b: Nevropatisk)
+                value matches {
+                    DV_CODED_TEXT[id9012] matches {
+                        defining_code matches {[ac9004]}    -- 3b i. Diagnosesubkategori (3b: Nevropatisk) (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id18] occurrences matches {0..1} matches {    -- 3b i. Diagnosesubkategori (3b: Hodepine/orofacial)
+                value matches {
+                    DV_CODED_TEXT[id9013] matches {
+                        defining_code matches {[ac9005]}    -- 3b i. Diagnosesubkategori (3b: Hodepine/orofacial) (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id19] occurrences matches {0..1} matches {    -- 3b i. Diagnosesubkategori (3b: Muskelskjelett)
+                value matches {
+                    DV_CODED_TEXT[id9014] matches {
+                        defining_code matches {[ac9006]}    -- 3b i. Diagnosesubkategori (3b: Muskelskjelett) (synthesised)
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"3a. Smertekategori (synthesised)">
+                description = <"Smertekategori. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"3b. Diagnosekategori (3a: Akutt smerte) (synthesised)">
+                description = <"Diagnosekategori (3a: Akutt smerte). (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"3b. Diagnosekategori (3a: Langvarig smerte > 3 mnd/Palliativ) (synthesised)">
+                description = <"Diagnosekategori (3a: Langvarig smerte > 3 mnd/Palliativ). (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"3b i. Diagnosesubkategori (3b: Primær) (synthesised)">
+                description = <"Diagnosesubkategori (3b: Primær). (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"3b i. Diagnosesubkategori (3b: Nevropatisk) (synthesised)">
+                description = <"Diagnosesubkategori (3b: Nevropatisk). (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"3b i. Diagnosesubkategori (3b: Hodepine/orofacial) (synthesised)">
+                description = <"Diagnosesubkategori (3b: Hodepine/orofacial). (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"3b i. Diagnosesubkategori (3b: Muskelskjelett) (synthesised)">
+                description = <"Diagnosesubkategori (3b: Muskelskjelett). (synthesised)">
+            >
+            ["at44"] = <
+                text = <"3 - Andre muskelskjelett smertesyndromer">
+                description = <"*">
+            >
+            ["at43"] = <
+                text = <"2 - Fra strukturelle osteoartikulære forandringer">
+                description = <"*">
+            >
+            ["at42"] = <
+                text = <"1 - Fra persisterende inflammasjon">
+                description = <"*">
+            >
+            ["at41"] = <
+                text = <"3 - Orofaciale smerter">
+                description = <"*">
+            >
+            ["at40"] = <
+                text = <"2 - Sekundær hodepine">
+                description = <"*">
+            >
+            ["at39"] = <
+                text = <"1 - Primær hodepine">
+                description = <"*">
+            >
+            ["at38"] = <
+                text = <"3 - Andre former">
+                description = <"*">
+            >
+            ["at37"] = <
+                text = <"2 - Sentral">
+                description = <"*">
+            >
+            ["at36"] = <
+                text = <"1 - Perifer">
+                description = <"*">
+            >
+            ["at35"] = <
+                text = <"3 - Visceral">
+                description = <"*">
+            >
+            ["at34"] = <
+                text = <"2 - Lokalisert">
+                description = <"*">
+            >
+            ["at33"] = <
+                text = <"1 - Utbredte smertetilstander">
+                description = <"*">
+            >
+            ["at29"] = <
+                text = <"7 - Sekundær muskelskjelettsmerte">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"6 - Sekundær visceral smerte">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"5 - Hodepine og orofacial smerte">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"4 - Nevropatisk smerte">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"3 - Postkirurgisk og posttraumatisk smerte">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"2 - Kreftsmerte">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"1 - Primær smerte">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"4 - Annet">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"3 - På grunn av sykdom">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"2 - På grunn av skade/traume">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"1 - På grunn av kirurgi">
+                description = <"*">
+            >
+            ["id19"] = <
+                text = <"3b i. Diagnosesubkategori (3b: Muskelskjelett)">
+                description = <"Diagnosesubkategori (3b: Muskelskjelett).">
+            >
+            ["id18"] = <
+                text = <"3b i. Diagnosesubkategori (3b: Hodepine/orofacial)">
+                description = <"Diagnosesubkategori (3b: Hodepine/orofacial).">
+            >
+            ["id17"] = <
+                text = <"3b i. Diagnosesubkategori (3b: Nevropatisk)">
+                description = <"Diagnosesubkategori (3b: Nevropatisk).">
+            >
+            ["id16"] = <
+                text = <"3b. Diagnosekategori (3a: Langvarig smerte > 3 mnd/Palliativ)">
+                description = <"Diagnosekategori (3a: Langvarig smerte > 3 mnd/Palliativ).">
+            >
+            ["at14"] = <
+                text = <"4 - Annet">
+                description = <"Annet">
+            >
+            ["at13"] = <
+                text = <"3 - Palliativ">
+                description = <"Palliativ">
+            >
+            ["at12"] = <
+                text = <"2 - Langvarig smerte > 3 mnd">
+                description = <"Langvarig smerte > 3 mnd">
+            >
+            ["at11"] = <
+                text = <"1 - Akutt smerte">
+                description = <"Akutt smerte">
+            >
+            ["id11"] = <
+                text = <"3b i. Diagnosesubkategori (3b: Primær)">
+                description = <"Diagnosesubkategori (3b: Primær).">
+            >
+            ["id8"] = <
+                text = <"Prosedyrekode (3b: Kirurgi)">
+                description = <"Prosedyrekode (3b: Kirurgi).">
+            >
+            ["id3"] = <
+                text = <"3b. Diagnosekategori (3a: Akutt smerte)">
+                description = <"Diagnosekategori (3a: Akutt smerte).">
+            >
+            ["id2"] = <
+                text = <"3a. Smertekategori">
+                description = <"Smertekategori.">
+            >
+            ["id1"] = <
+                text = <"Diagnosekategorier smerteregisteret">
+                description = <"Arketype laget spesifikt for å understøtte registrering av diagnosekategorier for Smerteregisteret.">
+            >
+            ["ac11"] = <
+                text = <"NCSP">
+                description = <"National Classification for Surgical Procedures">
+            >
+        >
+    >
+    term_bindings = <
+        ["NCSP"] = <
+            ["ac11"] = <urn:oid:2.16.578.1.12.4.1.1.7110>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at23", "at24", "at25", "at26", "at27", "at28", "at29">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at19", "at20", "at21", "at22">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at11", "at12", "at13", "at14">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at42", "at43", "at44">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at39", "at40", "at41">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at36", "at37", "at38">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at33", "at34", "at35">
+        >
+    >

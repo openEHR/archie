@@ -1,0 +1,72 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=65278673-1c39-48fb-b6d7-b70af842a463; build_uid=500b36b2-ba53-4dfa-8cf5-5113c9a1d577)
+    openEHR-EHR-COMPOSITION.care_plan.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2019-04-07">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"BED61A471292F47EF1DECEBA79D0FFF5">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a persistent and managed list of any combination of archetypes that will support the accurate recording of a Care plan.">
+            keywords = <"care plan", "plan", "care management plan", "management plan">
+            use = <"Use to record a persistent and managed list of any combination of archetypes that will support the accurate recording of a Care plan that may evolve over time.
+    
+    This archetype will be contain combinations of planned activities, activies that are in progress or have been carried out, goals/objectives, targets, and recommendations.
+    
+    This care plan may include:
+    - the order and activity status for the care plan as a whole, using INSTRUCTION.care_plan_request and ACTION.care_plan;
+    - the order for each of the proposed activities, for example INSTRUCTION.service_request or INSTRUCTION.health_education_request; 
+    - the corresponding ACTION archetypes for each activity, which will indicate the status of each order - for example those that are planned, in progress, completed or cancelled; and
+    - optionally, instances of EVALUATION.goal to record the overall goal of the care plan and/or clinical targets for each of activities.
+    
+    The SECTION.care_plan archetype is an example of a framework for clinical content that could be used within this archetype.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {    -- Care plan
+        category matches {
+            DV_CODED_TEXT[id9001] matches {
+                defining_code matches {[at9000]}    -- persistent
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"persistent">
+                description = <"persistent">
+            >
+            ["id1"] = <
+                text = <"Care plan">
+                description = <"A persistent and managed list of any combination of archetypes that will support the accurate recording of a Care plan.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/431>
+        >
+    >

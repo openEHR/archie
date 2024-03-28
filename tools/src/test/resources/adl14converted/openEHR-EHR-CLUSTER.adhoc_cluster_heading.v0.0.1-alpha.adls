@@ -1,0 +1,88 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=2e9d508e-96e0-4636-9369-8531e6dda595; build_uid=9ba9fc1f-729d-4fe0-8861-4ba99f135852)
+    openEHR-EHR-CLUSTER.adhoc_cluster_heading.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Ramona Wellmann">
+                ["organisation"] = <"Medizinische Hochschule Hannover">
+                ["email"] = <"wellmann.ramona@mh-hannover.de">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2013-05-14">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heath Frankel, Ocean Informatics, Australia", "Sistine Barretto-Daniels, Ocean Informatics, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Derived from: Adhoc Cluster Heading, Draft archetype [Internet]. Australian Digital Health Agency (NEHTA), ADHA Clinical Knowledge Manager. Authored: 2013 May14. Available at: ">
+        ["2"] = <"http://dcm.nehta.org.au/ckm#showArchetype_1013.1.1288_1 (discontinued).">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+        ["MD5-CAM-1.0.1"] = <"524406E540BD823C366E45C3A3391726">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Eine generische Clusterüberschrift, welche üblicherweise im Rahmen der Template Modellierung umbenannt wird.">
+            keywords = <"Überschrift", "Cluster", "Ad hoc", "Clusterüberschrift">
+            use = <"Für den Aufbau und die Benennung eines Clusters innerhalb eines definierten Templates.">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"A generic cluster header which is normally renamed locally at template level.">
+            use = <"To construct and name a cluster within a local template.">
+            misuse = <"">
+            copyright = <"© Australian Digital Health Agency, openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Adhoc cluster heading
+        items cardinality matches {1..*; unordered} matches {
+            allow_archetype ITEM[id3] matches {     -- Content
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["id3"] = <
+                text = <"Inhalt">
+                description = <"SLOT für detaillierte Inhalte.">
+            >
+            ["id1"] = <
+                text = <"*Adhoc cluster heading (en)">
+                description = <"Eine generische Clusterüberschrift zur kontextuellen Umbenennung innerhalb eines Templates.">
+            >
+        >
+        ["en"] = <
+            ["id3"] = <
+                text = <"Content">
+                description = <"SLOT for Detailed Content.">
+            >
+            ["id1"] = <
+                text = <"Adhoc cluster heading">
+                description = <"A generic cluster heading for contextual renaming within a template.">
+            >
+        >
+    >

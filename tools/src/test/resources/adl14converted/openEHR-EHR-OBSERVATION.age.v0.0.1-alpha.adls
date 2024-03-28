@@ -1,0 +1,94 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=c16556dd-c527-4f61-bdbd-3f912fbe5e01; build_uid=4c463377-ba02-46ed-a69c-1ce0e0686206)
+    openEHR-EHR-OBSERVATION.age.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2018-07-23">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"9E14B1E5482B3F6F862C98A29FB82260">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record parameters about the age of an individual.">
+            use = <"Use to record parameters about the age of an individual.
+    
+    Use to in a template alongside OBSERVATION.child_growth to record the adjusted age of an infant as part of monitoring child growth patterns.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Age
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {0..1} matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Chronological age
+                                        value matches {
+                                            DV_DURATION[id9000] 
+                                        }
+                                    }
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Adjusted age
+                                        value matches {
+                                            DV_DURATION[id9001] 
+                                        }
+                                    }
+                                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9002] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id7"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the age of an individual, not captured in other fields.">
+                comment = <"For example: pre-term delivery">
+            >
+            ["id6"] = <
+                text = <"Adjusted age">
+                description = <"Age based on due date.">
+            >
+            ["id5"] = <
+                text = <"Chronological age">
+                description = <"Age based on actual date of birth.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Age">
+                description = <"Details about the age of an individual.">
+            >
+        >
+    >

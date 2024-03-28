@@ -1,0 +1,146 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=dd0cd80f-aba3-4230-8890-beb5ddc92af7; build_uid=3de9cfcd-d003-4003-9eda-0fb7376b3ecf)
+    openEHR-EHR-EVALUATION.test.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2016-01-20">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"46D8FD5362A1DA8001221E9CF76823C6">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Description about why the archetype has been developed.">
+            use = <"Description about how the archetype is intended to be used:
+    - details about the general design
+    - details about specific design features or patterns
+    - details about how the archetype should be used with other archetypes">
+            misuse = <"Identification of ways not to use this archetype, including specifying where there are more appropriate archetypes">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Test archetype
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Index topic name
+                        value matches {
+                            DV_TEXT[id9001] 
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- No abnormality detected
+                        value matches {
+                            DV_BOOLEAN[id9002] matches {
+                                value matches {True, False}
+                            }
+                        }
+                    }
+                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Clinikal Desscription
+                        value matches {
+                            DV_TEXT[id9003] 
+                        }
+                    }
+                    CLUSTER[id6] matches {    -- A repeatable group of data elements
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id7] occurrences matches {0..1} matches {    -- Quantity data element
+                                value matches {
+                                    DV_QUANTITY[id9004] matches {
+                                        property matches {[at9000]}    -- Concentration
+                                        units matches {"gm/100ml"}
+                                    }
+                                }
+                            }
+                            ELEMENT[id8] occurrences matches {0..1} matches {    -- Date of onset
+                                value matches {
+                                    DV_DATE[id9005] matches {
+                                        value
+                                    }
+                                }
+                            }
+                            ELEMENT[id9] occurrences matches {0..1}     -- Any data type
+                        }
+                    }
+                    allow_archetype CLUSTER[id10] matches {     -- Unnamed SLOT
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    allow_archetype CLUSTER[id11] matches {     -- Multimedia representation
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Concentration">
+                description = <"Concentration">
+            >
+            ["id11"] = <
+                text = <"Multimedia representation">
+                description = <"">
+            >
+            ["id10"] = <
+                text = <"Unnamed SLOT">
+                description = <"This allows for extensions to be made to the archetype.">
+            >
+            ["id9"] = <
+                text = <"Any data type">
+                description = <"Teh data type has not yet been determined for this data element, and will possibly be determined at run-time.">
+            >
+            ["id8"] = <
+                text = <"Date of onset">
+                description = <"wHEN?">
+            >
+            ["id7"] = <
+                text = <"Quantity data element">
+                description = <"hOW mUCH?">
+            >
+            ["id6"] = <
+                text = <"A repeatable group of data elements">
+                description = <"Details about the index topic.">
+            >
+            ["id5"] = <
+                text = <"Clinikal Desscription">
+                description = <"Narrative description of the index topic.">
+                comment = <"Narrative description of the clinical findings.">
+            >
+            ["id4"] = <
+                text = <"No abnormality detected">
+                description = <"Name of the topic which is the key concept in the archetype.">
+                comment = <"Record as True if there is no abnormality detected.">
+            >
+            ["id3"] = <
+                text = <"Index topic name">
+                description = <"Identification of the index topic by name.">
+            >
+            ["id1"] = <
+                text = <"Test archetype">
+                description = <"Archetype used for training in CKM archetype reviews.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/119>
+        >
+    >

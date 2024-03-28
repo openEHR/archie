@@ -1,0 +1,111 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=f88b94eb-8afe-404b-9ccc-adf79b44b723; build_uid=a7ec6029-b209-405e-83e0-bb1fc453a249)
+    openEHR-EHR-SECTION.conclusion.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["ru"] = <
+            language = <[ISO_639-1::ru]>
+            author = <
+                ["name"] = <"Art Latyp; Латыпов Артур Шамилевич">
+                ["organisation"] = <"RusBITech РусБИТех, Москва">
+            >
+            accreditation = <"hmm">
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            author = <
+                ["name"] = <"Alan March">
+                ["organisation"] = <"Hospital Universitario Austral, Pilar, Buenos Aires, Argentina.">
+                ["email"] = <"alandmarch@gmail.com">
+            >
+            accreditation = <"MD">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"11/04/2007">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"83B42E2FB19D2CA9E2BD6A9ED56D6329">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Section to bring together all archetypes involved in recording the conclusion in an encounter with a patient">
+            keywords = <"diagnosis", "differential diagnosis">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["ru"] = <
+            language = <[ISO_639-1::ru]>
+            purpose = <"Раздел для объединения всех архетипов, описывающих выводы (заключения) в результате встречи с пациентом ">
+            keywords = <"диагностика", "диагноз", "дифдиагноз", "дифференциальный", "заключение", "вывод">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            purpose = <"Sección par agrupar a todos los arquetipos involucrados en registrar la conclusión acerca de un encuentro con un paciente.">
+            keywords = <"diagnóstico", "diagnóstico diferencial">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    SECTION[id1] matches {    -- Conclusion
+        items cardinality matches {0..*; unordered} matches {
+            allow_archetype EVALUATION[id2] matches {     -- Evaluation of a problem, diagnosis etc.
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.differential_diagnosis\.v1\..*|openEHR-EHR-EVALUATION\.problem\.v1\..*|openEHR-EHR-EVALUATION\.problem-diagnosis\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["ru"] = <
+            ["id2"] = <
+                text = <"Оценка проблемы, диагноз и т.д.">
+                description = <"Итоговое мнение врача после осмотра пациента, включая диагноз">
+            >
+            ["id1"] = <
+                text = <"Заключение">
+                description = <"Раздел для записи заключения (выводов) после встречи с пациентом (осмотра, консультации) ">
+            >
+        >
+        ["es-ar"] = <
+            ["id2"] = <
+                text = <"Evaluación de un problema, diagnóstico, etc.">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Conclusión">
+                description = <"Sección para registrar las conclusiones de un encuentro con un paciente.">
+            >
+        >
+        ["en"] = <
+            ["id2"] = <
+                text = <"Evaluation of a problem, diagnosis etc.">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Conclusion">
+                description = <"Section to record conclusions of an encounter with a patient">
+            >
+        >
+    >

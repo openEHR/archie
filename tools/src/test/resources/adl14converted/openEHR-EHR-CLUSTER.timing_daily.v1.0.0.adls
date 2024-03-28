@@ -1,0 +1,430 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=09372f17-b21c-4110-b892-085e1c9ea04d; build_uid=faacf3c1-7f61-4874-9832-787e9014ced4)
+    openEHR-EHR-CLUSTER.timing_daily.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Nasjonal IKT HF">
+            >
+        >
+        ["sl"] = <
+            language = <[ISO_639-1::sl]>
+            author = <
+                ["name"] = <"?">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"NEHTA">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2010-11-12">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Dr Sharmila Biswas, Australia", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Ady Angelica Castro Acosta, CIBERES-Hospital 12 de Octubre, Spain", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Inderjit Daphu, Helse Bergen, Norway", "Robert Eager, Healthways, Australia", "David Evans, Queensland Health, Australia", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sam Heard, Ocean Informatics, Australia (Editor)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Geir Hoff, Sykehuset Telemark HF, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Alfred Honore, Haukeland, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Hilde Karen Ofte, Nordlandssykehuset HF, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Morgan Karlsen, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "doug pankoski, Alberta Health Services, Canada", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Jussara Rotzsch, UNB, Brazil", "Anoop Shah, University College London, United Kingdom", "Iztok Stotl, UKCLJ, Slovenia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstituttet, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Anders Thurin, SU, Sweden", "Stian Torleif Varpe, Helse Bergen, Norway", "Richard Townley-O'Neill, NEHTA, Australia (Editor)", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"CBCDC59B0B6E1A4E7C84FE667290BFD7">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere strukturert informasjon om planlagt timing av en terapeutisk eller diagnostisk aktivitet innenfor ett døgn.">
+            keywords = <"timing", "administrering", "dosering", "frekvens", "intervall", "ordinering", "anbefaling", "plan", "per dag", "dssn", "tidspunkt", "tidsskjema", "tidsplan", "tidfesting", "tidsberegning", "tidsplanlegging", "planlegging">
+            use = <"Strukturert informasjon om planlagt timing av en terapeutisk eller diagnostisk aktivitet innenfor ett døgn.
+    
+    Arketypen er laget for å brukes i SLOTet \"Administreringstidspunkt\" i arketypen CLUSTER.dosage (Dosering), men kan også brukes i andre CLUSTER- og ENTRY-arketyper der det er klinisk passende.">
+            misuse = <"Skal ikke brukes til å registrere detaljer om timing over lengre tidsperioder enn et døgn. Bruk arketypen CLUSTER.timing_repetition for dette formålet.">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record structured information about the intended timing of a therapeutic or diagnostic activity within any 24 hour period.">
+            keywords = <"timing", "administration", "dosing", "frequency", "interval", "order", "recommendation", "schedule", "per day">
+            use = <"Use to record structured information about the intended timing of a therapeutic or diagnostic activity within any 24 hour period.
+    
+    This archetype is designed to be used within the 'Timing' SLOT within the CLUSTER.dosage archetype, but can also be used in other CLUSTER and ENTRY class archetypes where clinically appropriate.">
+            misuse = <"Not to be used for recording timing details over periods longer than a single 24 hour period. Use the CLUSTER.timing_repetition archetype for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["sl"] = <
+            language = <[ISO_639-1::sl]>
+            purpose = <"*To provide structured information on time schedules within a single day that is suitable for computation and display for human interpretation.(en)">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Timing - daily
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Frequency
+                value matches {
+                    DV_QUANTITY[id9001] matches {
+                        property matches {[at9000]}    -- Frequency
+                        [magnitude, units, precision] matches {
+                            [{|>=1.0|}, {"1/d"}, {0}],
+                            [{|>=1.0|}, {"1/min"}, {0}],
+                            [{|>=1.0|}, {"1/s"}, {0}],
+                            [{|>=1.0|}, {"1/h"}, {0}]
+                        }
+                    }
+                    DV_INTERVAL<DV_QUANTITY>[id9002] matches {
+                        upper matches {
+                            DV_QUANTITY[id9003] matches {
+                                property matches {[at9000]}    -- Frequency
+                                [magnitude, units, precision] matches {
+                                    [{|>=1.0|}, {"1/d"}, {0}],
+                                    [{|>=1.0|}, {"1/min"}, {0}],
+                                    [{|>=1.0|}, {"1/s"}, {0}],
+                                    [{|>=1.0|}, {"1/h"}, {0}]
+                                }
+                            }
+                        }
+                        lower matches {
+                            DV_QUANTITY[id9004] matches {
+                                property matches {[at9000]}    -- Frequency
+                                [magnitude, units, precision] matches {
+                                    [{|>=1.0|}, {"1/d"}, {0}],
+                                    [{|>=1.0|}, {"1/min"}, {0}],
+                                    [{|>=1.0|}, {"1/s"}, {0}],
+                                    [{|>=1.0|}, {"1/h"}, {0}]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            ELEMENT[id15] occurrences matches {0..1} matches {    -- Interval
+                value matches {
+                    DV_DURATION[id9005] matches {
+                        value matches {PTHMS/|PT0S..PT24H|}
+                    }
+                }
+            }
+            ELEMENT[id5] matches {    -- Specific time
+                value matches {
+                    DV_TIME[id9006] 
+                    DV_INTERVAL<DV_TIME>[id9007] matches {
+                        upper matches {
+                            DV_TIME[id9008] 
+                        }
+                        lower matches {
+                            DV_TIME[id9009] 
+                        }
+                    }
+                }
+            }
+            ELEMENT[id28] occurrences matches {0..1} matches {    -- Timing description
+                value matches {
+                    DV_TEXT[id9010] 
+                }
+            }
+            ELEMENT[id24] occurrences matches {0..1} matches {    -- Exact timing critical?
+                value matches {
+                    DV_BOOLEAN[id9011] matches {
+                        value matches {True, False}
+                    }
+                }
+            }
+            ELEMENT[id25] occurrences matches {0..1} matches {    -- As required
+                value matches {
+                    DV_BOOLEAN[id9012] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            ELEMENT[id26] occurrences matches {0..1} matches {    -- 'As required' criterion
+                value matches {
+                    DV_TEXT[id9013] 
+                }
+            }
+            CLUSTER[id40] matches {    -- Specific event
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id27] occurrences matches {0..1} matches {    -- Event name
+                        value matches {
+                            DV_TEXT[id9014] 
+                        }
+                    }
+                    ELEMENT[id41] occurrences matches {0..1} matches {    -- Time offset
+                        value matches {
+                            DV_DURATION[id9015] matches {
+                                value matches {PTHMS/|PT0S..PT24H|}
+                            }
+                        }
+                    }
+                }
+            }
+            CLUSTER[id36] matches {    -- On / off cycle
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id37] occurrences matches {0..1} matches {    -- On
+                        value matches {
+                            DV_DURATION[id9016] matches {
+                                value matches {PTHMS/|PT0S..PT24H|}
+                            }
+                        }
+                    }
+                    ELEMENT[id38] occurrences matches {0..1} matches {    -- Off
+                        value matches {
+                            DV_DURATION[id9017] matches {
+                                value matches {PTHMS/|PT0S..PT24H|}
+                            }
+                        }
+                    }
+                    ELEMENT[id39] occurrences matches {0..1} matches {    -- Repetitions
+                        value matches {
+                            DV_COUNT[id9018] matches {
+                                magnitude matches {|>=0|}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["at9000"] = <
+                text = <"* Frequency (en)">
+                description = <"* Frequency (en)">
+            >
+            ["id41"] = <
+                text = <"Tidsforskyvelse">
+                description = <"Tidsintervallet før eller etter hendelsen når aktiviteten skal utføres. Negative intervaller kan benyttes for å spesifisere at aktiviteten skal utføres før den navngitte hendelsen.">
+                comment = <"For eksempel \"30 minutter etter måltid = måltid + 30 minutter\" eller \"2 timer før sengetid = sengetid -2 timer\".">
+            >
+            ["id40"] = <
+                text = <"Spesifikk hendelse">
+                description = <"En spesifikk, navngitt hendelse aktiviteten skal utføres i sammenheng med.">
+            >
+            ["id39"] = <
+                text = <"Repetisjoner">
+                description = <"Antall ganger på/av-syklusen skal repeteres.">
+            >
+            ["id38"] = <
+                text = <"Av">
+                description = <"Tidsperioden da aktiviteten IKKE skal utføres.">
+            >
+            ["id37"] = <
+                text = <"På">
+                description = <"Tidsperioden da aktiviteten skal utføres.">
+            >
+            ["id36"] = <
+                text = <"På / av-syklus">
+                description = <"En aktivitetssyklus som krever et på/av-mønster.">
+                comment = <"For eksempel \"bruk en ispose på i 20 minutter, av i en time, gjenta\".">
+            >
+            ["id28"] = <
+                text = <"Timingbeskrivelse">
+                description = <"Tekstbeskrivelse av timingen innenfor et døgn. Dette elementet er ment for å tillate implementeringer å bruke de overordnede strukturene rundt timing, for eksempel økning eller nedtrapping, uten nødvendigvis å oppgi timingen strukturert.">
+                comment = <"For eksempel: \"Tas morgen og kveld\".">
+            >
+            ["id27"] = <
+                text = <"Hendelsesnavn">
+                description = <"Navnet på hendelsen aktiviteten skal uføres i sammenheng med.">
+                comment = <"For eksempel: Før hvert måltid, ved leggetid, om morgenen. Det er underforstått at disse termene ikke nødvendigvis tilsvarer de samme tidspunktene i forskjellige kulturer. Koding med en terminologi, for eksempel HL7 Named events, anbefales der det er passende.">
+            >
+            ["id26"] = <
+                text = <"Vilkår for \"Ved behov\"">
+                description = <"Vilkåret som utløser en aktivitet som er \"Ved behov\".">
+                comment = <"For eksempel \"Ved smerte\".">
+            >
+            ["id25"] = <
+                text = <"Ved behov">
+                description = <"Registrer som Sann dersom aktiviteten kun skal utføres når \"Vilkår for \"Ved behov\"\" inntreffer.">
+                comment = <"Kalles \"PRN\" (\"pro re nata\", latin \"når situasjonen oppstår\") eller \"PN\" (\"per necessare\", latin: \"når påkrevet\") i noen kulturer.">
+            >
+            ["id24"] = <
+                text = <"Nøyaktig timing kritisk">
+                description = <"Er nøyaktig timing av aktiviteten kritisk for effekt, eller pasientens sikkerhet eller velvære?">
+                comment = <"For eksempel ved administrering av antiparkinsonlegemidler.">
+            >
+            ["id15"] = <
+                text = <"Intervall">
+                description = <"Tidsintervall eller minimums- og maksimumsintervall mellom hver planlagte aktivitet.">
+                comment = <"For eksempel \"hver 4. time\" eller \"hver 4.-6. time\".">
+            >
+            ["id5"] = <
+                text = <"Spesifikt tidspunkt">
+                description = <"Et spesifikt tidspunkt eller tidsintervall når aktiviteten skal finne sted.">
+                comment = <"For eksempel \"08:00\" eller \"15:00-16:00\".">
+            >
+            ["id4"] = <
+                text = <"Frekvens">
+                description = <"Frekvensen for aktiviteten som skal finne sted, angitt som antall ganger per tidsperiode.">
+                comment = <"For eksempel \"4 ganger per dag\" eller \"3-4 ganger per time\".">
+            >
+            ["id1"] = <
+                text = <"Timing - døgn">
+                description = <"Strukturert informasjon om planlagt timing av en terapeutisk eller diagnostisk aktivitet innenfor ett døgn.">
+            >
+        >
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Frequency">
+                description = <"Frequency">
+            >
+            ["id41"] = <
+                text = <"Time offset">
+                description = <"The period of time before or after the named event when the activity should take place. Negative durations can be used to signify that the activity should take place before the event.">
+                comment = <"For example: '30 minutes after meal = meal + 30 minutes', '2 hours before bedtime = bedtime -2 hours'.">
+            >
+            ["id40"] = <
+                text = <"Specific event">
+                description = <"A specific, named time event that the activity should occur in relation to.">
+            >
+            ["id39"] = <
+                text = <"Repetitions">
+                description = <"The number of repetitions of the on/off cycle.">
+            >
+            ["id38"] = <
+                text = <"Off">
+                description = <"The period of time for which the activity should NOT take place.">
+            >
+            ["id37"] = <
+                text = <"On">
+                description = <"The period of time for which the activity should take place.">
+            >
+            ["id36"] = <
+                text = <"On / off cycle">
+                description = <"A cycle of activity where an on-off pattern is required.">
+                comment = <"For example: \"Apply an ice pack on for 20 minutes, off for an hour, repeat\".">
+            >
+            ["id28"] = <
+                text = <"Timing description">
+                description = <"Text description of the daily timing. This element is intended to allow implementers to use the structures for different timings without necessarily specifying the timings in a structured way.">
+                comment = <"For example: \"Take morning and evening\".">
+            >
+            ["id27"] = <
+                text = <"Event name">
+                description = <"The name of the event that triggers the activity to take place.">
+                comment = <"For example: \"Before each meal\", \"at bedtime\", \"in the morning\". It is understood that these event names may not equate to the same exact times in different cultures. Coding with a terminology, for example HL7 FHIR Named events, is recommended where appropriate.">
+            >
+            ["id26"] = <
+                text = <"'As required' criterion">
+                description = <"The condition which triggers an 'As required' activity.">
+                comment = <"For example: \"for pain\".">
+            >
+            ["id25"] = <
+                text = <"As required">
+                description = <"Record as True if the activity should only occur when the \"'As required' criterion\" is met.">
+                comment = <"Termed 'PRN' (\"pro re nata\", latin: \"as the situation arises\") or 'PN' (\"per necessare\", latin: \"when required\") in some cultures.">
+            >
+            ["id24"] = <
+                text = <"Exact timing critical?">
+                description = <"Is exact timing of the activity critical to effectiveness, or patient safety or wellbeing?">
+                comment = <"For example when administering antiparkinson medications.">
+            >
+            ["id15"] = <
+                text = <"Interval">
+                description = <"The time interval or minimum and maximum range of an interval between each scheduled activity.">
+                comment = <"For example: \"Every 4 hours\" or \"Every 4 to 6 hours\".">
+            >
+            ["id5"] = <
+                text = <"Specific time">
+                description = <"A specific time or interval of time when the activity should occur.">
+                comment = <"For example: \"08:00\" or \"15:00-16:00\".">
+            >
+            ["id4"] = <
+                text = <"Frequency">
+                description = <"The frequency as number of times per time period that the activity is to take place.">
+                comment = <"For example: \"4 times per day\" or \"3 to 4 times per hour\".">
+            >
+            ["id1"] = <
+                text = <"Timing - daily">
+                description = <"Structured information about the intended timing of a therapeutic or diagnostic activity within any 24 hour period.">
+            >
+        >
+        ["sl"] = <
+            ["at9000"] = <
+                text = <"* Frequency (en)">
+                description = <"* Frequency (en)">
+            >
+            ["id41"] = <
+                text = <"*Time offset(en)">
+                description = <"*The period of time before or after the named event when the activity should take place. Negative durations can be used to signify that the activity should take place before the event.(en)">
+                comment = <"*For example: '30 minutes after meal = meal + 30 minutes', '2 hours before bedtime = bedtime -2 hours'.(en)">
+            >
+            ["id40"] = <
+                text = <"*Specific event(en)">
+                description = <"*A specific, named time event that the activity should occur in relation to.(en)">
+            >
+            ["id39"] = <
+                text = <"*Repetitions(en)">
+                description = <"*The number of repetitions of the on/off cycle.(en)">
+            >
+            ["id38"] = <
+                text = <"*Off(en)">
+                description = <"*The period of time for which the activity should NOT take place.(en)">
+            >
+            ["id37"] = <
+                text = <"*On(en)">
+                description = <"*The period of time for which the activity should take place.(en)">
+            >
+            ["id36"] = <
+                text = <"*On / off cycle(en)">
+                description = <"*A cycle of activity where an on-off pattern is required.(en)">
+                comment = <"*e.g. 'apply patch for six hours, remove for 12 hours, repeat'(en)">
+            >
+            ["id28"] = <
+                text = <"*Timing description(en)">
+                description = <"*Text description of the daily timing. This element is intended to allow implementers to use the structures for different timings without necessarily specifying the timings in a structured way.(en)">
+                comment = <"*For example: \"Take morning and evening\".(en)">
+            >
+            ["id27"] = <
+                text = <"*Event name(en)">
+                description = <"*The name of the event that triggers the activity to take place.(en)">
+                comment = <"*For example: \"Before each meal\", \"at bedtime\", \"in the morning\". It is understood that these event names may not equate to the same exact times in different cultures. Coding with a terminology, for example HL7 FHIR Named events, is recommended where appropriate.(en)">
+            >
+            ["id26"] = <
+                text = <"*As required criterion(en)">
+                description = <"*The condition which triggers an 'as required' activity.(en)">
+                comment = <"*e.g. as required for pain.(en)">
+            >
+            ["id25"] = <
+                text = <"*As required(en)">
+                description = <"*The activity should only occur when the \"as required\" trigger condition is met.(en)">
+                comment = <"*Termed 'PRN' in some cultures.(en)">
+            >
+            ["id24"] = <
+                text = <"*Exact timing critical(en)">
+                description = <"*Is exact timing of the activity critical to patient safety or wellbeing?(en)">
+            >
+            ["id15"] = <
+                text = <"*Interval(en)">
+                description = <"*The time interval between each scheduled activity, limited to a single day.(en)">
+                comment = <"*e.g. \"Every 4 hours\".(en)">
+            >
+            ["id5"] = <
+                text = <"*Specific time(en)">
+                description = <"*A specific time during a single day when the activity should occur.(en)">
+                comment = <"*e.g \"at 0800, 1400, 15.25.\"(en)">
+            >
+            ["id4"] = <
+                text = <"*Frequency(en)">
+                description = <"*The frequency as number of times per time period (limited to a single day) that the activity is to take place.(en)">
+                comment = <"*e.g. \"4 times per day\" or \"\"3 to 4 times per hour\"(en)">
+            >
+            ["id1"] = <
+                text = <"*Daily timing(en)">
+                description = <"*Structured information about the timing (intended or actual) of administration or use of a medicine, other therapeutic good or other intervention that is given on a scheduled basis.(en)">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/382>
+        >
+    >
