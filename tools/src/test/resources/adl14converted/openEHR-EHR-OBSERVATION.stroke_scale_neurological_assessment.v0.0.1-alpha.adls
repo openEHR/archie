@@ -1,0 +1,1257 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=3f64e10e-e330-4a6a-8a54-68f4941c0b88; build_uid=65f94f39-3493-4abc-b696-a80bda87a6fe)
+    openEHR-EHR-OBSERVATION.stroke_scale_neurological_assessment.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Osmeire Chamelette Sanzovo">
+                ["email"] = <"osmeire.acsanzovo@hsl.org.br">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Gustavo M Bacelar-Silva">
+        ["organisation"] = <"Healthcare Designs">
+        ["email"] = <"mail@gustavobacelar.com">
+        ["date"] = <"11-05-2012">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Rong Chen, Cambio Healthcare Systems, Sweden", "Ricardo Cruz-Correia, Faculty of Medicine of Porto University, Portugal">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"American Academy of Neurology. NIH Stroke Scale Neurological Assessment Flow Sheet. Available at: http://www.aan.com/globals/axon/assets/6285.pdf.  Accessed May, 2012.">
+        ["2"] = <"National Institute of Neurological Disorders and Stroke. NIH Stroke Scale. Available at: http://www.ninds.nih.gov/doctors/NIH_Stroke_Scale_Booklet.pdf.  Accessed May, 2012.">
+        ["3"] = <"National Stroke Association. NIH Stroke Scale. Available at: http://www.stroke.org/site/PageServer?pagename=NIHSS.  Accessed May, 2012.">
+        ["4"] = <"NIH Stroke Scale (NIHSS) International. Available at: http://www.nihstrokescale.org/.  Accessed May, 2012.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"DBF0240F5AFF927A8E1B45323D9570ED">
+    >
+    details = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para registrar uma medição sistemática quantitativa de déficit neurológico relacionados ao acidente vascular cerebral. A NIHSS foi originalmente concebida como uma ferramenta de pesquisa para medir os dados de referência sobre doentes em ensaios clínicos de AVC agudo. Atualmente, a escala é também amplamente utilizada como uma ferramenta de avaliação clínica para avaliar a acuidade dos pacientes com AVC, determinar o tratamento adequado e prever o resultado do paciente.">
+            keywords = <"escala", "neurológico", "acidente vascular cerebral", "avaliação", "exame">
+            use = <"Analisar os itens da escala do AVC na ordem listada . Registrar o desempenho em cada categoria , após exame de cada item e subitem . Não voltar atrás e mudar pontuações. Seguir as instruções fornecidas para cada técnica de exame . Pontuações devem refletir o que o paciente faz, não o que o médico acha que o paciente pode fazer. O clínico deve registrar as respostas ao realizar o exame e trabalhar rapidamente . Exceto quando indicado, o paciente não deve ser treinado (ou seja , pedidos repetidos ao paciente para fazer um esforço especial ) .">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a systematic quantitative measurement of stroke-related neurologic deficit. The NIHSS was originally designed as a research tool to measure baseline data on patients in acute stroke clinical trials. Now, the scale is also widely used as a clinical assessment tool to evaluate acuity of stroke patients, determine appropriate treatment, and predict patient outcome.">
+            keywords = <"scale", "neurological", "stroke", "assessment", "examination">
+            use = <"Administer stroke scale items in the order listed. Record performance in each category after each subscale exam. Do not go back and change scores. Follow directions provided for each exam technique. Scores should reflect what the patient does, not what the clinician thinks the patient can do. The clinician should record answers while administering the exam and work quickly. Except where indicated, the patient should not be coached (i.e., repeated requests to patient to make a special effort)">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Stroke scale neurological assessment (NIHHS)
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[id3] occurrences matches {0..1} matches {    -- Baseline
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    CLUSTER[id5] occurrences matches {0..1} matches {    -- Consciousness
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id6] occurrences matches {0..1} matches {    -- Level of Consciousness
+                                                value matches {
+                                                    DV_ORDINAL[id9015] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at7]}],
+                                                            [{1}, {[at8]}],
+                                                            [{2}, {[at9]}],
+                                                            [{3}, {[at10]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id11] occurrences matches {0..1} matches {    -- Level of Consciousness Questions
+                                                value matches {
+                                                    DV_ORDINAL[id9016] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at12]}],
+                                                            [{1}, {[at13]}],
+                                                            [{2}, {[at14]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id15] occurrences matches {0..1} matches {    -- Level of Consciousness Commands
+                                                value matches {
+                                                    DV_ORDINAL[id9017] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at16]}],
+                                                            [{1}, {[at17]}],
+                                                            [{2}, {[at18]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id19] occurrences matches {0..1} matches {    -- Best Gaze
+                                        value matches {
+                                            DV_ORDINAL[id9018] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at20]}],
+                                                    [{1}, {[at21]}],
+                                                    [{2}, {[at22]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id23] occurrences matches {0..1} matches {    -- Visual
+                                        value matches {
+                                            DV_ORDINAL[id9019] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at24]}],
+                                                    [{1}, {[at25]}],
+                                                    [{2}, {[at26]}],
+                                                    [{3}, {[at27]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id28] occurrences matches {0..1} matches {    -- Facial Palsy
+                                        value matches {
+                                            DV_ORDINAL[id9020] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at29]}],
+                                                    [{1}, {[at30]}],
+                                                    [{2}, {[at31]}],
+                                                    [{3}, {[at32]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id34] occurrences matches {0..1} matches {    -- Motor Arm
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id121] occurrences matches {0..1} matches {    -- Left Arm
+                                                value matches {
+                                                    DV_ORDINAL[id9021] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at122]}],
+                                                            [{1}, {[at123]}],
+                                                            [{2}, {[at124]}],
+                                                            [{3}, {[at125]}],
+                                                            [{4}, {[at126]}]
+                                                        }
+                                                    }
+                                                    DV_CODED_TEXT[id9022] matches {
+                                                        defining_code matches {[at127]}    -- UN - Amputation or joint fusion
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id128] occurrences matches {0..1} matches {    -- Right Arm
+                                                value matches {
+                                                    DV_ORDINAL[id9023] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at129]}],
+                                                            [{1}, {[at130]}],
+                                                            [{2}, {[at131]}],
+                                                            [{3}, {[at132]}],
+                                                            [{4}, {[at133]}]
+                                                        }
+                                                    }
+                                                    DV_CODED_TEXT[id9024] matches {
+                                                        defining_code matches {[at134]}    -- UN - Amputation or joint fusion
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id50] occurrences matches {0..1} matches {    -- Motor Leg
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id135] occurrences matches {0..1} matches {    -- Left Leg
+                                                value matches {
+                                                    DV_ORDINAL[id9025] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at136]}],
+                                                            [{1}, {[at137]}],
+                                                            [{2}, {[at138]}],
+                                                            [{3}, {[at139]}],
+                                                            [{4}, {[at140]}]
+                                                        }
+                                                    }
+                                                    DV_CODED_TEXT[id9026] matches {
+                                                        defining_code matches {[at141]}    -- UN - Amputation or joint fusion
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id142] occurrences matches {0..1} matches {    -- Right Leg
+                                                value matches {
+                                                    DV_ORDINAL[id9027] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at143]}],
+                                                            [{1}, {[at144]}],
+                                                            [{2}, {[at145]}],
+                                                            [{3}, {[at146]}],
+                                                            [{4}, {[at147]}]
+                                                        }
+                                                    }
+                                                    DV_CODED_TEXT[id9028] matches {
+                                                        defining_code matches {[at148]}    -- UN - Amputation or joint fusion
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id149] occurrences matches {0..1} matches {    -- Limb Ataxia
+                                        value matches {
+                                            DV_ORDINAL[id9029] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at150]}],
+                                                    [{1}, {[at151]}],
+                                                    [{2}, {[at152]}]
+                                                }
+                                            }
+                                            DV_CODED_TEXT[id9030] matches {
+                                                defining_code matches {[at153]}    -- UN - Amputation or joint fusion
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id76] occurrences matches {0..1} matches {    -- Sensory
+                                        value matches {
+                                            DV_ORDINAL[id9031] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at77]}],
+                                                    [{1}, {[at78]}],
+                                                    [{2}, {[at79]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id80] occurrences matches {0..1} matches {    -- Best Language
+                                        value matches {
+                                            DV_ORDINAL[id9032] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at81]}],
+                                                    [{1}, {[at82]}],
+                                                    [{2}, {[at83]}],
+                                                    [{3}, {[at84]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id154] occurrences matches {0..1} matches {    -- Dysarthria
+                                        value matches {
+                                            DV_ORDINAL[id9033] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at155]}],
+                                                    [{1}, {[at156]}],
+                                                    [{2}, {[at157]}]
+                                                }
+                                            }
+                                            DV_CODED_TEXT[id9034] matches {
+                                                defining_code matches {[at158]}    -- UN - Intubated or other physical barrier
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id86] occurrences matches {0..1} matches {    -- Extinction and Inattention
+                                        value matches {
+                                            DV_ORDINAL[id9035] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at90]}],
+                                                    [{1}, {[at91]}],
+                                                    [{2}, {[at92]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id98] occurrences matches {0..1} matches {    -- Total Score
+                                        value matches {
+                                            DV_COUNT[id9036] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    POINT_EVENT[id159] occurrences matches {0..1} matches {    -- 2 hours post treatment
+                        offset matches {
+                            DV_DURATION[id9037] matches {
+                                value matches {PT2H; PT2H}
+                            }
+                        }
+                        data matches {
+                            use_node ITEM_TREE[id9038] /data[id2]/events[id3]/data[id4]
+                        }
+                    }
+                    POINT_EVENT[id160] occurrences matches {0..1} matches {    -- 24 hours post onset of symptoms 6 minutes
+                        offset matches {
+                            DV_DURATION[id9039] matches {
+                                value matches {PT24H; PT24H}
+                            }
+                        }
+                        data matches {
+                            use_node ITEM_TREE[id9040] /data[id2]/events[id3]/data[id4]
+                        }
+                    }
+                    POINT_EVENT[id161] occurrences matches {0..1} matches {    -- 7–10 days
+                        data matches {
+                            use_node ITEM_TREE[id9041] /data[id2]/events[id3]/data[id4]
+                        }
+                    }
+                    POINT_EVENT[id162] occurrences matches {0..1} matches {    -- 3 months
+                        offset matches {
+                            DV_DURATION[id9042] matches {
+                                value matches {P3M; P3M}
+                            }
+                        }
+                        data matches {
+                            use_node ITEM_TREE[id9043] /data[id2]/events[id3]/data[id4]
+                        }
+                    }
+                    EVENT[id163] occurrences matches {0..1} matches {    -- Other
+                        data matches {
+                            use_node ITEM_TREE[id9044] /data[id2]/events[id3]/data[id4]
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id99] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id109] occurrences matches {0..1} matches {    -- *Time(pt)
+                        value matches {
+                            DV_DATE_TIME[id9045] matches {
+                                value
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["pt-br"] = <
+            ["ac9000"] = <
+                text = <"Nível de Consciência (synthesised)">
+                description = <"O investigador deve escolher uma resposta se uma avaliação completa é impedida por obstáculos como um tubo endotraqueal , barreira da língua , trauma orotraqueal / bandagens. A 3 é marcada apenas se o paciente não faz qualquer movimento (além da postura reflexiva ) em resposta a um estímulo nocivo (doloroso). (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Questões Nível de Consciência (synthesised)">
+                description = <"O paciente é inquirido sobre o mês e sua idade . A resposta deve ser correta - não há nenhum crédito parcial por estar próximo . Pacientes afásicos e com estupor que não compreendem as questões deve-se marcar 2. Os pacientes incapazes de falar por causa de intubação traqueal , trauma orotraqueal , disartria grave de qualquer causa , barreira da língua , ou qualquer outro problema não secundário a afasia é dado um 1. É importante que somente a resposta inicial seja classificada e que o examinador não auxilie o paciente com pistas verbais ou não-verbais. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Comando Nível de Consciência (synthesised)">
+                description = <"Ao paciente é solicitado para abrir e fechar os olhos e , em seguida, para apertar e soltar a mão não parética. Substitua para outro comando único , se as mãos não podem ser utilizadas . O crédito é dado , se for feita uma tentativa inequívoca , mas não concluído devido à fraqueza . Se o paciente não responde ao comando, a tarefa deve ser demonstrada a ele ou ela ( pantomima ) e o resultado marcado (ou seja , segue nenhum, um ou dois comandos ) . Aos pacientes com trauma , amputação , ou outros impedimentos físicos devem ser dados comandos únicos adequados. Apenas a primeira tentativa é registrada. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Melhor Olhar (synthesised)">
+                description = <"Apenas os movimentos oculares horizontais serão testados. Movimentos ( óculo-cefálico ) olho voluntária ou reflexa serão marcados , mas a prova calórica não será feita. Se o paciente tem um desvio conjugado dos olhos que podem ser superados pela atividade voluntária ou reflexa , a pontuação será 1. Se o paciente tem uma paralisia do nervo periférico isolado (CN III , IV, ou VI) , marcar um. Olhar é testável em todos os pacientes afásicos . Pacientes com trauma ocular, curativos , cegueira pré-existente , ou outro distúrbio de acuidade visual os campos devem ser testadas com movimentos reflexos , e uma escolha deve ser feita pelo investigador. Estabelecer contato com os olhos e , em seguida, movendo-se sobre o paciente de lado a lado irá ocasionalmente esclarecer a presença de uma paralisia parcial do olhar. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Visual (synthesised)">
+                description = <"Campos visuais (quadrantes superiores e inferiores) são testados pela confrontação, usando o dedo contando ou ameaça visual, conforme o caso. Os doentes podem ser incentivados, mas se olharem para o lado dos dedos se movendo adequadamente, isto pode ser marcado como normal. Se houver cegueira unilateral ou Enucleação, campos visuais no olho restante são marcados. Escore 1, só se encontra-se uma clara assimetria, incluindo quadrantanopia. Se o paciente é cego por qualquer causa, marca 3. Dupla estimulação simultânea é realizada neste momento. Se houver extinção, o paciente recebe um 1, e os resultados são usados para responder ao item 11. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Paralisia Facial (synthesised)">
+                description = <"Pergunte — ou use a pantomima para incentivar — o paciente mostrar os dentes ou levantar as sobrancelhas e fechar os olhos. Marcar a simetria da careta em resposta a estímulos nocivos no mal responsivo ou não-compreender do paciente. Se trauma ou curativos no rosto, tubo orotraqueal, fita ou outras barreiras físicas esconderem o rosto, estas devem ser removidas na medida do possível. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Braço Esquerdo (synthesised)">
+                description = <"O membro é colocado na posição apropriada: estender os braços (palmas das mãos para baixo) 90 graus (se sentado) ou 45 graus (se em decúbito dorsal). Movimento é registrado se o braço cai antes de 10 segundos. O paciente afásico é incentivado usando urgência na voz e pantomima, mas não estímulo doloroso. Cada membro é testado de uma vez, começando com o braço não-parético. Apenas no caso de amputação ou artrodese no ombro, o examinador deve gravar o resultado como não testável (UN) e descrever claramente a explicação para esta escolha. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Braço Direito (synthesised)">
+                description = <"O membro é colocado na posição apropriada: estender os braços (palmas das mãos para baixo) 90 graus (se sentado) ou 45 graus (se em decúbito dorsal). Movimento é registrado se o braço cai antes de 10 segundos. O paciente afásico é incentivado usando urgência na voz e pantomima, mas não estímulo doloroso. Cada membro é testado de uma vez, começando com o braço não-parético. Apenas no caso de amputação ou artrodese no ombro, o examinador deve gravar o resultado como não testável (UN) e descrever claramente a explicação para esta escolha. (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Perna Esquerda (synthesised)">
+                description = <"O membro é colocado na posição apropriada: segure a perna a 30 graus (supino sempre testado). Movimento é registrado se a perna cai antes de 5 segundos. O paciente afásico é incentivado usando urgência na voz e pantomima mas estímulo não nocivo. Cada membro é testado por sua vez, começando com a perna não-parética. Apenas no caso de amputação ou artrodese de quadril, o examinador deve gravar o resultado como não testável (UN) e escrever claramente a explicação para esta escolha. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"*Right Leg(pt) (synthesised)">
+                description = <"O membro é colocado na posição apropriada: segure a perna a 30 graus (supino sempre testado). Movimento é registrado se a perna cai antes de 5 segundos. O paciente afásico é incentivado usando urgência na voz e pantomima mas estímulo não nocivo. Cada membro é testado por sua vez, começando com a perna não-parética. Apenas no caso de amputação ou artrodese de quadril, o examinador deve gravar o resultado como não testável (UN) e escrever claramente a explicação para esta escolha. (synthesised)">
+            >
+            ["ac9010"] = <
+                text = <"Ataxia dos Membros (synthesised)">
+                description = <"Este item destina-se a encontrar evidências de uma lesão cerebelar unilateral. Teste com olhos abertos. Em caso de defeito visual, certifique-se de que o teste é feito no campo visual intacto. Os testes dedo- nariz-dedo e calcanhar-canela são realizados em ambos os lados, e a ataxia é registrada somente se presente desproporcional a fraqueza. Ataxia é ausente no paciente que não consegue entender ou está paralisado. Apenas no caso de amputação ou artrodese, o examinador deve registrar o resultado como não testável (UN) e escrever claramente a explicação para esta escolha. Em caso de cegueira, o teste pode ser o paciente toque o nariz da posição do braço estendido. (synthesised)">
+            >
+            ["ac9011"] = <
+                text = <"sensibilidade (synthesised)">
+                description = <"Sensação ou careta à picada de agulha , quando testado , ou retirada do estímulo doloroso no paciente prostrado ou afásico . Apenas a perda sensorial atribuída a acidente vascular cerebral é classificada como anormal e o examinador deve testar o maior número de áreas do corpo [ braços (não mãos) , pernas, tronco, face ] , conforme necessário, para verificar com precisão para a perda de sensibilidade unilateral. Uma pontuação de 2, \" perda de sensibilidade severa ou total\", só deve ser dado quando uma perda severa ou total da sensibilidade puder ser claramente demonstrada. Pacientes em estado de estupor e afásicos irão, portanto, provavelmente marcar 1 ou 0. O paciente com acidente vascular cerebral tronco cerebral em que há perda bilateral de sensação deve ser marcado 2. Se o paciente não responde e está quadriplégico , marcar 2. Pacientes em coma (item 1a = 3) são dados automaticamente a 2 sobre esse tema. (synthesised)">
+            >
+            ["ac9012"] = <
+                text = <"Linguagem (synthesised)">
+                description = <"Para este item de escala, o paciente é solicitado a descrever o que está acontecendo em uma foto, citar os itens de uma folha de nomeação e ler a partir de uma lista de frases. Compreensão é julgada a partir de respostas, bem como sobre todos os comandos no exame neurológico geral anterior. Se a perda visual interfere com os testes, peça ao paciente para identificar objetos colocados na mão, repetir e produzir o discurso. O paciente intubado deve ser solicitado a escrever. O paciente em coma (item 1a - 3) marcará automaticamente 3 sobre este item. O examinador deve escolher uma pontuação para o paciente com estupor ou cooperação limitada, mas uma pontuação de 3 deve ser usada somente se o paciente é mudo e segue sem comandos de uma etapa. (synthesised)">
+            >
+            ["ac9013"] = <
+                text = <"Disartria (synthesised)">
+                description = <"Se aparentemente o paciente parece ser normal, uma amostra adequada de expressão deve ser obtida pedindo para o paciente ler ou repetir palavras da lista apresentada. Se o paciente tem afasia severa, a clareza da articulação da fala espontânea pode ser avaliada. Somente se o paciente está intubado ou tem outras barreiras físicas para produzir o discurso, o examinador deve gravar o resultado como não testável (UN) e escrever claramente a explicação para esta escolha. Não diga ao paciente porque ele/ela está sendo testado. (synthesised)">
+            >
+            ["ac9014"] = <
+                text = <"Extinção e desatenção (synthesised)">
+                description = <"Informações suficientes para identificar negligência podem ser obtidas durante o teste prévio. Se o paciente tem uma perda visual grave impedindo visual dupla, estimulação simultânea, e os estímulos cutâneos são normais, o escore é normal. Se o paciente tem afasia, mas aparece atender ambos os lados, o placar é normal. A presença de negligência espacial visual ou anosognosia também pode ser tomada como evidência de anormalidade. A anormalidade é marcada apenas se estiver presente, o item nunca é não testável.
+    Anosognosia é um estado neurológico caracterizado pela incapacidade de uma pessoa estar consciente da sua própria doença (synthesised)">
+            >
+            ["id163"] = <
+                text = <"Outros">
+                description = <"*">
+            >
+            ["id162"] = <
+                text = <"3 meses">
+                description = <"Avaliação após 3 meses">
+            >
+            ["id161"] = <
+                text = <"7–10 dias">
+                description = <"Avaliação feita em algum ponto do tempo entre 7-10 dias.">
+            >
+            ["id160"] = <
+                text = <"24 horas após o início dos sintomas 6 minutos">
+                description = <"Avaliação 24 horas após início dos sintomas (com tolerância de aproximadamente 20 minutos)">
+            >
+            ["id159"] = <
+                text = <"Duas horas após o tratamento">
+                description = <"Avaliação duas horas após o tratamento">
+            >
+            ["at158"] = <
+                text = <"*UN - Intubado ou qualquer outra barreira física">
+                description = <"UN - Intubado ou qualquer outra barreira física">
+            >
+            ["at157"] = <
+                text = <"Disartria Severa">
+                description = <"Discurso do paciente é tão arrastado que pode ser ininteligível na ausência de ou desproporcional a qualquer disfasia, ou é mudo/não articulado.">
+            >
+            ["at156"] = <
+                text = <"Disartria leve ou moderada">
+                description = <"Paciente censura pelo menos algumas palavras e, na pior das hipóteses, pode ser entendida com alguma dificuldade.">
+            >
+            ["at155"] = <
+                text = <"Normal">
+                description = <"*">
+            >
+            ["id154"] = <
+                text = <"Disartria">
+                description = <"Se aparentemente o paciente parece ser normal, uma amostra adequada de expressão deve ser obtida pedindo para o paciente ler ou repetir palavras da lista apresentada. Se o paciente tem afasia severa, a clareza da articulação da fala espontânea pode ser avaliada. Somente se o paciente está intubado ou tem outras barreiras físicas para produzir o discurso, o examinador deve gravar o resultado como não testável (UN) e escrever claramente a explicação para esta escolha. Não diga ao paciente porque ele/ela está sendo testado.">
+            >
+            ["at153"] = <
+                text = <"*UN - Amputação ou artrodese">
+                description = <"UN - Amputação ou artrodese">
+            >
+            ["at152"] = <
+                text = <"Presente em dois membros">
+                description = <"*">
+            >
+            ["at151"] = <
+                text = <"Presente em um membro">
+                description = <"*">
+            >
+            ["at150"] = <
+                text = <"Ausente">
+                description = <"*">
+            >
+            ["id149"] = <
+                text = <"Ataxia dos Membros">
+                description = <"Este item destina-se a encontrar evidências de uma lesão cerebelar unilateral. Teste com olhos abertos. Em caso de defeito visual, certifique-se de que o teste é feito no campo visual intacto. Os testes dedo- nariz-dedo e calcanhar-canela são realizados em ambos os lados, e a ataxia é registrada somente se presente desproporcional a fraqueza. Ataxia é ausente no paciente que não consegue entender ou está paralisado. Apenas no caso de amputação ou artrodese, o examinador deve registrar o resultado como não testável (UN) e escrever claramente a explicação para esta escolha. Em caso de cegueira, o teste pode ser o paciente toque o nariz da posição do braço estendido.">
+            >
+            ["at148"] = <
+                text = <"*UN - Amputação ou artrodese">
+                description = <"UN - Amputação ou artrodese">
+            >
+            ["at147"] = <
+                text = <"Nenhum movimento">
+                description = <"*">
+            >
+            ["at146"] = <
+                text = <"Um pouco de esforço contra a gravidade">
+                description = <"Perna cai na cama imediatamente">
+            >
+            ["at145"] = <
+                text = <"Um pouco de esforço contra a gravidade">
+                description = <"Perna cai na cama após 5 segundos, mas tem um pouco de esforço contra a gravidade">
+            >
+            ["at144"] = <
+                text = <"Movimento">
+                description = <"Perna cai ao final do período de 5 segundos, mas não bate na cama.">
+            >
+            ["at143"] = <
+                text = <"Nenhum movimento">
+                description = <"Perna detém posição de 30 graus por 5 segundos completos">
+            >
+            ["id142"] = <
+                text = <"*Right Leg(pt)">
+                description = <"O membro é colocado na posição apropriada: segure a perna a 30 graus (supino sempre testado). Movimento é registrado se a perna cai antes de 5 segundos. O paciente afásico é incentivado usando urgência na voz e pantomima mas estímulo não nocivo. Cada membro é testado por sua vez, começando com a perna não-parética. Apenas no caso de amputação ou artrodese de quadril, o examinador deve gravar o resultado como não testável (UN) e escrever claramente a explicação para esta escolha.">
+            >
+            ["at141"] = <
+                text = <"*UN - Amputação ou artrodese">
+                description = <"UN - Amputação ou artrodese">
+            >
+            ["at140"] = <
+                text = <"Nenhum movimento">
+                description = <"*">
+            >
+            ["at139"] = <
+                text = <"Um pouco de esforço contra a gravidade">
+                description = <"Perna cai na cama imediatamente">
+            >
+            ["at138"] = <
+                text = <"Um pouco de esforço contra a gravidade">
+                description = <"Perna cai na cama após 5 segundos, mas tem um pouco de esforço contra a gravidade">
+            >
+            ["at137"] = <
+                text = <"Movimento">
+                description = <"Perna cai ao final do período de 5 segundos, mas não bate na cama.">
+            >
+            ["at136"] = <
+                text = <"Nenhum movimento">
+                description = <"Perna detém posição de 30 graus por 5 segundos completos">
+            >
+            ["id135"] = <
+                text = <"Perna Esquerda">
+                description = <"O membro é colocado na posição apropriada: segure a perna a 30 graus (supino sempre testado). Movimento é registrado se a perna cai antes de 5 segundos. O paciente afásico é incentivado usando urgência na voz e pantomima mas estímulo não nocivo. Cada membro é testado por sua vez, começando com a perna não-parética. Apenas no caso de amputação ou artrodese de quadril, o examinador deve gravar o resultado como não testável (UN) e escrever claramente a explicação para esta escolha.">
+            >
+            ["at134"] = <
+                text = <"*UN - Amputação ou artrodese">
+                description = <"UN - Amputação ou artrodese">
+            >
+            ["at133"] = <
+                text = <"Nenhum movimento">
+                description = <"*">
+            >
+            ["at132"] = <
+                text = <"Nenhum esforço contra a gravidade">
+                description = <"Membro cai">
+            >
+            ["at131"] = <
+                text = <"Um pouco de esforço contra a gravidade">
+                description = <"Membro não pode obter ou manter 90 (ou 45) graus, mas tem um pouco de esforço contra a gravidade.">
+            >
+            ["at130"] = <
+                text = <"Movimento">
+                description = <"Membro mantém 90 (ou 45) graus, mas desvia para o chão antes de completar 10 segundos; Não utilize a cama ou outro suporte.">
+            >
+            ["at129"] = <
+                text = <"Nenhum movimento">
+                description = <"Membro permanece 90 (ou 45) graus por 10 segundos completos">
+            >
+            ["id128"] = <
+                text = <"Braço Direito">
+                description = <"O membro é colocado na posição apropriada: estender os braços (palmas das mãos para baixo) 90 graus (se sentado) ou 45 graus (se em decúbito dorsal). Movimento é registrado se o braço cai antes de 10 segundos. O paciente afásico é incentivado usando urgência na voz e pantomima, mas não estímulo doloroso. Cada membro é testado de uma vez, começando com o braço não-parético. Apenas no caso de amputação ou artrodese no ombro, o examinador deve gravar o resultado como não testável (UN) e descrever claramente a explicação para esta escolha.">
+            >
+            ["at127"] = <
+                text = <"*UN - Amputação ou artrodese">
+                description = <"UN - Amputação ou artrodese">
+            >
+            ["at126"] = <
+                text = <"Nenhum movimento">
+                description = <"*">
+            >
+            ["at125"] = <
+                text = <"Nenhum esforço contra a gravidade">
+                description = <"Membro cai">
+            >
+            ["at124"] = <
+                text = <"Um pouco de esforço contra a gravidade">
+                description = <"Membro não pode obter ou manter 90 (ou 45) graus, mas tem um pouco de esforço contra a gravidade.">
+            >
+            ["at123"] = <
+                text = <"Movimento">
+                description = <"Membro mantém 90 (ou 45) graus, mas desvia para o chão antes de completar 10 segundos; Não utilize a cama ou outro suporte.">
+            >
+            ["at122"] = <
+                text = <"Nenhum Movimento">
+                description = <"Membro permanece 90 (ou 45) graus por 10 segundos completos">
+            >
+            ["id121"] = <
+                text = <"Braço Esquerdo">
+                description = <"O membro é colocado na posição apropriada: estender os braços (palmas das mãos para baixo) 90 graus (se sentado) ou 45 graus (se em decúbito dorsal). Movimento é registrado se o braço cai antes de 10 segundos. O paciente afásico é incentivado usando urgência na voz e pantomima, mas não estímulo doloroso. Cada membro é testado de uma vez, começando com o braço não-parético. Apenas no caso de amputação ou artrodese no ombro, o examinador deve gravar o resultado como não testável (UN) e descrever claramente a explicação para esta escolha.">
+            >
+            ["id109"] = <
+                text = <"Tempo">
+                description = <"Momento em que o teste foi realizado">
+            >
+            ["id98"] = <
+                text = <"Total">
+                description = <"Registra a soma dos pontos marcados">
+            >
+            ["at92"] = <
+                text = <"Hemi-desatenção profunda ou extinção de mais de uma modalidade">
+                description = <"Não reconhece a mão própria ou orienta para apenas um lado do espaço">
+            >
+            ["at91"] = <
+                text = <"Desatenção visual, tátil, auditiva, espacial ou pessoal">
+                description = <"Extinção de estimulação simultânea bilateral em uma das modalidades sensoriais">
+            >
+            ["at90"] = <
+                text = <"Nenhuma anormalidade">
+                description = <"*">
+            >
+            ["id86"] = <
+                text = <"Extinção e desatenção">
+                description = <"Informações suficientes para identificar negligência podem ser obtidas durante o teste prévio. Se o paciente tem uma perda visual grave impedindo visual dupla, estimulação simultânea, e os estímulos cutâneos são normais, o escore é normal. Se o paciente tem afasia, mas aparece atender ambos os lados, o placar é normal. A presença de negligência espacial visual ou anosognosia também pode ser tomada como evidência de anormalidade. A anormalidade é marcada apenas se estiver presente, o item nunca é não testável.
+    Anosognosia é um estado neurológico caracterizado pela incapacidade de uma pessoa estar consciente da sua própria doença">
+            >
+            ["at84"] = <
+                text = <"Mudo, afasia total">
+                description = <"Nenhum discurso utilizável ou compreensão auditiva">
+            >
+            ["at83"] = <
+                text = <"Afasia severa">
+                description = <"Toda a comunicação é através de expressão fragmentada; grande necessidade de inferência, questionando e adivinhando pelo ouvinte. Quantidade de informações que podem
+    ser trocadas é limitada; ouvinte carrega um fardo de comunicação. Examinador não pode identificar materiais fornecidos da resposta do doente.">
+            >
+            ["at82"] = <
+                text = <"Leve a moderada afasia">
+                description = <"Alguma óbvia perda de fluência ou facilidade da compreensão, sem limitação significativa na idéia expressada ou forma de expressão. Redução de discurso e/ou compreensão, no entanto, a conversa sobre materiais fornecidos é difícil ou impossível. Por exemplo, em conversa sobre materiais fornecidos, o examinador pode identificar imagens ou conteúdo da relação do cartão da resposta do paciente.">
+            >
+            ["at81"] = <
+                text = <"Não afásico">
+                description = <"Normal">
+            >
+            ["id80"] = <
+                text = <"Linguagem">
+                description = <"Para este item de escala, o paciente é solicitado a descrever o que está acontecendo em uma foto, citar os itens de uma folha de nomeação e ler a partir de uma lista de frases. Compreensão é julgada a partir de respostas, bem como sobre todos os comandos no exame neurológico geral anterior. Se a perda visual interfere com os testes, peça ao paciente para identificar objetos colocados na mão, repetir e produzir o discurso. O paciente intubado deve ser solicitado a escrever. O paciente em coma (item 1a - 3) marcará automaticamente 3 sobre este item. O examinador deve escolher uma pontuação para o paciente com estupor ou cooperação limitada, mas uma pontuação de 3 deve ser usada somente se o paciente é mudo e segue sem comandos de uma etapa.">
+            >
+            ["at79"] = <
+                text = <"Severa ou total perda de sensibilidade">
+                description = <"Paciente não está ciente ao ser tocado na face, braço e perna">
+            >
+            ["at78"] = <
+                text = <"Leva a moderada perda de sensibilidade">
+                description = <"Paciente sente que a picada é menos acentuada ou maçante no lado afetado; ou há uma perda de dor superficial com a picada de agulha, mas paciente está consciente ao ser tocado">
+            >
+            ["at77"] = <
+                text = <"Normal">
+                description = <"Nenhuma perda de sensibilidade">
+            >
+            ["id76"] = <
+                text = <"sensibilidade">
+                description = <"Sensação ou careta à picada de agulha , quando testado , ou retirada do estímulo doloroso no paciente prostrado ou afásico . Apenas a perda sensorial atribuída a acidente vascular cerebral é classificada como anormal e o examinador deve testar o maior número de áreas do corpo [ braços (não mãos) , pernas, tronco, face ] , conforme necessário, para verificar com precisão para a perda de sensibilidade unilateral. Uma pontuação de 2, \" perda de sensibilidade severa ou total\", só deve ser dado quando uma perda severa ou total da sensibilidade puder ser claramente demonstrada. Pacientes em estado de estupor e afásicos irão, portanto, provavelmente marcar 1 ou 0. O paciente com acidente vascular cerebral tronco cerebral em que há perda bilateral de sensação deve ser marcado 2. Se o paciente não responde e está quadriplégico , marcar 2. Pacientes em coma (item 1a = 3) são dados automaticamente a 2 sobre esse tema.">
+            >
+            ["id50"] = <
+                text = <"Perna Motor">
+                description = <"*">
+            >
+            ["id34"] = <
+                text = <"Braço Motor">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"Paralisia completa">
+                description = <"Paralisia completa de um ou ambos os lados (ausência de movimento facial na face superior e inferior).">
+            >
+            ["at31"] = <
+                text = <"Paralisia Parcial">
+                description = <"Paralisia total ou quase total da face inferior.">
+            >
+            ["at30"] = <
+                text = <"Discreta Paralisia">
+                description = <"Sulco nasolabial aplainado, assimetria no sorriso">
+            >
+            ["at29"] = <
+                text = <"Normal">
+                description = <"Simetria dos movimentos">
+            >
+            ["id28"] = <
+                text = <"Paralisia Facial">
+                description = <"Pergunte — ou use a pantomima para incentivar — o paciente mostrar os dentes ou levantar as sobrancelhas e fechar os olhos. Marcar a simetria da careta em resposta a estímulos nocivos no mal responsivo ou não-compreender do paciente. Se trauma ou curativos no rosto, tubo orotraqueal, fita ou outras barreiras físicas esconderem o rosto, estas devem ser removidas na medida do possível.">
+            >
+            ["at27"] = <
+                text = <"Hemianopsia Bilateral">
+                description = <"Cegueira incluindo cegueira cortical.">
+            >
+            ["at26"] = <
+                text = <"Hemianopsia completa">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Hemianopsia Parcial">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Nenhuma perda visual">
+                description = <"*">
+            >
+            ["id23"] = <
+                text = <"Visual">
+                description = <"Campos visuais (quadrantes superiores e inferiores) são testados pela confrontação, usando o dedo contando ou ameaça visual, conforme o caso. Os doentes podem ser incentivados, mas se olharem para o lado dos dedos se movendo adequadamente, isto pode ser marcado como normal. Se houver cegueira unilateral ou Enucleação, campos visuais no olho restante são marcados. Escore 1, só se encontra-se uma clara assimetria, incluindo quadrantanopia. Se o paciente é cego por qualquer causa, marca 3. Dupla estimulação simultânea é realizada neste momento. Se houver extinção, o paciente recebe um 1, e os resultados são usados para responder ao item 11.">
+            >
+            ["at22"] = <
+                text = <"Desvio forçado">
+                description = <"A paresia do olhar total não é superada pela manobra de óculo-cefálica">
+            >
+            ["at21"] = <
+                text = <"Paralisia parcial do olhar">
+                description = <"O olhar é anormal em um ou ambos os olhos, mas desvio forçado ou paresia total do olhar não está presente.">
+            >
+            ["at20"] = <
+                text = <"Normal">
+                description = <"*">
+            >
+            ["id19"] = <
+                text = <"Melhor Olhar">
+                description = <"Apenas os movimentos oculares horizontais serão testados. Movimentos ( óculo-cefálico ) olho voluntária ou reflexa serão marcados , mas a prova calórica não será feita. Se o paciente tem um desvio conjugado dos olhos que podem ser superados pela atividade voluntária ou reflexa , a pontuação será 1. Se o paciente tem uma paralisia do nervo periférico isolado (CN III , IV, ou VI) , marcar um. Olhar é testável em todos os pacientes afásicos . Pacientes com trauma ocular, curativos , cegueira pré-existente , ou outro distúrbio de acuidade visual os campos devem ser testadas com movimentos reflexos , e uma escolha deve ser feita pelo investigador. Estabelecer contato com os olhos e , em seguida, movendo-se sobre o paciente de lado a lado irá ocasionalmente esclarecer a presença de uma paralisia parcial do olhar.">
+            >
+            ["at18"] = <
+                text = <"Nenhuma perfomance correta">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Somente uma performance correta">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Ambas as performances corretas">
+                description = <"*">
+            >
+            ["id15"] = <
+                text = <"Comando Nível de Consciência">
+                description = <"Ao paciente é solicitado para abrir e fechar os olhos e , em seguida, para apertar e soltar a mão não parética. Substitua para outro comando único , se as mãos não podem ser utilizadas . O crédito é dado , se for feita uma tentativa inequívoca , mas não concluído devido à fraqueza . Se o paciente não responde ao comando, a tarefa deve ser demonstrada a ele ou ela ( pantomima ) e o resultado marcado (ou seja , segue nenhum, um ou dois comandos ) . Aos pacientes com trauma , amputação , ou outros impedimentos físicos devem ser dados comandos únicos adequados. Apenas a primeira tentativa é registrada.">
+            >
+            ["at14"] = <
+                text = <"Incorretas">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Uma resposta correta">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Ambas as questões corretas">
+                description = <"*">
+            >
+            ["id11"] = <
+                text = <"Questões Nível de Consciência">
+                description = <"O paciente é inquirido sobre o mês e sua idade . A resposta deve ser correta - não há nenhum crédito parcial por estar próximo . Pacientes afásicos e com estupor que não compreendem as questões deve-se marcar 2. Os pacientes incapazes de falar por causa de intubação traqueal , trauma orotraqueal , disartria grave de qualquer causa , barreira da língua , ou qualquer outro problema não secundário a afasia é dado um 1. É importante que somente a resposta inicial seja classificada e que o examinador não auxilie o paciente com pistas verbais ou não-verbais.">
+            >
+            ["at10"] = <
+                text = <"Comatoso">
+                description = <"Responde apenas com reflexo motor ou efeitos autonômicos , ou totalmente sem resposta , flácido , e arreflexivo.">
+            >
+            ["at9"] = <
+                text = <"Estupor">
+                description = <"Não alertar ; exige estimulação repetida para participar, ou é prostrado, e requer estimulação forte ou dolorosa para fazer movimentos (não estereotipados) .">
+            >
+            ["at8"] = <
+                text = <"Sonolento, apático">
+                description = <"Não alertar ; mas despertável por pequena estimulação para obedecer ou responder">
+            >
+            ["at7"] = <
+                text = <"Alerta">
+                description = <"Profundamente responsivo">
+            >
+            ["id6"] = <
+                text = <"Nível de Consciência">
+                description = <"O investigador deve escolher uma resposta se uma avaliação completa é impedida por obstáculos como um tubo endotraqueal , barreira da língua , trauma orotraqueal / bandagens. A 3 é marcada apenas se o paciente não faz qualquer movimento (além da postura reflexiva ) em resposta a um estímulo nocivo (doloroso).">
+            >
+            ["id5"] = <
+                text = <"Consciência">
+                description = <"*">
+            >
+            ["id3"] = <
+                text = <"Base">
+                description = <"Avaliação Básica">
+            >
+            ["id1"] = <
+                text = <"Avaliação da Escala Neurológica de Acidente Vascular Cerebral">
+                description = <"Exame neurológico com 15 itens da escala de acidente vascular cerebral, utilizado para avaliar a acuidade dos pacientes com AVC , determinar o tratamento adequado, e prever o resultado do paciente . Também conhecido como o National Institutes of Health Stroke Scale ( NIHSS ).">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Level of Consciousness (synthesised)">
+                description = <"The investigator must choose a response if a full evaluation is prevented by such obstacles as an endotracheal tube, language barrier, orotracheal trauma/bandages.  A 3 is scored only if the patient makes no movement (other than reflexive posturing) in response to noxious stimulation. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Level of Consciousness Questions (synthesised)">
+                description = <"The patient is asked the month and his/her age.  The answer must be correct — there is no partial credit for being close.  Aphasic and stuporous patients who do not comprehend the questions will score 2.  Patients unable to speak because of endotracheal intubation, orotracheal trauma, severe dysarthria from any cause, language barrier, or any other problem not secondary to aphasia are given a 1.  It is important that only the initial answer be graded and that the examiner not “help” the patient with verbal or non-verbal cues. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Level of Consciousness Commands (synthesised)">
+                description = <"The patient is asked to open and close the eyes and then to grip and release the non-paretic hand. Substitute another one-step command if the hands cannot be used.  Credit is given if an unequivocal attempt is made but not completed due to weakness.  If the patient does not respond to command, the task should be demonstrated to him or her (pantomime), and the result scored (i.e., follows none, one, or two commands). Patients with trauma, amputation, or other physical impediments should be given suitable one-step commands. Only the first attempt is scored. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Best Gaze (synthesised)">
+                description = <"Only horizontal eye movements will be tested. Voluntary or reflexive (oculocephalic) eye movements will be scored, but caloric testing is not done.  If the patient has a conjugate deviation of the eyes that can be overcome by voluntary or reflexive activity, the score will be 1.  If a patient has an isolated peripheral nerve paresis (CN III, IV, or VI), score a 1.  Gaze is testable in all aphasic patients.  Patients with ocular trauma, bandages, pre-existing blindness, or other disorder of visual acuity or fields should be tested with reflexive movements, and a choice made by the investigator.  Establishing eye contact and then moving about the patient from side to side will occasionally clarify the presence of a partial gaze palsy. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Visual (synthesised)">
+                description = <"Visual fields (upper and lower quadrants) are tested by confrontation, using finger counting or visual threat, as appropriate.  Patients may be encouraged, but if they look at the side of the moving fingers appropriately, this can be scored as normal.  If there is unilateral blindness or enucleation, visual fields in the remaining eye are scored.  Score 1 only if a clear-cut asymmetry, including quadrantanopia, is found.  If patient is blind from any cause, score 3.  Double simultaneous stimulation is performed at this point.  If there is extinction, patient receives a 1, and the results are used to respond to item 11. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Facial Palsy (synthesised)">
+                description = <"Ask — or use pantomime to encourage — the patient to show teeth or raise eyebrows and close eyes.  Score symmetry of grimace in response to noxious stimuli in the poorly responsive or non-comprehending patient. If facial trauma/bandages, orotracheal tube, tape, or other physical barriers obscure the face, these should be removed to the extent possible. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Left Arm (synthesised)">
+                description = <"The limb is placed in the appropriate position: extend the arms (palms down) 90 degrees (if sitting) or 45 degrees (if supine).  Drift is scored if the arm falls before 10 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime, but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic arm. Only in the case of amputation or joint fusion at the shoulder, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Right Arm (synthesised)">
+                description = <"The limb is placed in the appropriate position: extend the arms (palms down) 90 degrees (if sitting) or 45 degrees (if supine).  Drift is scored if the arm falls before 10 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime, but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic arm. Only in the case of amputation or joint fusion at the shoulder, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice. (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Left Leg (synthesised)">
+                description = <"The limb is placed in the appropriate position: hold the leg at 30 degrees (always tested supine). Drift is scored if the leg falls before 5 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic leg. Only in the case of amputation or joint fusion at the hip, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"Right Leg (synthesised)">
+                description = <"The limb is placed in the appropriate position: hold the leg at 30 degrees (always tested supine). Drift is scored if the leg falls before 5 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic leg. Only in the case of amputation or joint fusion at the hip, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice. (synthesised)">
+            >
+            ["ac9010"] = <
+                text = <"Limb Ataxia (synthesised)">
+                description = <"This item is aimed at finding evidence of a unilateral cerebellar lesion. Test with eyes open. In case of visual defect, ensure testing is done in intact visual field. The fingernose-finger and heel-shin tests are performed on both sides, and ataxia is scored only if present out of proportion to weakness. Ataxia is absent in the patient who cannot understand or is paralyzed. Only in the case of amputation or joint fusion, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice. In case of blindness, test by having the patient touch nose from extended arm position. (synthesised)">
+            >
+            ["ac9011"] = <
+                text = <"Sensory (synthesised)">
+                description = <"Sensation or grimace to pinprick when tested, or withdrawal from noxious stimulus in the obtunded or aphasic patient. Only sensory loss attributed to stroke is scored as abnormal and the examiner should test as many body areas [arms (not hands), legs, trunk, face] as needed to accurately check for hemisensory loss.  A score of 2, “severe or total sensory loss,” should only be given when a severe or total loss of sensation can be clearly demonstrated.  Stuporous and aphasic patients will, therefore, probably score 1 or 0. The patient with brainstem stroke who has bilateral loss of sensation is scored 2.  If the patient does not respond and is quadriplegic, score 2. Patients in a coma (item 1a=3) are automatically given a 2 on this item. (synthesised)">
+            >
+            ["ac9012"] = <
+                text = <"Best Language (synthesised)">
+                description = <"For this scale item, the patient is asked to describe what is happening in a picture, to name the items on a naming sheet, and to read from a list of sentences. Comprehension is judged from responses here, as well as to all of the commands in the preceding general neurological exam. If visual loss interferes with the tests, ask the patient to identify objects placed in the hand, repeat, and produce speech. The intubated patient should be asked to write. The patient in a coma (item 1a=3) will automatically score 3 on this item. The examiner must choose a score for the patient with stupor or limited cooperation, but a score of 3 should be used only if the patient is mute and follows no one-step commands. (synthesised)">
+            >
+            ["ac9013"] = <
+                text = <"Dysarthria (synthesised)">
+                description = <"If patient is thought to be normal, an adequate sample of speech must be obtained by asking patient to read or repeat words from the attached list. If the patient has severe aphasia, the clarity of articulation of spontaneous speech can be rated. Only if the patient is intubated or has other physical barriers to producing speech, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice. Do not tell the patient why he/she is being tested. (synthesised)">
+            >
+            ["ac9014"] = <
+                text = <"Extinction and Inattention (synthesised)">
+                description = <"Sufficient information to identify neglect may be obtained during the prior testing. If the patient has a severe visual loss preventing visual double simultaneous stimulation, and the cutaneous stimuli are normal, the score is normal. If the patient has aphasia but does appear to attend to both sides, the score is normal. The presence of visual spatial neglect or anosagnosia may also be taken as evidence of abnormality. Since the abnormality is scored only if present, the item is never untestable. (synthesised)">
+            >
+            ["id163"] = <
+                text = <"Other">
+                description = <"*">
+            >
+            ["id162"] = <
+                text = <"3 months">
+                description = <"Assessment after 3 months.">
+            >
+            ["id161"] = <
+                text = <"7–10 days">
+                description = <"Assessment made at point in time between 7-10 days.">
+            >
+            ["id160"] = <
+                text = <"24 hours post onset of symptoms 6 minutes">
+                description = <"Assessment 24 hours post onset of symptoms (with tolerance of +-20 minutes).">
+            >
+            ["id159"] = <
+                text = <"2 hours post treatment">
+                description = <"Assessment 2 hours post treatment.">
+            >
+            ["at158"] = <
+                text = <"UN - Intubated or other physical barrier">
+                description = <"UN - Intubated or other physical barrier">
+            >
+            ["at157"] = <
+                text = <"Severe dysarthria">
+                description = <"Patient’s speech is so slurred as to be unintelligible in the absence of or out of proportion to any dysphasia, or is mute/anarthric.">
+            >
+            ["at156"] = <
+                text = <"Mild-to-moderate dysarthria">
+                description = <"Patient slurs at least some words and, at worst, can be understood with some difficulty.">
+            >
+            ["at155"] = <
+                text = <"Normal">
+                description = <"*">
+            >
+            ["id154"] = <
+                text = <"Dysarthria">
+                description = <"If patient is thought to be normal, an adequate sample of speech must be obtained by asking patient to read or repeat words from the attached list. If the patient has severe aphasia, the clarity of articulation of spontaneous speech can be rated. Only if the patient is intubated or has other physical barriers to producing speech, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice. Do not tell the patient why he/she is being tested.">
+            >
+            ["at153"] = <
+                text = <"UN - Amputation or joint fusion">
+                description = <"UN - Amputation or joint fusion">
+            >
+            ["at152"] = <
+                text = <"Present in two limbs">
+                description = <"*">
+            >
+            ["at151"] = <
+                text = <"Present in one limb">
+                description = <"*">
+            >
+            ["at150"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["id149"] = <
+                text = <"Limb Ataxia">
+                description = <"This item is aimed at finding evidence of a unilateral cerebellar lesion. Test with eyes open. In case of visual defect, ensure testing is done in intact visual field. The fingernose-finger and heel-shin tests are performed on both sides, and ataxia is scored only if present out of proportion to weakness. Ataxia is absent in the patient who cannot understand or is paralyzed. Only in the case of amputation or joint fusion, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice. In case of blindness, test by having the patient touch nose from extended arm position.">
+            >
+            ["at148"] = <
+                text = <"UN - Amputation or joint fusion">
+                description = <"UN - Amputation or joint fusion">
+            >
+            ["at147"] = <
+                text = <"No movement">
+                description = <"*">
+            >
+            ["at146"] = <
+                text = <"No effort against gravity">
+                description = <"Leg falls to bed immediately.">
+            >
+            ["at145"] = <
+                text = <"Some effort against gravity">
+                description = <"Leg falls to bed by 5 seconds but has some effort against gravity.">
+            >
+            ["at144"] = <
+                text = <"Drift">
+                description = <"Leg falls by the end of the 5-second period but does not hit the bed.">
+            >
+            ["at143"] = <
+                text = <"No drift">
+                description = <"Leg holds 30-degree position for full 5 seconds.">
+            >
+            ["id142"] = <
+                text = <"Right Leg">
+                description = <"The limb is placed in the appropriate position: hold the leg at 30 degrees (always tested supine). Drift is scored if the leg falls before 5 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic leg. Only in the case of amputation or joint fusion at the hip, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice.">
+            >
+            ["at141"] = <
+                text = <"UN - Amputation or joint fusion">
+                description = <"UN - Amputation or joint fusion">
+            >
+            ["at140"] = <
+                text = <"No movement">
+                description = <"*">
+            >
+            ["at139"] = <
+                text = <"No effort against gravity">
+                description = <"Leg falls to bed immediately.">
+            >
+            ["at138"] = <
+                text = <"Some effort against gravity">
+                description = <"Leg falls to bed by 5 seconds but has some effort against gravity.">
+            >
+            ["at137"] = <
+                text = <"Drift">
+                description = <"Leg falls by the end of the 5-second period but does not hit the bed.">
+            >
+            ["at136"] = <
+                text = <"No drift">
+                description = <"Leg holds 30-degree position for full 5 seconds.">
+            >
+            ["id135"] = <
+                text = <"Left Leg">
+                description = <"The limb is placed in the appropriate position: hold the leg at 30 degrees (always tested supine). Drift is scored if the leg falls before 5 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic leg. Only in the case of amputation or joint fusion at the hip, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice.">
+            >
+            ["at134"] = <
+                text = <"UN - Amputation or joint fusion">
+                description = <"UN - Amputation or joint fusion">
+            >
+            ["at133"] = <
+                text = <"No movement">
+                description = <"*">
+            >
+            ["at132"] = <
+                text = <"No effort against gravity">
+                description = <"Limb falls.
+    ">
+            >
+            ["at131"] = <
+                text = <"Some effort against gravity">
+                description = <"Limb cannot get to or maintain (if cued) 90 (or 45) degrees, drifts down to bed, but has some effort against gravity.">
+            >
+            ["at130"] = <
+                text = <"Drift">
+                description = <"Limb holds 90 (or 45) degrees, but drifts down before full 10 seconds; does not hit bed or other support.">
+            >
+            ["at129"] = <
+                text = <"No drift">
+                description = <"Limb holds 90 (or 45) degrees for full 10 seconds.">
+            >
+            ["id128"] = <
+                text = <"Right Arm">
+                description = <"The limb is placed in the appropriate position: extend the arms (palms down) 90 degrees (if sitting) or 45 degrees (if supine).  Drift is scored if the arm falls before 10 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime, but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic arm. Only in the case of amputation or joint fusion at the shoulder, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice.">
+            >
+            ["at127"] = <
+                text = <"UN - Amputation or joint fusion">
+                description = <"UN - Amputation or joint fusion">
+            >
+            ["at126"] = <
+                text = <"No movement">
+                description = <"*">
+            >
+            ["at125"] = <
+                text = <"No effort against gravity">
+                description = <"Limb falls.
+    ">
+            >
+            ["at124"] = <
+                text = <"Some effort against gravity">
+                description = <"Limb cannot get to or maintain (if cued) 90 (or 45) degrees, drifts down to bed, but has some effort against gravity.">
+            >
+            ["at123"] = <
+                text = <"Drift">
+                description = <"Limb holds 90 (or 45) degrees, but drifts down before full 10 seconds; does not hit bed or other support.">
+            >
+            ["at122"] = <
+                text = <"No drift">
+                description = <"Limb holds 90 (or 45) degrees for full 10 seconds.">
+            >
+            ["id121"] = <
+                text = <"Left Arm">
+                description = <"The limb is placed in the appropriate position: extend the arms (palms down) 90 degrees (if sitting) or 45 degrees (if supine).  Drift is scored if the arm falls before 10 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime, but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic arm. Only in the case of amputation or joint fusion at the shoulder, the examiner should record the score as untestable (UN) and clearly write the explanation for this choice.">
+            >
+            ["id109"] = <
+                text = <"*Time(pt)">
+                description = <"*Moment when the test was performed(pt)">
+            >
+            ["id98"] = <
+                text = <"Total Score">
+                description = <"Records the sum of the points scored.">
+            >
+            ["at92"] = <
+                text = <"Profound hemi-inattention or extinction to more than one modality">
+                description = <"Does not recognize own hand or orients to only one side of space.">
+            >
+            ["at91"] = <
+                text = <"Visual, tactile, auditory, spatial, or personal inattention">
+                description = <"Or extinction to bilateral simultaneous stimulation in one of the sensory modalities.">
+            >
+            ["at90"] = <
+                text = <"No abnormality">
+                description = <"No abnormality">
+            >
+            ["id86"] = <
+                text = <"Extinction and Inattention">
+                description = <"Sufficient information to identify neglect may be obtained during the prior testing. If the patient has a severe visual loss preventing visual double simultaneous stimulation, and the cutaneous stimuli are normal, the score is normal. If the patient has aphasia but does appear to attend to both sides, the score is normal. The presence of visual spatial neglect or anosagnosia may also be taken as evidence of abnormality. Since the abnormality is scored only if present, the item is never untestable.">
+            >
+            ["at84"] = <
+                text = <"Mute, global aphasia">
+                description = <"No usable speech or auditory comprehension.">
+            >
+            ["at83"] = <
+                text = <"Severe aphasia">
+                description = <"All communication is through fragmentary expression; great need for inference, questioning, and guessing by the listener. Range of information that can 
+    be exchanged is limited; listener carries burden of communication. Examiner cannot identify materials provided from patient response.">
+            >
+            ["at82"] = <
+                text = <"Mild-to-moderate aphasia">
+                description = <"Some obvious loss of fluency or facility of comprehension, without significant limitation on ideas expressed or form of expression. Reduction of speech and/or comprehension, however, makes conversation about provided materials difficult or impossible. For example, in conversation about provided materials, 
+    examiner can identify picture or naming card content from patient’s response.">
+            >
+            ["at81"] = <
+                text = <"No aphasia">
+                description = <"Normal.
+    ">
+            >
+            ["id80"] = <
+                text = <"Best Language">
+                description = <"For this scale item, the patient is asked to describe what is happening in a picture, to name the items on a naming sheet, and to read from a list of sentences. Comprehension is judged from responses here, as well as to all of the commands in the preceding general neurological exam. If visual loss interferes with the tests, ask the patient to identify objects placed in the hand, repeat, and produce speech. The intubated patient should be asked to write. The patient in a coma (item 1a=3) will automatically score 3 on this item. The examiner must choose a score for the patient with stupor or limited cooperation, but a score of 3 should be used only if the patient is mute and follows no one-step commands.">
+            >
+            ["at79"] = <
+                text = <"Severe or total sensory loss">
+                description = <"Patient is not aware of being touched in the face, arm, and leg.">
+            >
+            ["at78"] = <
+                text = <"Mild-to-moderate sensory loss">
+                description = <"Patient feels pinprick is less sharp or is dull on the affected side; or there is a loss of superficial pain with pinprick, but patient is aware of being touched.">
+            >
+            ["at77"] = <
+                text = <"Normal">
+                description = <"No sensory loss.">
+            >
+            ["id76"] = <
+                text = <"Sensory">
+                description = <"Sensation or grimace to pinprick when tested, or withdrawal from noxious stimulus in the obtunded or aphasic patient. Only sensory loss attributed to stroke is scored as abnormal and the examiner should test as many body areas [arms (not hands), legs, trunk, face] as needed to accurately check for hemisensory loss.  A score of 2, “severe or total sensory loss,” should only be given when a severe or total loss of sensation can be clearly demonstrated.  Stuporous and aphasic patients will, therefore, probably score 1 or 0. The patient with brainstem stroke who has bilateral loss of sensation is scored 2.  If the patient does not respond and is quadriplegic, score 2. Patients in a coma (item 1a=3) are automatically given a 2 on this item.">
+            >
+            ["id50"] = <
+                text = <"Motor Leg">
+                description = <"Motor Leg">
+            >
+            ["id34"] = <
+                text = <"Motor Arm">
+                description = <"Motor Arm">
+            >
+            ["at32"] = <
+                text = <"Complete paralysis">
+                description = <"Complete paralysis Of one or both sides (absence of facial movement in the upper and lower face).">
+            >
+            ["at31"] = <
+                text = <"Partial paralysis">
+                description = <"Total or near-total paralysis of lower face.">
+            >
+            ["at30"] = <
+                text = <"Minor paralysis">
+                description = <"Flattened nasolabial fold, asymmetry on smiling.">
+            >
+            ["at29"] = <
+                text = <"Normal">
+                description = <"Symmetrical movements.">
+            >
+            ["id28"] = <
+                text = <"Facial Palsy">
+                description = <"Ask — or use pantomime to encourage — the patient to show teeth or raise eyebrows and close eyes.  Score symmetry of grimace in response to noxious stimuli in the poorly responsive or non-comprehending patient. If facial trauma/bandages, orotracheal tube, tape, or other physical barriers obscure the face, these should be removed to the extent possible.">
+            >
+            ["at27"] = <
+                text = <"Bilateral hemianopia">
+                description = <"Blind including cortical blindness.">
+            >
+            ["at26"] = <
+                text = <"Complete hemianopia">
+                description = <"Complete hemianopia">
+            >
+            ["at25"] = <
+                text = <"Partial hemianopia">
+                description = <"Partial hemianopia">
+            >
+            ["at24"] = <
+                text = <"No visual loss">
+                description = <"No visual loss">
+            >
+            ["id23"] = <
+                text = <"Visual">
+                description = <"Visual fields (upper and lower quadrants) are tested by confrontation, using finger counting or visual threat, as appropriate.  Patients may be encouraged, but if they look at the side of the moving fingers appropriately, this can be scored as normal.  If there is unilateral blindness or enucleation, visual fields in the remaining eye are scored.  Score 1 only if a clear-cut asymmetry, including quadrantanopia, is found.  If patient is blind from any cause, score 3.  Double simultaneous stimulation is performed at this point.  If there is extinction, patient receives a 1, and the results are used to respond to item 11.">
+            >
+            ["at22"] = <
+                text = <"Forced deviation">
+                description = <"Or total gaze paresis is not overcome by the oculocephalic maneuver.">
+            >
+            ["at21"] = <
+                text = <"Partial gaze palsy">
+                description = <"Gaze is abnormal in one or both eyes, but forced Deviation or total gaze paresis is not present.">
+            >
+            ["at20"] = <
+                text = <"Normal">
+                description = <"Normal gaze">
+            >
+            ["id19"] = <
+                text = <"Best Gaze">
+                description = <"Only horizontal eye movements will be tested. Voluntary or reflexive (oculocephalic) eye movements will be scored, but caloric testing is not done.  If the patient has a conjugate deviation of the eyes that can be overcome by voluntary or reflexive activity, the score will be 1.  If a patient has an isolated peripheral nerve paresis (CN III, IV, or VI), score a 1.  Gaze is testable in all aphasic patients.  Patients with ocular trauma, bandages, pre-existing blindness, or other disorder of visual acuity or fields should be tested with reflexive movements, and a choice made by the investigator.  Establishing eye contact and then moving about the patient from side to side will occasionally clarify the presence of a partial gaze palsy.">
+            >
+            ["at18"] = <
+                text = <"Performs neither task correctly">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Performs one task correctly">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Performs both tasks correctly">
+                description = <"*">
+            >
+            ["id15"] = <
+                text = <"Level of Consciousness Commands">
+                description = <"The patient is asked to open and close the eyes and then to grip and release the non-paretic hand. Substitute another one-step command if the hands cannot be used.  Credit is given if an unequivocal attempt is made but not completed due to weakness.  If the patient does not respond to command, the task should be demonstrated to him or her (pantomime), and the result scored (i.e., follows none, one, or two commands). Patients with trauma, amputation, or other physical impediments should be given suitable one-step commands. Only the first attempt is scored.">
+            >
+            ["at14"] = <
+                text = <"Incorrect
+    ">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Answers one correctly">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Answers both correctly">
+                description = <"*">
+            >
+            ["id11"] = <
+                text = <"Level of Consciousness Questions">
+                description = <"The patient is asked the month and his/her age.  The answer must be correct — there is no partial credit for being close.  Aphasic and stuporous patients who do not comprehend the questions will score 2.  Patients unable to speak because of endotracheal intubation, orotracheal trauma, severe dysarthria from any cause, language barrier, or any other problem not secondary to aphasia are given a 1.  It is important that only the initial answer be graded and that the examiner not “help” the patient with verbal or non-verbal cues.">
+            >
+            ["at10"] = <
+                text = <"Coma">
+                description = <"Responds only with reflex motor or autonomic effects, or totally unresponsive, flaccid, and areflexic.">
+            >
+            ["at9"] = <
+                text = <"Stuporous">
+                description = <"Not alert; requires repeated stimulation to attend, or is obtunded and requires strong or painful stimulation to make movements (not stereotyped).">
+            >
+            ["at8"] = <
+                text = <"Drowsy">
+                description = <"Not alert; but arousable by minor stimulation to obey, answer or respond.">
+            >
+            ["at7"] = <
+                text = <"Alert">
+                description = <"Keenly responsive.">
+            >
+            ["id6"] = <
+                text = <"Level of Consciousness">
+                description = <"The investigator must choose a response if a full evaluation is prevented by such obstacles as an endotracheal tube, language barrier, orotracheal trauma/bandages.  A 3 is scored only if the patient makes no movement (other than reflexive posturing) in response to noxious stimulation.">
+            >
+            ["id5"] = <
+                text = <"Consciousness">
+                description = <"Consciousness">
+            >
+            ["id3"] = <
+                text = <"Baseline">
+                description = <"Baseline assessment.">
+            >
+            ["id1"] = <
+                text = <"Stroke scale neurological assessment (NIHHS)">
+                description = <"15-item neurologic examination stroke scale used to evaluate acuity of stroke patients, determine appropriate treatment, and predict patient outcome. Also known as the National Institutes of Health Stroke Scale (NIHSS)">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at16", "at17", "at18">
+        >
+        ["ac9013"] = <
+            id = <"ac9013">
+            members = <"at155", "at156", "at157">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at12", "at13", "at14">
+        >
+        ["ac9012"] = <
+            id = <"ac9012">
+            members = <"at81", "at82", "at83", "at84">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at7", "at8", "at9", "at10">
+        >
+        ["ac9011"] = <
+            id = <"ac9011">
+            members = <"at77", "at78", "at79">
+        >
+        ["ac9010"] = <
+            id = <"ac9010">
+            members = <"at150", "at151", "at152">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at122", "at123", "at124", "at125", "at126">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at29", "at30", "at31", "at32">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at24", "at25", "at26", "at27">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at20", "at21", "at22">
+        >
+        ["ac9014"] = <
+            id = <"ac9014">
+            members = <"at90", "at91", "at92">
+        >
+        ["ac9009"] = <
+            id = <"ac9009">
+            members = <"at143", "at144", "at145", "at146", "at147">
+        >
+        ["ac9008"] = <
+            id = <"ac9008">
+            members = <"at136", "at137", "at138", "at139", "at140">
+        >
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at129", "at130", "at131", "at132", "at133">
+        >
+    >

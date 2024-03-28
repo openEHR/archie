@@ -1,0 +1,179 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=04d455b3-f4d1-4de4-9e01-bed46076f970; build_uid=d6c049eb-8db0-49eb-8871-8d117e1ec3f6)
+    openEHR-EHR-OBSERVATION.mst.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Priscila Maranhão; Gustavo Bacelar">
+        ["organisation"] = <"MEDCIDS-FMUP">
+        ["email"] = <"priscilamaranhao@gmail.com; gbacelar@gmail.com">
+        ["date"] = <"2017-03-09">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Ricardo Cruz-Correia, MEDCIDS-FMUP; Portugal", "Pedro Marques, MEDCIDS-FMUP; Portugal", "Duarte Ferreira, MEDCIDS-FMUP; Portugal">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Fergusa, M; Capra, S; Bauer, J; Banes, M. Development of a valid and relianle malnutrition screening tool for adult acute hospitals patients. Nutrition, v.15: 458-64, 1999.">
+        ["2"] = <"Beghetto, M.G.; Manna, B.; Candal, A.; Mello, E.D.; Polanczyk, C.A.;  Triagem nutricional em adultos hospitalizados. Rev. Nutr; Campinas, 21 (5): 589-601, 2008.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"7B8271EE397A3DC6B55E0679F0A74013">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"The purpose of nutrition screening is to identify individuals who are malnourished or at risk of becoming malnourished and can benefit from nutrition support.">
+            keywords = <"Nutrition assessment", "Malnutrition", "Screening", "MST">
+            use = <"To be used in adults;
+    
+    To be used to identify malnutrition.">
+            misuse = <"Not to be used in children.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Malnutrition screening tool (MST)
+        data matches {
+            HISTORY[id2] matches {    -- Event Series
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {0..1} matches {    -- 24h
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Weight data
+                                        value matches {
+                                            DV_CODED_TEXT[id9003] matches {
+                                                defining_code matches {[ac9000]}    -- Weight data (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Lost weight positive
+                                        value matches {
+                                            DV_CODED_TEXT[id9004] matches {
+                                                defining_code matches {[ac9001]}    -- Lost weight positive (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Appetite
+                                        value matches {
+                                            DV_CODED_TEXT[id9005] matches {
+                                                defining_code matches {[ac9002]}    -- Appetite (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id20] occurrences matches {0..1} matches {    -- MST score
+                                        value matches {
+                                            DV_QUANTITY[id9006] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Weight data (synthesised)">
+                description = <"Have you recently lost weight without try? (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Lost weight positive (synthesised)">
+                description = <"If yes, how much weight have you lost? (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Appetite (synthesised)">
+                description = <"Have you been eating poorly because of a decreased appetite? (synthesised)">
+            >
+            ["id20"] = <
+                text = <"MST score">
+                description = <"Score of 2 or more: patient at risk of malnutrition.">
+            >
+            ["at19"] = <
+                text = <"1: Yes">
+                description = <"The patient has eaten poorly recently.">
+            >
+            ["at18"] = <
+                text = <"0: No">
+                description = <"The patient has not eaten poorly recently.">
+            >
+            ["id17"] = <
+                text = <"Appetite">
+                description = <"Have you been eating poorly because of a decreased appetite?">
+            >
+            ["at14"] = <
+                text = <"2: Unsure">
+                description = <"The patient is unsure about kilograms of weight lost.">
+            >
+            ["at13"] = <
+                text = <"4: > 15 kg">
+                description = <"Lost weight recent (> 15 kg).">
+            >
+            ["at12"] = <
+                text = <"3: 11-15 kg">
+                description = <"Lost weight recent (11-15 kg).">
+            >
+            ["at11"] = <
+                text = <"2: 6-10 kg">
+                description = <"Lost weight recent (6-10 kg).">
+            >
+            ["at10"] = <
+                text = <"1: 1-5 kg.">
+                description = <"Lost weight recent (1-5 kg).">
+            >
+            ["id9"] = <
+                text = <"Lost weight positive">
+                description = <"If yes, how much weight have you lost?">
+            >
+            ["at8"] = <
+                text = <"2: Unsure">
+                description = <"The patient is unsure about lost weight.">
+            >
+            ["at7"] = <
+                text = <"0: No">
+                description = <"The patient no lost weight.">
+            >
+            ["id6"] = <
+                text = <"Weight data">
+                description = <"Have you recently lost weight without try?">
+            >
+            ["id3"] = <
+                text = <"24h">
+                description = <"It is recommended that nutrition screening  be performed within 24h of hospital admission.">
+            >
+            ["id2"] = <
+                text = <"Event Series">
+                description = <"@ internal">
+            >
+            ["id1"] = <
+                text = <"Malnutrition screening tool (MST)">
+                description = <"Screening for malnutrition tool.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at18", "at19">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at10", "at11", "at12", "at13", "at14">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at7", "at8">
+        >
+    >

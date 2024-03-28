@@ -1,0 +1,441 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=3314e4e8-dc59-4c65-b3b3-30c080fc2151; build_uid=3184969b-8041-4872-9064-dd268b82539a)
+    openEHR-EHR-OBSERVATION.auditory_brainstem_response_result.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Jade Frederiksen">
+        ["organisation"] = <"Hearing Health Program, Northern Territory">
+        ["date"] = <"2013">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"09E37403712182DD5441D9C3A6448B0C">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To measure auditory brainstem function in response to auditory stimuli and the clinical interpretation of the measurements.">
+            keywords = <"hearing", "test", "infant">
+            use = <"This archetype is in early draft.
+    Details still need to be confirmed with clinicians, although the generic pattern of data elements is regarded as fit for cautious use.">
+            misuse = <"">
+            copyright = <"© Northern Territory Department of Health (Australia), openEHR Foundation, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Auditory brainstem response (ABR) result
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[id3] occurrences matches {0..1} matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    CLUSTER[id16] occurrences matches {0..1} matches {    -- Result details
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id5] occurrences matches {0..1} matches {    -- Ear tested
+                                                value matches {
+                                                    DV_CODED_TEXT[id9008] matches {
+                                                        defining_code matches {[ac9000]}    -- Ear tested (synthesised)
+                                                    }
+                                                }
+                                            }
+                                            CLUSTER[id55] occurrences matches {0..1} matches {    -- Air conduction results
+                                                items cardinality matches {1..*; unordered} matches {
+                                                    ELEMENT[id56] occurrences matches {0..1} matches {    -- Frequency
+                                                        value matches {
+                                                            DV_QUANTITY[id9009] matches {
+                                                                property matches {[at9001]}    -- Frequency
+                                                                [units] matches {
+                                                                    [{"Hz"}],
+                                                                    [{"kHz"}]
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id57] occurrences matches {0..1} matches {    -- Threshold
+                                                        value matches {
+                                                            DV_QUANTITY[id9010] matches {
+                                                                property matches {[at9002]}    -- Loudness
+                                                                units matches {"dB"}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            CLUSTER[id59] occurrences matches {0..1} matches {    -- Bone conduction results
+                                                items cardinality matches {1..*; unordered} matches {
+                                                    ELEMENT[id60] occurrences matches {0..1} matches {    -- Frequency
+                                                        value matches {
+                                                            DV_QUANTITY[id9011] matches {
+                                                                property matches {[at9001]}    -- Frequency
+                                                                [units] matches {
+                                                                    [{"Hz"}],
+                                                                    [{"kHz"}]
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id61] occurrences matches {0..1} matches {    -- Threshold
+                                                        value matches {
+                                                            DV_QUANTITY[id9012] matches {
+                                                                property matches {[at9002]}    -- Loudness
+                                                                units matches {"dB"}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id17] occurrences matches {0..1} matches {    -- No test result
+                                                value matches {
+                                                    DV_BOOLEAN[id9013] matches {
+                                                        value matches {True, False}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id18] occurrences matches {0..1} matches {    -- Reason for no test result
+                                                value matches {
+                                                    DV_TEXT[id9014] 
+                                                }
+                                            }
+                                            ELEMENT[id19] occurrences matches {0..1} matches {    -- Clinical interpretation
+                                                value matches {
+                                                    DV_TEXT[id9015] 
+                                                }
+                                            }
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id22] matches {     -- Multimedia
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                    ELEMENT[id20] occurrences matches {0..1} matches {    -- Overall interpretation
+                                        value matches {
+                                            DV_TEXT[id9016] 
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id34] matches {     -- Test not done
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.exclusion_exam(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                    ELEMENT[id21] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9017] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id23] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id37] occurrences matches {0..1} matches {    -- Response state
+                                        value matches {
+                                            DV_CODED_TEXT[id9018] matches {
+                                                defining_code matches {[ac9003]}    -- Response state (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id33] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9019] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id35] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id36] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    ELEMENT[id51] occurrences matches {0..1} matches {    -- Air presentation
+                        value matches {
+                            DV_CODED_TEXT[id9020] matches {
+                                defining_code matches {[ac9004]}    -- Air presentation (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id41] occurrences matches {0..1} matches {    -- Test environment
+                        value matches {
+                            DV_CODED_TEXT[id9021] matches {
+                                defining_code matches {[ac9005]}    -- Test environment (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id44] occurrences matches {0..1} matches {    -- Background noise
+                        value matches {
+                            DV_CODED_TEXT[id9022] matches {
+                                defining_code matches {[ac9006]}    -- Background noise (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id47] occurrences matches {0..1} matches {    -- Calibration reference dB
+                        value matches {
+                            DV_CODED_TEXT[id9023] matches {
+                                defining_code matches {[ac9007]}    -- Calibration reference dB (synthesised)
+                            }
+                        }
+                    }
+                    allow_archetype CLUSTER[id62] matches {     -- Device
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Ear tested (synthesised)">
+                description = <"Identification of the ear being tested. (synthesised)">
+            >
+            ["at9001"] = <
+                text = <"Frequency">
+                description = <"Frequency">
+            >
+            ["at9002"] = <
+                text = <"Loudness">
+                description = <"Loudness">
+            >
+            ["ac9003"] = <
+                text = <"Response state (synthesised)">
+                description = <"The response state of the child during the test. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Air presentation (synthesised)">
+                description = <"Presentation of the air conduction test stimulus indirectly to the inner ear through the atmosphere, via the auditory canal and middle ear structures. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Test environment (synthesised)">
+                description = <"The environment in which the test is administered. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Background noise (synthesised)">
+                description = <"The amount and nature of noise in the environment that may influence the test results. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Calibration reference dB (synthesised)">
+                description = <"Scale used for acoustic calibration of the test signal. (synthesised)">
+            >
+            ["at63"] = <
+                text = <"dB nHL">
+                description = <"The test stimuli are calibrated using the normalised hearing level pressure scale.">
+            >
+            ["id62"] = <
+                text = <"Device">
+                description = <"*">
+            >
+            ["id61"] = <
+                text = <"Threshold">
+                description = <"*">
+            >
+            ["id60"] = <
+                text = <"Frequency">
+                description = <"*">
+            >
+            ["id59"] = <
+                text = <"Bone conduction results">
+                description = <"*">
+            >
+            ["id57"] = <
+                text = <"Threshold">
+                description = <"*">
+            >
+            ["id56"] = <
+                text = <"Frequency">
+                description = <"*">
+            >
+            ["id55"] = <
+                text = <"Air conduction results">
+                description = <"*">
+            >
+            ["at54"] = <
+                text = <"Headphone">
+                description = <"The stimulus is presented via external headphones - either circumaural or supraaural.">
+            >
+            ["at53"] = <
+                text = <"Insert earphone">
+                description = <"The stimulus is presented via insert earphones.">
+            >
+            ["at52"] = <
+                text = <"Soundfield">
+                description = <"The stimulus is presented via a loudspeaker located at least one metre away from the subject.">
+            >
+            ["id51"] = <
+                text = <"Air presentation">
+                description = <"Presentation of the air conduction test stimulus indirectly to the inner ear through the atmosphere, via the auditory canal and middle ear structures.">
+            >
+            ["at50"] = <
+                text = <"dB A">
+                description = <"The test stimuli are calibrated using the A-weighted pressure scale.">
+            >
+            ["at49"] = <
+                text = <"dB HL">
+                description = <"The test stimuli are calibrated using the hearing level scale.">
+            >
+            ["at48"] = <
+                text = <"dB SPL">
+                description = <"The test stimuli are calibrated using the sound pressure level scale.">
+            >
+            ["id47"] = <
+                text = <"Calibration reference dB">
+                description = <"Scale used for acoustic calibration of the test signal.">
+            >
+            ["at46"] = <
+                text = <"Clinically significant">
+                description = <"The background noise is clinically significant.">
+            >
+            ["at45"] = <
+                text = <"Not clinically significant">
+                description = <"The background noise is not clinically significant.">
+            >
+            ["id44"] = <
+                text = <"Background noise">
+                description = <"The amount and nature of noise in the environment that may influence the test results.">
+            >
+            ["at43"] = <
+                text = <"Other">
+                description = <"The test environment was not a booth that meets audiometric standards for ambient noise inside the booth.">
+            >
+            ["at42"] = <
+                text = <"Audiometric booth">
+                description = <"Sound treated room that provides a test environment that meets audiometric standards for ambient noise inside the booth.">
+            >
+            ["id41"] = <
+                text = <"Test environment">
+                description = <"The environment in which the test is administered.">
+            >
+            ["at40"] = <
+                text = <"Crying">
+                description = <"The child was crying.">
+            >
+            ["at39"] = <
+                text = <"Quiet and alert">
+                description = <"The child was awake, quiet and alert.">
+            >
+            ["at38"] = <
+                text = <"Light sleep">
+                description = <"The child was lightly sleeping.">
+            >
+            ["id37"] = <
+                text = <"Response state">
+                description = <"The response state of the child during the test.">
+            >
+            ["id36"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id34"] = <
+                text = <"Test not done">
+                description = <"Details to explicitly record that this test was not performed.">
+            >
+            ["id33"] = <
+                text = <"Confounding factors">
+                description = <"Narrative description of factors, not recorded elsewhere, that may influence the response results.">
+                comment = <"For example: The infant was crying at the time of testing.">
+            >
+            ["id22"] = <
+                text = <"Multimedia">
+                description = <"Digital image, video or diagram representing the test results.">
+            >
+            ["id21"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the test responses, not captured in other fields.">
+                comment = <"For example: Otoacoustic admission results.">
+            >
+            ["id20"] = <
+                text = <"Overall interpretation">
+                description = <"Overall clinical interpretation of the responses for both ears.">
+            >
+            ["id19"] = <
+                text = <"Clinical interpretation">
+                description = <"Clinical interpretation of all measurements for the test ear.">
+            >
+            ["id18"] = <
+                text = <"Reason for no test result">
+                description = <"Reason why no result is available for the side stimulated.">
+            >
+            ["id17"] = <
+                text = <"No test result">
+                description = <"No test result is available for the side stimulated.">
+            >
+            ["id16"] = <
+                text = <"Result details">
+                description = <"The test result observations and interpretations.">
+            >
+            ["at7"] = <
+                text = <"Left ear">
+                description = <"The left ear was tested.">
+            >
+            ["at6"] = <
+                text = <"Right ear">
+                description = <"The right ear was tested.">
+            >
+            ["id5"] = <
+                text = <"Ear tested">
+                description = <"Identification of the ear being tested.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Auditory brainstem response (ABR) result">
+                description = <"Measurement of auditory brainstem function in response to auditory stimuli, and associated clinical interpretation.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9001"] = <http://openehr.org/id/382>
+            ["at9002"] = <http://openehr.org/id/123>
+        >
+    >
+    value_sets = <
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at48", "at49", "at50", "at63">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at6", "at7">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at45", "at46">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at42", "at43">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at52", "at53", "at54">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at38", "at39", "at40">
+        >
+    >

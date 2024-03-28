@@ -1,0 +1,241 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=cd69e276-d218-3950-9c9c-44c73074cf17; build_uid=32f819fc-2bba-414e-9dce-a40c48dfcb61)
+    openEHR-DEMOGRAPHIC-CLUSTER.person_identifier.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Sergio Miranda Freire">
+                ["organisation"] = <"Universidade do Estado do Rio de Janeiro - UERJ">
+                ["email"] = <"sergio@lampada.uerj.br">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias">
+        ["organisation"] = <"Universidade do Estado do Rio de Janeiro - UERJ">
+        ["email"] = <"sergio@lampada.uerj.br">
+        ["date"] = <"2009-05-22">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Sebastian Garde, Ocean Informatics, Germany (Editor)", "Omer Hotomaroglu, Turkey (Editor)", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"ISO/TS 22220:2008(E) - Identification of Subject of Care - Technical Specification - International Organization for Standardization">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"0C6FB32F3DC1D99F28E4A7D67F960B79">
+    >
+    details = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Representação de dados relativos a um documento de identificação de uma pessoa.">
+            keywords = <"serviço demográfico", "documento de identificação de uma pessoa">
+            use = <"Usado em serviçoS demográficos para registrar os dados relativos a um documento de identificação de uma pessoa.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Representation of data about a person identifier.">
+            keywords = <"demographic service", "person identifier">
+            use = <"Used in demographic services to register data about a person identifier.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Person identifier
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {1..*} matches {    -- Identifier main data
+                value matches {
+                    DV_IDENTIFIER[id9001] 
+                }
+            }
+            ELEMENT[id3] occurrences matches {1..*} matches {    -- Geographic scope
+                value matches {
+                    DV_TEXT[id9002] 
+                    DV_CODED_TEXT[id9003] matches {
+                        defining_code matches {[ac9000]}    -- Geographic scope (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Issuing City
+                value matches {
+                    DV_TEXT[id9004] 
+                    DV_CODED_TEXT[id9005] matches {
+                        defining_code matches {[ac2]}    -- City codes
+                    }
+                }
+            }
+            ELEMENT[id5] occurrences matches {0..1} matches {    -- Issuing State
+                value matches {
+                    DV_CODED_TEXT[id9006] matches {
+                        defining_code matches {[ac3]}    -- State codes
+                    }
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Issuing Country
+                value matches {
+                    DV_CODED_TEXT[id9007] matches {
+                        defining_code matches {[ac4]}    -- Country codes
+                    }
+                }
+            }
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- Time validity
+                value matches {
+                    DV_INTERVAL<DV_DATE>[id9008] matches {
+                        upper matches {
+                            DV_DATE[id9009] 
+                        }
+                        lower matches {
+                            DV_DATE[id9010] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["pt-br"] = <
+            ["ac9000"] = <
+                text = <"Área geografica (synthesised)">
+                description = <"Indica a área geográfica onde o documento é váĺido. (synthesised)">
+            >
+            ["at14"] = <
+                text = <"Nacional">
+                description = <"Indica que esta identificação é usada em nível nacional.">
+            >
+            ["at13"] = <
+                text = <"Estadual">
+                description = <"Indica que esta identificação é usada em nível de um estado.">
+            >
+            ["at12"] = <
+                text = <"Regional">
+                description = <"Indica que esta identificação é usada em uma região.">
+            >
+            ["at11"] = <
+                text = <"Local">
+                description = <"Indica que esta identificação é usada localmente.">
+            >
+            ["id7"] = <
+                text = <"Validade da identificação">
+                description = <"Período de validade da identificacao.">
+            >
+            ["id6"] = <
+                text = <"País emissor">
+                description = <"Indica o país onde o documento foi emitido.">
+            >
+            ["id5"] = <
+                text = <"Estado emissor">
+                description = <"Indica o estado onde o documento foi emitido.">
+            >
+            ["id4"] = <
+                text = <"Município emissor">
+                description = <"Indica o município onde o documento foi emitido.">
+            >
+            ["id3"] = <
+                text = <"Área geografica">
+                description = <"Indica a área geográfica onde o documento é váĺido.">
+            >
+            ["id2"] = <
+                text = <"Dados principais do identificador">
+                description = <"Número ou código do documento de identificação, emissor, outorgante e tipo do documento.">
+            >
+            ["id1"] = <
+                text = <"Identificador">
+                description = <"Identificador para uma pessoa.">
+            >
+            ["ac4"] = <
+                text = <"Códigos de países">
+                description = <"códigos válidos para paises.">
+            >
+            ["ac3"] = <
+                text = <"Códigos de estados">
+                description = <"códigos válidos para estados.">
+            >
+            ["ac2"] = <
+                text = <"Códigos de cidades">
+                description = <"códigos válidos para cidade.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Geographic scope (synthesised)">
+                description = <"Indicates the geographic area within which the identifier is valid. (synthesised)">
+            >
+            ["at14"] = <
+                text = <"National">
+                description = <"Indicates that this identifier is used nationally.">
+            >
+            ["at13"] = <
+                text = <"State/Province/Territory">
+                description = <"Indicates that this identifier is used within a political boundary such as a state or territory or province.">
+            >
+            ["at12"] = <
+                text = <"Area/Regional/District">
+                description = <"Indicates that this identifier is used within a specific area.">
+            >
+            ["at11"] = <
+                text = <"Local">
+                description = <"Indicates that this identifier is used locally.">
+            >
+            ["id7"] = <
+                text = <"Time validity">
+                description = <"Period in which this identifier is valid.">
+            >
+            ["id6"] = <
+                text = <"Issuing Country">
+                description = <"Indicates the country where the identifier was issued.">
+            >
+            ["id5"] = <
+                text = <"Issuing State">
+                description = <"Indicates the state where the identifier was issued.">
+            >
+            ["id4"] = <
+                text = <"Issuing City">
+                description = <"Indicates the city where the identifier was issued.">
+            >
+            ["id3"] = <
+                text = <"Geographic scope">
+                description = <"Indicates the geographic area within which the identifier is valid.">
+            >
+            ["id2"] = <
+                text = <"Identifier main data">
+                description = <"Identifier number or code, issuer, assigner and type of identifier.">
+            >
+            ["id1"] = <
+                text = <"Person identifier">
+                description = <"Identifier for a person.">
+            >
+            ["ac4"] = <
+                text = <"Country codes">
+                description = <"valid codes for countries.">
+            >
+            ["ac3"] = <
+                text = <"State codes">
+                description = <"valid codes for state/territory/province.">
+            >
+            ["ac2"] = <
+                text = <"City codes">
+                description = <"valid codes for city/town/locality.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at11", "at12", "at13", "at14">
+        >
+    >

@@ -1,0 +1,207 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=1acecc29-89c0-4733-833d-162b576f40dc; build_uid=dd2693ed-e1c9-4d58-a990-0aaca1c8f56a)
+    openEHR-EHR-EVALUATION.recommendation.v1.1.1
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            author = <
+                ["name"] = <"Alan March">
+                ["organisation"] = <"Hospital Universitario Austral, Buenos Aires, Argentina">
+                ["email"] = <"alandmarch@gmail.com">
+                ["alandmarch@gmail.com"] = <"alandmarch@gmail.com">
+            >
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Bjørn Grøva">
+                ["organisation"] = <"Direktoratet for e-helse">
+                ["email"] = <"bjorn.grova@ehelse.no">
+            >
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Vladimir Pizzo">
+                ["organisation"] = <"Hospital Sirio Libanes, Brazil">
+                ["email"] = <"vladimir.pizzo@hsl.org.br">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2013-02-14">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Sam Heard, Ocean Informatics, Australia", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Bente Gjelsvik, Helse Bergen, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Hilde Hollås, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"CFB4C8C091ABC7ACFBE46AF0DAFFE54B">
+    >
+    details = <
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            purpose = <"Para el registro de una sugerencia, consejo o propuesta para el manejo clínico en un momento determinado.">
+            keywords = <"consejo", "propuesta", "sugerencia">
+            use = <"Utilícese para registrar una sugerencia, consejo o propuesta para el manejo clínico en un momento específico.
+    
+    El caso de uso previsto se vincula a permitir el registro por parte del clínico de una o mas recomendaciones, en un mento específico en el tiempo. Por ejemplo, como un componente de las conclusiones a las que se ha arribado como parte de una consutla clínica.">
+            misuse = <"">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"Anvendes for å registrere et forslag, et råd eller en anmodning om klinisk oppfølging på et spesifikt tidspunkt.">
+            keywords = <"råd", "forslag", "anmodning", "tilråde", "tilrådning", "instruks">
+            use = <"Anvendes for å registrere et forslag, et råd eller en anmodning om klinisk oppfølging på et spesifikt tidspunkt.
+    
+    Arketypen er ment å understøtte klinikere som dokumenterer en eller flere anbefalinger på et spesifikt tidspunkt.
+    Anbefalingen kan for eksempel benyttes som en del av dokumentasjonen av konklusjonene som trekkes i forbindelse med en klinisk konsultasjon.">
+            misuse = <"">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Registrar uma sugestão, conselho ou proposta de manejo clínico num tempo específico.">
+            keywords = <"conselho", "proposta", "sugestão">
+            use = <"Utilizar para registrar uma sugestão, conselho ou proposta de manejo clínico num tempo específico.
+    
+    O caso de uso pretendido é apoiar o registro clínico de uma recomendação, ou recomendações, num ponto específico no tempo.
+    Por exemplo, como um componente das conclusões tiradas como parte de uma consulta clínica.">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a suggestion, advice or proposal for clinical management at a specific time.">
+            keywords = <"advice", "proposal", "suggestion">
+            use = <"Use to record a suggestion, advice or proposal for clinical management at a specific time.
+    
+    The intended use case is to support a clinician recording a recommendation, or recommendations, at a specific point-in-time. 
+    For example, as a component of the conclusions drawn as part of a clinical consultation.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Recommendation
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] matches {    -- Recommendation
+                        value matches {
+                            DV_TEXT[id9000] 
+                        }
+                    }
+                    ELEMENT[id4] matches {    -- Rationale
+                        value matches {
+                            DV_TEXT[id9001] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id5] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id6] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["es-ar"] = <
+            ["id6"] = <
+                text = <"Extensión">
+                description = <"Información adicional requerida para representar contenido local o para alineamiento con otros modelos de referencia o formalismos.">
+                comment = <"Por ejemplo: requerimientos locales de información o metadatos adicionales para el alineamiento con equivalentes FHIR o CIMI.">
+            >
+            ["id4"] = <
+                text = <"*Rationale(en)">
+                description = <"*Justifications for the recommendation.(en)">
+            >
+            ["id3"] = <
+                text = <"Recomendación">
+                description = <"Descripción narrativa de la recomendación">
+                comment = <"Puede ser codificada mediante una terminología si así se lo requiere.">
+            >
+            ["id1"] = <
+                text = <"Recomendación">
+                description = <"Una sugerencia, consejo o propuesta para el manejo clínico.">
+            >
+        >
+        ["nb"] = <
+            ["id6"] = <
+                text = <"Utvidelse">
+                description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+                comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
+            >
+            ["id4"] = <
+                text = <"Begrunnelse">
+                description = <"Begrunnelse for anbefalingen.">
+            >
+            ["id3"] = <
+                text = <"Anbefaling">
+                description = <"Fritekstbeskrivelse av anbefalingen.">
+                comment = <"Det bør om mulig benyttes terminologi for å angi anbefaling.">
+            >
+            ["id1"] = <
+                text = <"Anbefaling">
+                description = <"Et forslag, råd eller anmodning om klinisk oppfølging.">
+            >
+        >
+        ["pt-br"] = <
+            ["id6"] = <
+                text = <"Extensão">
+                description = <"Informação adicional necessária para capturar conteúdo local ou para alinhar com outros modelos de referência/formalismos.">
+                comment = <"Por exemplo: necessidades de informação local ou metadados adicionais para alinhar com equivalentes CIMI ou FHIR.">
+            >
+            ["id4"] = <
+                text = <"Justificativa">
+                description = <"Justificativa para a recomendação.">
+            >
+            ["id3"] = <
+                text = <"Recomendação">
+                description = <"Descrição narrativa da recomendação.">
+                comment = <"Pode ser codificada, utilizando terminologia, se necessário.">
+            >
+            ["id1"] = <
+                text = <"Recomendação">
+                description = <"Uma sugestão, conselho ou proposta para manejo clínico.">
+            >
+        >
+        ["en"] = <
+            ["id6"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id4"] = <
+                text = <"Rationale">
+                description = <"Justifications for the recommendation.">
+            >
+            ["id3"] = <
+                text = <"Recommendation">
+                description = <"Narrative description of the recommendation.">
+                comment = <"May be coded, using a terminology, if required.">
+            >
+            ["id1"] = <
+                text = <"Recommendation">
+                description = <"A suggestion, advice or proposal for clinical management.">
+            >
+        >
+    >

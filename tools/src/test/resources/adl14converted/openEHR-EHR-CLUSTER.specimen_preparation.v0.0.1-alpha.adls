@@ -1,0 +1,274 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=dbb8a3c4-4235-41e6-91a0-4e27a7c32262; build_uid=6808a32e-cc47-42a3-aece-2f785436c2bd)
+    openEHR-EHR-CLUSTER.specimen_preparation.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Simon Schumacher">
+                ["organisation"] = <"HiGHmed">
+                ["email"] = <"sschuma9@uni-koeln.de">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Dr Ian McNicoll">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"ian.mcnicoll@oceaninformatics.com">
+        ["date"] = <"2009-01-27">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Sam Heard Ocean Informatics", "Heather Leslie Ocean Informatics", "Koray Atalag University of Auckland">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Digital Imaging and Communications in Medicine (DICOM) Supplement 122: Specimen Module and Revised Pathology SOP Classes">
+        ["2"] = <"DICOM Standards Committee, Working Groups 26, Pathology">
+        ["3"] = <"IHE Anatomic Pathology Technical Framework Volume 1 (PAT TF-1) Revision 1.2 – Trial Implementation">
+        ["4"] = <"November 24, 2008">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"C90F6FADFEB1D1C3AE7A8B590EF3C854">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Zur detaillierten Erfassung der Aufbereitung einer Laborprobe.">
+            keywords = <"Probe", "Labor", "Bioprobe", "Biomaterial", "Histopathologie", "Histologie", "Pathologie">
+            use = <"Wird normalerweise in dem Archetypen CLUSTER.specimen verwendet.
+    
+    Normalerweise wird die Aufbereitung einer Laborprobe von einem Labor-Informationssystem (LIS) intern durchgeführt. Dabei werden Informationen weder an den anfordernden Kliniker geschickt, noch in der Patientenakte gespeichert. Es gibt aber Ausnahmen, insbesondere in der Histopathologie, in denen Details zur Aufbereitung als kritisch für die Interpretation der Ergebnisse angesehen werden und in der Patientenakte festgehalten werden.">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details of laboratory specimen processing.">
+            keywords = <"specimen", "laboratory", "sample", "histopathology", "histology", "pathology">
+            use = <"Generally used within a CLUSTER.specimen archetype.
+    
+    In general laboratory specimen processing are handled internally by a Laboratory Information system (LIS) and are not reported back to the requesting clinician or persisted in the patient record. However there are some circumstances, particularly in histopathology, where such details are regarded as being critical to interpretation of the results and are carried into the patient record.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Specimen preparation
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id73] occurrences matches {0..1} matches {    -- Datetime of processing step
+                value matches {
+                    DV_DATE_TIME[id9001] 
+                }
+            }
+            ELEMENT[id72] occurrences matches {0..1} matches {    -- Processing step type
+                value matches {
+                    DV_CODED_TEXT[id9002] matches {
+                        defining_code matches {[ac9000]}    -- Processing step type (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id75] occurrences matches {0..1} matches {    -- Specimen processing type
+                value matches {
+                    DV_TEXT[id9003] 
+                }
+            }
+            ELEMENT[id88] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+            allow_archetype CLUSTER[id89] matches {     -- Device details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            CLUSTER[id87] occurrences matches {0..1} matches {    -- Specific preparation
+                items cardinality matches {1; unordered} matches {
+                    ELEMENT[id74] matches {    -- Sampling method
+                        value matches {
+                            DV_TEXT[id9005] 
+                        }
+                    }
+                    ELEMENT[id85] matches {    -- Staining method
+                        value matches {
+                            DV_TEXT[id9006] 
+                        }
+                    }
+                    ELEMENT[id76] matches {    -- Embedding medium
+                        value matches {
+                            DV_TEXT[id9007] 
+                        }
+                    }
+                    ELEMENT[id77] matches {    -- Fixative
+                        value matches {
+                            DV_TEXT[id9008] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["ac9000"] = <
+                text = <"Art des Aufbereitungsschrittes (synthesised)">
+                description = <"Ein DICOM-kompatibler Code, der einen einzelnen Aufbereitungsschritt beschreibt. (synthesised)">
+            >
+            ["id89"] = <
+                text = <"Gerätebeschreibung">
+                description = <"Detaillierte Angaben zu dem Gerät, welches zur Probenverarbeitung verwendet wurde.">
+            >
+            ["id88"] = <
+                text = <"Beschreibung">
+                description = <"Eine allgemeine Beschreibung der Probenverarbeitung.">
+            >
+            ["id87"] = <
+                text = <"Spezifische Verarbeitung">
+                description = <"Details zur spezifischen Verarbeitung während eines einzigen Aufbereitungsschritts.">
+            >
+            ["id85"] = <
+                text = <"Färbungsmethode">
+                description = <"Die Färbung, die für ein mikroskopisches Präparat verwendet wurde.">
+            >
+            ["at84"] = <
+                text = <"Probenlagerung">
+                description = <"Die Probe wurde eingelagert.">
+            >
+            ["at83"] = <
+                text = <"Probenaufbereitung">
+                description = <"Die Probe wurde aufbereitet.">
+            >
+            ["at82"] = <
+                text = <"Färbung">
+                description = <"Die Probe wurde eingefärbt.">
+            >
+            ["at81"] = <
+                text = <"Probenentnahme aus der Gewebeprobe">
+                description = <"Die Gewebeprobe wurde entnommen.">
+            >
+            ["at80"] = <
+                text = <"Probenannahme">
+                description = <"Die Probe wurde entgegengenommen.">
+            >
+            ["at79"] = <
+                text = <"Probenentnahme">
+                description = <"Die Probe wurde entnommen.">
+            >
+            ["id77"] = <
+                text = <"Fixierungsmittel">
+                description = <"Das Mittel, das zur Probenfixierung verwendet wurde.">
+            >
+            ["id76"] = <
+                text = <"Einbettmedium">
+                description = <"Das Medium, in dem die Probe eingebettet ist (z. B. Paraffin).">
+            >
+            ["id75"] = <
+                text = <"Art der Probenaufbereitung">
+                description = <"Ein physikalischer Prozess, der auf die Probe angewendet wird (z.B. Block-Einbettung).">
+            >
+            ["id74"] = <
+                text = <"Methode der Probenentnahme">
+                description = <"Die Methode, die zur Probenentnahme verwendet wurde (z. B. Schnittentnahme oder Blockentnahme).">
+            >
+            ["id73"] = <
+                text = <"Datum und Zeit des Aufbereitungsschrittes">
+                description = <"Das Datum und die Zeit, zu der der Aufbereitungsschritt durchgeführt wurde.">
+            >
+            ["id72"] = <
+                text = <"Art des Aufbereitungsschrittes">
+                description = <"Ein DICOM-kompatibler Code, der einen einzelnen Aufbereitungsschritt beschreibt.">
+            >
+            ["id1"] = <
+                text = <"Probenverarbeitung">
+                description = <"Zur detaillierten Erfassung der Aufbereitung einer Laborprobe.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Processing step type (synthesised)">
+                description = <"A DICOM compatible code describing a single processing step. (synthesised)">
+            >
+            ["id89"] = <
+                text = <"Device details">
+                description = <"Details of the device used in specimen preparation.">
+            >
+            ["id88"] = <
+                text = <"Description">
+                description = <"A general description of the specimen prepartion.">
+            >
+            ["id87"] = <
+                text = <"Specific preparation">
+                description = <"Details of the specific preparation carried out during a single processing step.">
+            >
+            ["id85"] = <
+                text = <"Staining method">
+                description = <"Stain used for a microscopy slide.">
+            >
+            ["at84"] = <
+                text = <"Specimen storage">
+                description = <"The specimen has been stored.">
+            >
+            ["at83"] = <
+                text = <"Specimen processing">
+                description = <"The specimen has been processed.">
+            >
+            ["at82"] = <
+                text = <"Staining">
+                description = <"The specimen has been stained.">
+            >
+            ["at81"] = <
+                text = <"Sampling of tissue specimen">
+                description = <"The specimen has been sampled.">
+            >
+            ["at80"] = <
+                text = <"Specimen receiving">
+                description = <"The specimen has been received.">
+            >
+            ["at79"] = <
+                text = <"Specimen collection">
+                description = <"The specimen has been collected.">
+            >
+            ["id77"] = <
+                text = <"Fixative">
+                description = <"The fixative used.">
+            >
+            ["id76"] = <
+                text = <"Embedding medium">
+                description = <"The medium within which the specimen is embedded e.g paraffin.">
+            >
+            ["id75"] = <
+                text = <"Specimen processing type">
+                description = <"A physical process applied to the specimen e.g.  block embedding.">
+            >
+            ["id74"] = <
+                text = <"Sampling method">
+                description = <"The sampling method used. e.g dissection, block sampling.">
+            >
+            ["id73"] = <
+                text = <"Datetime of processing step">
+                description = <"The data and time that the processing step occured.">
+            >
+            ["id72"] = <
+                text = <"Processing step type">
+                description = <"A DICOM compatible code describing a single processing step.">
+            >
+            ["id1"] = <
+                text = <"Specimen preparation">
+                description = <"To record details of laboratory specimen processing.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at79", "at80", "at81", "at82", "at83", "at84">
+        >
+    >

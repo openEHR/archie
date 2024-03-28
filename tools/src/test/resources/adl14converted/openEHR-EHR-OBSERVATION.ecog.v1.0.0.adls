@@ -1,0 +1,225 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=800383fa-4560-47d7-9720-3d6e45273f4e; build_uid=fc650a00-f106-49a6-9cba-c5d982406e39)
+    openEHR-EHR-OBSERVATION.ecog.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"John Tore Valand">
+                ["organisation"] = <"Helse Bergen HF">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Christian Ghan">
+        ["organisation"] = <"The Chris O'Brien Lifehouse at RPA">
+        ["email"] = <"christian.ghan@lifehouserpa.org.au">
+        ["date"] = <"2012-12-07">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Kristin Eik, Kreftregisteret, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Hilde Hollås, DIPS AS, Norway", "Alfred Honore, Haukeland, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Thomas Kilvær, Universitetssykehuset Nord Norge, Norway", "Siri Laronningen, Kreftregisteret, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Cailin Lowry, Lifehouse, Australia", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Omar Peña-Curiel, TECSalud, Mexico", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Laila Storesund, Haraldsplass diakonale sykehus, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Oken, M.M., Creech, R.H., Tormey, D.C., Horton, J., Davis, T.E., McFadden, E.T., Carbone, P.P.: Toxicity And Response Criteria Of The Eastern Cooperative Oncology Group. Am J Clin Oncol 5:649-655, 1982.">
+        ["2"] = <"Cowap, Jane, Janet R. Hardy, and Roger A'Hern. \"Outcome of malignant spinal cord compression at a cancer center: implications for palliative care services.\" Journal of pain and symptom management 19.4 (2000): 257-264.">
+        ["3"] = <"http://www.ecog.org/general/perf_stat.html">
+        ["4"] = <"The Norwegian translation is based on: Helsedirektoratet (2016). Nasjonalt handlingsprogram med retningslinjer for diagnostikk, behandling og oppfølging av lungekreft, mesoteliom og thymom. IS-2487. Oslo: Helsedirektoratet. Hentet fra: www.helsebiblioteket.no/retningslinjer/lungekreft/diagnostikk-og-utredning/funksjonsstatus-performance-stadium-%28PS%29">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"A33D51D2BCE3C04788CBD95C7250D7FF">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere funksjonsstatus hos en pasient med kreft.">
+            keywords = <"prestasjon", "prestasjonsevne", "status", "onkologi", "zubrod", "performance status", "World Health Organization">
+            use = <"Brukes for å registrere funksjonsstatus hos en pasient med kreft for å:
+    - vurdere hvordan pasientens sykdom utvikler seg.
+    - vurdere hvordan sykdommen påvirker pasientens evne til å fungere i dagliglivet.
+    - vurdere passende behandling og prognose.
+    
+    Erklæring om opphavsrett: ECOG performance status er ikke beheftet med opphavsrett og derfor tilgjengelig for offentlig bruk. 
+    For mer informasjon kontakt: The Eastern Cooperative Oncology Group, Robert Comis M.D., Group Chair - http://www.ecog.org/general/perf_stat.html.">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the measurement of the functional performance status of a patient with a diagnosis of cancer.">
+            keywords = <"performance", "status", "oncology", "who", "zubrod", "World Health Organization">
+            use = <"Used to record the measurement of the functional performance status of a patient with a diagnosis of cancer, to:
+    - assess how a patient's disease is progressing;
+    - assess how the disease affects the daily living abilities of the patient; and 
+    - determine appropriate treatment and prognosis. 
+    
+    The ECOG performance status is in the public domain therefore available for public use. For more information, contact the Eastern Cooperative Oncology Group, Robert Comis M.D., Group Chair - http://www.ecog.org/general/perf_stat.html.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- ECOG performance status
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {1} matches {    -- ECOG performance status
+                                        value matches {
+                                            DV_ORDINAL[id9001] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at6]}],
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at8]}],
+                                                    [{3}, {[at9]}],
+                                                    [{4}, {[at10]}],
+                                                    [{5}, {[at11]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id14] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9002] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id12] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id13] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"ECOG funksjonsstatus (synthesised)">
+                description = <"Funksjonsstatus hos en pasient med kreft. (synthesised)">
+            >
+            ["id14"] = <
+                text = <"Kommentar">
+                description = <"Ytterligere kommentar til ECOG funksjonsstatus som ikke er fanget opp i andre felt.">
+            >
+            ["id13"] = <
+                text = <"Tilleggsinformasjon">
+                description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+                comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
+            >
+            ["at11"] = <
+                text = <"Død">
+                description = <"Pasienten er død.">
+            >
+            ["at10"] = <
+                text = <"Helt sengeliggende">
+                description = <"Helt hjelpetrengende; klarer ikke noen egenpleie; helt bundet til seng eller stol.">
+            >
+            ["at9"] = <
+                text = <"Symptomatisk, sengeliggende > 50 % av våken tid">
+                description = <"Bare i stand til begrenset egenpleie, bundet til seng eller stol > 50 % av våken tid.">
+            >
+            ["at8"] = <
+                text = <"Symptomatisk, sengeliggende <50 % av våken tid">
+                description = <"Oppegående og i stand til all egenpleie, men ikke i stand til noe arbeid; oppe og i bevegelse mer enn 50% av våken tid.">
+            >
+            ["at7"] = <
+                text = <"Symptomatisk, fullt oppegående">
+                description = <"Ikke i stand til fysisk krevende aktivitet, men oppegående og i stand til å utføre lett arbeid.">
+            >
+            ["at6"] = <
+                text = <"Asymptomatisk">
+                description = <"I stand til å utføre enhver normal aktivitet uten begrensning.">
+            >
+            ["id5"] = <
+                text = <"ECOG funksjonsstatus">
+                description = <"Funksjonsstatus hos en pasient med kreft.">
+            >
+            ["id3"] = <
+                text = <"Uspesifisert hendelse">
+                description = <"Standard, uspesifisert tidspunkt eller tidsintervall som kan defineres mer eksplisitt i en template eller i en applikasjon.">
+            >
+            ["id1"] = <
+                text = <"ECOG funksjonsstatus">
+                description = <"En skala benyttet av klinikere for å vurdere funksjonsstatus hos en pasient med kreft. Også kjent som WHO performance status eller Zubrod perfomance status.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"ECOG performance status (synthesised)">
+                description = <"The functional performance status of a patient with a diagnosis of cancer. (synthesised)">
+            >
+            ["id14"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the overall ECOG performance status not captured in other fields.">
+            >
+            ["id13"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["at11"] = <
+                text = <"Dead">
+                description = <"Patient has died.">
+            >
+            ["at10"] = <
+                text = <"Bedridden">
+                description = <"Completely disabled; cannot carry on any selfcare; totally confined to bed or chair.">
+            >
+            ["at9"] = <
+                text = <"Symptomatic, in bed >50% of the day (but not bedridden)">
+                description = <"Capable of only limited selfcare; confined to bed or chair more than 50% of waking hours.">
+            >
+            ["at8"] = <
+                text = <"Symptomatic, in bed <50% of the day">
+                description = <"Ambulatory and capable of all selfcare but unable to carry out any work activities; up and about more than 50% of waking hours.">
+            >
+            ["at7"] = <
+                text = <"Symptomatic, fully ambulatory">
+                description = <"Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.">
+            >
+            ["at6"] = <
+                text = <"Asymptomatic">
+                description = <"Fully active, able to carry on all pre-disease performance without restriction.">
+            >
+            ["id5"] = <
+                text = <"ECOG performance status">
+                description = <"The functional performance status of a patient with a diagnosis of cancer.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"ECOG performance status">
+                description = <"A scale used by clinicians to assess the functional performance status of a patient with a diagnosis of cancer. Also known as the WHO performance status or Zubrod performance status.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at6", "at7", "at8", "at9", "at10", "at11">
+        >
+    >

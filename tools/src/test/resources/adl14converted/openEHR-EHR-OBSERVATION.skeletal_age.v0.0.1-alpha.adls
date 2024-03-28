@@ -1,0 +1,348 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=50b84708-9887-4cdb-8561-4dcd7cd54f7b; build_uid=41607d89-cb9f-4cd4-bd03-763b2b314357)
+    openEHR-EHR-OBSERVATION.skeletal_age.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"John Tore Valand">
+                ["organisation"] = <"Helse Bergen HF, Norway">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Silje Ljosland Bakke">
+        ["organisation"] = <"Nasjonal IKT HF">
+        ["email"] = <"silje.ljosland.bakke@nasjonalikt.no">
+        ["date"] = <"2017-06-13">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"John Tore Valand, Helse Bergen HF, Norway", "Mikkel Johan Gaup Grønmo, Helse Nord RHF, Norway">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Manzoor Mughal, A., Hassan, N., & Ahmed, A. (2014). Bone Age Assessment Methods: A Critical Review. Pakistan Journal of Medical Sciences, 30(1), 211–215. http://doi.org/10.12669/pjms.301.4295.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"E53555CC21D4D760135DC89552A1BFA6">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere et estimat av biologisk alder ved å vurdere graden av modning av skjelettet.">
+            keywords = <"bein", "skjelett">
+            use = <"*Brukes for å registrere et estimat av biologisk alder ved å vurdere graden av modning av skjelettet.
+    
+    Skjelettalder kan fastlås gjennom flere ulike metoder. For eksempel: Røntgen av håndrot, røyggsøyle, bihuler eller ******">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an estimate of biological age by assessing the degree of maturation of an individual's bones.">
+            keywords = <"bone", "skeleton">
+            use = <"Use to record an estimate of biological age by assessing the degree of maturation of an individual's bones.
+    
+    The skeletal age can be determined by several different methods including but not limited to: Hand-wrist radiograph, Cervical vertebrae radiograph, Frontal sinus radiograph, Midpalatine suture.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Skeletal age
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Skeletal age
+                                        value matches {
+                                            DV_DURATION[id9002] matches {
+                                                value matches {PYM/|>=P0D|}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9003] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id28] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id29] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9004] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id8] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Modality
+                        value matches {
+                            DV_CODED_TEXT[id9005] matches {
+                                defining_code matches {[ac9000]}    -- Modality (synthesised)
+                            }
+                            DV_TEXT[id9006] 
+                        }
+                    }
+                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Assesment method
+                        value matches {
+                            DV_TEXT[id9007] 
+                        }
+                    }
+                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Body site
+                        value matches {
+                            DV_TEXT[id9008] 
+                            DV_CODED_TEXT[id9009] matches {
+                                defining_code matches {[ac9001]}    -- Body site (synthesised)
+                            }
+                        }
+                    }
+                    allow_archetype CLUSTER[id16] matches {     -- Structured body site
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                    allow_archetype CLUSTER[id30] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"Modalitet (synthesised)">
+                description = <"Modalitet benyttet for å estimere skjelettalder. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Kroppssted (synthesised)">
+                description = <"Registrering av ett enkelt område på kroppen hvor vurderingen ble utført. (synthesised)">
+            >
+            ["id30"] = <
+                text = <"Tilleggsinformasjon">
+                description = <"Ytterligere informasjon som er nødvendig for å registrere lokalt innhold/kontekst, eller for å sammenstille med andre referansemodeller/formalismer.">
+                comment = <"F.eks lokale informasjonskrav eller ekstra metadata for å tilpasse med FHIR eller CIMI ekvivalenter.">
+            >
+            ["id29"] = <
+                text = <"Konfunderende faktorer">
+                description = <"Fritekstbeskrivelse av problemer eller faktorer som kan ha påvirkning på målingen.">
+            >
+            ["at27"] = <
+                text = <"*Femoral head(en)">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"*Iliac bone(en)">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"*Clavicle(en)">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"*Teeth(en)">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Ultralyd">
+                description = <"*">
+            >
+            ["id22"] = <
+                text = <"Vurderingsmetode">
+                description = <"Vurderingsmetoden som ble benyttet for å estimere skjelettalder.">
+                comment = <"For eksempel: Greulich & Pyle, Fishman method.">
+            >
+            ["at21"] = <
+                text = <"*Midpalatal suture(en)">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"*Frontal sinus(en)">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"*Cervical vertebrae(en)">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Hånd og håndledd">
+                description = <"https://www.udi.no/globalassets/global/forskning-fou_i/asyl/aldersundersokelser/wp3-mr-analyse.pdf">
+            >
+            ["id16"] = <
+                text = <"Strukturert kroppssted">
+                description = <"Strukturert anatomisk lokalisering hvor undersøkelsen ble utført.">
+            >
+            ["id15"] = <
+                text = <"Kroppssted">
+                description = <"Registrering av ett enkelt område på kroppen hvor vurderingen ble utført.">
+                comment = <"Koding av \"Kroppssted\" med en terminologi er ønskelig om mulig.">
+            >
+            ["at13"] = <
+                text = <"CT">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"MR">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Røntgen">
+                description = <"*">
+            >
+            ["id10"] = <
+                text = <"Modalitet">
+                description = <"Modalitet benyttet for å estimere skjelettalder.">
+            >
+            ["id7"] = <
+                text = <"Kommentar">
+                description = <"Ytterligere fritekst om målingen som ikke er registrert i andre felt.">
+            >
+            ["id6"] = <
+                text = <"Skjelettalder">
+                description = <"Et estimat av biologisk alder ved å vurdere graden av modning av skjelettet.">
+            >
+            ["id3"] = <
+                text = <"Uspesifisert hendelse">
+                description = <"Standard, uspesifisert tidspunkt eller tidsintervall som kan defineres mer eksplisitt i en template eller i en applikasjon.">
+            >
+            ["id1"] = <
+                text = <"Skjelettalder">
+                description = <"Et estimat av biologisk alder ved å vurdere graden av modning av skjelettet.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Modality (synthesised)">
+                description = <"The  modality used to estimate the skeletal age. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Body site (synthesised)">
+                description = <"Simple bodysite where the assessment was performed. (synthesised)">
+            >
+            ["id30"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id29"] = <
+                text = <"Confounding factors">
+                description = <"Narrative descripiton of any issues or factors that may impact on the assessment.">
+            >
+            ["at27"] = <
+                text = <"Femoral head">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"Iliac bone">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Clavicle">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Teeth">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Ultrasound">
+                description = <"*">
+            >
+            ["id22"] = <
+                text = <"Assesment method">
+                description = <"The assessment method used to estimate the skeletal age.">
+                comment = <"For example: Greulich & Pyle, Fishman method.">
+            >
+            ["at21"] = <
+                text = <"Midpalatal suture">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Frontal sinus">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Cervical vertebrae">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Hand and wrist">
+                description = <"*">
+            >
+            ["id16"] = <
+                text = <"Structured body site">
+                description = <"The structured  bodysite where the assessment where performed.">
+            >
+            ["id15"] = <
+                text = <"Body site">
+                description = <"Simple bodysite where the assessment was performed.">
+                comment = <"Coding of the 'Body site' with a coding system is desirable, if available.">
+            >
+            ["at13"] = <
+                text = <"CT">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"MRI">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Radiograph">
+                description = <"*">
+            >
+            ["id10"] = <
+                text = <"Modality">
+                description = <"The  modality used to estimate the skeletal age.">
+            >
+            ["id7"] = <
+                text = <"Comment">
+                description = <"Additional narrative not covered in other fields.">
+            >
+            ["id6"] = <
+                text = <"Skeletal age">
+                description = <"An estimate of biological age by assessing the degree of maturation of an individual's bones.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Skeletal age">
+                description = <"An estimate of biological age by assessing the degree of maturation of an individual's bones.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at18", "at19", "at20", "at21", "at24", "at25", "at26", "at27">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at11", "at12", "at13", "at23">
+        >
+    >

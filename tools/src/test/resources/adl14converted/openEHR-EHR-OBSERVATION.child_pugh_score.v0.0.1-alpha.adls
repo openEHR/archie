@@ -1,0 +1,351 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=6c043062-1cd5-4376-8f73-f89aae7e63ee; build_uid=a171ff1b-b9cb-4704-a71f-a23d5cb07f5f)
+    openEHR-EHR-OBSERVATION.child_pugh_score.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hildegard McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2017-09-27">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"John Meredith, NHS Wales Informatics Service", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Derived from: Child-Pugh Score, Draft archetype [Internet]. Apperta UK, Apperta UK Clinical Knowledge Manager [cited: 2019-05-22]. Available from: https://ckm.apperta.org/ckm/archetypes/1051.32.822.">
+        ["2"] = <"Child CG, Turcotte JG. Surgery and portal hypertension. Major Probl Clin Surg. 1964;1:1-85. Review. PubMed PMID: 4950264.">
+    >
+    other_details = <
+        ["current_contact"] = <"Dr Ian McNicoll, freshEHR Clinical Informatics, UK ">
+        ["MD5-CAM-1.0.1"] = <"DD84ADDEB2C160AF2BB44CD1DD9D37DA">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an assessment of prognosis for chronic liver disease.">
+            keywords = <"Child-Pugh, liver, cirrhosis, score, Hepatitis C,", ...>
+            use = <"Use to record an assessment of prognosis for chronic liver disease.">
+            misuse = <"Not to be used to record the results of various liver function tests or the INR test- use the Laboratory test result family of archetypes for this purpose.
+    
+    Not to be used to record the diagnosis of hepatic encephalopathy - use EVALUATION.problem_diagnosis for this purpose.
+    
+    Not to be used to record the finding of ascites - use the Physical examination family of archetypes for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Child-Pugh score
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {0..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any Event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Total bilirubin
+                                        value matches {
+                                            DV_ORDINAL[id9007] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Serum albumin
+                                        value matches {
+                                            DV_ORDINAL[id9008] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at10]}],
+                                                    [{2}, {[at11]}],
+                                                    [{3}, {[at12]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- INR
+                                        value matches {
+                                            DV_ORDINAL[id9009] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at14]}],
+                                                    [{2}, {[at15]}],
+                                                    [{3}, {[at16]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Ascites
+                                        value matches {
+                                            DV_ORDINAL[id9010] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at18]}],
+                                                    [{2}, {[at19]}],
+                                                    [{3}, {[at20]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id21] occurrences matches {0..1} matches {    -- Hepatic encephalopathy
+                                        value matches {
+                                            DV_ORDINAL[id9011] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at22]}],
+                                                    [{2}, {[at23]}],
+                                                    [{3}, {[at24]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id25] occurrences matches {0..1} matches {    -- Adjusted bilirubin
+                                        value matches {
+                                            DV_ORDINAL[id9012] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at26]}],
+                                                    [{2}, {[at27]}],
+                                                    [{3}, {[at28]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id29] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_COUNT[id9013] matches {
+                                                magnitude matches {|5..15|}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id30] occurrences matches {0..1} matches {    -- Grade
+                                        value matches {
+                                            DV_CODED_TEXT[id9014] matches {
+                                                defining_code matches {[ac9006]}    -- Grade (synthesised)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id36] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id38] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Total bilirubin (synthesised)">
+                description = <"Score for total bilirubin in micromole per litre. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Serum albumin (synthesised)">
+                description = <"Score for serum albumin in grams per litre. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"INR (synthesised)">
+                description = <"Score for INR. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Ascites (synthesised)">
+                description = <"Score for presence of ascites. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Hepatic encephalopathy (synthesised)">
+                description = <"Score for presence of hepatic encephalopathy. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Adjusted bilirubin (synthesised)">
+                description = <"Score for total bilirubin if the patient has primary biliary cirrhosis or sclerosing cholangitis. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Grade (synthesised)">
+                description = <"Grading, based on total score. (synthesised)">
+            >
+            ["id38"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"Local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["at33"] = <
+                text = <"Class C 10 to 15 points">
+                description = <"The Child-Pugh grade is Class C with a total score of 10 to 15 points.">
+            >
+            ["at32"] = <
+                text = <"Class B 7 to 9 points">
+                description = <"The Child-Pugh grade is Class B with a total score of 7 to 9 points.">
+            >
+            ["at31"] = <
+                text = <"Class A 5 to 6 points">
+                description = <"The Child-Pugh grade is Class A with a total score of 5 to 6 points.">
+            >
+            ["id30"] = <
+                text = <"Grade">
+                description = <"Grading, based on total score.">
+            >
+            ["id29"] = <
+                text = <"Total score">
+                description = <"Sum of the individual scores assigned for each of the contributing variables.">
+            >
+            ["at28"] = <
+                text = <"Greater than 170">
+                description = <"Total bilirubin is greater than 170.">
+            >
+            ["at27"] = <
+                text = <"68 to 170">
+                description = <"Total bilirubin is between 68 and 170.">
+            >
+            ["at26"] = <
+                text = <"Less than 68">
+                description = <"Total bilirubin is less than 68.">
+            >
+            ["id25"] = <
+                text = <"Adjusted bilirubin">
+                description = <"Score for total bilirubin if the patient has primary biliary cirrhosis or sclerosing cholangitis.">
+            >
+            ["at24"] = <
+                text = <"Grade III to IV or refractory">
+                description = <"Grade III or Grade IV hepatic encephalopathy is present or hepatic encephalopathy is refractory.">
+            >
+            ["at23"] = <
+                text = <"Grade I to II or suppressed with medication">
+                description = <"Grade I or Grade II hepatic encephalopathy is present or hepatic encephalopathy is suppressed with medication.">
+            >
+            ["at22"] = <
+                text = <"None">
+                description = <"No hepatic encephalopathy is present.">
+            >
+            ["id21"] = <
+                text = <"Hepatic encephalopathy">
+                description = <"Score for presence of hepatic encephalopathy.">
+            >
+            ["at20"] = <
+                text = <"Moderate to severe">
+                description = <"Moderate to severe ascites is present.">
+            >
+            ["at19"] = <
+                text = <"Mild">
+                description = <"Mild ascites is present.">
+            >
+            ["at18"] = <
+                text = <"None">
+                description = <"No ascites is present.">
+            >
+            ["id17"] = <
+                text = <"Ascites">
+                description = <"Score for presence of ascites.">
+            >
+            ["at16"] = <
+                text = <"Greater than 2.3">
+                description = <"INR is greater than 2.3.">
+            >
+            ["at15"] = <
+                text = <"1.7 to 2.3">
+                description = <"INR is between 1.7 and 2.3.">
+            >
+            ["at14"] = <
+                text = <"Less than 1.7">
+                description = <"INR is less than 1.7.">
+            >
+            ["id13"] = <
+                text = <"INR">
+                description = <"Score for INR.">
+            >
+            ["at12"] = <
+                text = <"Less than 28">
+                description = <"Serum albumin is less than 28.">
+            >
+            ["at11"] = <
+                text = <"28 to 35">
+                description = <"Serum albumin is between 28 and 35.">
+            >
+            ["at10"] = <
+                text = <"Greater than 35">
+                description = <"Serum albumin is greater than 35.">
+            >
+            ["id9"] = <
+                text = <"Serum albumin">
+                description = <"Score for serum albumin in grams per litre.">
+            >
+            ["at8"] = <
+                text = <"Greater than 50">
+                description = <"Total bilirubin is more than 50.">
+            >
+            ["at7"] = <
+                text = <"34 to 50">
+                description = <"Total bilirubin is between 34 and 50.">
+            >
+            ["at6"] = <
+                text = <"Less than 34">
+                description = <"Total bilirubin is less than 34.">
+            >
+            ["id5"] = <
+                text = <"Total bilirubin">
+                description = <"Score for total bilirubin in micromole per litre.">
+            >
+            ["id3"] = <
+                text = <"Any Event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Child-Pugh score">
+                description = <"Tool used to assess the prognosis of chronic liver disease, mainly cirrhosis.">
+            >
+        >
+    >
+    term_bindings = <
+        ["SNOMED-CT"] = <
+            ["id29"] = <http://snomed.info/id/710066005>
+            ["at31"] = <http://snomed.info/id/710065009>
+            ["at32"] = <http://snomed.info/id/710066005>
+            ["at33"] = <http://snomed.info/id/710067001>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at14", "at15", "at16">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at10", "at11", "at12">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at6", "at7", "at8">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at31", "at32", "at33">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at26", "at27", "at28">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at22", "at23", "at24">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at18", "at19", "at20">
+        >
+    >

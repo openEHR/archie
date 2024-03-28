@@ -1,0 +1,117 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=1af3d46c-39af-41ad-b32f-d4cd6cb9c63e; build_uid=c15b3ab5-bb8a-451e-acfa-6c1211263685)
+    openEHR-EHR-EVALUATION.menstrual_cycle_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"John Tore Valand, Vebjørn Arntzen og Silje Ljosland Bakke">
+                ["organisation"] = <"Helse Bergen Hospital Trust, Norway, Oslo University Hospital, Nasjonal IKT HF.">
+                ["email"] = <"john.tore.valand@helse-bergen.no">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics, Australia">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"9/03/2011">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Sam Heard, Ocean Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    references = <
+        ["1"] = <"Derived from: Menstrual cycle summary, Draft Archetype [Internet]. Australian Digital Health Agency, Australian Digital Health Agency Clinical Knowledge Manager [cited: 2017-04-28]. Available from: http://dcm.nehta.org.au/ckm/#showArchetype_1013.1.995">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"E5CD45ABEC00145B6FACD2B88B80BBC4">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an overview of the significant events related to menstrual cycle events.">
+            keywords = <"menstruation", "menstrual", "cycle", "period", "menarche", "menopause", "LNMP">
+            use = <"Use to record significant events related to the menstrual history.">
+            misuse = <"Not to be used to record information about menses or related symptoms for a specific menstrual cycle or pattern over multiple cycles. Use OBSERVATION.menstrual_cycle for this purpose.">
+            copyright = <"© 2011 NEHTA, openEHR Foundation">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere en oversikt over relevante datoer knyttet til menstruasjon.">
+            keywords = <"menstruasjon", "menstruerende", "syklus", "menarke", "menopause", "overgangsalder", "mensen">
+            use = <"Brukes for å registrere en oversikt over relevante datoer knyttet til menstruasjon.">
+            misuse = <"Brukes ikke for å registrere detaljer om selve menstruasjonen eller symptomer som er relatert til en menstruasjonssyklus eller mønsteret for menstruasjonssyklusen. Bruk OBSERVATION.menstrual_cycle for dette formålet.">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Menstrual cycle summary
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Menarche
+                        value matches {
+                            DV_DATE[id9000] 
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Last normal menstrual period (LNMP)
+                        value matches {
+                            DV_DATE[id9001] 
+                        }
+                    }
+                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Menopause
+                        value matches {
+                            DV_DATE[id9002] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["id5"] = <
+                text = <"Menopause">
+                description = <"Datoen menopausen startet. Deldatoer, som år og måned eller bare år er tillatt.">
+            >
+            ["id4"] = <
+                text = <"Siste normale menstruasjon">
+                description = <"Dato for første dag av siste normale menstruasjon. Kan være nyttig for å utføre kalkulasjoner for bestemmelse av graviditet, eller for å skille mellom siste vanlige menstruasjon når det er et uregelmessig menstruasjonsmønster.">
+            >
+            ["id3"] = <
+                text = <"Menarke">
+                description = <"Dato for første menstruasjon. Deldatoer, som år og måned eller bare år er tillatt.">
+            >
+            ["id1"] = <
+                text = <"Menstruasjonssyklus-sammendrag">
+                description = <"Oversikt over viktige hendelser knyttet til relevante datoer om menstruasjon.">
+            >
+        >
+        ["en"] = <
+            ["id5"] = <
+                text = <"Menopause">
+                description = <"Onset of Menopause. Partial dates, such as year only or year and month are allowed.">
+            >
+            ["id4"] = <
+                text = <"Last normal menstrual period (LNMP)">
+                description = <"Date of the onset of the last normal menstrual period. Useful to persist for calculations including estimated date of confinement in pregnancy, or to distinguish the latest typical menstrual cycle when there is an irregular menstrual pattern.">
+            >
+            ["id3"] = <
+                text = <"Menarche">
+                description = <"Date of onset of first menstrual cycle. Partial dates, such as year only or year and month are allowed.">
+            >
+            ["id1"] = <
+                text = <"Menstrual cycle summary">
+                description = <"Summary of significant menstrual cycle events.">
+            >
+        >
+    >

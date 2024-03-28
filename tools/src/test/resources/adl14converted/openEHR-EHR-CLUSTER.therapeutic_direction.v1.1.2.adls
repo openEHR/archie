@@ -1,0 +1,287 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=0f42a76b-6cb6-4d7d-8330-14f5c168c9d9; build_uid=b8c6d192-bdba-4dea-ab47-cc16bfe3a216)
+    openEHR-EHR-CLUSTER.therapeutic_direction.v1.1.2
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Nasjonal IKT HF">
+            >
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Beatriz de Faria Leao">
+                ["organisation"] = <"BLEAO Informática em Saúde">
+                ["email"] = <"bfleao@terra.com.br">
+            >
+            accreditation = <"MD, PhD">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics">
+        ["email"] = <"ian@freshehr.com">
+        ["date"] = <"2017-03-22">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "John Bennett, NEHTA, Australia", "SB BHATTACHARYYA, Sudisa Consultancy Services, India", "SBhusan Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sarah Gaunt, NEHTA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Trina Gregory, cpc, Australia", "Robert Hausam, Hausam Consulting LLC, United States", "Sam Heard, Ocean Informatics, Australia (Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Mary Kelaher, NEHTA, Australia", "Robert L'egan, NEHTA, Australia", "Russell Leftwich, Russell B Leftwich MD, United States", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Colin Macfarlane, Elsevier, United Kingdom", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Chris Pearce, Melbourne East GP Network, Australia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Anoop Shah, University College London, United Kingdom", "Iztok Stotl, UKCLJ, Slovenia", "John Taylor, NEHTA, Australia", "Nyree Taylor, Ocean Informatics, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal", "Kylie Young, The Royal Australian College of General Practitioners, Australia">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Medication instruction, Draft Archetype [Internet]. nehta, Australia, nehta Clinical Knowledge Manager [cited: 2015-12-15]. Available from: http://dcm.nehta.org.au/ckm/#showArchetype_1013.1.838">
+        ["2"] = <"Intermountain Healthcare Medication order model, Personal Communication to Sam Heard by Dr Stan Huff.">
+        ["3"] = <"Royal Australian College of General Practitioners. Fact Sheet: Medicines List. 2010.">
+        ["4"] = <"NHS HSCIC Messaging Implementation Manual (GP2GP messages) http://www.uktcregistration.nss.cfh.nhs.uk/trud3">
+        ["5"] = <"Standards for medication and medical device records – technical annex [Internet]. RCP London. [cited 2015 Dec 15]. Available from: https://www.rcplondon.ac.uk/projects/outputs/standards-medication-and-medical-device-records-technical-annex">
+    >
+    other_details = <
+        ["current_contact"] = <"Ian McNicoll, freshEHR Clinical Informatics, UK <ian@freshehr.com>">
+        ["MD5-CAM-1.0.1"] = <"52EE4E6F405A92ADAAE5C33293DAA685">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere strukturerte detaljer om en enkelt anvisning for en ordinert terapeutisk vare.
+    
+    Hver anvisning er generelt gyldig i et gitt tidsintervall eller antall administreringer.">
+            keywords = <"legemiddel", "ordinering", "foreskrive", "terapi", "substans", "medisin", "medikament", "terapeutisk", "farmasøytisk", "produkt", "posologi", "behandling", "transfusjon">
+            use = <"En anvisning beskriver en eller flere sekvensielle terapeutiske administreringsmønstre, sammen med en overordnet anvisningsvarighet og detaljer om repetisjonsmønstre for administrering utover en gitt dag.
+    
+    For eksempel \"1 tablett om morgenen og en tablett om kvelden i tre uker, på mandager, onsdager og fredager\". Clusteret kan repeteres for å kunne representere et fullstendig sett av anvisninger for en enkelt legemiddelordinering. Clusteret kan gis nytt navn i et templat eller i applikasjonen for å representere en spesifikk dosering som for eksempel: \"Bolus\" eller \"Startdose\".
+    
+    Arketypen vil generelt bli brukt innenfor en overordnet INSTRUCTION-arketype, primært Legemiddelordinering, men også for ordinering av transfusjoner og dialyse.">
+            misuse = <"">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para registrar detalhes estruturados de uma única instrução terapêutica para um item terapêutico prescrito.
+    
+    Cada instrução geralmente se aplica por uma determinado período de tempo, ou por um número fixo de administrações.">
+            keywords = <"medicamento", "prescrição", "prescrever", "terapia", "substância", "droga", "terapêutico", "etc", "produto terapêutico", "farmacêutico", "produtos", "posologia", "tratamento", "transfusão">
+            use = <"Uma instrução descreve um ou mais padrões de administração sequenciais de algum tratamento, juntamente com um período de tempo e detalhes de qualquer padrão repetitivo de administração pretendida além de um único dia.
+    
+    Por exemplo: '1 comprimido pela manhã, 1 comprimido à noite, por 3 semanas, às segundas, quartas e sextas'. Este cluster permite várias ocorrências para permitir a representação de um conjunto completo de instruções de dosagem para uma única prescrição de medicação. O cluster pode ser renomeado a nível do template ou em tempo de execução para representar um evento de dosagem específico, como \"dose inicial de carga\", \"bolus\".
+    
+    Este arquétipo será geralmente usado no contexto de um arquétipo 'pai' de INSTRUCTION, principalmente na prescrição de medicamentos, mas também para ordens de transfusão e diálise.">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record structured details of a single therapeutic direction for an ordered therapeutic/prescribable item.
+    
+    Each direction generally applies for a given duration, or fixed number of administrations.">
+            keywords = <"medication", "order", "prescribe", "therapy", "substance", "drug", "therapeutic", "otc", "therapeutic good", "pharmaceutical", "product", "posology", "treatment", "transfusion">
+            use = <"A direction describes one or more sequential therapeutic administration patterns, coupled with an overall direction duration and details of any repetitive pattern of intended administration outside a single day.
+    
+    For example: '1 tab in the morning, 1 tab at night, for 3 weeks, on Mondays, Wednesdays and Fridays'. This cluster allows multiple occurrences to enable representation of a complete set of dosage directions for a single medication order. The cluster can be renamed in template or at run-time to represent a specific dosing event such as 'loading dose', 'bolus'.
+    
+    This archetype will generally be used in the context of a parent INSTRUCTION archetype, primarily Medication order but also for transfusion and dialysis orders.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Therapeutic direction
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id58] occurrences matches {0..1} matches {    -- Direction sequence
+                value matches {
+                    DV_COUNT[id9001] matches {
+                        magnitude matches {|>=1|}
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id177] matches {     -- Dosage
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.dosage(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id67] occurrences matches {0..1} matches {    -- Direction duration
+                value matches {
+                    DV_CODED_TEXT[id9002] matches {
+                        defining_code matches {[ac9000]}    -- Direction duration (synthesised)
+                    }
+                    DV_DURATION[id9003] matches {
+                        value matches {|>=PT0S|}
+                    }
+                    DV_TEXT[id9004] 
+                }
+            }
+            ELEMENT[id173] occurrences matches {0..1} matches {    -- Maximum number of administrations
+                value matches {
+                    DV_COUNT[id9005] matches {
+                        magnitude matches {|>=1|}
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id91] occurrences matches {0..1} matches {     -- Repetition timing
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.timing_nondaily(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            allow_archetype CLUSTER[id157] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.conditional_medication_rules(-[a-zA-Z0-9_]+)*\.v0\..*|openEHR-EHR-CLUSTER\.conditional_medication_rules(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"Anvisningsvarighet (synthesised)">
+                description = <"Varigheten av denne anvisningen. (synthesised)">
+            >
+            ["id177"] = <
+                text = <"Dosering">
+                description = <"Kombinasjonen av legemiddeldose og administreringstidspunkter for en dag.">
+            >
+            ["id173"] = <
+                text = <"Maksimalt antall administreringer">
+                description = <"Maksimalt antall administreringer som skal gis innenfor denne anvisningen.">
+                comment = <"For eksempel \"kun én dose\" = 1, eller \"3 doser á 400 mg hver 12 time\" = 3.">
+            >
+            ["id157"] = <
+                text = <"Ytterligere detaljer">
+                description = <"Ytterligere detaljer om anvisningen.">
+                comment = <"For eksempel betingede instruksjoner som infusjonshastighet av insulin/glukose basert på blodsukkermåling, eller detaljerte instruksjoner for spesifikke legemidler.">
+            >
+            ["id91"] = <
+                text = <"Timing av repetisjoner">
+                description = <"Strukturerte detaljer om repeteringsmønsteret for hvert sett av daglige anvisninger.">
+                comment = <"For eksempel \"hver 3. dag\", \"på tirsdager og søndager\", \"3 dager etter menstruasjonsblødningens 1. dag\".">
+            >
+            ["at69"] = <
+                text = <"Ubestemt - ikke seponer">
+                description = <"Anvisningen skal videreføres på ubestemt tid, med en sterk anbefaling om ikke å seponere.">
+            >
+            ["at68"] = <
+                text = <"Ubestemt">
+                description = <"Anvisningen skal videreføres på ubestemt tid.">
+            >
+            ["id67"] = <
+                text = <"Anvisningsvarighet">
+                description = <"Varigheten av denne anvisningen.">
+                comment = <"For eksempel \"i 7 dager\" eller \"på ubestemt tid\". Et eksempel som er sammensatt av flere ulike varigheter kan være: \"1 tablett daglig i 3 dager\", \"2 tabletter daglig i 4 dager\", \"3 tabletter på ubestemt tid\".">
+            >
+            ["id58"] = <
+                text = <"Anvisningsrekkefølge">
+                description = <"Tilsiktet rekkefølge for denne anvisningen i den overordnede anvisningssekvensen.">
+                comment = <"For eksempel \"1\", \"2\", \"3\". I tilfeller der ordineringen består av flere doseringsanvisninger, spesifiserer anvisningsrekkefølgen i hvilken rekkefølge anvisningene skal utføres. For eksempel \"(1) 1 tablett daglig i 3 dager, (2) 1 tablett to ganger daglig i 4 dager, (3) 1 tablett i 7 dager.\"">
+            >
+            ["id1"] = <
+                text = <"Terapeutisk anvisning">
+                description = <"Detaljer om en enkelt anvisning innenfor ordineringen av f.eks. et legemiddel eller en transfusjon.">
+            >
+        >
+        ["pt-br"] = <
+            ["ac9000"] = <
+                text = <"Duração da Instrução (synthesised)">
+                description = <"Período de tempo no qual esta orientação se aplica. (synthesised)">
+            >
+            ["id177"] = <
+                text = <"*Dosage(en)">
+                description = <"*The combination of a medication dose and administration timing for a single day.(en)">
+            >
+            ["id173"] = <
+                text = <"Número máximo de administrações">
+                description = <"Número máximo de administrações para esta orientação.">
+                comment = <"Exemplo: 'Administrar uma vez somente = 1 ou '400mg a cada 12h por 3 doses' = 3">
+            >
+            ["id157"] = <
+                text = <"Detalhes adicionais">
+                description = <"Detalhes adicionais sobre uma orientação a respeito de um tem prescrito.">
+                comment = <"Por exemplo, instruções condicionais, tais como taxas de infusão de insulina / glicose dependentes da glicemia, ou instruções detalhadas de administração para preparações específicas.">
+            >
+            ["id91"] = <
+                text = <"Orientações de repetição">
+                description = <"Detalhes estruturados sobre o padrão de repetição para cada conjunto de orientações diárias.">
+                comment = <"Por exemplo: 'a cada 3 dias', 'às quintas-feiras e domingos', '3 dias após o início da menstruação'.">
+            >
+            ["at69"] = <
+                text = <"Uso contínuo - não deve ser descontinuado.">
+                description = <"A orientação deve ser continuada indefinidamente com uma recomendação forte que não seja interrompida.">
+            >
+            ["at68"] = <
+                text = <"Uso contínuo">
+                description = <"Esta instrução indica que trata-se de uso contínuo, ou seja que deve ser seguida indefinidamente.">
+            >
+            ["id67"] = <
+                text = <"Duração da Instrução">
+                description = <"Período de tempo no qual esta orientação se aplica.">
+                comment = <"Por exemplo: 'por 7 dias', 'uso contínuo'. Um exemplo de um conjunto de múltiplas orientações, com diferentes durações, pode ser ... 1 comprimido por dia durante 3 dias, 2 comprimidos por dia durante 4 dias e depois 3 comprimidos de uso contínuo.">
+            >
+            ["id58"] = <
+                text = <"Ordem de execução da Orientação">
+                description = <"A posição desta orientação na sequência geral de orientações.">
+                comment = <"Por exemplo: '' 1 '' 2 ',' 3 '.
+    Quando múltiplas orientações de dosagem são expressas, a \"seqüência de instruções\" torna a ordem na qual estas devem ser executados explicitas. Por exemplo: (1) 1 comprimido diariamente por 3 dias, (2) 1 comprimido duas vezes ao dia por 4 dias, (3) 1 comprimido por 7 dias.">
+            >
+            ["id1"] = <
+                text = <"Orientação terapêutica">
+                description = <"Detalhes estruturados de uma única orientação terapêutica para um item prescrito, como um medicamento ou uma solicitação de transfusão de sangue.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Direction duration (synthesised)">
+                description = <"The length of time for which this direction should be applied. (synthesised)">
+            >
+            ["id177"] = <
+                text = <"Dosage">
+                description = <"The combination of a medication dose and administration timing for a single day.">
+            >
+            ["id173"] = <
+                text = <"Maximum number of administrations">
+                description = <"The maximum number of administrations to be given for this direction.">
+                comment = <"Example: 'Give once only' = 1 or '400mg 12hrly for 3 doses' = 3.">
+            >
+            ["id157"] = <
+                text = <"Additional details">
+                description = <"Further details about an ordered item direction.">
+                comment = <"For example, conditional instructions such as insulin /glucose infusion rates dependent on blood glucose, or detailed administration instructions for particular preparations.">
+            >
+            ["id91"] = <
+                text = <"Repetition timing">
+                description = <"Structured details about pattern of repetition for each set of daily directions.">
+                comment = <"For example: 'every 3 days', 'on Thursdays and Sundays', '3 days after onset of menstruation'.">
+            >
+            ["at69"] = <
+                text = <"Indefinite - not to be discontinued">
+                description = <"The direction should be continued indefinitely with a strong recommendation that it never be discontinued.">
+            >
+            ["at68"] = <
+                text = <"Indefinite">
+                description = <"The direction should be continued indefinitely.">
+            >
+            ["id67"] = <
+                text = <"Direction duration">
+                description = <"The length of time for which this direction should be applied.">
+                comment = <"For example: 'for 7 days','Indefinite'. An example of a set of multiple directions, with varying durations might be ... '1 tablet daily for 3 days, 2 tablets daily for 4 days, then 3 tablets Indefinite'.">
+            >
+            ["id58"] = <
+                text = <"Direction sequence">
+                description = <"The intended position of this direction within the overall sequence of directions.">
+                comment = <"For example: ''1' '2', '3'.
+    Where multiple dosage directions are expressed, the 'Direction sequence' makes the order in which they should be executed explicit. For example: (1) 1 tab daily for 3 days, (2) 1 tab twice daily for 4 days, (3) 1 tablet for 7 days.  ">
+            >
+            ["id1"] = <
+                text = <"Therapeutic direction">
+                description = <"Structured details of a single therapeutic direction for an ordered item, such as a medication or blood transfusion order.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at68", "at69">
+        >
+    >

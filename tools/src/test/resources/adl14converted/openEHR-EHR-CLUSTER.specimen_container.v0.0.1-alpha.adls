@@ -1,0 +1,367 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=93df738b-d3ab-4495-8592-2fb38d0fe68c; build_uid=69d251b5-2328-4276-ad0b-222b67c4e35b)
+    openEHR-EHR-CLUSTER.specimen_container.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Kristian Berg; Line Silsand">
+                ["organisation"] = <"Universitetssykehuset Nord-Norge">
+                ["email"] = <"kristian.berg@unn.no; line.silsand@unn.no">
+            >
+        >
+        ["sl"] = <
+            language = <[ISO_639-1::sl]>
+            author = <
+                ["application"] = <"Adl Designer">
+            >
+            other_details = <
+                ["notes"] = <"Generated automatically by Adl Designer">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Dr Ian McNicoll">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"ian.mcnicoll@oceaninformatics.com">
+        ["date"] = <"2009-06-21">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Koray Atalag University of Auckland, New Zealand", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Digital Imaging and Communications in Medicine (DICOM) Supplement 122: Specimen Module and Revised Pathology SOP Classes">
+        ["2"] = <"DICOM Standards Committee, Working Groups 26, Pathology">
+        ["3"] = <"Hl7 FHIR Specimen resource: HL7 FHIR; Available from http://www.hl7.org/implement/standards/fhir/specimen.html">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"609E0FB71113EE34D7EF78C35F947237">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere detaljer om beholderen som brukes for å oppbevare en laboratorieprøve.">
+            keywords = <"prøve", "laboratorium", "lab", "patologi", "beholder", "glass", "bøtte", "pensel", "prøveglass">
+            use = <"Brukes for å registrere detaljer om beholderen som brukes for å oppbevare en laboratorieprøve. Dette er ofte en integrert del av arbeidsflyt og rapportering av laboratorieprøver, særlig anatomiske og histologiske laboratorieprøver.
+    
+    Denne arketypen er laget for å brukes innenfor en Laboratorieresultat-arketype og Prøvemateriale-arketype, som skissert under.
+    
+    Denne arketypen kan brukes sammen med Prøvemateriale-arketypen på to hovedmåter: Ved nøsting av \"Prøvebeholder\" inni \"Prøvemateriale\" (for eksempel når et vakuumglass med venøst blod fordeles på to mindre glass, eller en hel tykktarm deles på tre bøtter), eller \"Prøvemateriale\" nøstet inni \"Prøvebeholder\" (for eksempel når en bøtte inneholder en seksjon av en tykktarm og en endetarm, eller et glass inneholder fem individuelt merkede føflekker).">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details of the container used to hold a specimen for laboratory examination.">
+            keywords = <"specimen", "lab", "laboratory", "pathology">
+            use = <"Use to record details of the container used to hold a specimen for laboratory examination. This is often integral to workflow and reporting of laboratory specimens, particularly anatomical and histological pathology specimens.
+    
+    This archetype is designed to be used within the Laboratory rest result archetype and the Specimen archetype, as outlined below.
+    
+    This archetype can be used together with the Specimen archetype in two main ways: 'Specimen container' nested within 'Specimen' (for example when a venous blood specimen is divided between two vials, or a whole large intestine is divided into three buckets), or 'Specimen' nested within 'Specimen container' (for example when a bucket of formalin contains a section of large intestine and a rectum, or a jar contains five individually marked moles).">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["sl"] = <
+            language = <[ISO_639-1::sl]>
+            purpose = <"">
+            use = <"">
+            misuse = <"">
+            other_details = <
+                ["notes"] = <"Generated automatically by Adl Designer">
+            >
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Specimen container
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Container type
+                value matches {
+                    DV_CODED_TEXT[id9001] matches {
+                        defining_code matches {[ac9000]}    -- Container type (synthesised)
+                    }
+                    DV_TEXT[id9002] 
+                }
+            }
+            ELEMENT[id27] occurrences matches {0..1} matches {    -- Container additive
+                value matches {
+                    DV_TEXT[id9003] 
+                }
+            }
+            ELEMENT[id14] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+            ELEMENT[id25] occurrences matches {0..1} matches {    -- Datetime transported
+                value matches {
+                    DV_DATE_TIME[id9005] 
+                }
+            }
+            ELEMENT[id4] matches {    -- Container identifier
+                value matches {
+                    DV_IDENTIFIER[id9006] 
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Collection area Identifier
+                value matches {
+                    DV_IDENTIFIER[id9007] 
+                }
+            }
+            ELEMENT[id26] occurrences matches {0..1} matches {    -- Transporter identifier
+                value matches {
+                    DV_IDENTIFIER[id9008] 
+                }
+            }
+            allow_archetype CLUSTER[id29]
+            allow_archetype CLUSTER[id30] matches {     -- Contained specimen
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.specimen(-[a-zA-Z0-9_]+)*\.v0\..*|openEHR-EHR-CLUSTER\.specimen(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"Type beholder (synthesised)">
+                description = <"Beskrivelse av typen beholder. (synthesised)">
+            >
+            ["id30"] = <
+                text = <"Inneholdt prøvemateriale">
+                description = <"Et prøvemateriale som beholderen inneholder.">
+            >
+            ["id29"] = <
+                text = <"Komponent av beholder">
+                description = <"Detaljer om del-komponenter som omfatter beholderen.">
+                comment = <"For eksempel en beskrivelse av objektglass og dekkglass.">
+            >
+            ["id27"] = <
+                text = <"Tilsetningsstoff">
+                description = <"Spesielle tilsetninger for fiksering eller til preservering.">
+            >
+            ["id26"] = <
+                text = <"Identifikator på transportør">
+                description = <"Identifikator av personen eller instansen som er ansvarlig for å frakte prøvebeholderen til laboratoriet.">
+            >
+            ["id25"] = <
+                text = <"Tidspunkt for transport">
+                description = <"Datoen og klokkeslettet da prøven ble klargjort for transport til laboratoriet.">
+            >
+            ["id14"] = <
+                text = <"Beskrivelse">
+                description = <"Fritekstbeskrivelse av beholderen.">
+            >
+            ["at13"] = <
+                text = <"Prøvebrønn">
+                description = <"Beholderen er en prøvebrønn til prøve.">
+            >
+            ["at12"] = <
+                text = <"Grid">
+                description = <"Beholderen er et rutenett for elektronmikroskopi.">
+            >
+            ["at11"] = <
+                text = <"Prøvebeholder">
+                description = <"Beholderen er en generisk prøvebeholder.">
+            >
+            ["at10"] = <
+                text = <"Objektglass">
+                description = <"Beholderen er et objektglass.">
+            >
+            ["at9"] = <
+                text = <"Prøveglass">
+                description = <"Beholderen er et prøveglass.">
+            >
+            ["at8"] = <
+                text = <"TMA-blokk">
+                description = <"Beholderen er en posisjonsbeholder for parafinstøping av prøve.">
+            >
+            ["at7"] = <
+                text = <"Vevskassett">
+                description = <"Beholderen er en plastbeholder for parafinstøping av prøve.">
+            >
+            ["id6"] = <
+                text = <"Type beholder">
+                description = <"Beskrivelse av typen beholder.">
+            >
+            ["id4"] = <
+                text = <"Beholder ID">
+                description = <"Identifikator av beholderen. Dataelementet kan gjentas.">
+            >
+            ["id3"] = <
+                text = <"Identifikator for hentested">
+                description = <"Identifikator av stedet hvor beholderen skal hentes.">
+            >
+            ["id1"] = <
+                text = <"Prøvebeholder">
+                description = <"Detaljer om en prøvebeholder.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Container type (synthesised)">
+                description = <"The type of container. (synthesised)">
+            >
+            ["id30"] = <
+                text = <"Contained specimen">
+                description = <"A specimen contained by this container.">
+            >
+            ["id29"] = <
+                text = <"Container component">
+                description = <"Details of a sub-components which comprises the container.">
+                comment = <"For example: Description of the slide 
+    and of the coverslip.">
+            >
+            ["id27"] = <
+                text = <"Container additive">
+                description = <"Any special fixative or transport medium.">
+            >
+            ["id26"] = <
+                text = <"Transporter identifier">
+                description = <"Identifier of person or agency responsible for transporting the container to the lab.">
+            >
+            ["id25"] = <
+                text = <"Datetime transported">
+                description = <"The data and time that the specimen was uplifted for transportation to the laboratory.">
+            >
+            ["id14"] = <
+                text = <"Description">
+                description = <"A text description of the container.">
+            >
+            ["at13"] = <
+                text = <"Specimen well">
+                description = <"The container is a specimen well.">
+            >
+            ["at12"] = <
+                text = <"Electron microscopy grid">
+                description = <"The container is an electron microscopy grid.">
+            >
+            ["at11"] = <
+                text = <"Specimen container">
+                description = <"The container is a gneric specimen container.">
+            >
+            ["at10"] = <
+                text = <"Microscope slide">
+                description = <"The container is a microscope slide.">
+            >
+            ["at9"] = <
+                text = <"Specimen vial">
+                description = <"The container is a specimen vial.">
+            >
+            ["at8"] = <
+                text = <"Tissue microarray cassette">
+                description = <"The container is a tissue microarray cassette.">
+            >
+            ["at7"] = <
+                text = <"Tissue cassette">
+                description = <"The container is a tissue cassette.">
+            >
+            ["id6"] = <
+                text = <"Container type">
+                description = <"The type of container.">
+            >
+            ["id4"] = <
+                text = <"Container identifier">
+                description = <"The unique identifier given to the container. May be multiple.">
+            >
+            ["id3"] = <
+                text = <"Collection area Identifier">
+                description = <"Identifier of the place from where the container should be collected.">
+            >
+            ["id1"] = <
+                text = <"Specimen container">
+                description = <"Details of the container used to hold a specimen for laboratory examination.">
+            >
+        >
+        ["sl"] = <
+            ["ac9000"] = <
+                text = <"*Container type(en) (synthesised)">
+                description = <"*The type of container.(en) (synthesised)">
+            >
+            ["id30"] = <
+                text = <"*Contained specimen (en)">
+                description = <"*A specimen contained by this container. (en)">
+            >
+            ["id29"] = <
+                text = <"*Cluster(en)">
+                description = <"*Details of a sub-components which comprises the container. (en)">
+                comment = <"*For example: Description of the slide 
+    and of the coverslip. (en)">
+            >
+            ["id27"] = <
+                text = <"*Container Additive(en)">
+                description = <"*Any special fixative or transport medium. (en)">
+            >
+            ["id26"] = <
+                text = <"*Transporter Identifier(en)">
+                description = <"*Identifier of person or agency responsible for transporting the container to the lab.(en)">
+            >
+            ["id25"] = <
+                text = <"*Datetime Transported(en)">
+                description = <"*The data and time that the specimen was uplifted for transportation to the laboratory.(en)">
+            >
+            ["id14"] = <
+                text = <"*Description(en)">
+                description = <"*A text description of the container.(en)">
+            >
+            ["at13"] = <
+                text = <"*Specimen well(en)">
+                description = <"**(en)">
+            >
+            ["at12"] = <
+                text = <"*Electron microscopy grid(en)">
+                description = <"**(en)">
+            >
+            ["at11"] = <
+                text = <"*Specimen container(en)">
+                description = <"**(en)">
+            >
+            ["at10"] = <
+                text = <"*Microscope slide(en)">
+                description = <"**(en)">
+            >
+            ["at9"] = <
+                text = <"*Specimen vial(en)">
+                description = <"**(en)">
+            >
+            ["at8"] = <
+                text = <"*Tissue microarray cassette(en)">
+                description = <"**(en)">
+            >
+            ["at7"] = <
+                text = <"*Tissue cassette(en)">
+                description = <"**(en)">
+            >
+            ["id6"] = <
+                text = <"*Container type(en)">
+                description = <"*The type of container.(en)">
+            >
+            ["id4"] = <
+                text = <"*Container identifier (en)">
+                description = <"*The unique identifier given to the container. May be multiple.(en)">
+            >
+            ["id3"] = <
+                text = <"*Collection Area Identifier(en)">
+                description = <"*Identifier of the place from where the container should be collected.(en)">
+            >
+            ["id1"] = <
+                text = <"*Specimen container(en)">
+                description = <"*Details of a specimen container. This is often integral to workflow and reporting of pathology specimens, particularly antamical and histological pathology specimens.(en)">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at7", "at8", "at9", "at10", "at11", "at12", "at13">
+        >
+    >

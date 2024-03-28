@@ -1,0 +1,176 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=42ac5b04-e9b0-49cf-8dd1-aa32a8bf8a8d; build_uid=72624ab0-f86e-4e03-a09b-531f5503d25a)
+    openEHR-EHR-EVALUATION.social_network.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2018-05-29">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"John Tore Valand, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"E8EA4A0184EEC58C1FE5E21861F055C0">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record information about the people who are connected by social interactions and personal relationships to the individual.">
+            use = <"Use to record information about the people who are connected by social interactions and personal relationships to the individual.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Social network
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Marital status
+                        value matches {
+                            DV_TEXT[id9001] 
+                        }
+                    }
+                    CLUSTER[id4] matches {    -- Network
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id5] occurrences matches {0..1} matches {    -- Alias
+                                value matches {
+                                    DV_TEXT[id9002] 
+                                }
+                            }
+                            allow_archetype CLUSTER[id6] matches {     -- Personal details
+                                include
+                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.individual_personal(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                            }
+                            ELEMENT[id7] occurrences matches {0..1} matches {    -- Relationship
+                                value matches {
+                                    DV_TEXT[id9003] 
+                                }
+                            }
+                            ELEMENT[id8] occurrences matches {0..1} matches {    -- Role
+                                value matches {
+                                    DV_TEXT[id9004] 
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Number of dependents
+                        value matches {
+                            DV_COUNT[id9005] 
+                        }
+                    }
+                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Number of dependent children
+                        value matches {
+                            DV_COUNT[id9006] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id11] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id12] occurrences matches {0..1} matches {    -- Last updated
+                        value matches {
+                            DV_DATE_TIME[id9007] 
+                        }
+                    }
+                    ELEMENT[id14] occurrences matches {0..1} matches {    -- Age definition for a dependent child
+                        value matches {
+                            DV_QUANTITY[id9008] matches {
+                                property matches {[at9000]}    -- Time
+                                [magnitude, units, precision] matches {
+                                    [{|>=0.0|}, {"a"}, {1}],
+                                    [{|>=0.0|}, {"mo"}, {1}]
+                                }
+                            }
+                        }
+                    }
+                    allow_archetype CLUSTER[id13] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Time">
+                description = <"Time">
+            >
+            ["id14"] = <
+                text = <"Age definition for a dependent child">
+                description = <"The upper limit of age which defines a dependent child.">
+                comment = <"This may vary enormously between geographical locations and jurisdictions.">
+            >
+            ["id13"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id12"] = <
+                text = <"Last updated">
+                description = <"Date when the summary was updated.">
+            >
+            ["id10"] = <
+                text = <"Number of dependent children">
+                description = <"The number of children who are dependent on the individual for financial or other support.">
+            >
+            ["id9"] = <
+                text = <"Number of dependents">
+                description = <"The number of people who are dependent on the individual for financial or other support.">
+            >
+            ["id8"] = <
+                text = <"Role">
+                description = <"The part that the social connection or relationship plays in the life of the individual.">
+                comment = <"Coding of the role with a terminology is preferred, where possible. For example: dependent; houshold member; next of kin; or carer.">
+            >
+            ["id7"] = <
+                text = <"Relationship">
+                description = <"The relationship of the social connection or relationship to the individual.">
+                comment = <"Coding of the relationship with a terminology is preferred, where possible. For example: spouse, child, grandmother; or friend.">
+            >
+            ["id6"] = <
+                text = <"Personal details">
+                description = <"Structured detail about an identified social connection or relationship.">
+            >
+            ["id5"] = <
+                text = <"Alias">
+                description = <"An alternative name or label to uniquely identify a social connection or relationship.">
+                comment = <"To be used to assist in distinguishing one individual from multiple family members with identical relationships or connections without using a personal name which might publicly identify the individual. For example: 'sister #1' or 'neighbour upstairs'.">
+            >
+            ["id4"] = <
+                text = <"Network">
+                description = <"Details about the significant social connections and/or relationships of an individual.">
+            >
+            ["id3"] = <
+                text = <"Marital status">
+                description = <"Single word or phrase that describes  an individual's relationship with a significant other.">
+                comment = <"Coding of the marital status with a terminology is preferred, where possible. For example: never married or single; married; divorced; or widowed.">
+            >
+            ["id1"] = <
+                text = <"Social network">
+                description = <"Group of individuals connected by social interactions and personal relationships.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/128>
+        >
+    >

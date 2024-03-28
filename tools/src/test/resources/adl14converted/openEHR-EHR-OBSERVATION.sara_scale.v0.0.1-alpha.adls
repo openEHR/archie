@@ -1,0 +1,792 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=f1a4814c-7763-4f26-a575-c8fb74efcb9d; build_uid=f48040bb-f677-4723-86f4-e80274a2a375)
+    openEHR-EHR-OBSERVATION.sara_scale.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Haitham Maarouf">
+        ["organisation"] = <"Universidade de Santiago de Compostela (USC  www.usc.es)">
+        ["email"] = <"h_maarouf@hotmail.com">
+        ["date"] = <"2016-05-12">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Hildegard Franke, freshEHR Clinical Informatics Ltd. UK", "Diego Martinez, Universidade de Santiago de Compostela (USC  www.usc.es)", "Rocio Martinez, Universidade de Santiago de Compostela (USC  www.usc.es)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Susi Sobrido, Universidade de Santiago de Compostela (USC  www.usc.es)", "Maria Taboada, Universidade de Santiago de Compostela (USC  www.usc.es)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Ataxia Study Group: Scale for the Assessment and Rating of Ataxia (SARA) cited 18-Aug-2016 http://www.ataxia-study-group.net/html/about/ataxiascales/sara?asgsid=varcyain.">
+        ["2"] = <"Schmitz-HÃ¼bsch T, Tezenas du Montcel S, Baliko L, Berciano J, Boesch S et al. Scale for the assessment and rating of ataxia: development of a new clinical scale. Neurology 2006;66:1717-1720.">
+        ["3"] = <"Schmitz-HÃ¼bsch T, Fimmers R, Rakowicz M, Rola R, Zdzienicka E, Fancellu">
+        ["4"] = <"R et al. Responsiveness of different rating instruments in">
+        ["5"] = <"spinocerebellar ataxia patients. Neurology 2010;74:678-84">
+        ["6"] = <"Weyer A, Abele M, Schmitz-HÃ¼bsch T, Schoch B, Frings M et al. Reliability and validity of the Scale for the Assessment and Rating of Ataxia: A Study in 64 ataxia patients. Mov Disord 2007;22:1633-1637.">
+        ["7"] = <"http://library.med.utah.edu/neurologicexam/html/coordination_abnormal.html#01">
+    >
+    other_details = <
+        ["current_contact"] = <"Haitham Maarouf, USC, h_maarouf@hotmail.com">
+        ["MD5-CAM-1.0.1"] = <"2D033F9076714E9AC1C68198043FD611">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"SARA is a clinical scale that is based on a semiquantitative assessment of cerebellar ataxia on an impairment level. SARA has 8 items that are related to gait, stance, sitting, speech, finger-chase test, nose-finger test, fast alternating movements and heel-shin test. Although the cerebellum is directly involved in the coordination of eye movements, oculomotor functions are not considered, as the validation trials indicated that they are determined by other factors than appendicular and midline ataxia. SARA underwent a rigorous validation procedure involving three large multi-center trials in SCA and non-SCA ataxia patients, as well as controls.">
+            keywords = <"SARA", "ataxia", "assessment", "scale">
+            use = <"Assessment of cerebellar ataxia on an impairment level for patients with Ataxia.
+    Depending on the disease stage, its administration takes 5–40 min (mean 14.2 min) and does not require special
+    training or technical equipment (Schmitz-H€ubsch et al. 2006). The eight measuring items were selected from a
+    standard neurological examination for their specificity for ataxia and their qualities of standardizing testing and rating procedures. A maximum score of 40 reflects most severe ataxia. The items are the following: gait (score 0 to 8), stance (score 0 to 6), sitting (score 0 to 4), speech disturbance (score 0 to 6), finger chase (score 0 to 4), nose-finger test (score 0 to 4), fast alternating hand movements (score 0 to 4), and heelshin slide (score 0 to 4). Testing of limb function is rated independently for both sides. The arithmetic mean of both sides is considered for sum scores.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- SARA ataxia scale
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[id3] occurrences matches {0..1} matches {    -- Point in time
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- 1. Gait
+                                        value matches {
+                                            DV_ORDINAL[id9013] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at6]}],
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at8]}],
+                                                    [{3}, {[at9]}],
+                                                    [{4}, {[at10]}],
+                                                    [{5}, {[at11]}],
+                                                    [{6}, {[at12]}],
+                                                    [{7}, {[at13]}],
+                                                    [{8}, {[at14]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id15] occurrences matches {0..1} matches {    -- 2. Stance
+                                        value matches {
+                                            DV_ORDINAL[id9014] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at16]}],
+                                                    [{1}, {[at17]}],
+                                                    [{2}, {[at18]}],
+                                                    [{3}, {[at19]}],
+                                                    [{4}, {[at20]}],
+                                                    [{5}, {[at21]}],
+                                                    [{6}, {[at22]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id23] occurrences matches {0..1} matches {    -- 3. Sitting
+                                        value matches {
+                                            DV_ORDINAL[id9015] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at24]}],
+                                                    [{1}, {[at25]}],
+                                                    [{2}, {[at26]}],
+                                                    [{3}, {[at27]}],
+                                                    [{4}, {[at28]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id29] occurrences matches {0..1} matches {    -- 4. Speech disturbance
+                                        value matches {
+                                            DV_ORDINAL[id9016] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at30]}],
+                                                    [{1}, {[at31]}],
+                                                    [{2}, {[at32]}],
+                                                    [{3}, {[at33]}],
+                                                    [{4}, {[at34]}],
+                                                    [{5}, {[at35]}],
+                                                    [{6}, {[at36]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id37] occurrences matches {0..1} matches {    -- 5L. Finger chase left
+                                        value matches {
+                                            DV_ORDINAL[id9017] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at38]}],
+                                                    [{1}, {[at39]}],
+                                                    [{2}, {[at40]}],
+                                                    [{3}, {[at41]}],
+                                                    [{4}, {[at42]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id48] occurrences matches {0..1} matches {    -- 5R. Finger chase right
+                                        value matches {
+                                            DV_ORDINAL[id9018] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at49]}],
+                                                    [{1}, {[at50]}],
+                                                    [{2}, {[at51]}],
+                                                    [{3}, {[at52]}],
+                                                    [{4}, {[at53]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id55] occurrences matches {0..1} matches {    -- 5. Finger chase mean score
+                                        value matches {
+                                            DV_QUANTITY[id9019] matches {
+                                                property matches {[at9006]}    -- Qualified real
+                                                magnitude matches {|0.0..4.0|}
+                                                units matches {"1"}
+                                                precision matches {1}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id56] occurrences matches {0..1} matches {    -- 6L. Nose-finger test left
+                                        value matches {
+                                            DV_ORDINAL[id9020] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at57]}],
+                                                    [{1}, {[at58]}],
+                                                    [{2}, {[at59]}],
+                                                    [{3}, {[at60]}],
+                                                    [{4}, {[at61]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id63] occurrences matches {0..1} matches {    -- 6R. Nose-finger test right
+                                        value matches {
+                                            DV_ORDINAL[id9021] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at64]}],
+                                                    [{1}, {[at65]}],
+                                                    [{2}, {[at66]}],
+                                                    [{3}, {[at67]}],
+                                                    [{4}, {[at68]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id70] occurrences matches {0..1} matches {    -- 6. Nose-finger test mean score
+                                        value matches {
+                                            DV_QUANTITY[id9022] matches {
+                                                property matches {[at9006]}    -- Qualified real
+                                                magnitude matches {|0.0..4.0|}
+                                                units matches {"1"}
+                                                precision matches {1}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id71] occurrences matches {0..1} matches {    -- 7L. Fast alternating hand movements left
+                                        value matches {
+                                            DV_ORDINAL[id9023] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at72]}],
+                                                    [{1}, {[at73]}],
+                                                    [{2}, {[at74]}],
+                                                    [{3}, {[at75]}],
+                                                    [{4}, {[at76]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id77] occurrences matches {0..1} matches {    -- 7R. Fast alternating hand movements right
+                                        value matches {
+                                            DV_ORDINAL[id9024] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at78]}],
+                                                    [{1}, {[at79]}],
+                                                    [{2}, {[at80]}],
+                                                    [{3}, {[at81]}],
+                                                    [{4}, {[at82]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id83] occurrences matches {0..1} matches {    -- 7. Fast alternating hand movements mean score
+                                        value matches {
+                                            DV_QUANTITY[id9025] matches {
+                                                property matches {[at9006]}    -- Qualified real
+                                                magnitude matches {|0.0..4.0|}
+                                                units matches {"1"}
+                                                precision matches {1}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id84] occurrences matches {0..1} matches {    -- 8L. Heel-shin slide left
+                                        value matches {
+                                            DV_ORDINAL[id9026] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at85]}],
+                                                    [{1}, {[at86]}],
+                                                    [{2}, {[at87]}],
+                                                    [{3}, {[at88]}],
+                                                    [{4}, {[at89]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id90] occurrences matches {0..1} matches {    -- 8R. Heel-shin slide right
+                                        value matches {
+                                            DV_ORDINAL[id9027] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at91]}],
+                                                    [{1}, {[at92]}],
+                                                    [{2}, {[at93]}],
+                                                    [{3}, {[at94]}],
+                                                    [{4}, {[at95]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id96] occurrences matches {0..1} matches {    -- 8. Heel-shin slide mean score
+                                        value matches {
+                                            DV_QUANTITY[id9028] matches {
+                                                property matches {[at9006]}    -- Qualified real
+                                                magnitude matches {|0.0..4.0|}
+                                                units matches {"1"}
+                                                precision matches {1}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id97] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_QUANTITY[id9029] matches {
+                                                property matches {[at9006]}    -- Qualified real
+                                                magnitude matches {|0.0..40.0|}
+                                                units matches {"1"}
+                                                precision matches {1}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id100] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id101] matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9030] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id98] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id99] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"1. Gait (synthesised)">
+                description = <"Assessment of gait. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"2. Stance (synthesised)">
+                description = <"Assessment of stance. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"3. Sitting (synthesised)">
+                description = <"Assessment of sitting. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"4. Speech disturbance (synthesised)">
+                description = <"Assessment of speech. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"5L. Finger chase left (synthesised)">
+                description = <"Assessment of ability to follow movements with left index finger. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"5R. Finger chase right (synthesised)">
+                description = <"Assessment of ability to follow movements with right index finger. (synthesised)">
+            >
+            ["at9006"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["ac9007"] = <
+                text = <"6L. Nose-finger test left (synthesised)">
+                description = <"Assessment of ability to point with left index finger from proband's nose to examiner's finger. (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"6R. Nose-finger test right (synthesised)">
+                description = <"Assessment of ability to point with right index finger from proband's nose to examiner's finger. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"7L. Fast alternating hand movements left (synthesised)">
+                description = <"Assessment of ability to perform fast alternating left hand movements. (synthesised)">
+            >
+            ["ac9010"] = <
+                text = <"7R. Fast alternating hand movements right (synthesised)">
+                description = <"Assessment of ability to perform fast alternating left hand movements. (synthesised)">
+            >
+            ["ac9011"] = <
+                text = <"8L. Heel-shin slide left (synthesised)">
+                description = <"Assessment of ability to perform heel-shin slide with the left leg. (synthesised)">
+            >
+            ["ac9012"] = <
+                text = <"8R. Heel-shin slide right (synthesised)">
+                description = <"Assessment of ability to perform heel-shin slide with the right leg. (synthesised)">
+            >
+            ["id101"] = <
+                text = <"Confounding factors">
+                description = <"Record any issues or factors that may impact on the use of the scale and the overall score.">
+            >
+            ["id99"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"e.g. Local hospital departmental infomation or additional metadata to align with HL7 or CDISC equivalents.">
+            >
+            ["id97"] = <
+                text = <"Total score">
+                description = <"Total score obtained from the sum of the individual scores for 1. to 4. and the sum of the mean scores for 5. to 8.">
+            >
+            ["id96"] = <
+                text = <"8. Heel-shin slide mean score">
+                description = <"Mean score for heel-shin slide assessment on both sides.">
+            >
+            ["at95"] = <
+                text = <"Unable to perform task">
+                description = <"Heel-shin slide assessment indicates that the patient is unable to perform the task.">
+            >
+            ["at94"] = <
+                text = <"Severely abnormal">
+                description = <"Heel-shin slide assessment indicates severely abnormal performance, with the patient going off shin 4 or more times during 3 cycles.">
+            >
+            ["at93"] = <
+                text = <"Clearly abnormal">
+                description = <"Heel-shin slide assessment indicates clearly abnormal performance with the patient going off shin up to 3 times in 3 cycles.">
+            >
+            ["at92"] = <
+                text = <"Slightly abnormal">
+                description = <"Heel-shin slide assessment indicates slightly abnormal performance, but contact to shin is maintained.">
+            >
+            ["at91"] = <
+                text = <"Normal">
+                description = <"Heel-shin slide assessment indicates normal performance.">
+            >
+            ["id90"] = <
+                text = <"8R. Heel-shin slide right">
+                description = <"Assessment of ability to perform heel-shin slide with the right leg.">
+                comment = <"Proband lies on examination bed, without sight of his legs. Proband is asked to lift one leg, point with the heel to the opposite knee, slide down along the shin to the ankle, and lay the leg back on the examination bed. The task is performed 3 times. Slide-down movements should be performed within 1 s. If proband slides down without contact to shin in all three trials, rate 4.">
+            >
+            ["at89"] = <
+                text = <"Unable to perform task">
+                description = <"Heel-shin slide assessment indicates that the patient is unable to perform the task.">
+            >
+            ["at88"] = <
+                text = <"Severely abnormal">
+                description = <"Heel-shin slide assessment indicates severely abnormal performance, with the patient going off shin 4 or more times during 3 cycles.">
+            >
+            ["at87"] = <
+                text = <"Clearly abnormal">
+                description = <"Heel-shin slide assessment indicates clearly abnormal performance with the patient going off shin up to 3 times in 3 cycles.">
+            >
+            ["at86"] = <
+                text = <"Slightly abnormal">
+                description = <"Heel-shin slide assessment indicates slightly abnormal performance, but contact to shin is maintained.">
+            >
+            ["at85"] = <
+                text = <"Normal">
+                description = <"Heel-shin slide assessment indicates normal performance.">
+            >
+            ["id84"] = <
+                text = <"8L. Heel-shin slide left">
+                description = <"Assessment of ability to perform heel-shin slide with the left leg.">
+                comment = <"Proband lies on examination bed, without sight of his legs. Proband is asked to lift one leg, point with the heel to the opposite knee, slide down along the shin to the ankle, and lay the leg back on the examination bed. The task is performed 3 times. Slide-down movements should be performed within 1 s. If proband slides down without contact to shin in all three trials, rate 4.">
+            >
+            ["id83"] = <
+                text = <"7. Fast alternating hand movements mean score">
+                description = <"Mean score for both sides of the fast alternating hand movements test.">
+            >
+            ["at82"] = <
+                text = <"Unable to complete">
+                description = <"Fast alternating hand movement assessment indicates that the patient is unable to complete 10 cycles of fast alternating hand movements.">
+            >
+            ["at81"] = <
+                text = <"Very irregular">
+                description = <"Fast alternating hand movement assessment indicates a definite irregularity, and single movements are difficult to distinguish or relevant interruptions are observed, and the patient is only able to perform in more than 10 seconds.">
+            >
+            ["at80"] = <
+                text = <"Clearly irregular">
+                description = <"Fast alternating hand movement assessment indicates a clear irregularity, and single movements are difficult to distinguish or relevant interruptions are observed, but the patient is able to perform in less than 10 seconds.">
+            >
+            ["at79"] = <
+                text = <"Slightly irregular">
+                description = <"Fast alternating hand movement assessment indicates slight irregularities, and the patient is able to perform in less than 10 seconds.">
+            >
+            ["at78"] = <
+                text = <"Normal">
+                description = <"Fast alternating hand movement assessment indicates a normal performance with no irregularities, and the patient is able to perform in less than 10 seconds.">
+            >
+            ["id77"] = <
+                text = <"7R. Fast alternating hand movements right">
+                description = <"Assessment of ability to perform fast alternating left hand movements.">
+                comment = <"Proband sits comfortably. If necessary, support of feet and trunk is allowed. Proband is asked to perform 10 cycles of repetitive alternation of pro- and supinations of the hand on his/her thigh as fast and as precise as possible. Movement is demonstrated by examiner at a speed of approx. 10 cycles within 7 s. Exact times for movement execution have to be taken.">
+            >
+            ["at76"] = <
+                text = <"Unable to complete">
+                description = <"Fast alternating hand movement assessment indicates that the patient is unable to complete 10 cycles of fast alternating hand movements.">
+            >
+            ["at75"] = <
+                text = <"Very irregular">
+                description = <"Fast alternating hand movement assessment indicates a definite irregularity, and single movements are difficult to distinguish or relevant interruptions are observed, and the patient is only able to perform in more than 10 seconds.">
+            >
+            ["at74"] = <
+                text = <"Clearly irregular">
+                description = <"Fast alternating hand movement assessment indicates a clear irregularity, and single movements are difficult to distinguish or relevant interruptions are observed, but the patient is able to perform in less than 10 seconds.">
+            >
+            ["at73"] = <
+                text = <"Slightly irregular">
+                description = <"Fast alternating hand movement assessment indicates slight irregularities, and the patient is able to perform in less than 10 seconds.">
+            >
+            ["at72"] = <
+                text = <"Normal">
+                description = <"Fast alternating hand movement assessment indicates a normal performance with no irregularities, and the patient is able to perform in less than 10 seconds.">
+            >
+            ["id71"] = <
+                text = <"7L. Fast alternating hand movements left">
+                description = <"Assessment of ability to perform fast alternating left hand movements.">
+                comment = <"Proband sits comfortably. If necessary, support of feet and trunk is allowed. Proband is asked to perform 10 cycles of repetitive alternation of pro- and supinations of the hand on his/her thigh as fast and as precise as possible. Movement is demonstrated by examiner at a speed of approx. 10 cycles within 7 s. Exact times for movement execution have to be taken.">
+            >
+            ["id70"] = <
+                text = <"6. Nose-finger test mean score">
+                description = <"Mean score for both sides of nose-finger test.">
+            >
+            ["at68"] = <
+                text = <"Unable to perform 5 pointing movements">
+                description = <"Nose-finger test indicates that proband is unable to perform 5 pointing movements.">
+            >
+            ["at67"] = <
+                text = <"Tremor more than 5cm">
+                description = <"Nose-finger test indicates tremor with an amplitude more than 5 cm.">
+            >
+            ["at66"] = <
+                text = <"Tremor less than 5cm">
+                description = <"Nose-finger test indicates tremor with an amplitude less than 5 cm.">
+            >
+            ["at65"] = <
+                text = <"Tremor less than 2cm">
+                description = <"Nose-finger test indicates tremor with an amplitude less than 2 cm.">
+            >
+            ["at64"] = <
+                text = <"No tremor">
+                description = <"Nose-finger test indicates that no tremor is present.">
+            >
+            ["id63"] = <
+                text = <"6R. Nose-finger test right">
+                description = <"Assessment of ability to point with right index finger from proband's nose to examiner's finger.">
+                comment = <"Proband sits comfortably. If necessary, support of feet and trunk is allowed. Proband is asked to point repeatedly with his index finger from his nose to examiner’s finger which is in front of the proband at about 90 % of proband’s reach. Movements are performed at moderate speed. Average performance of movements is rated according to the amplitude of the kinetic tremor.">
+            >
+            ["at61"] = <
+                text = <"Unable to perform 5 pointing movements">
+                description = <"Nose-finger test indicates that proband is unable to perform 5 pointing movements.">
+            >
+            ["at60"] = <
+                text = <"Tremor more than 5cm">
+                description = <"Nose-finger test indicates tremor with an amplitude more than 5 cm.">
+            >
+            ["at59"] = <
+                text = <"Tremor less than 5cm">
+                description = <"Nose-finger test indicates tremor with an amplitude less than 5 cm.">
+            >
+            ["at58"] = <
+                text = <"Tremor less than 2cm">
+                description = <"Nose-finger test indicates tremor with an amplitude less than 2 cm.">
+            >
+            ["at57"] = <
+                text = <"No tremor">
+                description = <"Nose-finger test indicates that no tremor is present.">
+            >
+            ["id56"] = <
+                text = <"6L. Nose-finger test left">
+                description = <"Assessment of ability to point with left index finger from proband's nose to examiner's finger.">
+                comment = <"Proband sits comfortably. If necessary, support of feet and trunk is allowed. Proband is asked to point repeatedly with his index finger from his nose to examiner’s finger which is in front of the proband at about 90 % of proband’s reach. Movements are performed at moderate speed. Average performance of movements is rated according to the amplitude of the kinetic tremor.">
+            >
+            ["id55"] = <
+                text = <"5. Finger chase mean score">
+                description = <"Mean score for both sides of finger chase assessment.">
+            >
+            ["at53"] = <
+                text = <"Unable to perform 5 pointing movements">
+                description = <"Finger chase assessment indicates that proband is unable to perform 5 pointing movements.">
+            >
+            ["at52"] = <
+                text = <"Dysmetria, under/overshooting target >15cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by >15cm is present.">
+            >
+            ["at51"] = <
+                text = <"Dysmetria, under/overshooting target <15cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by <15cm is present.">
+            >
+            ["at50"] = <
+                text = <"Dysmetria, under/overshooting target <5cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by <5cm is present.">
+            >
+            ["at49"] = <
+                text = <"No dysmetria">
+                description = <"Finger chase assessment indicates that no dysmetria is present.">
+            >
+            ["id48"] = <
+                text = <"5R. Finger chase right">
+                description = <"Assessment of ability to follow movements with right index finger.">
+                comment = <"Proband sits comfortably. If necessary, support of feet and trunk is allowed. Examiner sits in front of proband and performs 5 consecutive sudden and fast pointing movements in unpredictable directions in a frontal plane, at about 50 % of proband´s reach. Movements have an amplitude of 30 cm and a frequency of 1 movement every 2 s. Proband is asked to follow the movements with his index finger, as fast and precisely as possible. Average performance of last 3 movements is rated.">
+            >
+            ["at42"] = <
+                text = <"Unable to perform 5 pointing movements">
+                description = <"Finger chase assessment indicates that proband is unable to perform 5 pointing movements.">
+            >
+            ["at41"] = <
+                text = <"Dysmetria, under/overshooting target >15cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by >15cm is present.">
+            >
+            ["at40"] = <
+                text = <"Dysmetria, under/overshooting target <15cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by <15cm is present.">
+            >
+            ["at39"] = <
+                text = <"Dysmetria, under/overshooting target <5cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by <5cm is present.">
+            >
+            ["at38"] = <
+                text = <"No dysmetria">
+                description = <"Finger chase assessment indicates that no dysmetria is present.">
+            >
+            ["id37"] = <
+                text = <"5L. Finger chase left">
+                description = <"Assessment of ability to follow movements with left index finger.">
+                comment = <"Proband sits comfortably. If necessary, support of feet and trunk is allowed. Examiner sits in front of proband and performs 5 consecutive sudden and fast pointing movements in unpredictable directions in a frontal plane, at about 50 % of proband´s reach. Movements have an amplitude of 30 cm and a frequency of 1 movement every 2 s. Proband is asked to follow the movements with his index finger, as fast and precisely as possible. Average performance of last 3 movements is rated.">
+            >
+            ["at36"] = <
+                text = <"Speech unintelligible / anarthria">
+                description = <"Assessment indicates that speech is unintelligible or the proband suffers from anarthria.">
+            >
+            ["at35"] = <
+                text = <"Only single words understandable">
+                description = <"Assessment indicates that only single words are understandable.">
+            >
+            ["at34"] = <
+                text = <"Many words difficult to understand">
+                description = <"Assessment indicates that many words are difficult to understand.">
+            >
+            ["at33"] = <
+                text = <"Occasional words difficult to understand">
+                description = <"Assessment indicates that occasional words are difficult to understand.">
+            >
+            ["at32"] = <
+                text = <"Impaired speech, but easy to understand">
+                description = <"Assessment indicates that speech is impaired, but easy to understand.">
+            >
+            ["at31"] = <
+                text = <"Suggestion of speech disturbance">
+                description = <"Assessment indicates that there may be a speech disturbance.">
+            >
+            ["at30"] = <
+                text = <"Normal">
+                description = <"Assessment indicates that speech is normal.">
+            >
+            ["id29"] = <
+                text = <"4. Speech disturbance">
+                description = <"Assessment of speech.">
+                comment = <"Speech is assessed during normal conversation.">
+            >
+            ["at28"] = <
+                text = <"Unable to sit more than 10 seconds">
+                description = <"Unable to sit for more than 10 seconds without continuous support.">
+            >
+            ["at27"] = <
+                text = <"Sit more than 10 seconds with intermittent support">
+                description = <"Able to sit for more than 10 seconds only with intermittent support.">
+            >
+            ["at26"] = <
+                text = <"Constant sway">
+                description = <"Constant sway, but able to sit more than 10 seconds without support.">
+            >
+            ["at25"] = <
+                text = <"Slight difficulties">
+                description = <"Slight difficulties, intermittent sway.">
+            >
+            ["at24"] = <
+                text = <"Normal">
+                description = <"Normal, no difficulty sitting more than 10 seconds.">
+            >
+            ["id23"] = <
+                text = <"3. Sitting">
+                description = <"Assessment of sitting.">
+                comment = <"Proband is asked to sit on an examination bed without support of feet, eyes open and arms outstretched to the front.">
+            >
+            ["at22"] = <
+                text = <"Unable to stand more than 10 seconds">
+                description = <"Unable to stand for more than 10 seconds even with constant support
+    of one arm.">
+            >
+            ["at21"] = <
+                text = <"Natural position more than 10 seconds with constant support">
+                description = <"Able to stand more than 10 seconds in natural position only with 
+    constant support of one arm.">
+            >
+            ["at20"] = <
+                text = <"Natural position more than 10 seconds with intermittent support">
+                description = <"Able to stand for more than 10 seconds in natural position only with
+     intermittent support.">
+            >
+            ["at19"] = <
+                text = <"Natural position more than 10 seconds without support">
+                description = <"Able to stand for more than 10 seconds without support in natural
+     position, but not with feet together.">
+            >
+            ["at18"] = <
+                text = <"Feet together for more than 10 seconds">
+                description = <"Able to stand with feet together for more than 10 seconds, but only 
+    with sway.">
+            >
+            ["at17"] = <
+                text = <"Feet together without sway">
+                description = <"Able to stand with feet together without sway, but
+    not in tandem for > 10s.">
+            >
+            ["at16"] = <
+                text = <"Normal">
+                description = <"Normal, able to stand in tandem for more than 10 seconds.">
+            >
+            ["id15"] = <
+                text = <"2. Stance">
+                description = <"Assessment of stance.">
+                comment = <"Proband is asked to stand (1) in natural position, (2) with
+    feet together in parallel (big toes touching each other) and
+    (3) in tandem (both feet on one line, no space between
+    heel and toe). Proband does not wear shoes, eyes are
+    open. For each condition, three trials are allowed. Best
+    trial is rated.">
+            >
+            ["at14"] = <
+                text = <"Unable to walk">
+                description = <"Unable to walk, even supported.">
+            >
+            ["at13"] = <
+                text = <"Walking less than 10m with strong support">
+                description = <"Walking less than 10m with strong support only (two special sticks or stroller or accompanying person).">
+            >
+            ["at12"] = <
+                text = <"Walking more than 10m with strong support">
+                description = <"Walking more than 10m with strong support only (two special sticks or stroller or accompanying person).">
+            >
+            ["at11"] = <
+                text = <"Severe staggering">
+                description = <"Severe staggering, permanent support of one stick or light support by one arm required.">
+            >
+            ["at10"] = <
+                text = <"Marked staggering">
+                description = <"Marked staggering, intermittent support of wall required.">
+            >
+            ["at9"] = <
+                text = <"Considerable staggering">
+                description = <"Considerable staggering, difficulties in half-turn, but without support.">
+            >
+            ["at8"] = <
+                text = <"Clearly abnormal">
+                description = <"Clearly abnormal, tandem walking more than 10 steps not possible.">
+            >
+            ["at7"] = <
+                text = <"Slight difficulties">
+                description = <"Slight difficulties which are only visible when walking 10 consecutive steps in tandem.">
+            >
+            ["at6"] = <
+                text = <"Normal">
+                description = <"No difficulties in walking, turning and walking tandem (up to one misstep allowed).">
+            >
+            ["id5"] = <
+                text = <"1. Gait">
+                description = <"Assessment of gait.">
+                comment = <"Proband is asked (1) to walk at a safe distance parallel to a wall including a half-turn (turn around to face the opposite direction of gait) and (2) to walk in tandem (heels to toes) without support.">
+            >
+            ["id3"] = <
+                text = <"Point in time">
+                description = <"A specific date and/or time which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"SARA ataxia scale">
+                description = <"Scale for the assessment and rating of ataxia.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9006"] = <http://openehr.org/id/380>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at24", "at25", "at26", "at27", "at28">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at16", "at17", "at18", "at19", "at20", "at21", "at22">
+        >
+        ["ac9012"] = <
+            id = <"ac9012">
+            members = <"at91", "at92", "at93", "at94", "at95">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13", "at14">
+        >
+        ["ac9011"] = <
+            id = <"ac9011">
+            members = <"at85", "at86", "at87", "at88", "at89">
+        >
+        ["ac9010"] = <
+            id = <"ac9010">
+            members = <"at78", "at79", "at80", "at81", "at82">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at49", "at50", "at51", "at52", "at53">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at38", "at39", "at40", "at41", "at42">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at30", "at31", "at32", "at33", "at34", "at35", "at36">
+        >
+        ["ac9009"] = <
+            id = <"ac9009">
+            members = <"at72", "at73", "at74", "at75", "at76">
+        >
+        ["ac9008"] = <
+            id = <"ac9008">
+            members = <"at64", "at65", "at66", "at67", "at68">
+        >
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at57", "at58", "at59", "at60", "at61">
+        >
+    >

@@ -1,0 +1,1973 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=9122c39a-3817-426e-9ae4-d1f438b1d26b; build_uid=6ca960a4-0724-4e17-80cf-b811f74c58a8)
+    openEHR-EHR-EVALUATION.pregnancy_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["es-co"] = <
+            language = <[ISO_639-1::es-co]>
+            author = <
+                ["name"] = <"Francisco Ramirez ante">
+                ["organisation"] = <"SITIS SAS">
+                ["email"] = <"framirez74@gmail.com">
+            >
+            accreditation = <"Ingeniero de Sistemas">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Adriana Kitajima, Gabriela Alves, Maria Angela Scatena, Marivan Abrahäo">
+                ["organisation"] = <"Core Consulting">
+                ["email"] = <"contato@coreconsulting.com.br">
+            >
+            accreditation = <"Hospital Alemão Oswaldo Cruz">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2007-02-28">
+    >
+    original_namespace = <"openEHR Foundation">
+    original_publisher = <"org.openehr">
+    other_contributors = <"Sheryl Alexander, NT Department of Health, Australia", "Rita Apelt, Department of Health,NT, Australia", "Stephen Chu, NEHTA, Australia", "Margaret Cotter, AMSANT, Australia", "Michelle Dowden, Miwatj Health Ngalkanbuy Health, Australia", "Tim Garden, NTG Department of Health, Australia", "Tanya Gardner, CAAC, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Bernadette Lack, Department of Health, Australia", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Hugh Leslie, Ocean Informatics, Australia", "Chunlan Ma, Ocean Informatics, Australia", "Ian McNicoll, Ocean Informatics UK, United Kingdom", "Jeremy Oats, NT Health, Australia", "Steven Schatz, Department of Health (Northern Territory), Australia", "Rosalie Schultz, Anyinginyi Health Aboriginal Corporation, Australia", "Gary Sinclair, NT DoH, Australia", "Cherie Whitbread, Royal Darwin Hospital, Australia", "Jo Wright, NT Dept of Health, Australia (Editor)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    references = <
+        ["1"] = <"Pregnancy Summary, Draft Archetype [Internet]. nehta, Australia, nehta Clinical Knowledge Manager [cited: 2016-02-21]. Available from: http://dcm.nehta.org.au/ckm/#showArchetype_1013.1.1013">
+        ["2"] = <"AIHW 2003. Perinatal National Minimum Data Set: National Health Data Dictionary, Version 12. National Health Data Dictionary. Cat. no. HWI 59. Canberra: AIHW.">
+        ["3"] = <"Northern Territory Government, Department of Health. Pregnancy Health Record. HM424-12/06.">
+        ["4"] = <"Queensland Government, Department of Health. Pregnancy Health Record. SW071 - v1.00 - 06/2010.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Informatics<heather.leslie@oceaninformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"B867868D25D6DDC3799773A568AA5C8E">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To support the recording of an overview or summary record of an identified pregnancy including the antenatal period, labor, birth and the immediate postnatal period.">
+            keywords = <"pregnancy", "fetus", "foetus", "infant", "neonate", "delivery", "conception", "due", "date", "expected", "labor", "labour", "birth", "baby", "babies", "EDD", "EDB">
+            use = <"Use to record an overview or summary record of an identified pregnancy including the antenatal period, labor, birth and the immediate postnatal period. 
+    
+    This information in this archetype should ideally be only entered once, however there are some situations where it is useful to duplicate data elements. For example, within the context of a pregnancy summary it is helpful to include Apgar Score totals, however the entire detail of the Apgar Score is captured using a purpose built Apgar archetype. In this situation applications can ensure that there is not duplicate data entry required on behalf of the user but that these data elements within the summary are directly derived from the actual Apgar Score data.
+    
+    During an active pregnancy, this archetype supports the evolution of a persistent pregnancy-related health summary record, with information gradually accumulated or updated, throughout the duration of the pregnancy, labor, birth and the immediate postnatal period. As the data is committed to the persistent health record, the date of the update is also recorded in the 'Last Updated' data element in Protocol, to ensure that if this pregnancy summary is taken out of context of the health record for other purposes, such as data exchange, the date of latest update is kept with the clinical data.
+    
+    After birth, this summary record can be used as the basis for sharing key information with other healthcare providers about the pregnancy, labor, birth and immediate postnatal period. 
+    
+    Each completed pregnancy summary saved to the health record can be re-used to populate the Past Pregnancy History details in subsequent pregnancy records.
+    
+    In situations where completed pregnancy summaries are not available for each previous pregnancy, this archetype can also be used to record a relevant subset of information that can be used to populate the Past Pregnancy History details with new or active pregnancy records.">
+            misuse = <"Not to be used to record event-based information during the pregnancy, labor, birth and immediate postnatal period. These will be recorded using OBSERVATION archetypes - for example, the information related to history & examination during antenatal visits or during labour.
+    
+    Not to be used to record summary information about a woman's Obstetric history - use EVALUATION.obstetric_summary.
+    
+    Not to be used to record detailed information about a woman's Menstrual Cycle - use OBSERVATION.menstrual_cycle.
+    
+    Not to be used to record detailed information about infant feeding - a separate archetype will be used.
+    
+    Not to be used to record a general menstrual history summary or diary - separate archetypes will be used.">
+            copyright = <"© openEHR Foundation, National E-Health Transition Authority">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para dar suporte a gravação de uma visão geral ou sumário de uma gravidez identificada, incluindo o período pré-natal, parto, nascimento e período pós-natal imediato.">
+            keywords = <"gravidez", "feto", "feto", "infantil", "neonato", "parto", "concepção", "aguardado", "data", "esperado", "trabalho de parto", "parto", "nascimento", "bebê", "bebês", "data provável do parto", "data prevista do nascimento">
+            use = <"Usar para gravar uma visão geral ou resumo de uma gravidez identificada incluindo o período pré-natal, parto, nascimento e período pós-natal imediato.
+    
+    A informação contida neste arquétipo, idealmente, deve entrar somente uma vez, no entanto, existem algumas situações em que é útil para duplicar elementos de dados. Por exemplo, no contexto de um sumário de gravidez é útil para incluir os totais do índice de Apgar, no entanto todo o detalhe do Índice de Apgar é capturado usando uma proposta construída, o arquétipo Apgar. 
+    
+    Neste caso , as aplicações podem assegurar que não haja dupla entrada de dados exigidos em nome do usuário, mas que esses elementos de dados dentro do sumário derivam diretamente dos dados do indice atual de Apgar.
+    
+    Durante uma gravidez ativa, esse arquétipo admite a evolução de um registro de resumo de saúde relacionados com a gravidez persistente, com informações acumuladas gradualmente ou atualizada, ao longo de toda a duração da gravidez, trabalho de parto e o período pós-natal imediato. Como os dados são comprometidos com o registro de saúde persistente, a data da atualização também é gravada no 'última atualização' elemento de dados no protocolo, para garantir que, se este resumo de gravidez é tirado do contexto do registo de saúde para outros fins, tais como o intercâmbio de dados, a data da última atualização é mantida com os dados clínicos.
+    
+    Após o nascimento, este registro sumário pode ser usado como base para o o compartilhamento de informações chaves com outros profissionais de saúde sobre a gravidez, trabalho de parto, parto e período pós-natal imediato.
+    
+    Cada sumário de gravidez concluído e salvo no registro de saúde pode ser re-utilizado para preencher os detalhes passados do histórico de gravidez no registro de gravidez subseqüente.
+    
+    Em situações em que os sumários de gravidez concluídos não estão disponíveis para cada gravidez anterior, esse arquétipo também pode ser usado para gravar um relevante subconjunto de informação que pode ser usado para preencher os detalhes passados na história de gravidez com registros novos ou ativos da gravidez.
+    ">
+            misuse = <"Não deve ser utilizado para gravar informação baseada em eventos durante a gravidez, parto, nascimento e período pós-natal imediato. Estes serão gravados utilizando arquétipos de OBSERVAÇÃO - por exemplo, a informação relacionada com a história e exame durante consultas pré-natais ou durante o parto.
+    
+    Não deve ser usado para gravar resumo de informações sobre a história obstétrica de uma mulher - usar EVALUATION.obstetric_summary.
+    
+    Não deve ser usado para gravar informações detalhadas sobre o ciclo menstrual de uma mulher - usar OBSERVATION.menstrual_cycle.
+    
+    Não deve ser usado para registrar informações detalhadas sobre a alimentação infantil - um arquétipo separado deverá ser utilizado.
+    
+    Não deve ser usado para registrar um resumo ou um diário da história menstrual (geral ou diária) - um arquétipo separado deverá ser utilizado.">
+        >
+        ["es-co"] = <
+            language = <[ISO_639-1::es-co]>
+            purpose = <"Apoyar el registro o resumen del embarazo incluyendo el período prenatal, parto, el nacimiento y el período postnatal inmediato.">
+            keywords = <"Embarazo", "Feto", "Infantil", "Recién nacido", "Entrega", "Concepción", "Trabajo de parto", "Labor de parto", "Nacimiento", "Bebé", "Neonato", "Fecha probable de parto", "Fecha Última Mestruación", "Fecha de Nacimiento">
+            use = <"Se utiliza para el registro o resumen del embarazo incluyendo el período prenatal, parto, el nacimiento y el período postnatal inmediato.
+    
+    La información de este arquetipo es ideal para registrarse una sola vez, sin embargo, hay algunas situaciones en las que es útil para duplicar datos. Por ejemplo, en el contexto de un resumen embarazo, es útil incluir El puntaje Apgar, sin embargo todo el detalle de la puntuación de Apgar se capturaron con un arquetipo construido con ese propósito. En esta situación, las aplicaciones pueden asegurar que no hay duplicación en el registro de datos, sino que estos se derivan directamente del puntaje Apgar real.
+    
+    
+    Esta información puede ser actualizada durante todo el control de embarazo, trabajo de parto y el período postnatal inmediato; a medida que los datos son actualizados se va guardando la fecha de última actualización, para garantizar que si este resumen embarazo se ha sacado de contexto del registro de salud para otros fines, tales como el intercambio de datos, la fecha de la última actualización se mantiene con los datos clínicos
+    
+    
+    Después del nacimiento, este arquetipo sirve para intercambiar información con otros profesionales de la salud, como registro histórico del embarazo, el parto, el nacimiento y el período postnatal inmediato, sirviendo para determinar riesgos en embarazos posteriores.
+    ">
+            misuse = <"No debe utilizarse para registrar información de eventos durante el embarazo, trabajo de parto y el período postnatal inmediato. Estos se registraran utilizando arquetipos de observación - por ejemplo, la información relacionada con la historia y examen durante las visitas prenatales o controles durante el parto.
+    
+    No debe utilizarse para registrar la información de resumen sobre la historia obstétrica de la mujer - utilizar EVALUATION.obstetric_summary.
+    
+    No debe utilizarse para registrar la información detallada sobre el ciclo menstrual de una mujer - OBSERVATION.menstrual_cycle uso.
+    
+    No debe utilizarse para registrar información detallada acerca de la alimentación infantil - se utiliza un arquetipo diferente.
+    
+    No debe utilizarse para registrar un resumen general de la historia menstrual o un diario - se utilizarán arquetipos distintos.
+    ">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Pregnancy Summary
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id105] occurrences matches {0..1} matches {    -- Assisted Reproduction?
+                        value matches {
+                            DV_BOOLEAN[id9009] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    ELEMENT[id106] occurrences matches {0..1} matches {    -- Assisted Reproduction Type
+                        value matches {
+                            DV_TEXT[id9010] 
+                        }
+                    }
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Date of Conception
+                        value matches {
+                            DV_DATE_TIME[id9011] 
+                        }
+                    }
+                    ELEMENT[id139] occurrences matches {0..1} matches {    -- EDB (Conception)
+                        value matches {
+                            DV_DATE_TIME[id9012] 
+                        }
+                    }
+                    ELEMENT[id140] occurrences matches {0..1} matches {    -- Contraception
+                        value matches {
+                            DV_TEXT[id9013] 
+                        }
+                    }
+                    ELEMENT[id141] occurrences matches {0..1} matches {    -- Contraception Ceased
+                        value matches {
+                            DV_DATE_TIME[id9014] 
+                        }
+                    }
+                    CLUSTER[id72] occurrences matches {0..1} matches {    -- EDB Based on Cycle
+                        items cardinality matches {2..*; unordered} matches {
+                            ELEMENT[id73] occurrences matches {1} matches {    -- LNMP
+                                value matches {
+                                    DV_DATE[id9015] matches {
+                                        value
+                                    }
+                                }
+                            }
+                            ELEMENT[id135] occurrences matches {0..1} matches {    -- Certainty
+                                value matches {
+                                    DV_CODED_TEXT[id9016] matches {
+                                        defining_code matches {[ac9000]}    -- Certainty (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id77] occurrences matches {1} matches {    -- Cycle Length
+                                value matches {
+                                    DV_DURATION[id9017] matches {
+                                        value matches {PD/|>=P0D|}
+                                    }
+                                }
+                            }
+                            ELEMENT[id111] occurrences matches {0..1} matches {    -- Irregular Cycles?
+                                value matches {
+                                    DV_BOOLEAN[id9018] matches {
+                                        value matches {True}
+                                    }
+                                }
+                            }
+                            ELEMENT[id138] occurrences matches {0..1} matches {    -- Description
+                                value matches {
+                                    DV_TEXT[id9019] 
+                                }
+                            }
+                            ELEMENT[id78] occurrences matches {0..1} matches {    -- EDB (Cycle)
+                                value matches {
+                                    DV_DATE_TIME[id9020] 
+                                }
+                            }
+                        }
+                    }
+                    CLUSTER[id7] matches {    -- EDB Based on Ultrasound
+                        items cardinality matches {2..*; unordered} matches {
+                            ELEMENT[id6] occurrences matches {1} matches {    -- Date of Ultrasound
+                                value matches {
+                                    DV_DATE_TIME[id9021] 
+                                }
+                            }
+                            ELEMENT[id71] occurrences matches {1..2} matches {    -- Estimated Gestation
+                                value matches {
+                                    DV_DURATION[id9022] matches {
+                                        value matches {PW/|>=P0D|}
+                                    }
+                                }
+                            }
+                            ELEMENT[id79] occurrences matches {0..1} matches {    -- Variation
+                                value matches {
+                                    DV_DURATION[id9023] matches {
+                                        value matches {PD/|>=P0D|}
+                                    }
+                                }
+                            }
+                            ELEMENT[id70] occurrences matches {0..1} matches {    -- EDB (Ultrasound)
+                                value matches {
+                                    DV_DATE_TIME[id9024] 
+                                }
+                            }
+                        }
+                    }
+                    CLUSTER[id76] occurrences matches {0..1} matches {    -- Agreed EDB
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id74] occurrences matches {1} matches {    -- EDB (Agreed)
+                                value matches {
+                                    DV_DATE_TIME[id9025] 
+                                }
+                            }
+                            ELEMENT[id75] occurrences matches {0..1} matches {    -- Rationale
+                                value matches {
+                                    DV_TEXT[id9026] 
+                                }
+                            }
+                        }
+                    }
+                    CLUSTER[id129] matches {    -- Model of Care
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id103] occurrences matches {1} matches {    -- Type
+                                value matches {
+                                    DV_TEXT[id9027] 
+                                }
+                            }
+                            ELEMENT[id80] occurrences matches {0..1} matches {    -- Reason
+                                value matches {
+                                    DV_TEXT[id9028] 
+                                }
+                            }
+                            ELEMENT[id128] occurrences matches {0..1} matches {    -- Start Date
+                                value matches {
+                                    DV_DATE_TIME[id9029] 
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id104] occurrences matches {0..1} matches {    -- Planned Place of Birth
+                        value matches {
+                            DV_TEXT[id9030] 
+                        }
+                    }
+                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Number of Babies
+                        value matches {
+                            DV_COUNT[id9031] matches {
+                                magnitude matches {|>=0|}
+                            }
+                        }
+                    }
+                    ELEMENT[id95] occurrences matches {0..1} matches {    -- Pregnancy Outcome
+                        value matches {
+                            DV_TEXT[id9032] 
+                        }
+                    }
+                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Onset of Labour
+                        value matches {
+                            DV_CODED_TEXT[id9033] matches {
+                                defining_code matches {[ac9001]}    -- Onset of Labour (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id97] matches {    -- Induction Method
+                        value matches {
+                            DV_TEXT[id9034] 
+                        }
+                    }
+                    ELEMENT[id98] occurrences matches {0..1} matches {    -- Reason for Induction
+                        value matches {
+                            DV_TEXT[id9035] 
+                        }
+                    }
+                    ELEMENT[id23] matches {    -- Augmentation Method
+                        value matches {
+                            DV_TEXT[id9036] 
+                        }
+                    }
+                    ELEMENT[id127] matches {    -- Pain Relief Method
+                        value matches {
+                            DV_TEXT[id9037] 
+                        }
+                    }
+                    ELEMENT[id14] occurrences matches {0..1} matches {    -- Duration of First Stage
+                        value matches {
+                            DV_DURATION[id9038] matches {
+                                value matches {PDTHM/|>=P0D|}
+                            }
+                        }
+                    }
+                    CLUSTER[id66] matches {    -- Maternal Complication
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id67] occurrences matches {1} matches {    -- Complication
+                                value matches {
+                                    DV_TEXT[id9039] 
+                                }
+                            }
+                            ELEMENT[id69] occurrences matches {0..1} matches {    -- Description
+                                value matches {
+                                    DV_TEXT[id9040] 
+                                }
+                            }
+                            ELEMENT[id68] occurrences matches {0..1} matches {    -- Date/Time of Onset
+                                value matches {
+                                    DV_DATE_TIME[id9041] 
+                                }
+                            }
+                        }
+                    }
+                    CLUSTER[id29] matches {    -- Baby
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id37] occurrences matches {0..1} matches {    -- Identification
+                                value matches {
+                                    DV_TEXT[id9042] 
+                                }
+                            }
+                            ELEMENT[id85] occurrences matches {0..1} matches {    -- Birth Order
+                                value matches {
+                                    DV_COUNT[id9043] matches {
+                                        magnitude matches {|0..20|}
+                                    }
+                                }
+                            }
+                            ELEMENT[id40] occurrences matches {0..1} matches {    -- Duration of Second Stage
+                                value matches {
+                                    DV_DURATION[id9044] matches {
+                                        value matches {PDTHM/|<=P9D|}
+                                    }
+                                }
+                            }
+                            ELEMENT[id41] occurrences matches {0..1} matches {    -- Mode of Birth
+                                value matches {
+                                    DV_CODED_TEXT[id9045] matches {
+                                        defining_code matches {[ac9002]}    -- Mode of Birth (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id46] occurrences matches {0..1} matches {    -- Presenting Part
+                                value matches {
+                                    DV_CODED_TEXT[id9046] matches {
+                                        defining_code matches {[ac9003]}    -- Presenting Part (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id31] occurrences matches {0..1} matches {    -- Baby Outcome
+                                value matches {
+                                    DV_CODED_TEXT[id9047] matches {
+                                        defining_code matches {[ac9004]}    -- Baby Outcome (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id38] occurrences matches {0..1} matches {    -- Sex
+                                value matches {
+                                    DV_CODED_TEXT[id9048] matches {
+                                        defining_code matches {[ac9005]}    -- Sex (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id30] occurrences matches {0..1} matches {    -- Date/Time of Birth
+                                value matches {
+                                    DV_DATE_TIME[id9049] 
+                                }
+                            }
+                            ELEMENT[id118] occurrences matches {0..1} matches {    -- Place of Birth Category
+                                value matches {
+                                    DV_CODED_TEXT[id9050] matches {
+                                        defining_code matches {[ac9006]}    -- Place of Birth Category (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id94] occurrences matches {0..1} matches {    -- Specific Place of Birth
+                                value matches {
+                                    DV_TEXT[id9051] 
+                                }
+                            }
+                            ELEMENT[id60] occurrences matches {0..1} matches {    -- Gestational Age
+                                value matches {
+                                    DV_DURATION[id9052] matches {
+                                        value matches {PW/|P0D..P350D|}
+                                    }
+                                }
+                            }
+                            ELEMENT[id39] occurrences matches {0..1} matches {    -- Birthweight
+                                value matches {
+                                    DV_QUANTITY[id9053] matches {
+                                        property matches {[at9007]}    -- Mass
+                                        magnitude matches {|>10.0..<10000.0|}
+                                        units matches {"gm"}
+                                        precision matches {0}
+                                    }
+                                }
+                            }
+                            ELEMENT[id59] occurrences matches {0..1} matches {    -- Description of Birth
+                                value matches {
+                                    DV_TEXT[id9054] 
+                                }
+                            }
+                            ELEMENT[id61] occurrences matches {0..1} matches {    -- Description of Baby
+                                value matches {
+                                    DV_TEXT[id9055] 
+                                }
+                            }
+                            ELEMENT[id130] occurrences matches {0..1} matches {    -- Total Apgar at 1 Minute
+                                value matches {
+                                    DV_COUNT[id9056] 
+                                }
+                            }
+                            ELEMENT[id131] occurrences matches {0..1} matches {    -- Total Apgar at 5 Minutes
+                                value matches {
+                                    DV_COUNT[id9057] 
+                                }
+                            }
+                            ELEMENT[id132] occurrences matches {0..1} matches {    -- Total Apgar at 10 Minutes
+                                value matches {
+                                    DV_COUNT[id9058] 
+                                }
+                            }
+                            CLUSTER[id62] matches {    -- Baby Complication
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id63] occurrences matches {1} matches {    -- Complication
+                                        value matches {
+                                            DV_TEXT[id9059] 
+                                        }
+                                    }
+                                    ELEMENT[id65] occurrences matches {0..1} matches {    -- Description
+                                        value matches {
+                                            DV_TEXT[id9060] 
+                                        }
+                                    }
+                                    ELEMENT[id64] occurrences matches {0..1} matches {    -- Date/Time of Onset
+                                        value matches {
+                                            DV_DATE_TIME[id9061] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id16] occurrences matches {0..1} matches {    -- Duration of Third Stage
+                        value matches {
+                            DV_DURATION[id9062] matches {
+                                value matches {PDTHM/|>=PT0S|}
+                            }
+                        }
+                    }
+                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Total Duration of Labor
+                        value matches {
+                            DV_DURATION[id9063] matches {
+                                value matches {PDTHM/|>=PT0S|}
+                            }
+                        }
+                    }
+                    ELEMENT[id119] occurrences matches {0..1} matches {    -- Perineum
+                        value matches {
+                            DV_TEXT[id9064] 
+                        }
+                    }
+                    ELEMENT[id120] occurrences matches {0..1} matches {    -- Blood Loss
+                        value matches {
+                            DV_QUANTITY[id9065] matches {
+                                property matches {[at9008]}    -- Volume
+                                units matches {"ml"}
+                            }
+                        }
+                    }
+                    ELEMENT[id110] occurrences matches {0..1} matches {    -- Feeding
+                        value matches {
+                            DV_TEXT[id9066] 
+                        }
+                    }
+                    ELEMENT[id84] occurrences matches {0..1} matches {    -- Pregnancy Synopsis
+                        value matches {
+                            DV_TEXT[id9067] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id82] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id83] occurrences matches {0..1} matches {    -- Date Updated
+                        value matches {
+                            DV_DATE_TIME[id9068] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["pt-br"] = <
+            ["ac9000"] = <
+                text = <"Certeza (synthesised)">
+                description = <"Certeza de que o último período de menstruação normal seja uma base confiável para o cálculo da DPP (baseada no ciclo ). (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Início do trabalho (synthesised)">
+                description = <"Maneira em que o trabalho de parto começou. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Modo de nascimento (synthesised)">
+                description = <"Método pelo qual o recém-nascido foi entregue. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Apresentação (synthesised)">
+                description = <"Apresentação do recém-nascido no nascimento ou parto. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Resultado para o recém-nascido (synthesised)">
+                description = <"Resultado da gravidez para o recém-nascido identificado. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Sexo (synthesised)">
+                description = <"Sexo do recém-nascido , conforme determinado por características físicas observáveis. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Categoria do local de nascimento (synthesised)">
+                description = <"Categoria da localização física onde ocorreu o nascimento. (synthesised)">
+            >
+            ["at9007"] = <
+                text = <"* Mass (en)">
+                description = <"* Mass (en)">
+            >
+            ["at9008"] = <
+                text = <"* Volume (en)">
+                description = <"* Volume (en)">
+            >
+            ["id141"] = <
+                text = <"Contracepção cessada">
+                description = <"Data em que cessou o método contraceptivo mais recentemente utilizado.">
+            >
+            ["id140"] = <
+                text = <"Contracepção">
+                description = <"Método de contraceptivo mais recentemente utilizado.">
+            >
+            ["id139"] = <
+                text = <"DPP Data provável do parto (Concepção)">
+                description = <"Data prevista do nascimento com base em uma data de concepção conhecida.">
+            >
+            ["id138"] = <
+                text = <"Descrição">
+                description = <"Descrição narrativa do ciclo ou da menstruação.">
+            >
+            ["at137"] = <
+                text = <"Incerto">
+                description = <"A data do último período menstrual normal pode não ser confiável para o cálculo da DPP baseada no ciclo.">
+            >
+            ["at136"] = <
+                text = <"certo">
+                description = <"Certeza de que a data do último período menstrual normal seja confiável para o cálculo da DPP baseada no ciclo.">
+            >
+            ["id135"] = <
+                text = <"Certeza">
+                description = <"Certeza de que o último período de menstruação normal seja uma base confiável para o cálculo da DPP (baseada no ciclo ).">
+            >
+            ["at134"] = <
+                text = <"Ombro">
+                description = <"Um ombro é a parte que se apresenta.">
+            >
+            ["at133"] = <
+                text = <"Vácuo-Extração com rotação">
+                description = <"Parto vaginal assistido pelo uso de vácuo extração.">
+            >
+            ["id132"] = <
+                text = <"Apgar total nos 5 minutos">
+                description = <"A soma dos 5 pontos para cada componente de Apgar registada em 10 minuto após o nascimento.">
+            >
+            ["id131"] = <
+                text = <"Apgar total nos 5 minutos">
+                description = <"A soma dos 5 pontos para cada componente de Apgar registada em 5 minuto após o nascimento.">
+            >
+            ["id130"] = <
+                text = <"Apgar total no 1 minuto">
+                description = <"A soma dos 5 pontos para cada componente de Apgar registada em 1 minuto após o nascimento.">
+                comment = <"Pode ser derivada diretamente da documentação de registro de nascimento, se presente.">
+            >
+            ["id129"] = <
+                text = <"Modelo do cuidado">
+                description = <"Modelo de cuidado pré-natal oferecido.">
+            >
+            ["id128"] = <
+                text = <"Data do início">
+                description = <"
+    Data do início do tipo de cuidados pré-natais escolhido.">
+            >
+            ["id127"] = <
+                text = <"Método de alívio da dor">
+                description = <"Métodos(s) de analgesia usados durante o trabalho de parto.">
+                comment = <"Codificação do ' Tipo de alívio da dor \", com uma terminologia é desejável, sempre que possível.">
+            >
+            ["at126"] = <
+                text = <"Em trânsito">
+                description = <"Bebê nascido em trânsito para uma unidade de saúde.">
+            >
+            ["at125"] = <
+                text = <"Sala de cirurgia obstétrica">
+                description = <"Bebê nascido em uma Sala de cirurgia obstétrica">
+            >
+            ["at124"] = <
+                text = <"Sala de Parto">
+                description = <"Bebê nascido numa sala de parto.">
+            >
+            ["at123"] = <
+                text = <"Centro obstétrico (Hospital)">
+                description = <"Bebê nascido em um centro de parto associado a um hospital.">
+            >
+            ["at122"] = <
+                text = <"Centro obstétrico (auto-sufuciente)">
+                description = <"Bebê nascido em um centro de nascimento não associados a um hospital.">
+            >
+            ["at121"] = <
+                text = <"Casa">
+                description = <"Bebê nasceu em casa.">
+            >
+            ["id120"] = <
+                text = <"Perda sanguínea">
+                description = <"Estimativa de perda de sangue materna durante o parto e no período pós-parto.">
+            >
+            ["id119"] = <
+                text = <"Períneo">
+                description = <"Descrição narrativa sobre a condição do períneo após o nascimento, incluindo lesões e reparos.
+    ">
+            >
+            ["id118"] = <
+                text = <"Categoria do local de nascimento">
+                description = <"Categoria da localização física onde ocorreu o nascimento.">
+            >
+            ["at116"] = <
+                text = <"Indeterminada">
+                description = <"Não possível ainda determinar o sexo do recém-nascido a partir da observação das características físicas.">
+            >
+            ["at115"] = <
+                text = <"Feminina">
+                description = <"Aparência do recém-nascido parece fisicamente feminina.">
+            >
+            ["at114"] = <
+                text = <"Masculino">
+                description = <"Aparencia do recém-nascido parece fisicamente masculina.">
+            >
+            ["at113"] = <
+                text = <"Não há trabalho de parto">
+                description = <"Trabalho de parto não iniciado.">
+            >
+            ["id111"] = <
+                text = <"Ciclos irregulares?">
+                description = <"Os ciclos menstruais são irregulares?">
+                comment = <"Registro como Verdadeiro somente se os ciclos forem irregulares .">
+            >
+            ["id110"] = <
+                text = <"Alimentação">
+                description = <"Descrição narrativa sobre a alimentação.">
+            >
+            ["at108"] = <
+                text = <"Braço">
+                description = <"Um braço é a parte que se apresenta.">
+            >
+            ["at107"] = <
+                text = <"Pé">
+                description = <"O pé é a parte que se apresenta.">
+            >
+            ["id106"] = <
+                text = <"Tipo de reprodução assistida.">
+                description = <"Tipo de tecnologia de reprodução assistida utilizada para conseguir a gravidez.">
+                comment = <"Codificação com uma terminologia é preferível, quando possível.">
+            >
+            ["id105"] = <
+                text = <"Reprodução assistida?">
+                description = <"A gravidez foi resultado do uso de tecnologia de reprodução assistida?">
+                comment = <"Verdade, se para alcançar a gravidez foi necessário reprodução assistida.">
+            >
+            ["id104"] = <
+                text = <"Local planejado para o nascimento.">
+                description = <"Localização física planejada ou destinada para o nascimento.">
+                comment = <"A padronização do local através de um conjunto de valores deve ser preferida à entrada através de texto livre, fornecendo aos médicos com uma significativa lista local, onde se inclui \"domicilio\". O conjunto de valores pode ser modelado diretamente no modelo ou através de uma terminologia de referência externa.">
+            >
+            ["id103"] = <
+                text = <"Tipo">
+                description = <"Tipo do modelo de cuidado.">
+                comment = <"Quando possível, utilizar uma terminologia codificada é preferível . Por exemplo, Clinico Geral , maternidade , parteira ou grupo de parteiras práticas.">
+            >
+            ["at102"] = <
+                text = <"Cesariana - segmento uterino superior">
+                description = <"Parto cirúrgico por uma abordagem no segmento uterino superior.">
+            >
+            ["at101"] = <
+                text = <"Cesariana - seguimento uterino inferior">
+                description = <"parto cirúrgico por uma abordagem transversal do segmento inferior uterino (LUSCS Lower Uterine Segment Caesarean Section)">
+            >
+            ["at100"] = <
+                text = <"Fórceps alto com rotação">
+                description = <"O parto vaginal assistido pelo uso de fórceps alto com rotação.">
+            >
+            ["at99"] = <
+                text = <"Fórceps alto">
+                description = <"Parto vaginal assistido pelo uso de fórceps altos.">
+            >
+            ["id98"] = <
+                text = <"Motivo para a indução">
+                description = <"Motivo para a indução do parto.">
+            >
+            ["id97"] = <
+                text = <"Método de indução">
+                description = <"Método de indução do trabalho de parto.">
+                comment = <"A codificação do \"método de indução\" com uma terminologia é desejável , sempre que possível .">
+            >
+            ["id95"] = <
+                text = <"Resultado da gravidez">
+                description = <"Resultado da gravidez como um todo.">
+                comment = <"Codificação do resultado da gravidez com uma terminologia é desejável, sempre que possível. Se fetos individuais foram identificados, gravar essas informações usando elemento de dados do \" Resultado Individual ' . Este elemento de dados não está a ser gravado , se ' Resultado Individual' é gravado.">
+            >
+            ["id94"] = <
+                text = <"Local específico do nascimento">
+                description = <"A localização física real onde ocorreu o nascimento.">
+                comment = <"Por exemplo, nome de uma instituição ou um endereço.">
+            >
+            ["id85"] = <
+                text = <"Ordem de nascimento">
+                description = <"Ordem sequencial de cada recém-nascido em um parto múltiplo.">
+                comment = <"Por exemplo , registro '1' se este recém-nascido é o primeiro nascido de um nascimento múltiplo; registro ' 4' se este recém-nascido é o quarto nascido de um nascimento múltiplo.">
+            >
+            ["id84"] = <
+                text = <"Resumo sobre a gravidez">
+                description = <"Descrição narrativa sobre toda a gravidez.">
+            >
+            ["id83"] = <
+                text = <"Data de atualização">
+                description = <"A data da última atualização deste resumo de gravidez.">
+            >
+            ["id80"] = <
+                text = <"Razão">
+                description = <"Razão ou justificativa para o tipo de cuidado pré-natal selecionado.">
+            >
+            ["id79"] = <
+                text = <"Variação">
+                description = <"Variação possível da gestação estimada , registrado como um número positivo de dias.">
+                comment = <"Por exemplo, 7 dias indicando DPP +/- 7 dias.">
+            >
+            ["id78"] = <
+                text = <"DPP (Ciclo)">
+                description = <"Data provável do parto baseada no ciclo menstrual.">
+            >
+            ["id77"] = <
+                text = <"Duração do ciclo">
+                description = <"Duração normal do ciclo menstrual.
+    
+    ">
+            >
+            ["id76"] = <
+                text = <"Acordado DPP">
+                description = <"Detalhes sobre o acerto da estimativa da data provável do parto (DPP).">
+            >
+            ["id75"] = <
+                text = <"Fundamentação">
+                description = <"Razões para a seleção da DPP (Acordado).">
+            >
+            ["id74"] = <
+                text = <"DPP [acerto]">
+                description = <"Data prevista do parto (DPP) em que todos os cuidados pré-natais e a gestão do cuidado são baseados .">
+                comment = <"De acordo com a equipe de cuidados básicos, e após considerar todas as informações disponíveis sobre data de concepção , DPP (baseada no ciclo ) e DPP ( baseada no ultrassom) .">
+            >
+            ["id73"] = <
+                text = <"Último período de menstruação normal">
+                description = <"Primeiro dia do último período de menstruação normal (UPMN).">
+            >
+            ["id72"] = <
+                text = <"DPP baseada no ciclo">
+                description = <"Detalhes sobre a data provável do parto (DPP) com base no ciclo menstrual.">
+                comment = <"A data provável do parto (DPP) só pode ser calculada com base no ciclo menstrual se tanto o último período de menstruação normal quanto a duração do ciclo forem conhecidos com um grau de certeza clinicamente aceitável.">
+            >
+            ["id71"] = <
+                text = <"[Gestação estimada]">
+                description = <"Gestação estimada baseada nos achados do ultrassom.">
+            >
+            ["id70"] = <
+                text = <"DPP (Ultrassom)">
+                description = <"Data provável do parto baseada em exame de ultrassom.">
+            >
+            ["id69"] = <
+                text = <"Descrição">
+                description = <"Descrição narrativa da complicação materna.">
+            >
+            ["id68"] = <
+                text = <"Data/hora do início">
+                description = <"Data de início da complicação, como avaliada por um clínico.">
+                comment = <"Se apenas uma data parcial estiver disponível, isto é aceitável.">
+            >
+            ["id67"] = <
+                text = <"Complicação">
+                description = <"Identificação da complicação.">
+                comment = <"A codificação de \"complicação\" com uma terminologia é desejável , sempre que possível . Por exemplo, hemorragia pós-parto ou pré -eclampsia.">
+            >
+            ["id66"] = <
+                text = <"Complicações na gestante">
+                description = <"Detalhes sobre complicações na gravidez ou complicações no parto que afetam a mãe.">
+            >
+            ["id65"] = <
+                text = <"Descrição">
+                description = <"Descrição narrativa da complicação.">
+            >
+            ["id64"] = <
+                text = <"Data/Hora do início">
+                description = <"Data/Hora do início da complicação.">
+            >
+            ["id63"] = <
+                text = <"Complicação">
+                description = <"Identificação da complicação após o nascimento .">
+                comment = <"Codificação das \"complicação\" com uma terminologia é desejável , sempre que possível . Por exemplo, hipoglicemia neonatal ou hipotermia .">
+            >
+            ["id62"] = <
+                text = <"Complicação do bebê">
+                description = <"Detalhes sobre as complicações que afetam o bebê .">
+            >
+            ["id61"] = <
+                text = <"Descrição do bebê">
+                description = <"Descrição do feto ou do bebê no momento do parto.">
+                comment = <"Por exemplo, necessidade de reanimação.">
+            >
+            ["id60"] = <
+                text = <"Idade gestacional">
+                description = <"Idade gestacional estimada do feto ou do bebê no nascimento ou parto , com base no exame clínico e avaliação.">
+                comment = <"Este elemento de dados destina-se ao registro da estimativa gestacional com base em achados clínicos do exame do feto / recém-nascido e avaliação clínica, e não da gestação calculada com base no \"DPP acordado\".">
+            >
+            ["id59"] = <
+                text = <"Descrição do nascimento">
+                description = <"Descrição narrativa do nascimento ou parto.">
+                comment = <"Por exemplo, apresentação de nádegas com prolapso do cordão ou parto vaginal sem complicação.">
+            >
+            ["at50"] = <
+                text = <"Testa">
+                description = <"A testa é a parte que se apresenta.">
+            >
+            ["at49"] = <
+                text = <"Face">
+                description = <"A face é a parte que se apresenta.">
+            >
+            ["at48"] = <
+                text = <"Nádegas">
+                description = <"As nádegas é a parte que se apresenta.">
+            >
+            ["at47"] = <
+                text = <"Vértice">
+                description = <"O vértice é a parte que se apresenta.">
+            >
+            ["id46"] = <
+                text = <"Apresentação">
+                description = <"Apresentação do recém-nascido no nascimento ou parto.">
+                comment = <"Extensão do value set AIHW - Australian Institute of Health and Welfare . O contexto clínico para gravar este elemento de dados é somente apresentação no nascimento, não a qualquer outra fase do trabalho.">
+            >
+            ["at45"] = <
+                text = <"Fórceps baixo">
+                description = <"Parto vaginal assistido pelo uso de fórceps baixo.">
+            >
+            ["at44"] = <
+                text = <"Indução a Forceps">
+                description = <"Parto vaginal assistido por forceps.">
+            >
+            ["at43"] = <
+                text = <"Vácuo-Extração">
+                description = <"Parto vaginal assistida pelo uso de vácuo-extração.">
+            >
+            ["at42"] = <
+                text = <"Sem auxílio">
+                description = <"Normal, parto vaginal não instrumental.">
+            >
+            ["id41"] = <
+                text = <"Modo de nascimento">
+                description = <"Método pelo qual o recém-nascido foi entregue.">
+                comment = <"Valor definido a partir Australian Institute of Health and Welfare (AIHW).">
+            >
+            ["id40"] = <
+                text = <"Duração do segundo estagio">
+                description = <"Duração da segunda fase para o bebê.">
+            >
+            ["id39"] = <
+                text = <"Peso ao nascer">
+                description = <"Peso do feto ou bebê ao nascimento ou parto.">
+            >
+            ["id38"] = <
+                text = <"Sexo">
+                description = <"Sexo do recém-nascido , conforme determinado por características físicas observáveis.">
+                comment = <"Codificação com uma terminologia é preferível , quando possível. Indeterminada é para ser utilizado na situação em que não é possível saber se o sexo é masculino ou feminino.">
+            >
+            ["id37"] = <
+                text = <"Identificação">
+                description = <"Identificação do recém nascido.">
+                comment = <"Identificação pode ser o nome do recém-nascido ou de uma etiqueta a um dado feto.">
+            >
+            ["at35"] = <
+                text = <"Morte neonatal">
+                description = <"Gravidez resultou no nascimento inicial de bebê vivo, mas seguido de morte neonatal.">
+            >
+            ["at34"] = <
+                text = <"Natimorto">
+                description = <"Gravidez resultou no nascimento de um bebê que não mostrou nenhum sinal de vida.">
+            >
+            ["at32"] = <
+                text = <"Nascido vivo">
+                description = <"Gravidez resultou em nascimento de um bebê vivo.">
+            >
+            ["id31"] = <
+                text = <"Resultado para o recém-nascido">
+                description = <"Resultado da gravidez para o recém-nascido identificado.">
+            >
+            ["id30"] = <
+                text = <"Data/hora do nascimento">
+                description = <"Data e hora do nascimento.">
+            >
+            ["id29"] = <
+                text = <"Recém nascido">
+                description = <"Informação sobre um único feto identificado.">
+                comment = <"Embora frequentemente esses detalhes sejam usados ​​para registrar informações sobre o nascimento do recém-nascido, ocasionalmente eles também são úteis para registrar os detalhes do parto.">
+            >
+            ["id23"] = <
+                text = <"Condução do trabalho de parto">
+                description = <"Condução do trabalho de parto.">
+                comment = <"Codificação do \"Condução do trabalho de parto\" com uma terminologia é desejável, sempre que possível.">
+            >
+            ["id17"] = <
+                text = <"Duração total do trabalho">
+                description = <"Duração total dos três estágios do trabalho de parto.">
+            >
+            ["id16"] = <
+                text = <"Duração do terceiro estágio">
+                description = <"Duração total do terceiro estágio do trabalho de parto.">
+            >
+            ["id14"] = <
+                text = <"Duração do primeiro estágio">
+                description = <"Duração total do primeiro estágio do trabalho de parto.">
+            >
+            ["at11"] = <
+                text = <"Induzido">
+                description = <"Início através da indução.">
+            >
+            ["at10"] = <
+                text = <"Espontâneo">
+                description = <"Início sem intervenção.">
+            >
+            ["id9"] = <
+                text = <"Início do trabalho">
+                description = <"Maneira em que o trabalho de parto começou.">
+            >
+            ["id8"] = <
+                text = <"Número de bebês">
+                description = <"Quantidade de fetos identificados no útero.">
+            >
+            ["id7"] = <
+                text = <"DPP baseada no Ultrassom">
+                description = <"Detalhes sobre o cálculo da data provável do parto (DPP) baseada em um exame de ultrassom.">
+            >
+            ["id6"] = <
+                text = <"Data do ultrassom">
+                description = <"Data em que o ultrassom foi realizado.">
+            >
+            ["id3"] = <
+                text = <"Data da concepção">
+                description = <"Data real da concepção">
+                comment = <"Registrar apenas se a data real da concepção é conhecida, não estimada ou calculada. Isto normalmente ocorre em situações em que a fertilização é assistida, por exemplo, através de FIV- Fertilização in vitro.">
+            >
+            ["id1"] = <
+                text = <"Resumo da gravidez">
+                description = <"Usar para gravar uma visão geral ou resumo de uma gravidez identificada incluindo o período pré-natal, parto, nascimento e período pós-natal imediato.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Certainty (synthesised)">
+                description = <"Certainty of LNMP as a reliable basis for calculation of EDB (Cycle). (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Onset of Labour (synthesised)">
+                description = <"Manner in which labour started. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Mode of Birth (synthesised)">
+                description = <"Method by which the baby was delivered. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Presenting Part (synthesised)">
+                description = <"Presenting part of the baby at birth or delivery. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Baby Outcome (synthesised)">
+                description = <"Outcome of the pregnancy for the identified baby. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Sex (synthesised)">
+                description = <"Sex of the baby, as determined by observable physical characteristics. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Place of Birth Category (synthesised)">
+                description = <"The category of the physical location where the birth occurred. (synthesised)">
+            >
+            ["at9007"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["at9008"] = <
+                text = <"Volume">
+                description = <"Volume">
+            >
+            ["id141"] = <
+                text = <"Contraception Ceased">
+                description = <"Date that the most recent form of contraception was ceased.">
+            >
+            ["id140"] = <
+                text = <"Contraception">
+                description = <"Most recent form of contraception used.">
+            >
+            ["id139"] = <
+                text = <"EDB (Conception)">
+                description = <"Estimated date of birth based on a known date of conception.">
+            >
+            ["id138"] = <
+                text = <"Description">
+                description = <"Narrative description of menstrual cycle or menstruation.">
+            >
+            ["at137"] = <
+                text = <"Uncertain">
+                description = <"Date of LNMP may not be reliable for use in EDB (Cycle) calculation.">
+            >
+            ["at136"] = <
+                text = <"Certain">
+                description = <"Date of LNMP is reliable for use in EDB (Cycle) calculation.">
+            >
+            ["id135"] = <
+                text = <"Certainty">
+                description = <"Certainty of LNMP as a reliable basis for calculation of EDB (Cycle).">
+            >
+            ["at134"] = <
+                text = <"Shoulder">
+                description = <"A shoulder is the presenting part.">
+            >
+            ["at133"] = <
+                text = <"Vacuum extraction with rotation">
+                description = <"Vaginal delivery assisted by the use of vacuum extraction.">
+            >
+            ["id132"] = <
+                text = <"Total Apgar at 10 Minutes">
+                description = <"The sum of the 5 scores for each Apgar component recorded at 10 minutes after birth.">
+            >
+            ["id131"] = <
+                text = <"Total Apgar at 5 Minutes">
+                description = <"The sum of the 5 scores for each Apgar component recorded at 5 minutes after birth.">
+            >
+            ["id130"] = <
+                text = <"Total Apgar at 1 Minute">
+                description = <"The sum of the 5 scores for each Apgar component recorded at 1 minute after birth.">
+                comment = <"Can be derived direct from the Birth Record documentation, if present.">
+            >
+            ["id129"] = <
+                text = <"Model of Care">
+                description = <"Model of antenatal care provided.">
+            >
+            ["id128"] = <
+                text = <"Start Date">
+                description = <"Date of commencement of the identified type of antenatal care.">
+            >
+            ["id127"] = <
+                text = <"Pain Relief Method">
+                description = <"Method/s of analgesia used during labour.">
+                comment = <"Coding of the 'Type of Pain Relief' with a terminology is desirable, where possible.">
+            >
+            ["at126"] = <
+                text = <"In Transit">
+                description = <"Baby born in transit to a healthcare facility.">
+            >
+            ["at125"] = <
+                text = <"Hospital Operating Theatre">
+                description = <"Baby born in a hospital operating theatre.">
+            >
+            ["at124"] = <
+                text = <"Hospital Delivery Suite">
+                description = <"Baby born in a hospital delivery suite or labour ward.">
+            >
+            ["at123"] = <
+                text = <"Birth Centre (Hospital)">
+                description = <"Baby born in a birth centre associated with a hospital.">
+            >
+            ["at122"] = <
+                text = <"Birth Centre (free-standing)">
+                description = <"Baby born in a birth centre not associated with a hospital.">
+            >
+            ["at121"] = <
+                text = <"Home">
+                description = <"Baby born at a private home.">
+            >
+            ["id120"] = <
+                text = <"Blood Loss">
+                description = <"Estimation of maternal blood loss during birth and immediately post delivery.">
+            >
+            ["id119"] = <
+                text = <"Perineum">
+                description = <"Narrative description about the condition of the perineum after birth, including injuries and repairs.">
+            >
+            ["id118"] = <
+                text = <"Place of Birth Category">
+                description = <"The category of the physical location where the birth occurred.">
+            >
+            ["at116"] = <
+                text = <"Indeterminate">
+                description = <"Sex of the baby has not yet been able to be determined from observation of physical characteristics.">
+            >
+            ["at115"] = <
+                text = <"Female">
+                description = <"Baby appears physically female.">
+            >
+            ["at114"] = <
+                text = <"Male">
+                description = <"Baby appears physically male.">
+            >
+            ["at113"] = <
+                text = <"No labour">
+                description = <"No onset of labour.">
+            >
+            ["id111"] = <
+                text = <"Irregular Cycles?">
+                description = <"Are the menstrual cycles irregular?">
+                comment = <"Record as True only if the cycles are irregular.">
+            >
+            ["id110"] = <
+                text = <"Feeding">
+                description = <"Narrative description about feeding.">
+            >
+            ["at108"] = <
+                text = <"Arm">
+                description = <"An arm is the presenting part.">
+            >
+            ["at107"] = <
+                text = <"Foot">
+                description = <"A foot is the presenting part.">
+            >
+            ["id106"] = <
+                text = <"Assisted Reproduction Type">
+                description = <"Type of assisted reproductive technology used to achieve pregnancy.">
+                comment = <"Coding with a terminology is preferred, where possible.">
+            >
+            ["id105"] = <
+                text = <"Assisted Reproduction?">
+                description = <"Was the pregnancy a result of assisted reproductive technology?">
+                comment = <"True, if assisted reproduction was required to achieve the pregnancy.">
+            >
+            ["id104"] = <
+                text = <"Planned Place of Birth">
+                description = <"Planned or intended physical location for birth.">
+                comment = <"Local standardisation of the value set is desired in preference to free text entry, so as to provide clinicians with a meaningful local list, including 'Home'. The value set may be modelled directly in a template or via inclusion of an external terminology reference set.">
+            >
+            ["id103"] = <
+                text = <"Type">
+                description = <"The Model of care type.">
+                comment = <"Coding with a terminology is preferred, where possible. For example, GP shared care, birth centre, private community midwife or midwifery group practice.">
+            >
+            ["at102"] = <
+                text = <"Caesarean - upper uterine segment">
+                description = <"Surgical delivery by an approach in the upper uterine segment.">
+            >
+            ["at101"] = <
+                text = <"Caesarean - lower uterine segment">
+                description = <"Surgical delivery by a transverse approach in the lower uterine segment (LUSCS).">
+            >
+            ["at100"] = <
+                text = <"High forceps with rotation">
+                description = <"Vaginal delivery assisted by the use of high forceps with rotation.">
+            >
+            ["at99"] = <
+                text = <"High forceps">
+                description = <"Vaginal delivery assisted by the use of high forceps.">
+            >
+            ["id98"] = <
+                text = <"Reason for Induction">
+                description = <"Reason for induction of labour.">
+            >
+            ["id97"] = <
+                text = <"Induction Method">
+                description = <"Method of labour induction.">
+                comment = <"Coding of the 'Induction Method' with a terminology is desirable, where possible.">
+            >
+            ["id95"] = <
+                text = <"Pregnancy Outcome">
+                description = <"Outcome of the pregnancy as a whole.">
+                comment = <"Coding of the Pregnancy Outcome with a terminology is desirable, where possible. If individual fetuses have been identified, record this information using the 'Individual Outcome' data element. This data element is not to be recorded if 'Individual Outcome' is recorded.">
+            >
+            ["id94"] = <
+                text = <"Specific Place of Birth">
+                description = <"The actual physical location where the birth occurred.">
+                comment = <"For example, the name of an institution or an address.">
+            >
+            ["id85"] = <
+                text = <"Birth Order">
+                description = <"Sequential order of each baby in a multiple birth event.">
+                comment = <"For example, record '1' if this neonate is the first born of a multiple birth; record '4' if this neonate is the fourth born of a multiple birth.">
+            >
+            ["id84"] = <
+                text = <"Pregnancy Synopsis">
+                description = <"Narrative description about the whole of pregnancy.">
+            >
+            ["id83"] = <
+                text = <"Date Updated">
+                description = <"The date this pregnancy summary was last updated.">
+            >
+            ["id80"] = <
+                text = <"Reason">
+                description = <"Reason or rationale for the selected type of antenatal care.">
+            >
+            ["id79"] = <
+                text = <"Variation">
+                description = <"Possible variation from Estimated Gestation, recorded as a positive number of days.">
+                comment = <"For example, 7 days indicating EDB +/- 7 days.">
+            >
+            ["id78"] = <
+                text = <"EDB (Cycle)">
+                description = <"Estimated date of birth based on menstrual cycle.">
+            >
+            ["id77"] = <
+                text = <"Cycle Length">
+                description = <"Usual length of menstrual cycle.">
+            >
+            ["id76"] = <
+                text = <"Agreed EDB">
+                description = <"Details about the agreed estimated date of birth (EDB).">
+            >
+            ["id75"] = <
+                text = <"Rationale">
+                description = <"Reason for selection of EDB (Agreed).">
+            >
+            ["id74"] = <
+                text = <"EDB (Agreed)">
+                description = <"Estimated date of birth (EDB) on which all antenatal care and management is based.">
+                comment = <"As agreed by the care team, and after taking into consideration all available information regarding Date of Conception, EDB (Cycle) and EDB (Ultrasound).">
+            >
+            ["id73"] = <
+                text = <"LNMP">
+                description = <"First day of last normal menstrual cycle (LNMP).">
+            >
+            ["id72"] = <
+                text = <"EDB Based on Cycle">
+                description = <"Details about the estimated date of birth (EDB) based upon the menstrual cycle.">
+                comment = <"An EDB based on cycle can only be calculated if both LNMP and cycle length are known to a degree of certainty that is clinically acceptable.">
+            >
+            ["id71"] = <
+                text = <"Estimated Gestation">
+                description = <"Estimated gestation based on the ultrasound findings.">
+            >
+            ["id70"] = <
+                text = <"EDB (Ultrasound)">
+                description = <"Estimated date of birth based on ultrasound examination.">
+            >
+            ["id69"] = <
+                text = <"Description">
+                description = <"Narrative description of the maternal complication.">
+            >
+            ["id68"] = <
+                text = <"Date/Time of Onset">
+                description = <"Date of onset of complication, as assessed by a clinician.">
+                comment = <"If only a partial date is available, this is acceptable.">
+            >
+            ["id67"] = <
+                text = <"Complication">
+                description = <"Identification of the complication.">
+                comment = <"Coding of the 'Complication' with a terminology is desirable, where possible. For example, post partum haemorrhage or pre-eclampsia.">
+            >
+            ["id66"] = <
+                text = <"Maternal Complication">
+                description = <"Details about pregnancy complications or birth complications affecting the mother.">
+            >
+            ["id65"] = <
+                text = <"Description">
+                description = <"Narrative description of complication.">
+            >
+            ["id64"] = <
+                text = <"Date/Time of Onset">
+                description = <"Date and/or time of onset of the complication.">
+            >
+            ["id63"] = <
+                text = <"Complication">
+                description = <"Identification of the complication after birth.">
+                comment = <"Coding of the 'Complication' with a terminology is desirable, where possible. For example, neonatal hypoglycaemia or hypothermia.">
+            >
+            ["id62"] = <
+                text = <"Baby Complication">
+                description = <"Details about complications affecting the baby.">
+            >
+            ["id61"] = <
+                text = <"Description of Baby">
+                description = <"Description of the fetus or baby at delivery.">
+                comment = <"For example, need for resuscitation.">
+            >
+            ["id60"] = <
+                text = <"Gestational Age">
+                description = <"Estimated gestational age of fetus or baby at birth or delivery, based on clinical examination and evaluation.">
+                comment = <"This data element is intended to record estimated gestation based on clinical findings on examination of the fetus/neonate and clinical assessment, not the calculated gestation based on the 'Agreed EDB'.">
+            >
+            ["id59"] = <
+                text = <"Description of Birth">
+                description = <"Narrative description of the birth or delivery.">
+                comment = <"For example, footling breech with cord presentation or uncomplicated vaginal birth.">
+            >
+            ["at50"] = <
+                text = <"Brow">
+                description = <"The brow is the presenting part.">
+            >
+            ["at49"] = <
+                text = <"Face">
+                description = <"The fact is the presenting part.">
+            >
+            ["at48"] = <
+                text = <"Breech">
+                description = <"The breech is the presenting part.">
+            >
+            ["at47"] = <
+                text = <"Vertex">
+                description = <"The vertext is the presenting part.">
+            >
+            ["id46"] = <
+                text = <"Presenting Part">
+                description = <"Presenting part of the baby at birth or delivery.">
+                comment = <"Extension of the AIHW value set. The clinical context for recording this data element is only presentation at birth, not at any other phase of labour.">
+            >
+            ["at45"] = <
+                text = <"Low forceps">
+                description = <"Vaginal delivery assisted by the use of low forceps.">
+            >
+            ["at44"] = <
+                text = <"Lift-out forceps">
+                description = <"Vaginal delivery assisted by the use of lift-out forceps.">
+            >
+            ["at43"] = <
+                text = <"Vacuum extraction">
+                description = <"Vaginal delivery assisted by the use of vacuum extraction.">
+            >
+            ["at42"] = <
+                text = <"Unassisted">
+                description = <"Normal, non-instrumental vaginal delivery.">
+            >
+            ["id41"] = <
+                text = <"Mode of Birth">
+                description = <"Method by which the baby was delivered.">
+                comment = <"Value set from AIHW.">
+            >
+            ["id40"] = <
+                text = <"Duration of Second Stage">
+                description = <"Duration of second stage for the baby.">
+            >
+            ["id39"] = <
+                text = <"Birthweight">
+                description = <"Weight of the fetus or baby at birth or delivery.">
+            >
+            ["id38"] = <
+                text = <"Sex">
+                description = <"Sex of the baby, as determined by observable physical characteristics.">
+                comment = <"Coding with a terminology is preferred, where possible. Indeterminate is to be used in the situation where is it not possible to tell if the sex is male or female.">
+            >
+            ["id37"] = <
+                text = <"Identification">
+                description = <"Identification of the baby.">
+                comment = <"Identification might be by the name of the neonate or a label given to a fetus.">
+            >
+            ["at35"] = <
+                text = <"Neonatal death">
+                description = <"Pregnancy resulted in initial birth of live infant, but followed by neonatal death.">
+            >
+            ["at34"] = <
+                text = <"Stillborn">
+                description = <"Pregnancy resulted in birth of an baby that showed no sign of life.">
+            >
+            ["at32"] = <
+                text = <"Liveborn">
+                description = <"Pregnancy resulted in birth of a live baby.">
+            >
+            ["id31"] = <
+                text = <"Baby Outcome">
+                description = <"Outcome of the pregnancy for the identified baby.">
+            >
+            ["id30"] = <
+                text = <"Date/Time of Birth">
+                description = <"Date and time of birth.">
+            >
+            ["id29"] = <
+                text = <"Baby">
+                description = <"Information about an individual identified baby.">
+                comment = <"While most often these details are used to record information about birth of newborn, occasionally they are also useful to record delivery details for ">
+            >
+            ["id23"] = <
+                text = <"Augmentation Method">
+                description = <"Method of labour augmentation.">
+                comment = <"Coding of the 'Augmentation Method' with a terminology is desirable, where possible.">
+            >
+            ["id17"] = <
+                text = <"Total Duration of Labor">
+                description = <"Total duration of all three stages of labour.">
+            >
+            ["id16"] = <
+                text = <"Duration of Third Stage">
+                description = <"Total duration of  the third stage of labour.">
+            >
+            ["id14"] = <
+                text = <"Duration of First Stage">
+                description = <"Total duration of the first stage of labour.">
+            >
+            ["at11"] = <
+                text = <"Induced">
+                description = <"Onset through intervention.">
+            >
+            ["at10"] = <
+                text = <"Spontaneous">
+                description = <"Onset without intervention.">
+            >
+            ["id9"] = <
+                text = <"Onset of Labour">
+                description = <"Manner in which labour started.">
+            >
+            ["id8"] = <
+                text = <"Number of Babies">
+                description = <"Number of fetuses identified in utero.">
+            >
+            ["id7"] = <
+                text = <"EDB Based on Ultrasound">
+                description = <"Details about the estimated date of birth (EDB) based upon an ultrasound examination.">
+            >
+            ["id6"] = <
+                text = <"Date of Ultrasound">
+                description = <"Date on which the ultrasound examination was performed.">
+            >
+            ["id3"] = <
+                text = <"Date of Conception">
+                description = <"Actual date of conception.">
+                comment = <"To be recorded only if the actual date of conception is known, not estimated or calculated. This usually occurs in situations where fertilisation is assisted, for example via IVF.">
+            >
+            ["id1"] = <
+                text = <"Pregnancy Summary">
+                description = <"Overview or summary record of a pregnancy including the antenatal period, labour, birth and the immediate postnatal period.">
+            >
+        >
+        ["es-co"] = <
+            ["ac9000"] = <
+                text = <"Certeza (synthesised)">
+                description = <"La certeza de Fecha de última Menstruación (FUM) como base fiable para el cálculo de la Fecha Probable de Parto (FPP) . (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Inicio del trabajo de PArto (synthesised)">
+                description = <"Se refiere al inicio del trabajo de parto, este podria ser Espontáneo o Inducido. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Terminación del Embarazo (synthesised)">
+                description = <"Método por el cual fue recibido el bebé (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Presentación (synthesised)">
+                description = <"La presentación fetal es la manera en la que está colocado el bebé para salir por el canal del parto para el alumbramiento (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Nacimiento del Babe (synthesised)">
+                description = <"se refiere al estado vital del recién nacido al momento del parto (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Sexo (synthesised)">
+                description = <"Sexo del bebe, determinado a partir de la observación de las caracteristicas fisicas (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Lugar de nacimiento (synthesised)">
+                description = <"Catalogo de localizaciones donde ocurrio el nacimiento (synthesised)">
+            >
+            ["at9007"] = <
+                text = <"* Mass (en)">
+                description = <"* Mass (en)">
+            >
+            ["at9008"] = <
+                text = <"* Volume (en)">
+                description = <"* Volume (en)">
+            >
+            ["id141"] = <
+                text = <"Método anticonceptivo">
+                description = <"Fecha en que dejó de usar el Método anticonceptivo">
+            >
+            ["id140"] = <
+                text = <"Método anticonceptivo">
+                description = <"Método anticonceptivo usado antes de quedar en embarazo">
+            >
+            ["id139"] = <
+                text = <"Fecha probable del nacimiento segun fecha de concepción">
+                description = <"Fecha probable del nacimiento, basado en una fecha de concepción conocida">
+            >
+            ["id138"] = <
+                text = <"Descripcion">
+                description = <"Descripción narrativa del ciclo menstrual o menstruación">
+            >
+            ["at137"] = <
+                text = <"Incierta">
+                description = <"la Fecha de última Menstruación (FUM) NO es fiable para el cálculo de la Fecha Probable de Parto (FPP) .">
+            >
+            ["at136"] = <
+                text = <"Exacto">
+                description = <"la Fecha de última Menstruación (FUM) es fiable para el cálculo de la Fecha Probable de Parto (FPP) .">
+            >
+            ["id135"] = <
+                text = <"Certeza">
+                description = <"La certeza de Fecha de última Menstruación (FUM) como base fiable para el cálculo de la Fecha Probable de Parto (FPP) .">
+            >
+            ["at134"] = <
+                text = <"Hombro">
+                description = <"Presentación de Hombros">
+            >
+            ["at133"] = <
+                text = <"Vacuum con rotación">
+                description = <"El parto vaginal asistida por el uso de extracción al vacío (Vacuum)">
+            >
+            ["id132"] = <
+                text = <"Total Apgar a los 10 Minutos">
+                description = <"Evaluacion clínica sobre el estado general del neonato después del parto, sumatoria total de los cinco parámetros a los 10 minutos después de nacer">
+            >
+            ["id131"] = <
+                text = <"Total Apgar a los 5 Minutos">
+                description = <"Evaluacion clínica sobre el estado general del neonato después del parto, sumatoria total de los cinco parámetros a los 5 minutos después de nacer">
+            >
+            ["id130"] = <
+                text = <"Total Apgar al 1 Minuto">
+                description = <"Evaluacion clínica sobre el estado general del neonato después del parto, sumatoria total de los cinco parámetros al primer minuto después de nacer">
+                comment = <"Se pueden derivar directamente de la documentación de registro de nacimiento, si está presente">
+            >
+            ["id129"] = <
+                text = <"Modelo de Cuidado">
+                description = <"Modelo de atención prenatal provisto">
+            >
+            ["id128"] = <
+                text = <"Fecha de inicio">
+                description = <"Fecha de inicio de la atención prenatal">
+            >
+            ["id127"] = <
+                text = <"Método alivio del dolor">
+                description = <"Tipo de Anestesia empleada durante el trabajo de labor, por ejemplo Anestesia Local, Anestesia General, Anestesia Regional (Raquidea).">
+                comment = <"Siempre que sea posible, Se recomienda el uso de una terminología para codificar el tipo de Anestesia empleada durante el trabajo de labor.">
+            >
+            ["at126"] = <
+                text = <"en tránsito">
+                description = <"Bebé nacio en tránsito hacia un centro de salud">
+            >
+            ["at125"] = <
+                text = <"Sala de cirugía">
+                description = <"Bebé nacido en una sala de cirugía del hospital o sala de trabajo">
+            >
+            ["at124"] = <
+                text = <"sala de partos">
+                description = <"Bebé nacido en una sala de partos del hospital o sala de trabajo">
+            >
+            ["at123"] = <
+                text = <"centro de maternidad">
+                description = <"Bebé nacido en un centro de maternidad asociada a un hospital">
+            >
+            ["at122"] = <
+                text = <"Centro de Nacimiento estancia Ambulatoria">
+                description = <"el bebe nacio en un centro de estancia ambulatoria">
+            >
+            ["at121"] = <
+                text = <"en Casa">
+                description = <"El bebe nacio en casa">
+            >
+            ["id120"] = <
+                text = <"Sangrado">
+                description = <"a estimación de la pérdida de sangre materna durante el e inmediatamente después del parto">
+            >
+            ["id119"] = <
+                text = <"perineo">
+                description = <"Descripción narrativa acerca de la condición del perineo después del parto , incluyendo lesiones y reparaciones.">
+            >
+            ["id118"] = <
+                text = <"Lugar de nacimiento">
+                description = <"Catalogo de localizaciones donde ocurrio el nacimiento">
+            >
+            ["at116"] = <
+                text = <"Indeterminado">
+                description = <"el sexo del bebe no puede ser determinado inicialmente por la observacion de sus características fisicas">
+            >
+            ["at115"] = <
+                text = <"Femenino">
+                description = <"Bebé con apariencia físicamente femenina">
+            >
+            ["at114"] = <
+                text = <"Hombre">
+                description = <"Bebé con apariencia físicamente masculina">
+            >
+            ["at113"] = <
+                text = <"No trabajo de PArto">
+                description = <"Sin inicio del parto">
+            >
+            ["id111"] = <
+                text = <"Ciclos irregulares?">
+                description = <"son los Ciclos menstruales irregulares?">
+                comment = <"Es verdadero solo cuando los Ciclos menstruales son irregulares">
+            >
+            ["id110"] = <
+                text = <"Alimentación">
+                description = <"Descripción narrativa acerca de la alimentación">
+            >
+            ["at108"] = <
+                text = <"Brazos">
+                description = <"Presentación de Brazos">
+            >
+            ["at107"] = <
+                text = <"Pies">
+                description = <"Presentación de Pies">
+            >
+            ["id106"] = <
+                text = <"Tipo de Reproducción Asistida">
+                description = <"Tipo de tecnología de reproducción asistida empleada para lograr el embarazo">
+                comment = <"Siempre que sea posible, Se recomienda el uso de una terminología para codificar.">
+            >
+            ["id105"] = <
+                text = <"Reproducción Asistida">
+                description = <"El embarazo fue resultado de emplear técnicas de reproducción asistida o fecundación artificial?">
+                comment = <"Verdadero, si fue requerida la reproducción asistida para lograr el embarazo.">
+            >
+            ["id104"] = <
+                text = <"Lugar planeado para el nacimiento">
+                description = <"Ubicación física Planeado o previsto para el nacimiento">
+                comment = <"Es deseable proporcionar a los médicos con una lista de opciones locales que sea significativa, incluyendo ' Hogar ', con preferencia sobre una opcion de libre texto.">
+            >
+            ["id103"] = <
+                text = <"Tipo">
+                description = <"Tipo del modelo de cuidado">
+                comment = <"Siempre que sea posible, Se recomienda el uso de una terminología para codificar. Por ejemplo , GP de atención compartida, centro de nacimiento, partera de la comunidad privado o grupo de práctica de la partería.">
+            >
+            ["at102"] = <
+                text = <"Cesárea - segmento superior del útero">
+                description = <"parto quirúrgico (Cesárea) mediante un enfoque transversal en el segmento uterino superior">
+            >
+            ["at101"] = <
+                text = <"Cesárea - segmento inferior del útero">
+                description = <"parto quirúrgico (Cesárea) mediante un enfoque transversal en el segmento uterino inferior">
+            >
+            ["at100"] = <
+                text = <"fórceps altos con rotación">
+                description = <"Parto vaginal asistida por el uso de fórceps altos con rotación">
+            >
+            ["at99"] = <
+                text = <"fórceps altos">
+                description = <"Parto vaginal asistida por el uso de fórceps altos">
+            >
+            ["id98"] = <
+                text = <"Razon para la Inducción">
+                description = <"se registra la causa o causas por la cuales se realiza la inducción del trabajo de parto">
+            >
+            ["id97"] = <
+                text = <"Metodo de Inducción">
+                description = <"Metodo empleado para la inducción del trabajo de parto, por ejemplo empleando Medicamentos (administración de oxitocina) o La amniotomía">
+                comment = <"Siempre que sea posible, Se recomienda el uso de una terminología para codificar el metodo de Induccion del parto.">
+            >
+            ["id95"] = <
+                text = <"Terminación del embarazo">
+                description = <"Si la terminación del Embarazo es Multiple, En caso de ser múltiple anotar el orden del nacimiento, En caso de no ser un embarazo múltiple anotar 0">
+                comment = <"Siempre que sea posible, Se recomienda el uso de una terminología para codifica la Terminación del embarazo.">
+            >
+            ["id94"] = <
+                text = <"Lugar de nacimiento">
+                description = <"La ubicación física real donde ocurrió el nacimiento">
+                comment = <"Por Ejemplo, el nombre de la institución donde nacio, o su dirección">
+            >
+            ["id85"] = <
+                text = <"Orden de nacimiento">
+                description = <"Orden secuencial de cada bebé en un caso de parto múltiple">
+                comment = <"Por ejemplo, el registro '1' si este recién nacido es el primer nacido de un parto múltiple; registrar '4' si el recién nacido es el cuarto nacido de parto múltiple.">
+            >
+            ["id84"] = <
+                text = <"Descripción del embarazo">
+                description = <"Descripción narrativa sobre la totalidad del embarazo">
+            >
+            ["id83"] = <
+                text = <"Fecha de actualización">
+                description = <"La fecha ha sido actualizado por última vez el resumen del embarazo">
+            >
+            ["id80"] = <
+                text = <"Razón">
+                description = <"La razón o justificación para el tipo seleccionado de la atención prenatal">
+            >
+            ["id79"] = <
+                text = <"Variación">
+                description = <"Posible variación en la edad gestación estimada. Se registra como un número positivo de días">
+                comment = <"Por ejemplo, 7 días indicando Edad Gestacional (EG) +/- 7 días">
+            >
+            ["id78"] = <
+                text = <"Fecha Probable de Parto (FPP)">
+                description = <"Fecha Probable de Parto (FPP) basado en el ciclo mestrual">
+            >
+            ["id77"] = <
+                text = <"Duración del Ciclo Mestrual">
+                description = <"Duración habitual del ciclo menstrual, expresado en Días">
+            >
+            ["id76"] = <
+                text = <"Conformidad">
+                description = <"Los detalles sobre la fecha estimada de nacimiento">
+            >
+            ["id75"] = <
+                text = <"Razón fundamental">
+                description = <"Motivo de la selección de la Fecha Probable de Parto Acordada">
+            >
+            ["id74"] = <
+                text = <"Fecha Probable de Parto Acordada">
+                description = <"Fecha Probable de Parto ( FPP ) en el que se basa todo el cuidado y tratamiento prenatal .">
+                comment = <"Según lo acordado por el equipo de atención, y después de tomar en cuenta toda la información disponible sobre la fecha de la Concepción, Fecha de Última Mestruación (FUM) y Edad Gestacional según el ultrasonido.">
+            >
+            ["id73"] = <
+                text = <"Fecha de última Menstruación (FUM)">
+                description = <"primer día de su último Ciclo menstrual">
+            >
+            ["id72"] = <
+                text = <"Fecha Probable de Parto (FPP) segun Ciclo Mestrual">
+                description = <"Los detalles sobre la fecha probable de parto ( FPP ) basados ​​en el ciclo menstrual">
+                comment = <"Fecha probable del nacimiento, basado en la Fecha de Última Menstruación, se puede emplear la regla de Naegele, Pinard, Wahl, etc. se puede calcular si tanto FUM y la duración del ciclo conocen con un cierto grado de certeza.">
+            >
+            ["id71"] = <
+                text = <"Edad Gestacional">
+                description = <"Edad Gestacional según los resultados de la ecografía">
+            >
+            ["id70"] = <
+                text = <"Fecha Probable de Parto según Ecografía">
+                description = <"Fecha Probable de Parto segun los resultados de la Ecografía">
+            >
+            ["id69"] = <
+                text = <"Descripción">
+                description = <"Descripción narrativa de las complicaciones maternas">
+            >
+            ["id68"] = <
+                text = <"Fecha y Hora de Inicio">
+                description = <"Fecha de inicio de la complicación, según lo evaluado por un médico.">
+                comment = <"Si sólo se tiene una fecha parcial disponible, es aceptable .">
+            >
+            ["id67"] = <
+                text = <"Complicación">
+                description = <"Identificación de la Complicación">
+                comment = <"codigo de la complicación, es deseable el uso de una terminología . Por ejemplo , hemorragia puerperal o pre- eclampsia.">
+            >
+            ["id66"] = <
+                text = <"Complicaciones Maternas">
+                description = <"Los detalles acerca de las complicaciones del embarazo o complicaciones en el parto afectan a la madre">
+            >
+            ["id65"] = <
+                text = <"Descripción">
+                description = <"Naración descriptiva de la complicación">
+            >
+            ["id64"] = <
+                text = <"Fecha y hora de la compliación">
+                description = <"Fecha y hora de la compliación">
+            >
+            ["id63"] = <
+                text = <"Complicación">
+                description = <"Identifica las complicación después del nacimiento">
+                comment = <"Se recomienda el uso de una terminología para codificar la complicación, por ejemplo Hipoglicemia neonatal o hipotermia">
+            >
+            ["id62"] = <
+                text = <"Complicaciones del bebe">
+                description = <"detalles acerca de las complicaciones del bebe al nacer">
+            >
+            ["id61"] = <
+                text = <"Descripción del Bebe">
+                description = <"Descripción del Bebe al nacer">
+                comment = <"por ejemplo, necesito resurección">
+            >
+            ["id60"] = <
+                text = <"Edad Gestacional">
+                description = <"Edad Gestacional del feto o del bebe, evaluada al momento del nacimiento resultado de la evaluación clínica">
+                comment = <"se destina a registrar la gestación estimada sobre la base de los hallazgos clínicos en la exploración del feto / neonato y la evaluación clínica, no la gestación calculada">
+            >
+            ["id59"] = <
+                text = <"Descripción del nacimiento">
+                description = <"Descripción narrativa del nacimiento">
+                comment = <"Por ejemplo , presentación nalgas o el parto vaginal sin complicaciones">
+            >
+            ["at50"] = <
+                text = <"Frente">
+                description = <"Presentación de Frente">
+            >
+            ["at49"] = <
+                text = <"Cara">
+                description = <"Presentacion de Cara">
+            >
+            ["at48"] = <
+                text = <"Nalgas">
+                description = <"Presentación de Nalgas">
+            >
+            ["at47"] = <
+                text = <"Vertical">
+                description = <"Presentacion Vertical">
+            >
+            ["id46"] = <
+                text = <"Presentación">
+                description = <"La presentación fetal es la manera en la que está colocado el bebé para salir por el canal del parto para el alumbramiento">
+                comment = <"El contexto clínico para es únicamente para el registro de la presentación en el nacimiento, no en cualquier otra fase del trabajo">
+            >
+            ["at45"] = <
+                text = <"fórceps bajos">
+                description = <"Parto vaginal asistida por el uso de fórceps bajos">
+            >
+            ["at44"] = <
+                text = <"forceps">
+                description = <"El parto vaginal asistida por el uso de fórceps">
+            >
+            ["at43"] = <
+                text = <"Vacuum">
+                description = <"El parto vaginal asistida por el uso de extracción al vacío (Vacuum)">
+            >
+            ["at42"] = <
+                text = <"Espontánea">
+                description = <"Normal, Parto Vaginal no instrumentado.">
+            >
+            ["id41"] = <
+                text = <"Terminación del Embarazo">
+                description = <"Método por el cual fue recibido el bebé">
+                comment = <"Clasificación establecida para el modo de nacimiento">
+            >
+            ["id40"] = <
+                text = <"Duracion del la segunda fase">
+                description = <"Duración de la segunda fase para el bebé">
+            >
+            ["id39"] = <
+                text = <"Peso al nacer">
+                description = <"Peso del feto / neonato al momento del nacimiento">
+            >
+            ["id38"] = <
+                text = <"Sexo">
+                description = <"Sexo del bebe, determinado a partir de la observación de las caracteristicas fisicas">
+                comment = <"Si es posible codificar con una terminoligía, indeterminado es usado cuando no es posible decir si el sexo es masculino o femenino">
+            >
+            ["id37"] = <
+                text = <"Identificación">
+                description = <"Identificación del recién nacido">
+                comment = <"La identificación podría ser por el nombre del recién nacido o una etiqueta que identifica a cada feto (producto)">
+            >
+            ["at35"] = <
+                text = <"Muerte Neonatal">
+                description = <"El embarazo resultó en el nacimiento del bebé vivo inicialmente, pero seguida por muerte neonatal">
+            >
+            ["at34"] = <
+                text = <"Nacido muerto">
+                description = <"El embarazo dio lugar a nacimiento de un bebé sin signos de vida">
+            >
+            ["at32"] = <
+                text = <"Nacido vivo">
+                description = <"El embarazo dio lugar a nacimiento de un bebé vivo">
+            >
+            ["id31"] = <
+                text = <"Nacimiento del Babe">
+                description = <"se refiere al estado vital del recién nacido al momento del parto">
+            >
+            ["id30"] = <
+                text = <"Fecha y hora de nacimiento">
+                description = <"marca la hora y minutos del nacimiento, asi como el día, mes y año">
+            >
+            ["id29"] = <
+                text = <"Bebe (neonato)">
+                description = <"Información para la identificación del bebe (neonato)">
+                comment = <"Datos utilizados para registrar información sobre el nacimiento del recién nacido.">
+            >
+            ["id23"] = <
+                text = <"Método de aumento">
+                description = <"Método de aumentol trabajo de parto">
+                comment = <"Siempre que sea posible, Se recomienda el uso de una terminología para codificar el Método de aumento del parto .">
+            >
+            ["id17"] = <
+                text = <"Duracion total del trabajo de parto">
+                description = <"Duracion total de todas las fases del trabajo de parto">
+            >
+            ["id16"] = <
+                text = <"Duración de la tercera fase">
+                description = <"Total de la duración de la tercera fase.">
+            >
+            ["id14"] = <
+                text = <"Duración de la Primera Etapa">
+                description = <"Duración total de la Primera Etapa del trabajo de Parto">
+            >
+            ["at11"] = <
+                text = <"Inducido">
+                description = <"Cuando el trabajo de parto se empeza de manera artificial.">
+            >
+            ["at10"] = <
+                text = <"Espontáneo">
+                description = <"Cuando el trabajo de Parto inicia de manera Espontánea sin intervencion o uso de Medicamentos.">
+            >
+            ["id9"] = <
+                text = <"Inicio del trabajo de PArto">
+                description = <"Se refiere al inicio del trabajo de parto, este podria ser Espontáneo o Inducido.">
+            >
+            ["id8"] = <
+                text = <"Numero de fetos o productos">
+                description = <"Número de fetos o productos identificados en el útero">
+            >
+            ["id7"] = <
+                text = <"Fecha Probable de Parto a partir de la Ecografía">
+                description = <"Detalles sobre la fecha estimada de nacimiento basado en el ultrasonido o ecografía.">
+            >
+            ["id6"] = <
+                text = <"Fecha del Ultrasonido o Ecografía">
+                description = <"Fecha de realización del Ultrasonido o Ecografía">
+            >
+            ["id3"] = <
+                text = <"Fecha de Concepción">
+                description = <"fecha real de la concepción">
+                comment = <"Se consignará solo si la fecha real de la concepción se conoce, no puede ser estimada o calculada. Ocurre generalmente en situaciones donde se realiza fecundación asistida, por ejemplo a través de la fecundación in vitro.">
+            >
+            ["id1"] = <
+                text = <"Resumen del Embarazo">
+                description = <"Descripción general o resumen de registros del embarazo, incluyendo el período prenatal , parto, el nacimiento y el período postnatal inmediato">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9007"] = <http://openehr.org/id/124>
+            ["at9008"] = <http://openehr.org/id/129>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at42", "at43", "at133", "at44", "at45", "at99", "at100", "at101", "at102">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at113", "at10", "at11">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at136", "at137">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at121", "at122", "at123", "at124", "at125", "at126">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at114", "at115", "at116">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at32", "at34", "at35">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at47", "at48", "at49", "at50", "at107", "at108", "at134">
+        >
+    >

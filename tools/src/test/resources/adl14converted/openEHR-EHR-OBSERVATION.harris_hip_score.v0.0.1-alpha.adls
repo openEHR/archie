@@ -1,0 +1,207 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=bdf18f37-2613-3083-ae1e-ed4c923bca3e; build_uid=64f58307-dc7b-4496-8ac9-4f3e1d96e359)
+    openEHR-EHR-OBSERVATION.harris_hip_score.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sl"] = <
+            language = <[ISO_639-1::sl]>
+            author = <
+                ["name"] = <"??">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics,UK">
+        ["email"] = <"ian@freshehr.com">
+        ["date"] = <"2014-12-04">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Harris Hip Score. Available from: http://www.orthopaedicscore.com/scorepages/harris_hip_score.html.">
+        ["2"] = <"Harris WH. Traumatic arthritis of the hip after dislocation and acetabular fractures: treatment by mold arthroplasty. An end-result study using a new method of result evaluation. J Bone Joint Surg Am. 1969 Jun;51(4):737-55. PubMed PMID: 5783851.">
+        ["3"] = <"Marchetti P, Binazzi R, Vaccari V, Girolami M, Morici F, Impallomeni C, Commessatti M, Silvello L. Long-term results with cementless Fitek (or Fitmore) cups. J Arthroplasty. 2005 Sep;20(6):730-7. doi: 10.1016/j.arth.2004.11.019. PubMed PMID: 16139709.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"5A9562DC6846FC7B0BF87076F9E819EA">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the result of a Harris hip score assessment.">
+            keywords = <"hip", "joint">
+            use = <"">
+            misuse = <"Should not be used without permission of Journal of Bone & Joint Surgery.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["sl"] = <
+            language = <[ISO_639-1::sl]>
+            purpose = <"*To record the result of a Harris Hip Score assessment.(en)">
+            keywords = <"*hip(en)", "*joint(en)">
+            use = <"*(en)">
+            misuse = <"*Should not be used without permission of Journal of Bone & Joint Surgery.(en)">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Harris hip score
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Harris hip score result
+                                        value matches {
+                                            DV_QUANTITY[id9002] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                magnitude matches {|0.0..100.0|}
+                                                units matches {"1"}
+                                                precision matches {2}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Grading
+                                        value matches {
+                                            DV_CODED_TEXT[id9003] matches {
+                                                defining_code matches {[ac9001]}    -- Grading (synthesised)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id11] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id12] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["ac9001"] = <
+                text = <"Grading (synthesised)">
+                description = <"Grading derived from Harris hip score. (synthesised)">
+            >
+            ["id12"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["at10"] = <
+                text = <"Excellent">
+                description = <"90 to 100.">
+            >
+            ["at9"] = <
+                text = <"Good">
+                description = <"80 to 89.">
+            >
+            ["at8"] = <
+                text = <"Fair">
+                description = <"70 to 79.">
+            >
+            ["at7"] = <
+                text = <"Poor">
+                description = <"Less than 70.">
+            >
+            ["id6"] = <
+                text = <"Grading">
+                description = <"Grading derived from Harris hip score.">
+            >
+            ["id5"] = <
+                text = <"Harris hip score result">
+                description = <"The result of the Harris hip score.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Harris hip score">
+                description = <"The Harris hip score.">
+            >
+        >
+        ["sl"] = <
+            ["at9000"] = <
+                text = <"* Qualified real (en)">
+                description = <"* Qualified real (en)">
+            >
+            ["ac9001"] = <
+                text = <"*Grading(en) (synthesised)">
+                description = <"*Grading derived from Harris hip score. (en) (synthesised)">
+            >
+            ["id12"] = <
+                text = <"*Extension (en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms. (en)">
+                comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents. (en)">
+            >
+            ["at10"] = <
+                text = <"*Excellent(en)">
+                description = <"*90 to 100.(en)">
+            >
+            ["at9"] = <
+                text = <"*Good(en)">
+                description = <"*80 to 89.(en)">
+            >
+            ["at8"] = <
+                text = <"*Fair(en)">
+                description = <"*70 to 79.(en)">
+            >
+            ["at7"] = <
+                text = <"*Poor(en)">
+                description = <"*Less than 70.(en)">
+            >
+            ["id6"] = <
+                text = <"*Grading(en)">
+                description = <"*Grading derived from Harris hip score. (en)">
+            >
+            ["id5"] = <
+                text = <"*Harris hip score result (en)">
+                description = <"*The result of the Harris Hip Score.(en)">
+            >
+            ["id3"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time. (en)">
+            >
+            ["id1"] = <
+                text = <"*Harris hip score (en)">
+                description = <"*The Harris Hip Score.(en)">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/380>
+        >
+    >
+    value_sets = <
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at7", "at8", "at9", "at10">
+        >
+    >

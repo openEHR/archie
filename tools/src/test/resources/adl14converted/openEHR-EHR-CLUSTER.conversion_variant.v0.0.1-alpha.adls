@@ -1,0 +1,96 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=214bb6a6-0c9b-40e8-8afb-7bf47e5a2fa0; build_uid=7030256c-da14-43dd-b45d-6e7029de28ff)
+    openEHR-EHR-CLUSTER.conversion_variant.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Cecilia Mascia">
+        ["organisation"] = <"CRS4, Italy">
+        ["email"] = <"cecilia.mascia@crs4.it">
+        ["date"] = <"2017-02-24">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Florian Kaercher, Charité Berlin, Germany", "Francesca Frexia, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Gideon Giacomelli, Charité Berlin, Germany", "Paolo Uva, CRS4, Italy", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Simon Schumacher, HiGHmed, Germany">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"\"Den Dunnen et al. (2016) HGVS recommendations for the description of sequence variants: 2016 update. Hum.Mutat. 25: 37: 564-569\"">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"75648202E0E1DEC7E4FD8FA01C6A670E">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To describe a conversion variant observed in a sequence according to the HGVS nomenclature.">
+            keywords = <"conversion", "variation", "genetic", "genomic", "variant">
+            use = <"This archetype should be used inside the \"Variant\" SLOT of the \"Genetic variant\" archetype.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Conversion variant
+        items cardinality matches {2..*} matches {
+            ELEMENT[id4] occurrences matches {1} matches {    -- Start converted position
+                value matches {
+                    DV_COUNT[id9000] 
+                }
+            }
+            ELEMENT[id5] occurrences matches {1} matches {    -- End converted position
+                value matches {
+                    DV_COUNT[id9001] 
+                }
+            }
+            ELEMENT[id10] occurrences matches {1} matches {    -- Replacing sequence start position
+                value matches {
+                    DV_COUNT[id9002] 
+                }
+            }
+            ELEMENT[id11] occurrences matches {1} matches {    -- Replacing sequence end position
+                value matches {
+                    DV_COUNT[id9003] 
+                }
+            }
+            allow_archetype CLUSTER[id12] matches {     -- Reference sequence
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id12"] = <
+                text = <"Reference sequence">
+                description = <"The sequence file that has been used as a reference to describe the variant.">
+            >
+            ["id11"] = <
+                text = <"Replacing sequence end position">
+                description = <"The position of the last nucleotide of the replacing sequence.">
+            >
+            ["id10"] = <
+                text = <"Replacing sequence start position">
+                description = <"The position of the first nucleotide of the replacing sequence.">
+            >
+            ["id5"] = <
+                text = <"End converted position">
+                description = <"The position of the last nucleotide of the converted range.">
+            >
+            ["id4"] = <
+                text = <"Start converted position">
+                description = <"The position of the first nucleotide of the converted range.">
+            >
+            ["id1"] = <
+                text = <"Conversion variant">
+                description = <"A sequence change where, compared to a reference sequence, a range of nucleotides are replaced by a sequence from elsewhere in the genome.">
+            >
+        >
+    >

@@ -1,0 +1,114 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated)
+    openEHR-EHR-OBSERVATION.iga_eczema_treat.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Dmitri Wall">
+        ["organisation"] = <"Irish Skin Foundation">
+        ["email"] = <"dmitri.wall@gmail.com">
+        ["date"] = <"2015-02-05">
+    >
+    other_contributors = <"Ian McNicoll, freshEHR Ltd, UK", ...>
+    lifecycle_state = <"AuthorDraft">
+    other_details = <
+        ["current_contact"] = <"Dmitri Wall">
+        ["MD5-CAM-1.0.1"] = <"6075EB7C7B9C1F267D10F6932AA702F7">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a clinical assessment of the severity of atopic dermatitis. This version is being used by the TREAT eczema group.">
+            keywords = <"Atopic Dermatitis", "Dermatology", "Effectiveness outcome parameter", "Severity scale">
+            use = <"A representative area should be chosen as a means to determine a patient's IGA.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Investigators Global Assessment (eczema - TREAT)
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {0..1} matches {    -- Any event
+                        data matches {
+                            ITEM_LIST[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Investigator Global Assessment score
+                                        value matches {
+                                            DV_ORDINAL[id9001] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at6]}],
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at8]}],
+                                                    [{3}, {[at9]}],
+                                                    [{4}, {[at10]}],
+                                                    [{5}, {[at11]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Investigator Global Assessment score (synthesised)">
+                description = <"The total IGA score. (synthesised)">
+            >
+            ["at11"] = <
+                text = <"Very severe disease">
+                description = <"Severe erythema and severe papulation/infiltration with oozing/crusting.">
+            >
+            ["at10"] = <
+                text = <"Severe disease">
+                description = <"Severe erythema and severe papulation/infiltration.">
+            >
+            ["at9"] = <
+                text = <"Moderate disease">
+                description = <"Moderate erythema and moderate papulation/infiltration.">
+            >
+            ["at8"] = <
+                text = <"Mild disease">
+                description = <"Mild erythema and mild papulation/infiltration.">
+            >
+            ["at7"] = <
+                text = <"Almost clear">
+                description = <"Just perceptible erythema and just perceptible papulation/infiltration.">
+            >
+            ["at6"] = <
+                text = <"Clear">
+                description = <"No inflammatory signs of atopic dermatitis.">
+            >
+            ["id5"] = <
+                text = <"Investigator Global Assessment score">
+                description = <"The total IGA score.">
+                comment = <"A representative area should be utilised as a means to generate this score.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Any event.">
+            >
+            ["id1"] = <
+                text = <"Investigators Global Assessment (eczema - TREAT)">
+                description = <"The Investigators Global Assessment (IGA) is a 6 point scale.  It is a severity measure intended to provide a clinically meaningful snapshot of atopic dermatitis severity that can be understood by both patients and physicians.  This version is being used by the TREAT eczema group.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at6", "at7", "at8", "at9", "at10", "at11">
+        >
+    >

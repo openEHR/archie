@@ -1,0 +1,354 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=4dd2e292-ec61-4c5e-a487-223cf4c07fbf; build_uid=f18cabdd-799d-4544-9440-a0dcb9e6839b)
+    openEHR-EHR-OBSERVATION.cha2ds2vasc_score.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Dennis Forslund">
+                ["organisation"] = <"Cambio Healthcare Systems">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Rong Chen">
+        ["organisation"] = <"Cambio Healthcare Systems">
+        ["email"] = <"models@cambiocds.com">
+        ["date"] = <"2013-03-08">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Dr Carlos Valladares", "Konstantinos Kalliamvakos, Cambio Healthcare Systems", "Heather Leslie, Atomica Informatics, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"European Heart Rhythm Association.; European Association for Cardio-Thoracic Surgery., Camm AJ, Kirchhof P, Lip GY, Schotten U, Savelieva I, Ernst S, Van Gelder IC, Al-Attar N, Hindricks G, Prendergast B, Heidbuchel H, Alfieri O, Angelini A, Atar D, Colonna P, De Caterina R, De Sutter J, Goette A, Gorenek B, Heldal M, Hohloser SH, Kolh P, Le Heuzey JY, Ponikowski P, Rutten FH. Guidelines for the management of atrial fibrillation: the Task Force for the Management of Atrial Fibrillation of the European Society of Cardiology (ESC). Eur Heart J. 2010 Oct;31(19):2369-429. doi: 10.1093/eurheartj/ehq278. Epub 2010 Aug 29. Erratum in: Eur Heart J. 2011 May;32(9):1172. PubMed PMID: 20802247">
+        ["2"] = <"Lip GY, Frison L, Halperin JL, Lane DA. Identifying patients at high risk for stroke despite anticoagulation: a comparison of contemporary stroke risk stratification schemes in an anticoagulated atrial fibrillation cohort. Stroke. 2010 Dec;41(12):2731-8. doi: 10.1161/STROKEAHA.110.590257. Epub 2010 Oct 21. PubMed PMID: 20966417.">
+        ["3"] = <"Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach: the euro heart survey on atrial fibrillation. Chest. 2010 Feb;137(2):263-72. doi: 10.1378/chest.09-1584. Epub 2009 Sep 17. PubMed PMID: 19762550.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"7B1BE366656DE3E64665BF9B3C24A36A">
+    >
+    details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Att registrera poäng genererad i enlighet med CHA2DS2VASc hos patient med förmaksflimmer.">
+            keywords = <"CHA2DS2-VASc", "stroke", "diabetes", "hypertension", "CHF", "hjärtsvikt", "kön", "ålder", "hypertoni", "förmaksflimmer">
+            use = <"Använd för att uppskatta strokerisk hos patienter med förmaksflimmer. ">
+            misuse = <"Ej avsedd för patienter utan diagnosticerat förmaksflimmer.">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an individual's CHA2DS2-VASc score parameters and total score.">
+            keywords = <"CHA2DS2-VASc", "atrial fibrillation", "stroke", "diabetes", "hypertension", "congestive heart failure", "CHF", "vascular disease", "age", "gender">
+            use = <"Use for stroke risk stratification in patients with atrial fibrillation.">
+            misuse = <"Do not use in patients with no diagnosis of atrial fibrillation.">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- CHA2DS2-VASc score
+        data matches {
+            HISTORY[id3] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id4] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id2] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id36] occurrences matches {0..1} matches {    -- Age
+                                        value matches {
+                                            DV_ORDINAL[id9003] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at37]}],
+                                                    [{1}, {[at38]}],
+                                                    [{2}, {[at39]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id43] occurrences matches {0..1} matches {    -- Sex
+                                        value matches {
+                                            DV_ORDINAL[id9004] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at44]}],
+                                                    [{1}, {[at45]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id27] occurrences matches {0..1} matches {    -- Congestive heart failure
+                                        value matches {
+                                            DV_ORDINAL[id9005] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at28]}],
+                                                    [{1}, {[at29]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id30] occurrences matches {0..1} matches {    -- Hypertension
+                                        value matches {
+                                            DV_ORDINAL[id9006] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at28]}],
+                                                    [{1}, {[at29]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id33] occurrences matches {0..1} matches {    -- Diabetes
+                                        value matches {
+                                            DV_ORDINAL[id9007] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at28]}],
+                                                    [{1}, {[at29]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id40] occurrences matches {0..1} matches {    -- Stroke/TIA/thrombo-embolism
+                                        value matches {
+                                            DV_ORDINAL[id9008] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at28]}],
+                                                    [{2}, {[at29]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id47] occurrences matches {0..1} matches {    -- Vascular disease
+                                        value matches {
+                                            DV_ORDINAL[id9009] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at28]}],
+                                                    [{1}, {[at29]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id100] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_COUNT[id9010] matches {
+                                                magnitude matches {|0..9|}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id101] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype ITEM[id102] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sv"] = <
+            ["ac9000"] = <
+                text = <"*Age(en) (synthesised)">
+                description = <"*The age category of the individual.(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"*Sex(en) (synthesised)">
+                description = <"*The sex of the individual.(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Congestive heart failure(en) (synthesised)">
+                description = <"*History of congestive cardiac failure.(en) (synthesised)">
+            >
+            ["id102"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["id100"] = <
+                text = <"*Total score(en)">
+                description = <"*Sum of the individual scores assigned for each of the contributing variables.(en)">
+            >
+            ["id47"] = <
+                text = <"*Vascular disease(en)">
+                description = <"*History of vascular disease.(en)">
+            >
+            ["at45"] = <
+                text = <"Kvinnligt kön">
+                description = <"*">
+            >
+            ["at44"] = <
+                text = <"Manligt kön">
+                description = <"*">
+            >
+            ["id43"] = <
+                text = <"*Sex(en)">
+                description = <"*The sex of the individual.(en)">
+            >
+            ["id40"] = <
+                text = <"*Stroke/TIA/thrombo-embolism(en)">
+                description = <"*History of stroke, TIA or thrombo-embolism.(en)">
+            >
+            ["at39"] = <
+                text = <"*≥75(en)">
+                description = <"**(en)">
+            >
+            ["at38"] = <
+                text = <"*65-74(en)">
+                description = <"**(en)">
+            >
+            ["at37"] = <
+                text = <"*<65(en)">
+                description = <"**(en)">
+            >
+            ["id36"] = <
+                text = <"*Age(en)">
+                description = <"*The age category of the individual.(en)">
+            >
+            ["id33"] = <
+                text = <"*Diabetes(en)">
+                description = <"*History of diabetes mellitus.(en)">
+            >
+            ["id30"] = <
+                text = <"*Hypertension(en)">
+                description = <"*History of hypertension.(en)">
+            >
+            ["at29"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["id27"] = <
+                text = <"*Congestive heart failure(en)">
+                description = <"*History of congestive cardiac failure.(en)">
+            >
+            ["id4"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id1"] = <
+                text = <"*CHA2DS2-VASc score(en)">
+                description = <"*Risk stratification tool for stroke defined by the European Society of Cardiology (ESC) guidelines for management of atrial fibrillation.(en)">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Age (synthesised)">
+                description = <"The age category of the individual. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Sex (synthesised)">
+                description = <"The sex of the individual. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Congestive heart failure (synthesised)">
+                description = <"History of congestive cardiac failure. (synthesised)">
+            >
+            ["id102"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id100"] = <
+                text = <"Total score">
+                description = <"Sum of the individual scores assigned for each of the contributing variables.">
+            >
+            ["id47"] = <
+                text = <"Vascular disease">
+                description = <"History of vascular disease.">
+            >
+            ["at45"] = <
+                text = <"Female">
+                description = <"*">
+            >
+            ["at44"] = <
+                text = <"Male">
+                description = <"*">
+            >
+            ["id43"] = <
+                text = <"Sex">
+                description = <"The sex of the individual.">
+            >
+            ["id40"] = <
+                text = <"Stroke/TIA/thrombo-embolism">
+                description = <"History of stroke, TIA or thrombo-embolism.">
+            >
+            ["at39"] = <
+                text = <"≥75">
+                description = <"*">
+            >
+            ["at38"] = <
+                text = <"65-74">
+                description = <"*">
+            >
+            ["at37"] = <
+                text = <"<65">
+                description = <"*">
+            >
+            ["id36"] = <
+                text = <"Age">
+                description = <"The age category of the individual.">
+            >
+            ["id33"] = <
+                text = <"Diabetes">
+                description = <"History of diabetes mellitus.">
+            >
+            ["id30"] = <
+                text = <"Hypertension">
+                description = <"History of hypertension.">
+            >
+            ["at29"] = <
+                text = <"Present">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["id27"] = <
+                text = <"Congestive heart failure">
+                description = <"History of congestive cardiac failure.">
+            >
+            ["id4"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"CHA2DS2-VASc score">
+                description = <"Risk stratification tool for stroke defined by the European Society of Cardiology (ESC) guidelines for management of atrial fibrillation.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at28", "at29">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at44", "at45">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at37", "at38", "at39">
+        >
+    >

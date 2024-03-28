@@ -1,0 +1,416 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=f19f4a02-64c0-48be-88ef-b1cfc83d7dce; build_uid=5bc22ed8-f478-43c2-b857-975962ccfe0f)
+    openEHR-EHR-CLUSTER.exam_sputum.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Nyree Taylor">
+        ["organisation"] = <"Ocean Health Systems">
+        ["email"] = <"nyree.taylor@oceanhealthsystems.com">
+        ["date"] = <"2017-05-01">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"CKCM Team, Alberta Health Services, Canada", "Heather Leslie, Ocean Health Systems, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Derived from Examination of body fluid, Draft archetype [Internet]. openEHR Foundation, openEHR Clinical Knowledge Manager [cited: 2017-05-03]. Available from: http://www.openehr.org/ckm/#showArchetype_1013.1.2255.">
+    >
+    other_details = <
+        ["current_contact"] = <"Nyree Taylor, Ocean Health Systems, Australia<nyree.taylor@oceanhealthsystems.com>">
+        ["MD5-CAM-1.0.1"] = <"16B6D98DC75891FAA410176C190C3803">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the findings observed during the examination of sputum. ">
+            keywords = <"sputum", "phlegm">
+            use = <"Use to record a narrative description, structured details and clinical interpretation about the findings observed during examination of sputum, which could occur during routine clinical observations or as part of a physical examination. 
+    
+    This archetype has been designed to record the examination findings of sputum being observed.
+    It is assumed that the option to record whether sputum is present/absent or if a cough is productive/unproductive will be captured in the relevant parent archetype.
+    
+    This archetype has been designed to be used within:
+    - the 'Examination findings' SLOT in the OBSERVATION.exam and related CLUSTER archetypes; 
+    - the OBSERVATION.fluid_output to describe the sputum being measured; or
+    - the OBSERVATION.laboratory_test to desctibe physical properties about a sputum sample/specimen. 
+    
+    It can also be used within other OBSERVATION or CLUSTER archetypes, where clinically appropriate.">
+            misuse = <"Not to be used for recording measurements of sputum volume - use OBSERVATION.fluid_output for this purpose.
+    
+    Not to be used to record details about saliva.
+     
+    ">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Examination of sputum 
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Clinical description
+                value matches {
+                    DV_TEXT[id9008] 
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Type
+                value matches {
+                    DV_CODED_TEXT[id9009] matches {
+                        defining_code matches {[ac9000]}    -- Type (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id9] occurrences matches {0..1} matches {    -- Colour
+                value matches {
+                    DV_CODED_TEXT[id9010] matches {
+                        defining_code matches {[ac9001]}    -- Colour (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id23] occurrences matches {0..1} matches {    -- Consistency
+                value matches {
+                    DV_CODED_TEXT[id9011] matches {
+                        defining_code matches {[ac9002]}    -- Consistency (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id26] occurrences matches {0..1} matches {    -- Odour
+                value matches {
+                    DV_TEXT[id9012] 
+                }
+            }
+            ELEMENT[id27] occurrences matches {0..1} matches {    -- Blood presence
+                value matches {
+                    DV_CODED_TEXT[id9013] matches {
+                        defining_code matches {[ac9003]}    -- Blood presence (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id44] occurrences matches {0..1} matches {    -- Age of blood
+                value matches {
+                    DV_CODED_TEXT[id9014] matches {
+                        defining_code matches {[ac9004]}    -- Age of blood (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id32] occurrences matches {0..1} matches {    -- Blood clot presence
+                value matches {
+                    DV_CODED_TEXT[id9015] matches {
+                        defining_code matches {[ac9005]}    -- Blood clot presence (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id35] occurrences matches {0..1} matches {    -- Blood description
+                value matches {
+                    DV_TEXT[id9016] 
+                }
+            }
+            CLUSTER[id48] matches {    -- Other findings
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id49] occurrences matches {0..1} matches {    -- Finding
+                        value matches {
+                            DV_CODED_TEXT[id9017] matches {
+                                defining_code matches {[ac9006]}    -- Finding (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id20] occurrences matches {0..1} matches {    -- Presence
+                        value matches {
+                            DV_CODED_TEXT[id9018] matches {
+                                defining_code matches {[ac9007]}    -- Presence (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id36] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            DV_TEXT[id9019] 
+                        }
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id37] matches {     -- Additional findings
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            allow_archetype CLUSTER[id38] matches {     -- Mulitmedia representation
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id39] matches {    -- Clinical interpretation
+                value matches {
+                    DV_TEXT[id9020] 
+                }
+            }
+            ELEMENT[id40] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    DV_TEXT[id9021] 
+                }
+            }
+            allow_archetype CLUSTER[id41] matches {     -- Examination not done
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.exclusion_exam(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Type (synthesised)">
+                description = <"Type of sputum, categorised by the major components. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Colour (synthesised)">
+                description = <"The overall colour of the sputum. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Consistency (synthesised)">
+                description = <"Viscosity of the sputum. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Blood presence (synthesised)">
+                description = <"Sputum contains visible blood. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Age of blood (synthesised)">
+                description = <"Indication of the freshness of the blood present. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Blood clot presence (synthesised)">
+                description = <"Sputum contains coagulated blood. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Finding (synthesised)">
+                description = <"Identified finding in the sputum. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Presence (synthesised)">
+                description = <"The identified finding visible in the sputum. (synthesised)">
+            >
+            ["at53"] = <
+                text = <"Froth">
+                description = <"Small air bubbles.">
+            >
+            ["at52"] = <
+                text = <"Foreign body">
+                description = <"Abnormal, non-physiological object.">
+            >
+            ["at51"] = <
+                text = <"Mucus plug">
+                description = <"Collection of abnormally thick mucus.">
+            >
+            ["id49"] = <
+                text = <"Finding">
+                description = <"Identified finding in the sputum.">
+            >
+            ["id48"] = <
+                text = <"Other findings">
+                description = <"Other identified findings in the sputum.">
+            >
+            ["at46"] = <
+                text = <"Old blood">
+                description = <"The sputum contains dark red to black blood.">
+            >
+            ["at45"] = <
+                text = <"Fresh blood">
+                description = <"The sputum contains bright red blood.">
+            >
+            ["id44"] = <
+                text = <"Age of blood">
+                description = <"Indication of the freshness of the blood present.">
+            >
+            ["at43"] = <
+                text = <"Uniform">
+                description = <"The sputum has an overall pink/red appearance due to blood.">
+            >
+            ["at42"] = <
+                text = <"Patchy">
+                description = <"The sputum contains irregular areas of blood.">
+            >
+            ["id41"] = <
+                text = <"Examination not done">
+                description = <"Details to explicitly record that this examination was not performed.">
+            >
+            ["id40"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the examination of the sputum, not captured in other fields.">
+            >
+            ["id39"] = <
+                text = <"Clinical interpretation">
+                description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the examination findings.">
+            >
+            ["id38"] = <
+                text = <"Mulitmedia representation">
+                description = <"Digital image, video or diagram representing the examination findings.">
+            >
+            ["id37"] = <
+                text = <"Additional findings">
+                description = <"Additional structured details about the examination of the sputum.">
+            >
+            ["id36"] = <
+                text = <"Description">
+                description = <"Narrative description about the identified finding.">
+            >
+            ["id35"] = <
+                text = <"Blood description">
+                description = <"Narrative description of visible blood.">
+            >
+            ["at34"] = <
+                text = <"Absent">
+                description = <"The sputum does not contain blood clots.">
+            >
+            ["at33"] = <
+                text = <"Present">
+                description = <"The sputum contains blood clots.">
+            >
+            ["id32"] = <
+                text = <"Blood clot presence">
+                description = <"Sputum contains coagulated blood.">
+            >
+            ["at29"] = <
+                text = <"Blood streaked">
+                description = <"The sputum contains fine streaks of blood.">
+            >
+            ["at28"] = <
+                text = <"None">
+                description = <"The sputum contains no visible blood.">
+            >
+            ["id27"] = <
+                text = <"Blood presence">
+                description = <"Sputum contains visible blood.">
+            >
+            ["id26"] = <
+                text = <"Odour">
+                description = <"Narrative description of the smell.">
+                comment = <"The intent of this data element is to record either a narrative description of the odour, or to code with a value set where appropriate in a template.">
+            >
+            ["at25"] = <
+                text = <"Thick">
+                description = <"Relatively firm or viscous; not flowing freely.">
+            >
+            ["at24"] = <
+                text = <"Thin">
+                description = <"Low viscosity; flowing relatively freely.">
+            >
+            ["id23"] = <
+                text = <"Consistency">
+                description = <"Viscosity of the sputum.">
+            >
+            ["at22"] = <
+                text = <"Absent">
+                description = <"The identified finding is not observed in the sputum.">
+            >
+            ["at21"] = <
+                text = <"Present">
+                description = <"The identified finding is observed in the sputum.">
+            >
+            ["id20"] = <
+                text = <"Presence">
+                description = <"The identified finding visible in the sputum.">
+            >
+            ["at19"] = <
+                text = <"Black">
+                description = <"Shade between dark grey and jet black.">
+            >
+            ["at17"] = <
+                text = <"Pink">
+                description = <"Shade between pale pink and watermelon.">
+            >
+            ["at16"] = <
+                text = <"Brown">
+                description = <"Shade between light tan and chocolate.">
+            >
+            ["at15"] = <
+                text = <"Rust">
+                description = <"Shade between red and brown.">
+            >
+            ["at14"] = <
+                text = <"Green">
+                description = <"Shade between pale honeydew and olive.">
+            >
+            ["at13"] = <
+                text = <"Yellow">
+                description = <"Shade between cream and mustard.">
+            >
+            ["at12"] = <
+                text = <"Grey">
+                description = <"Shade between white and charcoal, like ash.">
+            >
+            ["at11"] = <
+                text = <"White">
+                description = <"Pale or off white.">
+            >
+            ["at10"] = <
+                text = <"Clear">
+                description = <"Appears transparent.">
+            >
+            ["id9"] = <
+                text = <"Colour">
+                description = <"The overall colour of the sputum.">
+            >
+            ["at7"] = <
+                text = <"Purulent">
+                description = <"The sputum consists mostly of pus.">
+            >
+            ["at6"] = <
+                text = <"Mucopurulent">
+                description = <"The sputum consists of both mucus and pus.">
+            >
+            ["at5"] = <
+                text = <"Mucoid">
+                description = <"The sputum consists mostly of mucus.">
+            >
+            ["id4"] = <
+                text = <"Type">
+                description = <"Type of sputum, categorised by the major components.">
+            >
+            ["id3"] = <
+                text = <"Clinical description">
+                description = <"Narrative description about the sputum.">
+            >
+            ["id1"] = <
+                text = <"Examination of sputum ">
+                description = <"Findings observed during the examination of sputum. ">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at21", "at22">
+        >
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at24", "at25">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at10", "at11", "at12", "at13", "at14", "at15", "at16", "at17", "at19">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at5", "at6", "at7">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at51", "at52", "at53">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at33", "at34">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at45", "at46">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at28", "at29", "at42", "at43">
+        >
+    >

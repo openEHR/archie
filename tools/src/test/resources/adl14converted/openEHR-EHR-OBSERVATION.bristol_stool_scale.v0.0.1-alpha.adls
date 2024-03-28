@@ -1,0 +1,240 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=8ef8fc21-f983-3c40-87cb-c7021ee9831c; build_uid=18de00ef-3249-40dd-a3e1-4d0fde054bab)
+    openEHR-EHR-OBSERVATION.bristol_stool_scale.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sl"] = <
+            language = <[ISO_639-1::sl]>
+            author = <
+                ["name"] = <"?">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics, UK">
+        ["email"] = <"ian.mcnicoll@freshEHR.com">
+        ["date"] = <"2013-06-02">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"http://en.wikipedia.org/wiki/Bristol_stool_scale">
+        ["2"] = <"Lewis SJ, Heaton KW (1997). \"Stool form scale as a useful guide to intestinal transit time\". Scand. J. Gastroenterol. 32 (9): 920–4.">
+    >
+    other_details = <
+        ["current_contact"] = <"Ian McNicoll, freshEHR Clinical Informatics, ian.mcnicoll@freshEHR.com">
+        ["MD5-CAM-1.0.1"] = <"184D6EEBC8767AA9C99FDC014D412196">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a classification of characteristics of faeces after defaecation, according to the Bristol Stool Scale/Score, sometimes termed the 'Meyers' score.">
+            keywords = <"stool", "faeces", "Bristol", "Meyers">
+            use = <"To record a classification of characteristics of faeces according to the Bristol Stool Scale/Score.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["sl"] = <
+            language = <[ISO_639-1::sl]>
+            purpose = <"*To record a classification of characteristics of faeces after defaecation, according to the Bristol Stool Scale/Score, sometimes termed the 'Meyers' score.(en)">
+            keywords = <"*stool(en)", "*faeces(en)", "*Bristol(en)", "*Meyers(en)">
+            use = <"*To record a classification of characteristics of faeces according to the Bristol Stool Scale/Score.(en)">
+            misuse = <"*(en)">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Bristol stool scale
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[id3] matches {    -- Point-in-time
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Bristol stool scale
+                                        value matches {
+                                            DV_ORDINAL[id9001] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at8]}],
+                                                    [{3}, {[at9]}],
+                                                    [{4}, {[at10]}],
+                                                    [{5}, {[at11]}],
+                                                    [{6}, {[at12]}],
+                                                    [{7}, {[at13]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9002] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id14] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9003] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id16] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id17] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Bristol stool scale (synthesised)">
+                description = <"A score to assess the characteristics of faeces after defaecation. (synthesised)">
+            >
+            ["id17"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id15"] = <
+                text = <"Confounding factors">
+                description = <"Record any issues or factors that may impact on the stool scale.">
+            >
+            ["at13"] = <
+                text = <"Watery, no solid pieces. Entirely liquid">
+                description = <"Stool is watery, no solid pieces. Entirely liquid.">
+            >
+            ["at12"] = <
+                text = <"Fluffy pieces with ragged edges, a mushy stool">
+                description = <"Stool consists of fluffy pieces with ragged edges, a mushy stool.">
+            >
+            ["at11"] = <
+                text = <"Soft blobs with clear cut edges (passed easily)">
+                description = <"Stool consists of soft blobs with clear cut edges (passed easily).">
+            >
+            ["at10"] = <
+                text = <"Like a sausage or snake, smooth and soft">
+                description = <"Stool is like a sausage or snake, smooth and soft.">
+            >
+            ["at9"] = <
+                text = <"Like a sausage but with cracks on its surface">
+                description = <"Stool is like a sausage but with cracks on its surface.">
+            >
+            ["at8"] = <
+                text = <"Sausage-shaped, but lumpy">
+                description = <"Stool is sausage-shaped, but lumpy.">
+            >
+            ["at7"] = <
+                text = <"Separate hard lumps, like nuts (hard to pass)">
+                description = <"Stool consists of separate hard lumps, like nuts (hard to pass).">
+            >
+            ["id6"] = <
+                text = <"Bristol stool scale">
+                description = <"A score to assess the characteristics of faeces after defaecation.">
+            >
+            ["id5"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the stool scale, not captured in other fields.">
+            >
+            ["id3"] = <
+                text = <"Point-in-time">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Bristol stool scale">
+                description = <"Classification of faeces characteristics according to the Bristol Stool Scale/Score.">
+            >
+        >
+        ["sl"] = <
+            ["ac9000"] = <
+                text = <"*Bristol stool scale (en) (synthesised)">
+                description = <"*A score to assess the characteristics of faeces after defaecation.(en) (synthesised)">
+            >
+            ["id17"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["id15"] = <
+                text = <"*Confounding factors(en)">
+                description = <"*Record any issues or factors that may impact on the stool scale. (en)">
+            >
+            ["at13"] = <
+                text = <"I - Tekoče/Diareja">
+                description = <"*Stool is watery, no solid pieces. Entirely liquid.(en)">
+            >
+            ["at12"] = <
+                text = <"E - Kašasto">
+                description = <"*Stool consists of fluffy pieces with ragged edges, a mushy stool.(en)">
+            >
+            ["at11"] = <
+                text = <"Penasto">
+                description = <"*Stool consists of soft blobs with clear cut edges (passed easily).(en)">
+            >
+            ["at10"] = <
+                text = <"S - Sluzasto">
+                description = <"*Stool is like a sausage or snake, smooth and soft.(en)">
+            >
+            ["at9"] = <
+                text = <"O - Obstipacija">
+                description = <"*Stool is like a sausage but with cracks on its surface.(en)">
+            >
+            ["at8"] = <
+                text = <"Grudasto">
+                description = <"*Stool is sausage-shaped, but lumpy.(en)">
+            >
+            ["at7"] = <
+                text = <"A - Normalno/Formirano">
+                description = <"*Stool consists of separate hard lumps, like nuts (hard to pass).(en)">
+            >
+            ["id6"] = <
+                text = <"*Bristol stool scale (en)">
+                description = <"*A score to assess the characteristics of faeces after defaecation.(en)">
+            >
+            ["id5"] = <
+                text = <"*Comment(en)">
+                description = <"*Additional narrative about the stool scale, not captured in other fields. (en)">
+            >
+            ["id3"] = <
+                text = <"*Point-in-time(en)">
+                description = <"*Default, unspecified point in time event which may be explicitly defined in a template or at run-time. (en)">
+            >
+            ["id1"] = <
+                text = <"Lestvica Bristol">
+                description = <"*Classification of faeces characteristics according to the Bristol Stool Score(en)">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at7", "at8", "at9", "at10", "at11", "at12", "at13">
+        >
+    >

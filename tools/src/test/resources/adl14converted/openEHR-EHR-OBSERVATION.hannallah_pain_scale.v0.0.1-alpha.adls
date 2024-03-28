@@ -1,0 +1,446 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=ee69ed3c-ec37-481e-8a5f-c0fe5255350d; build_uid=4823aaf9-986e-4680-9fca-e217d3a119e4)
+    openEHR-EHR-OBSERVATION.hannallah_pain_scale.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            author = <
+                ["name"] = <"Alan D. March">
+                ["organisation"] = <"Hospital Universitario Austral, Pilar, Buenos Aires, Argentina">
+                ["email"] = <"alandmarch@gmail.com">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Alan D. March">
+        ["organisation"] = <"Hospital Universitario Austral, Pilar, Buenos Aires, Argentina">
+        ["email"] = <"alandmarch@gmail.com">
+        ["date"] = <"2016-07-21">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Hannallah R, Broadman L, et al. Comparison of caudal and ilioinguinal/iliohypogastric nerve blocks for control of post-orchiopexy pain in pediatric ambulatory surgery. Anesthesiol. 1987; 66: 832-834.">
+        ["2"] = <"Broadman LM, Rice LJ, Hannallah RS. Comparison of physiological and a visual analogue pain scale in children. Canadian J Anaesthes. 1988; 35 (Supplement): S137-S138.">
+        ["3"] = <"Norden J, Hanallah R, et al. Reliability of an objective pain scale in children. J Pain and Symptom Management. 1991; 6: 196.">
+    >
+    other_details = <
+        ["current_contact"] = <"Alan D. March <alandmarch@gmail.com>">
+        ["MD5-CAM-1.0.1"] = <"B712FCDDBE36527346D1261C824CFB2F">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"A numerical scale for monitoring pain in children after surgery. Also used for monitoring pain in children outside postoperative setting.">
+            keywords = <"pain", "score", "blood pressure", "crying", "movements", "agitation", "Hannallah">
+            use = <"To be user only in patients age 8 months to 13 years.">
+            misuse = <"Not to be used for patients outside the intended age range.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            purpose = <"Escala numérica para el monitoreo del dolor postoperatorio en niños. Tambén se la utiliza para el monitoreo del dolor en niños fuera del postoperatorio.">
+            keywords = <"dolor", "escala", "tensión arterial", "presión arterial", "llanto", "movimientos", "agitación", "excitación", "Hannallah">
+            use = <"Solo para ser utilizado en pacientes de edades entre 8 meses y 13 años.
+    
+    Para la evaluación de la tensión arterial sistólica se debe utilizar el promedio de los tres últimos registros.">
+            misuse = <"No se debe utilizar for fuera de los rangos etarios definidos.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Hannallah Objective Pain Scale (OPS)
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Systolic blood pressure
+                                        value matches {
+                                            DV_ORDINAL[id9005] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at6]}],
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at8]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Crying
+                                        value matches {
+                                            DV_ORDINAL[id9006] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}],
+                                                    [{2}, {[at12]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Movements
+                                        value matches {
+                                            DV_ORDINAL[id9007] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at14]}],
+                                                    [{1}, {[at15]}],
+                                                    [{2}, {[at16]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Agitation
+                                        value matches {
+                                            DV_ORDINAL[id9008] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at18]}],
+                                                    [{1}, {[at19]}],
+                                                    [{2}, {[at20]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id21] occurrences matches {0..1} matches {    -- Complaints of pain
+                                        value matches {
+                                            DV_ORDINAL[id9009] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at22]}],
+                                                    [{1}, {[at23]}],
+                                                    [{2}, {[at24]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id25] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_COUNT[id9010] matches {
+                                                magnitude matches {|0..10|}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id28] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9011] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id26] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id27] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9012] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id29] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id30] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["es-ar"] = <
+            ["ac9000"] = <
+                text = <"*Systolic blood pressure(en) (synthesised)">
+                description = <"*Changes in systolic blood pressure.(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Llanto (synthesised)">
+                description = <"Presencia e intensidad del llanto. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Movimientos (synthesised)">
+                description = <"Movimientos del paciente. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Agitado (synthesised)">
+                description = <"Presencia e intensidad del estado de agitación. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"*Complaints of pain(en) (synthesised)">
+                description = <"*Presence and degree of pain.(en) (synthesised)">
+            >
+            ["id30"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["id28"] = <
+                text = <"Comentario">
+                description = <"Cualquier inforamción no capturada en las variables estructuradas pero de importancia para la adecuada interpretación del puntaje.">
+            >
+            ["id27"] = <
+                text = <"Factores de confusión">
+                description = <"Factores que pueden interferir con la interpretación de un parametro de la medición.">
+            >
+            ["id25"] = <
+                text = <"*Total score(en)">
+                description = <"*Total score.(en)">
+            >
+            ["at24"] = <
+                text = <"Localiza dolor">
+                description = <"Paciente localiza dolor.">
+            >
+            ["at23"] = <
+                text = <"No localiza dolor">
+                description = <"Paciente no localiza dolor.">
+            >
+            ["at22"] = <
+                text = <"Dormido, o no expresa dolor">
+                description = <"Paciente dormido, o no expresa dolor.">
+            >
+            ["id21"] = <
+                text = <"*Complaints of pain(en)">
+                description = <"*Presence and degree of pain.(en)">
+            >
+            ["at20"] = <
+                text = <"No puede ser calmado (histérico/a)">
+                description = <"Paciente no puede ser calmado (histérico/a).">
+            >
+            ["at19"] = <
+                text = <"Puede ser calmado para disminuir la agitación (leve)">
+                description = <"Paciente puede ser calmado para disminuir la agitación (leve).">
+            >
+            ["at18"] = <
+                text = <"Dormido o en calma">
+                description = <"Paciente dormido o en calma.">
+            >
+            ["id17"] = <
+                text = <"Agitado">
+                description = <"Presencia e intensidad del estado de agitación.">
+            >
+            ["at16"] = <
+                text = <"Agresivo (movimientos desenfrenados) o en estado de rigidez">
+                description = <"Paciente agresivo (movimientos desenfrenados) o en estado de rigidez">
+            >
+            ["at15"] = <
+                text = <"*Restless, moving about in bed constantly(en)">
+                description = <"*Patient is restless, moving about in bed constantly.(en)">
+            >
+            ["at14"] = <
+                text = <"Sin movimientos, relajado/a">
+                description = <"Paciente sin movimientos, relajado/a.">
+            >
+            ["id13"] = <
+                text = <"Movimientos">
+                description = <"Movimientos del paciente.">
+            >
+            ["at12"] = <
+                text = <"*Does not respond to nurturing(en)">
+                description = <"*Patient does not respond to nurturing.(en)">
+            >
+            ["at11"] = <
+                text = <"Llora pero responde a los cuidados (afectuosos) apropiados a la edad">
+                description = <"Paciente llora pero responde a los cuidados (afectuosos) apropiados a la edad.">
+            >
+            ["at10"] = <
+                text = <"Sin llanto">
+                description = <"Paciente sin llanto.">
+            >
+            ["id9"] = <
+                text = <"Llanto">
+                description = <"Presencia e intensidad del llanto.">
+            >
+            ["at8"] = <
+                text = <"*Increase > 30% of preoperative blood pressure(en)">
+                description = <"*Increase of preoperative blood pressure above 30%.(en)">
+            >
+            ["at7"] = <
+                text = <"*Increase 20-30% of preoperative blood pressure(en)">
+                description = <"*Increase of preoperative blood pressure between 20 and 30%.(en)">
+            >
+            ["at6"] = <
+                text = <"*Increase < 20% of preoperative blood pressure(en)">
+                description = <"*Increase of preoperative blood pressure below 20%.(en)">
+            >
+            ["id5"] = <
+                text = <"*Systolic blood pressure(en)">
+                description = <"*Changes in systolic blood pressure.(en)">
+                comment = <"*Use the average of the 3 previous measurements to determine the value for this parameter.(en)">
+            >
+            ["id3"] = <
+                text = <"*Any event(en)">
+                description = <"*Specified point in time which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id1"] = <
+                text = <"Escala Objetiva del Dolor de Hannallah">
+                description = <"Escala numérica para el monitoreo del dolor en el postoperatorio de niños.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Systolic blood pressure (synthesised)">
+                description = <"Changes in systolic blood pressure. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Crying (synthesised)">
+                description = <"Presence and degree of crying. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Movements (synthesised)">
+                description = <"Patient's movements. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Agitation (synthesised)">
+                description = <"Presence and degree of agitation. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Complaints of pain (synthesised)">
+                description = <"Presence and degree of pain. (synthesised)">
+            >
+            ["id30"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id28"] = <
+                text = <"Comment">
+                description = <"Any information not captured in the structured variables but important for adequate interpretation of the score.">
+            >
+            ["id27"] = <
+                text = <"Confounding factors">
+                description = <"Factors that may interfere with interpretation of the measurement.">
+            >
+            ["id25"] = <
+                text = <"Total score">
+                description = <"Total score.">
+            >
+            ["at24"] = <
+                text = <"Localizes pain">
+                description = <"Patient localizes pain.">
+            >
+            ["at23"] = <
+                text = <"Cannot localize">
+                description = <"Patient cannot localize pain.">
+            >
+            ["at22"] = <
+                text = <"Asleep or states no pain">
+                description = <"Patient asleep or states no pain.">
+            >
+            ["id21"] = <
+                text = <"Complaints of pain">
+                description = <"Presence and degree of pain.">
+            >
+            ["at20"] = <
+                text = <"Cannot be comforted (hysterical)">
+                description = <"Patient cannot be comforted (hysterical).">
+            >
+            ["at19"] = <
+                text = <"Can be comforted to lessen the agitation (mild)">
+                description = <"Patient can be comforted to lessen the agitation (mild).">
+            >
+            ["at18"] = <
+                text = <"Asleep or calm">
+                description = <"Patient asleep or calm.">
+            >
+            ["id17"] = <
+                text = <"Agitation">
+                description = <"Presence and degree of agitation.">
+            >
+            ["at16"] = <
+                text = <"Thrashing (moving wildly) or rigid (stiff)">
+                description = <"Patient thrashing (moving wildly) or rigid (stiff).">
+            >
+            ["at15"] = <
+                text = <"Restless, moving about in bed constantly">
+                description = <"Patient is restless, moving about in bed constantly.">
+            >
+            ["at14"] = <
+                text = <"No movements, relaxed">
+                description = <"Patient shows no movements and/or is relaxed.">
+            >
+            ["id13"] = <
+                text = <"Movements">
+                description = <"Patient's movements.">
+            >
+            ["at12"] = <
+                text = <"Does not respond to nurturing">
+                description = <"Patient does not respond to nurturing.">
+            >
+            ["at11"] = <
+                text = <"Responds to age appropriate nurturing (tender loving care)">
+                description = <"Patient responds to age appropriate nurturing (tender loving care).">
+            >
+            ["at10"] = <
+                text = <"Not crying">
+                description = <"Patient not crying.">
+            >
+            ["id9"] = <
+                text = <"Crying">
+                description = <"Presence and degree of crying.">
+            >
+            ["at8"] = <
+                text = <"Increase > 30% of preoperative blood pressure">
+                description = <"Increase of preoperative blood pressure above 30%.">
+            >
+            ["at7"] = <
+                text = <"Increase 20-30% of preoperative blood pressure">
+                description = <"Increase of preoperative blood pressure between 20 and 30%.">
+            >
+            ["at6"] = <
+                text = <"Increase < 20% of preoperative blood pressure">
+                description = <"Increase of preoperative blood pressure below 20%.">
+            >
+            ["id5"] = <
+                text = <"Systolic blood pressure">
+                description = <"Changes in systolic blood pressure.">
+                comment = <"Use the average of the 3 previous measurements to determine the value for this parameter.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Specified point in time which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Hannallah Objective Pain Scale (OPS)">
+                description = <"Numerical scale for monitoring pain in children after surgery.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at14", "at15", "at16">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at10", "at11", "at12">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at6", "at7", "at8">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at22", "at23", "at24">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at18", "at19", "at20">
+        >
+    >

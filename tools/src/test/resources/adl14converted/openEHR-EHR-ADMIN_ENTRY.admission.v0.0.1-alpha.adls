@@ -1,0 +1,2167 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=762e2eb1-eb25-44b7-985f-1cf5e1b645ac; build_uid=b70a31bb-0a48-428f-af0c-3b7695c7fe89)
+    openEHR-EHR-ADMIN_ENTRY.admission.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Anneka Sargeant">
+                ["organisation"] = <"UMG Göttingen">
+                ["email"] = <"anneka.sargeant@med.uni-goettingen.de">
+            >
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Osmeire Chamelette Sanzovo, Beatriz de Faria Leão, Vladimir Pizzo">
+                ["organisation"] = <"Hospital Sírio Libanês - SP">
+                ["email"] = <"osmeire.acsanzovo@hsl.org.br">
+            >
+        >
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            author = <
+                ["name"] = <"Mona Saleh">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Chunlan Ma">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"chunlan.ma@oceaninformatics.com">
+        ["date"] = <"19/07/07">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Sistine Barretto", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"2D88E300A48C4AAFF3064DCC93F5BFC4">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Dieser ADMIN_ENTRY-Archetyp wurde für die Darstellung der minimalen Daten bei der Patientenaufnahme entwickelt. Er basiert auf der australischen/neuseeländischen Standardimplementierung von Health Level Seven (HL7) Version 2.4 (Teil 1: Patientenverwaltung) und Health Level Seven (HL7) Standard Version 2.3.1.">
+            keywords = <"Daten", "Aufnahme", "Aufnahmedaten", "Patient", "Patientenaufnahme">
+            use = <"">
+            misuse = <"">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Este arquétipo ADMIN_ENTRY de admissão foi projetado para representar os dados mínimos de admissão. Foi baseado na Implementação padrão da Austrália/Nova Zelândia, padrão HL7 versão 2.4 (parte 1: administração paciente ) e HL7 versão 2.3.1.">
+            use = <"">
+            misuse = <"">
+            copyright = <"© 2011 openEHR Foundation, openEHR Foundation">
+        >
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            purpose = <"هذا النموذج الخاص بإدخال المريض تم تصميمه لتمثيل الحد الأدنى من بيانات إدخال المريض.
+    و هذا يستخدم التطبيق العياري في أستراليا و نيوزيلندة للمستوى الصحي السابع النسخة/الإصدار 2.4 (الجزء الأول:إدراة المريض), و الإصدار 2.3.1 من المستوى الصحي السابع.">
+            use = <"">
+            misuse = <"">
+            copyright = <"© 2011 openEHR Foundation, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"This admission ADMIN_ENTRY archetype was designed for representing the minimum admission data. This is based on the Australian/New Zealand Standard Implementation of Health Level Seven (HL7) Version 2.4 (Part 1: Patient administration) and Health Level Seven (HL7) Standard Version 2.3.1.">
+            use = <"">
+            misuse = <"">
+            copyright = <"© 2011 openEHR Foundation, openEHR Foundation">
+        >
+    >
+
+definition
+    ADMIN_ENTRY[id1] matches {    -- Patient admission
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {2..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {1} matches {    -- Patient class
+                        value matches {
+                            DV_CODED_TEXT[id9005] matches {
+                                defining_code matches {[ac9000]}    -- Patient class (synthesised)
+                            }
+                        }
+                    }
+                    CLUSTER[id74] occurrences matches {0..1} matches {    -- Assigned patient location
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id75] occurrences matches {0..1} matches {    -- Point of care/Unit
+                                value matches {
+                                    DV_TEXT[id9006] 
+                                }
+                            }
+                            ELEMENT[id78] occurrences matches {0..1} matches {    -- Ward
+                                value matches {
+                                    DV_TEXT[id9007] 
+                                }
+                            }
+                            ELEMENT[id79] occurrences matches {0..1} matches {    -- Room
+                                value matches {
+                                    DV_TEXT[id9008] 
+                                }
+                            }
+                            ELEMENT[id80] occurrences matches {0..1} matches {    -- Bed
+                                value matches {
+                                    DV_TEXT[id9009] 
+                                }
+                            }
+                            CLUSTER[id105] occurrences matches {0..1} matches {    -- Facility
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id106] occurrences matches {0..1} matches {    -- Namespace ID
+                                        value matches {
+                                            DV_TEXT[id9010] 
+                                        }
+                                    }
+                                    ELEMENT[id107] occurrences matches {0..1} matches {    -- Universal ID
+                                        value matches {
+                                            DV_TEXT[id9011] 
+                                        }
+                                    }
+                                    ELEMENT[id108] occurrences matches {0..1} matches {    -- Universal ID type
+                                        value matches {
+                                            DV_CODED_TEXT[id9012] matches {
+                                                defining_code matches {[ac9001]}    -- Universal ID type (synthesised)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            ELEMENT[id102] occurrences matches {0..1} matches {    -- Building
+                                value matches {
+                                    DV_TEXT[id9013] 
+                                }
+                            }
+                            ELEMENT[id103] occurrences matches {0..1} matches {    -- Floor
+                                value matches {
+                                    DV_TEXT[id9014] 
+                                }
+                            }
+                            ELEMENT[id104] occurrences matches {0..1} matches {    -- Location description
+                                value matches {
+                                    DV_TEXT[id9015] 
+                                }
+                            }
+                            CLUSTER[id85] occurrences matches {0..1} matches {    -- Address
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id86] occurrences matches {0..1} matches {    -- Street
+                                        value matches {
+                                            DV_TEXT[id9016] 
+                                        }
+                                    }
+                                    ELEMENT[id87] occurrences matches {0..1} matches {    -- City
+                                        value matches {
+                                            DV_TEXT[id9017] 
+                                        }
+                                    }
+                                    ELEMENT[id88] occurrences matches {0..1} matches {    -- State/province
+                                        value matches {
+                                            DV_TEXT[id9018] 
+                                        }
+                                    }
+                                    ELEMENT[id89] occurrences matches {0..1} matches {    -- Post code
+                                        value matches {
+                                            DV_TEXT[id9019] 
+                                        }
+                                    }
+                                    ELEMENT[id90] occurrences matches {0..1} matches {    -- Country
+                                        value matches {
+                                            DV_TEXT[id9020] 
+                                        }
+                                    }
+                                }
+                            }
+                            ELEMENT[id82] occurrences matches {0..1} matches {    -- Location type
+                                value matches {
+                                    DV_CODED_TEXT[id9021] matches {
+                                        defining_code matches {[ac9002]}    -- Location type (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id14] occurrences matches {0..1} matches {    -- Admission type
+                        value matches {
+                            DV_CODED_TEXT[id9022] matches {
+                                defining_code matches {[ac9003]}    -- Admission type (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id24] occurrences matches {0..1} matches {    -- Pre-admit number
+                        value matches {
+                            DV_TEXT[id9023] 
+                        }
+                    }
+                    CLUSTER[id95] occurrences matches {0..1} matches {    -- Prior patient location
+                        items cardinality matches {1..*; unordered} matches {
+                            CLUSTER[id120] occurrences matches {0..1} matches {    -- Facility
+                                items cardinality matches {1..*; unordered} matches {
+                                    use_node ELEMENT[id9024] occurrences matches {1} /data[id2]/items[id74]/items[id105]/items[id106]
+                                    use_node ELEMENT[id9025] occurrences matches {1} /data[id2]/items[id74]/items[id105]/items[id107]
+                                    use_node ELEMENT[id9026] occurrences matches {1} /data[id2]/items[id74]/items[id105]/items[id108]
+                                }
+                            }
+                            CLUSTER[id96] occurrences matches {0..1} matches {    -- Adress
+                                items cardinality matches {1..*; unordered} matches {
+                                    use_node ELEMENT[id9027] occurrences matches {1} /data[id2]/items[id74]/items[id85]/items[id86]
+                                    use_node ELEMENT[id9028] occurrences matches {1} /data[id2]/items[id74]/items[id85]/items[id87]
+                                    use_node ELEMENT[id9029] occurrences matches {1} /data[id2]/items[id74]/items[id85]/items[id88]
+                                    use_node ELEMENT[id9030] occurrences matches {1} /data[id2]/items[id74]/items[id85]/items[id89]
+                                    use_node ELEMENT[id9031] occurrences matches {1} /data[id2]/items[id74]/items[id85]/items[id90]
+                                }
+                            }
+                            use_node ELEMENT[id9032] occurrences matches {1} /data[id2]/items[id74]/items[id75]
+                            use_node ELEMENT[id9033] occurrences matches {1} /data[id2]/items[id74]/items[id78]
+                            use_node ELEMENT[id9034] occurrences matches {1} /data[id2]/items[id74]/items[id79]
+                            use_node ELEMENT[id9035] occurrences matches {1} /data[id2]/items[id74]/items[id80]
+                            use_node ELEMENT[id9036] occurrences matches {1} /data[id2]/items[id74]/items[id102]
+                            use_node ELEMENT[id9037] occurrences matches {1} /data[id2]/items[id74]/items[id103]
+                            use_node ELEMENT[id9038] occurrences matches {1} /data[id2]/items[id74]/items[id104]
+                        }
+                    }
+                    CLUSTER[id99] matches {    -- Attending doctor
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id100] occurrences matches {0..1} matches {    -- ID
+                                value matches {
+                                    DV_TEXT[id9039] 
+                                }
+                            }
+                            ELEMENT[id101] occurrences matches {0..1} matches {    -- Family name
+                                value matches {
+                                    DV_TEXT[id9040] 
+                                }
+                            }
+                            ELEMENT[id121] occurrences matches {0..1} matches {    -- Last name
+                                value matches {
+                                    DV_TEXT[id9041] 
+                                }
+                            }
+                        }
+                    }
+                    CLUSTER[id26] occurrences matches {0..1} matches {    -- Referring doctor
+                        items cardinality matches {1..*; unordered} matches {
+                            use_node ELEMENT[id9042] occurrences matches {1} /data[id2]/items[id99]/items[id100]
+                            use_node ELEMENT[id9043] occurrences matches {1} /data[id2]/items[id99]/items[id101]
+                            use_node ELEMENT[id9044] occurrences matches {1} /data[id2]/items[id99]/items[id121]
+                        }
+                    }
+                    CLUSTER[id122] matches {    -- Consulting doctor
+                        items cardinality matches {1..*; unordered} matches {
+                            use_node ELEMENT[id9045] occurrences matches {1} /data[id2]/items[id99]/items[id100]
+                            use_node ELEMENT[id9046] occurrences matches {1} /data[id2]/items[id99]/items[id101]
+                            use_node ELEMENT[id9047] occurrences matches {1} /data[id2]/items[id99]/items[id121]
+                        }
+                    }
+                    ELEMENT[id42] occurrences matches {0..1} matches {    -- Hospital service
+                        value matches {
+                            DV_TEXT[id9048] 
+                        }
+                    }
+                    ELEMENT[id50] occurrences matches {0..1} matches {    -- Admit source
+                        value matches {
+                            DV_TEXT[id9049] 
+                        }
+                    }
+                    CLUSTER[id52] occurrences matches {0..1} matches {    -- Admitting doctor
+                        items cardinality matches {1..*; unordered} matches {
+                            use_node ELEMENT[id9050] occurrences matches {1} /data[id2]/items[id99]/items[id100]
+                            use_node ELEMENT[id9051] occurrences matches {1} /data[id2]/items[id99]/items[id101]
+                            use_node ELEMENT[id9052] occurrences matches {1} /data[id2]/items[id99]/items[id121]
+                        }
+                    }
+                    ELEMENT[id62] occurrences matches {0..1} matches {    -- Financial class
+                        value matches {
+                            DV_CODED_TEXT[id9053] matches {
+                                defining_code matches {[ac9004]}    -- Financial class (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id67] occurrences matches {0..1} matches {    -- Charge price indicator
+                        value matches {
+                            DV_CODED_TEXT[id9054] matches {
+                                defining_code matches {[ac2]}    -- Any term that 'is a' 'Charge price indicator'
+                            }
+                        }
+                    }
+                    ELEMENT[id72] occurrences matches {1} matches {    -- Admit date/time
+                        value matches {
+                            DV_DATE_TIME[id9055] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["ac9000"] = <
+                text = <"Patientenklasse (synthesised)">
+                description = <"Bestimmte Behandlungsmethode oder
+    Vorgesehene Behandlungsmethode. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Typ der allgemein gültigen ID (synthesised)">
+                description = <"Typ der allgemein gültigen ID (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Standorttyp (synthesised)">
+                description = <"Standorttyp (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Aufnahmeart (synthesised)">
+                description = <"Der Umstand, unter dem der Patient
+    aufgenommen wird. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Art der Finanzierung (synthesised)">
+                description = <"Art der Finanzierung (synthesised)">
+            >
+            ["id9024"] = <
+                text = <"Einrichtung (synthesised)">
+                description = <"Einrichtung (synthesised)">
+            >
+            ["id9025"] = <
+                text = <"Einrichtung (synthesised)">
+                description = <"Einrichtung (synthesised)">
+            >
+            ["id9026"] = <
+                text = <"Einrichtung (synthesised)">
+                description = <"Einrichtung (synthesised)">
+            >
+            ["id9027"] = <
+                text = <"Adresse (synthesised)">
+                description = <"Adresse (synthesised)">
+            >
+            ["id9028"] = <
+                text = <"Adresse (synthesised)">
+                description = <"Adresse (synthesised)">
+            >
+            ["id9029"] = <
+                text = <"Adresse (synthesised)">
+                description = <"Adresse (synthesised)">
+            >
+            ["id9030"] = <
+                text = <"Adresse (synthesised)">
+                description = <"Adresse (synthesised)">
+            >
+            ["id9031"] = <
+                text = <"Adresse (synthesised)">
+                description = <"Adresse (synthesised)">
+            >
+            ["id9032"] = <
+                text = <"Vorheriger Patientenstandort (synthesised)">
+                description = <"Der Ort des Patienten vor der Aufnahme. (synthesised)">
+            >
+            ["id9033"] = <
+                text = <"Vorheriger Patientenstandort (synthesised)">
+                description = <"Der Ort des Patienten vor der Aufnahme. (synthesised)">
+            >
+            ["id9034"] = <
+                text = <"Vorheriger Patientenstandort (synthesised)">
+                description = <"Der Ort des Patienten vor der Aufnahme. (synthesised)">
+            >
+            ["id9035"] = <
+                text = <"Vorheriger Patientenstandort (synthesised)">
+                description = <"Der Ort des Patienten vor der Aufnahme. (synthesised)">
+            >
+            ["id9036"] = <
+                text = <"Vorheriger Patientenstandort (synthesised)">
+                description = <"Der Ort des Patienten vor der Aufnahme. (synthesised)">
+            >
+            ["id9037"] = <
+                text = <"Vorheriger Patientenstandort (synthesised)">
+                description = <"Der Ort des Patienten vor der Aufnahme. (synthesised)">
+            >
+            ["id9038"] = <
+                text = <"Vorheriger Patientenstandort (synthesised)">
+                description = <"Der Ort des Patienten vor der Aufnahme. (synthesised)">
+            >
+            ["id9042"] = <
+                text = <"Überweisender Arzt (synthesised)">
+                description = <"Arzt, der den Patienten an den konsultierten Arzt überwiesen hat. (synthesised)">
+            >
+            ["id9043"] = <
+                text = <"Überweisender Arzt (synthesised)">
+                description = <"Arzt, der den Patienten an den konsultierten Arzt überwiesen hat. (synthesised)">
+            >
+            ["id9044"] = <
+                text = <"Überweisender Arzt (synthesised)">
+                description = <"Arzt, der den Patienten an den konsultierten Arzt überwiesen hat. (synthesised)">
+            >
+            ["id9045"] = <
+                text = <"Konsultierter Arzt (synthesised)">
+                description = <"Für die Behandlung des Patienten verantwortlicher Berater, einschließlich angestellter Facharzt, Amtsarzt. (synthesised)">
+            >
+            ["id9046"] = <
+                text = <"Konsultierter Arzt (synthesised)">
+                description = <"Für die Behandlung des Patienten verantwortlicher Berater, einschließlich angestellter Facharzt, Amtsarzt. (synthesised)">
+            >
+            ["id9047"] = <
+                text = <"Konsultierter Arzt (synthesised)">
+                description = <"Für die Behandlung des Patienten verantwortlicher Berater, einschließlich angestellter Facharzt, Amtsarzt. (synthesised)">
+            >
+            ["id9050"] = <
+                text = <"Aufnehmender Arzt (synthesised)">
+                description = <"Aufnehmender Arzt (synthesised)">
+            >
+            ["id9051"] = <
+                text = <"Aufnehmender Arzt (synthesised)">
+                description = <"Aufnehmender Arzt (synthesised)">
+            >
+            ["id9052"] = <
+                text = <"Aufnehmender Arzt (synthesised)">
+                description = <"Aufnehmender Arzt (synthesised)">
+            >
+            ["at131"] = <
+                text = <"Unbekannt">
+                description = <"Unbekannt">
+            >
+            ["at130"] = <
+                text = <"Andere">
+                description = <"Andere">
+            >
+            ["at129"] = <
+                text = <"Gegenseitige Gesundheitsabkommen (mit anderen Ländern)">
+                description = <"Gegenseitige Gesundheitsabkommen (mit anderen Ländern)">
+            >
+            ["at128"] = <
+                text = <"Andere Krankenhäuser oder Behörden">
+                description = <"Andere Krankenhäuser oder Behörden (Vertragsbetreuung)">
+            >
+            ["at127"] = <
+                text = <"Justizvollzugsanstalt">
+                description = <"Justizvollzugsanstalt">
+            >
+            ["at126"] = <
+                text = <"Verteidigungsministerium">
+                description = <"Verteidigungsministerium">
+            >
+            ["at125"] = <
+                text = <"Abteilung für Veteranenangelegenheiten">
+                description = <"Abteilung für Veteranenangelegenheiten">
+            >
+            ["at124"] = <
+                text = <"Sonstige Entschädigungen">
+                description = <"Sonstige Entschädigungen (z.B. Haftpflicht, allgemeines Recht, medizinische Fahrlässigkeit)">
+            >
+            ["at123"] = <
+                text = <"Persönlicher Anspruch von Kraftfahrzeugen Dritter">
+                description = <"Persönlicher Anspruch von Kraftfahrzeugen Dritter">
+            >
+            ["id122"] = <
+                text = <"Konsultierter Arzt">
+                description = <"Für die Behandlung des Patienten verantwortlicher Berater, einschließlich angestellter Facharzt, Amtsarzt.">
+            >
+            ["id121"] = <
+                text = <"Nachname">
+                description = <"Nachname">
+            >
+            ["id120"] = <
+                text = <"Einrichtung">
+                description = <"Einrichtung">
+            >
+            ["at119"] = <
+                text = <"x500">
+                description = <"x500">
+            >
+            ["at117"] = <
+                text = <"x400">
+                description = <"Message Handling System">
+            >
+            ["at116"] = <
+                text = <"UUID">
+                description = <"Universally Unique Identifier">
+            >
+            ["at115"] = <
+                text = <"Zufall">
+                description = <"Zufall">
+            >
+            ["at114"] = <
+                text = <"L, M, N">
+                description = <"L, M, N">
+            >
+            ["at113"] = <
+                text = <"ISO">
+                description = <"International Organization for Standardization">
+            >
+            ["at112"] = <
+                text = <"HL7">
+                description = <"Health Level 7">
+            >
+            ["at111"] = <
+                text = <"HCD">
+                description = <"HCD">
+            >
+            ["at110"] = <
+                text = <"GUID">
+                description = <"Globally Unique Identifier">
+            >
+            ["at109"] = <
+                text = <"DNS">
+                description = <"Domain Name System">
+            >
+            ["id108"] = <
+                text = <"Typ der allgemein gültigen ID">
+                description = <"Typ der allgemein gültigen ID">
+            >
+            ["id107"] = <
+                text = <"allgemeingültige ID">
+                description = <"allgemeingültige ID">
+            >
+            ["id106"] = <
+                text = <"ID innerhalb des Namensraums">
+                description = <"ID innerhalb des Namensraums">
+            >
+            ["id105"] = <
+                text = <"Einrichtung">
+                description = <"Name der Einrichtung.">
+            >
+            ["id104"] = <
+                text = <"Beschreibung des Standortes">
+                description = <"Beschreibung des Standortes">
+            >
+            ["id103"] = <
+                text = <"Etage">
+                description = <"Etage">
+            >
+            ["id102"] = <
+                text = <"Gebäude">
+                description = <"Gebäude-Nummer/-Name">
+            >
+            ["id101"] = <
+                text = <"Familienname">
+                description = <"Familienname">
+            >
+            ["id100"] = <
+                text = <"ID">
+                description = <"ID">
+            >
+            ["id99"] = <
+                text = <"Behandelnder Arzt">
+                description = <"Der behandelnde Arzt, der Dienstleistungen für den Patienten erbringt.">
+            >
+            ["id96"] = <
+                text = <"Adresse">
+                description = <"Adresse">
+            >
+            ["id95"] = <
+                text = <"Vorheriger Patientenstandort">
+                description = <"Der Ort des Patienten vor der Aufnahme.">
+            >
+            ["at94"] = <
+                text = <"Praxis/Niederlassung des Anbieters">
+                description = <"Praxis/Niederlassung des Anbieters">
+            >
+            ["at93"] = <
+                text = <"Pflegeeinheit">
+                description = <"Pflegeeinheit">
+            >
+            ["at92"] = <
+                text = <"Abteilung">
+                description = <"Abteilung">
+            >
+            ["at91"] = <
+                text = <"zu Hause">
+                description = <"zu Hause">
+            >
+            ["id90"] = <
+                text = <"Land">
+                description = <"Land">
+            >
+            ["id89"] = <
+                text = <"Postleitzahl">
+                description = <"Postleitzahl">
+            >
+            ["id88"] = <
+                text = <"Bundesland">
+                description = <"Bundesland">
+            >
+            ["id87"] = <
+                text = <"Stadt">
+                description = <"Stadt">
+            >
+            ["id86"] = <
+                text = <"Straße">
+                description = <"Straße">
+            >
+            ["id85"] = <
+                text = <"Adresse">
+                description = <"Adresse">
+            >
+            ["at83"] = <
+                text = <"Klinik">
+                description = <"Klinik">
+            >
+            ["id82"] = <
+                text = <"Standorttyp">
+                description = <"Standorttyp">
+            >
+            ["id80"] = <
+                text = <"Bett">
+                description = <"Bett / Bettnummer">
+            >
+            ["id79"] = <
+                text = <"Zimmer">
+                description = <"Zimmer / Zimmernummer">
+            >
+            ["id78"] = <
+                text = <"Station">
+                description = <"Name der Station.">
+            >
+            ["id75"] = <
+                text = <"Pflegeeinrichtung">
+                description = <"Name der Pflegeeinrichtung.">
+            >
+            ["id74"] = <
+                text = <"Zugewiesener Patientenstandort">
+                description = <"Zugewiesener Patientenort, als der Patient aufgenommen wurde.">
+            >
+            ["id72"] = <
+                text = <"Datum/Uhrzeit der Aufnahme">
+                description = <"Datum/Zeit, an dem der Patient aufgenommen wurde.">
+            >
+            ["id67"] = <
+                text = <"Gebührenpreisanzeige">
+                description = <"Gebührenpreisanzeige">
+            >
+            ["at66"] = <
+                text = <"Entschädigung des Arbeiters">
+                description = <"Entschädigung des Arbeiters">
+            >
+            ["at65"] = <
+                text = <"eigenfinanziert">
+                description = <"eigenfinanziert">
+            >
+            ["at64"] = <
+                text = <"Private Krankenversicherung">
+                description = <"Private Krankenversicherung">
+            >
+            ["at63"] = <
+                text = <"Australisches Gesundheitsabkommen">
+                description = <"Australisches Gesundheitsabkommen">
+            >
+            ["id62"] = <
+                text = <"Art der Finanzierung">
+                description = <"Art der Finanzierung">
+            >
+            ["id52"] = <
+                text = <"Aufnehmender Arzt">
+                description = <"Aufnehmender Arzt">
+            >
+            ["id50"] = <
+                text = <"Art der Aufnahme">
+                description = <"Siehe NHDD 000385 \"Art der Aufnahme\" und NHDD 000150 \"Quelle der Überweisung an öffentliche psychiatrische Klinik\"">
+            >
+            ["id42"] = <
+                text = <"Krankenhausdienst">
+                description = <"Für die lokale Verwendung enthält dieses Feld die Art der Organisationseinheit oder klinischen Einheit, z.B. CARDIO.">
+            >
+            ["id26"] = <
+                text = <"Überweisender Arzt">
+                description = <"Arzt, der den Patienten an den konsultierten Arzt überwiesen hat.">
+            >
+            ["id24"] = <
+                text = <"Nummer des Patienten vor der Aufnahme">
+                description = <"Nummer des Patienten vor der Aufnahme">
+            >
+            ["at23"] = <
+                text = <"Statistische Datenerfassung">
+                description = <"Statistische Datenerfassung">
+            >
+            ["at22"] = <
+                text = <"Geriatrische Aufnahme">
+                description = <"Geriatrische Aufnahme">
+            >
+            ["at21"] = <
+                text = <"geplante Aufnahme">
+                description = <"geplante Aufnahme">
+            >
+            ["at20"] = <
+                text = <"akut">
+                description = <"akut">
+            >
+            ["at19"] = <
+                text = <"Neugeborenes">
+                description = <"Neugeborenes">
+            >
+            ["at18"] = <
+                text = <"Routine">
+                description = <"Routine">
+            >
+            ["at17"] = <
+                text = <"Schwangerschaft & Geburt">
+                description = <"Schwangerschaft & Geburt">
+            >
+            ["at16"] = <
+                text = <"Notfall">
+                description = <"Notfall">
+            >
+            ["at15"] = <
+                text = <"Unfall">
+                description = <"Unfall">
+            >
+            ["id14"] = <
+                text = <"Aufnahmeart">
+                description = <"Der Umstand, unter dem der Patient
+    aufgenommen wird.">
+            >
+            ["at12"] = <
+                text = <"unbekannt">
+                description = <"unbekannt">
+            >
+            ["at11"] = <
+                text = <"nicht zutreffend">
+                description = <"nicht zutreffend">
+            >
+            ["at10"] = <
+                text = <"Firmenkonto">
+                description = <"Firmenkonto">
+            >
+            ["at9"] = <
+                text = <"Vor Aufnahme">
+                description = <"Vor Aufnahme">
+            >
+            ["at8"] = <
+                text = <"Gemeinde Kunde">
+                description = <"Gemeinde Kunde">
+            >
+            ["at7"] = <
+                text = <"Notfallpatient">
+                description = <"Notfallpatient">
+            >
+            ["at6"] = <
+                text = <"ambulanter Patient">
+                description = <"ambulanter Patient">
+            >
+            ["at5"] = <
+                text = <"Tagespatient">
+                description = <"Patienten am selben Tag aufgenommen und entlassen.">
+            >
+            ["at4"] = <
+                text = <"stationärer Patient">
+                description = <"stationärer Patient">
+            >
+            ["id3"] = <
+                text = <"Patientenklasse">
+                description = <"Bestimmte Behandlungsmethode oder
+    Vorgesehene Behandlungsmethode.">
+            >
+            ["id1"] = <
+                text = <"Patientenaufnahme">
+                description = <"Wird nur für aufgenommene Patienten verwendet. Es signalisiert den Beginn des Aufenthalts eines Patienten in einer Gesundheitseinrichtung.">
+            >
+            ["ac2"] = <
+                text = <"Jeder Begriff, der ein \"Gebührenpreisindikator\" ist">
+                description = <"Jeder Begriff, der ein \"Gebührenpreisindikator\" ist">
+            >
+        >
+        ["pt-br"] = <
+            ["ac9000"] = <
+                text = <"Classificação do paciente (synthesised)">
+                description = <"O tipo de tratamento pretendido. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Tipo do ID Universal (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Tipo de localização (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Tipo de Admissão (synthesised)">
+                description = <"Circunstância na qual o paciente foi admitido. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Tipo de financiamento (synthesised)">
+                description = <"Fonte pagadora (synthesised)">
+            >
+            ["id9024"] = <
+                text = <"Instalação (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9025"] = <
+                text = <"Instalação (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9026"] = <
+                text = <"Instalação (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9027"] = <
+                text = <"Endereço (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9028"] = <
+                text = <"Endereço (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9029"] = <
+                text = <"Endereço (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9030"] = <
+                text = <"Endereço (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9031"] = <
+                text = <"Endereço (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9032"] = <
+                text = <"Localização prévia do paciente (synthesised)">
+                description = <"A localização do paciente na internação. (synthesised)">
+            >
+            ["id9033"] = <
+                text = <"Localização prévia do paciente (synthesised)">
+                description = <"A localização do paciente na internação. (synthesised)">
+            >
+            ["id9034"] = <
+                text = <"Localização prévia do paciente (synthesised)">
+                description = <"A localização do paciente na internação. (synthesised)">
+            >
+            ["id9035"] = <
+                text = <"Localização prévia do paciente (synthesised)">
+                description = <"A localização do paciente na internação. (synthesised)">
+            >
+            ["id9036"] = <
+                text = <"Localização prévia do paciente (synthesised)">
+                description = <"A localização do paciente na internação. (synthesised)">
+            >
+            ["id9037"] = <
+                text = <"Localização prévia do paciente (synthesised)">
+                description = <"A localização do paciente na internação. (synthesised)">
+            >
+            ["id9038"] = <
+                text = <"Localização prévia do paciente (synthesised)">
+                description = <"A localização do paciente na internação. (synthesised)">
+            >
+            ["id9042"] = <
+                text = <"Médico solicitante (synthesised)">
+                description = <"Médico que solicitou a internação. (synthesised)">
+            >
+            ["id9043"] = <
+                text = <"Médico solicitante (synthesised)">
+                description = <"Médico que solicitou a internação. (synthesised)">
+            >
+            ["id9044"] = <
+                text = <"Médico solicitante (synthesised)">
+                description = <"Médico que solicitou a internação. (synthesised)">
+            >
+            ["id9045"] = <
+                text = <"Médico especialista (synthesised)">
+                description = <"Médico responsável pelo cuidado do paciente, incluindo especialista assalariado ou visitador. (synthesised)">
+            >
+            ["id9046"] = <
+                text = <"Médico especialista (synthesised)">
+                description = <"Médico responsável pelo cuidado do paciente, incluindo especialista assalariado ou visitador. (synthesised)">
+            >
+            ["id9047"] = <
+                text = <"Médico especialista (synthesised)">
+                description = <"Médico responsável pelo cuidado do paciente, incluindo especialista assalariado ou visitador. (synthesised)">
+            >
+            ["id9050"] = <
+                text = <"Médico da admissão (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9051"] = <
+                text = <"Médico da admissão (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9052"] = <
+                text = <"Médico da admissão (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at131"] = <
+                text = <"Desconhecido">
+                description = <"*">
+            >
+            ["at130"] = <
+                text = <"Outro">
+                description = <"*">
+            >
+            ["at129"] = <
+                text = <"Acordos de saúde recíprocos (com outros países)">
+                description = <"*">
+            >
+            ["at128"] = <
+                text = <"Outro hospital ou instituição pública (cuidados contratados)">
+                description = <"*">
+            >
+            ["at127"] = <
+                text = <"*Correctional facility(en)">
+                description = <"*">
+            >
+            ["at126"] = <
+                text = <"*Department of Defence(en)">
+                description = <"*">
+            >
+            ["at125"] = <
+                text = <"*Department of Veterans' Affairs(en)">
+                description = <"*">
+            >
+            ["at124"] = <
+                text = <"Outra compensação">
+                description = <"Outra compensação (por exemplo, responsabilidade civil, direito comum, negligência médica)">
+            >
+            ["at123"] = <
+                text = <"Reclamação de terceiro sobre veículo motorizado">
+                description = <"Reclamação de terceiro sobre veículo motorizado">
+            >
+            ["id122"] = <
+                text = <"Médico especialista">
+                description = <"Médico responsável pelo cuidado do paciente, incluindo especialista assalariado ou visitador.">
+            >
+            ["id121"] = <
+                text = <"Sobrenome">
+                description = <"*">
+            >
+            ["id120"] = <
+                text = <"Instalação">
+                description = <"*">
+            >
+            ["at119"] = <
+                text = <"x500">
+                description = <"*">
+            >
+            ["at117"] = <
+                text = <"x400">
+                description = <"*">
+            >
+            ["at116"] = <
+                text = <"UUID">
+                description = <"*">
+            >
+            ["at115"] = <
+                text = <"Random">
+                description = <"*">
+            >
+            ["at114"] = <
+                text = <"L, M, N">
+                description = <"*">
+            >
+            ["at113"] = <
+                text = <"ISO">
+                description = <"*">
+            >
+            ["at112"] = <
+                text = <"HL7">
+                description = <"*">
+            >
+            ["at111"] = <
+                text = <"HCD">
+                description = <"*">
+            >
+            ["at110"] = <
+                text = <"GUID">
+                description = <"*">
+            >
+            ["at109"] = <
+                text = <"DNS">
+                description = <"*">
+            >
+            ["id108"] = <
+                text = <"Tipo do ID Universal">
+                description = <"*">
+            >
+            ["id107"] = <
+                text = <"ID Universal">
+                description = <"ID Universal">
+            >
+            ["id106"] = <
+                text = <"ID do local">
+                description = <"ID do local.">
+            >
+            ["id105"] = <
+                text = <"Instalação">
+                description = <"*">
+            >
+            ["id104"] = <
+                text = <"Descrição da localização">
+                description = <"*">
+            >
+            ["id103"] = <
+                text = <"Andar">
+                description = <"*">
+            >
+            ["id102"] = <
+                text = <"Prédio">
+                description = <"*">
+            >
+            ["id101"] = <
+                text = <"Nome">
+                description = <"*">
+            >
+            ["id100"] = <
+                text = <"ID">
+                description = <"*">
+            >
+            ["id99"] = <
+                text = <"Médico do atendimento">
+                description = <"O médico responsável pela prestação de serviços ao paciente.">
+            >
+            ["id96"] = <
+                text = <"Endereço">
+                description = <"*">
+            >
+            ["id95"] = <
+                text = <"Localização prévia do paciente">
+                description = <"A localização do paciente na internação.">
+            >
+            ["at94"] = <
+                text = <"*Provider's office(en)">
+                description = <"*">
+            >
+            ["at93"] = <
+                text = <"Unidade de enfermagem">
+                description = <"*">
+            >
+            ["at92"] = <
+                text = <"Departamento">
+                description = <"*">
+            >
+            ["at91"] = <
+                text = <"Casa">
+                description = <"*">
+            >
+            ["id90"] = <
+                text = <"País">
+                description = <"*">
+            >
+            ["id89"] = <
+                text = <"CEP">
+                description = <"Código de endereçamento postal.">
+            >
+            ["id88"] = <
+                text = <"Estado">
+                description = <"*">
+            >
+            ["id87"] = <
+                text = <"Cidade">
+                description = <"*">
+            >
+            ["id86"] = <
+                text = <"Logradouro">
+                description = <"*">
+            >
+            ["id85"] = <
+                text = <"Endereço">
+                description = <"*">
+            >
+            ["at83"] = <
+                text = <"Clínica">
+                description = <"*">
+            >
+            ["id82"] = <
+                text = <"Tipo de localização">
+                description = <"*">
+            >
+            ["id80"] = <
+                text = <"Leito">
+                description = <"*">
+            >
+            ["id79"] = <
+                text = <"Quarto">
+                description = <"*">
+            >
+            ["id78"] = <
+                text = <"Ala">
+                description = <"*">
+            >
+            ["id75"] = <
+                text = <"Unidade de cuidado">
+                description = <"*">
+            >
+            ["id74"] = <
+                text = <"Localização na internação (leito)">
+                description = <"Local designado para o paciente na admissão.">
+            >
+            ["id72"] = <
+                text = <"Data/hora admissão">
+                description = <"Data/hora que o paciente foi admitido.">
+            >
+            ["id67"] = <
+                text = <"Indicação de alteração de preço">
+                description = <"*">
+            >
+            ["at66"] = <
+                text = <"Auxilio doença">
+                description = <"Auxílio doença">
+            >
+            ["at65"] = <
+                text = <"Auto financiado">
+                description = <"Particular">
+            >
+            ["at64"] = <
+                text = <"Seguros de saúde privados">
+                description = <"Seguros de saúde privados">
+            >
+            ["at63"] = <
+                text = <"*Australian Health Care Agreements(en)">
+                description = <"*Australian Health Care Agreements (en)">
+            >
+            ["id62"] = <
+                text = <"Tipo de financiamento">
+                description = <"Fonte pagadora">
+            >
+            ["id52"] = <
+                text = <"Médico da admissão">
+                description = <"*">
+            >
+            ["id50"] = <
+                text = <"Fonte da admissão">
+                description = <"Referência para NHDD 000385 Modo de admissão e NHDD 000150 Fonte de encaminhamento para o hospital psiquiátrico público.">
+            >
+            ["id42"] = <
+                text = <"Unidade hospitalar">
+                description = <"Para uso local, este campo contém o tipo de unidade organizacional ou clínica, por exemplo: Cardiologia1.">
+            >
+            ["id26"] = <
+                text = <"Médico solicitante">
+                description = <"Médico que solicitou a internação.">
+            >
+            ["id24"] = <
+                text = <"Número da pré-admissão">
+                description = <"Número do ID da pré-admissão do paciente.">
+            >
+            ["at23"] = <
+                text = <"Admissão estatística">
+                description = <"Admissão estatística.">
+            >
+            ["at22"] = <
+                text = <"Admissão em repouso geriátrico">
+                description = <"Admissão em repouso geriátrico.">
+            >
+            ["at21"] = <
+                text = <"Eletivo">
+                description = <"Eletivo.">
+            >
+            ["at20"] = <
+                text = <"Urgência">
+                description = <"Urgência.">
+            >
+            ["at19"] = <
+                text = <"Recém nascido">
+                description = <"Recém nascido.">
+            >
+            ["at18"] = <
+                text = <"Eletiva">
+                description = <"Internação programada.">
+            >
+            ["at17"] = <
+                text = <"Trabalho de parto">
+                description = <"Trabalho de parto.">
+            >
+            ["at16"] = <
+                text = <"Emergência">
+                description = <"Emergência.">
+            >
+            ["at15"] = <
+                text = <"Acidente">
+                description = <"Acidente.">
+            >
+            ["id14"] = <
+                text = <"Tipo de Admissão">
+                description = <"Circunstância na qual o paciente foi admitido.">
+            >
+            ["at12"] = <
+                text = <"Desconhecido">
+                description = <"Desconhecido.">
+            >
+            ["at11"] = <
+                text = <"Não aplicável">
+                description = <"Não aplicável.">
+            >
+            ["at10"] = <
+                text = <"Conta comercial">
+                description = <"conta comercial">
+            >
+            ["at9"] = <
+                text = <"Pré-admissão">
+                description = <"Pré-admissão.">
+            >
+            ["at8"] = <
+                text = <"Público">
+                description = <"Paciente que recebe atendimento de saúde público ou serviços de assistência social.">
+            >
+            ["at7"] = <
+                text = <"Urgência">
+                description = <"Paciente oriundo da unidade de emergência.">
+            >
+            ["at6"] = <
+                text = <"Ambulatorial">
+                description = <"Paciente Ambulatorial.">
+            >
+            ["at5"] = <
+                text = <"Day hospital">
+                description = <"Paciente com admissão e alta no mesmo dia.">
+            >
+            ["at4"] = <
+                text = <"Internação/ paciente com pernoite">
+                description = <"Internação/ paciente com pernoite.">
+            >
+            ["id3"] = <
+                text = <"Classificação do paciente">
+                description = <"O tipo de tratamento pretendido.">
+            >
+            ["id1"] = <
+                text = <"Admissão do paciente">
+                description = <"Somente utilizado para paciente internado. Sinaliza o início da estadia de um paciente em uma unidade de saúde.">
+            >
+            ["ac2"] = <
+                text = <"Qualquer termo que é Indicador de alteração de preço.">
+                description = <"*">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Patient class (synthesised)">
+                description = <"Intended mode of treatement. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Universal ID type (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Location type (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Admission type (synthesised)">
+                description = <"The circumstance under which the patient will be admitted. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Financial class (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9024"] = <
+                text = <"Facility (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9025"] = <
+                text = <"Facility (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9026"] = <
+                text = <"Facility (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9027"] = <
+                text = <"Adress (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9028"] = <
+                text = <"Adress (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9029"] = <
+                text = <"Adress (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9030"] = <
+                text = <"Adress (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9031"] = <
+                text = <"Adress (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9032"] = <
+                text = <"Prior patient location (synthesised)">
+                description = <"The patient location prior admission (synthesised)">
+            >
+            ["id9033"] = <
+                text = <"Prior patient location (synthesised)">
+                description = <"The patient location prior admission (synthesised)">
+            >
+            ["id9034"] = <
+                text = <"Prior patient location (synthesised)">
+                description = <"The patient location prior admission (synthesised)">
+            >
+            ["id9035"] = <
+                text = <"Prior patient location (synthesised)">
+                description = <"The patient location prior admission (synthesised)">
+            >
+            ["id9036"] = <
+                text = <"Prior patient location (synthesised)">
+                description = <"The patient location prior admission (synthesised)">
+            >
+            ["id9037"] = <
+                text = <"Prior patient location (synthesised)">
+                description = <"The patient location prior admission (synthesised)">
+            >
+            ["id9038"] = <
+                text = <"Prior patient location (synthesised)">
+                description = <"The patient location prior admission (synthesised)">
+            >
+            ["id9042"] = <
+                text = <"Referring doctor (synthesised)">
+                description = <"Clinician who referred patient to the consulting doctor (synthesised)">
+            >
+            ["id9043"] = <
+                text = <"Referring doctor (synthesised)">
+                description = <"Clinician who referred patient to the consulting doctor (synthesised)">
+            >
+            ["id9044"] = <
+                text = <"Referring doctor (synthesised)">
+                description = <"Clinician who referred patient to the consulting doctor (synthesised)">
+            >
+            ["id9045"] = <
+                text = <"Consulting doctor (synthesised)">
+                description = <"Consultant responsible for the care of the patient,including salaried specialist, visiting medical officer (synthesised)">
+            >
+            ["id9046"] = <
+                text = <"Consulting doctor (synthesised)">
+                description = <"Consultant responsible for the care of the patient,including salaried specialist, visiting medical officer (synthesised)">
+            >
+            ["id9047"] = <
+                text = <"Consulting doctor (synthesised)">
+                description = <"Consultant responsible for the care of the patient,including salaried specialist, visiting medical officer (synthesised)">
+            >
+            ["id9050"] = <
+                text = <"Admitting doctor (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9051"] = <
+                text = <"Admitting doctor (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9052"] = <
+                text = <"Admitting doctor (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at131"] = <
+                text = <"Not known">
+                description = <"*">
+            >
+            ["at130"] = <
+                text = <"Other">
+                description = <"*">
+            >
+            ["at129"] = <
+                text = <"Reciprocal health care agreements (with other countries)">
+                description = <"*">
+            >
+            ["at128"] = <
+                text = <"Other hospital or public authority (contracted care)">
+                description = <"*">
+            >
+            ["at127"] = <
+                text = <"Correctional facility">
+                description = <"*">
+            >
+            ["at126"] = <
+                text = <"Department of Defence">
+                description = <"*">
+            >
+            ["at125"] = <
+                text = <"Department of Veterans' Affairs">
+                description = <"*">
+            >
+            ["at124"] = <
+                text = <"Other compensation (e.g. public liability, common law, medical negligence)">
+                description = <"*">
+            >
+            ["at123"] = <
+                text = <"Motor vehicle third party personal claim">
+                description = <"*">
+            >
+            ["id122"] = <
+                text = <"Consulting doctor">
+                description = <"Consultant responsible for the care of the patient,including salaried specialist, visiting medical officer">
+            >
+            ["id121"] = <
+                text = <"Last name">
+                description = <"*">
+            >
+            ["id120"] = <
+                text = <"Facility">
+                description = <"*">
+            >
+            ["at119"] = <
+                text = <"x500">
+                description = <"*">
+            >
+            ["at117"] = <
+                text = <"x400">
+                description = <"*">
+            >
+            ["at116"] = <
+                text = <"UUID">
+                description = <"*">
+            >
+            ["at115"] = <
+                text = <"Random">
+                description = <"*">
+            >
+            ["at114"] = <
+                text = <"L, M, N">
+                description = <"*">
+            >
+            ["at113"] = <
+                text = <"ISO">
+                description = <"*">
+            >
+            ["at112"] = <
+                text = <"HL7">
+                description = <"*">
+            >
+            ["at111"] = <
+                text = <"HCD">
+                description = <"*">
+            >
+            ["at110"] = <
+                text = <"GUID">
+                description = <"*">
+            >
+            ["at109"] = <
+                text = <"DNS">
+                description = <"*">
+            >
+            ["id108"] = <
+                text = <"Universal ID type">
+                description = <"*">
+            >
+            ["id107"] = <
+                text = <"Universal ID">
+                description = <"*">
+            >
+            ["id106"] = <
+                text = <"Namespace ID">
+                description = <"*">
+            >
+            ["id105"] = <
+                text = <"Facility">
+                description = <"*">
+            >
+            ["id104"] = <
+                text = <"Location description">
+                description = <"*">
+            >
+            ["id103"] = <
+                text = <"Floor">
+                description = <"*">
+            >
+            ["id102"] = <
+                text = <"Building">
+                description = <"*">
+            >
+            ["id101"] = <
+                text = <"Family name">
+                description = <"*">
+            >
+            ["id100"] = <
+                text = <"ID">
+                description = <"*">
+            >
+            ["id99"] = <
+                text = <"Attending doctor">
+                description = <"The attending doctor providing services to the
+    patient">
+            >
+            ["id96"] = <
+                text = <"Adress">
+                description = <"*">
+            >
+            ["id95"] = <
+                text = <"Prior patient location">
+                description = <"The patient location prior admission">
+            >
+            ["at94"] = <
+                text = <"Provider's office">
+                description = <"*">
+            >
+            ["at93"] = <
+                text = <"Nursing unit">
+                description = <"*">
+            >
+            ["at92"] = <
+                text = <"Department">
+                description = <"*">
+            >
+            ["at91"] = <
+                text = <"Home">
+                description = <"*">
+            >
+            ["id90"] = <
+                text = <"Country">
+                description = <"*">
+            >
+            ["id89"] = <
+                text = <"Post code">
+                description = <"*">
+            >
+            ["id88"] = <
+                text = <"State/province">
+                description = <"*">
+            >
+            ["id87"] = <
+                text = <"City">
+                description = <"*">
+            >
+            ["id86"] = <
+                text = <"Street">
+                description = <"*">
+            >
+            ["id85"] = <
+                text = <"Address">
+                description = <"*">
+            >
+            ["at83"] = <
+                text = <"Clinic">
+                description = <"*">
+            >
+            ["id82"] = <
+                text = <"Location type">
+                description = <"*">
+            >
+            ["id80"] = <
+                text = <"Bed">
+                description = <"*">
+            >
+            ["id79"] = <
+                text = <"Room">
+                description = <"*">
+            >
+            ["id78"] = <
+                text = <"Ward">
+                description = <"*">
+            >
+            ["id75"] = <
+                text = <"Point of care/Unit">
+                description = <"*">
+            >
+            ["id74"] = <
+                text = <"Assigned patient location">
+                description = <"Assigned patient location when the patient was admitted.">
+            >
+            ["id72"] = <
+                text = <"Admit date/time">
+                description = <"Date/time the patient was admitted.">
+            >
+            ["id67"] = <
+                text = <"Charge price indicator">
+                description = <"*">
+            >
+            ["at66"] = <
+                text = <"Worker's compensation">
+                description = <"Worker's compensation">
+            >
+            ["at65"] = <
+                text = <"Self-funded">
+                description = <"Self-funded">
+            >
+            ["at64"] = <
+                text = <"Private health insurance">
+                description = <"Private health insurance">
+            >
+            ["at63"] = <
+                text = <"Australian Health Care Agreements">
+                description = <"Australian Health Care Agreements ">
+            >
+            ["id62"] = <
+                text = <"Financial class">
+                description = <"*">
+            >
+            ["id52"] = <
+                text = <"Admitting doctor">
+                description = <"*">
+            >
+            ["id50"] = <
+                text = <"Admit source">
+                description = <"Refer to NHDD 000385 Mode of admission and
+    NHDD 000150 Source of referral to public psychiatric hospital">
+            >
+            ["id42"] = <
+                text = <"Hospital service">
+                description = <"For local use, this field hold the type of organizational unit or clinical unit, e.g. CARDO1.">
+            >
+            ["id26"] = <
+                text = <"Referring doctor">
+                description = <"Clinician who referred patient to the consulting doctor">
+            >
+            ["id24"] = <
+                text = <"Pre-admit number">
+                description = <"ID number of patient's pre-admission">
+            >
+            ["at23"] = <
+                text = <"Statistical admission">
+                description = <"Statistical admission">
+            >
+            ["at22"] = <
+                text = <"Geriatric respite admission">
+                description = <"Geriatric respite admission">
+            >
+            ["at21"] = <
+                text = <"Elective">
+                description = <"Elective">
+            >
+            ["at20"] = <
+                text = <"Urgent">
+                description = <"Urgent">
+            >
+            ["at19"] = <
+                text = <"Newborn">
+                description = <"Newborn">
+            >
+            ["at18"] = <
+                text = <"Routine">
+                description = <"Routine">
+            >
+            ["at17"] = <
+                text = <"Labour & Delivery">
+                description = <"Labour & Delivery">
+            >
+            ["at16"] = <
+                text = <"Emergency">
+                description = <"Emergency">
+            >
+            ["at15"] = <
+                text = <"Accident">
+                description = <"Accident">
+            >
+            ["id14"] = <
+                text = <"Admission type">
+                description = <"The circumstance under which the patient will be admitted.">
+            >
+            ["at12"] = <
+                text = <"Unknown">
+                description = <"Unknown">
+            >
+            ["at11"] = <
+                text = <"Not-applicable">
+                description = <"Not-applicable">
+            >
+            ["at10"] = <
+                text = <"Commercial account">
+                description = <"Commercial account">
+            >
+            ["at9"] = <
+                text = <"Pre-admit">
+                description = <"Pre-admit">
+            >
+            ["at8"] = <
+                text = <"Community client">
+                description = <"Community client">
+            >
+            ["at7"] = <
+                text = <"Emergency patient">
+                description = <"Emergency patient">
+            >
+            ["at6"] = <
+                text = <"Outpatient">
+                description = <"Outpatient">
+            >
+            ["at5"] = <
+                text = <"Same day patient">
+                description = <"Same day patient">
+            >
+            ["at4"] = <
+                text = <"Inpatient/overnight patient">
+                description = <"Inpatient/overnight patient">
+            >
+            ["id3"] = <
+                text = <"Patient class">
+                description = <"Intended mode of treatement.">
+            >
+            ["id1"] = <
+                text = <"Patient admission">
+                description = <"Used for admitted patient only. It signals the beginning of a patient's stay in a health care facility.">
+            >
+            ["ac2"] = <
+                text = <"Any term that 'is a' 'Charge price indicator'">
+                description = <"*">
+            >
+        >
+        ["ar-sy"] = <
+            ["ac9000"] = <
+                text = <"درجة المريض (synthesised)">
+                description = <"أسلوب المعاملة المقصود (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"نوع العنصر التعريفي الشامل (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"نوع الموقع (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"نوع الإدخال (synthesised)">
+                description = <"الظروف التي يتم إدخال المريض تحتها (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"الدرجة الاقتصادية (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9024"] = <
+                text = <"المؤسسة (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9025"] = <
+                text = <"المؤسسة (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9026"] = <
+                text = <"المؤسسة (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9027"] = <
+                text = <"العنوان (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9028"] = <
+                text = <"العنوان (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9029"] = <
+                text = <"العنوان (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9030"] = <
+                text = <"العنوان (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9031"] = <
+                text = <"العنوان (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9032"] = <
+                text = <"المكان السابق للمريض (synthesised)">
+                description = <"المكان السابق للمريض (synthesised)">
+            >
+            ["id9033"] = <
+                text = <"المكان السابق للمريض (synthesised)">
+                description = <"المكان السابق للمريض (synthesised)">
+            >
+            ["id9034"] = <
+                text = <"المكان السابق للمريض (synthesised)">
+                description = <"المكان السابق للمريض (synthesised)">
+            >
+            ["id9035"] = <
+                text = <"المكان السابق للمريض (synthesised)">
+                description = <"المكان السابق للمريض (synthesised)">
+            >
+            ["id9036"] = <
+                text = <"المكان السابق للمريض (synthesised)">
+                description = <"المكان السابق للمريض (synthesised)">
+            >
+            ["id9037"] = <
+                text = <"المكان السابق للمريض (synthesised)">
+                description = <"المكان السابق للمريض (synthesised)">
+            >
+            ["id9038"] = <
+                text = <"المكان السابق للمريض (synthesised)">
+                description = <"المكان السابق للمريض (synthesised)">
+            >
+            ["id9042"] = <
+                text = <"الطبيب صاحب الإحالة (synthesised)">
+                description = <"الطبيب الذي قام بإحالة المريض إلى الطبيب الاستشاري (synthesised)">
+            >
+            ["id9043"] = <
+                text = <"الطبيب صاحب الإحالة (synthesised)">
+                description = <"الطبيب الذي قام بإحالة المريض إلى الطبيب الاستشاري (synthesised)">
+            >
+            ["id9044"] = <
+                text = <"الطبيب صاحب الإحالة (synthesised)">
+                description = <"الطبيب الذي قام بإحالة المريض إلى الطبيب الاستشاري (synthesised)">
+            >
+            ["id9045"] = <
+                text = <"الطبيب الاستشاري (synthesised)">
+                description = <"الطبيب الاستشاري المسئول عن تقديم الرعاية للمريض, بنا قي ذلك الأخصائي الذي يعمل بأجر, و المسئول الطبي الزائر (synthesised)">
+            >
+            ["id9046"] = <
+                text = <"الطبيب الاستشاري (synthesised)">
+                description = <"الطبيب الاستشاري المسئول عن تقديم الرعاية للمريض, بنا قي ذلك الأخصائي الذي يعمل بأجر, و المسئول الطبي الزائر (synthesised)">
+            >
+            ["id9047"] = <
+                text = <"الطبيب الاستشاري (synthesised)">
+                description = <"الطبيب الاستشاري المسئول عن تقديم الرعاية للمريض, بنا قي ذلك الأخصائي الذي يعمل بأجر, و المسئول الطبي الزائر (synthesised)">
+            >
+            ["id9050"] = <
+                text = <"الطبيب المسئول عن الإدخال (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9051"] = <
+                text = <"الطبيب المسئول عن الإدخال (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id9052"] = <
+                text = <"الطبيب المسئول عن الإدخال (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at131"] = <
+                text = <"غير معروف">
+                description = <"*">
+            >
+            ["at130"] = <
+                text = <"أخرى">
+                description = <"*">
+            >
+            ["at129"] = <
+                text = <"اتفاقات الرعاية الصحية التبادلية - مع البلدان/الدول الأخرى">
+                description = <"*">
+            >
+            ["at128"] = <
+                text = <"مستشفى أو قسم عام آخر - رعاية بالتعاقد">
+                description = <"*">
+            >
+            ["at127"] = <
+                text = <"المؤسسة التصحيحية">
+                description = <"*">
+            >
+            ["at126"] = <
+                text = <"إدارة الدفاع">
+                description = <"*">
+            >
+            ["at125"] = <
+                text = <"قسم شئون المحاربين القدامى">
+                description = <"*">
+            >
+            ["at124"] = <
+                text = <"التعويضات الأخرى - المسئولية العامة, القانون العمومي, الإهمال الطبي">
+                description = <"*">
+            >
+            ["at123"] = <
+                text = <"المطالبة الشخصية الخاصة بالعربة من طرف ثالث">
+                description = <"*">
+            >
+            ["id122"] = <
+                text = <"الطبيب الاستشاري">
+                description = <"الطبيب الاستشاري المسئول عن تقديم الرعاية للمريض, بنا قي ذلك الأخصائي الذي يعمل بأجر, و المسئول الطبي الزائر">
+            >
+            ["id121"] = <
+                text = <"الاسم الأخير">
+                description = <"*">
+            >
+            ["id120"] = <
+                text = <"المؤسسة">
+                description = <"*">
+            >
+            ["at119"] = <
+                text = <"x500">
+                description = <"*">
+            >
+            ["at117"] = <
+                text = <"x400">
+                description = <"*">
+            >
+            ["at116"] = <
+                text = <"العنصر التعريفي الكوني الفريد">
+                description = <"*">
+            >
+            ["at115"] = <
+                text = <"عشوائي">
+                description = <"*">
+            >
+            ["at114"] = <
+                text = <"L, M, N">
+                description = <"*">
+            >
+            ["at113"] = <
+                text = <"منظمة المعايير الدولية">
+                description = <"*">
+            >
+            ["at112"] = <
+                text = <"المستوى الصحي السابع">
+                description = <"*">
+            >
+            ["at111"] = <
+                text = <"HCD">
+                description = <"*">
+            >
+            ["at110"] = <
+                text = <"العنصر التعريفي الكوني الفريد">
+                description = <"*">
+            >
+            ["at109"] = <
+                text = <"نظام تعريف المجال">
+                description = <"*">
+            >
+            ["id108"] = <
+                text = <"نوع العنصر التعريفي الشامل">
+                description = <"*">
+            >
+            ["id107"] = <
+                text = <"العنصر التعريفي الشامل">
+                description = <"*">
+            >
+            ["id106"] = <
+                text = <"العنصر التعريفي للمساحة">
+                description = <"*">
+            >
+            ["id105"] = <
+                text = <"المؤسسة">
+                description = <"*">
+            >
+            ["id104"] = <
+                text = <"وصف الموقع">
+                description = <"*">
+            >
+            ["id103"] = <
+                text = <"الطابق/الدور">
+                description = <"*">
+            >
+            ["id102"] = <
+                text = <"المبنى">
+                description = <"*">
+            >
+            ["id101"] = <
+                text = <"اسم العائلة">
+                description = <"*">
+            >
+            ["id100"] = <
+                text = <"العتصر التعريفي">
+                description = <"*">
+            >
+            ["id99"] = <
+                text = <"الطبيب الحاضر">
+                description = <"الطبيب الحاضر الذي يقدم الخدمات للمريض">
+            >
+            ["id96"] = <
+                text = <"العنوان">
+                description = <"*">
+            >
+            ["id95"] = <
+                text = <"المكان السابق للمريض">
+                description = <"المكان السابق للمريض">
+            >
+            ["at94"] = <
+                text = <"مكتب مُزَوِّد الخدمة">
+                description = <"*">
+            >
+            ["at93"] = <
+                text = <"وحدة تمريضية">
+                description = <"*">
+            >
+            ["at92"] = <
+                text = <"القِسم">
+                description = <"*">
+            >
+            ["at91"] = <
+                text = <"منزل">
+                description = <"*">
+            >
+            ["id90"] = <
+                text = <"الدولة/البلد">
+                description = <"*">
+            >
+            ["id89"] = <
+                text = <"الرمز البريدي">
+                description = <"*">
+            >
+            ["id88"] = <
+                text = <"الولاية/المقاطعة">
+                description = <"*">
+            >
+            ["id87"] = <
+                text = <"المدينة">
+                description = <"*">
+            >
+            ["id86"] = <
+                text = <"الشارع">
+                description = <"*">
+            >
+            ["id85"] = <
+                text = <"العنوان">
+                description = <"*">
+            >
+            ["at83"] = <
+                text = <"عيادة">
+                description = <"*">
+            >
+            ["id82"] = <
+                text = <"نوع الموقع">
+                description = <"*">
+            >
+            ["id80"] = <
+                text = <"السرير">
+                description = <"*">
+            >
+            ["id79"] = <
+                text = <"الغرفة/الحجرة">
+                description = <"*">
+            >
+            ["id78"] = <
+                text = <"العنبر">
+                description = <"*">
+            >
+            ["id75"] = <
+                text = <"نقطة تقديم الرعاية/الوحدة">
+                description = <"*">
+            >
+            ["id74"] = <
+                text = <"المكان المعَيَّن للمريض">
+                description = <"المكان الذي تم تعيينه للمريض عند إدخال المريض">
+            >
+            ["id72"] = <
+                text = <"وقت/ تاريخ الإدخال">
+                description = <"الوقت و التاريخ الذين تم فيهما إدخال المريض">
+            >
+            ["id67"] = <
+                text = <"مؤشر ثمن الرعاية">
+                description = <"*">
+            >
+            ["at66"] = <
+                text = <"تعويضات العامل">
+                description = <"تعويضات العامل">
+            >
+            ["at65"] = <
+                text = <"مموَّل شخصيا">
+                description = <"مموَّل شخصيا">
+            >
+            ["at64"] = <
+                text = <"التأمين الصحي الخاص">
+                description = <"التأمين الصحي الخاص">
+            >
+            ["at63"] = <
+                text = <"الاتفاقات الأسترالية للرعاية الصحية">
+                description = <"الاتفاقات الأسترالية للرعاية الصحية">
+            >
+            ["id62"] = <
+                text = <"الدرجة الاقتصادية">
+                description = <"*">
+            >
+            ["id52"] = <
+                text = <"الطبيب المسئول عن الإدخال">
+                description = <"*">
+            >
+            ["id50"] = <
+                text = <"مصدر الإدخال">
+                description = <"برجاء الرجوع إلى طريق الإدخال في 
+    NHDD 000385 
+    و مصدر الإحالة إلى المستشفى النفسي العام
+    NHDD 000150 ">
+            >
+            ["id42"] = <
+                text = <"خدمة المستشفى">
+                description = <"للاستخدام المحلي, و يمثل هذا الحق نو الوحدة التنظيمية أو السريرية, مثل: 
+    CARDO1">
+            >
+            ["id26"] = <
+                text = <"الطبيب صاحب الإحالة">
+                description = <"الطبيب الذي قام بإحالة المريض إلى الطبيب الاستشاري">
+            >
+            ["id24"] = <
+                text = <"رقم ما قبل الإدخال">
+                description = <"الرقم التعريفي للمريض ما قبل الإدخال">
+            >
+            ["at23"] = <
+                text = <"الإدخال الإحصائي">
+                description = <"الإدخال الإحصائي">
+            >
+            ["at22"] = <
+                text = <"إدخال المسنين للراحة">
+                description = <"إدخال المسنين للراحة">
+            >
+            ["at21"] = <
+                text = <"اختياري">
+                description = <"اختياري">
+            >
+            ["at20"] = <
+                text = <"عاجل">
+                description = <"عاجل">
+            >
+            ["at19"] = <
+                text = <"حديث الولادة">
+                description = <"حديث الولادة">
+            >
+            ["at18"] = <
+                text = <"روتيني/معتاد">
+                description = <"روتيني/معتاد">
+            >
+            ["at17"] = <
+                text = <"الولادة و الوضع">
+                description = <"الولادة و الوضع">
+            >
+            ["at16"] = <
+                text = <"طوارئ">
+                description = <"طوارئ">
+            >
+            ["at15"] = <
+                text = <"حادث">
+                description = <"حادث">
+            >
+            ["id14"] = <
+                text = <"نوع الإدخال">
+                description = <"الظروف التي يتم إدخال المريض تحتها">
+            >
+            ["at12"] = <
+                text = <"غير معروف">
+                description = <"غير معروف">
+            >
+            ["at11"] = <
+                text = <"غير قابل للتطبيق">
+                description = <"غير قابل للتطبيق">
+            >
+            ["at10"] = <
+                text = <"حساب تجاري">
+                description = <"حساب تجاري">
+            >
+            ["at9"] = <
+                text = <"ما قبل الإدخال">
+                description = <"ما قبل الإدخال">
+            >
+            ["at8"] = <
+                text = <"عميل مجتمعي">
+                description = <"عميل مجتمعي">
+            >
+            ["at7"] = <
+                text = <"مريض الطوارئ">
+                description = <"مريض الطوارئ">
+            >
+            ["at6"] = <
+                text = <"المريض الخارجي">
+                description = <"المريض الخارجي">
+            >
+            ["at5"] = <
+                text = <"مريض اليوم الواحد">
+                description = <"مريض اليوم الواحد">
+            >
+            ["at4"] = <
+                text = <"مريض داخلي/ليلي">
+                description = <"مريض داخلي/ليلي">
+            >
+            ["id3"] = <
+                text = <"درجة المريض">
+                description = <"أسلوب المعاملة المقصود">
+            >
+            ["id1"] = <
+                text = <"إدخال المريض">
+                description = <"يستخدم فقط للمرضى الذين تم إدخالهم. و ذلك يشير إلى بداية بقاء المريض في مؤسسة الرعاية الصحية">
+            >
+            ["ac2"] = <
+                text = <"أي مصطلح مكافئ لمؤشر ثمن الرعاية">
+                description = <"*">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at83", "at91", "at92", "at93", "at94">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at109", "at110", "at111", "at112", "at113", "at114", "at115", "at116", "at117", "at119">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at4", "at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at63", "at64", "at65", "at66", "at123", "at124", "at125", "at126", "at127", "at128", "at129", "at130", "at131">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at15", "at16", "at17", "at18", "at19", "at20", "at21", "at22", "at23">
+        >
+    >

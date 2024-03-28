@@ -1,0 +1,336 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=251b76fc-936e-45df-8869-3babe10969cb; build_uid=39a0b4df-30f5-431b-b219-0c4a668893c1)
+    openEHR-EHR-CLUSTER.occupation_record.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke and Vebjørn Arntzen">
+                ["organisation"] = <"Nasjonal IKT HF">
+                ["email"] = <"silje.ljosland.bakke@nasjonalikt.no / varntzen@ous-hf.no">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2010-12-17">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Morten Aas, Diakonhjemmet Sykehus, Norway", "Tomas Alme, DIPS ASA, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Ivar Berge, Oslo Universitetssykehus, Norway", "Anita Bjørnnes, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Angela Crovetti, CDC/NIOSH, United States", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Jayne Donaldson, University of Stirling, United Kingdom", "Bjørg Eli Hollund, helse-bergen, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "Samuel Frade, Marand, Portugal", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sergio Freire, State University of Rio de Janeiro, Brazil", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Gunn Haugland, Helse Bergen HF, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Jørn Henrik Vold, Helse Bergen, Avdeling for rusmedisin, Norway", "Anca Heyd, DIPS ASA, Norway", "Teresa Highway, Alberta Health Services, Canada", "Annette Hole Sjøborg, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Kaja Irgens-Hansen, Yrkesmedisinsk avdeling, Haukeland universitetssykehus, Norway", "Susanna Jönsson, Landstinget i Värmland, Sweden", "Tom K. Grimsrud, Kreftregisteret, Norway", "Tone Klund, DIPS AS, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Ron Krawec, Alberta Health Services, Canada", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Pedro Leuschner, Centro Hospitalar do Porto, Portugal", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Rose Mari Eikås, Helse Bergen, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "John Meredith, NHS Wales Informatics Service, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Erik Nissen, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Martin Paulson, Sykehuset i Vestfold, Norway", "Georg Reinhardt, Helse Fonna, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Niclas Skyttberg, Karolinska Institutet, Sweden", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Andreas Sundstrom, Capio S:t Gorans Hospital, Sweden", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstittutet, Norway", "Susanne Trønnes, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Derived from: Employment Summary, Draft Archetype [Internet]. NEHTA, Australia, NEHTA Clinical Knowledge Manager [cited: 2016-01-11]. No longer available.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"B2FDD0CF2A62BD053B957AF5F599E5C6">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere detaljert informasjon om en jobb eller rolle individet har, eller har hatt i en spesifisert tidsperiode.">
+            keywords = <"arbeid", "arbeidstaker", "arbeidsgiver", "arbeidsforhold", "arbeidshistorikk", "jobb", "ansatt", "yrke", "arbeidsløs", "studerer", "student", "elev", "trygdet", "ufør", "arbeidssituasjon", "erverv", "yrkestilknytning", "pensjon", "pensjonist", "attføring", "bransje", "arbeidsledig", "hjemmeværende", "stilling", "profesjon", "frivillig", "vernepliktig", "sektor", "næring", "verv">
+            use = <"Brukes for å registrere detaljert informasjon om en jobb eller rolle individet har, eller har hatt i en spesifisert tidsperiode.
+    
+    Arketypen omfatter alle typer arbeid eller aktiviteter individet har eller har hatt. For eksempel: En/et betalt eller ubetalt jobb/arbeid/verv, samt ulike roller som for eksempel pensjonist, hjemmeværende eller student.
+    
+    Ved å benytte denne arketypen til gjentatte registreringer, vil en få fram en historisk oversikt over nåværende og tidligere arbeidsforhold /roller et individ har eller har hatt.
+    
+    Et aktivt, nåværende arbeidsforhold/roller kan bli utledet fra \"Dato for oppstart\" hvis det ikke er registrert noe i \"Dato for opphør\".
+    
+    Et individ kan ha mange samtidige arbeidsforhold/rolle, og de kan hver for seg være betalt eller ubetalt. Hvert slik arbeidsforhold registreres i egne instanser av denne arketypen.
+    
+    Hvis detaljer om et arbeidsforhold/rolle endrer seg vesentlig, som forandring av tittel eller stillingsprosent, registreres dette i egne instanser av denne arketypen.
+    
+    Arketypen er laget for å benyttes i SLOTet \"Arbeidsepisode\" i arketypen EVALUATION.occupation_summary (Arbeidssammendrag), men kan også brukes innen andre ENTRY- eller CLUSTER-arketyper der det er klinisk relevant.
+    
+    Det kan fremstå som å være overlapp, reell eller tilsynelatende, mellom dataelementene i denne arketypen og demografiske opplysninger om sysselsetting/arbeidsforhold andre steder i kliniske systemer. Dataelementene i denne arketypen er laget spesifikt for å støtte kliniske bruksområder, inkludert sykemeldinger eller legeerklæringer.">
+            misuse = <"Brukes ikke for å registrere midlertidige endringer eller episoder innen en enkelt arbeidsepisode, som å være i permisjon. Dette er ikke innenfor anvendelsesområdet for denne arketypen, og skal registreres i et personal- eller HR-system.
+    
+    Brukes ikke for å beskrive helserisikoer eller eksponering for farlige substanser i arbeidssituasjonen. Til dette brukes henholdsvis arketypene EVALUATION.health_risk (Helserisiko) eller EVALUATION.exposure.
+    
+    Brukes ikke for å registrere informasjon om individets inntektskilder eller detaljer om inntekt. Bruk arketypen EVALUATION.income_summary for dette formålet.
+    
+    Brukes ikke for å registrere informasjon om arbeid /rolle for et individ på en bestemt dato (for eksempel 16. juni 2014) eller i løpet av en relativ tidsperiode, som for eksempel \"siste 30 dager\". Dette kan utledes fra \"Dato for oppstart\" hvis det ikke er registrert noe i \"Dato for opphør\", og må registreres i en egen OBSERVATION-arketype for dette formålet.">
+            copyright = <"© 2010 NEHTA, openEHR Foundation, Nasjonal IKT HF">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details about a single job or role carried out by an individual during a specified period of time.">
+            keywords = <"employment", "employer", "job", "occupation", "work", "profession", "unemployed", "employee", "unemployment", "studying", "employed", "student", "sector", "profession", "volunteer", "vocation", "trade", "worker", "volunteer", "position">
+            use = <"Use to record details about a single job or role carried out by an individual during a specified period of time. 
+    
+    The scope of this archetype is inclusive of all occupations or activities undertaken by an individual. For example: a paid job or employment; unpaid work of any type such as a volunteer position; or roles such as being retired or a student. 
+    
+    Multiple instances of this archetype captured over time will result in the aggregation of a history of past and present jobs and/or roles.
+    
+    An active, or current occupation may be implied from a 'Date commenced' but no 'Date ceased'. 
+    
+    An individual may carry out many simultaneous occupations, each of which may be paid or unpaid. Each occupation should be recorded in a separate instance of this archetype.
+    
+    If occupation attributes change significantly, such as a change of role/title or number of hours, then this should be recorded as a separate instance of this archetype.
+    
+    This archetype has been specifically designed to be used in the 'Occupation episode' SLOT within the EVALUATION.occupation_summary archetype, but can also be used within any other ENTRY or CLUSTER archetypes, where clinically appropriate.
+    
+    There may be some apparent or real overlap between the data elements in this archetype and occupation/employment details that may be stored as demographic details in clinical or administrative systems. These data elements have been designed specifically to support clinical purposes including generation of a medical certificate to a current employer.">
+            misuse = <"Not to be used to record temporary changes or episodes within a single occupation record, such as being on leave. This is out of scope for this archetype and should be part of an employer's human relations system.
+    
+    Not to be used for detailed descriptions of health risks or exposure to hazardous substances in the workplace. Use the archetypes EVALUATION.health_risk or EVALUATION.exposure for this purpose.
+    
+    Not to be used to record information about sources of income or income details for the individual. Use the EVALUATION.income_summary archetype for this purpose.
+    
+    Not to be used to record information about the occupation of an individual at a specific point in time (for example, on June 16, 2014) or during a relative interval of time (for example 'in the past 30 days'. Use an appropriate OBSERVATION archetype for this purpose.">
+            copyright = <"© Australian Digital Health Agency, openEHR Foundation, Nasjonal IKT HF">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Occupation record
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id6] occurrences matches {1} matches {    -- Job title/role
+                value matches {
+                    DV_TEXT[id9001] 
+                }
+            }
+            allow_archetype CLUSTER[id5] matches {     -- Organisation details
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.organisation(-[a-zA-Z0-9_]+)*\.v0\..*|openEHR-EHR-CLUSTER\.organisation(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id17] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9002] 
+                }
+            }
+            ELEMENT[id8] occurrences matches {0..1} matches {    -- Date commenced
+                value matches {
+                    DV_DATE_TIME[id9003] 
+                }
+            }
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Paid employment status
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+            ELEMENT[id14] occurrences matches {0..1} matches {    -- Full time equivalent
+                value matches {
+                    DV_PROPORTION[id9005] matches {
+                        numerator matches {|>=0.0|}
+                        type matches {1, 2}
+                    }
+                    DV_CODED_TEXT[id9006] matches {
+                        defining_code matches {[ac9000]}    -- Full time equivalent (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id20] occurrences matches {0..1} matches {    -- Time allocated
+                value matches {
+                    DV_QUANTITY[id9007] matches {
+                        [magnitude, units, precision] matches {
+                            [{|>=0.0|}, {"h/d"}, {2}],
+                            [{|>=0.0|}, {"h/wk"}, {2}],
+                            [{|>=0.0|}, {"h/mo"}, {2}],
+                            [{|>=0.0|}, {"h/a"}, {2}],
+                            [{|>=0.0|}, {"d/wk"}, {2}],
+                            [{|>=0.0|}, {"d/mo"}, {2}],
+                            [{|>=0.0|}, {"wk/mo"}, {2}],
+                            [{|>=0.0|}, {"d/a"}, {2}],
+                            [{|>=0.0|}, {"wk/a"}, {2}],
+                            [{|>=0.0|}, {"mo/a"}, {2}]
+                        }
+                    }
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Industry category
+                value matches {
+                    DV_TEXT[id9008] 
+                }
+            }
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- Job category
+                value matches {
+                    DV_TEXT[id9009] 
+                }
+            }
+            allow_archetype CLUSTER[id19] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            ELEMENT[id9] occurrences matches {0..1} matches {    -- Date ceased
+                value matches {
+                    DV_DATE_TIME[id9010] 
+                }
+            }
+            ELEMENT[id15] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    DV_TEXT[id9011] 
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"Heltidsekvivalent (synthesised)">
+                description = <"Arbeidsforholdet/rollens andel eller prosent av en heltidsstilling. (synthesised)">
+            >
+            ["at22"] = <
+                text = <"Deltid">
+                description = <"Individet bruker kortere tid på jobben/rollen enn definisjonen av full stilling i lov- eller avtaleverk (tariffavtale).">
+            >
+            ["at21"] = <
+                text = <"Heltid">
+                description = <"Individet bruker lik eller lengre tid på jobben/rollen enn definisjonen av full stilling i lov- eller avtaleverk (tariffavtale).">
+            >
+            ["id20"] = <
+                text = <"Avsatt tid">
+                description = <"Den avtalte tiden som er satt av til å utføre jobben eller rollen per tidsperiode for dette arbeidsforholdet.">
+                comment = <"For eksempel: \"3 dager per uke\", \"10 dager per måned\" eller \"2 timer per dag\".">
+            >
+            ["id19"] = <
+                text = <"Ytterligere detaljer">
+                description = <"Ytterligere detaljer om arbeidsforholdet/rollen.">
+                comment = <"For eksempel: Forhold på arbeidsplassen eller erfaring fra krigssoner.">
+            >
+            ["id17"] = <
+                text = <"Beskrivelse">
+                description = <"Fritekstbeskrivelse av arbeidsforholdet/rollen.">
+            >
+            ["id15"] = <
+                text = <"Kommentar">
+                description = <"Ytterligere fritekstkommentar om arbeidsforholdet/rollen som ikke passer i andre felt.">
+            >
+            ["id14"] = <
+                text = <"Heltidsekvivalent">
+                description = <"Arbeidsforholdet/rollens andel eller prosent av en heltidsstilling.">
+                comment = <"Definisjonen av \"heltid\" kan variere mellom ulike yrker. For eksempel \"0,5\", 50 %\" eller \"deltid\". I noen situasjoner kan det være passende å registrere faktisk antall arbeidstimer i elementet \"Antall arbeidstimer\".">
+            >
+            ["id9"] = <
+                text = <"Dato for opphør">
+                description = <"Datoen arbeidsforholdet/rollen opphørte.">
+            >
+            ["id8"] = <
+                text = <"Dato for oppstart">
+                description = <"Datoen arbeidsforholdet/rollen startet.">
+            >
+            ["id7"] = <
+                text = <"Yrke">
+                description = <"Klassifisering av yrket individet har.">
+                comment = <"Koding med en terminologi er ønskelig om mulig. For eksempel kategorisering i henhold til STYRK-08.
+    For eksempel: \"Salgssjef\" eller \"Programvareutvikler\".">
+            >
+            ["id6"] = <
+                text = <"Tittel/rolle">
+                description = <"Stillingstittel eller betegnelse for dette arbeidsforholdet/rollen/vervet.">
+                comment = <"For eksempel: Administrerende direktør, hjemmeværende eller student. Hver av disse stillingstitlene eller rollene kan omfatte flere arbeidsoppgaver.">
+            >
+            ["id5"] = <
+                text = <"Organisasjonsdetaljer">
+                description = <"Detaljer om arbeidsgiver eller institusjon/organisasjon.">
+            >
+            ["id3"] = <
+                text = <"Bransje">
+                description = <"Klassifisering av bransje eller sektor der individet har arbeidsforholdet/rollen.">
+                comment = <"For eksempel: \"Jordbruk, skogbruk og fiske\", \"Varehandel\", \"Bygg- og anleggsvirksomhet\". Koding av \"Bransje\" med en terminologi er anbefalt, der det er mulig.">
+            >
+            ["id2"] = <
+                text = <"Status lønnet arbeid">
+                description = <"Om individet har lønnet eller ulønnet arbeid.">
+                comment = <"For eksempel: \"Ulønnet\", \"Lønnet\", \"Selvstendig næringsdrivende\" eller \"Frivillig arbeid\". Koding av denne statusen med en terminologi er anbefalt, der det er mulig.">
+            >
+            ["id1"] = <
+                text = <"Arbeidsforhold/rolle">
+                description = <"En jobb eller rolle individet har, eller har hatt i en spesifisert tidsperiode.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Full time equivalent (synthesised)">
+                description = <"The time spent in this job or role relative to full-time. (synthesised)">
+            >
+            ["at22"] = <
+                text = <"Part-time">
+                description = <"The individual carries out this occupation for less than the amount of time that is officially regarded as 'full-time' for the occupation.">
+            >
+            ["at21"] = <
+                text = <"Full-time">
+                description = <"The individual carries out this occupation for equal to or more than the amount of time that is officially regarded as 'full-time' for the occupation.">
+            >
+            ["id20"] = <
+                text = <"Time allocated">
+                description = <"The amount of time an individual is allocated to carry out the job or role per specified period of this occupation record.">
+                comment = <"For example: '3 days per week', '10 days per month' or '2 hours per day'.">
+            >
+            ["id19"] = <
+                text = <"Additional details">
+                description = <"Further detail about an occupation record.">
+                comment = <"For example: workplace location and conditions; or combat zone experience.">
+            >
+            ["id17"] = <
+                text = <"Description">
+                description = <"Narrative description about the job or role carried out by the individual.">
+            >
+            ["id15"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the occupation record not captured in other fields.">
+            >
+            ["id14"] = <
+                text = <"Full time equivalent">
+                description = <"The time spent in this job or role relative to full-time.">
+                comment = <"Full time equivalent may also be known as 'FTE'. For example: 0.5; 50 %; or \"part time\".">
+            >
+            ["id9"] = <
+                text = <"Date ceased">
+                description = <"The date when an individual ceased working in a job or role.">
+            >
+            ["id8"] = <
+                text = <"Date commenced">
+                description = <"The date when an individual commenced the job or role.">
+            >
+            ["id7"] = <
+                text = <"Job category">
+                description = <"The type of job undertaken by the individual.">
+                comment = <"Coding with a terminology is desirable, where possible, such as ISCO-08.
+    For example: Sales manager or software engineer.">
+            >
+            ["id6"] = <
+                text = <"Job title/role">
+                description = <"The main job title or the role of the individual.">
+                comment = <"For example: Chief Executive Officer; Carer; or Student. Each of these job titles or roles may be comprised of multiple duties.">
+            >
+            ["id5"] = <
+                text = <"Organisation details">
+                description = <"Details about the employer or institution.">
+            >
+            ["id3"] = <
+                text = <"Industry category">
+                description = <"The type of industry in which the individual works.">
+                comment = <"For example: Mining, manufacturing, construction. Coding with a terminology is desirable, where possible.">
+            >
+            ["id2"] = <
+                text = <"Paid employment status">
+                description = <"The status of a worker in terms of being paid or unpaid.">
+                comment = <"For example: unpaid; paid; self-employed; or volunteer. Coding with a terminology is desirable, where possible.">
+            >
+            ["id1"] = <
+                text = <"Occupation record">
+                description = <"A single job or role carried out by an individual during a specified period of time.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at21", "at22">
+        >
+    >

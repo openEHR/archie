@@ -1,0 +1,704 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=ab5519ba-22b7-4574-af37-c2a84bc2f24c; build_uid=d978cae8-3abc-4ab9-853b-890bc4710dbc)
+    openEHR-EHR-EVALUATION.substance_use_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Nasjonal IKT HF">
+                ["email"] = <"silje.ljosland.bakke@nasjonalikt.no">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Silje Ljosland Bakke">
+        ["organisation"] = <"Nasjonal IKT HF">
+        ["email"] = <"silje.ljosland.bakke@nasjonalikt.no">
+        ["date"] = <"2017-02-03">
+    >
+    original_namespace = <"no.nasjonalikt">
+    original_publisher = <"Nasjonal IKT">
+    other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Ingrid Skard, DIPS AS, Norway">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"no.nasjonalikt">
+    custodian_organisation = <"Nasjonal IKT">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"F99A91838CE0D710B0809008EBD2A419">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"*To record summary information about the individual's pattern of substance use.(en)">
+            use = <"*Use to record summary information about the individual's pattern of substance use.
+    
+    This archetype is to be used to record information about both current and previous substance use behaviour.
+    
+    The specific scope of this archetype is on documentation about the use of all types of addictive substances, except tobacco and alcohol. The \"Specific substance\" cluster allows for recording of specific details, routes and episodes about each type of substance used and can be repeated once per substance.
+    
+    In some situations the individual will only consume one type of alcoholic beverage, such as beer. If other substances are used, the details will be recorded in another instance of the 'Specific substance' cluster.
+    
+    The history of waxing and waning of use for each substance over time can be captured using the repeatable 'Per episode' cluster. This cluster of data elements allows for a very detailed pattern of substance use behaviour to be recorded for each type of substance used such as daily cannabis smoking, alongside MDMA use every Friday night and occasional cocaine use. 
+    
+    Triggers for closing one episode and commencing a new one will largely reflect local data collection preferences, including if the individual: 
+    - quits for a significant period of time (which will likely be locally defined); or
+    - significantly changes their amount of use or pattern of their substance use.
+    
+    Use to incorporate the narrative descriptions of substance use habits within existing or legacy clinical systems into an archetyped format, using the 'Overall description' data element.(en)">
+            misuse = <"*Not to be used to record information about tobacco use - use EVALUATION.tobacco_smoking_summary or EVALUATION.smokeless_tobacco_summary for this purpose.
+    
+    Not to be used to record information about alcohol use - use EVALUATION.alcohol_use_summary for this purpose.
+    
+    Not to be used to record information about the use of addictive substances as part of a normal diet, such as sugar, or caffeine in coffee or tea.
+    
+    Not to be used to record event-or period-based information about substance use, such as actual daily use or the average use over a specified period of time - use the OBSERVATION.substance_use archetype.(en)">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record summary information about the individual's pattern of substance use.">
+            use = <"Use to record summary information about the individual's pattern of substance use.
+    
+    This archetype is to be used to record information about both current and previous substance use behaviour.
+    
+    The specific scope of this archetype is on documentation about the use of all types of addictive substances, except tobacco and alcohol. The \"Specific substance\" cluster allows for recording of specific details, routes and episodes about each type of substance used and can be repeated once per substance.
+    
+    In some situations the individual will only consume one type of alcoholic beverage, such as beer. If other substances are used, the details will be recorded in another instance of the 'Specific substance' cluster.
+    
+    The history of waxing and waning of use for each substance over time can be captured using the repeatable 'Per episode' cluster. This cluster of data elements allows for a very detailed pattern of substance use behaviour to be recorded for each type of substance used such as daily cannabis smoking, alongside MDMA use every Friday night and occasional cocaine use. 
+    
+    Triggers for closing one episode and commencing a new one will largely reflect local data collection preferences, including if the individual: 
+    - quits for a significant period of time (which will likely be locally defined); or
+    - significantly changes their amount of use or pattern of their substance use.
+    
+    Use to incorporate the narrative descriptions of substance use habits within existing or legacy clinical systems into an archetyped format, using the 'Overall description' data element.">
+            misuse = <"Not to be used to record information about tobacco use - use EVALUATION.tobacco_smoking_summary or EVALUATION.smokeless_tobacco_summary for this purpose.
+    
+    Not to be used to record information about alcohol use - use EVALUATION.alcohol_use_summary for this purpose.
+    
+    Not to be used to record information about the use of addictive substances as part of a normal diet, such as sugar, or caffeine in coffee or tea.
+    
+    Not to be used to record event-or period-based information about substance use, such as actual daily use or the average use over a specified period of time - use the OBSERVATION.substance_use archetype.">
+            copyright = <"© Nasjonal IKT HF">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Substance use summary
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Overall substance use
+                        value matches {
+                            DV_CODED_TEXT[id9006] matches {
+                                defining_code matches {[ac9000]}    -- Overall substance use (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Injection substance use
+                        value matches {
+                            DV_CODED_TEXT[id9007] matches {
+                                defining_code matches {[ac9001]}    -- Injection substance use (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id29] occurrences matches {0..1} matches {    -- First ever injection substance use
+                        value matches {
+                            DV_DATE_TIME[id9008] 
+                        }
+                    }
+                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Overall description
+                        value matches {
+                            DV_TEXT[id9009] 
+                        }
+                    }
+                    CLUSTER[id6] matches {    -- Specific substance
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id7] occurrences matches {1} matches {    -- Substance/substance group
+                                value matches {
+                                    DV_TEXT[id9010] 
+                                }
+                            }
+                            ELEMENT[id8] occurrences matches {0..1} matches {    -- Overall substance status
+                                value matches {
+                                    DV_CODED_TEXT[id9011] matches {
+                                        defining_code matches {[ac9002]}    -- Overall substance status (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id9] occurrences matches {0..1} matches {    -- Overall substance description
+                                value matches {
+                                    DV_TEXT[id9012] 
+                                }
+                            }
+                            ELEMENT[id10] occurrences matches {0..1} matches {    -- First use ever
+                                value matches {
+                                    DV_DATE_TIME[id9013] 
+                                }
+                            }
+                            ELEMENT[id11] occurrences matches {0..1} matches {    -- Regular use commenced
+                                value matches {
+                                    DV_DATE_TIME[id9014] 
+                                }
+                            }
+                            ELEMENT[id12] occurrences matches {0..1} matches {    -- Daily use commenced
+                                value matches {
+                                    DV_DATE_TIME[id9015] 
+                                }
+                            }
+                            CLUSTER[id13] matches {    -- Per route
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id30] occurrences matches {0..1} matches {    -- Route
+                                        value matches {
+                                            DV_TEXT[id9016] 
+                                        }
+                                    }
+                                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Status
+                                        value matches {
+                                            DV_CODED_TEXT[id9017] matches {
+                                                defining_code matches {[ac9003]}    -- Status (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id18] occurrences matches {0..1} matches {    -- Description
+                                        value matches {
+                                            DV_TEXT[id9018] 
+                                        }
+                                    }
+                                    CLUSTER[id19] matches {    -- Per episode
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id23] occurrences matches {0..1} matches {    -- Episode label
+                                                value matches {
+                                                    DV_COUNT[id9019] matches {
+                                                        magnitude matches {|>=0|}
+                                                    }
+                                                    DV_TEXT[id9020] 
+                                                }
+                                            }
+                                            ELEMENT[id24] occurrences matches {0..1} matches {    -- Episode start date
+                                                value matches {
+                                                    DV_DATE_TIME[id9021] 
+                                                }
+                                            }
+                                            ELEMENT[id25] occurrences matches {0..1} matches {    -- Episode end date
+                                                value matches {
+                                                    DV_DATE_TIME[id9022] 
+                                                }
+                                            }
+                                            ELEMENT[id26] occurrences matches {0..1} matches {    -- Effects
+                                                value matches {
+                                                    DV_TEXT[id9023] 
+                                                }
+                                            }
+                                            ELEMENT[id27] occurrences matches {0..1} matches {    -- Typical use
+                                                value matches {
+                                                    DV_TEXT[id9024] 
+                                                    DV_QUANTITY[id9025] matches {
+                                                        property matches {[at9004]}    -- Flow rate, mass
+                                                        [magnitude, units, precision] matches {
+                                                            [{|>=0.0|}, {"g/d"}, {1}],
+                                                            [{|>=0.0|}, {"g/wk"}, {0}],
+                                                            [{|>=0.0|}, {"g/mo"}, {0}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id31] occurrences matches {0..1} matches {    -- Number of quit attempts
+                                                value matches {
+                                                    DV_COUNT[id9026] matches {
+                                                        magnitude matches {|>=0|}
+                                                    }
+                                                }
+                                            }
+                                            allow_archetype CLUSTER[id32] matches {     -- Episode details
+                                                include
+                                                    archetype_id/value matches {/.*/}
+                                            }
+                                            ELEMENT[id28] occurrences matches {0..1} matches {    -- Form
+                                                value matches {
+                                                    DV_TEXT[id9027] 
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id20] occurrences matches {0..1} matches {    -- Quit date
+                                        value matches {
+                                            DV_DATE_TIME[id9028] 
+                                        }
+                                    }
+                                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9029] 
+                                        }
+                                    }
+                                }
+                            }
+                            ELEMENT[id14] occurrences matches {0..1} matches {    -- Combination use
+                                value matches {
+                                    DV_TEXT[id9030] 
+                                }
+                            }
+                            allow_archetype CLUSTER[id33] matches {     -- Type details
+                                include
+                                    archetype_id/value matches {/.*/}
+                            }
+                            ELEMENT[id16] occurrences matches {0..1} matches {    -- Frequency
+                                value matches {
+                                    DV_TEXT[id9031] 
+                                    DV_QUANTITY[id9032] matches {
+                                        property matches {[at9005]}    -- Frequency
+                                        [magnitude, units, precision] matches {
+                                            [{|>=0.0|}, {"1/d"}, {0}],
+                                            [{|>=0.0|}, {"1/wk"}, {0}],
+                                            [{|>=0.0|}, {"1/mo"}, {0}]
+                                        }
+                                    }
+                                }
+                            }
+                            ELEMENT[id15] occurrences matches {0..1} matches {    -- Triggers
+                                value matches {
+                                    DV_TEXT[id9033] 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"*Overall substance use(en) (synthesised)">
+                description = <"*Statement about current substance use behaviour for all addictive substances.(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"*Injection substance use(en) (synthesised)">
+                description = <"*Statement about injection use behaviour for any addictive substances.(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Overall substance status(en) (synthesised)">
+                description = <"*Statement about current use behaviour for the specific substance.(en) (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"*Status(en) (synthesised)">
+                description = <"*Statement about current use of the specified substance through the specified route.(en) (synthesised)">
+            >
+            ["at9004"] = <
+                text = <"* Flow rate, mass (en)">
+                description = <"* Flow rate, mass (en)">
+            >
+            ["at9005"] = <
+                text = <"* Frequency (en)">
+                description = <"* Frequency (en)">
+            >
+            ["at45"] = <
+                text = <"*Former user(en)">
+                description = <"*The individual has previously used the specified route but is not using it currently.(en)">
+            >
+            ["at44"] = <
+                text = <"*Current user(en)">
+                description = <"*The individual is currently using the specified route.(en)">
+            >
+            ["at43"] = <
+                text = <"*Never used(en)">
+                description = <"*The individual has never used the specified route.(en)">
+            >
+            ["at42"] = <
+                text = <"*Former user(en)">
+                description = <"*The individual has previously used the specific substance but is not a current user.(en)">
+            >
+            ["at41"] = <
+                text = <"*Current user(en)">
+                description = <"*The individual is currently using the specific substance.(en)">
+            >
+            ["at40"] = <
+                text = <"*Never used(en)">
+                description = <"*The individual has never used the specific substance.(en)">
+            >
+            ["at39"] = <
+                text = <"*Former injected(en)">
+                description = <"*The individual has previously injected any addictive substances.(en)">
+            >
+            ["at38"] = <
+                text = <"*Current injecting(en)">
+                description = <"*The individual is current injecting any addictive substances.(en)">
+            >
+            ["at37"] = <
+                text = <"*Never injected(en)">
+                description = <"*The individual has never injected any addictive substances.(en)">
+            >
+            ["at36"] = <
+                text = <"*Former user(en)">
+                description = <"*The individual has previously used any addictive substances but is not a current user.(en)">
+            >
+            ["at35"] = <
+                text = <"*Current user(en)">
+                description = <"*The individual is currently using addictive substances.(en)">
+            >
+            ["at34"] = <
+                text = <"*Never used(en)">
+                description = <"*The individual has never used any addictive substances.(en)">
+            >
+            ["id33"] = <
+                text = <"*Type details(en)">
+                description = <"*Additional structured details about the use of the specified substance.(en)">
+            >
+            ["id32"] = <
+                text = <"*Episode details(en)">
+                description = <"*Further details about the specific episode.(en)">
+            >
+            ["id31"] = <
+                text = <"*Number of quit attempts(en)">
+                description = <"*Total number of times the individual has attempted to stop using the specified substance within this episode.(en)">
+            >
+            ["id30"] = <
+                text = <"*Route(en)">
+                description = <"*The specified route of administration.(en)">
+            >
+            ["id29"] = <
+                text = <"*First ever injection substance use(en)">
+                description = <"*The date or partial date when the individual first used any addictive substance via injection.(en)">
+            >
+            ["id28"] = <
+                text = <"*Form(en)">
+                description = <"*The form of the substance used.(en)">
+            >
+            ["id27"] = <
+                text = <"*Typical use(en)">
+                description = <"*Estimate of the amount of the specified substance.(en)">
+            >
+            ["id26"] = <
+                text = <"*Effects(en)">
+                description = <"*The effects of the substance on the individual during the specified episode.(en)">
+            >
+            ["id25"] = <
+                text = <"*Episode end date(en)">
+                description = <"*Date when this episode ceased.(en)">
+            >
+            ["id24"] = <
+                text = <"*Episode start date(en)">
+                description = <"*Date when this episode commenced.(en)">
+            >
+            ["id23"] = <
+                text = <"*Episode label(en)">
+                description = <"*Identification of an episode of substance use - either as a number in a sequence and/or a named event.(en)">
+            >
+            ["id22"] = <
+                text = <"*Comment(en)">
+                description = <"*Additional narrative about use of the specified subtance, not captured in other fields.(en)">
+            >
+            ["id20"] = <
+                text = <"*Quit date(en)">
+                description = <"*The date or partial date the individual quit using the specified substance through the specified route.(en)">
+            >
+            ["id19"] = <
+                text = <"*Per episode(en)">
+                description = <"*Details about a discrete period of consumption for the specified type of substance through the specified route.(en)">
+            >
+            ["id18"] = <
+                text = <"*Description(en)">
+                description = <"*Narrative summary about use behaviour for the specified type of substance through the specified route.(en)">
+            >
+            ["id17"] = <
+                text = <"*Status(en)">
+                description = <"*Statement about current use of the specified substance through the specified route.(en)">
+            >
+            ["id16"] = <
+                text = <"*Frequency(en)">
+                description = <"*The frequency of use of the specified substance.(en)">
+            >
+            ["id15"] = <
+                text = <"*Triggers(en)">
+                description = <"*The typical pattern of use of the specified substance.(en)">
+            >
+            ["id14"] = <
+                text = <"*Combination use(en)">
+                description = <"*Details about whether the specified Substance/substance group is used in combination with other substances or substance groups.(en)">
+            >
+            ["id13"] = <
+                text = <"*Per route(en)">
+                description = <"*Details about the use of the specified substance through a specific route of administration.(en)">
+            >
+            ["id12"] = <
+                text = <"*Daily use commenced(en)">
+                description = <"*The date or partial date when the individual first started daily use of the substance.(en)">
+            >
+            ["id11"] = <
+                text = <"*Regular use commenced(en)">
+                description = <"*The date or partial date when the individual first started frequent or regular, but usually non-daily, use of the substance.(en)">
+            >
+            ["id10"] = <
+                text = <"*First use ever(en)">
+                description = <"*Date or partial date when the individual first used the specified substance.(en)">
+            >
+            ["id9"] = <
+                text = <"*Overall substance description(en)">
+                description = <"*Narrative summary about use behaviour for the specified type of substance.(en)">
+            >
+            ["id8"] = <
+                text = <"*Overall substance status(en)">
+                description = <"*Statement about current use behaviour for the specific substance.(en)">
+            >
+            ["id7"] = <
+                text = <"*Substance/substance group(en)">
+                description = <"*The specific substance or substance group used.(en)">
+            >
+            ["id6"] = <
+                text = <"*Specific substance(en)">
+                description = <"*Details about use of a specific addictive substance.(en)">
+            >
+            ["id5"] = <
+                text = <"*Overall description(en)">
+                description = <"*Narrative summary about the individual's overall substance use pattern and history.(en)">
+            >
+            ["id4"] = <
+                text = <"*Injection substance use(en)">
+                description = <"*Statement about injection use behaviour for any addictive substances.(en)">
+            >
+            ["id3"] = <
+                text = <"*Overall substance use(en)">
+                description = <"*Statement about current substance use behaviour for all addictive substances.(en)">
+            >
+            ["id1"] = <
+                text = <"Rusmiddelsanamnese">
+                description = <"Anamnese og persistent informasjon om bruksmønsteret av rusmidler et individ har og har hatt.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Overall substance use (synthesised)">
+                description = <"Statement about current substance use behaviour for all addictive substances. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Injection substance use (synthesised)">
+                description = <"Statement about injection use behaviour for any addictive substances. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Overall substance status (synthesised)">
+                description = <"Statement about current use behaviour for the specific substance. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Status (synthesised)">
+                description = <"Statement about current use of the specified substance through the specified route. (synthesised)">
+            >
+            ["at9004"] = <
+                text = <"Flow rate, mass">
+                description = <"Flow rate, mass">
+            >
+            ["at9005"] = <
+                text = <"Frequency">
+                description = <"Frequency">
+            >
+            ["at45"] = <
+                text = <"Former user">
+                description = <"The individual has previously used the specified route but is not using it currently.">
+            >
+            ["at44"] = <
+                text = <"Current user">
+                description = <"The individual is currently using the specified route.">
+            >
+            ["at43"] = <
+                text = <"Never used">
+                description = <"The individual has never used the specified route.">
+            >
+            ["at42"] = <
+                text = <"Former user">
+                description = <"The individual has previously used the specific substance but is not a current user.">
+            >
+            ["at41"] = <
+                text = <"Current user">
+                description = <"The individual is currently using the specific substance.">
+            >
+            ["at40"] = <
+                text = <"Never used">
+                description = <"The individual has never used the specific substance.">
+            >
+            ["at39"] = <
+                text = <"Former injected">
+                description = <"The individual has previously injected any addictive substances.">
+            >
+            ["at38"] = <
+                text = <"Current injecting">
+                description = <"The individual is current injecting any addictive substances.">
+            >
+            ["at37"] = <
+                text = <"Never injected">
+                description = <"The individual has never injected any addictive substances.">
+            >
+            ["at36"] = <
+                text = <"Former user">
+                description = <"The individual has previously used any addictive substances but is not a current user.">
+            >
+            ["at35"] = <
+                text = <"Current user">
+                description = <"The individual is currently using addictive substances.">
+            >
+            ["at34"] = <
+                text = <"Never used">
+                description = <"The individual has never used any addictive substances.">
+            >
+            ["id33"] = <
+                text = <"Type details">
+                description = <"Additional structured details about the use of the specified substance.">
+            >
+            ["id32"] = <
+                text = <"Episode details">
+                description = <"Further details about the specific episode.">
+            >
+            ["id31"] = <
+                text = <"Number of quit attempts">
+                description = <"Total number of times the individual has attempted to stop using the specified substance within this episode.">
+            >
+            ["id30"] = <
+                text = <"Route">
+                description = <"The specified route of administration.">
+            >
+            ["id29"] = <
+                text = <"First ever injection substance use">
+                description = <"The date or partial date when the individual first used any addictive substance via injection.">
+            >
+            ["id28"] = <
+                text = <"Form">
+                description = <"The form of the substance used.">
+                comment = <"For example tablets or liquid.">
+            >
+            ["id27"] = <
+                text = <"Typical use">
+                description = <"Estimate of the amount of the specified substance.">
+            >
+            ["id26"] = <
+                text = <"Effects">
+                description = <"The effects of the substance on the individual during the specified episode.">
+            >
+            ["id25"] = <
+                text = <"Episode end date">
+                description = <"Date when this episode ceased.">
+                comment = <"Can be a partial date, for example, only a year. This data field will be empty if the episode is current and ongoing.">
+            >
+            ["id24"] = <
+                text = <"Episode start date">
+                description = <"Date when this episode commenced.">
+                comment = <"Can be a partial date, for example, only a year.">
+            >
+            ["id23"] = <
+                text = <"Episode label">
+                description = <"Identification of an episode of substance use - either as a number in a sequence and/or a named event.">
+                comment = <"For example: '2' as the second episode within a sequence of episodes; or 'Pregnancy with twins' if describing the substance use during a health event such as during a specific pregnancy.">
+            >
+            ["id22"] = <
+                text = <"Comment">
+                description = <"Additional narrative about use of the specified subtance, not captured in other fields.">
+            >
+            ["id20"] = <
+                text = <"Quit date">
+                description = <"The date or partial date the individual quit using the specified substance through the specified route.">
+            >
+            ["id19"] = <
+                text = <"Per episode">
+                description = <"Details about a discrete period of consumption for the specified type of substance through the specified route.">
+            >
+            ["id18"] = <
+                text = <"Description">
+                description = <"Narrative summary about use behaviour for the specified type of substance through the specified route.">
+            >
+            ["id17"] = <
+                text = <"Status">
+                description = <"Statement about current use of the specified substance through the specified route.">
+            >
+            ["id16"] = <
+                text = <"Frequency">
+                description = <"The frequency of use of the specified substance.">
+            >
+            ["id15"] = <
+                text = <"Triggers">
+                description = <"The typical pattern of use of the specified substance.">
+            >
+            ["id14"] = <
+                text = <"Combination use">
+                description = <"Details about whether the specified Substance/substance group is used in combination with other substances or substance groups.">
+            >
+            ["id13"] = <
+                text = <"Per route">
+                description = <"Details about the use of the specified substance through a specific route of administration.">
+            >
+            ["id12"] = <
+                text = <"Daily use commenced">
+                description = <"The date or partial date when the individual first started daily use of the substance.">
+                comment = <"Can be a partial date, for example, only a year.">
+            >
+            ["id11"] = <
+                text = <"Regular use commenced">
+                description = <"The date or partial date when the individual first started frequent or regular, but usually non-daily, use of the substance.">
+                comment = <"Can be a partial date, for example, only a year. For example, this date could represent when the individual commenced smoking cannabis every Friday night or at parties.">
+            >
+            ["id10"] = <
+                text = <"First use ever">
+                description = <"Date or partial date when the individual first used the specified substance.">
+                comment = <"Can be a partial date, for example, only a year.">
+            >
+            ["id9"] = <
+                text = <"Overall substance description">
+                description = <"Narrative summary about use behaviour for the specified type of substance.">
+            >
+            ["id8"] = <
+                text = <"Overall substance status">
+                description = <"Statement about current use behaviour for the specific substance.">
+            >
+            ["id7"] = <
+                text = <"Substance/substance group">
+                description = <"The specific substance or substance group used.">
+            >
+            ["id6"] = <
+                text = <"Specific substance">
+                description = <"Details about use of a specific addictive substance.">
+            >
+            ["id5"] = <
+                text = <"Overall description">
+                description = <"Narrative summary about the individual's overall substance use pattern and history.">
+                comment = <"Use this data element to record a narrative description only where the structured data does not adequately reflect the substance use habits for this individual or to incorporate unstructured substance use information from existing or legacy clinical systems into an archetyped format.">
+            >
+            ["id4"] = <
+                text = <"Injection substance use">
+                description = <"Statement about injection use behaviour for any addictive substances.">
+            >
+            ["id3"] = <
+                text = <"Overall substance use">
+                description = <"Statement about current substance use behaviour for all addictive substances.">
+            >
+            ["id1"] = <
+                text = <"Substance use summary">
+                description = <"Summary or persistent information about an individual's addictive substances use.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9004"] = <http://openehr.org/id/347>
+            ["at9005"] = <http://openehr.org/id/382>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at40", "at41", "at42">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at37", "at38", "at39">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at34", "at35", "at36">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at43", "at44", "at45">
+        >
+    >

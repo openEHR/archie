@@ -1,0 +1,123 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=2af0c3d0-d321-4e33-98f7-e9970379d6a5; build_uid=1a923d95-5002-4c18-88fb-08415aa7edc4)
+    openEHR-EHR-CLUSTER.copy_number_variant.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Gideon Giacomelli">
+        ["organisation"] = <"Charité Berlin, Germany">
+        ["email"] = <"gideon.giacomelli@charite.de">
+        ["date"] = <"2019-02-01">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Cecilia Mascia, CRS4, Italy", "Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Florian Kaercher, Charité Berlin, Germany", "Francesca Frexia, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Paolo Uva, CRS4, Italy", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Simon Schumacher, HiGHmed, Germany">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"Licence: This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"23DE86A8320F0CFAABC49A582B946256">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the details about a copy number variant observed in a genetic sequence.">
+            use = <"Use to record the findings for a copy number variant observed in a genetic sequence.
+    This archetype has been specifically designed to be used in the 'Variant' SLOT within the CLUSTER.genetic_variant archetype, but can also be used within other ENTRY or CLUSTER archetypes, where clinically appropriate.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Genetic copy number variant
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Start position
+                value matches {
+                    DV_COUNT[id9001] 
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- End position
+                value matches {
+                    DV_COUNT[id9002] 
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Total copy number
+                value matches {
+                    DV_COUNT[id9003] 
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Copy number change type
+                value matches {
+                    DV_CODED_TEXT[id9004] matches {
+                        defining_code matches {[ac9000]}    -- Copy number change type (synthesised)
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id5] matches {     -- Reference sequence
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Copy number change type (synthesised)">
+                description = <"Any copy number variant results in a gain or loss of the region e.g. a loss could result that a hetergozygous locus becomes homozygous since one gene was deleted. (synthesised)">
+            >
+            ["at8"] = <
+                text = <"Loss">
+                description = <"Copy number loss.">
+            >
+            ["at7"] = <
+                text = <"Gain">
+                description = <"Copy number gain.">
+            >
+            ["id6"] = <
+                text = <"Copy number change type">
+                description = <"Any copy number variant results in a gain or loss of the region e.g. a loss could result that a hetergozygous locus becomes homozygous since one gene was deleted.">
+            >
+            ["id5"] = <
+                text = <"Reference sequence">
+                description = <"Structured details about the reference sequence.">
+                comment = <"Should be a specific chromosome most of the time.">
+            >
+            ["id4"] = <
+                text = <"Total copy number">
+                description = <"Number of appearance of the allele.">
+            >
+            ["id3"] = <
+                text = <"End position">
+                description = <"End position on the given reference sequence.">
+                comment = <"Number should not be treated as an absolute more as an estimation.">
+            >
+            ["id2"] = <
+                text = <"Start position">
+                description = <"Start position on the given reference sequence.">
+                comment = <"Number should not be treated as an absolute more as an estimation.">
+            >
+            ["id1"] = <
+                text = <"Genetic copy number variant">
+                description = <"Describes a copy number variant, where any part of a genome was deleted or duplicated (gain or loss of an allele).">
+            >
+        >
+    >
+    term_bindings = <
+        ["LOINC"] = <
+            ["at7"] = <http://loinc.org/id/LA14033-7>
+            ["at8"] = <http://loinc.org/id/LA14034-5>
+            ["id6"] = <http://loinc.org/id/LL1041-4>
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at7", "at8">
+        >
+    >

@@ -1,0 +1,625 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=9a49d23a-f16c-4f8e-adc8-49e3d0ccda82; build_uid=58487b06-0a07-4ecc-b5b9-f703344eab5c)
+    openEHR-EHR-OBSERVATION.abbey_pain_scale.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Dennis Forslund">
+                ["organisation"] = <"Cambio Healthcare Systems">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Syeeda S Farruque">
+        ["organisation"] = <"Cambio Healthcare Systems">
+        ["email"] = <"models@cambiocds.com">
+        ["date"] = <"2017-03-07">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Abbey J, Piller N, De Bellis A, Esterman A, Parker D, Giles L, Lowcay B. The Abbey pain scale: a 1-minute numerical indicator for people with end-stage dementia. Int J Palliat Nurs. 2004 Jan;10(1):6-13. PubMed PMID: 14966439.">
+        ["2"] = <"Liu JY, Briggs M, Closs SJ. The psychometric qualities of four observational pain tools (OPTs) for the assessment of pain in elderly people with osteoarthritic pain. J Pain Symptom Manage. 2010 Oct;40(4):582-98. doi: 10.1016/j.jpainsymman.2010.02.022. Epub 2010 Aug 8. PubMed PMID: 20692806.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"9687DFEBD48DEE9770B2A673B7EC58C7">
+    >
+    details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"*To assess and record the severity of pain in cognitively impaired and non-verbal individuals.(en)">
+            keywords = <"demens", "abbey pain scale", "smärtskattning", "smärtskattningsskala", "geriatrik">
+            use = <"*Use to assess and record the severity of pain in cognitively impaired and non-verbal individuals.(en)">
+            misuse = <"">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To assess and record the severity of pain in cognitively impaired and non-verbal individuals.">
+            keywords = <"dementia", ...>
+            use = <"Use to assess and record the severity of pain in cognitively impaired and non-verbal individuals.
+    
+    ">
+            misuse = <"">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Abbey pain scale
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Vocalization
+                                        value matches {
+                                            DV_ORDINAL[id9007] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}],
+                                                    [{2}, {[at12]}],
+                                                    [{3}, {[at13]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Facial expression
+                                        value matches {
+                                            DV_ORDINAL[id9008] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at14]}],
+                                                    [{1}, {[at15]}],
+                                                    [{2}, {[at16]}],
+                                                    [{3}, {[at17]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Change in body language
+                                        value matches {
+                                            DV_ORDINAL[id9009] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at18]}],
+                                                    [{1}, {[at19]}],
+                                                    [{2}, {[at20]}],
+                                                    [{3}, {[at21]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id36] occurrences matches {0..1} matches {    -- Behavioural change
+                                        value matches {
+                                            DV_ORDINAL[id9010] 
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Physiological change
+                                        value matches {
+                                            DV_ORDINAL[id9011] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at22]}],
+                                                    [{1}, {[at23]}],
+                                                    [{2}, {[at24]}],
+                                                    [{3}, {[at25]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Physical changes
+                                        value matches {
+                                            DV_ORDINAL[id9012] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at26]}],
+                                                    [{1}, {[at27]}],
+                                                    [{2}, {[at28]}],
+                                                    [{3}, {[at29]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id30] occurrences matches {0..1} matches {    -- Total pain score
+                                        value matches {
+                                            DV_COUNT[id9013] matches {
+                                                magnitude matches {|0..15|}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id37] occurrences matches {0..1} matches {    -- Pain score category
+                                        value matches {
+                                            DV_CODED_TEXT[id9014] matches {
+                                                defining_code matches {[ac9005]}    -- Pain score category (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id42] occurrences matches {0..1} matches {    -- Type of pain
+                                        value matches {
+                                            DV_CODED_TEXT[id9015] matches {
+                                                defining_code matches {[ac9006]}    -- Type of pain (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id31] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9016] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id32] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id33] occurrences matches {0..1} matches {    -- Latest pain relief
+                                        value matches {
+                                            DV_DATE_TIME[id9017] matches {
+                                                value
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id34] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id35] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sv"] = <
+            ["ac9000"] = <
+                text = <"*Vocalization(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"*Facial expression(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Change in body language(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"*Physiological change(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"*Physical changes(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"*Pain score category(en) (synthesised)">
+                description = <"*Category of pain, based on the total score.(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"*Type of pain(en) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["at45"] = <
+                text = <"*Acute on chronic(en)">
+                description = <"**(en)">
+            >
+            ["at44"] = <
+                text = <"*Acute(en)">
+                description = <"**(en)">
+            >
+            ["at43"] = <
+                text = <"*Chronic(en)">
+                description = <"**(en)">
+            >
+            ["id42"] = <
+                text = <"*Type of pain(en)">
+                description = <"**(en)">
+            >
+            ["at41"] = <
+                text = <"*Severe(en)">
+                description = <"*Total pain score 14+.(en)">
+            >
+            ["at40"] = <
+                text = <"*Moderate(en)">
+                description = <"*Total pain score 8-13.(en)">
+            >
+            ["at39"] = <
+                text = <"*Mild pain(en)">
+                description = <"*Total pain score 3-7.(en)">
+            >
+            ["at38"] = <
+                text = <"*No pain(en)">
+                description = <"*Total pain score 0-2.(en)">
+            >
+            ["id37"] = <
+                text = <"*Pain score category(en)">
+                description = <"*Category of pain, based on the total score.(en)">
+            >
+            ["id36"] = <
+                text = <"*Behavioural change(en)">
+                description = <"*">
+                comment = <"*For example: increased confusion; refusing to eat,; alteration in usual patterns.(en)">
+            >
+            ["id35"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms(en)">
+                comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["id33"] = <
+                text = <"*Latest pain relief(en)">
+                description = <"*The date/time when the latest pain relief was given.(en)">
+            >
+            ["id31"] = <
+                text = <"*Comment(en)">
+                description = <"*Additional narrative about the Abbey pain score not captured in other fields.(en)">
+            >
+            ["id30"] = <
+                text = <"*Total pain score(en)">
+                description = <"*Sum of  the 6 individual scores.(en)">
+            >
+            ["at29"] = <
+                text = <"Ofta">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Ibland">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Sällan">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"Inte alls">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Ofta">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Ibland">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Sällan">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"Inte alls">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Ofta">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Ibland">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Sällan ">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Inte alls">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Ofta">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Ibland">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Sällan">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Inte alls">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Ofta">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Ibland">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Sällan">
+                description = <"*">
+            >
+            ["at10"] = <
+                text = <"Inte alls">
+                description = <"*">
+            >
+            ["id9"] = <
+                text = <"*Physical changes(en)">
+                description = <"**(en)">
+                comment = <"*For example: skin tears; pressure areas; arthritis; contractures; previous injuries.(en)">
+            >
+            ["id8"] = <
+                text = <"*Physiological change(en)">
+                description = <"**(en)">
+                comment = <"*For example: temperature, pulse or blood pressure outside normal limits; perspiring, flushing or pallor.(en)">
+            >
+            ["id7"] = <
+                text = <"*Change in body language(en)">
+                description = <"**(en)">
+                comment = <"*For example: fidgeting; rocking; guarding part of body; withdrawn.(en)">
+            >
+            ["id6"] = <
+                text = <"*Facial expression(en)">
+                description = <"**(en)">
+                comment = <"*For example: looking tense; frowning; grimacing; looking frightened.(en)">
+            >
+            ["id5"] = <
+                text = <"*Vocalization(en)">
+                description = <"**(en)">
+                comment = <"*For example: whimpering; groaning; crying.(en)">
+            >
+            ["id3"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id1"] = <
+                text = <"*Abbey pain scale(en)">
+                description = <"*Rapid tool to assess the severity of pain in cognitively impaired and non-verbal individuals.(en)">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Vocalization (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Facial expression (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Change in body language (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Physiological change (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Physical changes (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Pain score category (synthesised)">
+                description = <"Category of pain, based on the total score. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Type of pain (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at45"] = <
+                text = <"Acute on chronic">
+                description = <"*">
+            >
+            ["at44"] = <
+                text = <"Acute">
+                description = <"*">
+            >
+            ["at43"] = <
+                text = <"Chronic">
+                description = <"*">
+            >
+            ["id42"] = <
+                text = <"Type of pain">
+                description = <"*">
+            >
+            ["at41"] = <
+                text = <"Severe">
+                description = <"Total pain score 14+.">
+            >
+            ["at40"] = <
+                text = <"Moderate">
+                description = <"Total pain score 8-13.">
+            >
+            ["at39"] = <
+                text = <"Mild pain">
+                description = <"Total pain score 3-7.">
+            >
+            ["at38"] = <
+                text = <"No pain">
+                description = <"Total pain score 0-2.">
+            >
+            ["id37"] = <
+                text = <"Pain score category">
+                description = <"Category of pain, based on the total score.">
+            >
+            ["id36"] = <
+                text = <"Behavioural change">
+                description = <"*">
+                comment = <"For example: increased confusion; refusing to eat,; alteration in usual patterns.">
+            >
+            ["id35"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id33"] = <
+                text = <"Latest pain relief">
+                description = <"The date/time when the latest pain relief was given.">
+            >
+            ["id31"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the Abbey pain score not captured in other fields.">
+            >
+            ["id30"] = <
+                text = <"Total pain score">
+                description = <"Sum of  the 6 individual scores.">
+            >
+            ["at29"] = <
+                text = <"Severe">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Moderate">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Mild">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Severe">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Moderate">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Mild">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Severe">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Moderate">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Mild">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Severe">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Moderate">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Mild">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Severe">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Moderate">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Mild">
+                description = <"*">
+            >
+            ["at10"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["id9"] = <
+                text = <"Physical changes">
+                description = <"*">
+                comment = <"For example: skin tears; pressure areas; arthritis; contractures; previous injuries.">
+            >
+            ["id8"] = <
+                text = <"Physiological change">
+                description = <"*">
+                comment = <"For example: temperature, pulse or blood pressure outside normal limits; perspiring, flushing or pallor.">
+            >
+            ["id7"] = <
+                text = <"Change in body language">
+                description = <"*">
+                comment = <"For example: fidgeting; rocking; guarding part of body; withdrawn.">
+            >
+            ["id6"] = <
+                text = <"Facial expression">
+                description = <"*">
+                comment = <"For example: looking tense; frowning; grimacing; looking frightened.">
+            >
+            ["id5"] = <
+                text = <"Vocalization">
+                description = <"*">
+                comment = <"For example: whimpering; groaning; crying.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Abbey pain scale">
+                description = <"Rapid tool to assess the severity of pain in cognitively impaired and non-verbal individuals.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at18", "at19", "at20", "at21">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at14", "at15", "at16", "at17">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at43", "at44", "at45">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at38", "at39", "at40", "at41">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at26", "at27", "at28", "at29">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at22", "at23", "at24", "at25">
+        >
+    >

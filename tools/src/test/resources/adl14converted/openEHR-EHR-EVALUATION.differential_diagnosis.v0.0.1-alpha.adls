@@ -1,0 +1,137 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=f51bbf13-4ac0-441e-9390-249e82b7ae86; build_uid=457134fb-dab4-4a0f-b2df-3ffbaec2b046)
+    openEHR-EHR-EVALUATION.differential_diagnosis.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"Sam.Heard@OceanInformatics.com">
+        ["date"] = <"2004-12-08">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Dipak Kalra, UCL", "Heather Leslie, Atomica Informatics, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Derived from: Differential Diagnoses, Draft archetype [Internet]. Australian Digital Health Agency (NEHTA), ADHA Clinical Knowledge Manager. Authored: 2004 Dec 8. Available at: http://dcm.nehta.org.au/ckm#showArchetype_1013.1.906_2 (discontinued).">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"417DDAB6140BB7E97B47A996877909D1">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To express one or more suspected or probable diagnoses, until a single, working diagnosis is determined.">
+            keywords = <"differential", "diagnosis">
+            use = <"Use to record a set of differential diagnoses that are to be used as part of the diagnostic process.">
+            misuse = <"Not to be used to record information about working problems or diagnoses - use EVALUATION.problem.">
+            copyright = <"© Australian Digital Health Agency, openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Differential diagnoses
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {1..*} matches {
+                    CLUSTER[id4] occurrences matches {1..*} matches {    -- Differential
+                        items cardinality matches {1..2} matches {
+                            ELEMENT[id8] occurrences matches {1} matches {    -- Diagnosis
+                                value matches {
+                                    DV_TEXT[id9001] 
+                                }
+                            }
+                            ELEMENT[id5] occurrences matches {0..1} matches {    -- Likelihood
+                                value matches {
+                                    DV_CODED_TEXT[id9002] matches {
+                                        defining_code matches {[ac9000]}    -- Likelihood (synthesised)
+                                    }
+                                }
+                            }
+                            ELEMENT[id7] occurrences matches {0..1} matches {    -- Rationale
+                                value matches {
+                                    DV_TEXT[id9003] 
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            DV_TEXT[id9004] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_LIST[id14] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id15] matches {    -- Reference
+                        value matches {
+                            DV_TEXT[id9005] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Likelihood (synthesised)">
+                description = <"The likelihood of this diagnosis being present. (synthesised)">
+            >
+            ["at18"] = <
+                text = <"Likely">
+                description = <"Likely to be the working diagnosis, with good supportive evidence.">
+            >
+            ["at16"] = <
+                text = <"Suspected">
+                description = <"Possibly the diagnosis, but without a weight of supportive evidence.">
+            >
+            ["id15"] = <
+                text = <"Reference">
+                description = <"Any literary references supporting the diagnoses.">
+            >
+            ["id8"] = <
+                text = <"Diagnosis">
+                description = <"Identification of diagnosis. It is desirable that this should be coded where possible.">
+            >
+            ["id7"] = <
+                text = <"Rationale">
+                description = <"Rationale for this diagnosis being included as a differential.">
+            >
+            ["id6"] = <
+                text = <"Comment">
+                description = <"Comment on the whole set of differential diagnoses.">
+            >
+            ["id5"] = <
+                text = <"Likelihood">
+                description = <"The likelihood of this diagnosis being present.">
+            >
+            ["id4"] = <
+                text = <"Differential">
+                description = <"A group of diagnoses or explanation and likelihoods being considered.">
+            >
+            ["id1"] = <
+                text = <"Differential diagnoses">
+                description = <"A set of 1 or more diagnoses considered as reasonable but as yet hypothetical causes of the patients signs and symptoms
+    Set of one or more interim diagnoses that could account for a patient's history, examination findings, measurements and results. In practice, the intent is that as further evidence is gathered differential diagnoses will be eliminated one by one until one diagnosis becomes most likely.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at16", "at18">
+        >
+    >

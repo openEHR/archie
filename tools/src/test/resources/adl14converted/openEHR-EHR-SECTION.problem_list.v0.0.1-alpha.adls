@@ -1,0 +1,194 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=496598a7-dcfa-45fb-8886-f5b76c2333d9; build_uid=add67499-c87d-4fc8-a358-e66e8960e794)
+    openEHR-EHR-SECTION.problem_list.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            author = <
+                ["name"] = <"Alan March">
+                ["organisation"] = <"Hospital Universiatario Austral, Pilar, Buenos Aires, Argentina.">
+                ["email"] = <"alandmarch@gmail.com">
+            >
+            accreditation = <"MD">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Adriana Kitajima, Débora Farage, Fernanda Maia, Laíse Figueiredo, Marivan Abrahão">
+                ["organisation"] = <"Core Consulting">
+                ["email"] = <"contato@coreconsulting.com.br">
+            >
+            accreditation = <"Hospital Alemão Oswaldo Cruz (HAOC)">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2010-07-03">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Nadim Anani, Karolinska Institutet, Sweden", "Vebjoern Arntzen, Oslo university hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Bergen Hospital Trust, Norway (openEHR Editor)", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Shahla Foozonkhah, Ocean Informatics, Australia", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Oslo University Hospital, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, UNB, Brazil", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Heath Frankel, Ocean Informatics, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Derived from: Problem List, Draft archetype [Internet]. Australian Digital Health Agency, ADHA Clinical Knowledge Manager. Available from: http://dcm.nehta.org.au/ckm/#showArchetype_1013.1.1235 (no longer available).">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"4ADA26443C73C24DECB230E301C3791B">
+    >
+    details = <
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            purpose = <"*A design pattern for a persistent and managed list of any combination of diagnoses, problems and/or procedures that may influence clinical decision-making and care provision for the individual.(en)">
+            keywords = <"problema", "diagnóstico", "exclusión", "ausencia", "conociudo", "lista">
+            use = <"*Use as a suggested framework or design guidance to support consistent modelling of the Problem list as a persistent and managed list of diagnoses identified, problems experienced by the subject or previous procedures performed. This archetype is intended to be used within the COMPOSITION.problem_list.
+    
+    This list can be comprised of three types of statements, each represented by specific archetypes:
+    - statements about the positive presence of problems, diagnoses or previous procedures are recorded using the EVALUATION.problem_diagnosis and/or ACTION.procedure archetypes; OR
+    - statements about the positive exclusion of problems, diagnoses or previous procedures can be recorded using the specific EVALUATION.exclusion-global archetype - for example:\"No significant problems or diagnoses\" or \"No history of significant operations or procedures\"; OR
+    - statements about no information being available - neither a positive presence of a problem, diagnosis or procedure performed nor a positive exclusion - can be recorded using the EVALUATION.absence archetype.
+    
+    While it may be ideal to have only one Problem list for each subject of care, it is more realistic to expect that in a distributed environment there may be multiple Problem lists for a single subject of care, each managed and prioritised for a specific clinician, episode of care or other context. For example, a Problem list for a primary care clinician may be a very different configuration to that which is useful for a specialist surgeon or for reference during a hospital inpatient episode. In primary care it is common to organise the Problem list based on active or inactive problems or diagnoses; specialists may prefer to see their list organised around primary diagnoses which are related to their specific speciality and secondary ones which are not; and an inpatient admission may include additional issues related to immediate nursing priorities that would not be relevant once discharged home - for these purposes there is a Status SLOT in the Problem/Diagnosis archetype, which allow use of an archetype that could support clinical systems to organise Problem lists according to the preference of the clinical users of the system, without perpetuating these contextual status labels to other clinical scenarios or for persistence.(en)">
+            misuse = <"">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"*A design pattern for a persistent and managed list of any combination of diagnoses, problems and/or procedures that may influence clinical decision-making and care provision for the individual.(en)">
+            keywords = <"problema", "diagnóstico", "exclusão", "ausência", "conhecido", "lista">
+            use = <"*Use as a suggested framework or design guidance to support consistent modelling of the Problem list as a persistent and managed list of diagnoses identified, problems experienced by the subject or previous procedures performed. This archetype is intended to be used within the COMPOSITION.problem_list.
+    
+    This list can be comprised of three types of statements, each represented by specific archetypes:
+    - statements about the positive presence of problems, diagnoses or previous procedures are recorded using the EVALUATION.problem_diagnosis and/or ACTION.procedure archetypes; OR
+    - statements about the positive exclusion of problems, diagnoses or previous procedures can be recorded using the specific EVALUATION.exclusion-global archetype - for example:\"No significant problems or diagnoses\" or \"No history of significant operations or procedures\"; OR
+    - statements about no information being available - neither a positive presence of a problem, diagnosis or procedure performed nor a positive exclusion - can be recorded using the EVALUATION.absence archetype.
+    
+    While it may be ideal to have only one Problem list for each subject of care, it is more realistic to expect that in a distributed environment there may be multiple Problem lists for a single subject of care, each managed and prioritised for a specific clinician, episode of care or other context. For example, a Problem list for a primary care clinician may be a very different configuration to that which is useful for a specialist surgeon or for reference during a hospital inpatient episode. In primary care it is common to organise the Problem list based on active or inactive problems or diagnoses; specialists may prefer to see their list organised around primary diagnoses which are related to their specific speciality and secondary ones which are not; and an inpatient admission may include additional issues related to immediate nursing priorities that would not be relevant once discharged home - for these purposes there is a Status SLOT in the Problem/Diagnosis archetype, which allow use of an archetype that could support clinical systems to organise Problem lists according to the preference of the clinical users of the system, without perpetuating these contextual status labels to other clinical scenarios or for persistence.(en)">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"A design pattern for a persistent and managed list of any combination of diagnoses, problems and/or procedures that may influence clinical decision-making and care provision for the individual.">
+            keywords = <"problem", "diagnosis", "exclusion", "absence", "known", "list", "diagnoses", "procedure">
+            use = <"Use as a suggested framework or design guidance to support consistent modelling of the Problem list as a persistent and managed list of diagnoses identified, problems experienced by the subject or previous procedures performed. This archetype is intended to be used within the COMPOSITION.problem_list.
+    
+    This list can be comprised of three types of statements, each represented by specific archetypes:
+    - statements about the positive presence of problems, diagnoses or previous procedures are recorded using the EVALUATION.problem_diagnosis and/or ACTION.procedure archetypes; OR
+    - statements about the positive exclusion of problems, diagnoses or previous procedures can be recorded using the specific EVALUATION.exclusion-global archetype - for example:'No significant problems or diagnoses' and/or 'No history of significant operations or procedures'; OR
+    - statements about no information being available - neither a positive presence of a problem, diagnosis or procedure performed nor a positive exclusion - can be recorded using the EVALUATION.absence archetype.
+    
+    While it may be ideal to have only one Problem list for each subject of care, it is more realistic to expect that in a distributed environment there may be multiple Problem lists for a single subject of care, each managed and prioritised for a specific clinician, episode of care or other context. For example, a Problem list for a primary care clinician may be a very different configuration to that which is useful for a specialist surgeon or for reference during a hospital inpatient episode. In primary care it is common to organise the Problem list based on active or inactive problems or diagnoses; specialists may prefer to see their list organised around primary diagnoses which are related to their specific speciality and secondary ones which are not; and an inpatient admission may include additional issues related to immediate nursing priorities that would not be relevant once discharged home - for these purposes there is a Status SLOT in the Problem/Diagnosis archetype, which allow use of an archetype that could support clinical systems to organise Problem lists according to the preference of the clinical users of the system, without perpetuating these contextual status labels to other clinical scenarios or for persistence.
+    
+    In order for this list to be accurate and safe to use as the basis for decision support activities and for exchange, the content of this Problem List should ideally be curated by a clinician responsible for the health record, rather than managed automatically by the clinical system through business rules alone.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    SECTION[id1] matches {    -- Problem list
+        items cardinality matches {1..*; unordered} matches {
+            allow_archetype EVALUATION[id2] matches {     -- Problems, diagnoses, concerns or health issue threads
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.problem_diagnosis(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            allow_archetype ACTION[id3] matches {     -- Procedures
+                include
+                    archetype_id/value matches {/openEHR-EHR-ACTION\.procedure(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            allow_archetype EVALUATION[id4] matches {     -- Exclusion statements
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.exclusion_global(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            allow_archetype EVALUATION[id5] matches {     -- Absent information
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.absence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["es-ar"] = <
+            ["id5"] = <
+                text = <"Información ausente">
+                description = <"Afirmaciones positivas acerca de la no disponibilidad de información de identificación de problemas o diagnósticos, o de procedimientos realizados.">
+                comment = <"Por ejemplo: \\\"Sin información disponible acerca de procedimientos\\\".">
+            >
+            ["id4"] = <
+                text = <"Afirmaciones de exclusión">
+                description = <"Afirmaciones positivas acerca de exclusiones conocidas de problemas y diagnósticos conocidos y de procedimientos realizados.">
+                comment = <"Por ejemplo: \\\"Sin problemas o diagnósticos significativos\\\" o \\\"Sin antecedentes de cirugías o procedimientos significativos\\\".">
+            >
+            ["id3"] = <
+                text = <"Procedimientos">
+                description = <"Detalles acerca de procedimientos identificados que han sido realizados.">
+            >
+            ["id2"] = <
+                text = <"*Problems, diagnoses, concerns or health issue threads(en)">
+                description = <"*Detail about identified problems, diagnoses, concerns or health issue threads.(en)">
+            >
+            ["id1"] = <
+                text = <"Lista de Problemas">
+                description = <"*Suggested design pattern for a typical Problem list.(en)">
+            >
+        >
+        ["pt-br"] = <
+            ["id5"] = <
+                text = <"Informações de ausência">
+                description = <"Declaração positiva de que não há informações disponíveis sobre problemas ou diagnósticos identificados, nem sobre procedimentos realizados.">
+                comment = <"Por exemplo: \"Sem informações disponíveis sobre o procedimento correspondente\".">
+            >
+            ["id4"] = <
+                text = <"Declarações de exclusão">
+                description = <"Declaração positiva sobre a exclusão conhecida de problemas ou diagnósticos conhecidos e procedimentos realizados.">
+                comment = <"Por exemplo: \"Sem diagnóstico ou problema significante\" ou \"Sem histórico de operações ou procedimentos significantes\".">
+            >
+            ["id3"] = <
+                text = <"Procedimentos">
+                description = <"Detalhes sobre procedimentos realizados identificados.">
+            >
+            ["id2"] = <
+                text = <"*Problems, diagnoses, concerns or health issue threads(en)">
+                description = <"*Detail about identified problems, diagnoses, concerns or health issue threads.(en)">
+            >
+            ["id1"] = <
+                text = <"Lista de problemas">
+                description = <"*Suggested design pattern for a typical Problem list.(en)">
+            >
+        >
+        ["en"] = <
+            ["id5"] = <
+                text = <"Absent information">
+                description = <"Positive statement that no information is available about identification of problems, diagnoses or procedures performed.">
+                comment = <"For example: \"No information available concerning procedures\".">
+            >
+            ["id4"] = <
+                text = <"Exclusion statements">
+                description = <"Positive statement about the known exclusion of known problems, diagnoses and procedures performed.">
+                comment = <"For example: \"No problems or diagnoses\" or No operations or procedures\".">
+            >
+            ["id3"] = <
+                text = <"Procedures">
+                description = <"Details about identified procedures that have been performed.">
+            >
+            ["id2"] = <
+                text = <"Problems, diagnoses, concerns or health issue threads">
+                description = <"Detail about identified problems, diagnoses, concerns or health issue threads.">
+            >
+            ["id1"] = <
+                text = <"Problem list">
+                description = <"Suggested design pattern for a typical Problem list.">
+                comment = <"Intended to be used within the COMPOSITION.problem_list.">
+            >
+        >
+    >

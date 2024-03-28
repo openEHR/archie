@@ -1,0 +1,689 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=93b051f7-c9a6-4728-92aa-13a3af7114d5; build_uid=0b4e660e-1df1-4391-a65d-22a067845b73)
+    openEHR-EHR-OBSERVATION.visual_acuity.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"Ocean Informatics, UK">
+        ["email"] = <"ian.mcnicoll@oceaninformatics.com">
+        ["date"] = <"2012-07-18">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Bill Aylward, openEyes Project, UK", "Gustavo Bacelar-Silva, Brazil (Editor)", "Stephen Chu, NeHTA, Australia", "Alistair Laidlaw, Guys and St Thomas NHS Trust, UK", "Heather Leslie, Ocean Informatics, Australia", "Gustavo M Bacelar-Silva, Brazil", "Mike Mair, Timaru Eye Clinic, New Zealand", "Ian McNicoll, Ocean Informatics, United Kingdom (Editor)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Visual Acuity [Internet]. Wikipedia. Available from: http://en.wikipedia.org/wiki/Visual_acuity">
+        ["2"] = <"Aylward W [Internet].Coding Visual Acuity, openEyes Project;2012.Available from http://www.openeyes.org.uk/documents/OpenEyes%20Coding%20Visual%20Acuity.pdf">
+        ["3"] = <"IHE Eye Care Domain. General Eye Evaluation (GEE) [Internet]. IHE; 2012. Available from: http://www.ihe.net/Technical_Framework/upload/IHE_EyeCare_Supp_GEE_Rev1-1_TI_2012-06-29.pdf">
+        ["4"] = <"Royal College of Opthalmologists. Cataract National Dataset for Adults [Internet]. 2011. Available from: http://www.rcophth.ac.uk/page.asp?section=583&sectionTitle=Cataract+National+Data+Set+for+Adults">
+        ["5"] = <"Laidlaw D a. H, Tailor V, Shah N, Atamian S, Harcourt C. Validation of a computerised logMAR visual acuity measurement system (COMPlog): comparison with ETDRS and the electronic ETDRS testing algorithm in adults and amblyopic children. Br J Ophthalmol [Internet]. 2008 Feb 1 [cited 2012 Sep 26];92(2):241–4. Available from: http://bjo.bmj.com/content/92/2/241">
+        ["6"] = <"CfH, UK. Do Once & Share - Glaucoma [Internet]. [cited 2012 Sep 26]. Available from: http://www.doasglaucoma.org/">
+        ["7"] = <"DICOM Supplement 30 [Internet]. [cited 2012 Sep 26]. Available from: http://medical.nema.org/">
+        ["8"] = <"Chiang MF, Boland MV, Brewer A, Epley KD, Horton MB, Lim MC, et al. Special Requirements for Electronic Health Record Systems in Ophthalmology. Ophthalmology [Internet]. 2011 Aug [cited 2012 Sep 26];118(8):1681–7. Available from: http://www.aaojournal.org/article/S0161-6420(11)00374-5/abstract">
+        ["9"] = <"Practical Ophthalmology: A Manual for Beginning Residents, 6th Edition [Paperback]">
+        ["10"] = <"American Academy Of Ophthalmology (Author), Fred M. Wilson II (Editor), MD (Editor)">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"93268562DAF70A1ED1D11EC269E6E621">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For recording the results of both near and distance visual acuity testing, normally measured by testing the subject's ability to read a standard test pattern at a defined distance.">
+            keywords = <"eye", "sight", "vision", "ophthalmic", "visual", "refraction">
+            use = <"Use to record the results of measurement of visual acuity, for both near and distance testing.
+    
+    The 'Clinical Description' data element can be used to record simple narrative summary or as a means to integrate legacy data. 
+    
+    Detailed, structured visual acuity results are preferred and are generally recorded for each eye in turn.  Visual acuity may be recorded using a number of different notation formats e.g. Snellen, logMar, EDTRS etc. In some settings the visual acuity result, originally captured using one of the standard  notations, is converted to a 'Derived Score' capable of algorithmic conversion to the other notations., with details of the original notation and algorithm employed recorded as part of protocol.
+    
+    Where visual acuity is recorded using coded terms such as 'Visual Acuity 6/6' or 'Jaeger score N1', the 'Clinical Interpretation' element should be used, allowing the result to be captured for each eye. 'Overall Interpretation' should be used where the interpretation applies to both eyes or the test result as a whole.
+    
+    The 'Absent Test Result' element may be used to record circumstances where a test could not be performed or completed. Further details may be recorded under 'Confounding Factors' or 'Additional Comment'.
+    
+    When performing visual acuity testing it is customary to record a series of tests sharing a common charting methodology but with different phases of corrective refraction e.g. Unaided, Usual correction, Best corrected visual acuity etc. Each of these phases should be recorded using a separate Entry record, with the name of the test phase carried in 'Test Name'. Further specific details of the exact correction applied (which may involve applying multiple refractions) may be captured in 'Refractive Correction' and 'Refraction Details'  the latter making use of separate Cluster archetypes, one for each eye.">
+            misuse = <"Where details of methodology carried under protocol change between phases of the visual acuity test, a new Entry must be created at run-time.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Visual acuity test result
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id135] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id139] occurrences matches {0..1} matches {    -- Test name
+                                        value matches {
+                                            DV_CODED_TEXT[id9010] matches {
+                                                defining_code matches {[ac9000]}    -- Test name (synthesised)
+                                            }
+                                            DV_TEXT[id9011] 
+                                        }
+                                    }
+                                    ELEMENT[id40] occurrences matches {0..1} matches {    -- Description
+                                        value matches {
+                                            DV_TEXT[id9012] 
+                                        }
+                                    }
+                                    CLUSTER[id54] occurrences matches {0..2} matches {    -- Result details
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id8] occurrences matches {1} matches {    -- Eye examined
+                                                value matches {
+                                                    DV_CODED_TEXT[id9013] matches {
+                                                        defining_code matches {[ac9001]}    -- Eye examined (synthesised)
+                                                    }
+                                                }
+                                            }
+                                            CLUSTER[id29] occurrences matches {0..1} matches {    -- Notation
+                                                items cardinality matches {1..*; unordered} matches {
+                                                    ELEMENT[id57] occurrences matches {0..1} matches {    -- Metric Snellen
+                                                        value matches {
+                                                            DV_PROPORTION[id9014] matches {
+                                                                numerator matches {|1.0..6.0|}
+                                                                denominator matches {|4.0..60.0|}
+                                                                is_integral matches {True}
+                                                                type matches {0}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- US Snellen
+                                                        value matches {
+                                                            DV_PROPORTION[id9015] matches {
+                                                                numerator matches {|3.0..20.0|}
+                                                                denominator matches {|2.0..200.0|}
+                                                                is_integral matches {True}
+                                                                type matches {0}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id58] occurrences matches {0..1} matches {    -- Decimal Snellen
+                                                        value matches {
+                                                            DV_PROPORTION[id9016] matches {
+                                                                numerator matches {|0.0..2.0|}
+                                                                is_integral matches {True}
+                                                                type matches {1}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id12] occurrences matches {0..1} matches {    -- ETDRS Letters
+                                                        value matches {
+                                                            DV_COUNT[id9017] matches {
+                                                                magnitude matches {|1..120|}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id47] occurrences matches {0..1} matches {    -- logMar
+                                                        value matches {
+                                                            DV_QUANTITY[id9018] matches {
+                                                                property matches {[at9002]}    -- Qualified real
+                                                                magnitude matches {|-0.5..2.0|}
+                                                                units matches {" "}
+                                                                precision matches {1}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id16] occurrences matches {0..1} matches {    -- Low Vision Score
+                                                        value matches {
+                                                            DV_ORDINAL[id9019] matches {
+                                                                [value, symbol] matches {
+                                                                    [{1}, {[at17]}],
+                                                                    [{2}, {[at18]}],
+                                                                    [{3}, {[at19]}],
+                                                                    [{4}, {[at20]}]
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id60] occurrences matches {0..1} matches {    -- Letter Termination Adjustment
+                                                value matches {
+                                                    DV_COUNT[id9020] matches {
+                                                        magnitude matches {|-10..10|; 0}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id11] occurrences matches {0..1} matches {    -- Derived Score
+                                                value matches {
+                                                    DV_COUNT[id9021] matches {
+                                                        magnitude matches {|>=0|}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id67] matches {    -- Interpretation
+                                                value matches {
+                                                    DV_TEXT[id9022] 
+                                                }
+                                            }
+                                            ELEMENT[id56] occurrences matches {0..1} matches {    -- No test result
+                                                value matches {
+                                                    DV_BOOLEAN[id9023] matches {
+                                                        value matches {True}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id141] occurrences matches {0..1} matches {    -- Reason for no test result
+                                                value matches {
+                                                    DV_TEXT[id9024] 
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id55] matches {    -- Overall Interpretation
+                                        value matches {
+                                            DV_TEXT[id9025] 
+                                        }
+                                    }
+                                    ELEMENT[id41] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9026] 
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id142] matches {     -- Test not done
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.exclusion_exam(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id42] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id113] matches {    -- Confounding Factors
+                                        value matches {
+                                            DV_TEXT[id9027] 
+                                        }
+                                    }
+                                    ELEMENT[id43] matches {    -- Refractive Correction
+                                        value matches {
+                                            DV_CODED_TEXT[id9028] matches {
+                                                defining_code matches {[ac9004]}    -- Refractive Correction (synthesised)
+                                            }
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id81] occurrences matches {0..2} matches {     -- Refraction Details
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.refraction_details(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                    allow_archetype CLUSTER[id125] occurrences matches {0..1} matches {     -- Pupillary State
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.exam_pupils(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id21] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id82] occurrences matches {0..1} matches {    -- Testing Distance
+                        value matches {
+                            DV_QUANTITY[id9029] matches {
+                                property matches {[at9005]}    -- Length
+                                [magnitude, units, precision] matches {
+                                    [{|>=0.0|}, {"[ft_i]"}, {1}],
+                                    [{|>=0.0|}, {"m"}, {1}],
+                                    [{|>=0.0|}, {"cm"}, {1}],
+                                    [{|>=0.0|}, {"[in_i]"}, {1}]
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id24] occurrences matches {0..1} matches {    -- Chart Method
+                        value matches {
+                            DV_CODED_TEXT[id9030] matches {
+                                defining_code matches {[ac9006]}    -- Chart Method (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Chart Optotype
+                        value matches {
+                            DV_CODED_TEXT[id9031] matches {
+                                defining_code matches {[ac9007]}    -- Chart Optotype (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id23] occurrences matches {0..1} matches {    -- Chart Scoring Algorithm
+                        value matches {
+                            DV_CODED_TEXT[id9032] matches {
+                                defining_code matches {[ac9008]}    -- Chart Scoring Algorithm (synthesised)
+                            }
+                        }
+                    }
+                    allow_archetype CLUSTER[id26] occurrences matches {0..1} matches {     -- Measurement Device Details
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                    ELEMENT[id93] occurrences matches {0..1} matches {    -- Derived Score Original Notation
+                        value matches {
+                            DV_CODED_TEXT[id9033] matches {
+                                defining_code matches {[ac9009]}    -- Derived Score Original Notation (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id118] occurrences matches {0..1} matches {    -- Derived Score Algorithm
+                        value matches {
+                            DV_TEXT[id9034] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id144] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Test name (synthesised)">
+                description = <"The name of the exact visual acuity test performed. This generally represents a broad category of applied refraction. Specific refraction details can be described using 'Refractive Correction'. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Eye examined (synthesised)">
+                description = <"The eye which is being examined. (synthesised)">
+            >
+            ["at9002"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["ac9003"] = <
+                text = <"Low Vision Score (synthesised)">
+                description = <"Graded scale used when patient has low levels of visual acuity. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Refractive Correction (synthesised)">
+                description = <"The specific type(s) of refractive correction applied when measuring visual acuity. (synthesised)">
+            >
+            ["at9005"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["ac9006"] = <
+                text = <"Chart Method (synthesised)">
+                description = <"The charting method used to measure visual acuity. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Chart Optotype (synthesised)">
+                description = <"The style of chart optotype used to assess visual acuity. (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Chart Scoring Algorithm (synthesised)">
+                description = <"The alogrithm used to determine the score. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"Derived Score Original Notation (synthesised)">
+                description = <"The original visual acuity result notation from which the Derived Score was calculated. (synthesised)">
+            >
+            ["id144"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id142"] = <
+                text = <"Test not done">
+                description = <"Details to explicitly record that this test was not performed.">
+            >
+            ["id141"] = <
+                text = <"Reason for no test result">
+                description = <"Reason why no visual acuity test result is available for the test eye.">
+                comment = <"For example, patient was not cooperative; patient was not capable; ran out of time.">
+            >
+            ["at140"] = <
+                text = <"Unaided visual acuity">
+                description = <"The test was performed without visual aid.">
+            >
+            ["id139"] = <
+                text = <"Test name">
+                description = <"The name of the exact visual acuity test performed. This generally represents a broad category of applied refraction. Specific refraction details can be described using 'Refractive Correction'.">
+                comment = <"Details of the exact correction applied, or where multiple corrections should be captured via 'Refractive Correction'.">
+            >
+            ["at138"] = <
+                text = <"Best corrected visual acuity">
+                description = <"The test is performed with the patient's optimal refractive correction.">
+            >
+            ["at137"] = <
+                text = <"Usual corrected visual acuity">
+                description = <"The test is performed with the patient's usual refractive correction i.e spectacles or contact lenses.">
+            >
+            ["at136"] = <
+                text = <"Pinhole visual acuity">
+                description = <"The test is performed with pinhole refraction applied.">
+            >
+            ["id135"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id125"] = <
+                text = <"Pupillary State">
+                description = <"Details of the state of the pupil on examination.">
+            >
+            ["id118"] = <
+                text = <"Derived Score Algorithm">
+                description = <"Details of the algorithm used to calculate a derived score.">
+            >
+            ["id113"] = <
+                text = <"Confounding Factors">
+                description = <"Patient circumstances which affect interpretation of the result. Often termed 'reliability' in opthalmological documentation.">
+                comment = <"Examples: 'Patient was confused', 'Low light conditions'.">
+            >
+            ["at110"] = <
+                text = <"Picture chart">
+                description = <"A picture chart was used to measure distance visual acuity.">
+            >
+            ["at109"] = <
+                text = <"Picture">
+                description = <"A picture optotype was used to measure distance visual acuity.">
+            >
+            ["at108"] = <
+                text = <"Orientation">
+                description = <"An orientation optotype was used to measure distance visual acuity.">
+            >
+            ["at107"] = <
+                text = <"Letter">
+                description = <"A letter optotype was used to measure distance visual acuity.">
+            >
+            ["at103"] = <
+                text = <"Last line single letter">
+                description = <"A last line single letter algorithm was used to derive the visual acuity score.">
+            >
+            ["at102"] = <
+                text = <"Whole line">
+                description = <"A whole line algorithm was used to derive the visual acuity score.">
+            >
+            ["at101"] = <
+                text = <"Single letter">
+                description = <"A single letter algorithm was used to derive the visual acuity score.">
+            >
+            ["at100"] = <
+                text = <"Jaeger 'J' Score">
+                description = <"A Jaeger 'J' Score chart was used to measure near visual acuity.">
+            >
+            ["at99"] = <
+                text = <"Faculty of Ophthalmologists 'N' Score">
+                description = <"Faculty of Ophthalmologists 'N' Score chart was used to measure near visual acuity.">
+            >
+            ["at98"] = <
+                text = <"Reduced Snellen">
+                description = <"A Reduced Snellen chart was used to measure near visual acuity.">
+            >
+            ["at97"] = <
+                text = <"Reduced logMar">
+                description = <"A Reduced logMar chart was used to measure near visual acuity.">
+            >
+            ["id93"] = <
+                text = <"Derived Score Original Notation">
+                description = <"The original visual acuity result notation from which the Derived Score was calculated.">
+                comment = <"When the visual acuity result is recorded using a Derived Score, this element can be used to record the original notation format, so that it can be displayed using the original notation. ">
+            >
+            ["at85"] = <
+                text = <"ETDRS chart">
+                description = <"An ETDRS chart was used to measure distance visual acuity.">
+            >
+            ["at84"] = <
+                text = <"Snellen chart">
+                description = <"A Snellen chart was used to measure distance visual acuity.">
+            >
+            ["at83"] = <
+                text = <"logMar chart">
+                description = <"A logMar chart was used to measure distance visual acuity.">
+            >
+            ["id82"] = <
+                text = <"Testing Distance">
+                description = <"The distance at which the subject's visual acuity was measured.">
+            >
+            ["id81"] = <
+                text = <"Refraction Details">
+                description = <"Details of the refraction applied to each eye.">
+            >
+            ["at76"] = <
+                text = <"Retinoscopy">
+                description = <"The subject's vision was corrected by retinoscopy.">
+            >
+            ["at75"] = <
+                text = <"Autorefraction">
+                description = <"The subject's vision was corrected by autorefraction.">
+            >
+            ["at74"] = <
+                text = <"Pinhole">
+                description = <"The subject's vision was corrected by use of a pinhole.">
+            >
+            ["at73"] = <
+                text = <"Contact lenses">
+                description = <"The subject's vision was corrected by contact lenses.">
+            >
+            ["at72"] = <
+                text = <"Spectacles">
+                description = <"The subject's vision was corrected by spectacles.">
+            >
+            ["id67"] = <
+                text = <"Interpretation">
+                description = <"Clinical interpretation of all results for the test eye.">
+                comment = <"Example: 'Visual Acuity 20/20' or 'Jaeger 'J2' score'.">
+            >
+            ["id60"] = <
+                text = <"Letter Termination Adjustment">
+                description = <"A line termination adjustment score applied to the visual acuity result.">
+                comment = <"If the patient can read at least half of the chart line the visual acuity terminatin line is recorded as that line, with the number of letters missed on that line recorded as a negative Letter Termination Adjustment score.
+    If the patient can read less than half of a Visual Acuity line, the previous line is recorded as the Visual Acuity result, with the number of letters seen on the following line recorded as a positive 'Letter Termination Adjustment' score.">
+            >
+            ["id58"] = <
+                text = <"Decimal Snellen">
+                description = <"The distance test result,recorded as Sn ellen visual acuity expressed as a decimal ratio, where 1.0 is regarded as normal.">
+            >
+            ["at58"] = <
+                text = <"Decimal Snellen">
+                description = <"The distance test result,recorded as Sn ellen visual acuity expressed as a decimal ratio, where 1.0 is regarded as normal.">
+            >
+            ["id57"] = <
+                text = <"Metric Snellen">
+                description = <"The distance test result, recorded in Snellen format expressed in metres, where 6/6 is regarded as normal.">
+                comment = <"Examples: '6/6, '6/12', '6/5'">
+            >
+            ["at57"] = <
+                text = <"Metric Snellen">
+                description = <"The distance test result, recorded in Snellen format expressed in metres, where 6/6 is regarded as normal.">
+                comment = <"Examples: '6/6, '6/12', '6/5'">
+            >
+            ["id56"] = <
+                text = <"No test result">
+                description = <"No visual acuity test result is available for the test eye.">
+                comment = <"Record as True if the clinician was unable to record a result for the test eye.">
+            >
+            ["id55"] = <
+                text = <"Overall Interpretation">
+                description = <"A term, commonly coded, expressing an overall interpretation of the visual acuity test.">
+            >
+            ["id54"] = <
+                text = <"Result details">
+                description = <"Details of the visual field test result for each eye.">
+            >
+            ["id47"] = <
+                text = <"logMar">
+                description = <"The test result, recorded as logMar visual acuity, where a value of 0 is regarded as normal.">
+            >
+            ["at47"] = <
+                text = <"logMar">
+                description = <"The test result, recorded as logMar visual acuity, where a value of 0 is regarded as normal.">
+            >
+            ["id43"] = <
+                text = <"Refractive Correction">
+                description = <"The specific type(s) of refractive correction applied when measuring visual acuity.">
+                comment = <"Examples: 'No correction : unaided', 'Pinhole'.">
+            >
+            ["id41"] = <
+                text = <"Comment">
+                description = <"Any additional narrative comment about the visual acuity test.">
+            >
+            ["id40"] = <
+                text = <"Description">
+                description = <"An overall narrative description of the visual acuity test result.">
+            >
+            ["id29"] = <
+                text = <"Notation">
+                description = <"Details of a visual acuity result recorded using one of the result notation formats.">
+            >
+            ["id26"] = <
+                text = <"Measurement Device Details">
+                description = <"Details of the device used to measure visual acuity.">
+            >
+            ["id24"] = <
+                text = <"Chart Method">
+                description = <"The charting method used to measure visual acuity.">
+            >
+            ["id23"] = <
+                text = <"Chart Scoring Algorithm">
+                description = <"The alogrithm used to determine the score.">
+            >
+            ["id22"] = <
+                text = <"Chart Optotype">
+                description = <"The style of chart optotype used to assess visual acuity.">
+            >
+            ["at20"] = <
+                text = <"CF - Count fingers">
+                description = <"The subject can count fingers.">
+            >
+            ["at19"] = <
+                text = <"HM - Hand movement">
+                description = <"The subject can perceive hand movement.">
+            >
+            ["at18"] = <
+                text = <"PL -  Perception of light">
+                description = <"The subject can perceive light.">
+            >
+            ["at17"] = <
+                text = <"NPL - No perception of light">
+                description = <"The subject has no perception of light.">
+            >
+            ["id16"] = <
+                text = <"Low Vision Score">
+                description = <"Graded scale used when patient has low levels of visual acuity.">
+            >
+            ["at16"] = <
+                text = <"Low Vision Score">
+                description = <"Graded scale used when patient has low levels of visual acuity.">
+            >
+            ["at15"] = <
+                text = <"Both eyes simultaneously">
+                description = <"Both eyes were examined simultaneously.">
+            >
+            ["at14"] = <
+                text = <"Right eye">
+                description = <"The test result refers to the visual acuity of the right eye only.">
+            >
+            ["at13"] = <
+                text = <"Left eye">
+                description = <"The test result refers to the visual acuity of the left eye only.">
+            >
+            ["id12"] = <
+                text = <"ETDRS Letters">
+                description = <"Visual acuity expressed using ETDRS Letters format, with a value of 100 regarded as normal.">
+            >
+            ["at12"] = <
+                text = <"ETDRS Letters">
+                description = <"Visual acuity expressed using ETDRS Letters format, with a value of 100 regarded as normal.">
+            >
+            ["id11"] = <
+                text = <"Derived Score">
+                description = <"Visual acuity expressed as an integer score which is calculated from one or more of the other result notation formats. The original notation should be captured using 'Derived Score Original Notation' format'.">
+                comment = <"Details of the algorithm used and original result format may be recorded under 'Derived Score Methodology'.">
+            >
+            ["id10"] = <
+                text = <"US Snellen">
+                description = <"The distance test result, recorded as Snellen visual acuity expressed in feet, where 20/20 is regarded as normal.">
+                comment = <"Examples: '20/20' , '20/40', '20/18'">
+            >
+            ["at10"] = <
+                text = <"US Snellen">
+                description = <"The distance test result, recorded as Snellen visual acuity expressed in feet, where 20/20 is regarded as normal.">
+                comment = <"Examples: '20/20' , '20/40', '20/18'">
+            >
+            ["id8"] = <
+                text = <"Eye examined">
+                description = <"The eye which is being examined.">
+            >
+            ["id1"] = <
+                text = <"Visual acuity test result">
+                description = <"Visual acuity is a measure of the spatial resolution of the visual processing system.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9002"] = <http://openehr.org/id/380>
+            ["at9005"] = <http://openehr.org/id/122>
+        >
+        ["SNOMED-CT"] = <
+            ["id10"] = <http://snomed.info/id/422673001>
+            ["at10"] = <http://snomed.info/id/422673001>
+            ["at13"] = <http://snomed.info/id/362503005>
+            ["at14"] = <http://snomed.info/id/362502000>
+            ["at20"] = <http://snomed.info/id/422256009>
+            ["id40"] = <http://snomed.info/id/117364006>
+            ["id41"] = <http://snomed.info/id/117364006>
+            ["id55"] = <http://snomed.info/id/271922009>
+            ["id57"] = <http://snomed.info/id/422673001>
+            ["at57"] = <http://snomed.info/id/422673001>
+            ["id58"] = <http://snomed.info/id/422673001>
+            ["at58"] = <http://snomed.info/id/422673001>
+            ["id67"] = <http://snomed.info/id/363983007>
+            ["at72"] = <http://snomed.info/id/50121007>
+            ["at73"] = <http://snomed.info/id/57368009>
+            ["at76"] = <http://snomed.info/id/397524001>
+            ["id82"] = <http://snomed.info/id/252124009>
+            ["at84"] = <http://snomed.info/id/400913005>
+            ["at85"] = <http://snomed.info/id/400914004>
+            ["at98"] = <http://snomed.info/id/422673001>
+        >
+    >
+    value_sets = <
+        ["ac9009"] = <
+            id = <"ac9009">
+            members = <"at10", "at57", "at58", "at12", "at16", "at47">
+        >
+        ["ac9008"] = <
+            id = <"ac9008">
+            members = <"at101", "at102", "at103">
+        >
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at107", "at108", "at109">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at13", "at14", "at15">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at136", "at137", "at138", "at140">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at83", "at84", "at85", "at110", "at97", "at98", "at99", "at100">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at72", "at73", "at74", "at75", "at76">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at17", "at18", "at19", "at20">
+        >
+    >

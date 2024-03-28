@@ -1,0 +1,283 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=86cb6739-f7f6-48ca-90ac-541e4655cd26; build_uid=a46fc4f9-6a92-4391-b124-dd89001a32d6)
+    openEHR-EHR-EVALUATION.physical_activity_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Mikael Collin">
+                ["organisation"] = <"Sverige">
+                ["email"] = <"mco@kth.se">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2017-06-20">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Stephen Chu, Australia", "Priscila Maranhão, MEDCIDS-FMUP, Portugal", "Gustavo Bacelar, Virtual Care, Portugal", "Hugh Leslie, Ocean Informatics, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Physical Activity Summary, Draft Archetype [Internet]. Australian Digital Health Agency, Australian Digital Health Agency Clinical Knowledge Manager [cited: 2017-06-20]. Available from: http://dcm.nehta.org.au/ckm/#showArchetype_1013.1.932">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Health Systems<heather.leslie@oceanhealthsystems.com>">
+        ["MD5-CAM-1.0.1"] = <"2E5B397FB8CAFFB53BA4B7A1E2CE1502">
+    >
+    details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Att fånga fysisk aktivitet om en person.">
+            keywords = <"*aktivitet(sv)", "*träning(sv)", "*fysisk(sv)", "*kondition(sv)">
+            use = <"*Use to record a summary of typical, or usual, physical activity of children or adults.
+    
+    Please note: There is some apparent overlap between the 'Physical activity level (PAL) status' data element in this archetype and the 'Physical activity category' data element in OBSERVATION.physical_activity archetype - they both use the same value set. Use this archetype when recording the the typical activity as a summative statement, however if the intent is to record the category at a specified point in time or during a specified period of time then use the equivalent data point in the OBSERVATION.physical_activity.(en)">
+            misuse = <"Ska inte användas för att en faktisk fysisk aktivitet under en specifik tid - använd OBSERVATION.physical_activity för detta syfte.">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a summary of typical physical activity of an individual.">
+            keywords = <"activity", "exercise", "physical", "fitness">
+            use = <"Use to record a summary of typical, or usual, physical activity of children or adults.
+    
+    Please note: There is some apparent overlap between the 'Physical activity level (PAL) status' data element in this archetype and the 'Physical activity category' data element in OBSERVATION.physical_activity archetype - they both use the same value set. Use this archetype when recording the the typical activity as a summative statement, however if the intent is to record the category at a specified point in time or during a specified period of time then use the equivalent data point in the OBSERVATION.physical_activity.">
+            misuse = <"Not to be used to record actual physical activity at a specific point in time or during a specified period of time - use OBSERVATION.physical_activity for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Physical activity summary
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Physical activity level (PAL) status
+                        value matches {
+                            DV_CODED_TEXT[id9002] matches {
+                                defining_code matches {[ac9000]}    -- Physical activity level (PAL) status (synthesised)
+                            }
+                            DV_TEXT[id9003] 
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            DV_TEXT[id9004] 
+                        }
+                    }
+                    ELEMENT[id6] matches {    -- Barrier
+                        value matches {
+                            DV_TEXT[id9005] 
+                        }
+                    }
+                    ELEMENT[id7] matches {    -- Enabler
+                        value matches {
+                            DV_TEXT[id9006] 
+                        }
+                    }
+                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Typical moderate exercise
+                        value matches {
+                            DV_QUANTITY[id9007] matches {
+                                property matches {[at9001]}    -- Frequency
+                                [units] matches {
+                                    [{"1/d"}],
+                                    [{"1/wk"}],
+                                    [{"1/mo"}]
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Typical vigorous exercise
+                        value matches {
+                            DV_QUANTITY[id9008] matches {
+                                property matches {[at9001]}    -- Frequency
+                                [units] matches {
+                                    [{"1/d"}],
+                                    [{"1/wk"}],
+                                    [{"1/mo"}]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id15] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Last updated
+                        value matches {
+                            DV_DATE_TIME[id9009] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id16] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sv"] = <
+            ["ac9000"] = <
+                text = <"Fysisk aktivitetsnivå (PAL) (synthesised)">
+                description = <"Fysisk aktivitetsnivå (synthesised)">
+            >
+            ["at9001"] = <
+                text = <"* Frequency (en)">
+                description = <"* Frequency (en)">
+            >
+            ["id17"] = <
+                text = <"Senast uppdaterad">
+                description = <"Datumet när aktiviteten om fysisk aktivitet senast uppdaterades.">
+            >
+            ["id16"] = <
+                text = <"Utökning">
+                description = <"Extra information som krävs för att fånga lokalt innehåll eller för att anpassa till andra referensmodeller.">
+                comment = <"Till exempel: lokal information som krävs">
+            >
+            ["at14"] = <
+                text = <"Extremt aktiv">
+                description = <"Personen är extremt aktiv, till exempel en person som tävlingscyklar.">
+            >
+            ["at13"] = <
+                text = <"Mycket aktiv">
+                description = <"Personen är väldigt aktiv, till exempel en person som rör dig mycket i sitt arbete eller en person som simmar två timmar varje dag.">
+            >
+            ["at12"] = <
+                text = <"Medelmåttig aktivitet">
+                description = <"Personen är medelmåttigt aktiv, till exempel en byggnadsarbetare eller en person som springer en timme varje dag.">
+            >
+            ["at11"] = <
+                text = <"Stillasittande">
+                description = <"Personen är spenderar mycket tid sittande, till exempel en kontorsarbetare som tränar lite eller inte alls.">
+            >
+            ["at10"] = <
+                text = <"Extremt inaktiv">
+                description = <"Personen är extremt inaktiv, till exempel en sängliggande patient.">
+            >
+            ["id9"] = <
+                text = <"Normal varaktighet medelmåttig aktivitet">
+                description = <"Normal varaktighet för medelmåttig aktivitet.">
+            >
+            ["id8"] = <
+                text = <"Normal varaktighet mycket aktivitet">
+                description = <"Normal varaktighet för mycket aktivitet.">
+            >
+            ["id7"] = <
+                text = <"Möjliggörare">
+                description = <"Identifierade faktorer som kan hjälpa personen till att bli mer fysiskt aktiv.">
+                comment = <"Till exempel: bor nära en simbassäng; eller tidigare en elitidrottare.">
+            >
+            ["id6"] = <
+                text = <"Hinder">
+                description = <"Identifierade faktorer som hindrar personen från att bli mer fysiskt aktiv.">
+            >
+            ["id4"] = <
+                text = <"Beskrivning">
+                description = <"En beskrivning av graden av fysisk aktivitet.">
+            >
+            ["id3"] = <
+                text = <"Fysisk aktivitetsnivå (PAL)">
+                description = <"Fysisk aktivitetsnivå">
+                comment = <"Kodning med terminologi är önskvärt där det är möjligt.">
+            >
+            ["id1"] = <
+                text = <"Fysisk aktivitet summering">
+                description = <"En summering av den typiska nivån av fysisk aktivitet som en person ligger på.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Physical activity level (PAL) status (synthesised)">
+                description = <"The category of the typical, or usual, physical activity level of an individual. (synthesised)">
+            >
+            ["at9001"] = <
+                text = <"Frequency">
+                description = <"Frequency">
+            >
+            ["id17"] = <
+                text = <"Last updated">
+                description = <"The date when the physical activity summary was last updated.">
+            >
+            ["id16"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["at14"] = <
+                text = <"Extremely active">
+                description = <"The individual is extremely active, for example a competitive cyclist.">
+            >
+            ["at13"] = <
+                text = <"Vigorously active">
+                description = <"The individual is very active, for example a manual labourer or a person swimming two hours daily.">
+            >
+            ["at12"] = <
+                text = <"Moderately active">
+                description = <"The individual is moerately active, for example a construction worker or a person running one hour daily.">
+            >
+            ["at11"] = <
+                text = <"Sedentary">
+                description = <"The individual spends most of their time sitting, for example an office worker getting little or no exercise.">
+            >
+            ["at10"] = <
+                text = <"Extremely inactive">
+                description = <"The individual is extremely inactive, for example a bedridden patient.">
+            >
+            ["id9"] = <
+                text = <"Typical moderate exercise">
+                description = <"Typical number of minutes of moderate exercise.">
+            >
+            ["id8"] = <
+                text = <"Typical vigorous exercise">
+                description = <"Typical number of minutes of vigorous exercise.">
+            >
+            ["id7"] = <
+                text = <"Enabler">
+                description = <"Identified factor that may support the individual to become more physically active.">
+                comment = <"For example: lives close to a swimming pool; or previously an elite athlete.">
+            >
+            ["id6"] = <
+                text = <"Barrier">
+                description = <"Identified factor that prevents the individual to become more physically active.">
+            >
+            ["id4"] = <
+                text = <"Description">
+                description = <"A narrative description about the individual's typical level of physical activity.">
+            >
+            ["id3"] = <
+                text = <"Physical activity level (PAL) status">
+                description = <"The category of the typical, or usual, physical activity level of an individual.">
+                comment = <"Coding with a terminology is desirable, where possible.">
+            >
+            ["id1"] = <
+                text = <"Physical activity summary">
+                description = <"A summary of the typical level of physical activity undertaken by the individual.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9001"] = <http://openehr.org/id/382>
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at10", "at11", "at12", "at13", "at14">
+        >
+    >

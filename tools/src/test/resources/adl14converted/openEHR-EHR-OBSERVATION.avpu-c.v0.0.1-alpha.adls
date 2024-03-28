@@ -1,0 +1,150 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=4ad82530-88c6-41f1-b01d-30ea2de5801a; build_uid=a272a109-1eb7-4640-8eae-e4ee74ff5db7)
+    openEHR-EHR-OBSERVATION.avpu-c.v0.0.1-alpha
+
+specialize
+    openEHR-EHR-OBSERVATION.avpu.v0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Helse Bergen HF">
+            >
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Vladimir Pizzo">
+                ["organisation"] = <"Hospital Sirio Libanes, Brazil">
+                ["email"] = <"vladimir.pizzo@hsl.org.br">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Hildegard Franke">
+        ["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+        ["email"] = <"hildi@freshehr.com">
+        ["date"] = <"2018-02-01">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Derived from: ACVPU, Draft archetype [Internet]. Apperta UK, Apperta UK Clinical Knowledge Manager [cited: 2019-03-12]. Available from: https://ckm.apperta.org/ckm/#showArchetype_1051.32.706">
+        ["2"] = <"https://www.rcplondon.ac.uk/projects/outputs/national-early-warning-score-news-2 [cited 01-Feb-2018].">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"0670284BA5C4511A5C05CE50F0F30188">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"Brukes for å vurdere et individs bevissthetsnivå.">
+            keywords = <"AVPU", "alert", "voice", "pain", "unresponsive", "våken", "tale", "smerte", "bevisstløs", "stemme", "bevissthet", "verbal", "verbalrespons", "semikomatøs", "bevisst", "bevissthetsnivå", "komatøs">
+            use = <"For raskt og enkel vurdering av et individs bevissthetsnivå, særlig egnet til vurdering i akutte situasjoner.">
+            misuse = <"">
+            copyright = <"© Apperta UK, openEHR Foundation">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Registrar a responsividade de um paciente, como uma indicação do seu nível de consciência.">
+            keywords = <"avda", "alerta", "voz", "dor", "arresponsivo">
+            use = <"Usar para registrar, como parte de uma avaliação de rastreamento da responsividade de um paciente, como uma indicação do seu nível de consicência.">
+            misuse = <"">
+            copyright = <"© Apperta UK, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an individual's level of consciousness.">
+            keywords = <"avpu", "alert", "voice", "pain", "unresponsive", "awake", "speech", "pain", "unconscious", "voice", "consciousness", "verbal", "verbal response", "semicomatose", "conscious", "level of consciousness", "comatose", "confusion", "acvpu">
+            use = <"Use to record a quick and simple assessment of an individual's level of consciousness, especially in an emergency situation. This assessment has been updated in response to 2017 changes to the NEWS assessment, now published as NEWS2.">
+            misuse = <"">
+            copyright = <"© Apperta UK, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1.1] matches {    -- ACVPU
+        /data[id2]/events[id3]/data[id4]/items matches {
+            ELEMENT[id5.1] matches {    -- Observation
+                /value[id9001]/defining_code matches {[ac9000.1]}    -- Observation (synthesised)
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000.1"] = <
+                text = <"*! - Observation(en) (synthesised)">
+                description = <"*The observation of the patient's level of consciousness.(en) (synthesised)">
+            >
+            ["id5.1"] = <
+                text = <"*! - Observation(en)">
+                description = <"*The observation of the patient's level of consciousness.(en)">
+            >
+            ["id1.1"] = <
+                text = <"*ACVPU(en)">
+                description = <"*Simple scale used as part of an assessment to measure and record an individual's level of consciousness.(en)">
+                comment = <"*ACVPU is an acronym for 'Alert', 'Confusion', 'Voice', 'Pain', 'Unresponsive'.(en)">
+            >
+            ["at0.15"] = <
+                text = <"*Confusion(en)">
+                description = <"*New onset of confusion, disorientation and/or agitation, where previously their mental state was normal.(en)">
+            >
+        >
+        ["pt-br"] = <
+            ["ac9000.1"] = <
+                text = <"*! - Observation(en) (synthesised)">
+                description = <"*The observation of the patient's level of consciousness.(en) (synthesised)">
+            >
+            ["id5.1"] = <
+                text = <"*! - Observation(en)">
+                description = <"*The observation of the patient's level of consciousness.(en)">
+            >
+            ["id1.1"] = <
+                text = <"*ACVPU(en)">
+                description = <"*Simple scale used as part of an assessment to measure and record an individual's level of consciousness.(en)">
+                comment = <"*ACVPU is an acronym for 'Alert', 'Confusion', 'Voice', 'Pain', 'Unresponsive'.(en)">
+            >
+            ["at0.15"] = <
+                text = <"*Confusion(en)">
+                description = <"*New onset of confusion, disorientation and/or agitation, where previously their mental state was normal.(en)">
+            >
+        >
+        ["en"] = <
+            ["ac9000.1"] = <
+                text = <"Observation (synthesised)">
+                description = <"The observation of the patient's level of consciousness. (synthesised)">
+            >
+            ["id5.1"] = <
+                text = <"Observation">
+                description = <"The observation of the patient's level of consciousness.">
+            >
+            ["id1.1"] = <
+                text = <"ACVPU">
+                description = <"Simple scale used as part of an assessment to measure and record an individual's level of consciousness.">
+                comment = <"ACVPU is an acronym for 'Alert', 'Confusion', 'Voice', 'Pain', 'Unresponsive'.">
+            >
+            ["at0.15"] = <
+                text = <"Confusion">
+                description = <"New onset of confusion, disorientation and/or agitation, where previously their mental state was normal.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000.1"] = <
+            id = <"ac9000.1">
+            members = <"at6", "at0.15", "at7", "at8", "at9">
+        >
+    >

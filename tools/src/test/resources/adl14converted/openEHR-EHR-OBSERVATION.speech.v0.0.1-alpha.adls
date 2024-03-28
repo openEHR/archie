@@ -1,0 +1,150 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=2e7c3893-638c-4a60-b742-31be68c9a074; build_uid=335ace30-4a82-4547-abe7-29b7b1755812)
+    openEHR-EHR-OBSERVATION.speech.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            author = <
+                ["name"] = <"?">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["date"] = <"10/11/2007">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"8CBF550C175E64B41B05927595423EF7">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record obervations of a patient's speech">
+            keywords = <"speech", ...>
+            use = <"">
+            misuse = <"">
+            copyright = <"© 2011 openEHR Foundation, openEHR Foundation">
+        >
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            purpose = <"لتسجيل ملاحظات عن كلام المريض">
+            keywords = <"الكلام", ...>
+            use = <"">
+            misuse = <"">
+            copyright = <"© 2011 openEHR Foundation, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Speech
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {0..1} matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Clarity of speech
+                                        value matches {
+                                            DV_CODED_TEXT[id9001] matches {
+                                                defining_code matches {[ac9000]}    -- Clarity of speech (synthesised)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Clarity of speech (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at9"] = <
+                text = <"Clear">
+                description = <"*">
+            >
+            ["at8"] = <
+                text = <"Unclear to strangers">
+                description = <"*">
+            >
+            ["at7"] = <
+                text = <"Unclear to parents">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"Incomprehensible">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"Clarity of speech">
+                description = <"*">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Speech">
+                description = <"To record observations of a ptient's speech pattern or quality">
+            >
+        >
+        ["ar-sy"] = <
+            ["ac9000"] = <
+                text = <"وضوح الكلام (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at9"] = <
+                text = <"واضح">
+                description = <"*">
+            >
+            ["at8"] = <
+                text = <"غير واضح للغرباء">
+                description = <"*">
+            >
+            ["at7"] = <
+                text = <"غير واضح للأبوين">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"غامض - مبهم">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"وضوح الكلام">
+                description = <"*">
+            >
+            ["id3"] = <
+                text = <"إحدى الوقائع">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"الكلام">
+                description = <"لتسجيل ملاحظات عن نمط أو جودة (كيفية) كلام المريض">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at6", "at7", "at8", "at9">
+        >
+    >
