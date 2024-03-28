@@ -420,31 +420,31 @@ terminology
                 text = <"* Mass (en)">
                 description = <"* Mass (en)">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Starkvin">
                 description = <"Vin med tillsatt sprit, till exempel portvin, sherry, madeira och marsala.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Sprit">
                 description = <"Jäst dryck gjord genom en destillationsprocess. Har vanligtvis en alkoholhalt >20%.">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Pulque">
                 description = <"Jäst dryck gjord på växtsaft från arter i agavesläktet.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"Mjöd">
                 description = <"Jäst dryck gjord av honung, ibland med olika frukter, kryddor, spannmål eller humle.">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"Cider">
                 description = <"Jäst dryck gjord av fruktjuice.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Vin">
                 description = <"Jäst dryck gjord av druvor och ibland andra frukter.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Öl">
                 description = <"Jäst dryck gjord av spannmålsmäsk.">
             >
@@ -484,7 +484,7 @@ terminology
                 text = <"Berusningsdrickande frekvens">
                 description = <"Individens typiska frekvens av stort alkoholintag, med avsikt att bli berusad, under en kort tidsperiod.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Dricker inte alkohol">
                 description = <"Individen har inte konsumerat alkohol under denna episod.">
             >
@@ -506,11 +506,11 @@ terminology
                 description = <"Den tillämpade definitionen för Försök att sluta som används för att bestämma värdet för det antal dataelementet \"Antal försök att sluta\" som används i den här arketypen.">
                 comment = <"Till exempel: \"slutat konsumera alkohol för en dag eller längre med avsikt att sluta\".">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Inte dagligen">
                 description = <"Konsumerar inte alkoholhaltig dryck varje dag.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Dagligen">
                 description = <"Konsumerar alkoholhaltig dryck minst en gång varje dag.">
             >
@@ -562,7 +562,7 @@ terminology
                 text = <"Per episod">
                 description = <"Detaljer om en separat konsumtionstid med ett konsekvent mönster av typisk förbrukning.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Dricker alkohol">
                 description = <"Individen har konsumerat alkohol under denna episod.">
             >
@@ -628,15 +628,15 @@ terminology
                 description = <"Datum när den här episoden startade.">
                 comment = <"Kan vara del av ett datum, till exempel bara ett år.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Har aldrig druckit alkohol">
                 description = <"Individen har aldrig konsumerat alkohol">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Har slutat dricka alkohol">
                 description = <"Individen har tidigare konsumerat alkohol men har slutat.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Dricker alkohol">
                 description = <"Individen är konsument av alkohol">
             >
@@ -670,31 +670,31 @@ terminology
                 text = <"* Mass (en)">
                 description = <"* Mass (en)">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Sterkvin">
                 description = <"Vin som er tilsatt brennevin. Tidligere kalt hetvin.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Brennevin (Sprit)">
                 description = <"Gjæret alkoholholdig drikk laget ved destillasjon. Vanligvis med en alkoholprosent > 20%. Omfatter også likører, coctails og teknisk etanol.">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Pulque">
                 description = <"Gjæret alkoholholdig drikk laget av sevje fra agaveplanten, for eksempel tequilla.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"Mjød">
                 description = <"Gjæret alkoholholdig drikk laget av honning, vann og gjær. Noen ganger med tilsatt krydder, som mjødurt.">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"Sider">
                 description = <"Gjæret alkoholholdig drikk laget av råsaft fra epler eller annen frukt.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Vin">
                 description = <"Gjæret alkoholholdig drikke laget av druesaft eller noen ganger av annen frukt.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Øl">
                 description = <"Gjæret alkoholholdig drikke brygget på korn.">
             >
@@ -734,7 +734,7 @@ terminology
                 text = <"Frekvens for episodisk høyt forbruk">
                 description = <"Individets frekvens for episodisk høyt forbruk over korte tidsperioder, der formålet er å bli full, mao hvor ofte har individet \"fyllekuler\".">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Aldri brukt">
                 description = <"Individet har ikke drukket alkohol i løpet av denne episoden.">
             >
@@ -756,11 +756,11 @@ terminology
                 description = <"Den anvendte definisjonen av dataelementet \"Antall forsøk på å slutte\" benyttet i denne arketypen.">
                 comment = <"For eksempel \"Sluttet å drikke i en dag eller mer, med den hensikt å slutte\".">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Ikke daglig">
                 description = <"Individet drikker ikke alkohol daglig.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Daglig">
                 description = <"Individet drikker alkohol minst en gang per dag.">
             >
@@ -812,7 +812,7 @@ terminology
                 text = <"Per episode">
                 description = <"Detaljer om en avgrenset eller pågående episode med et vedvarende mønster i drikkevaner.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Nåværende bruker">
                 description = <"Individet har inntatt alkohol i denne episoden.">
             >
@@ -878,15 +878,15 @@ terminology
                 description = <"Dato da episoden startet.">
                 comment = <"Kan være en deldato, for eksempel kun årstall.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Aldri drukket">
                 description = <"Individet har aldri brukt alkohol.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Drukket tidligere">
                 description = <"Individet har brukt alkohol tidligere, men drikker ikke nå.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Drikker">
                 description = <"Individet bruker alkohol.">
             >
@@ -920,31 +920,31 @@ terminology
                 text = <"Mass">
                 description = <"Mass">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Fortified wine">
                 description = <"Wine with added spirits.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Spirits">
                 description = <"Fermented beverage made by a distillation process. Usually has an alcohol content >20%. Includes liquers, cocktails and rectified spirits.">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Pulque">
                 description = <"Fermented beverage made from 'honey water\" of cacti.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"Mead">
                 description = <"Fermented beverage made from honey, sometimes with various fruits spices, grains or hops.">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"Cider">
                 description = <"Fermented beverage made from any fruit juice.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Wine">
                 description = <"Fermented beverage made from grapes and sometimes other fruits.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Beer">
                 description = <"Fermented beverage made from grain mash.">
             >
@@ -984,7 +984,7 @@ terminology
                 text = <"Binge drinking frequency">
                 description = <"The individual's typical frequency of heavy drinking over a short period of time with the intent of becoming intoxicated.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Non-drinker">
                 description = <"Individual has not consumed alcohol during this episode.">
             >
@@ -1006,11 +1006,11 @@ terminology
                 description = <"The applied definition for a Quit attempt used to determine value for the 'Number of quit attempts' data element used in this archetype.">
                 comment = <"For example: 'stopped consuming alcohol for one day or longer with the intention of quitting'.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Non-daily">
                 description = <"Not consuming alcoholic beverage every day.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Daily">
                 description = <"Consuming alcoholic beverage at least once every day.">
             >
@@ -1062,7 +1062,7 @@ terminology
                 text = <"Per episode">
                 description = <"Details about a discrete period of time with a consistent pattern of typical consumption.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Current drinker">
                 description = <"Individual consumed alcohol during this period.">
             >
@@ -1128,15 +1128,15 @@ terminology
                 description = <"Date when this episode commenced.">
                 comment = <"Can be a partial date, for example, only a year.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Lifetime non-drinker">
                 description = <"Individual has never consumed alcohol.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Former drinker">
                 description = <"Individual has previously consumed alcohol but is not a current drinker.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Current drinker">
                 description = <"Individual is a current consumer of alcohol.">
             >
@@ -1155,18 +1155,18 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at84", "at85">
+            members = <"at83", "at84">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at62", "at92">
+            members = <"at61", "at91">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at6", "at7">
+            members = <"at3", "at5", "at6">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at116", "at117", "at118", "at119", "at120", "at121", "at122">
+            members = <"at115", "at116", "at117", "at118", "at119", "at120", "at121">
         >
     >

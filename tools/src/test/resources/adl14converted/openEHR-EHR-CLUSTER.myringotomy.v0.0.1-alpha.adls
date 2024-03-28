@@ -74,15 +74,15 @@ terminology
                 description = <"Was a ventilation tube inserted?">
                 comment = <"Record as True if a Ventilation Tube was inserted.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Mucoid">
                 description = <"Pus was present.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Serous">
                 description = <"Serous fluid was present.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"None">
                 description = <"No fluid was present.">
             >
@@ -99,6 +99,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at3", "at4", "at5">
+            members = <"at2", "at3", "at4">
         >
     >

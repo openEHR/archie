@@ -178,11 +178,11 @@ terminology
                 text = <"Induration diameter">
                 description = <"Measurement of the longest diameter of the induration reaction.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Negative">
                 description = <"The reaction is negative, based on the specified patient criterion.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Positive">
                 description = <"The reaction is positive, based on the specified patient criterion.">
             >
@@ -237,6 +237,6 @@ terminology
         >
         ["ac9014"] = <
             id = <"ac9014">
-            members = <"at10", "at11">
+            members = <"at9", "at10">
         >
     >

@@ -289,15 +289,15 @@ terminology
                 text = <"Rekvirent">
                 description = <"Detaljer om helsepersonellet eller organisasjonen som har forespurt tjenesten.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Rutine">
                 description = <"Forespørslene krever ikke prioritert oppmerksomhet.">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"Haster">
                 description = <"Forespørselen krever prioritert oppmerksomhet.">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Akutt">
                 description = <"Forespørselen krever øyeblikkelig oppmerksomhet.">
             >
@@ -438,15 +438,15 @@ terminology
                 text = <"Requester">
                 description = <"Details about the clinician or organisation requesting the service.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Routine">
                 description = <"The request does not require prioritised scheduling.">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"Urgent">
                 description = <"The request requires prioritised attention.">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Emergency">
                 description = <"The request requires immediate attention.">
             >
@@ -540,6 +540,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at137", "at138", "at139">
+            members = <"at136", "at137", "at138">
         >
     >

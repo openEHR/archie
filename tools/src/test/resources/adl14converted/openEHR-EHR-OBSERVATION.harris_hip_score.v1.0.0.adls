@@ -92,19 +92,19 @@ terminology
                 text = <"Grading (synthesised)">
                 description = <"Grading derived from Harris Hip score. (synthesised)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Excellent">
                 description = <"90 to 100.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Good">
                 description = <"80 to 89.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Fair">
                 description = <"70 to 79.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Poor">
                 description = <"Less than 70.">
             >
@@ -134,19 +134,19 @@ terminology
                 text = <"*Grading(en) (synthesised)">
                 description = <"*Grading derived from Harris Hip score.(en) (synthesised)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Excellent(en)">
                 description = <"*90 to 100.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Good(en)">
                 description = <"*80 to 89.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Fair(en)">
                 description = <"*70 to 79.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Poor(en)">
                 description = <"*Less than 70.(en)">
             >
@@ -176,6 +176,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at7", "at8", "at9", "at10">
+            members = <"at6", "at7", "at8", "at9">
         >
     >

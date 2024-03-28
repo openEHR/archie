@@ -265,7 +265,7 @@ terminology
                 description = <"*Structured detail about other aspects of the risk factor assessment.(en)">
                 comment = <"*For example: Prevalence of the risk factor in family members.(en)">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to determine if the risk factor is present or absent.(en)">
             >
@@ -284,11 +284,11 @@ terminology
                 description = <"*The time period during which the predicted health risk is relevant.(en)">
                 comment = <"*That is: the risk of experiencing the identified 'Health risk' in the next <X> years.(en)">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"*Absolute risk(en)">
                 description = <"*Ratio of probability of a health event or condition occurring compared to the population as a whole.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Relative risk(en)">
                 description = <"*Ratio of probability of a health event or condition occurring compared to a population with similar characteristics eg same age and sex.(en)">
             >
@@ -296,11 +296,11 @@ terminology
                 text = <"*Assessment type(en)">
                 description = <"*Record of whether the risk assessment is a relative or absolute.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Absent(en)">
                 description = <"*The risk factor has not been identified for this individual.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Present(en)">
                 description = <"*The risk factor has been identified for this individual.(en)">
             >
@@ -386,7 +386,7 @@ terminology
                 description = <"Strukturerad detalj om andra aspekter av riskfaktorbedömningen.">
                 comment = <"Till exempel: Förekomst av riskfaktorn hos familjemedlemmar.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Obestämd">
                 description = <"Det är inte möjligt att bestämma om riskfaktorn finns eller är frånvarande.">
             >
@@ -406,11 +406,11 @@ terminology
                 description = <"Den tidsperiod under vilken den förutspådda hälsorisken är relevant.">
                 comment = <"Det vill säga: risken att drabbas av den identifierade hälsorisken under de kommande <X> åren.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Absolut risk">
                 description = <"Förhållandet mellan sannolikheten för en hälsohändelse eller ett tillstånd som uppstår i förhållande till befolkningen som helhet.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Relativ risk">
                 description = <"Förhållande mellan sannolikheten för ett hälsohändelse eller ett tillstånd som uppstår jämfört med en befolkning med liknande egenskaper, t.ex. samma ålder och kön.">
             >
@@ -418,11 +418,11 @@ terminology
                 text = <"Bedömningstyp">
                 description = <"Uppgift om riskbedömningen är relativ eller absolut.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Frånvarande">
                 description = <"Riskfaktorn har inte identifierats för den här personen.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Nuvarande">
                 description = <"Riskfaktorn har identifierats för den här personen.">
             >
@@ -508,7 +508,7 @@ terminology
                 description = <"Detalle estructurado acerca de otros aspectos de la evaluación del factor de riesgo.">
                 comment = <"Por ejemplo: Prevalencia del factor de riesgo en famililares.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Indeterminado">
                 description = <"No es posible determinar la presencia o ausencia del factor de riesgo.">
             >
@@ -527,11 +527,11 @@ terminology
                 description = <"El período de tiempo durante el cual el riesgo para la salud previsto es relevante.">
                 comment = <"Esto es: el riesgo de incurrir en el 'riesgo para la salud' identificado, en el curso de los próximos <X> años.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Riesgo absoluto">
                 description = <"Probabilidad de la ocurrencia de un evento o condición de salud en comparación con el total de la población.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Riesgo relativo">
                 description = <"Probabilidad de la ocurrencia de un evento o condición de salud en comparación con una población de características similares. Ejemplo: mismo sexo y edad.">
             >
@@ -539,11 +539,11 @@ terminology
                 text = <"Tipo de evaluación">
                 description = <"Registro acerca de la condición relativa o absoluta de la evaluación del riesgo.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Ausente">
                 description = <"El factor de riesgo no ha sido identificado para este individuo.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Presente">
                 description = <"El factor de riesgo ha sido identificado para este individuo.">
             >
@@ -628,7 +628,7 @@ terminology
                 description = <"*Structured detail about other aspects of the risk factor assessment.(en)">
                 comment = <"*For example: Prevalence of the risk factor in family members.(en)">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to determine if the risk factor is present or absent.(en)">
             >
@@ -647,11 +647,11 @@ terminology
                 description = <"*The time period during which the predicted health risk is relevant.(en)">
                 comment = <"*That is: the risk of experiencing the identified 'Health risk' in the next <X> years.(en)">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"*Absolute risk(en)">
                 description = <"*Ratio of probability of a health event or condition occurring compared to the population as a whole.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Relative risk(en)">
                 description = <"*Ratio of probability of a health event or condition occurring compared to a population with similar characteristics eg same age and sex.(en)">
             >
@@ -659,11 +659,11 @@ terminology
                 text = <"*Assessment type(en)">
                 description = <"*Record of whether the risk assessment is a relative or absolute.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Absent(en)">
                 description = <"*The risk factor has not been identified for this individual.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Present(en)">
                 description = <"*The risk factor has been identified for this individual.(en)">
             >
@@ -749,7 +749,7 @@ terminology
                 description = <"Structured detail about other aspects of the risk factor assessment.">
                 comment = <"For example: Prevalence of the risk factor in family members.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to determine if the risk factor is present or absent.">
             >
@@ -768,11 +768,11 @@ terminology
                 description = <"The time period during which the predicted health risk is relevant.">
                 comment = <"That is: the risk of experiencing the identified 'Health risk' in the next <X> years.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Absolute risk">
                 description = <"Ratio of probability of a health event or condition occurring compared to the population as a whole.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Relative risk">
                 description = <"Ratio of probability of a health event or condition occurring compared to a population with similar characteristics eg same age and sex.">
             >
@@ -780,11 +780,11 @@ terminology
                 text = <"Assessment type">
                 description = <"Record of whether the risk assessment is a relative or absolute.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Absent">
                 description = <"The risk factor has not been identified for this individual.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Present">
                 description = <"The risk factor has been identified for this individual.">
             >
@@ -848,10 +848,10 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at22", "at23">
+            members = <"at21", "at22">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at19", "at27", "at20">
+            members = <"at18", "at26", "at19">
         >
     >

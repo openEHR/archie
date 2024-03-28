@@ -97,23 +97,23 @@ terminology
                 text = <"Informationsquelle (synthesised)">
                 description = <"Gibt an, woher die Informationen über den Tod stammen und wie sicher diese Informationen sind. (synthesised)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Unbekannt">
                 description = <"Zeigt an, dass die Quelle der Benachrichtigung über den Tod unbekannt ist.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Eine andere Quelle">
                 description = <"Zeigt an, dass der Tod von einer anderen Quelle gemeldet wurde.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Verwandte">
                 description = <"Zeigt an, dass der Tod von einem Verwandten gemeldet wurde.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Gesundheitsdienstleister">
                 description = <"Zeigt an, dass der Tod von einem Gesundheitsdienstleister gemeldet wurde.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Sterberegister">
                 description = <"Der Tod wurde von einem Sterberegister/notariell gemeldet.">
             >
@@ -139,23 +139,23 @@ terminology
                 text = <"Fonte da notificação (synthesised)">
                 description = <"Um código que informa sobre a fonte de notificação do óbito. Este campo fornece uma indicação da confiabilidade da informação (synthesised)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Desconhecida">
                 description = <"Indica que a fonte de notificação deste óbito é desconhecida">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Outra fonte">
                 description = <"Indica que este óbito foi comunicado por uma outra fonte">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Parente">
                 description = <"Indica que este óbito foi comunicado por um parente">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Prestador de assistência à saúde">
                 description = <"Indica que este óbito foi comunicado por um prestador de assistência à saúde">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Cartório">
                 description = <"Indica que este óbito foi comunicado por um cartório">
             >
@@ -181,23 +181,23 @@ terminology
                 text = <"Source of notification (synthesised)">
                 description = <"Indicates the source of information about a subject of care’s death. This field provides an indication of the certainty of the information (synthesised)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Unknown">
                 description = <"Indicate that the notification source is unknown">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Other">
                 description = <"Indicate that the notification source is another source">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Relative">
                 description = <"Indicate that the notification source is a relative">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Healthcare provider">
                 description = <"Indicate that the notification source is a healthcare provider">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Registry">
                 description = <"Indicate that the notification source is a registry">
             >
@@ -222,6 +222,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at21", "at22", "at23", "at24", "at25">
+            members = <"at20", "at21", "at22", "at23", "at24">
         >
     >

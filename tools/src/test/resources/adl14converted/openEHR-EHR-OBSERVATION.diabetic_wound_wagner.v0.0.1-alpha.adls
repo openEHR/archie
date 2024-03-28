@@ -73,12 +73,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9003] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at10]}],
-                                                    [{1}, {[at11]}],
-                                                    [{2}, {[at12]}],
-                                                    [{3}, {[at13]}],
-                                                    [{4}, {[at14]}],
-                                                    [{5}, {[at15]}]
+                                                    [{0}, {[at9]}],
+                                                    [{1}, {[at10]}],
+                                                    [{2}, {[at11]}],
+                                                    [{3}, {[at12]}],
+                                                    [{4}, {[at13]}],
+                                                    [{5}, {[at14]}]
                                                 }
                                             }
                                         }
@@ -127,27 +127,27 @@ terminology
                 text = <"Comentario">
                 description = <"Narrativa adicional acerca de la evalaución.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"V">
                 description = <"Úlceras del pié con tejido gangrenoso mas extendido.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"IV">
                 description = <"Úlceras que incluyen al pié con gangrena parcial.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"III">
                 description = <"Úlceras extendidas a los tejidos profundos y que se asocian a abscesos de tejidos blandos u osteomileitis.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"II">
                 description = <"Tendones y estructuras profundas expuestas.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"I">
                 description = <"Úlceras superficiales con tejido subcutaneo expuesto.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"0">
                 description = <"Piel intacta en pacientes en riesgo.">
             >
@@ -155,11 +155,11 @@ terminology
                 text = <"Clasificación">
                 description = <"Clasificación de Wagner para úlceras de pié diabético.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Pié derecho">
                 description = <"El pié derecho fué examinado en busca de úlceras diabéticas.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Pié izquierdo">
                 description = <"El pié izquierdo fué examinado en busca de úlceras diabéticas.">
             >
@@ -194,27 +194,27 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about the assessment.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"V">
                 description = <"Feet ulcers with more extensive gangrenous tissue.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"IV">
                 description = <"Ulcers include feet with partial gangrene.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"III">
                 description = <"Ulcers extend to the deep tissue and have either associated soft tissue abscess or osteomyelitis.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"II">
                 description = <"Exposed tendon and deep structures.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"I">
                 description = <"Superficial ulcers with exposed subcutaneous tissue.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"0">
                 description = <"Intact skin in patients who are at risk.">
             >
@@ -222,11 +222,11 @@ terminology
                 text = <"Classification">
                 description = <"Wagner diabetic foot ulcers classification.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Right foot">
                 description = <"The rightfoot was examined for diabetic ulcers.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Left foot">
                 description = <"The left foot was examined for diabetic ulcers.">
             >
@@ -247,10 +247,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at11", "at12", "at13", "at14", "at15">
+            members = <"at9", "at10", "at11", "at12", "at13", "at14">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7">
+            members = <"at5", "at6">
         >
     >

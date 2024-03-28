@@ -68,9 +68,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9003] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at37]}],
-                                                    [{1}, {[at38]}],
-                                                    [{2}, {[at39]}]
+                                                    [{0}, {[at36]}],
+                                                    [{1}, {[at37]}],
+                                                    [{2}, {[at38]}]
                                                 }
                                             }
                                         }
@@ -79,8 +79,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9004] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at44]}],
-                                                    [{1}, {[at45]}]
+                                                    [{0}, {[at43]}],
+                                                    [{1}, {[at44]}]
                                                 }
                                             }
                                         }
@@ -89,8 +89,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at28]}],
-                                                    [{1}, {[at29]}]
+                                                    [{0}, {[at27]}],
+                                                    [{1}, {[at28]}]
                                                 }
                                             }
                                         }
@@ -99,8 +99,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at28]}],
-                                                    [{1}, {[at29]}]
+                                                    [{0}, {[at27]}],
+                                                    [{1}, {[at28]}]
                                                 }
                                             }
                                         }
@@ -109,8 +109,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at28]}],
-                                                    [{1}, {[at29]}]
+                                                    [{0}, {[at27]}],
+                                                    [{1}, {[at28]}]
                                                 }
                                             }
                                         }
@@ -119,8 +119,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at28]}],
-                                                    [{2}, {[at29]}]
+                                                    [{0}, {[at27]}],
+                                                    [{2}, {[at28]}]
                                                 }
                                             }
                                         }
@@ -129,8 +129,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at28]}],
-                                                    [{1}, {[at29]}]
+                                                    [{0}, {[at27]}],
+                                                    [{1}, {[at28]}]
                                                 }
                                             }
                                         }
@@ -189,11 +189,11 @@ terminology
                 text = <"*Vascular disease(en)">
                 description = <"*History of vascular disease.(en)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Kvinnligt kön">
                 description = <"*">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Manligt kön">
                 description = <"*">
             >
@@ -205,15 +205,15 @@ terminology
                 text = <"*Stroke/TIA/thrombo-embolism(en)">
                 description = <"*History of stroke, TIA or thrombo-embolism.(en)">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"*≥75(en)">
                 description = <"**(en)">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"*65-74(en)">
                 description = <"**(en)">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"*<65(en)">
                 description = <"**(en)">
             >
@@ -229,11 +229,11 @@ terminology
                 text = <"*Hypertension(en)">
                 description = <"*History of hypertension.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Ja">
                 description = <"*">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Nej">
                 description = <"*">
             >
@@ -276,11 +276,11 @@ terminology
                 text = <"Vascular disease">
                 description = <"History of vascular disease.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Female">
                 description = <"*">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Male">
                 description = <"*">
             >
@@ -292,15 +292,15 @@ terminology
                 text = <"Stroke/TIA/thrombo-embolism">
                 description = <"History of stroke, TIA or thrombo-embolism.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"≥75">
                 description = <"*">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"65-74">
                 description = <"*">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"<65">
                 description = <"*">
             >
@@ -316,11 +316,11 @@ terminology
                 text = <"Hypertension">
                 description = <"History of hypertension.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Present">
                 description = <"*">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Absent">
                 description = <"*">
             >
@@ -341,14 +341,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at28", "at29">
+            members = <"at27", "at28">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at44", "at45">
+            members = <"at43", "at44">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at37", "at38", "at39">
+            members = <"at36", "at37", "at38">
         >
     >

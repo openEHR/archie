@@ -238,15 +238,15 @@ terminology
                 text = <"Anatomische Linie (synthesised)">
                 description = <"Zusätzliches Detail unter Verwendung theoretischer Linien, die durch anatomische Strukturen erweitert werden können, um einen einheitlichen Bezugspunkt auf dem menschlichen Körper zu erhalten. (synthesised)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Links und Rechts">
                 description = <"Beide Körperseiten.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Bilateral">
                 description = <"Beidseitig betrachtet.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Unilateral">
                 description = <"Einseitig betrachtet.">
             >
@@ -254,67 +254,67 @@ terminology
                 text = <"Auftreten">
                 description = <"Eine oder mehrere Seiten des Körpers.">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Dorsal">
                 description = <"In Richtung des Handrückens oder des Fußrückens hin gelegen. Als Gegenstück zu Palmar oder Plantar, nicht als Synonym für posterior.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Oberflächlich">
                 description = <"Auf die Oberfläche zu, bezeichnet oberflächlich gelegene Strukturen.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Tief">
                 description = <"Entfernt von der Oberfläche der Körperstelle.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Anal">
                 description = <"Zum Anus hin. Wird üblicherweise zur Beschreibung von Stellen im Verdauungssystem verwendet.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Oral">
                 description = <"Den Mund betreffend. Wird üblicherweise zur Beschreibung von Stellen im Verdauungssystem verwendet.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Mid">
                 description = <"In der Mitte des Körpers.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Plantar">
                 description = <"In Richtung der Fußsohle.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Palmar">
                 description = <"In Richtung der Handfläche.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Distal">
                 description = <"Mehr periphere oder weiter vom Körpermitte entfernte Stelle. Beschreibt in der Regel einen Teil einer Extremität, eines Fingers/Zehs oder Körperglieds.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Proximal">
                 description = <"Zur Körpermitte hin. Beschreibt für gewöhnlich einen Teil eines Gliedmaßes, Fingers oder eines Anhängsels.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Posterior">
                 description = <"In Richtung Rücken oder Rückseite des Körpers.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Anterior">
                 description = <"In Richtung der Vorderseite oder der ventralen Oberfläche des Körpers.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Inferior">
                 description = <"Unterhalb der Körpermitte, oft in Richtung der Füße.">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Superior">
                 description = <"Über der Körpermitte, oft in Richtung des Kopfes.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Lateral">
                 description = <"Zur Seite oder zum Rand der Körperstelle.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Medial">
                 description = <"Zur Körpermitte hin orientiert.">
             >
@@ -328,31 +328,31 @@ terminology
                 description = <"Qualifizierende Angabe unter spezifischer Sicht der identifizierten Körperstelle.">
                 comment = <"Falls benötigt, verwenden Sie dieses Element zur Erhöhung der Erkennungsgenauigkeit der Körperstelle. Häufige Aspekte wurden als Wertmengen hinzugefügt, die im Laufe der Zeit erweitert werden können, sowie auch eine Freitextoption. Dies setzt voraus, dass der Körper in der anatomischen Position beschrieben wird. Zum Beispiel: proximal Urethra; plantare Seite des linken Daumens. Bei Bedarf können auch mehrere Aspekte beschrieben werden, indem 0..2 Lokalisationen zugelassen werden. Zum Beispiel: Eine Läsion kann sich an der linken anterior/lateral (d.h. anterolateralen) Brustwand befinden. Wenn das Datenelement 'Körperstelle' vordefinierte Begriffe verwendet, die die Perspektive enthalten, dann ist dieses Datenelement redundant.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Mittlere Skapularlinie">
                 description = <"Die Linie verläuft senkrecht über die hintere Körperoberfläche, parallel zur Mittellinie und verläuft durch den unteren Punkt des Schulterblattes.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Mittellinie">
                 description = <"Vertikal verlaufende Linie, die den Körper in eine linke und rechte Seite teilt und durch den Kopf, das Rückenmark und den Nabel verläuft. Alternativ kann es sich auf eine Linie beziehen, die ein Körperteil in zwei gleiche Teile teilt, zum Beispiel einen Zeh/Finger.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Mittelere Pupillarlinie">
                 description = <"Die Linie verläuft vertikal durch den Mittelpunkt der Pupille, wenn man direkt nach vorne schaut.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Medioklavikularlinie">
                 description = <"Linie, die senkrecht über die Körperoberfläche verläuft, parallel zur Mittellinie und durch den Mittelpunkt der Klavikula führt.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"hintere Axillarlinie">
                 description = <"Linie, die senkrecht über die Körperoberfläche verläuft und durch die hintere Achselhaut führt.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"vordere Axillarlinie">
                 description = <"Die Linie verläuft senkrecht über die Körperoberfläche und verläuft durch die vordere Hautfalte der Achselhöhle.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"mittlere Axillarlinie">
                 description = <"Linie, die senkrecht zur Körperoberfläche verläuft und durch den Scheitelpunkt der Achselhöhle geht.">
             >
@@ -375,11 +375,11 @@ terminology
                 description = <"Aussagekräftige Erläuterung, die verwendet werden kann, um die \"Körperstelle\" weiter zu verfeinern.">
                 comment = <"Zum Beispiel: Angrenzend an den Amorbogen; eine Tätowierung bedeckt die untere Hälfte dieses Bereichs.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Rechts">
                 description = <"Die rechte Körperseite.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Links">
                 description = <"Die linke Körperseite.">
             >
@@ -419,15 +419,15 @@ terminology
                 text = <"Anatomisk linje (synthesised)">
                 description = <"Detaljer om det anatomiske stedet beskrevet med teoretiske linjer tegnet gjennom anatomiske strukturer til bruk som et konsistent referansepunkt. (synthesised)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"*Left and right (en)">
                 description = <"*Both sides of the body. (en)">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"*Bilateral (en)">
                 description = <"*Two-sided. (en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Unilateral (en)">
                 description = <"*One-sided. (en)">
             >
@@ -435,67 +435,67 @@ terminology
                 text = <"*Occurrence (en)">
                 description = <"*One or more sides of the body. (en)">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Dorsal">
                 description = <"Mot håndbaken eller toppen av foten. Brukes som motsetning til palmar og plantar, ikke som synonym for posterior.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Overfladisk">
                 description = <"Mot overflaten av kroppsstedet.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Dyp">
                 description = <"Bort fra overflaten av kroppsstedet.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Anal">
                 description = <"Mot anus. Brukes som regel til å beskrive lokaliseringer i fordøyelsessystemet.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Oral">
                 description = <"Mot munnen. Brukes som regel til å beskrive lokaliseringer i fordøyelsessystemet.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Mid">
                 description = <"I midten av kroppsstedet.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Plantar">
                 description = <"Mot fotsålen.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Palmar">
                 description = <"Mot håndflaten.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Distal">
                 description = <"Mer perifert eller lengre vekke fra festepunktet, beskriver vanligvis av en del av et lem, finger eller vedheng.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Proksimal">
                 description = <"Mer sentralt eller tettere til festepunktet, beskriver vanligvis en del av et lem, finger eller vedheng.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Posterior">
                 description = <"Mot bakside eller mot den dorsale overflaten av kroppsstedet.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Anterior">
                 description = <"Mot fronten eller ventrale overflaten av kroppsstedet.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Inferior">
                 description = <"Under kroppssted, ofte menes mot føttene. Synonymt med \"kaudal\".">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Superior">
                 description = <"Over kroppssted, ofte menes mot hodet. Synonymt med \"kranial\".">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Lateral">
                 description = <"Mot utsiden eller kanten av kroppen.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Medial">
                 description = <"Mot midtlinjen av kroppen.">
             >
@@ -509,31 +509,31 @@ terminology
                 description = <"Spesifiserende detaljer om mer spesifikke aspekter ved det aktuelle kroppsstedet.">
                 comment = <"Brukes til å øke presisjonen ved spesifisering av kroppsstedet, ved behov. Vanlige aspekter er blitt inkludert som et verdisett som kan utvides over tid, i tillegg til mulighet for å bruke fritekst. Elementet har som antagelse at kroppen blir beskrevet i den anatomiske posisjon. F.eks. proksimal uretra, plantart aspekt av venstre tommel. Flere aspekter kan også beskrives om det er nødvendig ved å åpne for opptil 2 forekomster. F.eks. venstre anterior/laterale (anteriolaterale) brystvegg. Hvis dataelementet \"Navn på kroppsted\" bruker prekoordinerte termer som inkluderer lateralitet, er dette dataelementet overflødig.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Midtskapulærlinjen">
                 description = <"En linje som løper vertikalt ned langs ryggens overflate, parallelt med midtlinjen og passerer gjennom det inferiore punkt av skapula.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Midtlinjen">
                 description = <"En linje som løper vertikalt og deler kroppen i en venstre og en høyre del, passerer gjennom hodet, spinal medulla og umbilicus. Alternativt kan det brukes som en delelinje av en kroppsdel, for eksempel en inndeling av en finger.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Midtpupillinjen">
                 description = <"En linje som løper vertikalt ned ansiktet gjennom midtpunktet av pupillen når man ser rett framover.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Midtclaviculærlinjen">
                 description = <"En linje som løper vertikalt ned langs kroppsoverflaten parallelt med midtlinjen og passerer gjennom clavicelens midtpunkt.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Bakre aksillærlinje">
                 description = <"En linje som løper vertikalt ned langs kroppsoverflaten, og passerer gjennom bakre aksillære hudfold.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Fremre aksillærlinje">
                 description = <"En linje som løper vertikalt ned langs kroppsoverflaten, og passerer gjennom fremre aksillære hudfold.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Midtaksillærlinjen">
                 description = <"Linje som løper vertikalt ned langs overflaten av kroppen gjennom apex i aksillen.">
             >
@@ -556,11 +556,11 @@ terminology
                 description = <"Fritekstbeskrivelse som kan brukes for å ytterligere presisere og støtte \"Navn på kroppsted\".">
                 comment = <"For eksempel: Tilgrensende til leppens overgang fra slimhinne til hud; en tatovering dekker nedre halvdel av dette området.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Høyre">
                 description = <"Høyre side av kroppen.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Venstre">
                 description = <"Venstre side av kroppen">
             >
@@ -600,15 +600,15 @@ terminology
                 text = <"Linha anatômica (synthesised)">
                 description = <"Detalhes adicionais utilizando-se linhas teóricas desenhadas através de estruturas anatômicas, utilizadas para fornecer um ponto de referência consistente no corpo humano. (synthesised)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"*Left and right (en)">
                 description = <"*Both sides of the body. (en)">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"*Bilateral (en)">
                 description = <"*Two-sided. (en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Unilateral (en)">
                 description = <"*One-sided. (en)">
             >
@@ -616,67 +616,67 @@ terminology
                 text = <"*Occurrence (en)">
                 description = <"*One or more sides of the body. (en)">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"*Dorsal(en)">
                 description = <"*Towards the back of the hand or top of the foot. To be used as opposites of palmar or plantar, not as a synonym of posterior.(en)">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"*Superficial(en)">
                 description = <"*Towards the surface of the body site.(en)">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"*Deep(en)">
                 description = <"*Away from the surface of the body site.(en)">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Anal">
                 description = <"Para o ânus. Geralmente utilizado para descrever locais no sistema digestivo.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Oral">
                 description = <"Para a boca. Geralmente utilizado para descrever locais no sistema digestivo.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Médio">
                 description = <"No meio do corpo.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Plantar">
                 description = <"Em direção às solas dos pés.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Palmar">
                 description = <"Em direção às palmas das mãos.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Distal">
                 description = <"Mais periférico, ou mais do ponto de acessório, e geralmente descreve a parte de um membro, apêndice ou dígito.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Proximal">
                 description = <"Mais central ou para mais perto do ponto de ligação, e, geralmente descreve a parte de um membro, dedo ou apêndice.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Posterior">
                 description = <"Para a parte traseira ou superfície dorsal do local do corpo.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Anterior">
                 description = <"Para a frente , ou na superfície ventral, do local do corpo.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Inferior">
                 description = <"Abaixo do local do corpo, frequentemente significa para os pés.">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Superior">
                 description = <"Acima do local do corpo, frequentemente significa na direção da cabeça.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Lateral">
                 description = <"Para o lado, ou borda , do local do corpo.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Medial">
                 description = <"Em direção à linha média do local do corpo">
             >
@@ -690,31 +690,31 @@ terminology
                 description = <"Detalhes sobre o aspecto específico do local identificado no corpo.">
                 comment = <"Use para aumentar a precisão da identificação do site do corpo, se necessário. Aspectos comuns foram incluídos como um conjunto de valor, que pode ser estendido ao longo do tempo, além de uma opção de texto livre. Pressupõe que o corpo está sendo descrito enquanto na posição anatômica. Por exemplo: uretra proximal; face plantar do polegar esquerdo. Múltiplos aspectos também podem ser descritos, se necessário, permitindo para as ocorrências de 0..2. Por exemplo: uma lesão pode ser na parede torácica esquerda anterior-lateral (ou seja, ântero-lateral). Se o elemento de dados de nome de local do corpo usa termos predefinidos que incluem o aspecto, então este elemento de dados é redundante.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Linha escapular média">
                 description = <"A linha que corre verticalmente para baixo da superfície posterior do corpo, paralelamente à linha mediana e que passa pelo ponto inferior da escápula.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Linha média">
                 description = <"Linha vertical que divide o corpo em partes esquerda e direita, passando através da cabeça, medula espinhal e umbigo. Alternativamente pode referir uma linha que divide uma parte do corpo em duas partes iguais.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Linha pupilar média">
                 description = <"Linha correndo verticalmente para baixo à face através do ponto médio da pupila quando se olha diretamente para a frente.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Linha clavicular média">
                 description = <"Linha correndo verticalmente para baixo na superfície do corpo, paralelo à linha média e passando pelo ponto médio da clavícula.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Linha axilar posterior">
                 description = <"Linha correndo verticalmente para baixo da superfície do corpo , passando pela dobra cutânea axilar posterior .">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Linha axilar anterior">
                 description = <"Linha correndo verticalmente para baixo da superfície do corpo , passando pela dobra cutânea axilar anterior .">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Linha axilar média">
                 description = <"Linha correndo verticalmente para baixo na superfície do corpo, passando através do ápice da axila.">
             >
@@ -737,11 +737,11 @@ terminology
                 description = <"Descrição narrativa que pode ser usada para refinar e apoiar o 'nome do local do corpo'.">
                 comment = <"Por exemplo: adjacentes à borda do vermelhão; uma tatuagem cobre a metade inferior desta área.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Direito">
                 description = <"Lado direito do corpo.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Esquerdo">
                 description = <"Lado esquerdo do corpo.">
             >
@@ -782,15 +782,15 @@ terminology
                 text = <"*Anatomical Line(en) (synthesised)">
                 description = <"*Additional detail using theoretical lines drawn through anatomical structures used to provide a consistent reference point on the human body.(en) (synthesised)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"*Left and right (en)">
                 description = <"*Both sides of the body. (en)">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"*Bilateral (en)">
                 description = <"*Two-sided. (en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Unilateral (en)">
                 description = <"*One-sided. (en)">
             >
@@ -798,67 +798,67 @@ terminology
                 text = <"*Occurrence (en)">
                 description = <"*One or more sides of the body. (en)">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"*Dorsal(en)">
                 description = <"*Towards the back of the hand or top of the foot. To be used as opposites of palmar or plantar, not as a synonym of posterior.(en)">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"*Superficial(en)">
                 description = <"*Towards the surface of the body site.(en)">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"*Deep(en)">
                 description = <"*Away from the surface of the body site.(en)">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"*Anal(en)">
                 description = <"*Towards the anus. Usually used to describe locations within the digestive system.(en)">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"*Oral(en)">
                 description = <"*Towards the mouth. Usually used to describe locations within the digestive system.(en)">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"*Mid(en)">
                 description = <"*In the middle of the body site.(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Plantar(en)">
                 description = <"*Towards the sole of the foot.(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"*Palmar(en)">
                 description = <"*Towards the palm of the hand.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"*Distal(en)">
                 description = <"*More peripheral, or further from the point of attachment, and usually describing part of a limb, digit or appendage.(en)">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"*Proximal(en)">
                 description = <"*More central or closer to the point of attachment, and usually describing part of a limb, digit or appendage.(en)">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"*Posterior(en)">
                 description = <"*Towards the back, or dorsal surface, of the body site.(en)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Anterior(en)">
                 description = <"*Towards the front, or ventral surface, of  the body site.(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*Inferior(en)">
                 description = <"*Below the body site, often meaning towards the feet.(en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Superior(en)">
                 description = <"*Above the body site, often meaning towards the head.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Lateral(en)">
                 description = <"*Towards the side, or edge, of the body site.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Medial(en)">
                 description = <"*Towards the midline of the body site.(en)">
             >
@@ -872,31 +872,31 @@ terminology
                 description = <"*Qualifying detail about the specific aspect of the identified body site.(en)">
                 comment = <"*Use to increase precision of identification of the body site, if required. Common aspects have been included as a value set, which can be extended over time, plus a free text option. Assumes that the body is being described while in the anatomical position. For example: proximal urethra; plantar aspect of the left thumb. Multiple aspects can also be described, if required, by allowing for 0..2 occurrences. For example: a lesion may be on the left anterior/lateral (ie anterolateral) chest wall. If the 'Body site name' data element uses pre-coordinated terms that include the aspect, then this data element is redundant.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Mid-scapular line(en)">
                 description = <"*Line running vertically down the posterior surface of the body, parallel to the midline and passing through the inferior point of the scapula.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Midline(en)">
                 description = <"*Line running vertically which divides the body into left and right portions, passing through the head, spinal cord, and umbilicus. Alternatively it can refer to a line dividing a body part into two equal portions, for example a digit.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Mid-pupillary line(en)">
                 description = <"*Line running vertically down the face through the midpoint of the pupil when looking directly forward.(en)">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"*Mid-clavicular line(en)">
                 description = <"*Line running vertically down the surface of the body, parallel to the midline and passing through the midpoint of the clavicle.(en)">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"*Posterior axillary line(en)">
                 description = <"*Line running vertically down the surface of the body, passing through the posterior axillary skinfold.(en)">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"*Anterior axillary line(en)">
                 description = <"*Line running vertically down the surface of the body, passing through the anterior axillary skinfold.(en)">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"*Midaxillary line(en)">
                 description = <"*Line running vertically down the surface of the body, passing through the apex of the axilla.(en)">
             >
@@ -919,11 +919,11 @@ terminology
                 description = <"*Narrative description that can be used to further refine and support the 'Body site name'.(en)">
                 comment = <"*For example: adjacent to the vermilion border; a tattoo covers the bottom half of this area.(en)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"*Right(en)">
                 description = <"*Right side of the body.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Left(en)">
                 description = <"*Left side of the body.(en)">
             >
@@ -964,15 +964,15 @@ terminology
                 text = <"*Anatomical Line(en) (synthesised)">
                 description = <"*Additional detail using theoretical lines drawn through anatomical structures used to provide a consistent reference point on the human body.(en) (synthesised)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"*Left and right (en)">
                 description = <"*Both sides of the body. (en)">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"*Bilateral (en)">
                 description = <"*Two-sided. (en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Unilateral (en)">
                 description = <"*One-sided. (en)">
             >
@@ -980,67 +980,67 @@ terminology
                 text = <"*Occurrence (en)">
                 description = <"*One or more sides of the body. (en)">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"*Dorsal(en)">
                 description = <"*Towards the back of the hand or top of the foot. To be used as opposites of palmar or plantar, not as a synonym of posterior.(en)">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"*Superficial(en)">
                 description = <"*Towards the surface of the body site.(en)">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"*Deep(en)">
                 description = <"*Away from the surface of the body site.(en)">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"*Anal(en)">
                 description = <"*Towards the anus. Usually used to describe locations within the digestive system.(en)">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"*Oral(en)">
                 description = <"*Towards the mouth. Usually used to describe locations within the digestive system.(en)">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"*Mid(en)">
                 description = <"*In the middle of the body site.(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Plantar(en)">
                 description = <"*Towards the sole of the foot.(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"*Palmar(en)">
                 description = <"*Towards the palm of the hand.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"*Distal(en)">
                 description = <"*More peripheral, or further from the point of attachment, and usually describing part of a limb, digit or appendage.(en)">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"*Proximal(en)">
                 description = <"*More central or closer to the point of attachment, and usually describing part of a limb, digit or appendage.(en)">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"*Posterior(en)">
                 description = <"*Towards the back, or dorsal surface, of the body site.(en)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Anterior(en)">
                 description = <"*Towards the front, or ventral surface, of  the body site.(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*Inferior(en)">
                 description = <"*Below the body site, often meaning towards the feet.(en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Superior(en)">
                 description = <"*Above the body site, often meaning towards the head.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Lateral(en)">
                 description = <"*Towards the side, or edge, of the body site.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Medial(en)">
                 description = <"*Towards the midline of the body site.(en)">
             >
@@ -1054,31 +1054,31 @@ terminology
                 description = <"*Qualifying detail about the specific aspect of the identified body site.(en)">
                 comment = <"*Use to increase precision of identification of the body site, if required. Common aspects have been included as a value set, which can be extended over time, plus a free text option. Assumes that the body is being described while in the anatomical position. For example: proximal urethra; plantar aspect of the left thumb. Multiple aspects can also be described, if required, by allowing for 0..2 occurrences. For example: a lesion may be on the left anterior/lateral (ie anterolateral) chest wall. If the 'Body site name' data element uses pre-coordinated terms that include the aspect, then this data element is redundant.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Mid-scapular line(en)">
                 description = <"*Line running vertically down the posterior surface of the body, parallel to the midline and passing through the inferior point of the scapula.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Midline(en)">
                 description = <"*Line running vertically which divides the body into left and right portions, passing through the head, spinal cord, and umbilicus. Alternatively it can refer to a line dividing a body part into two equal portions, for example a digit.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Mid-pupillary line(en)">
                 description = <"*Line running vertically down the face through the midpoint of the pupil when looking directly forward.(en)">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"*Mid-clavicular line(en)">
                 description = <"*Line running vertically down the surface of the body, parallel to the midline and passing through the midpoint of the clavicle.(en)">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"*Posterior axillary line(en)">
                 description = <"*Line running vertically down the surface of the body, passing through the posterior axillary skinfold.(en)">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"*Anterior axillary line(en)">
                 description = <"*Line running vertically down the surface of the body, passing through the anterior axillary skinfold.(en)">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"*Midaxillary line(en)">
                 description = <"*Line running vertically down the surface of the body, passing through the apex of the axilla.(en)">
             >
@@ -1101,11 +1101,11 @@ terminology
                 description = <"*Narrative description that can be used to further refine and support the 'Body site name'.(en)">
                 comment = <"*For example: adjacent to the vermilion border; a tattoo covers the bottom half of this area.(en)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"*Right(en)">
                 description = <"*Right side of the body.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Left(en)">
                 description = <"*Left side of the body.(en)">
             >
@@ -1146,15 +1146,15 @@ terminology
                 text = <"Anatomical Line (synthesised)">
                 description = <"Additional detail using theoretical lines drawn through anatomical structures used to provide a consistent reference point on the human body. (synthesised)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Left and right">
                 description = <"Both sides of the body.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Bilateral">
                 description = <"Two-sided.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Unilateral">
                 description = <"One-sided.">
             >
@@ -1162,67 +1162,67 @@ terminology
                 text = <"Occurrence">
                 description = <"One or more sides of the body.">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Dorsal">
                 description = <"Towards the back of the hand or top of the foot. To be used as opposites of palmar or plantar, not as a synonym of posterior.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Superficial">
                 description = <"Towards the surface of the body site.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Deep">
                 description = <"Away from the surface of the body site.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Anal">
                 description = <"Towards the anus. Usually used to describe locations within the digestive system.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Oral">
                 description = <"Towards the mouth. Usually used to describe locations within the digestive system.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Mid">
                 description = <"In the middle of the body site.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Plantar">
                 description = <"Towards the sole of the foot.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Palmar">
                 description = <"Towards the palm of the hand.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Distal">
                 description = <"More peripheral, or further from the point of attachment, and usually describing part of a limb, digit or appendage.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Proximal">
                 description = <"More central or closer to the point of attachment, and usually describing part of a limb, digit or appendage.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Posterior">
                 description = <"Towards the back, or dorsal surface, of the body site.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Anterior">
                 description = <"Towards the front, or ventral surface, of  the body site.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Inferior">
                 description = <"Below the body site, often meaning towards the feet.">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Superior">
                 description = <"Above the body site, often meaning towards the head.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Lateral">
                 description = <"Towards the side, or edge, of the body site.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Medial">
                 description = <"Towards the midline of the body site.">
             >
@@ -1236,31 +1236,31 @@ terminology
                 description = <"Qualifying detail about the specific aspect of the identified body site.">
                 comment = <"Use to increase precision of identification of the body site, if required. Common aspects have been included as a value set, which can be extended over time, plus a free text option. Assumes that the body is being described while in the anatomical position. For example: proximal urethra; plantar aspect of the left thumb. Multiple aspects can also be described, if required, by allowing for 0..2 occurrences. For example: a lesion may be on the left anterior/lateral (ie anterolateral) chest wall. If the 'Body site name' data element uses pre-coordinated terms that include the aspect, then this data element is redundant.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Mid-scapular line">
                 description = <"Line running vertically down the posterior surface of the body, parallel to the midline and passing through the inferior point of the scapula.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Midline">
                 description = <"Line running vertically which divides the body into left and right portions, passing through the head, spinal cord, and umbilicus. Alternatively it can refer to a line dividing a body part into two equal portions, for example a digit.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Mid-pupillary line">
                 description = <"Line running vertically down the face through the midpoint of the pupil when looking directly forward.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Mid-clavicular line">
                 description = <"Line running vertically down the surface of the body, parallel to the midline and passing through the midpoint of the clavicle.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Posterior axillary line">
                 description = <"Line running vertically down the surface of the body, passing through the posterior axillary skinfold.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Anterior axillary line">
                 description = <"Line running vertically down the surface of the body, passing through the anterior axillary skinfold.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Midaxillary line">
                 description = <"Line running vertically down the surface of the body, passing through the apex of the axilla.">
             >
@@ -1283,11 +1283,11 @@ terminology
                 description = <"Narrative description that can be used to further refine and support the 'Body site name'.">
                 comment = <"For example: adjacent to the vermilion border; a tattoo covers the bottom half of this area.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Right">
                 description = <"Right side of the body.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Left">
                 description = <"Left side of the body.">
             >
@@ -1315,25 +1315,25 @@ terminology
     term_bindings = <
         ["SNOMED-CT"] = <
             ["id3"] = <http://snomed.info/id/272741003>
-            ["at4"] = <http://snomed.info/id/419161000>
-            ["at5"] = <http://snomed.info/id/419465000>
+            ["at3"] = <http://snomed.info/id/419161000>
+            ["at4"] = <http://snomed.info/id/419465000>
         >
     >
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at68", "at69", "at70", "at71", "at72", "at73", "at74", "at75", "at81", "at82", "at76", "at77", "at83", "at78", "at79", "at80">
+            members = <"at67", "at68", "at69", "at70", "at71", "at72", "at73", "at74", "at80", "at81", "at75", "at76", "at82", "at77", "at78", "at79">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at85", "at86">
+            members = <"at84", "at85">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at5", "at87">
+            members = <"at3", "at4", "at86">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at63", "at57", "at58", "at59", "at60", "at61", "at64">
+            members = <"at62", "at56", "at57", "at58", "at59", "at60", "at63">
         >
     >

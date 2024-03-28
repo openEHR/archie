@@ -83,9 +83,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}]
                                                 }
                                             }
                                         }
@@ -94,9 +94,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at10]}],
-                                                    [{1}, {[at11]}],
-                                                    [{2}, {[at12]}]
+                                                    [{0}, {[at9]}],
+                                                    [{1}, {[at10]}],
+                                                    [{2}, {[at11]}]
                                                 }
                                             }
                                         }
@@ -105,8 +105,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at14]}],
-                                                    [{2}, {[at15]}]
+                                                    [{0}, {[at13]}],
+                                                    [{2}, {[at14]}]
                                                 }
                                             }
                                         }
@@ -237,19 +237,19 @@ terminology
                 description = <"*Some variables used in the calculation of the MUST score may be influenced by confunding factors, specially in the case of weight and BMI determination.(en)">
                 comment = <"*Examples of confunding factors are fluid disturbances, lactation, pregnancy, critical illness and amputations. These and other situations deemed as confunding should be registered here.(en)">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Derivado de la cambios en la medición del perímetro braquial">
                 description = <"*">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Impresión clínica">
                 description = <"*">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Cambio de peso documentado recientemente o referido por el paciente">
                 description = <"*">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Medición directa del cambio de peso">
                 description = <"*">
             >
@@ -257,11 +257,11 @@ terminology
                 text = <"Método de determinación de la pérdida de peso">
                 description = <"Método utilizado para la determinación de la pérdida de peso">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Derivado de la medición del perímetro braquial">
                 description = <"*">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Calculado a partir de las mediciones de altura y peso">
                 description = <"*">
             >
@@ -269,31 +269,31 @@ terminology
                 text = <"Método de estimación del índice de masa corporal">
                 description = <"Método utilizado para la estimación del índice de masa corporal">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Peso documentado recientemente o referido por el paciente">
                 description = <"Peso documentado recientemente o referido por el paciente (si es confiable y realista).">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Medición directa del peso">
                 description = <"*">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Derivada de la semienvergadura">
                 description = <"*">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Derivada de la altura de la rodilla">
                 description = <"*">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Derivada de la longitud del antebrazo (cúbito)">
                 description = <"*">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Altura documentada recientemente o referida por el paciente">
                 description = <"Altura documentada recientemente o referida por el paciente (si es confiable y realista).">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Medición directa de la altura">
                 description = <"*">
             >
@@ -305,15 +305,15 @@ terminology
                 text = <"*Height determination method for body mass index(en)">
                 description = <"*Method used for determining height as a part of body mass index calculation.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*High risk(en)">
                 description = <"*Total score equal or greater than 2.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Medium risk(en)">
                 description = <"*Total score equal to 1.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Low risk(en)">
                 description = <"*Total score equal to 0.(en)">
             >
@@ -325,11 +325,11 @@ terminology
                 text = <"*Total score(en)">
                 description = <"*The sum of scores for body mass index, weight loss and acute disease effect.(en)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"*Acutely ill and there has been or is likely to be no nutritional intake for >5 days(en)">
                 description = <"*If patient is acutely ill and there has been or is likely to be no nutritional intake for >5 days.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Not acutely ill and sufficient nutritional intake for >5 days(en)">
                 description = <"*If patient is not acutely ill and there has not been or is not likely to be no nutritional intake for >5 days.(en)">
             >
@@ -338,15 +338,15 @@ terminology
                 description = <"*If the subject is currently affected by an acute patho-physiological or psychological condition, and there has been no nutritional intake or likelihood of no intake for more than 5 days, they are likely to be at nutritional risk.(en)">
                 comment = <"*Such patients include those who are critically ill, those who have swallowing difficulties (e.g. after stroke), or head injuries or are undergoing gastrointestinal surgery.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <">10 %">
                 description = <">10 %">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"5-10 %">
                 description = <"5-10 %">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"<5 %">
                 description = <"<5 %">
             >
@@ -355,15 +355,15 @@ terminology
                 description = <"*To establish the subject’s weight loss score, ask if there has been any weight loss in the last 3 – 6 months, and if so how much (or look in their medical records).(en)">
                 comment = <"*Deduct current weight from previous weight to calculate amount of weight lost and calculate percentage. If the subject has not lost weight (or has gained weight) score 0.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"<18.5">
                 description = <"<18.5">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"18.5 -20">
                 description = <"18.5 -20">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*>20 (>30 Obese)(en)">
                 description = <"**(en)">
             >
@@ -427,19 +427,19 @@ terminology
                 description = <"Some variables used in the calculation of the MUST score may be influenced by confunding factors, specially in the case of weight and BMI determination.">
                 comment = <"Examples of confunding factors are fluid disturbances, lactation, pregnancy, critical illness and amputations. These and other situations deemed as confunding should be registered here.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Derived from changes in mid upper arm circumference measurement">
                 description = <"*">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Clinical impression">
                 description = <"*">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Recently documented or self-reported weight change">
                 description = <"*">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Direct weight change measurement">
                 description = <"*">
             >
@@ -447,11 +447,11 @@ terminology
                 text = <"Weight loss determination method">
                 description = <"Method used for determining weight change.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Derived from mid upper arm circumference measurement">
                 description = <"*">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Calculation from height and weight measurements">
                 description = <"*">
             >
@@ -459,31 +459,31 @@ terminology
                 text = <"Body mass index estimation method">
                 description = <"Method used for determining body mass index.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Recently documented or self-reported weight">
                 description = <"Recently documented or self-reported weight (if reliable and realistic).">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Direct weight measurement">
                 description = <"*">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Derived from demispan">
                 description = <"*">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Derived from knee height">
                 description = <"*">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Derived from ulna length">
                 description = <"*">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Recently documented or self-reported height">
                 description = <"Recently documented or self-reported height (if reliable and realistic).">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Direct height measurement">
                 description = <"*">
             >
@@ -495,15 +495,15 @@ terminology
                 text = <"Height determination method for body mass index">
                 description = <"Method used for determining height as a part of body mass index calculation.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"High risk">
                 description = <"Total score equal or greater than 2.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Medium risk">
                 description = <"Total score equal to 1.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Low risk">
                 description = <"Total score equal to 0.">
             >
@@ -515,11 +515,11 @@ terminology
                 text = <"Total score">
                 description = <"The sum of scores for body mass index, weight loss and acute disease effect.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Acutely ill and there has been or is likely to be no nutritional intake for >5 days">
                 description = <"If patient is acutely ill and there has been or is likely to be no nutritional intake for >5 days.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Not acutely ill and sufficient nutritional intake for >5 days">
                 description = <"If patient is not acutely ill and there has not been or is not likely to be no nutritional intake for >5 days.">
             >
@@ -528,15 +528,15 @@ terminology
                 description = <"If the subject is currently affected by an acute patho-physiological or psychological condition, and there has been no nutritional intake or likelihood of no intake for more than 5 days, they are likely to be at nutritional risk.">
                 comment = <"Such patients include those who are critically ill, those who have swallowing difficulties (e.g. after stroke), or head injuries or are undergoing gastrointestinal surgery.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <">10 %">
                 description = <"*">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"5-10 %">
                 description = <"*">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"<5 %">
                 description = <"*">
             >
@@ -545,15 +545,15 @@ terminology
                 description = <"To establish the subject’s weight loss score, ask if there has been any weight loss in the last 3 – 6 months, and if so how much (or look in their medical records).">
                 comment = <"Deduct current weight from previous weight to calculate amount of weight lost and calculate percentage. If the subject has not lost weight (or has gained weight) score 0.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"<18.5">
                 description = <"*">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"18.5 -20">
                 description = <"*">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <">20 (>30 Obese)">
                 description = <"*">
             >
@@ -579,34 +579,34 @@ terminology
     value_sets = <
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at35", "at36", "at37", "at38">
+            members = <"at34", "at35", "at36", "at37">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at14", "at15">
+            members = <"at13", "at14">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at11", "at12">
+            members = <"at9", "at10", "at11">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8">
+            members = <"at5", "at6", "at7">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at32", "at33">
+            members = <"at31", "at32">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at29", "at30">
+            members = <"at28", "at29">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at24", "at25", "at26", "at27", "at28">
+            members = <"at23", "at24", "at25", "at26", "at27">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at18", "at19", "at20">
+            members = <"at17", "at18", "at19">
         >
     >

@@ -62,11 +62,11 @@ definition
                         value matches {
                             DV_ORDINAL[id0.9001] matches {
                                 [value, symbol] matches {
-                                    [{0}, {[at37]}],
-                                    [{1}, {[at38]}],
-                                    [{2}, {[at39]}],
-                                    [{3}, {[at40]}],
-                                    [{4}, {[at41]}]
+                                    [{0}, {[at36]}],
+                                    [{1}, {[at37]}],
+                                    [{2}, {[at38]}],
+                                    [{3}, {[at39]}],
+                                    [{4}, {[at40]}]
                                 }
                             }
                         }
@@ -92,6 +92,6 @@ terminology
     value_sets = <
         ["ac0.9000"] = <
             id = <"ac0.9000">
-            members = <"at37", "at38", "at39", "at40", "at41">
+            members = <"at36", "at37", "at38", "at39", "at40">
         >
     >

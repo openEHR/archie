@@ -43,7 +43,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9009] matches {
-                        defining_code matches {[at4]}    -- Review planned
+                        defining_code matches {[at3]}    -- Review planned
                     }
                 }
             }
@@ -55,7 +55,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9011] matches {
-                        defining_code matches {[at11]}    -- Review postponed
+                        defining_code matches {[at10]}    -- Review postponed
                     }
                 }
             }
@@ -67,7 +67,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9013] matches {
-                        defining_code matches {[at13]}    -- Review cancelled
+                        defining_code matches {[at12]}    -- Review cancelled
                     }
                 }
             }
@@ -79,7 +79,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9015] matches {
-                        defining_code matches {[at5]}    -- Review scheduled
+                        defining_code matches {[at4]}    -- Review scheduled
                     }
                 }
             }
@@ -91,7 +91,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9017] matches {
-                        defining_code matches {[at20]}    -- Review rescheduled
+                        defining_code matches {[at19]}    -- Review rescheduled
                     }
                 }
             }
@@ -103,7 +103,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9019] matches {
-                        defining_code matches {[at7]}    -- Review performed
+                        defining_code matches {[at6]}    -- Review performed
                     }
                 }
             }
@@ -115,7 +115,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9021] matches {
-                        defining_code matches {[at12]}    -- Review suspended
+                        defining_code matches {[at11]}    -- Review suspended
                     }
                 }
             }
@@ -127,7 +127,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9023] matches {
-                        defining_code matches {[at14]}    -- Review aborted
+                        defining_code matches {[at13]}    -- Review aborted
                     }
                 }
             }
@@ -139,7 +139,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9025] matches {
-                        defining_code matches {[at17]}    -- Review completed
+                        defining_code matches {[at16]}    -- Review completed
                     }
                 }
             }
@@ -226,7 +226,7 @@ terminology
                 text = <"Review rescheduled">
                 description = <"The review activity has been rescheduled.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Review rescheduled">
                 description = <"The review activity has been rescheduled.">
             >
@@ -239,7 +239,7 @@ terminology
                 text = <"Review completed">
                 description = <"The review activity has been completed.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Review completed">
                 description = <"The review activity has been completed.">
             >
@@ -257,7 +257,7 @@ terminology
                 text = <"Review aborted">
                 description = <"The review activity has been aborted.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Review aborted">
                 description = <"The review activity has been aborted.">
             >
@@ -265,7 +265,7 @@ terminology
                 text = <"Review cancelled">
                 description = <"The review activity has been cancelled.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Review cancelled">
                 description = <"The review activity has been cancelled.">
             >
@@ -273,7 +273,7 @@ terminology
                 text = <"Review suspended">
                 description = <"The review activity has been suspended.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Review suspended">
                 description = <"The review activity has been suspended.">
             >
@@ -281,7 +281,7 @@ terminology
                 text = <"Review postponed">
                 description = <"The review has been postponed.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Review postponed">
                 description = <"The review has been postponed.">
             >
@@ -289,7 +289,7 @@ terminology
                 text = <"Review performed">
                 description = <"The review activity has been performed.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Review performed">
                 description = <"The review activity has been performed.">
             >
@@ -297,7 +297,7 @@ terminology
                 text = <"Review scheduled">
                 description = <"The review activity has been scheduled.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Review scheduled">
                 description = <"The review activity has been scheduled.">
             >
@@ -305,7 +305,7 @@ terminology
                 text = <"Review planned">
                 description = <"The review activity is planned.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Review planned">
                 description = <"The review activity is planned.">
             >

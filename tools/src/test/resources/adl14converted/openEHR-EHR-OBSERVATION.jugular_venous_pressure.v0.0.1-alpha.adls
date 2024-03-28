@@ -104,7 +104,7 @@ definition
                                     ELEMENT[id15] occurrences matches {0..1} matches {    -- Body position
                                         value matches {
                                             DV_CODED_TEXT[id9014] matches {
-                                                defining_code matches {[ac9004; at17]}    -- Body position (synthesised)
+                                                defining_code matches {[ac9004; at16]}    -- Body position (synthesised)
                                             }
                                         }
                                     }
@@ -170,15 +170,15 @@ terminology
                 text = <"Location of measurement (synthesised)">
                 description = <"was measured. (synthesised)">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to determine if the JVP is present or absent.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Absent">
                 description = <"The JVP is not observed.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Present">
                 description = <"The JVP is observed.">
             >
@@ -203,11 +203,11 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Right">
                 description = <"The right JVP was measured.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Left">
                 description = <"The left JVP was measured.">
             >
@@ -223,15 +223,15 @@ terminology
                 text = <"Confounding factors">
                 description = <"Comment on and record other incidental factors that may be contributing to the jugular venous pressure measurement.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Sitting">
                 description = <"The individual is sitting upright.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Reclining at 45 degrees">
                 description = <"The individual is reclining at approximately 45 degrees.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Supine">
                 description = <"The individual is lying flat on a surface.">
             >
@@ -239,11 +239,11 @@ terminology
                 text = <"Body position">
                 description = <"Position of individual during measurement.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Absent">
                 description = <"The Kussmaul sign is not observed.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Present">
                 description = <"The Kussmaul sign is observed.">
             >
@@ -251,11 +251,11 @@ terminology
                 text = <"Kussmaul sign">
                 description = <"Observation of the paradoxical rise in jugular venous pressure (JVP) on inspiration, or a failure in the appropriate fall of the JVP with inspiration.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Negative">
                 description = <"The JVP does not rise with increased abdominal pressure.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Positive">
                 description = <"The JVP rises with increased abdominal pressure.">
             >
@@ -294,22 +294,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at9", "at10">
+            members = <"at8", "at9">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at31", "at32", "at33">
+            members = <"at30", "at31", "at32">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at24", "at25">
+            members = <"at23", "at24">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at16", "at17", "at18">
+            members = <"at15", "at16", "at17">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at12", "at13">
+            members = <"at11", "at12">
         >
     >

@@ -113,19 +113,19 @@ terminology
                 text = <"Área geografica (synthesised)">
                 description = <"Indica a área geográfica onde o documento é váĺido. (synthesised)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Nacional">
                 description = <"Indica que esta identificação é usada em nível nacional.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Estadual">
                 description = <"Indica que esta identificação é usada em nível de um estado.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Regional">
                 description = <"Indica que esta identificação é usada em uma região.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Local">
                 description = <"Indica que esta identificação é usada localmente.">
             >
@@ -175,19 +175,19 @@ terminology
                 text = <"Geographic scope (synthesised)">
                 description = <"Indicates the geographic area within which the identifier is valid. (synthesised)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"National">
                 description = <"Indicates that this identifier is used nationally.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"State/Province/Territory">
                 description = <"Indicates that this identifier is used within a political boundary such as a state or territory or province.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Area/Regional/District">
                 description = <"Indicates that this identifier is used within a specific area.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Local">
                 description = <"Indicates that this identifier is used locally.">
             >
@@ -236,6 +236,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12", "at13", "at14">
+            members = <"at10", "at11", "at12", "at13">
         >
     >

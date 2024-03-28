@@ -157,11 +157,11 @@ terminology
                 text = <"Próxima Revisión Prevista">
                 description = <"La fecha para la cual el resumen de inmunización debe ser revisado y posiblemente actualizado.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Vacunación no al día">
                 description = <"La vacunación no se encuentra al día.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Vacunación al día">
                 description = <"La vacunación se encuentra al día.">
             >
@@ -177,19 +177,19 @@ terminology
                 text = <"Fecha de completamiento del ciclo primario">
                 description = <"La fecha en la cual el ciclo primario (o de recuperación) fué completado.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Indeterminado">
                 description = <"La información disponible resulta inadecuada para determinar el estatus del ciclo primario.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Completo">
                 description = <"Ciclo primario completo.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Incompleto">
                 description = <"Ciclo primario iniciado pero incompleto.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"No iniciado">
                 description = <"Ciclo primario no iniciado.">
             >
@@ -228,11 +228,11 @@ terminology
                 text = <"Próxima revisão">
                 description = <"A data na qual o sumário de imunização deve ser revisado e possivelmente atualizado.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Vacinação não atualizada">
                 description = <"O curso de vacinação não está atualizado.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Vacinação atualizada">
                 description = <"O curso de vacinação está atualizado.">
             >
@@ -248,19 +248,19 @@ terminology
                 text = <"Data da conclusão da primeira etapa">
                 description = <"A data na qual a primeira etapa (ou alcance) de vacinas foi completada.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Indeterminado">
                 description = <"A informação disponível é inadequada para determinar o estado da primeira etapa.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Completo">
                 description = <"Primeira etapa foi completada.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Incompleto">
                 description = <"Primeira etapa foi iniciada mas não completada.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Não iniciado">
                 description = <"Primeira etapa não foi iniciada.">
             >
@@ -299,11 +299,11 @@ terminology
                 text = <"Next review due">
                 description = <"The date at which the immunisation summary should be reviewed and possibly updated.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Immunisation not up-to-date">
                 description = <"The immunisation course is not up-to-date.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Immunisation up-to-date">
                 description = <"The immunisation course is up-to-date.">
             >
@@ -319,19 +319,19 @@ terminology
                 text = <"Date primary course completed">
                 description = <"The date on which the primary  (or catch-up) course of vaccines was completed.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Indeterminate">
                 description = <"The available information is inadequate to determin the status of the primary course.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Complete">
                 description = <"Primary course was completed.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Incomplete">
                 description = <"Primary course was commenced but not completed.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Not commenced">
                 description = <"Primary course was not commenced.">
             >
@@ -353,10 +353,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at12", "at13">
+            members = <"at11", "at12">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at5", "at6", "at7", "at8">
+            members = <"at4", "at5", "at6", "at7">
         >
     >

@@ -145,6 +145,6 @@ terminology
     value_sets = <
         ["ac9000.1"] = <
             id = <"ac9000.1">
-            members = <"at6", "at0.15", "at7", "at8", "at9">
+            members = <"at5", "at0.15", "at6", "at7", "at8">
         >
     >

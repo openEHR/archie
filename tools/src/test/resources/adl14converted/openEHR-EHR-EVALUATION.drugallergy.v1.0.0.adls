@@ -114,43 +114,43 @@ terminology
                 description = <"The date of onset of the reaction.">
                 comment = <"From Welsh IHR model">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Certain">
                 description = <"The agent was thought to have been certain to have caused the reaction but has not been confirmed by testing.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Confirmed">
                 description = <"The rection to the agent has been confirmed by testing.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Likely">
                 description = <"The reaction was likely to have been caused by the agent.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Unlikely">
                 description = <"The reaction was unlikely to have been caused by the agent.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Life-threatening">
                 description = <"The reaction was life-threatening.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Moderate to severe">
                 description = <"The reaction was moderate to severe.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Mild to moderate">
                 description = <"The reaction was mild to moderate.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Severe">
                 description = <"The reaction was severe.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Moderate">
                 description = <"The reaction was moderate.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Mild">
                 description = <"The reaction was mild.">
             >
@@ -211,16 +211,16 @@ terminology
             ["id4"] = <http://snomed.info/id/255544004>
             ["id5"] = <http://snomed.info/id/282100009>
             ["id6"] = <http://snomed.info/id/272141005>
-            ["at10"] = <http://snomed.info/id/255604002>
-            ["at11"] = <http://snomed.info/id/6736007>
-            ["at12"] = <http://snomed.info/id/24484000>
-            ["at13"] = <http://snomed.info/id/255604002>
-            ["at14"] = <http://snomed.info/id/371924009>
-            ["at15"] = <http://snomed.info/id/442452003>
-            ["at16"] = <http://snomed.info/id/1491118016>
-            ["at18"] = <http://snomed.info/id/5961011>
-            ["at19"] = <http://snomed.info/id/410605003>
-            ["at21"] = <http://snomed.info/id/255545003>
+            ["at9"] = <http://snomed.info/id/255604002>
+            ["at10"] = <http://snomed.info/id/6736007>
+            ["at11"] = <http://snomed.info/id/24484000>
+            ["at12"] = <http://snomed.info/id/255604002>
+            ["at13"] = <http://snomed.info/id/371924009>
+            ["at14"] = <http://snomed.info/id/442452003>
+            ["at15"] = <http://snomed.info/id/1491118016>
+            ["at17"] = <http://snomed.info/id/5961011>
+            ["at18"] = <http://snomed.info/id/410605003>
+            ["at20"] = <http://snomed.info/id/255545003>
             ["ac2"] = <terminology:SNOMED-CT?subset=ClinicalFinding>
             ["ac3"] = <terminology:SNOMED-CT?subset=Allergy%20code%3B%20dm%2Bd%20Ingredient%3B%20Trade%20family%20%3B%20Trade%20Family%20Group>
         >
@@ -228,10 +228,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at13", "at11", "at14", "at12", "at15">
+            members = <"at9", "at12", "at10", "at13", "at11", "at14">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at16", "at18", "at21", "at19">
+            members = <"at15", "at17", "at20", "at18">
         >
     >

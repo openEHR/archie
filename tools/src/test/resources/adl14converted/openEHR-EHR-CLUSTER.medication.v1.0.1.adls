@@ -294,19 +294,19 @@ terminology
                 description = <"Der Wert einer äquivalenten Darstellung der Menge des Arzneimittels oder der Arzneimittelkomponente.">
                 comment = <"Die Einheit der alternativen Menge wird im Element \"Alternative Mengeneinheit\" erfasst. Beispiel: Für ein Arzneimittel mit einer Wirkstoffkonzentration von \"5 mg/ml\" und einer Menge von \"1 ml\" wäre die äquivalente Menge \"5 mg\" und der in diesem Datenelement erfasste Wert wäre \"5\".">
             >
-            ["at147"] = <
+            ["at146"] = <
                 text = <"Inhaltsstoff">
                 description = <"Das Arzneimittel oder die Arzneimittelkomponente ist ein Inhaltsstoff eines Arzneimittels. Dieser Begriff wird verwendet, wenn der Archetyp innerhalb einer Eltern-Instanz seines eigenen Archetyps verschachtelt ist, um die einzelnen Bestandteile eines Arzneimittels zu beschreiben.">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"Produkt mit einem Inhaltsstoff">
                 description = <"Das Arzneimittel oder die Arzneimittelkomponente ist ein hergestelltes Produkt, das einen einzigen Wirkstoff enthält.">
             >
-            ["at145"] = <
+            ["at144"] = <
                 text = <"Produkt mit meheren Inhaltsstoffen">
                 description = <"Das Arzneimittel oder die Arzneimittelkomponente besteht aus einer Reihe von Wirkstoffen, die vom Hersteller in einer einzigen Form, wie z.B. als eine Tablette, Creme oder ein Pulver, vorkombiniert werden. Ein Beispiel hierfür ist Paracetamol/Codein.">
             >
-            ["at144"] = <
+            ["at143"] = <
                 text = <"Ad hoc Mixtur">
                 description = <"Das Arzneimittel oder die Arzneimittelkomponente besteht aus einem Gemisch von Inhaltsstoffen, die in der Verordnung angegeben sind. Diese werden in der Regel vom Apotheken- oder Stationspersonal individuell für den Patienten zubereitet.">
             >
@@ -350,16 +350,16 @@ terminology
                 description = <"Die Wirkstoffkonzentration eines Arzneimittels oder einer Arzneimittelkomponente.">
                 comment = <"Dieses Element wird für Flüssigkeiten, halbfesten Arzneimitteln oder Arzneimitteln, die vor der Verabreichung in einer Flüssigkeit gelöst werden müssen, verwendet. Zum Beispiel: \"10 mg/ml\", \"20 mg/g\", \"5 %\", \"10,000 SQ-U/ml\".">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Arzneiträgerstoff">
                 description = <"Bestandteil, welcher gegen die Wirkung eines Arzneistoffes inert ist.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Wirkungsverstärker">
                 description = <"Ein Bestandteil mit der primären Funktion, die Wirkung des aktiven Bestandteils zu verändern. Ein Wirkungsverstärker kann selbst therapeutisch wirksam sein, muss es aber nicht. 
     ">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Therapeutisch">
                 description = <"Bestandteil, der allein oder in Kombination mit einem oder mehreren anderen Inhaltsstoffen die beabsichtigte Wirkung eines Arzneimittels erfüllt.">
             >
@@ -393,7 +393,7 @@ terminology
                 description = <"Das Verfallsdatum und/oder die Verfallszeit des Arzneimittels oder der Arzneimittelkomponente. Diese Angabe wird vom Hersteller oder einer Einzelperson während der Mixtur gemacht.">
                 comment = <"Jegliche andere Formen des Verfallsdatums, wie z.B. die Zeit ab Produktion oder Abhängigkeiten von der Lagerumgebung, können in einem spezifischen CLUSTER Archetypen aufgenommen werden. Darüber hinaus können diese Angaben auch in einem SLOT, der Details über die Substanz dokumentiert, oder als Teil einer Beschreibung erfasst werden. Zum Beispiel: \"23.05.2017\".">
             >
-            ["at2"] = <
+            ["at1"] = <
                 text = <"Kombinationsprodukt">
                 description = <"Das Arzneimittel oder die Arzneimittelkomponente besteht aus einer Reihe von separaten Produkten, die vom Hersteller vorverpackt werden, z.B. Canesten Combi.">
             >
@@ -457,19 +457,19 @@ terminology
                 description = <"En alternativ men tilsvarende angivelse av verdien av mengden legemiddel eller legemiddelkomponent.">
                 comment = <"Enheten for den alternative mengden registreres i elementet Alternativ mengdeenhet. For eksempel dersom et legemiddel har styrke 5 mg/ml og mengden er \"1 ml\", vil en alternativ mengde være \"5 mg\". I dette tilfellet er \"Alternativ mengde\" \"5\".">
             >
-            ["at147"] = <
+            ["at146"] = <
                 text = <"Bestanddel">
                 description = <"Legemiddelkomponenten er en ingrediens i legemiddelet. Denne termen benyttes når arketypen nøstes inni en overordnet instans av den samme arketypen, for å beskrive de individuelle ingrediensene i et legemiddel.">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"Produkt som inneholder én aktiv ingrediens">
                 description = <"Legemiddelet eller legemiddelkomponenten er et fabrikkframstilt produkt som kun har én aktiv ingrediens.">
             >
-            ["at145"] = <
+            ["at144"] = <
                 text = <"Kombinasjonsprodukt">
                 description = <"Komponenten består av flere aktive ingredienser som er satt sammen til én form som en tablett, krem eller pulver av produsenten. For eksempel Paralgin Forte.">
             >
-            ["at144"] = <
+            ["at143"] = <
                 text = <"Magistrellforskrevet blanding">
                 description = <"Legemiddelet eller legemiddelkomponenten er en sammensatt blanding av ingredienser som er spesifisert i en ordinering. Disse tillages typisk av apotek- eller sengepostpersonell for individuelle pasienter.">
             >
@@ -511,15 +511,15 @@ terminology
                 description = <"Styrken av legemiddelet eller legemiddelkomponenten, angitt som konsentrasjon.">
                 comment = <"Dette elementet brukes for flytende eller halvfaste legemidler, eller legemidler som skal blandes ut til å bli flytende før administrering. For eksempel \"10 mg/ml\", \"20 mg/g\", \"5 %\" eller \"10 000 SQ-U/ml\".">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Hjelpestoff">
                 description = <"Bestanddel som er inaktiv i forhold til den tiltenkte aktiviteten av legemiddelet.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Adjuvans">
                 description = <"Bestanddel hvis hovedfunksjon er å modifisere aktiviteten av en aktiv bestanddel. En adjuvans kan i seg selv være enten aktiv eller inaktiv.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Terapeutisk">
                 description = <"Bestanddel som alene eller i kombinasjon med en eller flere andre ingredienser oppfyller den tiltenkte aktiviteten av legemiddelet.">
             >
@@ -553,7 +553,7 @@ terminology
                 description = <"Tidspunktet for når legemiddelet ikke lenger skal benyttes, som angitt av produsenten eller den som tilbereder blandingen.">
                 comment = <"For eksempel \"2017-05-23\". Andre former for utløpsdatoer som må dokumenteres, som for eksempel tid fra produksjonstidspunktet eller avhengighet av lagringsforhold, kan legges til som en spesifikk CLUSTER-arketype eller som en kommentar.">
             >
-            ["at2"] = <
+            ["at1"] = <
                 text = <"Kombinasjonspakning">
                 description = <"Legemiddelet eller legemiddelkomponenten består av flere separate produkter som er forhåndspakket av produsenten, for eksempel Canesten vaginalkapsel + krem.">
             >
@@ -621,19 +621,19 @@ terminology
                 description = <"*The value of an equivalent representation of the amount of the medication or medication component.(en)">
                 comment = <"*The unit of the alternate amount is recorded in the 'Alternate amount unit' element. For example: for a medication with a strength of '5 mg/ml' and where the Amount is '1 ml', the equivalent amount would be 5 mg and the value recorded in this data element would be '5' .(en)">
             >
-            ["at147"] = <
+            ["at146"] = <
                 text = <"*Ingredient(en)">
                 description = <"*The medication or medication component is an individual ingredient of the medication. This term is used when the archetype is nested within a parent instance of itself, to describe the individual ingredients of a medication.(en)">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"*Single-substance product(en)">
                 description = <"*The component is a manufactured product containing a single ingredient.(en)">
             >
-            ["at145"] = <
+            ["at144"] = <
                 text = <"*Multi-ingredient product(en)">
                 description = <"*The medication or medication component consists of a number of active ingredients which are pre-combined into a single form such as a tablet, cream or powder by the manufacturer, for example Paracetamol/codeine.(en)">
             >
-            ["at144"] = <
+            ["at143"] = <
                 text = <"*Ad-hoc mixture(en)">
                 description = <"*The component is composed of a mixture of ingredients specified within the order.(en)">
             >
@@ -674,15 +674,15 @@ terminology
                 description = <"*The strength of the medication or medication component, as a concentration.(en)">
                 comment = <"*This element is used for liquid or semisolid medications, or medications intended to be diluted in a liquid before administration. For example: '10 mg/ml', '20 mg/g', '5 %', '10,000 SQ-U/ml'. (en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Diluente">
                 description = <"Diluente inerte.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Coadjuvante">
                 description = <"Este elemento químico é ativo mas apoia o efeito terapêutico de outro ingrediente.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Terapêutico">
                 description = <"Este elemento químico tem um efeito conhecido e considerado como positivo.">
             >
@@ -717,7 +717,7 @@ terminology
                 comment = <"*Any other form of expiry date, such as time from production or depending on storage environment, can be inserted using a specific CLUSTER archetype in the Substance Details slot or added as part of the Description.
      For example: '2017-05-23'.(en)">
             >
-            ["at2"] = <
+            ["at1"] = <
                 text = <"*Combination pack(en)">
                 description = <"*The component consists of a number of separate products which are pre-packaged by the manufacturer.(en)">
             >
@@ -777,19 +777,19 @@ terminology
                 description = <"The value of an equivalent representation of the amount of the medication or medication component.">
                 comment = <"The unit of the alternate amount is recorded in the 'Alternate amount unit' element. For example: for a medication with a strength of '5 mg/ml' and where the Amount is '1 ml', the equivalent amount would be 5 mg and the value recorded in this data element would be '5'.">
             >
-            ["at147"] = <
+            ["at146"] = <
                 text = <"Ingredient">
                 description = <"The medication or medication component is an individual ingredient of the medication. This term is used when the archetype is nested within a parent instance of itself, to describe the individual ingredients of a medication.">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"Single-ingredient product">
                 description = <"The medication or medication component is a manufactured product containing a single active ingredient.">
             >
-            ["at145"] = <
+            ["at144"] = <
                 text = <"Multi-ingredient product">
                 description = <"The medication or medication component consists of a number of active ingredients which are pre-combined into a single form such as a tablet, cream or powder by the manufacturer, for example Paracetamol/codeine.">
             >
-            ["at144"] = <
+            ["at143"] = <
                 text = <"Ad-hoc mixture">
                 description = <"The medication or medication component is composed of a mixture of ingredients specified within the order. These are typically prepared by pharmacy or ward personnel to suit individual patients.">
             >
@@ -831,15 +831,15 @@ terminology
                 description = <"The strength of the medication or medication component, as a concentration.">
                 comment = <"This element is used for liquid or semisolid medications, or medications intended to be diluted in a liquid before administration. For example: '10 mg/ml', '20 mg/g', '5 %', '10,000 SQ-U/ml'.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Excipient">
                 description = <"Constituent that is inert in relation to the intended activity of the medicinal product.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Adjuvant">
                 description = <"Constituent whose primary function is to modify the activity of an active constituent. An adjuvant constituent itself may or may not be therapeutically active.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Therapeutic">
                 description = <"Constituent that alone or in combination with one or more other ingredients is considered to fulfil the intended activity of a medicinal product.">
             >
@@ -874,7 +874,7 @@ terminology
                 comment = <"Any other form of expiry date, such as time from production or depending on storage environment, can be inserted using a specific CLUSTER archetype in the Substance Details slot or added as part of the Description.
      For example: '2017-05-23'.">
             >
-            ["at2"] = <
+            ["at1"] = <
                 text = <"Combination product">
                 description = <"The medication or medication component consists of a number of separate products which are pre-packaged by the manufacturer, for example Canesten Combi.">
             >
@@ -893,10 +893,10 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at144", "at147", "at145", "at146", "at2">
+            members = <"at143", "at146", "at144", "at145", "at1">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at81", "at84", "at85">
+            members = <"at80", "at83", "at84">
         >
     >

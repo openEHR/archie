@@ -80,7 +80,7 @@ definition
                     ELEMENT[id14] occurrences matches {0..1} matches {    -- Discussion with healthcare professional
                         value matches {
                             DV_CODED_TEXT[id9006] matches {
-                                defining_code matches {[at28]}    -- Decision to refuse treatment discussed with healthcare professional
+                                defining_code matches {[at27]}    -- Decision to refuse treatment discussed with healthcare professional
                             }
                         }
                     }
@@ -106,23 +106,23 @@ terminology
                 text = <"Informal carer awareness of decision (synthesised)">
                 description = <"Is the informal carer, or carers, aware of the advanced directive? (synthesised)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Advanced directive not signed">
                 description = <"The subject has not signed and advance directive or has rescinded an early directive.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Decision to refuse treatment discussed with healthcare professional">
                 description = <"The subject has discussed their decision to refuse treatment with a healthcare professional.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Informal carer aware of advanced directive">
                 description = <"The informal carer is aware of the subject's advanced directive.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Informal carer not aware of advanced directive">
                 description = <"The informal carer is not aware of the subject's advanced directive.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Has advance decision to refuse life sustaining treatment (Mental Capacity Act 2005)">
                 description = <"The subject has signed an advance decision to refuse life sustaining treatment (Mental Capacity Act 2005).">
             >
@@ -142,11 +142,11 @@ terminology
                 text = <"Location of advance directive documentation">
                 description = <"The location of the original advanced directive document, either a text description or an electronic link.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Has advance decision to refuse treatment (Mental Capacity Act 2005)">
                 description = <"The subject has signed an advance decision to refuse treatment (Mental Capacity Act 2005).">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Advanced decision to refuse treatment signed">
                 description = <"The subject has signed an advanced decision to refuse treatment.">
             >
@@ -167,30 +167,30 @@ terminology
     >
     term_bindings = <
         ["RCD99"] = <
-            ["at5"] = <http://RCD99.org/id/XaVy8>
-            ["at6"] = <http://RCD99.org/id/XaYld>
-            ["at23"] = <http://RCD99.org/id/XaYle>
-            ["at28"] = <http://RCD99.org/id/XaYv4>
+            ["at4"] = <http://RCD99.org/id/XaVy8>
+            ["at5"] = <http://RCD99.org/id/XaYld>
+            ["at22"] = <http://RCD99.org/id/XaYle>
+            ["at27"] = <http://RCD99.org/id/XaYv4>
         >
         ["READ2"] = <
-            ["at5"] = <http://READ2.org/id/9x2..>
-            ["at6"] = <http://READ2.org/id/9NgG.>
-            ["at23"] = <http://READ2.org/id/9NgG0>
-            ["at28"] = <http://READ2.org/id/9NgK.>
+            ["at4"] = <http://READ2.org/id/9x2..>
+            ["at5"] = <http://READ2.org/id/9NgG.>
+            ["at22"] = <http://READ2.org/id/9NgG0>
+            ["at27"] = <http://READ2.org/id/9NgK.>
         >
         ["SNOMED-CT"] = <
-            ["at6"] = <http://snomed.info/id/816301000000100>
-            ["at23"] = <http://snomed.info/id/816321000000109>
-            ["at28"] = <http://snomed.info/id/820621000000107>
+            ["at5"] = <http://snomed.info/id/816301000000100>
+            ["at22"] = <http://snomed.info/id/816321000000109>
+            ["at27"] = <http://snomed.info/id/820621000000107>
         >
     >
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at26", "at27">
+            members = <"at25", "at26">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at5", "at6", "at23", "at29">
+            members = <"at4", "at5", "at22", "at28">
         >
     >

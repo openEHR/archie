@@ -573,11 +573,11 @@ terminology
                 description = <"Ytterligere detaljer relatert til utdelingsanvisningene.">
                 comment = <"Dette SLOTet tillater lokal variasjon i regelverk for legemiddelutdeling mellom forskjellige myndighetsområder.">
             >
-            ["at170"] = <
+            ["at169"] = <
                 text = <"Ikke tillatt">
                 description = <"Generisk bytte med bioekvivalent legemiddel er ikke tillatt.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Tillatt">
                 description = <"Generisk bytte med bioekvivalent legemiddel er tillatt.">
             >
@@ -852,11 +852,11 @@ terminology
                 description = <"Mayores detalles relativos a las diectivas de dispensación.">
                 comment = <"Este SLOT permite representar variaciones locales para diferentes jurisdicciones respecto de la dispensa de medicamentos.">
             >
-            ["at170"] = <
+            ["at169"] = <
                 text = <"No permitida">
                 description = <"La sustitución del medicamento por un bioequivalente no es permitida.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Permitida">
                 description = <"La sustitución del medicamento por un bioequivalente es permitida.">
             >
@@ -1133,11 +1133,11 @@ terminology
                 description = <"Detalhes adicionais das instruções de dispensação.">
                 comment = <"Este SLOT possibilita que as variações locais sejam incorporadas no que diz respeito a legislação de dispensação de medicamentos.">
             >
-            ["at170"] = <
+            ["at169"] = <
                 text = <"Não permitidio">
                 description = <"Não é permitido subsituir medicamento por medicamento bioequivalente.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Perimitido">
                 description = <"Permitir a subsituição do medicamento por medicamento bioequivalente.">
             >
@@ -1414,11 +1414,11 @@ terminology
                 description = <"Further details related to dispense directions.">
                 comment = <"This SLOT allows for local variation in the different jurisdictions regarding medication dispensing.">
             >
-            ["at170"] = <
+            ["at169"] = <
                 text = <"Not permitted">
                 description = <"Substitution of the medication with a bioequivalent medication is not allowed.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Permitted">
                 description = <"Substitution of the medication with a bioequivalent medication is allowed.">
             >
@@ -1667,6 +1667,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at169", "at170">
+            members = <"at168", "at169">
         >
     >

@@ -168,23 +168,23 @@ terminology
                 description = <"Zusätzliche Informationen zur Erfassung lokaler Inhalte oder Anpassung an andere Referenzmodelle/Formalismen.">
                 comment = <"Zum Beispiel: Lokale Informationsbedarf oder zusätzliche Metadaten zur Anpassung an FHIR-Ressourcen oder CIMI-Modelle.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Nebenwirkungen auslösende Substanz/Allergen">
                 description = <"Die Bennenung der Nebenwirkungen auslösenden Substanz/des Allergens, welche/s ausgeschlossen wird. Zum Beispiel: \"Penicillin\", \"Erdnüsse\" oder \"Latex\".">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Eingriff">
                 description = <"Der Eingriff, auf den sich die Ausschlussaussage bezieht. Zum Beispiel: \"Herz-OP\" oder \"Appendektomie\" oder \"Hüftersatz\".">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Medikation">
                 description = <"Der Name des Medikaments, auf das sich die Ausschlussaussage bezieht. Zum Beispiel: \"Paracetamol\", \"Codein\" oder \"Antidepressiva\".">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Familiäre Krankengeschichte">
                 description = <"Das Element der familiären Krankengeschichte auf das sich die Ausschlussaussage bezieht. Zum Beispiel: Herzerkrankung, Diabetes oder Alzheimer.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Problem/Diagnose">
                 description = <"Das Problem oder die Diagnose, auf die sich die Ausschlussaussage bezieht. Zum Beispiel: \"Diabetes\", \"COPD\" oder \"Asthma\".">
             >
@@ -226,23 +226,23 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Substans for overfølsomhetsreaksjon">
                 description = <"Substansen \"Eksklusjonsutsagn\" omhandler. For eksempel \"pencillin\", \"peanøtter\" eller \"latex\".">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Prosedyre">
                 description = <"Prosedyren som \"Eksklusjonsutsagn\" omhandler. For eksempel: \"Hjertekirurgi\", \"appendektomi\" eller \"hofteprotese\".">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Legemiddel">
                 description = <"Legemiddelet som \"Eksklusjonsutsagn\" omhandler. For eksempel: \"Paracetamol\", \"Kodein\" eller \"Antidepressiver\".">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Familiær sykdom">
                 description = <"Den familiære sykdommen som \"Eksklusjonsutsagn\" omhandler. For eksempel \"hjertesykdom\", \"diabetes\" eller \"Alzheimer\".">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Problem/diagnose">
                 description = <"Problemet eller diagnoses som \"Eksklusjonsutsagn\" omhandler. For eksempel: \"Diabetes\", \"KOLS\" eller \"Astma\".">
             >
@@ -277,23 +277,23 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: Local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Adverse reaction substance">
                 description = <"The Adverse reaction substance/agent to which the 'Exclusion statement' applies. For example: 'Penicillin', 'Peanuts' or 'Latex'.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Procedure">
                 description = <"The Procedure to which the 'Exclusion statement' applies. For example: 'Heart surgery' or 'Appendectomy' or 'Hip replacement'.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Medication">
                 description = <"The Medication to which the 'Exclusion statement' applies. For example: 'Paracetamol', 'Codeine' or 'Antidepressants'.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Family problem/diagnosis">
                 description = <"The Family history item to which the 'Exclusion statement' applies. For example: 'Heart desease', 'Diabetes' or 'Alzheimer'.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Problem/diagnosis">
                 description = <"The problem or diagnosis to which the 'Exclusion statement' applies. For example: 'Diabetes', 'COPD' or 'Asthma'.">
             >
@@ -320,6 +320,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at9", "at6", "at7", "at5", "at8">
+            members = <"at8", "at5", "at6", "at4", "at7">
         >
     >

@@ -210,31 +210,31 @@ terminology
                 text = <"Retning (synthesised)">
                 description = <"Detalj om den relative retningen fra kroppsstedet til landemerket. (synthesised)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Høyre">
                 description = <"Høyre side av kroppen.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Venstre">
                 description = <"Venstre side av kroppen.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Rostralt for">
                 description = <"Mot forsiden av hodet, i forhold til landemerket.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Kranialt for">
                 description = <"Mot hodet, i forhold til landemerket.">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Kaudalt for">
                 description = <"Mot halen, i forhold til landemerket.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Analt for">
                 description = <"Mot anus, i forhold til landemerket. Vanligvis brukt for å beskrive lokaliseringer i fordøyelsessystemet.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Oralt for">
                 description = <"Mot munnen, i forhold til landemerket. Vanligvis brukt for å beskrive lokaliseringer i fordøyelsessystemet.">
             >
@@ -243,27 +243,27 @@ terminology
                 description = <"Siden av kroppen hvor det identifiserte landemerket er lokalisert.">
                 comment = <"Om ikke det identifiserte landemerket har lateralitet har dette dataelementet ingen verdi. Bruker dataelementet \"Navn på landemerke\" prekoordinerte termer som inneholder lateralitet er dette dataelementet overflødig.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Utenfor">
                 description = <"Utover fra den indre åpningen til et kroppshulrom, f.eks. analfistel, i forhold til landemerket.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Inni">
                 description = <"Innover fra fra den ytre åpningen til et kroppshulrom, f.eks. øregang, fistel eller sår, i forhold til landemerket.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Dypt for">
                 description = <"Lengre vekk fra overflaten relativt til landemerket.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Overfladisk for">
                 description = <"Nærmere overflaten i forhold til landemerket.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Distalt for">
                 description = <"Lengre vekk fra kroppen til forhold til landemerket.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Proksimalt for">
                 description = <"Nærmere kroppen relativt til landemerket.">
             >
@@ -290,27 +290,27 @@ terminology
                 description = <"Detalj for identifisering av et enkelt identifisert fysisk sted, enten på eller i menneskekroppen, som beskrives i forhold til dets relasjon til andre makroskopiske anatomiske landemerker.">
                 comment = <"Mer enn en relativ lokalisering kan bli nødvendig for å gi en nøyaktig kryssreferanse.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Posteriort for">
                 description = <"Mot baksiden, eller dorsalt aspekt, fra landemerket.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Anteriort for">
                 description = <"Mot framsiden, eller ventralt aspekt, fra landemerket.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Nedenfor">
                 description = <"Nedenfor landemerket.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Ovenfor">
                 description = <"Ovenfor landemerket.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Lateralt for">
                 description = <"Mot siden, fra landemerket.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Medialt for">
                 description = <"Mot midten, fra landemerket.">
             >
@@ -339,31 +339,31 @@ terminology
                 text = <"*Direction(en) (synthesised)">
                 description = <"*Detail about the relative direction of the body site to the landmark.(en) (synthesised)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Right(en)">
                 description = <"*Right side of the body.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Left(en)">
                 description = <"*Left side of the body.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Rostral to(en)">
                 description = <"*Towards the front of the head, relative to the landmark.(en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Cranial to(en)">
                 description = <"*Towards the head, relative to the landmark.(en)">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"*Caudal to(en)">
                 description = <"*Towards the tail, relative to the landmark.(en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Anal to(en)">
                 description = <"*Towards the anus, relative to the landmark. Usually used to describe locations within the digestive system.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Oral to(en)">
                 description = <"*Towards the mouth, relative to the landmark. Usually used to describe locations within the digestive system.(en)">
             >
@@ -372,27 +372,27 @@ terminology
                 description = <"O lado do corpo no qual o ponto de referência está localizado.">
                 comment = <"Se o ponto de referência identificado não tiver lateralidade, este elemento de dados não deve ser preenchido. Se o elemento 'nome do ponto de referência' usar termos pré-coordenados que incluam lateralidade, esse elemento de dados é redundante.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*External to(en)">
                 description = <"*Outwards from the inner opening of a body cavity, for example anal fistula or nasal cavity, relative to the landmark.(en)">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"*Within(en)">
                 description = <"*Inwards from the outer opening of a body cavity, for example outer ear canal, fistula or wound, relative to the landmark.(en)">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Em profundidade a">
                 description = <"Distante da superfície externa com relação ao ponto de referência.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Superficial a(ao)">
                 description = <"Próximo a superfície externa com relação ao ponto de referência.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Distal a (ao),">
                 description = <"Distal em relação ao ponto de referência.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Proximal a">
                 description = <"Proximal em relação ao ponto de referência">
             >
@@ -419,27 +419,27 @@ terminology
                 description = <"Detalhe para identificar um único local físico, seja dentro ou dentro do corpo humano em termos de sua relação com outros marcos anatômicos macroscópicos.">
                 comment = <"Mais de uma localização relativa pode ser necessária para fornecer uma referência cruzada precisa.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Posterior a (ao)">
                 description = <"Para trás, ou dorsalmente, em relação ao ponto de referência.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Anterior a (ao)">
                 description = <"Na frente, ou ventralmente, em relação ao ponto de referência.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Inferior to(en)">
                 description = <"*Below the landmark.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Superior to(en)">
                 description = <"*Above the landmark.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Lateral a (ao)">
                 description = <"Lateral ao ponto de referência.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Medial a(ao)">
                 description = <"Em direção ao meio do ponto de referência">
             >
@@ -466,31 +466,31 @@ terminology
                 text = <"*Direction(en) (synthesised)">
                 description = <"*Detail about the relative direction of the body site to the landmark.(en) (synthesised)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Right(en)">
                 description = <"*Right side of the body.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Left(en)">
                 description = <"*Left side of the body.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Rostral to(en)">
                 description = <"*Towards the front of the head, relative to the landmark.(en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Cranial to(en)">
                 description = <"*Towards the head, relative to the landmark.(en)">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"*Caudal to(en)">
                 description = <"*Towards the tail, relative to the landmark.(en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Anal to(en)">
                 description = <"*Towards the anus, relative to the landmark. Usually used to describe locations within the digestive system.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Oral to(en)">
                 description = <"*Towards the mouth, relative to the landmark. Usually used to describe locations within the digestive system.(en)">
             >
@@ -499,27 +499,27 @@ terminology
                 description = <"*The side of the body on which the identified landmark is located.(en)">
                 comment = <"*If the identified landmark has no laterality, this data element should not have a value. If the 'Landmark name' data element uses pre-coordinated terms that include laterality, then this data element is redundant.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*External to(en)">
                 description = <"*Outwards from the inner opening of a body cavity, for example anal fistula or nasal cavity, relative to the landmark.(en)">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"*Within(en)">
                 description = <"*Inwards from the outer opening of a body cavity, for example outer ear canal, fistula or wound, relative to the landmark.(en)">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"*Deep to(en)">
                 description = <"**(en)">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"*Superficial to(en)">
                 description = <"**(en)">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"*Distal to(en)">
                 description = <"**(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"*Proximal to(en)">
                 description = <"**(en)">
             >
@@ -546,27 +546,27 @@ terminology
                 description = <"*Detail to identify a single physical site either on, or within, the human body in terms of its relationship to other macroscopic anatomical landmarks.(en)">
                 comment = <"*More than one relative location may be required to provide an accurate cross reference.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"خلفي">
                 description = <"المكان النسبي هو خلف المَعْلَم ">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"أمامي">
                 description = <"المكان النسبي هو أمام المَعْلَم">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Inferior to(en)">
                 description = <"*Below the landmark.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Superior to(en)">
                 description = <"*Above the landmark.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"جانبي">
                 description = <"المكان النسبي هو جانبي بالنسبة للمَعْلَم">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"إنسيّ/ وسطي">
                 description = <"المكان النسبي هو متوسط للمَعْلَم">
             >
@@ -593,31 +593,31 @@ terminology
                 text = <"*Direction(en) (synthesised)">
                 description = <"*Detail about the relative direction of the body site to the landmark.(en) (synthesised)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Right(en)">
                 description = <"*Right side of the body.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Left(en)">
                 description = <"*Left side of the body.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Rostral to(en)">
                 description = <"*Towards the front of the head, relative to the landmark.(en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Cranial to(en)">
                 description = <"*Towards the head, relative to the landmark.(en)">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"*Caudal to(en)">
                 description = <"*Towards the tail, relative to the landmark.(en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Anal to(en)">
                 description = <"*Towards the anus, relative to the landmark. Usually used to describe locations within the digestive system.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Oral to(en)">
                 description = <"*Towards the mouth, relative to the landmark. Usually used to describe locations within the digestive system.(en)">
             >
@@ -626,27 +626,27 @@ terminology
                 description = <"*The side of the body on which the identified landmark is located.(en)">
                 comment = <"*If the identified landmark has no laterality, this data element should not have a value. If the 'Landmark name' data element uses pre-coordinated terms that include laterality, then this data element is redundant.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*External to(en)">
                 description = <"*Outwards from the inner opening of a body cavity, for example anal fistula or nasal cavity, relative to the landmark.(en)">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"*Within(en)">
                 description = <"*Inwards from the outer opening of a body cavity, for example outer ear canal, fistula or wound, relative to the landmark.(en)">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"*Deep to(en)">
                 description = <"**(en)">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"*Superficial to(en)">
                 description = <"**(en)">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"*Distal to(en)">
                 description = <"**(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"*Proximal to(en)">
                 description = <"**(en)">
             >
@@ -673,27 +673,27 @@ terminology
                 description = <"*Detail to identify a single physical site either on, or within, the human body in terms of its relationship to other macroscopic anatomical landmarks.(en)">
                 comment = <"*More than one relative location may be required to provide an accurate cross reference.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Zadaj">
                 description = <"*Relative location posterior to the landmark.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Spredaj">
                 description = <"*Relative location anterior to the landmark.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Inferior to(en)">
                 description = <"*Below the landmark.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Superior to(en)">
                 description = <"*Above the landmark.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Stranski">
                 description = <"*Relative location lateral to the landmark.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Srednji">
                 description = <"*Relative location medial to the landmark.(en)">
             >
@@ -720,31 +720,31 @@ terminology
                 text = <"Direction (synthesised)">
                 description = <"Detail about the relative direction of the body site to the landmark. (synthesised)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Right">
                 description = <"Right side of the body.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Left">
                 description = <"Left side of the body.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Rostral to">
                 description = <"Towards the front of the head, relative to the landmark.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Cranial to">
                 description = <"Towards the head, relative to the landmark.">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Caudal to">
                 description = <"Towards the tail, relative to the landmark.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Anal to">
                 description = <"Towards the anus, relative to the landmark. Usually used to describe locations within the digestive system.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Oral to">
                 description = <"Towards the mouth, relative to the landmark. Usually used to describe locations within the digestive system.">
             >
@@ -753,27 +753,27 @@ terminology
                 description = <"The side of the body on which the identified landmark is located.">
                 comment = <"If the identified landmark has no laterality, this data element should not have a value. If the 'Landmark name' data element uses pre-coordinated terms that include laterality, then this data element is redundant.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"External to">
                 description = <"Outwards from the inner opening of a body cavity, for example anal fistula or nasal cavity, relative to the landmark.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Within">
                 description = <"Inwards from the outer opening of a body cavity, for example outer ear canal, fistula or wound, relative to the landmark.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Deep to">
                 description = <"Further away from the outer surface, relative to the landmark.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Superficial to">
                 description = <"Nearer the outer surface, relative to the landmark.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Distal to">
                 description = <"Further from the body, relative to the landmark.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Proximal to">
                 description = <"Closer to the body, relative to the landmark.">
             >
@@ -800,27 +800,27 @@ terminology
                 description = <"Detail to identify a single physical site either on, or within, the human body in terms of its relationship to other macroscopic anatomical landmarks.">
                 comment = <"More than one relative location may be required to provide an accurate cross reference.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Posterior to">
                 description = <"Towards the back, or dorsal aspect, from the landmark.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Anterior to">
                 description = <"Towards the front, or ventral aspect, from the landmark.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Inferior to">
                 description = <"Below the landmark.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Superior to">
                 description = <"Above the landmark.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Lateral to">
                 description = <"Towards the side, from the landmark.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Medial to">
                 description = <"Towards the middle, from the landmark.">
             >
@@ -841,17 +841,17 @@ terminology
         >
         ["SNOMED-CT"] = <
             ["id63"] = <http://snomed.info/id/272741003>
-            ["at69"] = <http://snomed.info/id/419161000>
-            ["at70"] = <http://snomed.info/id/419465000>
+            ["at68"] = <http://snomed.info/id/419161000>
+            ["at69"] = <http://snomed.info/id/419465000>
         >
     >
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at8", "at9", "at10", "at11", "at13", "at14", "at56", "at57", "at58", "at59", "at60", "at61", "at64", "at65", "at66", "at67", "at68">
+            members = <"at7", "at8", "at9", "at10", "at12", "at13", "at55", "at56", "at57", "at58", "at59", "at60", "at63", "at64", "at65", "at66", "at67">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at69", "at70">
+            members = <"at68", "at69">
         >
     >

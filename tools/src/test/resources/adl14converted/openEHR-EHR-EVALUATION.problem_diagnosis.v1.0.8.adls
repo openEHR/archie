@@ -541,15 +541,15 @@ terminology
                 description = <"Geschätzte oder exakte Zeit (bzw. Datum), zu der die Krankheitsanzeichen oder Symptome zum ersten mal beobachtet wurden.">
                 comment = <"Datumswerte, die als \"Alter zu Beginn\" erfasst/importiert werden, sollten anhand des Geburtsdatums der Person in ein Datum umgewandelt werden.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Bestätigt">
                 description = <"Die Diagnose wurde anhand anerkannter Kriterien bestätigt.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Wahrscheinlich">
                 description = <"Die Diagnose wurde mit einem hohen Maß an Sicherheit gestellt.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Vermutet">
                 description = <"Die Diagnose wurde mit einem niedrigen Grad an Sicherheit gestellt.">
             >
@@ -574,15 +574,15 @@ terminology
                 text = <"Kommentar">
                 description = <"Ergänzende Beschreibung des Problems oder der Diagnose, die nicht anderweitig erfasst wurde.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Schwer">
                 description = <"Das Problem oder die Diagnose verhindert die normale Aktivität oder verursacht schwerwiegende gesundheitliche Schäden, falls es nicht behandelt wird.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Mäßig">
                 description = <"Das Problem oder die Diagnose beeinträchtigt die normale Aktivität oder verursacht bleibende gesundheitliche Schäden, falls es nicht behandelt wird.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Leicht">
                 description = <"Das Problem oder die Diagnose beeinträchtigt die normale Aktivität nicht, bzw. verursacht nicht bleibende gesundheitliche Schäden, falls es nicht behandelt wird.">
             >
@@ -651,15 +651,15 @@ terminology
                 description = <"Uppskattat eller reellt datum och tid när problemets eller diagnosens tecken eller symtom först observerades.">
                 comment = <"Data som dokumenteras och importeras som \"Ålder vid debut\" ska konverteras till ett datum med hjälp av patientens födelsedatum.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Bekräftad">
                 description = <"Diagnosen har bekräftats mot kända kriterier.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Sannolik">
                 description = <"Diagnosen har identifierats med en hög grad av säkerhet.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Misstänkt">
                 description = <"Diagnosen har identifierats med en låg grad av säkerhet.">
             >
@@ -684,15 +684,15 @@ terminology
                 text = <"Kommentar">
                 description = <"En extra beskrivning av problemet eller diagnosen som inte tagits upp i andra fält.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Svår">
                 description = <"Problemet eller diagnosen förhindrar normal aktivitet eller allvarligt kommer att skada hälsan om den lämnas obehandlad.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Medel">
                 description = <"Problemet eller diagnosen orsakar störningar i normal aktivitet eller kommer att skada hälsan om den lämnas obehandlad.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Mild">
                 description = <"Problemet eller diagnosen stör inte normal aktivitet eller kan orsaka hälsoskador om den lämnas obehandlad.">
             >
@@ -766,15 +766,15 @@ terminology
                 description = <"Fecha y hora estimadas o confirmadas en las cuales los signos o síntomas del problema fueron observados por primera vez.">
                 comment = <"Los datos registrados o importados como \"Edad a la aparición\" deberán ser convertidos a una fecha utilizando la fecha de nacimiento del sujeto.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Confirmado">
                 description = <"El diagnóstico ha sido confirmado en base a criterios reconocidos.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Probable">
                 description = <"El diagnóstico ha sido identificado con un alto nivel de certeza.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Sospechado">
                 description = <"El diagnóstico ha sido identificado con un bajo nivel de certeza.">
             >
@@ -799,15 +799,15 @@ terminology
                 text = <"Comentario">
                 description = <"Narrativa adicional acerca del problema o diagnóstico que no ha sido consignada en otros campos.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Severo">
                 description = <"El problema o diagnóstico impide la actividad normal o pude dañar seriamente la salud si no es tratado.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Moderado">
                 description = <"El problema o diagnóstico interfiere con la actividad normal o puede dañar la salud si no es tratado.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Leve">
                 description = <"El problema o diagnóstico no interfiere con la actividad normal o puede causar daños a la salud si no es tratado.">
             >
@@ -878,15 +878,15 @@ terminology
                 description = <"Antatt eller faktisk dato/tid da tegn eller symptomer på problemet eller diagnosen først ble observert.">
                 comment = <"Data registrert eller importert som \"alder ved debut\" bør konverteres til en dato ved hjelp av individets fødselsdato.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Bekreftet">
                 description = <"Diagnosen er bekreftet opp mot anerkjente kriterier.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Sannsynlig">
                 description = <"Diagnosen er identifisert med en stor grad av sikkerhet.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Mistenkt">
                 description = <"Diagnoses er identifisert med en lav grad av sikkerhet.">
             >
@@ -915,15 +915,15 @@ terminology
                 text = <"Kommentar">
                 description = <"Utdypende fritekst om problemet eller diagnosen, som ikke passer i andre felt.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Alvorlig">
                 description = <"Problemet eller diagnosen forhindrer normal aktivitet.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Moderat">
                 description = <"Problemet eller diagnosen forstyrrer normal aktivitet.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Mild">
                 description = <"Problemet eller diagnosen forstyrrer ikke normal aktivitet.">
             >
@@ -997,15 +997,15 @@ terminology
                 description = <"문제/진단의 증상 또는 징후가 처음 관찰된 추정 또는 실제 날짜/시간.">
                 comment = <"\\\"발병 나이\\\"로 획득/입력된 데이터는 진료의 주체의 생일을 이용해 날짜로 변환되어 함.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"확진">
                 description = <"진단이 인정된 기준에 대해 확진됨.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"추정">
                 description = <"진단이 높은 확신 수준으로 식별됨.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"의심">
                 description = <"진단이 낮은 확신 수준으로 식별됨.">
             >
@@ -1030,15 +1030,15 @@ terminology
                 text = <"코멘트">
                 description = <"다른 필드에서 획득되지 않은 문제 또는 진단에 대한 추가적인 서술내용">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"증증도">
                 description = <"문제나 진단이 정상 활동을 할 수 없게 하거나 치료하지 않으면 건강에 심각한 해가 됨.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"중등도">
                 description = <"문제나 진단이 정상 활동에 방해가 되거나 치료하지 않으면 건강에 해가 됨.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"경도">
                 description = <"문제나 진단이 정상 활동을 방해하지 않거나 치료하지 않으면 건강에 해를 일으킬 수 있음.">
             >
@@ -1110,15 +1110,15 @@ terminology
                 description = <"Data / tempo, estimada ou real, que os sinais ou sintomas do problema / diagnóstico foram observados pela primeira vez.">
                 comment = <"Os dados capturados / importados como \"A idade de início\" devem ser convertidos para uma data, usando o sujeito data de nascimento.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"confirmado">
                 description = <"O diagnóstico foi confirmado com base em critérios reconhecidos.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Provável">
                 description = <"O diagnóstico foi identificado com um elevado grau de certeza.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Suspeito">
                 description = <"O diagnóstico foi identificado com um nível baixo de convicção.">
             >
@@ -1143,15 +1143,15 @@ terminology
                 text = <"Comentário">
                 description = <"Narrativa adicional sobre o problema ou diagnóstico, não capturados em outros campos.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Severo">
                 description = <"O problema ou diagnóstico impede a atividade normal ou causará sérios danos à saúde se não tratado.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Moderado">
                 description = <"O problema ou o diagnóstico interfere na atividade normal ou prejudicará a saúde, se não for tratado.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Suave">
                 description = <"O problema ou o diagnóstico não interfere na atividade normal ou causa danos à saúde, se não for tratado.">
             >
@@ -1228,15 +1228,15 @@ terminology
                 description = <"Estimated or actual date/time that signs or symptoms of the problem/diagnosis were first observed.">
                 comment = <"Data captured/imported as \"Age at onset\" should be converted to a date using the subject's date of birth.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Confirmed">
                 description = <"The diagnosis has been confirmed against recognised criteria.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Probable">
                 description = <"The diagnosis has been identified with a high level of certainty.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Suspected">
                 description = <"The diagnosis has been identified with a low level of certainty.">
             >
@@ -1261,15 +1261,15 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about the problem or diagnosis not captured in other fields.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Severe">
                 description = <"The problem or diagnosis prevents normal activity or will seriously damage health if left untreated.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Moderate">
                 description = <"The problem or diagnosis causes interference with normal activity or will damage health if left untreated.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Mild">
                 description = <"The problem or diagnosis does not interfere with normal activity or may cause damage to health if left untreated.">
             >
@@ -1346,15 +1346,15 @@ terminology
                 description = <"*Estimated or actual date/time that signs or symptoms of the problem/diagnosis were first observed.
     (en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Confirmed(en)">
                 description = <"*The diagnosis has been confirmed against recognised criteria.(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"*Probable(en)">
                 description = <"*The diagnosis has been identified with a high level of certainty.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"*Suspected(en)">
                 description = <"*The diagnosis has been identified with a low level of certainty.(en)">
             >
@@ -1379,15 +1379,15 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the problem or diagnosis not captured in other fields.(en)">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"*Severe(en)">
                 description = <"*The problem or diagnosis prevents normal activity.(en)">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"*Moderate(en)">
                 description = <"*The problem or diagnosis causes interference with normal activity.(en)">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"*Mild(en)">
                 description = <"*The problem or diagnosis does not interfere with normal activity.(en)">
             >
@@ -1463,15 +1463,15 @@ terminology
                 description = <"*Estimated or actual date/time that signs or symptoms of the problem/diagnosis were first observed.
     (en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Confirmed(en)">
                 description = <"*The diagnosis has been confirmed against recognised criteria.(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"*Probable(en)">
                 description = <"*The diagnosis has been identified with a high level of certainty.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"*Suspected(en)">
                 description = <"*The diagnosis has been identified with a low level of certainty.(en)">
             >
@@ -1495,15 +1495,15 @@ terminology
                 text = <"Comentario">
                 description = <"Comentario narrativo adicional sobre el problema/diagnóstico no capturado en otros campos">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Severo">
                 description = <"El problema tiene severidad severo">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Moderada">
                 description = <"El problema tiene severidad moderada">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Leve">
                 description = <"El problema tiene severidad leve">
             >
@@ -1564,10 +1564,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at75", "at76", "at77">
+            members = <"at74", "at75", "at76">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at48", "at49", "at50">
+            members = <"at47", "at48", "at49">
         >
     >

@@ -68,9 +68,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}]
                                                 }
                                             }
                                         }
@@ -79,9 +79,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at10]}],
-                                                    [{1}, {[at11]}],
-                                                    [{2}, {[at12]}]
+                                                    [{0}, {[at9]}],
+                                                    [{1}, {[at10]}],
+                                                    [{2}, {[at11]}]
                                                 }
                                             }
                                         }
@@ -90,9 +90,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at14]}],
-                                                    [{1}, {[at15]}],
-                                                    [{2}, {[at16]}]
+                                                    [{0}, {[at13]}],
+                                                    [{1}, {[at14]}],
+                                                    [{2}, {[at15]}]
                                                 }
                                             }
                                         }
@@ -101,9 +101,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at18]}],
-                                                    [{1}, {[at19]}],
-                                                    [{2}, {[at20]}]
+                                                    [{0}, {[at17]}],
+                                                    [{1}, {[at18]}],
+                                                    [{2}, {[at19]}]
                                                 }
                                             }
                                         }
@@ -112,9 +112,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at22]}],
-                                                    [{1}, {[at23]}],
-                                                    [{2}, {[at24]}]
+                                                    [{0}, {[at21]}],
+                                                    [{1}, {[at22]}],
+                                                    [{2}, {[at23]}]
                                                 }
                                             }
                                         }
@@ -212,15 +212,15 @@ terminology
                 text = <"Intubado?">
                 description = <"Verdadero si el paciente se encuentra intubado.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Muy tenso o muy rígido">
                 description = <"Fuerte resistencia a movimientos pasivos, incapacidad para finalizarlos.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Tenso, rígido">
                 description = <"Se resiste a movimientos pasivos.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Relajado">
                 description = <"No se resiste a movimientos pasivos.">
             >
@@ -228,15 +228,15 @@ terminology
                 text = <"Tensión muscular">
                 description = <"Generalmente evaluada realizando flexión y extensión pasiva del brazo del paciente.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Agitado">
                 description = <"Empuja el tubo. Intenta sentarse. Mueve los labios. No obedece órdenes. Molesta al personal. Trata de salir de la cama.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Protección">
                 description = <"Movimientos lentos y cautelosos. Se toca o frota el sitio del dolor. Busca atención mediante movimientos.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Ausencia de movimientos">
                 description = <"No se observan movimiento. Esto no necesariamente indica ausencia de dolor.">
             >
@@ -244,15 +244,15 @@ terminology
                 text = <"Movimientos corporales">
                 description = <"El patrón de movimientos del paciente. Los movimientos corporales son comportamientos menos específicos en relación al dolor pero pueden proveer información relevante.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Muecas">
                 description = <"Todos los movimientos faciales anteriores, con los párpados fuertemente cerrados.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Tenso">
                 description = <"Presencia de ceño fruncido, cejas bajas, ojos entrecerrados.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Relajado, neutro">
                 description = <"No se observa tensión muscular.">
             >
@@ -260,15 +260,15 @@ terminology
                 text = <"Expresión facial">
                 description = <"El estado y los cambios en las gestos faciales del paciente. La expresión facial es uno de los mejores indicadores conductuales para la evaluación del dolor.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Gritos, sollozos">
                 description = <"Gritos y/o sollozos.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Suspiros, gemidos">
                 description = <"Suspiros y/o gemidos.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Habla en tono normal o en silencio">
                 description = <"Habla en tono normal o esta en silencio.">
             >
@@ -276,15 +276,15 @@ terminology
                 text = <"Vocalización">
                 description = <"Utilizado en pacientes no ventilados. Para pacientes bajo asistencia resporatoria mecánica debe utilizarse el parametro Adaptación al respirador.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Lucha con el respirador">
                 description = <"La ventilación de detiene. Las alarmas se activan con frecuencia.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Tose pero tolera">
                 description = <"Las alarmas de detienen en forma espontanea.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Bien adaptado al respirador">
                 description = <"No se activan las alarmas. Facil ventilación.">
             >
@@ -345,15 +345,15 @@ terminology
                 text = <"Intubated?">
                 description = <"True if the patient is intubated.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Very tense or rigid">
                 description = <"Strong resistance to passive movements, inability to complete them.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Tense, rigid">
                 description = <"Resistance to passive movements.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Relaxed">
                 description = <"No resistance to passive movements.">
             >
@@ -361,15 +361,15 @@ terminology
                 text = <"Muscle tension">
                 description = <"Generally evaluated by performing a passive flexion and extension of the patient’s arm.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Restlessness">
                 description = <"Pulling tube, attempting to sit up, moving limbs/thrashing, not following commands, striking at staff, trying to climb out of bed.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Protection">
                 description = <"Slow, cautious movements, touching or rubbing the pain site, seeking attention through movements.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Absence of movements">
                 description = <"Does not move at all (does not necessarily mean absence of pain).">
             >
@@ -378,15 +378,15 @@ terminology
                 description = <"The patient's pattern of movements.">
                 comment = <"Body movements are the less specific behaviors in relation with pain but may convey important insight.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Grimacing">
                 description = <"All of the above facial movements plus eyelid tightly closed.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Tense">
                 description = <"Presence of frowning, brow lowering, orbit tightening, and levator contraction.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Relaxed, neutral">
                 description = <"No muscular tension observed.">
             >
@@ -396,15 +396,15 @@ terminology
                 comment = <"Facial expression is one of the best behavioral indicators for pain
     assessment.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Crying out, sobbing">
                 description = <"Crying out, sobbing.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Sighing, moaning">
                 description = <"Sighing, moaning.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Talking in normal tone or no sound">
                 description = <"Talking in normal tone or no sound.">
             >
@@ -413,15 +413,15 @@ terminology
                 description = <"Used in non-ventilated patients.">
                 comment = <"Please note: for mechanically ventilated patients, the Ventilator compliance parameter must be used.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Fighting ventilator">
                 description = <"Asynchrony: blocking ventilation, alarms frequently activated.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Coughing but tolerating">
                 description = <"Alarms stop spontaneously.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Tolerating ventilator or movement">
                 description = <"Alarms not activated, easy ventilation.">
             >
@@ -443,22 +443,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at14", "at15", "at16">
+            members = <"at13", "at14", "at15">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at11", "at12">
+            members = <"at9", "at10", "at11">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8">
+            members = <"at5", "at6", "at7">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at22", "at23", "at24">
+            members = <"at21", "at22", "at23">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at18", "at19", "at20">
+            members = <"at17", "at18", "at19">
         >
     >

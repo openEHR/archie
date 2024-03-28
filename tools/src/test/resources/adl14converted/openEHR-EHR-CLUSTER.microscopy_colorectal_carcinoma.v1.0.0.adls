@@ -375,15 +375,15 @@ terminology
                 text = <"Comment">
                 description = <"Comment concerning adenomatous polyps.">
             >
-            ["at371"] = <
+            ["at370"] = <
                 text = <"Indeterminate">
                 description = <"Evidence of polyposis syndrome has not been determined.">
             >
-            ["at370"] = <
+            ["at369"] = <
                 text = <"Absent">
                 description = <"There is no evidence of polyposis syndrome.">
             >
-            ["at369"] = <
+            ["at368"] = <
                 text = <"Present">
                 description = <"There is evidence of polyposis syndrome.">
             >
@@ -399,23 +399,23 @@ terminology
                 text = <"Status of apical lymph node">
                 description = <"Status of the apical lymph node.">
             >
-            ["at365"] = <
+            ["at364"] = <
                 text = <"Indeterminate">
                 description = <"Evidence of metastasis has not been determined.">
             >
-            ["at364"] = <
+            ["at363"] = <
                 text = <"Absent">
                 description = <"No evidence of distant metastasis.">
             >
-            ["at363"] = <
+            ["at362"] = <
                 text = <"Present">
                 description = <"Evidence of distant metastasis.">
             >
-            ["at362"] = <
+            ["at361"] = <
                 text = <"High grade">
                 description = <"Poorly differentiated or undifferentiated">
             >
-            ["at361"] = <
+            ["at360"] = <
                 text = <"Low-grade">
                 description = <"Well or moderately differentiated">
             >
@@ -423,39 +423,39 @@ terminology
                 text = <"Type of polyp">
                 description = <"Type of adenomatous polyp">
             >
-            ["at359"] = <
+            ["at358"] = <
                 text = <"Response not known">
                 description = <"Response to treatment is unknown.">
             >
-            ["at358"] = <
+            ["at357"] = <
                 text = <"No definite response">
                 description = <"Poor or no response; Grade 3.">
             >
-            ["at357"] = <
+            ["at356"] = <
                 text = <"Moderate response">
                 description = <"Grade 2.">
             >
-            ["at356"] = <
+            ["at355"] = <
                 text = <"Marked response">
                 description = <"Minimal residual cancer persists; Grade 1.">
             >
-            ["at355"] = <
+            ["at354"] = <
                 text = <"No residual tumour">
                 description = <"Complete response to treatment; Grade 0.">
             >
-            ["at353"] = <
+            ["at352"] = <
                 text = <"Grade 3 - poor response">
                 description = <"Poor response to neoadjuvant therapy.">
             >
-            ["at352"] = <
+            ["at351"] = <
                 text = <"Grade 2 - minimal response">
                 description = <"Minimal response to neoadjuvant therapy.">
             >
-            ["at351"] = <
+            ["at350"] = <
                 text = <"Grade 1 - moderate response">
                 description = <"Moderate response to neoadjuvant therapy.">
             >
-            ["at350"] = <
+            ["at349"] = <
                 text = <"Grade 0 - complete response">
                 description = <"Complete response to neoadjuvant therapy.">
             >
@@ -471,23 +471,23 @@ terminology
                 text = <"Discontinuous extramural deposits">
                 description = <"Details of discontinuous extramural tumour deposits.">
             >
-            ["at345"] = <
+            ["at344"] = <
                 text = <"pNx">
                 description = <"Regional lymph nodes cannot be assessed.">
             >
-            ["at344"] = <
+            ["at343"] = <
                 text = <"pTis">
                 description = <"Carcinoma in-situ: intraepithelial or invasion of lamina propria.">
             >
-            ["at343"] = <
+            ["at342"] = <
                 text = <"Undifferentiated">
                 description = <"Tumour is undifferentiated.">
             >
-            ["at342"] = <
+            ["at341"] = <
                 text = <"Poorly differentiated">
                 description = <"Tumour is poorly differentiated.">
             >
-            ["at341"] = <
+            ["at340"] = <
                 text = <"Diverticulosis">
                 description = <"Diverticulosis is present.">
             >
@@ -495,15 +495,15 @@ terminology
                 text = <"Number of polyps">
                 description = <"Number of adenomatous polyps.">
             >
-            ["at338"] = <
+            ["at337"] = <
                 text = <"No marked regression">
                 description = <"Marked regression is absent.">
             >
-            ["at337"] = <
+            ["at336"] = <
                 text = <"Minimal residual tumour">
                 description = <"Minimal residual tumour is present.">
             >
-            ["at336"] = <
+            ["at335"] = <
                 text = <"No residual tumour cells or mucous lakes only">
                 description = <"No residual tumour cells or mucous lakes only.">
             >
@@ -511,15 +511,15 @@ terminology
                 text = <"Grade (RCP)">
                 description = <"An estimate of the response to neoadjuvant therapy. (RCP) Royal College of Pathologists (UK).">
             >
-            ["at334"] = <
+            ["at333"] = <
                 text = <"Not known">
                 description = <"It is not known if neoadjuvant therapy has been given.">
             >
-            ["at333"] = <
+            ["at332"] = <
                 text = <"No">
                 description = <"Neoadjuvant therapy has not been given.">
             >
-            ["at332"] = <
+            ["at331"] = <
                 text = <"Yes">
                 description = <"Neoadjuvant therapy has been given.">
             >
@@ -531,15 +531,15 @@ terminology
                 text = <"Grade (CAP)">
                 description = <"An estimate of the response to neoadjuvant therapy. (CAP)  College of American Pathologists.">
             >
-            ["at328"] = <
+            ["at327"] = <
                 text = <"pN2">
                 description = <"Metastasis in 4 or more regional lymph nodes.">
             >
-            ["at327"] = <
+            ["at326"] = <
                 text = <"pN1">
                 description = <"Metastasis in 1-3 regional lymph nodes.">
             >
-            ["at326"] = <
+            ["at325"] = <
                 text = <"pN0">
                 description = <"No regional lymph node metastasis.">
             >
@@ -551,19 +551,19 @@ terminology
                 text = <"Distance of invasion">
                 description = <"Distance of tumour invasion beyond the muscularis propria.">
             >
-            ["at323"] = <
+            ["at322"] = <
                 text = <"pT3d">
                 description = <"Extensive invasion: > 15 mm beyond the border of the muscularis propria.">
             >
-            ["at322"] = <
+            ["at321"] = <
                 text = <"pT3c">
                 description = <"Moderate invasion: >5 mm and <= 15mm beyond the border of the muscularis propria.">
             >
-            ["at321"] = <
+            ["at320"] = <
                 text = <"pT3b">
                 description = <"Slight invasion: 1-5 mm beyond the border of the muscularis propria.">
             >
-            ["at320"] = <
+            ["at319"] = <
                 text = <"pT3a">
                 description = <"Minimal invasion: <1 mm beyond the border of the muscularis propria.">
             >
@@ -571,31 +571,31 @@ terminology
                 text = <"Depth of invasion">
                 description = <"The subdivision of pT3 that applies to the tumour.">
             >
-            ["at318"] = <
+            ["at317"] = <
                 text = <"pTX">
                 description = <"Primary tumour cannot be assessed.">
             >
-            ["at317"] = <
+            ["at316"] = <
                 text = <"pT4b">
                 description = <"Tumour perforates visceral peritoneum.">
             >
-            ["at316"] = <
+            ["at315"] = <
                 text = <"pT4a">
                 description = <"Tumour directly invades other organs or structures.">
             >
-            ["at315"] = <
+            ["at314"] = <
                 text = <"pT3">
                 description = <"Tumour invades through muscularis propria into subserosa, or into non-peritonealised pericolic or perirectal tissues.">
             >
-            ["at314"] = <
+            ["at313"] = <
                 text = <"pT2">
                 description = <"Tumour invades muscularis propria.">
             >
-            ["at313"] = <
+            ["at312"] = <
                 text = <"pT1">
                 description = <"Tumour invades submucosa.">
             >
-            ["at312"] = <
+            ["at311"] = <
                 text = <"pT0">
                 description = <"No evidence of primary tumour.">
             >
@@ -615,39 +615,39 @@ terminology
                 text = <"Grade (AJCC)">
                 description = <"An estimate of the response to neoadjuvant therapy. (AJCC score).">
             >
-            ["at302"] = <
+            ["at301"] = <
                 text = <"RX">
                 description = <"Residual tumour cannot be assessed  - as per AJCC TNM classification 7th Edition.">
             >
-            ["at301"] = <
+            ["at300"] = <
                 text = <"R2">
                 description = <"R2 - as per AJCC TNM classification 7th Edition.">
             >
-            ["at300"] = <
+            ["at299"] = <
                 text = <"R1">
                 description = <"R1 - as per AJCC TNM classification 7th Edition.">
             >
-            ["at299"] = <
+            ["at298"] = <
                 text = <"R0">
                 description = <"No residual tumour - as per AJCC TNM classification 7th Edition.">
             >
-            ["at298"] = <
+            ["at297"] = <
                 text = <"Crohn's disease with dysplasia">
                 description = <"Crohn's disease with dysplasia is present.">
             >
-            ["at297"] = <
+            ["at296"] = <
                 text = <"Crohn's disease">
                 description = <"Crohn's disease is present.">
             >
-            ["at296"] = <
+            ["at295"] = <
                 text = <"Ulcerative colitis with dysplasia">
                 description = <"Ulcerative colitis with dysplasia is present.">
             >
-            ["at295"] = <
+            ["at294"] = <
                 text = <"Ulcerative colitis">
                 description = <"Ulcerative colitis is present.">
             >
-            ["at294"] = <
+            ["at293"] = <
                 text = <"Synchronous carcinoma">
                 description = <"Synchronous carcinoma is present.">
             >
@@ -663,15 +663,15 @@ terminology
                 text = <"Distance from margin">
                 description = <"Distance from circumferential margin to extramural deposits.">
             >
-            ["at285"] = <
+            ["at284"] = <
                 text = <"Indeterminate">
                 description = <"Presence of discontinuous extramural tumour deposits has not been determined.">
             >
-            ["at284"] = <
+            ["at283"] = <
                 text = <"Absent">
                 description = <"Discontinuous extramural tumour deposits are absent.">
             >
-            ["at283"] = <
+            ["at282"] = <
                 text = <"Present">
                 description = <"Discontinuous extramural tumour deposits are present.">
             >
@@ -699,11 +699,11 @@ terminology
                 text = <"Distance from margin">
                 description = <"Distance of nearest involved node to the circumferential margin.">
             >
-            ["at274"] = <
+            ["at273"] = <
                 text = <"Moderately differentiated">
                 description = <"Tumour is moderately differentiated.">
             >
-            ["at273"] = <
+            ["at272"] = <
                 text = <"Well differentiated">
                 description = <"Tumour is well differentiated.">
             >
@@ -739,15 +739,15 @@ terminology
                 text = <"Description">
                 description = <"A text description of in-situ carcinoma.">
             >
-            ["at256"] = <
+            ["at255"] = <
                 text = <"Indeterminate">
                 description = <"Presence of in-situ carcinoma has not been determined.">
             >
-            ["at255"] = <
+            ["at254"] = <
                 text = <"Absent">
                 description = <"In-situ carcinoma is absent.">
             >
-            ["at254"] = <
+            ["at253"] = <
                 text = <"Present">
                 description = <"In-situ carcinoma is present.">
             >
@@ -805,58 +805,58 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at320", "at321", "at322", "at323">
+            members = <"at319", "at320", "at321", "at322">
         >
         ["ac9013"] = <
             id = <"ac9013">
-            members = <"at355", "at356", "at357", "at358", "at359">
+            members = <"at354", "at355", "at356", "at357", "at358">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at312", "at313", "at314", "at315", "at316", "at317", "at318", "at344">
+            members = <"at311", "at312", "at313", "at314", "at315", "at316", "at317", "at343">
         >
         ["ac9012"] = <
             id = <"ac9012">
-            members = <"at350", "at351", "at352", "at353">
+            members = <"at349", "at350", "at351", "at352">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at273", "at274", "at342", "at343", "at361", "at362">
+            members = <"at272", "at273", "at341", "at342", "at360", "at361">
         >
         ["ac9011"] = <
             id = <"ac9011">
-            members = <"at332", "at333", "at334">
+            members = <"at331", "at332", "at333">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at299", "at300", "at301", "at302">
+            members = <"at298", "at299", "at300", "at301">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at283", "at284", "at285">
+            members = <"at282", "at283", "at284">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at326", "at327", "at328", "at345">
+            members = <"at325", "at326", "at327", "at344">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at254", "at255", "at256">
+            members = <"at253", "at254", "at255">
         >
         ["ac9014"] = <
             id = <"ac9014">
-            members = <"at336", "at337", "at338">
+            members = <"at335", "at336", "at337">
         >
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at294", "at295", "at296", "at297", "at298", "at341">
+            members = <"at293", "at294", "at295", "at296", "at297", "at340">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at369", "at370", "at371">
+            members = <"at368", "at369", "at370">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at363", "at364", "at365">
+            members = <"at362", "at363", "at364">
         >
     >

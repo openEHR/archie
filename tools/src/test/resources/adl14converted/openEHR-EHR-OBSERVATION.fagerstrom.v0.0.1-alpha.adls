@@ -54,10 +54,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at8]}],
-                                                    [{2}, {[at7]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at6]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -66,8 +66,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at11]}],
-                                                    [{1}, {[at12]}]
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}]
                                                 }
                                             }
                                         }
@@ -76,8 +76,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at14]}],
-                                                    [{1}, {[at15]}]
+                                                    [{0}, {[at13]}],
+                                                    [{1}, {[at14]}]
                                                 }
                                             }
                                         }
@@ -86,10 +86,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at17]}],
-                                                    [{1}, {[at18]}],
-                                                    [{2}, {[at19]}],
-                                                    [{3}, {[at20]}]
+                                                    [{0}, {[at16]}],
+                                                    [{1}, {[at17]}],
+                                                    [{2}, {[at18]}],
+                                                    [{3}, {[at19]}]
                                                 }
                                             }
                                         }
@@ -98,8 +98,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at22]}],
-                                                    [{1}, {[at23]}]
+                                                    [{0}, {[at21]}],
+                                                    [{1}, {[at22]}]
                                                 }
                                             }
                                         }
@@ -108,8 +108,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at25]}],
-                                                    [{1}, {[at26]}]
+                                                    [{0}, {[at24]}],
+                                                    [{1}, {[at25]}]
                                                 }
                                             }
                                         }
@@ -176,11 +176,11 @@ terminology
                 text = <"Total">
                 description = <"Aggregate total from all components.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Yes">
                 description = <"Smoke continues, even if ill enough to be in bed most of the day.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"No">
                 description = <"Not smoking if ill enough to be in bed most of the day.">
             >
@@ -188,11 +188,11 @@ terminology
                 text = <"During illness">
                 description = <"Do you smoke even when you are ill enough to be in bed most of the day?">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Yes">
                 description = <"Smoke more during the first hours after waking.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"No">
                 description = <"Not smoking more during the first hours after waking.">
             >
@@ -200,19 +200,19 @@ terminology
                 text = <"Early morning pattern">
                 description = <"Do you smoke more during the first hours after waking than during the rest of the day?">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"31 or more">
                 description = <"Smoking >30 cigarettes per day.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"21-30">
                 description = <"Smoking 21-30 cigarettes per day.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"11-20">
                 description = <"Smoking 11-20 cigarettes per day.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"10 or Less">
                 description = <"Smoking <=10 cigarettes per day.">
             >
@@ -220,11 +220,11 @@ terminology
                 text = <"Daily consumption">
                 description = <"How many cigarettes per day do you smoke?">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"The first in the morning">
                 description = <"First cigarette in the morning would be most difficult to give up.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Any other">
                 description = <"Any cigarette other than the first cigarette in the morning would be most difficult to give up.">
             >
@@ -232,11 +232,11 @@ terminology
                 text = <"Hate to give up">
                 description = <"Which cigarette would you hate most to give up?">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Yes">
                 description = <"It is difficult to refrain from smoking.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"No">
                 description = <"It is not difficult to refrain from smoking.">
             >
@@ -244,19 +244,19 @@ terminology
                 text = <"Difficult to refrain">
                 description = <"Do you find it difficult to refrain from smoking in places where it is forbidden (e.g., in church, at the library, in cinema, etc)?">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Within 5 Minutes">
                 description = <"First cigarette is smoked in the first 5 minutes after waking.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Within 31-60 Minutes">
                 description = <"First cigarette is smoked between 31 and 60 minutes after waking.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Within 6-30 Minutes">
                 description = <"First cigarette is smoked between 6 and 30 minutes after waking.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"After 60 Minutes">
                 description = <"First cigarette is smoked more than 60 minutes after waking.">
             >
@@ -277,26 +277,26 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at14", "at15">
+            members = <"at13", "at14">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at11", "at12">
+            members = <"at10", "at11">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at8", "at7", "at9">
+            members = <"at5", "at7", "at6", "at8">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at25", "at26">
+            members = <"at24", "at25">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at22", "at23">
+            members = <"at21", "at22">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at17", "at18", "at19", "at20">
+            members = <"at16", "at17", "at18", "at19">
         >
     >

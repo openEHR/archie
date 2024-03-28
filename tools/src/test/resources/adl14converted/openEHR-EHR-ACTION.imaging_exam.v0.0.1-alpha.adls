@@ -78,7 +78,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9009] matches {
-                        defining_code matches {[at3]}    -- Examination planned
+                        defining_code matches {[at2]}    -- Examination planned
                     }
                 }
             }
@@ -90,7 +90,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9011] matches {
-                        defining_code matches {[at4]}    -- Examination requested
+                        defining_code matches {[at3]}    -- Examination requested
                     }
                 }
             }
@@ -102,7 +102,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9013] matches {
-                        defining_code matches {[at10]}    -- Examination postponed
+                        defining_code matches {[at9]}    -- Examination postponed
                     }
                 }
             }
@@ -114,7 +114,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9015] matches {
-                        defining_code matches {[at12]}    -- Examination cancelled
+                        defining_code matches {[at11]}    -- Examination cancelled
                     }
                 }
             }
@@ -126,7 +126,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9017] matches {
-                        defining_code matches {[at5]}    -- Appointment scheduled
+                        defining_code matches {[at4]}    -- Appointment scheduled
                     }
                 }
             }
@@ -138,7 +138,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9019] matches {
-                        defining_code matches {[at6]}    -- Appointment rescheduled
+                        defining_code matches {[at5]}    -- Appointment rescheduled
                     }
                 }
             }
@@ -150,7 +150,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9021] matches {
-                        defining_code matches {[at9]}    -- Examination performed
+                        defining_code matches {[at8]}    -- Examination performed
                     }
                 }
             }
@@ -162,7 +162,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9023] matches {
-                        defining_code matches {[at15]}    -- Failed attempt
+                        defining_code matches {[at14]}    -- Failed attempt
                     }
                 }
             }
@@ -174,7 +174,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9025] matches {
-                        defining_code matches {[at11]}    -- Examination suspended
+                        defining_code matches {[at10]}    -- Examination suspended
                     }
                 }
             }
@@ -186,7 +186,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9027] matches {
-                        defining_code matches {[at13]}    -- Examination aborted
+                        defining_code matches {[at12]}    -- Examination aborted
                     }
                 }
             }
@@ -198,7 +198,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9029] matches {
-                        defining_code matches {[at8]}    -- Examination complete
+                        defining_code matches {[at7]}    -- Examination complete
                     }
                 }
             }
@@ -317,7 +317,7 @@ terminology
                 text = <"Undersøkelse mislykket">
                 description = <"Undersøkelsen har blitt påstartet men ikke fullført.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Undersøkelse mislykket">
                 description = <"Undersøkelsen har blitt påstartet men ikke fullført.">
             >
@@ -325,7 +325,7 @@ terminology
                 text = <"Undersøkelse avbrutt">
                 description = <"Undersøkelsen har blitt avbrutt.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Undersøkelse avbrutt">
                 description = <"Undersøkelsen har blitt avbrutt.">
             >
@@ -333,7 +333,7 @@ terminology
                 text = <"Undersøkelse avlyst">
                 description = <"Den planlagte undersøkelsen har blitt avlyst før den ble igangsatt.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Undersøkelse avlyst">
                 description = <"Den planlagte undersøkelsen har blitt avlyst før den ble igangsatt.">
             >
@@ -341,7 +341,7 @@ terminology
                 text = <"Undersøkelse midlertidig stanset">
                 description = <"Undersøkelsen er suspendert/ midlertidig stanset.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Undersøkelse midlertidig stanset">
                 description = <"Undersøkelsen er suspendert/ midlertidig stanset.">
             >
@@ -349,7 +349,7 @@ terminology
                 text = <"Undersøkelse utsatt">
                 description = <"Undersøkelsen er utsatt.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Undersøkelse utsatt">
                 description = <"Undersøkelsen er utsatt.">
             >
@@ -357,7 +357,7 @@ terminology
                 text = <"Undersøkelse utført">
                 description = <"Undersøkelsen, eller en del av undersøkelsen, har blitt utført.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Undersøkelse utført">
                 description = <"Undersøkelsen, eller en del av undersøkelsen, har blitt utført.">
             >
@@ -365,7 +365,7 @@ terminology
                 text = <"Undersøkelse fullført">
                 description = <"Undersøkelsen er utført og alle tilknyttede kliniske handlinger er fullførte.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Undersøkelse fullført">
                 description = <"Undersøkelsen er utført og alle tilknyttede kliniske handlinger er fullførte.">
             >
@@ -373,7 +373,7 @@ terminology
                 text = <"Undersøkelse replanlagt">
                 description = <"Tidspunkt for undersøkelsen har blitt replanlagt.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Undersøkelse replanlagt">
                 description = <"Tidspunkt for undersøkelsen har blitt replanlagt.">
             >
@@ -381,7 +381,7 @@ terminology
                 text = <"Fastsatt tidspunkt for undersøkelse">
                 description = <"Tidspunkt for undersøkelsen er fastsatt.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Fastsatt tidspunkt for undersøkelse">
                 description = <"Tidspunkt for undersøkelsen er fastsatt.">
             >
@@ -389,7 +389,7 @@ terminology
                 text = <"Undersøkelsesrekvisisjon sendt">
                 description = <"Det er sendt rekvisisjon for undersøkelsen.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Undersøkelsesrekvisisjon sendt">
                 description = <"Det er sendt rekvisisjon for undersøkelsen.">
             >
@@ -397,7 +397,7 @@ terminology
                 text = <"Undersøkelse planlagt">
                 description = <"Undersøkelsen er planlagt.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Undersøkelse planlagt">
                 description = <"Undersøkelsen er planlagt.">
             >
@@ -471,7 +471,7 @@ terminology
                 text = <"Failed attempt">
                 description = <"The examation was commenced but not completed successfully.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Failed attempt">
                 description = <"The examation was commenced but not completed successfully.">
             >
@@ -479,7 +479,7 @@ terminology
                 text = <"Examination aborted">
                 description = <"The examination has been aborted.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Examination aborted">
                 description = <"The examination has been aborted.">
             >
@@ -487,7 +487,7 @@ terminology
                 text = <"Examination cancelled">
                 description = <"The planned examination has been cancelled prior to commencement.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Examination cancelled">
                 description = <"The planned examination has been cancelled prior to commencement.">
             >
@@ -495,7 +495,7 @@ terminology
                 text = <"Examination suspended">
                 description = <"The examination has been suspended.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Examination suspended">
                 description = <"The examination has been suspended.">
             >
@@ -503,7 +503,7 @@ terminology
                 text = <"Examination postponed">
                 description = <"The examination has been postponed.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Examination postponed">
                 description = <"The examination has been postponed.">
             >
@@ -511,7 +511,7 @@ terminology
                 text = <"Examination performed">
                 description = <"The examation was performed but related activities not completed.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Examination performed">
                 description = <"The examation was performed but related activities not completed.">
             >
@@ -519,7 +519,7 @@ terminology
                 text = <"Examination complete">
                 description = <"The imaging examination has been performed and all associated activities completed.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Examination complete">
                 description = <"The imaging examination has been performed and all associated activities completed.">
             >
@@ -527,7 +527,7 @@ terminology
                 text = <"Appointment rescheduled">
                 description = <"Appointment for imaging examination has been rescheduled.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Appointment rescheduled">
                 description = <"Appointment for imaging examination has been rescheduled.">
             >
@@ -535,7 +535,7 @@ terminology
                 text = <"Appointment scheduled">
                 description = <"Imaging examination appointment has been made.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Appointment scheduled">
                 description = <"Imaging examination appointment has been made.">
             >
@@ -543,7 +543,7 @@ terminology
                 text = <"Examination requested">
                 description = <"Imaging examination has been requested.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Examination requested">
                 description = <"Imaging examination has been requested.">
             >
@@ -551,7 +551,7 @@ terminology
                 text = <"Examination planned">
                 description = <"Imaging examination is planned.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Examination planned">
                 description = <"Imaging examination is planned.">
             >
@@ -625,7 +625,7 @@ terminology
                 text = <"*Failed attempt(en)">
                 description = <"*The examation was commenced but not completed successfully.(en)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"*Failed attempt(en)">
                 description = <"*The examation was commenced but not completed successfully.(en)">
             >
@@ -633,7 +633,7 @@ terminology
                 text = <"*Examination aborted(en)">
                 description = <"*The examination has been aborted.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Examination aborted(en)">
                 description = <"*The examination has been aborted.(en)">
             >
@@ -641,7 +641,7 @@ terminology
                 text = <"*Examination cancelled(en)">
                 description = <"*The planned examination has been cancelled prior to commencement.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Examination cancelled(en)">
                 description = <"*The planned examination has been cancelled prior to commencement.(en)">
             >
@@ -649,7 +649,7 @@ terminology
                 text = <"*Examination suspended(en)">
                 description = <"*The examination has been suspended.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Examination suspended(en)">
                 description = <"*The examination has been suspended.(en)">
             >
@@ -657,7 +657,7 @@ terminology
                 text = <"*Examination postponed(en)">
                 description = <"*The examination has been postponed.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Examination postponed(en)">
                 description = <"*The examination has been postponed.(en)">
             >
@@ -665,7 +665,7 @@ terminology
                 text = <"*Examination performed(en)">
                 description = <"*The examation was performed but related activities not completed.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Examination performed(en)">
                 description = <"*The examation was performed but related activities not completed.(en)">
             >
@@ -673,7 +673,7 @@ terminology
                 text = <"*Examination complete(en)">
                 description = <"*The imaging examination has been performed and all associated activities completed.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Examination complete(en)">
                 description = <"*The imaging examination has been performed and all associated activities completed.(en)">
             >
@@ -681,7 +681,7 @@ terminology
                 text = <"*Appointment rescheduled(en)">
                 description = <"*Appointment for imaging examination has been rescheduled.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Appointment rescheduled(en)">
                 description = <"*Appointment for imaging examination has been rescheduled.(en)">
             >
@@ -689,7 +689,7 @@ terminology
                 text = <"*Appointment scheduled(en)">
                 description = <"*Imaging examination appointment has been made.(en)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"*Appointment scheduled(en)">
                 description = <"*Imaging examination appointment has been made.(en)">
             >
@@ -697,7 +697,7 @@ terminology
                 text = <"*Examination requested(en)">
                 description = <"*Imaging examination has been requested.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Examination requested(en)">
                 description = <"*Imaging examination has been requested.(en)">
             >
@@ -705,7 +705,7 @@ terminology
                 text = <"*Examination planned(en)">
                 description = <"*Imaging examination is planned.(en)">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"*Examination planned(en)">
                 description = <"*Imaging examination is planned.(en)">
             >

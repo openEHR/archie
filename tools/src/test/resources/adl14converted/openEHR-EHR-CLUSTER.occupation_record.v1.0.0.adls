@@ -184,11 +184,11 @@ terminology
                 text = <"Heltidsekvivalent (synthesised)">
                 description = <"Arbeidsforholdet/rollens andel eller prosent av en heltidsstilling. (synthesised)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Deltid">
                 description = <"Individet bruker kortere tid på jobben/rollen enn definisjonen av full stilling i lov- eller avtaleverk (tariffavtale).">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Heltid">
                 description = <"Individet bruker lik eller lengre tid på jobben/rollen enn definisjonen av full stilling i lov- eller avtaleverk (tariffavtale).">
             >
@@ -258,11 +258,11 @@ terminology
                 text = <"Full time equivalent (synthesised)">
                 description = <"The time spent in this job or role relative to full-time. (synthesised)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Part-time">
                 description = <"The individual carries out this occupation for less than the amount of time that is officially regarded as 'full-time' for the occupation.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Full-time">
                 description = <"The individual carries out this occupation for equal to or more than the amount of time that is officially regarded as 'full-time' for the occupation.">
             >
@@ -331,6 +331,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at21", "at22">
+            members = <"at20", "at21">
         >
     >

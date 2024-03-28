@@ -112,19 +112,19 @@ terminology
                 text = <"Clinical Interpretation">
                 description = <"Single word, phrase or brief description represents the clinical meaning and significance of the physical examination findings.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Positive">
                 description = <"Air Conduction is greater than bone conduction.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Negative">
                 description = <"Air Conduction is less than bone conduction.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Right">
                 description = <"The right ear was tested.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Left">
                 description = <"The left ear was tested.">
             >
@@ -140,15 +140,15 @@ terminology
                 text = <"Rinne Test">
                 description = <"A test to compare the subject's perception of sounds transmitted by air conduction to those transmitted by bone conduction through the mastoid.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Lateralising Right">
                 description = <"The sound from the vibration is heard predominantly on the right.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Lateralising Left">
                 description = <"The sound from the vibration is heard predominantly on the left.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"No Lateralisation">
                 description = <"The sound from vibration is heard equally in both ears.">
             >
@@ -169,14 +169,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at15", "at14">
+            members = <"at14", "at13">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at12", "at13">
+            members = <"at11", "at12">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8">
+            members = <"at5", "at6", "at7">
         >
     >

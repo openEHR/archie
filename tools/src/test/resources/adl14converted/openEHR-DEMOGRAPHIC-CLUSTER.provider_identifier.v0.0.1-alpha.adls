@@ -143,19 +143,19 @@ terminology
                 text = <"Não é duplicata de">
                 description = <"O identificador digitado neste campo não é uma duplicata deste identificador">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Nacional">
                 description = <"Indica que esta identificação é usada em nível nacional">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Estadual">
                 description = <"Indica que esta identificação é usada em nível de um estado">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Regional">
                 description = <"Indica que esta identificação é usada em uma região">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Local">
                 description = <"Indica que esta identificação é usada localmente">
             >
@@ -217,19 +217,19 @@ terminology
                 text = <"Not a duplicate of">
                 description = <"The identifier entered into this field is not a duplicate entry of this identifier">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"National">
                 description = <"Indicates that this identifier is used nationally">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"State/Province/Territory">
                 description = <"Indicates that this identifier is used within a political boundary such as a state or territory or province">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Area/Regional/District">
                 description = <"Indicates that this identifier is used within a specific area">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Local">
                 description = <"Indicates that this identifier is used locally">
             >
@@ -270,6 +270,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12", "at13", "at14">
+            members = <"at10", "at11", "at12", "at13">
         >
     >

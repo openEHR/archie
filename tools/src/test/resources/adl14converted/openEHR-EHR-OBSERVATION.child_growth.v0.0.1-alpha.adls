@@ -124,23 +124,23 @@ terminology
                 text = <"Clinical interpretation">
                 description = <"Clinical interpretation of the growth indicator chart.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Head circumference velocity">
                 description = <"Head circumference velocity plotted against age, or adjusted age.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Length velocity">
                 description = <"Length velociy plotted against age, or adjusted age.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Weight velocity">
                 description = <"Weight velocity plotted against age, or adjusted age.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Triceps skinfold-for-age">
                 description = <"Triceps skinfold plotted against age, or adjusted age.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Subscapular skinfold-for-age">
                 description = <"Subscapular skinfold plotted against age, or adjusted age.">
             >
@@ -148,7 +148,7 @@ terminology
                 text = <"URI to original measurement">
                 description = <"Link to the original measurement.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Arm circumference-for-age">
                 description = <"Arm circumference plotted against age, or adjusted age.">
             >
@@ -157,39 +157,39 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Body mass index-for-age (BMI-for-age)">
                 description = <"Body mass index plotted against age, or adjusted age.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Diastolic blood pressure-for-age-and-height">
                 description = <"Diastolic blood pressure plotted against age (or adjusted age) and height/length.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Systolic blood pressure-for-age-and-height">
                 description = <"Systolic blood pressure plotted against age (or adjusted age) and height/length.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Weight-for-length/height">
                 description = <"Weight plotted against height/length.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Head circumference-for-age">
                 description = <"Head circumference plotted against age, or adjusted age.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Weight-for-age">
                 description = <"Weight plotted against age, or adjusted age.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Leg length-for-age">
                 description = <"Subischial leg length plotted against age, or adjusted age.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Sitting height-for-age">
                 description = <"Sitting height plotted against age, or adjusted age.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Length/height-for-age">
                 description = <"Length or height plotted against age, or adjusted age.">
             >
@@ -232,23 +232,23 @@ terminology
                 text = <"*Clinical interpretation(en)">
                 description = <"*Clinical interpretation of the growth indicator chart.(en)">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"*Head circumference velocity(en)">
                 description = <"**(en)">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"*Length velociy(en)">
                 description = <"**(en)">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"*Weight velocity(en)">
                 description = <"**(en)">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"*Triceps skinfold-for-age(en)">
                 description = <"**(en)">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"*Subscapular skinfold-for-age(en)">
                 description = <"**(en)">
             >
@@ -256,7 +256,7 @@ terminology
                 text = <"*URI to original measurement(en)">
                 description = <"*Link to the original measurement.(en)">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"*Arm circumference-for-age(en)">
                 description = <"* at a given age, adjusted for pre-term delivery if required. Usually recorded for children aged >2 years(en)">
             >
@@ -265,39 +265,39 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"*Body mass index-for-age (BMI-for-age)(en)">
                 description = <"*Calculations for bofy mass index for a given age, adjusted for pre-term delivery.(en)">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"*Diastolic blood pressure for age and height(en)">
                 description = <"*Calculations for diastolic blood pressure at a given age and height/length, adjusted for pre-term delivery.(en)">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"*Systolic blood pressure for age and height(en)">
                 description = <"*Calculations for systolic blood pressure at a given age and height/length, adjusted for pre-term delivery.(en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*Weight-for-length/height(en)">
                 description = <"*Weight plotted against height/length.(en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"*Head circumference-for-age(en)">
                 description = <"*Calculations for head circumference at a given age, adjusted for pre-term delivery.(en)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"*Weight-for-age(en)">
                 description = <"*Calculations for weight at a given age, adjusted for pre-term delivery.(en)">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"*Leg length for age(en)">
                 description = <"*Calculations for subischial leg length at a given age, adjusted for pre-term delivery.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Sitting height for age(en)">
                 description = <"*Calculations for sitting height at a given age, adjusted for pre-term delivery.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Length/height-for-age(en)">
                 description = <"*Length at a given age, adjusted for pre-term delivery if required. Usually recorded for infants <2 years.(en)">
             >
@@ -336,6 +336,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at21", "at24", "at26", "at30", "at25", "at35", "at37", "at38", "at39", "at40", "at41", "at22", "at23", "at27", "at28">
+            members = <"at20", "at23", "at25", "at29", "at24", "at34", "at36", "at37", "at38", "at39", "at40", "at21", "at22", "at26", "at27">
         >
     >

@@ -453,11 +453,11 @@ terminology
                 description = <"Wort oder kurzer Satz, mit dem die Charakteristik des Symptoms/Krankheitsanzeichens beschrieben wird.">
                 comment = <"Zum Beispiel: Schmerzen können als \"bohrend\", \"brennend\" oder \"wie ein Stromschlag\" beschrieben werden; Kopfschmerzen können \"pochend\" oder \"konstant\" sein. Wenn möglich soll eine Kodierung mit einer externen Terminologie bevorzugt werden.">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"Erneutes Auftreten">
                 description = <"Das Symptom/Krankheitsanzeichen ist in der Vergangenheit bereits aufgetreten.">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"Erstmaliges Auftreten">
                 description = <"Dies ist das erstmalige Auftreten des Symptoms/Krankheitsanzeichens.">
             >
@@ -470,19 +470,19 @@ terminology
                 text = <"Beschreibung">
                 description = <"Beschreibung des Einflusses des Faktors auf das identifizierte Symptom/Krankheitsanzeichen.">
             >
-            ["at185"] = <
+            ["at184"] = <
                 text = <"Vollständiger Rückgang">
                 description = <"Der Schweregrad dieses Symptoms/Krankheitsanzeichens ist im Verlauf dieser Episode vollständig zurückgegangen.">
             >
-            ["at184"] = <
+            ["at183"] = <
                 text = <"Verschlechterung">
                 description = <"Der Schweregrad des Symptoms/Krankheitsanzeichens hat sich im Verlauf dieser Episode allgemein verschlechtert.">
             >
-            ["at183"] = <
+            ["at182"] = <
                 text = <"Unverändert">
                 description = <"Der Schweregrad dieses Symptoms/Krankheitsanzeichens blieb im Verlauf dieser Episode allgemein unverändert.">
             >
-            ["at182"] = <
+            ["at181"] = <
                 text = <"Verbesserung">
                 description = <"Der Schweregrad dieses Symptoms/Krankheitsanzeichens hat sich im Verlauf dieser Episode allgemein verbessert.">
             >
@@ -491,15 +491,15 @@ terminology
                 description = <"Beschreibung des Verlaufs des Symptoms/Krankheitsanzeichens zum Zeitpunkt der Meldung.">
                 comment = <"Das Auftreten dieses Datenelements ist auf 0...* gesetzt, um bei Bedarf mehrere Arten von Verläufen in einem Template voneinander zu trennen - z.B. Schweregrad oder Häufigkeit.">
             >
-            ["at179"] = <
+            ["at178"] = <
                 text = <"Andauernd">
                 description = <"Das Symptom/Krankheitsanzeichen ist andauernd, im Grunde eine einzige, kontinuierliche Episode.">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"Unbestimmt">
                 description = <"Es ist nicht möglich zu bestimmen, ob dieses Auftreten des Symptoms/Krankheitsanzeichens neu oder andauernd ist.">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"Neu">
                 description = <"Eine neue Episode des Symptoms/Krankheitsanzeichens - entweder das erste Auftreten oder ein Wiederauftreten, bei dem die vorherige Episode vollständig abgeklungen ist.">
             >
@@ -516,11 +516,11 @@ terminology
                 description = <"Name des die Gesundheit betreffenden Ereignisses, Symptoms, Krankheitsanzeichens oder eines anderen Faktors.">
                 comment = <"Zum Beispiel: Beginn eines anderen Symptoms; Beginn der Menstruation; oder Sturz vom Fahrrad.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Rückbildender Faktor">
                 description = <"Identifizierung von Faktoren oder Ereignissen, die zum Rückgang oder Ende des Symptoms/Krankheitsanzeichens führen.">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"Auslösender Faktor">
                 description = <"Identifizierung von Faktoren oder Ereignissen, die den Ausbruch des Symptoms/Krankheitsanzeichens auslösen.">
             >
@@ -543,15 +543,15 @@ terminology
                 description = <"Der Endzeitpunkt dieser Episode des Symptoms/Krankheitsanzeichens.">
                 comment = <"Wenn in Systemen \"Datum/Uhrzeit des Beginns\" und \"Dauer\" verwendet werden, kann dieses Datenelement berechnet oder alternativ als redundant betrachtet werden. Teil-Datumsangaben sind zulässig, gegebenenfalls kann aber auch das genaue Datum und die genaue Uhrzeit des Rückgangs erfasst werden.">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"Linderung">
                 description = <"Der Faktor verringert den Schweregrad oder den Einfluss des Symptoms/Krankheitsanzeichens, bringt es aber nicht vollständig zum Abklingen.">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"Verschlechterung">
                 description = <"Der Faktor erhöht den Schweregrad oder die Auswirkung des Symptoms/Krankheitsanzeichens.">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"Keinen Einfluss">
                 description = <"Der Faktor hat keinen Einfluss auf das Symptom/Krankheitsanzeichen.">
             >
@@ -629,15 +629,15 @@ terminology
                 description = <"Numerische Bewertungsskala, die den allgemeinen Schweregrad des Symptoms/Krankheitsanzeichens darstellt.">
                 comment = <"Die Schwere des Symptoms kann von der Person bewertet werden, indem sie eine Punktzahl von 0 (d.h. das Symptom ist nicht vorhanden) bis 10,0 (d.h. das Symptom ist so schwer, wie es sich die Person nur vorstellen kann) vergibt. Diese Punktzahl kann in der Benutzeroberfläche als visuelle Analogskala dargestellt werden. Das Vorkommen dieses Datenelements wurde auf 0..* gesetzt, um zu ermöglichen, dass Variationen wie \"maximaler Schweregrad\" oder \"durchschnittlicher Schweregrad\" im Template aufgenommen werden können.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Schwer">
                 description = <"Die Intensität des Symptoms/Krankheitsanzeichens verhindert eine normale Aktivität.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Moderat">
                 description = <"Die Intensität des Symptoms/Krankheitsanzeichens führt zu einer Beeinträchtigung der normalen Aktivität.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Leicht">
                 description = <"Die Intensität des Symptoms/Krankheitsanzeichens führt zu keiner Beeinträchtigung der normalen Aktivität.">
             >
@@ -712,11 +712,11 @@ terminology
                 description = <"*Word or short phrase describing the nature of the symptom or sign. (en)">
                 comment = <"*For example: pain could be described as 'gnawing', 'burning', or 'like an electric shock'; a headache could be 'throbbing' or 'constant'. Coding with an external terminology is preferred, where possible. (en)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"*Recurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"*First occurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
@@ -729,19 +729,19 @@ terminology
                 text = <"Kuvaus">
                 description = <"Narrative description about the effect of the factor on the identified symptom or sign.(en)">
             >
-            ["at185"] = <
+            ["at184"] = <
                 text = <"Ratkaistu">
                 description = <"The severity of the symptom or sign has resolved.(en)">
             >
-            ["at184"] = <
+            ["at183"] = <
                 text = <"Pahentuva">
                 description = <"The severity of the symptom or sign has worsened overall during this episode.(en)">
             >
-            ["at183"] = <
+            ["at182"] = <
                 text = <"Ei muutosta">
                 description = <"The severity of the symptom or sign has not changed overall during this episode.(en)">
             >
-            ["at182"] = <
+            ["at181"] = <
                 text = <"Parantuva">
                 description = <"The severity of the symptom or sign has improved overall during this episode.(en)">
             >
@@ -750,15 +750,15 @@ terminology
                 description = <"Description progression of the symptom or sign at the time of reporting.(en)">
                 comment = <"*Occurrences of this data element are set to 0..* to allow multiple types of progression to be separated out in a template if desired - for example, severity or frequency.(en)">
             >
-            ["at179"] = <
+            ["at178"] = <
                 text = <"Meneillään oleva">
                 description = <"This symptom or sign is ongoing, effectively a single, continuous episode.(en)">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"Epämääräinen">
                 description = <"It is not possible to determine if this occurrence of the symptom or sign is new or ongoing.(en)">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"Uusi">
                 description = <"A new episode of the symptom or sign - either the first ever occurrence or a reoccurrence where the previous episode had completely resolved.(en)">
             >
@@ -775,11 +775,11 @@ terminology
                 description = <"Name of the health event, symptom, reported sign or other factor.(en)">
                 comment = <"*For example: onset of another symptom; onset of menstruation; or fall off bicycle.(en)">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Ratkaiseva tekijä">
                 description = <"Identification of factors or events that trigger resolution or cessation of the symptom or sign.(en)">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"Kiihdyttävä tekijä">
                 description = <"Identification of factors or events that trigger the onset or commencement of the symptom or sign.(en)">
             >
@@ -802,15 +802,15 @@ terminology
                 description = <"The timing of the cessation of this episode of the symptom or sign.(en)">
                 comment = <"*If 'Date/time of onset' and 'Duration' are used in systems, this data element may be calculated, or alternatively, considered redundant. While partial dates are permitted, the exact date and time of resolution can be recorded, if appropriate.(en)">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"Helpottaa">
                 description = <"The factor decreases the severity or impact of the symptom or sign, but does not fully resolve it.(en)">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"Pahentaa">
                 description = <"The factor increases the severity or impact of the symptom or sign.(en)">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"Ei vaikutusta">
                 description = <"The factor has no impact on the symptom or sign.(en)">
             >
@@ -887,15 +887,15 @@ terminology
                 description = <"Numerical rating scale representing the overall severity of the symptom or sign.(en)">
                 comment = <"*Symptom severity can be rated by the individual by recording a score from 0 (ie symptom not present) to 10.0 (ie symptom is as severe as the individual can imagine). This score can be represented in the user interface as a visual analogue scale. The data element has occurrences set to 0..* to allow for variations such as 'maximal severity' or 'average severity' to be included in a template.(en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Vakava">
                 description = <"The intensity of the symptom or sign causes prevents normal activity.(en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Kohtuullinen">
                 description = <"The intensity of the symptom or sign causes interference with normal activity.(en)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Vähäinen">
                 description = <"The intensity of the symptom or sign does not cause interference with normal activity.(en)">
             >
@@ -970,11 +970,11 @@ terminology
                 description = <"*Word or short phrase describing the nature of the symptom or sign. (en)">
                 comment = <"*For example: pain could be described as 'gnawing', 'burning', or 'like an electric shock'; a headache could be 'throbbing' or 'constant'. Coding with an external terminology is preferred, where possible. (en)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"*Recurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"*First occurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
@@ -987,19 +987,19 @@ terminology
                 text = <"Beskrivning">
                 description = <"Beskrivning av faktorns effekt på det identifierade symtomet eller tecknet.">
             >
-            ["at185"] = <
+            ["at184"] = <
                 text = <"Löst">
                 description = <"Svårighetsgraden av symtomet eller tecknet har lösts.">
             >
-            ["at184"] = <
+            ["at183"] = <
                 text = <"Under försämring">
                 description = <"Svårighetsgraden av symtomet eller tecknet har förvärrats totalt sett under denna episod.">
             >
-            ["at183"] = <
+            ["at182"] = <
                 text = <"Oförändrat tillstånd">
                 description = <"Svårighetsgraden av symtomet eller tecknet har inte förändrats totalt sett under denna episod.">
             >
-            ["at182"] = <
+            ["at181"] = <
                 text = <"Under förbättring">
                 description = <"Svårighetsgraden av symtomet eller tecknet har förbättrats totalt sett under den här episoden.">
             >
@@ -1008,15 +1008,15 @@ terminology
                 description = <"Beskrivning av progressionen av symtomet eller tecknet vid rapporteringstidpunkten.">
                 comment = <"Förekomster i det här fältet är inställda på 0.. * för att tillåta flera typer av progression att separeras i en mall om så önskas, exempelvis svårighetsgrad eller frekvens.">
             >
-            ["at179"] = <
+            ["at178"] = <
                 text = <"Pågående">
                 description = <"Detta symptom eller tecken är pågående, registrad som en enskild kontinuerlig episod.">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"Obestämd">
                 description = <"Det är inte möjligt att avgöra om denna förekomst av symtomet eller tecknet är nytt eller pågående.">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"Ny">
                 description = <"En ny episod av symtomet eller tecknet, antingen debut eller en återkommande förekomst där den föregående episoden utretts helt.">
             >
@@ -1033,11 +1033,11 @@ terminology
                 description = <"Namn på hälsohändelsen, symtomet, uppvisade tecknet eller annan faktor.">
                 comment = <"Exempelvis: Debuten av ett annat symtom, menstruationens början eller fall från cykel.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Uppklarande faktor">
                 description = <"Identifiering av faktorer eller händelser som utlöser uppklarande eller upphörande av symtomet eller tecknet.">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"Utlösande faktor">
                 description = <"Identifiering av faktorer eller händelser som utlöser symtomets eller tecknets debut eller begynnelse.">
             >
@@ -1060,15 +1060,15 @@ terminology
                 description = <"Tidpunkt när denna episod av symtomen eller tecknet upphör.">
                 comment = <"Om \"Datum och tidpunkt för start\" och \"Varaktighet\" används i systemen, kan detta fält beaktas eller alternativt betraktas som överflödigt. Medan partiella datum är tillåtna kan det exakta datumet och tiden för upplösning registreras, om det är lämpligt.">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"Lindrar">
                 description = <"Faktorn minskar svårighetsgraden eller påverkan på symtomet eller tecknet, men blir inte fullständigt utrett.">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"Försämrar">
                 description = <"Faktorn ökar symtomets eller tecknets svårighetsgrad eller effekt.">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"Ingen effekt">
                 description = <"Faktorn har ingen effekt på symtomet eller tecknet.">
             >
@@ -1147,15 +1147,15 @@ terminology
                 description = <"Numerisk skattningsskala som presenterar symtomens eller tecknets övergripande svårighetsgrad.">
                 comment = <"Svårighetsgraden kan bedömas av individen genom att registrera poäng från 0 (dvs. ingen förekomst av symtom) till 10,0 (dvs. symtomet är så svårt som individen kan tänka sig). Denna poäng kan presenteras i användargränssnittet som en visuell analog skala. Fältet innehåller händelser som är satta till 0.. * för att tillåta att variationer som exempelvis \"maximal svårighetsgrad\" eller \"genomsnittlig svårighetsgrad\" ska kunna ingå i en mall.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Svår">
                 description = <"Symtomets eller tecknets intensitet förhindrar normal aktivitet.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Måttlig">
                 description = <"Symtomet eller tecknets intensitet orsakar störningar i normal aktivitet.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Mild">
                 description = <"Symtomet eller tecknets intensitet orsakar inte störningar i normal aktivitet. 
     ">
@@ -1233,11 +1233,11 @@ terminology
                 description = <"*Word or short phrase describing the nature of the symptom or sign. (en)">
                 comment = <"*For example: pain could be described as 'gnawing', 'burning', or 'like an electric shock'; a headache could be 'throbbing' or 'constant'. Coding with an external terminology is preferred, where possible. (en)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"*Recurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"*First occurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
@@ -1250,19 +1250,19 @@ terminology
                 text = <"Beskrivelse">
                 description = <"Fritekstbeskrivelse av faktorens effekt på det identifiserte symptomet eller sykdomstegnet.">
             >
-            ["at185"] = <
+            ["at184"] = <
                 text = <"Opphørt">
                 description = <"Symptomet eller sykdomstegnets alvorlighetsgrad er opphørt i løpet av denne episoden.">
             >
-            ["at184"] = <
+            ["at183"] = <
                 text = <"Forverret">
                 description = <"Symptomet eller sykdomstegnets alvorighetsgrad har blitt forverret i løpet av denne episoden.">
             >
-            ["at183"] = <
+            ["at182"] = <
                 text = <"Uendret">
                 description = <"Symptomet eller sykdomstegnets alvorlighetsgrad er ikke endret i løpet av denne episoden.">
             >
-            ["at182"] = <
+            ["at181"] = <
                 text = <"Forbedret">
                 description = <"Symptomet eller sykdomstegnets alvorlighetsgrad er forbedret i løpet av denne episoden.">
             >
@@ -1271,15 +1271,15 @@ terminology
                 description = <"Beskrivelse av symptomets eller sykdomstegnets progresjon ved rapporteringstidspunktet.">
                 comment = <"Dataelementet er definert som 0..* for å tillate at flere typer progresjon trekkes ut i et templat om ønsket. For eksempel: alvorlighet eller frekvens.">
             >
-            ["at179"] = <
+            ["at178"] = <
                 text = <"Kontinuerlig">
                 description = <"Symptomet eller sykdomstegnet er kontinuerlig tilstedeværende, i praksis en enkelt pågående episode.">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"Ubestemt">
                 description = <"Det er ikke mulig å bestemme om denne forekomsten av symptomet er ny eller pågående.">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"Nytt">
                 description = <"En ny episode av symptomet eller sykdomstegnet - enten den første forekomsten eller en ny forekomst der den tidligere episoden var fullstendig opphørt.">
             >
@@ -1296,11 +1296,11 @@ terminology
                 description = <"Navn på helserelatert hendelse, symptom, rapportert sykdomstegn eller annen faktor.">
                 comment = <"For eksempel: Debut av annet symptom, menstruasjons debut, falt av sykkel.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Avsluttende faktor">
                 description = <"Identifisering av faktorer eller hendelser som utløser opphør av symptomet eller sykdomstegnet.">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"Utløsende faktor">
                 description = <"Identifisering av faktorer eller hendelser som utløser debut av symptomet eller sykdomstegnet.">
             >
@@ -1323,15 +1323,15 @@ terminology
                 description = <"Dato/tid for opphør av denne episoden av symptomet eller sykdomstegnet.">
                 comment = <"Brukes \"Dato/tid for debut\" og \"Varighet\" i systemer, kan dette dataelementet kalkuleres av systemet eller være overflødig. Ufullstendig dato er tillatt, nøyaktig dato og tid for opphør kan registreres om ønskelig.">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"Lindrer">
                 description = <"Faktoren reduserer alvorligheten eller innvirkning av symptomet eller sykdomstegnet, men får det ikke til å opphøre fullstendig.">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"Forverrer">
                 description = <"Faktoren øker alvorlighet eller innvirkning av symptomet eller sykdomstegnet.">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"Ingen effekt">
                 description = <"Faktoren har ingen effekt på symptomet eller sykdomstegnet.">
             >
@@ -1409,15 +1409,15 @@ terminology
                 description = <"Numerisk graderings skala som representerer den overordnede alvorligheten til symptomet eller sykdomstegnet.">
                 comment = <"Symptomets alvorlighet graderes av individet ved å registrere en skår fra 0 (symptom ikke tilstede) til 10 (symptomet er så alvorlig som individet kan forestille seg). Denne skåringen kan representeres i brukergrensesnittet som en visuell analog skala, Dataelementet er satt til 0..* for å tillate variasjonen som \"maksimum alvorlighet\" og \"gjennomsnittlig alvorlighet\" i et templat.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Alvorlig">
                 description = <"Symptomets eller sykdomstegnets intensitet hindrer normal aktivitet.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Moderat">
                 description = <"Symptomet eller sykdomstegnet intensitet forstyrrer normal aktivitet.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Mild">
                 description = <"Symptomet eller sykdomstegnets intensitet forstyrrer ikke normal aktivitet.">
             >
@@ -1494,11 +1494,11 @@ terminology
                 description = <"*Word or short phrase describing the nature of the symptom or sign. (en)">
                 comment = <"*For example: pain could be described as 'gnawing', 'burning', or 'like an electric shock'; a headache could be 'throbbing' or 'constant'. Coding with an external terminology is preferred, where possible. (en)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"*Recurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"*First occurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
@@ -1511,19 +1511,19 @@ terminology
                 text = <"Descrição">
                 description = <"Descrição narrativa sobre o efeito do fator no sintoma ou sinal identificado.">
             >
-            ["at185"] = <
+            ["at184"] = <
                 text = <"Resolvido">
                 description = <"A gravidade do sintoma ou sinal resolveu-se.">
             >
-            ["at184"] = <
+            ["at183"] = <
                 text = <"Piorando">
                 description = <"O gravidade do sintoma ou sinal piorou ao longo deste episódio.">
             >
-            ["at183"] = <
+            ["at182"] = <
                 text = <"Imutável">
                 description = <"O gravidade do sintoma ou sinal não mudou ao longo deste episódio.">
             >
-            ["at182"] = <
+            ["at181"] = <
                 text = <"Melhorando">
                 description = <"O gravidade do sintoma ou sinal melhorou ao longo deste episódio.">
             >
@@ -1532,15 +1532,15 @@ terminology
                 description = <"Descrição da progressão do sintoma ou sinal no momento do relato.">
                 comment = <"Ocorrências deste elemento de dado são setadas para 0..* para permitir múltiplos tipos de progressão para serem separadas no template se desejado - por exemplo, gravidade ou frequência.">
             >
-            ["at179"] = <
+            ["at178"] = <
                 text = <"Em curso">
                 description = <"O sintoma ou sinal está em curso, efetivamente um episódio único e contínuo.">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"Indeterminado">
                 description = <"Não é possível determinar se esta ocorrência de sintoma ou sinal é nova ou em curso.">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"Novo">
                 description = <"Um episódio novo de sintoma ou sinal - tanto para primeira ocorrência como para uma reccorrência quando o episódio prévio estiver completamente resolvido.">
             >
@@ -1557,11 +1557,11 @@ terminology
                 description = <"Nome do evento de saúde, sintoma, sinal relatado ou outro fator.">
                 comment = <"Por exemplo: início de outro sintoma; início da menstruação. ou queda da bicicleta.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Fator de resolução">
                 description = <"Identificação de fatores ou eventos que deflagram a resolução ou cessação de um sintoma ou sinal.">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"Fator precipitante">
                 description = <"Identificação de fatores ou eventos que deflagram o início ou começo de um sintoma ou sinal.">
             >
@@ -1584,15 +1584,15 @@ terminology
                 description = <"O momento de cessação deste episódio de sintoma ou sinal.">
                 comment = <"Se 'Data/hora de início' e 'Duração' são utilizados no sistema, este elemento de dado pode ser calculado, ou alternativamente, considerado redundante. Datas parciais são permitidas, a data e hora exatas de resolução podem ser registradas, se apropriado.">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"Alivia">
                 description = <"O fator diminui a gravidade ou impacto do sintoma ou sinal mas não resolve completamente.">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"Piora">
                 description = <"O fator aumenta a gravidade ou impacto do sintoma ou sinal.">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"Sem efeito">
                 description = <"O fator não tem impacto no sintoma ou sinal.">
             >
@@ -1669,15 +1669,15 @@ terminology
                 description = <"Escala de gradação numérica representando a gravidade geral de um sintoma ou sinal.">
                 comment = <"Gravidade do sintoma pode ser graduada pelo registro individual de um score de 0 (sintoma ausente) a 10 (sintoma mais grave que o indivíduo pode imaginar). Este score pode ser representado na interface ao usuário como escala visual analógica. O elemento de dado tem ocorrências de 0..* para permitir variações como 'gravidade máxima' para ser incluída no template.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Grave">
                 description = <"A intensidade do sintoma ou sinal impede a atividade normal.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Moderada">
                 description = <"A intensidade do sintoma ou sinal causa interferência com a atividade normal.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Leve">
                 description = <"A intensidade do sintoma ou sinal não causa interferência com a atividade normal.">
             >
@@ -1752,11 +1752,11 @@ terminology
                 description = <"*Word or short phrase describing the nature of the symptom or sign. (en)">
                 comment = <"*For example: pain could be described as 'gnawing', 'burning', or 'like an electric shock'; a headache could be 'throbbing' or 'constant'. Coding with an external terminology is preferred, where possible. (en)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"*Recurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"*First occurrence (en)">
                 description = <"*This is the first ever occurrence of this symptom or sign. (en)">
             >
@@ -1768,19 +1768,19 @@ terminology
                 text = <"*Description(en)">
                 description = <"*Narrative description about the effect of the factor on the identified symptom or sign.(en)">
             >
-            ["at185"] = <
+            ["at184"] = <
                 text = <"*Resolved(en)">
                 description = <"*The severity of the symptom or sign has resolved.(en)">
             >
-            ["at184"] = <
+            ["at183"] = <
                 text = <"*Worsening(en)">
                 description = <"*The severity of the symptom or sign has worsened overall during this episode.(en)">
             >
-            ["at183"] = <
+            ["at182"] = <
                 text = <"*Unchanged(en)">
                 description = <"*The severity of the symptom or sign has not changed overall during this episode.(en)">
             >
-            ["at182"] = <
+            ["at181"] = <
                 text = <"*Improving(en)">
                 description = <"*The severity of the symptom or sign has improved overall during this episode.(en)">
             >
@@ -1789,15 +1789,15 @@ terminology
                 description = <"*Description progression of the symptom or sign at the time of reporting.(en)">
                 comment = <"*Occurrences of this data element are set to 0..* to allow multiple types of progression to be separated out in a template if desired - for example, severity or frequency.(en)">
             >
-            ["at179"] = <
+            ["at178"] = <
                 text = <"*Ongoing(en)">
                 description = <"*This symptom or sign is continuously present, effectively a single, ongoing episode.(en)">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"*Reoccurrence(en)">
                 description = <"*This is a second or subsequent discrete episode of the symptom or sign, where each previous episode has completely resolved.(en)">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"*New(en)">
                 description = <"*This is the first ever  episode of the symptom or sign.(en)">
             >
@@ -1814,11 +1814,11 @@ terminology
                 description = <"*Name of the health event, symptom, reported sign or other factor.(en)">
                 comment = <"*For example: onset of another symptom; onset of menstruation; or fall off bicycle.(en)">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"*Resolving factor(en)">
                 description = <"*Identification of factors/events associated with cessation of the symptom or sign.(en)">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"*Precipitating factor(en)">
                 description = <"*Identification of factors/events associated with onset or commencement of the symptom or sign.(en)">
             >
@@ -1841,15 +1841,15 @@ terminology
                 description = <"*The timing of the cessation of this episode of the symptom or sign.(en)">
                 comment = <"*If 'Date/time of onset' and 'Duration' are used in systems, this data element may be calculated, or alternatively, considered redundant. While partial dates are permitted, the exact date and time of resolution can be recorded, if appropriate.(en)">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"*Relieves(en)">
                 description = <"*Presence of the factor reduces the severity or impact of the symptom or sign.(en)">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"*Worsens(en)">
                 description = <"*Presence of the factor exaccerbates severity or impact of the symptom or sign.(en)">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"*No effect(en)">
                 description = <"*Presence of the factor has no impact on the symptom or sign.(en)">
             >
@@ -1926,15 +1926,15 @@ terminology
                 description = <"*Numerical rating scale representing the overall severity of the symptom or sign.(en)">
                 comment = <"*Symptom severity can be rated by the individual by recording a score from 0 (ie symptom not present) to 10.0 (ie symptom is as severe as the individual can imagine). This score can be represented in the user interface as a visual analogue scale. The data element has occurrences set to 0..* to allow for variations such as 'maximal severity' or 'average severity' to be included in a template.(en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*Severe(en)">
                 description = <"*The intensity of the symptom or sign causes prevents normal activity.(en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"*Moderate(en)">
                 description = <"*The intensity of the symptom or sign causes interference with normal activity.(en)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"*Mild(en)">
                 description = <"*The intensity of the symptom or sign does not cause interference with normal activity.(en)">
             >
@@ -2009,11 +2009,11 @@ terminology
                 description = <"Word or short phrase describing the nature of the symptom or sign.">
                 comment = <"For example: pain could be described as 'gnawing', 'burning', or 'like an electric shock'; a headache could be 'throbbing' or 'constant'. Coding with an external terminology is preferred, where possible.">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"Recurrence">
                 description = <"This is the first ever occurrence of this symptom or sign.">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"First occurrence">
                 description = <"This is the first ever occurrence of this symptom or sign.">
             >
@@ -2026,19 +2026,19 @@ terminology
                 text = <"Description">
                 description = <"Narrative description about the effect of the factor on the identified symptom or sign.">
             >
-            ["at185"] = <
+            ["at184"] = <
                 text = <"Resolved">
                 description = <"The severity of the symptom or sign has resolved.">
             >
-            ["at184"] = <
+            ["at183"] = <
                 text = <"Worsening">
                 description = <"The severity of the symptom or sign has worsened overall during this episode.">
             >
-            ["at183"] = <
+            ["at182"] = <
                 text = <"Unchanged">
                 description = <"The severity of the symptom or sign has not changed overall during this episode.">
             >
-            ["at182"] = <
+            ["at181"] = <
                 text = <"Improving">
                 description = <"The severity of the symptom or sign has improved overall during this episode.">
             >
@@ -2047,15 +2047,15 @@ terminology
                 description = <"Description progression of the symptom or sign at the time of reporting.">
                 comment = <"Occurrences of this data element are set to 0..* to allow multiple types of progression to be separated out in a template if desired - for example, severity or frequency.">
             >
-            ["at179"] = <
+            ["at178"] = <
                 text = <"Ongoing">
                 description = <"This symptom or sign is ongoing, effectively a single, continuous episode.">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to determine if this occurrence of the symptom or sign is new or ongoing.">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"New">
                 description = <"A new episode of the symptom or sign - either the first ever occurrence or a reoccurrence where the previous episode had completely resolved.">
             >
@@ -2072,11 +2072,11 @@ terminology
                 description = <"Name of the health event, symptom, reported sign or other factor.">
                 comment = <"For example: onset of another symptom; onset of menstruation; or fall off bicycle.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Resolving factor">
                 description = <"Identification of factors or events that trigger resolution or cessation of the symptom or sign.">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"Precipitating factor">
                 description = <"Identification of factors or events that trigger the onset or commencement of the symptom or sign.">
             >
@@ -2099,15 +2099,15 @@ terminology
                 description = <"The timing of the cessation of this episode of the symptom or sign.">
                 comment = <"If 'Date/time of onset' and 'Duration' are used in systems, this data element may be calculated, or alternatively, considered redundant. While partial dates are permitted, the exact date and time of resolution can be recorded, if appropriate.">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"Relieves">
                 description = <"The factor decreases the severity or impact of the symptom or sign, but does not fully resolve it.">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"Worsens">
                 description = <"The factor increases the severity or impact of the symptom or sign.">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"No effect">
                 description = <"The factor has no impact on the symptom or sign.">
             >
@@ -2184,15 +2184,15 @@ terminology
                 description = <"Numerical rating scale representing the overall severity of the symptom or sign.">
                 comment = <"Symptom severity can be rated by the individual by recording a score from 0 (ie symptom not present) to 10.0 (ie symptom is as severe as the individual can imagine). This score can be represented in the user interface as a visual analogue scale. The data element has occurrences set to 0..* to allow for variations such as 'maximal severity' or 'average severity' to be included in a template.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Severe">
                 description = <"The intensity of the symptom or sign causes prevents normal activity.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Moderate">
                 description = <"The intensity of the symptom or sign causes interference with normal activity.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Mild">
                 description = <"The intensity of the symptom or sign does not cause interference with normal activity.">
             >
@@ -2242,35 +2242,35 @@ terminology
             ["id2"] = <http://snomed.info/id/418799008>
             ["id3"] = <http://snomed.info/id/162408000>
             ["id22"] = <http://snomed.info/id/162465004>
-            ["at24"] = <http://snomed.info/id/162468002>
-            ["at25"] = <http://snomed.info/id/162469005>
-            ["at26"] = <http://snomed.info/id/162470006>
+            ["at23"] = <http://snomed.info/id/162468002>
+            ["at24"] = <http://snomed.info/id/162469005>
+            ["at25"] = <http://snomed.info/id/162470006>
             ["id29"] = <http://snomed.info/id/162442009>
         >
     >
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at24", "at25", "at26">
+            members = <"at23", "at24", "at25">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at188", "at189">
+            members = <"at187", "at188">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at177", "at179", "at178">
+            members = <"at176", "at178", "at177">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at168", "at169">
+            members = <"at167", "at168">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at160", "at157", "at159">
+            members = <"at159", "at156", "at158">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at184", "at183", "at182", "at185">
+            members = <"at183", "at182", "at181", "at184">
         >
     >

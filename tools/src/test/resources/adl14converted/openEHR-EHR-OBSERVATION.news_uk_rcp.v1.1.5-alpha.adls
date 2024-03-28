@@ -144,10 +144,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at19]}],
-                                                    [{1}, {[at20]}],
-                                                    [{2}, {[at21]}],
-                                                    [{3}, {[at22]}]
+                                                    [{0}, {[at18]}],
+                                                    [{1}, {[at19]}],
+                                                    [{2}, {[at20]}],
+                                                    [{3}, {[at21]}]
                                                 }
                                             }
                                         }
@@ -156,10 +156,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at31]}],
-                                                    [{1}, {[at32]}],
-                                                    [{2}, {[at33]}],
-                                                    [{3}, {[at34]}]
+                                                    [{0}, {[at30]}],
+                                                    [{1}, {[at31]}],
+                                                    [{2}, {[at32]}],
+                                                    [{3}, {[at33]}]
                                                 }
                                             }
                                         }
@@ -168,8 +168,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at37]}],
-                                                    [{2}, {[at38]}]
+                                                    [{0}, {[at36]}],
+                                                    [{2}, {[at37]}]
                                                 }
                                             }
                                         }
@@ -178,10 +178,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at23]}],
-                                                    [{1}, {[at24]}],
-                                                    [{2}, {[at39]}],
-                                                    [{3}, {[at40]}]
+                                                    [{0}, {[at22]}],
+                                                    [{1}, {[at23]}],
+                                                    [{2}, {[at38]}],
+                                                    [{3}, {[at39]}]
                                                 }
                                             }
                                         }
@@ -190,10 +190,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at15]}],
-                                                    [{1}, {[at16]}],
-                                                    [{2}, {[at17]}],
-                                                    [{3}, {[at18]}]
+                                                    [{0}, {[at14]}],
+                                                    [{1}, {[at15]}],
+                                                    [{2}, {[at16]}],
+                                                    [{3}, {[at17]}]
                                                 }
                                             }
                                         }
@@ -202,10 +202,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9013] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at14]}],
-                                                    [{1}, {[at13]}],
-                                                    [{2}, {[at12]}],
-                                                    [{3}, {[at11]}]
+                                                    [{0}, {[at13]}],
+                                                    [{1}, {[at12]}],
+                                                    [{2}, {[at11]}],
+                                                    [{3}, {[at10]}]
                                                 }
                                             }
                                         }
@@ -214,8 +214,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9014] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at25]}],
-                                                    [{3}, {[at26]}]
+                                                    [{0}, {[at24]}],
+                                                    [{3}, {[at25]}]
                                                 }
                                             }
                                         }
@@ -304,19 +304,19 @@ terminology
                 text = <"*Clinical risk category(en) (synthesised)">
                 description = <"*Overall category representing the urgency and scale of the clinical response required in response to the physiological parameters.(en) (synthesised)">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"*High(en)">
                 description = <"*Urgent or emergency response.(en)">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"*Medium(en)">
                 description = <"*Key threshold for urgent response.(en)">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"*Low-medium(en)">
                 description = <"*Urgent ward-based response.(en)">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"*Low(en)">
                 description = <"*Ward-based response.(en)">
             >
@@ -338,19 +338,19 @@ terminology
                 description = <"Beskrivning av faktorer och felkällor som kan påverka bedömningen av totalpoängen.">
                 comment = <"Exempelvis om patienten har KOL.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"<=35,0">
                 description = <"Kroppstemperatur lägre än eller lika med 35 grader Celsius. Sätts till 3 poäng.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <">=39,1">
                 description = <"Kroppstemperatur högre än eller lika med 39,1 grader Celcius. Sätts till 2 poäng.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Ja">
                 description = <"Patienten ges syrgastillförsel. Sätts till 2 poäng.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Nej">
                 description = <"Patienten ges ingen syrgastillförsel. Sätts till 0 poäng.">
             >
@@ -358,19 +358,19 @@ terminology
                 text = <"Syrgastillförsel">
                 description = <"Kategorier för aktiv syrgastillförsel.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"<=91">
                 description = <"Syremättnad (saturation) lägre än eller lika med 91%. Sätts till 3 poäng.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"92-93">
                 description = <"Syremättnad (saturation) mellan 92% och 93%. Sätts till 2 poäng.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"94-95">
                 description = <"Syremättnad (saturation) mellan 94% och 95%. Sätts till 1 poäng.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <">= 96">
                 description = <"Syremättnad (saturation) högre än eller lika med 96%. Sätts till 0 poäng.">
             >
@@ -384,68 +384,68 @@ terminology
                 comment = <"Vissa IT-system kan automatiskt räkna ut totalpoängen. Detta kan variera mellan olika IT-system.
     ">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*V, P or U(en)">
                 description = <"*The patient responds only to voice or pain, or is unresponsive; scored as 3 points.(en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"A">
                 description = <"Alert och vaken. Sätts till 0 poäng.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"35,1-36,0 eller 38,1-39,0">
                 description = <"Kroppstemperatur mellan 35,1 och 36,0 grader Celsius alternativt 38,1 och 39,0 grader Celsius. Sätts till 0 poäng.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"36,1-38,0">
                 description = <"Kroppstemperatur mellan 36,1 och 38,0 grader Celsius. Sätts till 0 poäng.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"<=8 eller >=25">
                 description = <"Andningsfrekvens fler än eller lika med 8 andetag per minut, alternativt färre än eller lika med 25 andetag per minut. Sätts till 3 poäng.
     ">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"21-24">
                 description = <"Andningsfrekvens mellan 21 och 24 andetag per minut. Sätts till 2 poäng.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"9-11">
                 description = <"Andningsfrekvens mellan 9 och 11 andetag per minut. Sätts till 1 poäng.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"12-20">
                 description = <"Andningsfrekvens mellan 12 och 20 andetag per minut. Sätts till 0 poäng.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"<=90 eller >= 220">
                 description = <"Systoliskt blodtryck lägre än eller lika med 90 mmHg, alternativt högre än eller lika med 220 mmHg. Sätts till 3 poäng.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"91-100">
                 description = <"Systoliskt blodtryck mellan 91 och 100 mmHg. Sätts till 2 poäng.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"101-110">
                 description = <"Systoliskt blodtryck mellan 101 och 110 mmHg. Sätts till 1 poäng.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"111-219">
                 description = <"Systoliskt blodtryck mellan 111 och 219 mmHg. Sätts till 0 poäng.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"51-90">
                 description = <"Hjärtfrekvens mellan 51 och 90 slag per minut. Sätts till 0 poäng.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"41-50 eller 91-110">
                 description = <"Hjärtfrekvens mellan 41 och 50 slag per minut, alternativt mellan 91 och 110 slag per minut. Sätts till 1 poäng.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"111-130">
                 description = <"Hjärtfrekvens mellan 111 och 130 slag per minut . Sätts till 2 poäng.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"<=40 eller >=131">
                 description = <"Hjärtfrekvens lägre än eller lika med 40 slag per minut, alternativt högre än eller lika med 131 slag per minut. Sätts till 3 poäng.">
             >
@@ -511,19 +511,19 @@ terminology
                 text = <"Riskiluokka (synthesised)">
                 description = <"Luokitus, joka kuvaa fysiologisiin parametreihin tarvittavan kliinisen vasteen kiireellisyyttä ja laajuutta.  (synthesised)">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Korkea">
                 description = <"Korkea riski">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Kohtalainen">
                 description = <"Kohtalainen riski">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Matala-kohtalainen">
                 description = <"Matala/kohtalainen riski">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Matala">
                 description = <"Matala riski">
             >
@@ -545,19 +545,19 @@ terminology
                 description = <"Kuvaus mahdollisista satunnaisista tekijöistä, jotka ovat saattaneet vaikuttaa pistemäärään.">
                 comment = <"Esimerkki: Potilaalla on keuhkoahtaumatauti.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"<=35,0">
                 description = <"Ruumiinlämpö on pienempi kuin/yhtä suuri kuin 35 celsiusastetta; annetaan 3 pistettä.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <">=39,1">
                 description = <"Ruumiinlämpö on suurempi kuin/yhtä suuri kuin 39,1 celsiusastetta; annetaan 2 pistettä.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Kyllä">
                 description = <"Potilas saa lisähappea; annetaan 2 pistettä.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Ei">
                 description = <"Potilas ei saa lisähappea; annetaan 0 pistettä.">
             >
@@ -565,19 +565,19 @@ terminology
                 text = <"Lisähappi">
                 description = <"Arvoalueluokka sen mukaan, saako potilas lisähappea.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"<=91">
                 description = <"Happisaturaatiotaso on pienempi tai yhtä suuri kuin 91 %; annetaan 3 pistettä.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"92-93">
                 description = <"Happisaturaatiotaso on 92–93 %; annetaan 2 pistettä.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"94-95">
                 description = <"Happisaturaatiotaso on 94–95 %; annetaan 1 piste.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <">= 96">
                 description = <"Happisaturaatiotaso on suurempi tai yhtä suuri kuin 96%; annetaan 0 pistettä.">
             >
@@ -590,67 +590,67 @@ terminology
                 description = <"NEWS-parametrin osa-alueiden pisteiden summa.">
                 comment = <"Kokonaispisteet voidaan luoda suorituksen aikana.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"V, P tai U">
                 description = <"Potilas reagoi vain puhutteluun, kipuun tai ärsykkeeseen; annetaan 3 pistettä.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"A">
                 description = <"Potilas on valppaana tai hereillä; annetaan 0 pistettä.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"35,1–36,0 tai 38,1–39,0">
                 description = <"Mitattu ruumiinlämpö on 35,1–36,0 celsiusastetta tai 38,1–39,0 celsiusastetta; annetaan 1 piste.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"36,1-38,0">
                 description = <"Mitattu ruumiinlämpö on 36,1–38,0 celsiusastetta; annetaan 0 pistettä.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"<= 8 tai >= 25">
                 description = <"Mitattu hengitystaajuus on pienempi tai yhtä suuri kuin 8 hengitystä minuutissa tai suurempi tai yhtä suuri kuin 25 hengitystä minuutissa; annetaan 3 pistettä.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"21-24">
                 description = <"Mitattu hengitystaajuus on 21–24 hengitystä minuutissa; annetaan 2 pistettä.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"9-11">
                 description = <"Mitattu hengitystaajuus on 9–11 hengitystä minuutissa; annetaan 1 pistettä.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"12-20">
                 description = <"Mitattu hengitystaajuus on 12–20 hengitystä minuutissa; annetaan 0 pistettä.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"<= 90 tai >= 220">
                 description = <"Mitattu systolinen verenpaine on pienempi tai yhtä suuri kuin 90 mmHg tai suurempi tai yhtä suuri kuin 220 mmHg; annetaan 3 pistettä.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"91-100">
                 description = <"Mitattu systolinen verenpaine on 91–100 mmHg; annetaan 2 pistettä.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"101-110">
                 description = <"Mitattu systolinen verenpaine on 101–110 mmHg; annetaan 1 piste.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"111-219">
                 description = <"Mitattu systolinen verenpaine on 111–219 mmHg; annetaan 0 pistettä.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"51-90">
                 description = <"Mitattu syke on 51–90 lyöntiä minuutissa; annetaan 0 pistettä.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"41–50 tai 91–110">
                 description = <"Mitattu syke on 41–50 lyöntiä minuutissa tai 91–110 lyöntiä minuutissa; annetaan 1 piste.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"111-130">
                 description = <"Mitattu syke on 111–130 lyöntiä minuutissa; annetaan 2 pistettä.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"<= 40 tai >= 131">
                 description = <"Mitattu syke on pienempi tai yhtä suuri kuin 40 lyöntiä minuutissa tai suurempi tai yhtä suuri kuin 131 lyöntiä minuutissa; annetaan 3 pistettä.">
             >
@@ -716,19 +716,19 @@ terminology
                 text = <"*Clinical risk category(en) (synthesised)">
                 description = <"*Overall category representing the urgency and scale of the clinical response required in response to the physiological parameters.(en) (synthesised)">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"*High(en)">
                 description = <"*Urgent or emergency response.(en)">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"*Medium(en)">
                 description = <"*Key threshold for urgent response.(en)">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"*Low-medium(en)">
                 description = <"*Urgent ward-based response.(en)">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"*Low(en)">
                 description = <"*Ward-based response.(en)">
             >
@@ -750,19 +750,19 @@ terminology
                 description = <"Kommentar til og registrering av faktorer som kan ha betydning for skåren.">
                 comment = <"For eksempel om pasienten har KOLS.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"≤35">
                 description = <"Kroppstemperatur målt mindre enn eller lik 35,0 grader Celcius; skåres som 3 poeng.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"≥39,1">
                 description = <"Kroppstemperatur målt større enn eller lik 39,1 grader Celcius; skåres som 2 poeng.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Ja">
                 description = <"Pasienten tilføres oksygen; skåres som 2 poeng.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Nei">
                 description = <"Pasienten tilføres ikke oksygen; skåres som 0 poeng.">
             >
@@ -770,19 +770,19 @@ terminology
                 text = <"Tilførsel av oksygen">
                 description = <"Om pasienten tilføres oksygen for å opprettholde oksygenmetningen.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"≤91">
                 description = <"Oksygenmetning målt som mindre enn eller lik 91 prosent; skåres som 3 poeng.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"92-93">
                 description = <"Oksygenmetning målt fra og med 92 til og med 93 prosent; skåres som 2 poeng.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"94-95">
                 description = <"Oksygenmetning målt fra og med 94 til og med 95 prosent; skåres som 1 poeng.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"≥96">
                 description = <"Oksygenmetning målt større enn eller lik 96 prosent; skåres som 0 poeng.">
             >
@@ -795,67 +795,67 @@ terminology
                 description = <"Summen av skår til hvert enkelt NEWS-parameter.">
                 comment = <"Totalskår vil normalt beregnes automatisk i en applikasjon.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*V, P or U(en)">
                 description = <"*The patient responds only to voice or pain, or is unresponsive; scored as 3 points.(en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"A">
                 description = <"Pasienten er helt våken; skåres som 0 poeng.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"35.1-36.0 eller 38.1-39.0">
                 description = <"Kroppstemperatur målt fra og med 35,1 til og med 36,0 grader Celsius eller fra og med 38,1 til og med 39,0 grader Celsius; skåres til 1 poeng.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"36.1-38.0">
                 description = <"Kroppstemperatur målt fra og med 36,1 til og med 38,0 grader Celsius; skåres til 0 poeng.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"≤8 eller ≥25">
                 description = <"Respirasjonsfrekvensen målt, mindre enn eller lik 8, eller større enn eller lik 25 pust per min; skåres som 3 poeng.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"21-24">
                 description = <"Respirasjonsfrekvensen målt fra og med 21 til og med 24 pust per min; skåres som 2 poeng.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"9-11">
                 description = <"Respirasjonsfrekvensen målt fra og med 9 til og med 11 pust per min; skåres som 1 poeng.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"12-20">
                 description = <"Respirasjonsfrekvensen målt fra og med 12 til og med 20 pust per min; skåres som 0 poeng.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"≤90 eller ≥220">
                 description = <"Det systoliske blodtrykket målt mindre enn eller lik 90 mmHg eller større enn eller lik 220 mmHg; skåres som 3 poeng.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"91-100">
                 description = <"Det systoliske blodtrykket målt fra og med 91 til og med 100 mmHg; skåres som 2 poeng.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"101-110">
                 description = <"Det systoliske blodtrykket målt fra og med 101 til og med 110 mmHg; skåres som 1 poeng.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"111-219">
                 description = <"Det systoliske blodtrykket målt fra og med 111 til og med 219 mmHg; skåres som 0 poeng.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"51-90">
                 description = <"Hjertefrekvensen målt fra og med 51 til og med 90 pulsslag per min; skåres som 0 poeng.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"41-50 eller 91-110">
                 description = <"Hjertefrekvensen målt fra og med 41 til og med 50 pulsslag per min eller fra og med 91 til og med 110 pulsslag per min; skåres som 1 poeng.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"111-130">
                 description = <"Hjertefrekvensen målt fra og med 111 til og med 130 pulsslag per min; skåres som 2 poeng.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"≤40 eller ≥131">
                 description = <"Hjertefrekvensen målt som mindre enn eller lik 40 pulsslag per min eller større enn eller lik 131 pulsslag per min; skåres som 3 poeng.">
             >
@@ -921,19 +921,19 @@ terminology
                 text = <"*Clinical risk category(en) (synthesised)">
                 description = <"*Overall category representing the urgency and scale of the clinical response required in response to the physiological parameters.(en) (synthesised)">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"*High(en)">
                 description = <"*Urgent or emergency response.(en)">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"*Medium(en)">
                 description = <"*Key threshold for urgent response.(en)">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"*Low-medium(en)">
                 description = <"*Urgent ward-based response.(en)">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"*Low(en)">
                 description = <"*Ward-based response.(en)">
             >
@@ -955,19 +955,19 @@ terminology
                 description = <"Descripción de cualquier factor incidental que pueda haber contribuido al puntaje.">
                 comment = <"Por ejemplo: si el paciente padece EPOC.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"<=35.0">
                 description = <"La temperatura corporal del paciente es menor o igual a 35.0 grados centígrados; recibe un puntaje de 3.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <">=39.1">
                 description = <"La temperatura corporal del paciente es mayor o igual a 39.1 grados centígrados; recibe un puntaje de 2.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Si">
                 description = <"El paciente esta recibiendo oxígeno suplementario; recibe puntaje de 2.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"No">
                 description = <"El paciente no esta recibiendo oxígeno suplementario; recibe puntaje de 0.">
             >
@@ -975,19 +975,19 @@ terminology
                 text = <"Oxígeno suplementario">
                 description = <"Rangos de categoría según el paciente recibe o no oxígeno suplementario.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"<=91">
                 description = <"La saturación de oxígeno es menor o igual a 91%; recibe un puntaje de 3.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"92-93">
                 description = <"La saturación de oxígeno se encuentra entre 92 y 93 %; recibe un puntaje de 2.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"94-95">
                 description = <"La saturación de oxígeno se encuentra entre 94 y 95 %; recibe un puntaje de 1.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <">= 96">
                 description = <"La saturación de oxígeno es mayor o igual a 96%; recibe un puntaje de 0.">
             >
@@ -1000,67 +1000,67 @@ terminology
                 description = <"LA suma totoal de todos los parámetros ordinales del NEWS.">
                 comment = <"El puntaje total puede ser obtenido en tiempo de ejecución.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*V, P or U(en)">
                 description = <"*The patient responds only to voice or pain, or is unresponsive; scored as 3 points.(en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"A">
                 description = <"El paciente se encuentra alerta o despierto; recibe puntaje de 0.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"35.1-36.0 o 38.1-39.0">
                 description = <"La temperatura corporal del paciente se encuentra entre 36.1 y 38.0 o entre 38.1 y 39.0 grados centígrados; recibe un puntaje de 1.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"36.1-38.0">
                 description = <"La temperatura corporal del paciente se encuentra entre 36.1 y 38.0 grados centígrados; recibe un puntaje de 0.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"<=8 or >=25">
                 description = <"La frecuencia respiratoria es menor o igual a 8 o mayor o igual a 25 ciclos por minuto; recibe puntaje de 3.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"21-24">
                 description = <"La frecuencia respiratoria se encuentra entre 21 y 24 ciclos por minuto; recibe puntaje de 2.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"9-11">
                 description = <"La frecuencia respiratoria se encuentra entre 9 y 11 ciclos por minuto; recibe puntaje de 1.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"12-20">
                 description = <"La frecuencia respiratoria se encuentra entre 12 y 20 ciclos por minuto; recibe puntaje de 0.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"<=90 or >= 220">
                 description = <"La tensión arterial sistólica es menor o igual a 90 o mayor o igual a 220 mmHg; recibe puntaje de 3.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"91-100">
                 description = <"La tensión arterial sistólica se encuentra entre 91 y 100 mmHg; recibe puntaje de 2.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"101-110">
                 description = <"La tensión arterial sistólica se encuentra entre 101 y 110 mmHg; recibe puntaje de 1.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"111-219">
                 description = <"La tensión arterial sistólica se encuentra entre 111 y 219 mmHg; recibe puntaje de 0.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"51-90">
                 description = <"La frecuencia cardíaca se encuentra entre 51 y 90 latidos por minuto; recibe puntaje de 0.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"41-50 o 91-110">
                 description = <"La frecuencia cardíaca se encuentra entre 41 y 50 o entre 91 y 110 latidos por minuto; recibe puntaje de 1.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"111-130">
                 description = <"La frecuencia cardíaca se encuentra entre 111 y 130 latidos por minuto; recibe puntaje de 2.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"<=40 or >=131">
                 description = <"La frecuencia cardíaca es menor o igual a 40 o mayor o igual a 131 latidos por minuto; recibe puntaje de 3.">
             >
@@ -1126,19 +1126,19 @@ terminology
                 text = <"*Clinical risk category(en) (synthesised)">
                 description = <"*Overall category representing the urgency and scale of the clinical response required in response to the physiological parameters.(en) (synthesised)">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"*High(en)">
                 description = <"*Urgent or emergency response.(en)">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"*Medium(en)">
                 description = <"*Key threshold for urgent response.(en)">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"*Low-medium(en)">
                 description = <"*Urgent ward-based response.(en)">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"*Low(en)">
                 description = <"*Ward-based response.(en)">
             >
@@ -1160,19 +1160,19 @@ terminology
                 description = <"Descrição de quaisquer fatores incidentais que podem ter contribuído para a pontuação.">
                 comment = <"Por exemplo: se o paciente tem DPOC.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"<=35.0 °C">
                 description = <"A temperatura corporal mede abaixo ou igual 35 graus Celsius. Marcar como 3 pontos.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <">=39.1 °C">
                 description = <"A temperatura corporal mede acima ou igual 39.1 graus Celsius. Marcar como 2 pontos.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Sim">
                 description = <"O paciente está recebendo oxigênio suplementar. Marcar como 2 pontos.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Não">
                 description = <"O paciente não está recebendo oxigênio suplementar. Marcar como 0 pontos.">
             >
@@ -1180,19 +1180,19 @@ terminology
                 text = <"Oxigênio suplementar">
                 description = <"Escala de categoria depende do paciente estar recebendo oxigênio suplementar.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"<=91 %">
                 description = <"O nível de saturação de oxigênio é menor ou igual a 91%. Marcar como 3 pontos.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"92-93 %">
                 description = <"O nível de saturação de oxigênio está entre 92% e 93%. Marcar como 2 pontos.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"94-95 %">
                 description = <"O nível de saturação de oxigênio está entre 94% e 95%. Marcar como 1 ponto.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"<=96 %">
                 description = <"O nível de saturação de oxigênio é maior ou igual a 96%. Marcar como 0 pontos.">
             >
@@ -1205,67 +1205,67 @@ terminology
                 description = <"A soma total de todos os parâmetros ordinais do NEWS.">
                 comment = <"Pontuação total pode ser gerada em tempo de execução.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*V, P or U(en)">
                 description = <"*The patient responds only to voice or pain, or is unresponsive; scored as 3 points.(en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"A">
                 description = <"O paciente está alerta ou acordado. Marcar como 0 ponto.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"35.1-36.0 ou 38.1-39.0 °C">
                 description = <"A temperatura corporal mede entre 35.1 e 36.0 ou entre 38.1 e 39.0 graus Celsius. Marcar como 1 ponto.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"36.1-38.0 °C">
                 description = <"A medição da temperatura do corpo é entre 36,1 e 38.0 graus Celsius. Marcar como 0 pontos.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"<=8 ou >=25 rpm">
                 description = <"A medição da frequência respiratória é menor ou igual a 8 ou maior ou igual a 25 respirações por minuto. Marcar como 3 pontos.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"21-24 rpm">
                 description = <"A medição da frequência respiratória é entre 21 e 24 respirações/minuto. Marcar como 2 pontos.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"9-11 rpm">
                 description = <"A medição da frequência respiratória é entre 9 e 11 respirações/minuto. Marcar como 1 pontos.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"12-20 rpm">
                 description = <"A medição da frequência respiratória é entre 12 e 20 respirações/minuto. Marcar como 0 pontos.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"<=90 ou >= 220 mmHg">
                 description = <"A Pressão Arterial Sistólica mede abaixo ou igual a 90 e maior ou igual a 200 mmHG. Marcar como 3 pontos.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"91-100 mmHg">
                 description = <"A Pressão Arterial Sistólica mede entre 91 e 100 mmHG. Marcar como 2 pontos.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"101-110 mmHg">
                 description = <"A Pressão Arterial Sistólica mede entre 101 e 110 mmHG. Marcar como 1 ponto.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"111-219 mmHg">
                 description = <"A Pressão Arterial Sistólica mede entre 111 e 219 mmHG. Marcar como 0 ponto.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"51-90 bpm">
                 description = <"A frequência cardíaca medida está entre 51 e 90 batimentos por minuto. Marcar como 0 ponto.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"41-50 or 91-110 bpm">
                 description = <"A frequência cardíaca medida está entre 41 e 50 ou 91 a 110 batimentos por minuto. Marcar como 1 ponto.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"111-130 bpm">
                 description = <"A frequência cardíaca medida está entre 111 e 130 batimentos por minuto. Marcar como 2 pontos.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"<=40 ou >=131 bpm">
                 description = <"A frequência cardíaca medida está menor ou igual a 40 ou maior ou igual a 131 batimentos por minuto. Marcar como 3 pontos.">
             >
@@ -1331,19 +1331,19 @@ terminology
                 text = <"Clinical risk category (synthesised)">
                 description = <"Overall category representing the urgency and scale of the clinical response required in response to the physiological parameters. (synthesised)">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"High">
                 description = <"Urgent or emergency response.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Medium">
                 description = <"Key threshold for urgent response.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Low-medium">
                 description = <"Urgent ward-based response.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Low">
                 description = <"Ward-based response.">
             >
@@ -1365,19 +1365,19 @@ terminology
                 description = <"Description of any incidental factors that may have contributed to the score.">
                 comment = <"For example: If the patient has COPD.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"<=35.0">
                 description = <"The body temperature is less than/equal to 35 degrees Celcius ; scored as 3 points.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <">=39.1">
                 description = <"The body temperature is greater than/equal to 39.1 degrees Celcius; scored as 2 points.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Yes">
                 description = <"The patient is receiving supplemental oxygen; scored as 2 points.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"No">
                 description = <"The patient is not receiving supplemental oxygen; scored as 0 points.">
             >
@@ -1385,19 +1385,19 @@ terminology
                 text = <"Supplemental oxygen">
                 description = <"Range category depending on whether the patient is receiving supplemental oxygen.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"<=91">
                 description = <"The oxygen saturation level is less than/equal to 91%; scored as 3 points.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"92-93">
                 description = <"The oxygen saturation level is between 92% and 93%; scored as 2 points.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"94-95">
                 description = <"The oxygen saturation level is between 94% and 95%; scored as 1 point.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <">= 96">
                 description = <"The oxygen saturation level is greater than/equal to 96%;scored as 0 points.">
             >
@@ -1410,67 +1410,67 @@ terminology
                 description = <"The total sum of all the NEWS parameter ordinals.">
                 comment = <"Total score may be generated at run-time.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"V, P or U">
                 description = <"The patient responds only to voice or pain, or is unresponsive; scored as 3 points.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"A">
                 description = <"The patient is alert or awake; scored as 0 points.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"35.1-36.0 or 38.1-39.0">
                 description = <"The body temperature measurement is between 35.1 and 36.0 degrees Celsius or between 38.1 and 39.0 degrees Celsius; scored as 1 point.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"36.1-38.0">
                 description = <"The body temperature measurement is between 36.1 and 38.0 degrees Celsius; scored as 0 points.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"<=8 or >=25">
                 description = <"The respiratory rate measurement is less than/equal to 8 breaths/min or greater than/equal to 25 breaths/min; scored as 3 points.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"21-24">
                 description = <"The respiratory rate measurement is between 21 and 24 breaths/min; scored as 2 points.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"9-11">
                 description = <"The respiratory rate measurement is between 9 and 11 breaths/min; scored as 1 point.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"12-20">
                 description = <"The respiratory rate measurement is between 12 and 20 breaths/min; scored as 0 points.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"<=90 or >= 220">
                 description = <"The systolic blood pressure measurement is less than/equal to 90 mmHg or greater than/equal to 220 mmHg; scored as 3 points.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"91-100">
                 description = <"The systolic blood pressure measurement is between 91 and 100 mmHg; scored as 2 points.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"101-110">
                 description = <"The systolic blood pressure measurement is between 101 and 110 mmHg; scored as 1 point.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"111-219">
                 description = <"The systolic blood pressure measurement is between 111 and 219 mmHg; scored as 0 points.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"51-90">
                 description = <"The heart rate measurement is between 51 and 90 beats/min; scored as 0 points.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"41-50 or 91-110">
                 description = <"The heart rate measurement is between 41 and 50 beats/min or between 91 and 110 beats/min; scored as 1 point.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"111-130">
                 description = <"The heart rate measurement is between 111 and 130 beats/min; scored as 2 points.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"<=40 or >=131">
                 description = <"The heart rate measurement is less than/equal to 40 beats/min or greater than/equal to 131 beats/min; scored as 3 points.">
             >
@@ -1507,34 +1507,34 @@ terminology
     value_sets = <
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at49", "at50", "at51", "at52">
+            members = <"at48", "at49", "at50", "at51">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at37", "at38">
+            members = <"at36", "at37">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at31", "at32", "at33", "at34">
+            members = <"at30", "at31", "at32", "at33">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at19", "at20", "at21", "at22">
+            members = <"at18", "at19", "at20", "at21">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at25", "at26">
+            members = <"at24", "at25">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at14", "at13", "at12", "at11">
+            members = <"at13", "at12", "at11", "at10">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at15", "at16", "at17", "at18">
+            members = <"at14", "at15", "at16", "at17">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at23", "at24", "at39", "at40">
+            members = <"at22", "at23", "at38", "at39">
         >
     >

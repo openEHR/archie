@@ -202,39 +202,39 @@ terminology
                 hl7v2_mapping = <"OBX.3">
                 fhir_mapping = <"Observation.code">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Storniert">
                 description = <"Das Testresultat ist nicht verfügbar, weil der Test nicht (vollständig) durchgeführt oder abgebrochen wurde.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Endbefund, widerrufen">
                 description = <"Das Testresultat wurde nach Endbefundung zurückgezogen.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Endbefund, ergänzt">
                 description = <"Nach Abschluss wurde der Bericht durch Hinzufügen neuer Inhalte abgeändert. Der vorhandenen Inhalte sind unverändert. Dies ist eine Unterkategorie von \"Endbefund, geändert\".">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Endbefund, geändert">
                 description = <"Der Endbefund wurde erneut modifiziert, ist vollständig und wurde durch den verantwortlichen Pathologen verifiziert. Des Weiteren haben sich die Ergebnisdaten hierdurch verändert.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Endbefund, korrigiert">
                 description = <"Der Endbefund wurde erneut modifiziert, ist vollständig und wurde durch den verantwortlichen Pathologen verifiziert. Dies ist eine Unterkategorie von \"Endbefund, geändert\".">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Endbefund">
                 description = <"Das Testresultat ist vollständig und durch eine autorisierte Person verifiziert.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Vorläufig">
                 description = <"Erste, verifizierte Resultate sind vorhanden, der Test ist aber noch nicht abgeschlossen (Sub-Kategorie von 'Unvollständig').">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Unvollständig">
                 description = <"Das Testresultat ist ein Anfangs- oder Interimswert, vorläufig oder nicht verifiziert/validiert.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Erfasst">
                 description = <"Der Test ist im Laborinformationssystem erfasst, aber noch kein Resultat verfügbar.">
             >
@@ -308,39 +308,39 @@ terminology
                 hl7v2_mapping = <"OBX.3">
                 fhir_mapping = <"Observation.code">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Kansellert">
                 description = <"Resultatet er utilgjengelig fordi analysen ikke ble påbegynt eller ferdigstilt (også kalt \"avbrutt\").">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Feilregistrert">
                 description = <"Analyseresultatet har blitt trukket tilbake etter å ha vært i status Endelig.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Tillegg">
                 description = <"Etter å ha vært satt som status \"Endelig\", har det blitt lagt nytt innhold til rapporten. Det eksisterende innholdet er uendret. Dette er en underkategori av \"Revidert\".">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Revidert">
                 description = <"Resultatet har blitt modifisert etter å ha vært i status \"Endelig\", og er komplett og verifisert av ansvarlig laboratorielege, og resultatdata er endret.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Korrigert">
                 description = <"Resultatet har blitt modifisert etter å ha vært i status \"Endelig\", og er komplett og verifisert av ansvarlig laboratorielege. Dette er en underkategori av \"Revidert\".">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Endelig">
                 description = <"Resultatet er komplett og er bekreftet av ansvarlig person.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Foreløpig">
                 description = <"Verifiserte tidlige resultater er tilgjengelige, men ikke alle resultater er endelige. Dette er en underkategori av \"Delvis\".">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Ufullstendig">
                 description = <"Dette er et delvis (dvs initalt, foreløpig eller preliminært) svar: Data i resultatet kan være ukomplett eller ubekreftet.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Registrert">
                 description = <"Analysen er registrert i laboratoriesystemet, men resultatet er ikke tilgjengelig per nå.">
             >
@@ -410,39 +410,39 @@ terminology
                 hl7v2_mapping = <"*OBX-3.1;3.2(en)">
                 fhir_mapping = <"*Observation.code(en)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Cancelado">
                 description = <"O resultado está indisponível porque o teste não foi iniciado ou não foi completado (algumas vezes chamado de \"abortado\").">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Entrada com erro">
                 description = <"O resultado do teste foi retirado após ser finalizado.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Appended(en)">
                 description = <"*Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Amended(en)">
                 description = <"*The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist, and result data has been changed.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Corrected(en)">
                 description = <"*The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist. This is a sub-category of 'Amended'.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Final">
                 description = <"O resultado final está completo e verificado por uma pessoa autorizada.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Preliminar">
                 description = <"Resultados iniciais verificados estão disponíveis, mas nem todos os resultados são definitivos. Esta é uma sub-categoria de \"Parcial\".">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Parcial">
                 description = <"Este é um resultado de teste parcial (p.e. inicial, intermediário ou preliminar): dados no resultado do teste podem estar incompletos ou não verificados.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Registrado">
                 description = <"A existência do teste é registrada no sistema de informação do laboratório, mas não há nada disponível ainda.">
             >
@@ -513,39 +513,39 @@ terminology
                 hl7v2_mapping = <"OBX.3">
                 fhir_mapping = <"Observation.code">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Cancelled">
                 description = <"The result is unavailable because the test was not started or not completed (also sometimes called 'aborted').">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Entered in error">
                 description = <"The Test Result has been withdrawn following previous Final release.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Appended">
                 description = <"Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Amended">
                 description = <"The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist, and result data has been changed.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Corrected">
                 description = <"The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist. This is a sub-category of 'Amended'.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Final">
                 description = <"The Test result is complete and verified by an authorised person.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Preliminary">
                 description = <"Verified early results are available, but not all results are final. This is a sub-category of 'Partial'.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Partial">
                 description = <"This is a partial (e.g. initial, interim or preliminary) Test Result: data in the Test Result may be incomplete or unverified.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Registered">
                 description = <"The existence of the test is registered in the Laboratory Information System, but there is nothing yet available.">
             >
@@ -593,6 +593,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at16", "at17", "at18", "at19", "at21", "at20", "at22", "at24", "at23">
+            members = <"at15", "at16", "at17", "at18", "at20", "at19", "at21", "at23", "at22">
         >
     >

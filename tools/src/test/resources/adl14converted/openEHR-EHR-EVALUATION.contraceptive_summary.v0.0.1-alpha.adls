@@ -231,31 +231,31 @@ terminology
                 text = <"Status (synthesised)">
                 description = <"Statement about current use of the specified type of contraception. (synthesised)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"Abstinence">
                 description = <"Sexual abstinence was used.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"Fertility awareness">
                 description = <"Abstinence during estimated periods of fertility.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Withdrawal">
                 description = <"The withdrawal method was used.">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Depot progestogen injection">
                 description = <"A depot injection of a progestogen was used.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Diaphragm">
                 description = <"A diaphragm was used.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Hormone implant">
                 description = <"A hormonal implant was inserted.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Never used">
                 description = <"Individual has never used the specified type of contraception.">
             >
@@ -263,7 +263,7 @@ terminology
                 text = <"Overall status">
                 description = <"Statement about current use of any type of contraception.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"IUD">
                 description = <"An intrauterine device was in situ.">
             >
@@ -289,7 +289,7 @@ terminology
                 text = <"Never used definition">
                 description = <"The applied definition for the 'Never used' value in each of the 'Status' data elements used in this archetype.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Male condom">
                 description = <"The male partner used a condom.">
             >
@@ -319,7 +319,7 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about use of the specified type of contraception, not captured in other fields.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Female sterilisation">
                 description = <"The woman was surgically sterilised.">
             >
@@ -332,31 +332,31 @@ terminology
                 text = <"Per episode">
                 description = <"Details about a discrete period of use for the specified type of contraception.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Female condom">
                 description = <"A female condom was used.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Current user">
                 description = <"Individual is a current user of the specified type of contraception.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Former user">
                 description = <"Individual has previously used the specified type of contraception but is not a current user.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Male sterilisation">
                 description = <"The woman's regular sexual partner was surgically sterilised.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Progestogen-only pill">
                 description = <"An oral contraceptive pill containing only a progestin was used.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Combination pill">
                 description = <"An oral contraceptive pill containing both an oestrogen and progestin.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"None">
                 description = <"No form of contraception was used.">
             >
@@ -431,15 +431,15 @@ terminology
                 description = <"Date when this episode commenced.">
                 comment = <"Can be a partial date, for example, only a year.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Never used">
                 description = <"Individual has never used any type of contraception.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Former user">
                 description = <"Individual has previously used contraception but is not a current user.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Current user">
                 description = <"Individual currently uses contraception.">
             >
@@ -452,14 +452,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at62", "at60", "at92">
+            members = <"at61", "at59", "at91">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at55", "at79", "at63", "at94", "at56", "at57", "at95", "at93", "at67", "at58", "at89", "at96", "at97", "at98">
+            members = <"at54", "at78", "at62", "at93", "at55", "at56", "at94", "at92", "at66", "at57", "at88", "at95", "at96", "at97">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at6", "at7">
+            members = <"at3", "at5", "at6">
         >
     >

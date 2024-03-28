@@ -344,111 +344,111 @@ terminology
                 text = <"Extension">
                 description = <"Additional details to be captured.">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"Second">
                 description = <"Second part of a Fusion Gene.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"First">
                 description = <"First part of a Fusion Gene.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Stop Codon Mutation">
                 description = <"Stop Codon Mutation.">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Silent">
                 description = <"Silent.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Nonsense">
                 description = <"Nonsense.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Missense">
                 description = <"Missense.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Insertion and Deletion">
                 description = <"An insertion/deletion in the amino acid sequence.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Insertion">
                 description = <"A insertion in the amino acid sequence.">
             >
-            ["at90"] = <
+            ["at89"] = <
                 text = <"Initiating Methionine">
                 description = <"Initiating Methionine.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Frameshift">
                 description = <"A frameshift in the amino acid sequence.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"Duplication">
                 description = <"A duplication in the amino acid sequence.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Deletion">
                 description = <"A deletion in the amino acid sequence.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Wild Type">
                 description = <"Wild Type.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Indeterminate">
                 description = <"The result is indeterminate.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"No call">
                 description = <"No data are available to confirm the presence/absence of the variant.">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Absent">
                 description = <"The target variant is absent.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Present">
                 description = <"The target variant is present.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Hemizygous">
                 description = <"Hemizygous.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Heterozygous">
                 description = <"Heterozygous.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Homozygous">
                 description = <"Homozygous.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Homoplasmic">
                 description = <"Homoplasmic.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Heteroplasmic">
                 description = <"Heteroplasmic.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Benign">
                 description = <"Benign variant.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Likely benign">
                 description = <"Likely benign variant.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Uncertain significance">
                 description = <"Variant of uncertain significance.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Likely pathogenic">
                 description = <"Likely pathogenic variant.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Pathogenic">
                 description = <"Pathogenic variant.">
             >
@@ -696,31 +696,31 @@ terminology
             ["id41"] = <http://loinc.org/id/53034-5>
             ["id51"] = <http://loinc.org/id/69548-6>
             ["id13"] = <http://loinc.org/id/48005-3>
-            ["at72"] = <http://loinc.org/id/LA6668-3>
-            ["at73"] = <http://loinc.org/id/LA26332-9>
-            ["at74"] = <http://loinc.org/id/LA26333-7>
-            ["at75"] = <http://loinc.org/id/LA26334-5>
-            ["at76"] = <http://loinc.org/id/LA6675-8>
-            ["at77"] = <http://loinc.org/id/LA6703-8>
-            ["at78"] = <http://loinc.org/id/LA6704-6>
-            ["at79"] = <http://loinc.org/id/LA6705-3>
-            ["at80"] = <http://loinc.org/id/LA6706-1>
-            ["at81"] = <http://loinc.org/id/LA6707-9>
-            ["at82"] = <http://loinc.org/id/LA9633-4>
-            ["at83"] = <http://loinc.org/id/LA9634-2>
-            ["at84"] = <http://loinc.org/id/LA18198-4>
-            ["at85"] = <http://loinc.org/id/LA11884-6>
-            ["at86"] = <http://loinc.org/id/LA9658-1>
-            ["at87"] = <http://loinc.org/id/LA6692-3>
-            ["at88"] = <http://loinc.org/id/LA6686-5>
-            ["at89"] = <http://loinc.org/id/LA6694-9>
-            ["at90"] = <http://loinc.org/id/LA6695-6>
-            ["at91"] = <http://loinc.org/id/LA6687-3>
-            ["at92"] = <http://loinc.org/id/LA9659-9>
-            ["at93"] = <http://loinc.org/id/LA6698-0>
-            ["at94"] = <http://loinc.org/id/LA6699-8>
-            ["at95"] = <http://loinc.org/id/LA6700-4>
-            ["at96"] = <http://loinc.org/id/LA6701-2>
+            ["at71"] = <http://loinc.org/id/LA6668-3>
+            ["at72"] = <http://loinc.org/id/LA26332-9>
+            ["at73"] = <http://loinc.org/id/LA26333-7>
+            ["at74"] = <http://loinc.org/id/LA26334-5>
+            ["at75"] = <http://loinc.org/id/LA6675-8>
+            ["at76"] = <http://loinc.org/id/LA6703-8>
+            ["at77"] = <http://loinc.org/id/LA6704-6>
+            ["at78"] = <http://loinc.org/id/LA6705-3>
+            ["at79"] = <http://loinc.org/id/LA6706-1>
+            ["at80"] = <http://loinc.org/id/LA6707-9>
+            ["at81"] = <http://loinc.org/id/LA9633-4>
+            ["at82"] = <http://loinc.org/id/LA9634-2>
+            ["at83"] = <http://loinc.org/id/LA18198-4>
+            ["at84"] = <http://loinc.org/id/LA11884-6>
+            ["at85"] = <http://loinc.org/id/LA9658-1>
+            ["at86"] = <http://loinc.org/id/LA6692-3>
+            ["at87"] = <http://loinc.org/id/LA6686-5>
+            ["at88"] = <http://loinc.org/id/LA6694-9>
+            ["at89"] = <http://loinc.org/id/LA6695-6>
+            ["at90"] = <http://loinc.org/id/LA6687-3>
+            ["at91"] = <http://loinc.org/id/LA9659-9>
+            ["at92"] = <http://loinc.org/id/LA6698-0>
+            ["at93"] = <http://loinc.org/id/LA6699-8>
+            ["at94"] = <http://loinc.org/id/LA6700-4>
+            ["at95"] = <http://loinc.org/id/LA6701-2>
             ["id32"] = <http://loinc.org/id/81258-6>
             ["id48"] = <http://loinc.org/id/81258-6>
         >
@@ -728,22 +728,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at97", "at98">
+            members = <"at96", "at97">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at86", "at87", "at88", "at89", "at90", "at91", "at92", "at93", "at94", "at95", "at96">
+            members = <"at85", "at86", "at87", "at88", "at89", "at90", "at91", "at92", "at93", "at94", "at95">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at82", "at83", "at84", "at85">
+            members = <"at81", "at82", "at83", "at84">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at77", "at78", "at79", "at80", "at81">
+            members = <"at76", "at77", "at78", "at79", "at80">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at72", "at73", "at74", "at75", "at76">
+            members = <"at71", "at72", "at73", "at74", "at75">
         >
     >

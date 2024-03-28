@@ -137,15 +137,15 @@ terminology
                 text = <"Estimated weight">
                 description = <"The estimated weight of the fetus on palpation.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Large for dates">
                 description = <"The size of the fetus appears larger than expected for the estimated gestation.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Normal">
                 description = <"The size of the fetus appears as expected for the estimated gestation.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Small for dates">
                 description = <"The size of the fetus appears smaller than expected for estimated gestation.">
             >
@@ -153,27 +153,27 @@ terminology
                 text = <"Relative size">
                 description = <"The relative size of the baby compared to the normal for the estimated gestation.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"5/5">
                 description = <"Fully engaged; all of the head is below the pelvic brim.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"4/5">
                 description = <"Approximately 80% of the head is below the pelvic brim.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"3/5">
                 description = <"Approximately 60% of the head is below the pelvic brim.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"2/5">
                 description = <"Approximately 40% of the head is below the pelvic brim.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"1/5">
                 description = <"Approximately 20% of the head is below the pelvic brim.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"0/5">
                 description = <"Not engaged; none of the head is below the pelvic brim.">
             >
@@ -181,15 +181,15 @@ terminology
                 text = <"Engagement estimation">
                 description = <"The estimated proportion of the presenting part which is felt above the pelvic brim.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Engaged">
                 description = <"The presenting part is engaged in the pelvis.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"At pelvic brim">
                 description = <"The presenting part is at the pelvic brim.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"High and mobile">
                 description = <"The presenting part is floating high and mobile above the pelvic brim.">
             >
@@ -197,15 +197,15 @@ terminology
                 text = <"Engagement description">
                 description = <"Description about the engagement of the fetal head in the pelvis.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Extended">
                 description = <"The fetus is extended.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Deflexed">
                 description = <"The fetus is not flexed.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Flexed">
                 description = <"The fetus is fully flexed.">
             >
@@ -213,99 +213,99 @@ terminology
                 text = <"Attitude">
                 description = <"Description of the relationship of the fetal head and limbs to the body of the fetus, determined by abdominal palpation.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Left Mento-Posterior (LMP)">
                 description = <"The fetal chin is pointing posteriorly and towards the left.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Left Mento-Anterior (LMA)">
                 description = <"The fetal chin is pointing anteriorly and towards the left.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Left Mento-Transverse (LMT)">
                 description = <"The fetal chin is pointing towards the left.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Mento-Posterior (MP)">
                 description = <"The fetal chin is pointing posteriorly, towards the sacrum.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Mento-Anterior (MA)">
                 description = <"The fetal chin is pointing anteriorly, towards the pubic symphysis.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Right Mento-Posterior (RMP)">
                 description = <"The fetal chin is pointing posteriorly and towards the right.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Right Mento-Anterior (RMA)">
                 description = <"The fetal chin is pointing anteriorly and towards the right.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Right Mento-Transverse (RMT)">
                 description = <"The fetal chin is pointing towards the right.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Left Sacro-Posterior (LSP)">
                 description = <"The fetal sacrum is pointing posteriorly and towards the left.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Left Sacro-Anterior (LSA)">
                 description = <"The fetal sacrum is pointing anteriorly and towards the left.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Left Sacro-transverse (LST)">
                 description = <"The fetal sacrum is pointing towards the left.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Sacro-Posterior (SP)">
                 description = <"The fetal sacrum is pointing posteriorly, towards the sacrum.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Sacro-Anterior (SA)">
                 description = <"The fetal sacrum is pointing anteriorly, towards the pubic symphysis.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Right Sacro-Posterior (RSP)">
                 description = <"The fetal sacrum is pointing posteriorly and towards the right.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Right Sacro-Anterior (RSA)">
                 description = <"The fetal sacrum is pointing anteriorly and towards the right.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Right Sacro-Transverse (RST)">
                 description = <"The fetal sacrum is pointing towards the right.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Left Occipito-Posterior (LOP)">
                 description = <"The fetal occiput is pointing posteriorly and towards the left.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Left Occipito-Anterior (LOA)">
                 description = <"The fetal occiput is pointing anteriorly and towards the left.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Left Occipito-Transverse (LOT)">
                 description = <"The fetal occiput is pointing towards the left. Also known as Left Occcipito-Lateral (LOL).">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Occipito-Posterior (OP)">
                 description = <"The fetal occiput is pointing posteriorly, towards the sacrum.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Occipito-Anterior (OA)">
                 description = <"The fetal occiput is pointing anteriorly, towards the pubic symphysis.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Right Occipito-Posterior (ROP)">
                 description = <"The fetal occiput is pointing posteriorly and towards the right.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Right Occipito-Anterior (ROA)">
                 description = <"The fetal occiput is pointing anteriorly and towards the right.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Right Occipito-Transverse (ROT)">
                 description = <"The fetal occiput is pointing towards the right. Also known as Right Occipito-Lateral (ROL).">
             >
@@ -313,23 +313,23 @@ terminology
                 text = <"Position">
                 description = <"Relationship between the fetal denominator and the maternal pelvis, determined by abdominal palpation.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Brow">
                 description = <"The forehead is the presenting part.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Face">
                 description = <"The face is the presenting part.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Shoulder">
                 description = <"A shoulder is the presenting part.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Breech">
                 description = <"The buttock is the presenting part.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Vertex">
                 description = <"The head is the presenting part.">
             >
@@ -337,15 +337,15 @@ terminology
                 text = <"Presentation">
                 description = <"Identification of the presenting part of the fetus, determined by abdominal palpation.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Transverse">
                 description = <"The fetal longitudinal axis is at right angles to the mother's longitudinal axis.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Oblique">
                 description = <"The fetal longitudinal axis is at an oblique angle to the mother's longitudinal axis. Sometimes also referred to as 'Unstable Lie'.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Longitudinal">
                 description = <"The fetal longitudinal axis is in alignment with the mother's longitudinal axis.">
             >
@@ -367,30 +367,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at13", "at14", "at15", "at16", "at17", "at18", "at19", "at20", "at21", "at22", "at23", "at24", "at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33", "at34", "at35", "at36">
+            members = <"at12", "at13", "at14", "at15", "at16", "at17", "at18", "at19", "at20", "at21", "at22", "at23", "at24", "at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33", "at34", "at35">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at7", "at8", "at9", "at10", "at11">
+            members = <"at6", "at7", "at8", "at9", "at10">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at3", "at4", "at5">
+            members = <"at2", "at3", "at4">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at53", "at54", "at55">
+            members = <"at52", "at53", "at54">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at46", "at47", "at48", "at49", "at50", "at51">
+            members = <"at45", "at46", "at47", "at48", "at49", "at50">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at42", "at43", "at44">
+            members = <"at41", "at42", "at43">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at38", "at39", "at40">
+            members = <"at37", "at38", "at39">
         >
     >

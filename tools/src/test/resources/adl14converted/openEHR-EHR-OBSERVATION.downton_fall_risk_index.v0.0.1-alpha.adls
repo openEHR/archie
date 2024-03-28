@@ -163,11 +163,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"*Unable(en)">
                 description = <"*Component score = 0.(en)">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"*Normal (safe without walking aids)(en)">
                 description = <"*Component score = 0.(en)">
             >
@@ -175,11 +175,11 @@ terminology
                 text = <"*Total score(en)">
                 description = <"*Sum of the individual scores assigned for each of the contributing variables.(en)">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"*Unsafe (with/without walking aids)(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"*Safe with walking aids(en)">
                 description = <"*Component score = 0.(en)">
             >
@@ -187,11 +187,11 @@ terminology
                 text = <"*Ability to walk(en)">
                 description = <"*Current ability to walk.(en)">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"*Confused(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*Oriented(en)">
                 description = <"*Component score = 0.(en)">
             >
@@ -199,15 +199,15 @@ terminology
                 text = <"*Mental state(en)">
                 description = <"*Current mental state.(en)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"*Motor impairment(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"*Hearing impairment(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Visual impairment(en)">
                 description = <"*Component score = 1.(en)">
             >
@@ -216,31 +216,31 @@ terminology
                 description = <"*Current sensory deficit(s).(en)">
                 comment = <"*This data element has multiple occurrences. If the individual is has no sensory deficits or only one type of deficity then this data element only needs to be recorded once. If the individual is has more than one type of deficit then this data element can be recorded as many times as required to capture each type of deficit.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Antidepressants(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Antiparkinsonian drugs(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Antihypertensives (other than diuretics)(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Diuretics(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Tranquilizers/sedatives(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Other medications(en)">
                 description = <"*Component score = 0.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*None(en)">
                 description = <"*Component score = 0.(en)">
             >
@@ -249,11 +249,11 @@ terminology
                 description = <"*Current use of medication.(en)">
                 comment = <"*This data element has multiple occurrences. If the individual is taking no medications or one type of medication, then this data element only needs to be recorded once. If the individual is taking more than one type of medication then this data element can be recorded as many times as required to capture each type of medication used.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Yes(en)">
                 description = <"*Component score = 1.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*No(en)">
                 description = <"*Component score = 0.(en)">
             >
@@ -296,11 +296,11 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Unable">
                 description = <"Component score = 0.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Normal (safe without walking aids)">
                 description = <"Component score = 0.">
             >
@@ -308,11 +308,11 @@ terminology
                 text = <"Total score">
                 description = <"Sum of the individual scores assigned for each of the contributing variables.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Unsafe (with/without walking aids)">
                 description = <"Component score = 1.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Safe with walking aids">
                 description = <"Component score = 0.">
             >
@@ -320,11 +320,11 @@ terminology
                 text = <"Ability to walk">
                 description = <"Current ability to walk.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Confused">
                 description = <"Component score = 1.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Oriented">
                 description = <"Component score = 0.">
             >
@@ -332,15 +332,15 @@ terminology
                 text = <"Mental state">
                 description = <"Current mental state.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Motor impairment">
                 description = <"Component score = 1.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Hearing impairment">
                 description = <"Component score = 1.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Visual impairment">
                 description = <"Component score = 1.">
             >
@@ -349,31 +349,31 @@ terminology
                 description = <"Current sensory deficit(s).">
                 comment = <"This data element has multiple occurrences. If the individual is has no sensory deficits or only one type of deficity then this data element only needs to be recorded once. If the individual is has more than one type of deficit then this data element can be recorded as many times as required to capture each type of deficit.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Antidepressants">
                 description = <"Component score = 1.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Antiparkinsonian drugs">
                 description = <"Component score = 1.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Antihypertensives (other than diuretics)">
                 description = <"Component score = 1.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Diuretics">
                 description = <"Component score = 1.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Tranquilizers/sedatives">
                 description = <"Component score = 1.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Other medications">
                 description = <"Component score = 0.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"None">
                 description = <"Component score = 0.">
             >
@@ -382,11 +382,11 @@ terminology
                 description = <"Current use of medication.">
                 comment = <"This data element has multiple occurrences. If the individual is taking no medications or one type of medication, then this data element only needs to be recorded once. If the individual is taking more than one type of medication then this data element can be recorded as many times as required to capture each type of medication used.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Yes">
                 description = <"Component score = 1.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"No">
                 description = <"Component score = 0.">
             >
@@ -407,22 +407,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at9", "at22", "at23", "at24">
+            members = <"at8", "at21", "at22", "at23">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at9", "at13", "at16", "at17", "at18", "at19", "at11">
+            members = <"at8", "at12", "at15", "at16", "at17", "at18", "at10">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7">
+            members = <"at5", "at6">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at33", "at29", "at30", "at34">
+            members = <"at32", "at28", "at29", "at33">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at26", "at27">
+            members = <"at25", "at26">
         >
     >

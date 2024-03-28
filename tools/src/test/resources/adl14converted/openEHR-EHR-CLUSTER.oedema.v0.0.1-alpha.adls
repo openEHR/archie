@@ -147,11 +147,11 @@ terminology
                 description = <"*Description of the extent of the oedema. (en)">
                 comment = <"*For example: to mid calf; or to L2 level. (en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Non-pitting (en)">
                 description = <"*No pitting of the skin on finger pressure. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Pitting (en)">
                 description = <"*Pitting of the skin on finger pressure. (en)">
             >
@@ -159,19 +159,19 @@ terminology
                 text = <"*Character (en)">
                 description = <"*">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Severe (+++) (en)">
                 description = <"*The oedema is severe. (en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Moderate (++) (en)">
                 description = <"*The oedema is moderate. (en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Mild (+) (en)">
                 description = <"*The oedema is mild. (en)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"*None (en)">
                 description = <"*No oedema is present. (en)">
             >
@@ -233,11 +233,11 @@ terminology
                 description = <"Description of the extent of the oedema.">
                 comment = <"For example: to mid calf; or to L2 level.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Non-pitting">
                 description = <"No pitting of the skin on finger pressure.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Pitting">
                 description = <"Pitting of the skin on finger pressure.">
             >
@@ -245,19 +245,19 @@ terminology
                 text = <"Character">
                 description = <"The nature of the oedema.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Severe (+++)">
                 description = <"The oedema is severe.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Moderate (++)">
                 description = <"The oedema is moderate.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Mild (+)">
                 description = <"The oedema is mild.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"None">
                 description = <"No oedema is present.">
             >
@@ -314,10 +314,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at20", "at21">
+            members = <"at19", "at20">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at15", "at16", "at17", "at18">
+            members = <"at14", "at15", "at16", "at17">
         >
     >

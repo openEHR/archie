@@ -67,16 +67,16 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9001] matches {
                                                 [value, symbol] matches {
-                                                    [{-5}, {[at15]}],
-                                                    [{-4}, {[at14]}],
-                                                    [{-3}, {[at13]}],
-                                                    [{-2}, {[at12]}],
-                                                    [{-1}, {[at11]}],
-                                                    [{0}, {[at10]}],
-                                                    [{1}, {[at9]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at7]}],
-                                                    [{4}, {[at6]}]
+                                                    [{-5}, {[at14]}],
+                                                    [{-4}, {[at13]}],
+                                                    [{-3}, {[at12]}],
+                                                    [{-2}, {[at11]}],
+                                                    [{-1}, {[at10]}],
+                                                    [{0}, {[at9]}],
+                                                    [{1}, {[at8]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at6]}],
+                                                    [{4}, {[at5]}]
                                                 }
                                             }
                                         }
@@ -97,43 +97,43 @@ terminology
                 text = <"Escala (synthesised)">
                 description = <"La escala de agitación/sedación de Richmond. (synthesised)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Sin respuesta">
                 description = <"El paciente no tiene movimientos en respuesta a estímulos verbales o físicos.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Sedación profunda">
                 description = <"El paciente tiene movimientos en respuesta a estímulos físicos.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Sedación moderada">
                 description = <"El paciente tiene movimientos en respuesta a estímulos verbales pero no realiza contacto visual.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Sedación leve">
                 description = <"El paciente tiene apertura ocular y hace contacto visual, pero no lo sostiene sostiene por mas de 10 segundos.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Somnoliento">
                 description = <"El paciente tiene apertura ocular, que sostiene por mas de 10 segundos.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Alerta y calmado">
                 description = <"Presta atención al cuidador en forma espontanea.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Inquieto">
                 description = <"Ansioso, pero sin movimientos agresivos o vigorosos.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Agitado">
                 description = <"Movimientos frecuentes y sin propósito, o lucha con el respirador.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Muy agitado">
                 description = <"Agresivo, Tira de o se quita tubos o catéteres, o exhibe compotamiento violento hacia el personal.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Combativo">
                 description = <"Abiertamente combativo o violento; peligro inmediato para el personal.">
             >
@@ -155,43 +155,43 @@ terminology
                 text = <"Scale (synthesised)">
                 description = <"The Richmond agitation/sedation scale. (synthesised)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Unarousable">
                 description = <"Patient has no response to voice or physical stimulation.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Deep sedation">
                 description = <"Patient has any movement to physical stimulation.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Moderate sedation">
                 description = <"Patient has any movement in response to voice, excluding eye contact.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Light sedation">
                 description = <"Patient has eye opening and eye contact, but this is not sustained for 10 seconds.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Drowsy">
                 description = <"Patient has eye opening and eye contact, which is sustained for more than 10 seconds.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Alert and calm">
                 description = <"Spontaneously pays attention to caregiver">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Restless">
                 description = <"	Anxious or apprehensive but movements not aggressive or vigorous.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Agitated">
                 description = <"Frequent nonpurposeful movement or patient–ventilator dyssynchrony.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Very agitated">
                 description = <"Pulls on or removes tube(s) or catheter(s) or has aggressive behavior toward staff.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Combative">
                 description = <"	Overtly combative or violent; immediate danger to staff.">
             >
@@ -212,6 +212,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at15", "at14", "at13", "at12", "at11", "at10", "at9", "at8", "at7", "at6">
+            members = <"at14", "at13", "at12", "at11", "at10", "at9", "at8", "at7", "at6", "at5">
         >
     >

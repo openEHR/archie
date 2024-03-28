@@ -268,7 +268,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9011] matches {
-                        defining_code matches {[at110]}    -- Medication recommended
+                        defining_code matches {[at109]}    -- Medication recommended
                     }
                 }
             }
@@ -280,7 +280,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9013] matches {
-                        defining_code matches {[at146]}    -- Prescription awaiting authorisation
+                        defining_code matches {[at145]}    -- Prescription awaiting authorisation
                     }
                 }
             }
@@ -292,7 +292,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9015] matches {
-                        defining_code matches {[at14]}    -- Medication course postponed
+                        defining_code matches {[at13]}    -- Medication course postponed
                     }
                 }
             }
@@ -304,7 +304,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9017] matches {
-                        defining_code matches {[at13]}    -- Medication course cancelled
+                        defining_code matches {[at12]}    -- Medication course cancelled
                     }
                 }
             }
@@ -316,7 +316,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9019] matches {
-                        defining_code matches {[at151]}    -- Prescription cancelled
+                        defining_code matches {[at150]}    -- Prescription cancelled
                     }
                 }
             }
@@ -328,7 +328,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9021] matches {
-                        defining_code matches {[at17]}    -- Medication start date/condition set
+                        defining_code matches {[at16]}    -- Medication start date/condition set
                     }
                 }
             }
@@ -340,7 +340,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9023] matches {
-                        defining_code matches {[at154]}    -- Medication authorised
+                        defining_code matches {[at153]}    -- Medication authorised
                     }
                 }
             }
@@ -352,7 +352,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9025] matches {
-                        defining_code matches {[at3]}    -- Prescription issued
+                        defining_code matches {[at2]}    -- Prescription issued
                     }
                 }
             }
@@ -364,7 +364,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9027] matches {
-                        defining_code matches {[at4]}    -- Prescription dispensed
+                        defining_code matches {[at3]}    -- Prescription dispensed
                     }
                 }
             }
@@ -376,7 +376,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9029] matches {
-                        defining_code matches {[at107]}    -- Prescription re-authorised
+                        defining_code matches {[at106]}    -- Prescription re-authorised
                     }
                 }
             }
@@ -388,7 +388,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9031] matches {
-                        defining_code matches {[at11]}    -- Prescription re-issued
+                        defining_code matches {[at10]}    -- Prescription re-issued
                     }
                 }
             }
@@ -400,7 +400,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9033] matches {
-                        defining_code matches {[at149]}    -- Medication prepared
+                        defining_code matches {[at148]}    -- Medication prepared
                     }
                 }
             }
@@ -412,7 +412,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9035] matches {
-                        defining_code matches {[at5]}    -- Medication course commenced
+                        defining_code matches {[at4]}    -- Medication course commenced
                     }
                 }
             }
@@ -424,7 +424,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9037] matches {
-                        defining_code matches {[at42]}    -- Minor change to order
+                        defining_code matches {[at41]}    -- Minor change to order
                     }
                 }
             }
@@ -436,7 +436,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9039] matches {
-                        defining_code matches {[at6]}    -- Medication reassessed
+                        defining_code matches {[at5]}    -- Medication reassessed
                     }
                 }
             }
@@ -448,7 +448,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9041] matches {
-                        defining_code matches {[at7]}    -- Dose administered
+                        defining_code matches {[at6]}    -- Dose administered
                     }
                 }
             }
@@ -460,7 +460,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9043] matches {
-                        defining_code matches {[at19]}    -- Dose administration omitted
+                        defining_code matches {[at18]}    -- Dose administration omitted
                     }
                 }
             }
@@ -472,7 +472,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9045] matches {
-                        defining_code matches {[at45]}    -- Dose administration deferred
+                        defining_code matches {[at44]}    -- Dose administration deferred
                     }
                 }
             }
@@ -484,7 +484,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9047] matches {
-                        defining_code matches {[at9]}    -- Prescription supply delayed
+                        defining_code matches {[at8]}    -- Prescription supply delayed
                     }
                 }
             }
@@ -496,7 +496,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9049] matches {
-                        defining_code matches {[at10]}    -- Administrations suspended
+                        defining_code matches {[at9]}    -- Administrations suspended
                     }
                 }
             }
@@ -508,7 +508,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9051] matches {
-                        defining_code matches {[at12]}    -- Prescription re-authorisation pending
+                        defining_code matches {[at11]}    -- Prescription re-authorisation pending
                     }
                 }
             }
@@ -520,7 +520,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9053] matches {
-                        defining_code matches {[at16]}    -- Medication course stopped
+                        defining_code matches {[at15]}    -- Medication course stopped
                     }
                 }
             }
@@ -532,7 +532,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9055] matches {
-                        defining_code matches {[at40]}    -- Major change to order
+                        defining_code matches {[at39]}    -- Major change to order
                     }
                 }
             }
@@ -544,7 +544,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9057] matches {
-                        defining_code matches {[at152]}    -- Prescription invalid or expired
+                        defining_code matches {[at151]}    -- Prescription invalid or expired
                     }
                 }
             }
@@ -556,7 +556,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9059] matches {
-                        defining_code matches {[at8]}    -- Medication course completed
+                        defining_code matches {[at7]}    -- Medication course completed
                     }
                 }
             }
@@ -568,7 +568,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9061] matches {
-                        defining_code matches {[at153]}    -- Prescription fulfilled
+                        defining_code matches {[at152]}    -- Prescription fulfilled
                     }
                 }
             }
@@ -749,7 +749,7 @@ terminology
                 text = <"Arzneimittel wurde genehmigt">
                 description = <"Das Arzneimittel ist offiziell zur Anwendung genehmigt.">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"Arzneimittel wurde genehmigt">
                 description = <"Das Arzneimittel ist offiziell zur Anwendung genehmigt.">
             >
@@ -757,7 +757,7 @@ terminology
                 text = <"Rezept wurde ausgeführt">
                 description = <"Das Rezept wurde erfolgreich ausgeführt/eingehalten.">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"Rezept wurde ausgeführt">
                 description = <"Das Rezept wurde erfolgreich ausgeführt/eingehalten.">
             >
@@ -765,7 +765,7 @@ terminology
                 text = <"Rezept ist ungültig oder abgelaufen">
                 description = <"Das Rezept ist ungültig geworden oder ist abgelaufen, ohne das es eingelöst wurde.">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"Rezept ist ungültig oder abgelaufen">
                 description = <"Das Rezept ist ungültig geworden oder ist abgelaufen, ohne das es eingelöst wurde.">
             >
@@ -773,7 +773,7 @@ terminology
                 text = <"Rezept wurde widerrufen">
                 description = <"Das Rezept wurde vor der Ausstellung widerrufen.">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"Rezept wurde widerrufen">
                 description = <"Das Rezept wurde vor der Ausstellung widerrufen.">
             >
@@ -786,7 +786,7 @@ terminology
                 text = <"Arzneimittel wurde vorbereitet">
                 description = <"Das Arzneimittel wurde zubereitet. Zum Beispiel: Zubereitung einer intravenösen Mischung.">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"Arzneimittel wurde vorbereitet">
                 description = <"Das Arzneimittel wurde zubereitet. Zum Beispiel: Zubereitung einer intravenösen Mischung.">
             >
@@ -799,7 +799,7 @@ terminology
                 text = <"Rezept wartet auf Genehmigung">
                 description = <"Der Rezeptentwurf wurde erstellt und wartet auf die Bestätigung durch einen autorisierten Arzt. Kann auch verwendet werden, wenn die Re-autorisierung gebündelt erfolgt. Dieser \"careflow_step\" hat den Status \"geplant\" oder \"aktiv\", was die Notwendigkeit widerspiegelt, sowohl Neuaufträge als auch wieder autorisierte Aufträge zu bearbeiten.">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"Rezept wartet auf Genehmigung">
                 description = <"Der Rezeptentwurf wurde erstellt und wartet auf die Bestätigung durch einen autorisierten Arzt. Kann auch verwendet werden, wenn die Re-autorisierung gebündelt erfolgt. Dieser \"careflow_step\" hat den Status \"geplant\" oder \"aktiv\", was die Notwendigkeit widerspiegelt, sowohl Neuaufträge als auch wieder autorisierte Aufträge zu bearbeiten.">
             >
@@ -826,11 +826,11 @@ terminology
                 text = <"Details zur Verabreichung">
                 description = <"Details über die Körperstelle und über die Verabreichung des Arzneimittels.">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"Substitution wurde nicht durchgeführt">
                 description = <"Obwohl es nach der Arzneimittelverordnung erlaubt gewesen wäre, wurde nicht mit einem bioäquivalenten Arzneimittel substituiert.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Substitution wurde durchgeführt">
                 description = <"Ein Arzneimittel wurde substituiert, welches bioäquivalent zu dem Angeforderten ist.">
             >
@@ -853,7 +853,7 @@ terminology
                 text = <"Empfohlene Arzneimittel">
                 description = <"Das Arzneimittel wurde empfohlen, aber es wurden keine Schritte unternommen, um die Verschreibung/Verordnung einzuleiten.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Empfohlene Arzneimittel">
                 description = <"Das Arzneimittel wurde empfohlen, aber es wurden keine Schritte unternommen, um die Verschreibung/Verordnung einzuleiten.">
             >
@@ -861,7 +861,7 @@ terminology
                 text = <"Rezept ist re-autorisiert">
                 description = <"Die ursprüngliche Arzneimittelverordnung wurde erneut genehmigt, um eine wiederholte Verschreibung oder Abgabe zu ermöglichen. In einigen Ländern, wie z.B. Deutschland, muss unter diesen Umständen ein völlig neues Rezept ausgestellt werden.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"Rezept ist re-autorisiert">
                 description = <"Die ursprüngliche Arzneimittelverordnung wurde erneut genehmigt, um eine wiederholte Verschreibung oder Abgabe zu ermöglichen. In einigen Ländern, wie z.B. Deutschland, muss unter diesen Umständen ein völlig neues Rezept ausgestellt werden.">
             >
@@ -888,7 +888,7 @@ terminology
                 text = <"Verabreichung einer Dosis wurde verschoben">
                 description = <"Die Verabreichung einer Dosis hat sich verzögert, wird aber so schnell wie möglich erfolgen.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Verabreichung einer Dosis wurde verschoben">
                 description = <"Die Verabreichung einer Dosis hat sich verzögert, wird aber so schnell wie möglich erfolgen.">
             >
@@ -901,7 +901,7 @@ terminology
                 text = <"Geringfügige Änderung der Verordnung">
                 description = <"Die Arzneimittelverordnung wurde so geändert, dass keine neue Verordnung/neues Rezept nach den lokalen klinischen Regeln ausgestellt werden muss.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Geringfügige Änderung der Verordnung">
                 description = <"Die Arzneimittelverordnung wurde so geändert, dass keine neue Verordnung/neues Rezept nach den lokalen klinischen Regeln ausgestellt werden muss.">
             >
@@ -909,7 +909,7 @@ terminology
                 text = <"Größere Änderung der Verordnung">
                 description = <"Eine große Änderung der Verordnung war erforderlich, die dazu führte, dass diese Verordnung gestoppt und ein neue Verordnung ausgestellt wurde.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Größere Änderung der Verordnung">
                 description = <"Eine große Änderung der Verordnung war erforderlich, die dazu führte, dass diese Verordnung gestoppt und ein neue Verordnung ausgestellt wurde.">
             >
@@ -942,7 +942,7 @@ terminology
                 text = <"Verabreichung einer Dosis wurde ausgelassen">
                 description = <"Eine Gabe des Arzneimittels wurde zurückgehalten und nicht gegeben. Es besteht keine Erwartung, dass sie später verabreicht wird, obwohl die nächste Dosis (falls es eine gibt) gemäß der ursprünglichen Verordnung verabreicht werden sollte.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Verabreichung einer Dosis wurde ausgelassen">
                 description = <"Eine Gabe des Arzneimittels wurde zurückgehalten und nicht gegeben. Es besteht keine Erwartung, dass sie später verabreicht wird, obwohl die nächste Dosis (falls es eine gibt) gemäß der ursprünglichen Verordnung verabreicht werden sollte.">
             >
@@ -950,7 +950,7 @@ terminology
                 text = <"Arzneimittel Startdatum/Voraussetzung">
                 description = <"Das Startdatum der Arzneimittelanwendung oder andere Startbedingungen wurden festgelegt.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Arzneimittel Startdatum/Voraussetzung">
                 description = <"Das Startdatum der Arzneimittelanwendung oder andere Startbedingungen wurden festgelegt.">
             >
@@ -958,7 +958,7 @@ terminology
                 text = <"Arzneimittelbehandlung gestoppt">
                 description = <"Die Verabreichung des Arzneimittels wurde während der Dauer der geplanten Behandlung eingestellt.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Arzneimittelbehandlung gestoppt">
                 description = <"Die Verabreichung des Arzneimittels wurde während der Dauer der geplanten Behandlung eingestellt.">
             >
@@ -966,7 +966,7 @@ terminology
                 text = <"Medikamentenbehanlung wurde verschoben">
                 description = <"Die geplante Medikamentenbehanlung wurde vor der Verabreichung verschoben.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Medikamentenbehanlung wurde verschoben">
                 description = <"Die geplante Medikamentenbehanlung wurde vor der Verabreichung verschoben.">
             >
@@ -974,7 +974,7 @@ terminology
                 text = <"Arzneimittelbehanlung wurde abgesagt">
                 description = <"Die geplante Arzneimittelbehanlung wurde vor der Verabreichung abgesagt.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Arzneimittelbehanlung wurde abgesagt">
                 description = <"Die geplante Arzneimittelbehanlung wurde vor der Verabreichung abgesagt.">
             >
@@ -982,7 +982,7 @@ terminology
                 text = <"Re-Autorisierug des Rezepts ausstehend">
                 description = <"Die Ausstellung des Rezeptes wartet auf die erneute Re-Autorisierung durch einen Arzt.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Re-Autorisierug des Rezepts ausstehend">
                 description = <"Die Ausstellung des Rezeptes wartet auf die erneute Re-Autorisierung durch einen Arzt.">
             >
@@ -990,7 +990,7 @@ terminology
                 text = <"Rezept neu ausgestellt">
                 description = <"Ein Rezept wurde für eine vorhandene Arzneimittelverordnung neu ausgestellt.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Rezept neu ausgestellt">
                 description = <"Ein Rezept wurde für eine vorhandene Arzneimittelverordnung neu ausgestellt.">
             >
@@ -998,7 +998,7 @@ terminology
                 text = <"Verabreichung wurde ausgesetzt">
                 description = <"Die Verabreichung des Arzneimittels wurde bis zum Erhalt weiterer Informationen ausgesetzt. Es sollten keine weiteren Dosen, bis zur Bekanntgabe des neuen Startdatums oder bis die Bedingungen erfüllt sind, verabreicht werden. Wenn Sie das Datum/Bedingungen für den Neustart nach dem Aussetzen festlegen, sollte ein \"suspend_step\" von der ausgesetzten Gabe und zurück erfolgen.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Verabreichung wurde ausgesetzt">
                 description = <"Die Verabreichung des Arzneimittels wurde bis zum Erhalt weiterer Informationen ausgesetzt. Es sollten keine weiteren Dosen, bis zur Bekanntgabe des neuen Startdatums oder bis die Bedingungen erfüllt sind, verabreicht werden. Wenn Sie das Datum/Bedingungen für den Neustart nach dem Aussetzen festlegen, sollte ein \"suspend_step\" von der ausgesetzten Gabe und zurück erfolgen.">
             >
@@ -1006,7 +1006,7 @@ terminology
                 text = <"Verzögerung der Rezeptabgabe">
                 description = <"Das Rezept wurde aufgrund einer technischen oder pharmazeutischen Störung nicht ausgegeben.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Verzögerung der Rezeptabgabe">
                 description = <"Das Rezept wurde aufgrund einer technischen oder pharmazeutischen Störung nicht ausgegeben.">
             >
@@ -1014,7 +1014,7 @@ terminology
                 text = <"Arzneimittelbehandlung ist abgeschlossen">
                 description = <"Die medikamentöse Behandlung wurde, wie geplant, beendet.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Arzneimittelbehandlung ist abgeschlossen">
                 description = <"Die medikamentöse Behandlung wurde, wie geplant, beendet.">
             >
@@ -1022,7 +1022,7 @@ terminology
                 text = <"Dosis wurde verabreicht">
                 description = <"Eine einzelne Verabreichung des Arzneimittels ist erfolgt.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Dosis wurde verabreicht">
                 description = <"Eine einzelne Verabreichung des Arzneimittels ist erfolgt.">
             >
@@ -1030,7 +1030,7 @@ terminology
                 text = <"Arzneimittel wurde neu bewertet">
                 description = <"Das individuelle Arzneimittel wurde neu bewertet, beispielsweise ob das Arzneimittel noch angewendet werden soll. Eine Überprüfung der Arzneimittelliste soll nicht durchgeführt werden.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Arzneimittel wurde neu bewertet">
                 description = <"Das individuelle Arzneimittel wurde neu bewertet, beispielsweise ob das Arzneimittel noch angewendet werden soll. Eine Überprüfung der Arzneimittelliste soll nicht durchgeführt werden.">
             >
@@ -1038,7 +1038,7 @@ terminology
                 text = <"Arzneimittelbehandlung hat begonnen">
                 description = <"Das Arzneimittel wurde zum ersten Mal von dem Patienten eingenommen oder verabreicht. Obwohl in einigen Situation die erste von mehreren Anwendungen errechenbar ist, kann es in der Primärversorgung sein, dass genaue Verabreichungsdaten nicht ohne weiteres verfügbar sind.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Arzneimittelbehandlung hat begonnen">
                 description = <"Das Arzneimittel wurde zum ersten Mal von dem Patienten eingenommen oder verabreicht. Obwohl in einigen Situation die erste von mehreren Anwendungen errechenbar ist, kann es in der Primärversorgung sein, dass genaue Verabreichungsdaten nicht ohne weiteres verfügbar sind.">
             >
@@ -1046,7 +1046,7 @@ terminology
                 text = <"Rezept wurde ausgegeben/eingelöst">
                 description = <"Das verordnete Arzneimittel ist an einen Patienten ausgegeben worden, z.B. von einer Apotheke.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Rezept wurde ausgegeben/eingelöst">
                 description = <"Das verordnete Arzneimittel ist an einen Patienten ausgegeben worden, z.B. von einer Apotheke.">
             >
@@ -1054,7 +1054,7 @@ terminology
                 text = <"Rezept ausgestellt">
                 description = <"Für das Arzneimittel wurde ein Rezept ausgestellt.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Rezept ausgestellt">
                 description = <"Für das Arzneimittel wurde ein Rezept ausgestellt.">
             >
@@ -1119,7 +1119,7 @@ terminology
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
@@ -1127,7 +1127,7 @@ terminology
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
@@ -1135,7 +1135,7 @@ terminology
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
@@ -1143,7 +1143,7 @@ terminology
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
@@ -1156,7 +1156,7 @@ terminology
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
@@ -1169,7 +1169,7 @@ terminology
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
@@ -1197,11 +1197,11 @@ terminology
                 text = <"*Administration details(en)">
                 description = <"*Details of body site and administration of the medication.(en)">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"*Substitution not performed(en)">
                 description = <"*Although allowed by the medication order a bioequvalent medication was not substituted.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*Substitution performed(en)">
                 description = <"*A medication was substituted which is bioequivalent to that ordered.(en)">
             >
@@ -1224,7 +1224,7 @@ terminology
                 text = <"*Medication recommended(en)">
                 description = <"*The medication has been recommended but no steps have been taken to initiate prescribing.(en)">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"*Medication recommended(en)">
                 description = <"*The medication has been recommended but no steps have been taken to initiate prescribing.(en)">
             >
@@ -1232,7 +1232,7 @@ terminology
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
@@ -1258,7 +1258,7 @@ terminology
                 text = <"*Dose administration deferred(en)">
                 description = <"*Administration of a dose of mediciation has been delayed but is expected to be given as soon as possible.(en)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"*Dose administration deferred(en)">
                 description = <"*Administration of a dose of mediciation has been delayed but is expected to be given as soon as possible.(en)">
             >
@@ -1271,7 +1271,7 @@ terminology
                 text = <"*Minor change to order(en)">
                 description = <"*The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.(en)">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"*Minor change to order(en)">
                 description = <"*The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.(en)">
             >
@@ -1279,7 +1279,7 @@ terminology
                 text = <"*Major change to order.(en)">
                 description = <"*A major change to the order was required, resulting in this order being stopped and a replacement order being started.(en)">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"*Major change to order.(en)">
                 description = <"*A major change to the order was required, resulting in this order being stopped and a replacement order being started.(en)">
             >
@@ -1312,7 +1312,7 @@ terminology
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
@@ -1320,7 +1320,7 @@ terminology
                 text = <"*Medication start date/condition set(en)">
                 description = <"*The time to start this medication, or other starting condition, has been set.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Medication start date/condition set(en)">
                 description = <"*The time to start this medication, or other starting condition, has been set.(en)">
             >
@@ -1328,7 +1328,7 @@ terminology
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
@@ -1336,7 +1336,7 @@ terminology
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
@@ -1344,7 +1344,7 @@ terminology
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
@@ -1352,7 +1352,7 @@ terminology
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
@@ -1360,7 +1360,7 @@ terminology
                 text = <"*Prescription re-issued(en)">
                 description = <"*A prescription token has been re-issued for an existing medication order.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Prescription re-issued(en)">
                 description = <"*A prescription token has been re-issued for an existing medication order.(en)">
             >
@@ -1368,7 +1368,7 @@ terminology
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
@@ -1376,7 +1376,7 @@ terminology
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
@@ -1384,7 +1384,7 @@ terminology
                 text = <"*Medication course completed(en)">
                 description = <"*The medication course has been completed as planned.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Medication course completed(en)">
                 description = <"*The medication course has been completed as planned.(en)">
             >
@@ -1392,7 +1392,7 @@ terminology
                 text = <"*Dose administered(en)">
                 description = <"*A single administration of the medication has taken place.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Dose administered(en)">
                 description = <"*A single administration of the medication has taken place.(en)">
             >
@@ -1400,7 +1400,7 @@ terminology
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
@@ -1408,7 +1408,7 @@ terminology
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
@@ -1416,7 +1416,7 @@ terminology
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
@@ -1424,7 +1424,7 @@ terminology
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
@@ -1489,7 +1489,7 @@ terminology
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
@@ -1497,7 +1497,7 @@ terminology
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
@@ -1505,7 +1505,7 @@ terminology
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
@@ -1513,7 +1513,7 @@ terminology
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
@@ -1526,7 +1526,7 @@ terminology
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
@@ -1539,7 +1539,7 @@ terminology
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
@@ -1567,11 +1567,11 @@ terminology
                 text = <"*Administration details(en)">
                 description = <"*Details of body site and administration of the medication.(en)">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"*Substitution not performed(en)">
                 description = <"*Although allowed by the medication order a bioequvalent medication was not substituted.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*Substitution performed(en)">
                 description = <"*A medication was substituted which is bioequivalent to that ordered.(en)">
             >
@@ -1594,7 +1594,7 @@ terminology
                 text = <"*Medication recommended(en)">
                 description = <"*The medication has been recommended but no steps have been taken to initiate prescribing.(en)">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"*Medication recommended(en)">
                 description = <"*The medication has been recommended but no steps have been taken to initiate prescribing.(en)">
             >
@@ -1602,7 +1602,7 @@ terminology
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
@@ -1628,7 +1628,7 @@ terminology
                 text = <"*Dose administration deferred(en)">
                 description = <"*Administration of a dose of mediciation has been delayed but is expected to be given as soon as possible.(en)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"*Dose administration deferred(en)">
                 description = <"*Administration of a dose of mediciation has been delayed but is expected to be given as soon as possible.(en)">
             >
@@ -1641,7 +1641,7 @@ terminology
                 text = <"*Minor change to order(en)">
                 description = <"*The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.(en)">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"*Minor change to order(en)">
                 description = <"*The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.(en)">
             >
@@ -1649,7 +1649,7 @@ terminology
                 text = <"*Major change to order.(en)">
                 description = <"*A major change to the order was required, resulting in this order being stopped and a replacement order being started.(en)">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"*Major change to order.(en)">
                 description = <"*A major change to the order was required, resulting in this order being stopped and a replacement order being started.(en)">
             >
@@ -1682,7 +1682,7 @@ terminology
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
@@ -1690,7 +1690,7 @@ terminology
                 text = <"*Medication start date/condition set(en)">
                 description = <"*The time to start this medication, or other starting condition, has been set.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Medication start date/condition set(en)">
                 description = <"*The time to start this medication, or other starting condition, has been set.(en)">
             >
@@ -1698,7 +1698,7 @@ terminology
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
@@ -1706,7 +1706,7 @@ terminology
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
@@ -1714,7 +1714,7 @@ terminology
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
@@ -1722,7 +1722,7 @@ terminology
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
@@ -1730,7 +1730,7 @@ terminology
                 text = <"*Prescription re-issued(en)">
                 description = <"*A prescription token has been re-issued for an existing medication order.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Prescription re-issued(en)">
                 description = <"*A prescription token has been re-issued for an existing medication order.(en)">
             >
@@ -1738,7 +1738,7 @@ terminology
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
@@ -1746,7 +1746,7 @@ terminology
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
@@ -1754,7 +1754,7 @@ terminology
                 text = <"*Medication course completed(en)">
                 description = <"*The medication course has been completed as planned.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Medication course completed(en)">
                 description = <"*The medication course has been completed as planned.(en)">
             >
@@ -1762,7 +1762,7 @@ terminology
                 text = <"*Dose administered(en)">
                 description = <"*A single administration of the medication has taken place.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Dose administered(en)">
                 description = <"*A single administration of the medication has taken place.(en)">
             >
@@ -1770,7 +1770,7 @@ terminology
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
@@ -1778,7 +1778,7 @@ terminology
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
@@ -1786,7 +1786,7 @@ terminology
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
@@ -1794,7 +1794,7 @@ terminology
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
@@ -1859,7 +1859,7 @@ terminology
                 text = <"Legemiddel autorisert">
                 description = <"Legemiddelet er formelt autorisert for bruk.">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"Legemiddel autorisert">
                 description = <"Legemiddelet er formelt autorisert for bruk.">
             >
@@ -1867,7 +1867,7 @@ terminology
                 text = <"Resept ferdig ekspedert">
                 description = <"Resepten er ferdig ekspedert.">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"Resept ferdig ekspedert">
                 description = <"Resepten er ferdig ekspedert.">
             >
@@ -1875,7 +1875,7 @@ terminology
                 text = <"Resept ugyldig eller utgått">
                 description = <"Resepten er ugyldiggjort eller har utgått før den er ferdig ekspedert.">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"Resept ugyldig eller utgått">
                 description = <"Resepten er ugyldiggjort eller har utgått før den er ferdig ekspedert.">
             >
@@ -1883,7 +1883,7 @@ terminology
                 text = <"Resept avbrutt">
                 description = <"Resepten ble avbrutt før den ble utstedt.">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"Resept avbrutt">
                 description = <"Resepten ble avbrutt før den ble utstedt.">
             >
@@ -1896,7 +1896,7 @@ terminology
                 text = <"Legemiddel istandgjort">
                 description = <"Legemiddelet er fysisk istandgjort, for eksempel istandgjøring av en intravenøs blanding.">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"Legemiddel istandgjort">
                 description = <"Legemiddelet er fysisk istandgjort, for eksempel istandgjøring av en intravenøs blanding.">
             >
@@ -1909,7 +1909,7 @@ terminology
                 text = <"Resept avventer autorisering">
                 description = <"Det er forberedt et utkast for en resept, og denne avventer godkjenning av en autorisert kliniker. Kan brukes der reseptutstedelse utføres satsvis. Dette prosesstrinnet kan brukes enten med status \"planned\" eller \"active\", for å underbygge behovet for å håndtere både nye og reautoriserte ordinasjoner.">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"Resept avventer autorisering">
                 description = <"Det er forberedt et utkast for en resept, og denne avventer godkjenning av en autorisert kliniker. Kan brukes der reseptutstedelse utføres satsvis. Dette prosesstrinnet kan brukes enten med status \"planned\" eller \"active\", for å underbygge behovet for å håndtere både nye og reautoriserte ordinasjoner.">
             >
@@ -1936,11 +1936,11 @@ terminology
                 text = <"Administreringsdetaljer">
                 description = <"Detaljer om administrering av legemiddelet.">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"Generisk bytte ikke utført">
                 description = <"Det ordinerte produktet ble ikke byttet til et bioekvivalent produkt, til tross for at dette var tillatt i ordineringen.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Generisk bytte utført">
                 description = <"Det ordinerte produktet ble byttet til et bioekvivalent produkt.">
             >
@@ -1963,7 +1963,7 @@ terminology
                 text = <"Anbefalt medisinering">
                 description = <"Medisineringen er anbefalt, men ordinering er ikke iverksatt.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Anbefalt medisinering">
                 description = <"Medisineringen er anbefalt, men ordinering er ikke iverksatt.">
             >
@@ -1971,7 +1971,7 @@ terminology
                 text = <"Resept reautorisert">
                 description = <"En repeterende resept har blitt reautorisert. I noen myndighetsområder må det i disse tilfellene utstedes en helt ny resept.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"Resept reautorisert">
                 description = <"En repeterende resept har blitt reautorisert. I noen myndighetsområder må det i disse tilfellene utstedes en helt ny resept.">
             >
@@ -1998,7 +1998,7 @@ terminology
                 text = <"Administrering utsatt">
                 description = <"Administrering av legemiddelet er utsatt/forsinket, men legemiddelet forventes administrert så raskt som mulig.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Administrering utsatt">
                 description = <"Administrering av legemiddelet er utsatt/forsinket, men legemiddelet forventes administrert så raskt som mulig.">
             >
@@ -2011,7 +2011,7 @@ terminology
                 text = <"Mindre endring av ordinering">
                 description = <"Legemiddelordineringen er endret på en slik måte at det etter lokale retningslinjer ikke er behov for en ny ordinering. For eksempel endring av produkt fra tabletter til kapsler.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Mindre endring av ordinering">
                 description = <"Legemiddelordineringen er endret på en slik måte at det etter lokale retningslinjer ikke er behov for en ny ordinering. For eksempel endring av produkt fra tabletter til kapsler.">
             >
@@ -2019,7 +2019,7 @@ terminology
                 text = <"Omfattende endring av ordinering">
                 description = <"Det er utført en større endring i ordineringen, denne ordineringen er stoppet og en ny ordinering er igangsatt.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Omfattende endring av ordinering">
                 description = <"Det er utført en større endring i ordineringen, denne ordineringen er stoppet og en ny ordinering er igangsatt.">
             >
@@ -2051,7 +2051,7 @@ terminology
                 text = <"Enkeltdose ikke administrert">
                 description = <"En enkeltdose er holdt tilbake og ikke administrert (\"nullet\"). Det er ingen forventing om at den aktuelle dosen skal gis på et senere tidspunkt, men neste dose administreres i henhold til ordineringen.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Enkeltdose ikke administrert">
                 description = <"En enkeltdose er holdt tilbake og ikke administrert (\"nullet\"). Det er ingen forventing om at den aktuelle dosen skal gis på et senere tidspunkt, men neste dose administreres i henhold til ordineringen.">
             >
@@ -2059,7 +2059,7 @@ terminology
                 text = <"Oppstartsdato satt">
                 description = <"Tidspunktet eller vilkår for å starte medisineringen er satt.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Oppstartsdato satt">
                 description = <"Tidspunktet eller vilkår for å starte medisineringen er satt.">
             >
@@ -2067,7 +2067,7 @@ terminology
                 text = <"Legemiddel seponert">
                 description = <"Legemiddelet er seponert etter at første dose er administrert, men før planlagt fullførelse av ordineringen.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Legemiddel seponert">
                 description = <"Legemiddelet er seponert etter at første dose er administrert, men før planlagt fullførelse av ordineringen.">
             >
@@ -2075,7 +2075,7 @@ terminology
                 text = <"Planlagt medisinering satt på vent">
                 description = <"Den planlagte medisineringen er satt på vent før den første dosen er administrert.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Planlagt medisinering satt på vent">
                 description = <"Den planlagte medisineringen er satt på vent før den første dosen er administrert.">
             >
@@ -2083,7 +2083,7 @@ terminology
                 text = <"Planlagt medisinering avbrutt">
                 description = <"Den planlagte medisineringen er avbrutt før den første dosen er administrert.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Planlagt medisinering avbrutt">
                 description = <"Den planlagte medisineringen er avbrutt før den første dosen er administrert.">
             >
@@ -2091,7 +2091,7 @@ terminology
                 text = <"Reautorisering av resept satt på vent">
                 description = <"Utstedelse av resept avventer reautorisering av en kliniker. I noen myndighetsområder kan ikke resepter reautoriseres, og det må i disse tilfellene utstedes en helt ny resept.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Reautorisering av resept satt på vent">
                 description = <"Utstedelse av resept avventer reautorisering av en kliniker. I noen myndighetsområder kan ikke resepter reautoriseres, og det må i disse tilfellene utstedes en helt ny resept.">
             >
@@ -2099,7 +2099,7 @@ terminology
                 text = <"Resept fornyet">
                 description = <"Legemiddelet har fått en fornyet resept for den eksisterende ordineringen.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Resept fornyet">
                 description = <"Legemiddelet har fått en fornyet resept for den eksisterende ordineringen.">
             >
@@ -2107,7 +2107,7 @@ terminology
                 text = <"Administrering satt på vent">
                 description = <"Administrering av legemiddelet er satt på vent inntil videre, ordinasjonen er \"nullet\". Ingen ytterligere doser gis før kriterium eller dato for å sette medisineringen i gang igjen er møtt. Når dato eller kriterium for å ny oppstart settes, bør det gjøres et 'suspend_step' tilbake til \"Administrering satt på vent\".">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Administrering satt på vent">
                 description = <"Administrering av legemiddelet er satt på vent inntil videre, ordinasjonen er \"nullet\". Ingen ytterligere doser gis før kriterium eller dato for å sette medisineringen i gang igjen er møtt. Når dato eller kriterium for å ny oppstart settes, bør det gjøres et 'suspend_step' tilbake til \"Administrering satt på vent\".">
             >
@@ -2115,7 +2115,7 @@ terminology
                 text = <"Forsinket levering">
                 description = <"Legemiddelet er ikke utdelt fordi det ikke er på lager enda.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Forsinket levering">
                 description = <"Legemiddelet er ikke utdelt fordi det ikke er på lager enda.">
             >
@@ -2123,7 +2123,7 @@ terminology
                 text = <"Medisinering fullført">
                 description = <"Medisineringen er fullført som ordinert.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Medisinering fullført">
                 description = <"Medisineringen er fullført som ordinert.">
             >
@@ -2131,7 +2131,7 @@ terminology
                 text = <"Legemiddel administrert">
                 description = <"En enkelt administrering av legemiddelet er utført.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Legemiddel administrert">
                 description = <"En enkelt administrering av legemiddelet er utført.">
             >
@@ -2139,7 +2139,7 @@ terminology
                 text = <"Legemiddel revurdert">
                 description = <"Legemiddelet er revurdert, for eksempel for hvorvidt det fortsatt skal tas. Dette er ikke ment å omfatte gjennomgang av en legemiddelliste.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Legemiddel revurdert">
                 description = <"Legemiddelet er revurdert, for eksempel for hvorvidt det fortsatt skal tas. Dette er ikke ment å omfatte gjennomgang av en legemiddelliste.">
             >
@@ -2147,7 +2147,7 @@ terminology
                 text = <"Medisinering startet">
                 description = <"Legemiddelet er inntatt av eller administrert til pasienten for første gang. Selv om dette i noen bruksområder som f.eks. sykehus kan utledes fra den første av en rekke administreringer, må det i andre bruksområder som f.eks. allmennpraksis spesifiseres spesifikt siden administreringer ikke dokumenteres på samme måte.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Medisinering startet">
                 description = <"Legemiddelet er inntatt av eller administrert til pasienten for første gang. Selv om dette i noen bruksområder som f.eks. sykehus kan utledes fra den første av en rekke administreringer, må det i andre bruksområder som f.eks. allmennpraksis spesifiseres spesifikt siden administreringer ikke dokumenteres på samme måte.">
             >
@@ -2155,7 +2155,7 @@ terminology
                 text = <"Resept ekspedert">
                 description = <"Legemiddelet er utdelt, for eksempel fra et apotek til pasienten.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Resept ekspedert">
                 description = <"Legemiddelet er utdelt, for eksempel fra et apotek til pasienten.">
             >
@@ -2163,7 +2163,7 @@ terminology
                 text = <"Resept utstedt">
                 description = <"Det er utstedt en resept for legemiddelet.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Resept utstedt">
                 description = <"Det er utstedt en resept for legemiddelet.">
             >
@@ -2228,7 +2228,7 @@ terminology
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
@@ -2236,7 +2236,7 @@ terminology
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
@@ -2244,7 +2244,7 @@ terminology
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
@@ -2252,7 +2252,7 @@ terminology
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
@@ -2265,7 +2265,7 @@ terminology
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
@@ -2278,7 +2278,7 @@ terminology
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
@@ -2306,11 +2306,11 @@ terminology
                 text = <"*Administration details(en)">
                 description = <"*Details of body site and administration of the medication.(en)">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"*Substitution not performed(en)">
                 description = <"*Although allowed by the medication order a bioequvalent medication was not substituted.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*Substitution performed(en)">
                 description = <"*A medication was substituted which is bioequivalent to that ordered.(en)">
             >
@@ -2333,7 +2333,7 @@ terminology
                 text = <"Medicamento recomendado">
                 description = <"Medicamento foi recomendado mas nenhuma ação foi realizada para iniciar a prescrição.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Medicamento recomendado">
                 description = <"Medicamento foi recomendado mas nenhuma ação foi realizada para iniciar a prescrição.">
             >
@@ -2341,7 +2341,7 @@ terminology
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
@@ -2368,7 +2368,7 @@ terminology
                 text = <"Administração da dose adiada">
                 description = <"A administração de uma dose de medicamento foi adiada, mas espera-se que seja administrada o mais rápido possível.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Administração da dose adiada">
                 description = <"A administração de uma dose de medicamento foi adiada, mas espera-se que seja administrada o mais rápido possível.">
             >
@@ -2381,7 +2381,7 @@ terminology
                 text = <"Prescrição com mínimas mudanças">
                 description = <"A prescrição foi alterada de uma forma que não exige uma nova liberação da prescrição, de acordo com as regras clínicas locais.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Prescrição com mínimas mudanças">
                 description = <"A prescrição foi alterada de uma forma que não exige uma nova liberação da prescrição, de acordo com as regras clínicas locais.">
             >
@@ -2389,7 +2389,7 @@ terminology
                 text = <"Alteração significativa na prescrição">
                 description = <"Foi necessário realizar uma alteração significativa na prescrição, resultando no cancelamento da atual e a substituição por uma nova prescrição.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Alteração significativa na prescrição">
                 description = <"Foi necessário realizar uma alteração significativa na prescrição, resultando no cancelamento da atual e a substituição por uma nova prescrição.">
             >
@@ -2422,7 +2422,7 @@ terminology
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
@@ -2430,7 +2430,7 @@ terminology
                 text = <"Data do início/ Condição de início">
                 description = <"A hora de começar a medicação, ou outra condição para iniciar o tratamento foi estabelecida.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Data do início/ Condição de início">
                 description = <"A hora de começar a medicação, ou outra condição para iniciar o tratamento foi estabelecida.">
             >
@@ -2438,7 +2438,7 @@ terminology
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
@@ -2446,7 +2446,7 @@ terminology
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
@@ -2454,7 +2454,7 @@ terminology
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
@@ -2462,7 +2462,7 @@ terminology
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
@@ -2470,7 +2470,7 @@ terminology
                 text = <"Nova liberação de prescrição">
                 description = <"Nova liberação de prescrição já existente.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Nova liberação de prescrição">
                 description = <"Nova liberação de prescrição já existente.">
             >
@@ -2478,7 +2478,7 @@ terminology
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
@@ -2486,7 +2486,7 @@ terminology
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
@@ -2494,7 +2494,7 @@ terminology
                 text = <"Final do tratamento medicamentoso">
                 description = <"O tratamento medicamentoso foi finalizado conforme previsto.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Final do tratamento medicamentoso">
                 description = <"O tratamento medicamentoso foi finalizado conforme previsto.">
             >
@@ -2502,7 +2502,7 @@ terminology
                 text = <"Dose administrada">
                 description = <"Dose do medicamento foi administrada.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Dose administrada">
                 description = <"Dose do medicamento foi administrada.">
             >
@@ -2510,7 +2510,7 @@ terminology
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
@@ -2518,7 +2518,7 @@ terminology
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
@@ -2526,7 +2526,7 @@ terminology
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
@@ -2534,7 +2534,7 @@ terminology
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
@@ -2599,7 +2599,7 @@ terminology
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
@@ -2607,7 +2607,7 @@ terminology
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
@@ -2615,7 +2615,7 @@ terminology
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
@@ -2623,7 +2623,7 @@ terminology
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
@@ -2636,7 +2636,7 @@ terminology
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
@@ -2649,7 +2649,7 @@ terminology
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
@@ -2677,11 +2677,11 @@ terminology
                 text = <"*Administration details(en)">
                 description = <"*Details of body site and administration of the medication.(en)">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"*Substitution not performed(en)">
                 description = <"*Although allowed by the medication order a bioequvalent medication was not substituted.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*Substitution performed(en)">
                 description = <"*A medication was substituted which is bioequivalent to that ordered.(en)">
             >
@@ -2704,7 +2704,7 @@ terminology
                 text = <"*Medication recommended(en)">
                 description = <"*The medication has been recommended but no steps have been taken to initiate prescribing.(en)">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"*Medication recommended(en)">
                 description = <"*The medication has been recommended but no steps have been taken to initiate prescribing.(en)">
             >
@@ -2712,7 +2712,7 @@ terminology
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
@@ -2738,7 +2738,7 @@ terminology
                 text = <"*Dose administration deferred(en)">
                 description = <"*Administration of a dose of mediciation has been delayed but is expected to be given as soon as possible.(en)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"*Dose administration deferred(en)">
                 description = <"*Administration of a dose of mediciation has been delayed but is expected to be given as soon as possible.(en)">
             >
@@ -2751,7 +2751,7 @@ terminology
                 text = <"*Minor change to order(en)">
                 description = <"*The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.(en)">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"*Minor change to order(en)">
                 description = <"*The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.(en)">
             >
@@ -2759,7 +2759,7 @@ terminology
                 text = <"*Major change to order.(en)">
                 description = <"*A major change to the order was required, resulting in this order being stopped and a replacement order being started.(en)">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"*Major change to order.(en)">
                 description = <"*A major change to the order was required, resulting in this order being stopped and a replacement order being started.(en)">
             >
@@ -2792,7 +2792,7 @@ terminology
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
@@ -2800,7 +2800,7 @@ terminology
                 text = <"*Medication start date/condition set(en)">
                 description = <"*The time to start this medication, or other starting condition, has been set.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Medication start date/condition set(en)">
                 description = <"*The time to start this medication, or other starting condition, has been set.(en)">
             >
@@ -2808,7 +2808,7 @@ terminology
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
@@ -2816,7 +2816,7 @@ terminology
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
@@ -2824,7 +2824,7 @@ terminology
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
@@ -2832,7 +2832,7 @@ terminology
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
@@ -2840,7 +2840,7 @@ terminology
                 text = <"*Prescription re-issued(en)">
                 description = <"*A prescription token has been re-issued for an existing medication order.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Prescription re-issued(en)">
                 description = <"*A prescription token has been re-issued for an existing medication order.(en)">
             >
@@ -2848,7 +2848,7 @@ terminology
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
@@ -2856,7 +2856,7 @@ terminology
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
@@ -2864,7 +2864,7 @@ terminology
                 text = <"*Medication course completed(en)">
                 description = <"*The medication course has been completed as planned.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Medication course completed(en)">
                 description = <"*The medication course has been completed as planned.(en)">
             >
@@ -2872,7 +2872,7 @@ terminology
                 text = <"*Dose administered(en)">
                 description = <"*A single administration of the medication has taken place.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Dose administered(en)">
                 description = <"*A single administration of the medication has taken place.(en)">
             >
@@ -2880,7 +2880,7 @@ terminology
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
@@ -2888,7 +2888,7 @@ terminology
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
@@ -2896,7 +2896,7 @@ terminology
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
@@ -2904,7 +2904,7 @@ terminology
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
@@ -2969,7 +2969,7 @@ terminology
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"*Medication authorised(en)">
                 description = <"*The medication has been formally authorised for use.(en)">
             >
@@ -2977,7 +2977,7 @@ terminology
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"*Prescription fulfilled(en)">
                 description = <"*The prescription has been fulfilled successfully.(en)">
             >
@@ -2985,7 +2985,7 @@ terminology
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"*Prescription invalid or expired(en)">
                 description = <"*Prescription has been invalidated or has expired without being fulfilled.(en)">
             >
@@ -2993,7 +2993,7 @@ terminology
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"*Prescription cancelled(en)">
                 description = <"*The prescription was cancelled prior to being issued.(en)">
             >
@@ -3006,7 +3006,7 @@ terminology
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"*Medication prepared(en)">
                 description = <"*The medication has been physically prepared. For example: preparation of an intravenous mixture.(en)">
             >
@@ -3019,7 +3019,7 @@ terminology
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"*Prescription awaiting authorisation(en)">
                 description = <"*Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.(en)">
             >
@@ -3047,11 +3047,11 @@ terminology
                 text = <"*Administration details(en)">
                 description = <"*Details of body site and administration of the medication.(en)">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"*Substitution not performed(en)">
                 description = <"*Although allowed by the medication order a bioequvalent medication was not substituted.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*Substitution performed(en)">
                 description = <"*A medication was substituted which is bioequivalent to that ordered.(en)">
             >
@@ -3074,7 +3074,7 @@ terminology
                 text = <"*Medication recommended(en)">
                 description = <"*The medication has been recommended but no steps have been taken to initiate prescribing.(en)">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"*Medication recommended(en)">
                 description = <"*The medication has been recommended but no steps have been taken to initiate prescribing.(en)">
             >
@@ -3082,7 +3082,7 @@ terminology
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"*Prescription re-authorised(en)">
                 description = <"*The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.(en)">
             >
@@ -3108,7 +3108,7 @@ terminology
                 text = <"*Dose administration deferred(en)">
                 description = <"*Administration of a dose of mediciation has been delayed but is expected to be given as soon as possible.(en)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"*Dose administration deferred(en)">
                 description = <"*Administration of a dose of mediciation has been delayed but is expected to be given as soon as possible.(en)">
             >
@@ -3121,7 +3121,7 @@ terminology
                 text = <"*Minor change to order(en)">
                 description = <"*The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.(en)">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"*Minor change to order(en)">
                 description = <"*The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.(en)">
             >
@@ -3129,7 +3129,7 @@ terminology
                 text = <"*Major change to order.(en)">
                 description = <"*A major change to the order was required, resulting in this order being stopped and a replacement order being started.(en)">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"*Major change to order.(en)">
                 description = <"*A major change to the order was required, resulting in this order being stopped and a replacement order being started.(en)">
             >
@@ -3162,7 +3162,7 @@ terminology
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Dose administration omitted(en)">
                 description = <"*The administration of a medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.(en)">
             >
@@ -3170,7 +3170,7 @@ terminology
                 text = <"*Medication start date/condition set(en)">
                 description = <"*The time to start this medication, or other starting condition, has been set.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Medication start date/condition set(en)">
                 description = <"*The time to start this medication, or other starting condition, has been set.(en)">
             >
@@ -3178,7 +3178,7 @@ terminology
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Medication course stopped(en)">
                 description = <"*The administration of this medication has been ceased after the first dose has been administered, but before intended completion of the course.  (en)">
             >
@@ -3186,7 +3186,7 @@ terminology
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Medication course postponed(en)">
                 description = <"*The scheduled medication course has been postponed prior to any administration.(en)">
             >
@@ -3194,7 +3194,7 @@ terminology
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Medication course cancelled(en)">
                 description = <"*The planned course of medication has been cancelled prior to any administration.(en)">
             >
@@ -3202,7 +3202,7 @@ terminology
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Prescription re-issue suspended(en)">
                 description = <"*Reissuing of this prescription is not available without some intervention.(en)">
             >
@@ -3210,7 +3210,7 @@ terminology
                 text = <"*Prescription re-issued(en)">
                 description = <"*A prescription token has been re-issued for an existing medication order.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Prescription re-issued(en)">
                 description = <"*A prescription token has been re-issued for an existing medication order.(en)">
             >
@@ -3218,7 +3218,7 @@ terminology
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Administrations suspended(en)">
                 description = <"*The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met.(en)">
             >
@@ -3226,7 +3226,7 @@ terminology
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Prescription supply delayed(en)">
                 description = <"*The prescription has not been dispensed due to a technical or pharamaceutical supply issue.(en)">
             >
@@ -3234,7 +3234,7 @@ terminology
                 text = <"*Medication course completed(en)">
                 description = <"*The medication course has been completed as planned.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Medication course completed(en)">
                 description = <"*The medication course has been completed as planned.(en)">
             >
@@ -3242,7 +3242,7 @@ terminology
                 text = <"*Dose administered(en)">
                 description = <"*A single administration of the medication has taken place.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Dose administered(en)">
                 description = <"*A single administration of the medication has taken place.(en)">
             >
@@ -3250,7 +3250,7 @@ terminology
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Medication course reviewed(en)">
                 description = <"*The specific medication item has been reviewed, as planned. This is not intended to capture review of the whole medication list.(en)">
             >
@@ -3258,7 +3258,7 @@ terminology
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"*Medication course commenced(en)">
                 description = <"*The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.(en)">
             >
@@ -3266,7 +3266,7 @@ terminology
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Prescription dispensed(en)">
                 description = <"*The ordered medication has been dispensed, for example from a pharmacy to the patient.(en)">
             >
@@ -3274,7 +3274,7 @@ terminology
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"*Prescription issued(en)">
                 description = <"*A prescription has been issued for the medication.(en)">
             >
@@ -3339,7 +3339,7 @@ terminology
                 text = <"Medication authorised">
                 description = <"The medication has been formally authorised for use.">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"Medication authorised">
                 description = <"The medication has been formally authorised for use.">
             >
@@ -3347,7 +3347,7 @@ terminology
                 text = <"Prescription fulfilled">
                 description = <"The prescription has been fulfilled successfully.">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"Prescription fulfilled">
                 description = <"The prescription has been fulfilled successfully.">
             >
@@ -3355,7 +3355,7 @@ terminology
                 text = <"Prescription invalid or expired">
                 description = <"Prescription has been invalidated or has expired without being fulfilled.">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"Prescription invalid or expired">
                 description = <"Prescription has been invalidated or has expired without being fulfilled.">
             >
@@ -3363,7 +3363,7 @@ terminology
                 text = <"Prescription cancelled">
                 description = <"The prescription was cancelled prior to being issued.">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"Prescription cancelled">
                 description = <"The prescription was cancelled prior to being issued.">
             >
@@ -3376,7 +3376,7 @@ terminology
                 text = <"Medication prepared">
                 description = <"The medication has been physically prepared. For example: preparation of an intravenous mixture.">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"Medication prepared">
                 description = <"The medication has been physically prepared. For example: preparation of an intravenous mixture.">
             >
@@ -3389,7 +3389,7 @@ terminology
                 text = <"Prescription awaiting authorisation">
                 description = <"Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"Prescription awaiting authorisation">
                 description = <"Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.">
             >
@@ -3417,11 +3417,11 @@ terminology
                 text = <"Administration details">
                 description = <"Details of body site and administration of the medication.">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"Substitution not performed">
                 description = <"Although allowed by the medication order a bioequvalent medication was not substituted.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Substitution performed">
                 description = <"A medication was substituted which is bioequivalent to that ordered.">
             >
@@ -3444,7 +3444,7 @@ terminology
                 text = <"Medication recommended">
                 description = <"The medication has been recommended but no steps have been taken to initiate prescribing.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Medication recommended">
                 description = <"The medication has been recommended but no steps have been taken to initiate prescribing.">
             >
@@ -3452,7 +3452,7 @@ terminology
                 text = <"Prescription re-authorised">
                 description = <"The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"Prescription re-authorised">
                 description = <"The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.">
             >
@@ -3479,7 +3479,7 @@ terminology
                 text = <"Dose administration deferred">
                 description = <"An administration of a dose of the medication has been delayed but is expected to be given as soon as possible.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Dose administration deferred">
                 description = <"An administration of a dose of the medication has been delayed but is expected to be given as soon as possible.">
             >
@@ -3492,7 +3492,7 @@ terminology
                 text = <"Minor change to order">
                 description = <"The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Minor change to order">
                 description = <"The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.">
             >
@@ -3500,7 +3500,7 @@ terminology
                 text = <"Major change to order">
                 description = <"A major change to the order was required, resulting in this order being stopped and a replacement order being started.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Major change to order">
                 description = <"A major change to the order was required, resulting in this order being stopped and a replacement order being started.">
             >
@@ -3533,7 +3533,7 @@ terminology
                 text = <"Dose administration omitted">
                 description = <"An administration of the medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Dose administration omitted">
                 description = <"An administration of the medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.">
             >
@@ -3541,7 +3541,7 @@ terminology
                 text = <"Medication start date/condition set">
                 description = <"The time to start the medication, or other starting condition, has been set.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Medication start date/condition set">
                 description = <"The time to start the medication, or other starting condition, has been set.">
             >
@@ -3549,7 +3549,7 @@ terminology
                 text = <"Medication course stopped">
                 description = <"Administration of the medication has been ceased during the period of the intended course.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Medication course stopped">
                 description = <"Administration of the medication has been ceased during the period of the intended course.">
             >
@@ -3557,7 +3557,7 @@ terminology
                 text = <"Medication course postponed">
                 description = <"The scheduled medication course has been postponed prior to any administration.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Medication course postponed">
                 description = <"The scheduled medication course has been postponed prior to any administration.">
             >
@@ -3565,7 +3565,7 @@ terminology
                 text = <"Medication course cancelled">
                 description = <"The planned course of medication has been cancelled prior to any administration.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Medication course cancelled">
                 description = <"The planned course of medication has been cancelled prior to any administration.">
             >
@@ -3573,7 +3573,7 @@ terminology
                 text = <"Prescription re-authorisation pending">
                 description = <"Issue of the prescription is awaiting re-authorisation by a clinician.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Prescription re-authorisation pending">
                 description = <"Issue of the prescription is awaiting re-authorisation by a clinician.">
             >
@@ -3581,7 +3581,7 @@ terminology
                 text = <"Prescription re-issued">
                 description = <"A prescription has been re-issued for an existing medication order.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Prescription re-issued">
                 description = <"A prescription has been re-issued for an existing medication order.">
             >
@@ -3589,7 +3589,7 @@ terminology
                 text = <"Administrations suspended">
                 description = <"The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met. When setting the date/conditions for restart after suspending, a suspend_step from Administrations suspended and back to Administrations suspended should be performed.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Administrations suspended">
                 description = <"The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met. When setting the date/conditions for restart after suspending, a suspend_step from Administrations suspended and back to Administrations suspended should be performed.">
             >
@@ -3597,7 +3597,7 @@ terminology
                 text = <"Prescription supply delayed">
                 description = <"The prescription has not been dispensed due to a technical or pharamaceutical supply issue.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Prescription supply delayed">
                 description = <"The prescription has not been dispensed due to a technical or pharamaceutical supply issue.">
             >
@@ -3605,7 +3605,7 @@ terminology
                 text = <"Medication course completed">
                 description = <"The medication course has been completed as planned.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Medication course completed">
                 description = <"The medication course has been completed as planned.">
             >
@@ -3613,7 +3613,7 @@ terminology
                 text = <"Dose administered">
                 description = <"A single administration of the medication has taken place.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Dose administered">
                 description = <"A single administration of the medication has taken place.">
             >
@@ -3621,7 +3621,7 @@ terminology
                 text = <"Medication reassessed">
                 description = <"The individual medication has been reassessed, for example whether the medication should still be taken. This is not intended to capture review of the medication list.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Medication reassessed">
                 description = <"The individual medication has been reassessed, for example whether the medication should still be taken. This is not intended to capture review of the medication list.">
             >
@@ -3629,7 +3629,7 @@ terminology
                 text = <"Medication course commenced">
                 description = <"The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Medication course commenced">
                 description = <"The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.">
             >
@@ -3637,7 +3637,7 @@ terminology
                 text = <"Prescription dispensed">
                 description = <"The ordered medication has been dispensed, for example from a pharmacy to the patient.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Prescription dispensed">
                 description = <"The ordered medication has been dispensed, for example from a pharmacy to the patient.">
             >
@@ -3645,7 +3645,7 @@ terminology
                 text = <"Prescription issued">
                 description = <"A prescription has been issued for the medication.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Prescription issued">
                 description = <"A prescription has been issued for the medication.">
             >
@@ -3671,7 +3671,7 @@ terminology
     value_sets = <
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at139", "at140">
+            members = <"at138", "at139">
         >
         ["ac9002"] = <
             id = <"ac9002">

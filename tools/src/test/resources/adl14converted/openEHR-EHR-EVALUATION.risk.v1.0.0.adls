@@ -87,19 +87,19 @@ terminology
                 text = <"Risikoberechnung">
                 description = <"Die Berechnung des Risikos">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Sehr bedeutungsvoll">
                 description = <"Es ist anzunehmen, dass die Person den Zustand entwickeln wird">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Bedeutungsvoll">
                 description = <"Die Person hat ein erhöhtes Risiko diesen Zustand zu entwickeln als die allgemeine Population">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Minimal bedeutungsvoll">
                 description = <"Die Person hat eventuell ein etwas erhöhtes Risiko diesen Zustand zu entwickeln">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Nicht bedeutungsvoll">
                 description = <"Für die Person wird kein höheres Risiko geschätzt, als für die restliche Population">
             >
@@ -129,19 +129,19 @@ terminology
                 text = <"Risk calculation">
                 description = <"*">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Highly significant">
                 description = <"The person is considered to be likely to develop the condition">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Significant">
                 description = <"The person is considered to be more likely to develop the condition than the general population">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Minimal significance">
                 description = <"The person may be of somewhat greater risk of developing the condition ">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Not significant">
                 description = <"The person is not assessed at being at higher risk than the general population">
             >
@@ -166,6 +166,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8", "at9", "at10">
+            members = <"at6", "at7", "at8", "at9">
         >
     >

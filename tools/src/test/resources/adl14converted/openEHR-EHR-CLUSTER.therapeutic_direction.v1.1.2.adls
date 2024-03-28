@@ -159,11 +159,11 @@ terminology
                 description = <"Strukturerte detaljer om repeteringsmønsteret for hvert sett av daglige anvisninger.">
                 comment = <"For eksempel \"hver 3. dag\", \"på tirsdager og søndager\", \"3 dager etter menstruasjonsblødningens 1. dag\".">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Ubestemt - ikke seponer">
                 description = <"Anvisningen skal videreføres på ubestemt tid, med en sterk anbefaling om ikke å seponere.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Ubestemt">
                 description = <"Anvisningen skal videreføres på ubestemt tid.">
             >
@@ -206,11 +206,11 @@ terminology
                 description = <"Detalhes estruturados sobre o padrão de repetição para cada conjunto de orientações diárias.">
                 comment = <"Por exemplo: 'a cada 3 dias', 'às quintas-feiras e domingos', '3 dias após o início da menstruação'.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Uso contínuo - não deve ser descontinuado.">
                 description = <"A orientação deve ser continuada indefinidamente com uma recomendação forte que não seja interrompida.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Uso contínuo">
                 description = <"Esta instrução indica que trata-se de uso contínuo, ou seja que deve ser seguida indefinidamente.">
             >
@@ -254,11 +254,11 @@ terminology
                 description = <"Structured details about pattern of repetition for each set of daily directions.">
                 comment = <"For example: 'every 3 days', 'on Thursdays and Sundays', '3 days after onset of menstruation'.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Indefinite - not to be discontinued">
                 description = <"The direction should be continued indefinitely with a strong recommendation that it never be discontinued.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Indefinite">
                 description = <"The direction should be continued indefinitely.">
             >
@@ -282,6 +282,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at68", "at69">
+            members = <"at67", "at68">
         >
     >

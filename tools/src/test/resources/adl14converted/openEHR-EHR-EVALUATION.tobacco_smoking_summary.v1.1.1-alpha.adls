@@ -482,7 +482,7 @@ terminology
                 description = <"*The cumulative number of years that the individual has smoked tobacco. (en)">
                 comment = <"*This data element does not take into account the amount of tobacco smoked. It may be used to calculate the 'Smoking index'. (en)">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"*Never smoked(en)">
                 description = <"*Individual has never smoked the specified type of tobacco.(en)">
             >
@@ -490,7 +490,7 @@ terminology
                 text = <"*Overall status(en)">
                 description = <"*Statement about current smoking behaviour for all types of tobacco.(en)">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"*Kreteks(en)">
                 description = <"*Also known as clove cigarettes. Cigarettes that contain a mixture of tobacco, cloves and other additives.(en)">
             >
@@ -507,11 +507,11 @@ terminology
                 description = <"*The applied definition for a Quit attempt used to determine value for the 'Number of quit attempts' data element used in this archetype.(en)">
                 comment = <"*For example: 'stopped smoking for one day or longer with the intention of quitting'.(en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Non-daily(en)">
                 description = <"*Not smoking the specified type of tobacco every day.(en)">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"*Daily(en)">
                 description = <"*Smoking the specified type of tobacco at least once every day.(en)">
             >
@@ -535,7 +535,7 @@ terminology
                 description = <"*The applied definition for the 'Never smoked' value in each of the 'Status' data elements used in this archetype.(en)">
                 comment = <"*Definition may need to be specified per type. For example, the definition may not be zero, but less than a specified amount (as units or mass) smoked during a specified time interval.(en)">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"*Bidis(en)">
                 description = <"*Also known as Beedis. Thin hand-rolled cigarettes filled with tobacco and wrapped in a leaf, often tied with colorful string at one or both ends. They can be flavoured or unflavoured.(en)">
             >
@@ -577,7 +577,7 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about smoking of the specified type of tobacco, not captured in other fields.(en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Cigarillos(en)">
                 description = <"*Also known as mini cigars. Short and narrow cigar.(en)">
             >
@@ -590,31 +590,31 @@ terminology
                 text = <"*Per episode(en)">
                 description = <"*Details about a discrete period of smoking activity for the specified type of tobacco.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Waterpipe(en)">
                 description = <"*Also known as \"hookah\", \"shisha\", \"narguileh\" and \"hubble-bubble\". Tobacco, often flavoured, is burned then cooled through a basin of water and consumed through a hose and mouthpiece.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Current smoker(en)">
                 description = <"*Individual is a current smoker of the specified type of tobacco.(en)">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"*Former smoker(en)">
                 description = <"*Individual has previously smoked the specified type of tobacco but is not a current smoker.(en)">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"*Pipe(en)">
                 description = <"*Loose tobacco placed inside a pipe bowl.(en)">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"*Cigars(en)">
                 description = <"*Also known as \"large cigar\". Roll of tobacco wrapped within a leaf tobacco or in a substance that contains tobacco.(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"*Hand-rolled cigarettes(en)">
                 description = <"*Also known as \"rollies\" or \"roll-ups\". Loose tobacco, hand rolled into a cylinder using cigarette papers.(en)">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"*Cigarettes(en)">
                 description = <"*Also known as manufactured cigarettes, 'factory made' cigarettes or 'tailor made' cigarettes. Processed tobacco, manufactured into cylinder made of paper or a substance that does not contain tobacco.(en)">
             >
@@ -686,15 +686,15 @@ terminology
                 description = <"*Date when this episode commenced.(en)">
                 comment = <"*Can be a partial date, for example, only a year.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Never smoked(en)">
                 description = <"*Individual has never smoked any type of tobacco.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Former smoker(en)">
                 description = <"*Individual has previously smoked tobacco but is not a current smoker.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"*Current smoker(en)">
                 description = <"*Individual is a current smoker of tobacco.(en)">
             >
@@ -744,7 +744,7 @@ terminology
                 description = <"Det sammanlagda antalet år som individen varit tobaksrökare.">
                 comment = <"Detta datafält beskriver inte mängden rökt tobak. Det kan användas för att beräkna 'rökningsindex'.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Har aldrig rökt">
                 description = <"Individen har aldrig rökt denna typ av tobak">
             >
@@ -752,7 +752,7 @@ terminology
                 text = <"Övergripande status">
                 description = <"Beskrivning av aktuellt bruk för alla typer av röktobak">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Kretek">
                 description = <"Cigarett smaksatt med kryddnejlika, populär bl.a. i Indonesien. Cigaretten innehåller en blandning av tobak, kryddnejlika och andra tillsatser.">
             >
@@ -770,11 +770,11 @@ terminology
     ">
                 comment = <"Exempelvis: \"Slutade röka en dag eller längre, med avsikt att sluta röka\"">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Inte dagligen">
                 description = <"Röker inte denna sorts tobak varje dag.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Dagligen">
                 description = <"Röker denna sorts tobak minst en gång varje dag.">
             >
@@ -798,7 +798,7 @@ terminology
                 description = <"Definitionen av \"Har aldrig rökt\" som använts i denna arketyps fält \"Status\" och \"Övergripande status\"">
                 comment = <"Definitionen kan behöva anges per typ. Exempelvis så behöver den inte vara noll, men kanske istället mindre än en specificerad mängd (antal eller massa) rökt tobak under en specificerad tidsperiod.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Bidi">
                 description = <"Tunna handrullade cigaretter fyllda med tobak och inslagna i ett blad, ofta bundna med färgstarka snören i ena eller båda ändarna. De kan vara smaksatta eller ej smaksatta.">
             >
@@ -844,7 +844,7 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligare beskrivning av rökvanor, för denna sorts tobaksprodukt, som inte redan beskrivits i andra fält.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Cigariller">
                 description = <"\"Mini-cigarrer\". Kort och smal cigarr.">
             >
@@ -857,33 +857,33 @@ terminology
                 text = <"Per episod">
                 description = <"Detaljerad beskrivning av en specifik konsumtionsperiod för den angivna typen av tobak.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Vattenpipa">
                 description = <"Tobak, ofta smaksatt som bränns och sedan kyls genom ett vattenbad och inhaleras genom en slang och munstycke. Kallas även shisha, hookah, n'arghile, narguileh, ghelion
     ">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Rökare">
                 description = <"Individen röker denna typ av tobak">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Före detta rökare">
                 description = <"Individen har tidigare rökt den här sortens tobak, men gör det inte nuförtiden.
     ">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Pipa">
                 description = <"Lös tobak som röks i en pipa.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Cigarrer">
                 description = <"\"Stora\" cigarrer. Rulle av tobak inrullad i ett tobaksblad eller i annat tobaksinehållande material.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Handrullade cigaretter, rulltobak">
                 description = <"Lös tobak som för hand rullas till cylindrar med hjälp av cigarettpapper.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Cigaretter">
                 description = <"\"Vanliga\" fabrikstillverkade cigaretter. Processad tobak i cylinder av papper eller annat material (som inte är tobak).">
             >
@@ -960,15 +960,15 @@ terminology
                 description = <"Datum när den här episoden startade.">
                 comment = <"Kan vara del av ett datum, till exempel bara ett årtal.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Har aldrig rökt">
                 description = <"Individen har aldrig rökt någon form av tobak.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Före detta rökare">
                 description = <"Individen har varit rökare men har slutat röka.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Rökare">
                 description = <"Individen röker tobak.">
             >
@@ -1017,7 +1017,7 @@ terminology
                 description = <"Samlet antall år individet har røkt tobakk.">
                 comment = <"Dette dataelementet tar ikke høyde for mengden av tobakk som er røkt. Det kan brukes for å regne ut \"Røykeindeks\".">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Aldri røykt">
                 description = <"Individet har aldri røykt den spesifiserte typen tobakk.">
             >
@@ -1025,7 +1025,7 @@ terminology
                 text = <"Overordnet status">
                 description = <"Utsagn om nåværende røykeadferd for alle typer tobakk.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Kretek">
                 description = <"Sigaretter som inneholder en blanding av tobakk, nellik og andre tilsetningsstoffer.">
             >
@@ -1042,11 +1042,11 @@ terminology
                 description = <"Den anvendte definisjonen på dataelementet \"Antall forsøk på å slutte\" benyttet i denne arketypen.">
                 comment = <"For eksempel \"sluttet å røyke i en dag eller lenger, med den hensikt å slutte\".">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Ikke daglig">
                 description = <"Individet røyker ikke den spesifiserte tobakkstypen daglig.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Daglig">
                 description = <"Individet røyker den spesifiserte tobakkstypen minst en gang per dag.">
             >
@@ -1070,7 +1070,7 @@ terminology
                 description = <"Den anvendte definisjonen på verdien \"Tidligere røyker\" i dataelementet \"Status\" benyttet i denne arketypen.">
                 comment = <"Definisjonen kan spesifiseres per tobakkstype. For eksempel kan definisjon være ikke null, men mindre enn en spesifisert mengde (som antall enheter eller vekt) røykt over et spesifisert tidsintervall.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Bidis">
                 description = <"Også kjent som Beedis. Tynne håndrullede sigaretter fylt med tobakk, pakket inn i et blad ofte bundet sammen med en fargerik tråd i en eller begge endene. Kan være både smaksatt og ikke smaksatt.">
             >
@@ -1111,7 +1111,7 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligere fritekst om røyking av den spesifiserte tobakkstypen som ikke er omfattet av andre felt.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Cigarillos">
                 description = <"Også kjent som minisigar. Kort og smal sigar.">
             >
@@ -1124,31 +1124,31 @@ terminology
                 text = <"Per episode">
                 description = <"Detaljer om en avgrenset periode med røyking av den spesifiserte tobakkstypen.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Vannpipe">
                 description = <"Også kjent som \"hookah\", \"shisha\" og \"narguileh\". Tobakk som ofte er smaksatt brennes, for deretter å kjøles ned i en vannfylt beholder. Røyken inhaleres gjennom en slange og et munnstykke.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Røyker">
                 description = <"Individet er en nåværende røyker av den spesifiserte typen tobakk.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Tidligere røyker">
                 description = <"Individet har tidligere røykt den spesifiserte typen tobakk, men er ikke en nåværende røyker.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Pipe">
                 description = <"Løs tobakk plassert i pipens hode.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Sigarer">
                 description = <"Tobakk som rulles i et tobakksblad eller i en substans som inneholder tobakk.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Håndrullede sigaretter">
                 description = <"Også kjent som \"rullings\". Løs tobakk som rulles inn i sigarettpapir.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Sigaretter">
                 description = <"Også kjent som ferdigsigaretter eller fabrikksigaretter. Fint skåret tobakk, rullet inn i en sylinder laget av papir eller en annen substans som ikke inneholder tobakk.">
             >
@@ -1221,15 +1221,15 @@ terminology
                 description = <"Dato da episoden startet.">
                 comment = <"Kan være en deldato, for eksempel kun årstall.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Aldri røykt">
                 description = <"Individet har aldri røykt tobakk.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Tidligere røyker">
                 description = <"Individet har tidligere røykt tobakk, men er ikke en nåværende røyker.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Røyker">
                 description = <"Individet er en nåværende tobakksrøyker.">
             >
@@ -1277,7 +1277,7 @@ terminology
                 description = <"The cumulative number of years that the individual has smoked tobacco.">
                 comment = <"This data element does not take into account the amount of tobacco smoked. It may be used to calculate the 'Smoking index'.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Never smoked">
                 description = <"Individual has never smoked the specified type of tobacco.">
             >
@@ -1285,7 +1285,7 @@ terminology
                 text = <"Overall status">
                 description = <"Statement about current smoking behaviour for all types of tobacco.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Kreteks">
                 description = <"Also known as clove cigarettes. Cigarettes that contain a mixture of tobacco, cloves and other additives.">
             >
@@ -1302,11 +1302,11 @@ terminology
                 description = <"The applied definition for a Quit attempt used to determine value for the 'Number of quit attempts' data element used in this archetype.">
                 comment = <"For example: 'stopped smoking for one day or longer with the intention of quitting'.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Non-daily">
                 description = <"Not smoking the specified type of tobacco every day.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Daily">
                 description = <"Smoking the specified type of tobacco at least once every day.">
             >
@@ -1330,7 +1330,7 @@ terminology
                 description = <"The applied definition for the 'Never smoked' value in each of the 'Status' data elements used in this archetype.">
                 comment = <"Definition may need to be specified per type. For example, the definition may not be zero, but less than a specified amount (as units or mass) smoked during a specified time interval.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Bidis">
                 description = <"Also known as Beedis. Thin hand-rolled cigarettes filled with tobacco and wrapped in a leaf, often tied with colorful string at one or both ends. They can be flavoured or unflavoured.">
             >
@@ -1372,7 +1372,7 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about smoking of the specified type of tobacco, not captured in other fields.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Cigarillos">
                 description = <"Also known as mini cigars. Short and narrow cigar.">
             >
@@ -1385,31 +1385,31 @@ terminology
                 text = <"Per episode">
                 description = <"Details about a discrete period of smoking activity for the specified type of tobacco.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Waterpipe">
                 description = <"Also known as \"hookah\", \"shisha\", \"narguileh\" and \"hubble-bubble\". Tobacco, often flavoured, is burned then cooled through a basin of water and consumed through a hose and mouthpiece.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Current smoker">
                 description = <"Individual is a current smoker of the specified type of tobacco.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Former smoker">
                 description = <"Individual has previously smoked the specified type of tobacco but is not a current smoker.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Pipe">
                 description = <"Loose tobacco placed inside a pipe bowl.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Cigars">
                 description = <"Also known as \"large cigar\". Roll of tobacco wrapped within a leaf tobacco or in a substance that contains tobacco.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Hand-rolled cigarettes">
                 description = <"Also known as \"rollies\" or \"roll-ups\". Loose tobacco, hand rolled into a cylinder using cigarette papers.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Cigarettes">
                 description = <"Also known as manufactured cigarettes, 'factory made' cigarettes or 'tailor made' cigarettes. Processed tobacco, manufactured into cylinder made of paper or a substance that does not contain tobacco.">
             >
@@ -1481,15 +1481,15 @@ terminology
                 description = <"Date when this episode commenced.">
                 comment = <"Can be a partial date, for example, only a year.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Never smoked">
                 description = <"Individual has never smoked any type of tobacco.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Former smoker">
                 description = <"Individual has previously smoked tobacco but is not a current smoker.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Current smoker">
                 description = <"Individual is a current smoker of tobacco.">
             >
@@ -1508,18 +1508,18 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at62", "at60", "at92">
+            members = <"at61", "at59", "at91">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at55", "at56", "at57", "at67", "at58", "at63", "at79", "at89">
+            members = <"at54", "at55", "at56", "at66", "at57", "at62", "at78", "at88">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at4", "at6">
+            members = <"at6", "at3", "at5">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at84", "at85">
+            members = <"at83", "at84">
         >
     >

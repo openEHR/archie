@@ -56,10 +56,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at7]}],
-                                                    [{1}, {[at8]}],
-                                                    [{2}, {[at9]}],
-                                                    [{3}, {[at10]}]
+                                                    [{0}, {[at6]}],
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at8]}],
+                                                    [{3}, {[at9]}]
                                                 }
                                             }
                                         }
@@ -68,10 +68,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at12]}],
-                                                    [{1}, {[at13]}],
-                                                    [{2}, {[at14]}],
-                                                    [{3}, {[at15]}]
+                                                    [{0}, {[at11]}],
+                                                    [{1}, {[at12]}],
+                                                    [{2}, {[at13]}],
+                                                    [{3}, {[at14]}]
                                                 }
                                             }
                                         }
@@ -80,10 +80,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at17]}],
-                                                    [{1}, {[at18]}],
-                                                    [{2}, {[at19]}],
-                                                    [{3}, {[at20]}]
+                                                    [{0}, {[at16]}],
+                                                    [{1}, {[at17]}],
+                                                    [{2}, {[at18]}],
+                                                    [{3}, {[at19]}]
                                                 }
                                             }
                                         }
@@ -92,10 +92,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at22]}],
-                                                    [{1}, {[at23]}],
-                                                    [{2}, {[at24]}],
-                                                    [{3}, {[at25]}]
+                                                    [{0}, {[at21]}],
+                                                    [{1}, {[at22]}],
+                                                    [{2}, {[at23]}],
+                                                    [{3}, {[at24]}]
                                                 }
                                             }
                                         }
@@ -104,10 +104,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at27]}],
-                                                    [{1}, {[at28]}],
-                                                    [{2}, {[at29]}],
-                                                    [{3}, {[at30]}]
+                                                    [{0}, {[at26]}],
+                                                    [{1}, {[at27]}],
+                                                    [{2}, {[at28]}],
+                                                    [{3}, {[at29]}]
                                                 }
                                             }
                                         }
@@ -116,10 +116,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9013] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at32]}],
-                                                    [{1}, {[at33]}],
-                                                    [{2}, {[at34]}],
-                                                    [{3}, {[at35]}]
+                                                    [{0}, {[at31]}],
+                                                    [{1}, {[at32]}],
+                                                    [{2}, {[at33]}],
+                                                    [{3}, {[at34]}]
                                                 }
                                             }
                                         }
@@ -233,15 +233,15 @@ terminology
                 description = <"The calculated index score based on the affected area total and intensity only.">
                 comment = <"Based on a formula A/5 + 7B/2.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Severe">
                 description = <"The toal score is over 50.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Moderate">
                 description = <"The score is between 25 and 50.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Mild">
                 description = <"The overall score is less than 25.">
             >
@@ -272,19 +272,19 @@ terminology
                 text = <"Intensity total (B)">
                 description = <"The total score for the 6 intensity-related values.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Severe">
                 description = <"Dryness is severe.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Moderate">
                 description = <"Dryness is moderate.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Mild">
                 description = <"Dryness is mild.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"None">
                 description = <"Dryness is absent.">
             >
@@ -292,19 +292,19 @@ terminology
                 text = <"Intensity - dryness">
                 description = <"The level of intensity of dryness of unaffected skin.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Severe">
                 description = <"Oozing or crusting is severe.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Moderate">
                 description = <"Oozing or crusting is moderate.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Mild">
                 description = <"Oozing or crusting is mild.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"None">
                 description = <"Oozing or crusting is absent.">
             >
@@ -312,19 +312,19 @@ terminology
                 text = <"Intensity - oozing/crusts">
                 description = <"The level of intensity of a oozing or crusting.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Severe">
                 description = <"Excoriation is severe.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Moderate">
                 description = <"Excoriation is moderate.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Mild">
                 description = <"Excoriation is mild.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"None">
                 description = <"Excoriation is absent.">
             >
@@ -332,19 +332,19 @@ terminology
                 text = <"Intensity - excoriation">
                 description = <"The level of intensity of a excoriation or scratching.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Severe">
                 description = <"Lichenification is severe.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Moderate">
                 description = <"Lichenification is moderate.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Mild">
                 description = <"Lichenification is mild.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"None">
                 description = <"Lichenification is absent.">
             >
@@ -352,19 +352,19 @@ terminology
                 text = <"Intensity - lichenification">
                 description = <"The level of intensity of a lichenification or thickening of the skin.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Severe">
                 description = <"Oedema or papulation is severe.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Moderate">
                 description = <"Oedema or papulation is moderate.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Mild">
                 description = <"Oedema or papulation is mild.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"None">
                 description = <"Oedema or papulation is absent.">
             >
@@ -372,19 +372,19 @@ terminology
                 text = <"Intensity - oedema/papulation">
                 description = <"The level of intensity of a oedema or papulation.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Severe">
                 description = <"Erythema is severe.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Moderate">
                 description = <"Erythema is moderate.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Mild">
                 description = <"Erythema is mild.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"None">
                 description = <"Erythema is absent.">
             >
@@ -410,30 +410,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at17", "at18", "at19", "at20">
+            members = <"at16", "at17", "at18", "at19">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at12", "at13", "at14", "at15">
+            members = <"at11", "at12", "at13", "at14">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8", "at9", "at10">
+            members = <"at6", "at7", "at8", "at9">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at42", "at43", "at44">
+            members = <"at41", "at42", "at43">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at32", "at33", "at34", "at35">
+            members = <"at31", "at32", "at33", "at34">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at27", "at28", "at29", "at30">
+            members = <"at26", "at27", "at28", "at29">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at22", "at23", "at24", "at25">
+            members = <"at21", "at22", "at23", "at24">
         >
     >

@@ -141,63 +141,63 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Stadie 5">
                 description = <"Voksen mengde og utbredelse i form av invertert triangel og behåringen kan bre seg over til mediale del av låret.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Stadie 4">
                 description = <"Voksen type behåring, men ubredelse er mindre. Brer seg ikke over til mediale del av låret.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Stadie 3">
                 description = <"Mørkere, tykkere og mer krøllete behåring. Sparsom utbredelse opp mot abdomen.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Stadie 2">
                 description = <"Kvinner: Begynnende vekst av lyse, tynne, rette hår langs labia. Kan være lett å overse. Menn: Sparsom vekst av lett pigmentert, rett, dunaktig hår. Hovedsakelig ved basis av penis. Kan være lett å overse.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Stadie 1">
                 description = <"Ingen pubesbehåring (på samme nivå som eventuell behåring på abdomen).">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Stadie 5">
                 description = <"Voksen. Kun papillen er hevet ut fra resten av brystkonturen.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Stadie 4">
                 description = <"Areola og papille skilles ut som en egen kontur på brystet (hevet fra resten av brystkonturen).">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Stadie 3">
                 description = <"Videre vekst av brystet, men fortsatt jevn kontur.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Stadie 2">
                 description = <"Begynnende brystutvikling, bryst og papille lett forhøyet, areolas diameter lett økt.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Stadie 1">
                 description = <"Ingen synlig brystutvikling.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Stadie 5">
                 description = <"Voksent utseende på genitalia.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Stadie 4">
                 description = <"Penis har vokst i lengde og tykkelse. Begynnende utvikling av glans. Testes og skrotum vokser videre og skrotal hud er mørkere.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Stadie 3">
                 description = <"Penis har vokst, mest i lengden. Skrotum og testikler har vokst ytterligere.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Stadie 2">
                 description = <"Skrotum og testikler har vokst og teksturen av skrotumhud er grovere.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Stadie 1">
                 description = <"Testikler, skrotum og penis slik som i tidlig barndom.">
             >
@@ -244,63 +244,63 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: Local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Stage 5">
                 description = <"Adult in type and quantity, with horizontal upper border.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Stage 4">
                 description = <"Hair adult in type, but covering smaller area than in adult; no spread to medial surface of thighs.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Stage 3">
                 description = <"Darker, coarser and more curled hair, spreading sparsely over junction of pubes.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Stage 2">
                 description = <"Sparse growth of long, slightly pigmented hair, straight or curled, at base of penis or along labia.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Stage 1">
                 description = <"Prepubertal (the pubic area may have vellus hair, similar to that of forearms).">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Stage 5">
                 description = <"Mature stage: projection of papilla only, related to recession of areola.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Stage 4">
                 description = <"Areola and papilla form a secondary mound above level of breast.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Stage 3">
                 description = <"Further enlargement of breast and areola; no separation of their contour.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Stage 2">
                 description = <"Breast bud stage with elevation of breast and papilla; enlargement of areola.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Stage 1">
                 description = <"Prepubertal.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Stage 5">
                 description = <"Adult genitalia.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Stage 4">
                 description = <"Increased size of penis with growth in breadth and development of glans; testes and scrotum larger, scrotal skin darker.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Stage 3">
                 description = <"Enlargement of penis (length at first); further growth of testes.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Stage 2">
                 description = <"Enlargement of scrotum and testes; scrotal skin reddens and changes in texture.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Stage 1">
                 description = <"Prepubertal.">
             >
@@ -329,14 +329,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at18", "at19", "at20", "at21", "at22">
+            members = <"at17", "at18", "at19", "at20", "at21">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at13", "at14", "at15", "at16", "at17">
+            members = <"at12", "at13", "at14", "at15", "at16">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at8", "at9", "at10", "at11", "at12">
+            members = <"at7", "at8", "at9", "at10", "at11">
         >
     >

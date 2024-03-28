@@ -71,11 +71,11 @@ terminology
                 text = <"Copy number change type (synthesised)">
                 description = <"Any copy number variant results in a gain or loss of the region e.g. a loss could result that a hetergozygous locus becomes homozygous since one gene was deleted. (synthesised)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Loss">
                 description = <"Copy number loss.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Gain">
                 description = <"Copy number gain.">
             >
@@ -110,14 +110,14 @@ terminology
     >
     term_bindings = <
         ["LOINC"] = <
-            ["at7"] = <http://loinc.org/id/LA14033-7>
-            ["at8"] = <http://loinc.org/id/LA14034-5>
+            ["at6"] = <http://loinc.org/id/LA14033-7>
+            ["at7"] = <http://loinc.org/id/LA14034-5>
             ["id6"] = <http://loinc.org/id/LL1041-4>
         >
     >
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8">
+            members = <"at6", "at7">
         >
     >

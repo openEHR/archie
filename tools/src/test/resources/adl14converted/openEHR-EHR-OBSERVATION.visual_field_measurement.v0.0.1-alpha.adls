@@ -68,7 +68,7 @@ definition
                                     ELEMENT[id53] occurrences matches {0..1} matches {    -- Test result name
                                         value matches {
                                             DV_CODED_TEXT[id9005] matches {
-                                                defining_code matches {[ac9000; at64]}    -- Test result name (synthesised)
+                                                defining_code matches {[ac9000; at63]}    -- Test result name (synthesised)
                                             }
                                         }
                                     }
@@ -177,7 +177,7 @@ definition
                                             ELEMENT[id28] occurrences matches {0..1} matches {    -- Perimetry test interpretation
                                                 value matches {
                                                     DV_CODED_TEXT[id9018] matches {
-                                                        defining_code matches {[ac9004; at33]}    -- Perimetry test interpretation (synthesised)
+                                                        defining_code matches {[ac9004; at32]}    -- Perimetry test interpretation (synthesised)
                                                     }
                                                 }
                                             }
@@ -346,23 +346,23 @@ terminology
                 text = <"Acquisition details">
                 description = <"Details about the strategy to conduct the visual field test.">
             >
-            ["at170"] = <
+            ["at169"] = <
                 text = <"Within normal limits">
                 description = <"None of the abnormal conditions are met.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Abnormally high sensitivity">
                 description = <"Overall sensitivity in the affected  region of the VF is better than 99.5% of individuals within the normative population.">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"General reduction of sensitivity">
                 description = <"Conditions for “outside normal limits” are not met, and the best region of the visual field is at or below the 99.5th percentile of the normative population.">
             >
-            ["at167"] = <
+            ["at166"] = <
                 text = <"Borderline">
                 description = <"Matched pairs of zones are abnormal at the 97th percentile within the normative database.">
             >
-            ["at166"] = <
+            ["at165"] = <
                 text = <"Outside normal limits">
                 description = <"Differences between a matched pair of corresponding zones exceeds the difference found in 99% of the normal population, or when both members of a pair of zones are more abnormal than 99.5% of the individuals with the normative population.">
             >
@@ -370,23 +370,23 @@ terminology
                 text = <"Glaucoma Hemifield Test (GHT)">
                 description = <"A coded intepretation of the Glaucoma Hemifield Test (GHT).">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Optical fixation measurements">
                 description = <"The data output of an optical fixation monitoring process, consisting of a list of positive and negative numbers indicating the quality of patient fixation over the course of a visual field test. The value 0 represents the initial fixation. Negative numbers indicate a measuring error (i.e. the patient blinked). Positive numbers quantify the degree of eccentricity from initial fixation. Corresponds to DICOM Code value 111856.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Glaucoma Hemifield Test Analysis (GHT)">
                 description = <"An analysis of asymmetry between zones of the superior and inferior visual field. It is designed to be specific for defects due to glaucoma. Corresponds to DICOM Code value 111855.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Visual field loss due to local defect">
                 description = <"Estimate of the portion of a patient’s visual field loss that is local (i.e. not spread evenly across all portions of the visual field). Corresponds to DICOM Code value 111854.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Visual field loss due to diffuse defect">
                 description = <"Estimate of the portion of a patient’s visual field loss that is diffuse (i.e. spread evenly across all portions of the visual field). Corresponds to DICOM Code value 111853.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Visual field index">
                 description = <"Index of a patient’s remaining visual field normalized for both age and generalized defect. Corresponds to DICOM Code value 111852.">
             >
@@ -419,7 +419,7 @@ terminology
                 description = <"Whether foveal sensitivity was measured.">
                 comment = <"Matches to DICOM (0024,0086) attribute.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Borderline and general reduction in sensitivity">
                 description = <"Analysis Results identify Borderline and general reduction in sensitivity. Corresponds to DICOM Code value 111851.">
             >
@@ -470,23 +470,23 @@ terminology
                 description = <"Weighted average deviation from the age corrected normal field, in dB.">
                 comment = <"Matches to DICOM (0024,0066) attribute.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Within normal limits">
                 description = <"None of the abnormal conditions are met. Corresponds to DICOM Code value M-00101.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Abnormally high sensitivity">
                 description = <"Overall sensitivity in the affected  region of the VF is better than 99.5% of individuals within the normative population. Corresponds to DICOM Code value 111849.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"General reduction of sensitivity">
                 description = <"Conditions for “outside normal limits” are not met, and the best region of the visual field is at or below the 99.5th percentile of the normative population. Corresponds to DICOM Code value 111850.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Borderline">
                 description = <"Matched pairs of zones are abnormal at the 97th percentile within the normative database. Corresponds to DICOM Code value 111848.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Outside normal limits">
                 description = <"Differences between a matched pair of corresponding zones exceeds the difference found in 99% of the normal population, or when both members of a pair of zones are more abnormal than 99.5% of the individuals with the normative population. Corresponds to DICOM Code value 111847.">
             >
@@ -512,11 +512,11 @@ terminology
                 text = <"Confounding factors">
                 description = <"Patient circumstances which may affect interpretation of the result.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Right eye">
                 description = <"The right eye was examined.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Left eye">
                 description = <"The left eye was examined.">
             >
@@ -562,18 +562,18 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at166", "at167", "at168", "at169", "at170">
+            members = <"at165", "at166", "at167", "at168", "at169">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at20", "at21">
+            members = <"at19", "at20">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at61", "at62", "at63", "at64", "at65">
+            members = <"at60", "at61", "at62", "at63", "at64">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at29", "at30", "at32", "at31", "at54", "at33">
+            members = <"at28", "at29", "at31", "at30", "at53", "at32">
         >
     >

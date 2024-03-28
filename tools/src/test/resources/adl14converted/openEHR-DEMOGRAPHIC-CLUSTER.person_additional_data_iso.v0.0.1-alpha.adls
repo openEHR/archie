@@ -83,19 +83,19 @@ terminology
                 text = <"sexo (synthesised)">
                 description = <"sexo da pessoa (synthesised)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Não declarado/inadequadamente descrito">
                 description = <"Não é para ser usado em formulários de coleta primária. É primariamente usado em coleções administrativas, ao transferir conjuntos de dados onde o item não foi coletado">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Intersexo ou indeterminado">
                 description = <"Usado normalmente para bebês para os quais o sexo não foi determinado por qualquer razão. Não deve ser usado em formulários de coleta de dados completados pelo respondente e deve ser usado somente se a pessoa ou respondente voluntariamente afirma que a pessoa é intersexo ou onde fica claro durante o processo de coleta que o indivíduo não é nem do sexo masculino nem feminino">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Feminino">
                 description = <"Sexo feminino">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Masculino">
                 description = <"Sexo masculino">
             >
@@ -121,19 +121,19 @@ terminology
                 text = <"Sex (synthesised)">
                 description = <"The sex of the subject. (synthesised)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Not declared/inadequately described">
                 description = <"is not to be used on primary collection forms. It is primarily for use in administrative collections when transferring data from data sets where the item has not been collected.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Intersex or indeterminate">
                 description = <"is normally used for babies for whom sex has not been determined for whatever reason, should not generally be used on data collection forms completed by the respondent and should only be used if the person or respondent volunteers that the person is intersex or where it otherwise becomes clear during the collection process that the individual is neither male nor female">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Female">
                 description = <"Female">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Male">
                 description = <"Male">
             >
@@ -158,6 +158,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12", "at13", "at14">
+            members = <"at10", "at11", "at12", "at13">
         >
     >

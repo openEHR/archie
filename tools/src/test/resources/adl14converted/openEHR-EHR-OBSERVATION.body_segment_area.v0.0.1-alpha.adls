@@ -108,7 +108,7 @@ definition
                                         value matches {
                                             DV_TEXT[id9003] 
                                             DV_CODED_TEXT[id9004] matches {
-                                                defining_code matches {[at18]}    -- Upper arm muscle area
+                                                defining_code matches {[at17]}    -- Upper arm muscle area
                                             }
                                         }
                                     }
@@ -224,19 +224,19 @@ terminology
                 description = <"Forskjellen mellom målinger av samme kroppsdel når den er målt på begge sider av kroppen.">
                 comment = <"Bare relevant dersom man skal sammenligne målinger gjort på lemmer.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Liggende">
                 description = <"Liggende flatt på tidspunkt for målingen.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Tilbakelent">
                 description = <"Tilbakelent på tidspunkt for målingen.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Sittende">
                 description = <"Sittende (for eksempel på en stol eller på en seng med føttene på gulvet) på tidspunkt for målingen.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Stående">
                 description = <"Stående ved tidspunktet for målingen.">
             >
@@ -259,7 +259,7 @@ terminology
                 description = <"Fritekstbeskrivelse av metoden som ble benyttet for målingen.">
                 comment = <"Spesifiser for å sikre at en sekvens av målinger blir gjort på de samme punktene og på samme måte. For eksempel \"Sittende med kneet bøyd 90 grader\".">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Areal av overarmsmuskel">
                 description = <"Utregning av arealet av overarmsmuskel, vanligvis utledet fra måling av overarmsomkrets.">
             >
@@ -284,11 +284,11 @@ terminology
                 text = <"Areal">
                 description = <"Utregnet areal av området på kroppen.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Høyre">
                 description = <"Høyre side av kroppen.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Venstre">
                 description = <"Venstre side av kroppen.">
             >
@@ -329,19 +329,19 @@ terminology
                 description = <"The difference between calculation of the same body segment measured from each side of the body.">
                 comment = <"Only relevant if comparison measurements are being made on arms or legs.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Lying">
                 description = <"Lying flat at the time of measurement.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Reclining">
                 description = <"Reclining at the time of measurement.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Sitting">
                 description = <"Sitting (for example on bed or chair) at the time of measurement.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Standing">
                 description = <"Standing at the time of measurement.">
             >
@@ -364,7 +364,7 @@ terminology
                 description = <"Narrative description of the method used for measurement.">
                 comment = <"Specify in order to ensure that a sequence of measurements are taken at the same point and in the same way. For example: 'Sitting with knee bent at 90 degrees'. ">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Upper arm muscle area">
                 description = <"Calculation of the area of the upper arm, usually derived from the measurement of the upper arm circumference.">
             >
@@ -389,11 +389,11 @@ terminology
                 text = <"Area">
                 description = <"Calculated area of the identified body segment.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Right">
                 description = <"Right side of the body.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Left">
                 description = <"Left side of the body.">
             >
@@ -425,10 +425,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at37", "at38", "at39", "at40">
+            members = <"at36", "at37", "at38", "at39">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8">
+            members = <"at6", "at7">
         >
     >

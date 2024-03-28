@@ -256,31 +256,31 @@ terminology
                 text = <"Diagnosisk kategori (synthesised)">
                 description = <"Kategorisering av problemet eller diagnosen innenfor en spesifikk kontakt og/eller lokal behandlingssammenheng. (synthesised)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"Residivert">
                 description = <"Problemet eller diagnosen har blitt forverret etter en midlertidig forbedret periode.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"Tilbakefall">
                 description = <"Ny forekomst av det samme problemet eller diagnosen etter at en tidligere episode var bedret.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Første forekomst">
                 description = <"Dette er den første forekomsten av dette problemet eller diagnosen.">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Akutt-på-kronisk">
                 description = <"Et problem eller en diagnose med en akutt forverring av en kronisk tilstand.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Ubestemmelig">
                 description = <"Det er ikke mulig å bestemme om sykdomstegnene eller symptomene av sykdommen er reduserte.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Ikke i remisjon">
                 description = <"Ingen reduksjon av sykdomstegn eller symptomer er identifisert.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"I remisjon">
                 description = <"Ingen pågående sykdomstegn eller symptomer på sykdommen er identifisert.">
             >
@@ -289,23 +289,23 @@ terminology
                 description = <"Remisjonsstatus for en ikke-kurerbar diagnose.">
                 comment = <"For eksempel status for kreft eller en hematologisk diagnose.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Avkreftet">
                 description = <"Diagnosen har blitt klinisk revurdert, eller er motbevist med en høy grad av klinisk sikkerhet. Denne statusen brukes for å korrigere feil i journalen.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"Ubestemmelig">
                 description = <"Det er ikke mulig å bestemme problemet eller diagnosens fase av bedring.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Ikke i bedring">
                 description = <"Problemet eller diagnosen utvikler seg ikke i ønsket retning gjennom de vanlige stadiene av bedring, eller er ikke under tilheling.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"I bedring">
                 description = <"Problemet eller diagnosen utvikler seg i ønsket retning gjennom de vanlige stadiene av bedring, eller under tilheling.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Bedret">
                 description = <"Problemet eller diagnosen har fullført de vanlige stadiene av bedring eller tilheling, og kan regnes som bedret.">
             >
@@ -314,11 +314,11 @@ terminology
                 description = <"Fase av bedring eller tilheling for et akutt problem eller diagnose.">
                 comment = <"For eksempel for å spore tilhelingen av en mellomørebetennelse.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Akutt">
                 description = <"Et problem eller diagnose med en rask inntreden, kortvarig forløp, eller begge.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Kronisk">
                 description = <"Et problem eller diagnose med varige eller langvarige effekter, eller som utvikler seg over tid.">
             >
@@ -327,7 +327,7 @@ terminology
                 description = <"Kategorisering som betegner debuten og/eller varigheten og vedvarenheten av problemet eller diagnosen.">
                 comment = <"Definisjoner av akutt og kronisk vil variere fra diagnose til diagnose.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Komplikasjon">
                 description = <"En ugunstig utvikling av et problem eller diagnose.">
             >
@@ -341,15 +341,15 @@ terminology
                 description = <"Kategorisering av forekomsten for dette problemet eller diagnosen.">
                 comment = <"Dette dataelementet kan brukes som en ytterligere kvalifikator i tillegg til verdien \"Ny\" i elementet \"Episodisitet\". For eksempel kan en sykdom som astma ha gjentakende episoder med bedre perioder mellom, men det kan likevel være viktig å kunne identifisere den første astmaepisoden fra de påfølgende.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Ubestemmelig">
                 description = <"Det er ikke mulig å bestemme hvorvidt denne forekomsten av problemet eller diagnosen er ny eller pågående.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Bidiagnose">
                 description = <"Et problem eller diagnose som opptrer samtidig som hoveddiagnosen. Kan også omtales som en komorbiditet.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Hoveddiagnose">
                 description = <"Diagnosen som er bestemt å være hovedårsaken til den aktuelle kontakten.">
             >
@@ -358,11 +358,11 @@ terminology
                 description = <"Kategorisering av problemet eller diagnosen innenfor en spesifikk kontakt og/eller lokal behandlingssammenheng.">
                 comment = <"Dette elementet inneholder et verdisett som er i vanlig bruk innen diagnosekategorisering. I episodiske behandlingssammenhenger (som regel spesialisthelsetjenesten) er det vanlig å kategorisere/organisere diagnoser i henhold til deres forhold til hoveddiagnosen som behandles i den aktuelle kontakten. Disse kategoriene kan også brukes for klinisk koding, rapportering og fakturering. I noen land omtales diagnosekategorien som \"en DRG\". I tillegg gjør muligheten for å legge til annen fri eller kodet tekst at det er mulig å bruke andre lokale verdisett ved behov.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Nåværende">
                 description = <"Problemet/diagnosen er tilstede ved registreringstidspunktet.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Tidligere">
                 description = <"Problemet/diagnosen er ikke lenger tilstede ved registreringstidspunktet.">
             >
@@ -371,31 +371,31 @@ terminology
                 description = <"Kategori som støtter oppdeling av problemer og diagnoser i lister over nåværende og tidligere problemer.">
                 comment = <"Elementene Nåværende/tidligere og Aktiv/inaktiv har lignende klinisk innflytelse, men representerer noe forskjellig betydning. Begge brukes aktivt i forskjellige kliniske sammenhenger, men som regel ikke sammen. Dersom Aktiv/inaktiv er registrert, er dette elementet sannsynligvis overflødig. Et unntak der en tilstand kan være både nåværende og inaktivt, er astma som ikke forårsaker akutte symptomer.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Pågående">
                 description = <"Problemet eller diagnosen er pågående, uten at det har forekommet nye episoder.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Ny">
                 description = <"En ny forekomst av enten et nytt eller et eksisterende problem eller diagnose. Et flagg for \"Første forekomst\" kan registreres separat for å skille den første forekomsten fra påfølgende.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Inaktiv">
                 description = <"Problemet eller diagnosen er ikke fullstendig bedret, men er inaktivt eller mindre relevant for den nåværende kliniske sammenhengen.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Aktiv">
                 description = <"Problemet eller diagnosen er aktivt og kliniske relevant ved registreringstidspunktet.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Fastslått">
                 description = <"Endelig underbygget diagnose, basert på en høy grad av klinisk sikkerhet, som kan omfatte klinisk evidens fra undersøkelser. Den er ikke forventet å endres.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Arbeidsdiagnose">
                 description = <"Midlertidig diagnose, basert på en rimelig grad av klinisk sikkerhet, men som avventer videre undersøkelsesresultater eller kliniske råd. Den kan fortsatt endres etter hvert som undersøkelsesresultater eller annen informasjon blir tilgjengelig.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Tentativ">
                 description = <"En foreløpig diagnose som er en utredningshypotese, og som antas å kunne bli bekreftet ved videre utredning eller observasjon av utvikling. Den kan bli endret etter hvert som undersøkelsesresultater eller annen informasjon blir tilgjengelig.">
             >
@@ -456,31 +456,31 @@ terminology
                 text = <"진단 범주 (synthesised)">
                 description = <"특별한 진료 그리고/또는 로컬 케어 환경의 삽화 내에서의 문제 또는 진단의 범주 (synthesised)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"*Relapsed (en)">
                 description = <"*Problem or diagnosis has deteriorated after a period of temporary improvement. (en)">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"*Recurrence (en)">
                 description = <"*New occurrence of the same problem or diagnosis after a previous episode was resolved. (en)">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"*First occurrence (en)">
                 description = <"*This is the first ever occurrence of this problem or diagnosis. (en)">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"만성진행 중 급성발생">
                 description = <"만성 상태의 급성 악화를 한 문제 또는 진단.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"결정불능">
                 description = <"질병의 증상이나 증후의 감소가 있는지 결정하는 것이 불가능함.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"관해 아님">
                 description = <"질병의 증상이나 증후의 감소가 확인되지 않음.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"완전 관해">
                 description = <"확인되는 진행 중인 질병의 증상이나 징후가 없음.">
             >
@@ -489,23 +489,23 @@ terminology
                 description = <"불치병 진단의 관해 상태.">
                 comment = <"예: 암 또는 혈액학적 진단 상태.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"반증">
                 description = <"이전에 기록된 진단이 임상적으로 재평가되고 높은 수준의 임상적 확실성으로 반증됨. 이 상태는 건강 기록내의 오류를 교정하는데 사용됨.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"결정불능">
                 description = <"문제 또는 진단의 완치 또는 치료 상태를 결정할 수 없음.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"치료안되고 있음">
                 description = <"문제 또는 진단이 완치가 되는 방향으로 치료되고 있다거나 정상 단계로 복귀되는 것처럼 만족스럽게 진행되지 않고 있음.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"치료중">
                 description = <"문제 또는 진단이 완치가 되는 방향으로 치료되고 있거나 정상 단계로 복귀되는 것을 통해 만족스럽게 진행중임.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"완치">
                 description = <"문제 또는 진단이 완치가 되는 방향으로 치료되고 있거나 정상 단계로 복귀되는 것을 통해 종료됨.">
             >
@@ -514,11 +514,11 @@ terminology
                 description = <"급성 문제 또는 진단이 치료되는 단계">
                 comment = <"예: 중이염의 치료 단계 추적">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"급성">
                 description = <"빠른 발생, 짧은 경과 또는 둘 다 가진 문제 또는 진단.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"만성">
                 description = <"영속적 또는 매우 길게 유지되는 영향을 주는 문제 또는 진단, 또는 계속 진화함.">
             >
@@ -527,7 +527,7 @@ terminology
                 description = <"문제 또는 진단의 발생의 속도 그리고/또는 기간 그리고 영속성을 반영하는 범주.">
                 comment = <"급성 대 만성의 진단은 각 진단에서 따라 다를 것임.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"합병증">
                 description = <"문제 또는 진단의 원치않는 발전.">
             >
@@ -541,15 +541,15 @@ terminology
                 description = <"*Category of the occurrence for this problem or diagnosis. (en)">
                 comment = <"*This data element can be an additional qualifier to the 'New' value in the 'Episodicity' value set, that is a condition such as asthma can have recurring new episodes that have periods of resolution in between. However it can be important to identify the first ever episode of asthma from all of the other episodes. (en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"결정불능">
                 description = <"문제 또는 진단의 발생이 새로운 것인지 진행 중인 것인지 구별하는 것이 불가능함.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"이차 진단">
                 description = <"일차 문제 또는 진단과 동시에 발생한 문제 또는 진단. 동반 상태로 알려질 수도 있음.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"주요 진단">
                 description = <"입원 환자 진료의 삽화 또는 요양 진료의 삽화, 의료기관 방문을 야기하는데 주요하게 책임이 있는 것으로 결정된 진단.
     ">
@@ -560,11 +560,11 @@ terminology
                 comment = <"이 데이터 엘리먼트는 진단 범주에서 공통적으로 사용되는 value set을 포함함. 삽화적인 진료환경(보통 이차 진료)에서, 해당 진료삽화 동안 대처해야하는 주진단과의 관계에 따라 범주화/조직화하는 것이 일반적임. 이 범주는 또한 임상 코딩과 리포팅, 청구목적을 위해 사용될 수 있음. 몇몇 국가에서는 진단 범주가 DRG로 알려지기도 함. 
     추가로, 자유 텍스트 선택은 요구에 따라 다른 로컬 value set의 사용을 허용함.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"현재">
                 description = <"현재 발생한 이슈.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"과거">
                 description = <"과거에 발생했던 이슈.">
             >
@@ -573,31 +573,31 @@ terminology
                 description = <"문제와 진단을 현재 또는 과거 문제 목록으로 구분하는 것을 지원하기 위한 범주.">
                 comment = <"현재/과거 그리고 활성/비활성 데이터 엘리먼트는 비슷한 임상적 영향을 가지지만 약간 다른 의미를 표현함. 둘 다 상이한 임상 환경에서 활발하게 사용되지만 보통 같이 사용되지는 않음. 활성/비활성 한정자가 기록되어 있다면, 이 데이터 엘리먼트는 중복일 가능성이 있음. 상태가 현재일 수는 있지만 비활성인 예외 경우는 급성 증상을 일으키지 않는 천식임.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"진행중">
                 description = <"이슈 또는 문제, 진단이 새로운 급성 삽화의 발생없이 진행 중임.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"새로운">
                 description = <"새로 또는 존재하는 문제 또는 진단의 새로운 발생. '처음 발생'을 위한 표시는 다른 발생으로 부터 처음 발생을 구별하기 위해 구분해서 기록될 수 있음.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"비활성">
                 description = <"완치된 문제 또는 진단은 아니지만 비활성 상태이거나 현재 임상 상황에 거의 관련성이 없다고 느껴짐.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"활성">
                 description = <"현재 활성화되어 있고 임상적으로 관련된 문제 또는 진단">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"확립">
                 description = <"검사결과에 따른 임상 근거를 포함할 수 있는, 높은 수준의 임상적 확실성에 기반한 최종의 실질적인 진단. 변경될 것으로 기대되지 않음.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"진행">
                 description = <"합리적 수준의 임상적 확실성에 근거하지만, 좀 더 진전된 검사 결과 또는 임상적 권고를 기다리는 임시적인 진단. 이 또한 검사 결과 또는 권고에 따라 변경될 수 있음.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"예비">
                 description = <"보통 보통 낮은 수준의 임상적 확실을과 과련된, 초기 진단이 이루어짐. 검사 결과 또는 권고에 따라 변경될 수 있음.">
             >
@@ -659,31 +659,31 @@ terminology
                 text = <"*Diagnostic category(en) (synthesised)">
                 description = <"*Category of the problem or diagnosis within a specified episode of care and/or local care context.(en) (synthesised)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"*Relapsed (en)">
                 description = <"*Problem or diagnosis has deteriorated after a period of temporary improvement. (en)">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"*Recurrence (en)">
                 description = <"*New occurrence of the same problem or diagnosis after a previous episode was resolved. (en)">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"*First occurrence (en)">
                 description = <"*This is the first ever occurrence of this problem or diagnosis. (en)">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"*Acute-on-chronic(en)">
                 description = <"**(en)">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to determine if there have been diminution of the signs or symptoms of the disease have been identified.(en)">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"*Not in remission(en)">
                 description = <"*No diminution of the signs or symptoms of the disease have been identified.(en)">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"*In complete remission(en)">
                 description = <"*No diminution of signs or symptoms of the disease have been identified.(en)">
             >
@@ -692,23 +692,23 @@ terminology
                 description = <"*Status of the remission of an incurable diagnosis.(en)">
                 comment = <"*For example: the status of a cancer or haematological diagnosis.(en)">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Descartado">
                 description = <"O diagnóstico foi reavaliado clinicamente ou foi refutado com um elevado nível de segurança clínica.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to determine the resolution or healing status of the problem or diagnosis.(en)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Não resolvendo">
                 description = <"Um problema ou um diagnóstico que não está progredindo satisfatoriamente pelos estágios normais de reabilitação ou de cura em direção a resolução.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Resolvendo">
                 description = <"Um problema ou um diagnóstico que está evoluindo de forma satisfatória pelos estágios normais de reabilitação ou de cura evoluindo para a resolução.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Resolvido">
                 description = <"Problema ou diagnóstico que finalizou as fases normais de reabilitação ou de cura e pode ser considerado resolvido.">
             >
@@ -717,11 +717,11 @@ terminology
                 description = <"*Phase of healing for an acute problem or diagnosis.(en)">
                 comment = <"*For example: tracking the progress of resolution of a middle ear infection.(en)">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Agudo">
                 description = <"Um problema ou diagnóstico com um início rápido, um curso curto, ou ambos.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Crônico">
                 description = <"Um problema ou um diagnóstico com efeitos persistentes ou de longa duração ou que evolui ao longo do tempo.">
             >
@@ -730,7 +730,7 @@ terminology
                 description = <"*Category reflecting the speed of onset and/or duration and persistence of the problem or diagnosis.(en)">
                 comment = <"*Definitions of acute vs chronic will differ for each diagnosis.(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Complicação">
                 description = <"Uma evolução desfavorável de um problema ou diagnóstico.">
             >
@@ -744,15 +744,15 @@ terminology
                 description = <"*Category of the occurrence for this problem or diagnosis. (en)">
                 comment = <"*This data element can be an additional qualifier to the 'New' value in the 'Episodicity' value set, that is a condition such as asthma can have recurring new episodes that have periods of resolution in between. However it can be important to identify the first ever episode of asthma from all of the other episodes. (en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Indeterminado">
                 description = <"Não é possível determinar se esta ocorrência do problema ou diagnóstico é nova ou está em curso.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Diagnóstico secundário">
                 description = <"Um problema ou diagnóstico que ocorre ao mesmo tempo que o problema ou de diagnóstico principal. Também pode ser conhecido como uma comorbidade.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Diagnóstico principal">
                 description = <"O diagnóstico específico a ser responsável por desencadear um episódio de cuidado do paciente admitido, um episódio de cuidados domiciliares ou um comparecimento no estabelecimento de cuidados de saúde.">
             >
@@ -762,11 +762,11 @@ terminology
                 comment = <"*This data element contains a value set commonly used in diagnostic categorisation. In episodic care contexts (commonly secondary care) it is common to categorise/organise diagnoses according to their relationship to the principal diagnosis being addressed during that episode of care. These categories may also be used for clinical coding, reporting and billing purposes. In some countries the diagnostic category may be known as a DRG.
     In addition, the free text choice permits use of other local value sets, as required.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Current(en)">
                 description = <"*An issue occuring at present.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Past(en)">
                 description = <"*An issue which ocurred in the past.(en)">
             >
@@ -775,31 +775,31 @@ terminology
                 description = <"*Category that supports division of problems and diagnoses into Current or Past problem lists.(en)">
                 comment = <"*The Current/Past and Active/Inactive data elements have similar clinical impact but represent slightly different semantics. Both are actively used in different clinical settings, but usually not together. If an Active/Inactive qualifier is recorded, then this data element is likely to be redundant. An exception where a condition can be current but inactive is asthma that is not causing acute symptoms.(en)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"*Ongoing(en)">
                 description = <"*The issue, problem or diagnosis continues, without new, acute episodes occurring.(en)">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"*New(en)">
                 description = <"*A new occurrence of either a new or existing problem or diagnosis. A flag for 'First occurrence' can be recorded separately to distinguish the first from other occurrences.(en)">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Inativo">
                 description = <"O problema ou diagnóstico não está completamente resolvido, mas está inativo ou é menos relevante no contexto clínico atual.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Ativo">
                 description = <"O problema ou o diagnóstico está atualmente ativo e clinicamente relevante.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Established(en)">
                 description = <"*Final substantiated diagnosis, based on a high level of clinical certainty, which may include clinical evidence from test results. It is not expected to change.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Trabalhando [(Interrogado)]">
                 description = <"Diagnóstico provisório, com base em numa certeza clínica razoável, mas na pendência de novos resultados de testes ou orientação clínica. Pode ainda mudar à medida que os resultados dos testes ou conselhos estiverem disponíveis.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Preliminar">
                 description = <"O diagnóstico inicial feito, geralmente associado a um baixo nível de certeza clínica. Pode mudar à medida que os resultados dos testes ou conselhos estiverem disponíveis.">
             >
@@ -861,31 +861,31 @@ terminology
                 text = <"Diagnostic category (synthesised)">
                 description = <"Category of the problem or diagnosis within a specified episode of care and/or local care context. (synthesised)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"Relapsed">
                 description = <"Problem or diagnosis has deteriorated after a period of temporary improvement.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"Recurrence">
                 description = <"New occurrence of the same problem or diagnosis after a previous episode was resolved.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"First occurrence">
                 description = <"This is the first ever occurrence of this problem or diagnosis.">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Acute-on-chronic">
                 description = <"A problem or diagnosis with an acute exacerbation of a chronic condition.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to determine if there have been diminution of the signs or symptoms of the disease have been identified.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Not in remission">
                 description = <"No diminution of the signs or symptoms of the disease have been identified.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"In remission">
                 description = <"No ongoing signs or symptoms of the disease have been identified.">
             >
@@ -894,23 +894,23 @@ terminology
                 description = <"Status of the remission of an incurable diagnosis.">
                 comment = <"For example: the status of a cancer or haematological diagnosis.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Refuted">
                 description = <"The previously recorded diagnosis has been clinically reassessed or disproved with a high level of clinical certainty. This status is used to correct an error in the health record.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to determine the resolution or healing status of the problem or diagnosis.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Not resolving">
                 description = <"Problem or diagnosis is not progressing satisfactorily through the normal stages of restoration or healing towards resolution.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Resolving">
                 description = <"Problem or diagnosis is progressing satisfactorily through the normal stages of restoration or healing towards resolution.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Resolved">
                 description = <"Problem or diagnosis has completed the normal phases of restoration or healing and can be considered resolved.">
             >
@@ -919,11 +919,11 @@ terminology
                 description = <"Phase of healing for an acute problem or diagnosis.">
                 comment = <"For example: tracking the progress of resolution of a middle ear infection.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Acute">
                 description = <"A problem or diagnosis with a rapid onset, a short course, or both.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Chronic">
                 description = <"A problem or diagnosis with persistent or long-lasting effects, or that evolves over time.">
             >
@@ -932,7 +932,7 @@ terminology
                 description = <"Category reflecting the speed of onset and/or duration and persistence of the problem or diagnosis.">
                 comment = <"Definitions of acute vs chronic will differ for each diagnosis.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Complication">
                 description = <"An unfavorable evolution of a problem or diagnosis.">
             >
@@ -946,15 +946,15 @@ terminology
                 description = <"Category of the occurrence for this problem or diagnosis.">
                 comment = <"This data element can be an additional qualifier to the 'New' value in the 'Episodicity' value set, that is a condition such as asthma can have recurring new episodes that have periods of resolution in between. However it can be important to identify the first ever episode of asthma from all of the other episodes.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to determine if this occurrence of the problem or diagnosis is new or ongoing.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Secondary diagnosis">
                 description = <"A problem or diagnosis that is occurs at the same time as the primary problem or diagnosis. May also be known as a comorbid condition.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Principal diagnosis">
                 description = <"The diagnosis determined to be chiefly responsible for occasionaing an episode of admitted patient care, an episode of residential care or an attendance at the health care establishment.">
             >
@@ -964,11 +964,11 @@ terminology
                 comment = <"This data element contains a value set commonly used in diagnostic categorisation. In episodic care contexts (commonly secondary care) it is common to categorise/organise diagnoses according to their relationship to the principal diagnosis being addressed during that episode of care. These categories may also be used for clinical coding, reporting and billing purposes. In some countries the diagnostic category may be known as a DRG.
      In addition, the free text choice permits use of other local value sets, as required.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Current">
                 description = <"An issue occuring at present.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Past">
                 description = <"An issue which ocurred in the past.">
             >
@@ -977,31 +977,31 @@ terminology
                 description = <"Category that supports division of problems and diagnoses into Current or Past problem lists.">
                 comment = <"The Current/Past and Active/Inactive data elements have similar clinical impact but represent slightly different semantics. Both are actively used in different clinical settings, but usually not together. If an Active/Inactive qualifier is recorded, then this data element is likely to be redundant. An exception where a condition can be current but inactive is asthma that is not causing acute symptoms.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Ongoing">
                 description = <"The issue, problem or diagnosis continues, without new, acute episodes occurring.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"New">
                 description = <"A new occurrence of either a new or existing problem or diagnosis. A flag for 'First occurrence' can be recorded separately to distinguish the first from other occurrences.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Inactive">
                 description = <"The problem or diagnosis is not completely resolved but is inactive or felt less relevant to the current clinical context.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Active">
                 description = <"The problem or diagnosis is currently active and clinically relevant.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Established">
                 description = <"Final substantiated diagnosis, based on a high level of clinical certainty, which may include clinical evidence from test results. It is not expected to change.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Working">
                 description = <"Interim diagnosis, based on a reasonable amount of clinical certainty but pending further test results or clinical advice. It may still change as test results or advice become available.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Preliminary">
                 description = <"The initial diagnosis made, usually associated with a low level of clinical certainty. It may change as test results or advice become available.">
             >
@@ -1063,31 +1063,31 @@ terminology
                 text = <"*Diagnostic category(en) (synthesised)">
                 description = <"*Category of the problem or diagnosis within a specified episode of care and/or local care context.(en) (synthesised)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"*Relapsed (en)">
                 description = <"*Problem or diagnosis has deteriorated after a period of temporary improvement. (en)">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"*Recurrence (en)">
                 description = <"*New occurrence of the same problem or diagnosis after a previous episode was resolved. (en)">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"*First occurrence (en)">
                 description = <"*This is the first ever occurrence of this problem or diagnosis. (en)">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"*Acute-on-chronic(en)">
                 description = <"**(en)">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to determine if there have been diminution of the signs or symptoms of the disease have been identified.(en)">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"*Not in remission(en)">
                 description = <"*No diminution of the signs or symptoms of the disease have been identified.(en)">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"*In complete remission(en)">
                 description = <"*No diminution of signs or symptoms of the disease have been identified.(en)">
             >
@@ -1096,23 +1096,23 @@ terminology
                 description = <"*Status of the remission of an incurable diagnosis.(en)">
                 comment = <"*For example: the status of a cancer or haematological diagnosis.(en)">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"*Refuted(en)">
                 description = <"*The diagnosis has been clinically reassessed or has been disproved with a high level of clinical certainty.(en)">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to determine the resolution or healing status of the problem or diagnosis.(en)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"*Not resolving(en)">
                 description = <"*Problem or diagnosis is not progressing satisfactorily through the normal stages of restoration or healing towards resolution.(en)">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"*Resolving(en)">
                 description = <"*Problem or diagnosis is progressing satisfactorily through the normal stages of restoration or healing towards resolution.(en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Resolved(en)">
                 description = <"*Problem or diagnosis has completed the normal phases of restoration or healing and can be considered resolved.(en)">
             >
@@ -1121,11 +1121,11 @@ terminology
                 description = <"*Phase of healing for an acute problem or diagnosis.(en)">
                 comment = <"*For example: tracking the progress of resolution of a middle ear infection.(en)">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"*Acute(en)">
                 description = <"*A problem or diagnosis with a rapid onset, a short course, or both.(en)">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"*Chronic(en)">
                 description = <"*A problem or diagnosis with persistent or long-lasting effects, or that evolves over time.(en)">
             >
@@ -1134,7 +1134,7 @@ terminology
                 description = <"*Category reflecting the speed of onset and/or duration and persistence of the problem or diagnosis.(en)">
                 comment = <"*Definitions of acute vs chronic will differ for each diagnosis.(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Complication(en)">
                 description = <"*An unfavorable evolution of a problem or diagnosis.(en)">
             >
@@ -1148,15 +1148,15 @@ terminology
                 description = <"*Category of the occurrence for this problem or diagnosis. (en)">
                 comment = <"*This data element can be an additional qualifier to the 'New' value in the 'Episodicity' value set, that is a condition such as asthma can have recurring new episodes that have periods of resolution in between. However it can be important to identify the first ever episode of asthma from all of the other episodes. (en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to determine if this occurrence of the problem or diagnosis is new or ongoing.(en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Secondary diagnosis(en)">
                 description = <"*A problem or diagnosis that is occurs at the same time as the primary problem or diagnosis. May also be known as a comorbid condition.(en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Principal diagnosis(en)">
                 description = <"*The diagnosis determined to be chiefly responsible for occasionaing an episode of admitted patient care, an episode of residential care or an attendance at the health care establishment.(en)">
             >
@@ -1166,11 +1166,11 @@ terminology
                 comment = <"*This data element contains a value set commonly used in diagnostic categorisation. In episodic care contexts (commonly secondary care) it is common to categorise/organise diagnoses according to their relationship to the principal diagnosis being addressed during that episode of care. These categories may also be used for clinical coding, reporting and billing purposes. In some countries the diagnostic category may be known as a DRG.
     In addition, the free text choice permits use of other local value sets, as required.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Current(en)">
                 description = <"*An issue occuring at present.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Past(en)">
                 description = <"*An issue which ocurred in the past.(en)">
             >
@@ -1179,31 +1179,31 @@ terminology
                 description = <"*Category that supports division of problems and diagnoses into Current or Past problem lists.(en)">
                 comment = <"*The Current/Past and Active/Inactive data elements have similar clinical impact but represent slightly different semantics. Both are actively used in different clinical settings, but usually not together. If an Active/Inactive qualifier is recorded, then this data element is likely to be redundant. An exception where a condition can be current but inactive is asthma that is not causing acute symptoms.(en)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"*Ongoing(en)">
                 description = <"*The issue, problem or diagnosis continues, without new, acute episodes occurring.(en)">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"*New(en)">
                 description = <"*A new occurrence of either a new or existing problem or diagnosis. A flag for 'First occurrence' can be recorded separately to distinguish the first from other occurrences.(en)">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Ni aktiven">
                 description = <"Problem trenutno ni aktiven">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Aktiven">
                 description = <"Problem je trenutno aktiven in klinično relevanten">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Established(en)">
                 description = <"*Final substantiated diagnosis, based on a high level of clinical certainty, which may include clinical evidence from test results. It is not expected to change.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Working(en)">
                 description = <"*Interim diagnosis, based on substantiated clinical evidence but pending further test results or clinical advice. It may still change as test results or advice become available.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Preliminary(en)">
                 description = <"*The initial diagnosis made, based on limited available clinical evidence. It may change as test results or advice become available.(en)">
             >
@@ -1233,52 +1233,52 @@ terminology
         ["SNOMED-CT"] = <
             ["id2"] = <http://snomed.info/id/288526004>
             ["id5"] = <http://snomed.info/id/106229004>
-            ["at17"] = <http://snomed.info/id/148006>
-            ["at18"] = <http://snomed.info/id/5558000>
+            ["at16"] = <http://snomed.info/id/148006>
+            ["at17"] = <http://snomed.info/id/5558000>
             ["id61"] = <http://snomed.info/id/410511007>
-            ["at62"] = <http://snomed.info/id/410513005>
-            ["at63"] = <http://snomed.info/id/15240007>
+            ["at61"] = <http://snomed.info/id/410513005>
+            ["at62"] = <http://snomed.info/id/15240007>
             ["id78"] = <http://snomed.info/id/288524001>
-            ["at19"] = <http://snomed.info/id/14657009>
-            ["at65"] = <http://snomed.info/id/8319008>
-            ["at67"] = <http://snomed.info/id/85097005>
+            ["at18"] = <http://snomed.info/id/14657009>
+            ["at64"] = <http://snomed.info/id/8319008>
+            ["at66"] = <http://snomed.info/id/85097005>
         >
     >
     value_sets = <
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at65", "at67", "at77">
+            members = <"at64", "at66", "at76">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at82", "at95", "at80">
+            members = <"at81", "at94", "at79">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at27", "at28">
+            members = <"at26", "at27">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at63", "at62">
+            members = <"at62", "at61">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at17", "at18", "at19", "at89">
+            members = <"at16", "at17", "at18", "at88">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at96", "at97">
+            members = <"at95", "at96">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at35", "at36", "at71">
+            members = <"at34", "at35", "at70">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at91", "at93", "at94">
+            members = <"at90", "at92", "at93">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at87", "at86", "at85", "at88", "at98">
+            members = <"at86", "at85", "at84", "at87", "at97">
         >
     >

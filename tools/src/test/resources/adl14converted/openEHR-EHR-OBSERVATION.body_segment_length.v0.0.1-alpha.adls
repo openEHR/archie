@@ -266,19 +266,19 @@ terminology
                 text = <"Sideforskjell">
                 description = <"Forskjellen mellom målinger av samme kroppsdel når den er målt på begge sider av kroppen.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Liggende">
                 description = <"Liggende flatt på tidspunkt for målingen.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Tilbakelent">
                 description = <"Tilbakelent på tidspunkt for målingen.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Sittende">
                 description = <"Sittende (for eksempel på en stol eller på en seng med føttene på gulvet) på tidspunkt for målingen.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Stående">
                 description = <"Stående ved tidspunktet for målingen.">
             >
@@ -307,35 +307,35 @@ terminology
                 description = <"Fritekstbeskrivelse av metoden som ble benyttet for målingen.">
                 comment = <"Spesifiser for å sikre at en sekvens av målinger blir gjort på de samme punktene og på samme måte. For eksempel \"Sittende med kneet bøyd 90 grader\".">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Armspenn">
                 description = <"Avstanden fra fingertupp til fingertupp med begge armer strukket ut vinkelrett fra kroppen.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Knehøyde">
                 description = <"Avstanden fra sålen til toppen av leggen.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Isse - sete lengde">
                 description = <"Avstanden fra toppen av hodet til den nederste delen av overkroppen.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Fotlengde">
                 description = <"Avstanden fra hælen til spissen av den lengste tåen.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Lårlengde">
                 description = <"Avstanden mellom hofteledd og kneledd.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Benlengde">
                 description = <"Avstanden fra hofteledd til ankelledd.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Lengde av overarm">
                 description = <"Avstanden mellom skulder og albue.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Sittehøyde">
                 description = <"Vertikal avstand mellom sitteflaten og toppen av hodet. Måling av overkroppens lengde mens en person sitter med rak rygg.">
             >
@@ -364,11 +364,11 @@ terminology
                 text = <"Lengde">
                 description = <"Den målte lengden av kroppsdelen.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Høyre">
                 description = <"Høyre side av kroppen.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Venstre">
                 description = <"Venstre side av kroppen.">
             >
@@ -419,19 +419,19 @@ terminology
                 text = <"Difference between sides">
                 description = <"The difference between measurements of the same body segment measured from each side of the body.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Lying">
                 description = <"Lying flat at the time of measurement.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Reclining">
                 description = <"Reclining at the time of measurement.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Sitting">
                 description = <"Sitting (for example on bed or chair) at the time of measurement.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Standing">
                 description = <"Standing at the time of measurement.">
             >
@@ -460,35 +460,35 @@ terminology
                 description = <"Narrative description of the method used for measurement.">
                 comment = <"Specify in order to ensure that a sequence of measurements are taken at the same point and in the same way. For example: 'Sitting with knee bent at 90 degrees'. ">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Armspan">
                 description = <"Distance from fingertip to fingertip with both arms fully extended at right angles to the body.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Knee height">
                 description = <"Distance between the sole of the foot and the top of the lower leg.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Crown-Rump Length">
                 description = <"Distance between vertex of head to the lowest part of the trunk.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Foot length">
                 description = <"Distance between the base of the heel to the tip of the longest toe.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Upper leg length">
                 description = <"Distance between the hip joint and the knee joint.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Leg length">
                 description = <"Distance between the hip joint and the ankle joint.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Upper arm length">
                 description = <"Distance between the shoulder and the elbow.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Sitting Height">
                 description = <"Vertical distance between the sitting surface and the vertex of the head. A measure of trunk length, performed with the individual sitting erect.">
             >
@@ -517,11 +517,11 @@ terminology
                 text = <"Length">
                 description = <"Measured value of the length of the body segment.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Right">
                 description = <"Right side of the body.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Left">
                 description = <"Left side of the body.">
             >
@@ -554,14 +554,14 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at7", "at8">
+            members = <"at6", "at7">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at18", "at25", "at19", "at20", "at21", "at22", "at23", "at24">
+            members = <"at17", "at24", "at18", "at19", "at20", "at21", "at22", "at23">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at37", "at38", "at39", "at40">
+            members = <"at36", "at37", "at38", "at39">
         >
     >

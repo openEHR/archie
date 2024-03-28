@@ -432,23 +432,23 @@ terminology
                 text = <"Calibration reference dB (synthesised)">
                 description = <"Scale used for acoustic calibration check. (synthesised)">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"Insert earphone">
                 description = <"The stimulus is presented via insert earphones.">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"dB A">
                 description = <"The A-weighted decibels of the sound pressure level scale were used.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"Visual test">
                 description = <"A visual stimulus is presented to the test subject.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Audiovisual test">
                 description = <"A combination of auditory and visual stimuli are presented to the test subject.">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Auditory test">
                 description = <"An auditory stimulus is presented to the test subject.">
             >
@@ -469,11 +469,11 @@ terminology
                 text = <"Step size">
                 description = <"The number of dB by which the stimullus intensity is changed after each response.">
             >
-            ["at90"] = <
+            ["at89"] = <
                 text = <"Signal to noise ratio">
                 description = <"The ratio of the signal intensity to the noise intensity.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Quiet">
                 description = <"The speech signal is presented in optimal listening conditions, without any interference from other auditory signals.">
             >
@@ -481,15 +481,15 @@ terminology
                 text = <"Type of adaptive test">
                 description = <"The type of adaptive test used. Typically either in quiet or in noise.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Concrete object pointing">
                 description = <"The subject response is to point to a 3 dimensional (i.e., concrete) object.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Contralateral">
                 description = <"The noise is presented to the ear opposite to the speech signal.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Ipsilateral">
                 description = <"The noise is presented to the same ear as the speech signal.">
             >
@@ -519,31 +519,31 @@ terminology
                 text = <"Confidence interval">
                 description = <"A term used in inferential statistics that measures the probability that a population parameter will fall between two set values.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Sentence">
                 description = <"A grammatical unit of one or more words that expresses an independent statement, question, request, command, exclamation, etc.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Trochee word">
                 description = <"A word that is comprised of two syllables with stress on the first syllable. For example 'bucket'.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Spondee word">
                 description = <"A word comprised of 2 syllables with equal stress on each syllable. For example, 'sunshine'.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Monosyllabic word">
                 description = <"A word comprised of a single syllable. For example, 'green'.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Nonsense word">
                 description = <"A speech stimulus that is not a real word but is phonotactically correct.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Nonsense CVC">
                 description = <"Nonsense word comprising a consonant, then a vowel, then a final consonant, for example, \"wub\" or \"yat\".">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Nonsense syllable">
                 description = <"A consonant-vowel (CV) or CCV or VC or VCC item that is not a real word but is phonotactically correct.">
             >
@@ -559,15 +559,15 @@ terminology
                 text = <"Closed set alternatives">
                 description = <"The number of response alternatives offered in the Closed Set.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Closed task domain">
                 description = <"The response set is limited and the response alternatives remain constant for the whole test list.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Closed set">
                 description = <"The size of the response set is limited.">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Open set">
                 description = <"The size of the response set is unlimited.">
             >
@@ -575,15 +575,15 @@ terminology
                 text = <"Response set">
                 description = <"The size of the response set.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Written response alternatives">
                 description = <"The test subject points to written text that corresponds to the stimulus item that was heard.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Picture pointing">
                 description = <"The test subject points to a picture of the stimulus item that was heard.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Vocal">
                 description = <"The person repeats the stimulus item that was heard.">
             >
@@ -591,11 +591,11 @@ terminology
                 text = <"Response type">
                 description = <"The type of response the patient is asked to give after hearing each stimulus.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Soundfield">
                 description = <"The stimulus is presented via a loudspeaker located at least one metre away from the subject.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Headphone">
                 description = <"The stimulus is presented via external headphones - either circumaural or supraaural..">
             >
@@ -603,11 +603,11 @@ terminology
                 text = <"Presentation method">
                 description = <"The method used to present the speech test stimulus.">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Recorded voice">
                 description = <"Presentation of the speech test stimuli from a recorded medium.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Live voice">
                 description = <"Presentation of the speech test stimuli by monitored live voice presentation by the tester.">
             >
@@ -619,11 +619,11 @@ terminology
                 text = <"Target performance level">
                 description = <"The specified percentage correct used to setup the adaptive test protocol.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"dB HL">
                 description = <"The hearing level scale was used.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"dB SPL">
                 description = <"The sound pressure level scale was used.">
             >
@@ -636,19 +636,19 @@ terminology
                 description = <"Number of voices used to generate multispeaker babble.">
                 comment = <"Relevant only if 'Speech Babble' is the selected value for the 'Type of Mask' data element.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Alternate speaker">
                 description = <"The masker is a single person speaking and this speaker is different to the speaker used for the test stimulus.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Multitalker babble">
                 description = <"A recording of the voices of many people who are talking simultaneously, resulting in an unintelligible babble.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Speech spectrum noise">
                 description = <"Noise spectrum that approximates the average long term spectrum of adult male speech and has a slope below 100 Hz of +6 dB/octave, a flat spectrum between 100 Hz and 320 Hz, and above 320 Hz a slope of -6 dB/octave.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"White noise">
                 description = <"Noise that has the same power at all frequencies (i.e., a flat power spectrum).">
             >
@@ -660,11 +660,11 @@ terminology
                 text = <"Masking stimulus level">
                 description = <"The level of the contralateral masking speech spectrum noise in dB.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Loudspeaker">
                 description = <"A listening condition in which the listener is 1 metre from a loud speaker and hears sounds presented via the loud speaker.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Earphone">
                 description = <"A device that converts electric signals to audible sound and fits over or in the ear.">
             >
@@ -672,11 +672,11 @@ terminology
                 text = <"Masking presentation method">
                 description = <"The method used to present the constralateral masking test signal.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Absent">
                 description = <"No masking noise is presented.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Present">
                 description = <"Masking noise is presented to the non test ear.">
             >
@@ -688,15 +688,15 @@ terminology
                 text = <"Listening device settings">
                 description = <"Narrative description of the details of the assistive listening device settings.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Bone conductor aid">
                 description = <"A type of hearing device.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Cochlear implant">
                 description = <"A type of hearing device.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Hearing aid">
                 description = <"A type of hearing device.">
             >
@@ -705,11 +705,11 @@ terminology
                 description = <"Identification of type of assistive listening device used.">
                 comment = <"Only relevant if 'Aid Status' value is 'Aided'.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Unaided">
                 description = <"The test has been conducted without the patient using any form of auditory assistance, such as a hearing aid or cochlear implant.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Aided">
                 description = <"The test has been conducted with the patient using a form of auditory assistance, such as a hearing aid or cochlear implant.">
             >
@@ -767,15 +767,15 @@ terminology
                 text = <"Performance intensity function">
                 description = <"Results obtained for performance intensity function at each test level.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Binaural">
                 description = <"The test stimuli were presented to both ears simultaneously in a soundfield.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Right ear">
                 description = <"The test stimuli were presented to the right ear only.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Left ear">
                 description = <"The test stimuli were presented to the left ear only.">
             >
@@ -811,62 +811,62 @@ terminology
     value_sets = <
         ["ac9013"] = <
             id = <"ac9013">
-            members = <"at42", "at43", "at44", "at45">
+            members = <"at41", "at42", "at43", "at44">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at95", "at96", "at97">
+            members = <"at94", "at95", "at96">
         >
         ["ac9012"] = <
             id = <"ac9012">
-            members = <"at72", "at73", "at74", "at75", "at76", "at77", "at78">
+            members = <"at71", "at72", "at73", "at74", "at75", "at76", "at77">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at8", "at9", "at10">
+            members = <"at7", "at8", "at9">
         >
         ["ac9011"] = <
             id = <"ac9011">
-            members = <"at66", "at67", "at68">
+            members = <"at65", "at66", "at67">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at62", "at63", "at64", "at87">
+            members = <"at61", "at62", "at63", "at86">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at35", "at36">
+            members = <"at34", "at35">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at29", "at30", "at31">
+            members = <"at28", "at29", "at30">
         >
         ["ac9016"] = <
             id = <"ac9016">
-            members = <"at48", "at49", "at98">
+            members = <"at47", "at48", "at97">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at26", "at27">
+            members = <"at25", "at26">
         >
         ["ac9015"] = <
             id = <"ac9015">
-            members = <"at38", "at39">
+            members = <"at37", "at38">
         >
         ["ac9014"] = <
             id = <"ac9014">
-            members = <"at85", "at86">
+            members = <"at84", "at85">
         >
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at60", "at99", "at59">
+            members = <"at59", "at98", "at58">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at56", "at57">
+            members = <"at55", "at56">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at89", "at90">
+            members = <"at88", "at89">
         >
     >

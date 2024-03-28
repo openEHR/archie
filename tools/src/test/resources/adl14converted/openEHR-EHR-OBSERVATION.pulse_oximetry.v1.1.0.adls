@@ -404,15 +404,15 @@ terminology
                 text = <"*Pre/post-ductal(en) (synthesised)">
                 description = <"*Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosa.(en) (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*Unable to assess whether the sensor site is pre- or post-ductal.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Post-ductal(en)">
                 description = <"*The sensor site is post-ductal.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Pre-ductal(en)">
                 description = <"*The sensor site is pre-ductal.(en)">
             >
@@ -499,15 +499,15 @@ terminology
                 text = <"*Pre/post-ductal(en) (synthesised)">
                 description = <"*Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosa.(en) (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*Unable to assess whether the sensor site is pre- or post-ductal.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Post-ductal(en)">
                 description = <"*The sensor site is post-ductal.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Pre-ductal(en)">
                 description = <"*The sensor site is pre-ductal.(en)">
             >
@@ -595,15 +595,15 @@ terminology
                 text = <"*Pre/post-ductal(en) (synthesised)">
                 description = <"*Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosa.(en) (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*Unable to assess whether the sensor site is pre- or post-ductal.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Post-ductal(en)">
                 description = <"*The sensor site is post-ductal.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Pre-ductal(en)">
                 description = <"*The sensor site is pre-ductal.(en)">
             >
@@ -692,15 +692,15 @@ terminology
                 text = <"Pre-/postduktaalinen (synthesised)">
                 description = <"Anturin paikka valtimotiehyeen nähden vastasyntyneillä sen määrittämiseksi, tuleeko verenkierto anturin sijaintijäseneen pre- vai postduktaalisesti tapauksessa, jossa valtimotiehyt on avoin. (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Ei määritettävissä">
                 description = <"Ei voida määrittää, onko anturin paikka pre- vai postduktaalinen.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Postduktaalinen">
                 description = <"Anturin paikka on postduktaalinen.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Preduktaalinen">
                 description = <"Anturin paikka on preduktaalinen.">
             >
@@ -788,15 +788,15 @@ terminology
                 text = <"*Pre/post-ductal(en) (synthesised)">
                 description = <"*Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosa.(en) (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*Unable to assess whether the sensor site is pre- or post-ductal.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Post-ductal(en)">
                 description = <"*The sensor site is post-ductal.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Pre-ductal(en)">
                 description = <"*The sensor site is pre-ductal.(en)">
             >
@@ -884,15 +884,15 @@ terminology
                 text = <"Pre/postduktal (synthesised)">
                 description = <"Sensor-målested i forhold til ductus arteriosus hos nyfødte, for å fastsette om blodtilførselen til ekstremiteten der sensoren er festet er pre- eller postduktalt i tilfeller med persisterende ductus arteriosus. (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Ubestemmelig">
                 description = <"Det er ikke mulig å vurdere hvorvidt målestedet er pre- eller postduktalt.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Postduktalt">
                 description = <"Sensor-målestedet er postduktalt.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Preduktalt">
                 description = <"Sensor-målestedet er preduktalt.">
             >
@@ -980,15 +980,15 @@ terminology
                 text = <"Pré/pós-ductal (synthesised)">
                 description = <"Local do sensor relativo ao ducto arterioso em neonatos, para determinar se o suprimento sanguíneo à extremidade do local do sensor é pré ou -pós ductal em casos de ducto arterioso patente. (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Indeterminado">
                 description = <"Incapaz de acessar se o local do sensor é pré ou pós ductal.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Pós-ductal">
                 description = <"O local do sensor é pós ductal.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Pré-ductal">
                 description = <"O local do sensor é pré ductal.">
             >
@@ -1076,15 +1076,15 @@ terminology
                 text = <"*Pre/post-ductal(en) (synthesised)">
                 description = <"*Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosa.(en) (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*Unable to assess whether the sensor site is pre- or post-ductal.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Post-ductal(en)">
                 description = <"*The sensor site is post-ductal.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Pre-ductal(en)">
                 description = <"*The sensor site is pre-ductal.(en)">
             >
@@ -1180,15 +1180,15 @@ terminology
                 text = <"Pre/post-ductal (synthesised)">
                 description = <"Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosus. (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Indeterminate">
                 description = <"Unable to assess whether the sensor site is pre- or post-ductal.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Post-ductal">
                 description = <"The sensor site is post-ductal.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Pre-ductal">
                 description = <"The sensor site is pre-ductal.">
             >
@@ -1276,15 +1276,15 @@ terminology
                 text = <"*Pre/post-ductal(en) (synthesised)">
                 description = <"*Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosa.(en) (synthesised)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*Unable to assess whether the sensor site is pre- or post-ductal.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Post-ductal(en)">
                 description = <"*The sensor site is post-ductal.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Pre-ductal(en)">
                 description = <"*The sensor site is pre-ductal.(en)">
             >
@@ -1385,6 +1385,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at63", "at64", "at65">
+            members = <"at62", "at63", "at64">
         >
     >

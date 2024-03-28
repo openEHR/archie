@@ -136,19 +136,19 @@ terminology
                 text = <"Kommentti">
                 description = <"Kertomusmuodossa oleva kommentti Cormack-Lehane-luokittelusta.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Luokka 4: Äänirako ja kurkunkansi eivät näy">
                 description = <"Äänirako ja kurkunkansi eivät näy.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Luokka 3: Vain kurkunkansi näkyy">
                 description = <"Vain kurkunkansi näkyy.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Luokka 2: Äänirako tai kannurustot näkyvät osittain.">
                 description = <"Äänirako tai kannurustot näkyvät osittain.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Luokka 1: Äänirako näkyy kokonaan.">
                 description = <"Äänirako näkyy kokonaan.">
             >
@@ -179,19 +179,19 @@ terminology
                 text = <"Kommentar">
                 description = <"Fritekstkommentar til graderingen.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Grad 4: Epiglottis ikke synlig">
                 description = <"Epiglottis ikke synlig.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Grad 3: Bare epiglottis synlig">
                 description = <"Bare epiglottis synlig.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Grad 2: Epiglottis og aryregionen synlig">
                 description = <"Epiglottis og aryregionen synlig.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Grad 1: Hele larynx synlig">
                 description = <"Hele larynx synlig.">
             >
@@ -222,19 +222,19 @@ terminology
                 text = <"Comment">
                 description = <"Narrative comment about the Cormack-Lehane grading.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Grade 4: Neither glottis nor epiglottis visible">
                 description = <"Neither glottis nor epiglottis visible.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Grade 3: Only epiglottis visible">
                 description = <"Only epiglottis visible.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Grade 2: Partial view of the glottis or arytenoids">
                 description = <"Partial view of the glottis or arytenoids.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Grade 1: Full view of the glottis">
                 description = <"Full view of the glottis.">
             >
@@ -251,6 +251,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at3", "at4", "at5", "at6">
+            members = <"at2", "at3", "at4", "at5">
         >
     >

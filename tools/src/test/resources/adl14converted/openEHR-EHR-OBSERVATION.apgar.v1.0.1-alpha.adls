@@ -271,9 +271,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at11]}],
-                                                    [{1}, {[at12]}],
-                                                    [{2}, {[at13]}]
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}],
+                                                    [{2}, {[at12]}]
                                                 }
                                             }
                                         }
@@ -282,9 +282,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at7]}],
-                                                    [{1}, {[at8]}],
-                                                    [{2}, {[at9]}]
+                                                    [{0}, {[at6]}],
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -293,9 +293,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at15]}],
-                                                    [{1}, {[at16]}],
-                                                    [{2}, {[at17]}]
+                                                    [{0}, {[at14]}],
+                                                    [{1}, {[at15]}],
+                                                    [{2}, {[at16]}]
                                                 }
                                             }
                                         }
@@ -304,9 +304,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at19]}],
-                                                    [{1}, {[at20]}],
-                                                    [{2}, {[at21]}]
+                                                    [{0}, {[at18]}],
+                                                    [{1}, {[at19]}],
+                                                    [{2}, {[at20]}]
                                                 }
                                             }
                                         }
@@ -315,9 +315,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at23]}],
-                                                    [{1}, {[at24]}],
-                                                    [{2}, {[at25]}]
+                                                    [{0}, {[at22]}],
+                                                    [{1}, {[at23]}],
+                                                    [{2}, {[at24]}]
                                                 }
                                             }
                                         }
@@ -454,15 +454,15 @@ terminology
                 text = <"Gesamtwert">
                 description = <"Die Summe der Zahlenwerte aller 5 Komponenten.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Komplett rosig">
                 description = <"Stamm und Extremitäten sind rosig; keine Zyanose.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Akrozyanotisch">
                 description = <"Stamm ist rosig, Extremitäten sind blau.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Komplett blau">
                 description = <"Körper und Extremitäten sind blau.">
             >
@@ -470,15 +470,15 @@ terminology
                 text = <"Hautfarbe">
                 description = <"Beobachtung der Hautfarbe des Neugeborenen.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Normale Reaktion">
                 description = <"Grimassieren, Niesen, Husten oder Wegziehen als Reaktion auf die Stimulation.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Reduzierte Reaktion">
                 description = <"Grimassieren oder schwaches Schreien als Reaktion auf die Stimulation.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Keine Reaktion">
                 description = <"Keine Reaktion auf die Stimulation.">
             >
@@ -486,15 +486,15 @@ terminology
                 text = <"Reflexauslösbarkeit">
                 description = <"Beobachtung der Antwort des Neugeborens auf eine Reizstimulation, z.B. Absaugen des Oropharynxs und der Nasenlöcher mit einem weichem Gummikatheter.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Normaler Tonus">
                 description = <"Normale, kraftvolle Bewegung der Extremitäten.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Reduzierter Tonus">
                 description = <"Geringe Flexion der Extremitäten.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Schlaff">
                 description = <"Keine spontane Bewegung.">
             >
@@ -502,15 +502,15 @@ terminology
                 text = <"Muskeltonus">
                 description = <"Beobachtung des Musketonus des Neugeborenen.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Normal">
                 description = <"Normale Atmung oder Schreien.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Schwaches oder unregelmäßiges Bestreben">
                 description = <"Etwas bestrebt zu atmen, Brustkorb bewegt sich.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Kein Bestreben">
                 description = <"Kein Bestreben zu atmen.">
             >
@@ -518,15 +518,15 @@ terminology
                 text = <"Atemantrieb">
                 description = <"Beurteilung des Atemantriebs des Neugeborenen.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"≥100 Schläge pro Minute">
                 description = <"Herzfrequenz von mehr als oder genau 100 Schlägen pro Minute.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"<100 Schläge pro Minute">
                 description = <"Herzfrequenz von weniger als 100 Schlägen pro Minute.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Kein Herzschlag">
                 description = <"Kein Herzschlag gesehen, gefühlt oder gehört.">
             >
@@ -597,15 +597,15 @@ terminology
                 text = <"Общая оценка">
                 description = <"Сумма баллов по 5 параметрам.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Цианоза нет">
                 description = <"Туловище и конечности розовые. Цианоза нет">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Акрозианоз, цианоз конечностей">
                 description = <"Туловище розовое, цианоз конечностей.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Общий цианоз">
                 description = <"Цианоз туловища и конечностей.">
             >
@@ -613,15 +613,15 @@ terminology
                 text = <"Цвет кожи">
                 description = <"Оценка цвета кожи младенца.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Нормальная реакция">
                 description = <"Гримаса, чихание, кашель или отстранение при стимуляции.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Реакция ослаблена">
                 description = <"Гримаса или слабый крик при стимуляции.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Нет реакции">
                 description = <"Нет реакци на стимуляцию.">
             >
@@ -629,15 +629,15 @@ terminology
                 text = <"Рефлексы на раздражение">
                 description = <"Наблюдение за реакцией ребенка на раздражающее стимуляции, например, очищения ротоглотки и носовых отверстий мягким резиновым катетером.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Нормальный тонус">
                 description = <"Нормальные, энергичные движения.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Тонус ослаблен">
                 description = <"Слабое сгибание конечностей.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Вялый">
                 description = <"Нет спонтанных движений.">
             >
@@ -645,15 +645,15 @@ terminology
                 text = <"Мышечный тонус">
                 description = <"Оценка мышечного тонуса младенца.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Нормальное.">
                 description = <"Дыхание нормальное или крик.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Слабое или нерегулярное">
                 description = <"Некоторые дыхательные движения, движения грудной клетки.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Отсутствует">
                 description = <"Сердцебиение не видно, не слышно и не ощутимо.">
             >
@@ -661,15 +661,15 @@ terminology
                 text = <"Дыхание">
                 description = <"Наблюдается за дыханием.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"≥100 ударов в минуту">
                 description = <"ЧСС более 100 ударов в минуту.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"<100 ударов в минуту">
                 description = <"ЧСС меньше 100 ударов в минуту.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Отсутствует">
                 description = <"Нет дыхательных движений.">
             >
@@ -740,15 +740,15 @@ terminology
                 text = <"Yhteensä">
                 description = <"Yhteissumma komponenttien (5 kpl) pisteistä.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Kauttaaltaan punakka">
                 description = <"Keho ja raajat ovat vaaleanpunaisia; ei sinerrystä.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Keho vaaleanpunainen, raajat sinertävät">
                 description = <"Keho on vaaleanpunainen, raajat sinertävät.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Kauttaaltaan sinertävä">
                 description = <"Keho ja raajat sinertävät.">
             >
@@ -756,15 +756,15 @@ terminology
                 text = <"Ihon väri">
                 description = <"Havainto lapsen ihon väristä.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Normaali vaste">
                 description = <"Irvistää, aivastaa, yskii tai vetäytyy poispäin, kun ärsyke annetaan.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Vähentynyt vaste">
                 description = <"Reagoi ärsykkeeseen irvistämällä tai itkemällä heikosti.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Ei vastetta">
                 description = <"Ei reagoi ärsykkeeseen.">
             >
@@ -772,15 +772,15 @@ terminology
                 text = <"Ärtyvyys">
                 description = <"Havainto vauvan reaktiosta ärsyttävään ärsykkeeseen, esimerkiksi suunielun ja sierainten imemiseen pehmeällä kumikatetrilla.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Normaali jänteys">
                 description = <"Normaalit, tarmokkaat liikkeet.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Alentunut jänteys">
                 description = <"Jonkin verran taivutusta raajoissa.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Vetelä tai veltto">
                 description = <"Ei spontaaneja liikkeitä.">
             >
@@ -788,15 +788,15 @@ terminology
                 text = <"Lihasjänteys">
                 description = <"Havainto vauvan lihasjänteydestä.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Normaali">
                 description = <"Hengittää normaalisti tai itkee.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Heikko tai epäsäännöllinen">
                 description = <"Jonkin verran hengitysyrityksiä, rintakehä liikkuu.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Ei havaittu">
                 description = <"Ei hengitysyritystä.">
             >
@@ -804,15 +804,15 @@ terminology
                 text = <"Hengitys">
                 description = <"Havainto vauvan hengitysyrityksistä.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"≥ 100 lyöntiä minuutissa">
                 description = <"Syke suurempi tai yhtä suuri kuin 100 lyöntiä minuutissa.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"< 100 lyöntiä minuutissa">
                 description = <"Syke vähemmän kuin 100 lyöntiä minuutissa.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Ei havaittu">
                 description = <"Sydämen sykettä ei nähdä, tunneta tai kuulla.">
             >
@@ -883,15 +883,15 @@ terminology
                 text = <"Total">
                 description = <"Summen til de 5 ordinale score for de enkelte parametre.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Helt lyserød">
                 description = <"Normal hudfarge, ingen cyanose.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Kropp lyserød; ekstremiteter cyanotisk">
                 description = <"Kropp lyserød; ekstremiteter cyanotisk.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Cyanotisk over hele kroppen">
                 description = <"Kropp og ekstremiteter er cyanotisk.">
             >
@@ -899,15 +899,15 @@ terminology
                 text = <"Hud farge">
                 description = <"Observasjon av hudfarge til den nyfødte.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Normal respons">
                 description = <"Grimase, nysing, hoste eller avverge bevegelser når stimulert.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Redusert respons">
                 description = <"Grimase eller svak gråte når stimulert.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Ingen respons">
                 description = <"Ingen respons til stimulasjon.">
             >
@@ -915,15 +915,15 @@ terminology
                 text = <"Refleks irritabilitet">
                 description = <"Observasjon av den nyfødtes reaksjon til irriterende stimulering, for eksempel, suging i oropharynx og svelget med en myk silikonkateter .">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Normal tonus">
                 description = <"Normale, kraftige bevegelser.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Redusert tonus">
                 description = <"Noen fleksjon av ekstremiteter.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Slapp, inaktiv">
                 description = <"Ingen spontan bevegelse.">
             >
@@ -931,15 +931,15 @@ terminology
                 text = <"Muskeltonus">
                 description = <"Observasjon av den nyfødtes muskeltonus,">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Normal">
                 description = <"Normal pust eller grått.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Svak eller uregelmessig">
                 description = <"Noen puste besvær og økt bryst bevegelse.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Fraværende">
                 description = <"Ingen respirasjon.">
             >
@@ -947,15 +947,15 @@ terminology
                 text = <"Respirasjon">
                 description = <"Observasjon av den nyfødtes respirasjon.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Puls > 100">
                 description = <"Hjertefrekvens mer enn 100.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Puls < 100">
                 description = <"Hjertefrekvens mindre enn 100.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Ingen hjerte aktivitet">
                 description = <"Ingen hjerteslag ses, kjennes eller høres.">
             >
@@ -1026,15 +1026,15 @@ terminology
                 text = <"Total">
                 description = <"A soma dos 5 escores ordinais para cada parâmetro componente.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Completamente cor de rosa">
                 description = <"Corpo e extremidade estão cor de  rosa, ausência de cianose.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Corpo cor de rosa; extremiddades azuis">
                 description = <"Corpo está cor de  rosa, extremidades estão azuis.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Completamente azul">
                 description = <"Corpo e extremidades estão azuis">
             >
@@ -1042,15 +1042,15 @@ terminology
                 text = <"Cor da pele">
                 description = <"Observação da cor da pele do recém-nascido.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Resposta normal">
                 description = <"Careta, espirro, tosse ou tenta se afastar quando estimulado.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Resposta reduzida">
                 description = <"Careta ou choro débil quando estimulado.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Nenhuma resposta">
                 description = <"Nenhuma resposta ao estímulo.">
             >
@@ -1058,15 +1058,15 @@ terminology
                 text = <"Reflexo de irritabilidade">
                 description = <"Observação da resposta a um estímulo irritativo, por exemplo, sucção da orofaringe e narinas com um cateter de borracha macia.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Tônus normal">
                 description = <"Movimentos normais, vigorosos.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Tônus reduzido">
                 description = <"Alguma flexão de extremidades.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Atônico ou flácido">
                 description = <"Sem movimento espontâneo.">
             >
@@ -1074,15 +1074,15 @@ terminology
                 text = <"Tônus muscular">
                 description = <"Observação do tônus muscular do recém-nascido.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Normal">
                 description = <"Respirando normalmente ou chorando.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Fraco ou irregular">
                 description = <"Algum esforço para respirar, movimento do peito.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Ausente">
                 description = <"Nenhum  esforço para respirar.">
             >
@@ -1090,15 +1090,15 @@ terminology
                 text = <"Esforço respiratório">
                 description = <"Observação do esforço respiratório do recém-nascido.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"≥100 batimentos por minuto">
                 description = <"Frequência cardíaca superior a 100 batimentos por minuto.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"<100 batimentos por minuto">
                 description = <"Frequência cardíaca inferior a 100 batimentos por minuto.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Ausente">
                 description = <"Nenhum batimento cardíaco é visto, sentido ou escutado.">
             >
@@ -1169,15 +1169,15 @@ terminology
                 text = <"Total">
                 description = <"The sum of the 5 ordinal scores for each component parameter.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Completely pink">
                 description = <"Body and extremities are pink; no cyanosis.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Body pink; extremities blue">
                 description = <"Body is pink; extremities are blue.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Completely blue">
                 description = <"Body and extremities are blue.">
             >
@@ -1185,15 +1185,15 @@ terminology
                 text = <"Skin colour">
                 description = <"Observation of the skin colour of the infant.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Normal response">
                 description = <"Grimace, sneeze, cough or pulls away when stimulated.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Reduced response">
                 description = <"Grimace or feeble cry when stimulated.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"No response">
                 description = <"No response to stimulation.">
             >
@@ -1201,15 +1201,15 @@ terminology
                 text = <"Reflex irritability">
                 description = <"Observation of the response of the infant to an irritant stimulation, for example, suctioning the oropharynx and nares with a soft rubber catheter.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Normal tone">
                 description = <"Normal, vigorous movements.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Reduced tone">
                 description = <"Some flexion of extremities.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Limp or flaccid">
                 description = <"No spontaneous movement.">
             >
@@ -1217,15 +1217,15 @@ terminology
                 text = <"Muscle tone">
                 description = <"Observation of the infant's muscle tone.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Normal">
                 description = <"Breathing normally or crying.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Weak or irregular">
                 description = <"Some effort to breath, moving chest.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Absent">
                 description = <"No effort to breath.">
             >
@@ -1233,15 +1233,15 @@ terminology
                 text = <"Respiratory effort">
                 description = <"Observation of the infant's respiratory effort.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"≥100 beats per minute">
                 description = <"Heart rate greater than or equal to 100 beats per minute.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"<100 beats per minute">
                 description = <"Heart rate less than 100 beats per minute.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Absent">
                 description = <"No heart beat is seen, felt or heard.">
             >
@@ -1312,15 +1312,15 @@ terminology
                 text = <"الإجمالي">
                 description = <"مجموع الأحراز الخمسة المنفردة ">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"متورد تماما">
                 description = <"الجسم و الأطراف متوردة, لا يوجد ازرقاق">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"الجسم متورد و الأطراف زرقاء">
                 description = <"الجسم متورد و الأطراف زرقاء">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"أزرق تماما">
                 description = <"الجسم و الأطراف زرقاء اللون">
             >
@@ -1328,15 +1328,15 @@ terminology
                 text = <"لون الجلد/البشرة">
                 description = <"ملاحظة لون بشرة/جلد الرضيع">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"استجابة طبيعية">
                 description = <"تكشيرة, عُطاس, سعال, أو يتعبد عند تحفيزه">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"استجابة منخفضة">
                 description = <"تكشيرة أو بكاء ضعيف عند التحفيز">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"لا توجد استجابة">
                 description = <"لا يوجد استجابة للتحفيز">
             >
@@ -1344,15 +1344,15 @@ terminology
                 text = <"التوتر الانعكاسي">
                 description = <"ملاحظة استجابة الرضيع لتحفيز مُهَيَّج, مثلا, مص محتويات البلعوم الفمي و فتحات الأنف باستخدام قثطار مطاطي ناعم.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"توتر طبيعي">
                 description = <"حركات طبيعية قوية">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"توتر منخفض">
                 description = <"يوجد بعض الثني للأطراف">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"مرتخٍ/أعرج">
                 description = <"لا يوجد حركة تلقائية">
             >
@@ -1360,15 +1360,15 @@ terminology
                 text = <"توتر العضلة">
                 description = <"ملاحظة توتر عضلات الرضيع">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"طبيعي">
                 description = <"يتنفس بشكل طبيعي أو يبكي">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"ضعيف أو غير منتظم">
                 description = <"يوجد بعض المجهود للتنفس, الصدر يتحرك">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"غائب">
                 description = <"لا يوجد بذل مجهود للتنفس">
             >
@@ -1376,15 +1376,15 @@ terminology
                 text = <"المجهود التنفسي">
                 description = <"ملاحظة المجهود التنفسي لدى الرضيع">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"أكثر من أو يساوي 100 ضربة في الدقيقة">
                 description = <"معدل القلب أكبر من أو يساوي 100 ضربة في الدقيقة">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"أقل من 100 ضربة في الدقيقة">
                 description = <"معدل القلب أقل من 100 ضربة في الدقيقة">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"غائب">
                 description = <"لا يمكن سماع, رؤية أو الشعور بضربات القلب">
             >
@@ -1455,15 +1455,15 @@ terminology
                 text = <"مجموع">
                 description = <"مجموع پنج نمره ترتیبی برای هر پارامتر جز  ">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"کاملا صورتی">
                 description = <"دن و دستها و پاها کاملا صورتی هستند هیچ سیانوزی وجود ندارد">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"بدن صورتی ، دستها و پاها آبی">
                 description = <"بدن صورتی ، دستها و پاها آبی هستند">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"کاملا آبی">
                 description = <"دن و دستها و پاها آبی هستند">
             >
@@ -1471,15 +1471,15 @@ terminology
                 text = <"رنگ پوست">
                 description = <"مشاهده رنگ پوست نوزاد">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"پاسخ طبیعی">
                 description = <"شکلک ، عطسه ف سرفه یا عقب کشیدن در زمان تحریک">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"کاهش پاسخ">
                 description = <"گریه شکلکی یا ضعیف در زمان تحریک">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"پاسخ نمی دهد">
                 description = <"عدم پاسخ به تحریکات">
             >
@@ -1487,15 +1487,15 @@ terminology
                 text = <"رفلکس تحریک پذیری">
                 description = <"مشاهده پاسخ نوزاد به تحریکات محرک به عنوان مثال مکش دهانی حلقی و سوراخ بینی با کاتتر لاستیکی نرم  ">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"تون طبیعی">
                 description = <"طبیعی ، حرکات نیرومند">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"تون کاهش یافته">
                 description = <"برخی رفلکسها یا خمیدگی ها وجود دارد">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"مشاهده تلون عضلانی نوزاد">
                 description = <"حرکات خودبخودی وجود ندارد">
             >
@@ -1503,15 +1503,15 @@ terminology
                 text = <"تون عضلانی">
                 description = <"مشاهده تلون عضلانی نوزاد">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"ظبیعی">
                 description = <"تنفس طبیعی یا گریه کردن">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"ضعیف یا نا منظم">
                 description = <" برای تنفس تلاش می کند  ، سینه حرکت می کند">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"غیر موجود">
                 description = <"برای تنفس تلاش نمی کند">
             >
@@ -1519,15 +1519,15 @@ terminology
                 text = <"تلاش تنفسی">
                 description = <"مشاهده تلاش تنفسی نوزاد">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"ضربان بیشتر یا مساوی 100 در هر دقیقه">
                 description = <"ضربان قلب بیشتریا برابر  100 ضربه در هر دقیقه است">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"ضربان کمتر از 100 در هر دقیقه">
                 description = <"ضربان قلب کمتر از 100 ضربه در هر دقیقه است">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"عدم وجود">
                 description = <"ضربان قلبی مشاهده ، احساس یا شنیده نمی شود">
             >
@@ -1598,15 +1598,15 @@ terminology
                 text = <"Total">
                 description = <"El total es la suma de los puntajes de cada parámetro.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"*Completely pink(en)">
                 description = <"*Body and extremities are pink; no cyanosis(en)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"*Body pink; extremities blue(en)">
                 description = <"*Body is pink; extremities are blue(en)">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"*Completely blue(en)">
                 description = <"*Body and extremities are blue(en)">
             >
@@ -1614,15 +1614,15 @@ terminology
                 text = <"*Skin colour(en)">
                 description = <"*Observation of the skin colour of the infant(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Mueca y tos/estornudo durante la aspiración de la vía aérea">
                 description = <"Mueca y tos, estornudo o gag como respuesta a la aspiración de la vía aérea.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Mueca durante aspiración de la vía aérea">
                 description = <"Sólo mueca como reacción a la aspiración de la vía aérea.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Ninguna respuesta a la aspiración de la vía aérea ">
                 description = <"Ninguna mueca o respuesta a la aspiración de la vía aérea.">
             >
@@ -1630,15 +1630,15 @@ terminology
                 text = <"*Reflex irritability(en)">
                 description = <"*Observation of the response of the infant to an irritant stimulation, for example, suctioning the oropharynx and nares with a soft rubber catheter.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Normal tone(en)">
                 description = <"*Normal, vigorous movements(en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Reduced tone(en)">
                 description = <"*Some flexion of extremities(en)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Flacido">
                 description = <"Flacido y sin movimientos espontáneos.">
             >
@@ -1646,15 +1646,15 @@ terminology
                 text = <"*Muscle tone(en)">
                 description = <"*Observation of the infant's muscle tone(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Llorando">
                 description = <"Llorando o respirando normalmente.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Esfuerzo moderado">
                 description = <"Esfuerzo respiratorio debil e irregular.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Sin esfuerzo">
                 description = <"Sin esfuerzo respiratorio.">
             >
@@ -1662,15 +1662,15 @@ terminology
                 text = <"Respiración">
                 description = <"Valoración del esfuerzo respiratorio del neonato.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Mayor o igual a 100 latidos por minutos">
                 description = <"Frecuencia cardíaca mayor o igual a 100 latidos por minuto.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Menos de 100 latidos por minuto">
                 description = <"Frecuencia cardíaca menor a 100 latidos por minuto.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Sin latido cardíaco">
                 description = <"No presenta latidos cardíacos (palpación en la base del cordón umbilical).">
             >
@@ -1741,15 +1741,15 @@ terminology
                 text = <"总分">
                 description = <"每项组成参数的5级评分的总和。">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"全身粉红">
                 description = <"身体和四肢均粉红，无青紫（发绀）或苍白。">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"身体粉红、四肢青紫">
                 description = <"身体粉红、四肢青紫。">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"全身青紫">
                 description = <"身体或四肢青紫或苍白。">
             >
@@ -1757,15 +1757,15 @@ terminology
                 text = <"肤色">
                 description = <"对新生儿皮肤颜色的观察">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"反应正常">
                 description = <"当刺激时皱起眉头、打喷嚏、咳嗽或移开（推开）。">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"反应降低">
                 description = <"当刺激时皱起眉头或微弱哭泣。">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"无反应">
                 description = <"对刺激无反应。">
             >
@@ -1773,15 +1773,15 @@ terminology
                 text = <"反射应激性">
                 description = <"对新生儿反射应激性的观察">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"张力正常">
                 description = <"正常，运动有力，四肢能活动。">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"张力降低">
                 description = <"四肢有一定的屈曲。">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"软弱或松弛无力">
                 description = <"肌肉松弛无力，无自发运动。">
             >
@@ -1789,15 +1789,15 @@ terminology
                 text = <"肌张力">
                 description = <"对新生儿肌张力的观察">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"正常">
                 description = <"呼吸正常或哭声响亮">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"微弱或不规则">
                 description = <"呼吸（胸部运动）有一定的力量">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"无">
                 description = <"没有力量呼吸">
             >
@@ -1805,15 +1805,15 @@ terminology
                 text = <"呼吸力">
                 description = <"对新生儿呼吸力的观察">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"≥100次/分钟">
                 description = <"心率大于等于（不低于）100次/分钟。">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"<100次/分钟">
                 description = <"心率低于100次/分钟。">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"无">
                 description = <"没有看到、感到或听到心脏跳动。">
             >
@@ -1884,15 +1884,15 @@ terminology
                 text = <"Totaal">
                 description = <"De som van de 5 afzonderlijke scores van iedere observatie.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Helemaal roze">
                 description = <"Lichaam en eztremiteiten zijn roze, geen cyanose.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Lichaam is roze, extremiteiten blauw">
                 description = <"Het lichaam van het kind is roze, de extremiteiten zijn blauw.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Helemaal blauw">
                 description = <"Lichaam en extremiteiten zijn blauw.">
             >
@@ -1900,15 +1900,15 @@ terminology
                 text = <"Huidskleur">
                 description = <"Observatie van de huidskleur van het kind.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Normale reactie">
                 description = <"Grimas en niezen, hoesten of terugtrekken bij prikkeling.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Verminderde reactie">
                 description = <"Grimas of zwak huilen bij prikkeling.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Geen reactie">
                 description = <"Geen reactie op prikkeling.">
             >
@@ -1916,15 +1916,15 @@ terminology
                 text = <"Reactie op prikkels">
                 description = <"Observatie van de reactie van het kind op een irritante prikkeling, bijvoorbeeld het uitzuigen van de keel en neus met een zachte rubberen katheter.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Normale tonus">
                 description = <"Normale, krachtige bewegingen.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Verminderde tonus">
                 description = <"Enige flexie van de ledematen.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Slap">
                 description = <"Geen spontane bewegingen.">
             >
@@ -1932,15 +1932,15 @@ terminology
                 text = <"Spiertonus">
                 description = <"Observatie van de spiertonus van het kind.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Normaal">
                 description = <"Normale ademhaling of huilend.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Matig of onregelmatig">
                 description = <"Enige ademhalingsinspanning, beweging van de borst.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Afwezig">
                 description = <"Geen ademhalingsinspanning.">
             >
@@ -1948,15 +1948,15 @@ terminology
                 text = <"Ademhalingsinspanning">
                 description = <"Observatie van de ademhalingsinspanning van het kind.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"≥100 slagen per minuut">
                 description = <"Hartslag hoger of gelijk aan 100 slagen per minuut.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"<100 slagen per minuut">
                 description = <"Hartfrequentie minder dan 100 slagen per minuut.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Afwezig">
                 description = <"Er is geen hartslag te zien, voelen of horen.">
             >
@@ -1998,21 +1998,21 @@ terminology
             ["/data[id3]/events[id32]/data[id2]/items[id18]"] = <http://loinc.org/id/32404-6>
             ["/data[id3]/events[id32]/data[id2]/items[id22]"] = <http://loinc.org/id/32401-2>
             ["/data[id3]/events[id32]/data[id2]/items[id26]"] = <http://loinc.org/id/9271-8>
-            ["at7"] = <http://loinc.org/id/LA6716>
-            ["at8"] = <http://loinc.org/id/LA6717>
-            ["at9"] = <http://loinc.org/id/LA6718>
-            ["at11"] = <http://loinc.org/id/LA6725>
-            ["at12"] = <http://loinc.org/id/LA6726>
-            ["at13"] = <http://loinc.org/id/LA6727>
-            ["at15"] = <http://loinc.org/id/LA6713>
-            ["at16"] = <http://loinc.org/id/LA6714>
-            ["at17"] = <http://loinc.org/id/LA6715>
-            ["at19"] = <http://loinc.org/id/LA6719>
-            ["at20"] = <http://loinc.org/id/LA6720>
-            ["at21"] = <http://loinc.org/id/LA6721>
-            ["at23"] = <http://loinc.org/id/LA6722>
-            ["at24"] = <http://loinc.org/id/LA6723>
-            ["at25"] = <http://loinc.org/id/LA6724>
+            ["at6"] = <http://loinc.org/id/LA6716>
+            ["at7"] = <http://loinc.org/id/LA6717>
+            ["at8"] = <http://loinc.org/id/LA6718>
+            ["at10"] = <http://loinc.org/id/LA6725>
+            ["at11"] = <http://loinc.org/id/LA6726>
+            ["at12"] = <http://loinc.org/id/LA6727>
+            ["at14"] = <http://loinc.org/id/LA6713>
+            ["at15"] = <http://loinc.org/id/LA6714>
+            ["at16"] = <http://loinc.org/id/LA6715>
+            ["at18"] = <http://loinc.org/id/LA6719>
+            ["at19"] = <http://loinc.org/id/LA6720>
+            ["at20"] = <http://loinc.org/id/LA6721>
+            ["at22"] = <http://loinc.org/id/LA6722>
+            ["at23"] = <http://loinc.org/id/LA6723>
+            ["at24"] = <http://loinc.org/id/LA6724>
         >
         ["SNOMED-CT"] = <
             ["/data[id3]/events[id4]/data[id2]/items[id26]"] = <http://snomed.info/id/169895004>
@@ -2025,22 +2025,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at15", "at16", "at17">
+            members = <"at14", "at15", "at16">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at7", "at8", "at9">
+            members = <"at6", "at7", "at8">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12", "at13">
+            members = <"at10", "at11", "at12">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at23", "at24", "at25">
+            members = <"at22", "at23", "at24">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at19", "at20", "at21">
+            members = <"at18", "at19", "at20">
         >
     >

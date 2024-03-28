@@ -123,95 +123,95 @@ terminology
                 text = <"3b i. Diagnosesubkategori (3b: Muskelskjelett) (synthesised)">
                 description = <"Diagnosesubkategori (3b: Muskelskjelett). (synthesised)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"3 - Andre muskelskjelett smertesyndromer">
                 description = <"*">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"2 - Fra strukturelle osteoartikulære forandringer">
                 description = <"*">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"1 - Fra persisterende inflammasjon">
                 description = <"*">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"3 - Orofaciale smerter">
                 description = <"*">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"2 - Sekundær hodepine">
                 description = <"*">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"1 - Primær hodepine">
                 description = <"*">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"3 - Andre former">
                 description = <"*">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"2 - Sentral">
                 description = <"*">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"1 - Perifer">
                 description = <"*">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"3 - Visceral">
                 description = <"*">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"2 - Lokalisert">
                 description = <"*">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"1 - Utbredte smertetilstander">
                 description = <"*">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"7 - Sekundær muskelskjelettsmerte">
                 description = <"*">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"6 - Sekundær visceral smerte">
                 description = <"*">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"5 - Hodepine og orofacial smerte">
                 description = <"*">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"4 - Nevropatisk smerte">
                 description = <"*">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"3 - Postkirurgisk og posttraumatisk smerte">
                 description = <"*">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"2 - Kreftsmerte">
                 description = <"*">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"1 - Primær smerte">
                 description = <"*">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"4 - Annet">
                 description = <"*">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"3 - På grunn av sykdom">
                 description = <"*">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"2 - På grunn av skade/traume">
                 description = <"*">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"1 - På grunn av kirurgi">
                 description = <"*">
             >
@@ -231,19 +231,19 @@ terminology
                 text = <"3b. Diagnosekategori (3a: Langvarig smerte > 3 mnd/Palliativ)">
                 description = <"Diagnosekategori (3a: Langvarig smerte > 3 mnd/Palliativ).">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"4 - Annet">
                 description = <"Annet">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"3 - Palliativ">
                 description = <"Palliativ">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"2 - Langvarig smerte > 3 mnd">
                 description = <"Langvarig smerte > 3 mnd">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"1 - Akutt smerte">
                 description = <"Akutt smerte">
             >
@@ -281,30 +281,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at24", "at25", "at26", "at27", "at28", "at29", "at30">
+            members = <"at23", "at24", "at25", "at26", "at27", "at28", "at29">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at20", "at21", "at22", "at23">
+            members = <"at19", "at20", "at21", "at22">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at12", "at13", "at14", "at15">
+            members = <"at11", "at12", "at13", "at14">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at43", "at44", "at45">
+            members = <"at42", "at43", "at44">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at40", "at41", "at42">
+            members = <"at39", "at40", "at41">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at37", "at38", "at39">
+            members = <"at36", "at37", "at38">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at34", "at35", "at36">
+            members = <"at33", "at34", "at35">
         >
     >

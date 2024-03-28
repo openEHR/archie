@@ -163,19 +163,19 @@ terminology
                 description = <"Wurden mehr als zwei Anläufe benötigt, um zwei erfolgreiche Testläufe zu erhalten?">
                 comment = <"Eine Markierung die anzeigt, dass mehr als zwei Anläufe benötigt wurden, um zwei erfolgreiche Testläufe zu erhalten. Nur als Wahr kennzeichnen, wenn eine Situation die Wiederholung eines Tests erfordert (und die Gründe hierfür gesondert angeben).">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Gehwagen/Rollator">
                 description = <"Gehwagen oder Rollator.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Krücke">
                 description = <"Unterarmgehstütze.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Stock">
                 description = <"Geh- oder Krückstock.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Sprunggelenkorthese">
                 description = <"Gehorthese, Knöchel-Fuss-Orthese.">
             >
@@ -238,19 +238,19 @@ terminology
                 description = <"Were there more than two attempts to get two successful trials?">
                 comment = <"A flag indicating that it took more than two attempts to get two successful trials. Record as True only if a situation arises that necessitates the repetition of a trial (and indicate the reason therefore separately).">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Walker/rollator">
                 description = <"Walker or rollator device.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Crutch">
                 description = <"Underarm crutch.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Cane">
                 description = <"Walking stick or cane.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Ankle-foot orthosis">
                 description = <"Ankle-Foot Orthosis (AFO).">
             >
@@ -294,10 +294,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at14", "at15", "at16", "at17">
+            members = <"at13", "at14", "at15", "at16">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at14", "at15", "at16">
+            members = <"at13", "at14", "at15">
         >
     >

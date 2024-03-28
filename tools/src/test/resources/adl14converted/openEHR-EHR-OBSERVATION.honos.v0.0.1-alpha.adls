@@ -80,11 +80,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}],
-                                                    [{4}, {[at10]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}],
+                                                    [{4}, {[at9]}]
                                                 }
                                             }
                                         }
@@ -93,11 +93,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9013] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at12]}],
-                                                    [{1}, {[at13]}],
-                                                    [{2}, {[at14]}],
-                                                    [{3}, {[at55]}],
-                                                    [{4}, {[at56]}]
+                                                    [{0}, {[at11]}],
+                                                    [{1}, {[at12]}],
+                                                    [{2}, {[at13]}],
+                                                    [{3}, {[at54]}],
+                                                    [{4}, {[at55]}]
                                                 }
                                             }
                                         }
@@ -105,6 +105,19 @@ definition
                                     ELEMENT[id15] occurrences matches {0..1} matches {    -- Problem drinking or drug-taking
                                         value matches {
                                             DV_ORDINAL[id9014] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at24]}],
+                                                    [{1}, {[at34]}],
+                                                    [{2}, {[at44]}],
+                                                    [{3}, {[at56]}],
+                                                    [{4}, {[at66]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id16] occurrences matches {0..1} matches {    -- Cognitive problems
+                                        value matches {
+                                            DV_ORDINAL[id9015] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at25]}],
                                                     [{1}, {[at35]}],
@@ -115,9 +128,9 @@ definition
                                             }
                                         }
                                     }
-                                    ELEMENT[id16] occurrences matches {0..1} matches {    -- Cognitive problems
+                                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Physical illness or disability problems
                                         value matches {
-                                            DV_ORDINAL[id9015] matches {
+                                            DV_ORDINAL[id9016] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at26]}],
                                                     [{1}, {[at36]}],
@@ -128,9 +141,9 @@ definition
                                             }
                                         }
                                     }
-                                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Physical illness or disability problems
+                                    ELEMENT[id18] occurrences matches {0..1} matches {    -- Problems associated with hallucinations and delusions
                                         value matches {
-                                            DV_ORDINAL[id9016] matches {
+                                            DV_ORDINAL[id9017] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at27]}],
                                                     [{1}, {[at37]}],
@@ -141,9 +154,9 @@ definition
                                             }
                                         }
                                     }
-                                    ELEMENT[id18] occurrences matches {0..1} matches {    -- Problems associated with hallucinations and delusions
+                                    ELEMENT[id19] occurrences matches {0..1} matches {    -- Problems with depressed mood
                                         value matches {
-                                            DV_ORDINAL[id9017] matches {
+                                            DV_ORDINAL[id9018] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at28]}],
                                                     [{1}, {[at38]}],
@@ -154,9 +167,9 @@ definition
                                             }
                                         }
                                     }
-                                    ELEMENT[id19] occurrences matches {0..1} matches {    -- Problems with depressed mood
+                                    ELEMENT[id20] occurrences matches {0..1} matches {    -- Other mental and behavioural problems
                                         value matches {
-                                            DV_ORDINAL[id9018] matches {
+                                            DV_ORDINAL[id9019] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at29]}],
                                                     [{1}, {[at39]}],
@@ -167,9 +180,9 @@ definition
                                             }
                                         }
                                     }
-                                    ELEMENT[id20] occurrences matches {0..1} matches {    -- Other mental and behavioural problems
+                                    ELEMENT[id21] occurrences matches {0..1} matches {    -- Problems with relationships
                                         value matches {
-                                            DV_ORDINAL[id9019] matches {
+                                            DV_ORDINAL[id9020] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at30]}],
                                                     [{1}, {[at40]}],
@@ -180,9 +193,9 @@ definition
                                             }
                                         }
                                     }
-                                    ELEMENT[id21] occurrences matches {0..1} matches {    -- Problems with relationships
+                                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Problems with activities of daily living
                                         value matches {
-                                            DV_ORDINAL[id9020] matches {
+                                            DV_ORDINAL[id9021] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at31]}],
                                                     [{1}, {[at41]}],
@@ -193,9 +206,9 @@ definition
                                             }
                                         }
                                     }
-                                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Problems with activities of daily living
+                                    ELEMENT[id23] occurrences matches {0..1} matches {    -- Problems with living conditions
                                         value matches {
-                                            DV_ORDINAL[id9021] matches {
+                                            DV_ORDINAL[id9022] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at32]}],
                                                     [{1}, {[at42]}],
@@ -206,28 +219,15 @@ definition
                                             }
                                         }
                                     }
-                                    ELEMENT[id23] occurrences matches {0..1} matches {    -- Problems with living conditions
+                                    ELEMENT[id24] occurrences matches {0..1} matches {    -- Problems with occupation and activities
                                         value matches {
-                                            DV_ORDINAL[id9022] matches {
+                                            DV_ORDINAL[id9023] matches {
                                                 [value, symbol] matches {
                                                     [{0}, {[at33]}],
                                                     [{1}, {[at43]}],
                                                     [{2}, {[at53]}],
                                                     [{3}, {[at65]}],
                                                     [{4}, {[at75]}]
-                                                }
-                                            }
-                                        }
-                                    }
-                                    ELEMENT[id24] occurrences matches {0..1} matches {    -- Problems with occupation and activities
-                                        value matches {
-                                            DV_ORDINAL[id9023] matches {
-                                                [value, symbol] matches {
-                                                    [{0}, {[at34]}],
-                                                    [{1}, {[at44]}],
-                                                    [{2}, {[at54]}],
-                                                    [{3}, {[at66]}],
-                                                    [{4}, {[at76]}]
                                                 }
                                             }
                                         }
@@ -310,10 +310,6 @@ terminology
                 text = <"Start of episode of care">
                 description = <"HoNOS score at start of episode of care.">
             >
-            ["at76"] = <
-                text = <"Severe to very severe problem">
-                description = <"Severe to very severe problem.">
-            >
             ["at75"] = <
                 text = <"Severe to very severe problem">
                 description = <"Severe to very severe problem.">
@@ -351,8 +347,8 @@ terminology
                 description = <"Severe to very severe problem.">
             >
             ["at66"] = <
-                text = <"Moderately severe problem.">
-                description = <"Moderately severe problem.">
+                text = <"Severe to very severe problem">
+                description = <"Severe to very severe problem.">
             >
             ["at65"] = <
                 text = <"Moderately severe problem.">
@@ -391,16 +387,16 @@ terminology
                 description = <"Moderately severe problem.">
             >
             ["at56"] = <
+                text = <"Moderately severe problem.">
+                description = <"Moderately severe problem.">
+            >
+            ["at55"] = <
                 text = <"Severe to very severe problem">
                 description = <"Severe to very severe problem.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Moderately severe problem">
                 description = <"Moderately severe problem.">
-            >
-            ["at54"] = <
-                text = <"Mild problem but definitely present">
-                description = <"Mild problem but definitely present.">
             >
             ["at53"] = <
                 text = <"Mild problem but definitely present">
@@ -439,8 +435,8 @@ terminology
                 description = <"Mild problem but definitely present.">
             >
             ["at44"] = <
-                text = <"Minor problem requiring no action">
-                description = <"Minor problem requiring no action.">
+                text = <"Mild problem but definitely present">
+                description = <"Mild problem but definitely present.">
             >
             ["at43"] = <
                 text = <"Minor problem requiring no action">
@@ -479,8 +475,8 @@ terminology
                 description = <"Minor problem requiring no action.">
             >
             ["at34"] = <
-                text = <"No problem">
-                description = <"No problem.">
+                text = <"Minor problem requiring no action">
+                description = <"Minor problem requiring no action.">
             >
             ["at33"] = <
                 text = <"No problem">
@@ -515,6 +511,10 @@ terminology
                 description = <"No problem.">
             >
             ["at25"] = <
+                text = <"No problem">
+                description = <"No problem.">
+            >
+            ["at24"] = <
                 text = <"No problem">
                 description = <"No problem.">
             >
@@ -558,15 +558,15 @@ terminology
                 text = <"Problem drinking or drug-taking">
                 description = <"Problem drinking or drug-taking.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Mild problem but definitely present">
                 description = <"Mild problem but definitely present.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Minor problem requiring no action">
                 description = <"Minor problem requiring no action.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"No problem">
                 description = <"No problem.">
             >
@@ -574,23 +574,23 @@ terminology
                 text = <"Non-accidental self-injury">
                 description = <"Observation of any non-accidental self-injuries.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Severe to very severe problem">
                 description = <"Severe to very severe problem.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Moderately severe problem.">
                 description = <"moderately severe problem.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Mild problem but definitely present">
                 description = <"Mild problem but definitely present.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Minor problem requiring no action">
                 description = <"Minor problem requiring no action.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"No problem">
                 description = <"No problem.">
             >
@@ -612,50 +612,50 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at25", "at35", "at45", "at57", "at67">
+            members = <"at24", "at34", "at44", "at56", "at66">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at12", "at13", "at14", "at55", "at56">
+            members = <"at11", "at12", "at13", "at54", "at55">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10">
+            members = <"at5", "at6", "at7", "at8", "at9">
         >
         ["ac9011"] = <
             id = <"ac9011">
-            members = <"at34", "at44", "at54", "at66", "at76">
+            members = <"at33", "at43", "at53", "at65", "at75">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at33", "at43", "at53", "at65", "at75">
+            members = <"at32", "at42", "at52", "at64", "at74">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at29", "at39", "at49", "at61", "at71">
+            members = <"at28", "at38", "at48", "at60", "at70">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at28", "at38", "at48", "at60", "at70">
+            members = <"at27", "at37", "at47", "at59", "at69">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at27", "at37", "at47", "at59", "at69">
+            members = <"at26", "at36", "at46", "at58", "at68">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at26", "at36", "at46", "at58", "at68">
+            members = <"at25", "at35", "at45", "at57", "at67">
         >
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at32", "at42", "at52", "at64", "at74">
+            members = <"at31", "at41", "at51", "at63", "at73">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at31", "at41", "at51", "at63", "at73">
+            members = <"at30", "at40", "at50", "at62", "at72">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at30", "at40", "at50", "at62", "at72">
+            members = <"at29", "at39", "at49", "at61", "at71">
         >
     >

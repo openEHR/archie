@@ -166,51 +166,51 @@ terminology
                 description = <"Stedet på kroppen som brukes som referansepunkt for midtpunktet i den tenkte sirkelen.">
                 comment = <"For eksempel: brystvorten når man undersøker et bryst eller anus når man undersøker hemoroider.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Klokken 12">
                 description = <"Kroppsstedet er kl. 12 relativt til referansepunktet.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Klokken 11">
                 description = <"Kroppsstedet er kl. 11 relativt til referansepunktet.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Klokken 10">
                 description = <"Kroppsstedet er kl. 10 relativt til referansepunktet.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Klokken 9">
                 description = <"Kroppsstedet er kl. 9 relativt til referansepunktet.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Klokken 8">
                 description = <"Kroppsstedet er kl. 8 relativt til referansepunktet.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Klokken 7">
                 description = <"Kroppsstedet er kl. 7 relativt til referansepunktet.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Klokken 6">
                 description = <"Kroppsstedet er kl. 6 relativt til referansepunktet.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Klokken 5">
                 description = <"Kroppsstedet er kl. 5 relativt til referansepunktet.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Klokken 4">
                 description = <"Kroppsstedet er kl. 4 relativt til referansepunktet.">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Klokken 3">
                 description = <"Kroppsstedet er kl. 3 relativt til referansepunktet.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Klokken 2">
                 description = <"Kroppsstedet er kl. 2 relativt til referansepunktet.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Klokken 1">
                 description = <"Kroppsstedet er kl. 1 relativt til referansepunktet.">
             >
@@ -255,51 +255,51 @@ terminology
                 text = <"*Centre landmark(en)">
                 description = <"*">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"*Twelve o'clock(en)">
                 description = <"*The body site is located at the twelve o'clock position relative to the identified reference point.(en)">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"*Eleven o'clock(en)">
                 description = <"*The body site is located at the eleven o'clock position relative to the identified reference point.(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Ten o'clock(en)">
                 description = <"*The body site is located at the ten o'clock position relative to the identified reference point.(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"*Nine o'clock(en)">
                 description = <"*The body site is located at the nine o'clock position relative to the identified reference point.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"*Eight o'clock(en)">
                 description = <"*The body site is located at the eight o'clock position relative to the identified reference point.(en)">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"*Seven o'clock(en)">
                 description = <"*The body site is located at the seven o'clock position relative to the identified reference point.(en)">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"*Six o'clock(en)">
                 description = <"*The body site is located at the six o'clock position relative to the identified reference point.(en)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Five o'clock(en)">
                 description = <"*The body site is located at the five o'clock position relative to the identified reference point.(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*Four o'clock(en)">
                 description = <"*The body site is located at the four o'clock position relative to the identified reference point.(en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Three o'clock(en)">
                 description = <"*The body site is located at the three o'clock position relative to the identified reference point.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Two o'clock(en)">
                 description = <"*The body site is located at the two o'clock position relative to the identified reference point.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*One o'clock(en)">
                 description = <"*The body site is located at the one o'clock position relative to the identified reference point.(en)">
             >
@@ -344,51 +344,51 @@ terminology
                 text = <"*Centre landmark(en)">
                 description = <"*">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"*Twelve o'clock(en)">
                 description = <"*The body site is located at the twelve o'clock position relative to the identified reference point.(en)">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"*Eleven o'clock(en)">
                 description = <"*The body site is located at the eleven o'clock position relative to the identified reference point.(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Ten o'clock(en)">
                 description = <"*The body site is located at the ten o'clock position relative to the identified reference point.(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"*Nine o'clock(en)">
                 description = <"*The body site is located at the nine o'clock position relative to the identified reference point.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"*Eight o'clock(en)">
                 description = <"*The body site is located at the eight o'clock position relative to the identified reference point.(en)">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"*Seven o'clock(en)">
                 description = <"*The body site is located at the seven o'clock position relative to the identified reference point.(en)">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"*Six o'clock(en)">
                 description = <"*The body site is located at the six o'clock position relative to the identified reference point.(en)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Five o'clock(en)">
                 description = <"*The body site is located at the five o'clock position relative to the identified reference point.(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*Four o'clock(en)">
                 description = <"*The body site is located at the four o'clock position relative to the identified reference point.(en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Three o'clock(en)">
                 description = <"*The body site is located at the three o'clock position relative to the identified reference point.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Two o'clock(en)">
                 description = <"*The body site is located at the two o'clock position relative to the identified reference point.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*One o'clock(en)">
                 description = <"*The body site is located at the one o'clock position relative to the identified reference point.(en)">
             >
@@ -434,51 +434,51 @@ terminology
                 description = <"Identified body site used as a reference point for centre of the imaginary circle.">
                 comment = <"For example: the nipple when examining a breast; or the anus when examining haemorrhoids.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Twelve o'clock">
                 description = <"The body site is located at the twelve o'clock position relative to the identified reference point.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Eleven o'clock">
                 description = <"The body site is located at the eleven o'clock position relative to the identified reference point.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Ten o'clock">
                 description = <"The body site is located at the ten o'clock position relative to the identified reference point.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Nine o'clock">
                 description = <"The body site is located at the nine o'clock position relative to the identified reference point.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Eight o'clock">
                 description = <"The body site is located at the eight o'clock position relative to the identified reference point.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Seven o'clock">
                 description = <"The body site is located at the seven o'clock position relative to the identified reference point.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Six o'clock">
                 description = <"The body site is located at the six o'clock position relative to the identified reference point.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Five o'clock">
                 description = <"The body site is located at the five o'clock position relative to the identified reference point.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Four o'clock">
                 description = <"The body site is located at the four o'clock position relative to the identified reference point.">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Three o'clock">
                 description = <"The body site is located at the three o'clock position relative to the identified reference point.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Two o'clock">
                 description = <"The body site is located at the two o'clock position relative to the identified reference point.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"One o'clock">
                 description = <"The body site is located at the one o'clock position relative to the identified reference point.">
             >
@@ -514,6 +514,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at68", "at69", "at70", "at71", "at72", "at73", "at74", "at75", "at76", "at77", "at78", "at79">
+            members = <"at67", "at68", "at69", "at70", "at71", "at72", "at73", "at74", "at75", "at76", "at77", "at78">
         >
     >

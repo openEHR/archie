@@ -192,7 +192,7 @@ terminology
                 text = <"Confounding factors">
                 description = <"Description of any incidental factors related to the state of the subject which may affect clinical interpretation of the measurement.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Non-contact tonometry">
                 description = <"Non-contact tonometry was used to perfrom the test.">
             >
@@ -208,11 +208,11 @@ terminology
                 text = <"Clinical interpretation">
                 description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the physical examination findings.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Right eye">
                 description = <"The right eye was examined.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Left eye">
                 description = <"The left eye was examined.">
             >
@@ -224,31 +224,31 @@ terminology
                 text = <"Device details">
                 description = <"Details about the tonometry device used to measure intraocular pressure.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"TGDc-01">
                 description = <"A TGDc-01 device was used to perform the test.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Ocular Response Analyzer">
                 description = <"Ocular Response Analyzer.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Dynamic Contour">
                 description = <"Dynamic Contour tonometry.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Icare (Rebound)">
                 description = <"Icare (Rebound) tonometry.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Tono-Pen">
                 description = <"Tono-Pen tonometry.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Perkins">
                 description = <"Perkins tonometry.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Goldmann">
                 description = <"Goldmann tonometry.">
             >
@@ -279,10 +279,10 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at59", "at60">
+            members = <"at58", "at59">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at48", "at49", "at50", "at51", "at52", "at53", "at54", "at67">
+            members = <"at47", "at48", "at49", "at50", "at51", "at52", "at53", "at66">
         >
     >

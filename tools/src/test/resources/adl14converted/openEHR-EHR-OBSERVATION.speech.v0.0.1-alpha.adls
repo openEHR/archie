@@ -78,19 +78,19 @@ terminology
                 text = <"Clarity of speech (synthesised)">
                 description = <"* (synthesised)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Clear">
                 description = <"*">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Unclear to strangers">
                 description = <"*">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Unclear to parents">
                 description = <"*">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Incomprehensible">
                 description = <"*">
             >
@@ -112,19 +112,19 @@ terminology
                 text = <"وضوح الكلام (synthesised)">
                 description = <"* (synthesised)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"واضح">
                 description = <"*">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"غير واضح للغرباء">
                 description = <"*">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"غير واضح للأبوين">
                 description = <"*">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"غامض - مبهم">
                 description = <"*">
             >
@@ -145,6 +145,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9">
+            members = <"at5", "at6", "at7", "at8">
         >
     >

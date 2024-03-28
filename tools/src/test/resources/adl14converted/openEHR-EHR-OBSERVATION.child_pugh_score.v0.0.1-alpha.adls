@@ -54,9 +54,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at6]}],
-                                                    [{2}, {[at7]}],
-                                                    [{3}, {[at8]}]
+                                                    [{1}, {[at5]}],
+                                                    [{2}, {[at6]}],
+                                                    [{3}, {[at7]}]
                                                 }
                                             }
                                         }
@@ -65,9 +65,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at10]}],
-                                                    [{2}, {[at11]}],
-                                                    [{3}, {[at12]}]
+                                                    [{1}, {[at9]}],
+                                                    [{2}, {[at10]}],
+                                                    [{3}, {[at11]}]
                                                 }
                                             }
                                         }
@@ -76,9 +76,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at14]}],
-                                                    [{2}, {[at15]}],
-                                                    [{3}, {[at16]}]
+                                                    [{1}, {[at13]}],
+                                                    [{2}, {[at14]}],
+                                                    [{3}, {[at15]}]
                                                 }
                                             }
                                         }
@@ -87,9 +87,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at18]}],
-                                                    [{2}, {[at19]}],
-                                                    [{3}, {[at20]}]
+                                                    [{1}, {[at17]}],
+                                                    [{2}, {[at18]}],
+                                                    [{3}, {[at19]}]
                                                 }
                                             }
                                         }
@@ -98,9 +98,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at22]}],
-                                                    [{2}, {[at23]}],
-                                                    [{3}, {[at24]}]
+                                                    [{1}, {[at21]}],
+                                                    [{2}, {[at22]}],
+                                                    [{3}, {[at23]}]
                                                 }
                                             }
                                         }
@@ -109,9 +109,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at26]}],
-                                                    [{2}, {[at27]}],
-                                                    [{3}, {[at28]}]
+                                                    [{1}, {[at25]}],
+                                                    [{2}, {[at26]}],
+                                                    [{3}, {[at27]}]
                                                 }
                                             }
                                         }
@@ -185,15 +185,15 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"Local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Class C 10 to 15 points">
                 description = <"The Child-Pugh grade is Class C with a total score of 10 to 15 points.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Class B 7 to 9 points">
                 description = <"The Child-Pugh grade is Class B with a total score of 7 to 9 points.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Class A 5 to 6 points">
                 description = <"The Child-Pugh grade is Class A with a total score of 5 to 6 points.">
             >
@@ -205,15 +205,15 @@ terminology
                 text = <"Total score">
                 description = <"Sum of the individual scores assigned for each of the contributing variables.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Greater than 170">
                 description = <"Total bilirubin is greater than 170.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"68 to 170">
                 description = <"Total bilirubin is between 68 and 170.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Less than 68">
                 description = <"Total bilirubin is less than 68.">
             >
@@ -221,15 +221,15 @@ terminology
                 text = <"Adjusted bilirubin">
                 description = <"Score for total bilirubin if the patient has primary biliary cirrhosis or sclerosing cholangitis.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Grade III to IV or refractory">
                 description = <"Grade III or Grade IV hepatic encephalopathy is present or hepatic encephalopathy is refractory.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Grade I to II or suppressed with medication">
                 description = <"Grade I or Grade II hepatic encephalopathy is present or hepatic encephalopathy is suppressed with medication.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"None">
                 description = <"No hepatic encephalopathy is present.">
             >
@@ -237,15 +237,15 @@ terminology
                 text = <"Hepatic encephalopathy">
                 description = <"Score for presence of hepatic encephalopathy.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Moderate to severe">
                 description = <"Moderate to severe ascites is present.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Mild">
                 description = <"Mild ascites is present.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"None">
                 description = <"No ascites is present.">
             >
@@ -253,15 +253,15 @@ terminology
                 text = <"Ascites">
                 description = <"Score for presence of ascites.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Greater than 2.3">
                 description = <"INR is greater than 2.3.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"1.7 to 2.3">
                 description = <"INR is between 1.7 and 2.3.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Less than 1.7">
                 description = <"INR is less than 1.7.">
             >
@@ -269,15 +269,15 @@ terminology
                 text = <"INR">
                 description = <"Score for INR.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Less than 28">
                 description = <"Serum albumin is less than 28.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"28 to 35">
                 description = <"Serum albumin is between 28 and 35.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Greater than 35">
                 description = <"Serum albumin is greater than 35.">
             >
@@ -285,15 +285,15 @@ terminology
                 text = <"Serum albumin">
                 description = <"Score for serum albumin in grams per litre.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Greater than 50">
                 description = <"Total bilirubin is more than 50.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"34 to 50">
                 description = <"Total bilirubin is between 34 and 50.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Less than 34">
                 description = <"Total bilirubin is less than 34.">
             >
@@ -314,38 +314,38 @@ terminology
     term_bindings = <
         ["SNOMED-CT"] = <
             ["id29"] = <http://snomed.info/id/710066005>
-            ["at31"] = <http://snomed.info/id/710065009>
-            ["at32"] = <http://snomed.info/id/710066005>
-            ["at33"] = <http://snomed.info/id/710067001>
+            ["at30"] = <http://snomed.info/id/710065009>
+            ["at31"] = <http://snomed.info/id/710066005>
+            ["at32"] = <http://snomed.info/id/710067001>
         >
     >
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at14", "at15", "at16">
+            members = <"at13", "at14", "at15">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at11", "at12">
+            members = <"at9", "at10", "at11">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8">
+            members = <"at5", "at6", "at7">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at31", "at32", "at33">
+            members = <"at30", "at31", "at32">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at26", "at27", "at28">
+            members = <"at25", "at26", "at27">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at22", "at23", "at24">
+            members = <"at21", "at22", "at23">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at18", "at19", "at20">
+            members = <"at17", "at18", "at19">
         >
     >

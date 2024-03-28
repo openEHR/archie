@@ -130,15 +130,15 @@ terminology
                 text = <"Número de recargas emitidas">
                 description = <"O número de recargas que foram emitidas ou dispensadas para este período de autorização.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Repetir a dispensarão">
                 description = <"Múltiplas recargas da receita podem ser obtidas a partir do dispensador.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Repetir a prescrição">
                 description = <"O prescritor pode fornecer várias recargas da receita.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Não repetir">
                 description = <"Repetição da entrega não é autorizada.">
             >
@@ -181,15 +181,15 @@ terminology
                 text = <"Number of refills issued">
                 description = <"The number of refills which have been issued or dispensed for this period of authorisation.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Repeat dispensing">
                 description = <"Multiple refills of the prescription may be obtained from the dispenser.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Repeat prescribing">
                 description = <"Multiple refills of the prescription may be obtained from the prescriber.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"No repeat supply">
                 description = <"Repeat supply has not been authorised.">
             >
@@ -232,15 +232,15 @@ terminology
                 text = <"*Number of refills issued(en)">
                 description = <"*The number of refills which have been issued or dispensed for this period of authorisation.(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Repeat dispensing(en)">
                 description = <"*Multiple refills of the prescription may be obtained from the dispenser.(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"*Repeat prescribing(en)">
                 description = <"*Multiple refills of the prescription may be obtained from the prescriber.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"*No repeat supply(en)">
                 description = <"*Repeat supply has not been authorised.(en)">
             >
@@ -269,6 +269,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at75", "at76", "at77">
+            members = <"at74", "at75", "at76">
         >
     >

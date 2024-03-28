@@ -243,15 +243,15 @@ terminology
                 description = <"*Additional narrative about the goal not captured in other fields.(en)">
                 comment = <"*For example: the reason why the goal was not achieved, or a description about how the goal was partially achieved.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Not achieved(en)">
                 description = <"*The target was not realised and abandoned.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Partially achieved(en)">
                 description = <"*The target was partially realised.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Achieved(en)">
                 description = <"*The target was realised.(en)">
             >
@@ -260,15 +260,15 @@ terminology
                 description = <"*Single word, phrase or brief description which represents the outcome actually achieved for the target.(en)">
                 comment = <"*Coding with a terminology is preferred, where possible. This data element could represent success or failure, or some state in between when the goal is completed or abandoned/removed from the record. For example: poor blood sugar control, or successful completion.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Not achieved(en)">
                 description = <"*The proposed goal was not realised and abandoned.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Partially achieved(en)">
                 description = <"*The proposed goal was partially realised.(en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Achieved(en)">
                 description = <"*The proposed goal was realised.(en)">
             >
@@ -376,15 +376,15 @@ terminology
                 description = <"Additional narrative about the goal not captured in other fields.">
                 comment = <"For example: the reason why the goal was not achieved, or a description about how the goal was partially achieved.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Not achieved">
                 description = <"The target was not realised and abandoned.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Partially achieved">
                 description = <"The target was partially realised.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Achieved">
                 description = <"The target was realised.">
             >
@@ -393,15 +393,15 @@ terminology
                 description = <"Single word, phrase or brief description which represents the outcome actually achieved for the target.">
                 comment = <"Coding with a terminology is preferred, where possible. This data element could represent success or failure, or some state in between when the goal is completed or abandoned/removed from the record. For example: poor blood sugar control, or successful completion.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Not achieved">
                 description = <"The proposed goal was not realised and abandoned.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Partially achieved">
                 description = <"The proposed goal was partially realised.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Achieved">
                 description = <"The proposed goal was realised.">
             >
@@ -473,10 +473,10 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at20", "at21", "at22">
+            members = <"at19", "at20", "at21">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at16", "at17", "at18">
+            members = <"at15", "at16", "at17">
         >
     >

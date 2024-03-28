@@ -371,7 +371,7 @@ definition
                                     ELEMENT[id15] occurrences matches {0..1} matches {    -- Position
                                         value matches {
                                             DV_CODED_TEXT[id9004] matches {
-                                                defining_code matches {[ac9001; at17]}    -- Position (synthesised)
+                                                defining_code matches {[ac9001; at16]}    -- Position (synthesised)
                                             }
                                         }
                                     }
@@ -432,7 +432,7 @@ terminology
                 description = <"*Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Liegend">
                 description = <"Länge wird in einer voll ausgestreckten, liegenden Position gemessen. Hierbei wird das Becken flach gehalten, die Beine ausgestreckt und die Füße gebeugt.">
             >
@@ -445,7 +445,7 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Stehend">
                 description = <"Größe wird stehend auf beiden Füßen gemessen, mit dem Gewicht gleichmäßig verteilt, den Hacken zusammen und beiden Gesäßbacken und Hacken in Kontakt mit einem senkrechten Brett.">
             >
@@ -489,7 +489,7 @@ terminology
                 description = <"*Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Лёжа">
                 description = <"Длина тела измеряется в полностью вытянутом положении лежа, таз находится на плоскости, ноги вытянуты и ноги согнуты .">
             >
@@ -502,7 +502,7 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Стоя">
                 description = <"Рост измеряется стоя на двух ногах с равномерно распределённым весом, пятки вместе, обе ягодицы и пятки в прижаты к вертикальной поверхности.">
             >
@@ -545,7 +545,7 @@ terminology
                 text = <"Födelse">
                 description = <"Vanligtvis den första mätningen av barnet strax efter födseln. Den här händelsen används endast en gång per patientjournal.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Liggande">
                 description = <"Kroppslängden mäts i liggande helt utsträckt ställning med bäckenet platt, benen utsträckta och fötterna vinklade.">
             >
@@ -558,7 +558,7 @@ terminology
                 text = <"Kommentar">
                 description = <"Kommentarer avseende mätningen av kroppslängden som inte beskrivs i övriga fält.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Stående">
                 description = <"Kroppslängden mäts i stående ställning med jämn viktfördelning mellan fötterna, hälarna ihop, samt skinkor och hälar i kontakt med en vertikal yta.">
             >
@@ -603,7 +603,7 @@ terminology
                 description = <"Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Makuulla">
                 description = <"Pituus mitataan henkilön ollessa täysin ojentuneena makaavassa asennossa lantio kiinni alustassa, jalat ojentuneina ja jalkaterät taivutettuina.">
             >
@@ -616,7 +616,7 @@ terminology
                 text = <"Kommentti">
                 description = <"Mittauksen kertomusmuodossa olevat lisätiedot, joita ei voida ilmoittaa muissa kentissä.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Seisten">
                 description = <"Pituus mitataan henkilön seistessä molemmilla jaloilla paino tasaisesti kummallakin jalalla, kantapäät samalla viivalla ja sekä pakarat että kantapäät kosketuksissa pystysuoraan taustaan henkilön takana.">
             >
@@ -660,7 +660,7 @@ terminology
                 text = <"Nascimento">
                 description = <"Normalmente a primeira medição de comprimento, registrada logo após o nascimento. Este evento será usado somente uma vez por registro.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Decúbito dorsal">
                 description = <"O comprimento é medido em uma posição totalmente estendida, deitada com a pelve plana, pernas estendidas e os pés flexionados.">
             >
@@ -673,7 +673,7 @@ terminology
                 text = <"Comentário">
                 description = <"Narrativa adicional sobre a medida, não capturada em outros campos.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"De pé">
                 description = <"A altura é medida de pé sobre os dois pés com o peso distribuído uniformemente, calcanhares juntos e as nádegas e os calcanhares em contato com uma placa traseira vertical.">
             >
@@ -719,7 +719,7 @@ terminology
                 description = <"Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Lying">
                 description = <"Length is measured in a fully extended, recumbent position with the pelvis flat, legs extended and feet flexed.">
             >
@@ -732,7 +732,7 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about the measurement, not captured in other fields.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Standing">
                 description = <"Height is measured standing on both feet with weight distributed evenly, heels together and both buttocks and heels in contact with a vertical back board.">
             >
@@ -777,7 +777,7 @@ terminology
                 description = <"*Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"مستلقٍ">
                 description = <"يتم قياس الطول في وضع مستلقٍ متمدد بشكل تام مع استواء الحوض, و الأرجل ممتدة و الأقدام مرتخية.">
             >
@@ -790,7 +790,7 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"واقف">
                 description = <"يتم قياس الارتفاع و الفرد في وضع الوقوف على القدمين مع توزيع الوزن بشكل متساوٍ, و وضع الكعبين متجاورين, و كلا الأليتين متلامستين مع لوح ظهري عمودي.">
             >
@@ -834,7 +834,7 @@ terminology
                 description = <"*Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"卧位">
                 description = <"测量身长时受检对象采取的姿势为：身体完全伸展的卧位（平卧位），且骨盆平展，双腿伸展，脚部屈曲。">
             >
@@ -847,7 +847,7 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"直立位">
                 description = <"测量身高时受检对象采取的姿势为：体重均匀分布于两脚，脚跟并拢且臀部和脚跟均与背后的垂直背板接触。">
             >
@@ -891,7 +891,7 @@ terminology
                 description = <"*Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Acostado">
                 description = <"La longitud corporal es medida en una posición recostada y completamente extendida, con la pelvis plana, las piernas extendidas y los pies flexionados.">
             >
@@ -904,7 +904,7 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"De pie">
                 description = <"La altura se mide de pie, sobre ambos pies con el peso distribuido en forma homogénea, con los talones juntos y ambos glúteos y talones en contacto con una placa posterior vertical o pared.">
             >
@@ -947,7 +947,7 @@ terminology
                 text = <"Fødsel">
                 description = <"Den første lengden målt etter fødselen. Denne hendelsen skal kun benyttes én gang per journal.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Liggende">
                 description = <"Lengde måles i en helt utstrakt, liggende posisjon med bekkenet flatt, beina strekte og føtter verken flektert eller ekstendert.">
             >
@@ -960,7 +960,7 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligere beskrivelse av målingen av høyde/lengde som ikke dekkes i andre felt.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Stående">
                 description = <"Høyde måles optimalt uten sko, uten sokker (for å se fotstillingen skikkelig), rumpen inntil veggen, skuldrene inntil veggen, hodet i Frankfurt stilling (nedre orbitalkant horisontalt med ytre øregang). En skal si til vedkommende \"stå rett\", men ikke skyve opp hodet.">
             >
@@ -1005,7 +1005,7 @@ terminology
                 description = <"*Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"خوابیده">
                 description = <"  طول در حالت کاملا کشیده و طاقباز با لگن صاف، ساق های کشیده و پاهای جمع شده از مچ پا اندازه گیری می شود">
             >
@@ -1018,7 +1018,7 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"ایستاده">
                 description = <"قد بصورت ایستاده بر هر دو پا، پاشنه  ها کنار هم ، باسن و پاشنه ها در راستای خط عمودی پشت  با توزیع وزن مساوی اندازه گیری می شود">
             >
@@ -1062,7 +1062,7 @@ terminology
                 description = <"*Usually the first length measurement, recorded soon after birth. This event will only be used once per health record
     .(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Liggend">
                 description = <"De lengte is liggend gemeten, volledig uitgestrekt, plat bekken, benen gestrekt en voeten gebogen.">
             >
@@ -1075,7 +1075,7 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Staand">
                 description = <"De lengte is gemeten, staand op beide voeten met het gewicht gelijkmatig verdeeld, hielen tegen elkaar en beide billen en hakken in contact met een verticale achterkant.">
             >
@@ -1109,6 +1109,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at17", "at21">
+            members = <"at16", "at20">
         >
     >

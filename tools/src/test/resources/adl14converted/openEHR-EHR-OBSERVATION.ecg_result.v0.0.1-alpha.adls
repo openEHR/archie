@@ -603,11 +603,11 @@ terminology
                 text = <"ST-form (synthesised)">
                 description = <"Formen av ST-segmentet. (synthesised)">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"ST-depresjon">
                 description = <"ST-segmentet er depressert.">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"ST-elevasjon">
                 description = <"ST-segmentet er elevert.">
             >
@@ -651,15 +651,15 @@ terminology
                 description = <"Overordnet frekvens av elektriske atriesammentrekninger.">
                 comment = <"Også kjent som atriefrekvens. PP-frekvensen måles fra P-bølge til P-bølge.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Avledning V3R">
                 description = <"En prekordial avledning, plassert på høyre side av brystkassen midt mellom avledning V1 og V4R.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Avledning V6R">
                 description = <"En prekordial avledning, plassert på nivå med avledning V5R, på den høyre midtaksillære linjen.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Avledning V5R">
                 description = <"En prekordial avledning, plassert på nivå med avledning V4R, på den høyre fremre aksillærlinjen.">
             >
@@ -677,19 +677,19 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"Avledning V4R">
                 description = <"En prekordial avledning, plassert i det høyre femte interkostalrommet på den midtklavikulære linjen.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Avledning V9">
                 description = <"Avledning V9 er en bakre avledning, plassert i den paraspinale regionen.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Avledning V8">
                 description = <"Avledning V8 er en bakre avledning, plassert i den midtskapulære regionen.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Avledning V7">
                 description = <"Avledning V7 er en bakre avledning, plassert i den bakre aksillærlinjen.">
             >
@@ -736,15 +736,15 @@ terminology
                 text = <"T-amplitude">
                 description = <"Amplitude av T-bølgen.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"ST-depresjon - nedadstigende">
                 description = <"ST-segmentet er depressert og nedadstigende. Dette er en mer spesifikk form av \"ST-depresjon\".">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"ST-depresjon - oppadstigende">
                 description = <"ST-segmentet er depressert og oppadstigende. Dette er en mer spesifikk form av \"ST-depresjon\".">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"ST-depresjon - horisontal">
                 description = <"ST-segmentet er depressert men ikke stigende eller synkende. Dette er en mer spesifikk form av \"ST-depresjon\".">
             >
@@ -854,51 +854,51 @@ terminology
                 text = <"P-amplitude">
                 description = <"Amplituden av P-bølgen.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Avledning V6">
                 description = <"En prekordial avledning, plassert på nivå med avledning V5, på den venstre midtaksillære linjen.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Avledning V5">
                 description = <"En prekordial avledning, plassert på nivå med avledning V4, på den venstre fremre aksillærlinjen.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Avledning V4">
                 description = <"En prekordial avledning, plassert i det venstre femte interkostalrommet på den midtklavikulære linjen.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Avledning V3">
                 description = <"En prekordial avledning, plassert til midt mellom avledning V2 og V4.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Avledning V2">
                 description = <"En prekordial avledning, plassert til venstre for sternum i det fjerde interkostalrommet. Kalles også avledning V1R.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Avledning V1">
                 description = <"En prekordial avledning, plassert til høyre for sternum i det fjerde interkostalrommet. Kalles også avledning V2R.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Avledning aVF">
                 description = <"\"Lead augmented vector foot\" (aVF) har den positive elektroden på venstre bein og den negative polen er en kombinasjon av elektrodene på høyre arm og venstre arm. Den har retning mot venstre bein ved +90 grader.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Avledning aVL">
                 description = <"\"Lead augmented vector left\" (aVL) har den positive elektroden på venstre arm og den negative polen er en kombinasjon av elektrodene på høyre arm og venstre bein. Den har retning mot venstre arm ved -30 grader.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Avledning aVR">
                 description = <"\"Lead augmented vector right\" (aVR) har den positive elektroden på høyre arm og den negative polen er en kombinasjon av elektrodene på venstre arm og venstre bein. Den har retning mot høyre arm ved -150 grader.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Avledning III">
                 description = <"Avledning III er spenningsforskjellen mellom elektrodene på venstre bein og på venstre arm, i retning mot venstre bein ved +120 grader.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Avledning II">
                 description = <"Avledning II er spenningsforskjellen mellom elektrodene på venstre bein og på høyre arm, i retning mot venstre bein ved +60 grader.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Avledning I">
                 description = <"Avledning I er spenningsforskjellen mellom elektrodene på venstre arm og på høyre arm, i retning mot venstre arm ved 0 grader.">
             >
@@ -994,11 +994,11 @@ terminology
                 text = <"ST segment morphology (synthesised)">
                 description = <"Shape of the ST segment. (synthesised)">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"ST depression">
                 description = <"The ST segment is depressed.">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"ST elevation">
                 description = <"The ST segment is elevated.">
             >
@@ -1042,15 +1042,15 @@ terminology
                 description = <"Global frequency of electrical atrial contractions.">
                 comment = <"Also known as the Atrial rate. The PP rate is measured from P wave to P wave.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Lead V3R">
                 description = <"A precordial lead, placed directly on the right side of the chest between leads V1 and V4R.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Lead V6R">
                 description = <"A precordial lead, placed level with lead V5R at the right midaxillary line.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Lead V5R">
                 description = <"A precordial lead, placed level with lead V4R at the right anterior axillary line.">
             >
@@ -1068,19 +1068,19 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"Lead V4R">
                 description = <"A precordial lead, placed in the right fifth intercostal space at the midclavicular line.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Lead V9">
                 description = <"Lead V9 is a posterior lead, placed in the paraspinal region.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Lead V8">
                 description = <"Lead V8 is a posterior lead, placed in the midscapular region.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Lead V7">
                 description = <"Lead V7 is a posterior lead, placed in the posterior axillary line.">
             >
@@ -1127,15 +1127,15 @@ terminology
                 text = <"T amplitude">
                 description = <"Amplitude of the T wave.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"ST depression - downsloping">
                 description = <"The ST segment is depressed and downsloping. This is a more specific form of 'ST depression'.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"ST depression - upsloping">
                 description = <"The ST segment is depressed and sloping upward. This is a more specific form of 'ST depression'.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"ST depression - horizontal">
                 description = <"The ST segment is depressed but not sloping. This is a more specific form of 'ST depression'.">
             >
@@ -1245,51 +1245,51 @@ terminology
                 text = <"P amplitude">
                 description = <"Amplitude of the P wave.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Lead V6">
                 description = <"A precordial lead, placed level with lead V5 at the left midaxillary line.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Lead V5">
                 description = <"A precordial lead, placed level with lead V4 at the left anterior axillary line.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Lead V4">
                 description = <"A precordial lead, placed in the left fifth intercostal space at the midclavicular line.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Lead V3">
                 description = <"A precordial lead, placed directly between leads V2 and V4.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Lead V2">
                 description = <"A precordial lead, placed to the left of the sternum in the fourth intercostal space. Also known as lead V1R.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Lead V1">
                 description = <"A precordial lead, placed to the right of the sternum in the fourth intercostal space. Also known as lead V2R.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Lead aVF">
                 description = <"Lead augmented vector foot (aVF) has the positive electrode on the left leg and the negative pole is a combination of the right arm electrode and the left arm electrode. It is directed towards the left leg electrode at +90 degrees.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Lead aVL">
                 description = <"Lead augmented vector left (aVL) has the positive electrode on the left arm and the negative pole is a combination of the right arm electrode and the left leg electrode. It is directed towards the left arm electrode at -30 degrees.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Lead aVR">
                 description = <"Lead augmented vector right (aVR) has the positive electrode on the right arm and the negative pole is a combination of the left arm electrode and the left leg electrode. It is directed towards the right arm at -150 degrees.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Lead III">
                 description = <"Lead III is the voltage difference between the left leg electrode and the left arm electrode, directed towards the left leg at +120 degrees.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Lead II">
                 description = <"Lead II is the voltage difference between the left leg electrode and the right arm electrode, directed towards the left leg at +60 degrees.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Lead I">
                 description = <"Lead I is the voltage difference between the left arm electrode and right arm electrode, directed towards the left arm at zero degrees.">
             >
@@ -1386,11 +1386,11 @@ terminology
                 text = <"*ST segment morphology(en) (synthesised)">
                 description = <"*Shape of the ST segment.(en) (synthesised)">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"*ST depression(en)">
                 description = <"*The ST segment is depressed.(en)">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"*ST elevation(en)">
                 description = <"*The ST segment is elevated.(en)">
             >
@@ -1434,15 +1434,15 @@ terminology
                 description = <"*Global frequency of electrical atrial contractions.(en)">
                 comment = <"*Also known as the Atrial rate. The PP rate is measured from P wave to P wave.(en)">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"*Lead V3R(en)">
                 description = <"*A precordial lead, placed directly on the right side of the chest between leads V1 and V4R.(en)">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"*Lead V6R(en)">
                 description = <"*A precordial lead, placed level with lead V5R at the right midaxillary line.(en)">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"*Lead V5R(en)">
                 description = <"*A precordial lead, placed level with lead V4R at the right anterior axillary line.(en)">
             >
@@ -1459,19 +1459,19 @@ terminology
                 text = <"*Cluster(en)">
                 description = <"**(en)">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"*Lead V4R(en)">
                 description = <"*A precordial lead, placed in the right fifth intercostal space at the midclavicular line.(en)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"*Lead V9(en)">
                 description = <"*Lead V9 is a posterior lead, placed in the paraspinal region.(en)">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"*Lead V8(en)">
                 description = <"*Lead V8 is a posterior lead, placed in the midscapular region.(en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Lead V7(en)">
                 description = <"*Lead V7 is a posterior lead, placed in the posterior axillary line.(en)">
             >
@@ -1518,15 +1518,15 @@ terminology
                 text = <"*T amplitude(en)">
                 description = <"*Amplitude of the T wave.(en)">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"*ST depression - downsloping(en)">
                 description = <"*The ST segment is depressed and downsloping. This is a more specific form of 'ST depression'.(en)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*ST depression - upsloping(en)">
                 description = <"*The ST segment is depressed and sloping upward. This is a more specific form of 'ST depression'.(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*ST depression - horizontal(en)">
                 description = <"*The ST segment is depressed but not sloping. This is a more specific form of 'ST depression'.(en)">
             >
@@ -1650,51 +1650,51 @@ terminology
                 text = <"*P amplitude(en)">
                 description = <"*Amplitude of the P wave.(en)">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"*Lead V6(en)">
                 description = <"*A precordial lead, placed level with lead V5 at the left midaxillary line.(en)">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"*Lead V5(en)">
                 description = <"*A precordial lead, placed level with lead V4 at the left anterior axillary line.(en)">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"*Lead V4(en)">
                 description = <"*A precordial lead, placed in the left fifth intercostal space at the midclavicular line.(en)">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"*Lead V3(en)">
                 description = <"*A precordial lead, placed directly between leads V2 and V4.(en)">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"*Lead V2(en)">
                 description = <"*A precordial lead, placed to the left of the sternum in the fourth intercostal space. Also known as lead V1R.(en)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"*Lead V1(en)">
                 description = <"*A precordial lead, placed to the right of the sternum in the fourth intercostal space. Also known as lead V2R.(en)">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"*Lead aVF(en)">
                 description = <"*Lead augmented vector foot (aVF) has the positive electrode on the left leg and the negative pole is a combination of the right arm electrode and the left arm electrode. It is directed towards the left leg electrode at +90 degrees.(en)">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"*Lead aVL(en)">
                 description = <"*Lead augmented vector left (aVL) has the positive electrode on the left arm and the negative pole is a combination of the right arm electrode and the left leg electrode. It is directed towards the left arm electrode at -30 degrees.(en)">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"*Lead aVR(en)">
                 description = <"*Lead augmented vector right (aVR) has the positive electrode on the right arm and the negative pole is a combination of the left arm electrode and the left leg electrode. It is directed towards the right arm at -150 degrees.(en)">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"*Lead III(en)">
                 description = <"*Lead III is the voltage difference between the left leg electrode and the left arm electrode, directed towards the left leg at +120 degrees.(en)">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"*Lead II(en)">
                 description = <"*Lead II is the voltage difference between the left leg electrode and the right arm electrode, directed towards the left leg at +60 degrees.(en)">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"*Lead I(en)">
                 description = <"*Lead I is the voltage difference between the left arm electrode and right arm electrode, directed towards the left arm at zero degrees.(en)">
             >
@@ -1776,10 +1776,10 @@ terminology
     value_sets = <
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at104", "at105", "at71", "at72", "at73">
+            members = <"at103", "at104", "at70", "at71", "at72">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at30", "at31", "at32", "at33", "at34", "at35", "at36", "at37", "at38", "at94", "at39", "at88", "at40", "at92", "at41", "at93", "at85", "at86", "at87">
+            members = <"at29", "at30", "at31", "at32", "at33", "at34", "at35", "at36", "at37", "at93", "at38", "at87", "at39", "at91", "at40", "at92", "at84", "at85", "at86">
         >
     >

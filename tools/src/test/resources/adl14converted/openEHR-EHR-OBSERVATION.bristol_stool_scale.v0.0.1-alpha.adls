@@ -65,13 +65,13 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9001] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}],
-                                                    [{4}, {[at10]}],
-                                                    [{5}, {[at11]}],
-                                                    [{6}, {[at12]}],
-                                                    [{7}, {[at13]}]
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}],
+                                                    [{4}, {[at9]}],
+                                                    [{5}, {[at10]}],
+                                                    [{6}, {[at11]}],
+                                                    [{7}, {[at12]}]
                                                 }
                                             }
                                         }
@@ -127,31 +127,31 @@ terminology
                 text = <"Confounding factors">
                 description = <"Record any issues or factors that may impact on the stool scale.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Watery, no solid pieces. Entirely liquid">
                 description = <"Stool is watery, no solid pieces. Entirely liquid.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Fluffy pieces with ragged edges, a mushy stool">
                 description = <"Stool consists of fluffy pieces with ragged edges, a mushy stool.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Soft blobs with clear cut edges (passed easily)">
                 description = <"Stool consists of soft blobs with clear cut edges (passed easily).">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Like a sausage or snake, smooth and soft">
                 description = <"Stool is like a sausage or snake, smooth and soft.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Like a sausage but with cracks on its surface">
                 description = <"Stool is like a sausage but with cracks on its surface.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Sausage-shaped, but lumpy">
                 description = <"Stool is sausage-shaped, but lumpy.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Separate hard lumps, like nuts (hard to pass)">
                 description = <"Stool consists of separate hard lumps, like nuts (hard to pass).">
             >
@@ -186,31 +186,31 @@ terminology
                 text = <"*Confounding factors(en)">
                 description = <"*Record any issues or factors that may impact on the stool scale. (en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"I - Tekoče/Diareja">
                 description = <"*Stool is watery, no solid pieces. Entirely liquid.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"E - Kašasto">
                 description = <"*Stool consists of fluffy pieces with ragged edges, a mushy stool.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Penasto">
                 description = <"*Stool consists of soft blobs with clear cut edges (passed easily).(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"S - Sluzasto">
                 description = <"*Stool is like a sausage or snake, smooth and soft.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"O - Obstipacija">
                 description = <"*Stool is like a sausage but with cracks on its surface.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Grudasto">
                 description = <"*Stool is sausage-shaped, but lumpy.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"A - Normalno/Formirano">
                 description = <"*Stool consists of separate hard lumps, like nuts (hard to pass).(en)">
             >
@@ -235,6 +235,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8", "at9", "at10", "at11", "at12", "at13">
+            members = <"at6", "at7", "at8", "at9", "at10", "at11", "at12">
         >
     >

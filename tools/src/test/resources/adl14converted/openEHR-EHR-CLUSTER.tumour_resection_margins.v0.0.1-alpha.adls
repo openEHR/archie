@@ -130,19 +130,19 @@ terminology
                 text = <"Margin name">
                 description = <"The name of the margin being described e.g. Deep margin, Vascular margin, Bronchial margin.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Equivocal">
                 description = <"Presence of tumour at the surgical resection margin is equivocal.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Indeterminate">
                 description = <"Presence of tumour at surgical resection margins has not been determined.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Absent">
                 description = <"Tumour is absent from the surgical resection margin.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Present">
                 description = <"Ttumour is present at the surgical resection margin.">
             >
@@ -197,19 +197,19 @@ terminology
                 text = <"اسم الحافة/الهامش">
                 description = <"اسم الحافة/الهامش الذي يتم وصفه, مثل: حافة عميقة, حافة أوعية دموية, حاقة القصبة/الشعبة الهوائية">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"غير قابل للتحديد">
                 description = <"وجود الورم عند حواف القطع الجراحي غير قابل للتحديد">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد وجود الورم عند حواف القطع الجراحي">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"غائب">
                 description = <"الورم غائب عن حافة القطع الجراحي">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"موجود">
                 description = <"الورم موجود في حافة القطع الجراحي">
             >
@@ -251,6 +251,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at15", "at16", "at18", "at17">
+            members = <"at14", "at15", "at17", "at16">
         >
     >

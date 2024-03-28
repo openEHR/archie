@@ -279,7 +279,7 @@ definition
                                     ELEMENT[id31] occurrences matches {0..1} matches {    -- Body exposure
                                         value matches {
                                             DV_CODED_TEXT[id9005] matches {
-                                                defining_code matches {[ac9001; at34]}    -- Body exposure (synthesised)
+                                                defining_code matches {[ac9001; at33]}    -- Body exposure (synthesised)
                                             }
                                             DV_TEXT[id9006] 
                                         }
@@ -371,11 +371,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*e.g. Local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Panne(en)">
                 description = <"*Temperatur målt i pannen.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Tinning(en)">
                 description = <"*Temperatur målt i tinningen over arteria temporalis.(en)">
             >
@@ -391,19 +391,19 @@ terminology
                 text = <"*Environmental conditions(en)">
                 description = <"*Details about the environmental conditions at the time of temperature measurement.(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Inguinale Hautfalte">
                 description = <"Messung der Temperatur in der inguinalen Hautfalte zwischen Bein und Abdominalwand.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Oesophagus">
                 description = <"Messung der Temperatur innerhalb des Oesophagus.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Vagina">
                 description = <"Messung der Temperatur innerhalb der Vagina.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Haut">
                 description = <"Messung der Temperatur an freiliegender Haut.">
             >
@@ -411,19 +411,19 @@ terminology
                 text = <"Beschreibung der Wärmebelastung">
                 description = <"Beschreibung von Bedingungen, denen die Person ausgesetzt ist, welche die gemessene Körpertemperatur beeinflussen könnten.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Erhöhte Kleidung/Bettzeug">
                 description = <"Die Person wird bedeckt von einer größeren Menge an Kleidung oder Bettzeug als für die Umgebungsbedingungen angemessen erscheint.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Angemessene Kleidung/Bettzeug">
                 description = <"Die Person wird bedeckt von einer Menge an Kleidung oder Bettzeug, die den Umgebungsbedingungen angemessen erscheint.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Verminderte Kleidung/Bettzeug">
                 description = <"Die Person wird bedeckt von einer geringeren Menge an Kleidung oder Bettzeug als für die Umgebungsbedingungen angemessen erscheint.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Nackt">
                 description = <"Keine Kleidung, Bettzeug oder andere Bedeckung.">
             >
@@ -435,31 +435,31 @@ terminology
                 text = <"Status">
                 description = <"Statusinformationen über die Person.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Intravaskulär">
                 description = <"Messung der Temperatur innerhalb des vaskulären Systems.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Harnblase">
                 description = <"Messung der Temperatur in der Harnblase.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Nasopharynx">
                 description = <"Messung der Temperatur innerhalb des Nasopharynxs (Nasenrachens).">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Rektum">
                 description = <"Messung der Temperatur innerhalb des Rektums.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Achselhöhle">
                 description = <"Messung der Temperatur an der Haut der Achselhöhle mit seitlich angelegtem Arm.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Ohrenkanal">
                 description = <"Messung der Temperatur innerhalb des äußeren Gehörgangs.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Mund">
                 description = <"Messung der Temperatur im Mund.">
             >
@@ -510,11 +510,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*e.g. Local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Panne(en)">
                 description = <"*Temperatur målt i pannen.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Tinning(en)">
                 description = <"*Temperatur målt i tinningen over arteria temporalis.(en)">
             >
@@ -530,19 +530,19 @@ terminology
                 text = <"*Environmental conditions(en)">
                 description = <"*Details about the environmental conditions at the time of temperature measurement.(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Паховая складка">
                 description = <"Температура измеряется в паховой складке кожи между ногой и передней брюшной стенкой.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Пищевод">
                 description = <"Температура измеряется внитри пищевода.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Влагалище">
                 description = <"Температура измеряется внутри влагвалища.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Кожа">
                 description = <"Температура измеряется на поверхности кожи.">
             >
@@ -550,19 +550,19 @@ terminology
                 text = <"Тепловой стресс">
                 description = <"Описание особенностей, которые могут повлиять на результат измерения температуры тела.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Теплая одежда/постель">
                 description = <"На пациенте большее количество одежды / постельных принадлежностей, чем этого требуют условия внешней среды.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Соответствующая одежда/постель">
                 description = <"Одежда/постельные принадлежности пациента соответствуют условиям внешней среды.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Лёгкая одежда/постель">
                 description = <"На пациенте меньшее количество одежды / постельных принадлежностей, чем этого требуют условия внешней среды.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Обнажён">
                 description = <"Без одежды, ничем не укрыт.">
             >
@@ -574,31 +574,31 @@ terminology
                 text = <"Состояние">
                 description = <"Информация о состоянии пациента.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Внутрисосудистая">
                 description = <"Температура измеряется внутри сосоудистого русла.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Мочевой пузырь">
                 description = <"Температура измеряется внутри мочевого пузыря.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Носоглотка">
                 description = <"Температура измеряется в носоглотке.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Прямая кишка">
                 description = <"Температура измеряется внутри прямой кишки.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Подмышечная впадина">
                 description = <"Температура измеряется в кожной складке в подмышечной впадине, рука опущена вниз и прижата к туловищу.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Наружный слуховой проход">
                 description = <"Температура измеряется в наружном слуховом проходе.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Рот">
                 description = <"Температура измеряется в ротовой полости.">
             >
@@ -649,11 +649,11 @@ terminology
                 description = <"Extra information som krävs för att fånga lokalt innehåll eller som anpassning till andra referensmodeller eller formalismer.">
                 comment = <"Exempelvis: lokala informationskrav eller ytterligare metadata för anpassning till FHIR- eller CIMI motsvarigheter.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Panna">
                 description = <"Temperaturen mäts på pannan.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Tinning">
                 description = <"Temperaturen mäts på tinningen, över den ytliga temporalartären.">
             >
@@ -669,19 +669,19 @@ terminology
                 text = <"Miljöförhållanden">
                 description = <"Information om rådande miljöförhållanden vid tidpunkten för temperaturmätning.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Ljumskveck">
                 description = <"Temperaturen mäts i ljumskens hudveck mellan benet och bukväggen.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Esofagus">
                 description = <"Temperaturen mäts i matstrupen.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Vagina">
                 description = <"Temperaturen mäts i vaginan.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Hud">
                 description = <"Temperaturen mäts från exponerad hud.">
             >
@@ -689,19 +689,19 @@ terminology
                 text = <"Beskrivning av termisk stress">
                 description = <"Beskrivning av rådande förhållanden som kan påverka individens uppmätta kroppstemperatur.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Större mängd kläder och sängkläder">
                 description = <"Individen är täckt av en större mängd kläder eller sängkläder än vad som bedöms vara lämpliga för miljöförhållandena.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Lämplig mängd kläder och sängkläder">
                 description = <"Individen är täckt av en mängd kläder eller sängkläder som bedöms vara lämpliga för miljöförhållandena.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Mindre mängd kläder och sängkläder">
                 description = <"Individen är täckt av en mindre mängd kläder eller sängkläder än vad som bedöms vara lämpliga för miljöförhållandena.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Naken">
                 description = <"Individen har inga kläder, sängkläder eller överdrag på sig.">
             >
@@ -713,31 +713,31 @@ terminology
                 text = <"Status">
                 description = <"Information om individens tillstånd.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Intravaskulär">
                 description = <"Temperaturen mäts i kärlsystemet.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Urinblåsa">
                 description = <"Temperaturen mäts i urinblåsan.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Nasofarynx">
                 description = <"Temperaturen mäts i nasofarynxen.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Rektum">
                 description = <"Temperaturen mäts i ändtarmen.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Axill">
                 description = <"Temperaturen mäts på armens hud, med armen placerad nedåt vid sidan.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Hörselgång">
                 description = <"Temperaturen mäts inifrån den externa hörselgången.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Mun">
                 description = <"Temperaturen mäts i munnen.">
             >
@@ -788,11 +788,11 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Panne">
                 description = <"Temperatur målt på pannen.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Tinning">
                 description = <"Temperatur målt i tinningen over arteria temporalis.">
             >
@@ -808,19 +808,19 @@ terminology
                 text = <"Detaljer om temperaturpåvirkning">
                 description = <"Detaljer om omgivelser eller midler for aktiv temperaturpåvirkning da temperaturen ble målt.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Lyske">
                 description = <"Temperatur målt i lysken.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Spiserør">
                 description = <"Temperatur målt i spiserøret (øsofagus).">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Skjede">
                 description = <"Temperatur målt i skjeden (vagina).">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Hud">
                 description = <"Temperaturen målt på eksponert hud.">
             >
@@ -828,19 +828,19 @@ terminology
                 text = <"Aktiv temperaturpåvirkning">
                 description = <"Beskrivelse av aktive tiltak som påvirker den målte kroppstemperaturen, f.eks. bruk av varmeteppe, kalde omslag, isbad eller hjerte/lungemaskin ved oppvarming av hypotermiske pasienter.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Økt påkledning/tildekking">
                 description = <"Individet er mer påkledt eller tildekket enn temperaturen i omgivelsene skulle tilsi.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Passende påkleding/tildekking">
                 description = <"Individet er passende påkledt eller tildekket i forhold til hva temperaturen i omgivelsene skulle tilsi.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Redusert påkledning/tildekking">
                 description = <"Individet er mindre påkledt eller tildekket enn temperaturen i omgivelsene skulle tilsi.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Naken">
                 description = <"Ingen klær eller tildekking">
             >
@@ -852,31 +852,31 @@ terminology
                 text = <"Tilstanden">
                 description = <"Informasjon om tilstanden til en pasient.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Intravaskulært">
                 description = <"Temperatur målt intravaskulært.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Urinblære">
                 description = <"Temperatur målt i urinblære.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Nesesvelg">
                 description = <"Temperatur målt i nesesvelget (nasofarynks).">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Endetarm">
                 description = <"Temperatur målt i endetarm (rektum).">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Armhule">
                 description = <"Temperatur er målt i armhulen med armen posisjonert ned langs siden.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Øre">
                 description = <"Temperatur målt ved infrarød stråling fra trommehinnen i ytre ørekanal.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Munn">
                 description = <"Temperatur målt i munnhulen (under tungen).">
             >
@@ -927,11 +927,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*e.g. Local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Panne(en)">
                 description = <"*Temperatur målt i pannen.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Tinning(en)">
                 description = <"*Temperatur målt i tinningen over arteria temporalis.(en)">
             >
@@ -947,19 +947,19 @@ terminology
                 text = <"*Environmental conditions(en)">
                 description = <"*Details about the environmental conditions at the time of temperature measurement.(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Pliegue inguinal">
                 description = <"La temperatura se mide en el pliegue inguinal entre el muslo y la pared abdominal.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Esófago">
                 description = <"Temperatura se mide dentro del esófago.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Vagina">
                 description = <"Temperatura vaginal.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Piel">
                 description = <"La temperatura se mide sobre la piel expuesta.">
             >
@@ -967,19 +967,19 @@ terminology
                 text = <"Descripción de estrés térmico">
                 description = <"Descripción de las condiciones que le suceden al sujeto que puede influenciar la temperatura corporal medida.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Ropas/lecho aumentado">
                 description = <"La persona se encuentra cubierto por una cantidad incrementada de ropas o sabanas que lo considerado apropiado para las circunstancias ambientales.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Ropas/lecho apropiadas">
                 description = <"La persona esta cubierta por una adecuada cantidad de ropas o sabanas, que lo considerado apropiado para las circunstancias ambientales.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Ropas/lecho reducidas">
                 description = <"La persona esta cubierto por una cantidad menor de ropas o sabanas que lo considerado apropiado para las circunstancias ambientales.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Desnudo">
                 description = <"Sin ropas, sabanas o coberturas.">
             >
@@ -991,31 +991,31 @@ terminology
                 text = <"Estado">
                 description = <"Estado de la información del paciente.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Intravascular">
                 description = <"La temperatura se mide dentro del sistema vascular.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Vejiga urinaria">
                 description = <"La temperatura se mide en la vejiga urinaria.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Nasofaríngeo">
                 description = <"La temperatura se mide dentro de la nasofaringe.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Recto">
                 description = <"Temperatura rectal.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Axila">
                 description = <"La temperatura se mide en el hueco axilar con el brazo posicionado al costado del cuerpo.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Canal auditivo">
                 description = <"La temperatura se mide en el canal auditivo externo.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Boca">
                 description = <"Temperatura bucal.">
             >
@@ -1066,11 +1066,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*e.g. Local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Panne(en)">
                 description = <"*Temperatur målt i pannen.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Tinning(en)">
                 description = <"*Temperatur målt i tinningen over arteria temporalis.(en)">
             >
@@ -1086,19 +1086,19 @@ terminology
                 text = <"*Environmental conditions(en)">
                 description = <"*Details about the environmental conditions at the time of temperature measurement.(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Região Inguinal">
                 description = <"A temperatura é aferida na dobra da pele entre a região inguinal e a região abdominal.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Esófago">
                 description = <"A temperatura é aferida no esófago.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Vagina">
                 description = <"A temperatura é afereida no interior da vagina.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Pele">
                 description = <"A temperatura é aferida a partir da pele exposta.">
             >
@@ -1106,19 +1106,19 @@ terminology
                 text = <"Choque térmico">
                 description = <"Descrição das condições aplicadas ao sujeito que possa influenciar a medida de sua temperatura corporal.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Excessivamente vestido">
                 description = <"A pessoa está excessivamente vestida considerado o vestuário necessário para as circunstâncias ambientais.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Apropriadamente vestido">
                 description = <"A pessoa está vestida apropriadamente considerado o vestuário necessário para as circunstâncias ambientais.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Vestuário reduzido/camisola">
                 description = <"A pessoa está vestida por pouca roupa ou camisola considerado o vestuário necessário para as circunstâncias ambientais.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Despido">
                 description = <"Sem roupas, camisola ou capa.">
             >
@@ -1130,31 +1130,31 @@ terminology
                 text = <"Estado">
                 description = <"Informações sobre o estado do paciente.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Intravascular">
                 description = <"A temperatura é aferida no sistema vascular.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Bexiga">
                 description = <"A temperatura é aferida na bexiga.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Nasofaringe">
                 description = <"A temperatura é aferida na parte nasal da faringe.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Reto">
                 description = <"A temperatura é aferida no reto.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Axilla">
                 description = <"A temperatura é aferida na pele da axila com o braço abaixado.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Canal auditivo">
                 description = <"A temperatura é aferida dentro do canal auditivo do ouvido externo (conduto auditivo).">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Boca">
                 description = <"A temperatura é eferida no interior da boca.">
             >
@@ -1204,11 +1204,11 @@ terminology
                 text = <"*Extension(en)">
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Forehead(en)">
                 description = <"*Temperature is measured on the forehead.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Temple(en)">
                 description = <"*Temperature is measured at the temple, over the superficial temporal artery.(en)">
             >
@@ -1224,19 +1224,19 @@ terminology
                 text = <"環境条件">
                 description = <"体温を計測した時点での環境条件についての詳細。">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"鼠径ひだ状皮膚">
                 description = <"歌詞と腹壁の間にある鼠径ひだ状皮膚で計測された温度。">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"食道">
                 description = <"食道内で計測された温度。">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"膣">
                 description = <"膣内で計測された温度。">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"皮膚">
                 description = <"露出された皮膚で計測された温度。">
             >
@@ -1244,19 +1244,19 @@ terminology
                 text = <"熱応力についての記載">
                 description = <"体温計測に影響を起こしうる対象についてかせられた条件についての記載。">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"過剰な着衣や寝具">
                 description = <"環境として適切であると考えられる量よりも多くの着衣や寝具で覆われている状態の人。">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"適切な着衣、寝具が与えられている状態">
                 description = <"着衣や寝具が周囲の環境として適切と考えられる量で覆われている状態の人">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"着衣や寝具が減らされている状態">
                 description = <"周辺環境として適切と見なされるよりも少ない着衣や寝具に覆われた状態のヒト">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"裸体">
                 description = <"着衣、寝具や被服がない状態">
             >
@@ -1268,31 +1268,31 @@ terminology
                 text = <"*State(en)">
                 description = <"*State information about the patient.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"血管内">
                 description = <"血管系の内部で計測された温度。">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"膀胱">
                 description = <"膀胱内で計測された温度">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"鼻咽頭">
                 description = <"鼻咽頭内で計測された温度。">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"直腸">
                 description = <"直腸内で計測された温度。">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"腋窩">
                 description = <"腕を脇につけた状態で測定された腋窩の皮膚から計測された温度。">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"外耳道">
                 description = <"外耳道内で計測された温度。">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"口腔">
                 description = <"口腔内で計測された温度">
             >
@@ -1343,11 +1343,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*e.g. Local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Panne(en)">
                 description = <"*Temperatur målt i pannen.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Tinning(en)">
                 description = <"*Temperatur målt i tinningen over arteria temporalis.(en)">
             >
@@ -1363,19 +1363,19 @@ terminology
                 text = <"*Environmental conditions(en)">
                 description = <"*Details about the environmental conditions at the time of temperature measurement.(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"غضن الجلد عند الأربتين">
                 description = <"يتم قياس درجة الحرارة عند غضن الجلد بين الأربتين - بين الرجل و جدار البطن">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"المريئ">
                 description = <"يتم قياس درجة الحرارة من داخل المريئ">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"المهبل">
                 description = <"يتم قياس درجة الحرارة من داخل المهبل">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"الجلد/ البشرة">
                 description = <"يتم قياس درجة الحرارة من الجلد المُعَرَّض/ المكشوف">
             >
@@ -1383,19 +1383,19 @@ terminology
                 text = <"وصف الضغط الحرارة">
                 description = <"وصف للظروف المُطبَّقة على المريض و التي قد تؤثر على درجة الحرارة التي يتم قياسها">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"ملابس/شراشف زائدة">
                 description = <"الشخص مُغَطَّى بكمية زائدة من الملابس/ الشراشف المناسبة للظروف البيئية المحيطة">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"ملابس/شراشف مناسبة">
                 description = <"الشخص مُغَطَّى بكمية من الملابس أو الشراشف المناسبة للظروف البيئية المحيطة">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"ملابس/ شراشف خفيفة">
                 description = <"الشخص مُغَطَّى بكمية من الملابس أو الشراشف أقل من تلك المناسبة للظروف البيئية المحيطة">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"مُعرَّى">
                 description = <"لا يوجد ملابس أو شراشف أو غطاء">
             >
@@ -1407,31 +1407,31 @@ terminology
                 text = <"الحالة">
                 description = <"معلومات حول حالة المريض">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"داخل الأوعية الدموية">
                 description = <"يتم قياس درجة الحرارة من داخل الجهاز الدوري - الأوعية الدموية">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"المثانة البولية ">
                 description = <"يتم قياس درجة الحرارة من داخل المثانة البولية">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"البلعوم الأنفي">
                 description = <"درجة الحرارة التي يتم قياسها من داخل البلعوم الأنفي">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"المستقيم">
                 description = <"درجة الحرارة التي يتم قياسها في داخل المستقيم">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"الإبط">
                 description = <"يتم قياس درجة الحرارة من بشرة/ جلد الإبط في حالة وضع الذراع جانبا و هو متجه إلى أسفل">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"قناة الأذن">
                 description = <"يتم قياس درجة الحرارة من داخل القناة السمعية الخارجية">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"الفم">
                 description = <"يتم قياس الحرارة في داخل الفم">
             >
@@ -1482,11 +1482,11 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"e.g. Local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Forehead">
                 description = <"Temperature is measured on the forehead.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Temple">
                 description = <"Temperature is measured at the temple, over the superficial temporal artery.">
             >
@@ -1502,19 +1502,19 @@ terminology
                 text = <"Environmental conditions">
                 description = <"Details about the environmental conditions at the time of temperature measurement.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Inguinal skin crease">
                 description = <"Temperature is measured in the inguinal skin crease between the leg and abdominal wall.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Oesophagus">
                 description = <"Temperatue is measured within the oesophagus.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Vagina">
                 description = <"Temperature is measured within the vagina.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Skin">
                 description = <"Temperature is measured from exposed skin.">
             >
@@ -1522,19 +1522,19 @@ terminology
                 text = <"Description of thermal stress">
                 description = <"Description of the conditions applied to the subject that might influence their measured body temperature.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Increased clothing/bedding">
                 description = <"The person is covered by an increased amount of clothing or bedding than deemed appropriate for the environmental circumstances.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Appropriate clothing/bedding">
                 description = <"The person is covered by an amount of clothing or bedding deemed appropriate for the environmental circumstances.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Reduced clothing/bedding">
                 description = <"The person is covered by a lesser amount of clothing or bedding than deemed appropriate for the environmental circumstances.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Naked">
                 description = <"No clothing, bedding or covering.">
             >
@@ -1546,31 +1546,31 @@ terminology
                 text = <"State">
                 description = <"State information about the patient.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Intravascular">
                 description = <"Temperature is measured within the vascular system.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Urinary bladder">
                 description = <"Temperature is measured in the urinary bladder.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Nasopharynx">
                 description = <"Temperature is measured within the nasopharynx.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Rectum">
                 description = <"Temperature measured within the rectum.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Axilla">
                 description = <"Temperature is measured from the skin of the axilla with the arm positioned down by the side.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Ear canal">
                 description = <"Temperature is measured from within the external auditory canal.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Mouth">
                 description = <"Temperature is measured within the mouth.">
             >
@@ -1621,11 +1621,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*e.g. Local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Panne(en)">
                 description = <"*Temperatur målt i pannen.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Tinning(en)">
                 description = <"*Temperatur målt i tinningen over arteria temporalis.(en)">
             >
@@ -1641,19 +1641,19 @@ terminology
                 text = <"*Environmental conditions(en)">
                 description = <"*Details about the environmental conditions at the time of temperature measurement.(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"چین پوستی کشاله رانی">
                 description = <"دما از طریق چین پوستی کشاله ران بین ران و دیواره شکم اندازه گیری می شود">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"مری">
                 description = <"دما از طریق داخل مری اندازه گیری می شود">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"مهبل">
                 description = <"دما از  طریق داخل مهبل اندازه گیری می شود">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"پوست">
                 description = <"دما از طریق پوست بدن اندازه گیری می شود">
             >
@@ -1661,19 +1661,19 @@ terminology
                 text = <"توصیف استرسهای گرمایی">
                 description = <"توصیف شرایط اعمال شده به شخص که ممکن است اندازه گیری دمای بدن فرد را تحت تاثیر قرار دهد">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"لباس و یا ملافه زیاد">
                 description = <"فرد با مقدار لباس و یا ملافه بیشتر از حد مناسب با شرایط محیطی پوشانده شده است">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"لباس یا ملافه مناسب">
                 description = <"فرد با لباس و یا ملافه مناسب با شرایط محیطی پوشانده شده است">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <" لباس و یا ملافه کم">
                 description = <"فرد با مقدار لباس و یا ملافه کمتر از حد مناسب با شرایط محیطی پوشانده شده است">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"لخت">
                 description = <"بدون لباس ، ملافه و یا پوشش
     ">
@@ -1686,31 +1686,31 @@ terminology
                 text = <"حالت">
                 description = <"اطلاعات حالت بیمار">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"داخل عروقی">
                 description = <"دما از طریق سیستم عروقی اندازه گیری می شود">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"مثانه">
                 description = <"دما از طریق مثانه اندازه گیری می شود">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"بینی حلقی">
                 description = <"دما از طریق بینی حلقی اندازه گیری می شود">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"مقعد">
                 description = <"دما از طریق مقعد اندازه گیری می شود">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"زیر بغل">
                 description = <"دما از طریق پوستی و در زیر بغل، بصورتی که بازو پایین و در کنار بدن باشد، اندازه گیری می شود">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"کانال گوش">
                 description = <"دما از طریق کانال شنوایی خارجی اندازه گیری می شود">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"ماه">
                 description = <"دما در عرض یک ماه اندازه گیری می شود">
             >
@@ -1761,11 +1761,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*e.g. Local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Panne(en)">
                 description = <"*Temperatur målt i pannen.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Tinning(en)">
                 description = <"*Temperatur målt i tinningen over arteria temporalis.(en)">
             >
@@ -1781,19 +1781,19 @@ terminology
                 text = <"*Environmental conditions(en)">
                 description = <"*Details about the environmental conditions at the time of temperature measurement.(en)">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Pliegue inguinal">
                 description = <"La temperatura se mide en el pliegue inguinal entre el muslo y la pared abdominal.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Esófago">
                 description = <"Temperatura se mide dentro del esófago.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Vagina">
                 description = <"Temperatura vaginal.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Piel">
                 description = <"La temperatura se mide sobre la piel expuesta.">
             >
@@ -1801,19 +1801,19 @@ terminology
                 text = <"Descripción de estrés térmico">
                 description = <"Descripción de las condiciones que le suceden al sujeto que puede influenciar la temperatura corporal medida.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Ropas/lecho aumentado">
                 description = <"La persona se encuentra cubierto por una cantidad incrementada de ropas o sabanas que lo considerado apropiado para las circunstancias ambientales.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Ropas/lecho apropiadas">
                 description = <"La persona esta cubierta por una adecuada cantidad de ropas o sabanas, que lo considerado apropiado para las circunstancias ambientales.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Ropas/lecho reducidas">
                 description = <"La persona esta cubierto por una cantidad menor de ropas o sabanas que lo considerado apropiado para las circunstancias ambientales.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Desnudo">
                 description = <"Sin ropas, sabanas o coberturas.">
             >
@@ -1825,31 +1825,31 @@ terminology
                 text = <"Estado">
                 description = <"Estado de la información del paciente.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Intravascular">
                 description = <"La temperatura se mide dentro del sistema vascular.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Vejiga urinaria">
                 description = <"La temperatura se mide en la vejiga urinaria.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Nasofaríngeo">
                 description = <"La temperatura se mide dentro de la nasofaringe.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Recto">
                 description = <"Temperatura rectal.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Axila">
                 description = <"La temperatura se mide en el hueco axilar con el brazo posicionado al costado del cuerpo.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Canal auditivo">
                 description = <"La temperatura se mide en el canal auditivo externo.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Boca">
                 description = <"Temperatura bucal.">
             >
@@ -1885,10 +1885,10 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at26", "at25", "at24", "at62", "at23", "at27", "at28", "at29", "at44", "at52", "at55", "at56", "at61">
+            members = <"at25", "at24", "at23", "at61", "at22", "at26", "at27", "at28", "at43", "at51", "at54", "at55", "at60">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at32", "at33", "at34", "at35">
+            members = <"at31", "at32", "at33", "at34">
         >
     >

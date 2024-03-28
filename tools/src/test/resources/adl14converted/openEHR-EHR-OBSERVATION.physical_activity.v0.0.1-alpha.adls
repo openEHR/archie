@@ -115,23 +115,23 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Extremely active">
                 description = <"The individual is extremely active, for example a competitive cyclist.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Vigorously active">
                 description = <"The individual is very active, for example a manual labourer or a person swimming two hours daily.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Moderately active">
                 description = <"The individual is moerately active, for example a construction worker or a person running one hour daily.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Sedentary">
                 description = <"The individual spends most of their time sitting, for example an office worker getting little or no exercise.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Extremely inactive">
                 description = <"The individual is extremely inactive, for example a bedridden patient.">
             >
@@ -140,15 +140,15 @@ terminology
                 description = <"The category of the physical activity level (PAL) of an individual.">
                 comment = <"Note: This data element is to be used when recording the category at a specified point in time or during a specified period of time. If the intent is to record the typical activity as a summative statement then use the similar data point in the EVALUATION.physical_activity_summary.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Motion sensors">
                 description = <"Electronic or mechanical methods (Motion sensors are instruments used to detect body movement which can be used to objectively quantify physical activity in daily life over a period.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Questionnaires">
                 description = <"Quantifying physical activity in daily life through questionnaire and diaries has the advantage of being inexpensive  and easy to apply. E.g.: International physical activity questionnaire; Physical activity questionnaire by Crocker et al. 1997; Behavioral risk factor surveillance system, etc.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Direct Observation">
                 description = <"Is carried out by observers who watch or videotape activies performed by the subjects and quantify them.">
             >
@@ -178,10 +178,10 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at10", "at11", "at12">
+            members = <"at9", "at10", "at11">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at17", "at18", "at19", "at20", "at21">
+            members = <"at16", "at17", "at18", "at19", "at20">
         >
     >

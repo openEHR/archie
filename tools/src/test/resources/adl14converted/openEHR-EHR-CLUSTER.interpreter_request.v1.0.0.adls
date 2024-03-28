@@ -131,11 +131,11 @@ terminology
                 text = <"Foretrukket kjønn (synthesised)">
                 description = <"Ønsket kjønn på tolken. (synthesised)">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Alternativt språk">
                 description = <"Andre språk og kommunikasjonsmetoder som kan benyttes av individet.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Foretrukket språk">
                 description = <"Individets foretrukne språk og kommunikasjonsmetode.">
             >
@@ -148,7 +148,7 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligere fritekstbeskrivelse om det forespurte språket som ikke er registrert i andre felt.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Ingen preferanser">
                 description = <"Det er ingen kjønnspreferanser for tolken.">
             >
@@ -156,11 +156,11 @@ terminology
                 text = <"Språk">
                 description = <"Språk og modalitet for tolkingen.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Kvinne">
                 description = <"En kvinnelig tolk er foretrukket.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Mann">
                 description = <"En mannlig tolk er foretrukket.">
             >
@@ -168,15 +168,15 @@ terminology
                 text = <"Foretrukket kjønn">
                 description = <"Ønsket kjønn på tolken.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Telefon">
                 description = <"Tolking med lyd, tolken er ikke fysisk tilstede.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Skjerm">
                 description = <"Tolking via video og lyd, tolken er ikke fysisk tilstede.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Fremmøte">
                 description = <"Tolking der tolken er fysisk tilstede.">
             >
@@ -211,11 +211,11 @@ terminology
                 text = <"Preferred gender (synthesised)">
                 description = <"The preferred gender of the interpreter. (synthesised)">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Alternative language">
                 description = <"Other language, and/or method of communication that could be used for an individual.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Preferred language">
                 description = <"Preferred language and/or method of communication for an individual.">
             >
@@ -228,7 +228,7 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative description about the requested language not captured in other fields.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"No preference">
                 description = <"There is no gender preference for the interpreter.">
             >
@@ -236,11 +236,11 @@ terminology
                 text = <"Language">
                 description = <"Language and method of communication for the interpretation.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Female">
                 description = <"A female interpreter is preferred.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Male">
                 description = <"A male interpreter is preferred.">
             >
@@ -248,15 +248,15 @@ terminology
                 text = <"Preferred gender">
                 description = <"The preferred gender of the interpreter.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Audioconference">
                 description = <"Audio interpretation only.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Videoconference">
                 description = <"Remote video and audio interpretation.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Face-to-face meeting">
                 description = <"Physical attendence of the interpreter.">
             >
@@ -282,14 +282,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at29", "at30", "at35">
+            members = <"at28", "at29", "at34">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at41", "at42">
+            members = <"at40", "at41">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12", "at13">
+            members = <"at10", "at11", "at12">
         >
     >

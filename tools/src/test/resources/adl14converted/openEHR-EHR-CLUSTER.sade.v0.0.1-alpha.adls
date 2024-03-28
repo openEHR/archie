@@ -49,12 +49,12 @@ definition
                 value matches {
                     DV_ORDINAL[id9001] matches {
                         [value, symbol] matches {
-                            [{0}, {[at4]}],
-                            [{1}, {[at5]}],
-                            [{2}, {[at6]}],
-                            [{3}, {[at7]}],
-                            [{4}, {[at8]}],
-                            [{5}, {[at9]}]
+                            [{0}, {[at3]}],
+                            [{1}, {[at4]}],
+                            [{2}, {[at5]}],
+                            [{3}, {[at6]}],
+                            [{4}, {[at7]}],
+                            [{5}, {[at8]}]
                         }
                     }
                 }
@@ -69,27 +69,27 @@ terminology
                 text = <"Sade Classification (synthesised)">
                 description = <"Grading of the degree of tympanic membrane pars tensa retraction / atelectasis based on the Sade Classification. (synthesised)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Stage 5 : Spontaneous perforation with otorrhea and polyp formation">
                 description = <"The tympanic membrane is spontaneously perforated with evidence of otorrhea and polyp formation.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Stage 4 : Adhesion of pars tensa to medial wall">
                 description = <"The tympanic membrane pars tensa is adherent to the medial wall.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Stage 3 :  Retraction onto promontory">
                 description = <"The tympanic membrane pars tensa is retracted onto the promontary.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Stage 2 : Retraction onto incudostapedial joint">
                 description = <"The tympanic membrane pars tensa is retracted onto the incudostapedial joint.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Stage 1 :  Mild retraction">
                 description = <"The tympanic membrane pars tensa is mildly retracted.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"No visible retraction">
                 description = <"The tympanic membrane pars tensa is not visibly retracted.">
             >
@@ -106,6 +106,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at5", "at6", "at7", "at8", "at9">
+            members = <"at3", "at4", "at5", "at6", "at7", "at8">
         >
     >

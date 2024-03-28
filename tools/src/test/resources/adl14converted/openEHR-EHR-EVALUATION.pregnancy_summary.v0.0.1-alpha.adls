@@ -576,11 +576,11 @@ terminology
                 text = <"Descrição">
                 description = <"Descrição narrativa do ciclo ou da menstruação.">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Incerto">
                 description = <"A data do último período menstrual normal pode não ser confiável para o cálculo da DPP baseada no ciclo.">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"certo">
                 description = <"Certeza de que a data do último período menstrual normal seja confiável para o cálculo da DPP baseada no ciclo.">
             >
@@ -588,11 +588,11 @@ terminology
                 text = <"Certeza">
                 description = <"Certeza de que o último período de menstruação normal seja uma base confiável para o cálculo da DPP (baseada no ciclo ).">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"Ombro">
                 description = <"Um ombro é a parte que se apresenta.">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"Vácuo-Extração com rotação">
                 description = <"Parto vaginal assistido pelo uso de vácuo extração.">
             >
@@ -623,27 +623,27 @@ terminology
                 description = <"Métodos(s) de analgesia usados durante o trabalho de parto.">
                 comment = <"Codificação do ' Tipo de alívio da dor \", com uma terminologia é desejável, sempre que possível.">
             >
-            ["at126"] = <
+            ["at125"] = <
                 text = <"Em trânsito">
                 description = <"Bebê nascido em trânsito para uma unidade de saúde.">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Sala de cirurgia obstétrica">
                 description = <"Bebê nascido em uma Sala de cirurgia obstétrica">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Sala de Parto">
                 description = <"Bebê nascido numa sala de parto.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Centro obstétrico (Hospital)">
                 description = <"Bebê nascido em um centro de parto associado a um hospital.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Centro obstétrico (auto-sufuciente)">
                 description = <"Bebê nascido em um centro de nascimento não associados a um hospital.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Casa">
                 description = <"Bebê nasceu em casa.">
             >
@@ -660,19 +660,19 @@ terminology
                 text = <"Categoria do local de nascimento">
                 description = <"Categoria da localização física onde ocorreu o nascimento.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Indeterminada">
                 description = <"Não possível ainda determinar o sexo do recém-nascido a partir da observação das características físicas.">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Feminina">
                 description = <"Aparência do recém-nascido parece fisicamente feminina.">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"Masculino">
                 description = <"Aparencia do recém-nascido parece fisicamente masculina.">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"Não há trabalho de parto">
                 description = <"Trabalho de parto não iniciado.">
             >
@@ -685,11 +685,11 @@ terminology
                 text = <"Alimentação">
                 description = <"Descrição narrativa sobre a alimentação.">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"Braço">
                 description = <"Um braço é a parte que se apresenta.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"Pé">
                 description = <"O pé é a parte que se apresenta.">
             >
@@ -713,19 +713,19 @@ terminology
                 description = <"Tipo do modelo de cuidado.">
                 comment = <"Quando possível, utilizar uma terminologia codificada é preferível . Por exemplo, Clinico Geral , maternidade , parteira ou grupo de parteiras práticas.">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"Cesariana - segmento uterino superior">
                 description = <"Parto cirúrgico por uma abordagem no segmento uterino superior.">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"Cesariana - seguimento uterino inferior">
                 description = <"parto cirúrgico por uma abordagem transversal do segmento inferior uterino (LUSCS Lower Uterine Segment Caesarean Section)">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"Fórceps alto com rotação">
                 description = <"O parto vaginal assistido pelo uso de fórceps alto com rotação.">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"Fórceps alto">
                 description = <"Parto vaginal assistido pelo uso de fórceps altos.">
             >
@@ -860,19 +860,19 @@ terminology
                 description = <"Descrição narrativa do nascimento ou parto.">
                 comment = <"Por exemplo, apresentação de nádegas com prolapso do cordão ou parto vaginal sem complicação.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Testa">
                 description = <"A testa é a parte que se apresenta.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Face">
                 description = <"A face é a parte que se apresenta.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Nádegas">
                 description = <"As nádegas é a parte que se apresenta.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"Vértice">
                 description = <"O vértice é a parte que se apresenta.">
             >
@@ -881,19 +881,19 @@ terminology
                 description = <"Apresentação do recém-nascido no nascimento ou parto.">
                 comment = <"Extensão do value set AIHW - Australian Institute of Health and Welfare . O contexto clínico para gravar este elemento de dados é somente apresentação no nascimento, não a qualquer outra fase do trabalho.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Fórceps baixo">
                 description = <"Parto vaginal assistido pelo uso de fórceps baixo.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Indução a Forceps">
                 description = <"Parto vaginal assistido por forceps.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Vácuo-Extração">
                 description = <"Parto vaginal assistida pelo uso de vácuo-extração.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Sem auxílio">
                 description = <"Normal, parto vaginal não instrumental.">
             >
@@ -920,15 +920,15 @@ terminology
                 description = <"Identificação do recém nascido.">
                 comment = <"Identificação pode ser o nome do recém-nascido ou de uma etiqueta a um dado feto.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Morte neonatal">
                 description = <"Gravidez resultou no nascimento inicial de bebê vivo, mas seguido de morte neonatal.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Natimorto">
                 description = <"Gravidez resultou no nascimento de um bebê que não mostrou nenhum sinal de vida.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Nascido vivo">
                 description = <"Gravidez resultou em nascimento de um bebê vivo.">
             >
@@ -962,11 +962,11 @@ terminology
                 text = <"Duração do primeiro estágio">
                 description = <"Duração total do primeiro estágio do trabalho de parto.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Induzido">
                 description = <"Início através da indução.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Espontâneo">
                 description = <"Início sem intervenção.">
             >
@@ -1049,11 +1049,11 @@ terminology
                 text = <"Description">
                 description = <"Narrative description of menstrual cycle or menstruation.">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Uncertain">
                 description = <"Date of LNMP may not be reliable for use in EDB (Cycle) calculation.">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"Certain">
                 description = <"Date of LNMP is reliable for use in EDB (Cycle) calculation.">
             >
@@ -1061,11 +1061,11 @@ terminology
                 text = <"Certainty">
                 description = <"Certainty of LNMP as a reliable basis for calculation of EDB (Cycle).">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"Shoulder">
                 description = <"A shoulder is the presenting part.">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"Vacuum extraction with rotation">
                 description = <"Vaginal delivery assisted by the use of vacuum extraction.">
             >
@@ -1095,27 +1095,27 @@ terminology
                 description = <"Method/s of analgesia used during labour.">
                 comment = <"Coding of the 'Type of Pain Relief' with a terminology is desirable, where possible.">
             >
-            ["at126"] = <
+            ["at125"] = <
                 text = <"In Transit">
                 description = <"Baby born in transit to a healthcare facility.">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Hospital Operating Theatre">
                 description = <"Baby born in a hospital operating theatre.">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Hospital Delivery Suite">
                 description = <"Baby born in a hospital delivery suite or labour ward.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Birth Centre (Hospital)">
                 description = <"Baby born in a birth centre associated with a hospital.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Birth Centre (free-standing)">
                 description = <"Baby born in a birth centre not associated with a hospital.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Home">
                 description = <"Baby born at a private home.">
             >
@@ -1131,19 +1131,19 @@ terminology
                 text = <"Place of Birth Category">
                 description = <"The category of the physical location where the birth occurred.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Indeterminate">
                 description = <"Sex of the baby has not yet been able to be determined from observation of physical characteristics.">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Female">
                 description = <"Baby appears physically female.">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"Male">
                 description = <"Baby appears physically male.">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"No labour">
                 description = <"No onset of labour.">
             >
@@ -1156,11 +1156,11 @@ terminology
                 text = <"Feeding">
                 description = <"Narrative description about feeding.">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"Arm">
                 description = <"An arm is the presenting part.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"Foot">
                 description = <"A foot is the presenting part.">
             >
@@ -1184,19 +1184,19 @@ terminology
                 description = <"The Model of care type.">
                 comment = <"Coding with a terminology is preferred, where possible. For example, GP shared care, birth centre, private community midwife or midwifery group practice.">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"Caesarean - upper uterine segment">
                 description = <"Surgical delivery by an approach in the upper uterine segment.">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"Caesarean - lower uterine segment">
                 description = <"Surgical delivery by a transverse approach in the lower uterine segment (LUSCS).">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"High forceps with rotation">
                 description = <"Vaginal delivery assisted by the use of high forceps with rotation.">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"High forceps">
                 description = <"Vaginal delivery assisted by the use of high forceps.">
             >
@@ -1329,19 +1329,19 @@ terminology
                 description = <"Narrative description of the birth or delivery.">
                 comment = <"For example, footling breech with cord presentation or uncomplicated vaginal birth.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Brow">
                 description = <"The brow is the presenting part.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Face">
                 description = <"The fact is the presenting part.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Breech">
                 description = <"The breech is the presenting part.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"Vertex">
                 description = <"The vertext is the presenting part.">
             >
@@ -1350,19 +1350,19 @@ terminology
                 description = <"Presenting part of the baby at birth or delivery.">
                 comment = <"Extension of the AIHW value set. The clinical context for recording this data element is only presentation at birth, not at any other phase of labour.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Low forceps">
                 description = <"Vaginal delivery assisted by the use of low forceps.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Lift-out forceps">
                 description = <"Vaginal delivery assisted by the use of lift-out forceps.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Vacuum extraction">
                 description = <"Vaginal delivery assisted by the use of vacuum extraction.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Unassisted">
                 description = <"Normal, non-instrumental vaginal delivery.">
             >
@@ -1389,15 +1389,15 @@ terminology
                 description = <"Identification of the baby.">
                 comment = <"Identification might be by the name of the neonate or a label given to a fetus.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Neonatal death">
                 description = <"Pregnancy resulted in initial birth of live infant, but followed by neonatal death.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Stillborn">
                 description = <"Pregnancy resulted in birth of an baby that showed no sign of life.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Liveborn">
                 description = <"Pregnancy resulted in birth of a live baby.">
             >
@@ -1431,11 +1431,11 @@ terminology
                 text = <"Duration of First Stage">
                 description = <"Total duration of the first stage of labour.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Induced">
                 description = <"Onset through intervention.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Spontaneous">
                 description = <"Onset without intervention.">
             >
@@ -1518,11 +1518,11 @@ terminology
                 text = <"Descripcion">
                 description = <"Descripción narrativa del ciclo menstrual o menstruación">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Incierta">
                 description = <"la Fecha de última Menstruación (FUM) NO es fiable para el cálculo de la Fecha Probable de Parto (FPP) .">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"Exacto">
                 description = <"la Fecha de última Menstruación (FUM) es fiable para el cálculo de la Fecha Probable de Parto (FPP) .">
             >
@@ -1530,11 +1530,11 @@ terminology
                 text = <"Certeza">
                 description = <"La certeza de Fecha de última Menstruación (FUM) como base fiable para el cálculo de la Fecha Probable de Parto (FPP) .">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"Hombro">
                 description = <"Presentación de Hombros">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"Vacuum con rotación">
                 description = <"El parto vaginal asistida por el uso de extracción al vacío (Vacuum)">
             >
@@ -1564,27 +1564,27 @@ terminology
                 description = <"Tipo de Anestesia empleada durante el trabajo de labor, por ejemplo Anestesia Local, Anestesia General, Anestesia Regional (Raquidea).">
                 comment = <"Siempre que sea posible, Se recomienda el uso de una terminología para codificar el tipo de Anestesia empleada durante el trabajo de labor.">
             >
-            ["at126"] = <
+            ["at125"] = <
                 text = <"en tránsito">
                 description = <"Bebé nacio en tránsito hacia un centro de salud">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Sala de cirugía">
                 description = <"Bebé nacido en una sala de cirugía del hospital o sala de trabajo">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"sala de partos">
                 description = <"Bebé nacido en una sala de partos del hospital o sala de trabajo">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"centro de maternidad">
                 description = <"Bebé nacido en un centro de maternidad asociada a un hospital">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Centro de Nacimiento estancia Ambulatoria">
                 description = <"el bebe nacio en un centro de estancia ambulatoria">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"en Casa">
                 description = <"El bebe nacio en casa">
             >
@@ -1600,19 +1600,19 @@ terminology
                 text = <"Lugar de nacimiento">
                 description = <"Catalogo de localizaciones donde ocurrio el nacimiento">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Indeterminado">
                 description = <"el sexo del bebe no puede ser determinado inicialmente por la observacion de sus características fisicas">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Femenino">
                 description = <"Bebé con apariencia físicamente femenina">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"Hombre">
                 description = <"Bebé con apariencia físicamente masculina">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"No trabajo de PArto">
                 description = <"Sin inicio del parto">
             >
@@ -1625,11 +1625,11 @@ terminology
                 text = <"Alimentación">
                 description = <"Descripción narrativa acerca de la alimentación">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"Brazos">
                 description = <"Presentación de Brazos">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"Pies">
                 description = <"Presentación de Pies">
             >
@@ -1653,19 +1653,19 @@ terminology
                 description = <"Tipo del modelo de cuidado">
                 comment = <"Siempre que sea posible, Se recomienda el uso de una terminología para codificar. Por ejemplo , GP de atención compartida, centro de nacimiento, partera de la comunidad privado o grupo de práctica de la partería.">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"Cesárea - segmento superior del útero">
                 description = <"parto quirúrgico (Cesárea) mediante un enfoque transversal en el segmento uterino superior">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"Cesárea - segmento inferior del útero">
                 description = <"parto quirúrgico (Cesárea) mediante un enfoque transversal en el segmento uterino inferior">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"fórceps altos con rotación">
                 description = <"Parto vaginal asistida por el uso de fórceps altos con rotación">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"fórceps altos">
                 description = <"Parto vaginal asistida por el uso de fórceps altos">
             >
@@ -1798,19 +1798,19 @@ terminology
                 description = <"Descripción narrativa del nacimiento">
                 comment = <"Por ejemplo , presentación nalgas o el parto vaginal sin complicaciones">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Frente">
                 description = <"Presentación de Frente">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Cara">
                 description = <"Presentacion de Cara">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Nalgas">
                 description = <"Presentación de Nalgas">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"Vertical">
                 description = <"Presentacion Vertical">
             >
@@ -1819,19 +1819,19 @@ terminology
                 description = <"La presentación fetal es la manera en la que está colocado el bebé para salir por el canal del parto para el alumbramiento">
                 comment = <"El contexto clínico para es únicamente para el registro de la presentación en el nacimiento, no en cualquier otra fase del trabajo">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"fórceps bajos">
                 description = <"Parto vaginal asistida por el uso de fórceps bajos">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"forceps">
                 description = <"El parto vaginal asistida por el uso de fórceps">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Vacuum">
                 description = <"El parto vaginal asistida por el uso de extracción al vacío (Vacuum)">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Espontánea">
                 description = <"Normal, Parto Vaginal no instrumentado.">
             >
@@ -1858,15 +1858,15 @@ terminology
                 description = <"Identificación del recién nacido">
                 comment = <"La identificación podría ser por el nombre del recién nacido o una etiqueta que identifica a cada feto (producto)">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Muerte Neonatal">
                 description = <"El embarazo resultó en el nacimiento del bebé vivo inicialmente, pero seguida por muerte neonatal">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Nacido muerto">
                 description = <"El embarazo dio lugar a nacimiento de un bebé sin signos de vida">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Nacido vivo">
                 description = <"El embarazo dio lugar a nacimiento de un bebé vivo">
             >
@@ -1900,11 +1900,11 @@ terminology
                 text = <"Duración de la Primera Etapa">
                 description = <"Duración total de la Primera Etapa del trabajo de Parto">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Inducido">
                 description = <"Cuando el trabajo de parto se empeza de manera artificial.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Espontáneo">
                 description = <"Cuando el trabajo de Parto inicia de manera Espontánea sin intervencion o uso de Medicamentos.">
             >
@@ -1944,30 +1944,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at42", "at43", "at133", "at44", "at45", "at99", "at100", "at101", "at102">
+            members = <"at41", "at42", "at132", "at43", "at44", "at98", "at99", "at100", "at101">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at113", "at10", "at11">
+            members = <"at112", "at9", "at10">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at136", "at137">
+            members = <"at135", "at136">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at121", "at122", "at123", "at124", "at125", "at126">
+            members = <"at120", "at121", "at122", "at123", "at124", "at125">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at114", "at115", "at116">
+            members = <"at113", "at114", "at115">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at32", "at34", "at35">
+            members = <"at31", "at33", "at34">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at47", "at48", "at49", "at50", "at107", "at108", "at134">
+            members = <"at46", "at47", "at48", "at49", "at106", "at107", "at133">
         >
     >

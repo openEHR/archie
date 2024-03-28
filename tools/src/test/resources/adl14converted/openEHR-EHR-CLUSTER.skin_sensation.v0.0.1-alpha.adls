@@ -187,23 +187,23 @@ terminology
                 text = <"*Touch localisation (en) (synthesised)">
                 description = <"* (synthesised)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"*Cutaneous nerve (en)">
                 description = <"*The sensation related to a cutaneous nerve was examined. (en)">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"*Dermatome (en)">
                 description = <"*The sensation related an identified dermatome was examined. (en)">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"*Absent (-) (en)">
                 description = <"*The response to touch localisation is absent. (en)">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"*Diminished (+) (en)">
                 description = <"*The response to touch localisation is reduced. (en)">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"*Normal (++) (en)">
                 description = <"*The response to touch localisation is normal. (en)">
             >
@@ -211,15 +211,15 @@ terminology
                 text = <"*Touch localisation (en)">
                 description = <"*">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"*Absent (-) (en)">
                 description = <"*The response to temperature is absent. (en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"*Diminished (+) (en)">
                 description = <"*The response to temperature is reduced. (en)">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"*Normal (++) (en)">
                 description = <"*The response to temperature is normal. (en)">
             >
@@ -227,15 +227,15 @@ terminology
                 text = <"*Temperature (en)">
                 description = <"*">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*Absent (-) (en)">
                 description = <"*The response to pain is absent. (en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"*Diminished (+) (en)">
                 description = <"*The response to pain is reduced. (en)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"*Normal (++) (en)">
                 description = <"*The response to pain is normal. (en)">
             >
@@ -243,15 +243,15 @@ terminology
                 text = <"*Pain (en)">
                 description = <"*">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Absent (-) (en)">
                 description = <"*The response to vibration is absent. (en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Diminished (+) (en)">
                 description = <"*The response to vibration is reduced. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Normal (++) (en)">
                 description = <"*The response to vibration is normal. (en)">
             >
@@ -259,15 +259,15 @@ terminology
                 text = <"*Vibration (en)">
                 description = <"*">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Absent (-) (en)">
                 description = <"*The response to light touch is absent. (en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Diminished (+) (en)">
                 description = <"*The response to light touch is reduced. (en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Normal (++) (en)">
                 description = <"*The response to light touch is normal. (en)">
             >
@@ -275,7 +275,7 @@ terminology
                 text = <"*Light touch (en)">
                 description = <"*">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Skin (en)">
                 description = <"*The sensation of the skin was examined. (en)">
             >
@@ -354,23 +354,23 @@ terminology
                 text = <"Touch localisation (synthesised)">
                 description = <"Findings observed during testing of touch localisation. (synthesised)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Nerve">
                 description = <"The sensation related to an identified nerve was examined.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Dermatome">
                 description = <"The sensation related an identified dermatome was examined.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Absent (-)">
                 description = <"The response to touch localisation is absent.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Diminished (+)">
                 description = <"The response to touch localisation is reduced.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Normal (++)">
                 description = <"The response to touch localisation is normal.">
             >
@@ -378,15 +378,15 @@ terminology
                 text = <"Touch localisation">
                 description = <"Findings observed during testing of touch localisation.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Absent (-)">
                 description = <"The response to temperature is absent.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Diminished (+)">
                 description = <"The response to temperature is reduced.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Normal (++)">
                 description = <"The response to temperature is normal.">
             >
@@ -394,15 +394,15 @@ terminology
                 text = <"Temperature">
                 description = <"Findings observed during testing of temperature.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Absent (-)">
                 description = <"The response to pain is absent.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Diminished (+)">
                 description = <"The response to pain is reduced.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Normal (++)">
                 description = <"The response to pain is normal.">
             >
@@ -410,15 +410,15 @@ terminology
                 text = <"Pain">
                 description = <"Findings observed during testing of pain.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Absent (-)">
                 description = <"The response to vibration is absent.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Diminished (+)">
                 description = <"The response to vibration is reduced.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Normal (++)">
                 description = <"The response to vibration is normal.">
             >
@@ -426,15 +426,15 @@ terminology
                 text = <"Vibration">
                 description = <"Findings observed during testing of vibration.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Absent (-)">
                 description = <"The response to light touch is absent.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Diminished (+)">
                 description = <"The response to light touch is reduced.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Normal (++)">
                 description = <"The response to light touch is normal.">
             >
@@ -442,7 +442,7 @@ terminology
                 text = <"Light touch">
                 description = <"Findings observed during testing of light touch.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Skin">
                 description = <"The sensation of the skin was examined.">
             >
@@ -500,34 +500,34 @@ terminology
     term_bindings = <
         ["SNOMED-CT"] = <
             ["id1"] = <http://snomed.info/id/297971001>
-            ["at14"] = <http://snomed.info/id/39937001>
-            ["at35"] = <http://snomed.info/id/244023005>
-            ["at36"] = <http://snomed.info/id/3057000>
+            ["at13"] = <http://snomed.info/id/39937001>
+            ["at34"] = <http://snomed.info/id/244023005>
+            ["at35"] = <http://snomed.info/id/3057000>
         >
     >
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at20", "at21", "at22">
+            members = <"at19", "at20", "at21">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at16", "at17", "at18">
+            members = <"at15", "at16", "at17">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at14", "at35", "at36">
+            members = <"at13", "at34", "at35">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at32", "at33", "at34">
+            members = <"at31", "at32", "at33">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at28", "at29", "at30">
+            members = <"at27", "at28", "at29">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at24", "at25", "at26">
+            members = <"at23", "at24", "at25">
         >
     >

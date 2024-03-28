@@ -127,11 +127,11 @@ definition
                         value matches {
                             DV_ORDINAL[id9019] matches {
                                 [value, symbol] matches {
-                                    [{1}, {[at251]}],
-                                    [{2}, {[at252]}],
-                                    [{3}, {[at253]}],
-                                    [{4}, {[at254]}],
-                                    [{5}, {[at255]}]
+                                    [{1}, {[at250]}],
+                                    [{2}, {[at251]}],
+                                    [{3}, {[at252]}],
+                                    [{4}, {[at253]}],
+                                    [{5}, {[at254]}]
                                 }
                             }
                         }
@@ -140,11 +140,11 @@ definition
                         value matches {
                             DV_ORDINAL[id9020] matches {
                                 [value, symbol] matches {
-                                    [{1}, {[at256]}],
-                                    [{2}, {[at257]}],
-                                    [{3}, {[at258]}],
-                                    [{4}, {[at259]}],
-                                    [{5}, {[at260]}]
+                                    [{1}, {[at255]}],
+                                    [{2}, {[at256]}],
+                                    [{3}, {[at257]}],
+                                    [{4}, {[at258]}],
+                                    [{5}, {[at259]}]
                                 }
                             }
                         }
@@ -153,11 +153,11 @@ definition
                         value matches {
                             DV_ORDINAL[id9021] matches {
                                 [value, symbol] matches {
-                                    [{1}, {[at261]}],
-                                    [{2}, {[at262]}],
-                                    [{3}, {[at263]}],
-                                    [{4}, {[at264]}],
-                                    [{5}, {[at265]}]
+                                    [{1}, {[at260]}],
+                                    [{2}, {[at261]}],
+                                    [{3}, {[at262]}],
+                                    [{4}, {[at263]}],
+                                    [{5}, {[at264]}]
                                 }
                             }
                         }
@@ -323,15 +323,15 @@ terminology
                 text = <"Addtional finding (synthesised)">
                 description = <"Additional histological finding related to prostate cancer. (synthesised)">
             >
-            ["at278"] = <
+            ["at277"] = <
                 text = <"Transition">
                 description = <"Transition zone is involved by tumour.">
             >
-            ["at277"] = <
+            ["at276"] = <
                 text = <"Central">
                 description = <"Central zone is involved by tumour.">
             >
-            ["at276"] = <
+            ["at275"] = <
                 text = <"Peripheral">
                 description = <"Peripheral zone is involved by tumour.">
             >
@@ -343,15 +343,15 @@ terminology
                 text = <"Tumour zones">
                 description = <"Findings of tumour zone.">
             >
-            ["at273"] = <
+            ["at272"] = <
                 text = <"Indeterminate">
                 description = <"Bladder neck involvement by tumour has not been determined.">
             >
-            ["at272"] = <
+            ["at271"] = <
                 text = <"Absent">
                 description = <"Bladder neck involvement by tumour is absent.">
             >
-            ["at271"] = <
+            ["at270"] = <
                 text = <"Present">
                 description = <"Blaader neck involvement by tumour is present.">
             >
@@ -359,75 +359,75 @@ terminology
                 text = <"Bladder neck involvement">
                 description = <"Finding of involvement by tumour of the bladder neck.">
             >
-            ["at268"] = <
+            ["at267"] = <
                 text = <"Indeterminate">
                 description = <"Presence of benign glands at the surgical margin has not been determined.">
             >
-            ["at267"] = <
+            ["at266"] = <
                 text = <"Absent">
                 description = <"Benign glands are absent from the surgical margin">
             >
-            ["at266"] = <
+            ["at265"] = <
                 text = <"Present">
                 description = <"Benign glands are present at the surgical margin.">
             >
-            ["at265"] = <
+            ["at264"] = <
                 text = <"Grade 5">
                 description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
-            >
-            ["at264"] = <
-                text = <"Grade 4">
-                description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
             >
             ["at263"] = <
-                text = <"Grade 3">
-                description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
+                text = <"Grade 4">
+                description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
             >
             ["at262"] = <
-                text = <"Grade 2">
-                description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
+                text = <"Grade 3">
+                description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
             >
             ["at261"] = <
-                text = <"Grade 1">
-                description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
+                text = <"Grade 2">
+                description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
             >
             ["at260"] = <
-                text = <"Grade 5">
-                description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
-            >
-            ["at259"] = <
-                text = <"Grade 4">
-                description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
-            >
-            ["at258"] = <
-                text = <"Grade 3">
-                description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
-            >
-            ["at257"] = <
-                text = <"Grade 2">
-                description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
-            >
-            ["at256"] = <
                 text = <"Grade 1">
                 description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
             >
-            ["at255"] = <
+            ["at259"] = <
                 text = <"Grade 5">
                 description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
             >
-            ["at254"] = <
+            ["at258"] = <
                 text = <"Grade 4">
                 description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
             >
-            ["at253"] = <
+            ["at257"] = <
                 text = <"Grade 3">
                 description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
             >
-            ["at252"] = <
+            ["at256"] = <
                 text = <"Grade 2">
                 description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
             >
+            ["at255"] = <
+                text = <"Grade 1">
+                description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
+            >
+            ["at254"] = <
+                text = <"Grade 5">
+                description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
+            >
+            ["at253"] = <
+                text = <"Grade 4">
+                description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
+            >
+            ["at252"] = <
+                text = <"Grade 3">
+                description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
+            >
             ["at251"] = <
+                text = <"Grade 2">
+                description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
+            >
+            ["at250"] = <
                 text = <"Grade 1">
                 description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
             >
@@ -435,7 +435,7 @@ terminology
                 text = <"Benign glands">
                 description = <"Finding of benign glands at the surgical margin">
             >
-            ["at249"] = <
+            ["at248"] = <
                 text = <"Present">
                 description = <"Tumour is present in seminal vesicles..">
             >
@@ -443,7 +443,7 @@ terminology
                 text = <"Description">
                 description = <"A text description of seminal vesicle involvement by tumour.">
             >
-            ["at247"] = <
+            ["at246"] = <
                 text = <"Indeterminate">
                 description = <"The extent of tumour incidental histologic finding has not been determined.">
             >
@@ -451,15 +451,15 @@ terminology
                 text = <"Tumour invasion">
                 description = <"Details of tumour invasion to local tissues.">
             >
-            ["at242"] = <
+            ["at241"] = <
                 text = <"Indeterminate">
                 description = <"The relation of the surgical margin to the prostatic capsule has not been determined.">
             >
-            ["at241"] = <
+            ["at240"] = <
                 text = <"Extraprostatic">
                 description = <"The surgical margin has been developed external to the prostatic capsule.">
             >
-            ["at240"] = <
+            ["at239"] = <
                 text = <"Intraprostatic">
                 description = <"The surgical margin has been developed within the prostatic capsule. Sometimes termed 'capsular incision' (CI).">
             >
@@ -491,27 +491,27 @@ terminology
                 text = <"Description">
                 description = <"A text description of additional pathological findings.">
             >
-            ["at220"] = <
+            ["at219"] = <
                 text = <"Absent">
                 description = <"Additional pathological findings are absent.">
             >
-            ["at219"] = <
+            ["at218"] = <
                 text = <"Nodular prostatic hyperplasia">
                 description = <"Nodular prostatic hyperplasia is present.">
             >
-            ["at218"] = <
+            ["at217"] = <
                 text = <"Indeterminate">
                 description = <"A qualitative estimate of tumour volume has not been determined.">
             >
-            ["at217"] = <
+            ["at216"] = <
                 text = <"Multifocal or extensive tumour">
                 description = <"Multifocal or extensive tumour is present.">
             >
-            ["at216"] = <
+            ["at215"] = <
                 text = <"Unifocal tumour">
                 description = <"Unifocal tumour is present.">
             >
-            ["at215"] = <
+            ["at214"] = <
                 text = <"Minimal tumour">
                 description = <"Minimal tumour is present.">
             >
@@ -527,15 +527,15 @@ terminology
                 text = <"Total Gleason score">
                 description = <"The sum of the primary, secondary and tertiary Gleason scores.">
             >
-            ["at197"] = <
+            ["at196"] = <
                 text = <"Atypical adenomatous hyperplasia">
                 description = <"Atypical adenomatous hyperplasia is present.">
             >
-            ["at196"] = <
+            ["at195"] = <
                 text = <"High grade prostatic intraepithelial neoplasia (PIN)">
                 description = <"High grade prostatic intraepithelial neoplasia (PIN) is present.">
             >
-            ["at195"] = <
+            ["at194"] = <
                 text = <"Inflammation">
                 description = <"Tissue inflammation is present.">
             >
@@ -567,23 +567,23 @@ terminology
                 text = <"Addtional finding">
                 description = <"Additional histological finding related to prostate cancer.">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"Indeterminate">
                 description = <"Presence of tumour in seminal vesicles has not been determined.">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"Absent">
                 description = <"Tumour is absent from both seminal vesicle.">
             >
-            ["at176"] = <
+            ["at175"] = <
                 text = <"Present - right">
                 description = <"Tumour is present in only the right seminal vesicle.">
             >
-            ["at175"] = <
+            ["at174"] = <
                 text = <"Present - left">
                 description = <"Tumour is present in only the left seminal vesicle.">
             >
-            ["at174"] = <
+            ["at173"] = <
                 text = <"Present - bilateral">
                 description = <"Tumour is present in both seminal vesicles.">
             >
@@ -599,11 +599,11 @@ terminology
                 text = <"Proportion of positive cores">
                 description = <"Proportion of tumour positive prostate cores out of the total number of prostate cores. ">
             >
-            ["at165"] = <
+            ["at164"] = <
                 text = <"Tumour incidental histologic finding in more than 5% of tissue resected">
                 description = <"Prostate tumour is an incidental histological finding in more than 5% of tissue resected.">
             >
-            ["at164"] = <
+            ["at163"] = <
                 text = <"Tumour incidental histologic finding in no more than 5% of tissue resected">
                 description = <"Prostate tumour is an incidental histologic finding in no more than 5% of tissue resected.">
             >
@@ -668,46 +668,46 @@ terminology
     value_sets = <
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at276", "at277", "at278">
+            members = <"at275", "at276", "at277">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at271", "at272", "at273">
+            members = <"at270", "at271", "at272">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at174", "at175", "at176", "at177", "at178", "at249">
+            members = <"at173", "at174", "at175", "at176", "at177", "at248">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at251", "at252", "at253", "at254", "at255">
+            members = <"at250", "at251", "at252", "at253", "at254">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at164", "at165", "at247">
+            members = <"at163", "at164", "at246">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at215", "at216", "at217", "at218">
+            members = <"at214", "at215", "at216", "at217">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at195", "at196", "at197", "at219", "at220">
+            members = <"at194", "at195", "at196", "at218", "at219">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at266", "at267", "at268">
+            members = <"at265", "at266", "at267">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at240", "at241", "at242">
+            members = <"at239", "at240", "at241">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at261", "at262", "at263", "at264", "at265">
+            members = <"at260", "at261", "at262", "at263", "at264">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at256", "at257", "at258", "at259", "at260">
+            members = <"at255", "at256", "at257", "at258", "at259">
         >
     >

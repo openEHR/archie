@@ -63,9 +63,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}]
                                                 }
                                             }
                                         }
@@ -74,9 +74,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at10]}],
-                                                    [{1}, {[at11]}],
-                                                    [{2}, {[at12]}]
+                                                    [{0}, {[at9]}],
+                                                    [{1}, {[at10]}],
+                                                    [{2}, {[at11]}]
                                                 }
                                             }
                                         }
@@ -85,9 +85,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at14]}],
-                                                    [{1}, {[at15]}],
-                                                    [{2}, {[at16]}]
+                                                    [{0}, {[at13]}],
+                                                    [{1}, {[at14]}],
+                                                    [{2}, {[at15]}]
                                                 }
                                             }
                                         }
@@ -96,9 +96,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at18]}],
-                                                    [{1}, {[at19]}],
-                                                    [{2}, {[at20]}]
+                                                    [{0}, {[at17]}],
+                                                    [{1}, {[at18]}],
+                                                    [{2}, {[at19]}]
                                                 }
                                             }
                                         }
@@ -107,9 +107,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at22]}],
-                                                    [{1}, {[at23]}],
-                                                    [{2}, {[at24]}]
+                                                    [{0}, {[at21]}],
+                                                    [{1}, {[at22]}],
+                                                    [{2}, {[at23]}]
                                                 }
                                             }
                                         }
@@ -172,10 +172,6 @@ terminology
                 text = <"*New element(pt)">
                 description = <"**(pt)">
             >
-            ["at24"] = <
-                text = <"*new ordinal(pt)">
-                description = <"**(pt)">
-            >
             ["at23"] = <
                 text = <"*new ordinal(pt)">
                 description = <"**(pt)">
@@ -184,12 +180,12 @@ terminology
                 text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
-            ["id21"] = <
-                text = <"*New element(pt)">
+            ["at21"] = <
+                text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
-            ["at20"] = <
-                text = <"*new ordinal(pt)">
+            ["id21"] = <
+                text = <"*New element(pt)">
                 description = <"**(pt)">
             >
             ["at19"] = <
@@ -200,12 +196,12 @@ terminology
                 text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
-            ["id17"] = <
-                text = <"*New element(pt)">
+            ["at17"] = <
+                text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
-            ["at16"] = <
-                text = <"*new ordinal(pt)">
+            ["id17"] = <
+                text = <"*New element(pt)">
                 description = <"**(pt)">
             >
             ["at15"] = <
@@ -216,12 +212,12 @@ terminology
                 text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
-            ["id13"] = <
-                text = <"*New element(pt)">
+            ["at13"] = <
+                text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
-            ["at12"] = <
-                text = <"*new ordinal(pt)">
+            ["id13"] = <
+                text = <"*New element(pt)">
                 description = <"**(pt)">
             >
             ["at11"] = <
@@ -232,12 +228,12 @@ terminology
                 text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
-            ["id9"] = <
-                text = <"*New element(pt)">
+            ["at9"] = <
+                text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
-            ["at8"] = <
-                text = <"*new ordinal(pt)">
+            ["id9"] = <
+                text = <"*New element(pt)">
                 description = <"**(pt)">
             >
             ["at7"] = <
@@ -245,6 +241,10 @@ terminology
                 description = <"**(pt)">
             >
             ["at6"] = <
+                text = <"*new ordinal(pt)">
+                description = <"**(pt)">
+            >
+            ["at5"] = <
                 text = <"*new ordinal(pt)">
                 description = <"**(pt)">
             >
@@ -290,15 +290,15 @@ terminology
                 text = <"Notes on measurement">
                 description = <"Notes on measurement of the Malinas score.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"> 1 hour">
                 description = <"*">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Recently (< 1 hour)">
                 description = <"*">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"No">
                 description = <"*">
             >
@@ -306,15 +306,15 @@ terminology
                 text = <"Breaking of waters">
                 description = <"Observation of whether or not her waters have broken.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"< 3 minutes (at least 2 in 5 minutes)">
                 description = <"*">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Between 3 and 5 minutes">
                 description = <"*">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"> 5 minutes">
                 description = <"*">
             >
@@ -322,15 +322,15 @@ terminology
                 text = <"Interval between two contractions">
                 description = <"Observation of the interval between two contractions">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"> 1 minute">
                 description = <"*">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"1 minute">
                 description = <"*">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"< 1 minute">
                 description = <"*">
             >
@@ -338,15 +338,15 @@ terminology
                 text = <"Duration of contractions">
                 description = <"Observation of the duration of each contraction.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"> 6 hours">
                 description = <"*">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Between 3 and 5 hours">
                 description = <"*">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"< 3 hours">
                 description = <"*">
             >
@@ -354,15 +354,15 @@ terminology
                 text = <"Duration of labour">
                 description = <"Recording the duration of the labour so far.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Three or more">
                 description = <"*">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Two">
                 description = <"*">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"One">
                 description = <"*">
             >
@@ -383,22 +383,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at14", "at15", "at16">
+            members = <"at13", "at14", "at15">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at11", "at12">
+            members = <"at9", "at10", "at11">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8">
+            members = <"at5", "at6", "at7">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at22", "at23", "at24">
+            members = <"at21", "at22", "at23">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at18", "at19", "at20">
+            members = <"at17", "at18", "at19">
         >
     >

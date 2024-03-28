@@ -60,12 +60,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}],
-                                                    [{4}, {[at10]}],
-                                                    [{5}, {[at11]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}],
+                                                    [{4}, {[at9]}],
+                                                    [{5}, {[at10]}]
                                                 }
                                             }
                                         }
@@ -193,7 +193,7 @@ terminology
                 text = <"Duration comment">
                 description = <"A textual comment on the duration of contractions - e.g. '10 to 20 seconds'.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Diminishing">
                 description = <"*">
             >
@@ -201,15 +201,15 @@ terminology
                 text = <"Frequency per hour">
                 description = <"*">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Tocogram">
                 description = <"Measurement with a tocogram.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Maternal report">
                 description = <"By the subjects report.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Manual">
                 description = <"By palpation.">
             >
@@ -217,11 +217,11 @@ terminology
                 text = <"Method">
                 description = <"The method used to determine the uterine contraction features.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Expulsive">
                 description = <"Uterine contractions are expelling the baby.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Effective">
                 description = <"Contractions are effective.">
             >
@@ -229,19 +229,19 @@ terminology
                 text = <"Effectiveness">
                 description = <"The effectiveness of the contractions.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Not effective">
                 description = <"Contractions are not effective.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Continuous">
                 description = <"The uterus is not relaxing between contractions.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Irregular">
                 description = <"The contractions are irregular or at different intervals.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Regular">
                 description = <"The contractions are regular or equally spaced.">
             >
@@ -269,27 +269,27 @@ terminology
                 text = <"Duration">
                 description = <"The duration of the contractions.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Very strong">
                 description = <"Possibly excessively strong contractions.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Strong">
                 description = <"Fully active uterus during labour.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Moderate">
                 description = <"Causing discomfort or strong pressure in the back or lower pelvis.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Mild">
                 description = <"Causing some sensation in the back or lower pelvis.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Very mild">
                 description = <"Noticable but not effective.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Not noticable to mother">
                 description = <"The contractions are not noticable.">
             >
@@ -339,7 +339,7 @@ terminology
                 text = <"تعليق حول المدة">
                 description = <"تعليق تعليق نصي عن مدة التقلصات, مثلا 10 إلى 20 ثانية">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"متناقص">
                 description = <"**(en)">
             >
@@ -347,15 +347,15 @@ terminology
                 text = <"التكرار لكل ساعة">
                 description = <"**(en)">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"مِخطاط قوة المخاض">
                 description = <"القياس عن طريق مِخطاط قوة المخاض">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"تقرير أمومي">
                 description = <"عن طريق التقرير الموضوعي">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"يدوية">
                 description = <"عن طريق الجَسّ">
             >
@@ -363,11 +363,11 @@ terminology
                 text = <"الطريقة">
                 description = <"الطريقة المستخدمة لتحديد ملامح / قسمات التقلصات الرحمية">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"طارد/ دافع">
                 description = <"التقلصات تطرد / تدفع الطفل / الرضيع">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"فعالة">
                 description = <"التقلصات فعالة">
             >
@@ -375,19 +375,19 @@ terminology
                 text = <"الفعالية">
                 description = <"فعالية التقلصات">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"غير فعالة">
                 description = <"التقلصات غير فعالة">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"مستمر">
                 description = <"الرحم لا يرتخي / يسهل بين التقلصات">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"غير منتظمة">
                 description = <"التقلصات غير منتظمة أو تحدث على فواصل / فترات مختلفة">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"منتظمة">
                 description = <"التقلصات منتظمة أو متباعدة بشكل متساوي">
             >
@@ -415,27 +415,27 @@ terminology
                 text = <"المدة">
                 description = <"مدة التقلصات">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"قوي جدا">
                 description = <"احتمال تقلصات قوية بشكل مفرط">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"قوي">
                 description = <"الرحم نشِط بشكل كلّي في أثناء الوضع/المخاض">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"متوسطة">
                 description = <"تسبب إزعاجا أو ضغطا قويا في الظهر أو أسفل الحوض">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"معتدل">
                 description = <"تسبب بعض الحِسّ في الظهر أو أسفل الحوض">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"معتدل جدا">
                 description = <"ملحوظة لكن غير فعالة">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"غير ملحوظة لدى الأم">
                 description = <"التقلصات غير ملحوظة ">
             >
@@ -462,18 +462,18 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at18", "at19", "at20", "at37">
+            members = <"at17", "at18", "at19", "at36">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10", "at11">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at30", "at31", "at32">
+            members = <"at29", "at30", "at31">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at24", "at26", "at27">
+            members = <"at23", "at25", "at26">
         >
     >

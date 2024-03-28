@@ -63,10 +63,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -75,10 +75,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at11]}],
-                                                    [{1}, {[at12]}],
-                                                    [{2}, {[at13]}],
-                                                    [{3}, {[at14]}]
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}],
+                                                    [{2}, {[at12]}],
+                                                    [{3}, {[at13]}]
                                                 }
                                             }
                                         }
@@ -87,10 +87,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at16]}],
-                                                    [{1}, {[at17]}],
-                                                    [{2}, {[at18]}],
-                                                    [{3}, {[at19]}]
+                                                    [{0}, {[at15]}],
+                                                    [{1}, {[at16]}],
+                                                    [{2}, {[at17]}],
+                                                    [{3}, {[at18]}]
                                                 }
                                             }
                                         }
@@ -99,10 +99,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9013] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at21]}],
-                                                    [{1}, {[at22]}],
-                                                    [{2}, {[at23]}],
-                                                    [{3}, {[at24]}]
+                                                    [{0}, {[at20]}],
+                                                    [{1}, {[at21]}],
+                                                    [{2}, {[at22]}],
+                                                    [{3}, {[at23]}]
                                                 }
                                             }
                                         }
@@ -111,10 +111,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9014] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at26]}],
-                                                    [{1}, {[at27]}],
-                                                    [{2}, {[at28]}],
-                                                    [{3}, {[at29]}]
+                                                    [{0}, {[at25]}],
+                                                    [{1}, {[at26]}],
+                                                    [{2}, {[at27]}],
+                                                    [{3}, {[at28]}]
                                                 }
                                             }
                                         }
@@ -123,10 +123,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9015] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at31]}],
-                                                    [{1}, {[at32]}],
-                                                    [{2}, {[at33]}],
-                                                    [{3}, {[at34]}]
+                                                    [{0}, {[at30]}],
+                                                    [{1}, {[at31]}],
+                                                    [{2}, {[at32]}],
+                                                    [{3}, {[at33]}]
                                                 }
                                             }
                                         }
@@ -135,10 +135,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9016] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at36]}],
-                                                    [{1}, {[at37]}],
-                                                    [{2}, {[at38]}],
-                                                    [{3}, {[at39]}]
+                                                    [{0}, {[at35]}],
+                                                    [{1}, {[at36]}],
+                                                    [{2}, {[at37]}],
+                                                    [{3}, {[at38]}]
                                                 }
                                             }
                                         }
@@ -147,10 +147,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9017] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at41]}],
-                                                    [{1}, {[at42]}],
-                                                    [{2}, {[at43]}],
-                                                    [{3}, {[at44]}]
+                                                    [{0}, {[at40]}],
+                                                    [{1}, {[at41]}],
+                                                    [{2}, {[at42]}],
+                                                    [{3}, {[at43]}]
                                                 }
                                             }
                                         }
@@ -159,10 +159,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9018] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at46]}],
-                                                    [{1}, {[at47]}],
-                                                    [{2}, {[at48]}],
-                                                    [{3}, {[at49]}]
+                                                    [{0}, {[at45]}],
+                                                    [{1}, {[at46]}],
+                                                    [{2}, {[at47]}],
+                                                    [{3}, {[at48]}]
                                                 }
                                             }
                                         }
@@ -171,10 +171,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9019] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at51]}],
-                                                    [{1}, {[at52]}],
-                                                    [{2}, {[at53]}],
-                                                    [{3}, {[at54]}]
+                                                    [{0}, {[at50]}],
+                                                    [{1}, {[at51]}],
+                                                    [{2}, {[at52]}],
+                                                    [{3}, {[at53]}]
                                                 }
                                             }
                                         }
@@ -257,19 +257,19 @@ terminology
                 text = <"Total score">
                 description = <"Total score for the Edinburgh Postnatal Depression Scale.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Yes, quite often">
                 description = <"I do have thoughts of harming myself quite frequently.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Sometimes">
                 description = <"I have had thoughts of harming myself from time to time.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Hardly ever">
                 description = <"I have had thoughts of harming myself but only very occasionally.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Never">
                 description = <"I do not have thoughts of harming myself.">
             >
@@ -278,19 +278,19 @@ terminology
                 description = <"Item 10.">
                 comment = <"Display responses in reverse score order 3-0">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Yes, most of the time">
                 description = <"I am almost always crying because I am so unhappy.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Yes, quite often">
                 description = <"I am crying because I am so unhappy frequently.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"Only occasionally">
                 description = <"Sometimes I cry because I have been very unhappy.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"No, never">
                 description = <"I am not crying at all.">
             >
@@ -299,19 +299,19 @@ terminology
                 description = <"Item 9.">
                 comment = <"Display responses in reverse score order 3-0">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Yes, most of the time">
                 description = <"I am almost constantly sad or miserable.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Yes, quite often">
                 description = <"I am frequently sad or miserable.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Not very often">
                 description = <"I am only occasionally sad or sad or miserable.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"No, not at all">
                 description = <"I am not sad or miserable at all.">
             >
@@ -320,19 +320,19 @@ terminology
                 description = <"Item 8.">
                 comment = <"Display responses in reverse score order 3-0">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Yes, most of the time">
                 description = <"Most of the time I am having difficulties sleeping due to unhappiness.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Yes, quite often">
                 description = <"I have difficulties sleeping due to feeling unhappy quite frequently.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Not very often">
                 description = <"I have occasionally had difficulties sleeping because I have felt unhappy.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"No, not at all">
                 description = <"Difficulty sleeping due to unhappiness has not been a problem.">
             >
@@ -341,19 +341,19 @@ terminology
                 description = <"Item 7.">
                 comment = <"Display responses in reverse score order 3-0">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Yes, most of the time I haven't been able to cope at all">
                 description = <"Often things are getting on top of me and I am not coping at all.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Yes, sometimes I haven't been coping as well as usual">
                 description = <"Sometimes things get on top of me and I am not coping.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"No, most of the time I have coped">
                 description = <"I am coping most of the time.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"No, I have been coping as well as ever">
                 description = <"Things do not get on top of me.">
             >
@@ -362,19 +362,19 @@ terminology
                 description = <"Item 6.">
                 comment = <"Display responses in reverse score order 3-0">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Yes, quite a lot">
                 description = <"I am scared or panicky quite often.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Yes, sometimes">
                 description = <"Sometimes I do get scared or panicky.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"No, not much">
                 description = <"I hardly ever get scared or panicky.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"No, not at all">
                 description = <"I do not get scared or panicky at all.">
             >
@@ -382,19 +382,19 @@ terminology
                 text = <"I have felt scared or panicky for no very good reason">
                 description = <"Item 5.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Yes, very often">
                 description = <"I am worried or anxious for no good reason frequently.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Yes, sometimes">
                 description = <"I am definitely worried or anxious when there is no good reason but not often.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Hardly ever">
                 description = <"I do get worried very occasionally when there is no good reason.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"No, not at all">
                 description = <"I have not been worried or anxious unless there is good reason.">
             >
@@ -402,19 +402,19 @@ terminology
                 text = <"I have been worried and anxious for no good reason">
                 description = <"Item 4.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Yes, most of the time">
                 description = <"I almost always blame myself unnecessarily.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Yes, some of the time">
                 description = <"I do sometimes blame myself unnecessarily.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Not very often">
                 description = <"I hardly ever blame myself unnecessarily.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Never">
                 description = <"I do not blame myself unnecessarily.">
             >
@@ -423,19 +423,19 @@ terminology
                 description = <"Item 3.">
                 comment = <"Display responses in reverse score order 3-0">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Hardly at all">
                 description = <"Almost always not looking forward to things.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Definitely less than I used to">
                 description = <"Definitely looking forward to things less than in the past.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Rather less than I used to">
                 description = <"Still looking forward to things but a little less than in the past.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"As much as I ever did">
                 description = <"Looking forward to things as much as in the past.">
             >
@@ -443,19 +443,19 @@ terminology
                 text = <"I have looked forward with enjoyment to things">
                 description = <"Item 2.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Not at all">
                 description = <"Not able to laugh at all.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Definitely not so much now">
                 description = <"Laughing considerably less than in the past.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Not quite so much now">
                 description = <"Able to laugh but a little less than in the past.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"As much as I always could">
                 description = <"Able to laugh as much as in the past.">
             >
@@ -476,42 +476,42 @@ terminology
     value_sets = <
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at51", "at52", "at53", "at54">
+            members = <"at50", "at51", "at52", "at53">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at46", "at47", "at48", "at49">
+            members = <"at45", "at46", "at47", "at48">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at41", "at42", "at43", "at44">
+            members = <"at40", "at41", "at42", "at43">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at16", "at17", "at18", "at19">
+            members = <"at15", "at16", "at17", "at18">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at11", "at12", "at13", "at14">
+            members = <"at10", "at11", "at12", "at13">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9">
+            members = <"at5", "at6", "at7", "at8">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at36", "at37", "at38", "at39">
+            members = <"at35", "at36", "at37", "at38">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at31", "at32", "at33", "at34">
+            members = <"at30", "at31", "at32", "at33">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at26", "at27", "at28", "at29">
+            members = <"at25", "at26", "at27", "at28">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at21", "at22", "at23", "at24">
+            members = <"at20", "at21", "at22", "at23">
         >
     >

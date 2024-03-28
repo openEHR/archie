@@ -58,11 +58,11 @@ definition
                                                 value matches {
                                                     DV_ORDINAL[id9003] matches {
                                                         [value, symbol] matches {
-                                                            [{0}, {[at7]}],
-                                                            [{1}, {[at8]}],
-                                                            [{2}, {[at9]}],
-                                                            [{3}, {[at10]}],
-                                                            [{4}, {[at11]}]
+                                                            [{0}, {[at6]}],
+                                                            [{1}, {[at7]}],
+                                                            [{2}, {[at8]}],
+                                                            [{3}, {[at9]}],
+                                                            [{4}, {[at10]}]
                                                         }
                                                     }
                                                 }
@@ -101,27 +101,27 @@ terminology
                 description = <"The total Poem score.">
                 comment = <"The score is the sum of the frequencies with which all of the symptoms are experienced in the past week.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Dry or rough skin">
                 description = <"The patient experienced dry or rough skin.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Flaking">
                 description = <"The patient experienced flaking skin.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Cracking">
                 description = <"The patient experienced cracking of skin.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Weeping">
                 description = <"The patient experienced weeping skin.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Sleep loss">
                 description = <"The patient experienced sleep loss.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Itch">
                 description = <"The patient experienced itch.">
             >
@@ -129,23 +129,23 @@ terminology
                 text = <"Symptom name">
                 description = <"Symptom experienced by the patient in the past week.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Every day">
                 description = <"The symptom was experienced every day of the past week.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"5-6 days">
                 description = <"The symptom was experienced on 5 or 6 days of the last week.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"3-4 days">
                 description = <"The symptom was experienced on 3 or 4 days of the last week.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"1-2 days">
                 description = <"The symptom was experienced on 1 or 2 days of the last week.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"0 days">
                 description = <"The symptom was not experienced in the past week.">
             >
@@ -170,10 +170,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at7", "at8", "at9", "at10", "at11">
+            members = <"at6", "at7", "at8", "at9", "at10">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at15", "at16", "at17", "at18", "at19", "at20">
+            members = <"at14", "at15", "at16", "at17", "at18", "at19">
         >
     >

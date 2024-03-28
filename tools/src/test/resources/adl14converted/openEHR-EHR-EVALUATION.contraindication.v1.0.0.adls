@@ -150,23 +150,23 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Refuted">
                 description = <"The previous assertion that the subject should not be exposed to the 'Contraindicated intervention' has been clinically reassessed or has been disproved with a high level of clinical certainty by testing.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Resolved">
                 description = <"The previous assertion that the subject should not be exposed to the 'Contraindicated intervention' has been clinically reassessed and considered no longer to be an active risk.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Confirmed">
                 description = <"A high level of clinical certainty that carrying out the 'Contraindicated intervention' will cause harm to the individual or family member.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Likely">
                 description = <"A reasonable level of clinical certainty that carrying out the 'Contraindicated intervention' will cause harm to the individual or family member.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Suspected">
                 description = <"A low level of clinical certainty that carrying out the 'Contraindicated intervention' will cause harm to the individual or family member.">
             >
@@ -180,15 +180,15 @@ terminology
                 description = <"Category of the identified 'Contraindicated intervention'.">
                 comment = <"This data element has been included because it is currently being captured in some clinical systems. This information could be derived from the Intervention where coding systems are used, and is effectively redundant in that situation.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Indeterminate">
                 description = <"Unable to assess with information available.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"High">
                 description = <"Carrying out of the 'Contraindicated intervention' may result in critical organ system damage or life threatening consequences for the individual or family member. Future exposure to the identified intervention should be considered an absolute contraindication in normal clinical circumstances.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Low">
                 description = <"Carrying out of the 'Contraindicated intervention' is unlikely to result in critical system organ damage or life threatening consequences for the individual or family member. Future exposure to the identified intervention should be considered a relative contraindication in normal clinical circumstances.">
             >
@@ -227,10 +227,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at11", "at12", "at13">
+            members = <"at10", "at11", "at12">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at16", "at17", "at18", "at19", "at20">
+            members = <"at15", "at16", "at17", "at18", "at19">
         >
     >

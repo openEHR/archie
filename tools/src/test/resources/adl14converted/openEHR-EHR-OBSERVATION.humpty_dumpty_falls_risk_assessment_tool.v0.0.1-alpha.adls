@@ -84,10 +84,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at9]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at7]}],
-                                                    [{4}, {[at6]}]
+                                                    [{1}, {[at8]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at6]}],
+                                                    [{4}, {[at5]}]
                                                 }
                                             }
                                         }
@@ -96,8 +96,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at11]}],
-                                                    [{2}, {[at12]}]
+                                                    [{1}, {[at10]}],
+                                                    [{2}, {[at11]}]
                                                 }
                                             }
                                         }
@@ -106,10 +106,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at14]}],
-                                                    [{2}, {[at15]}],
-                                                    [{3}, {[at16]}],
-                                                    [{4}, {[at17]}]
+                                                    [{1}, {[at13]}],
+                                                    [{2}, {[at14]}],
+                                                    [{3}, {[at15]}],
+                                                    [{4}, {[at16]}]
                                                 }
                                             }
                                         }
@@ -118,9 +118,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at19]}],
-                                                    [{2}, {[at20]}],
-                                                    [{3}, {[at21]}]
+                                                    [{1}, {[at18]}],
+                                                    [{2}, {[at19]}],
+                                                    [{3}, {[at20]}]
                                                 }
                                             }
                                         }
@@ -129,10 +129,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at23]}],
-                                                    [{2}, {[at24]}],
-                                                    [{3}, {[at25]}],
-                                                    [{4}, {[at26]}]
+                                                    [{1}, {[at22]}],
+                                                    [{2}, {[at23]}],
+                                                    [{3}, {[at24]}],
+                                                    [{4}, {[at25]}]
                                                 }
                                             }
                                         }
@@ -141,9 +141,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at28]}],
-                                                    [{2}, {[at29]}],
-                                                    [{3}, {[at30]}]
+                                                    [{1}, {[at27]}],
+                                                    [{2}, {[at28]}],
+                                                    [{3}, {[at29]}]
                                                 }
                                             }
                                         }
@@ -152,9 +152,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9013] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at32]}],
-                                                    [{2}, {[at33]}],
-                                                    [{3}, {[at34]}]
+                                                    [{1}, {[at31]}],
+                                                    [{2}, {[at32]}],
+                                                    [{3}, {[at33]}]
                                                 }
                                             }
                                         }
@@ -249,15 +249,15 @@ terminology
                 text = <"Puntaje total">
                 description = <"Puntaje total">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Uso de múltiples medicamentos (excluyendo pacientes sedados o paralizados en UCI, hipnóticos, barbitúricos, fenotiazinas, antidepresivos, laxantes/diuréticos, narcóticos">
                 description = <"Paciente que recibe múltiples medicamentos (excluyendo pacientes sedados o paralizados en UCI, hipnóticos, barbitúricos, fenotiazinas, antidepresivos, laxantes/diuréticos, narcóticos.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Uno solo de los medicamentos listados arriba">
                 description = <"Paciente que recibe uno solo de los medicamentos listados arriba.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Otros medicamentos">
                 description = <"Paciente que recibe otros medicamentos.">
             >
@@ -265,15 +265,15 @@ terminology
                 text = <"Uso de medicamentos">
                 description = <"Uso de medicamentos por parte del paciente.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"*Within 24 hours(en)">
                 description = <"*Patient within 24 hours  from surgery/sedation/anesthesia.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"*Within 48 hours(en)">
                 description = <"*Patient within 48 hours from surgery/sedation/anesthesia.(en)">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Mas de 48 horas/Ninguna">
                 description = <"Paciente a mas de 48 horas o sin cirugia.">
             >
@@ -281,19 +281,19 @@ terminology
                 text = <"Respuesta a cirugía/sedación/antestesia">
                 description = <"Respuesta a cirugía/sedación/antestesia">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Antecedente de caídas o niño-bebé colocado en cama">
                 description = <"Paciente que presenta antecedente de caídas o es niño-bebé colocado en cama.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Paciente que utiliza dispositivos de asistencia o bebé en cuna o presencia de muebles/iluminación (habitación triple)">
                 description = <"Paciente que utiliza dispositivos de asistencia o bebé en cuna o presencia de muebles/iluminación (habitación triple)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Paciente en cama">
                 description = <"Paciente en cama">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Área ambulatoria">
                 description = <"Paciente en área ambulatoria.">
             >
@@ -301,15 +301,15 @@ terminology
                 text = <"*Environmental factors(en)">
                 description = <"*Environmental factors.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"No consciente de sus limitaciones">
                 description = <"Paciente no consciente de sus limitaciones.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Olvida sus limitaciones">
                 description = <"Paciente olvida sus limitaciones.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Orientado en cuanto a capacidades propias">
                 description = <"Paciente orientado en cuanto a capacidades propias.">
             >
@@ -317,19 +317,19 @@ terminology
                 text = <"Déficits cognitivos">
                 description = <"Déficits cognitivos.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Diagnóstico neurológico">
                 description = <"El paciente presenta un diagnóstico neurológico.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Alteraciones en la oxigenación (diagnósticos respiratorios, deshidratación, anemia, anorexia, síncope/mareos, etc.)">
                 description = <"El paciente presenta alteraciones en la oxigenación (diagnósticos respiratorios, deshidratación, anemia, anorexia, síncope/mareos, etc.).">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Diagnósticos psicologicos o conductuales">
                 description = <"El paciente presenta diagnósticos psicologicos o conductuales.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Other diagnosis(en)">
                 description = <"*Patient has.(en)">
             >
@@ -337,11 +337,11 @@ terminology
                 text = <"*Diagnosis(en)">
                 description = <"*Diagnosis.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Masculino">
                 description = <"Paciente masculino.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Femenino">
                 description = <"Paciente femenina.">
             >
@@ -349,19 +349,19 @@ terminology
                 text = <"*Gender(en)">
                 description = <"*Gender.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"13 años o más">
                 description = <"El paciente tiene 13 años o más.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"7 a menos de 13 años">
                 description = <"El paciente tiene 7 a menos de 13 años.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"3 a menos de 7 años">
                 description = <"El paciente tiene 3 a menos de 7 años.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Menos de 3 años">
                 description = <"El paciente tiene menos de 3 años.">
             >
@@ -424,15 +424,15 @@ terminology
                 text = <"Escore total">
                 description = <"Escore total.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Uso múltiplo de sedativos (excluindo-se pacientes em UTI sedados ou paralisados), hipnóticos, barbitúricos, fenotiazinas, antidepressivos, laxantes/diuréticos, narcóticos.">
                 description = <"Uso múltiplo de sedativos (excluindo-se pacientes em UTI sedados ou paralisados), hipnóticos, barbitúricos, fenotiazinas, antidepressivos, laxantes/diuréticos, narcóticos.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Uma das medicações listadas acima">
                 description = <"Paciente recebe uma das medicações listadas acima.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Outra medicação/nenhuma">
                 description = <"Paciente recebe outra medicação ou nenhuma.">
             >
@@ -440,15 +440,15 @@ terminology
                 text = <"Uso de medicação">
                 description = <"Uso de medicação.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Com 24 horas">
                 description = <"Paciente com cirurgia/sedação/anestesia há 24 horas.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Com 48 horas">
                 description = <"Paciente com cirurgia/sedação/anestesia há 48 horas.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Mais do que 48 horas/nenhum">
                 description = <"Paciente com cirurgia/sedação/anestesia há mais de 48 horas ou não teve.">
             >
@@ -456,19 +456,19 @@ terminology
                 text = <"Resultados de cirurgia/sedação/anestesia">
                 description = <"A resposta do paciente a cirurgia/sedação/anestesia.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"História de queda ou crianças pequenas colocadas na cama">
                 description = <"Paciente com história de queda ou crianças pequenas colocadas na cama.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Paciente utiliza: dispositivos de assistência ou criança pequena no berço ou mobiliário/iluminação">
                 description = <"Paciente utiliza: dispositivos de assistência ou criança pequena no berço ou mobiliário/iluminação.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Paciente acamado">
                 description = <"Paciente está acamado.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Ambulatorial">
                 description = <"Paciente ambulatorial.">
             >
@@ -476,15 +476,15 @@ terminology
                 text = <"*Environmental factors(en)">
                 description = <"*Environmental factors.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Não ciente das suas limitações">
                 description = <"Paciente não é consciente das suas limitações.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Esquece das suas limitações">
                 description = <"Paciente esquece das suas limitações.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Consciente da sua capacidade">
                 description = <"Paciente é consciente da própria capacidade.">
             >
@@ -492,19 +492,19 @@ terminology
                 text = <"Comprometimento cognitivo">
                 description = <"Comprometimento cognitivo.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Diagnóstico neurológico">
                 description = <"Paciente tem diagnóstico neurológico.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Alterações na oxigenação (diagnóstico respiratório, desidratação, anemia, anorexia, síncope/tonturas, etc.)">
                 description = <"Paciente tem alterações na oxigenação (diagnóstico respiratório, desidratação, anemia, anorexia, síncope/tonturas, etc.).">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Diganóstico comportamental /psicológico">
                 description = <"Paciente tem outro diagnóstico.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Other diagnosis(en)">
                 description = <"*Patient has.(en)">
             >
@@ -512,11 +512,11 @@ terminology
                 text = <"*Diagnosis(en)">
                 description = <"*Diagnosis.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Masculino">
                 description = <"Paciente é masculino.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Feminino">
                 description = <"Paciente é feminino.">
             >
@@ -524,19 +524,19 @@ terminology
                 text = <"*Gender(en)">
                 description = <"*Gender.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"13 anos e acima">
                 description = <"Paciente com 13 anos ou mais.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Entre 7 e 13 anos">
                 description = <"Paciente com idade entre 7 e 13 anos.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Entre 3 e 7 anos">
                 description = <"Paciente com idade entre 3 e 7 anos.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Menor que 3 anos">
                 description = <"Paciente com idade menor que 3 anos.">
             >
@@ -599,15 +599,15 @@ terminology
                 text = <"Total score">
                 description = <"Total score.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Multiple usage of: sedatives (excluding ICU patients sedated and paralyzed), hypnotics, barbiturates, phenothiazines, antidepressants, laxatives/diuretics, narcotic">
                 description = <"Multiple usage of: sedatives (excluding ICU patients sedated and paralyzed), hypnotics, barbiturates, phenothiazines, antidepressants, laxatives/diuretics, narcotic.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"One of the meds listed above">
                 description = <"Patient receives one of the medications listed above.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Other medications/none">
                 description = <"Patient receives other medications or none.">
             >
@@ -615,15 +615,15 @@ terminology
                 text = <"Medication usage">
                 description = <"Medication usage.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Within 24 hours">
                 description = <"Patient within 24 hours  from surgery/sedation/anesthesia.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Within 48 hours">
                 description = <"Patient within 48 hours from surgery/sedation/anesthesia.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"More than 48 hours/None">
                 description = <"Patient is more than 48 hours from surgery/sedation/anesthesia or has had none.">
             >
@@ -631,19 +631,19 @@ terminology
                 text = <"Response to surgery/sedation/anesthesia">
                 description = <"Patient's response to surgery/sedation/anesthesia.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"History of falls or infant-toddler placed in bed">
                 description = <"Patient has history of falls or is an infant-toddler placed in bed.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Patient uses assistive device or infant-toddler in crib or furniture/lighting (tripled room)">
                 description = <"Patient uses assistive device or infant-toddler in crib or furniture/lighting (tripled room).">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Patient placed in bed">
                 description = <"Patient is placed in bed.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Outpatient area">
                 description = <"Patient is in outpatient area.">
             >
@@ -651,15 +651,15 @@ terminology
                 text = <"Environmental factors">
                 description = <"Environmental factors.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Not aware of limitations">
                 description = <"Patient is not aware of limitations.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Forgets limitations">
                 description = <"Patient forgets limitations.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Oriented to own ability">
                 description = <"Patient is oriented to own ability.">
             >
@@ -667,19 +667,19 @@ terminology
                 text = <"Cognitive impairments">
                 description = <"Cognitive impairments.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Neurological diagnosis">
                 description = <"Patient has neurological diagnosis.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Alterations in oxygenation (respiratory diagnosis, dehydration, anemia, anorexia, syncope/dizziness, etc.)">
                 description = <"Patient has alterations in oxygenation (respiratory diagnosis, dehydration, anemia, anorexia, syncope/dizziness, etc.).">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Psychological/behavioural diagnosis">
                 description = <"Patient has other diagnosis.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Other diagnosis">
                 description = <"Patient has.">
             >
@@ -687,11 +687,11 @@ terminology
                 text = <"Diagnosis">
                 description = <"Diagnosis.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Male">
                 description = <"Patient is male.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Female">
                 description = <"Patient is female.">
             >
@@ -699,19 +699,19 @@ terminology
                 text = <"Gender">
                 description = <"Gender.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"13 years and above">
                 description = <"Patient is 13 years and above.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"7 to less than 13 years old">
                 description = <"Patient is 7 to less than 13 years old.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"3 to less than 7 years old">
                 description = <"Patient is 3 to less than 7 years old.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Less than 3 years old">
                 description = <"Patient is less than 3 years old.">
             >
@@ -732,30 +732,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at14", "at15", "at16", "at17">
+            members = <"at13", "at14", "at15", "at16">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at11", "at12">
+            members = <"at10", "at11">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at9", "at8", "at7", "at6">
+            members = <"at8", "at7", "at6", "at5">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at32", "at33", "at34">
+            members = <"at31", "at32", "at33">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at28", "at29", "at30">
+            members = <"at27", "at28", "at29">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at23", "at24", "at25", "at26">
+            members = <"at22", "at23", "at24", "at25">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at19", "at20", "at21">
+            members = <"at18", "at19", "at20">
         >
     >

@@ -326,7 +326,7 @@ terminology
                 text = <"Intraepidermal growth pattern (synthesised)">
                 description = <"Description of the melanoma growth pattern. (synthesised)">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"Present">
                 description = <"Tumour infiltrating lymphocytes are present.">
             >
@@ -338,35 +338,35 @@ terminology
                 text = <"Lymphovascular invasion">
                 description = <"Details of lymphovascular invasion.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Indeterminate">
                 description = <"Presence of desmoplasia has not been determined.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Absent">
                 description = <"Desmoplasia is absent.">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Present">
                 description = <"Desmoplasia is present.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"Indeterminate">
                 description = <"Presence of tumour regression has not been determined.">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"Indeterminate">
                 description = <"The growth pattern has not been determined.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Mixed">
                 description = <"Mixed intraepidermal growth pattern.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Lentiginous">
                 description = <"Lentiginous intraepidermal growth pattern.">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Pagetoid">
                 description = <"Pagetoid intraepidermal growth pattern.">
             >
@@ -378,19 +378,19 @@ terminology
                 text = <"Extent of regression">
                 description = <"Details of extent of regression.">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"Present (percentage not determined)">
                 description = <"Tumour regression is present. Extent, as a percentage, has not been determined.">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"Indeterminate">
                 description = <"A predominant type of cell has not been determined.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Epithelioid cells">
                 description = <"Epithelioid cells represent a predominant cell type.">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"Spindle cells">
                 description = <"Spindle cells represent a predominant cell type.">
             >
@@ -406,15 +406,15 @@ terminology
                 text = <"Severity of solar elastosis">
                 description = <"Severity of solar elastosis.">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"Indeterminate">
                 description = <"Presence of solar elastosis has not been determined.">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"Absent">
                 description = <"Solar elastosis is absent.">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"Present">
                 description = <"Solar elastosis is present.">
             >
@@ -426,15 +426,15 @@ terminology
                 text = <"Solar elastosis">
                 description = <"Findings related to solar elastosis.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"Indeterminate">
                 description = <"Findings of in-transit microsatellites has not been determined.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Absent">
                 description = <"In-transit microsatellites are absent.">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Present">
                 description = <"In-transit microsatellites are present.">
             >
@@ -450,15 +450,15 @@ terminology
                 text = <"Growth phase">
                 description = <"Description of the melanoma growth phase.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Indeterminate">
                 description = <"The density of tumour infiltration has not been determined.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Dense">
                 description = <"Dense infiltration by lymphocytes.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Sparse">
                 description = <"Sparse infiltration by lymphocytes.">
             >
@@ -466,35 +466,35 @@ terminology
                 text = <"Density">
                 description = <"Density of tumour infiltrating lymphocytes.">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Indeterminate">
                 description = <"Presence of tumour infiltrating lymphocytes has not been determined.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Absent">
                 description = <"Tumour infiltrating lymphocytes are absent.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Indeterminate">
                 description = <"Presence of microsatellites has not been determined.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Absent">
                 description = <"Microsatellites are present.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Present">
                 description = <"Microsatellites are present.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Indeterminate">
                 description = <"Presence of tumour-associated ulceration has not been determined.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Absent">
                 description = <"Tumour associated ulceration is absent.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Present">
                 description = <"Tumour-associated ulceration is present.">
             >
@@ -502,11 +502,11 @@ terminology
                 text = <"Surgical margins ">
                 description = <"Details of in-situ tumour at the peripheral surgical margins.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Present involving 75% or more">
                 description = <"Tumour regression is present, involving 75% or more of the tumour.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Present involving less than 75%">
                 description = <"Tumour regression is present, involving less than 75% of the tumour.">
             >
@@ -514,11 +514,11 @@ terminology
                 text = <"Intermediate/late regression">
                 description = <"Finding of tumour regression.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Present - Nonbrisk /  Focal">
                 description = <"There are focal areas of tumour infiltrating lymphocytes.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Present - Brisk / Diffuse">
                 description = <"Tumour infilitrating lyphocytes are present, with infiltration of the entire base of the tumour, or of diffuse permeation of the invasive melanoma.">
             >
@@ -578,7 +578,7 @@ terminology
                 text = <"Ulceration">
                 description = <"Findings related to tumour-associated ulceration.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Absent">
                 description = <"Tumour regression is absent.">
             >
@@ -586,23 +586,23 @@ terminology
                 text = <"Mitotic rate per mm2">
                 description = <"Mitotic rate is a measure of the proliferation status of a cell population, expressed as the number of mitoses per square millimetre.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Level V">
                 description = <"Melanoma cells infiltrate into the subcutaneous fat.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Level IV">
                 description = <"Melanoma cells infiltrate into the reticular dermis.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Level III">
                 description = <"Melanoma cells fill and expand the papillary dermis with extension of tumour to the papillary-reticular dermal interface.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Level II">
                 description = <"Melanoma cells invade into but do not fill or expand the papillary (superficial) dermis.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Level I">
                 description = <"Melanoma cells are confined to the epidermis (melanoma in situ).">
             >
@@ -681,7 +681,7 @@ terminology
                 text = <"نمط النمو في داخل البشرة (synthesised)">
                 description = <"وصف نمط نمو السرطان الميلانيني (synthesised)">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"موجود">
                 description = <"الخلايا الليمفاوية المسئولة عن ارتشح الورم موجودة">
             >
@@ -693,35 +693,35 @@ terminology
                 text = <"غزو الخلايا الليمفاوية و الأوعية الدموية">
                 description = <"تفاصيل غزو الخلايا الليمفاوية و الأوعية الدموية">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد وجود تكون النسيج الليفي">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"غائب">
                 description = <"لا يوجد تكون للنسيج الليفي">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"موجود">
                 description = <"تكون النسيج الليفي موجود">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد تقهقر الورم">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد نمط النمو">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"مختلط">
                 description = <"نمط النمو داخل البشرة مختلط">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"أنمش">
                 description = <"نمط نمو أنمش داخل البشرة">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"شبيه بداء باجيت">
                 description = <"نمط نمو داخل البشرة يشبه داء باجيت">
             >
@@ -733,19 +733,19 @@ terminology
                 text = <"مدى التقهقر">
                 description = <"تفاصيل مدى التقهقر">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"موجود - لم يتم تحديد النسبة المئوية">
                 description = <"يوجد تقهقر للورم. و لم يتم تحديد المدى في صورة نسبة مئوية">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد نوع الخلايا السائدة">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"خلايا شبيهة بالظهارة">
                 description = <"الخلايا الشبيهة بالظهارة هي نوع الخلايا السائدة">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"الخلايا المغزلية">
                 description = <"الخلايا المغزلية تمثل نوع الخلايا السائدة">
             >
@@ -761,15 +761,15 @@ terminology
                 text = <"شدة تنكس النسيج المرن الشمسي">
                 description = <"شدة تنكس النسيج المرن الشمسي">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد وجود تنكس للنسيج المرن الشمسي">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"غائب">
                 description = <"لا يوجد تنكس للنسيج المرن الشمسي">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"موجود">
                 description = <"يوجد تنكس للنسيج المرن الشمسي">
             >
@@ -781,15 +781,15 @@ terminology
                 text = <"تنكس النسيج المرن الشمسي">
                 description = <"الموجودات المتعلقة بتنكس النسيج المرن الشمسي">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد السواتل المجهرية العابرة">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"غائب">
                 description = <"لا يوجد سواتل مجهرية عابرة">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"موجود">
                 description = <"يوجد سواتل مجهرية عابرة">
             >
@@ -805,15 +805,15 @@ terminology
                 text = <"طور النمو">
                 description = <"وصف طور النمو في السرطان الميلانيني">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد ارتشاح الخلايا الليمفاوية المسئولة عن ارتشح الورم">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"كثيف">
                 description = <"ارتشاح الخلايا الليمفاوية كثيف">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"متناثر">
                 description = <"ارتشاخ الخلايا الليمفاوية بشكل متناثر">
             >
@@ -821,35 +821,35 @@ terminology
                 text = <"الكثافة">
                 description = <"كثافة الخلايا الليمفاوية المسئولة عن ارتشح الورم">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد وجود الخلايا الليمفاوية المسئولة عن ارتشح الورم">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"غائب">
                 description = <"الخلايا الليمفاوية المسئولة عن ارتشح الورم غير موجودة">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد وجود السواتل المجهرية">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"غائبة">
                 description = <"لا يوجد سواتل مجهرية">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"موجود">
                 description = <"السواتل المجهرية موجودة">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد وجود تقرح مصاحب للورم">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"غائب">
                 description = <"لا يوجد تقرح مصاحب للورم">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"موجود">
                 description = <"يوجد تقرح مصاحب للورم">
             >
@@ -857,11 +857,11 @@ terminology
                 text = <"الحواف/الهوامش الجراحية">
                 description = <"تفاصيل الورم اللابِد/في موضعه عند الحواف/الهوامش الجراحية الطرفية.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"موجود و يكتنف 75% أو أكثر">
                 description = <"يوجد تقهقر للورم, و هو يكتنف 75% أو أكثر من الورم">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"موجود و يكتنف أقل من 75%">
                 description = <"يوجد تقهقر للورم, و هو يكتنف أقل من 75% من الورم">
             >
@@ -869,11 +869,11 @@ terminology
                 text = <"تقهقر متوسط/متأخر">
                 description = <"الموجودات المتعلقة بتقهقر الورم">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"موجود - غير متغلغل/بؤري">
                 description = <"يوجد مناطق بؤرية للخلايا الليمفاوية المسئولة عن ارتشح الورم">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"موجود - متغلغل/منتشر">
                 description = <"الخلايا الليمفاوية المسئولة عن ارتشح الورم موجودة, مع ارتشاح القاعدة الكلية للورم, أو تغلغل للسرطان الميلانيني الغازي">
             >
@@ -933,7 +933,7 @@ terminology
                 text = <"التقرح">
                 description = <"الموجودات المتعلقة بالتقرح المصاحب للورم.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"غائب">
                 description = <"لا يوجد تقهقر للورم">
             >
@@ -941,23 +941,23 @@ terminology
                 text = <"معدل الانقسام الفَتيلي لكل ميلليمتر مربع">
                 description = <"معدل الانقاسم الفَتيلي هو قياس حالة التكاثر لمجموعة من الخلايا, يتم التعبير عنها بعدد الانقاسمات الفتيلية لكل ميلليمتر مربع.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"المستوى الخامس">
                 description = <"خلايا السرطان الميلانيني ترتشح في الشحم الموجود تحت الجلد.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"المستوى الرابع">
                 description = <"خلايا السرطان الميلانيني ترتشح في داخل البشرة الشبكية.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"المستوى الثالث">
                 description = <"خلايا السرطان الميلانيني تملأ و تتوسع في الأدمة الحُلَيْمِية مع امتداد الورم إلى الوُجَيْهة/الخط الفاصل في البشرة بين الطبقة الحليمية و الطبقة الشبكية.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"المستوى الثاني">
                 description = <"خلايا السرطان الميلانيني تغزو/تغير عى الأدمة الحُلَيْمِية السطحية,, و لكنها لا تملأها و لا تتوسع فيها.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"المستوى الأول">
                 description = <"خلايا السرطان ماخِضة في البشرة - سرطان ميلانيني لابِد/في موضعه.">
             >
@@ -995,46 +995,46 @@ terminology
     value_sets = <
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at103", "at104", "at105">
+            members = <"at102", "at103", "at104">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at120", "at121", "at122">
+            members = <"at119", "at120", "at121">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at16", "at53", "at54", "at112", "at119">
+            members = <"at15", "at52", "at53", "at111", "at118">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at73", "at74", "at75">
+            members = <"at72", "at73", "at74">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at9", "at10", "at11", "at12", "at13">
+            members = <"at8", "at9", "at10", "at11", "at12">
         >
         ["ac9011"] = <
             id = <"ac9011">
-            members = <"at115", "at116", "at117", "at118">
+            members = <"at114", "at115", "at116", "at117">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at109", "at110", "at111">
+            members = <"at108", "at109", "at110">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at85", "at86", "at87">
+            members = <"at84", "at85", "at86">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at50", "at51", "at82", "at83", "at129">
+            members = <"at49", "at50", "at81", "at82", "at128">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at95", "at96", "at97">
+            members = <"at94", "at95", "at96">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at79", "at80", "at81">
+            members = <"at78", "at79", "at80">
         >
     >

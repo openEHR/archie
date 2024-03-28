@@ -152,7 +152,7 @@ definition
                                     ELEMENT[id29] occurrences matches {0..1} matches {    -- Sleep status
                                         value matches {
                                             DV_CODED_TEXT[id9019] matches {
-                                                defining_code matches {[ac9005; at30]}    -- Sleep status (synthesised)
+                                                defining_code matches {[ac9005; at29]}    -- Sleep status (synthesised)
                                             }
                                         }
                                     }
@@ -324,7 +324,7 @@ terminology
                 text = <"Neonatal screening">
                 description = <"Test performed soon after birth to screen for hearing defects that warrant urgent investigation.">
             >
-            ["at142"] = <
+            ["at141"] = <
                 text = <"Narrow band noise">
                 description = <"The test stimulus is a narrow band noise centred on the specified frequency.">
             >
@@ -333,11 +333,11 @@ terminology
                 description = <"Narrative description of factors, not recorded elsewhere, that may contribute to the screening result.">
                 comment = <"For example: The infant was crying at the time of testing.">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"No response">
                 description = <"The subject did not respond to the stimulus.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Positive response">
                 description = <"The subject responded, in a prescribed manner, to the stimulus.">
             >
@@ -382,15 +382,15 @@ terminology
                 text = <"Screening assessment pass criteria">
                 description = <"Criteria used to determine a screening assessement pass.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"dB nHL">
                 description = <"The normal hearing level scale was used.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"dB HL">
                 description = <"The hearing level scale was used.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"db SPL">
                 description = <"The sound pressure level scale was used.">
             >
@@ -398,27 +398,27 @@ terminology
                 text = <"Calibration reference dB">
                 description = <"Scale used for acoustic calibration check.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Pure tone">
                 description = <"The test stimulus is a pure tone centred on the specified frequency.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Warble tone">
                 description = <"The test stimulus is a frequency modulated tone centred on the specified frequency.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Non-sound treated room">
                 description = <"Test environment that does not meet audiometric standards for ambient noise.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Not clinically significant">
                 description = <"The background noise is not likely to compromise test results.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Clinically significant">
                 description = <"The background noise may compromise test results.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Audiometric booth">
                 description = <"Sound-treated test environment that meets audiometric standards for ambient noise.">
             >
@@ -427,11 +427,11 @@ terminology
                 description = <"The physical environment in which the audiometric test is administered.">
                 comment = <"This data element is commonly used in industry hearing programs.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Fail">
                 description = <"The test was failed, based on screening criteria.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Pass">
                 description = <"The test was passed, based on screening criteria.">
             >
@@ -440,7 +440,7 @@ terminology
                 description = <"Overall result of screening.">
                 comment = <"In some existing screening programs, the result has previously been recorded as one of three options: 'Pass', 'Re-test' or 'Refer'. This confounds the result with subsequent next actions. This data element is recording the outcome of the test alone - thus 'Pass' or 'Fail' are the only two options. Following a 'Fail' result, a clinical system can support the clinician to initiate appropriate a subsequent activity (eg based on other information such as previous screening test results) - either a rescheduling of the screening test (ie a 'Re-test') or initiation of a referral for further investigation (ie  a 'Refer'). ">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Binaural">
                 description = <"The test stimuli were presented to both ears simultaneously in a soundfield.">
             >
@@ -458,11 +458,11 @@ terminology
                 description = <"Identification of the type of screening test performed.">
                 comment = <"Coding with an external terminology is preferred, where possible. Applicable tests using a screening protocol include: Pure Tone Audiometry; Play Audiometry; Auditory Brainstem Response; Automated Auditory Brainstem Response; and Visual Reinforcement Orientation Audiometry.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Click">
                 description = <"The test stimulus is a click.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Tone burst">
                 description = <"The test stimulus is a tone burst centred on the specified frequency.">
             >
@@ -470,11 +470,11 @@ terminology
                 text = <"Test stimulus">
                 description = <"Identification of the frequency-specific stimulus used in screening.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Asleep">
                 description = <"The test subject was asleep during testing.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Awake">
                 description = <"The test subject was awake during the testing.">
             >
@@ -495,11 +495,11 @@ terminology
                 description = <"The stimulus frequency tested.">
                 comment = <"Frequency is not applicable if a click stimulus is presented.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Right ear">
                 description = <"The test stimuli were presented to the right ear only.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Left ear">
                 description = <"The test stimuli were presented to the left ear only.">
             >
@@ -530,34 +530,34 @@ terminology
     value_sets = <
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at91", "at92", "at93">
+            members = <"at90", "at91", "at92">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at37", "at36", "at81", "at142", "at82">
+            members = <"at36", "at35", "at80", "at141", "at81">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at78", "at79">
+            members = <"at77", "at78">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at10", "at9", "at50">
+            members = <"at9", "at8", "at49">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at77", "at80">
+            members = <"at76", "at79">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at30", "at31">
+            members = <"at29", "at30">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at53", "at54">
+            members = <"at52", "at53">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at139", "at140">
+            members = <"at138", "at139">
         >
     >

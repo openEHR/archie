@@ -250,7 +250,7 @@ terminology
                 text = <"Analyserbarhet (synthesised)">
                 description = <"Informasjon om hvorvidt prøvematerialet var av tilstrekkelig kvalitet for analyse. (synthesised)">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Koagulert">
                 description = <"Prøvematerialet var koagulert.">
             >
@@ -258,19 +258,19 @@ terminology
                 text = <"Transportdetaljer">
                 description = <"Detaljer om transport av prøvematerialet.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Teknisk feil">
                 description = <"Prøvematerialet kunne ikke analyseres av tekniske årsaker.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Alder">
                 description = <"Prøvematerialet var for gammel til å kunne analyseres nøyaktig.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Håndteringsfeil">
                 description = <"Det ble gjort en feil ved håndtering av prøvematerialet. For eksempel prøven ble sølt ut, eller oppbevart utenfor anbefalt temperaturområde.">
             >
-            ["at90"] = <
+            ["at89"] = <
                 text = <"Ikterisk">
                 description = <"Prøvematerialet var ikterisk.">
             >
@@ -320,31 +320,31 @@ terminology
                 description = <"Den fysiske situasjonen der prøvematerialet ble innhentet.">
                 comment = <"For eksempel laboratorieprøvemottak, i hjemmet, eller sengepost. Dette elementet spesifiserer stedet der prøvematerialet ble tatt. Det gjør det ved behov mulig for laboratoriet å stille spørsmål om prøvetakingen. Prøvetakingssituasjonen kan også gi ytterligere informasjon som er relevant for tolkningen av resultatet.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Utilfredstillende - ikke behandlet">
                 description = <"Prøven er utilfredsstillende og har ikke blitt behandlet.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Utilfredstillende - behandlet">
                 description = <"Prøven er utilfredsstillende, men har blitt behandlet.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Tilfredstillende">
                 description = <"Prøven er av tilfredsstillende kvalitet.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Utilstrekkelig mengde">
                 description = <"Utilstrekkelig mengde prøvemateriale for å foreta målingen.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Feil transportmedium">
                 description = <"Feil tilsetningsstoff ble brukt ved transport av prøvematerialet.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Lipemisk">
                 description = <"Prøvematerialet var lipemisk.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Hemolysert">
                 description = <"Prøvematerialet var hemolysert.">
             >
@@ -428,7 +428,7 @@ terminology
                 text = <"Adequação para teste (synthesised)">
                 description = <"*Information about whether the specimen was adequate for testing. (en) (synthesised)">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"*Clotted (en)">
                 description = <"*The specimen was clotted. (en)">
             >
@@ -436,19 +436,19 @@ terminology
                 text = <"*Transport details (en)">
                 description = <"*Details about transport of the specimen. (en)">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"*Technical failure (en)">
                 description = <"*The specimen could not be analysed for technical reasons. (en)">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"*Age (en)">
                 description = <"*The specimen was too old to analyse accurately. (en)">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"*Handling error (en)">
                 description = <"*An error arose when handling the specimen. For example: The specimen was spilled, or stored outside the recommended temperature range. (en)">
             >
-            ["at90"] = <
+            ["at89"] = <
                 text = <"*Icteric (en)">
                 description = <"*The specimen was icteric. (en)">
             >
@@ -498,31 +498,31 @@ terminology
                 description = <"*Identification of the physical setting in which the specimen was collected. (en)">
                 comment = <"*For example: laboratory outpatient clinic, at home, or hospital ward. This specifies the specimen collection location within the healthcare environment. It enables the laboratory to ask questions about the collection of the specimen, if required. The specimen collection setting may provide additional information relevant to the analysis of the result. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Insatisfatório - não processado">
                 description = <"O espécime é insatisfatório e não foi processado.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Insatisfatório - processado">
                 description = <"O espécime é insatisfatório mais foi processado.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Satisfatório">
                 description = <"O espécime é de qualidade suficiente para realizar o procedimento.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Amostra insuficiente">
                 description = <"Uma amostra insuficiente foi fornecida para realização da medição.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Meio de transporte incorreto">
                 description = <"Um preservante incorreto foi usado para transportar o espécime.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Lipêmico">
                 description = <"O espécime estava lipêmico.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Hemolisado">
                 description = <"O espécime estava hemolisado.">
             >
@@ -606,7 +606,7 @@ terminology
                 text = <"المناسبة لإتمام التحليل (synthesised)">
                 description = <"*Information about whether the specimen was adequate for testing. (en) (synthesised)">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"*Clotted (en)">
                 description = <"*The specimen was clotted. (en)">
             >
@@ -614,19 +614,19 @@ terminology
                 text = <"*Transport details (en)">
                 description = <"*Details about transport of the specimen. (en)">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"*Technical failure (en)">
                 description = <"*The specimen could not be analysed for technical reasons. (en)">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"*Age (en)">
                 description = <"*The specimen was too old to analyse accurately. (en)">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"*Handling error (en)">
                 description = <"*An error arose when handling the specimen. For example: The specimen was spilled, or stored outside the recommended temperature range. (en)">
             >
-            ["at90"] = <
+            ["at89"] = <
                 text = <"*Icteric (en)">
                 description = <"*The specimen was icteric. (en)">
             >
@@ -678,31 +678,31 @@ terminology
                 description = <"*Identification of the physical setting in which the specimen was collected. (en)">
                 comment = <"*For example: laboratory outpatient clinic, at home, or hospital ward. This specifies the specimen collection location within the healthcare environment. It enables the laboratory to ask questions about the collection of the specimen, if required. The specimen collection setting may provide additional information relevant to the analysis of the result. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"غير مُرضية - لم تتم معالجتها">
                 description = <"العينة غير مُرضية و لم تتم معالجتها">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"غير مُرضية - تمت معالجتها">
                 description = <"العينة غير مُرضية و لكن تمت معالجتها">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"مُرضِية">
                 description = <"العينة بجودة كافية بما يسمح للحصول على تقرير للاختبار">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"عينة غير كافية">
                 description = <"تم إعطاء عينة غير كافية لإتمام القياس">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"وسط نقل غير صحيح">
                 description = <"تم استخدام مادة حافظة غير صحيحة عند نقل العينة">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"العينة بها فرط شحيمات">
                 description = <"العينة بها فرط شحيمات">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"تم حل الدم">
                 description = <"تم حل الدم في العينة">
             >
@@ -792,7 +792,7 @@ terminology
                 text = <"Adequacy for testing (synthesised)">
                 description = <"Information about whether the specimen was adequate for testing. (synthesised)">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Clotted">
                 description = <"The specimen was clotted.">
             >
@@ -800,19 +800,19 @@ terminology
                 text = <"Transport details">
                 description = <"Details about transport of the specimen.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Technical failure">
                 description = <"The specimen could not be analysed for technical reasons.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Age">
                 description = <"The specimen was too old to analyse accurately.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Handling error">
                 description = <"An error arose when handling the specimen. For example: The specimen was spilled, or stored outside the recommended temperature range.">
             >
-            ["at90"] = <
+            ["at89"] = <
                 text = <"Icteric">
                 description = <"The specimen was icteric.">
             >
@@ -865,31 +865,31 @@ terminology
                 description = <"Identification of the physical setting in which the specimen was collected.">
                 comment = <"For example: laboratory outpatient clinic, at home, or hospital ward. This specifies the specimen collection location within the healthcare environment. It enables the laboratory to ask questions about the collection of the specimen, if required. The specimen collection setting may provide additional information relevant to the analysis of the result.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Unsatisfactory - not processed">
                 description = <"The specimen is unsatisfactory and has not been processed.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Unsatisfactory - processed">
                 description = <"The specimen is unsatisfactory but has been processed.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Satisfactory">
                 description = <"The specimen is of sufficient quality to allow reporting.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Insufficient amount">
                 description = <"The available amount of specimen was insufficient to undertake the examination.">
             >
-            ["at55"] = <
+            ["at54"] = <
                 text = <"Incorrect transport medium">
                 description = <"An incorrect transport medium or preservative was added to the specimen.">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Lipaemic">
                 description = <"The specimen was lipaemic.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Haemolysed">
                 description = <"The specimen was haemolysed.">
             >
@@ -974,10 +974,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at63", "at64", "at65">
+            members = <"at62", "at63", "at64">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at53", "at54", "at90", "at95", "at55", "at56", "at91", "at92", "at93">
+            members = <"at52", "at53", "at89", "at94", "at54", "at55", "at90", "at91", "at92">
         >
     >

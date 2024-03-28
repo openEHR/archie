@@ -200,11 +200,11 @@ terminology
                 text = <"Liittyvät oireet">
                 description = <"Tietoja kuukautisiin liittyvistä oireista. Esimerkiksi kuukautiskivut tai päänsäryt.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Absent(en)">
                 description = <"*Flooding did not occur during the menstrual flow.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Present(en)">
                 description = <"*Flooding occurred during the menstrual flow.(en)">
             >
@@ -212,11 +212,11 @@ terminology
                 text = <"Poikkeuksellisen runsasta vuotoa">
                 description = <"Niin runsas kuukautisvuoto, että se ylittää terveyssiteiden ja muiden kuukautistuotteiden imukyvyn.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Absent(en)">
                 description = <"*Blood clots did not occur during the menstrual flow.(en)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"*Present(en)">
                 description = <"*Blood clots occurred during the menstrual flow.(en)">
             >
@@ -224,23 +224,23 @@ terminology
                 text = <"Verihyytymiä">
                 description = <"Kuukautisvuodossa on verihyytymiä.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Vain tiputtelua">
                 description = <"Vain tiputteluvuotoa.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Vähäinen vuoto">
                 description = <"Vähäinen kuukautisvuoto.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Normaali tai tyypillinen vuoto">
                 description = <"Normaali kuukautisvuoto.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Runsas vuoto">
                 description = <"Runsas kuukautisvuoto.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Erittäin runsas vuoto">
                 description = <"Erittäin runsas kuukautisvuoto, joka aiheuttaa usein lisäongelmia, kuten tulvimista ja hyytymistä.">
             >
@@ -299,11 +299,11 @@ terminology
                 text = <"Sintomas associados">
                 description = <"Os detalhes sobre os sintomas relacionados à menstruação. Por exemplo, cólicas menstruais e dores de cabeça.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Absent(en)">
                 description = <"*Flooding did not occur during the menstrual flow.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Present(en)">
                 description = <"*Flooding occurred during the menstrual flow.(en)">
             >
@@ -311,11 +311,11 @@ terminology
                 text = <"Vazamento">
                 description = <"Presença de fluxo menstrual intenso, que excedeu a capacidade dos absorventes higiênicos e outros produtos para absorver o fluxo menstrual.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Absent(en)">
                 description = <"*Blood clots did not occur during the menstrual flow.(en)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"*Present(en)">
                 description = <"*Blood clots occurred during the menstrual flow.(en)">
             >
@@ -323,23 +323,23 @@ terminology
                 text = <"Coágulos de sangue">
                 description = <"Presença de coágulos sanguíneos no fluxo menstrual.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Somente mancha">
                 description = <"Manchas menstruais somente.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Fluxo fraco">
                 description = <"Fluxo menstrual fraco.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Fluxo médio ou típico">
                 description = <"Fluxo menstrual médio.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Fluxo intenso">
                 description = <"Fluxo menstrual intenso.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Fluxo muito intenso">
                 description = <"Fluxo menstrual muito intenso, muitas vezes causando problemas adicionais, tais como vazamentos e coagulação.">
             >
@@ -398,11 +398,11 @@ terminology
                 text = <"Associated symptoms">
                 description = <"Details about symptoms related to menses. For example, menstrual cramps or headaches.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Absent">
                 description = <"Flooding did not occur during the menstrual flow.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Present">
                 description = <"Flooding occurred during the menstrual flow.">
             >
@@ -410,11 +410,11 @@ terminology
                 text = <"Flooding">
                 description = <"Presence of heavy menstrual flow that exceeded capacity of sanitary napkins and other menstrual products to absorb the menstrual flow.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Absent">
                 description = <"Blood clots did not occur during the menstrual flow.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Present">
                 description = <"Blood clots occurred during the menstrual flow.">
             >
@@ -422,23 +422,23 @@ terminology
                 text = <"Blood clots">
                 description = <"Presence of blood clots in the menstrual flow.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Spotting only">
                 description = <"Menstrual spotting only.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Light flow">
                 description = <"Light menstrual flow.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Normal, or typical, flow">
                 description = <"Normal menstrual flow.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Heavy flow">
                 description = <"Heavy menstrual flow.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Very heavy flow">
                 description = <"Very heavy menstrual flow, often causing additional problems such as flooding and clotting.">
             >
@@ -471,14 +471,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at18", "at19">
+            members = <"at17", "at18">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at15", "at16">
+            members = <"at14", "at15">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at9", "at10", "at11", "at12", "at13">
+            members = <"at8", "at9", "at10", "at11", "at12">
         >
     >

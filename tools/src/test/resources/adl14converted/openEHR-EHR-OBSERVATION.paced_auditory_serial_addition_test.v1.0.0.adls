@@ -249,11 +249,11 @@ terminology
                 description = <"Die Anzahl der korrekt addierten Antworten.">
                 comment = <"Nur die Ergebnisse des erfolgreich abgeschlossenen Tests aufzeichnen.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Form B">
                 description = <"Die Zahlensequenz von Form B wurde verwendet.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Form A">
                 description = <"Die Zahlensequenz von Form A wurde verwendet.">
             >
@@ -334,11 +334,11 @@ terminology
                 description = <"The number of correctly summed answers.">
                 comment = <"Record only totals for the successfully completed test.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Form B">
                 description = <"The Form B number sequence was used.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Form A">
                 description = <"The Form A number sequence was used.">
             >
@@ -355,6 +355,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at14", "at15">
+            members = <"at13", "at14">
         >
     >

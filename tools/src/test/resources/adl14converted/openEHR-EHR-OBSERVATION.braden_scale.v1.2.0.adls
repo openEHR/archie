@@ -204,10 +204,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at6]}],
-                                                    [{2}, {[at7]}],
-                                                    [{3}, {[at8]}],
-                                                    [{4}, {[at9]}]
+                                                    [{1}, {[at5]}],
+                                                    [{2}, {[at6]}],
+                                                    [{3}, {[at7]}],
+                                                    [{4}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -216,10 +216,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at16]}],
-                                                    [{2}, {[at17]}],
-                                                    [{3}, {[at18]}],
-                                                    [{4}, {[at19]}]
+                                                    [{1}, {[at15]}],
+                                                    [{2}, {[at16]}],
+                                                    [{3}, {[at17]}],
+                                                    [{4}, {[at18]}]
                                                 }
                                             }
                                         }
@@ -228,10 +228,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at12]}],
-                                                    [{2}, {[at13]}],
-                                                    [{3}, {[at14]}],
-                                                    [{4}, {[at15]}]
+                                                    [{1}, {[at11]}],
+                                                    [{2}, {[at12]}],
+                                                    [{3}, {[at13]}],
+                                                    [{4}, {[at14]}]
                                                 }
                                             }
                                         }
@@ -240,10 +240,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at27]}],
-                                                    [{2}, {[at28]}],
-                                                    [{3}, {[at29]}],
-                                                    [{4}, {[at30]}]
+                                                    [{1}, {[at26]}],
+                                                    [{2}, {[at27]}],
+                                                    [{3}, {[at28]}],
+                                                    [{4}, {[at29]}]
                                                 }
                                             }
                                         }
@@ -252,10 +252,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at31]}],
-                                                    [{2}, {[at32]}],
-                                                    [{3}, {[at33]}],
-                                                    [{4}, {[at34]}]
+                                                    [{1}, {[at30]}],
+                                                    [{2}, {[at31]}],
+                                                    [{3}, {[at32]}],
+                                                    [{4}, {[at33]}]
                                                 }
                                             }
                                         }
@@ -264,9 +264,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at24]}],
-                                                    [{2}, {[at25]}],
-                                                    [{3}, {[at26]}]
+                                                    [{1}, {[at23]}],
+                                                    [{2}, {[at24]}],
+                                                    [{3}, {[at25]}]
                                                 }
                                             }
                                         }
@@ -340,47 +340,47 @@ terminology
                 text = <"Kommentti">
                 description = <"Kertomusmuodossa olevat tiedot Braden-asteikolla tehdystä arvioinnista, joita ei voida ilmoittaa rakenteisissa muodossa olevissa kohdissa.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Erinomainen">
                 description = <"Syö suurimman osan jokaisesta ateriasta. Syö aina tarjotut ruoat. Syö yleensä vähintään 4 annosta liha- tai maitotuotteita. Syö joskus aterioiden välillä. Ei tarvitse lisäravintovalmisteita.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Riittävä">
                 description = <"Syö yli puolet useimmista aterioista. Syö neljä annosta proteiinipitoista ruokaa päivässä (liha- tai maitotuotteet). Kieltäytyy joskus ateriasta, mutta ottaa yleensä lisäravintovalmisteen tarjottaessa TAI on letkuruokinnassa tai täydellisessä parenteraalisessa ravitsemuksessa, joka todennäköisesti täyttää suurimman osan potilaan ravinnontarpeesta.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Todennäköisesti riittämätön">
                 description = <"Syö harvoin koko aterian ja syö yleensä vain 1/2 tarjotusta ruoasta. Syö vain kolme annosta (liha- tai maitotuotteet) proteiinia päivässä. Ottaa silloin tällöin lisäravintovalmisteita. TAI Ei saa normaalia määrää ravintoa nestemäisestä tai ravinnonsiirtoletkuruoasta.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Hyvin huono">
                 description = <"Ei syö koskaan koko ateriaa. Harvoin syö 1/3 tarjotusta ruoasta. Syö kaksi annosta (liha- tai maitotuotteet) tai vähemmän proteiinia päivässä. Ottaa nesteitä vähän. Ei ota nestemäisiä lisäravintovalmisteita. TAI ei syö mitään suun kautta, ja/tai potilasta ylläpidetään kirkkailla nesteillä tai täydellisellä parenteraalisella ravitsemuksella yli 5 vrk.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Ei rajoitusta">
                 description = <"Kykenee merkittäviin ja toistuviin asennonmuutoksiin ilman ulkopuolista apua.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Hieman rajoittunut">
                 description = <"Kykenee itsenäisesti toistuviin, vaikkakin vähäisiin, kehon tai raajojen asennonmuutoksiin.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Hyvin rajoittunut">
                 description = <"Kykenee satunnaisesti liikuttamaan vähän kehoaan tai raajojaan, muttei kykene toistuviin merkityksellisiin asennonmuutoksiin ilman apua.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Täysin liikuntakyvytön">
                 description = <"Ei pysty muuttamaan kehon tai raajojen asentoa vähääkään ilman apua.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Ei havaittavaa ongelmaa">
                 description = <"Liikkuu sängyssä tai tuolissa itsenäisesti ja omaa riittävästi lihasvoimia itsensä nostamiseen. Ylläpitää hyvin asennon vuoteessa ja tuolissa.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Mahdollinen ongelma">
                 description = <"Liikkuu sujuvasti tai tarvitsee vain vähän apua liikkumiseen. Liikkuessa iho luultavasti hankautuu lakanoita, tuolia, laitoja tai muita apuvälineitä vasten. Pystyy pitämään suhteellisen hyvin asennon tuolissa tai sängyssä. Mahdollisesti silloin tällöin valuu kuitenkin jossakin määrin kasaan.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Ongelma">
                 description = <"Tarvitsee liikkumisessa kohtalaista tai suurinta mahdollista apua. Nostaminen on mahdotonta ilman liu’uttamista lakanoita vasten. Valahtaa usein kasaan tuolissa tai sängyssä istuessa eikä pysty itse korjaamaan asentoaan. Kudoksiin kohdistuu jatkuvaa kitkaa spastisuuden, kontraktuurien tai levottomuuden vuoksi.">
             >
@@ -401,35 +401,35 @@ terminology
                 text = <"Liikkuvuus">
                 description = <"Kyky muuttaa ja hallita kehon asentoa.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Harvoin kostea">
                 description = <"Iho on tavallisesti kuiva. Petivaatteet ja pyjama vaihdetaan tavanomaisin väliajoin.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Satunnaisesti kostea">
                 description = <"Iho on ajoittain kostea. Petivaatteet ja pyjama täytyy vaihtaa kerran vuorokaudessa.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Erittäin kostea">
                 description = <"Iho on usein, muttei aina, kostea. Petivaatteet ja pyjama täytyy vaihtaa jopa kolme kertaa vuorokaudessa.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Jatkuvasti kostea">
                 description = <"Iho pysyy koko ajan kosteana (hiki, virtsa, tms. erite). Aina potilasta liikutettaessa havaitaan kosteutta.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Kävelee säännöllisesti">
                 description = <"Kävelee huoneen ulkopuolella ainakin kahdesti päivässä ja huoneessaan vähintään kerran kahdessa tunnissa valveillaoloaikana.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Kävelee silloin tällöin">
                 description = <"Kävelee silloin tällöin päivän aikana ilman apua tai autettuna, mutta hyvin lyhyitä matkoja. Viettää suurimman osan kustakin työvuorosta sängyssä tai tuolissa. TAI Viettää enimmän ajastaan kotonaan sängyssä tai tuolissa.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Istumakykyinen">
                 description = <"Kävelykyky huonoa tai puuttuu kokonaan. Ei pysty kannattamaan painoaan tai tarvitsee apua siirtymisessä tuoliin tai pyörätuoliin.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Vuodepotilas">
                 description = <"Hoidetaan vuoteessa.">
             >
@@ -441,19 +441,19 @@ terminology
                 text = <"Kosteus">
                 description = <"Ihon kosteusaltistuksen määrä.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Normaali">
                 description = <"Reagoi puheeseen. Ei aistipuutoksia, jotka rajoittaisivat kykyä tuntea tai kipua ja epämukavuutta.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Hieman rajoittunut">
                 description = <"Reagoi puheeseen, muttei aina pysty ilmaisemaan omaa epämukavuuttaan tai tunne tarvetta vaihtaa asentoa. TAI Tuntopuutos rajoittaa kivun ja epämukavuuden tunnetta yhdessä tai kahdessa raajassa.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Hyvin rajoittunut">
                 description = <"Reagoi vain kipuun. Pystyy ilmaisemaan kivun ja epämukavuuden tunteen vain valittamalla tai rauhattomana käytöksenä. TAI Tuntopuutos rajoittaa kivun tai epämukavuuden aistimista yli puolessa kehon osista.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Täysin rajoittunut">
                 description = <"Ei reagoi lainkaan kipuun (esim. ei sävähdä tai tartu kiinni) tajunnan heikentymisen tai rauhoittavan lääkityksen vuoksi. TAI Kiputunto rajoittunutta suurimmassa osassa kehoa.">
             >
@@ -506,49 +506,49 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligere kommentar om bruk av Braden-skalaen.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Meget bra">
                 description = <"Spiser mesteparten av hvert måltid. Avviser aldri et måltid. Spiser vanligvis fire eller flere porsjoner med kjøtt og melkeprodukter. Spiser av og til mellom måltider. Har ikke behov for ernæringstilskudd.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Tilstrekkelig">
                 description = <"Spiser mer enn halvparten av de fleste måltider. Spiser totalt fire porsjoner protein (kjøtt eller melkeprodukter) pr. dag. Avviser av og til et måltid, men tar vanligvis tilskudd hvis tilbudt. eller
     Får sondeernæring eller totalparenteral ernæring, som sannsynligvis tilfredsstiller ernæringsbehovet.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Sannsynligvis utilstrekkelig">
                 description = <"Spiser sjelden et fullstendig måltid og spiser kun omtrent halvparten av maten som tilbys. Proteininntak omfatter kun tre porsjoner kjøtt eller melkeprodukter pr. dag. Får ernæringstilskudd av og til, eller får mindre enn optimal mengde flytende kost eller sondenæring.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Svært dårlig">
                 description = <"Spiser aldri et fullstendig måltid. Spiser sjelden mer enn en tredjedel av maten som tilbys. Spiser to porsjoner eller mindre av proteiner (kjøtt eller melkeprodukter) pr. dag. Tar ikke drikke med ernæringstilskudd, eller Er null pr. os og/eller får kun klar væske eller intravenøst i mer enn 5 døgn.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Ingen begrensninger">
                 description = <"Gjør store og hyppige endringer i stilling uten hjelp.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Noe begrenset">
                 description = <"Gjør hyppige eller mindre endringer i kroppens eller ekstremitetenes stilling selv.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Meget begrenset">
                 description = <"Gjør av og til mindre endringer i kroppens eller ekstremitetenes stilling, men er ikke i stand til å gjøre hyppige eller større endringer uten hjelp.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Fullstendig immobil">
                 description = <"Gjør ingen endringer i kroppens stilling eller endring av ekstremiteters stilling uten hjelp.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Ikke noe øyensynlig problem">
                 description = <"Forflytter seg i seng og i stol uten hjelp og har tilstrekkelig muskelstyrke til å løfte seg helt fra
     underlaget ved forflytning. Opprettholder god stilling i seng eller stol til enhver tid.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Potensielt problem">
                 description = <"Er svak og skral eller trenger noe hjelp til å bevege seg. Under forflytning glir huden til en viss grad mot laken, stol eller hjelpemidler. Opprettholder bra stilling i stol eller seng mesteparten av tiden, men glir ned av og til.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Problem">
                 description = <"Trenger moderat til maksimalt hjelp ved forflytning. Løfting uten gnidning mot sengetøy er ikke mulig. Glir ofte ned i sengen eller stolen. Trenger hyppig stillingsendring med maksimal assistanse. Muskelspasmer, kontrakturer eller agitasjon medfører friksjon nesten hele tiden.">
             >
@@ -570,36 +570,36 @@ terminology
                 text = <"Mobilitet">
                 description = <"Evne til å styre kroppen og skifte stilling.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Sjelden fuktig">
                 description = <"Huden er vanligvis tørr, sengetøyet skiftes kun til fastsatte tidspunkter.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Fuktig av og til">
                 description = <"Huden er fuktig av og til, sengetøyskift er nødvendig omtrent en gang pr. dag.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Fuktig">
                 description = <"Huden er ofte fuktig, men ikke alltid. Sengetøyskift er nødvendig minst 3 ganger per 24 timer.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Fuktig mesteparten av tiden">
                 description = <"Huden er fuktig store deler av tiden på grunn av svette, urin o.l. Fuktighet kjennes hver gang pasienten skal flyttes eller snus.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Går ofte">
                 description = <"Går utenfor rommet minst to ganger daglig og I rommet minst en gang
     annen hver time om dagen.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Går av og til">
                 description = <"Går av og til I løpet av dagen men kun korte avstander, med eller uten hjelp. Tilbringer mesteparten av hver vakt i seng eller stol.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Stolbundet">
                 description = <"Evnen til å gå er svært begrenset eller mangler helt. Kan ikke bære egen kroppsvekt og/eller må ha hjelp til å komme seg over i stol eller rullestol.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Sengeliggende">
                 description = <"Er ikke ute av sengen. Eventuelt løftes ut av sengen og løftes tilbake igjen etter meget kort tid.">
             >
@@ -611,20 +611,20 @@ terminology
                 text = <"Fuktighet">
                 description = <"I hvor stor grad er huden utsatt for fuktighet.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Ikke redusert">
                 description = <"Reagerer på muntlige beskjeder. Har ingen svikt i sanseapparat med begrensning av evnen til å kjenne eller gi uttrykk for smerte eller ubehag.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Noe redusert">
                 description = <"Reagerer på verbale stimuli men klarer ikke alltid å formidle ubehag eller behov for å bli snudd eller
     har noe redusert evne til å oppfatte sansestimuli med begrenset evne til å kjenne smerte eller behag i en eller to ekstremiteter.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Meget redusert">
                 description = <"Reagerer kun på smertestimuli. Kommuniserer ikke ubehag unntatt ved stønn eller rastløshet eller har redusert evne til å oppfatte sansestimuli med begrenset evne til å kjenne smerte eller ubehag over halvparten av kroppens overflate.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Totalt redusert">
                 description = <"Reagerer ikke på smertestimuli på grunn av redusert bevissthetsnivå eller sedasjon, (stønner ikke, avverger ikke) eller har redusert evne til å kjenne smerte over mesteparten av kroppens overflate.">
             >
@@ -677,47 +677,47 @@ terminology
                 text = <"Comentario">
                 description = <"Narrativa adicional acerca de la evaluación de la Escala de Braden, no capturada en la evaluación estructurada.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Excelente">
                 description = <"Come la mayoría de todas las comidas, nunca rechaza una comida, usualmente come un total de cuatro o más porciones de carne y productos lácteos, ocasionalmente come entre comidas. No requiere suplemento alimenticio.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Adecuada">
                 description = <"Come más de la mitad de la mayoría de las comidas. Come el total de cuatro porciones de proteína por día. Ocasionalmente rechaza una comida pero usualmente toma un suplemento alimenticio si se le ofrece o está siendo alimentado por sonda o nutrición parenteral.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Probablemente inadecuada">
                 description = <"Rara vez come una comida completa y generalmente come solo la mitad de cualquier comida ofrecida. La ingesta de proteínas incluye solamente tres porciones de carne o productos lácteos por día. Ocasionalmente toma un suplemento alimenticio. O recibe menos de la cantidad óptima de dieta líquida o alimentación por sonda.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Muy pobre">
                 description = <"Nunca come una comida completa. Rara vez come más de un tercio de cualquier comida ofrecida. Come dos porciones o menos de proteínas (carne o lácteos) por día. Toma poco líquido. O no toma un suplemento alimenticio líquido y/o está sin vía oral o con dieta líquida clara o intravenosa por más de cinco días.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Sin limitaciones">
                 description = <"Realiza cambios mayores y frecuentes en la posición sin asistencia.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Ligeramente limitada">
                 description = <"Realiza cambios frecuentes aunque ligeros en la posición del cuerpo o de las extremidades en forma independiente.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Muy limitada">
                 description = <"Realiza cambios mínimos y ocasionales de la posición del cuerpo o las extremidades, pero es incapaz de realizar cambios frecuentes o significativos en forma independiente.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Completamente inmóvil">
                 description = <"No realiza siquiera ligeros cambios en la posición del cuerpo o las extremidades sin asistencia.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Sin problema aparente">
                 description = <"Se mueve en la cama o en la silla y tiene suficiente fuerza muscular para sostenerse completamente durante el movimiento. Mantiene buena posición en la cama o en la silla en todo momento.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Es un problema potencial">
                 description = <"Se mueve debilmente o requiere mínima asistencia. Durante un movimiento, la piel probablemente se desliza en algún grado contra las sábanas, la silla u otros objetos. Mantiene relativamente buena posición en la silla o en la cama la mayoría del tiempo, pero ocasionalmente se desliza hacia abajo.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Es un problema">
                 description = <"Requiere asistencia de moderada a máxima al movilizarlo. Levantarlo completamente sin deslizarlo sobre las sábanas es imposible. Frecuentemente se desliza en la cama o en la silla y requiere constantes cambios de posición con un máximo de asistencia. La espasticidad y contracturas llevan a fricción casi constante.">
             >
@@ -738,35 +738,35 @@ terminology
                 text = <"Movilidad">
                 description = <"Capacidad para cambiar y controlar la posición del cuerpo.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Rara vez húmeda">
                 description = <"La piel está usualmente seca; las sábanas requieren cambio con intervalos de rutina (cada 24 horas).">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Ocasionalmente húmeda">
                 description = <"La piel está ocasionalmente húmeda, requieriendo un cambio extra de sábanas aproximadamente una vez al día (cada 12 horas).">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Muy húmeda">
                 description = <"La piel está frecuentemente húmeda. Las sábanas deben cambiarse por lo menos una vez por turno (cada ocho horas).">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Constantemente húmeda">
                 description = <"La piel permanece húmeda casi constantemente por sudoración, orina, etc. Cada vez que es movilizado o girado, se encuentra mojado.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Camina con frecuencia">
                 description = <"Camina fuera del cuarto por lo menos dos veces en el día y dentro de él por lo menos una vez cada dos horas.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Camina ocasionalmente">
                 description = <"Camina ocasionalmente durante el día pero muy cortas distancias con o sin asistencia. Pasa la mayor parte del turno (8 horas) en la silla o en la cama.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"En silla">
                 description = <"Capacidad para caminar severamente limitada o inexistente. No puede soportar su propio peso o debe ser asistido en la silla común o silla de ruedas.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"En cama">
                 description = <"Confinado a la cama.">
             >
@@ -778,19 +778,19 @@ terminology
                 text = <"Humedad">
                 description = <"Grado en el cual la piel está expuesta a la humedad.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"No alterada">
                 description = <"Responde a órdenes verbales. No tiene déficit sensorial que limite la capacidad de sentir o manifestar dolor o disconfort.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Levemente limitada">
                 description = <"Responde a órdenes verbales pero no siempre puede comunicar el disconfort o la necesidad de ser volteado o tiene alguna alteración sensorial que limita la capacidad para sentir dolor o disconfort en una o dos extremidades">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Muy limitada">
                 description = <"Responde solamente a estímulos dolorosos. No puede comunicar el disconfort excepto por quejido o agitación O tiene un deterioro sensorial que limita la capacidad para sentir dolor O disconfort sobre la mitad del cuerpo.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Completamente limitada">
                 description = <"No responde (no se queja, no se defiende ni se agarra) ante estímulos dolorosos, por un nivel disminuido de conciencia o sedación o capacidad limitada para sentir dolor sobre la mayoría de la superficie corporal.">
             >
@@ -843,47 +843,47 @@ terminology
                 text = <"Comentários">
                 description = <"Narrativa adicional sobre a avaliação da escala de Braden não informada nas avaliações estruturadas.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Excelente">
                 description = <"Come a maior parte da refeição. Nunca recusa uma refeição. Geralmente come um total de 4 ou mais porções de carne e produtos lácteos. Ocasionalmente come entre as refeições. Não requer suplementação.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Adequada">
                 description = <"Come mais da metade da maioria das refeições. come um total de 4 porções d proteína (carne, produtos lácteos por dia). Ocasionalmente, recusa uma refeição, mas geralmente toma um suplemento quando oferecido OU utiliza um tubo de alimentação ou regime de nutrição parenteral total (NPT) que provavelmente atende a maioria de suas necessidades nutricionais.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Provavelmente inadequado">
                 description = <"Raramente come uma refeição completa e geralmente come somente metade de qualquer alimento oferecido. O consumo de proteínas inclui apenas 3 porções de carne ou de produtos lácteos por dia. Ocasionalmente toma um suplemento dietético. OU recebe uma quantidade inferior à quantidade ótima de dieta líquida ou alimentação por tubo.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Muito pobre">
                 description = <"Nunca come uma refeição completa. Raramente come mais do 1/3 de qualquer alimento oferecido. Come 2 porções ou menos de proteína (carne ou produtos lácteos) por dia. Dificuldade em ingerir fluídos. Não toma um suplemento dietético liquido. OU é não se alimenta por boca e/ou é mantido por líquidos ou endovenosa por mais de 5 dias.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Sem limitação">
                 description = <"Faz mudanças importantes e frequentes na posição sem assistência.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Um pouco limitado">
                 description = <"Faz mudanças frequentes, embora sutis, na posição do corpo ou da extremidade de forma independente.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Muito limitado">
                 description = <"Faz mudanças ocasionais na posição do corpo ou nas extremidades mas é incapaz de fazer mudanças frequentes ou significativas de forma independente.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Completamente imóvel">
                 description = <"Não faz pequenas alterações na posição do corpo ou nas extremidades em auxílio.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Aparentemente sem problema">
                 description = <"Move-se na cama e na cadeira de forma independente e tem força muscular suficiente para levantar completamente durante o movimento. Mantêm boa posição na cama ou cadeira.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Problema potencial">
                 description = <"Move-se devagar ou requer assistência mínima. Durante um movimento de pele provavelmente desliza em certa medida contra lençóis, cadeira, restrições ou outros dispositivos. Mantêm a posição relativamente boa na cadeira ou na cama na maioria das vezes, mas ocasionalmente desliza para baixo.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Problema">
                 description = <"Requer assistência de moderada a máxima em movimento. O levantamento completo sem deslizamento contra lençóis é impossível. Freqüentemente desliza para baixo na cama ou cadeira, exigindo freqüentes reposicionamentos com assistência máxima. Espasticidade, contraturas ou agitação levam a atritos quase constantes.">
             >
@@ -904,35 +904,35 @@ terminology
                 text = <"Mobilidade">
                 description = <"Capacidade de mudar e controlar a posição do corpo.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Raramente úmido">
                 description = <"A pele fica geralmente seca, a troca da roupa de cama deve ser feita apenas em intervalos de rotina.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Ocasionalmente úmido">
                 description = <"a pele fica ocasionalmente úmida, exigindo uma mudança da roupa de cama aproximadamente uma vez por dia.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Muito úmido">
                 description = <"A pele fica frequentemente, mas não sempre úmida. Roupa de cama deve ser trocada aproximadamente 3 vezes em 24 horas.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Constantemente úmido">
                 description = <"A pele permanece úmida quase constantemente por suor, urina, etc.. A umidade é detectada sempre que o paciente é movido ou virado.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Caminha frequentemente">
                 description = <"Caminha fora do quarto pelo menos duas vezes por dia e dentro do quarto pelo menos uma vez a cada duas horas durante o período que está em vigília.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Caminha ocasionalmente">
                 description = <"Caminha ocasionalmente durante o dia, mas para distâncias muito curtas, com ou sem assistência. Fica a maior parte do tempo na cama ou na cadeira. OU fica a maior parte do dia em casa na cama ou na cadeira.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Cadeirante">
                 description = <"Habilidade para andar severamente limitada ou inexistente. Não pode sustentar o seu próprio peso e/ou deve ser assistido em cadeira ou cadeira de rodas.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Acamados">
                 description = <"Confinado na cama.">
             >
@@ -944,19 +944,19 @@ terminology
                 text = <"Umidade">
                 description = <"Grau ao qual a pele é exposta à umidade.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Sem prejuízo">
                 description = <"Responde aos comandos verbais. Não tem déficit sensorial que limite a capacidade de sentir ou verbalizar dor ou desconforto.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Um pouco limitada">
                 description = <"Responde a comandos verbais, mas não pode sempre comunicar o desconforto ou a necessidade de ser virado (mudança de decúbito). OU tem algum comprometimento sensorial que limita a capacidade de sentir dor ou desconforto em 1 ou 2 extremidades.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Muito limitada">
                 description = <"Responde apenas a estímulos dolorosos. Não pode comunicar o desconforto exceto por gemidos ou inquietação. OU tem uma deficiência sensorial que limita a capacidade de sentir dor ou desconforto em metade do corpo.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Completamente limitada">
                 description = <"Não responde (não geme, vacila ou compreende) a estímulos dolorosos, devido ao reduzido nível de consciência ou sedação. OU limitada capacidade de sentir dor na maior parte do corpo.">
             >
@@ -1007,47 +1007,47 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about the assessment of the Braden scale, not captured in other fields.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Excellent">
                 description = <"Eats most of every meal. Never refuses a meal. Usually eats a total of 4 or more servings of meat and dairy products. Occasionally eats between meals. Does not require supplementation.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Adequate">
                 description = <"Eats over half of most meals. Eats a total of 4 servings of protein (meat, dairy products per day. Occasionally will refuse a meal, but will usually take a supplement when offered OR is on a tube feeding or TPN regimen which probably meets most of their nutritional needs.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Probably inadequate">
                 description = <"Rarely eats a complete meal and generally eats only about 1/2 of any food offered. Protein intake includes only 3 servings of meat or dairy products per day. Occasionally will take a dietary supplement. OR receives less than optimum amount of liquid diet or tube feeding.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Very poor">
                 description = <"Never eats a complete meal. Rarely eats more than a 1/3 of any food offered. Eats 2 servings or less of protein (meat or dairy products) per day. Takes fluids poorly. Does not take a liquid dietary supplement. OR is NPO and/or maintained on clear liquids or IV's for more than 5 days.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"No limitation">
                 description = <"Makes major and frequent changes in position without assistance.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Slightly limited">
                 description = <"Makes frequent though slight changes in body or extremity position independently.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Very limited">
                 description = <"Makes occasional slight changes in body or extremity position but unable to make frequent or significant changes independently.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Completely immobile">
                 description = <"Does not make even slight changes in body or extremity position without assistance.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"No apparent problem">
                 description = <"Moves in bed and in chair independently and has sufficient muscle strength to lift up completely during move. Maintains good position in bed or chair.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Potential problem">
                 description = <"Moves feebly or requires minimum assistance. During a move skin probably slides to some extent against sheets, chair, restraints or other devices. Maintains relatively good position in chair or bed most of the time but occasionally slides down.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Problem">
                 description = <"Requires moderate to maximum assistance in moving. Complete lifting without sliding against sheets is impossible. Frequently slides down in bed or chair, requiring frequent repositioning with maximum assistance. Spasticity, contractures or agitation leads to almost constant friction.">
             >
@@ -1068,35 +1068,35 @@ terminology
                 text = <"Mobility">
                 description = <"Ability to change and control body position.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Rarely moist">
                 description = <"Skin is usually dry, linen only requires changing at routine intervals.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Occasionally moist">
                 description = <"Skin is occasionally moist, requiring an extra linen change approximately once a day.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Very moist">
                 description = <"Skin is often, but not always moist. Linen must be changed as often as 3 times in 24 hours.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Constantly moist">
                 description = <"Skin is kept moist almost constantly by perspiration, urine etc. Dampness is detected every time patient is moved or turned.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Walks frequently">
                 description = <"Walks outside room at least twice a day and inside room at least once every two hours during waking hours.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Walks occasionally">
                 description = <"Walks occasionally during day, but for very short distances, with or without assistance. Spends majority of each shift in bed or chair. OR spends majority of each day at home in bed or chair.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Chairfast">
                 description = <"Ability to walk severely limited or non-existent. Cannot bear own weight and/or must be assisted into chair or wheelchair.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Bedfast">
                 description = <"Confined to bed.">
             >
@@ -1108,19 +1108,19 @@ terminology
                 text = <"Moisture">
                 description = <"Degree to which skin is exposed to moisture.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"No impairment">
                 description = <"Responds to verbal commands. Has no sensory deficit which would limit ability to feel or voice pain or discomfort.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Slightly limited">
                 description = <"Responds to verbal commands, but cannot always communicate discomfort or the need to be turned. OR has some sensory impairment which limits ability to feel pain or discomfort in 1 or 2 extremities.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Very limited">
                 description = <"Responds only to painful stimuli. Cannot communicate discomfort except by moaning or restlessness. OR has a sensory impairment which limits the ability to feel pain or discomfort over 1/2 of body.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Completely limited">
                 description = <"Unresponsive (does not moan, flinch, or grasp) to painful stimuli, due to diminished level of consciousness or sedation. OR limited ability to feel pain over most of body.">
             >
@@ -1173,47 +1173,47 @@ terminology
                 text = <"注释">
                 description = <"结构化的风险评估内容当中并未采集/记录的，关于布雷登量表评估的其他文字叙述。">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"营养丰富">
                 description = <"大多数情况下能够吃完一顿饭。从不拒绝吃饭。通常，每天共计能进食4份或更多的肉类和乳制品。偶尔会在两餐之间进食。不需要服用膳食补充剂。">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"营养充足">
                 description = <"大多数情况下能够吃完一半以上的饭菜。每天共计能进食4份蛋白质（肉类、乳制品）。偶尔会拒绝一顿饭，但通常会服用所提供的膳食补充剂，或者是接受可能会满足其大部分营养需求的管饲或全胃肠外营养（total parenteral nutrition，TPN）方案。">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"可能不足">
                 description = <"很少彻底吃完一顿饭，且通常只能吃完所提供食物的约1/2。蛋白质摄入量仅仅是每天包含3份肉类或乳制品。偶尔会服用膳食补充剂。或者，能够接受低于最佳量的流质食物或管饲。">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"非常糟糕">
                 description = <"从来无法彻底吃完一顿饭。很少吃完超过1/3的任何食物。每天吃2份或更少的蛋白质（肉类或乳制品）。液体摄入不佳。无法服用液体膳食补充剂。或者，肠外营养（NPO）和/或清流食或维持静脉注射超过5天时间。">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"无任何限制">
                 description = <"在没有协助的情况下，能够大幅度而又频繁地变换身体或肢体的姿势/位置。">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"轻度有限">
                 description = <"能够独立地轻微但却频繁变换身体或肢体的姿势/位置。">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"非常有限">
                 description = <"偶尔会轻微变换身体或肢体的姿势/位置，但无法独立进行频繁或大幅度的变换。">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"完全无法变换体位">
                 description = <"在没有协助的情况下，无法轻微变换身体或肢体的姿势/位置。">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"无明显问题">
                 description = <"能够独立地在床榻上和椅子/轮椅上移动，且具有足够的肌肉力量，从而在移动过程中能够完全抬起身体/肢体。能够在床榻上和椅子/轮椅上保持良好的体位/姿势。">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"可能存在问题">
                 description = <"能够自由地移动或需要很少的协助。在移动的过程中，皮肤可能会在一定程度上摩擦着滑过床单、椅子/轮椅、约束物或其他的装置/物品。大多数时候，能够在椅子/轮椅或床榻上保持相对较好的体位/姿势，但偶尔也会滑下来。">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"存在问题">
                 description = <"移动时需要中等至大量的协助。无法在不在床单上滑动的情况下完全抬起身体/肢体。经常从床榻上或椅子/轮椅上滑下，且经常需要在给予大量协助的情况下重新恢复体位/姿势。痉挛、挛缩或躁动导致着几乎持续不断的摩擦。">
             >
@@ -1234,35 +1234,35 @@ terminology
                 text = <"体位变换能力">
                 description = <"改变和控制体位的能力。">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"很少潮湿">
                 description = <"皮肤通常为干燥状态，只需要常规定期更换床单。">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"偶尔潮湿">
                 description = <"皮肤偶尔会湿润，每天大约需要多更换一次床单。">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"非常潮湿">
                 description = <"皮肤往往处于潮湿状态，但并不总是如此。24小时内必须更换3次床单。">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"持续潮湿">
                 description = <"排汗、尿液等原因使皮肤几乎不断地保持着潮湿状态。每次移动患者或为其翻身时才会发现潮湿的情况。">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"经常行走">
                 description = <"每天至少两次在室外走动，且在醒着的时候，每两小时在室内至少行走一次。">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"偶尔行走">
                 description = <"在有或没有协助的情况下，白天偶有行走，但距离很近。每个班次的大部分时间都在床上或椅子/轮椅上。或者，每天在家里，大部分时间都躺在床上或坐在椅子/轮椅上。">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"受限于椅子或轮椅">
                 description = <"行走能力严重受限或完全不存在。不能承受自身的体重和/或必须给予辅助才能坐入椅子或轮椅。">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"卧床不起">
                 description = <"卧床不起；缠绵病榻；受限于病床之上。">
             >
@@ -1274,19 +1274,19 @@ terminology
                 text = <"潮湿">
                 description = <"皮肤的潮湿[暴露]程度。">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"无感觉障碍">
                 description = <"能够回应口头命令。没有会限制其疼痛或不适感觉或表达能力的感觉缺陷。">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"轻度受限">
                 description = <"能够回应口头命令，但并不一定总能表达不适或者说自己需要翻身。或者，存在某些程度的感觉障碍，限制了1个或2个肢体感觉疼痛或不适的能力。">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"非常受限">
                 description = <"仅对疼痛刺激有反应。除了呻吟或烦躁不安/辗转不安/躁动之外，无法表达不适。或者，存在感觉障碍，限制了1/2身体感觉疼痛或不适的能力。">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"完全受限">
                 description = <"由于意识水平减弱或镇静作用，对疼痛刺激无反应（无呻吟、退缩或抓握）。或者，大部分身体的疼痛感觉能力有限。">
             >
@@ -1307,33 +1307,33 @@ terminology
     term_bindings = <
         ["LOINC"] = <
             ["id5"] = <http://loinc.org/id/38222-6>
-            ["at6"] = <http://loinc.org/id/LA9603-7>
-            ["at7"] = <http://loinc.org/id/LA9605-4>
-            ["at8"] = <http://loinc.org/id/LA9605-2>
-            ["at9"] = <http://loinc.org/id/LA9606-0>
+            ["at5"] = <http://loinc.org/id/LA9603-7>
+            ["at6"] = <http://loinc.org/id/LA9605-4>
+            ["at7"] = <http://loinc.org/id/LA9605-2>
+            ["at8"] = <http://loinc.org/id/LA9606-0>
             ["id10"] = <http://loinc.org/id/38229-1>
             ["id11"] = <http://loinc.org/id/38223-4>
-            ["at12"] = <http://loinc.org/id/LA6742-6>
-            ["at13"] = <http://loinc.org/id/LA9611-0>
-            ["at14"] = <http://loinc.org/id/LA9612-8>
-            ["at15"] = <http://loinc.org/id/LA9613-6>
-            ["at16"] = <http://loinc.org/id/LA9607-8>
-            ["at17"] = <http://loinc.org/id/LA9608-6>
-            ["at18"] = <http://loinc.org/id/LA9609-4>
-            ["at19"] = <http://loinc.org/id/LA9610-2>
+            ["at11"] = <http://loinc.org/id/LA6742-6>
+            ["at12"] = <http://loinc.org/id/LA9611-0>
+            ["at13"] = <http://loinc.org/id/LA9612-8>
+            ["at14"] = <http://loinc.org/id/LA9613-6>
+            ["at15"] = <http://loinc.org/id/LA9607-8>
+            ["at16"] = <http://loinc.org/id/LA9608-6>
+            ["at17"] = <http://loinc.org/id/LA9609-4>
+            ["at18"] = <http://loinc.org/id/LA9610-2>
             ["id20"] = <http://loinc.org/id/38224-2>
             ["id21"] = <http://loinc.org/id/38225-9>
             ["id22"] = <http://loinc.org/id/38226-7>
             ["id23"] = <http://loinc.org/id/38227-5>
-            ["at24"] = <http://loinc.org/id/LA9617-7>
-            ["at25"] = <http://loinc.org/id/LA9618-5>
-            ["at26"] = <http://loinc.org/id/LA9619-3>
-            ["at27"] = <http://loinc.org/id/LA9614-4>
-            ["at30"] = <http://loinc.org/id/LA120-8>
-            ["at31"] = <http://loinc.org/id/LA9615-1>
-            ["at32"] = <http://loinc.org/id/LA9616-9>
-            ["at33"] = <http://loinc.org/id/LA8913-1>
-            ["at34"] = <http://loinc.org/id/LA9206-9>
+            ["at23"] = <http://loinc.org/id/LA9617-7>
+            ["at24"] = <http://loinc.org/id/LA9618-5>
+            ["at25"] = <http://loinc.org/id/LA9619-3>
+            ["at26"] = <http://loinc.org/id/LA9614-4>
+            ["at29"] = <http://loinc.org/id/LA120-8>
+            ["at30"] = <http://loinc.org/id/LA9615-1>
+            ["at31"] = <http://loinc.org/id/LA9616-9>
+            ["at32"] = <http://loinc.org/id/LA8913-1>
+            ["at33"] = <http://loinc.org/id/LA9206-9>
         >
         ["SNOMED-CT"] = <
             ["id1"] = <http://snomed.info/id/413139004>
@@ -1343,26 +1343,26 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at12", "at13", "at14", "at15">
+            members = <"at11", "at12", "at13", "at14">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at16", "at17", "at18", "at19">
+            members = <"at15", "at16", "at17", "at18">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9">
+            members = <"at5", "at6", "at7", "at8">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at24", "at25", "at26">
+            members = <"at23", "at24", "at25">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at31", "at32", "at33", "at34">
+            members = <"at30", "at31", "at32", "at33">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at27", "at28", "at29", "at30">
+            members = <"at26", "at27", "at28", "at29">
         >
     >

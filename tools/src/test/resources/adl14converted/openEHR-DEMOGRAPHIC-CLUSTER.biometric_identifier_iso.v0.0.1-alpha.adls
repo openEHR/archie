@@ -117,67 +117,67 @@ terminology
                 text = <"Tipo (synthesised)">
                 description = <"Tipo do identificador biométrico (synthesised)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Desconhecido">
                 description = <"Desconhecido">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"DNA">
                 description = <"DNA">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Tipo sanguíneo (incluindo fator RH)">
                 description = <"Tipo sanguíneo (incluindo fator RH)">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Andar">
                 description = <"Andar">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Imagem térmica da mão">
                 description = <"Imagem térmica da mão">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Imagem térmica da face">
                 description = <"Imagem térmica da face">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Movimento dos lábios">
                 description = <"Movimento dos lábios">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Dinâmica da digitação">
                 description = <"Dinâmica da digitação">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Dinâmica da assinatura">
                 description = <"Dinâmica da assinatura">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Geometria da mão">
                 description = <"Geometria da mão">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Retina">
                 description = <"Retina">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Íris">
                 description = <"Íris">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Voz">
                 description = <"Voz">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Características faciais">
                 description = <"Características faciais">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Impressão digital - plana">
                 description = <"Impressão digital - plana">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Impressão digital - rolada">
                 description = <"Impressão digital - rolada">
             >
@@ -235,67 +235,67 @@ terminology
                 text = <"Type of biometric (synthesised)">
                 description = <"Identification of the type of biometric identifier described by this set of data (synthesised)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Unknown">
                 description = <"Unknown">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"DNA">
                 description = <"DNA">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Blood type (including rh factor)">
                 description = <"Blood type (including rh factor)">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Gait">
                 description = <"Gait">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Thermal hand image">
                 description = <"Thermal hand image">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Thermal face image">
                 description = <"Thermal face image">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Lip movement">
                 description = <"Lip movement">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Keystroke dynamics">
                 description = <"Keystroke dynamics">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Signature dynamics">
                 description = <"Signature dynamics">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Hand geometry">
                 description = <"Hand geometry">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Retina">
                 description = <"Retina">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Iris">
                 description = <"Iris">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Voice">
                 description = <"Voice">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Facial features">
                 description = <"Facial features">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Finger print—flat">
                 description = <"Finger print—flat">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Finger print—rolled">
                 description = <"Finger print—rolled">
             >
@@ -352,6 +352,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at21", "at22", "at23", "at24", "at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33", "at34", "at35", "at36">
+            members = <"at20", "at21", "at22", "at23", "at24", "at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33", "at34", "at35">
         >
     >

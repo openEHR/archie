@@ -55,10 +55,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9002] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -67,10 +67,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9003] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -79,10 +79,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9004] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -91,10 +91,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -103,10 +103,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -115,10 +115,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -127,10 +127,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -139,10 +139,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -151,10 +151,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
                                                 }
                                             }
                                         }
@@ -215,19 +215,19 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Extremely difficult">
                 description = <"The individual found it extremely difficult to work, take care of things at home or get along with other people.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Very difficult">
                 description = <"The individual found it very difficult to work, take care of things at home or get along with other people.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Somewhat difficult">
                 description = <"The individual found it somewhat difficult to work, take care of things at home or get along with other people.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"No difficulty at all">
                 description = <"The individual found no difficulty working, taking care of things at home or getting along with other people.">
             >
@@ -284,19 +284,19 @@ terminology
                 description = <"Over the last two weeks, how often have you been bothered by feeling down, depressed, or hopeless?">
                 comment = <"Adapted for Australian indigenous use: \"Have you been feeling unhappy, depressed, really no good, that your spirit was sad?\"">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Nearly every day">
                 description = <"The topic of the question has affected the subject nearly every day during the last two weeks.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"More than half the days">
                 description = <"The topic of the question has affected the subject more than half the days during the last two weeks.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Several days">
                 description = <"The topic of the question has affected the subject on several days during the last two weeks.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Not at all">
                 description = <"The topic of the question has not affected the subject at all during the last two weeks.">
             >
@@ -318,10 +318,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at21", "at22", "at23", "at24">
+            members = <"at20", "at21", "at22", "at23">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9">
+            members = <"at5", "at6", "at7", "at8">
         >
     >

@@ -474,23 +474,23 @@ terminology
                 text = <"Bereitstellung klinischer Informationen">
                 description = <"Beschreibung der zum Zeitpunkt der Interpretation der Ergebnisse verfügbaren klinischen Informationen. Diese können einen Verweis zu den ursprünglichen klinischen Informationen, die im Untersuchungsauftrag angegeben sind, enthalten.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Storniert / Abgebrochen">
                 description = <"Das Ergebnis ist nicht vorhanden, da die Untersuchung nicht begonnen oder beendet wurde.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Abgeändert">
                 description = <"Das Ergebnis wurde nach der Finalisierung geändert und ist vollständig und vom Radiologen verifiziert.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Final">
                 description = <"Das Ergebnis ist komplett und durch den zuständigen Radiologen verifiziert.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Vorläufig">
                 description = <"Dies ist ein Erst- oder Zwischenergebnis: Daten können fehlen oder die Verifizierung wurde noch nicht durchgeführt.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Registriert">
                 description = <"Das Ergebnis ist zurzeit noch nicht verfügbar.">
             >
@@ -702,23 +702,23 @@ terminology
                 text = <"Medfølgende klinisk informasjon">
                 description = <"Beskrivelse av den tilgjengelige kliniske informasjon på tidspunkt for tolkning av resultatene og som kan lenkes til det originale kliniske informasjon som ble gitt i rekvisisjonen.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Kansellert/avbestilt">
                 description = <"Resultatet er ikke tilgjengelig da undersøkelsen ikke er startet eller ikke er avsluttet.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Endret">
                 description = <"Resultatet er blitt modifisert etter ferdigstilling og er komplett og verifisert av ansvarlig radiolog.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Endelig resultat">
                 description = <"Resultatet er komplett og verifisert av ansvarlig radiolog.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Midlertidig">
                 description = <"Dette er et midlertidig resultat. Data kan mangle eller verifisering er ikke utført.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Registrert">
                 description = <"Resultatet er ikke tilgjengelig ennå.">
             >
@@ -930,23 +930,23 @@ terminology
                 text = <"Clinical information provided">
                 description = <"Description of clinical information available at the time of interpretation of results, and which may a link to the original clinical information provided in the examination request.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Cancelled / Aborted">
                 description = <"The result is not available because the examination was not started or completed.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Amended">
                 description = <"The result has been modified subsequent to being Final, and is complete and verified by the radiologist.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Final">
                 description = <"The result is complete and verified by the responsible radiologist.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Interim">
                 description = <"This is an initial or interim result: data may be missing or verification not been performed.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Registered">
                 description = <"No result yet available.">
             >
@@ -999,6 +999,6 @@ terminology
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at10", "at11", "at12", "at13", "at14">
+            members = <"at9", "at10", "at11", "at12", "at13">
         >
     >

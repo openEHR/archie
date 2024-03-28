@@ -49,12 +49,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9001] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}],
-                                                    [{4}, {[at10]}],
-                                                    [{5}, {[at11]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}],
+                                                    [{4}, {[at9]}],
+                                                    [{5}, {[at10]}]
                                                 }
                                             }
                                         }
@@ -90,27 +90,27 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Very severe disease">
                 description = <"Severe erythema and severe papulation/infiltration with oozing/crusting.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Severe disease">
                 description = <"Severe erythema and severe papulation/infiltration.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Moderate disease">
                 description = <"Moderate erythema and moderate papulation/infiltration.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Mild disease">
                 description = <"Mild erythema and mild papulation/infiltration.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Almost clear">
                 description = <"Just perceptible erythema and just perceptible papulation/infiltration.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Clear">
                 description = <"No inflammatory signs of atopic dermatitis.">
             >
@@ -132,6 +132,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10", "at11">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10">
         >
     >

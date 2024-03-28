@@ -240,19 +240,19 @@ terminology
                 text = <"Accuracy">
                 description = <"The qualitative precision of the amount of the food item.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Observation">
                 description = <"The amount of food was recorded at the time of consumption.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Memory">
                 description = <"The amount of food was recorded from memory.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Measured">
                 description = <"Actual measurement of the amount of the food item.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Estimated">
                 description = <"An approximation of the amount of the food item.">
             >
@@ -330,10 +330,10 @@ terminology
     value_sets = <
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at19", "at20">
+            members = <"at18", "at19">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at21", "at22">
+            members = <"at20", "at21">
         >
     >

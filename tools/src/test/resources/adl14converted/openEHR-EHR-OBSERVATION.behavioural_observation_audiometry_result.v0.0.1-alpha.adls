@@ -254,31 +254,31 @@ terminology
                 text = <"Calibration reference dB (synthesised)">
                 description = <"Scale used for acoustic calibration of the test signal. (synthesised)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Head turn">
                 description = <"Baby turns head in response to stimulus.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Eye response">
                 description = <"Eye widening, eye movement or eye turn.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Stilling">
                 description = <"Baby ceases current activity.">
             >
-            ["at59"] = <
+            ["at58"] = <
                 text = <"Arousal">
                 description = <"Baby has heightened state of arousal in response to the stimulus.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"No response">
                 description = <"*">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Auropalpebral reflex">
                 description = <"An involuntary blink of the eye caused by contraction of the orbicularis oculi muscle in response to loud sounds.">
             >
-            ["at56"] = <
+            ["at55"] = <
                 text = <"Startle reflex">
                 description = <"Moro reflex in response to stimulus.">
             >
@@ -286,15 +286,15 @@ terminology
                 text = <"Response">
                 description = <"*">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Headphone">
                 description = <"The stimulus is presented via external headphones - either circumaural or supraaural.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Insert earphone">
                 description = <"The stimulus is presented via insert earphones.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Soundfield">
                 description = <"The stimulus is presented via a loudspeaker located at least one metre away from the subject.">
             >
@@ -302,15 +302,15 @@ terminology
                 text = <"Air presentation">
                 description = <"Presentation of the air conduction test stimulus indirectly to the inner ear through the atmosphere, via the auditory canal and middle ear structures.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"dB A">
                 description = <"The test stimuli are calibrated using the A-weighted scale.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"dB HL">
                 description = <"The test stimuli are calibrated using the hearing level scale.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"dB SPL">
                 description = <"The test stimuli are calibrated using the sound pressure level scale.">
             >
@@ -318,11 +318,11 @@ terminology
                 text = <"Calibration reference dB">
                 description = <"Scale used for acoustic calibration of the test signal.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Clinically significant">
                 description = <"The background noise may compromise test results.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Not clinically significant">
                 description = <"The background noise is not likely to compromise test results.">
             >
@@ -331,11 +331,11 @@ terminology
                 description = <"The amount and nature of noise in the environment that may influence the test results.">
                 comment = <"If testing is conducted in an audiometric booth, this data element is redundant.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Non-sound treated room">
                 description = <"Test environment that does not meet audiometric standards for ambient noise.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Audiometric booth">
                 description = <"Sound-treated test environment that meets audiometric standards for ambient noise.">
             >
@@ -343,15 +343,15 @@ terminology
                 text = <"Test environment">
                 description = <"The environment in which the test is administered.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Crying">
                 description = <"The child was crying.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Quiet and alert">
                 description = <"The child was awake, quiet and alert.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Light sleep">
                 description = <"The child was lightly sleeping.">
             >
@@ -436,26 +436,26 @@ terminology
     value_sets = <
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at48", "at49", "at50">
+            members = <"at47", "at48", "at49">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at58", "at59", "at60", "at61", "at62", "at57", "at56">
+            members = <"at57", "at58", "at59", "at60", "at61", "at56", "at55">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at46", "at45">
+            members = <"at45", "at44">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at42", "at43">
+            members = <"at41", "at42">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at52", "at53", "at54">
+            members = <"at51", "at52", "at53">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at38", "at39", "at40">
+            members = <"at37", "at38", "at39">
         >
     >

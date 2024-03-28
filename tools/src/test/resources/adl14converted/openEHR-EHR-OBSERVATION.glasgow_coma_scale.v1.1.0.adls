@@ -202,10 +202,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9004] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at11]}],
-                                                    [{2}, {[at12]}],
-                                                    [{3}, {[at13]}],
-                                                    [{4}, {[at14]}]
+                                                    [{1}, {[at10]}],
+                                                    [{2}, {[at11]}],
+                                                    [{3}, {[at12]}],
+                                                    [{4}, {[at13]}]
                                                 }
                                             }
                                         }
@@ -219,11 +219,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at15]}],
-                                                    [{2}, {[at16]}],
-                                                    [{3}, {[at17]}],
-                                                    [{4}, {[at18]}],
-                                                    [{5}, {[at19]}]
+                                                    [{1}, {[at14]}],
+                                                    [{2}, {[at15]}],
+                                                    [{3}, {[at16]}],
+                                                    [{4}, {[at17]}],
+                                                    [{5}, {[at18]}]
                                                 }
                                             }
                                         }
@@ -237,12 +237,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at20]}],
-                                                    [{2}, {[at21]}],
-                                                    [{3}, {[at22]}],
-                                                    [{4}, {[at23]}],
-                                                    [{5}, {[at24]}],
-                                                    [{6}, {[at25]}]
+                                                    [{1}, {[at19]}],
+                                                    [{2}, {[at20]}],
+                                                    [{3}, {[at21]}],
+                                                    [{4}, {[at22]}],
+                                                    [{5}, {[at23]}],
+                                                    [{6}, {[at24]}]
                                                 }
                                             }
                                         }
@@ -343,63 +343,63 @@ terminology
                 description = <"Poängsumman av klassificeringstalen som registrerats av reaktionen för var och en av de tre komponenterna.">
                 comment = <"Totalpoängen kan härledas som summan av de tre svarskomponenterna och i så fall bör det valideras av det kliniska informationssystemet mot de individuella poängen som matats in av behandlande läkare för att säkerställa att det inte finns någon konflikt eller inkonsekvens. Rapportera inte en totalpoäng när en eller flera komponenter inte kan testas eftersom poängen blir artificiellt låg – om så är fallet, registrera EVM-profilen.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Lyder kommando">
                 description = <"Lyder uppmaning om rörelse.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Lokalisering">
                 description = <"Ändamålsenlig böjning efter smärtstimulering, t.ex. lägger handen över nyckelbenet vid supra-orbitaltryck.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Normal böjning">
                 description = <"Snabb böjning som reaktion på stimulering, men som har ett övervägande normalt utseende. T.ex.: böjning av handleden vid tillämpning av supra-orbitaltryck: drar sig undan när fingernagelbädden nyps.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Onormal böjning">
                 description = <"Långsam, dekortikeringsstelhet vid böjning av armar och/eller ben, t.ex. böjer armen i armbågen, men funktionen är huvudsakligen onormal.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Utsträckning">
                 description = <"Decerebrat utsträckning av armar och/eller ben som reaktion på stimulering, t.ex. sträcker ut armen från armbågen.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Ingen">
                 description = <"Ingen rörelse i armar/ben, ingen störande faktor, t.ex. förlamad.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Fullt orienterad">
                 description = <"Återger namn, plats och datum korrekt.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Desorienterad">
                 description = <"Desorienterad men kommunicerar sammanhängande.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Ord">
                 description = <"Uttrycker enstaka begripliga ord.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Ljud">
                 description = <"Bara stönar/jämrar sig.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Ingen">
                 description = <"Ingen hörbar reaktion, ingen störande faktor, t.ex. intubation eller total dövhet.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Spontan">
                 description = <"Ögonöppning före stimulans.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Till ljud">
                 description = <"Ögonöppning efter talad eller ropad uppmaning. Bör inte förväxlas med väckning av en sovande person.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Till tryck">
                 description = <"Ögonöppning efter fingertoppstimulans.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Ingen">
                 description = <"Ingen ögonöppning vid någon tidpunkt, ingen störande faktor, t.ex. stängda ögon p.g.a. lokal svullnad.">
             >
@@ -469,63 +469,63 @@ terminology
                 description = <"La suma de los puntajes ordinales registradas para cada una de las respuestas a los tres componentes.">
                 comment = <"El Puntaje Total puede ser calculado como la suma de las elementos de las tres respuestas y, si así fuera, debe ser validado por la información clínica del sistema frente a los puntajes individuales anotados por el clínico de modo que se pueda segurar la ausencia de conflictos o inconsistencias. No se debe registrar un puntaje total cuando uno o más componentes no pudo ser evaluado dado que el puntaje resultante sería artificialmente bajo. En esta situación se debe registrar el perfil OVM.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Obedece órdenes">
                 description = <"Realiza movimientos en respuesta a órdenes verbales.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Localización">
                 description = <"Flexión volitiva frente al estímulo doloroso. Por ejemplo: acerca el brazo a la clavícula ante la aplicación de presión supraorbitaria.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Flexión normal">
                 description = <"Flexión rápida en respuesta a estímulo pero de características predominantemente normales. Por ejemplo: flexión de la muñeca cuando se aplica presión supraorbitaria; retira parte del cuerpo ante un pinchazo.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Flexión anormal">
                 description = <"Flexión de brazos y/o piernas en forma lenta con patrón de decorticación. Por ejemplo, flexiona el brazo a nivel del codo pero de modo predominantemente anormal.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Extensión">
                 description = <"Respuesta extensora de descerebración en piernas y/o brazos en respuesta al estímulo. Por ejemplo: extiende el brazo a nivel del codo.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Ninguna">
                 description = <"Sin movimientos de brazos o piernas, siempre y cuando no existan factores de interferencia (por ejemplo, parálisis).">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Orientado">
                 description = <"Proporciona correctamente su nombre, el lugar y la fecha.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Confuso">
                 description = <"Desorientado pero se comunica en forma coherente.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Palabras">
                 description = <"Palabras simples e inteligibles.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Sonidos">
                 description = <"Solo lamentos o gruñidos.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Ninguna">
                 description = <"Sin respuesta audible, siempre y cuando no existan factores de interferencia (por ejemplo, intubación o sordera profunda).">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Espontanea">
                 description = <"Ojos abiertos sin necesidad de estímulos.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Al sonido">
                 description = <"Apertura ocular como respuesta al habla o grito del operador. No debe confundirse con el despertar de una persona dormida.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"A la presión">
                 description = <"Apertura ocular como respuesta al estimulo utilizando las puntas de los dedos del operador.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Ninguna">
                 description = <"Sin apertura ocular en momento alguno, siempre y cuando no existan factores de interferencia (por ejemplo, ojos cerrados por inflamación local)">
             >
@@ -596,63 +596,63 @@ terminology
                 description = <"Sum av verdiene som er registrert for hver enkelt av de tre undersøkelsesdelene.">
                 comment = <"Totalskåren kan regnes ut ved å summere de tre undersøkelsesdelene. Totalskår skal ikke regnes ut når en eller flere undersøkelsesdeler ikke er mulig å gjennomføre, fordi skåren da vil bli kunstig lav. I disse situasjonene skal ØVM-profilen registreres.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Følger oppfordringer">
                 description = <"Følger verbal oppfordring for bevegelse.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Lokaliserer smerte">
                 description = <"Målrettet fleksjon mot smertestimuli. For eksempel kan hånden løftes til over kragebeinet når det utføres supraorbitalt trykk.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Normal fleksjon">
                 description = <"Hurtig fleksjon som respons på stimuli, men trekkene er hovedsakelig normale. For eksempel kan håndleddet bøyes når det utføres supraorbitalt trykk, eller lemmet trekkes til seg ved trykk på negleroten.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Abnormal fleksjon">
                 description = <"Sakte, decortikert fleksjon av armer og/eller bein. For eksempel kan armen bøyes ved albuen, men trekkene er hovedsakelig abnormale.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Ekstensjon ved smerte">
                 description = <"Decerebrert ekstensjon av armer og/eller bein som respons på stimuli. For eksempel kan armen ekstenderes ved albuen.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Ingen reaksjon">
                 description = <"Ingen bevegelse i armer/bein, ingen forstyrrende faktorer som for eksempel lammelser.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Orientert">
                 description = <"Oppgir riktig navn, sted og dato.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Forvirret, desorientert">
                 description = <"Ikke orientert men kommuniserer sammenhengende.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Usammenhengende tale">
                 description = <"Forståelige enkeltord.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Uforståelige lyder">
                 description = <"Bare stønning/jamring.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Ingen reaksjon">
                 description = <"Ingen hørbar respons og ingen forstyrrende faktorer, som for eksempel intubasjon eller døvhet.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Spontant">
                 description = <"Øyne åpnes spontant uten stimuli.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Ved tiltale">
                 description = <"Øynene åpnes ved tiltale eller ved roping. Må ikke forveksles med vekking av en sovende person.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Ved smertestimulering">
                 description = <"Åpner øynene etter stimulering av fingertuppen.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Ingen reaksjon">
                 description = <"Øynene åpnes ikke, ingen forstyrrende faktorer som for eksempel lukkede øyne på grunn av lokal hevelse.">
             >
@@ -722,63 +722,63 @@ terminology
                 description = <"A soma dos pontos referentes a cada componente testado.">
                 comment = <"O Score Total pode ser obtido através da soma da resposta dos três elementos, como também, pode ser validado pelos sistemas de informações clínicas contra scores registrados por clínicos para garantir ausência de conflitos ou inconsistências. Não relatar um score total quando um ou mais dos componentes não forem testados porque o score ficará artificialmente baixo - nesta situação registrar o perfil OVM.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Obedece comandos">
                 description = <"Segue uma ordem para movimento.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Localiza">
                 description = <"Flexão organizada em resposta a estímulo doloroso. Por exemplo: traz a mão para tentar retirar a fonte do estímulo.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Flexão normal">
                 description = <"Flexão rápida em resposta ao estímulo, normal. Por exemplo: retirada da mão quando estimulado o leito ungueal.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Flexão anormal">
                 description = <"Postura em decorticação, lenta, de braços e/ou pernas. Por exemplo: flexão do cotovelo porém predominantemente anormal.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Extensão">
                 description = <"Postura em descerebração de braços e pernas em resposta ao estímulo. Extensão do antebraço e cotovelo.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Ausente">
                 description = <"Ausência de movimento de braços e pernas na ausência de fatores interferentes. Por exemplo: paralisia.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Orientado">
                 description = <"Diz o nome, local e data corretamente.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Confuso">
                 description = <"Desorientado mas comunica-se coerentemente.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Palavras">
                 description = <"Palavras inteligíveis.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Sons">
                 description = <"Apenas gemidos, grunhidos, sons incompreensíveis.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Ausente">
                 description = <"Ausência de resposta audível na ausência de fatores interferentes. Por exemplo: intubação orotraqueal ou surdez.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Espontânea">
                 description = <"Olhos abertos mesmo antes de qualquer estímulo.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"A sons">
                 description = <"Abertura ocular após solicitação oral. Não confundir com despertar de uma pessoa dormindo.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"À pressão">
                 description = <"Abertura ocular após estímulo digital.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Ausente">
                 description = <"Ausência de abertura ocular em qualquer momento, na ausência de fatores interferentes. Por exemplo: olhos fechados por edema local.">
             >
@@ -848,63 +848,63 @@ terminology
                 description = <"*The sum of the ordinal scores recorded for each of the three component responses.(en)">
                 comment = <"*The Total Score may be derived as the sum of the three response data elements and, if so, should be validated by the clinical information system against the individual scores entered by the clinician to ensure there is no conflict or inconsistency. Do not report a total score when one or more components are not testable because the score will be artificially low - in this situation record the EVM profile.(en)">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"*Obeys commands(en)">
                 description = <"*Follows verbal request for movement.(en)">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"*Localising(en)">
                 description = <"*Purposeful flexion towards painful stimuli. For example: brings hand above the clavicle when supra-orbital pressure is applied.(en)">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"*Normal flexion(en)">
                 description = <"*Rapid flexion in response to stimuli but features predominantly normal. For example: flexion of wrist when supra-orbital pressure applied; pulls part of body away when nailbed pinched.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Abnormal flexion(en)">
                 description = <"*Slow, decorticate flexion of arms and/or legs. For example: bends arm at elbow,  but features predominantly abnormal.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Extension(en)">
                 description = <"*Decerebrate extension of arms and/or legs in response to stimuli. For example: extends arm at elbow.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*None(en)">
                 description = <"*No movement in arms/legs, no interfering factor. For example: paralysed.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Orientated(en)">
                 description = <"*Correctly gives name, place and date.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Confused(en)">
                 description = <"*Not orientated but communicates coherently.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Words(en)">
                 description = <"*Intelligible single words.(en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Sounds(en)">
                 description = <"*Only moans/groans.(en)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"*None(en)">
                 description = <"*No audible response, no interfering factor. For example: intubation; profound deafness.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Spontaneous(en)">
                 description = <"*Eyes open before stimulus.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*To sound(en)">
                 description = <"*Eyes opening after spoken or shouted request. Not to be confused with wakening of a sleeping person.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*To pressure(en)">
                 description = <"*Eyes opening after finger tip stimulus.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*None(en)">
                 description = <"*No eye opening at any time, no interfering factor. For example: eyes closed by local swelling.(en)">
             >
@@ -974,63 +974,63 @@ terminology
                 description = <"The sum of the ordinal scores recorded for each of the three component responses.">
                 comment = <"The Total Score may be derived as the sum of the three response data elements and, if so, should be validated by the clinical information system against the individual scores entered by the clinician to ensure there is no conflict or inconsistency. Do not report a total score when one or more components are not testable because the score will be artificially low - in this situation record the EVM profile.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Obeys commands">
                 description = <"Follows verbal request for movement.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Localising">
                 description = <"Purposeful flexion towards painful stimuli. For example: brings hand above the clavicle when supra-orbital pressure is applied.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Normal flexion">
                 description = <"Rapid flexion in response to stimuli but features predominantly normal. For example: flexion of wrist when supra-orbital pressure applied; pulls part of body away when nailbed pinched.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Abnormal flexion">
                 description = <"Slow, decorticate flexion of arms and/or legs. For example: bends arm at elbow, but features predominantly abnormal.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Extension">
                 description = <"Decerebrate extension of arms and/or legs in response to stimuli. For example: extends arm at elbow.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"None">
                 description = <"No movement in arms/legs, no interfering factor. For example: paralysed.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Orientated">
                 description = <"Correctly gives name, place and date.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Confused">
                 description = <"Not orientated but communicates coherently.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Words">
                 description = <"Intelligible single words.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Sounds">
                 description = <"Only moans/groans.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"None">
                 description = <"No audible response, no interfering factor. For example: intubation; profound deafness.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Spontaneous">
                 description = <"Eyes open before stimulus.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"To sound">
                 description = <"Eyes opening after spoken or shouted request. Not to be confused with wakening of a sleeping person.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"To pressure">
                 description = <"Eyes opening after finger tip stimulus.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"None">
                 description = <"No eye opening at any time, no interfering factor. For example: eyes closed by local swelling.">
             >
@@ -1067,14 +1067,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at15", "at16", "at17", "at18", "at19">
+            members = <"at14", "at15", "at16", "at17", "at18">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12", "at13", "at14">
+            members = <"at10", "at11", "at12", "at13">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at20", "at21", "at22", "at23", "at24", "at25">
+            members = <"at19", "at20", "at21", "at22", "at23", "at24">
         >
     >

@@ -120,11 +120,11 @@ terminology
                 text = <"Tesla level">
                 description = <"The tested MRI Tesla safety level.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Non-cemented">
                 description = <"Non-cemented.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Cemented">
                 description = <"Cemented.">
             >
@@ -182,6 +182,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at15", "at16">
+            members = <"at14", "at15">
         >
     >

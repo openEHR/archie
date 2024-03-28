@@ -80,8 +80,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at11]}],
-                                                    [{1}, {[at12]}]
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}]
                                                 }
                                             }
                                         }
@@ -90,8 +90,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at13]}],
-                                                    [{1}, {[at14]}]
+                                                    [{0}, {[at12]}],
+                                                    [{1}, {[at13]}]
                                                 }
                                             }
                                         }
@@ -100,9 +100,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at15]}],
-                                                    [{1}, {[at16]}],
-                                                    [{2}, {[at17]}]
+                                                    [{0}, {[at14]}],
+                                                    [{1}, {[at15]}],
+                                                    [{2}, {[at16]}]
                                                 }
                                             }
                                         }
@@ -111,8 +111,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at18]}],
-                                                    [{1}, {[at19]}]
+                                                    [{0}, {[at17]}],
+                                                    [{1}, {[at18]}]
                                                 }
                                             }
                                         }
@@ -121,9 +121,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at20]}],
-                                                    [{1}, {[at21]}],
-                                                    [{2}, {[at22]}]
+                                                    [{0}, {[at19]}],
+                                                    [{1}, {[at20]}],
+                                                    [{2}, {[at21]}]
                                                 }
                                             }
                                         }
@@ -184,51 +184,51 @@ terminology
                 text = <"*Total score(en)">
                 description = <"*Sum of the individual scores assigned for each of the contributing variables.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*≥60 minutes(en)">
                 description = <"**(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"10-59 minuter">
                 description = <"*">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"<10 minuter">
                 description = <"*">
             >
-            ["at19"] = <
-                text = <"Föreligger">
-                description = <"*">
-            >
             ["at18"] = <
-                text = <"Frånvarande">
+                text = <"Föreligger">
                 description = <"*">
             >
             ["at17"] = <
-                text = <"Ensidig svaghet">
-                description = <"*">
-            >
-            ["at16"] = <
-                text = <"Språkrubbning utan ensidig svaghet">
-                description = <"*">
-            >
-            ["at15"] = <
-                text = <"Andra symtom">
-                description = <"*">
-            >
-            ["at14"] = <
-                text = <"Föreligger">
-                description = <"*">
-            >
-            ["at13"] = <
                 text = <"Frånvarande">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at16"] = <
+                text = <"Ensidig svaghet">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Språkrubbning utan ensidig svaghet">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Andra symtom">
+                description = <"*">
+            >
+            ["at13"] = <
                 text = <"Föreligger">
                 description = <"*">
             >
+            ["at12"] = <
+                text = <"Frånvarande">
+                description = <"*">
+            >
             ["at11"] = <
+                text = <"Föreligger">
+                description = <"*">
+            >
+            ["at10"] = <
                 text = <"Frånvarande">
                 description = <"*">
             >
@@ -291,51 +291,51 @@ terminology
                 text = <"Total score">
                 description = <"Sum of the individual scores assigned for each of the contributing variables.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"≥60 minutes">
                 description = <"*">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"10-59 minutes">
                 description = <"*">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"<10 minutes">
                 description = <"*">
             >
-            ["at19"] = <
-                text = <"Present">
-                description = <"*">
-            >
             ["at18"] = <
-                text = <"Absent">
+                text = <"Present">
                 description = <"*">
             >
             ["at17"] = <
-                text = <"Unilateral weakness">
-                description = <"*">
-            >
-            ["at16"] = <
-                text = <"Speech disturbance without focal weakness">
-                description = <"*">
-            >
-            ["at15"] = <
-                text = <"Other symptoms">
-                description = <"*">
-            >
-            ["at14"] = <
-                text = <"Present">
-                description = <"*">
-            >
-            ["at13"] = <
                 text = <"Absent">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at16"] = <
+                text = <"Unilateral weakness">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Speech disturbance without focal weakness">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Other symptoms">
+                description = <"*">
+            >
+            ["at13"] = <
                 text = <"Present">
                 description = <"*">
             >
+            ["at12"] = <
+                text = <"Absent">
+                description = <"*">
+            >
             ["at11"] = <
+                text = <"Present">
+                description = <"*">
+            >
+            ["at10"] = <
                 text = <"Absent">
                 description = <"*">
             >
@@ -372,22 +372,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at15", "at16", "at17">
+            members = <"at14", "at15", "at16">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at13", "at14">
+            members = <"at12", "at13">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12">
+            members = <"at10", "at11">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at20", "at21", "at22">
+            members = <"at19", "at20", "at21">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at18", "at19">
+            members = <"at17", "at18">
         >
     >

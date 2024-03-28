@@ -148,23 +148,23 @@ terminology
                 text = <"Reading Addition Power">
                 description = <"The difference in spherical power between distance and near corrections.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Base oblique">
                 description = <"The prism base is directed obliquely.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Base down">
                 description = <"The prism base is directed downwards.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Base up">
                 description = <"The prism base is directed upwards.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Base out">
                 description = <"The prism base is directed outwards.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Base in">
                 description = <"The prism base is directed inwards.">
             >
@@ -214,6 +214,6 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at10", "at11", "at12", "at13", "at14">
+            members = <"at9", "at10", "at11", "at12", "at13">
         >
     >

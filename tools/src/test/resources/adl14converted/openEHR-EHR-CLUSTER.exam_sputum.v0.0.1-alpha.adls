@@ -193,15 +193,15 @@ terminology
                 text = <"Presence (synthesised)">
                 description = <"The identified finding visible in the sputum. (synthesised)">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Froth">
                 description = <"Small air bubbles.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Foreign body">
                 description = <"Abnormal, non-physiological object.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Mucus plug">
                 description = <"Collection of abnormally thick mucus.">
             >
@@ -213,11 +213,11 @@ terminology
                 text = <"Other findings">
                 description = <"Other identified findings in the sputum.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Old blood">
                 description = <"The sputum contains dark red to black blood.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Fresh blood">
                 description = <"The sputum contains bright red blood.">
             >
@@ -225,11 +225,11 @@ terminology
                 text = <"Age of blood">
                 description = <"Indication of the freshness of the blood present.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Uniform">
                 description = <"The sputum has an overall pink/red appearance due to blood.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Patchy">
                 description = <"The sputum contains irregular areas of blood.">
             >
@@ -261,11 +261,11 @@ terminology
                 text = <"Blood description">
                 description = <"Narrative description of visible blood.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Absent">
                 description = <"The sputum does not contain blood clots.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Present">
                 description = <"The sputum contains blood clots.">
             >
@@ -273,11 +273,11 @@ terminology
                 text = <"Blood clot presence">
                 description = <"Sputum contains coagulated blood.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Blood streaked">
                 description = <"The sputum contains fine streaks of blood.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"None">
                 description = <"The sputum contains no visible blood.">
             >
@@ -290,11 +290,11 @@ terminology
                 description = <"Narrative description of the smell.">
                 comment = <"The intent of this data element is to record either a narrative description of the odour, or to code with a value set where appropriate in a template.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Thick">
                 description = <"Relatively firm or viscous; not flowing freely.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Thin">
                 description = <"Low viscosity; flowing relatively freely.">
             >
@@ -302,11 +302,11 @@ terminology
                 text = <"Consistency">
                 description = <"Viscosity of the sputum.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Absent">
                 description = <"The identified finding is not observed in the sputum.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Present">
                 description = <"The identified finding is observed in the sputum.">
             >
@@ -314,39 +314,39 @@ terminology
                 text = <"Presence">
                 description = <"The identified finding visible in the sputum.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Black">
                 description = <"Shade between dark grey and jet black.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Pink">
                 description = <"Shade between pale pink and watermelon.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Brown">
                 description = <"Shade between light tan and chocolate.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Rust">
                 description = <"Shade between red and brown.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Green">
                 description = <"Shade between pale honeydew and olive.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Yellow">
                 description = <"Shade between cream and mustard.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Grey">
                 description = <"Shade between white and charcoal, like ash.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"White">
                 description = <"Pale or off white.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Clear">
                 description = <"Appears transparent.">
             >
@@ -354,15 +354,15 @@ terminology
                 text = <"Colour">
                 description = <"The overall colour of the sputum.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Purulent">
                 description = <"The sputum consists mostly of pus.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Mucopurulent">
                 description = <"The sputum consists of both mucus and pus.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Mucoid">
                 description = <"The sputum consists mostly of mucus.">
             >
@@ -383,34 +383,34 @@ terminology
     value_sets = <
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at21", "at22">
+            members = <"at20", "at21">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at24", "at25">
+            members = <"at23", "at24">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at11", "at12", "at13", "at14", "at15", "at16", "at17", "at19">
+            members = <"at9", "at10", "at11", "at12", "at13", "at14", "at15", "at16", "at18">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at5", "at6", "at7">
+            members = <"at4", "at5", "at6">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at51", "at52", "at53">
+            members = <"at50", "at51", "at52">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at33", "at34">
+            members = <"at32", "at33">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at45", "at46">
+            members = <"at44", "at45">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at28", "at29", "at42", "at43">
+            members = <"at27", "at28", "at41", "at42">
         >
     >

@@ -47,14 +47,14 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9001] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at6]}],
-                                                    [{2}, {[at7]}],
-                                                    [{3}, {[at8]}],
-                                                    [{4}, {[at9]}],
-                                                    [{5}, {[at10]}],
-                                                    [{6}, {[at11]}],
-                                                    [{7}, {[at12]}],
-                                                    [{8}, {[at13]}]
+                                                    [{1}, {[at5]}],
+                                                    [{2}, {[at6]}],
+                                                    [{3}, {[at7]}],
+                                                    [{4}, {[at8]}],
+                                                    [{5}, {[at9]}],
+                                                    [{6}, {[at10]}],
+                                                    [{7}, {[at11]}],
+                                                    [{8}, {[at12]}]
                                                 }
                                             }
                                         }
@@ -90,35 +90,35 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Aspiration; no effort to eject">
                 description = <"Material passes glottis, and is not ejected; visible subglottic stasis; absent patient response.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Aspiration; not ejected despite effort">
                 description = <"Material passes glottis, but is not ejected from airway; visible subglottic stasis despite patient's response.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Aspiration; ejected">
                 description = <"Material passes glottis, but is ejected from airway; no visible subglottic stasis.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Penetration; contacts vocal folds; not ejected">
                 description = <"Material contacts vocal folds, and is not ejected; visible stasis remains.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Penetration; contacts vocal folds; ejected">
                 description = <"Material contacts vocal folds, but is ejected; no stasis.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Penetration; above vocal folds; not ejected">
                 description = <"Material remains above vocal folds; visible stasis remains.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Penetration; above vocal folds; ejected">
                 description = <"Material enters airway, but remains above vocal folds; ejected from airway; no stasis.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Neither penetration nor aspiration">
                 description = <"Material does not enter airway.">
             >
@@ -139,6 +139,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12">
         >
     >

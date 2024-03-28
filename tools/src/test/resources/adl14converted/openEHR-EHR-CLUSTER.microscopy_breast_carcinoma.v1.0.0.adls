@@ -64,9 +64,9 @@ definition
                                 value matches {
                                     DV_ORDINAL[id9022] matches {
                                         [value, symbol] matches {
-                                            [{1}, {[at177]}],
-                                            [{2}, {[at178]}],
-                                            [{3}, {[at179]}]
+                                            [{1}, {[at176]}],
+                                            [{2}, {[at177]}],
+                                            [{3}, {[at178]}]
                                         }
                                     }
                                 }
@@ -75,9 +75,9 @@ definition
                                 value matches {
                                     DV_ORDINAL[id9023] matches {
                                         [value, symbol] matches {
-                                            [{1}, {[at51]}],
-                                            [{2}, {[at52]}],
-                                            [{3}, {[at53]}]
+                                            [{1}, {[at50]}],
+                                            [{2}, {[at51]}],
+                                            [{3}, {[at52]}]
                                         }
                                     }
                                 }
@@ -86,9 +86,9 @@ definition
                                 value matches {
                                     DV_ORDINAL[id9024] matches {
                                         [value, symbol] matches {
-                                            [{1}, {[at45]}],
-                                            [{2}, {[at46]}],
-                                            [{3}, {[at47]}]
+                                            [{1}, {[at44]}],
+                                            [{2}, {[at45]}],
+                                            [{3}, {[at46]}]
                                         }
                                     }
                                 }
@@ -97,9 +97,9 @@ definition
                                 value matches {
                                     DV_ORDINAL[id9025] matches {
                                         [value, symbol] matches {
-                                            [{1}, {[at48]}],
-                                            [{2}, {[at49]}],
-                                            [{3}, {[at50]}]
+                                            [{1}, {[at47]}],
+                                            [{2}, {[at48]}],
+                                            [{3}, {[at49]}]
                                         }
                                     }
                                 }
@@ -242,9 +242,9 @@ definition
                                 value matches {
                                     DV_ORDINAL[id9040] matches {
                                         [value, symbol] matches {
-                                            [{1}, {[at72]}],
-                                            [{2}, {[at73]}],
-                                            [{3}, {[at74]}]
+                                            [{1}, {[at71]}],
+                                            [{2}, {[at72]}],
+                                            [{3}, {[at73]}]
                                         }
                                     }
                                 }
@@ -253,9 +253,9 @@ definition
                                 value matches {
                                     DV_ORDINAL[id9041] matches {
                                         [value, symbol] matches {
-                                            [{1}, {[at82]}],
-                                            [{2}, {[at83]}],
-                                            [{3}, {[at84]}]
+                                            [{1}, {[at81]}],
+                                            [{2}, {[at82]}],
+                                            [{3}, {[at83]}]
                                         }
                                     }
                                 }
@@ -492,27 +492,27 @@ terminology
                 text = <"Non-neoplastic change (synthesised)">
                 description = <"Finding of non-neoplastic change. (synthesised)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"Indeterminate">
                 description = <"Presence of non-neoplastic changes has not been determined.">
             >
-            ["at187"] = <
+            ["at186"] = <
                 text = <"Absent">
                 description = <"Non-neoplastic change is absent.">
             >
-            ["at186"] = <
+            ["at185"] = <
                 text = <"Atypical ductal hyperplasia (ADH)">
                 description = <"Atypical ductal hyperplasia (ADH) is present.">
             >
-            ["at185"] = <
+            ["at184"] = <
                 text = <"Radial scars">
                 description = <"Radial scars are present.">
             >
-            ["at184"] = <
+            ["at183"] = <
                 text = <"Intraductal papilloma">
                 description = <"Intraductal papilloma is present.">
             >
-            ["at183"] = <
+            ["at182"] = <
                 text = <"Columnar cell changes">
                 description = <"Columnar cell changes are present.">
             >
@@ -528,15 +528,15 @@ terminology
                 text = <"Comment">
                 description = <"Comment on estimation of the histologic grade.">
             >
-            ["at179"] = <
+            ["at178"] = <
                 text = <"Score 3">
                 description = <"High mitotic frequency.">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"Score 2">
                 description = <"Intermediate mitotic frequency.">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"Score 1">
                 description = <"Low mitotic frequency.">
             >
@@ -544,47 +544,47 @@ terminology
                 text = <"Mitotic frequency score">
                 description = <"Mitotic frequency score calculated from the mitosis count and the microscopy field diameter via a lookup table.">
             >
-            ["at175"] = <
+            ["at174"] = <
                 text = <"Indeterminate">
                 description = <"The presence of lobular carcinoma-in-situ has not been determined.">
             >
-            ["at174"] = <
+            ["at173"] = <
                 text = <"Absent">
                 description = <"Lobular carcinoma-in-situ is absent.">
             >
-            ["at173"] = <
+            ["at172"] = <
                 text = <"Present - pleomorphic">
                 description = <"Pleomorphic lobular carcinoma-in-situ is present.">
             >
-            ["at172"] = <
+            ["at171"] = <
                 text = <"Present - classical">
                 description = <"Classical lobular carcinoma-in-situ is present.">
             >
-            ["at171"] = <
+            ["at170"] = <
                 text = <"Indeterminate">
                 description = <"The presence of lobular hyperplasia has not been determined.">
             >
-            ["at170"] = <
+            ["at169"] = <
                 text = <"Absent">
                 description = <"Lobular neoplasia is absent.">
             >
-            ["at169"] = <
+            ["at168"] = <
                 text = <"Present - pleomorphic">
                 description = <"Pleomorphic lobular neoplasia is present.">
             >
-            ["at168"] = <
+            ["at167"] = <
                 text = <"Present - classical">
                 description = <"Classical lobular neoplasia is present.">
             >
-            ["at167"] = <
+            ["at166"] = <
                 text = <"High">
                 description = <"Predominant intensity of staining is high.">
             >
-            ["at166"] = <
+            ["at165"] = <
                 text = <"Intermediate">
                 description = <"Predominant intensity of staining is intermediate.">
             >
-            ["at165"] = <
+            ["at164"] = <
                 text = <"Low">
                 description = <"Predominant intensity of staining is low.">
             >
@@ -608,19 +608,19 @@ terminology
                 text = <"Lymphovascular invasion">
                 description = <"Details of local invasion into lymphovascular tissue.">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"Indeterminate">
                 description = <"Presence of calcification in DCIS tissue has not been determined.">
             >
-            ["at158"] = <
+            ["at157"] = <
                 text = <"Absent">
                 description = <"Calcification is absent from DCIS tissue.">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"Present without necrosis">
                 description = <"Calcification without necrosis is present in DCIS tissue.">
             >
-            ["at156"] = <
+            ["at155"] = <
                 text = <"Present with necrosis">
                 description = <"Calcification with necrosis  is present in DCIS tissue.">
             >
@@ -628,35 +628,35 @@ terminology
                 text = <"Calcification">
                 description = <"Finding of calcification in DCIS tissue.">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"Indeterminate">
                 description = <"The presence of atypical lobular neoplasia has not been determined.">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"Absent">
                 description = <"Atypical lobular neoplasia is absent.">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"Equivocal">
                 description = <"The HER2 In situ hybridisation (ISH) result is equivocal.">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"Negative">
                 description = <"The HER2 In situ hybridisation (ISH) result is negative.">
             >
-            ["at150"] = <
+            ["at149"] = <
                 text = <"Positive">
                 description = <"The HER2 In situ hybridisation (ISH) result is positive.">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"Equivocal">
                 description = <"The HER2 Immunohistochemistry result is equivocal.">
             >
-            ["at148"] = <
+            ["at147"] = <
                 text = <"Negative">
                 description = <"The HER2 Immunohistochemistry result is negative.">
             >
-            ["at147"] = <
+            ["at146"] = <
                 text = <"Positive">
                 description = <"The HER2 Immunohistochemistry result is positive.">
             >
@@ -676,15 +676,15 @@ terminology
                 text = <"Immunohistochemistry result">
                 description = <"HER2 Immunohistochemistry result.">
             >
-            ["at142"] = <
+            ["at141"] = <
                 text = <"Equivocal">
                 description = <"Progesterone Receptor assay result is equivocal.">
             >
-            ["at141"] = <
+            ["at140"] = <
                 text = <"Negative">
                 description = <"Progesterone Receptor assay result is negative.">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"Positive">
                 description = <"Progesterone Receptor assay result is positive.">
             >
@@ -692,27 +692,27 @@ terminology
                 text = <"PR result">
                 description = <"Progesterone Receptor assay result.">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"Indeterminate">
                 description = <"The dominant pattern of ductal carcinoma-in-situ has not been determined.">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Papillary">
                 description = <"Papillary pattern of ductal carcinoma-in-situ.">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"Apocrine">
                 description = <"Apocrine pattern of ductal carcinoma-in-situ.">
             >
-            ["at135"] = <
+            ["at134"] = <
                 text = <"Micropapillary">
                 description = <"Micropapillary pattern of ductal carcinoma-in-situ.">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"Cribriform">
                 description = <"Cribriform pattern of ductal carcinoma-in-situ.">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"Solid">
                 description = <"Solid pattern of ductal carcinoma-in-situ.">
             >
@@ -728,11 +728,11 @@ terminology
                 text = <"DCIS Architecture">
                 description = <"Findings related to architecture of the ductal carcinoma-in-situ.">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"Indeterminate">
                 description = <"Presence of microcalcification has not been determined.">
             >
-            ["at127"] = <
+            ["at126"] = <
                 text = <"Absent">
                 description = <"Microcalcification is absent.">
             >
@@ -740,27 +740,27 @@ terminology
                 text = <"Histologic grade">
                 description = <"Histologic grading of DCIS.">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Present - with evidence of necrosis">
                 description = <"Microcalcification is present with evidence of necrosis.">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Present - no evidence of necrosis">
                 description = <"Microcalcification is present with no evidence of necrosis.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Present">
                 description = <"Microcalcification is present.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Indeterminate">
                 description = <"Presence of Paget's disease of the nipple has not been determined.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Absent">
                 description = <"Paget's disease of the nipple is absent.">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Present">
                 description = <"Paget's disease of the nipple is present.">
             >
@@ -772,11 +772,11 @@ terminology
                 text = <"DCIS at margin">
                 description = <"Details of DCIS (Ductal carcinoma-in-situ) at surgical resection margins.">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"Present - pleomorphic">
                 description = <"Pleomorphic atypical lobular neoplasia is present.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Present - classical">
                 description = <"Classical atypical lobular neoplasia is present.">
             >
@@ -788,15 +788,15 @@ terminology
                 text = <"Immunohistochemistry score">
                 description = <"HER2 immunohistochemistry score.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"High">
                 description = <"Predominant intensity of staining is high.">
             >
-            ["at106"] = <
+            ["at105"] = <
                 text = <"Intermediate">
                 description = <"Predominant intensity of staining is intermediate.">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"Low">
                 description = <"Predominant intensity of staining is low.">
             >
@@ -816,15 +816,15 @@ terminology
                 text = <"Proportion of nuclei stained">
                 description = <"An estimate of the percentage of nuclei stained.">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"Equivocal">
                 description = <"Oestrogen Receptor assay result is equivocal.">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"Negative">
                 description = <"Oestrogen Receptor assay result is negative.">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"Positive">
                 description = <"Oestrogen Receptor assay result is positive.">
             >
@@ -852,15 +852,15 @@ terminology
                 text = <"Invasive carcinoma at margin">
                 description = <"Details of invasive carcinoma at surgical resection margins.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Van Nuys Group 3">
                 description = <"Nuclear grade 3 with or without necrosis.">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Van Nuys Group 2">
                 description = <"Nuclear grade 1 or 2 and necrosis.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Van Nuys Group 1">
                 description = <"Nuclear grade 1 or 2 and no necrosis.">
             >
@@ -868,15 +868,15 @@ terminology
                 text = <"Van Nuys Prognostic Index">
                 description = <"The Van Nuys Prognostic Index (VNPI).">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Present (Comedo type)">
                 description = <"Comedo type of tumour necrosis is present.">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Absent or minimal">
                 description = <"Tumour necrosis is absent or minimal.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Present (non-comedo type)">
                 description = <"Non-comedo type of tumour necrosis is present.">
             >
@@ -884,15 +884,15 @@ terminology
                 text = <"Necrosis">
                 description = <"Findings of tumour necrosis.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Score 3">
                 description = <"Size > 2.5 red blood cell diameters; Pleomorphic vesicular nuclei; One or more prominent nucleoli; Frequent mitotic figures commonly present.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Score 2">
                 description = <"Size equivalent to 2–2.5 red blood cell diameters; Coarse chromatin; Infrequent nucleoli and mitoses.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Score 1">
                 description = <"Size equivalent to 1.5–2 red blood cell diameters or normal duct epithelial nuclei; Diffuse chromatin; Inconspicuous nucleoli.">
             >
@@ -937,39 +937,39 @@ terminology
                 text = <"Non-neoplastic cellular changes">
                 description = <"Findings of non-neoplastic cellular changes.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Score 3">
                 description = <"Size > 2.5 red blood cell diameters; Pleomorphic vesicular nuclei; One or more prominent nucleoli; Frequent mitotic figures commonly present.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Score 2">
                 description = <"Size equivalent to 2–2.5 red blood cell diameters; Coarse chromatin; Infrequent nucleoli and mitoses.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Score 1">
                 description = <"Size equivalent to 1.5–2 red blood cell diameters or normal duct epithelial nuclei; Diffuse chromatin; Inconspicuous nucleoli.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Grade 3">
                 description = <"Total score of 8 or 9.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Grade 2">
                 description = <"Total score of 6 or 7.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Grade 1">
                 description = <"Total score of 3-5.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"Tubular formation score 3">
                 description = <"Less than 10% of invasive carcinoma forming tubular or glandular structures.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Tubular formation score 2">
                 description = <"10-75% of invasive carcinoma forming tubular or glandular structures.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Tubular formation score 1">
                 description = <"Less than 75% of invasive carcinoma forming tubular or glandular structures.">
             >
@@ -1046,86 +1046,86 @@ terminology
     value_sets = <
         ["ac9020"] = <
             id = <"ac9020">
-            members = <"at183", "at184", "at185", "at186", "at187", "at188">
+            members = <"at182", "at183", "at184", "at185", "at186", "at187">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at45", "at46", "at47">
+            members = <"at44", "at45", "at46">
         >
         ["ac9013"] = <
             id = <"ac9013">
-            members = <"at133", "at134", "at135", "at136", "at137", "at138">
+            members = <"at132", "at133", "at134", "at135", "at136", "at137">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at51", "at52", "at53">
+            members = <"at50", "at51", "at52">
         >
         ["ac9012"] = <
             id = <"ac9012">
-            members = <"at82", "at83", "at84">
+            members = <"at81", "at82", "at83">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at177", "at178", "at179">
+            members = <"at176", "at177", "at178">
         >
         ["ac9011"] = <
             id = <"ac9011">
-            members = <"at72", "at73", "at74">
+            members = <"at71", "at72", "at73">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at77", "at79", "at78">
+            members = <"at76", "at78", "at77">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at172", "at173", "at174", "at175">
+            members = <"at171", "at172", "at173", "at174">
         >
         ["ac9017"] = <
             id = <"ac9017">
-            members = <"at165", "at166", "at167">
+            members = <"at164", "at165", "at166">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at110", "at111", "at153", "at154">
+            members = <"at109", "at110", "at152", "at153">
         >
         ["ac9016"] = <
             id = <"ac9016">
-            members = <"at140", "at141", "at142">
+            members = <"at139", "at140", "at141">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at168", "at169", "at170", "at171">
+            members = <"at167", "at168", "at169", "at170">
         >
         ["ac9015"] = <
             id = <"ac9015">
-            members = <"at105", "at106", "at107">
+            members = <"at104", "at105", "at106">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at48", "at49", "at50">
+            members = <"at47", "at48", "at49">
         >
         ["ac9014"] = <
             id = <"ac9014">
-            members = <"at98", "at99", "at100">
+            members = <"at97", "at98", "at99">
         >
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at156", "at157", "at158", "at159">
+            members = <"at155", "at156", "at157", "at158">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at123", "at127", "at128", "at124", "at125">
+            members = <"at122", "at126", "at127", "at123", "at124">
         >
         ["ac9019"] = <
             id = <"ac9019">
-            members = <"at150", "at151", "at152">
+            members = <"at149", "at150", "at151">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at120", "at121", "at122">
+            members = <"at119", "at120", "at121">
         >
         ["ac9018"] = <
             id = <"ac9018">
-            members = <"at147", "at148", "at149">
+            members = <"at146", "at147", "at148">
         >
     >

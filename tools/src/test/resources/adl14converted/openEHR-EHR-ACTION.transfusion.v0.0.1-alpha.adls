@@ -76,7 +76,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9009] matches {
-                        defining_code matches {[at3]}    -- Planned
+                        defining_code matches {[at2]}    -- Planned
                     }
                 }
             }
@@ -88,7 +88,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9011] matches {
-                        defining_code matches {[at5]}    -- Prepared (Matching)
+                        defining_code matches {[at4]}    -- Prepared (Matching)
                     }
                 }
             }
@@ -100,7 +100,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9013] matches {
-                        defining_code matches {[at13]}    -- Consent obtained
+                        defining_code matches {[at12]}    -- Consent obtained
                     }
                 }
             }
@@ -112,7 +112,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9015] matches {
-                        defining_code matches {[at6]}    -- Postponed
+                        defining_code matches {[at5]}    -- Postponed
                     }
                 }
             }
@@ -124,7 +124,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9017] matches {
-                        defining_code matches {[at7]}    -- Cancelled
+                        defining_code matches {[at6]}    -- Cancelled
                     }
                 }
             }
@@ -136,7 +136,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9019] matches {
-                        defining_code matches {[at4]}    -- Blood products ordered
+                        defining_code matches {[at3]}    -- Blood products ordered
                     }
                 }
             }
@@ -148,7 +148,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9021] matches {
-                        defining_code matches {[at8]}    -- Blood and patient identification checked
+                        defining_code matches {[at7]}    -- Blood and patient identification checked
                     }
                 }
             }
@@ -160,7 +160,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9023] matches {
-                        defining_code matches {[at9]}    -- Transfusion unit commenced
+                        defining_code matches {[at8]}    -- Transfusion unit commenced
                     }
                 }
             }
@@ -172,7 +172,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9025] matches {
-                        defining_code matches {[at14]}    -- Transfusion unit completed
+                        defining_code matches {[at13]}    -- Transfusion unit completed
                     }
                 }
             }
@@ -184,7 +184,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9027] matches {
-                        defining_code matches {[at10]}    -- Transfusion suspended
+                        defining_code matches {[at9]}    -- Transfusion suspended
                     }
                 }
             }
@@ -196,7 +196,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9029] matches {
-                        defining_code matches {[at11]}    -- Transfusion stopped
+                        defining_code matches {[at10]}    -- Transfusion stopped
                     }
                 }
             }
@@ -208,7 +208,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9031] matches {
-                        defining_code matches {[at12]}    -- Transfusion has been completed
+                        defining_code matches {[at11]}    -- Transfusion has been completed
                     }
                 }
             }
@@ -341,7 +341,7 @@ terminology
                 text = <"Transfusionseinheit beendet">
                 description = <"Eine Einheit Blutprodukt wurde transfundiert.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Transfusionseinheit beendet">
                 description = <"Eine Einheit Blutprodukt wurde transfundiert.">
             >
@@ -349,7 +349,7 @@ terminology
                 text = <"Einwilligung eingeholt">
                 description = <"Einwilligung zur Transfusion wurde eingeholt.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Einwilligung eingeholt">
                 description = <"Einwilligung zur Transfusion wurde eingeholt.">
             >
@@ -357,7 +357,7 @@ terminology
                 text = <"Transfusion wurde beendet">
                 description = <"Die Transfusion wurde beendet.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Transfusion wurde beendet">
                 description = <"Die Transfusion wurde beendet.">
             >
@@ -365,7 +365,7 @@ terminology
                 text = <"Transfusion gestoppt">
                 description = <"Die Transfusion wurde gestoppt und wird nicht fortgesetzt.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Transfusion gestoppt">
                 description = <"Die Transfusion wurde gestoppt und wird nicht fortgesetzt.">
             >
@@ -373,7 +373,7 @@ terminology
                 text = <"Transfusion ausgesetzt">
                 description = <"Die Transfusion wurde ausgesetzt und kann neu begonnen werden.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Transfusion ausgesetzt">
                 description = <"Die Transfusion wurde ausgesetzt und kann neu begonnen werden.">
             >
@@ -381,7 +381,7 @@ terminology
                 text = <"Transfusionseinheit begonnen">
                 description = <"Die Transfusion wurde mit einer Einheit Blutprodukt begonnen.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Transfusionseinheit begonnen">
                 description = <"Die Transfusion wurde mit einer Einheit Blutprodukt begonnen.">
             >
@@ -389,7 +389,7 @@ terminology
                 text = <"Blut- und Patientenidentifikation überprüft">
                 description = <"Die Identifikation des Transfusionsproduktes und des Patienten wurden auf Übereinstimmung kontrolliert.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Blut- und Patientenidentifikation überprüft">
                 description = <"Die Identifikation des Transfusionsproduktes und des Patienten wurden auf Übereinstimmung kontrolliert.">
             >
@@ -397,7 +397,7 @@ terminology
                 text = <"Abgebrochen">
                 description = <"Die Transfusion wurde abgebrochen, weil sie nicht weiter erforderlich oder angebracht ist.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Abgebrochen">
                 description = <"Die Transfusion wurde abgebrochen, weil sie nicht weiter erforderlich oder angebracht ist.">
             >
@@ -405,7 +405,7 @@ terminology
                 text = <"Verschoben">
                 description = <"Die Transfusion wurde verschoben.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Verschoben">
                 description = <"Die Transfusion wurde verschoben.">
             >
@@ -413,7 +413,7 @@ terminology
                 text = <"Vorbereitet (Probe)">
                 description = <"Blut wurde zum Testen geeigneter Blutprodukte gesendet.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Vorbereitet (Probe)">
                 description = <"Blut wurde zum Testen geeigneter Blutprodukte gesendet.">
             >
@@ -421,7 +421,7 @@ terminology
                 text = <"Blutprodukte bestellt">
                 description = <"Die Blutprodukte wurde bestellt.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Blutprodukte bestellt">
                 description = <"Die Blutprodukte wurde bestellt.">
             >
@@ -429,7 +429,7 @@ terminology
                 text = <"Geplant">
                 description = <"Die Transfusion wurde geplant.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Geplant">
                 description = <"Die Transfusion wurde geplant.">
             >
@@ -511,7 +511,7 @@ terminology
                 text = <"Unidade de transfusão completadas">
                 description = <"A unidade do produto do sangue que foi transfundida">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Unidade de transfusão completadas">
                 description = <"A unidade do produto do sangue que foi transfundida">
             >
@@ -519,7 +519,7 @@ terminology
                 text = <"Consentimento obtido">
                 description = <"Consentimento para transfusão foi obtido">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Consentimento obtido">
                 description = <"Consentimento para transfusão foi obtido">
             >
@@ -527,7 +527,7 @@ terminology
                 text = <"A transfusão foi completada">
                 description = <"A transfusão foi finalizada">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"A transfusão foi completada">
                 description = <"A transfusão foi finalizada">
             >
@@ -535,7 +535,7 @@ terminology
                 text = <"Transfusão interrompida">
                 description = <"Transfusão foi interrompida e não pode continuar.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Transfusão interrompida">
                 description = <"Transfusão foi interrompida e não pode continuar.">
             >
@@ -543,7 +543,7 @@ terminology
                 text = <"Transfusão suspensa">
                 description = <"A transfusão foi suspensa e pode ser reiniciada">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Transfusão suspensa">
                 description = <"A transfusão foi suspensa e pode ser reiniciada">
             >
@@ -551,7 +551,7 @@ terminology
                 text = <"Unidade de transfusão iniciada">
                 description = <"Transfusão começou em uma unidade do produto do sangue">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Unidade de transfusão iniciada">
                 description = <"Transfusão começou em uma unidade do produto do sangue">
             >
@@ -559,7 +559,7 @@ terminology
                 text = <"Identificação de sangue e paciente verificados">
                 description = <"A identificação do produto da transfusão e a identificação do paciente correspondem">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Identificação de sangue e paciente verificados">
                 description = <"A identificação do produto da transfusão e a identificação do paciente correspondem">
             >
@@ -567,7 +567,7 @@ terminology
                 text = <"Cancelada">
                 description = <"A transfusão foi cancelada por não ser mais apropriada ou necessária">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Cancelada">
                 description = <"A transfusão foi cancelada por não ser mais apropriada ou necessária">
             >
@@ -575,7 +575,7 @@ terminology
                 text = <"Adiada">
                 description = <"Transfusão foi adiada">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Adiada">
                 description = <"Transfusão foi adiada">
             >
@@ -583,7 +583,7 @@ terminology
                 text = <"Preparada">
                 description = <"Sangue enviado para testar produtos de sangue adequado">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Preparada">
                 description = <"Sangue enviado para testar produtos de sangue adequado">
             >
@@ -591,7 +591,7 @@ terminology
                 text = <"Produto do sangue prescritos">
                 description = <"Produto do sangue foram prescritos">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Produto do sangue prescritos">
                 description = <"Produto do sangue foram prescritos">
             >
@@ -599,7 +599,7 @@ terminology
                 text = <"Planejada">
                 description = <"Transfusão foi planejada">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Planejada">
                 description = <"Transfusão foi planejada">
             >
@@ -681,7 +681,7 @@ terminology
                 text = <"Transfusion unit completed">
                 description = <"A unit of blood product has been transfused.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Transfusion unit completed">
                 description = <"A unit of blood product has been transfused.">
             >
@@ -689,7 +689,7 @@ terminology
                 text = <"Consent obtained">
                 description = <"Consent for the transfusion has been obtained.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Consent obtained">
                 description = <"Consent for the transfusion has been obtained.">
             >
@@ -697,7 +697,7 @@ terminology
                 text = <"Transfusion has been completed">
                 description = <"The transfusion has been completed.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Transfusion has been completed">
                 description = <"The transfusion has been completed.">
             >
@@ -705,7 +705,7 @@ terminology
                 text = <"Transfusion stopped">
                 description = <"Transfusion has been ceased and will not continue.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Transfusion stopped">
                 description = <"Transfusion has been ceased and will not continue.">
             >
@@ -713,7 +713,7 @@ terminology
                 text = <"Transfusion suspended">
                 description = <"The transfusion has been suspended and may restart.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Transfusion suspended">
                 description = <"The transfusion has been suspended and may restart.">
             >
@@ -721,7 +721,7 @@ terminology
                 text = <"Transfusion unit commenced">
                 description = <"Transfusion has begun on a unit of blood product.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Transfusion unit commenced">
                 description = <"Transfusion has begun on a unit of blood product.">
             >
@@ -729,7 +729,7 @@ terminology
                 text = <"Blood and patient identification checked">
                 description = <"The transfusion product identification and patient identification have been matched.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Blood and patient identification checked">
                 description = <"The transfusion product identification and patient identification have been matched.">
             >
@@ -737,7 +737,7 @@ terminology
                 text = <"Cancelled">
                 description = <"The transfusion has been cancelled as no longer appropriate or required.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Cancelled">
                 description = <"The transfusion has been cancelled as no longer appropriate or required.">
             >
@@ -745,7 +745,7 @@ terminology
                 text = <"Postponed">
                 description = <"Transfusion has been postponed.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Postponed">
                 description = <"Transfusion has been postponed.">
             >
@@ -753,7 +753,7 @@ terminology
                 text = <"Prepared (Matching)">
                 description = <"Blood sent for testing appropriate blood products.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Prepared (Matching)">
                 description = <"Blood sent for testing appropriate blood products.">
             >
@@ -761,7 +761,7 @@ terminology
                 text = <"Blood products ordered">
                 description = <"The blood products have been ordered.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Blood products ordered">
                 description = <"The blood products have been ordered.">
             >
@@ -769,7 +769,7 @@ terminology
                 text = <"Planned">
                 description = <"Transfusion has been planned.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Planned">
                 description = <"Transfusion has been planned.">
             >

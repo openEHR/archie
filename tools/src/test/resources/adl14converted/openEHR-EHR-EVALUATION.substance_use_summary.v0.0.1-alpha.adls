@@ -298,51 +298,51 @@ terminology
                 text = <"* Frequency (en)">
                 description = <"* Frequency (en)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"*Former user(en)">
                 description = <"*The individual has previously used the specified route but is not using it currently.(en)">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"*Current user(en)">
                 description = <"*The individual is currently using the specified route.(en)">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"*Never used(en)">
                 description = <"*The individual has never used the specified route.(en)">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"*Former user(en)">
                 description = <"*The individual has previously used the specific substance but is not a current user.(en)">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"*Current user(en)">
                 description = <"*The individual is currently using the specific substance.(en)">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"*Never used(en)">
                 description = <"*The individual has never used the specific substance.(en)">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"*Former injected(en)">
                 description = <"*The individual has previously injected any addictive substances.(en)">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"*Current injecting(en)">
                 description = <"*The individual is current injecting any addictive substances.(en)">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"*Never injected(en)">
                 description = <"*The individual has never injected any addictive substances.(en)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"*Former user(en)">
                 description = <"*The individual has previously used any addictive substances but is not a current user.(en)">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"*Current user(en)">
                 description = <"*The individual is currently using addictive substances.(en)">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"*Never used(en)">
                 description = <"*The individual has never used any addictive substances.(en)">
             >
@@ -496,51 +496,51 @@ terminology
                 text = <"Frequency">
                 description = <"Frequency">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Former user">
                 description = <"The individual has previously used the specified route but is not using it currently.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Current user">
                 description = <"The individual is currently using the specified route.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Never used">
                 description = <"The individual has never used the specified route.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Former user">
                 description = <"The individual has previously used the specific substance but is not a current user.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Current user">
                 description = <"The individual is currently using the specific substance.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Never used">
                 description = <"The individual has never used the specific substance.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Former injected">
                 description = <"The individual has previously injected any addictive substances.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Current injecting">
                 description = <"The individual is current injecting any addictive substances.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Never injected">
                 description = <"The individual has never injected any addictive substances.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Former user">
                 description = <"The individual has previously used any addictive substances but is not a current user.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Current user">
                 description = <"The individual is currently using addictive substances.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Never used">
                 description = <"The individual has never used any addictive substances.">
             >
@@ -687,18 +687,18 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at40", "at41", "at42">
+            members = <"at39", "at40", "at41">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at37", "at38", "at39">
+            members = <"at36", "at37", "at38">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at34", "at35", "at36">
+            members = <"at33", "at34", "at35">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at43", "at44", "at45">
+            members = <"at42", "at43", "at44">
         >
     >

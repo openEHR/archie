@@ -122,23 +122,23 @@ terminology
                 text = <"Motivasjon for endring (synthesised)">
                 description = <"Nåværende motivasjon for endring. (synthesised)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Vedlikehold">
                 description = <"Individ som har implementert endring for mer enn 6 måneder siden.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Handling">
                 description = <"Individet implementerer endring. Dette omfatter også de som har implementert endring innen de siste 6 månedene.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Klar">
                 description = <"Individet planlegger endringer innen de neste 30 dagene.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Usikker">
                 description = <"Individet vurderer seriøst endring innen de neste 6 månedene.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Ikke klar">
                 description = <"Individet vurderer ikke seriøst endring innen de neste 6 månedene.">
             >
@@ -188,23 +188,23 @@ terminology
                 text = <"*Readiness to change(en) (synthesised)">
                 description = <"*Record current status for behaviour change.(en) (synthesised)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Maintenance(en)">
                 description = <"*Individual who has implemented change over 6 months ago.(en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"*Action(en)">
                 description = <"*Individual who is implementing change; includes those who have implemented change within the last 6 months.(en)">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"*Ready (Preparation)(en)">
                 description = <"*Individual is planning to change in the next 30 days.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"*Unsure (Contemplation)(en)">
                 description = <"*Individual is seriously considering changing in the next 6 months.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Not ready (Precontemplation)(en)">
                 description = <"*Individual is not seriously considering changing in the next 6 months.(en)">
             >
@@ -254,23 +254,23 @@ terminology
                 text = <"Readiness to change (synthesised)">
                 description = <"Record current status for behaviour change. (synthesised)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Maintenance">
                 description = <"Individual who has implemented change over 6 months ago.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Action">
                 description = <"Individual who is implementing change; includes those who have implemented change within the last 6 months.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Ready (Preparation)">
                 description = <"Individual is planning to change in the next 30 days.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Unsure (Contemplation)">
                 description = <"Individual is seriously considering changing in the next 6 months.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Not ready (Precontemplation)">
                 description = <"Individual is not seriously considering changing in the next 6 months.">
             >
@@ -319,6 +319,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at13", "at14", "at15", "at16", "at17">
+            members = <"at12", "at13", "at14", "at15", "at16">
         >
     >

@@ -196,23 +196,23 @@ terminology
                 text = <"Device">
                 description = <"Details about the device used to record the measurement.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Whole cycle">
                 description = <"The pressure measueerd is over the whole heart cycle.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Pre-diastolic">
                 description = <"The phase of the heart immediately prior to filling of the ventricle.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Pre-systolic">
                 description = <"Phase of the heart immediately prior to contraction of the heart.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Diastolic">
                 description = <"During relaxation of the heart.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Systolic">
                 description = <"During contraction of the heart.">
             >
@@ -246,6 +246,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at9", "at10", "at24", "at25", "at28">
+            members = <"at8", "at9", "at23", "at24", "at27">
         >
     >

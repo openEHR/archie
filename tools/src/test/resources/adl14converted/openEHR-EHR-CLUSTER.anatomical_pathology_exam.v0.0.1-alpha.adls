@@ -142,11 +142,11 @@ terminology
                 description = <"Digitalt bilde, video eller diagram som representerer undersøkelsen.">
                 comment = <"Flere formater tillates, men innholdet i de forskjellige formatene må representere det samme innholdet.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Mikroskopisk undersøkelse">
                 description = <"Funn er basert på en mikroskopisk undersøkelse.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Makroskopisk undersøkelse">
                 description = <"Funn er basert på en makroskopisk undersøkelse.">
             >
@@ -205,11 +205,11 @@ terminology
                 description = <"Digital image, video or diagram representing the examination.">
                 comment = <"Multiple formats are allowed but they should represent equivalent clinical content.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Microscopic examination">
                 description = <"Findings recorded after microsopic examination.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Macroscopic examination">
                 description = <"Findings recorded on examination of a gross specimen.">
             >
@@ -258,6 +258,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at21", "at22">
+            members = <"at20", "at21">
         >
     >

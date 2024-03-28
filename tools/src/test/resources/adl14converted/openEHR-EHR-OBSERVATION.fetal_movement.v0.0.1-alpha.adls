@@ -180,15 +180,15 @@ terminology
                 description = <"Aika, joka on kulunut siitä hetkestä, jolloin äiti viimeksi havaitsi sikiön liikkeen.">
                 comment = <"Kirjataan yleensä vain, jos äiti kertoo, ettei ole havainnut lainkaan sikiön spontaaneja liikkeitä. Kirjataan yleensä vain osana Ajankohta-tapahtumaa.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Vähentynyt">
                 description = <"Sikiön spontaanit liikkeet ovat vähentyneet tai ne ovat tavallista heikompia.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Normaali">
                 description = <"Sikiö liikkuu ja potkii normaalisti.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Lisääntynyt">
                 description = <"Sikiön spontaanit liikkeet ovat lisääntyneet tai ne ovat tavallista voimakkaampia.">
             >
@@ -197,11 +197,11 @@ terminology
                 description = <"Sikiön spontaanien liikkeiden tyyppi tai luonne.">
                 comment = <"Jos tämä tieto kirjataan tiettynä ajankohtana tapahtuneena tapahtumana, tieto kertoo äidin viimeaikaisesta kokemuksesta. Jos tämä tieto kirjataan tiettynä ajanjaksona ilmenneenä tapahtumana, tieto kertoo äidin kokemuksesta kyseisen ajanjakson aikana, esimerkiksi liikkeitä havaittu kahden tunnin tarkastelujaksolla, joka tehtiin sikiönliikekaaviota varten.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Ei havaittu">
                 description = <"Äiti ei ole havainnut spontaaneja sikiön liikkeitä.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Havaittu">
                 description = <"Äiti on havainnut spontaaneja sikiön liikkeitä.">
             >
@@ -250,15 +250,15 @@ terminology
                 description = <"Length of time since last spontaneous fetal movement was noticed by mother.">
                 comment = <"Usually only recorded if mother reports that no spontaneous fetal movements have been noticed. Usually only recorded as part of a Point in Time event.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Reduced">
                 description = <"Spontaneous fetal movements are reduced or weaker compared to normal.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Normal">
                 description = <"The fetus is moving and kicking normally.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Increased">
                 description = <"Spontaneous fetal movements are increased or stronger compared to normal.">
             >
@@ -267,11 +267,11 @@ terminology
                 description = <"Pattern of spontaneous fetal movements.">
                 comment = <"If recording as a point in time event, this reflects the mother's recent experience. If recording as an interval event, this reflects the mother's experience over the specified period of time, for example presence of movements noted during a two hour observation for a Kick Chart.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Absent">
                 description = <"Spontaneous fetal movements have not been perceived by the mother.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Present">
                 description = <"Spontaneous fetal movements have been perceived by the mother.">
             >
@@ -319,15 +319,15 @@ terminology
                 text = <"Tiempo pasado desde el último movimiento">
                 description = <"Tiempo transcurrido desde el último movimiento fetal  sentido">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Disminuidos">
                 description = <"Se reducen los movimientos fetales">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Normales">
                 description = <"El feto se mueve y patea normalmente">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Aumentados">
                 description = <"Los movimientos fetales ocurren más frecuentemente que lo esperado">
             >
@@ -335,11 +335,11 @@ terminology
                 text = <"Patrón">
                 description = <"Patrón de movimientos fetales">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Movimientos Fetal no sentidos">
                 description = <"No se sienten los movimientos fetales">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Movimientos fetal sentidos">
                 description = <"Movimientos fetales sentidos">
             >
@@ -370,10 +370,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at22", "at23", "at25">
+            members = <"at21", "at22", "at24">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at8", "at12">
+            members = <"at7", "at11">
         >
     >

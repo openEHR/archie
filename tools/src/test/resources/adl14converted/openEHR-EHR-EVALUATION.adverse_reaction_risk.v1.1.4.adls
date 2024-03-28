@@ -486,11 +486,11 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"Mistenkt">
                 description = <"Lav grad av sikkerhet om tendensen til reaksjon på den identifiserte substansen.">
             >
-            ["at127"] = <
+            ["at126"] = <
                 text = <"Uviss">
                 description = <"Den fysiologiske mekanismen kunne ikke fastslås.">
             >
@@ -498,19 +498,19 @@ terminology
                 text = <"Rapportdato">
                 description = <"Dato da rapporten ble sendt til myndighetene.">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Ubestemt">
                 description = <"Umulig å vurdere med tilgjengelig informasjon.">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Annet">
                 description = <"Enhver annen substans, inklusive animalsk gift, latex og andre substanser i omgivelsene.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Legemiddel">
                 description = <"Enhver substans som administreres for å oppnå en fysiologisk effekt.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Mat">
                 description = <"Enhver substans som spises eller drikkes som næring for kroppen, som f.eks. peanøtter eller egg.">
             >
@@ -523,7 +523,7 @@ terminology
                 text = <"Detaljer om klinisk håndtering">
                 description = <"Ytterligere strukturerte detaljer om den kliniske håndteringen av denne reaksjon kan inkluderes ved hjelp av spesifikke arketyper i dette SLOTet.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"Bekreftet">
                 description = <"En høy grad av klinisk sikkerhet om at den spesifikke substansen er årsaken til reaksjonen. Dette kan omfatte klinisk evidens ved testing eller re-eksponering.">
             >
@@ -543,11 +543,11 @@ terminology
                 description = <"Registrering av veien subjektet ble eksponert for den spesifikke substansen.">
                 comment = <"Eksponeringsvei bør kodes med en terminologi når mulig.">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"Høy">
                 description = <"Eksponering for substansen kan resultere i kritisk organskade eller livstruende konsekvenser. Fremtidig eksponering for den identifiserte substansen bør regnes som en absolutt kontraindikasjon under ordinære kliniske omstendigheter.">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"Lav">
                 description = <"Eksponering for substansen vil sannsynligvis ikke resultere i kritisk organskade eller livstruende konsekvenser. Fremtidig eksponering for den identifiserte substansen bør regnes som en relativ kontraindikasjon under ordinære kliniske omstendigheter.">
             >
@@ -565,19 +565,19 @@ terminology
                 text = <"Eksponeringsdetaljer">
                 description = <"Ytterligere detaljer om eksponeringen for den spesifikke substansen. Særlig i situasjoner hvor det kan ha vært multiple eller kumulative eksponeringer kan dette registreres ved inkludering av spesifikke arketyper i dette SLOTet.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Mistenkt">
                 description = <"Lav grad av klinisk sikkerhet om at den spesifikke substansen er årsaken til reaksjonen.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Mild">
                 description = <"Forårsaker milde fysiologiske effekter.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Moderat">
                 description = <"Forårsaker moderate fysiologiske effekter.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Alvorlig">
                 description = <"Forårsaker alvorlige fysiologiske effekter.">
             >
@@ -586,19 +586,19 @@ terminology
                 description = <"Klinisk vurdering av hendelsens alvorlighetsgrad som helhet, potensielt med vurderinger av de ulike manifestasjonene.">
                 comment = <"Det anerkjennes at denne vurderingen er svært subjektiv. Det kan være noen kliniske områder hvor objektive scoringer brukes. Objektive scoringer kan inkluderes i denne modellen ved bruk av SLOTet \"Reaksjonsdetaljer\".">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Opphørt">
                 description = <"Den tidligere kjente reaksjonen på den identifiserte substansen er klinisk revurdert ved testing og/eller re-eksponering, og regnes ikke lenger for å være en aktiv risiko.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Avkreftet">
                 description = <"Tendensen til reaksjon på den identifiserte substansen har blitt klinisk revurdert eller er avkreftet med høy grad av sikkerhet ved re-eksponering eller ved bevisst eksponering.">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Bekreftet">
                 description = <"Høy grad av sikkerhet om tendensen til reaksjon på den identifiserte substansen, som kan omfatte kliniske bevis ved testing eller re-eksponering.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Sannsynlig">
                 description = <"Rimelig grad av sikkerhet om tendensen til reaksjon på den identifiserte substansen.">
             >
@@ -615,11 +615,11 @@ terminology
                 description = <"Dato da tendensen eller reaksjonshendelsen ble oppdatert.">
                 comment = <"Mappes til \"recordedDate\" i FHIR.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Ikke-immunmediert">
                 description = <"En non-immunmediert reaksjon, som kan inkludere pseudoallergiske reaksjoner, bivirkninger, intoleranser, legemiddeltoksisitet (f.eks gentamicin).">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Immunmediert">
                 description = <"Immunmediert reaksjon, inklusive allergiske reaksjoner og hypersensitiviteter.">
             >
@@ -680,7 +680,7 @@ terminology
                 text = <"Eksponeringsvarighet">
                 description = <"Total tidsperiode som individet ble eksponert for den spesifikke substansen.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Sannsynlig">
                 description = <"Rimelig grad av klinisk sikkerhet om at den spesifikke substansen er årsaken til reaksjonen.">
             >
@@ -763,11 +763,11 @@ terminology
                 description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
                 comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"Suspeita">
                 description = <"Um baixo nível de certeza clínica sobre a propensão de uma reação à substância identificada.">
             >
-            ["at127"] = <
+            ["at126"] = <
                 text = <"Indeterminada">
                 description = <"O mecanismo fisiológico não pôde ser determinado.">
             >
@@ -775,19 +775,19 @@ terminology
                 text = <"Data da notificação">
                 description = <"Data da notificação à agência reguladora">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Indeterminado">
                 description = <"Não é possível avaliar com informações disponíveis.">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Outros">
                 description = <"Qualquer outra substância encontrada incluindo veneno, látex e outras substâncias ambientais.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Medicação">
                 description = <"Qualquer substância administrada para alcançar um efeito fisiológico.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Alimentos">
                 description = <"Qualquer substância consumida para fornecer suporte nutricional para o organismo, tais como o amendoim ou ovo.">
             >
@@ -800,7 +800,7 @@ terminology
                 text = <"Detalhes do Manejo Clínico">
                 description = <"Detalhes adicionais de estruturado sobre manejo clínico para este evento de reação podem ser fornecidos pela inclusão dos arquétipos específicos nesta slot.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"Confirmada">
                 description = <"Elevado nível de certeza clínica que a reação foi devido a substância identificada, que pode incluir evidências clínicas por meio de testes ou re-desafio.">
             >
@@ -819,11 +819,11 @@ terminology
                 description = <"Identificação da via pelo qual o sujeito foi exposto à substância específica identificada.">
                 comment = <"Codificação da via de exposição com uma terminologia, deve ser usado sempre que possível">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"Alto">
                 description = <"Exposição à substância pode resultar em danos ao sistema, órgão crítico ou conseqüência de ameaça à vida. Futura exposição à substância identificada deve ser considerada uma contra-indicação absoluta em circunstâncias clínicas normais.">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"Baixo">
                 description = <"Exposição a substâncias passíveis de danos nos órgãos críticos do sistema ou conseqüência de ameaça à vida. Futura exposição à substância identificada deve ser considerada uma contra-indicação relativa em circunstâncias clínicas normais.">
             >
@@ -841,19 +841,19 @@ terminology
                 text = <"Detalhes da Exposição">
                 description = <"Detalhes adicionais sobre a exposição à substância específica, especialmente em situações onde pode ter havido múltiplas ou exposições cumulativas podem ser fornecidas pela inclusão dos arquétipos específicos nesta slot.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Suspeita">
                 description = <"Baixo nível de certeza clínica que a reação foi causada pela substância específica identificada.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Suave">
                 description = <"Causas suaves dos efeitos fisiológicos">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Moderado">
                 description = <"Causas moderadas dos efeitos fisiológicos">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Severo">
                 description = <"Causa severa dos efeitos fisiológicos">
             >
@@ -863,19 +863,19 @@ terminology
                 comment = <"Reconhece-se que esta avaliação é muito subjetiva. Pode haver alguma prática específica nos domínios onde a escala de objetivo foram aplicados.
     Escalas objetivas podem ser incluídas neste modelo usando os \"Detalhes de Reação\" Cluster">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Resolvida">
                 description = <"A anteriormente conhecida reação à substância identificada clinicamente foi reavaliada e considerada um risco não ativo.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Refutada">
                 description = <"A propensão para uma reação à substância identificada ter sido reavaliada clinicamente ou já ter sido refutada com um elevado nível de certeza clínica por re-exposição ou desafio deliberado.">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Confirmada">
                 description = <"Um elevado nível de certeza sobre a propensão para uma reação à substância identificada, que pode incluir evidências clínicas por meio de testes ou re-desafio.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Provável">
                 description = <"Um razoável grau de certeza sobre a propensão para uma reação à substância identificada.">
             >
@@ -894,11 +894,11 @@ terminology
                 description = <"Data quando a propensão ou o evento de reação foi atualizado.">
                 comment = <"Nota: mapas para gravação dos dados em FHIR">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Não imune-mediada">
                 description = <"Reação Não Imuno-mediada, que inclui pseudo alergias, intolerâncias, efeitos colaterais, toxicidade de drogas (por exemplo, a gentamicina).">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Imune - mediada">
                 description = <"Reação imune-mediada, incluindo hipersensibilidade e reações alérgicas.">
             >
@@ -959,7 +959,7 @@ terminology
                 text = <"Duração da Exposição">
                 description = <"A quantidade total de tempo que o indivíduo foi exposto à substância específica identificada.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Provável">
                 description = <"Nível razoável de certeza clínica que a reação foi causada pela substância específica identificada.">
             >
@@ -1044,11 +1044,11 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"Suspected">
                 description = <"A low level of clinical certainty about the propensity of a reaction to the identified 'Substance'.">
             >
-            ["at127"] = <
+            ["at126"] = <
                 text = <"Indeterminate">
                 description = <"The physiological mechanism could not be determined.">
             >
@@ -1056,19 +1056,19 @@ terminology
                 text = <"Date of report">
                 description = <"Date that the report was sent to the regulatory authority.">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Indeterminate">
                 description = <"Unable to assess with information available.">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Other">
                 description = <"Any other substance encountered including venom, latex and other environmental substances.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Medication">
                 description = <"Any substance administered to achieve a physiological effect.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Food">
                 description = <"Any substance consumed to provide nutritional support for the body, such as peanut or egg.">
             >
@@ -1081,7 +1081,7 @@ terminology
                 text = <"Clinical management details">
                 description = <"Additional structured details about clinical management for this reaction event can be provided by inclusion of specific archetypes in this SLOT.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"Confirmed">
                 description = <"A high level of clinical certainty that the reaction was due to the identified 'Substance', which may include clinical evidence by testing or re-challenge.">
             >
@@ -1103,11 +1103,11 @@ terminology
                 comment = <"Coding of the Route of Exposure with a terminology should be used wherever possible.">
                 source = <"FHIR, DAM">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"High">
                 description = <"Exposure to substance may result in critical organ system damage or life threatening consequence. Future exposure to the identified 'Substance' should be considered an absolute contra-indication in normal clinical circumstances.">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"Low">
                 description = <"Exposure to substance unlikely to result in critical system organ damage or life threatening consequence. Future exposure to the identified 'Substance' should be considered a relative contra-indication in normal clinical circumstances.">
             >
@@ -1126,21 +1126,21 @@ terminology
                 text = <"Exposure details">
                 description = <"Additional details about exposure to the 'Specific substance', especially in situations where there may have been multiple or cumulative exposures can be provided by inclusion of specific archetypes in this SLOT.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Suspected">
                 description = <"A low level of clinical certainty that the reaction was caused by the identified 'Specific substance'.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Mild">
                 description = <"Causes mild physiological effects.">
                 source = <"FHIR">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Moderate">
                 description = <"Causes moderate physiological effects.">
                 source = <"FHIR">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Severe">
                 description = <"Causes severe physiological effects.">
                 source = <"FHIR">
@@ -1152,19 +1152,19 @@ terminology
      Objective scales can be included in this model using the 'Reaction details' Cluster.">
                 source = <"DAM">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Resolved">
                 description = <"The previously known reaction to the identified 'Substance' has been clinically reassessed and considered no longer to be an active risk.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Refuted">
                 description = <"The propensity for a reaction to the identified 'Substance' has been clinically reassessed or has been disproved with a high level of clinical certainty by re-exposure or deliberate challenge.">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Confirmed">
                 description = <"A high level of certainty about the propensity for a reaction to the identified 'Substance', which may include clinical evidence by testing or re-challenge.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Likely">
                 description = <"A reasonable level of certainty about the propensity for a reaction to the identified 'Substance'.">
             >
@@ -1188,11 +1188,11 @@ terminology
                 comment = <"Note: maps to recordedDate in FHIR.">
                 source = <"openEHR, FHIR, DAM">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Non-immune mediated">
                 description = <"A non-immune mediated reaction, which can include pseudo-allergic reactions, side effects, intolerances, drug toxicities (for example, to Gentamicin).">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Immune mediated">
                 description = <"Immune mediated reaction, including allergic reactions and hypersensitivities.">
             >
@@ -1265,7 +1265,7 @@ terminology
                 description = <"The total amount of time the individual was exposed to the identified 'Specific substance'.">
                 source = <"openEHR">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Likely">
                 description = <"A reasonable level of clinical certainty that the reaction was caused by the identified 'Specific substance'.">
                 source = <"openEHR">
@@ -1335,26 +1335,26 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at122", "at123", "at124">
+            members = <"at121", "at122", "at123">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at103", "at104", "at125">
+            members = <"at102", "at103", "at124">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at128", "at65", "at66", "at68", "at67">
+            members = <"at127", "at64", "at65", "at67", "at66">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at94", "at93", "at91">
+            members = <"at93", "at92", "at90">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at96", "at24", "at119">
+            members = <"at95", "at23", "at118">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at60", "at61", "at127">
+            members = <"at59", "at60", "at126">
         >
     >

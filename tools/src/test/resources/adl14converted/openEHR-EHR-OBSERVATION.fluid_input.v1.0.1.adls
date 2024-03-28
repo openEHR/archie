@@ -308,11 +308,11 @@ terminology
                 text = <"Mätutrustning">
                 description = <"Utrustning som används för att mäta vätskevolymen.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Uppmätt">
                 description = <"Vätskevolymen har uppmätts direkt.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Uppskattad">
                 description = <"Vätskevolymen är uppskattad.">
             >
@@ -376,11 +376,11 @@ terminology
                 text = <"Måleutstyr">
                 description = <"Detaljer om måleutstyret som er brukt for å måle væskeinntaket.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Målt">
                 description = <"Mengden væskeinntak er direkte observert og målt.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Estimert">
                 description = <"Mengden væskeinntak er estimert.">
             >
@@ -444,11 +444,11 @@ terminology
                 text = <"Dispositivo de medición">
                 description = <"El dispositivo utilizado para medir el volumen del fluido.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Medido">
                 description = <"El volumen del fluido ha sido medido directamente.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Estimado">
                 description = <"El volumen del fluido ha sido estimado.">
             >
@@ -512,11 +512,11 @@ terminology
                 text = <"Measurement device">
                 description = <"The device used to measure the volume of fluid.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Measured">
                 description = <"The fluid volume has been directly measured.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Estimated">
                 description = <"The fluid volume has been estimated.">
             >
@@ -578,11 +578,11 @@ terminology
                 text = <"*Measurement device(en)">
                 description = <"*The device used to measure the volume of fluid.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Measured(en)">
                 description = <"*The fluid volume has been directly measured.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Estimated(en)">
                 description = <"*The fluid volume has been estimated.(en)">
             >
@@ -604,6 +604,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at19", "at20">
+            members = <"at18", "at19">
         >
     >

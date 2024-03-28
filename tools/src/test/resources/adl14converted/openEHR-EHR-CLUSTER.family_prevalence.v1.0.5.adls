@@ -166,7 +166,7 @@ terminology
                 description = <"Die Anzahl der berechtigten Familienmitglieder.">
                 comment = <"Die Anzahl der Familienmitglieder, die möglicherweise betroffen sein könnten UND die auch zu ausgewählten Beziehungs-, Familienlinien- und Geschlechterkriterien passen. Diese Zahl ist faktisch der Nenner für die Berechnung eines \"Affected Ratio\".">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Unbestimmt/Intersex/nicht spezifiziert">
                 description = <"Ein Familienmitglied, das entweder die biologischen Eigenschaften beider Geschlechter hat oder einige der biologischen Eigenschaften nicht aufweist, die als notwendig erachtet werden, um als das eine oder andere Geschlecht definiert zu werden.">
             >
@@ -175,39 +175,39 @@ terminology
                 description = <"Bestimmung der mütterlichen oder väterlichen Familienlinie in der Verwandtschaft.">
                 comment = <"Ausschließlich für die Verwendung mit genetischen Familienmitgliedern.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Nichtgenetische Familie">
                 description = <"Alle nicht-genetischen Familienmitglieder.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Weiblich">
                 description = <"Ein biologisches Familienmitglied, das biologisch weiblich ist.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Männlich">
                 description = <"Ein biologisches Familienmitglied, das biologisch männlich ist.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Genetische Familie">
                 description = <"Alle genetisch verwandten Familienmitglieder.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Väterliche Linie">
                 description = <"Verwandt mit dem Vater des Patienten.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Mütterliche Linie">
                 description = <"Verwandt mit der Mutter des Patienten.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Relativ dritten Grades">
                 description = <"12,5% genetischer Anteil mit dem Patienten - zum Beispiel Urgroßeltern, Großtante, Großonkel, Erster Cousin, Kinder von Nichten und Neffen und Urenkelkinder.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Relativ zum zweiten Grad">
                 description = <"25% genetischer Anteil mit dem Patienten - zum Beispiel Großeltern, Tanten, Onkel, Nichten, Neffen, Enkelkinder und Halbgeschwister.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Verwandter ersten Grades">
                 description = <"50% genetischer Anteil mit dem Patienten - zum Beispiel Elternteil, Geschwister oder Kind.">
             >
@@ -267,7 +267,7 @@ terminology
                 description = <"O número de membros elegíveis da família.">
                 comment = <"Este é o número de membros da família que potencialmente poderiam ser afetados, e que também se encaixam a relação selecionada, linhagem familiar e critérios de sexo. Este número é, efetivamente, o denominador para cálculo da proporção de afetados.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Indeterminado/Intersexo/Inespecífico">
                 description = <"Membro da família que possui os atributos biológicos de ambos os sexos ou carece de alguns dos atributos biológicos considerados necessários para ser definido como um ou outro sexo.">
             >
@@ -276,39 +276,39 @@ terminology
                 description = <"Identificação da linha familiar materna ou paterna na relação">
                 comment = <"Somente para uso com membros genéticos da família.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Família Não Genética">
                 description = <"Todos os membros da família não-genética.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Feminino">
                 description = <"Membros da família que são biologicamente do sexo feminino.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Masculino">
                 description = <"Membros da família que são biologicamente do sexo masculino.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Genética familiar">
                 description = <"Todos os membros da família geneticamente relacionados.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Linha Paterna">
                 description = <"Assuntos relacionados à linha paterna.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Linha materna">
                 description = <"Assuntos relacionados à família materna.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Relação de Terceiro Grau">
                 description = <"12,5% compartilhamento genético com o sujeito - por exemplo, bisavós, tia-avó, tio-avô, primo de segundo grau, filhos de sobrinhos e de sobrinhas e bisnetos.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Relação de Segundo Grau">
                 description = <"25% compartilhamento genético com o sujeito - por exemplo, avós, tia, tio, sobrinha, sobrinho, netos. e meio-irmãos">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Relação de Primeiro Grau">
                 description = <"50% compartilhamento genético com o sujeito - por exemplo, pais, irmãos ou filhos">
             >
@@ -367,7 +367,7 @@ terminology
                 description = <"The number of eligible family members.">
                 comment = <"This is the number of family members who potentially could be affected AND who also fit selected relationship, family line and sex criteria. Effectively this number is the denominator for calculation of an 'Affected ratio'.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Indeterminate/Intersex/Unspecified">
                 description = <"Family member who either has the biological attributes of both sexes or lacks some of the biological attributes considered necessary to be defined as one or the other sex.">
             >
@@ -376,39 +376,39 @@ terminology
                 description = <"Identification of the maternal or paternal family line in the relationship.">
                 comment = <"Only for use with genetic family members.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Non-genetic family">
                 description = <"All non-genetic family members.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Female">
                 description = <"Family member who is biologically female.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Male">
                 description = <"Family member who is biologically male.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Genetic family">
                 description = <"All genetically-related family members.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Paternal line">
                 description = <"Related through the subject's father.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Maternal line">
                 description = <"Related through the subject's mother.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Third degree relative">
                 description = <"12.5% genetic share with the subject - for example, great grandparent, great aunt, great uncle, first cousin, children of nieces and nephews, and great grandchildren.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Second degree relative">
                 description = <"25% genetic share with the subject - for example, grandparent, aunt, uncle, niece, nephew, grandchildren and half siblings.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"First degree relative">
                 description = <"50% genetic share with the subject - for example, parent, sibling or child.">
             >
@@ -443,14 +443,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at44", "at45", "at53">
+            members = <"at43", "at44", "at52">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at41", "at42">
+            members = <"at40", "at41">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at38", "at39", "at40", "at43", "at51">
+            members = <"at37", "at38", "at39", "at42", "at50">
         >
     >

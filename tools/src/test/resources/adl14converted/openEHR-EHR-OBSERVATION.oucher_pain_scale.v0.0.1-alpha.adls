@@ -136,11 +136,11 @@ terminology
                 text = <"Factores de confusión">
                 description = <"Todo factor incidental relacionado al estado del sujeto y que pueda afectar la interpretación clínica de la medición. ">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Fotográfico">
                 description = <"Utiliza una colección de 6 fotografías de las cuales el niño debe elegir la que mejor refleja su dolor.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Numérico">
                 description = <"Utiliza una escala de 0 (sin dolor) a 10 (máximo dolor).">
             >
@@ -179,11 +179,11 @@ terminology
                 text = <"Confounding factors">
                 description = <"Any incidental factors related to the state of the subject which may affect clinical interpretation of the measurement.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Photographic">
                 description = <"Using a set of six photograph out of which the child must select the one which most appropiately reflects his/her pain.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Numeric">
                 description = <"Using a 0 (no pain) to 10 (maximum pain) scale.">
             >
@@ -212,6 +212,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at10", "at11">
+            members = <"at9", "at10">
         >
     >

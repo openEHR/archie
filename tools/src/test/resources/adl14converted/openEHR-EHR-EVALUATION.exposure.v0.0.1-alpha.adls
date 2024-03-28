@@ -127,11 +127,11 @@ terminology
                 text = <"Date Updated">
                 description = <"The date this exposure summary was last updated.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Occupational">
                 description = <"Exposure occurred in the occupational environment or workplace.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Environmental">
                 description = <"Exposure occurred in the environment.">
             >
@@ -161,6 +161,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8">
+            members = <"at6", "at7">
         >
     >

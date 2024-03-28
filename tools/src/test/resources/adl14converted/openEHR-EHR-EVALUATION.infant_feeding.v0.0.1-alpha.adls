@@ -106,15 +106,15 @@ terminology
                 text = <"Type (synthesised)">
                 description = <"The predominant type of feeding for a period of time. (synthesised)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Mixed">
                 description = <"The volume of milk supplied by breast feeding was similar to that supplied as bottled formula.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Predominantly Formula">
                 description = <"Infant was solely fed on bottled formula, or the proportion of the volume of milk supplied by feeding with bottled formula was significantly greater than by breast feeding.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Predominantly Breastfed">
                 description = <"Infant was solely breast fed, or the proportion of the volume of milk supplied by breast feeding was significantly greater than the volume from bottled formula.">
             >
@@ -164,6 +164,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at12", "at13", "at14">
+            members = <"at11", "at12", "at13">
         >
     >

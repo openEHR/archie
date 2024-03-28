@@ -84,23 +84,23 @@ terminology
                 text = <"Technique (synthesised)">
                 description = <"The technique used to perform the repair of the perforation. (synthesised)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Patch">
                 description = <"A patch technique was used.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Butterfly">
                 description = <"A butterfly technique was used.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Onlay">
                 description = <"An onlay technique was used.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Inlay">
                 description = <"An inlay technique was used.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Underlay">
                 description = <"An underlay technique was used.">
             >
@@ -108,23 +108,23 @@ terminology
                 text = <"Technique">
                 description = <"The technique used to perform the repair of the perforation.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Other">
                 description = <"Other tissue was used.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Fat">
                 description = <"Fat tissue was used.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Cartilage/Perichondrium">
                 description = <"Cartilage and perichondrial tissue was used.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Cartilage">
                 description = <"Cartilage was used.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Temporal Fascia">
                 description = <"Fascial tissue covering the temporalis muscle was used.">
             >
@@ -132,15 +132,15 @@ terminology
                 text = <"Graft Material">
                 description = <"Material used to repair the perforation.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Postaural">
                 description = <"Approach via an incision behind the ear.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Endaural">
                 description = <"Approach through the ear canal.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Transcanal">
                 description = <"Approach through the ear canal, without incision.">
             >
@@ -162,14 +162,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at14", "at15", "at16", "at17", "at18">
+            members = <"at13", "at14", "at15", "at16", "at17">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at8", "at9", "at10", "at11", "at12">
+            members = <"at7", "at8", "at9", "at10", "at11">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at5", "at6">
+            members = <"at3", "at4", "at5">
         >
     >

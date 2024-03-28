@@ -241,31 +241,31 @@ terminology
                 text = <"Descrição">
                 description = <"Descrição narrativa sobre o consumo deste tipo de álcool.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Vinho fortificado">
                 description = <"Vinho adicionado de destilados.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Destilados">
                 description = <"Bebida fermentada feita por um processo de destilação. Normalmente tem conteúdo alcoólico >20%. Inclui licores, coquetéis e álcool retificado.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Pulque">
                 description = <"Bebida fermentada feita de melaço de cacto.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Hidromel">
                 description = <"Bebida fermentada feita de mel, algumas vezes com várias frutas, temperos, grãos ou lúpulo.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Cidra">
                 description = <"Bebida fermentada feita de qualquer suco de fruta.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Vinho">
                 description = <"Bebida fermentada feita de uvas e algumas vezes de outras frutas.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Cerveja">
                 description = <"Bebida fermentada feita de mistura de grãos.">
             >
@@ -368,31 +368,31 @@ terminology
                 text = <"Description">
                 description = <"Narrative description about the consumption of the type of alcohol.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Fortified wine">
                 description = <"Wine with added spirits.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Spirits">
                 description = <"Fermented beverage made by a distillation process. Usually has an alcohol content >20%. Includes liquers, cocktails and rectified spirits.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Pulque">
                 description = <"Fermented beverage made from 'honey water\" of cacti.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Mead">
                 description = <"Fermented beverage made from honey, sometimes with various fruits spices, grains or hops.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Cider">
                 description = <"Fermented beverage made from any fruit juice.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Wine">
                 description = <"Fermented beverage made from grapes and sometimes other fruits.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Beer">
                 description = <"Fermented beverage made from grain mash.">
             >
@@ -477,6 +477,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at30", "at31", "at32", "at33", "at34", "at35", "at36">
+            members = <"at29", "at30", "at31", "at32", "at33", "at34", "at35">
         >
     >

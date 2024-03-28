@@ -150,19 +150,19 @@ terminology
                 description = <"Beskrivelse av type smertestimuli. Bør kodes ved hjelp av kodeverk eller terminologi.">
                 comment = <"Eksempler: Trykk på neglerot og press mot sternum.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Reagerer ikke">
                 description = <"Ingen respons på tale- eller smertestimuli (U).">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Smerte">
                 description = <"En hvilken som helst verbal, motorisk eller øye-respons på smertestimuli (eksempelvis press på neglerot), men ikke på verbal tiltale (P).">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Tiltale">
                 description = <"Hvilken som helst verbal, motorisk eller øye-respons på verbal tiltale (rop høyt eller rist forsiktig) (V).">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Våken">
                 description = <"Øynene åpnes spontant, orientert tale, adlyder kommandoer (A).">
             >
@@ -202,19 +202,19 @@ terminology
                 description = <"*Description of the type of pain stimulus used to elicit the observation.(en)">
                 comment = <"* This element should be coded with a terminology, where possible. For example: pressing the nail root or the sternum.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Arresponsivo">
                 description = <"O paciente não responde de forma alguma a um estímulo vocal ou doloroso.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Dor">
                 description = <"O paciente responde de alguma forma a um estímulo doloroso.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Voz">
                 description = <"O paciente responde de alguma forma a um estímulo vocal.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Alerta">
                 description = <"O paciente está completamente acordado e alerta.">
             >
@@ -254,19 +254,19 @@ terminology
                 description = <"Description of the type of pain stimulus used to elicit the observation.">
                 comment = <"This element should be coded with a terminology, where possible. For example: pressing the nail root or the sternum.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Unresponsive">
                 description = <"No response to voice or pain stimuli.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Pain">
                 description = <"Any verbal, motor or eye response to a pain stimulus, such as pressing the nail root, but not to voice stimulus.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Voice">
                 description = <"Any verbal, motor or eye response to a voice stimulus.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Alert">
                 description = <"Eyes open spontaneously, oriented speech, obeys commands.">
             >
@@ -287,6 +287,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9">
+            members = <"at5", "at6", "at7", "at8">
         >
     >

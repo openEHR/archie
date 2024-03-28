@@ -227,11 +227,11 @@ terminology
                 description = <"Wurden mehr als zwei Anläufe benötigt, um zwei erfolgreiche Testläufe für jede Hand zu bekommen?">
                 comment = <"Falls ja, bitte Gründe im Datenelement \"Grund für mehr als zwei Anläufe\" angeben.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Linke Hand dominant">
                 description = <"Die linke Hand des Probanden ist dominant.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Rechte Hand dominant">
                 description = <"Die rechte Hand des Probanden ist dominant.">
             >
@@ -322,11 +322,11 @@ terminology
                 description = <"Did it take more than two attempts to get two successful trials per hand? ">
                 comment = <"If Yes, please specify reasons in \"Reason For More Than Two Attempts\" data element.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Left hand dominant">
                 description = <"The subject's left hand is dominant.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Right hand dominant">
                 description = <"The subject's right hand is dominant.">
             >
@@ -417,11 +417,11 @@ terminology
                 description = <"为了成功完成每只手的两次测试，是否进行了多于两次的尝试？">
                 comment = <"如果是，请在“关于多于两次尝试的原因”（Reason For More Than Two Attempts）数据元之中说明原因。">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"左手优势">
                 description = <"受检对象的左手为优势手。">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"右手优势">
                 description = <"受检对象的右手为优势手。">
             >
@@ -502,6 +502,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at86", "at87">
+            members = <"at85", "at86">
         >
     >

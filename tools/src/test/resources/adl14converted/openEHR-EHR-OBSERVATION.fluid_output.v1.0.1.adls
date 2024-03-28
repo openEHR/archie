@@ -290,11 +290,11 @@ terminology
                 description = <"Information om den utrustning som används för att mäta vätskeutsöndringen.">
                 comment = <"Exempelvis: Dräneringspåse för urin.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Uppmätt">
                 description = <"Vätskevolymen har uppmätts direkt.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Uppskattad">
                 description = <"Vätskevolymen är uppskattad.">
             >
@@ -359,11 +359,11 @@ terminology
                 description = <"Detaljer om måleutstyret som er brukt for å måle væsketapet.">
                 comment = <"For eksempel drenpose, timediuresesett, urinflaske eller vekt.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Målt">
                 description = <"Mengden væsketap er direkte observert og målt.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Estimert">
                 description = <"Mengden væsketap er estimert.">
             >
@@ -428,11 +428,11 @@ terminology
                 description = <"El dispositivo utilizado para medir el volumen del fluido.">
                 comment = <"Por ejemplo: bolsa de orina.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Medido">
                 description = <"El volumen del fluido ha sido medido directamente.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Estimado">
                 description = <"El volumen del fluido ha sido estimado.">
             >
@@ -498,11 +498,11 @@ terminology
                 description = <"Details of the device used to measure the fluid output.">
                 comment = <"For example: Urinary drainage bag.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Measured">
                 description = <"The fluid volume has been directly measured.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Estimated">
                 description = <"The fluid volume has been estimated.">
             >
@@ -567,11 +567,11 @@ terminology
                 description = <"*Details of device used to measure the fluid output.(en)">
                 comment = <"*For example: Urinary drainage bag.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Measured(en)">
                 description = <"*The fluid volume has been directly measured.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Estimated(en)">
                 description = <"*The fluid volume has been estimated.(en)">
             >
@@ -593,6 +593,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at19", "at20">
+            members = <"at18", "at19">
         >
     >

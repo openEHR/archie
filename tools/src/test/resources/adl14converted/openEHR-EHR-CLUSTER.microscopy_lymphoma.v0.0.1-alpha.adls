@@ -158,23 +158,23 @@ terminology
                 text = <"Host tissue reaction (synthesised)">
                 description = <"Finding of host tissue reactions to tumour. (synthesised)">
             >
-            ["at143"] = <
+            ["at142"] = <
                 text = <"Grade 3b">
                 description = <"Follicular lymphoma Grade 3b.">
             >
-            ["at142"] = <
+            ["at141"] = <
                 text = <"Grade 3a">
                 description = <"Follicular lymphoma Grade 3a.">
             >
-            ["at141"] = <
+            ["at140"] = <
                 text = <"Grade 3">
                 description = <"Follicular lymphoma Grade 3.">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"Grade 2">
                 description = <"Follicular lymphoma Grade 2.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Grade 1">
                 description = <"Follicular lymphoma Grade 1.">
             >
@@ -182,19 +182,19 @@ terminology
                 text = <"Grade (follicular lymphoma)">
                 description = <"Histological grade - follicular lymphoma only.">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Mixed">
                 description = <"Mixed tumour cell size.">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"Indeterminate">
                 description = <"Presence of a host tissue reaction has not been determined.">
             >
-            ["at135"] = <
+            ["at134"] = <
                 text = <"Indeterminate">
                 description = <"Presence of a host cell reaction has not been determined.">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"Indeterminate">
                 description = <"Specific cytomorphology features have not been determined.">
             >
@@ -206,163 +206,163 @@ terminology
                 text = <"Proliferative indicators">
                 description = <"Proilerative indicators of abnormal cells.">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Reed-Sternberg cell-like">
                 description = <"Reed-Sternberg cell-like cytomorphology features are present.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Popcorn cell">
                 description = <"Popcorn cell features are present.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Centrocyte-like">
                 description = <"Centrocyte-like features are present.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Monocytoid">
                 description = <"Monocytoid features are present.">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Plasmablastic">
                 description = <"Plasmablastic features are present.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"Paraimmunoblastic">
                 description = <"Paraimmunoblastic features are present.">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"Prolymphocytic">
                 description = <"Prolymphocytic features are present.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Lymphoplasmacytoid">
                 description = <"Lymphoplasmacytoid features are present.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Lymphoplasmacytic">
                 description = <"Lymphoplasmacytic features are present.">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Plasmacytic">
                 description = <"Plasmacytic features are present.">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"Immunoblastic">
                 description = <"Immunoblastic features are present.">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"Centrocytic">
                 description = <"Centrocytic features are present.">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"Centroblastic">
                 description = <"Centroblastic features are present.">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"Indeterminate">
                 description = <"Generic abnormal cell features have not been determined.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Blastic">
                 description = <"Blastic features are present.">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"Signet ring cell">
                 description = <"Signet ring cell features are present.">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"Spindle cell">
                 description = <"Spindle cell features are present.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"Giant cell">
                 description = <"Giant cell features are present.">
             >
-            ["at106"] = <
+            ["at105"] = <
                 text = <"Clear cell">
                 description = <"Clear cell features are present.">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"Anaplastic">
                 description = <"Anaplastic features are present.">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"Hyperbolate">
                 description = <"Hyperbolate features are present.">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"Pleomorphic">
                 description = <"Pleomorphic features are present.">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"Indeterminate">
                 description = <"The tumour cell size has not been determined.">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"Large">
                 description = <"Large tumour cell size (larger than a histiocyte nucleus).">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"Medium">
                 description = <"Medium tumour cell size (equal to a histiocyte nucleus).">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"Small">
                 description = <"Small or intermediate tumour cell size (smaller than a histiocyte  nucleus).">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"Erythrophagocytic">
                 description = <"Erythrophagocytic host cell reaction is present.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"Plasma cell-rich">
                 description = <"Plasma cell-rich host cell reaction is present.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"Neutrophil-rich">
                 description = <"Neutrophil-rich host cell reaction is present.">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"Histiocyte-rich">
                 description = <"Histiocyte-rich host cell reaction is present.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Eosinophil-rich">
                 description = <"Eosinophil-rich host cell reaction is present.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"T-cell rich">
                 description = <"T-cell rich host cell reaction is present.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Increased reticulin">
                 description = <"Increased reticulin is present.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Amyloid">
                 description = <"Amyloid host tissue reaction is present.">
             >
-            ["at90"] = <
+            ["at89"] = <
                 text = <"Starry sky pattern">
                 description = <"Starry sky pattern is present.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"High Endothelial Venule (HEV) hyperplasia">
                 description = <"High Endothelial Venule (HEV) hyperplasia is present.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"Suppurative">
                 description = <"Suppurative host tissue reaction to tumour is present.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Granulomatous">
                 description = <"Granulomatous host tissue reaction is present.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Sclerotic">
                 description = <"Sclerotic host tissue reaction is present.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Necrotic">
                 description = <"Necrotic host tissue reaction is present.">
             >
@@ -428,24 +428,24 @@ terminology
                 text = <"تفاعل النسيج المضيف (synthesised)">
                 description = <"الموجودات المتعلقة بتفاعل النسيج المضيف للورم (synthesised)">
             >
-            ["at143"] = <
+            ["at142"] = <
                 text = <"الدرجة 3 ب">
                 description = <"الدرجة 3 ب من الورم اللمفي الجُرَيْبي">
             >
-            ["at142"] = <
+            ["at141"] = <
                 text = <"الدرجة 3 أ">
                 description = <"الدرجة 3 أ من الورم اللمفي الجُرَيْبي">
             >
-            ["at141"] = <
+            ["at140"] = <
                 text = <"الدرجة 3">
                 description = <"الدرجة 3 من الورم اللمفي الجُرَيْبي">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"الدرجة 2">
                 description = <"الدرجة 2 من الورم اللمفي الجُرَيْبي
     ">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"الدرجة 1">
                 description = <"الدرجة 1 من الورم اللمفي الجُرَيْبي">
             >
@@ -453,19 +453,19 @@ terminology
                 text = <"الدرجة - الورم اللمفي الجُرَيْبي">
                 description = <"درجة هيستولوجية - ورم لمفي جُرَيْبي فقط">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"مختلط">
                 description = <"حجم خلية الورم مختلط">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد وجود تفاعل للنسيج المضيف">
             >
-            ["at135"] = <
+            ["at134"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد وجود تفاعل الخلايا المضيفة">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد الخصائص المحددة المورفولوجية الخلوية">
             >
@@ -477,163 +477,163 @@ terminology
                 text = <"المؤشرات التكاثرية">
                 description = <"المؤشرات التكاثرية للخلايا غير الطبيعية">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"يشبه خلايا ريد-ستيرنبرج">
                 description = <"يوجد خصائص المورفولوجيا الخلوية الشبيهة بخلايا ريد - ستيرنبرج">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"خلايا الفشار">
                 description = <"يوجد خصائص خلايا الفشار">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"يشبه الخلايا المركزية">
                 description = <"يوجد خصائص تشبه الخلايا المركزية">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"وحيداني">
                 description = <"يوجد خصائص وحيدانية/شبيهة الوحيدة">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"أرومة بلازماوية">
                 description = <"يوجد خصائص الأرومة البلازماوية">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"خلل الأرومة مناعية ">
                 description = <"يوجد خلل بالأرومة المناعية">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"سليفة الليمفاوية">
                 description = <"يوجد خصائص سليفة الليمفاوية">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"ليمفية بلازماوية الشكل">
                 description = <"يوجد خصائص ليمفية بلازماوية الشكل">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"أرومة ليمفاوية بلازماوية">
                 description = <"يوجد خصائص أرومة ليمفاوية بلازماوية">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"بلازماوي">
                 description = <"يوجد خصائص بلازماوية">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"الأرومة المناعية">
                 description = <"يوجد خصائص الأرومة المناعية">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"مركزية الخلية">
                 description = <"يوجد خصائص مركزية الخلية">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"مركزية البرعم">
                 description = <"يوجد خصائص مركزية البرعم">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد الخصائص الجنيسة لخصائص الخلايا غير الطبيعية">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"برعمية">
                 description = <"يوجد خصائص برعمية">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"خلية بشكل خاتم التوقيع">
                 description = <"يوجد خصائص خلية بشكل خاتم التوقيع">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"خلية مغزلية">
                 description = <"يوجد خصائص خلية مغزلية">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"خلية عملاقة">
                 description = <"يوجد خصائص خلية عملاقة">
             >
-            ["at106"] = <
+            ["at105"] = <
                 text = <"خلية واضحة">
                 description = <"يوجد خصائص لخلية واضحة">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"كَشَمي">
                 description = <"يوجد خصائص كَشَمِيَّة">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"قطع زائد">
                 description = <"يوجد خصائص قطع زائد">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"متعدد الأشكال">
                 description = <"يوجد خصائص تعدد الأشكال">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد حجم خلية الورم">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"كبير">
                 description = <"حجم كبير لخلية الورم - أكبر من نواة المُنْسِجة">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"متوسط">
                 description = <"حجم متوسط لخلية الورم - يساوي نواة المُنْسِجة">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"صغير">
                 description = <"حجم صغير أو متوسط - أصغر من نواة المُنْسَجة">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"بلعمية الكرات الحمراء">
                 description = <"يوجد تفاعل للخلايا المضيفة غني ببلعمية الكرات الحمراء">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"غني بخلايا البلازما">
                 description = <"يوجد تفاعل للخلايا المضيفة غني بالخلايا البلازمية">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"غني بالخلايا العدِلة">
                 description = <"يوجد تفاعل للخلايا المضيفة غني بالخلايا العدِلة">
             >
-            ["at95"] = <
+            ["at94"] = <
                 text = <"غني بالخلايا المُنسِجة">
                 description = <"يوجد تفاعل للخلايا المضيفة غني بالخلايا المنسجة">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"غني بالخلايا اليوزينية/الحمضة">
                 description = <"يوجد تفاعل للخلايا المضيفة غني بالخلايا اليوزينية">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"غني بخلايا ت">
                 description = <"يوجد تفاعل للخلايا المضيفة غني بالخلايا ت">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"زيادة في الريتيكيولين/بروتين في النسيج الضام">
                 description = <"يوجد زيادة في الريتيكيولين/بروتين في النسيج الضام">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"نشواني">
                 description = <"يوجد تفاعل نشواني للورم المضيف">
             >
-            ["at90"] = <
+            ["at89"] = <
                 text = <"نمط السماء النجمية">
                 description = <"يوجد نمط السماء النجمية">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"فرط التنسج في الوُرَيْد البطاني المرتفع">
                 description = <"يوجد فرط التنسج في الوُرَيْد البطاني المرتفع">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"قيحي">
                 description = <"يوجد تفاعل قيحي للنسيج المضيف بسبب الورم">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"ورم حُبَيْبي">
                 description = <"يوجد تفاعل ورم حُبَيْبي للنسيج المضيف">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"تصلبي">
                 description = <"يوجد تفاعل تصلبي للنسيج المضيف">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"نخري">
                 description = <"يوجد تفاعل نخري للنسيج المضيف">
             >
@@ -678,26 +678,26 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at112", "at113", "at114", "at115", "at116", "at117", "at118", "at119", "at120", "at121", "at122", "at123", "at124", "at134">
+            members = <"at111", "at112", "at113", "at114", "at115", "at116", "at117", "at118", "at119", "at120", "at121", "at122", "at123", "at133">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at103", "at104", "at105", "at106", "at107", "at108", "at109", "at110", "at111">
+            members = <"at102", "at103", "at104", "at105", "at106", "at107", "at108", "at109", "at110">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at99", "at100", "at101", "at102", "at137">
+            members = <"at98", "at99", "at100", "at101", "at136">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at85", "at86", "at87", "at88", "at89", "at90", "at91", "at92", "at136">
+            members = <"at84", "at85", "at86", "at87", "at88", "at89", "at90", "at91", "at135">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at93", "at94", "at95", "at96", "at97", "at98", "at135">
+            members = <"at92", "at93", "at94", "at95", "at96", "at97", "at134">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at139", "at140", "at141", "at142", "at143">
+            members = <"at138", "at139", "at140", "at141", "at142">
         >
     >

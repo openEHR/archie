@@ -167,19 +167,19 @@ terminology
                 text = <"Detalhes do consumo">
                 description = <"Detalhes sobre o consumo da substância">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Sem uso">
                 description = <"Não é utilizado de maneira nenhuma">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Uso irregular">
                 description = <"Usado irregularmente">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Uso semanal">
                 description = <"Usado ao menos semanalmente">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Uso diário">
                 description = <"Usado todo dia">
             >
@@ -233,19 +233,19 @@ terminology
                 text = <"Consumption details">
                 description = <"Details about the consumption of the substance">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"No use">
                 description = <"Not used at all">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Irregular use">
                 description = <"Used irregularly">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Weekly use">
                 description = <"Used at least weekly">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Daily use">
                 description = <"Used every day">
             >
@@ -299,19 +299,19 @@ terminology
                 text = <"تفاصيل الاستهلاك">
                 description = <"تفاصيل عن استهلاك المادة">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"لا يتم الاستخدام">
                 description = <"لا يتم الاستخدام على الإطلاق">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"استخدام غير منتظم">
                 description = <"يتم الاستخدام بشكل غير منتظم">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"استخدام أسبوعي">
                 description = <"يتم الاستخدام أسبوعيا على الأقل">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"استخدام يومي">
                 description = <"يتم الاستخدام يوميا">
             >
@@ -336,6 +336,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8", "at9", "at10">
+            members = <"at6", "at7", "at8", "at9">
         >
     >

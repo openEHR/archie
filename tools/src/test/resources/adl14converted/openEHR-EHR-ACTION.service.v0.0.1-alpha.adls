@@ -70,7 +70,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9009] matches {
-                        defining_code matches {[at3]}    -- Service planned
+                        defining_code matches {[at2]}    -- Service planned
                     }
                 }
             }
@@ -82,7 +82,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9011] matches {
-                        defining_code matches {[at27]}    -- Service request sent
+                        defining_code matches {[at26]}    -- Service request sent
                     }
                 }
             }
@@ -94,7 +94,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9013] matches {
-                        defining_code matches {[at9]}    -- Service postponed
+                        defining_code matches {[at8]}    -- Service postponed
                     }
                 }
             }
@@ -106,7 +106,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9015] matches {
-                        defining_code matches {[at10]}    -- Service cancelled
+                        defining_code matches {[at9]}    -- Service cancelled
                     }
                 }
             }
@@ -118,7 +118,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9017] matches {
-                        defining_code matches {[at4]}    -- Service scheduled
+                        defining_code matches {[at3]}    -- Service scheduled
                     }
                 }
             }
@@ -130,7 +130,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9019] matches {
-                        defining_code matches {[at5]}    -- Service delivered
+                        defining_code matches {[at4]}    -- Service delivered
                     }
                 }
             }
@@ -142,7 +142,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9021] matches {
-                        defining_code matches {[at11]}    -- Service suspended
+                        defining_code matches {[at10]}    -- Service suspended
                     }
                 }
             }
@@ -154,7 +154,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9023] matches {
-                        defining_code matches {[at7]}    -- Service abandoned
+                        defining_code matches {[at6]}    -- Service abandoned
                     }
                 }
             }
@@ -166,7 +166,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9025] matches {
-                        defining_code matches {[at24]}    -- Service expired
+                        defining_code matches {[at23]}    -- Service expired
                     }
                 }
             }
@@ -178,7 +178,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9027] matches {
-                        defining_code matches {[at6]}    -- Service activity complete
+                        defining_code matches {[at5]}    -- Service activity complete
                     }
                 }
             }
@@ -312,7 +312,7 @@ terminology
                 text = <"Service request sent">
                 description = <"Request for service sent.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Service request sent">
                 description = <"Request for service sent.">
             >
@@ -325,7 +325,7 @@ terminology
                 text = <"Service expired">
                 description = <"The referral has expired before the referral episode has been completed.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Service expired">
                 description = <"The referral has expired before the referral episode has been completed.">
             >
@@ -372,7 +372,7 @@ terminology
                 text = <"Service suspended">
                 description = <"The service has been suspended without completion.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Service suspended">
                 description = <"The service has been suspended without completion.">
             >
@@ -380,7 +380,7 @@ terminology
                 text = <"Service cancelled">
                 description = <"The planned service has been cancelled prior to commencement.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Service cancelled">
                 description = <"The planned service has been cancelled prior to commencement.">
             >
@@ -388,7 +388,7 @@ terminology
                 text = <"Service postponed">
                 description = <"The planned service has been postponed.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Service postponed">
                 description = <"The planned service has been postponed.">
             >
@@ -396,7 +396,7 @@ terminology
                 text = <"Service abandoned">
                 description = <"The referral has been ceased before the service has been completed.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Service abandoned">
                 description = <"The referral has been ceased before the service has been completed.">
             >
@@ -404,7 +404,7 @@ terminology
                 text = <"Service activity complete">
                 description = <"All service activities have been completed.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Service activity complete">
                 description = <"All service activities have been completed.">
             >
@@ -412,7 +412,7 @@ terminology
                 text = <"Service delivered">
                 description = <"The healthcare provider has delivered the service.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Service delivered">
                 description = <"The healthcare provider has delivered the service.">
             >
@@ -420,7 +420,7 @@ terminology
                 text = <"Service scheduled">
                 description = <"Appointment for a healthcare provider service has been made.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Service scheduled">
                 description = <"Appointment for a healthcare provider service has been made.">
             >
@@ -428,7 +428,7 @@ terminology
                 text = <"Service planned">
                 description = <"Service request to healthcare provider is planned.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Service planned">
                 description = <"Service request to healthcare provider is planned.">
             >

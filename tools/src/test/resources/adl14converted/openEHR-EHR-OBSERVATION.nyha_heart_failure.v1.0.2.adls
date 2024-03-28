@@ -176,19 +176,19 @@ terminology
                 text = <"Störfaktoren">
                 description = <"Beschreibung von Problemen oder Faktoren, die sich auf die Bewertung auswirken können.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Klasse D">
                 description = <"Objektiver Nachweis einer schweren Herz-Kreislauf-Erkrankung. Schwerwiegende Einschränkungen. Symptome treten bereits im Ruhezustand auf.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Klasse C">
                 description = <"Objektiver Nachweis einer mittelschweren Herz-Kreislauf-Erkrankung. Erhebliche Einschränkung der Aktivität aufgrund von Symptomen, auch bei weniger als gewöhnlichen Aktivitäten. Entspannt lediglich im Ruhezustand.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Klasse B">
                 description = <"Objektiver Nachweis einer minimalen Herz-Kreislauf-Erkrankung. Milde Symptome und leichte Einschränkung bei normaler Aktivität. Entspannt im Ruhezustand.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Klasse A">
                 description = <"Kein objektiver Nachweis einer Herz-Kreislauf-Erkrankung. Keine Symptome und keine Einschränkung der normalen körperlichen Aktivität.">
             >
@@ -196,28 +196,28 @@ terminology
                 text = <"Objektive Bewertung">
                 description = <"Bewertung der Herzinsuffizienz basierend auf Beweisen einer Herz-Kreislauf-Erkrankung und Symptomen.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Klasse IV">
                 description = <"Unfähigkeit, jeglicher körperlicher Aktivität ohne Beschwerden auszuführen. Symptome einer Herzinsuffizienz im Ruhezustand. Bei jeglicher körperlicher Aktivität nehmen die Beschwerden zu.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Klasse IIIb">
                 description = <"Gemäß Klasse III; kürzliche Dyspnoe im Ruhezustand.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Klasse IIIa">
                 description = <"Gemäß Klasse III; keine Dyspnoe im Ruhezustand.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Klasse III">
                 description = <"Erhebliche Einschränkung der körperlichen Aktivität. Entspannt im Ruhezustand. Eine geringere als die normale Aktivität verursacht Ermüdung, Herzrasen, oder Dyspnoe.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Klasse II">
                 description = <"Leichte Einschränkung der körperlichen Aktivität. Entspannt im Ruhezustand. Gewöhnliche körperliche Aktivität führt zu Ermüdung, Herzrasen, oder Dyspnoe (Atemnot).
     ">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Klasse I">
                 description = <"Keine Einschränkung der körperlichen Aktivität. Gewöhnliche körperliche Aktivität verursacht keine übermäßige Ermüdung, Herzrasen, oder Dyspnoe (Atemnot).">
             >
@@ -253,19 +253,19 @@ terminology
                 text = <"Sekoittavat tekijät">
                 description = <"Kertomusmuodossa oleva kuvaus ongelmista tai tekijöistä, jotka saattavat vaikuttaa arviointiin.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Luokka D">
                 description = <"Objektiivista näyttöä vaikeasta sydän- ja verisuonitaudista. Vakavia rajoituksia. Kokee oireita myös levossa.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Luokka C">
                 description = <"Objektiivista näyttöä keskivaikeasta sydän- ja verisuonitaudista. Merkittävää liikkumisen rajoittumista oireiden vuoksi myös tavallista vähäisemmässä liikunnassa. Olo on hyvä ainoastaan levossa.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Luokka B">
                 description = <"Objektiivista näyttöä lievästä sydän- ja verisuonitaudista. Lieviä oireita ja vähäisiä rajoituksia tavallisen liikkumisen aikana. Olo on levossa hyvä.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Luokka A">
                 description = <"Ei objektiivista näyttöä sydän- ja verisuonitaudeista. Ei oireita eikä rajoituksia tavallisessa liikkumisessa.">
             >
@@ -273,27 +273,27 @@ terminology
                 text = <"Objektiivinen arviointi">
                 description = <"Sydämen vajaatoiminnan arviointi perustuen näyttöön sydän- ja verisuonisairauksista ja oireista.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Luokka IV">
                 description = <"Potilas ei voi liikkua lainkaan ilman että se aiheuttaisi epämukavuutta. Sydämen vajaatoiminnan oireita levossa. Epämukavuus lisääntyy, mikäli potilas liikkuu.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Luokka IIIb">
                 description = <"Kuten Luokka III; viime aikoina ilmennyt hengenahdistusta levossa.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Luokka IIIa">
                 description = <"Kuten Luokka III; ei hengenahdistusta levossa.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Luokka III">
                 description = <"Liikkuminen on selvästi rajoittunutta. Olo on levossa hyvä. Tavallista kevyempi liikkuminen aiheuttaa väsymystä, sydämentykytyksiä tai hengenahdistusta.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Luokka II">
                 description = <"Liikkuminen on hiukan rajoittunutta. Olo on levossa hyvä. Tavallinen liikkuminen aiheuttaa väsymystä, sydämentykytyksiä, hengenahdistusta.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Luokka I">
                 description = <"Liikkuminen ei ole rajoittunutta. Tavallinen liikkuminen ei aiheuta epätavallista väsymystä, sydämentykytyksiä, hengenahdistusta.">
             >
@@ -329,19 +329,19 @@ terminology
                 text = <"*Confounding factors(en)">
                 description = <"*Narrative description of any issues or factors that may impact on the assessment.(en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Klasse D">
                 description = <"Objektive tegn på alvorlig kardiovaskulær sykdom. Store begrensninger. Opplever symptomer selv i hvile.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Klasse C">
                 description = <"Objektive tegn på moderat kardiovaskulær sykdom. Markert begrensning i fysisk kapasitet på grunn av symptomer, også ved mindre enn vanlig aktivitet. Har det bra kun i hvile.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Klasse B">
                 description = <"Objektive tegn på lett kardiovaskulær sykdom. Milde symptomer og liten begrensning ved vanlig fysisk aktivitet. Har det bra i hvile.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Klasse A">
                 description = <"Ingen objektive tegn på kardiovaskulær sykdom. Ingen symptomer og ingen begrensninger i vanlig fysisk aktivitet.">
             >
@@ -349,27 +349,27 @@ terminology
                 text = <"*Objective assessment(en)">
                 description = <"*Assessment of heart failure based on evidence of cardiovascular disease and symptoms.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Class IV(en)">
                 description = <"Ikke i stand til å utføre fysisk aktivitet uten ubehag. Symptomer på hjertesvikt i hvile. Hvis fysisk aktivitet utføres, øker ubehaget.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Class IIIb(en)">
                 description = <"*As per Class III; recent dyspnoea at rest.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Class IIIa(en)">
                 description = <"*As per Class III; no dyspnoea at rest.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Klasse III">
                 description = <"Merkbar begrensning i fysisk kapasitet. Har det bra i hvile. Mindre enn vanlig fysisk aktivitet forårsaker tretthet, hjertebank eller pustebesvær.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Klasse II">
                 description = <"Liten begrensning i fysisk kapasitet. Har det bra i hvile. Vanlig fysisk aktivitet forårsaker tretthet, hjertebank eller pustebesvær.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Klasse I">
                 description = <"Ingen begrensninger i fysisk kapasitet. Vanlig fysisk aktivitet forårsaker ikke uvanlig tretthet, hjertebank eller pustebesvær.">
             >
@@ -404,19 +404,19 @@ terminology
                 text = <"Confounding factors">
                 description = <"Narrative description of any issues or factors that may impact on the assessment.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Class D">
                 description = <"Objective evidence of severe cardiovascular disease. Severe limitations. Experiences symptoms even while at rest.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Class C">
                 description = <"Objective evidence of moderately severe cardiovascular disease. Marked limitation in activity due to symptoms, even during less-than-ordinary activity. Comfortable only at rest.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Class B">
                 description = <"Objective evidence of minimal cardiovascular disease. Mild symptoms and slight limitation during ordinary activity. Comfortable at rest.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Class A">
                 description = <"No objective evidence of cardiovascular disease. No symptoms and no limitation in ordinary physical activity.">
             >
@@ -424,27 +424,27 @@ terminology
                 text = <"Objective assessment">
                 description = <"Assessment of heart failure based on evidence of cardiovascular disease and symptoms.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Class IV">
                 description = <"Unable to carry on any physical activity without discomfort. Symptoms of heart failure at rest. If any physical activity is undertaken, discomfort increases.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Class IIIb">
                 description = <"As per Class III; recent dyspnoea at rest.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Class IIIa">
                 description = <"As per Class III; no dyspnoea at rest.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Class III">
                 description = <"Marked limitation of physical activity. Comfortable at rest. Less than ordinary activity causes fatigue, palpitation, or dyspnea.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Class II">
                 description = <"Slight limitation of physical activity. Comfortable at rest. Ordinary physical activity results in fatigue, palpitation, dyspnea (shortness of breath).">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Class I">
                 description = <"No limitation of physical activity. Ordinary physical activity does not cause undue fatigue, palpitation, dyspnea (shortness of breath).">
             >
@@ -466,10 +466,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at13", "at14", "at15", "at16">
+            members = <"at12", "at13", "at14", "at15">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10", "at11">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10">
         >
     >

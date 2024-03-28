@@ -124,23 +124,23 @@ terminology
                 text = <"*Device(en)">
                 description = <"*Identification of the product used for the test.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to tell if the test is positive or negative.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Strongly positive(en)">
                 description = <"*The result is strongly consistent with the product's criteria for pregnancy.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Weakly positive(en)">
                 description = <"*The result is consistent with the products criteria for pregnancy, but only weakly.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Inconclusive(en)">
                 description = <"*The result is inconclusive.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Negative(en)">
                 description = <"*The result does not show any sign of pregnancy.(en)">
             >
@@ -174,23 +174,23 @@ terminology
                 text = <"Device">
                 description = <"Identification of the product used for the test.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to tell if the test is positive or negative.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Strongly positive">
                 description = <"The result is strongly consistent with the product's criteria for pregnancy.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Weakly positive">
                 description = <"The result is consistent with the products criteria for pregnancy, but only weakly.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Inconclusive">
                 description = <"The result is inconclusive.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Negative">
                 description = <"The result does not show any sign of pregnancy.">
             >
@@ -224,23 +224,23 @@ terminology
                 text = <"*Device(en)">
                 description = <"*Identification of the product used for the test.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to tell if the test is positive or negative.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Strongly positive(en)">
                 description = <"*The result is strongly consistent with the product's criteria for pregnancy.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Weakly positive(en)">
                 description = <"*The result is consistent with the products criteria for pregnancy, but only weakly.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Inconclusive(en)">
                 description = <"*The result is inconclusive.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Negative(en)">
                 description = <"*The result does not show any sign of pregnancy.(en)">
             >
@@ -261,6 +261,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at12">
+            members = <"at5", "at6", "at7", "at8", "at11">
         >
     >

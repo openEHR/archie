@@ -199,12 +199,12 @@ definition
                                                 value matches {
                                                     DV_ORDINAL[id9073] matches {
                                                         [value, symbol] matches {
-                                                            [{0}, {[at39]}],
-                                                            [{1}, {[at40]}],
-                                                            [{2}, {[at41]}],
-                                                            [{5}, {[at42]}],
-                                                            [{9}, {[at43]}],
-                                                            [{10}, {[at44]}]
+                                                            [{0}, {[at38]}],
+                                                            [{1}, {[at39]}],
+                                                            [{2}, {[at40]}],
+                                                            [{5}, {[at41]}],
+                                                            [{9}, {[at42]}],
+                                                            [{10}, {[at43]}]
                                                         }
                                                     }
                                                 }
@@ -566,27 +566,27 @@ terminology
                 text = <"Identifikator">
                 description = <"Identifikator-datatyper tillater registrering av formelle dataidentifikatorer.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Sterkeste mulige smerte">
                 description = <"Smertenivå vurdert som 10 av maksimalt 10.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Sterk smerte">
                 description = <"Smertenivå vurdert som 9 av maksimalt 10.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Moderat smerte">
                 description = <"Smertenivå vurdert som 5 av maksimalt 10.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Mild smerte">
                 description = <"Smertenivå vurdert som 2 av maksimalt 10.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Svak smerte">
                 description = <"Smertenivå vurdert som 1 av maksimalt 10.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Ingen smerte">
                 description = <"Overhodet ingen smerte.">
             >
@@ -686,19 +686,19 @@ terminology
                 text = <"Tekst hentet fra en ekstern terminologi">
                 description = <"Tekstdata som bruker koder fra en ekstern terminologikilde, f.eks. SNOMED CT, LOINC eller ICD.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Stående">
                 description = <"Pasienten står oppreist.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Sittende">
                 description = <"Pasienten sitter i en stol.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Tilbakelent">
                 description = <"Pasienten ligger tilbakelent, støttet av en mellomstor pute.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Liggende">
                 description = <"Pasienten ligger på ryggen.">
             >
@@ -965,27 +965,27 @@ terminology
                 text = <"Identificador">
                 description = <"Tipos de dados Identificadores possibilitam registrar identificadores formais de dados.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Pior dor possível">
                 description = <"Dor classificada como nível 10 numa escala de 10.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Dor severa">
                 description = <"Dor classificada nível 9 numa escala de 10.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Dor Moderada">
                 description = <"Dor classificada  como nível 5 numa escala máxima de 10.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Dor branda">
                 description = <"Dor classificada como nível 2 numa escala máxima de 10.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Dor leve">
                 description = <"Dor classificada como nível 1 numa escala máxima de 10.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Sem dor">
                 description = <"Nenhuma dor.">
             >
@@ -1085,19 +1085,19 @@ terminology
                 text = <"Texto Cuja Origem é uma Terminologia Externa ">
                 description = <"Tipo de dado Texto utilizando códigos originários de uma terminologia externa como, por exemplo, um subset do SNOMED CT, do LOINC ou da CID 10. ">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Em pé">
                 description = <"Paciente está em Pé.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Sentado">
                 description = <"Paciente está Sentado em uma cadeira.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Reclinado">
                 description = <"Paciente Reclinado, apoiado em um travesseiro médio.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Deitado">
                 description = <"Paciente Deitado em posição supina ou decúbito dorsal.">
             >
@@ -1364,27 +1364,27 @@ terminology
                 text = <"Identifier">
                 description = <"Identifier datatypes enable recording of formal data identifiers.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Most severe pain imaginable">
                 description = <"Pain level rated as 10 out of a possible maximum score of 10.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Severe pain">
                 description = <"Pain level rated as 9 out of a possible maximum score of 10.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Moderate pain">
                 description = <"Pain level rated as 5 out of a possible maximum score of 10.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Mild pain">
                 description = <"Pain level rated as 2 out of a possible maximum score of 10.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Slight pain">
                 description = <"Pain level rated as 1 out of a possible maximum score of 10.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"No pain">
                 description = <"No pain at all.">
             >
@@ -1484,19 +1484,19 @@ terminology
                 text = <"Text That is Sourced From an External Terminology">
                 description = <"Text data type utilising codes derived from an external terminology source eg a SNOMED-CT, LOINC or ICD subset.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Standing">
                 description = <"Patient is standing.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Sitting">
                 description = <"Patient is sitting on a chair.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Reclining">
                 description = <"Patient is reclining, propped up on one medium pillow.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Lying">
                 description = <"Patient is lying supine.">
             >
@@ -1595,11 +1595,11 @@ terminology
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at39", "at40", "at41", "at42", "at43", "at44">
+            members = <"at38", "at39", "at40", "at41", "at42", "at43">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at8", "at9", "at10", "at11">
+            members = <"at7", "at8", "at9", "at10">
         >
         ["ac9054"] = <
             id = <"ac9054">

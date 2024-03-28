@@ -128,11 +128,11 @@ terminology
                 description = <"Strukturerte detaljer om repeteringsmønsteret for hvert sett av daglige anvisninger.">
                 comment = <"For eksempel \"hver 3. dag\", \"på tirsdager og søndager\", \"3 dager etter menstruasjonsblødningens 1. dag\". Dette SLOTet er ikke for timing innenfor et 24-timersintervall.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Ubestemt - ikke avslutt">
                 description = <"Anvisningen skal videreføres på ubestemt tid, med en sterk anbefaling om ikke å avslutte den.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Ubestemt">
                 description = <"Anvisningen skal videreføres på ubestemt tid.">
             >
@@ -174,11 +174,11 @@ terminology
                 description = <"Structured details about pattern of repetition for each set of daily directions.">
                 comment = <"For example: 'every 3 days', 'on Thursdays and Sundays', '3 days after onset of menstruation'. This SLOT is not for timings within a 24 hour interval.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Indefinite - not to be discontinued">
                 description = <"The direction should be continued indefinitely with a strong recommendation that it never be discontinued.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Indefinite">
                 description = <"The direction should be continued indefinitely.">
             >
@@ -202,6 +202,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at68", "at69">
+            members = <"at67", "at68">
         >
     >

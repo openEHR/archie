@@ -99,8 +99,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}]
                                                 }
                                             }
                                         }
@@ -109,8 +109,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at9]}],
-                                                    [{1}, {[at10]}]
+                                                    [{0}, {[at8]}],
+                                                    [{1}, {[at9]}]
                                                 }
                                             }
                                         }
@@ -119,8 +119,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at12]}],
-                                                    [{1}, {[at13]}]
+                                                    [{0}, {[at11]}],
+                                                    [{1}, {[at12]}]
                                                 }
                                             }
                                         }
@@ -129,8 +129,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at15]}],
-                                                    [{1}, {[at16]}]
+                                                    [{0}, {[at14]}],
+                                                    [{1}, {[at15]}]
                                                 }
                                             }
                                         }
@@ -139,8 +139,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at18]}],
-                                                    [{1}, {[at19]}]
+                                                    [{0}, {[at17]}],
+                                                    [{1}, {[at18]}]
                                                 }
                                             }
                                         }
@@ -197,11 +197,11 @@ terminology
                 text = <"Yhteispisteet">
                 description = <"Jokaisesta \"Kyllä\" -vastauksesta annetaan yksi piste. Kokonaispisteiden ollessa ≥2, mahdollinen anoreksia tai bulimia.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Kyllä">
                 description = <"*">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Ei">
                 description = <"*">
             >
@@ -209,11 +209,11 @@ terminology
                 text = <"Hallitseeko ruoka mielestäsi elämääsi?">
                 description = <"Hallitseeko ruoka mielestäsi elämääsi?">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Kyllä">
                 description = <"*">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Ei">
                 description = <"*">
             >
@@ -221,11 +221,11 @@ terminology
                 text = <"Tunnetko itsesi lihavaksi, vaikka muiden mielestä olet liian laiha?">
                 description = <"Tunnetko itsesi lihavaksi, vaikka muiden mielestä olet liian laiha?">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Kyllä">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Ei">
                 description = <"*">
             >
@@ -233,11 +233,11 @@ terminology
                 text = <"Onko Sinulla hiljattain ollut 3 kk kestänyttä jaksoa, jolloin laihduit yli kuusi kiloa?">
                 description = <"Onko Sinulla hiljattain ollut 3 kk kestänyttä jaksoa, jolloin laihduit yli kuusi kiloa?">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Kyllä">
                 description = <"*">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Ei">
                 description = <"*">
             >
@@ -245,11 +245,11 @@ terminology
                 text = <"Pelkäätkö menettäväsi hallinnan siihen kuinka paljon syöt?">
                 description = <"Pelkäätkö menettäväsi hallinnan siihen kuinka paljon syöt?">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Kyllä">
                 description = <"*">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Ei">
                 description = <"*">
             >
@@ -299,11 +299,11 @@ terminology
                 text = <"Totalt antal poäng">
                 description = <"Varje \"Ja\" svar ges en poäng. Med ett övergripande poäng på ≥ 2 är anorexi eller bulimi möjlig.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Ja">
                 description = <"*">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Nej">
                 description = <"*">
             >
@@ -311,11 +311,11 @@ terminology
                 text = <"Skulle du säga att mat dominerar ditt liv?">
                 description = <"Skulle du säga att mat dominerar ditt liv?">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Ja">
                 description = <"*">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Nej">
                 description = <"*">
             >
@@ -323,11 +323,11 @@ terminology
                 text = <"Tycker du att du är fet även när andra säger att du är för smal?">
                 description = <"Tycker du att du är fet även när andra säger att du är för smal?">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Ja">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Nej">
                 description = <"*">
             >
@@ -335,11 +335,11 @@ terminology
                 text = <"Har du nyligen gått ner mer än 6 kg inom loppet av 3 månader?">
                 description = <"Har du nyligen gått ner mer än 6 kg inom loppet av 3 månader?">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Ja">
                 description = <"*">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Nej">
                 description = <"*">
             >
@@ -347,11 +347,11 @@ terminology
                 text = <"Oroar du dig för att du har förlorat kontrollen över hur mycket du äter?">
                 description = <"Oroar du dig för att du har förlorat kontrollen över hur mycket du äter?">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Ja">
                 description = <"*">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Nej">
                 description = <"*">
             >
@@ -401,11 +401,11 @@ terminology
                 text = <"Total score">
                 description = <"One point is assigned for every \"yes\"; a score greater than two (≥2) indicates a possible case of anorexia nervosa or bulimia nervosa.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Yes">
                 description = <"*">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"No">
                 description = <"*">
             >
@@ -413,11 +413,11 @@ terminology
                 text = <"Would you say that food dominates your life?">
                 description = <"Would you say that food dominates your life?">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Yes">
                 description = <"*">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"No">
                 description = <"*">
             >
@@ -425,11 +425,11 @@ terminology
                 text = <"Do you believe yourself to be fat when others say you are too thin?">
                 description = <"Do you believe yourself to be fat when others say you are too thin?">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Yes">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"No">
                 description = <"*">
             >
@@ -437,11 +437,11 @@ terminology
                 text = <"Have you recently lost more than one stone (14 lb, 6,5 kg) in a 3-month period?">
                 description = <"Have you recently lost more than one stone (14 lb, 6,5 kg) in a 3-month period?">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Yes">
                 description = <"*">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"No">
                 description = <"*">
             >
@@ -449,11 +449,11 @@ terminology
                 text = <"Do you worry that you have lost control over how much you eat?">
                 description = <"Do you worry that you have lost control over how much you eat?">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Yes">
                 description = <"*">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"No">
                 description = <"*">
             >
@@ -478,22 +478,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at12", "at13">
+            members = <"at11", "at12">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at9", "at10">
+            members = <"at8", "at9">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7">
+            members = <"at5", "at6">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at18", "at19">
+            members = <"at17", "at18">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at15", "at16">
+            members = <"at14", "at15">
         >
     >

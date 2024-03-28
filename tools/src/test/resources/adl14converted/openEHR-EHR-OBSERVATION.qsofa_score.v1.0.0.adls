@@ -76,8 +76,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9003] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at10]}],
-                                                    [{1}, {[at11]}]
+                                                    [{0}, {[at9]}],
+                                                    [{1}, {[at10]}]
                                                 }
                                             }
                                         }
@@ -86,8 +86,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9004] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at15]}],
-                                                    [{1}, {[at16]}]
+                                                    [{0}, {[at14]}],
+                                                    [{1}, {[at15]}]
                                                 }
                                             }
                                         }
@@ -96,8 +96,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at12]}],
-                                                    [{1}, {[at13]}]
+                                                    [{0}, {[at11]}],
+                                                    [{1}, {[at12]}]
                                                 }
                                             }
                                         }
@@ -156,27 +156,27 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Systolisk blodtrykk ≤100">
                 description = <"Individet har systolisk blodtrykk ≤100 mmHg.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Systolisk blodtrykk >100">
                 description = <"Individet har systolisk blodtrykk >100 mmHg.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Endret mental status">
                 description = <"Individet har endret mental status.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Ikke endret mental status">
                 description = <"Individet har ikke endret mental status.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Respirasjonsfrekvens ≥22">
                 description = <"Respirasjonsfrekvensen hos individet er ≥22/min.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Respirasjonsfrekvens <22">
                 description = <"Respirasjonsfrekvensen hos individet er <22/min.">
             >
@@ -228,27 +228,27 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Systolic blood pressure ≤100">
                 description = <"The individual's systolic blood pressure is ≤100 mmHg.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Systolic blood pressure >100">
                 description = <"The individual's systolic blood pressure is >100 mmHg.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Altered mental status">
                 description = <"The individual has an altered mental status.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"No altered mental status">
                 description = <"The individual doesn't have an altered mental status.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Respiration rate ≥22">
                 description = <"The individual's respiration rate is ≥22/min.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Respiration rate <22">
                 description = <"The individual's respiration rate is <22/min.">
             >
@@ -286,14 +286,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at12", "at13">
+            members = <"at11", "at12">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at15", "at16">
+            members = <"at14", "at15">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at10", "at11">
+            members = <"at9", "at10">
         >
     >

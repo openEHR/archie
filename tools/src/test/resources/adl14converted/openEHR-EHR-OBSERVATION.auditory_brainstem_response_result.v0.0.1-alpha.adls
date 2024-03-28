@@ -238,7 +238,7 @@ terminology
                 text = <"Calibration reference dB (synthesised)">
                 description = <"Scale used for acoustic calibration of the test signal. (synthesised)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"dB nHL">
                 description = <"The test stimuli are calibrated using the normalised hearing level pressure scale.">
             >
@@ -270,15 +270,15 @@ terminology
                 text = <"Air conduction results">
                 description = <"*">
             >
-            ["at54"] = <
+            ["at53"] = <
                 text = <"Headphone">
                 description = <"The stimulus is presented via external headphones - either circumaural or supraaural.">
             >
-            ["at53"] = <
+            ["at52"] = <
                 text = <"Insert earphone">
                 description = <"The stimulus is presented via insert earphones.">
             >
-            ["at52"] = <
+            ["at51"] = <
                 text = <"Soundfield">
                 description = <"The stimulus is presented via a loudspeaker located at least one metre away from the subject.">
             >
@@ -286,15 +286,15 @@ terminology
                 text = <"Air presentation">
                 description = <"Presentation of the air conduction test stimulus indirectly to the inner ear through the atmosphere, via the auditory canal and middle ear structures.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"dB A">
                 description = <"The test stimuli are calibrated using the A-weighted pressure scale.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"dB HL">
                 description = <"The test stimuli are calibrated using the hearing level scale.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"dB SPL">
                 description = <"The test stimuli are calibrated using the sound pressure level scale.">
             >
@@ -302,11 +302,11 @@ terminology
                 text = <"Calibration reference dB">
                 description = <"Scale used for acoustic calibration of the test signal.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Clinically significant">
                 description = <"The background noise is clinically significant.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Not clinically significant">
                 description = <"The background noise is not clinically significant.">
             >
@@ -314,11 +314,11 @@ terminology
                 text = <"Background noise">
                 description = <"The amount and nature of noise in the environment that may influence the test results.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Other">
                 description = <"The test environment was not a booth that meets audiometric standards for ambient noise inside the booth.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Audiometric booth">
                 description = <"Sound treated room that provides a test environment that meets audiometric standards for ambient noise inside the booth.">
             >
@@ -326,15 +326,15 @@ terminology
                 text = <"Test environment">
                 description = <"The environment in which the test is administered.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Crying">
                 description = <"The child was crying.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Quiet and alert">
                 description = <"The child was awake, quiet and alert.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Light sleep">
                 description = <"The child was lightly sleeping.">
             >
@@ -385,11 +385,11 @@ terminology
                 text = <"Result details">
                 description = <"The test result observations and interpretations.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Left ear">
                 description = <"The left ear was tested.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Right ear">
                 description = <"The right ear was tested.">
             >
@@ -416,26 +416,26 @@ terminology
     value_sets = <
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at48", "at49", "at50", "at63">
+            members = <"at47", "at48", "at49", "at62">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7">
+            members = <"at5", "at6">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at45", "at46">
+            members = <"at44", "at45">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at42", "at43">
+            members = <"at41", "at42">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at52", "at53", "at54">
+            members = <"at51", "at52", "at53">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at38", "at39", "at40">
+            members = <"at37", "at38", "at39">
         >
     >

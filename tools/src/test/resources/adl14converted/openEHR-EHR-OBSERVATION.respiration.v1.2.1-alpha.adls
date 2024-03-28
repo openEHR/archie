@@ -349,7 +349,7 @@ terminology
                 text = <"*Body position (en) (synthesised)">
                 description = <"*The body position of the individual during the observation. (en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -357,19 +357,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying (en)">
                 description = <"*The individual was lying flat. (en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining (en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis. (en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting (en)">
                 description = <"*The individual was sitting (for example, on a bed or chair). (en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright (en)">
                 description = <"*The individual was standing, walking or running. (en)">
             >
@@ -377,11 +377,11 @@ terminology
                 text = <"*Body position (en)">
                 description = <"*The body position of the individual during the observation. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected (en)">
                 description = <"*Respiratory movements are not detected on observation. (en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present (en)">
                 description = <"*Respiratory movements are observed. (en)">
             >
@@ -410,7 +410,7 @@ terminology
                 description = <"*Details about physical exertion being undertaken during the examination. (en)">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*Variable(en)">
                 description = <"*Variable depth of breathing.(en)">
             >
@@ -420,15 +420,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Deep(en)">
                 description = <"*Deep breathing.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Shallow(en)">
                 description = <"*Shallow depth of breathing.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Normal(en)">
                 description = <"*Normal depth of breathing.(en)">
             >
@@ -441,11 +441,11 @@ terminology
                 description = <"*Respiratory pattern as a single word, phrase or brief description which represents the clinical meaning and significance of the observations. (en)">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Irregular(en)">
                 description = <"*Irregular respirations.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Regular(en)">
                 description = <"*Regular respiration.(en)">
             >
@@ -483,7 +483,7 @@ terminology
                 text = <"*Body position (en) (synthesised)">
                 description = <"*The body position of the individual during the observation. (en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -491,19 +491,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying (en)">
                 description = <"*The individual was lying flat. (en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining (en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis. (en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting (en)">
                 description = <"*The individual was sitting (for example, on a bed or chair). (en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright (en)">
                 description = <"*The individual was standing, walking or running. (en)">
             >
@@ -511,11 +511,11 @@ terminology
                 text = <"*Body position (en)">
                 description = <"*The body position of the individual during the observation. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected (en)">
                 description = <"*Respiratory movements are not detected on observation. (en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present (en)">
                 description = <"*Respiratory movements are observed. (en)">
             >
@@ -544,7 +544,7 @@ terminology
                 description = <"*Details about physical exertion being undertaken during the examination. (en)">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Ojämnt">
                 description = <"Ojämnt andningsdjup.">
             >
@@ -554,15 +554,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Djup">
                 description = <"Djupandning">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Ytligt">
                 description = <"Ytligt andningsdjup.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Normalt">
                 description = <"Normalt andningsdjup.">
             >
@@ -575,11 +575,11 @@ terminology
                 description = <"*Respiratory pattern as a single word, phrase or brief description which represents the clinical meaning and significance of the observations. (en)">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Oregelbunden">
                 description = <"Oregelbunden andning.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regelbunden">
                 description = <"Regelbunden andning.">
             >
@@ -617,7 +617,7 @@ terminology
                 text = <"*Body position(en) (synthesised)">
                 description = <"*The body position of the individual during the observation.(en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -625,19 +625,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying(en)">
                 description = <"*The individual was lying flat.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining(en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting(en)">
                 description = <"*The individual was sitting (for example, on a bed or chair).(en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright(en)">
                 description = <"*The individual was standing, walking or running.(en)">
             >
@@ -645,11 +645,11 @@ terminology
                 text = <"*Body position(en)">
                 description = <"*The body position of the individual during the observation.(en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected(en)">
                 description = <"*Respiratory movements are not detected on observation.(en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present(en)">
                 description = <"*Respiratory movements are observed.(en)">
             >
@@ -678,7 +678,7 @@ terminology
                 description = <"Tutkittavan rasitustaso havaintohetkellä tai juuri sitä ennen. Tarkoitettu rasituksen kirjaamiseen vain tapauksissa, joissa se saattaa vaikuttaa hengitykseen, mutta jota ei normaalisti kirjattaisi osana yleisiä kliinisiä huomioita.">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Muuttuva">
                 description = <"Muuttuva hengityksen syvyys.">
             >
@@ -688,15 +688,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Syvä">
                 description = <"Syvä hengitys.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Pinnallinen">
                 description = <"Pinnallinen hengityksen syvyys.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Normaali">
                 description = <"Normaali hengityksen syvyys.">
             >
@@ -709,11 +709,11 @@ terminology
                 description = <"Hengitystapa taikka yksittäinen sana, fraasi tai lyhyt kuvaus joka edustaa mittausten kliinistä merkitystä.">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Epäsäännöllinen">
                 description = <"Epäsäännöllinen hengitys.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Säännöllinen">
                 description = <"Säännöllinen hengitys.">
             >
@@ -751,7 +751,7 @@ terminology
                 text = <"*Body position (en) (synthesised)">
                 description = <"*The body position of the individual during the observation. (en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -759,19 +759,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying (en)">
                 description = <"*The individual was lying flat. (en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining (en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis. (en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting (en)">
                 description = <"*The individual was sitting (for example, on a bed or chair). (en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright (en)">
                 description = <"*The individual was standing, walking or running. (en)">
             >
@@ -779,11 +779,11 @@ terminology
                 text = <"*Body position (en)">
                 description = <"*The body position of the individual during the observation. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected (en)">
                 description = <"*Respiratory movements are not detected on observation. (en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present (en)">
                 description = <"*Respiratory movements are observed. (en)">
             >
@@ -812,7 +812,7 @@ terminology
                 description = <"*Details about physical exertion being undertaken during the examination. (en)">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Variable">
                 description = <"Respiración con profundidad variable.">
             >
@@ -822,15 +822,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Profunda">
                 description = <"Respiración profunda.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Superficial">
                 description = <"Respiración superficial.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Normal">
                 description = <"Respiración con profundidad normal.">
             >
@@ -843,11 +843,11 @@ terminology
                 description = <"*Respiratory pattern as a single word, phrase or brief description which represents the clinical meaning and significance of the observations. (en)">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Irregular">
                 description = <"Respiración irregular.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regular">
                 description = <"Respiración regular.">
             >
@@ -885,7 +885,7 @@ terminology
                 text = <"*Body position (en) (synthesised)">
                 description = <"*The body position of the individual during the observation. (en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -893,19 +893,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying (en)">
                 description = <"*The individual was lying flat. (en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining (en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis. (en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting (en)">
                 description = <"*The individual was sitting (for example, on a bed or chair). (en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright (en)">
                 description = <"*The individual was standing, walking or running. (en)">
             >
@@ -913,11 +913,11 @@ terminology
                 text = <"*Body position (en)">
                 description = <"*The body position of the individual during the observation. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected (en)">
                 description = <"*Respiratory movements are not detected on observation. (en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present (en)">
                 description = <"*Respiratory movements are observed. (en)">
             >
@@ -946,7 +946,7 @@ terminology
                 description = <"*Details about physical exertion being undertaken during the examination. (en)">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Varierende">
                 description = <"Varierende åndedrettsdybde.">
             >
@@ -956,15 +956,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Dyp">
                 description = <"Dypt åndedrett.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Overfladisk">
                 description = <"Overfladisk åndedrett.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Normal">
                 description = <"Normal åndedrettsdybde.">
             >
@@ -977,11 +977,11 @@ terminology
                 description = <"*Respiratory pattern as a single word, phrase or brief description which represents the clinical meaning and significance of the observations. (en)">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Uregelmessig">
                 description = <"Uregelmessig åndedrett">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regelmessig">
                 description = <"Regelmessig åndedrett.">
             >
@@ -1020,7 +1020,7 @@ terminology
                 text = <"*Body position (en) (synthesised)">
                 description = <"*The body position of the individual during the observation. (en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -1028,19 +1028,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying (en)">
                 description = <"*The individual was lying flat. (en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining (en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis. (en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting (en)">
                 description = <"*The individual was sitting (for example, on a bed or chair). (en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright (en)">
                 description = <"*The individual was standing, walking or running. (en)">
             >
@@ -1048,11 +1048,11 @@ terminology
                 text = <"*Body position (en)">
                 description = <"*The body position of the individual during the observation. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected (en)">
                 description = <"*Respiratory movements are not detected on observation. (en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present (en)">
                 description = <"*Respiratory movements are observed. (en)">
             >
@@ -1081,7 +1081,7 @@ terminology
                 description = <"*Details about physical exertion being undertaken during the examination. (en)">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Variável">
                 description = <"Profundidade respiratória variável.">
             >
@@ -1091,15 +1091,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Profunda">
                 description = <"Respiração profunda.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Superficial">
                 description = <"Profundidade respiratória superficial.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Normal">
                 description = <"Profundidade respiratória normal.">
             >
@@ -1112,11 +1112,11 @@ terminology
                 description = <"*Respiratory pattern as a single word, phrase or brief description which represents the clinical meaning and significance of the observations. (en)">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Irregular">
                 description = <"Respiração irregular.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regular">
                 description = <"Respiração regular.">
             >
@@ -1154,7 +1154,7 @@ terminology
                 text = <"*Body position (en) (synthesised)">
                 description = <"*The body position of the individual during the observation. (en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -1162,19 +1162,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying (en)">
                 description = <"*The individual was lying flat. (en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining (en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis. (en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting (en)">
                 description = <"*The individual was sitting (for example, on a bed or chair). (en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright (en)">
                 description = <"*The individual was standing, walking or running. (en)">
             >
@@ -1182,11 +1182,11 @@ terminology
                 text = <"*Body position (en)">
                 description = <"*The body position of the individual during the observation. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected (en)">
                 description = <"*Respiratory movements are not detected on observation. (en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present (en)">
                 description = <"*Respiratory movements are observed. (en)">
             >
@@ -1215,7 +1215,7 @@ terminology
                 description = <"*Details about physical exertion being undertaken during the examination. (en)">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"متغير">
                 description = <"عمق التنفس متغيِّر">
             >
@@ -1225,15 +1225,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"عميق">
                 description = <"التنفس عميق">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"ضحل">
                 description = <"عمق التنفس ضحل">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"طبيعي">
                 description = <"عمق التنفس طبيعي">
             >
@@ -1246,11 +1246,11 @@ terminology
                 description = <"*Respiratory pattern as a single word, phrase or brief description which represents the clinical meaning and significance of the observations. (en)">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"غير منتظم">
                 description = <"تنفس غير منتظم">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"منتظم">
                 description = <"تنفس منتظم">
             >
@@ -1288,7 +1288,7 @@ terminology
                 text = <"Body position (synthesised)">
                 description = <"The body position of the individual during the observation. (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Prone">
                 description = <"The individual was lying on their front.">
             >
@@ -1296,19 +1296,19 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about the respirations, not captured in other fields.">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Lying">
                 description = <"The individual was lying on their back.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Reclining">
                 description = <"The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Sitting">
                 description = <"The individual was sitting (for example, on a bed or chair).">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Standing/upright">
                 description = <"The individual was standing, walking or running.">
             >
@@ -1316,11 +1316,11 @@ terminology
                 text = <"Body position">
                 description = <"The body position of the individual during the observation.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Not detected">
                 description = <"Respiratory movements are not detected on observation.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Present">
                 description = <"Respiratory movements are observed.">
             >
@@ -1349,7 +1349,7 @@ terminology
                 description = <"Details about physical exertion being undertaken during the examination.">
                 comment = <"The individual's level of exertion during, or just prior to, the observation.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Variable">
                 description = <"Variable depth of breathing.">
             >
@@ -1359,15 +1359,15 @@ terminology
                 comment = <"For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Deep">
                 description = <"Deep breathing.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Shallow">
                 description = <"Shallow depth of breathing.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Normal">
                 description = <"Normal depth of breathing.">
             >
@@ -1380,11 +1380,11 @@ terminology
                 description = <"Single word, phrase or brief description which represents the clinical meaning and significance of the respiration findings.">
                 comment = <"Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed. ">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Irregular">
                 description = <"The breathing pattern is not regular.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regular">
                 description = <"The breathing pattern is regular.">
             >
@@ -1422,7 +1422,7 @@ terminology
                 text = <"*Body position (en) (synthesised)">
                 description = <"*The body position of the individual during the observation. (en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -1430,19 +1430,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying (en)">
                 description = <"*The individual was lying flat. (en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining (en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis. (en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting (en)">
                 description = <"*The individual was sitting (for example, on a bed or chair). (en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright (en)">
                 description = <"*The individual was standing, walking or running. (en)">
             >
@@ -1450,11 +1450,11 @@ terminology
                 text = <"*Body position (en)">
                 description = <"*The body position of the individual during the observation. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected (en)">
                 description = <"*Respiratory movements are not detected on observation. (en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present (en)">
                 description = <"*Respiratory movements are observed. (en)">
             >
@@ -1483,7 +1483,7 @@ terminology
                 description = <"*Details about physical exertion being undertaken during the examination. (en)">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"متغیر">
                 description = <"عمق تنفس طبیعی.">
             >
@@ -1493,15 +1493,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"عمیق">
                 description = <"تنفس عمیق.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"سطحی">
                 description = <"عمق تنفس سطحی.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"طبیعی">
                 description = <"عمق تنفس طبیعی.">
             >
@@ -1514,11 +1514,11 @@ terminology
                 description = <"*Respiratory pattern as a single word, phrase or brief description which represents the clinical meaning and significance of the observations. (en)">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"نامنظم">
                 description = <"تنفس نامنظم.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"منظم">
                 description = <"تنفس منظم.">
             >
@@ -1556,7 +1556,7 @@ terminology
                 text = <"*Body position (en) (synthesised)">
                 description = <"*The body position of the individual during the observation. (en) (synthesised)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*Prone (en)">
                 description = <"*The individual was lying on their front. (en)">
             >
@@ -1564,19 +1564,19 @@ terminology
                 text = <"*Comment (en)">
                 description = <"*Additional narrative about the respirations, not captured in other fields. (en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*Lying (en)">
                 description = <"*The individual was lying flat. (en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*Reclining (en)">
                 description = <"*The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis. (en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*Sitting (en)">
                 description = <"*The individual was sitting (for example, on a bed or chair). (en)">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"*Standing/upright (en)">
                 description = <"*The individual was standing, walking or running. (en)">
             >
@@ -1584,11 +1584,11 @@ terminology
                 text = <"*Body position (en)">
                 description = <"*The body position of the individual during the observation. (en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"*Not detected (en)">
                 description = <"*Respiratory movements are not detected on observation. (en)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Present (en)">
                 description = <"*Respiratory movements are observed. (en)">
             >
@@ -1617,7 +1617,7 @@ terminology
                 description = <"*Details about physical exertion being undertaken during the examination. (en)">
                 comment = <"*The individual's level of exertion during, or just prior to, the observation. (en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Variabel">
                 description = <"Variabele diepte van de ademteugen">
             >
@@ -1627,15 +1627,15 @@ terminology
                 comment = <"*For example: noting respiratory distress, use of accessory muscles or intermittent apnoea; noting characteristics such as stridor, sighing, grunting, groaning, gasping. 
     Conducting a full respiratory examination, then some of these findings might be more appropriately recorded as part of examination findings. (en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Diep">
                 description = <"Diepe ademhaling">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Oppervlakkig">
                 description = <"Oppervlakkige ademhaling">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Normaal">
                 description = <"Normale diepte van de in- en uitademing">
             >
@@ -1648,11 +1648,11 @@ terminology
                 description = <"*Respiratory pattern as a single word, phrase or brief description which represents the clinical meaning and significance of the observations. (en)">
                 comment = <"*Coding with a terminology is preferred, where possible. For example: Normal breathing; Evidence of respiratory distress; Kussmaul's respiration; Cheyne-Stokes respiration; or Apnoeic episodes. Multiple statements are allowed.  (en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Onregelmatig">
                 description = <"Onregelmatige ademhaling">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regelmatig">
                 description = <"Regelmatige ademhaling
     ">
@@ -1678,18 +1678,18 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at18", "at19", "at20", "at26">
+            members = <"at17", "at18", "at19", "at25">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at7", "at8">
+            members = <"at6", "at7">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at64", "at65">
+            members = <"at63", "at64">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at67", "at68", "at69", "at70", "at72">
+            members = <"at66", "at67", "at68", "at69", "at71">
         >
     >

@@ -203,19 +203,19 @@ terminology
                 text = <"Marker dye uptake">
                 description = <"Findings of whether marker dye has been taken up by the lymph node or lymph node group.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"Absent">
                 description = <"Lymph node tissue is absent.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Present">
                 description = <"Lymph node tissue is present.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Metastasis">
                 description = <"The tumour involved the lymph node by metastasis.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Direct spread">
                 description = <"The tumour involved the lymph node by direct spread.">
             >
@@ -231,7 +231,7 @@ terminology
                 text = <"Tissue available">
                 description = <"Has the appropriate lymph node tissue been made available for examination?">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Present">
                 description = <"Lymph node involvement with tumour is present.">
             >
@@ -247,19 +247,19 @@ terminology
                 text = <"Extra-nodal extension">
                 description = <"Findings related to extension of tumour external to the nodal capsule.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Indeterminate">
                 description = <"Extra-capsular involvement by tumour has not been determined.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Equivocal">
                 description = <"Extra-capsular involvement by tumour is equivocal.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Absent">
                 description = <"Extra-capsular involvement by tumour is absent.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Present">
                 description = <"Extra-capsular involvement by tumour is present.">
             >
@@ -267,31 +267,31 @@ terminology
                 text = <"Extra-capsular extension">
                 description = <"Findings of extension of tumour beyond a node capsule.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Indeterminate">
                 description = <"The nature of tumour has not been determnined.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Indeterminate">
                 description = <"Llymph node involvement by tumour has not been determined.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Equivocal">
                 description = <"Lymph node involvement by tumour is equivocal.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Absent">
                 description = <"Tumour is absent from the lymph node site.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Present - bilateral nodes">
                 description = <"Tumour is present in nodes on both sides.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Present - right side nodes only">
                 description = <"Tumour is present in right side nodes only.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Present - left side nodes only">
                 description = <"Tumour is present in left sided nodes only.">
             >
@@ -299,7 +299,7 @@ terminology
                 text = <"Tumour involvement">
                 description = <"Findings of lymph node involvement with tumour.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Complete">
                 description = <"The node is completely invaded by tumour.">
             >
@@ -307,11 +307,11 @@ terminology
                 text = <"Extent of extranodal tumour">
                 description = <"Extent of extranodal tumour expressed as a maximum length.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Diffuse">
                 description = <"The tumour is of a diffuse nature.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Focal">
                 description = <"The tumour is of a focal nature.">
             >
@@ -377,19 +377,19 @@ terminology
                 text = <"قَبْط الصبغة الواصِمة">
                 description = <"الموجودات المتعلقة بما إذا كانت الصبغة الواصمة قد تم قبطها بواسطة العقدة الليمفاوية أو مجموعة العقد الليمفاوية.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"غائب">
                 description = <"لا يوجد نسيج عقدة ليمفاوية متوفر ">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"موجود">
                 description = <"نسيج العقدة الليمفاوية متوفر/موجود">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"النَّقيلة">
                 description = <"تم انتشار الورم في العقدة الليمفاوية عن طريق النَّقيلة">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"انتشار مباشر">
                 description = <"قام الورم باكتناف العقدة الليمفاوية عن طريق الانتشار المباشر">
             >
@@ -405,7 +405,7 @@ terminology
                 text = <"النسيج المتاح/المتوفر">
                 description = <"هل تم جعل نسيج العقدة الليمفاوية المناسب متاحا/متوفرا للفحص ?">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"موجود">
                 description = <"يوجد اكتناف للغدة الليمفاوية بالورم">
             >
@@ -421,19 +421,19 @@ terminology
                 text = <"الامتداد في خارج العقدة">
                 description = <"الموجودات المتعلقة بامتداد الورم خارج مِحفظة العقدة.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"غير محدد">
                 description = <"لم يتم تحديد اكتناف الورم خارج المِحفظة">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"غير قابل للتحديد">
                 description = <"اكتناف الورم خارج المحفظة غير قابل للتحديد">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"غائب">
                 description = <"لا يوجد اكتناف للورم خارج المِحفظة">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"موجود">
                 description = <"يوجد اكتناف للورم خارج المِحفظة">
             >
@@ -441,31 +441,31 @@ terminology
                 text = <"الامتداد خارج المِحفظة">
                 description = <"الموجودات المتعلقة بامتداد الورم فيما يتجاوز مِحفظة العقدة.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"غامض">
                 description = <"لم يتم تحديد طبيعة الورم">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"غامض">
                 description = <"اكتناف العقد الليمفاوية بالورم لم يتم تحديده">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"غير قابل للتحديد">
                 description = <"اكتناف العقد الليمفاوية بالورم غير قابل للتحديد.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"غائب">
                 description = <"الورم غير موجود في هذا الموقع من العقد الليمفاوية">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"موجود - عُقَد الجانبين">
                 description = <"الورم موجود في العُقَد على الجانبين.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"موجود - عُقَد الجانب الأيمن فقط">
                 description = <"الورم موجود في العقد على الجانب الأيمن فقط">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"موجود - عُقَد الجانب الأيسر فقط">
                 description = <"الورم موجود في العقد على الجانب الأيسر فقط">
             >
@@ -473,7 +473,7 @@ terminology
                 text = <"اكتناف الورم">
                 description = <"الموجودات الخاصة باكتناف العقدة الليمفاوية بالورم">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"كلّي">
                 description = <"تم غزو جميع العقدة الليمفاوية بالورم">
             >
@@ -481,11 +481,11 @@ terminology
                 text = <"مدى الورم خارج العقدة">
                 description = <"مدى الورم خارج العقدة و التي يتم التعبير عنها لحد أقصى للطول.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"منتشر">
                 description = <"لدى الورم طبيعة منتشرة">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"بُؤْرِي">
                 description = <"لدى الورم طبيعة بُؤْرِيَّة">
             >
@@ -524,22 +524,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at13", "at14", "at25", "at34">
+            members = <"at12", "at13", "at24", "at33">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at43", "at27", "at28", "at29", "at30", "at31", "at32">
+            members = <"at42", "at26", "at27", "at28", "at29", "at30", "at31">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at50", "at51">
+            members = <"at49", "at50">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at36", "at37", "at38", "at39">
+            members = <"at35", "at36", "at37", "at38">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at48", "at49">
+            members = <"at47", "at48">
         >
     >

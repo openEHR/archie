@@ -93,99 +93,99 @@ terminology
                 text = <"KromosomID (synthesised)">
                 description = <"Kromosomets ID (engelsk: Chromosome label). (synthesised)">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Kromosom Y">
                 description = <"Kromosom Y.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"Kromosom X">
                 description = <"Kromosom X.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Kromosom 22">
                 description = <"Kromosom 22.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Kromosom 21">
                 description = <"Kromosom 21.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Kromosom 20">
                 description = <"Kromosom 20.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Kromosom 19">
                 description = <"Kromosom 19.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Kromosom 18">
                 description = <"Kromosom 18.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Kromosom 17">
                 description = <"Kromosom 17.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Kromosom 16">
                 description = <"Kromosom 16.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Kromosom 15">
                 description = <"Kromosom 15.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Kromosom 14">
                 description = <"Kromosom 14.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Kromosom 13">
                 description = <"Kromosom 13.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Kromosom 12">
                 description = <"Kromosom 12.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Kromosom 11">
                 description = <"Kromosom 11.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Kromosom 10">
                 description = <"Kromosom 10.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Kromosom 9">
                 description = <"Kromosom 9.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Kromosom 8">
                 description = <"Kromosom 8.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Kromosom 7">
                 description = <"Kromosom 7.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Kromosom 6">
                 description = <"Kromosom 6.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Kromosom 5">
                 description = <"Kromosom 5.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Kromosom 4">
                 description = <"Kromosom 4.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Kromosom 3">
                 description = <"Kromosom 3.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Kromosom 2">
                 description = <"Kromosom 2.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Kromosom 1">
                 description = <"Kromosom 1.">
             >
@@ -219,99 +219,99 @@ terminology
                 text = <"Chromosome label (synthesised)">
                 description = <"Chromosome identifier. (synthesised)">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"Chromosome Y">
                 description = <"Chromosome Y.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"Chromosome X">
                 description = <"Chromosome X.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Chromosome 22">
                 description = <"Chromosome 22.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Chromosome 21">
                 description = <"Chromosome 21.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Chromosome 20">
                 description = <"Chromosome 20.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Chromosome 19">
                 description = <"Chromosome 19.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Chromosome 18">
                 description = <"Chromosome 18.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Chromosome 17">
                 description = <"Chromosome 17.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Chromosome 16">
                 description = <"Chromosome 16.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Chromosome 15">
                 description = <"Chromosome 15.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Chromosome 14">
                 description = <"Chromosome 14.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Chromosome 13">
                 description = <"Chromosome 13.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Chromosome 12">
                 description = <"Chromosome 12.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Chromosome 11">
                 description = <"Chromosome 11.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Chromosome 10">
                 description = <"Chromosome 10.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Chromosome 9">
                 description = <"Chromosome 9.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Chromosome 8">
                 description = <"Chromosome 8.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Chromosome 7">
                 description = <"Chromosome 7.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Chromosome 6">
                 description = <"Chromosome 6.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Chromosome 5">
                 description = <"Chromosome 5.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Chromosome 4">
                 description = <"Chromosome 4.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Chromosome 3">
                 description = <"Chromosome 3.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Chromosome 2">
                 description = <"Chromosome 2.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Chromosome 1">
                 description = <"Chromosome 1.">
             >
@@ -344,35 +344,35 @@ terminology
     term_bindings = <
         ["LOINC"] = <
             ["id24"] = <http://loinc.org/id/48000-4>
-            ["at25"] = <http://loinc.org/id/LA21254-0>
-            ["at26"] = <http://loinc.org/id/LA21255-7>
-            ["at27"] = <http://loinc.org/id/LA21256-5>
-            ["at28"] = <http://loinc.org/id/LA21257-3>
-            ["at29"] = <http://loinc.org/id/LA21258-1>
-            ["at30"] = <http://loinc.org/id/LA21259-9>
-            ["at31"] = <http://loinc.org/id/LA21260-7>
-            ["at32"] = <http://loinc.org/id/LA21261-5>
-            ["at33"] = <http://loinc.org/id/LA21262-3>
-            ["at34"] = <http://loinc.org/id/LA21263-1>
-            ["at35"] = <http://loinc.org/id/LA21264-9>
-            ["at36"] = <http://loinc.org/id/LA21265-6>
-            ["at37"] = <http://loinc.org/id/LA21266-4>
-            ["at38"] = <http://loinc.org/id/LA21267-2>
-            ["at39"] = <http://loinc.org/id/LA21268-0>
-            ["at40"] = <http://loinc.org/id/LA21269-8>
-            ["at41"] = <http://loinc.org/id/LA21270-6>
-            ["at42"] = <http://loinc.org/id/LA21271-4>
-            ["at43"] = <http://loinc.org/id/LA21272-2>
-            ["at44"] = <http://loinc.org/id/LA21273-0>
-            ["at45"] = <http://loinc.org/id/LA21274-8>
-            ["at46"] = <http://loinc.org/id/LA21275-5>
-            ["at47"] = <http://loinc.org/id/LA21276-3>
-            ["at48"] = <http://loinc.org/id/LA21277-1>
+            ["at24"] = <http://loinc.org/id/LA21254-0>
+            ["at25"] = <http://loinc.org/id/LA21255-7>
+            ["at26"] = <http://loinc.org/id/LA21256-5>
+            ["at27"] = <http://loinc.org/id/LA21257-3>
+            ["at28"] = <http://loinc.org/id/LA21258-1>
+            ["at29"] = <http://loinc.org/id/LA21259-9>
+            ["at30"] = <http://loinc.org/id/LA21260-7>
+            ["at31"] = <http://loinc.org/id/LA21261-5>
+            ["at32"] = <http://loinc.org/id/LA21262-3>
+            ["at33"] = <http://loinc.org/id/LA21263-1>
+            ["at34"] = <http://loinc.org/id/LA21264-9>
+            ["at35"] = <http://loinc.org/id/LA21265-6>
+            ["at36"] = <http://loinc.org/id/LA21266-4>
+            ["at37"] = <http://loinc.org/id/LA21267-2>
+            ["at38"] = <http://loinc.org/id/LA21268-0>
+            ["at39"] = <http://loinc.org/id/LA21269-8>
+            ["at40"] = <http://loinc.org/id/LA21270-6>
+            ["at41"] = <http://loinc.org/id/LA21271-4>
+            ["at42"] = <http://loinc.org/id/LA21272-2>
+            ["at43"] = <http://loinc.org/id/LA21273-0>
+            ["at44"] = <http://loinc.org/id/LA21274-8>
+            ["at45"] = <http://loinc.org/id/LA21275-5>
+            ["at46"] = <http://loinc.org/id/LA21276-3>
+            ["at47"] = <http://loinc.org/id/LA21277-1>
         >
     >
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33", "at34", "at35", "at36", "at37", "at38", "at39", "at40", "at41", "at42", "at43", "at44", "at45", "at46", "at47", "at48">
+            members = <"at24", "at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33", "at34", "at35", "at36", "at37", "at38", "at39", "at40", "at41", "at42", "at43", "at44", "at45", "at46", "at47">
         >
     >

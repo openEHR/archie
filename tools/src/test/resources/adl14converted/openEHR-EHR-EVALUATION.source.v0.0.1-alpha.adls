@@ -118,11 +118,11 @@ terminology
                 text = <"Comentário">
                 description = <"Descrição sobre a origem da informação não capturada em outros campos de dados.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Não adequado para uso">
                 description = <"A informação é considerada não apropriada para uso.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Adequado para uso">
                 description = <"A informação é considerada apropriada para uso.">
             >
@@ -157,11 +157,11 @@ terminology
                 text = <"Comment">
                 description = <"Narrative about the source information not captured in other data fields.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Not Adequate for Use">
                 description = <"The original information is not deemed to be 'fit for use'.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Adequate for Use">
                 description = <"The original information is deemed to be 'fit for use'.">
             >
@@ -186,6 +186,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7">
+            members = <"at5", "at6">
         >
     >

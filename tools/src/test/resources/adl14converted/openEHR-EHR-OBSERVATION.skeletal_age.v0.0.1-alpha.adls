@@ -151,23 +151,23 @@ terminology
                 text = <"Konfunderende faktorer">
                 description = <"Fritekstbeskrivelse av problemer eller faktorer som kan ha påvirkning på målingen.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"*Femoral head(en)">
                 description = <"*">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*Iliac bone(en)">
                 description = <"*">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"*Clavicle(en)">
                 description = <"*">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"*Teeth(en)">
                 description = <"*">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Ultralyd">
                 description = <"*">
             >
@@ -176,19 +176,19 @@ terminology
                 description = <"Vurderingsmetoden som ble benyttet for å estimere skjelettalder.">
                 comment = <"For eksempel: Greulich & Pyle, Fishman method.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Midpalatal suture(en)">
                 description = <"*">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Frontal sinus(en)">
                 description = <"*">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Cervical vertebrae(en)">
                 description = <"*">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Hånd og håndledd">
                 description = <"https://www.udi.no/globalassets/global/forskning-fou_i/asyl/aldersundersokelser/wp3-mr-analyse.pdf">
             >
@@ -201,15 +201,15 @@ terminology
                 description = <"Registrering av ett enkelt område på kroppen hvor vurderingen ble utført.">
                 comment = <"Koding av \"Kroppssted\" med en terminologi er ønskelig om mulig.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"CT">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"MR">
                 description = <"*">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Røntgen">
                 description = <"*">
             >
@@ -252,23 +252,23 @@ terminology
                 text = <"Confounding factors">
                 description = <"Narrative descripiton of any issues or factors that may impact on the assessment.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Femoral head">
                 description = <"*">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Iliac bone">
                 description = <"*">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Clavicle">
                 description = <"*">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Teeth">
                 description = <"*">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Ultrasound">
                 description = <"*">
             >
@@ -277,19 +277,19 @@ terminology
                 description = <"The assessment method used to estimate the skeletal age.">
                 comment = <"For example: Greulich & Pyle, Fishman method.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Midpalatal suture">
                 description = <"*">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Frontal sinus">
                 description = <"*">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Cervical vertebrae">
                 description = <"*">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Hand and wrist">
                 description = <"*">
             >
@@ -302,15 +302,15 @@ terminology
                 description = <"Simple bodysite where the assessment was performed.">
                 comment = <"Coding of the 'Body site' with a coding system is desirable, if available.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"CT">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"MRI">
                 description = <"*">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Radiograph">
                 description = <"*">
             >
@@ -339,10 +339,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at18", "at19", "at20", "at21", "at24", "at25", "at26", "at27">
+            members = <"at17", "at18", "at19", "at20", "at23", "at24", "at25", "at26">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12", "at13", "at23">
+            members = <"at10", "at11", "at12", "at22">
         >
     >

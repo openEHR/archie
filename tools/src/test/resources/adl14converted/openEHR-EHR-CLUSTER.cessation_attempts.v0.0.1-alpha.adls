@@ -131,15 +131,15 @@ terminology
                 text = <"*Duration of cessation(en)">
                 description = <"*Amount of time activity ceased.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Mislykket">
                 description = <"Utfallet var ikke en suksess: Misbruken forsatte.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Suksess men med tilbakefall">
                 description = <"Utfallet var initialt en suksess, men bruken av vanedannende middel ble gjenopptatt.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Suksess">
                 description = <"Utfallet var en suksess: Bruken av vanedannende midler opphørte.">
             >
@@ -189,15 +189,15 @@ terminology
                 text = <"Duration of cessation">
                 description = <"Amount of time activity ceased.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Failed">
                 description = <"Outcome was not successful; Use/consumption continued.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Successful but relapsed">
                 description = <"Outcome was initially successful but use/consumption of substance was resumed.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Successful">
                 description = <"Outcome was successful; Use/consumption of substance ceased.">
             >
@@ -247,15 +247,15 @@ terminology
                 text = <"*Duration of cessation(en)">
                 description = <"*Amount of time activity ceased.(en)">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"الفشل">
                 description = <"الناتج هو عدم نجاح المحاولة, حيث استمر الاستخدام/الاستهلاك">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"ناجح و لكن حدث انتكاس">
                 description = <"الناتج المبدئي هو نجاح المحاولة, و لكن تم استئناف استخدام/استهلاك المادة">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"ناجح">
                 description = <"الناتج هو نجاح المحاولةحيث توقف استخدام/استهلاك المادة">
             >
@@ -300,6 +300,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at12", "at13", "at14">
+            members = <"at11", "at12", "at13">
         >
     >

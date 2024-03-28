@@ -152,11 +152,11 @@ terminology
                 text = <"* Volume (en)">
                 description = <"* Volume (en)">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Høyre testikkel">
                 description = <"Måling av høyre testikkel.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Venstre testikkel">
                 description = <"Måling av venstre testikkel.">
             >
@@ -216,11 +216,11 @@ terminology
                 text = <"Volume">
                 description = <"Volume">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Right testicle">
                 description = <"Measurement of the right testicle.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Left testicle">
                 description = <"Measurement of the left testicle.">
             >
@@ -278,13 +278,13 @@ terminology
         >
         ["SNOMED-CT"] = <
             ["id11"] = <http://snomed.info/id/251828008>
-            ["at22"] = <http://snomed.info/id/63239009>
-            ["at23"] = <http://snomed.info/id/15598003>
+            ["at21"] = <http://snomed.info/id/63239009>
+            ["at22"] = <http://snomed.info/id/15598003>
         >
     >
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at22", "at23">
+            members = <"at21", "at22">
         >
     >

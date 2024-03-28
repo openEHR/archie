@@ -77,8 +77,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9004] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at10]}],
-                                                    [{1}, {[at11]}]
+                                                    [{0}, {[at9]}],
+                                                    [{1}, {[at10]}]
                                                 }
                                             }
                                         }
@@ -87,8 +87,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at12]}],
-                                                    [{1}, {[at13]}]
+                                                    [{0}, {[at11]}],
+                                                    [{1}, {[at12]}]
                                                 }
                                             }
                                         }
@@ -97,8 +97,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at14]}],
-                                                    [{1}, {[at15]}]
+                                                    [{0}, {[at13]}],
+                                                    [{1}, {[at14]}]
                                                 }
                                             }
                                         }
@@ -107,8 +107,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at16]}],
-                                                    [{1}, {[at17]}]
+                                                    [{0}, {[at15]}],
+                                                    [{1}, {[at16]}]
                                                 }
                                             }
                                         }
@@ -163,35 +163,35 @@ terminology
                 description = <"*">
                 comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents. (en)">
             >
-            ["at17"] = <
-                text = <"Ja">
-                description = <"*">
-            >
             ["at16"] = <
-                text = <"Nej">
+                text = <"Ja">
                 description = <"*">
             >
             ["at15"] = <
-                text = <"Ja">
+                text = <"Nej">
                 description = <"*">
             >
             ["at14"] = <
-                text = <"Nej">
+                text = <"Ja">
                 description = <"*">
             >
             ["at13"] = <
-                text = <"Ja">
-                description = <"*">
-            >
-            ["at12"] = <
                 text = <"Nej">
                 description = <"*">
             >
-            ["at11"] = <
+            ["at12"] = <
                 text = <"Ja">
                 description = <"*">
             >
+            ["at11"] = <
+                text = <"Nej">
+                description = <"*">
+            >
             ["at10"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at9"] = <
                 text = <"Nej">
                 description = <"*">
             >
@@ -246,35 +246,35 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at17"] = <
-                text = <"Yes">
-                description = <"*">
-            >
             ["at16"] = <
-                text = <"No">
+                text = <"Yes">
                 description = <"*">
             >
             ["at15"] = <
-                text = <"Yes">
+                text = <"No">
                 description = <"*">
             >
             ["at14"] = <
-                text = <"No">
+                text = <"Yes">
                 description = <"*">
             >
             ["at13"] = <
-                text = <"Yes">
-                description = <"*">
-            >
-            ["at12"] = <
                 text = <"No">
                 description = <"*">
             >
-            ["at11"] = <
+            ["at12"] = <
                 text = <"Yes">
                 description = <"*">
             >
+            ["at11"] = <
+                text = <"No">
+                description = <"*">
+            >
             ["at10"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at9"] = <
                 text = <"No">
                 description = <"*">
             >
@@ -311,18 +311,18 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at14", "at15">
+            members = <"at13", "at14">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at12", "at13">
+            members = <"at11", "at12">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at10", "at11">
+            members = <"at9", "at10">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at16", "at17">
+            members = <"at15", "at16">
         >
     >

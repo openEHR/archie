@@ -126,11 +126,11 @@ terminology
                 text = <"Pre-operative assessment">
                 description = <"Structured details about pre-procedure activities.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Revision">
                 description = <"Subsequent times the procedure is performed.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Primary">
                 description = <"The first time the procedure has been performed on this body site.">
             >
@@ -147,6 +147,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at3", "at4">
+            members = <"at2", "at3">
         >
     >

@@ -53,11 +53,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9001] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}],
-                                                    [{4}, {[at10]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}],
+                                                    [{4}, {[at9]}]
                                                 }
                                             }
                                         }
@@ -93,23 +93,23 @@ terminology
                 description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
                 comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Class IV">
                 description = <"Inability to perform any physical activity without discomfort.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Class III">
                 description = <"Marked limitation of ordinary physical activity.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Class II">
                 description = <"Slight limitation of ordinary activity.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Class I">
                 description = <"Angina which does not limit ordinary physical activity.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Class 0">
                 description = <"Patient has no angina symptoms.">
             >
@@ -131,15 +131,15 @@ terminology
         ["Snomed"] = <
             ["id1"] = <http://snomed.info/id/134438001>
             ["id5"] = <http://snomed.info/id/134438001>
-            ["at7"] = <http://snomed.info/id/61490001>
-            ["at8"] = <http://snomed.info/id/41334000>
-            ["at9"] = <http://snomed.info/id/85284003>
-            ["at10"] = <http://snomed.info/id/89323001>
+            ["at6"] = <http://snomed.info/id/61490001>
+            ["at7"] = <http://snomed.info/id/41334000>
+            ["at8"] = <http://snomed.info/id/85284003>
+            ["at9"] = <http://snomed.info/id/89323001>
         >
     >
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10">
+            members = <"at5", "at6", "at7", "at8", "at9">
         >
     >

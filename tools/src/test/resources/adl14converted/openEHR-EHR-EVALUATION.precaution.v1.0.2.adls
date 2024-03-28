@@ -231,15 +231,15 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Avkreftet">
                 description = <"Forholdsregelen har blitt klinisk revurdert eller er avkreftet med høy grad av sikkerhet ved testing.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Opphørt">
                 description = <"Den tidligere kjente forholdsregelen er klinisk revurdert ved testing, og regnes ikke lenger for å være en aktiv risiko.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Aktiv">
                 description = <"Forholdsregelen er aktiv.">
             >
@@ -301,15 +301,15 @@ terminology
                 description = <"Información adicional requerida para registrar contenido local o para el alineamiento con otros modelos de referencia o formalismos.">
                 comment = <"Por ejemplo: requerimientos locales de información o metadatos adicionales para el alineamiento con equivalentes FHIR o CIMI.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Refutada">
                 description = <"La precaución previamente declarada ha sido reevaluada clínicamente o negada con un grado alto de certeza a través de pruebas.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Resuelta">
                 description = <"La precaución previamente declarada ha sido reevaluada clínicamente y ya no es considerada como un riesgo activo.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Activa">
                 description = <"La precaución se encuentra actualmente activa.">
             >
@@ -371,15 +371,15 @@ terminology
                 description = <"Informação adicional requerida para capturar conteúdo local ou alinhar a outros modelos de referência/formalismos.">
                 comment = <"Por exemplo: requisitos de informação local ou metadados adicionais para alinhar a equivalentes de FHIR ou CIMI.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Refutada">
                 description = <"A precaução foi reavaliada clinicamente ou foi reprovada com um alto grau de certeza clínica por meio de testes.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Resolvida">
                 description = <"A precaução previamente observada foi reavaliada clinicamente e não foi considerada como um risco ativo atualmente.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Ativa">
                 description = <"A precaução é atualmente ativa.">
             >
@@ -441,15 +441,15 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Refuted">
                 description = <"The precaution has been clinically reassessed or has been disproved with a high level of clinical certainty by testing.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Resolved">
                 description = <"The previously asserted precaution has been clinically reassessed and considered no longer to be an active risk.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Active">
                 description = <"The precaution is currently active.">
             >
@@ -495,6 +495,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at16", "at19", "at20">
+            members = <"at15", "at18", "at19">
         >
     >

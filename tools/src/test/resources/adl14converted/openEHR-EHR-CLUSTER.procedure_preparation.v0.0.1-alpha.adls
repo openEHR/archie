@@ -133,15 +133,15 @@ terminology
                 text = <"Body site">
                 description = <"Identification of a single physical site either on, or within, the human body.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"shaving">
                 description = <"Removing hair from a body site.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"hair">
                 description = <"Bodily filaments found in the surface of the skin or epidermis.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"skin">
                 description = <"Body surface layer or area for intended procedure.">
             >
@@ -158,6 +158,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at3", "at4", "at5">
+            members = <"at2", "at3", "at4">
         >
     >

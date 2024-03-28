@@ -349,11 +349,11 @@ terminology
                 description = <"Die Beschreibung der Methode, mit dem der Test durchgeführt wurde.">
                 comment = <"Wenn möglich, ist eine Kodierung mit einer Terminologie wünschenswert.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Vorläufig">
                 description = <"Es sind erste, bestätigte Ergebnisse verfügbar, aber nicht alle Ergebnisse sind final. Dies ist eine Unterkategorie von \"Teilweise\".">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Hinzugefügt">
                 description = <"Nach der endgültigen Fassung wurde der Bericht durch Hinzufügen neuer Inhalte aktualisiert. Der bestehende Inhalt bleibt unverändert. Dies ist eine Unterkategorie von \"Abgeändert\".">
             >
@@ -367,11 +367,11 @@ terminology
                 description = <"Weitere Informationen, die erforderlich sind, um lokale Inhalte abzubilden oder das Modell an andere Referenzmodelle anzupassen.">
                 comment = <"Zum Beispiel: Lokaler Informationsbedarf oder zusätzliche Metadaten, um ein Mapping auf FHIR oder CIMI Modelle zu ermöglichen.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Irrtümlich eingegeben">
                 description = <"Das Testergebnis wurde nach der vorherigen Endfreigabe zurückgezogen.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Korrigiert">
                 description = <"Das Ergebnis wurde nach der Finalisierung modifiziert und ist vollständig vom verantwortlichen Untersucher verifiziert. Dies ist eine Unterkategorie von \"Abgeändert\".">
             >
@@ -399,7 +399,7 @@ terminology
                 description = <"Strukturierte Details über die beim Labortest verwendete Methodik, das Gerät oder die Auswertung.">
                 comment = <"Zum Beispiel: \"Details der ELISA/Nephelometrie\".">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"Registriert">
                 description = <"Der Labortest wurde im Laborinformationssystem registriert, aber es ist derzeit noch nichts verfügbar.">
             >
@@ -447,7 +447,7 @@ terminology
                 text = <"Zeitstempel des gesamten Teststatus">
                 description = <"Zeitpunkt an dem das Ergebnis für den oben genannten \"Gesamtteststatus\" ausgegeben wurde.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Abgebrochen">
                 description = <"Das Ergebnis ist nicht verfügbar, weil der Test nicht gestartet oder nicht abgeschlossen wurde (manchmal auch als \"gescheitert\" bezeichnet).">
             >
@@ -485,15 +485,15 @@ terminology
                 description = <"Beschreibung der wichtigsten Ergebnisse.">
                 comment = <"Zum Beispiel: \"Das Muster lässt auf eine erhebliche Nierenfunktionsstörung schließen\". Der Inhalt der Zusammenfassung unterscheidet sich je nach durchgeführter Untersuchung. Diese Zusammenfassung sollte mit der kodierten \"Testdiagnose\" übereinstimmen.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Abgeändert">
                 description = <"Das Ergebnis wurde nach der Finalisierung modifiziert und ist vollständig von dem verantwortlichen Untersucher verifiziert. Die Ergebnisdaten wurden geändert.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Final">
                 description = <"Das Testergebnis ist vollständig und durch eine autorisierte Person bestätigt.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Teilweise">
                 description = <"Das Testergebnis ist als ein Teilergebnis (z.B. Initial, vorübergehend oder vorläufig) bestätigt: Daten im Testergebnis können unvollständig oder nicht verifiziert sein.">
             >
@@ -539,11 +539,11 @@ terminology
                 description = <"Beskrivelse av metoden som ble brukt for å utføre undersøkelsen.">
                 comment = <"Koding med en terminologi er ønskelig, der det er mulig.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Foreløpig">
                 description = <"Verifiserte tidlige svar er tilgjengelige, men ikke alle svar er endelige. Dette er en underkategori av \"Ufullstendig\".">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Tillegg">
                 description = <"Etter å ha vært satt som status \"Endelig\", har det blitt lagt nytt innhold til rapporten. Det eksisterende innholdet er uendret. Dette er en underkategori av \"Revidert\".">
             >
@@ -557,11 +557,11 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Feilregistrert">
                 description = <"Analysesvaret har blitt trukket tilbake etter å ha vært i status \"Endelig\".">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Korrigert">
                 description = <"Svaret har blitt modifisert etter å ha vært i status \"Endelig\" og er komplett og verifisert. Dette er en underkategori til \"Revidert\".">
             >
@@ -591,7 +591,7 @@ terminology
                 description = <"Strukturert tilleggsinformasjon om hvilken analysemetode, utstyr eller tolkning som er benyttet.">
                 comment = <"For eksempel \"detaljer om ELISA/nefelometri\".">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"Registrert">
                 description = <"Analysen er registrert i laboratoriesystemet, men svaret er ikke tilgjengelig per nå.">
             >
@@ -639,7 +639,7 @@ terminology
                 text = <"Tidsangivelse for overordnet resultatstatus">
                 description = <"Tidspunktet for utstedelsen av \"Overordnet resultatstatus\".">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Kansellert">
                 description = <"Svaret er utilgjengelig fordi analysen ikke ble påbegynt eller ferdigstilt (også kalt \"avbrutt\").">
             >
@@ -677,15 +677,15 @@ terminology
                 description = <"Fritekstbeskrivelse av de viktigste funnene.">
                 comment = <"For eksempel \"mønsteret indikerer betydelig nedsatt nyrefunksjon\". Innholdet av konklusjonen vil variere, basert på hvilken undersøkelse som er utført. Konklusjonen bør være i overensstemmelse med kodene brukt i elementet \"Diagnose\".">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Revidert">
                 description = <"Svaret har blitt modifisert etter å ha vært i status \"Endelig\", og er komplett og verifisert av ansvarlig person, og svardata er endret.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Endelig">
                 description = <"Svaret er komplett og er bekreftet av ansvarlig person.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Ufullstendig">
                 description = <"Dette er et delvis (dvs initalt, foreløpig eller preliminært) svar: Data i svaret kan være ukomplett eller ubekreftet.">
             >
@@ -732,11 +732,11 @@ terminology
                 description = <"*">
                 comment = <"*Coding with a terminology is desirable, where possible.  (en)">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"*Preliminary(en)">
                 description = <"*Verified early results are available, but not all results are final. This is a sub-category of 'Partial'.(en)">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"*Appended(en)">
                 description = <"*Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'.(en)">
             >
@@ -750,11 +750,11 @@ terminology
                 text = <"*Extension(en)">
                 description = <"*Slot to allow extension to support localisation or alignment with other standards/ reference models.(en)">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"*Entered in error(en)">
                 description = <"*The Test Result has been withdrawn following previous Final release.(en)">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"*Corrected(en)">
                 description = <"*The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist. This is a sub-category of 'Amended'.(en)">
             >
@@ -784,7 +784,7 @@ terminology
                 description = <"*Structured details about the method of analysis, device or interpretation used.(en)">
                 comment = <"*For example: 'details of ELISA/nephelometry'.(en)">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"*Registered(en)">
                 description = <"*The existence of the test is registered in the Laboratory Information System, but there is nothing yet available.(en)">
             >
@@ -831,7 +831,7 @@ terminology
                 text = <"*Overall test status timestamp(en)">
                 description = <"*The date and/or time that ‘Overall test status’ was issued.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"*Cancelled(en)">
                 description = <"*The result is unavailable because the test was not started or not completed (also sometimes called 'aborted').(en)">
             >
@@ -868,15 +868,15 @@ terminology
                 comment = <"*For example: 'Pattern suggests significant renal impairment'. The content of the conclusion will vary, depending on the investigation performed. This conclusion should be aligned with the coded 'Test diagnosis'. (en)">
                 fhir_mapping = <"*DiagnosticReport.conclusion(en)">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"*Amended(en)">
                 description = <"*The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist, and result data has been changed.(en)">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"*Final(en)">
                 description = <"*The Test result is complete and verified by an authorised person.(en)">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"*Partial(en)">
                 description = <"*This is a partial (e.g. initial, interim or preliminary) Test Result: data in the Test Result may be incomplete or unverified.(en)">
             >
@@ -923,11 +923,11 @@ terminology
                 description = <"Description about the method used to perform the test.">
                 comment = <"Coding with a terminology is desirable, where possible.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"Preliminary">
                 description = <"Verified early results are available, but not all results are final. This is a sub-category of 'Partial'.">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"Appended">
                 description = <"Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'.">
             >
@@ -941,11 +941,11 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Entered in error">
                 description = <"The Test Result has been withdrawn following previous Final release.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Corrected">
                 description = <"The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist. This is a sub-category of 'Amended'.">
             >
@@ -975,7 +975,7 @@ terminology
                 description = <"Structured details about the method of analysis, device or interpretation used.">
                 comment = <"For example: 'details of ELISA/nephelometry'.">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"Registered">
                 description = <"The existence of the test is registered in the Laboratory Information System, but there is nothing yet available.">
             >
@@ -1023,7 +1023,7 @@ terminology
                 text = <"Overall test status timestamp">
                 description = <"The date and/or time that ‘Overall test status’ was issued.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Cancelled">
                 description = <"The result is unavailable because the test was not started or not completed (also sometimes called 'aborted').">
             >
@@ -1059,15 +1059,15 @@ terminology
                 description = <"Narrative description of the key findings.">
                 comment = <"For example: 'Pattern suggests significant renal impairment'. The content of the conclusion will vary, depending on the investigation performed. This conclusion should be aligned with the coded 'Test diagnosis'.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Amended">
                 description = <"The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist, and result data has been changed.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Final">
                 description = <"The Test result is complete and verified by an authorised person.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Partial">
                 description = <"This is a partial (e.g. initial, interim or preliminary) Test Result: data in the Test Result may be incomplete or unverified.">
             >
@@ -1114,11 +1114,11 @@ terminology
                 description = <"*">
                 comment = <"*Coding with a terminology is desirable, where possible.  (en)">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"*Preliminary(en)">
                 description = <"*Verified early results are available, but not all results are final. This is a sub-category of 'Partial'.(en)">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"*Appended(en)">
                 description = <"*Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'.(en)">
             >
@@ -1132,11 +1132,11 @@ terminology
                 text = <"扩展">
                 description = <"允许进行扩展的槽位，用于支持本地化或与其他标准/参考模型之间进行协调统一。">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"错误录入">
                 description = <"当前检验结果在此前最终发布之后已被撤销。">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"*Corrected(en)">
                 description = <"*The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist. This is a sub-category of 'Amended'.(en)">
             >
@@ -1166,7 +1166,7 @@ terminology
                 description = <"*Structured details about the method of analysis, device or interpretation used.(en)">
                 comment = <"*For example: 'details of ELISA/nephelometry'.(en)">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"已登记">
                 description = <"表示当前检验项目的存在情况已在实验室信息系统之中进行了登记，但目前尚无任何可用信息。">
             >
@@ -1213,7 +1213,7 @@ terminology
                 text = <"*Overall test status timestamp(en)">
                 description = <"*The date and/or time that ‘Overall test status’ was issued.(en)">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"已撤销">
                 description = <"当前结果不可用，因为该检验项目并未开始或者并未完成（有时又称为“取消”、“已中止”或“已放弃”）。">
             >
@@ -1250,15 +1250,15 @@ terminology
                 comment = <"*For example: 'Pattern suggests significant renal impairment'. The content of the conclusion will vary, depending on the investigation performed. This conclusion should be aligned with the coded 'Test diagnosis'. (en)">
                 fhir_mapping = <"*DiagnosticReport.conclusion(en)">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"*Amended(en)">
                 description = <"*The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist, and result data has been changed.(en)">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"最终">
                 description = <"检验结果完整且经过授权人员的核对或者说审核。">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"部分">
                 description = <"当前属于部分的（比如，初步的、暂时的或初级的）检验结果：检验结果之中的数据可能不完整或者未经核对。">
             >
@@ -1294,6 +1294,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at108", "at38", "at121", "at39", "at41", "at116", "at120", "at75", "at117">
+            members = <"at107", "at37", "at120", "at38", "at40", "at115", "at119", "at74", "at116">
         >
     >

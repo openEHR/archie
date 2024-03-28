@@ -103,11 +103,11 @@ terminology
                 text = <"Date of notification">
                 description = <"The data and time that the notification was made.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Aborted">
                 description = <"Patient associated with notifiable condition in error.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Completed">
                 description = <"Patient correctly associated with notifiable condition.">
             >
@@ -143,11 +143,11 @@ terminology
                 text = <"تاريخ الإبلاغ">
                 description = <"التاريخ و التوقيت الذي حدث فيه الإبلاغ">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"توقف مفاجئ">
                 description = <"المريض متعلق بالظرف الذي يستلزم الإبلاغ عنه و لكن حدث خطأ ما.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"مكتمل">
                 description = <"المريض متعلق بالفعل بالظرف الذي يستلزم الإبلاغ عنه.">
             >
@@ -169,6 +169,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at5">
+            members = <"at3", "at4">
         >
     >

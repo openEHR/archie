@@ -49,13 +49,13 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9002] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at8]}],
-                                                    [{2}, {[at9]}],
-                                                    [{3}, {[at10]}],
-                                                    [{4}, {[at11]}],
-                                                    [{5}, {[at12]}],
-                                                    [{6}, {[at13]}],
-                                                    [{7}, {[at14]}]
+                                                    [{1}, {[at7]}],
+                                                    [{2}, {[at8]}],
+                                                    [{3}, {[at9]}],
+                                                    [{4}, {[at10]}],
+                                                    [{5}, {[at11]}],
+                                                    [{6}, {[at12]}],
+                                                    [{7}, {[at13]}]
                                                 }
                                             }
                                         }
@@ -114,11 +114,11 @@ terminology
                 description = <"Modifier indicating the need for frequent rehospitalisation (FF).">
                 comment = <"Can modify only outpatients. Profile 3 if at home, or Profiles, 4, 5, or 6. A frequent flyer would rarely be Profile 7.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Absent">
                 description = <"The qualifier is absent.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Present">
                 description = <"The qualifier is present.">
             >
@@ -137,31 +137,31 @@ terminology
                 description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
                 comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Advanced NYHA Class III symptoms">
                 description = <"A placeholder for more precise specification in future, this level includes patients who are without current or recent episodes of unstable fluid balance, living comfortably with meaningful activity limited to mild physical exertion.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Exertion limited">
                 description = <"Patient without evidence of fluid overload is comfortable at rest, and with activities of daily living and minor activities outside the home but fatigues after the first few minutes of any meaningful activity. Attribution to cardiac limitation requires careful measurement of peak oxygen consumption, in some cases with hemodynamic monitoring to confirm severity of cardiac impairment. “Walking wounded\".">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Exertion intolerant">
                 description = <"Comfortable at rest and with ADL but unable to engage in any other activity, living predominantly within the house. Patients are comfortable at rest without congestive symptoms, but may have underlying refractory elevated volume status, often with renal dysfunction. If underlying nutritional status and organ function are marginal, patient may be more at risk than INTERMACS 4, and require definitive intervention.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Resting symptoms">
                 description = <"Patient can be stabilized close to normal volume status but experiences daily symptoms of congestion at rest or during ADL. Doses of diuretics generally fluctuate at very high levels. More intensive management and surveillance strategies should be considered, which may in some cases reveal poor compliance that would compromise outcomes with any therapy. Some patients may shuttle between 4 and 5.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Stable but inotrope dependent">
                 description = <"Patient with stable blood pressure, organ function, nutrition, and symptoms on continuous intravenous inotropic support (or a temporary circulatory support device or both), but demonstrating repeated failure to wean from support due to recurrent symptomatic hypotension or renal dysfunction “Dependent stability\".">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Progressive decline on inotropic support">
                 description = <"Patient with declining function despite intravenous inotropic support, may be manifest by worsening renal function, nutritional depletion, inability to restore volume balance “Sliding on inotropes.” Also describes declining status in patients unable to tolerate inotropic therapy.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Critical cardiogenic shock">
                 description = <"Patients with life-threatening hypotension despite rapidly escalating inotropic support, critical organ hypoperfusion, often confirmed by worsening acidosis and/or lactate levels. “Crash and burn\".">
             >
@@ -186,10 +186,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at22", "at23">
+            members = <"at21", "at22">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at8", "at9", "at10", "at11", "at12", "at13", "at14">
+            members = <"at7", "at8", "at9", "at10", "at11", "at12", "at13">
         >
     >

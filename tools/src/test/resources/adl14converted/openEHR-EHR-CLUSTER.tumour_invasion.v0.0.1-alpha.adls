@@ -87,15 +87,15 @@ terminology
                 text = <"Nature of involvement (synthesised)">
                 description = <"The nature of involvement of tumour in local tissue. (synthesised)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Suspicious">
                 description = <"There is suspicion of direct invasion of the tissue by tumour">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Present - diffuse/extensive">
                 description = <"There is evidence of diffuse or extensive direct invasion of the tissue by tumour">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Present - focal">
                 description = <"There is evidence of focal direct invasion of the tissue by tumour">
             >
@@ -107,15 +107,15 @@ terminology
                 text = <"Resection margin  ">
                 description = <"Details of the local tissue surgical resection margin.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Indeterminate">
                 description = <"The nature of direct invasion by tumour has not been determined">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Extensive">
                 description = <"Extensive direct invasion of the tissue by tumour.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Focal">
                 description = <"Focal direct invasion of the tissue by tumour.">
             >
@@ -123,15 +123,15 @@ terminology
                 text = <"Nature of involvement">
                 description = <"The nature of involvement of tumour in local tissue.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Indeterminate">
                 description = <"Evidence of local invasion by tumour has not been determined">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Absent">
                 description = <"There is no evidence of local invasion by tumour">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Present">
                 description = <"There is evidence of local invasion by tumour">
             >
@@ -156,10 +156,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at9", "at10", "at11">
+            members = <"at8", "at9", "at10">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at5", "at14", "at15", "at16", "at6", "at7">
+            members = <"at4", "at13", "at14", "at15", "at5", "at6">
         >
     >

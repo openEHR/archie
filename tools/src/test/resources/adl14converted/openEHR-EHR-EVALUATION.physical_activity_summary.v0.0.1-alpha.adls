@@ -149,23 +149,23 @@ terminology
                 description = <"Extra information som krävs för att fånga lokalt innehåll eller för att anpassa till andra referensmodeller.">
                 comment = <"Till exempel: lokal information som krävs">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Extremt aktiv">
                 description = <"Personen är extremt aktiv, till exempel en person som tävlingscyklar.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Mycket aktiv">
                 description = <"Personen är väldigt aktiv, till exempel en person som rör dig mycket i sitt arbete eller en person som simmar två timmar varje dag.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Medelmåttig aktivitet">
                 description = <"Personen är medelmåttigt aktiv, till exempel en byggnadsarbetare eller en person som springer en timme varje dag.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Stillasittande">
                 description = <"Personen är spenderar mycket tid sittande, till exempel en kontorsarbetare som tränar lite eller inte alls.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Extremt inaktiv">
                 description = <"Personen är extremt inaktiv, till exempel en sängliggande patient.">
             >
@@ -218,23 +218,23 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Extremely active">
                 description = <"The individual is extremely active, for example a competitive cyclist.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Vigorously active">
                 description = <"The individual is very active, for example a manual labourer or a person swimming two hours daily.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Moderately active">
                 description = <"The individual is moerately active, for example a construction worker or a person running one hour daily.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Sedentary">
                 description = <"The individual spends most of their time sitting, for example an office worker getting little or no exercise.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Extremely inactive">
                 description = <"The individual is extremely inactive, for example a bedridden patient.">
             >
@@ -278,6 +278,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at10", "at11", "at12", "at13", "at14">
+            members = <"at9", "at10", "at11", "at12", "at13">
         >
     >

@@ -229,27 +229,27 @@ terminology
                 text = <"주소 (synthesised)">
                 description = <"ISO 22220 표준에 기반한 주소 (synthesised)">
             >
-            ["at467"] = <
+            ["at466"] = <
                 text = <"모름/제공받지 못함/부정확한 기록">
                 description = <"모름/제공받지 못함/부정확한 기록은 고정된 주소가 없거나 거주지 또는 연락 주소가 저장되는 것을 원치않을 경우에 또한 사용될 수 있음">
             >
-            ["at466"] = <
+            ["at465"] = <
                 text = <"고정된 주소 없음">
                 description = <"고정된 주소가 없는 경우에 사용">
             >
-            ["at465"] = <
+            ["at464"] = <
                 text = <"거주지 주소">
                 description = <"개인이 거주하는 장소를 나타내는데 사용. 이 코드는 기관들을 위해서는 유효하지 않음에 주의.">
             >
-            ["at464"] = <
+            ["at463"] = <
                 text = <"임시 거처">
                 description = <"임시로 거처 주소 (예. 보통 해외에서 거주하는 사람이나 집수리나 치료 때문에 임시 거처에 머무는 경우)">
             >
-            ["at463"] = <
+            ["at462"] = <
                 text = <"우편물 배달주소">
                 description = <"연락이나 청구 목적을 위해서만 사용하는 주소를 나타내는데 사용">
             >
-            ["at462"] = <
+            ["at461"] = <
                 text = <"직장">
                 description = <"연락할 수 있는 직장의 물리적 위치인 주소를 나타내는데 사용">
             >
@@ -379,27 +379,27 @@ terminology
                 text = <"Endereço (synthesised)">
                 description = <"Endereço. (synthesised)">
             >
-            ["at467"] = <
+            ["at466"] = <
                 text = <"Desconhecido/Não declarado/Descrito inadequadamente">
                 description = <"Desconhecido/Não declarado/Descrito inadequadamente pode também ser usado onde a pessoa não possui endereço fixo ou não deseja ter o seu endereço residencial ou para correspondência registrado.">
             >
-            ["at466"] = <
+            ["at465"] = <
                 text = <"Sem endereço fixo">
                 description = <"Usado onde a pessoa não possui endereço fixo.">
             >
-            ["at465"] = <
+            ["at464"] = <
                 text = <"Residencial">
                 description = <"Usado para indicar onde a pessoa está morando. Observe que este código não é válido para organizações.">
             >
-            ["at464"] = <
+            ["at463"] = <
                 text = <"Acomodação temporária">
                 description = <"Acomodação temporária (tal como um endereço de uma pessoa que usualmente reside no exterior ou onde o fornecedor do endereço está em uma acomodação temporária devido a renovação ou tratamento).">
             >
-            ["at463"] = <
+            ["at462"] = <
                 text = <"Correio ou postal">
                 description = <"Usado para indicar um endereço que é somente para correspondência e/ou cobrança.">
             >
-            ["at462"] = <
+            ["at461"] = <
                 text = <"Comercial">
                 description = <"Usado para indicar um endereço que é a localização física de um escritório ou de um negócio no qual uma entidade pode ser contactada.">
             >
@@ -521,27 +521,27 @@ terminology
                 text = <"Address (synthesised)">
                 description = <"Address based on ISO22220 standard. (synthesised)">
             >
-            ["at467"] = <
+            ["at466"] = <
                 text = <"Unknown/not stated/inadequately described">
                 description = <"Unknown/not stated/inadequately described may also be used where the person has no fixed address or does not wish to have their residential or correspondence address recorded.">
             >
-            ["at466"] = <
+            ["at465"] = <
                 text = <"No fixed address">
                 description = <"Used where a person has no fixed address.">
             >
-            ["at465"] = <
+            ["at464"] = <
                 text = <"Residential">
                 description = <"Used to indicate where a person is living. Note that this code is not valid for organisations.">
             >
-            ["at464"] = <
+            ["at463"] = <
                 text = <"Temporary accomodation">
                 description = <"Temporary accomodation address (such as for a person who usually resides overseas or where the provider of the address is in temporary accomodation due to renovation or treatment).">
             >
-            ["at463"] = <
+            ["at462"] = <
                 text = <"Mailing or postal">
                 description = <"Used to indicate an address that is only for correspondence and/or billing purposes.">
             >
-            ["at462"] = <
+            ["at461"] = <
                 text = <"Business">
                 description = <"Used to indicate an address that is the physical location of a business or office at which an entity can be contacted.">
             >
@@ -663,27 +663,27 @@ terminology
                 text = <"Dirección (synthesised)">
                 description = <"Dirección. (synthesised)">
             >
-            ["at467"] = <
+            ["at466"] = <
                 text = <"Desconocido/No declarado/Descripto inadecuadamente">
                 description = <"Desconocido/No declarado/Descripto inadecuadamente puede tambien ser utilizado cuando una persona no posee dirección fija o no desea tener su dirección residencial o para correspondiencia registrada.">
             >
-            ["at466"] = <
+            ["at465"] = <
                 text = <"Sin dirección fija">
                 description = <"Usado cuando la persona no posee dirección fija.">
             >
-            ["at465"] = <
+            ["at464"] = <
                 text = <"Residencial">
                 description = <"Utilizado para indicar donde la persona este residiendo. Observa que este código no es válido para organizaciones.">
             >
-            ["at464"] = <
+            ["at463"] = <
                 text = <"Ubización temporal">
                 description = <"Ubicación temporal (tal como una dirección de una persona que generalmente reside en el exterior o donde el proveedor de la dirección esta en una ubiicación temporal debido a renovación o tratamiento">
             >
-            ["at463"] = <
+            ["at462"] = <
                 text = <"Correo o postal">
                 description = <"Usado para indicar una dirección que es utilizado para correspondencia yu/o cobranza">
             >
-            ["at462"] = <
+            ["at461"] = <
                 text = <"*Comercial(pt-br)">
                 description = <"*Usado para indicar um endereço que é a localização física de um escritório ou de um negócio no qual uma entidade pode ser contactada.(pt-br)">
             >
@@ -804,6 +804,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at462", "at463", "at464", "at465", "at466", "at467">
+            members = <"at461", "at462", "at463", "at464", "at465", "at466">
         >
     >

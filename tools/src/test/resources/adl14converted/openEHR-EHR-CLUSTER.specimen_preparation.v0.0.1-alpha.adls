@@ -138,27 +138,27 @@ terminology
                 text = <"Färbungsmethode">
                 description = <"Die Färbung, die für ein mikroskopisches Präparat verwendet wurde.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Probenlagerung">
                 description = <"Die Probe wurde eingelagert.">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Probenaufbereitung">
                 description = <"Die Probe wurde aufbereitet.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Färbung">
                 description = <"Die Probe wurde eingefärbt.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Probenentnahme aus der Gewebeprobe">
                 description = <"Die Gewebeprobe wurde entnommen.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Probenannahme">
                 description = <"Die Probe wurde entgegengenommen.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Probenentnahme">
                 description = <"Die Probe wurde entnommen.">
             >
@@ -212,27 +212,27 @@ terminology
                 text = <"Staining method">
                 description = <"Stain used for a microscopy slide.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Specimen storage">
                 description = <"The specimen has been stored.">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Specimen processing">
                 description = <"The specimen has been processed.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Staining">
                 description = <"The specimen has been stained.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Sampling of tissue specimen">
                 description = <"The specimen has been sampled.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Specimen receiving">
                 description = <"The specimen has been received.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Specimen collection">
                 description = <"The specimen has been collected.">
             >
@@ -269,6 +269,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at79", "at80", "at81", "at82", "at83", "at84">
+            members = <"at78", "at79", "at80", "at81", "at82", "at83">
         >
     >

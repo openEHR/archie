@@ -103,11 +103,11 @@ terminology
                 text = <"Case identifisert">
                 description = <"Tekst eller kodet beskrivelse av den identifiserte case .">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Abortert">
                 description = <"Personen er blitt assosiert med case identifikatoren ved en feil.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Ferdig">
                 description = <"Casen er blitt assosiert med en given identifikator.">
             >
@@ -138,11 +138,11 @@ terminology
                 text = <"Case identified">
                 description = <"Text or coded description of the case identified.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Aborted">
                 description = <"The subject was associated with the case identifier in error.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Completed">
                 description = <"The case has been associated with the given case identifier.">
             >
@@ -175,11 +175,11 @@ terminology
                 text = <"الإصابة المَرَضية التي يتم تعريفها">
                 description = <"وصف نصي أو مُرمَز للإصابة المرضية التي يتم تعريفها">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"توقف فجأة">
                 description = <"المريض مصحوب برقم الإصابة المرضية المعطى">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"مكتمل">
                 description = <"الإصابة المرضية مصحوبة برقم الإصابة المرضية المعطى">
             >
@@ -206,6 +206,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at5", "at6">
+            members = <"at4", "at5">
         >
     >

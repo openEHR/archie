@@ -251,19 +251,19 @@ terminology
                 description = <"Forskjellen mellom målinger av samme kroppsdel når den er målt på begge sider av kroppen.">
                 comment = <"Bare relevant dersom man skal sammenligne målinger gjort på lemmer.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Liggende">
                 description = <"Liggende flatt på tidspunkt for målingen.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Tilbakelent">
                 description = <"Tilbakelent på tidspunkt for målingen.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Sittende">
                 description = <"Sittende (for eksempel på en stol eller på en seng med føttene på gulvet) på tidspunkt for målingen.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Stående">
                 description = <"Stående ved tidspunktet for målingen.">
             >
@@ -285,15 +285,15 @@ terminology
                 description = <"Fritekstbeskrivelse av metoden som ble benyttet for målingen.">
                 comment = <"Spesifiser for å sikre at en sekvens av målinger blir gjort på de samme punktene og på samme måte. For eksempel \"Sittende med kneet bøyd 90 grader\".">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Leggomkrets">
                 description = <"Distansen rundt leggmuskelen.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Låromkrets">
                 description = <"Distansen rundt låret.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Overarmsomkrets">
                 description = <"Distansen rundt overarmen.">
             >
@@ -322,11 +322,11 @@ terminology
                 text = <"Omkrets">
                 description = <"Den målte omkretsen av kroppsdelen.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Høyre">
                 description = <"Høyre side av kroppen.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Venstre">
                 description = <"Venstre side av kroppen.">
             >
@@ -379,19 +379,19 @@ terminology
                 description = <"The difference between measurements of the same body segment measured from each side of the body.">
                 comment = <"Only relevant if comparison measurements are being made on limbs.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Lying">
                 description = <"Lying flat at the time of measurement.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Reclining">
                 description = <"Reclining at the time of measurement.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Sitting">
                 description = <"Sitting (for example on bed or chair) at the time of measurement.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Standing">
                 description = <"Standing at the time of measurement.">
             >
@@ -413,15 +413,15 @@ terminology
                 description = <"Narrative description of the method used for measurement.">
                 comment = <"Specify in order to ensure that a sequence of measurements are taken at the same point and in the same way. For example: 'Sitting with knee bent at 90 degrees'. ">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Calf circumference">
                 description = <"Girth of the calf muscle of the lower leg.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Thigh circumference">
                 description = <"Girth of the upper leg.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Arm Circumference">
                 description = <"Girth of the upper arm.">
             >
@@ -450,11 +450,11 @@ terminology
                 text = <"Circumference">
                 description = <"Measured value of the girth of the identified body segment.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Right">
                 description = <"Right side of the body.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Left">
                 description = <"Left side of the body.">
             >
@@ -488,14 +488,14 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at7", "at8">
+            members = <"at6", "at7">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at18", "at19", "at20">
+            members = <"at17", "at18", "at19">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at37", "at38", "at39", "at40">
+            members = <"at36", "at37", "at38", "at39">
         >
     >

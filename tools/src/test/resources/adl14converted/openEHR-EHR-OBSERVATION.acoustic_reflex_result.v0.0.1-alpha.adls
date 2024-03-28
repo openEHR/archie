@@ -349,11 +349,11 @@ terminology
                 text = <"Normal Range Definition">
                 description = <"Definition of the 'Normal Range' value specified within the Intensity data element used for Clinical Interpretation of the Diagnostic Test.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"1000Hz">
                 description = <"The probe tone frequency was set at 1000Hz.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"226Hz">
                 description = <"The probe tone frequency was set at 226Hz.">
             >
@@ -392,11 +392,11 @@ terminology
                 description = <"The criteria by which the Screening Assessment is passed.">
                 comment = <"These criteria are usually defined by authoritative guidelines, a central authority or by the local hearing program.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"dB HL">
                 description = <"The test stimuli are calibrated using the hearing level scale.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"dB SPL">
                 description = <"The test stimuli are calibrated using the sound pressure level scale.">
             >
@@ -408,19 +408,19 @@ terminology
                 text = <"Clinical Interpretation">
                 description = <"Clinical interpretation of the screening test result.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Absent">
                 description = <"No reflex was elecited in response to a stimulation tone.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Elevated">
                 description = <"The reflex was observed at a higher sensation level than expected for a normal hearing ear.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Reduced">
                 description = <"The reflex was observed at a reduced sensation level compared to a normal hearing ear.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Normal">
                 description = <"The reflex was observed at a sensation level expected in a normal hearing ear.">
             >
@@ -429,15 +429,15 @@ terminology
                 description = <"Clinical interpretation of reflex Threshold Level result based on sensation level.">
                 comment = <"Sensation level is the difference between the intensity of the stimulation tone and the patient's hearing threshold as measured on the audiogram.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Elevated">
                 description = <"Reflex was elicited at an elevated stimulation level.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Absent">
                 description = <"No reflex was elicited in response to a stimulation tone.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Normal Range">
                 description = <"The intensity range in dB at which a reflex is expected in a normal hearing ear.">
             >
@@ -479,27 +479,27 @@ terminology
                 text = <"Reflex Latency">
                 description = <"Length of time from onset of the stimulation tone to the onset of the middle ear muscle reflex.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Pure Tone - 4000Hz">
                 description = <"A pure tone signal set at 4000Hz.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Pure Tone - 2000Hz">
                 description = <"A pure tone signal set at 2000Hz.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Pure Tone - 1000 Hz">
                 description = <"A pure tone signal set at 1000Hz.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Pure Tone - 500 Hz">
                 description = <"A pure tone signal set at 500Hz.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Narrow Band Noise">
                 description = <"Noise centred on a specified frequency.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Broad Band Noise">
                 description = <"Noise with components over a wide range of frequencies.">
             >
@@ -524,11 +524,11 @@ terminology
                 text = <"No Screening Result">
                 description = <"No screening test result is available for the test ear configuration.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Absent">
                 description = <"The reflex has not been observed.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Present">
                 description = <"The reflex has been observed as present.">
             >
@@ -544,19 +544,19 @@ terminology
                 text = <"Diagnostic Test">
                 description = <"Reflex test that measures threshold levelss, reflex latency, reflex amplitude and reflex decay.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Right Contralateral">
                 description = <"Stimulus presented to the right ear; probe is situated in left ear.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Left Contralateral">
                 description = <"Stimulus presented to the left ear; probe is situated in right ear.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Right Ipsilateral">
                 description = <"Stimulus presented to the right ear; probe is situated in right ear.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Left Ipsilateral">
                 description = <"Stimulus presented to the left ear; probe is situated in left ear.">
             >
@@ -568,11 +568,11 @@ terminology
                 text = <"Result Details">
                 description = <"The test measurements and interpretations which can be recorded per ear, and includes ipsilateral and contralateral testing.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Non Acoustic Reflex Test">
                 description = <"Test of the reflex elicited from the stapedius muscle in response to a non-acoustic stimulus e.g. tactile or orbital air-jet.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Acoustic Reflex Test">
                 description = <"Test of the reflex elicited from the stapedius muscle in response to an acoustic stimulus.">
             >
@@ -608,35 +608,35 @@ terminology
     value_sets = <
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at17", "at18">
+            members = <"at16", "at17">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at26", "at27", "at28", "at29", "at24", "at25">
+            members = <"at25", "at26", "at27", "at28", "at23", "at24">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at11", "at12", "at13">
+            members = <"at9", "at10", "at11", "at12">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7">
+            members = <"at5", "at6">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at43", "at44", "at45", "at46">
+            members = <"at42", "at43", "at44", "at45">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at39", "at40", "at41">
+            members = <"at38", "at39", "at40">
         >
         ["ac9016"] = <
             id = <"ac9016">
-            members = <"at60", "at61">
+            members = <"at59", "at60">
         >
         ["ac9015"] = <
             id = <"ac9015">
-            members = <"at50", "at51">
+            members = <"at49", "at50">
         >
         ["ac9014"] = <
             id = <"ac9014">

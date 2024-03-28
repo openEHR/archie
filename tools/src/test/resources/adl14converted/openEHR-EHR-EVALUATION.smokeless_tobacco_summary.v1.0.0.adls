@@ -383,7 +383,7 @@ terminology
                 description = <"Namnet på den specifika typen eller gruppen av rökfri tobak.">
                 comment = <"Typ skulle exempelvis kunna vara snus eller gutka, medan en grupp kan vara \"tuggobak\".">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Har aldrig använt">
                 description = <"Individen har aldrig brukat någon form av rökfri tobak.">
             >
@@ -404,11 +404,11 @@ terminology
                 description = <"Definitionen av avslutningsförsök som använts i denna arketyps fält \"Antal försök att sluta\".">
                 comment = <"Exempelvis: \"slutade snusa en dag eller längre med avsikt att sluta\".">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Inte dagligen">
                 description = <"Använder inte den angivna typen av rökfri tobak dagligen.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Dagligen">
                 description = <"Använder den angivna typen rökfri tobak minst en gång om dagen.">
             >
@@ -478,11 +478,11 @@ terminology
                 text = <"Per episod">
                 description = <"Detaljerad beskrivning av en specifik användningsepisod för den angivna typen av tobak.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Aktiv brukare">
                 description = <"Individen använder denna form av rökfri tobak">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Före detta brukare">
                 description = <"Individen har tidigare använt denna form av rökfri tobak men har slutat.">
             >
@@ -559,15 +559,15 @@ terminology
                 description = <"Datum när den här episoden startade.">
                 comment = <"Kan vara del av ett datum, till exempel bara ett årtal.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Har aldrig använt">
                 description = <"Individen har aldrig använt någon form av rökfri tobak.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Före detta brukare">
                 description = <"Individen har tidigare använt någon form av rökfri tobak men har slutat.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Aktiv brukare">
                 description = <"Individen använder någon form av rökfri tobak">
             >
@@ -606,7 +606,7 @@ terminology
                 description = <"Navnet på den spesifikke typen eller gruppen røykfri tobakk.">
                 comment = <"For eksempel: En spesifikk type kan være \"snus\" eller \"gutka\", mens en gruppe kan være \"tyggetobakk\".">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Aldri brukt">
                 description = <"Individet har aldri brukt den spesifikke typen røykfri tobakk.">
             >
@@ -627,11 +627,11 @@ terminology
                 description = <"Den anvendte definisjonen på verdien \"Nåværende bruker\" i datalementet \"Status\" benyttet i denne arketypen.">
                 comment = <"For eksempel \"sluttet å snuse i en dag eller lenger, med den hensikt å slutte\".">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Ikke daglig">
                 description = <"Individet bruker ikke den spesifiserte typen røykfri tobakk daglig.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Daglig">
                 description = <"Individet bruker den spesifiserte typen røykfri tobakk minst en gang per dag.">
             >
@@ -701,11 +701,11 @@ terminology
                 text = <"Per episode">
                 description = <"Detaljer om en avgrenset periode med bruk av den spesifiserte typen røykfri tobakk.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Nåværende bruker">
                 description = <"Individet er en nåværende bruker av den spesifikke typen røykfri tobakk.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Tidligere bruker">
                 description = <"Individet har tidligere brukt den spesifikke typen røykfri tobakk, men er ikke en nåværende bruker.">
             >
@@ -779,15 +779,15 @@ terminology
                 description = <"Dato da episoden startet.">
                 comment = <"Kan være en deldato, for eksempel årstall.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Aldri brukt">
                 description = <"Individet har aldri brukt noen typer røykfri tobakk.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Tidligere bruker">
                 description = <"Individet har tidligere brukt røykfri tobakk, men er ikke en nåværende bruker.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Nåværende bruker">
                 description = <"Individet er en nåværende bruker av røykfri tobakk.">
             >
@@ -826,7 +826,7 @@ terminology
                 description = <"The name of the specific type or grouping of smokeless tobacco.">
                 comment = <"For example: A specific type could be 'snus' or 'gutka', while a group could be 'chewing tobacco'.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Never used">
                 description = <"The individual has never used the specified type of smokeless tobacco.">
             >
@@ -847,11 +847,11 @@ terminology
                 description = <"The applied definition for a Quit attempt used to determine value for the 'Number of quit attempts' data element used in this archetype.">
                 comment = <"For example: 'stopped snusing for one day or longer with the intention of quitting'.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Non-daily">
                 description = <"Not using the specified type of smokeless tobacco every day.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Daily">
                 description = <"Use of the specified type of smokeless tobacco at least once every day.">
             >
@@ -920,11 +920,11 @@ terminology
                 text = <"Per episode">
                 description = <"Details about a discrete period of use of the specified type of smokeless tobacco.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Current user">
                 description = <"The individual is a current user of the specified type of smokeless tobacco.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Former user">
                 description = <"The individual has previously used the specified smokeless tobacco, but is not a current user.">
             >
@@ -998,15 +998,15 @@ terminology
                 description = <"Date when this episode commenced.">
                 comment = <"Can be a partial date, for example, only a year.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Never used">
                 description = <"Individual has never used any type of smokeless tobacco.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Former user">
                 description = <"The individual has previously used smokeless tobacco, but is not a current user.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Current user">
                 description = <"The individual is a current user of any type of smokeless tobacco.">
             >
@@ -1026,14 +1026,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at84", "at85">
+            members = <"at83", "at84">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at62", "at60", "at92">
+            members = <"at61", "at59", "at91">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at4", "at6">
+            members = <"at6", "at3", "at5">
         >
     >

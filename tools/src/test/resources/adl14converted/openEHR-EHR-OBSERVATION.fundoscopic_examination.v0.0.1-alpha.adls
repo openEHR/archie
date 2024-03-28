@@ -273,11 +273,11 @@ definition
                         value matches {
                             DV_ORDINAL[id9030] matches {
                                 [value, symbol] matches {
-                                    [{1}, {[at61]}],
-                                    [{2}, {[at62]}],
-                                    [{3}, {[at63]}],
-                                    [{4}, {[at64]}],
-                                    [{5}, {[at65]}]
+                                    [{1}, {[at60]}],
+                                    [{2}, {[at61]}],
+                                    [{3}, {[at62]}],
+                                    [{4}, {[at63]}],
+                                    [{5}, {[at64]}]
                                 }
                             }
                         }
@@ -356,11 +356,11 @@ terminology
                 text = <"*Additional findings(en)">
                 description = <"*Additional structured details about the physical examination findings.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*Right eye(en)">
                 description = <"*The right eye was examined.(en)">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"*Left eye(en)">
                 description = <"*The left eye was examined.(en)">
             >
@@ -368,23 +368,23 @@ terminology
                 text = <"*New cluster(en)">
                 description = <"**(en)">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"*Angiography(en)">
                 description = <"*Observation of the eye fundus using a fluorescent dye inyected to emphasize the blood vessels in the eye retina.(en)">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"*Non-contact lens biomicroscopy(en)">
                 description = <"*Eye fundus viewing through biomicroscopy lens without contact to patient's eye surface.(en)">
             >
-            ["at132"] = <
+            ["at131"] = <
                 text = <"*Contact lens biomicroscopy(en)">
                 description = <"*Eye fundus viewing through biomicroscopy lens in contact to patient's eye surface.(en)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"*Non-mydriatic retinography(en)">
                 description = <"*Observation of retina through funduscopic images acquired without previous dilatation of patient's pupils.(en)">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"*Mydriatic retinography(en)">
                 description = <"*Observation of retina through funduscopic images acquired by previous dilatation of patient's pupils.(en)">
             >
@@ -400,7 +400,7 @@ terminology
                 text = <"*High refraction(en)">
                 description = <"*True if the refraction of the eye exceeds the range from -12D to +15D.(en)">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"*60º(en)">
                 description = <"*60º angle used to acquire eye fundus in some DR screening studies.(en)">
             >
@@ -432,27 +432,27 @@ terminology
                 text = <"*Device details(en)">
                 description = <"*Details of the device used to acquire eye fundus images.(en)">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"*Inferior(en)">
                 description = <"*Image centered on the inferior half of the retina.(en)">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"*Superior(en)">
                 description = <"*Image centered on the superior half of the retina.(en)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"*Temporal(en)">
                 description = <"*Image centered on the temporal quadrant of the retina.(en)">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"*Nasal(en)">
                 description = <"*Image centered on the optic nerve or papila.(en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Central(en)">
                 description = <"*Image centered on the macula.(en)">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"*Mosaic(en)">
                 description = <"*Mosaic obtained from combining every peripheral acquisitions and the center one.(en)">
             >
@@ -460,31 +460,31 @@ terminology
                 text = <"*Mosaic and peripherals(en)">
                 description = <"*Division of the retina in quadrants + mosaic obtained from the combination of them.(en)">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"*Study field 7(en)">
                 description = <"**(en)">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"*Study field 6(en)">
                 description = <"**(en)">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"*Study field 5(en)">
                 description = <"**(en)">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"*Study field 4(en)">
                 description = <"**(en)">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"*Study field 3(en)">
                 description = <"**(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"*Study field 2(en)">
                 description = <"**(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"*Study field 1(en)">
                 description = <"**(en)">
             >
@@ -500,29 +500,25 @@ terminology
                 text = <"*Attempts(en)">
                 description = <"*Number of attempts before obtaining the acquisition (doesn't compute if test is repeated by a specific recognized technical failure).(en)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*200º(en)">
                 description = <"*Ultra-wide angle acquisition.(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*100º(en)">
                 description = <"*Wide angle acquisition.(en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*45º(en)">
                 description = <"*45º angle used to acquire eye fundus of normal pupils.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*30º(en)">
                 description = <"*30º angle used for small pupil (SP) capture (for patients with pupil diameter <3.3mm).(en)">
             >
             ["id68"] = <
                 text = <"*Field angle(en)">
                 description = <"*Describes the optical acceptance angle of the lens used during the test.(en)">
-            >
-            ["at65"] = <
-                text = <"*new ordinal(en)">
-                description = <"**(en)">
             >
             ["at64"] = <
                 text = <"*new ordinal(en)">
@@ -537,6 +533,10 @@ terminology
                 description = <"**(en)">
             >
             ["at61"] = <
+                text = <"*new ordinal(en)">
+                description = <"**(en)">
+            >
+            ["at60"] = <
                 text = <"*new ordinal(en)">
                 description = <"**(en)">
             >
@@ -564,11 +564,11 @@ terminology
                 text = <"*Red reflex(en)">
                 description = <"*True if Red Reflex is present.(en)">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"*Indirect(en)">
                 description = <"*Study of eye fundus by indirect ophthalmoscopy method.(en)">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"*Direct(en)">
                 description = <"*Study performed by direct ophthalmoscopy.(en)">
             >
@@ -657,11 +657,11 @@ terminology
                 text = <"Additional findings">
                 description = <"Additional structured details about the physical examination findings.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Right eye">
                 description = <"The right eye was examined.">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"Left eye">
                 description = <"The left eye was examined.">
             >
@@ -669,23 +669,23 @@ terminology
                 text = <"Test Result">
                 description = <"Details of the funduscopic examination test result for each eye.">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"Angiography">
                 description = <"Observation of the eye fundus using a fluorescent dye inyected to emphasize the blood vessels in the eye retina.">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"Non-contact lens biomicroscopy">
                 description = <"Eye fundus viewing through biomicroscopy lens without contact to patient's eye surface.">
             >
-            ["at132"] = <
+            ["at131"] = <
                 text = <"Contact lens biomicroscopy">
                 description = <"Eye fundus viewing through biomicroscopy lens in contact to patient's eye surface.">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"Non-mydriatic retinography">
                 description = <"Observation of retina through funduscopic images acquired without previous dilatation of patient's pupils.">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"Mydriatic retinography">
                 description = <"Observation of retina through funduscopic images acquired by previous dilatation of patient's pupils.">
             >
@@ -701,7 +701,7 @@ terminology
                 text = <"High refraction">
                 description = <"True if the refraction of the eye exceeds the range from -12D to +15D.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"60º">
                 description = <"60º angle used to acquire eye fundus in some DR screening studies.">
             >
@@ -733,27 +733,27 @@ terminology
                 text = <"Device details">
                 description = <"Details of the device used to acquire eye fundus images.">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"Inferior">
                 description = <"Image centered on the inferior half of the retina.">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"Superior">
                 description = <"Image centered on the superior half of the retina.">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"Temporal">
                 description = <"Image centered on the temporal quadrant of the retina.">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"Nasal">
                 description = <"Image centered on the optic nerve or papila.">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"Central">
                 description = <"Image centered on the macula.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Mosaic">
                 description = <"Mosaic obtained from combining every peripheral acquisitions and the center one.">
             >
@@ -761,31 +761,31 @@ terminology
                 text = <"Mosaic and peripherals">
                 description = <"Division of the retina in quadrants + mosaic obtained from the combination of them.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Study field 7">
                 description = <"*">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Study field 6">
                 description = <"*">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Study field 5">
                 description = <"*">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Study field 4">
                 description = <"*">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Study field 3">
                 description = <"*">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Study field 2">
                 description = <"*">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Study field 1">
                 description = <"*">
             >
@@ -801,19 +801,19 @@ terminology
                 text = <"Attempts">
                 description = <"Number of attempts before obtaining the acquisition (doesn't compute if test is repeated by a specific recognized technical failure).">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"200º">
                 description = <"Ultra-wide angle acquisition.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"100º">
                 description = <"Wide angle acquisition.">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"45º">
                 description = <"45º angle used to acquire eye fundus of normal pupils.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"30º">
                 description = <"30º angle used for small pupil (SP) capture (for patients with pupil diameter <3.3mm).">
             >
@@ -821,23 +821,23 @@ terminology
                 text = <"Field angle">
                 description = <"Describes the optical acceptance angle of the lens used during the test.">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Ideal quality">
                 description = <"*">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Quality not ideal, but is possible to exclude subtle findings">
                 description = <"*">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Only able to exclude emergent findings">
                 description = <"*">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Unable to exclude all emergent findings">
                 description = <"*">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Quality inadequate for any diagnostic purpose">
                 description = <"*">
             >
@@ -865,11 +865,11 @@ terminology
                 text = <"Red reflex">
                 description = <"True if Red Reflex is present.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Indirect">
                 description = <"Study of eye fundus by indirect ophthalmoscopy method.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Direct">
                 description = <"Study performed by direct ophthalmoscopy.">
             >
@@ -958,11 +958,11 @@ terminology
                 text = <"*Additional findings(en)">
                 description = <"*Additional structured details about the physical examination findings.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"Ojo derecho">
                 description = <"Se ha observado el ojo derecho">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"Ojo izquierdo">
                 description = <"Se ha observado el ojo izquierdo">
             >
@@ -970,23 +970,23 @@ terminology
                 text = <"Resultados de la prueba">
                 description = <"Detalles en cuanto a los resultados de la prueba de exámen del fondo de ojo para cada ojo.">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"*Angiography(en)">
                 description = <"*Observation of the eye fundus using a fluorescent dye inyected to emphasize the blood vessels in the eye retina.(en)">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"*Non-contact lens biomicroscopy(en)">
                 description = <"*Eye fundus viewing through biomicroscopy lens without contact to patient's eye surface.(en)">
             >
-            ["at132"] = <
+            ["at131"] = <
                 text = <"*Contact lens biomicroscopy(en)">
                 description = <"*Eye fundus viewing through biomicroscopy lens in contact to patient's eye surface.(en)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"*Non-mydriatic retinography(en)">
                 description = <"*Observation of retina through funduscopic images acquired without previous dilatation of patient's pupils.(en)">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"*Mydriatic retinography(en)">
                 description = <"*Observation of retina through funduscopic images acquired by previous dilatation of patient's pupils.(en)">
             >
@@ -1002,7 +1002,7 @@ terminology
                 text = <"*High refraction(en)">
                 description = <"*True if the refraction of the eye exceeds the range from -12D to +15D.(en)">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"*60º(en)">
                 description = <"*60º angle used to acquire eye fundus in some DR screening studies.(en)">
             >
@@ -1034,27 +1034,27 @@ terminology
                 text = <"*Device details(en)">
                 description = <"*Details of the device used to acquire eye fundus images.(en)">
             >
-            ["at89"] = <
+            ["at88"] = <
                 text = <"*Inferior(en)">
                 description = <"*Image centered on the inferior half of the retina.(en)">
             >
-            ["at88"] = <
+            ["at87"] = <
                 text = <"*Superior(en)">
                 description = <"*Image centered on the superior half of the retina.(en)">
             >
-            ["at87"] = <
+            ["at86"] = <
                 text = <"*Temporal(en)">
                 description = <"*Image centered on the temporal quadrant of the retina.(en)">
             >
-            ["at86"] = <
+            ["at85"] = <
                 text = <"*Nasal(en)">
                 description = <"*Image centered on the optic nerve or papila.(en)">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"*Central(en)">
                 description = <"*Image centered on the macula.(en)">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"*Mosaic(en)">
                 description = <"*Mosaic obtained from combining every peripheral acquisitions and the center one.(en)">
             >
@@ -1062,31 +1062,31 @@ terminology
                 text = <"*Mosaic and peripherals(en)">
                 description = <"*Division of the retina in quadrants + mosaic obtained from the combination of them.(en)">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Campo de estudio 7">
                 description = <"**(en)">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Campo de estudio 6">
                 description = <"**(en)">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"Campo de estudio 5">
                 description = <"**(en)">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"Campo de estudio 4">
                 description = <"**(en)">
             >
-            ["at78"] = <
+            ["at77"] = <
                 text = <"Campo de estudio 3">
                 description = <"**(en)">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Campo de estudio 2">
                 description = <"**(en)">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Campo de estudio 1">
                 description = <"**(en)">
             >
@@ -1102,19 +1102,19 @@ terminology
                 text = <"*Attempts(en)">
                 description = <"*Number of attempts before obtaining the acquisition (doesn't compute if test is repeated by a specific recognized technical failure).(en)">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"*200º(en)">
                 description = <"*Ultra-wide angle acquisition.(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*100º(en)">
                 description = <"*Wide angle acquisition.(en)">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"*45º(en)">
                 description = <"*45º angle used to acquire eye fundus of normal pupils.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*30º(en)">
                 description = <"*30º angle used for small pupil (SP) capture (for patients with pupil diameter <3.3mm).(en)">
             >
@@ -1122,23 +1122,23 @@ terminology
                 text = <"*Field angle(en)">
                 description = <"*Describes the optical acceptance angle of the lens used during the test.(en)">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Calidad ideal">
                 description = <"Imagen ideal en la cual es sencillo identificar hallazgos de interés clínico. Suele darse este caso en imágenes directas obtenidas correctamente.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"La calidad no es ideal, pero es posible identificar algunos hallazgos sutiles">
                 description = <"Es posible identificar hallazgos sutiles de interés diagnóstico, pero la calidad de imagen aún podría ser mejor. Suele darse este caso en imágenes periféricas o que implican dificultad, que han sido capturadas correctamente.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Sólo es posible distinguir los hallazgos fundamentales">
                 description = <"Es posible detectar signos útiles para diagnóstico, pero se escapan los mas sutiles">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Incapacidad de distinguir todos los hallazgos fundamentales">
                 description = <"En la imagen se aprecia la estructura del fondo de ojo, sin embargo, no es posible distinguir hallazgos clínicos">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Inadecuada para propósitos diagnósticos">
                 description = <"La calidad de la imagen no alcanza los criterios mínimos para diagnóstico">
             >
@@ -1166,11 +1166,11 @@ terminology
                 text = <"*Red reflex(en)">
                 description = <"*True if Red Reflex is present.(en)">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"*Indirect(en)">
                 description = <"*Study of eye fundus by indirect ophthalmoscopy method.(en)">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"*Direct(en)">
                 description = <"*Study performed by direct ophthalmoscopy.(en)">
             >
@@ -1211,34 +1211,34 @@ terminology
     >
     term_bindings = <
         ["SNOMED-CT"] = <
-            ["at138"] = <http://snomed.info/id/362503005>
-            ["at139"] = <http://snomed.info/id/362502000>
+            ["at137"] = <http://snomed.info/id/362503005>
+            ["at138"] = <http://snomed.info/id/362502000>
             ["ac3"] = <terminology:SNOMED-CT/408733002?subset=Diabetic%20Retinopathy%20Study%20field>
         >
     >
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at69", "at70", "at123", "at71", "at72">
+            members = <"at68", "at69", "at122", "at70", "at71">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at31", "at32", "at132", "at133", "at130", "at131", "at136">
+            members = <"at30", "at31", "at131", "at132", "at129", "at130", "at135">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at138", "at139">
+            members = <"at137", "at138">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at61", "at62", "at63", "at64", "at65">
+            members = <"at60", "at61", "at62", "at63", "at64">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at84", "at85", "at86", "at87", "at88", "at89">
+            members = <"at83", "at84", "at85", "at86", "at87", "at88">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at76", "at77", "at78", "at79", "at80", "at81", "at82">
+            members = <"at75", "at76", "at77", "at78", "at79", "at80", "at81">
         >
     >

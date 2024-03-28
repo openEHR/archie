@@ -419,39 +419,39 @@ terminology
                 text = <"Aufnehmender Arzt (synthesised)">
                 description = <"Aufnehmender Arzt (synthesised)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"Unbekannt">
                 description = <"Unbekannt">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"Andere">
                 description = <"Andere">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"Gegenseitige Gesundheitsabkommen (mit anderen Ländern)">
                 description = <"Gegenseitige Gesundheitsabkommen (mit anderen Ländern)">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"Andere Krankenhäuser oder Behörden">
                 description = <"Andere Krankenhäuser oder Behörden (Vertragsbetreuung)">
             >
-            ["at127"] = <
+            ["at126"] = <
                 text = <"Justizvollzugsanstalt">
                 description = <"Justizvollzugsanstalt">
             >
-            ["at126"] = <
+            ["at125"] = <
                 text = <"Verteidigungsministerium">
                 description = <"Verteidigungsministerium">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Abteilung für Veteranenangelegenheiten">
                 description = <"Abteilung für Veteranenangelegenheiten">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Sonstige Entschädigungen">
                 description = <"Sonstige Entschädigungen (z.B. Haftpflicht, allgemeines Recht, medizinische Fahrlässigkeit)">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Persönlicher Anspruch von Kraftfahrzeugen Dritter">
                 description = <"Persönlicher Anspruch von Kraftfahrzeugen Dritter">
             >
@@ -467,43 +467,43 @@ terminology
                 text = <"Einrichtung">
                 description = <"Einrichtung">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"x500">
                 description = <"x500">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"x400">
                 description = <"Message Handling System">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"UUID">
                 description = <"Universally Unique Identifier">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Zufall">
                 description = <"Zufall">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"L, M, N">
                 description = <"L, M, N">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"ISO">
                 description = <"International Organization for Standardization">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"HL7">
                 description = <"Health Level 7">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"HCD">
                 description = <"HCD">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"GUID">
                 description = <"Globally Unique Identifier">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"DNS">
                 description = <"Domain Name System">
             >
@@ -555,19 +555,19 @@ terminology
                 text = <"Vorheriger Patientenstandort">
                 description = <"Der Ort des Patienten vor der Aufnahme.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Praxis/Niederlassung des Anbieters">
                 description = <"Praxis/Niederlassung des Anbieters">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Pflegeeinheit">
                 description = <"Pflegeeinheit">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Abteilung">
                 description = <"Abteilung">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"zu Hause">
                 description = <"zu Hause">
             >
@@ -595,7 +595,7 @@ terminology
                 text = <"Adresse">
                 description = <"Adresse">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Klinik">
                 description = <"Klinik">
             >
@@ -631,19 +631,19 @@ terminology
                 text = <"Gebührenpreisanzeige">
                 description = <"Gebührenpreisanzeige">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Entschädigung des Arbeiters">
                 description = <"Entschädigung des Arbeiters">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"eigenfinanziert">
                 description = <"eigenfinanziert">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Private Krankenversicherung">
                 description = <"Private Krankenversicherung">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Australisches Gesundheitsabkommen">
                 description = <"Australisches Gesundheitsabkommen">
             >
@@ -671,39 +671,39 @@ terminology
                 text = <"Nummer des Patienten vor der Aufnahme">
                 description = <"Nummer des Patienten vor der Aufnahme">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Statistische Datenerfassung">
                 description = <"Statistische Datenerfassung">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Geriatrische Aufnahme">
                 description = <"Geriatrische Aufnahme">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"geplante Aufnahme">
                 description = <"geplante Aufnahme">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"akut">
                 description = <"akut">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Neugeborenes">
                 description = <"Neugeborenes">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Routine">
                 description = <"Routine">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Schwangerschaft & Geburt">
                 description = <"Schwangerschaft & Geburt">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Notfall">
                 description = <"Notfall">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Unfall">
                 description = <"Unfall">
             >
@@ -712,39 +712,39 @@ terminology
                 description = <"Der Umstand, unter dem der Patient
     aufgenommen wird.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"unbekannt">
                 description = <"unbekannt">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"nicht zutreffend">
                 description = <"nicht zutreffend">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Firmenkonto">
                 description = <"Firmenkonto">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Vor Aufnahme">
                 description = <"Vor Aufnahme">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Gemeinde Kunde">
                 description = <"Gemeinde Kunde">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Notfallpatient">
                 description = <"Notfallpatient">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"ambulanter Patient">
                 description = <"ambulanter Patient">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Tagespatient">
                 description = <"Patienten am selben Tag aufgenommen und entlassen.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"stationärer Patient">
                 description = <"stationärer Patient">
             >
@@ -879,39 +879,39 @@ terminology
                 text = <"Médico da admissão (synthesised)">
                 description = <"* (synthesised)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"Desconhecido">
                 description = <"*">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"Outro">
                 description = <"*">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"Acordos de saúde recíprocos (com outros países)">
                 description = <"*">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"Outro hospital ou instituição pública (cuidados contratados)">
                 description = <"*">
             >
-            ["at127"] = <
+            ["at126"] = <
                 text = <"*Correctional facility(en)">
                 description = <"*">
             >
-            ["at126"] = <
+            ["at125"] = <
                 text = <"*Department of Defence(en)">
                 description = <"*">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"*Department of Veterans' Affairs(en)">
                 description = <"*">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Outra compensação">
                 description = <"Outra compensação (por exemplo, responsabilidade civil, direito comum, negligência médica)">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Reclamação de terceiro sobre veículo motorizado">
                 description = <"Reclamação de terceiro sobre veículo motorizado">
             >
@@ -927,43 +927,43 @@ terminology
                 text = <"Instalação">
                 description = <"*">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"x500">
                 description = <"*">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"x400">
                 description = <"*">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"UUID">
                 description = <"*">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Random">
                 description = <"*">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"L, M, N">
                 description = <"*">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"ISO">
                 description = <"*">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"HL7">
                 description = <"*">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"HCD">
                 description = <"*">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"GUID">
                 description = <"*">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"DNS">
                 description = <"*">
             >
@@ -1015,19 +1015,19 @@ terminology
                 text = <"Localização prévia do paciente">
                 description = <"A localização do paciente na internação.">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"*Provider's office(en)">
                 description = <"*">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Unidade de enfermagem">
                 description = <"*">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Departamento">
                 description = <"*">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Casa">
                 description = <"*">
             >
@@ -1055,7 +1055,7 @@ terminology
                 text = <"Endereço">
                 description = <"*">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Clínica">
                 description = <"*">
             >
@@ -1091,19 +1091,19 @@ terminology
                 text = <"Indicação de alteração de preço">
                 description = <"*">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Auxilio doença">
                 description = <"Auxílio doença">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Auto financiado">
                 description = <"Particular">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Seguros de saúde privados">
                 description = <"Seguros de saúde privados">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Australian Health Care Agreements(en)">
                 description = <"*Australian Health Care Agreements (en)">
             >
@@ -1131,39 +1131,39 @@ terminology
                 text = <"Número da pré-admissão">
                 description = <"Número do ID da pré-admissão do paciente.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Admissão estatística">
                 description = <"Admissão estatística.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Admissão em repouso geriátrico">
                 description = <"Admissão em repouso geriátrico.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Eletivo">
                 description = <"Eletivo.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Urgência">
                 description = <"Urgência.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Recém nascido">
                 description = <"Recém nascido.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Eletiva">
                 description = <"Internação programada.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Trabalho de parto">
                 description = <"Trabalho de parto.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Emergência">
                 description = <"Emergência.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Acidente">
                 description = <"Acidente.">
             >
@@ -1171,39 +1171,39 @@ terminology
                 text = <"Tipo de Admissão">
                 description = <"Circunstância na qual o paciente foi admitido.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Desconhecido">
                 description = <"Desconhecido.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Não aplicável">
                 description = <"Não aplicável.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Conta comercial">
                 description = <"conta comercial">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Pré-admissão">
                 description = <"Pré-admissão.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Público">
                 description = <"Paciente que recebe atendimento de saúde público ou serviços de assistência social.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Urgência">
                 description = <"Paciente oriundo da unidade de emergência.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Ambulatorial">
                 description = <"Paciente Ambulatorial.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Day hospital">
                 description = <"Paciente com admissão e alta no mesmo dia.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Internação/ paciente com pernoite">
                 description = <"Internação/ paciente com pernoite.">
             >
@@ -1337,39 +1337,39 @@ terminology
                 text = <"Admitting doctor (synthesised)">
                 description = <"* (synthesised)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"Not known">
                 description = <"*">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"Other">
                 description = <"*">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"Reciprocal health care agreements (with other countries)">
                 description = <"*">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"Other hospital or public authority (contracted care)">
                 description = <"*">
             >
-            ["at127"] = <
+            ["at126"] = <
                 text = <"Correctional facility">
                 description = <"*">
             >
-            ["at126"] = <
+            ["at125"] = <
                 text = <"Department of Defence">
                 description = <"*">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"Department of Veterans' Affairs">
                 description = <"*">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"Other compensation (e.g. public liability, common law, medical negligence)">
                 description = <"*">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"Motor vehicle third party personal claim">
                 description = <"*">
             >
@@ -1385,43 +1385,43 @@ terminology
                 text = <"Facility">
                 description = <"*">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"x500">
                 description = <"*">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"x400">
                 description = <"*">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"UUID">
                 description = <"*">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Random">
                 description = <"*">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"L, M, N">
                 description = <"*">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"ISO">
                 description = <"*">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"HL7">
                 description = <"*">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"HCD">
                 description = <"*">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"GUID">
                 description = <"*">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"DNS">
                 description = <"*">
             >
@@ -1474,19 +1474,19 @@ terminology
                 text = <"Prior patient location">
                 description = <"The patient location prior admission">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"Provider's office">
                 description = <"*">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"Nursing unit">
                 description = <"*">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"Department">
                 description = <"*">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"Home">
                 description = <"*">
             >
@@ -1514,7 +1514,7 @@ terminology
                 text = <"Address">
                 description = <"*">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"Clinic">
                 description = <"*">
             >
@@ -1550,19 +1550,19 @@ terminology
                 text = <"Charge price indicator">
                 description = <"*">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"Worker's compensation">
                 description = <"Worker's compensation">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"Self-funded">
                 description = <"Self-funded">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Private health insurance">
                 description = <"Private health insurance">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Australian Health Care Agreements">
                 description = <"Australian Health Care Agreements ">
             >
@@ -1591,39 +1591,39 @@ terminology
                 text = <"Pre-admit number">
                 description = <"ID number of patient's pre-admission">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Statistical admission">
                 description = <"Statistical admission">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Geriatric respite admission">
                 description = <"Geriatric respite admission">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Elective">
                 description = <"Elective">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Urgent">
                 description = <"Urgent">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Newborn">
                 description = <"Newborn">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Routine">
                 description = <"Routine">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Labour & Delivery">
                 description = <"Labour & Delivery">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Emergency">
                 description = <"Emergency">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Accident">
                 description = <"Accident">
             >
@@ -1631,39 +1631,39 @@ terminology
                 text = <"Admission type">
                 description = <"The circumstance under which the patient will be admitted.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Unknown">
                 description = <"Unknown">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Not-applicable">
                 description = <"Not-applicable">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Commercial account">
                 description = <"Commercial account">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Pre-admit">
                 description = <"Pre-admit">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Community client">
                 description = <"Community client">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Emergency patient">
                 description = <"Emergency patient">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Outpatient">
                 description = <"Outpatient">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Same day patient">
                 description = <"Same day patient">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Inpatient/overnight patient">
                 description = <"Inpatient/overnight patient">
             >
@@ -1797,39 +1797,39 @@ terminology
                 text = <"الطبيب المسئول عن الإدخال (synthesised)">
                 description = <"* (synthesised)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"غير معروف">
                 description = <"*">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"أخرى">
                 description = <"*">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"اتفاقات الرعاية الصحية التبادلية - مع البلدان/الدول الأخرى">
                 description = <"*">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"مستشفى أو قسم عام آخر - رعاية بالتعاقد">
                 description = <"*">
             >
-            ["at127"] = <
+            ["at126"] = <
                 text = <"المؤسسة التصحيحية">
                 description = <"*">
             >
-            ["at126"] = <
+            ["at125"] = <
                 text = <"إدارة الدفاع">
                 description = <"*">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"قسم شئون المحاربين القدامى">
                 description = <"*">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"التعويضات الأخرى - المسئولية العامة, القانون العمومي, الإهمال الطبي">
                 description = <"*">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"المطالبة الشخصية الخاصة بالعربة من طرف ثالث">
                 description = <"*">
             >
@@ -1845,43 +1845,43 @@ terminology
                 text = <"المؤسسة">
                 description = <"*">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"x500">
                 description = <"*">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"x400">
                 description = <"*">
             >
-            ["at116"] = <
-                text = <"العنصر التعريفي الكوني الفريد">
-                description = <"*">
-            >
             ["at115"] = <
-                text = <"عشوائي">
+                text = <"العنصر التعريفي الكوني الفريد">
                 description = <"*">
             >
             ["at114"] = <
-                text = <"L, M, N">
+                text = <"عشوائي">
                 description = <"*">
             >
             ["at113"] = <
-                text = <"منظمة المعايير الدولية">
+                text = <"L, M, N">
                 description = <"*">
             >
             ["at112"] = <
-                text = <"المستوى الصحي السابع">
+                text = <"منظمة المعايير الدولية">
                 description = <"*">
             >
             ["at111"] = <
-                text = <"HCD">
+                text = <"المستوى الصحي السابع">
                 description = <"*">
             >
             ["at110"] = <
-                text = <"العنصر التعريفي الكوني الفريد">
+                text = <"HCD">
                 description = <"*">
             >
             ["at109"] = <
+                text = <"العنصر التعريفي الكوني الفريد">
+                description = <"*">
+            >
+            ["at108"] = <
                 text = <"نظام تعريف المجال">
                 description = <"*">
             >
@@ -1933,19 +1933,19 @@ terminology
                 text = <"المكان السابق للمريض">
                 description = <"المكان السابق للمريض">
             >
-            ["at94"] = <
+            ["at93"] = <
                 text = <"مكتب مُزَوِّد الخدمة">
                 description = <"*">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"وحدة تمريضية">
                 description = <"*">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"القِسم">
                 description = <"*">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"منزل">
                 description = <"*">
             >
@@ -1973,7 +1973,7 @@ terminology
                 text = <"العنوان">
                 description = <"*">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"عيادة">
                 description = <"*">
             >
@@ -2009,19 +2009,19 @@ terminology
                 text = <"مؤشر ثمن الرعاية">
                 description = <"*">
             >
-            ["at66"] = <
+            ["at65"] = <
                 text = <"تعويضات العامل">
                 description = <"تعويضات العامل">
             >
-            ["at65"] = <
+            ["at64"] = <
                 text = <"مموَّل شخصيا">
                 description = <"مموَّل شخصيا">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"التأمين الصحي الخاص">
                 description = <"التأمين الصحي الخاص">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"الاتفاقات الأسترالية للرعاية الصحية">
                 description = <"الاتفاقات الأسترالية للرعاية الصحية">
             >
@@ -2053,39 +2053,39 @@ terminology
                 text = <"رقم ما قبل الإدخال">
                 description = <"الرقم التعريفي للمريض ما قبل الإدخال">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"الإدخال الإحصائي">
                 description = <"الإدخال الإحصائي">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"إدخال المسنين للراحة">
                 description = <"إدخال المسنين للراحة">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"اختياري">
                 description = <"اختياري">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"عاجل">
                 description = <"عاجل">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"حديث الولادة">
                 description = <"حديث الولادة">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"روتيني/معتاد">
                 description = <"روتيني/معتاد">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"الولادة و الوضع">
                 description = <"الولادة و الوضع">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"طوارئ">
                 description = <"طوارئ">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"حادث">
                 description = <"حادث">
             >
@@ -2093,39 +2093,39 @@ terminology
                 text = <"نوع الإدخال">
                 description = <"الظروف التي يتم إدخال المريض تحتها">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"غير معروف">
                 description = <"غير معروف">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"غير قابل للتطبيق">
                 description = <"غير قابل للتطبيق">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"حساب تجاري">
                 description = <"حساب تجاري">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"ما قبل الإدخال">
                 description = <"ما قبل الإدخال">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"عميل مجتمعي">
                 description = <"عميل مجتمعي">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"مريض الطوارئ">
                 description = <"مريض الطوارئ">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"المريض الخارجي">
                 description = <"المريض الخارجي">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"مريض اليوم الواحد">
                 description = <"مريض اليوم الواحد">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"مريض داخلي/ليلي">
                 description = <"مريض داخلي/ليلي">
             >
@@ -2146,22 +2146,22 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at83", "at91", "at92", "at93", "at94">
+            members = <"at82", "at90", "at91", "at92", "at93">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at109", "at110", "at111", "at112", "at113", "at114", "at115", "at116", "at117", "at119">
+            members = <"at108", "at109", "at110", "at111", "at112", "at113", "at114", "at115", "at116", "at118">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12">
+            members = <"at3", "at4", "at5", "at6", "at7", "at8", "at9", "at10", "at11">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at63", "at64", "at65", "at66", "at123", "at124", "at125", "at126", "at127", "at128", "at129", "at130", "at131">
+            members = <"at62", "at63", "at64", "at65", "at122", "at123", "at124", "at125", "at126", "at127", "at128", "at129", "at130">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at15", "at16", "at17", "at18", "at19", "at20", "at21", "at22", "at23">
+            members = <"at14", "at15", "at16", "at17", "at18", "at19", "at20", "at21", "at22">
         >
     >

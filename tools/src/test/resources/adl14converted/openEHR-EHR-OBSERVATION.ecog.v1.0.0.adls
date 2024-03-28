@@ -78,12 +78,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9001] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}],
-                                                    [{2}, {[at8]}],
-                                                    [{3}, {[at9]}],
-                                                    [{4}, {[at10]}],
-                                                    [{5}, {[at11]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}],
+                                                    [{4}, {[at9]}],
+                                                    [{5}, {[at10]}]
                                                 }
                                             }
                                         }
@@ -128,27 +128,27 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Død">
                 description = <"Pasienten er død.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Helt sengeliggende">
                 description = <"Helt hjelpetrengende; klarer ikke noen egenpleie; helt bundet til seng eller stol.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Symptomatisk, sengeliggende > 50 % av våken tid">
                 description = <"Bare i stand til begrenset egenpleie, bundet til seng eller stol > 50 % av våken tid.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Symptomatisk, sengeliggende <50 % av våken tid">
                 description = <"Oppegående og i stand til all egenpleie, men ikke i stand til noe arbeid; oppe og i bevegelse mer enn 50% av våken tid.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Symptomatisk, fullt oppegående">
                 description = <"Ikke i stand til fysisk krevende aktivitet, men oppegående og i stand til å utføre lett arbeid.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Asymptomatisk">
                 description = <"I stand til å utføre enhver normal aktivitet uten begrensning.">
             >
@@ -179,27 +179,27 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Dead">
                 description = <"Patient has died.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Bedridden">
                 description = <"Completely disabled; cannot carry on any selfcare; totally confined to bed or chair.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Symptomatic, in bed >50% of the day (but not bedridden)">
                 description = <"Capable of only limited selfcare; confined to bed or chair more than 50% of waking hours.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Symptomatic, in bed <50% of the day">
                 description = <"Ambulatory and capable of all selfcare but unable to carry out any work activities; up and about more than 50% of waking hours.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Symptomatic, fully ambulatory">
                 description = <"Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Asymptomatic">
                 description = <"Fully active, able to carry on all pre-disease performance without restriction.">
             >
@@ -220,6 +220,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10", "at11">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10">
         >
     >

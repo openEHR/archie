@@ -91,19 +91,19 @@ terminology
                 text = <"Dietary preference">
                 description = <"A description of an individual's dietary preference e.g. Vegetarian or Vegan.  Coding with a terminology is desirable, where possible.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Normal">
                 description = <"Is normal weight for age and sex according to BMI or other measure.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Obese">
                 description = <"Is obese for age and sex according to BMI or other measure.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Overweight">
                 description = <"Is overweight for age and sex according to BMI or other measure.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Underweight">
                 description = <"Is underweight for age and sex according to BMI or other measure.">
             >
@@ -124,6 +124,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at5", "at8", "at6", "at7">
+            members = <"at4", "at7", "at5", "at6">
         >
     >

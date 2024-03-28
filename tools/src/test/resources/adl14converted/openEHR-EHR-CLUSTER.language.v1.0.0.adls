@@ -103,23 +103,23 @@ terminology
                 text = <"Modalitet (synthesised)">
                 description = <"Metoden for kommunikasjon av språket. (synthesised)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Taktil lesing">
                 description = <"Tolkning av skriftlig materiale ved hjelp av berøring brukes.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Skriving">
                 description = <"En sammensetning av bokstaver, ord, bilder eller symboler brukes.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Lesing">
                 description = <"Skriftlige eller trykte bokstaver, ord, bilder eller symboler brukes.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Tegnspråk">
                 description = <"Fysiske handlinger eller bevegelser blir brukt. Denne verdien er ikke relevant om modalitet er definert i elementet \"Navn på språket\". For eksempel norsk tegnspråk.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Tale">
                 description = <"Språket som benyttes ved tale.">
             >
@@ -151,23 +151,23 @@ terminology
                 text = <"Mode (synthesised)">
                 description = <"The method of communication for the specified language. (synthesised)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Tactile reading">
                 description = <"Interpretation of written material using touch is used.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Writing">
                 description = <"A composition of letters, words, pictures or symbols is used.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Reading">
                 description = <"Written or printed letters, words, pictures or symbols is used.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Signing">
                 description = <"Physical actions or gestures are used. This value is redundant if identification of the mode is a component of the 'Language name', such as 'Norwegian sign language'.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Speaking">
                 description = <"The voice is used.">
             >
@@ -198,6 +198,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at8", "at9", "at10", "at11", "at13">
+            members = <"at7", "at8", "at9", "at10", "at12">
         >
     >

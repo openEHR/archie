@@ -161,31 +161,31 @@ terminology
                 text = <"Beskrivelse">
                 description = <"Fritekstbeskrivelse av beholderen.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Prøvebrønn">
                 description = <"Beholderen er en prøvebrønn til prøve.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Grid">
                 description = <"Beholderen er et rutenett for elektronmikroskopi.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Prøvebeholder">
                 description = <"Beholderen er en generisk prøvebeholder.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Objektglass">
                 description = <"Beholderen er et objektglass.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Prøveglass">
                 description = <"Beholderen er et prøveglass.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"TMA-blokk">
                 description = <"Beholderen er en posisjonsbeholder for parafinstøping av prøve.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Vevskassett">
                 description = <"Beholderen er en plastbeholder for parafinstøping av prøve.">
             >
@@ -237,31 +237,31 @@ terminology
                 text = <"Description">
                 description = <"A text description of the container.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Specimen well">
                 description = <"The container is a specimen well.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Electron microscopy grid">
                 description = <"The container is an electron microscopy grid.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Specimen container">
                 description = <"The container is a gneric specimen container.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Microscope slide">
                 description = <"The container is a microscope slide.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Specimen vial">
                 description = <"The container is a specimen vial.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Tissue microarray cassette">
                 description = <"The container is a tissue microarray cassette.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Tissue cassette">
                 description = <"The container is a tissue cassette.">
             >
@@ -313,31 +313,31 @@ terminology
                 text = <"*Description(en)">
                 description = <"*A text description of the container.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"*Specimen well(en)">
                 description = <"**(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Electron microscopy grid(en)">
                 description = <"**(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Specimen container(en)">
                 description = <"**(en)">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"*Microscope slide(en)">
                 description = <"**(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Specimen vial(en)">
                 description = <"**(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Tissue microarray cassette(en)">
                 description = <"**(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Tissue cassette(en)">
                 description = <"**(en)">
             >
@@ -362,6 +362,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8", "at9", "at10", "at11", "at12", "at13">
+            members = <"at6", "at7", "at8", "at9", "at10", "at11", "at12">
         >
     >

@@ -210,15 +210,15 @@ terminology
                 text = <"Device name">
                 description = <"Identification of the specific device, by name.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Previous">
                 description = <"The device type has been fitted or implanted in the past.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Current">
                 description = <"The device type is currently fitted or implanted.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Never">
                 description = <"The device type has never been fitted or implanted.">
             >
@@ -235,6 +235,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at5", "at6">
+            members = <"at3", "at4", "at5">
         >
     >

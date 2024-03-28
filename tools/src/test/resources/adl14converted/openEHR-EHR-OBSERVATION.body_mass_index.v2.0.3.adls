@@ -407,11 +407,11 @@ terminology
                 text = <"Formel">
                 description = <"Formel som används för att räkna ut en individs BMI.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Direkt inmatning">
                 description = <"BMI beräknas och matas in direkt av användaren.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Automatisk inmatning">
                 description = <"BMI beräknas och matas in automatiskt utan åtgärder från användaren.">
             >
@@ -464,11 +464,11 @@ terminology
                 text = <"Kaava">
                 description = <"Kaava, jota käytetään kehon painoindeksin johtamiseen.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Suora kirjaus">
                 description = <"Käyttäjä laskee kehon painoindeksin ja kirjaa sen suoraan.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Automaattinen kirjaus">
                 description = <"Kehon painoindeksi lasketaan ja kirjataan automaattisesti ilman käyttäjän toimenpiteitä.">
             >
@@ -520,11 +520,11 @@ terminology
                 text = <"Fórmula">
                 description = <"Fórmula usada para calcular el Índice de Masa Corporal.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Entrada directa">
                 description = <"Índice de Masa Corporal calculado e ingresado directamente por el usuario.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Registro automático">
                 description = <"Índice de Masa Corporal calculado e ingresado automáticamente sin intervención del usuario.">
             >
@@ -577,11 +577,11 @@ terminology
                 text = <"Formel">
                 description = <"Formel som er benyttet for beregning av kroppsmasseindeks. Brukes kun dersom det benyttes en annen formel enn den som er definert under Use.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Manuell registrering">
                 description = <"Kroppsmasseindeks beregnes og registreres manuelt av brukeren.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Automatisk registrering">
                 description = <"Kroppsmasseindeks beregnes og legges inn automatisk, uten brukermedvirkning.">
             >
@@ -632,11 +632,11 @@ terminology
                 text = <"Fórmula">
                 description = <"Fórmula usada para calcular o IMC (somente se for diferente de peso/altura^2).">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Entrada direta">
                 description = <"IMC registrado diretamente pelo usuário.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Entrada automática">
                 description = <"IMC registrado automaticamente, sem a intervenção do usuário.">
             >
@@ -687,11 +687,11 @@ terminology
                 text = <"Μαθηματικός τύπος">
                 description = <"Ο μαθηματικός τύπος που χρησιμοποιείται για τον υπολογισμό του Δείκτη Μάζας Σώματος.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Άμεση εισαγωγή">
                 description = <"Ο Δείκτης Μάζας Σώματος υπολογίζεται και εισάγεται απευθείας από τον χρήστη.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Αυτόματη εισαγωγή">
                 description = <"Ο Δείκτης Μάζας Σώματος υπολογίζεται και εισάγεται αυτόματα, χωρίς την παρέμβαση του χρήστη.">
             >
@@ -744,11 +744,11 @@ terminology
                 text = <"Formula">
                 description = <"Formula used to derive the body mass index.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Direct entry">
                 description = <"Body Mass Index calculated and entered directly by user.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Automatic entry">
                 description = <"Body Mass Index calculated and entered automatically without user intervention.">
             >
@@ -800,11 +800,11 @@ terminology
                 text = <"الصيغة">
                 description = <"الصيغة المستخدمة لاشتقاق معامل كتلة الجسم">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"إدخال مباشر">
                 description = <"يتم حساب و إدخال كتلة الجسم مباشرة بواسطة المستخدم">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"إدخال تلقائي">
                 description = <"يتم حساب و إدخال معامل كتلةالجسم تلقائيا بدون تدخل من المستخدِم">
             >
@@ -855,11 +855,11 @@ terminology
                 text = <"فرمول">
                 description = <"فرمول مورد استفاده برای استخراج شاخص توده بدن">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"ورود مستقیم داده ها">
                 description = <"شاخص توده بدن مستقیما توسط کاربر محاسبه و ثبت می شود">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"ثبت خودکار">
                 description = <" شاخص توده بدن بطور خودکار بدون مداخله کاربر محاسبه و ثبت می شود">
             >
@@ -911,11 +911,11 @@ terminology
                 text = <"公式">
                 description = <"用于计算得出体重指数的公式。">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"直接录入法">
                 description = <"由用户直接计算并录入体重指数。">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"自动录入法">
                 description = <"在没有用户干预的情况下自动计算并录入体重指数。">
             >
@@ -966,11 +966,11 @@ terminology
                 text = <"Formule">
                 description = <"De formule die gebruikt wordt om de Body Mass Index te berekenen">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Direkte invoer">
                 description = <"Body Mass Index is berekend en ingevoerd door de gebruiker.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Automatische invoer">
                 description = <"Body Mass Index is automatisch berekend en ingevoerd, zonder tussenkomst van gebruikers.">
             >
@@ -1006,6 +1006,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at8", "at9">
+            members = <"at7", "at8">
         >
     >

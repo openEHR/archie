@@ -162,11 +162,11 @@ terminology
                 description = <"Reason why no refraction result is available for the test eye.">
                 comment = <"For example, patient was not cooperative; patient was not capable; ran out of time.">
             >
-            ["at147"] = <
+            ["at146"] = <
                 text = <"Left eye">
                 description = <"Assessment of the left eye was performed.">
             >
-            ["at146"] = <
+            ["at145"] = <
                 text = <"Right eye">
                 description = <"Assessment of the right eye was performed.">
             >
@@ -196,23 +196,23 @@ terminology
                 description = <"Patient circumstances which affect interpretation of the result. Often termed 'reliability' in opthalmological documentation.">
                 comment = <"Examples: 'Patient was confused', 'Low light conditions'.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Retinoscopy">
                 description = <"The subject's vision was corrected by retinoscopy.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Autorefraction">
                 description = <"The subject's vision was corrected by autorefraction.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Pinhole">
                 description = <"The subject's vision was corrected by use of a pinhole.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Contact lenses">
                 description = <"The subject's vision was corrected by contact lenses.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Spectacles">
                 description = <"The subject's vision was corrected by spectacles.">
             >
@@ -264,18 +264,18 @@ terminology
             ["id41"] = <http://snomed.info/id/117364006>
             ["id55"] = <http://snomed.info/id/366060000>
             ["id67"] = <http://snomed.info/id/366060000>
-            ["at72"] = <http://snomed.info/id/50121007>
-            ["at73"] = <http://snomed.info/id/57368009>
-            ["at76"] = <http://snomed.info/id/397524001>
+            ["at71"] = <http://snomed.info/id/50121007>
+            ["at72"] = <http://snomed.info/id/57368009>
+            ["at75"] = <http://snomed.info/id/397524001>
         >
     >
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at72", "at73", "at74", "at75", "at76">
+            members = <"at71", "at72", "at73", "at74", "at75">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at146", "at147">
+            members = <"at145", "at146">
         >
     >

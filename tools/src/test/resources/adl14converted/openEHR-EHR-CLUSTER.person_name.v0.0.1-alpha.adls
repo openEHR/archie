@@ -179,15 +179,15 @@ terminology
                 text = <"*Preferred name(en)">
                 description = <"*Indicates that this is the name by which a person chooses to be identified.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Reporting name(en)">
                 description = <"*The subject’s name as it is to be used for reporting, when used with a specific identifier.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Registered name(en)">
                 description = <"*The name by which the subject is officially registered(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Professional name(en)">
                 description = <"*The name used by the subject for business or professional purposes.(en)">
             >
@@ -205,23 +205,23 @@ terminology
                 text = <"*Validity period(en)">
                 description = <"*The date interval at which this name was valid.(en)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Mädchenname">
                 description = <"Der Name der bis zur Heirat benutzt wurde">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Alias">
                 description = <"Ein Anderer von der Person benutzter Name">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"AKA">
                 description = <"Die Person ist auch bekannt als">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Geburtsname">
                 description = <"Der Person bei Geburt gegebener Name">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Früherer Name">
                 description = <"Von der Person früher benutzter Name">
             >
@@ -263,15 +263,15 @@ terminology
                 text = <"*Preferred name(en)">
                 description = <"*Indicates that this is the name by which a person chooses to be identified.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Reporting name(en)">
                 description = <"*The subject’s name as it is to be used for reporting, when used with a specific identifier.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Registered name(en)">
                 description = <"*The name by which the subject is officially registered.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Professional name(en)">
                 description = <"*The name used by the subject for business or professional purposes.(en)">
             >
@@ -289,23 +289,23 @@ terminology
                 text = <"Nombre válido desde">
                 description = <"La fecha a partir de la cual este nombre se tornó válido.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Nombre de soltera">
                 description = <"Nombre utilizado por esta persona antes de su casamiento.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Alias">
                 description = <"Otro nombre utilizado por esta persona.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"tambien conocido como">
                 description = <"La persona es también conocida como.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Nombre de nacimiento">
                 description = <"Nombre dado a esta persona al momento de su nacimiento.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Nombre previo">
                 description = <"Nombre previamente utilizado por esta persona.">
             >
@@ -347,15 +347,15 @@ terminology
                 text = <"Nome favorito">
                 description = <"Indica o nome pelo qual a pessoa prefere ser identificada.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Nome informado">
                 description = <"O nome do sujeito que é usado para relatórios, quando usado com um identificador específico.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Nome de registro">
                 description = <"O nome no qual o sujeito é oficialmente registrado.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Nome profissional">
                 description = <"O nome usado pelo pelo indivíduo para negócios ou assuntos profissionais.">
             >
@@ -373,23 +373,23 @@ terminology
                 text = <"Período de validade">
                 description = <"Intervalo de tempo no qual esse nome foi válido.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Nome de solteiro">
                 description = <"Nome utilizado por essa pessoa antes do casamento.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Pseudônimo">
                 description = <"Outro nome usado por essa pessoa.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Apelido">
                 description = <"Nome pelo qual a pessoa também é conhecida.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Nome de nascimento">
                 description = <"Nome dado a essa pessoa no nascimento.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Nome anterior">
                 description = <"Nome previamente usado por essa pessoa.">
             >
@@ -432,15 +432,15 @@ terminology
                 text = <"Preferred name">
                 description = <"Indicates that this is the name by which a person chooses to be identified.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Reporting name">
                 description = <"The subject’s name as it is to be used for reporting, when used with a specific identifier.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Registered name">
                 description = <"The name by which the subject is officially registered.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Professional name">
                 description = <"The name used by the subject for business or professional purposes.">
             >
@@ -458,23 +458,23 @@ terminology
                 text = <"Validity period">
                 description = <"The date interval at which this name was valid.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Maiden name">
                 description = <"Name used by this persion before marriage.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Alias">
                 description = <"Other name used by this person.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"AKA">
                 description = <"Person also known as.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Birth name">
                 description = <"Name given to this person at birth.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Previous name">
                 description = <"Name previously used by this person.">
             >
@@ -516,15 +516,15 @@ terminology
                 text = <"*Preferred name(en)">
                 description = <"*Indicates that this is the name by which a person chooses to be identified.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"*Reporting name(en)">
                 description = <"*The subject’s name as it is to be used for reporting, when used with a specific identifier.(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Registered name(en)">
                 description = <"*The name by which the subject is officially registered.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Professional name(en)">
                 description = <"*The name used by the subject for business or professional purposes.(en)">
             >
@@ -542,23 +542,23 @@ terminology
                 text = <"بداية سريان صلاحية الاسم">
                 description = <"التاريخ الذي أصبح فيه الاسم صالحا للاستخدام">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"الاسم قبل الزواج">
                 description = <"الاسم الذي كان يستخدم بواسطة الشخص قبل الزواج">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"الاسم المستعار">
                 description = <"اسم آخر يتم استخدامه بواسطة هذا الشخص">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"يُعْرَف بـ... أيضا">
                 description = <"الفرد يُعْرَف أيضا بـ...">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"الاسم عند الولادة">
                 description = <"الاسم الذي أعطي للشخص عند الولادة">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"الاسم السابق">
                 description = <"الاسم الذي استخدم من قبل بواسطة المريض">
             >
@@ -595,6 +595,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at21", "at9", "at10", "at11", "at12", "at13", "at20", "at22">
+            members = <"at20", "at8", "at9", "at10", "at11", "at12", "at19", "at21">
         >
     >

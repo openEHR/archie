@@ -110,27 +110,27 @@ terminology
                 text = <"Zeitstempel vom Status des Ergebnisses">
                 description = <"Das Datum und/oder die Uhrzeit des ausgegebenen Status des Ergebnisses.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Nicht angefordert">
                 description = <"Das Ergebnis ist nicht verfügbar, weil der Test nicht angefordert wurde.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Storniert/Abgebrochen">
                 description = <"Das Ergebnis ist nicht verfügbar, da der Test nicht begonnen oder nicht abgeschlossen wurde.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Geändert">
                 description = <"Das Ergebnis wurde nach der Finalisierung modifiziert und ist nun vollständig und vom zuständigen Pathologen verifiziert.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Final">
                 description = <"Das Ergebnis ist komplett und wurde vom zuständigen Pathologen überprüft.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Vorläufig">
                 description = <"Dies ist ein erstes oder ein vorläufiges Ergebnis: es können Daten fehlen oder die Prüfung des Ergebnisses wurde noch nicht durchgeführt.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Registriert">
                 description = <"Noch kein Ergebnis verfügbar.">
             >
@@ -177,27 +177,27 @@ terminology
                 text = <"Result status timestamp">
                 description = <"The date and/or time that the entire result was issued for the recorded ‘Result status’.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Not requested">
                 description = <"The result is not available as the test was not requested.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Cancelled/Aborted">
                 description = <"The result is unavailable because the test was not started or not completed.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Amended">
                 description = <"The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Final">
                 description = <"The result is complete and verified by the responsible pathologist.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Interim">
                 description = <"This is an initial or interim result: data may be missing or verification not been performed.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Registered">
                 description = <"No result yet available.">
             >
@@ -226,6 +226,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10", "at11">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10">
         >
     >

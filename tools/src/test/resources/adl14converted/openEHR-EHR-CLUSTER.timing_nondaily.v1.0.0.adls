@@ -224,23 +224,23 @@ terminology
                 description = <"Tekstbeskrivelse av timingen.">
                 comment = <"For eksempel \"bruk i en uke, stopp i to uker, gjenta\". Dette elementet er ment for å tillate programvareleverandører å bruke strukturene for timing innenfor 24 timer, uten nødvendigvis å spesifisere timingen utover et døgn på en strukturert måte.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Søndag">
                 description = <"Aktiviteten skal utføres på søndag.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Lørdag">
                 description = <"Aktiviteten skal utføres på lørdag.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Fredag">
                 description = <"Aktiviteten skal utføres på fredag.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Torsdag">
                 description = <"Aktiviteten skal utføres på torsdag.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Onsdag">
                 description = <"Aktiviteten skal utføres på onsdag.">
             >
@@ -271,11 +271,11 @@ terminology
                 description = <"Tidsintervallet før eller etter hendelsen når aktiviteten skal utføres. Negative intervaller kan benyttes for å spesifisere at aktiviteten skal utføres før den navngitte hendelsen.">
                 comment = <"For eksempel \"3 dager etter første menstruasjonsdag = første menstruasjonsdag + 3 dager\", \"2 uker før innleggelse = innleggelse - 2 uker\".">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Tirsdag">
                 description = <"Aktiviteten skal utføres på tirsdag.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Mandag">
                 description = <"Aktiviteten skal utføres på mandag.">
             >
@@ -327,23 +327,23 @@ terminology
                 description = <"*Text description of the timing repetition. This element is intended to allow implementers to use the structures for different timings without necessarily specifying the timings in a structured way.(en)">
                 comment = <"*For example: \"Use for one week, then stop for two weeks, then repeat\".(en)">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"*Sunday(en)">
                 description = <"*The activity should take place on Sunday.(en)">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"*Saturday(en)">
                 description = <"*The activity should take place on Saturday.(en)">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"*Friday(en)">
                 description = <"*The activity should take place on Friday.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Thursday(en)">
                 description = <"*The activity should take place on Thursday.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*Wednesday(en)">
                 description = <"*The activity should take place on Wednesday.(en)">
             >
@@ -374,11 +374,11 @@ terminology
                 description = <"O período de tempo antes ou depois o evento nomeado, quando a atividade deve ocorrer. Durações negativas podem ser utilizadas para indicar que a atividade deve ser realizada antes do evento conhecido.">
                 comment = <"por exemplo: \"3 dias depois do início da menstruação = início da menstruação + 3 dias\", \"2 semanas antes da admissão = admissão - 2 semanas\".">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Tuesday(en)">
                 description = <"*The activity should take place on Tuesday.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Monday(en)">
                 description = <"*The activity should take place on Monday.(en)">
             >
@@ -429,23 +429,23 @@ terminology
                 description = <"Text description of the timing.">
                 comment = <"For example: 'Use for one week, then stop for two weeks, then repeat'. This element is intended to allow implementers to use the structures for daily timings without necessarily specifying the non-daily timings in a structured way.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Sunday">
                 description = <"The activity should take place on Sunday.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Saturday">
                 description = <"The activity should take place on Saturday.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Friday">
                 description = <"The activity should take place on Friday.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Thursday">
                 description = <"The activity should take place on Thursday.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Wednesday">
                 description = <"The activity should take place on Wednesday.">
             >
@@ -476,11 +476,11 @@ terminology
                 description = <"The period of time before or after the named event when the activity should take place. Negative durations can be used to signify that the activity should be taken before a known event.">
                 comment = <"For example: '3 days after onset of menstruation = menstrual onset + 3 days', '2 weeks prior to admission= admission -2 weeks'.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Tuesday">
                 description = <"The activity should take place on Tuesday.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Monday">
                 description = <"The activity should take place on Monday.">
             >
@@ -527,6 +527,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at8", "at9", "at17", "at18", "at19", "at20", "at21">
+            members = <"at7", "at8", "at16", "at17", "at18", "at19", "at20">
         >
     >

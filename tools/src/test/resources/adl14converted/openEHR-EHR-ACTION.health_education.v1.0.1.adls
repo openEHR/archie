@@ -115,7 +115,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9009] matches {
-                        defining_code matches {[at7]}    -- Education planned
+                        defining_code matches {[at6]}    -- Education planned
                     }
                 }
             }
@@ -127,7 +127,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9011] matches {
-                        defining_code matches {[at19]}    -- Education recommended
+                        defining_code matches {[at18]}    -- Education recommended
                     }
                 }
             }
@@ -139,7 +139,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9013] matches {
-                        defining_code matches {[at15]}    -- Education postponed
+                        defining_code matches {[at14]}    -- Education postponed
                     }
                 }
             }
@@ -151,7 +151,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9015] matches {
-                        defining_code matches {[at16]}    -- Education cancelled
+                        defining_code matches {[at15]}    -- Education cancelled
                     }
                 }
             }
@@ -163,7 +163,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9017] matches {
-                        defining_code matches {[at8]}    -- Education scheduled
+                        defining_code matches {[at7]}    -- Education scheduled
                     }
                 }
             }
@@ -175,7 +175,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9019] matches {
-                        defining_code matches {[at9]}    -- Education provided
+                        defining_code matches {[at8]}    -- Education provided
                     }
                 }
             }
@@ -187,7 +187,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9021] matches {
-                        defining_code matches {[at18]}    -- Education suspended
+                        defining_code matches {[at17]}    -- Education suspended
                     }
                 }
             }
@@ -199,7 +199,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9023] matches {
-                        defining_code matches {[at17]}    -- Education not completed
+                        defining_code matches {[at16]}    -- Education not completed
                     }
                 }
             }
@@ -211,7 +211,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9025] matches {
-                        defining_code matches {[at14]}    -- Education completed
+                        defining_code matches {[at13]}    -- Education completed
                     }
                 }
             }
@@ -410,7 +410,7 @@ terminology
                 text = <"Rådgivning/utbildning rekommenderas">
                 description = <"Rådgivning/utbildning har rekommenderats men inga åtgärder har gjorts för att påbörja den.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Rådgivning/utbildning rekommenderas">
                 description = <"Rådgivning/utbildning har rekommenderats men inga åtgärder har gjorts för att påbörja den.">
             >
@@ -418,7 +418,7 @@ terminology
                 text = <"Rådgivning/utbildning pausad">
                 description = <"Planerad rådgivning/utbildning har pausats (efter att ha påbörjats).">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Rådgivning/utbildning pausad">
                 description = <"Planerad rådgivning/utbildning har pausats (efter att ha påbörjats).">
             >
@@ -426,7 +426,7 @@ terminology
                 text = <"Rådgivning/utbildning ej fullbordad">
                 description = <"Rådgivning/utbildning avbröts innan den var fullbordad.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Rådgivning/utbildning ej fullbordad">
                 description = <"Rådgivning/utbildning avbröts innan den var fullbordad.">
             >
@@ -434,7 +434,7 @@ terminology
                 text = <"Rådgivning/utbildning inställd">
                 description = <"Rådgivning/utbildning ställdes in innan den hade påbörjats.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Rådgivning/utbildning inställd">
                 description = <"Rådgivning/utbildning ställdes in innan den hade påbörjats.">
             >
@@ -442,7 +442,7 @@ terminology
                 text = <"Rådgivning/utbildning uppskjuten">
                 description = <"Rådgivning/utbildning sköts upp innan den hade påbörjats.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Rådgivning/utbildning uppskjuten">
                 description = <"Rådgivning/utbildning sköts upp innan den hade påbörjats.">
             >
@@ -450,7 +450,7 @@ terminology
                 text = <"Rådgivning/utbildning fullbordad">
                 description = <"All planerad rådgivning/utbildning har genomförts.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Rådgivning/utbildning fullbordad">
                 description = <"All planerad rådgivning/utbildning har genomförts.">
             >
@@ -463,7 +463,7 @@ terminology
                 text = <"Rådgivning/utbildning genomförd">
                 description = <"Rådginings-/utbildningstillfälle har genomförts eller råd/undervisningsmaterial har delats ut.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Rådgivning/utbildning genomförd">
                 description = <"Rådginings-/utbildningstillfälle har genomförts eller råd/undervisningsmaterial har delats ut.">
             >
@@ -471,7 +471,7 @@ terminology
                 text = <"Rådgivning/utbildning inbokad">
                 description = <"Rådgivning/utbildning har bokats eller schemalagts.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Rådgivning/utbildning inbokad">
                 description = <"Rådgivning/utbildning har bokats eller schemalagts.">
             >
@@ -479,7 +479,7 @@ terminology
                 text = <"Rådgivning/utbildning planerad">
                 description = <"Rådgivning/utbildning är planerad men inga övriga åtgärder har gjorts för att påbörja den.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Rådgivning/utbildning planerad">
                 description = <"Rådgivning/utbildning är planerad men inga övriga åtgärder har gjorts för att påbörja den.">
             >
@@ -598,7 +598,7 @@ terminology
                 text = <"Helseinformasjon/undervisning anbefalt">
                 description = <"Helseinformasjon/undervisning er anbefalt, men ingen aktivitet er gjort for å initiere den.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Helseinformasjon/undervisning anbefalt">
                 description = <"Helseinformasjon/undervisning er anbefalt, men ingen aktivitet er gjort for å initiere den.">
             >
@@ -606,7 +606,7 @@ terminology
                 text = <"Helseinformasjon/undervisning midlertidig stanset">
                 description = <"Helseinformasjon/undervisning, eller serien av økter er midlertidig stanset etter at den/de ble påbegynt.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Helseinformasjon/undervisning midlertidig stanset">
                 description = <"Helseinformasjon/undervisning, eller serien av økter er midlertidig stanset etter at den/de ble påbegynt.">
             >
@@ -614,7 +614,7 @@ terminology
                 text = <"Helseinformasjon/undervisning ikke fullført">
                 description = <"Helseinformasjon/undervisning ble avbrutt før den ble fullført.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Helseinformasjon/undervisning ikke fullført">
                 description = <"Helseinformasjon/undervisning ble avbrutt før den ble fullført.">
             >
@@ -622,7 +622,7 @@ terminology
                 text = <"Helseinformasjon/undervisning er kansellert">
                 description = <"Helseinformasjon/undervisning er kansellert før den er påbegynt.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Helseinformasjon/undervisning er kansellert">
                 description = <"Helseinformasjon/undervisning er kansellert før den er påbegynt.">
             >
@@ -630,7 +630,7 @@ terminology
                 text = <"Helseinformasjon/undervisning utsatt">
                 description = <"Helseinformasjon/undervisning er utsatt før den er påbegynt.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Helseinformasjon/undervisning utsatt">
                 description = <"Helseinformasjon/undervisning er utsatt før den er påbegynt.">
             >
@@ -638,7 +638,7 @@ terminology
                 text = <"Helseinformasjon/undervisning fullført">
                 description = <"Alle planlagte aktiviteter for helseinformasjon/undervisning er gjennomført.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Helseinformasjon/undervisning fullført">
                 description = <"Alle planlagte aktiviteter for helseinformasjon/undervisning er gjennomført.">
             >
@@ -651,7 +651,7 @@ terminology
                 text = <"Helseinformasjon/undervisning gjennomført">
                 description = <"Helseinformasjon/undervisning er utført eller informasjonsmateriellet er overlevert. Dette kan være når en av flere økter er gjennomført, eller et emne er informert om eller undervist i, uten at man har nådd målet for informasjonen/undervisningen og status kan settes til \"Helseinformasjon/undervisning fullført\".">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Helseinformasjon/undervisning gjennomført">
                 description = <"Helseinformasjon/undervisning er utført eller informasjonsmateriellet er overlevert. Dette kan være når en av flere økter er gjennomført, eller et emne er informert om eller undervist i, uten at man har nådd målet for informasjonen/undervisningen og status kan settes til \"Helseinformasjon/undervisning fullført\".">
             >
@@ -659,7 +659,7 @@ terminology
                 text = <"Helseinformasjon/undervisning tidsfestet">
                 description = <"Det er gjort en avtale for når helseinformasjonen/undervisningen skal gjennomføres.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Helseinformasjon/undervisning tidsfestet">
                 description = <"Det er gjort en avtale for når helseinformasjonen/undervisningen skal gjennomføres.">
             >
@@ -667,7 +667,7 @@ terminology
                 text = <"Helseinformasjon/undervisning planlagt">
                 description = <"Helseinformasjon/undervisning er planlagt, men ingen aktivitet er gjort for å initiere den.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Helseinformasjon/undervisning planlagt">
                 description = <"Helseinformasjon/undervisning er planlagt, men ingen aktivitet er gjort for å initiere den.">
             >
@@ -786,7 +786,7 @@ terminology
                 text = <"Education recommended">
                 description = <"Education has been recommended but no steps have been taken to initiate education.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Education recommended">
                 description = <"Education has been recommended but no steps have been taken to initiate education.">
             >
@@ -794,7 +794,7 @@ terminology
                 text = <"Education suspended">
                 description = <"Planned education sessions were suspended after commencement.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Education suspended">
                 description = <"Planned education sessions were suspended after commencement.">
             >
@@ -802,7 +802,7 @@ terminology
                 text = <"Education not completed">
                 description = <"Education session was abandoned before complete.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Education not completed">
                 description = <"Education session was abandoned before complete.">
             >
@@ -810,7 +810,7 @@ terminology
                 text = <"Education cancelled">
                 description = <"Education has been cancelled prior to commencement.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Education cancelled">
                 description = <"Education has been cancelled prior to commencement.">
             >
@@ -818,7 +818,7 @@ terminology
                 text = <"Education postponed">
                 description = <"Education has been postponed prior to commencement.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Education postponed">
                 description = <"Education has been postponed prior to commencement.">
             >
@@ -826,7 +826,7 @@ terminology
                 text = <"Education completed">
                 description = <"All planned activities for education have been successfully completed.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Education completed">
                 description = <"All planned activities for education have been successfully completed.">
             >
@@ -839,7 +839,7 @@ terminology
                 text = <"Education provided">
                 description = <"Education session or material provided.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Education provided">
                 description = <"Education session or material provided.">
             >
@@ -847,7 +847,7 @@ terminology
                 text = <"Education scheduled">
                 description = <"Appointment for education scheduled.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Education scheduled">
                 description = <"Appointment for education scheduled.">
             >
@@ -855,7 +855,7 @@ terminology
                 text = <"Education planned">
                 description = <"Education has been planned but no steps have been taken to initiate education.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Education planned">
                 description = <"Education has been planned but no steps have been taken to initiate education.">
             >

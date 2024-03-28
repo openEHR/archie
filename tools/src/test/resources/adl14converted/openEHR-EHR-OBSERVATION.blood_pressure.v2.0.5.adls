@@ -600,7 +600,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -612,7 +612,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -620,15 +620,15 @@ terminology
                 text = <"Einflussfaktoren">
                 description = <"Kommentar und Aufzeichung anderer Faktoren die ggf. zu dem Ergebnis der Blutdruckmessung beitragen können. Die kann z.B. bei belastenden Situationen der Fall sein (z.B. sog. Weißkittelhypertonie, Schmerzen, Fieber, Änderungen im atmosphärischen Druck).">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Schlafend">
                 description = <"Die untersuchte Person schläft.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Aufmerksam und wach">
                 description = <"Die untersuchte Person ist bei vollem Bewusstsein.">
             >
@@ -640,11 +640,11 @@ terminology
                 text = <"24 Stunden Durchschnitt">
                 description = <"Schätzung des durchschnittlichen Blutdrucks über eine 24-stündigen Zeitraum.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Invasiv">
                 description = <"Invasive Messung des Blutdrucks innerhalb eines Gefäßes.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Machine">
                 description = <"Messung durch eine Blutdruckmaschine.">
             >
@@ -652,11 +652,11 @@ terminology
                 text = <"Formel für mittleren arterieller Druck">
                 description = <"Die Formel die ggf. verwendet wurde, um den mittleren arteriellen Druck zu berechnen.">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpation">
                 description = <"Palpatorische Messung, normalerweise an den brachialen oder radialen Arterien.">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Auskultation">
                 description = <"Auskulatorische Messung unter Benutzung eines Stethoskops und der Korotkoff-Geräusche.">
             >
@@ -664,11 +664,11 @@ terminology
                 text = <"Methode">
                 description = <"Methode der Messung des Blutdrucks.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Linkes Fußgelenk">
                 description = <"Das linke Fußgelenk der Person">
             >
@@ -676,7 +676,7 @@ terminology
                 text = <"Anstrengung">
                 description = <"Details über physische Aktivitäten zur Zeit der Blutdruckmessung.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Rechtes Fußgelenk">
                 description = <"Das rechte Fußgelenk der Person.">
             >
@@ -684,31 +684,31 @@ terminology
                 text = <"Gerät">
                 description = <"Details über das Sphygmomanometer oder ein anderes Gerät, dass zur Blutdruckmessung verwendet wird.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Linkes Handgelenk">
                 description = <"Das linke Handgelenk der Person.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Rechtes Handgelenk">
                 description = <"Das rechte Handgelenk der Person.">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Neonatal">
                 description = <"Eine Manschette für Neugeborene mit passender Größe für die Reife und das Geburtsgewicht des Neugeborenen.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Kleinkind">
                 description = <"Eine Manschette für Kleinkinder und Säuglinge - ca. 5cm x 15cm.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Nach links geneigt liegend">
                 description = <"Flach liegend mit seitlicher Neigung, normalerweise zur linken Seite. Häufig verwendet im letzten Drittel eine Schwangerschaft, um aorto-cavale Kompression zu vermeiden.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Phase V">
                 description = <"Das 5. Korotkoff-Geräusch - die Geräusche verschwinden völlig während der Manschettendruck unter den diastolischen Blutdruck fällt.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Phase IV">
                 description = <"Das 4. Korotkoff-Geräusch - Die Geräusche klingen plätzlich gedämpft.">
             >
@@ -716,11 +716,11 @@ terminology
                 text = <"Diastolischer Endpunkt">
                 description = <"Dient der Dokumentation des Korotkoff-Geräusches, das verwendet wird, um bei auskultarischer Messung den diastolischen Blutdruck zu bestimmen.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Pädiatrisch/Kind">
                 description = <"Eine Manschette für ein Kind oder auch einen Erwachsenen mit einem schmalen Arm - 8cm x 21cm.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Kleiner Erwachsener">
                 description = <"Eine Manschette für einen kleinen Erwachsenen - ca. 10cm x 24cm.">
             >
@@ -737,19 +737,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Liegend">
                 description = <"Flach liegend zum Zeitpunkt der Blutdruckmessung.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Zurückgelehnt">
                 description = <"Patient zurückgelehnt zum Zeitpunkt der Blutdruckmessung.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sitzend">
                 description = <"Sitzend zum Zeitpunkt der Blutdruckmessung (z.B. auf einem Bett oder Stuhl).">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Stehend">
                 description = <"Stehend zum Zeitpunkt der Blutdruckmessung.">
             >
@@ -757,31 +757,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Linker Oberschenkel">
                 description = <"Der linke Oberschenkel der Person.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Rechter Oberschenkel">
                 description = <"Der rechte Oberschenkel der Person.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Linker Arm">
                 description = <"Der linke Arm der Person.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Rechter Arm">
                 description = <"Der rechte Arm der Person.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Erwachsener">
                 description = <"Eine Standard-Manschette für einen Erwachsenen - ca. 13cm x 30cm.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Großer Erwachsener">
                 description = <"Eine Manschette für Erwachsene mit größeren Armen - ca. 16cm x 38cm.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Oberschenkel eines Erwachsenen">
                 description = <"Eine Manschette für den Oberschenkel eines Erwachsenen - ca. 20cm x 42cm.">
             >
@@ -873,7 +873,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -885,7 +885,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -893,15 +893,15 @@ terminology
                 text = <"Стохастические факторы(ru)">
                 description = <"Комментарий и записи других случайных факторов, которые могут способствовать измерению артериального давления. Например,\"боязнь белого халата\" или боль и жар, изменения атмосферного давления т.д.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Сон">
                 description = <"Пациент находится в состоянии естественного покоя, тело расслаблено.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Пробуждение и подъём">
                 description = <"Пациент полностью в сознании.">
             >
@@ -913,11 +913,11 @@ terminology
                 text = <"Среднее за 24 часа">
                 description = <"Оценка среднего АД за период в 24 часа.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Инвазивный">
                 description = <"Инвазивный метод измерения АД, с помещением датчика внутри кровеносного сосуда.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Автоматический тонометр">
                 description = <"Неинвазивный метод измерения АД с помощью автоматического тонометра.">
             >
@@ -925,11 +925,11 @@ terminology
                 text = <"Формула среднего артериального давления">
                 description = <"Формула, используемая для вычисления СрАД (если требуется записывать).">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Пальпация">
                 description = <"Неинвазивный метод измерения АД с использованием пальпации (обычно плечевой или лучевой артерии).">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Аускультация">
                 description = <"Неинвазивный метод измерения АД с использованием стетоскопа и звуков Короткова.">
             >
@@ -937,11 +937,11 @@ terminology
                 text = <"Метод">
                 description = <"Метод измерения кровяного давления.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Левая лодыжка">
                 description = <"Левая лодыжка пациента">
             >
@@ -949,7 +949,7 @@ terminology
                 text = <"Нагрузка">
                 description = <"Подробная информация о физической деятельности, осуществляемой во время измерения АД.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Правая лодыжка">
                 description = <"Правая лодыжка пациента.">
             >
@@ -957,31 +957,31 @@ terminology
                 text = <"Устройство">
                 description = <"Информация о сфигмоманометре или другом устройстве, используемом для измерения АД.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Левое запястье">
                 description = <"Левое запястье пациента.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Правое запястье">
                 description = <"Правое запястье пациента.">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Для новорожденных">
                 description = <"Манжета для новорожденных, используется в соответствии с весом новорожденного.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Для младенцев">
                 description = <"Манжета для младенцев - пузырь приблизительно 5см x 15cm.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Лёжа с наклоном влево">
                 description = <"Лёжа на плоской поверхности с боковым наклоном, как правило, под углом по направлению с левой стороны. Обычно требуется в последнем триместре беременности, чтобы облегчить сдавление нижней полой вены.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Фаза 5">
                 description = <"Пятый звук Короткова определяется отсутствием звуков, так как давление в манжете падает ниже диастолического артериального давления.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Фаза 4">
                 description = <"Четвёртый звук Короткова, определяющийся как резкое приглушение звуков.">
             >
@@ -989,11 +989,11 @@ terminology
                 text = <"Диастолическая конечная точка">
                 description = <"Запись звука Короткова который используют для определения диастолического давления с помощью метода аускультации.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Педиатрическая(детская)">
                 description = <"Манжета для детей или взрослых с тонкой рукой - пузырь примерно 8см x 21cm.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Взрослая малая">
                 description = <"Манжета взрослая малая - пузырь приблизительно 10 x 24cm.">
             >
@@ -1010,19 +1010,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Лёжа">
                 description = <"Пациент лежит во время измерения АД.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Реклинация">
                 description = <"Пациент лежит в вынужденной неизменной позе (на реклинации)во время измерения АД.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Сидя">
                 description = <"Пациент сидит во время измерения АД (на стуле, кровати или кресле).">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Стоя">
                 description = <"Пациент стоит во время измерения АД.">
             >
@@ -1030,31 +1030,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Левое бедро">
                 description = <"Левое бедро пациента.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Правое бедро">
                 description = <"Правое бедро пациента.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Левая рука">
                 description = <"Левая рука пациента.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Правая рука">
                 description = <"Правая рука пациента.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Взрослая">
                 description = <"Манжета стандартная для взрослого - пузырь приблизительно 13 х 30cm.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Взрослая большая">
                 description = <"Манжета для руки взрослого, увеличенного объёма -  пузырь приблизительно 16cm x 38cm.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Взрослая для бедра">
                 description = <"Манжеты для бедра  взрослого- пузырь приблизительно 20см х 42см.">
             >
@@ -1146,7 +1146,7 @@ terminology
                 text = <"Strukturerad mätplats">
                 description = <"Strukturerad anatomisk plats där mätningen gjordes.">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"Fotryggen">
                 description = <"Individens fotrygg.">
             >
@@ -1158,7 +1158,7 @@ terminology
                 text = <"Formel för systoliskt tryck">
                 description = <"Formel som används för att beräkna det systoliska trycket från medelartärtrycket (om det finns registrerat).">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"Intraarteriell">
                 description = <"Invasiv mätning via transduktoråtkomstlinjen inom en artär.">
             >
@@ -1166,15 +1166,15 @@ terminology
                 text = <"Påverkande faktorer">
                 description = <"Andra faktorer som kan påverka blodtrycksmätningen, exempelvis ångestnivå, \"vitrockseffekt\", smärta, feber eller förändringar i lufttryck mm.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Tå">
                 description = <"Individens tå.">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Sover">
                 description = <"Patienten är i det naturliga tillståndet av kroppslig vila.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Alert och vaken">
                 description = <"Patienten är vid fullt medvetande.">
             >
@@ -1186,11 +1186,11 @@ terminology
                 text = <"24 timmars blodtrycksmätning">
                 description = <"Beräkning av det genomsnittliga blodtrycket under en 24-timmarsperiod.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Invasiv">
                 description = <"Metod för att mäta blodtrycket intravenöst dvs. genom att penetrera huden och mäta inuti blodkärlen.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Blodtrycksmaskin">
                 description = <"Metod för mätning av blodtryck externt med hjälp av en blodtrycksmaskin.">
             >
@@ -1198,11 +1198,11 @@ terminology
                 text = <"Formel för medelartärtryck">
                 description = <"Formel som används för att beräkna medelartärtrycket (om det finns registrerat).">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpation">
                 description = <"Metod för att mäta blodtrycket externt med hjälp av palpation, vanligtvis av brakiala eller radiella artärer.">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Auskultation">
                 description = <"Metod för extern mätning av blodtryck med hjälp av stetoskop och Korotkoff-ljud.">
             >
@@ -1210,11 +1210,11 @@ terminology
                 text = <"Metod">
                 description = <"Metod för mätning av blodtryck.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Finger">
                 description = <"Individens finger.">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Vänster vrist">
                 description = <"Individens vänstra vrist.">
             >
@@ -1222,7 +1222,7 @@ terminology
                 text = <"Ansträngning">
                 description = <"Detaljer om den fysiska aktiviteten som utförts vid tidpunkten av blodtrycksmätningen.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Höger vrist">
                 description = <"Individens högra vrist.">
             >
@@ -1230,31 +1230,31 @@ terminology
                 text = <"Utrustning">
                 description = <"Detaljer om blodtrycksmätaren eller annan apparat som används för att mäta blodtrycket.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Vänster handled">
                 description = <"Individens vänstra handled.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Höger handled">
                 description = <"Individens högra handled.">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Nyfödd">
                 description = <"En manschett som används på nyfödda, om manschetten anses vara av lämplig storlek till den nyföddas mognads- och födelsevikt.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Spädbarn">
                 description = <"En manschett för spädbarn.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Liggande med lutning till vänster">
                 description = <"Liggande platt ställning med viss lateral lutning, vanligtvis mot vänster sida. Den krävs vanligtvis i graviditetens sista trimester för att lindra aortokaval kompression.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Fas V">
                 description = <"Det femte Korotkoff-ljudet identifieras genom avsaknad av ljud då manschettrycket sjunker under det diastoliska blodtrycket.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Fas IV">
                 description = <"Det fjärde Korotkoff-ljudet identifieras som en plötslig ljuddämpning.">
             >
@@ -1262,11 +1262,11 @@ terminology
                 text = <"Diastoliskt effektmått">
                 description = <"Registrerat Korotkoff-ljud som används för att avgöra diastoliskt tryck med hjälp av auskultatorisk metod.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Pediatrisk/Barn">
                 description = <"En manschett som passar barn eller vuxna med smala armar.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Liten Vuxen">
                 description = <"En manschett som används till små vuxna.">
             >
@@ -1283,19 +1283,19 @@ terminology
                 description = <"Lutning på ytan av huvuddelen som personen ligger på vid tidpunkten för mätningen.">
                 comment = <"OBS: '°' är en giltig UCUM-enhet. Använd \"deg\" som den rätta enheten.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Liggande">
                 description = <"Liggande ställning under blodtrycksmätningen.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Halvliggande">
                 description = <"Halvliggande ställning under blodtrycksmätningen.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sittande">
                 description = <"Sittande ställning under blodtrycksmätningen, exempelvis på en säng eller stol.">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Stående">
                 description = <"Stående ställning under blodtrycksmätningen">
             >
@@ -1303,31 +1303,31 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligare beskrivning av mätningen som inte beskrivits i andra fält.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Vänster lår">
                 description = <"Individens vänstra lår.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Höger lår">
                 description = <"Individens högra lår.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Vänster arm">
                 description = <"Individens vänstra arm.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Höger arm">
                 description = <"Individens högra arm.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Vuxen">
                 description = <"En standardmanschett för vuxna.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Stor vuxen">
                 description = <"En manschett för vuxna med större armar.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Vuxet lår">
                 description = <"En lårmanschett för vuxna.">
             >
@@ -1419,7 +1419,7 @@ terminology
                 text = <"Rakenteellinen mittauskohta">
                 description = <"Rakenteellinen anatominen kohta, josta mittaus tehtiin.">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"Jalanselkä">
                 description = <"Tutkittavan jalanselkä.">
             >
@@ -1431,7 +1431,7 @@ terminology
                 text = <"Systolisen paineen kaava">
                 description = <"Kaava jota käytetään systolisen paineen laskemiseen keskivaltimopaineesta (jos kirjattu tietoihin).">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"Valtimonsisäinen">
                 description = <"Invasiivinen mittaus valtimoon sijoitetulla katetrinpääanturilla.">
             >
@@ -1439,15 +1439,15 @@ terminology
                 text = <"Sekoittavat tekijät">
                 description = <"Kommentoi ja kirjaa muita satunnaistekijöitä, jotka saattavat vaikuttaa verenpaineen mittaukseen.  Esimerkiksi ahdistuneisuus tai ”valkotakkiverenpaine”, kipu tai kuume; ilmanpaineen muutokset, jne.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Varvas">
                 description = <"Tutkittavan varvas.">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Nukkuu">
                 description = <"Tutkittavan keho on luonnollisessa lepotilassa.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Valpas ja hereillä">
                 description = <"Tutkittava on täysin tajuissaan.">
             >
@@ -1459,11 +1459,11 @@ terminology
                 text = <"24 tunnin keskiarvo">
                 description = <"Arvio verenpaineen keskiarvosta 24 tunnin ajanjaksona.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Invasiivinen">
                 description = <"Menetelmä, jolla verenpaine mitataan sisäisesti, eli ihon läpi tunkeutuen ja verisuonen sisältä.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Kone">
                 description = <"Menetelmä, jolla verenpaine mitataan ulkoisesti koneella.">
             >
@@ -1471,11 +1471,11 @@ terminology
                 text = <"Keskivaltimopaineen kaava">
                 description = <"Keskivaltimopaineen laskennassa käytettävä kaava (jos kirjattu tietoihin).">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpaatio">
                 description = <"Menetelmä, jolla verenpaine mitataan ulkoisesti palpoimalla (yleensä olkavarsi- tai värttinävaltimosta).">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Auskultaatio">
                 description = <"Menetelmä, jolla verenpaine mitataan ulkoisesti käyttämällä stetoskooppia ja Korotkoffin ääniä.">
             >
@@ -1483,11 +1483,11 @@ terminology
                 text = <"Menetelmä">
                 description = <"Verenpaineen mittausmenetelmä.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Sormi">
                 description = <"Tutkittavan sormi.">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Vasen nilkka">
                 description = <"Tutkittavan vasen nilkka.">
             >
@@ -1495,7 +1495,7 @@ terminology
                 text = <"Rasitus">
                 description = <"Tiedot fyysisestä rasituksesta, jolle tutkittava altistettiin verenpaineen mittauksen aikana.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Oikea nilkka">
                 description = <"Tutkittavan oikea nilkka.">
             >
@@ -1503,31 +1503,31 @@ terminology
                 text = <"Laite">
                 description = <"Tiedot sfygmomanometrista tai muusta laitteesta, jolla verenpaine mitataan.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Vasen ranne">
                 description = <"Tutkittavan vasen ranne.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Oikea ranne">
                 description = <"Tutkittavan oikea ranne.">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Vastasyntynyt">
                 description = <"Vastasyntyneille käytettävä mansetti, mikäli mansetti on oikean kokoinen vastasyntyneen kokoon ja kehitystasoon nähden.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Vauva">
                 description = <"Vauvoille käytettävä mansetti.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Makuulla vasemmalle kallellaan">
                 description = <"Makuulla, hiukan kallellaan kyljen suunnassa, yleensä vasemmalle.   Tarvitaan yleensä viimeisellä raskauskolmanneksella supiinioireyhtymän helpottamiseksi.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Vaihe V">
                 description = <"Viides Korotkoffin ääni määritetään äänien kuulumisen lakkaamiseksi, kun mansetin paine laskee diastolisen verenpaineen alapuolelle.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Vaihe IV">
                 description = <"Neljäs Korotkoffin ääni määrittään äänien äkilliseksi heikkenemiseksi.">
             >
@@ -1535,11 +1535,11 @@ terminology
                 text = <"Diastolinen päätetapahtuma">
                 description = <"Tieto siitä, minkä Korotkoffin äänen perusteella diastolinen paine määritetään auskultoitaessa.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Pediatrinen/lapsi">
                 description = <"Mansetti, joka sopii lapselle tai ohutkäsivartiselle aikuiselle.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Aikuiset, pieni">
                 description = <"Pienikokoiselle aikuiselle käytettävä mansetti.">
             >
@@ -1556,19 +1556,19 @@ terminology
                 description = <"Kraniokaudaalinen kallistuma alustalla, jolla henkilö makaa mittauksen aikana.">
                 comment = <"PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Makuulla">
                 description = <"Verenpaine mitataan henkilön maatessa.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Taaksepäin nojaten">
                 description = <"Verenpaine mitataan henkilön nojatessa taaksepäin.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Istuen">
                 description = <"Verenpaine mitataan henkilön istuessa (esimerkiksi vuoteella tai tuolissa).">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Seisten">
                 description = <"Verenpaine mitataan henkilön seistessä.">
             >
@@ -1576,31 +1576,31 @@ terminology
                 text = <"Kommentti">
                 description = <"Mittauksen kertomusmuodossa olevat lisätiedot, joita ei voida ilmoittaa muissa kentissä.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Vasen reisi">
                 description = <"Henkilön vasen reisi.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Oikea reisi">
                 description = <"Henkilön oikea reisi.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Vasen käsivarsi">
                 description = <"Henkilön vasen käsivarsi.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Oikea käsivarsi">
                 description = <"Henkilön oikea käsivarsi.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Aikuinen">
                 description = <"Standardikokoinen mansetti aikuisille.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Aikuiset, suuri">
                 description = <"Mansetti aikuisille, joilla on paksut käsivarret.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Aikuisen reisi">
                 description = <"Aikuisen reidessä käytettävä mansetti.">
             >
@@ -1693,7 +1693,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -1705,7 +1705,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -1713,15 +1713,15 @@ terminology
                 text = <"혼란변수">
                 description = <"혈압측정에 영향을 줄 수 있는 기타 우연한 변수들에 대한 코멘트와 기록. 예를 들어, 불안 또는 '백의신드롬'의 레벨; 통증 또는 발열; 대기압의 변화 등.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"수면 상태">
                 description = <"대상은 신체적으로 자연적인 휴식 상태에 있다.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"각성과 기상 상태">
                 description = <"대상은 완전한 의식이 있다.">
             >
@@ -1733,11 +1733,11 @@ terminology
                 text = <"24시간 평균">
                 description = <"24시간 동안의 평균 혈압의 추정.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"*침습적 방법(ko)">
                 description = <"*내부에서 즉 피부를 통과하여 혈관 내에서 혈압을 측정하는 방법.(ko)">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"*장비(ko)">
                 description = <"*혈압 측정 장비를 사용하여 외부에서 혈압을 측정하는 방법.(ko)">
             >
@@ -1745,11 +1745,11 @@ terminology
                 text = <"*평균 동맥압 공식(ko)">
                 description = <"*(데이터 내에 기록되어 있다면) MAP를 계산하는데 사용되는 공식.(ko)">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"*타진(ko)">
                 description = <"*(보통 상완 또는 요골동맥의) 타진을 사용하여 외부에서 혈압을 측정하는 방법.(ko)">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"*청진(ko)">
                 description = <"*청진기와 Korotkoff sounds을 사용하여 외부에서 혈압을 측정하는 방법.(ko)">
             >
@@ -1757,11 +1757,11 @@ terminology
                 text = <"*측정 방법(ko)">
                 description = <"*혈압 측정의 방법.(ko)">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"*좌측 발목(ko)">
                 description = <"**대상의 좌측 발목.(ko)">
             >
@@ -1769,7 +1769,7 @@ terminology
                 text = <"노력">
                 description = <"혈압 측정시에 수행 중인 육체활동에 대한 상세내용.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"*우측 발목(ko)">
                 description = <"*대상의 우측 발목.(ko)">
             >
@@ -1777,33 +1777,33 @@ terminology
                 text = <"*장비(ko)">
                 description = <"*혈압을 측정하는데 사용되는 혈압계 또는 기타 장비에 대한 상세내용.(ko)">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"*좌측 손목(ko)">
                 description = <"*대상의 좌측 손목.(ko)">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"*우측 손목(ko)">
                 description = <"*대상의 우측 손목.(ko)">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"*신생아(ko)">
                 description = <"*신생아를 위해 사용되는 cuff, cuff는 신생아의 성숙도와 몸무게에 대한 적절한 크기가 가정됨.(ko)">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"*영아(ko)">
                 description = <"*영아을 위해 사용되는 cuff - bladder가 약 5cm x 15cm.(ko)">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"왼쪽으로 누운 자세">
                 description = <"보통 왼쪽으로 기울린, 옆쪽으로 기울여 누운 자세. 보통 임신 3기에 동정맥압력을 완화하기위해 필요함.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"*Phase V(en)">
                 description = <"*5번째 Korotkoff sound는 cuff 압력이 이완기 혈압 아래로 떨어져 소리가 없어짐으로써 확인된다.(ko)
     
     ">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"*Phase IV(en)">
                 description = <"*4번째 Korotkoff sound가 갑작스런 약해지는 소리로 확인된다.(ko)">
             >
@@ -1811,11 +1811,11 @@ terminology
                 text = <"*이완기 종점(ko)">
                 description = <"*청진법을 이용하여 이완기 압력을 결정하는데 사용되는 Korotkoff sound를 기록.(ko)">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"*소아/아동(ko)">
                 description = <"*아동이나 얋은 팔을 가진 성인에게 적합한 cuff - bladder가 약 8cm x 21cm.(ko)">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"*작은 성인(ko)">
                 description = <"*작은 성인을 위해 사용되는 cuff - bladder가 약 10cm x 24cm.(ko)">
             >
@@ -1832,19 +1832,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"누운 자세">
                 description = <"혈압 측정시에 바로 누운 자세.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"비스듬한 자세">
                 description = <"혈압 측정시에 비스듬한 자세(reclining).">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"앉은 자세">
                 description = <"혈압 측정시에 앉은 자세(침대 또는 의자).">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"선 자세">
                 description = <"혈압측정 시에 서있는 자세.">
             >
@@ -1852,31 +1852,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"*좌측 허벅지(ko)">
                 description = <"*사람의 좌측 허벅지.(ko)">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"*우측 허벅지(ko)">
                 description = <"*사람의 우측 허벅지.(ko)">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"*좌측 팔(ko)">
                 description = <"*사람의 좌측 팔.(ko)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*우측 팔(ko)">
                 description = <"*사람의 우측 팔.(ko)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*성인(ko)">
                 description = <"*성인을 위한 표준인 cuff - bladder가 약 13cm x 30cm.(ko)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"*큰 성인(ko)">
                 description = <"*큰 팔을 가진 성인을 위한 cuff - bladder가 약 16cm x 38cm.(ko)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"성인 허벅지">
                 description = <"성인 허벅지을 위한 cuff - bladder가 약 20cm x 42cm.">
             >
@@ -1967,7 +1967,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -1979,7 +1979,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -1987,15 +1987,15 @@ terminology
                 text = <"Fatores confundidores">
                 description = <"Comentários sobre e registros de outros fatores incidentais que possam estar contribuindo na medida da pressão sanguínea. Por exemplo, nível de ansiedade ou \"síndrome do jaleco branco\"; dor ou febre; mudanças na pressão atmosférica, etc.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Dormindo">
                 description = <"Sujeito está no estado natural de descanso corporal.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Alerta e acordado">
                 description = <"Sujeito está totalmente consciente.">
             >
@@ -2007,11 +2007,11 @@ terminology
                 text = <"Media de 24 horas">
                 description = <"Estimativa da pressão arterial média em um período de 24 horas.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Invasivo">
                 description = <"Método de medir a pressão arterial internamente, isto é, envolvendo a penetração da pele e a medida interior dos vasos sanguíneos.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Aparelho de pressão">
                 description = <"Método de medir a pressão arterial externamente, usando o aparelho de pressão arterial.">
             >
@@ -2019,11 +2019,11 @@ terminology
                 text = <"Fórmula de Pressão Arterial Média">
                 description = <"Fórmula usada para calcular a pressão arterial média (PAM), se registrada em dados.">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpação">
                 description = <"Método de medir a pressão arterial externamente, usando a palpação (geralmente artérias braquiais ou radiais).">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Ausculta">
                 description = <"Método de medir a pressão externamente, usando o estetoscópiso e os sons Korotkoff.">
             >
@@ -2031,11 +2031,11 @@ terminology
                 text = <"Método">
                 description = <"Método de medida da pressão arterial.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Tornozelo esquerdo">
                 description = <"O tornozelo esquerdo da pessoa.">
             >
@@ -2043,7 +2043,7 @@ terminology
                 text = <"Esforço físico">
                 description = <"Detalhes sobre atividade física realizada na hora da medida da pressão arterial.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Tornozelo direito">
                 description = <"O tornozelo direito da pessoa.">
             >
@@ -2051,31 +2051,31 @@ terminology
                 text = <"Aparelho">
                 description = <"Detalhes sobre o esfigmomanômetro ou outro aparelho utilizado para medir a pressão sanguínea.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Pulso esquerdo">
                 description = <"O pulso esquerdo da pessoa.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Pulso direito">
                 description = <"O pulso direito da pessoa.">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Neonatal">
                 description = <"Uma braçadeira usada para um recém-nascido, supondo que o tamanho é apropriado para a maturidade e o peso ao nascer do neonato.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Criança pequena ">
                 description = <"Uma braçadeira utilizada em crianças  pequenas - manguito de aproximadamente 5cm x 15cm.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Deitado com inclinação para esquerda">
                 description = <"Deitado sem reclinação com alguma inclinação lateral, usualmente com angulação para o lado esquerdo. Comumente requerido no último trimestre da gravidez para aliviar a compressão aortocaval.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Phase V">
                 description = <"O quinto som de Korotkoff é identificado pela ausência de sons,  pois a pressão da braçadeira cai abaixo da pressão diastólica do sangue.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Fhase IV.">
                 description = <"O quarto som de  Korotkoff é  identificado como um súbito abafamento dos sons.">
             >
@@ -2083,11 +2083,11 @@ terminology
                 text = <"Final da diástole">
                 description = <"Registro  do som Korotkoff usado para determinar a pressão arterial diastólica, usando o método auscultativo.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Criança/Pediátrico">
                 description = <"Manguito apropriao para uma criança ou um adulto com um braço fino - bolsa de aproximadamente 8cm x 21cm.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Adulto pequeno">
                 description = <"Uma braçadeira usada para adultos pequenos -manguito de aproximadamente 10cm x 24cm.">
             >
@@ -2104,19 +2104,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Deitado">
                 description = <"Deitado sem reclinação hora da medida da pressão arterial.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Reclinado">
                 description = <"Reclinado na hora da medida da pressão arterial.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sentado">
                 description = <"Sentado (por exemplo na cama ou em uma cadeira) na hora da medida da pressão arterial.">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Em pé">
                 description = <"Em pé na hora da medida da pressão arterial.">
             >
@@ -2124,31 +2124,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Coxa esquerda">
                 description = <"A coxa esquerda da pessoa.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Coxa direita">
                 description = <"A coxa direita da pessoa.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Braço esquerdo">
                 description = <"O braço esquerdo da pessoa.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Braço direito">
                 description = <"O braço direito da pessoa.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Adulto">
                 description = <"Uma braçadeira padrão para adultos - manguito de aproximadamente 13cm x 30cm.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Adulto Grande">
                 description = <"Uma braçadeira para adultos com braço largo - manguito de aproximadamente 16cm x 38cm.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Coxa de adulto">
                 description = <"Uma braçadeira  usada na coxa de um aduto - manguito de aproximadamente 20cm x 42cm.">
             >
@@ -2240,7 +2240,7 @@ terminology
                 text = <"Structured measurement location">
                 description = <"Structured anatomical location of where the measurement was taken.">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"Dorsum of foot">
                 description = <"The individual's dorsum of the foot.">
             >
@@ -2252,7 +2252,7 @@ terminology
                 text = <"Systolic pressure formula">
                 description = <"Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"Intra-arterial">
                 description = <"Invasive measurement via transducer access line within an artery.">
             >
@@ -2260,15 +2260,15 @@ terminology
                 text = <"Confounding factors">
                 description = <"Comment on and record other incidental factors that may be contributing to the blood pressure measurement.  For example, level of anxiety or 'white coat syndrome'; pain or fever; changes in atmospheric pressure etc.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Toe">
                 description = <"A toe of the individual.">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Sleeping">
                 description = <"The individual is in the natural state of bodily rest.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Awake">
                 description = <"The individual is fully conscious.">
             >
@@ -2280,11 +2280,11 @@ terminology
                 text = <"24 hour average">
                 description = <"Estimate of the average blood pressure over a 24 hour period.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Invasive">
                 description = <"Method of measuring blood pressure internally ie involving penetration of the skin and measuring inside blood vessels.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Machine">
                 description = <"Method of measuring blood pressure externally, using a blood pressure machine.">
             >
@@ -2292,11 +2292,11 @@ terminology
                 text = <"Mean arterial pressure formula">
                 description = <"Formula used to calculate the Mean Arterial Pressure (if recorded in data).">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpation">
                 description = <"Method of measuring blood pressure externally, using palpation (usually of the brachial or radial arteries).">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Auscultation">
                 description = <"Method of measuring blood pressure externally, using a stethoscope and Korotkoff sounds.">
             >
@@ -2304,11 +2304,11 @@ terminology
                 text = <"Method">
                 description = <"Method of measurement of blood pressure.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Finger">
                 description = <"A finger of the individual.">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Left ankle">
                 description = <"The left ankle of the individual.">
             >
@@ -2316,7 +2316,7 @@ terminology
                 text = <"Exertion">
                 description = <"Details about physical activity undertaken at the time of blood pressure measurement.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Right ankle">
                 description = <"The right ankle of the individual.">
             >
@@ -2324,31 +2324,31 @@ terminology
                 text = <"Device">
                 description = <"Details about sphygmomanometer or other device used to measure the blood pressure.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Left wrist">
                 description = <"The left wrist of the individual.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Right wrist">
                 description = <"The right wrist of the individual.">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Neonatal">
                 description = <"A cuff used for a neonate, assuming cuff is the appropriate size for maturity and birthweight of the neonate.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Infant">
                 description = <"A cuff used for infants.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Lying with tilt to left">
                 description = <"Lying flat with some lateral tilt, usually angled towards the left side.   Commonly required in the last trimester of pregnancy to relieve aortocaval compression.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Phase V">
                 description = <"The fifth Korotkoff sound is identified by absence of sounds as the cuff pressure drops below the diastolic blood pressure.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Phase IV">
                 description = <"The fourth Korotkoff sound is identified as an abrupt muffling of sounds.">
             >
@@ -2356,11 +2356,11 @@ terminology
                 text = <"Diastolic endpoint">
                 description = <"Record which Korotkoff sound is used for determining diastolic pressure using auscultative method.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Paediatric/Child">
                 description = <"A cuff that is appropriate for a child or adult with a thin arm.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Small Adult">
                 description = <"A cuff used for a small adult.">
             >
@@ -2376,19 +2376,19 @@ terminology
                 text = <"Tilt">
                 description = <"The craniocaudal tilt of the surface on which the person is lying at the time of measurement.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Lying">
                 description = <"Lying flat at the time of blood pressure measurement.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Reclining">
                 description = <"Reclining at the time of blood pressure measurement.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sitting">
                 description = <"Sitting (for example on bed or chair) at the time of blood pressure measurement.">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Standing">
                 description = <"Standing at the time of blood pressure measurement.">
             >
@@ -2396,31 +2396,31 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about the measurement, not captured in other fields.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Left thigh">
                 description = <"The left thigh of the person.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Right thigh">
                 description = <"The right thigh of the person.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Left arm">
                 description = <"The left arm of the person.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Right arm">
                 description = <"The right arm of the person.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Adult">
                 description = <"A cuff that is standard for an adult.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Large Adult">
                 description = <"A cuff for adults with larger arms.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Adult Thigh">
                 description = <"A cuff used for an adult thigh.">
             >
@@ -2513,7 +2513,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -2525,7 +2525,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -2533,15 +2533,15 @@ terminology
                 text = <"العوامل المربكة">
                 description = <"تعليق حول و تسجيل للعوامل الطارئة التي قد تسهم في قياس ضغط الدم. مثلا, مستوى القلق أو متلازمة البالطو الأبيض أو الألم أو الحمى أو التغييرات في الضغط الجوي,, إلى آخره">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"نائم">
                 description = <"الشخص في الحالة الطبيعية الخاصة بالراحة الجسدية">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"متنبه و يقظ">
                 description = <"الشخص واعٍ بشكل كامل">
             >
@@ -2553,11 +2553,11 @@ terminology
                 text = <"المتوسط خلال 24 ساعة">
                 description = <"تقدير متوسط ضغط الدم خلال فترة من 24 ساعة">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"باضع">
                 description = <"طريقة داخلية لقيسا ضغط الدم, و ذلك يعني اختراق الجلد/ البشرة داخل الأوعية الدموية">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"الآلة">
                 description = <"طريقة خارجية لقياس ضغط الدم بالستخدام آلة قياس ضغط الدم">
             >
@@ -2565,11 +2565,11 @@ terminology
                 text = <"صيغة متوسط الضغط الشرياني">
                 description = <"الصيغة المستخدمة لقياس متوسط الضغط الشرياني - إذا تم تسجيل بياناتها">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"الجس">
                 description = <"طريقة خارجية لقياس ضغط الدم, باستخدام الجس - عادةً الشرايين الذراعية و الكعبري">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"التسمع">
                 description = <"طريقة خارجية لقياس ضغط الدم, باستخدام سماعة طبيب أو أصوات كوروتكوف">
             >
@@ -2577,11 +2577,11 @@ terminology
                 text = <"الطريقة">
                 description = <"طريقة قياس ضغط الدم">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"الكاحل الأيسر">
                 description = <"الكاحل الأيسر للشخص">
             >
@@ -2589,7 +2589,7 @@ terminology
                 text = <"المجهود">
                 description = <"تفاصيل حول النشاط البدني الذي يتم القيام به في وقت قياس ضغط الدم.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"الكاحل الأيمن">
                 description = <"الكاحل الأيمن للشخص">
             >
@@ -2597,31 +2597,31 @@ terminology
                 text = <"الجهيزة">
                 description = <"تفاصيل حول جهاز ضغط الدم الزئبقي أو جهيزة أخرى تستخدم لقياس ضغط الدم">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"الساعد الأيسر">
                 description = <"الساعد الأيسر للشخص">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"الساعد الأيمن">
                 description = <"الساعد الأيمن للشخص">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"حديث الولادة">
                 description = <"الكفة المستخدمة لحديثي الولادة, على افتراض أن الكفة مناسبة للحجم و النضج و الوزن عند ولادة الطفل">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"رضيع">
                 description = <"كفة تستخدم للرضيع - مثانة/ كيسة من 5 سينتيمتر * 15 سينتيمتر تقريبا">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"مستلق و مائل لجانبه الأيسر">
                 description = <"الشخص مستلق بشكل مستو مع ميل جانبي بزاوية تجاه جانبه الأيسر. عادة ما يُحتاج إلى هذا الوضع في الأثلوث الأخير من الحمل لتخفيف الانضغاط الأبهري الجوفي">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"الطور الخامس">
                 description = <"يتم التعرف على صوت كورتكوف الخامس بغياب الأصوات حيث ينخفض ضغط الكفة تحت ضغط الدم الانبساطي">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"الطور الرابع">
                 description = <"يتم التعرف على صوت كورتكوف الرابع على أنه تخفيت منفصل">
             >
@@ -2629,11 +2629,11 @@ terminology
                 text = <"النقطة النهائية الانبساطية/ الارتخائية">
                 description = <"تستخدم أصوات كورتكوف لتحديد ضغط الدم الانبساطي باستخدام طريقة التسمُّع">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"طفل">
                 description = <"كفة تستخدم للطفل أو البالغ ذي الذراع الرفيعة - من 8 سينتيمتر * 21 سينتيمتر تقريبا">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"البالغ الصغير">
                 description = <"كفة تستخدم للبالغ الصغير - مثانة/ كيسة من 10 سينتيمتر * 24 سينتيمتر تقريبا">
             >
@@ -2650,19 +2650,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"مستلقٍ">
                 description = <"الشخص مستلقٍ بشكل مستوٍ عند القيام بقياس ضغط الدم">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"مضطجع">
                 description = <"الشخص مضطجع عند القيام بقياس ضغط الدم">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"جالس">
                 description = <"الشخص جالس (مثلا على سرير أو كرسي) عند القيام بقياس ضغط الدم">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"واقف">
                 description = <"الشخص واقف عند القيام بقياس ضغط الدم">
             >
@@ -2670,31 +2670,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"الفخذ الأيسر">
                 description = <"الفخذ الأيسر للشخص">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"الفخذ الأيمن">
                 description = <"الفخذ الأيمن للشخص">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"الذراع الأيسر">
                 description = <"الذراع الأيسر للشخص">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"الذراع الأيمن">
                 description = <"الذراع الأيمن للشخص">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"البالغ">
                 description = <"كفة عيارية للبالغين - مثانة من 13 سينتيمتر * 30 سينتيمتر تقريبا">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"بالغ كبير">
                 description = <"كفة للبالغين ذوي الأذرع الكبيرة - المثانة/ الكيسة 16 سينتيمتر * 38 سينتيمتر تقريبا">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"فخذ البالغ">
                 description = <"كفة تستخدم لفخذ البالغ - مثانة/ كيسة من 20 سينتيمتر * 42 سينتيمتر تقريبا">
             >
@@ -2787,7 +2787,7 @@ terminology
                 text = <"结构化测量位置">
                 description = <"进行当前测量时所采用的结构化解剖学位置。">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"足背">
                 description = <"患者脚部的背面。">
             >
@@ -2799,7 +2799,7 @@ terminology
                 text = <"收缩压公式">
                 description = <"用于依据平均动脉压（数据之中已有相应记录时）来计算收缩压的公式。">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"动脉内">
                 description = <"利用位于动脉内的传感器接入通路来进行有创性测量。">
             >
@@ -2807,15 +2807,15 @@ terminology
                 text = <"干扰因素">
                 description = <"旨在记录和说明可能影响血压测量结果的偶然因素。例如，焦虑/进展程度或“白大褂综合征（white coat syndrome）”、疼痛、发热、大气压变化等等。">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"脚趾">
                 description = <"检查对象的某一脚趾。">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"睡眠状态">
                 description = <"受检对象处在全身休息的自然状态下。">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"警觉且清醒">
                 description = <"受检对象意识完全清楚。">
             >
@@ -2827,11 +2827,11 @@ terminology
                 text = <"24小时均值">
                 description = <"24小时期间血压均值的估计">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"有创法">
                 description = <"在身体内部测量血压的方法，也就是说涉及到皮肤穿刺和在血管内进行测量。">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"仪器法">
                 description = <"利用血压测量设备（仪器，装置）在身体外部测量血压的方法。">
             >
@@ -2839,11 +2839,11 @@ terminology
                 text = <"平均动脉压公式">
                 description = <"用于计算平均动脉压（Mean Arterial Pressure，MAP，平均动脉血压）的公式（如果在数据之中加以记录的话）。">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"触诊法">
                 description = <"利用触诊（扪诊）在身体外部测量血压的方法（通常采用的是对肱动脉或桡动脉的触诊）。">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"听诊法">
                 description = <"利用听诊器和柯氏音（Korotkoff sounds）在身体外部测量血压的方法。">
             >
@@ -2851,11 +2851,11 @@ terminology
                 text = <"方法">
                 description = <"血压测量方法。">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"手指">
                 description = <"检查对象的某一手指。">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"左踝">
                 description = <"受检对象的左踝。">
             >
@@ -2863,7 +2863,7 @@ terminology
                 text = <"体力活动">
                 description = <"关于血压测量时所从事的体力活动或者说身体活动的详情。">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"右踝">
                 description = <"受检对象的右踝。">
             >
@@ -2871,31 +2871,31 @@ terminology
                 text = <"装置">
                 description = <"关于用于测量血压的血压计或其他装置（仪器，设备）的详情。">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"左手腕">
                 description = <"受检对象的左手腕。">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"右手腕">
                 description = <"受检对象的右手腕。">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"新生儿型">
                 description = <"适用于新生儿的袖带（臂带，袖套，臂围），且假定袖带尺寸适合于新生儿的成熟度和出生体重。">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"婴幼儿型">
                 description = <"适用于婴幼儿的袖带（臂带，袖套，臂围） - 气囊尺寸约为5cm x 15cm。">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"左斜卧位">
                 description = <"测量血压时受检者采取的是平躺或者说平卧姿势，且有向侧位一定程度的倾斜，通常是斜向左侧。在妊娠晚期，为了缓解主腔静脉压迫（aortocaval compression），常常需要采取这种体位。">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"第V时相">
                 description = <"将声音随着袖带压力降至舒张压以下时声音的消失确定为第V柯氏音，即柯氏音的第V时相。">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"第IV时相">
                 description = <"将声音的突然减弱（消音，捂住，低沉）或者说其向捂音的突然转变确定为第IV柯氏音，即柯氏音的第IV时相（变音）。">
             >
@@ -2903,11 +2903,11 @@ terminology
                 text = <"舒张期终点">
                 description = <"旨在记录当确定舒张压时所采用的究竟是哪种柯氏音。">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"儿科型/儿童型">
                 description = <"适用于儿童或上肢较瘦成年人的袖带（臂带，袖套，臂围） - 气囊尺寸约为8cm x 21cm。">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"成年人细小型">
                 description = <"适用于体型瘦小的成年人的袖带（臂带，袖套，臂围） - 气囊尺寸约为10cm x 24cm。">
             >
@@ -2924,19 +2924,19 @@ terminology
                 description = <"测量时该人员所卧于的表面的颅尾（头尾）倾角（倾斜角度）。">
                 comment = <"请注意：“°”属于无效的UCUM单位。请采用正确的单位“deg”（度）。">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"平卧位">
                 description = <"测量血压时受检者采取的是平躺或者说平卧的姿势，又称为“仰卧位”。">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"侧卧位">
                 description = <"测量血压时身体处于45度角侧卧位或者说采取的是斜靠的姿势。">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"坐位">
                 description = <"测量血压时身体处于坐位，又称为“坐姿”。">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"立位">
                 description = <"测量血压时身体处于站立体位">
             >
@@ -2944,31 +2944,31 @@ terminology
                 text = <"注释">
                 description = <"其他字段并未予以记录的，关于当前检测过程的附加文字叙述。">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"左腿">
                 description = <"受检对象的左腿。">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"右腿">
                 description = <"受检对象的右腿。">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"左臂">
                 description = <"受检对象的左臂。">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"右臂">
                 description = <"受检对象的右臂。">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"成年人标准型">
                 description = <"适用于成年人的标准袖带（臂带，袖套，臂围） - 气囊尺寸约为13cm x 30cm。">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"成年人粗大型">
                 description = <"适用于上肢较为粗大的成年人的袖带（臂带，袖套，臂围） - 气囊尺寸约为16cm x 38cm。">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"成年人大腿型">
                 description = <"适用于成年人大腿的袖带（臂带，袖套，臂围） - 气囊尺寸约为 20cm x 42cm。">
             >
@@ -3061,7 +3061,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -3073,7 +3073,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -3081,15 +3081,15 @@ terminology
                 text = <"Factores de confusión">
                 description = <"Registro de factores que pueden afectar la medida">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Durmiendo">
                 description = <"El paciente está durmiendo">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"alerta y despierto">
                 description = <"El paciente está totalmente conciente">
             >
@@ -3101,11 +3101,11 @@ terminology
                 text = <"promedio en 24 horas">
                 description = <"Estimación de la presión arterial promedio dentro de las 24 horas">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Invasivo">
                 description = <"Método de medida interno, involucra penetración de la piel y medida dentro de los vasos sanguíneos">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Dispositivo">
                 description = <"Método de medida externo mediante un dispositivo o máquina">
             >
@@ -3113,11 +3113,11 @@ terminology
                 text = <"Fórmula de la presión arterial media">
                 description = <"Fórmula utilizada para medir la presión arterial media">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpación">
                 description = <"Método de medida externo, utilizando palpación, en general de la arteria braquial o radial">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Auscultación">
                 description = <"Método de medida externo, utilizando un estetoscopio y los sonidos de Korotkoff">
             >
@@ -3125,11 +3125,11 @@ terminology
                 text = <"Método">
                 description = <"Método de medida de la presión">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Tobillo izquierdo">
                 description = <"Tobillo izquierdo del paciente">
             >
@@ -3137,7 +3137,7 @@ terminology
                 text = <"Ejercicio">
                 description = <"Detalles sobre actividad física durante la medida de la presión arterial">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Tobillo derecho">
                 description = <"Tobillo derecho del paciente">
             >
@@ -3145,31 +3145,31 @@ terminology
                 text = <"Dispositivo">
                 description = <"Detalles del tensiómetro u otro dispositivo utilizado para medir la presión arterial">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Muñeca izquierda">
                 description = <"Muñeca izquierda del paciente">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Muñeca derecha">
                 description = <"Muñeca derecha del paciente">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Neonato">
                 description = <"Tamaño del manguito para un neonato">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Infante">
                 description = <"Tamaño del manguito para infantes 5cm x 15cm aprox">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Acostado inclinado hacia la izquierda">
                 description = <"Acostado con inclinación lateral hacia la izquierda">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Fase V">
                 description = <"El quinto sonido de Korotkoff se identifica con la ausencia de sonidos a medida que la presión del manguito decrece por debajo de la presión diastólica">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Fase IV">
                 description = <"El cuarto sonido de Korotkoff es identificado como amortiguación abrupta de sonidos">
             >
@@ -3177,11 +3177,11 @@ terminology
                 text = <"Punto final diastólica">
                 description = <"Registra que sonido de Korotkoff se utiliza para determinar la presión arterial utilizando el método auscultativo">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Pediátrico">
                 description = <"Tamaño del manguito pediátrico 8cm x 21cm aprox">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Adulto pequeño">
                 description = <"Tamaño del manguito para un adulto pequeño 10cm x 24cm aprox">
             >
@@ -3198,19 +3198,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Acostado">
                 description = <"El paciente está acostado en el momento de la meidda">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Reclinado">
                 description = <"El paciente está reclinado en el momento de la medida">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sentado">
                 description = <"El paciente está sentado en el momento de la medida">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Parado">
                 description = <"El paciente está parado en el momento de la medida">
             >
@@ -3218,31 +3218,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Muslo izquierdo">
                 description = <"Muslo izquierdo del paciente">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Muslo derecho">
                 description = <"Muslo derecho del paciente">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Brazo izquierdo">
                 description = <"Brazo izquierdo del paciente">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Brazo derecho">
                 description = <"Brazo derecho del paciente">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Adulto">
                 description = <"El tamaño del manguito es para un adulto promedio 13cm x 30cm aprox">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Adulto grande">
                 description = <"El tamaño del manguito es de un adulto grande 16cm x 38cm aprox">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Muslo adulto">
                 description = <"El tamaño del manguito es para un muslo adulto 20cm x 42cm aprox">
             >
@@ -3334,7 +3334,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -3346,7 +3346,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -3354,15 +3354,15 @@ terminology
                 text = <"Factores confluentes">
                 description = <"Comentario y registro sobre otros factores que pueden incidir sobre la medición de la presión arterial. Por ejemplo: nivel de ansiedad o \"síndrome del guardapolvo blanco\"; dolor o fiebre; cambios en la presión atmosférica etc.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Dormido">
                 description = <"El sujeto esta en un estado natural de sueño corporal">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Alerta y despierto">
                 description = <"El sujeto esta plenamente consciente">
             >
@@ -3374,11 +3374,11 @@ terminology
                 text = <"Promedio de 24 horas">
                 description = <"Estimativo de la media de la presión arterial sobre un período de 24 horas">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Invasivo">
                 description = <"Método de medición de la presión arterial interna o sea invasiva: punción de la piel y la introducción de un cateter para medir dentro de un vaso sanguíneo.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Máquina">
                 description = <"Método de medición de la presión arterial externa, utilizando un monitor automático (mecánico) de presión arterial">
             >
@@ -3386,11 +3386,11 @@ terminology
                 text = <"Fórmula de la Presión Arterial Media (PAM)">
                 description = <"Fórmula usada para calcular la PAM (si se registra en el campo data)">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpación">
                 description = <"Método de medición de la presión arterial externa, usando palpación (normalmente de la arteria humeral o radial).">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Auscultación">
                 description = <"Método de la medición de la presión arterial externa, usando un estetoscopio y los sonidos de Korotkoff">
             >
@@ -3398,11 +3398,11 @@ terminology
                 text = <"Método">
                 description = <"Método de la medición de la presión arterial">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Tobillo izquierdo">
                 description = <"El tobillo izquierdo del individuo">
             >
@@ -3410,7 +3410,7 @@ terminology
                 text = <"Ejercicio">
                 description = <"Detalles de la actividad física realizados durante la medición de la presión arterial ">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Tobillo derecho ">
                 description = <"El tobillo derecho del individuo.">
             >
@@ -3418,31 +3418,31 @@ terminology
                 text = <"Dispositivo">
                 description = <"Detalles del esfingomanómetro u otro dispositivo usado para medir la presión arterial.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Muñeca izquierda">
                 description = <"La muñeca inquierda del individuo.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Muñeca derecha">
                 description = <"La muñeca derecha del individuo.">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Neonatal">
                 description = <"Un manguito usado para neonatos, asumiendo que es del tamaño adecuado para la madurez y el peso corporal del neonato.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Infantil">
                 description = <"Un manguito usado para infantes - cámara de caucho approximadamente de 5cm x 15cm.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Acostado e inclinado levemente sobre su costado izquierdo">
                 description = <"Acostado horizontal e inclinado levemente sobre su costado izquierdo. Comúnmente se requiere durante el último trimestre del embarazo para aliviar la compresión aortocava.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Fase V">
                 description = <"El quinto sonido de Korotkoff se identifica como la ausencia de sonidos a medida que la presión del manguito insuflado cae por debajo de la presión arterial diastólica.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Fase IV">
                 description = <"El cuarto sonido de Korotkoff se identifica como una abrupta amortiguación de sonidos.">
             >
@@ -3450,11 +3450,11 @@ terminology
                 text = <"Punto final diastólica">
                 description = <"Registro usando los sonidos de Korotkoff para determinar la presión diastólica">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Pediátrico/Niño">
                 description = <"Un manguito que es apropiado para un niño o un adulto con brazos delgados - cámara de caucho approximadamente 8cm x 21cm.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Adulto pequeño">
                 description = <"Un manguito usado para adulto pequeño - cámara de caucho approximadamente de 10cm x 24cm.">
             >
@@ -3471,19 +3471,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Acostado">
                 description = <"Acostado horizontal durante la medición de la presión arterial">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Reclinado">
                 description = <"Reclinado (semisentado) durante el registro de la presión arterial">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sentado">
                 description = <"Sentado (en la cama o en una silla) durante el registro de la presión arterial ">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"De pie">
                 description = <"De pie al momento de la medición de la tensión arterial.">
             >
@@ -3491,31 +3491,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Muslo izquierdo">
                 description = <"El muslo izquierdo del individuo">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Muslo derecho">
                 description = <"El muslo derecho del individuo">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Brazo izquierdo">
                 description = <"El brazo izquierdo del individuo">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Brazo derecho">
                 description = <"El brazo derecho del individuo">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Adulto">
                 description = <"Un manguito estándar para adulto - cámara de caucho approximadamente de 13cm x 30cm.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Adulto grande">
                 description = <"Un manguito para adultos con brazos mas grandes - cámara de caucho aproximadamente de 16cm x 38cm.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Muslo Adulto">
                 description = <"Un manguito usado para el muslo del adulto - cámara de caucho aproximadamente de 20cm x 42 cm">
             >
@@ -3607,7 +3607,7 @@ terminology
                 text = <"Strukturert målested">
                 description = <"Strukturert anatomisk lokalisering av stedet målingen ble gjort.">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"Fotrygg">
                 description = <"Individets fotrygg.">
             >
@@ -3619,7 +3619,7 @@ terminology
                 text = <"Formel for beregning av systolisk trykk">
                 description = <"Formelen som anvendes til beregning av systolisk blodtrykk dersom det benyttes en maskin som måler middeltrykket og beregner systolisk og diastolisk trykk.">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"Intra-arterielt">
                 description = <"Invasiv måling i en artiere via en transducer.">
             >
@@ -3627,15 +3627,15 @@ terminology
                 text = <"Konfunderende faktorer">
                 description = <"Kommentar til og registrering av andre faktorer som kan påvirke blodtrykksmålingen. For eksempel angst eller \"hvit frakk syndrom\", smerter eller feber, endringer i atmosfærisk trykk osv.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Tå">
                 description = <"Individets tå. Dersom identifikasjon av den spesifikke tåen er nødvendig, kan dette legges inn ved hjelp av feltet med fri eller kodet tekst.">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Sovende">
                 description = <"Individet er i den naturlige tilstand av kroppslig hvile.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Våken">
                 description = <"Individet er ved full bevissthet.">
             >
@@ -3647,11 +3647,11 @@ terminology
                 text = <"24-timers gjennomsnitt">
                 description = <"Estimert gjennomsnittsblodtrykk over en 24-timers periode.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Automatisk, invasivt">
                 description = <"Metode for måling av blodtrykket invasivt med innleggelse av intravasalkateter i en blodåre.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Automatisk, non-invasivt">
                 description = <"Metode for non-invasiv måling av blodtrykket ved hjelp av en maskin som automatisk måler blodtrykket, for eksempel et måleapparat eller en blodtrykksmåler for hjemmebruk.">
             >
@@ -3659,11 +3659,11 @@ terminology
                 text = <"Formel for beregning av MAP">
                 description = <"Eventuell formel som er anvendt til beregning av middeltrykket (MAP).">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpasjon">
                 description = <"Metode for måling av blodtrykket eksternt, ved hjelp av palpasjon (vanligvis av arteriene brachialis eller radialis).">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Auskultasjon">
                 description = <"Metode for måling av blodtrykk eksternt, ved hjelp av stetoskop og Korotkofflyder.">
             >
@@ -3671,11 +3671,11 @@ terminology
                 text = <"Målemetode">
                 description = <"Metode for måling av blodtrykket.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Finger">
                 description = <"Individets finger. Dersom identifikasjon av den spesifikke fingeren er nødvendig, kan dette legges inn ved hjelp av feltet med fri eller kodet tekst.">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Ankel, venstre">
                 description = <"Individets venstre ankel.">
             >
@@ -3683,7 +3683,7 @@ terminology
                 text = <"Fysisk anstrengelse">
                 description = <"Detaljer om fysisk aktivitet på tidspunkt for blodtrykksmåling.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Ankel, høyre">
                 description = <"Individets høyre ankel.">
             >
@@ -3691,31 +3691,31 @@ terminology
                 text = <"Måleapparat">
                 description = <"Detaljer om sfygmomanometeret eller annet måleapparat brukt til blodtrykksmåling.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Håndledd, venstre">
                 description = <"Individets venstre håndledd.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Håndledd, høyre">
                 description = <"Individets høyre håndledd.">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Neonatale">
                 description = <"En blodtrykksmansjett til bruk for neonatale, forutsatt at blodtrykksmansjetten er tilpasset i størrelse for modenhet og fødselsvekt.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Spedbarn">
                 description = <"En blodtrykksmansjett til bruk for spedbarn.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Liggende lent mot venstre">
                 description = <"Liggende flatt med noe lateral tilt, vanligvis vinklet mot venstre side. Vanligvis nødvendig i siste trimester av svangerskapet for å avlaste aortocaval komprimering.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Fase V">
                 description = <"Den femte Korotkoff lyd som identifiseres som fraværet av lyder idet mansjettrykket faller under det diastoliske blodtrykket.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Fase IV">
                 description = <"Den fjerde Korotkoff lyd som identifieres som en brå demping av lydene.">
             >
@@ -3723,11 +3723,11 @@ terminology
                 text = <"Diastolisk endepunkt">
                 description = <"Registrering av hvilken av Korotkofflydene som brukes for å bestemme det diastoliske blodtrykket ved hjelp av auskultasjon.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Barn">
                 description = <"En blodtrykksmansjett til barn eller små voksne med tynne armer.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Små voksne">
                 description = <"En blodtrykksmansjett for små voksne.">
             >
@@ -3744,19 +3744,19 @@ terminology
                 description = <"Kranio-caudal tilt av overflaten som individet ligger på på tidspunkt for blodtrykksmåling.">
                 comment = <"Negative verdier betegner posisjoner med hodet ned.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Liggende">
                 description = <"Liggende flatt på tidspunkt for blodtrykksmålingen.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Tilbakelent">
                 description = <"Sittende tilbakelent ca 45º og med beina hevet til samme høyde som hoften på tidspunkt for blodtrykksmålingen.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sittende">
                 description = <"Sittende (for eksempel på en stol eller på en seng med føttene på gulvet) på tidspunkt for blodtrykksmålingen.">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Stående">
                 description = <"Stående ved tidspunktet for målingen.">
             >
@@ -3764,31 +3764,31 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligere fritekst om målingen, som ikke omfattes av andre felt.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Lår, venstre">
                 description = <"Individets venstre lår.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Lår, høyre">
                 description = <"Individets høyre lår.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Overarm, venstre">
                 description = <"Individets venstre overarm.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Overarm, høyre">
                 description = <"Individets høyre overarm.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Voksne">
                 description = <"En standard blodtrykksmansjett til voksne.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Store voksne">
                 description = <"En blodtrykksmansjett for voksne med store armer.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Lår voksne">
                 description = <"Mansjett for bruk rundt låret til voksne individer.">
             >
@@ -3881,7 +3881,7 @@ terminology
                 text = <"構造化された測定部位">
                 description = <"測定が行われた部位の解剖学的位置について構造化された表現">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -3895,7 +3895,7 @@ terminology
     
     *Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"動脈内">
                 description = <"動脈内に間欠的方法で留置したトランスデューサからAラインを経由して測定">
             >
@@ -3903,15 +3903,15 @@ terminology
                 text = <"交絡因子">
                 description = <"血圧測定に寄与しうるその他の偶発的な要素についてのコメント。たとえば、不安の程度や「白衣性高血圧」、痛みや発熱、大気圧の変化など。">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"足尖">
                 description = <"対象者の足尖部">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"睡眠中">
                 description = <"対象は自然な休眠状態にある">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"覚醒">
                 description = <"対象は完全に意識がある。">
             >
@@ -3923,11 +3923,11 @@ terminology
                 text = <"24時間平均">
                 description = <"24時間での推定平均血圧">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"侵襲的">
                 description = <"経皮的に動脈を穿刺し，血管内部から血圧を測定する方法.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"機械">
                 description = <"血圧測定器を使って外部から血圧を測定する方法.">
             >
@@ -3935,11 +3935,11 @@ terminology
                 text = <"平均動脈圧の計算式">
                 description = <"平均動脈圧を計算するために使われた式（もしデータに記録されていれば）">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"触診">
                 description = <"脈拍(通常は上腕動脈あるいは橈骨動脈）を触診することにより外部から血圧を測定する方法">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"聴診">
                 description = <"聴診器を使いコロトコフ音で外部から血圧を測定する方法.">
             >
@@ -3947,11 +3947,11 @@ terminology
                 text = <"方法">
                 description = <"血圧の測方法。">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"手指">
                 description = <"測定対象者の手指">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"左足首">
                 description = <"測定対象者の左足首">
             >
@@ -3959,7 +3959,7 @@ terminology
                 text = <"労作">
                 description = <"血圧測定時に行われた肉体的運動についての詳細。">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"右足首">
                 description = <"測定対象者の右足首">
             >
@@ -3967,31 +3967,31 @@ terminology
                 text = <"測定機器">
                 description = <"水銀血圧計あるいはそのほかの血圧を測定するために使われる機器.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"左手首">
                 description = <"測定対象者の左手首">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"右手首">
                 description = <"測定対象者の右手首">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"新生児">
                 description = <"新生児用のカフ 想定されるカフは新生児の生下時体重と成熟度に応じて適切なものであること.">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"幼児">
                 description = <"幼児のために使われるカフ">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"左側臥位">
                 description = <"通常は頭から足までを水平にしてから左側に傾けられた状態。一般的には妊娠の第3トリメスターで大動脈・静脈を圧排から解放するために求められる体位である。">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"5期">
                 description = <"コロトコフの5音が聴取される時期。カフ圧が拡張期圧を下回り音が聴取されなくなる時期">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"4期">
                 description = <"コロトコフの4音。急速に減弱する時期.">
             >
@@ -3999,11 +3999,11 @@ terminology
                 text = <"拡張期終末">
                 description = <"拡張期圧を決めるためにどのコロトコフ音が使用されたかについて記録.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"幼児/小児">
                 description = <"小児あるいは痩せた成人のためのカフ">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"小柄な成人">
                 description = <"小柄な成人のためのカフ">
             >
@@ -4020,19 +4020,19 @@ terminology
                 description = <"測定時に対象者が臥床している台の頭尾方向の傾き">
                 comment = <"注意： '°' は適切なUCUM単位である。正しい単位として'deg'(度）を使うこと。">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"臥位">
                 description = <"血圧測定時に臥位">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"斜位">
                 description = <"血圧測定時に斜位">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"座位">
                 description = <"血圧測定時に（たとえば、ベッドやいすの上で）坐位">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"立位">
                 description = <"血圧測定時に立位">
             >
@@ -4040,31 +4040,31 @@ terminology
                 text = <"コメント">
                 description = <"他に項目のない、即的に関する叙述的な追加的記録">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"左大腿">
                 description = <"測定対象者の左大腿。">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"右大腿">
                 description = <"測定対象者の右大腿">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"左腕">
                 description = <"測定対象者の左腕">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"右腕">
                 description = <"測定対象者の右腕">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"成人">
                 description = <"一般的な成人のためのカフ">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"大柄な成人">
                 description = <"大柄な成人の腕で測定するためのカフ。">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"成人大腿">
                 description = <"成人の大腿で血圧を測定するためのカフ。">
             >
@@ -4156,7 +4156,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -4168,7 +4168,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -4176,15 +4176,15 @@ terminology
                 text = <"عوامل مبهم">
                 description = <"نظردهی و ثبت سایر عوامل ضمنی که ممکن است به اندازه گیری فشار خون کمک کنند . به عنوان مثال سطح اضطراب یا \"سندرم روپوش سفید\"، درد یا تب ، تغییرات فشار جوی و غیره ">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"خوابیده">
                 description = <"فرد در حالت طبیعی استراحت بدنی است">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"هشیار و بیدار">
                 description = <"فرد کاملا به هوش است ">
             >
@@ -4196,11 +4196,11 @@ terminology
                 text = <"میانگین 24 ساعته">
                 description = <"برآورد میانگین فشار خون در دوره زمانی 24 ساعته">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"*Invasive(en)">
                 description = <"*Method of measuring blood pressure internally ie involving penetration of the skin and measuring inside blood vessels.(en)">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"*Machine(en)">
                 description = <"*Method of measuring blood pressure externally, using a blood pressure machine.(en)">
             >
@@ -4208,11 +4208,11 @@ terminology
                 text = <"*Mean Arterial Pressure Formula(en)">
                 description = <"*Formula used to calculate the MAP (if recorded in data).(en)">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"*Palpation(en)">
                 description = <"*Method of measuring blood pressure externally, using palpation (usually of the brachial or radial arteries).(en)">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"*Auscultation(en)">
                 description = <"*Method of measuring blood pressure externally, using a stethoscope and Korotkoff sounds.(en)">
             >
@@ -4220,11 +4220,11 @@ terminology
                 text = <"*Method(en)">
                 description = <"*Method of measurement of blood pressure.(en)">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"*Left ankle(en)">
                 description = <"*The left ankle of the individual.(en)">
             >
@@ -4232,7 +4232,7 @@ terminology
                 text = <"تقلا">
                 description = <"جزییاتی درباره فعالیت فیزیکی انجام شده در زمان اندازه گیری فشار خون ">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"*Right ankle(en)">
                 description = <"*The right ankle of the individual.(en)">
             >
@@ -4240,31 +4240,31 @@ terminology
                 text = <"*Device(en)">
                 description = <"*Details about sphygmomanometer or other device used to measure the blood pressure.(en)">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"*Left wrist(en)">
                 description = <"*The left wrist of the individual.(en)">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"*Right wrist(en)">
                 description = <"*The right wrist of the individual.(en)">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"*Neonatal(en)">
                 description = <"*A cuff used for a neonate, assuming cuff is the appropriate size for maturity and birthweight of the neonate.(en)">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"*Infant(en)">
                 description = <"*A cuff used for infants - bladder approx 5cm x 15cm.(en)">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"خوابیده  به چپ">
                 description = <"خوابیدن صاف با کمی تمایل به یک سمت، معمولا به جهت چپ میل کرده و عموما در سه ماهه آخر حاملگی برای تسکین فشار آئورت نیاز به آن است">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"*Phase V(en)">
                 description = <"*The fifth Korotkoff sound is identified by absence of sounds as the cuff pressure drops below the diastolic blood pressure.(en)">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"*Phase IV(en)">
                 description = <"*The fourth Korotkoff sound is identified as an abrupt muffling of sounds.(en)">
             >
@@ -4272,11 +4272,11 @@ terminology
                 text = <"*Diastolic endpoint(en)">
                 description = <"*Record which Korotkoff sound is used for determining diastolic pressure using auscultative method.(en)">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"*Paediatric/Child(en)">
                 description = <"*A cuff that is appropriate for a child or adult with a thin arm - bladder approx 8cm x 21cm.(en)">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"*Small Adult(en)">
                 description = <"*A cuff used for a small adult - bladder approx 10cm x 24cm.(en)">
             >
@@ -4293,19 +4293,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"خوابیده">
                 description = <"خوابیده در زمان اندازه گیری فشار خون">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"خمیده">
                 description = <"خمیده در زمان اندازه گیری فشار خون">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"نشسته">
                 description = <"نشسته ( به عنوان مثال روی تخت یا صندلی) در زمان اندازه گیری فشار خون">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"ایستاده">
                 description = <"ایستاده در زمان اندازه گیری فشار خون">
             >
@@ -4313,31 +4313,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"*Left thigh(en)">
                 description = <"*The left thigh of the person.(en)">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"*Right thigh(en)">
                 description = <"*The right thigh of the person.(en)">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"*Left arm(en)">
                 description = <"*The left arm of the person.(en)">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"*Right arm(en)">
                 description = <"*The right arm of the person.(en)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"*Adult(en)">
                 description = <"*A cuff that is standard for an adult - bladder approx 13cm x 30cm.(en)">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"بزرگسال درشت">
                 description = <"کاف بزرگسالان با برآمدگی بازوی بزرگتر در حدود 16 در 38 سانتیمتر">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"ران بزرگسال">
                 description = <"کاف استفاده شده در ران بزرگسال -اندازه مثانه 20 سانتی متر در 42 سانتی متر">
             >
@@ -4429,7 +4429,7 @@ terminology
                 text = <"*Structured measurement location(en)">
                 description = <"*Structured anatomical location of where the measurement was taken.(en)">
             >
-            ["at1057"] = <
+            ["at1056"] = <
                 text = <"*Dorsum of foot(en)">
                 description = <"**(en)">
             >
@@ -4441,7 +4441,7 @@ terminology
                 text = <"*Systolic pressure formula(en)">
                 description = <"*Formula used to calculate the systolic pressure from from mean arterial pressure (if recorded in data).(en)">
             >
-            ["at1054"] = <
+            ["at1053"] = <
                 text = <"*Intra-arterial(en)">
                 description = <"*Invasive measurement via transducer access line within an artery.(en)">
             >
@@ -4449,15 +4449,15 @@ terminology
                 text = <"Beïnvloedende factoren">
                 description = <"Opmerking over en vastleggen van andere incidentele factoren die de bloeddrukmeting zouden kunnen beïnvloeden. Bijvoorbeeld, mate van angst, of 'witte jas syndroom'; pijn of koorts; veranderingen in atmosferische druk etc.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Toe(en)">
                 description = <"*A toe of the individual.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Slapend">
                 description = <"Individu is in de natuurlijke slaap.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Alert en wakker">
                 description = <"Individu is volledig bij bewustzijn">
             >
@@ -4469,11 +4469,11 @@ terminology
                 text = <"24 uur gemiddelde">
                 description = <"Inschatting van de gemiddelde bloeddruk over een periode van 24 uur">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Invasief">
                 description = <"Inwendige meting van de bloeddruk, inclusief penetratie van de huid en meting in het bloedvat.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Machinaal">
                 description = <"Uitwendige meting van de bloeddruk, met gebruikmaking van een mechanische bloeddrukmeter">
             >
@@ -4481,11 +4481,11 @@ terminology
                 text = <"Gemiddelde arteriële druk formule">
                 description = <"Formule om de MAP (mean arterial pressure=gemiddelde arteriële druk) te berekenen (als deze data opgeslagen wordt).">
             >
-            ["at1038"] = <
+            ["at1037"] = <
                 text = <"Palpatie">
                 description = <"Uitwendige meting van de bloeddruk, met gebruikmaking van palpatie (meestal de arterie brachialis of radialis)">
             >
-            ["at1037"] = <
+            ["at1036"] = <
                 text = <"Auscultatie">
                 description = <"Uitwendige meting van de bloeddruk, met gebruikmaking van een stethoscoop en Korotkoff geluiden.">
             >
@@ -4493,11 +4493,11 @@ terminology
                 text = <"Methodiek">
                 description = <"De methode van de meting van de bloeddruk">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Finger(en)">
                 description = <"*A finger of the individual.(en)">
             >
-            ["at1032"] = <
+            ["at1031"] = <
                 text = <"Linkerenkel">
                 description = <"De linkerenkel van de persoon">
             >
@@ -4505,7 +4505,7 @@ terminology
                 text = <"Inspanning">
                 description = <"Details over de lichamelijke inspanning die ondernomen wordt op het moment van de bloeddrukmeting">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Rechterenkel">
                 description = <"De rechterenkel van de persoon">
             >
@@ -4513,31 +4513,31 @@ terminology
                 text = <"Apparaat">
                 description = <"Details over sphygmomanometerof ander apparaat om de bloeddruk te meten.">
             >
-            ["at1022"] = <
+            ["at1021"] = <
                 text = <"Linkerpols">
                 description = <"De linkerpols van de persoon.">
             >
-            ["at1021"] = <
+            ["at1020"] = <
                 text = <"Rechterpols">
                 description = <"De rechterpols van de persoon">
             >
-            ["at1020"] = <
+            ["at1019"] = <
                 text = <"Neonaat">
                 description = <"Een manchet voor een neonaat, er van uitgaande dat de manchet de juiste maat is voor volgroeidheid en geboortegewicht van de neonaat">
             >
-            ["at1019"] = <
+            ["at1018"] = <
                 text = <"Zuigeling">
                 description = <"Een manchet voor zuigelingen - manchet maat ca. 5cm x 15cm.">
             >
-            ["at1015"] = <
+            ["at1014"] = <
                 text = <"Liggend met kanteling naar linkerzijde">
                 description = <"Platliggend met enige laterale kanteling, meestal gekanteld naar de linkerzijde. Gebruikelijk benodigd in het laatste trimester van de zwangerschap om aortacavale compressie te verlichten.">
             >
-            ["at1013"] = <
+            ["at1012"] = <
                 text = <"Fase 5">
                 description = <"Het vijfde Korotkoff geluid is geïdentificeerd door afwezigheid van geluiden als de manchetdruk onder diastolische bloeddruk komt.">
             >
-            ["at1012"] = <
+            ["at1011"] = <
                 text = <"Fase IV">
                 description = <"Het vierde Korotkoff geluid wordt gedefinieerd als een abrupte vermindering van geluid">
             >
@@ -4545,11 +4545,11 @@ terminology
                 text = <"Diastolisch eindpunt">
                 description = <"Om te registreren welk Korotkoff geluid gebruikt is om de diastolische druk te meten door de auscultatieve methode.">
             >
-            ["at1010"] = <
+            ["at1009"] = <
                 text = <"Pediatrie/kinder">
                 description = <"Een manchet voor een kind of volwassene met een dunne arm - manchet grootte ca. 8cm x 21cm.">
             >
-            ["at1009"] = <
+            ["at1008"] = <
                 text = <"Kleine volwassene">
                 description = <"Een manchet voor een kleine volwassene - manchet maat ca. 10cm x 24cm.">
             >
@@ -4566,19 +4566,19 @@ terminology
                 description = <"*The craniocaudal tilt of the surface on which the person is lying at the time of measurement.(en)">
                 comment = <"*PLEASE NOTE: '°' is a valid UCUM unit. Please use 'deg' as the correct unit.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Liggend">
                 description = <"Platliggend op het moment van de bloeddrukmeting">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Halfzittend">
                 description = <"Halfzittend op het moment van de bloeddrukmeting">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Zittend">
                 description = <"Bloeddrukmeting bij zittend (b.v. op bed of in stoel) individu">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Staand">
                 description = <"Bloeddrukmeting bij staand individu">
             >
@@ -4586,31 +4586,31 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the measurement, not captured in other fields.(en)">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Linkerdijbeen">
                 description = <"De linkerdijbeen van de persoon.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Rechterdijbeen">
                 description = <"Het rechterdijbeen van de persoon.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Linkerarm">
                 description = <"De linkerarm van de persoon.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Rechterarm">
                 description = <"De rechterarm van de persoon.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Volwassene">
                 description = <"De standaard manchet voor een volwassene - manchet grootte ca. 13cm x 30cm">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Grote volwassene">
                 description = <"Een manchet voor volwassenen met langere armen, manchet grootte ca. 16cm x 38cm.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Volwassen dijbeen">
                 description = <"Een manchet voor een volwassen dijbeen - manchet grootte ca. 20cm x 42cm.">
             >
@@ -4669,26 +4669,26 @@ terminology
     value_sets = <
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at1012", "at1013">
+            members = <"at1011", "at1012">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at1037", "at1038", "at1040", "at1041">
+            members = <"at1036", "at1037", "at1039", "at1040">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at1045", "at1046">
+            members = <"at1044", "at1045">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at1001", "at1002", "at1003", "at1004", "at1015">
+            members = <"at1000", "at1001", "at1002", "at1003", "at1014">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at26", "at27", "at28", "at29", "at1021", "at1022", "at1027", "at1032", "at1033", "at1052", "at1057", "at1054">
+            members = <"at25", "at26", "at27", "at28", "at1020", "at1021", "at1026", "at1031", "at1032", "at1051", "at1056", "at1053">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at16", "at17", "at18", "at1009", "at1010", "at1019", "at1020">
+            members = <"at15", "at16", "at17", "at1008", "at1009", "at1018", "at1019">
         >
     >

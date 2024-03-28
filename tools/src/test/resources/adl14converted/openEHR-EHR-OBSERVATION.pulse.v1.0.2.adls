@@ -383,7 +383,7 @@ definition
                                     ELEMENT[id14] occurrences matches {0..1} matches {    -- Position
                                         value matches {
                                             DV_CODED_TEXT[id9022] matches {
-                                                defining_code matches {[ac9007; at1002]}    -- Position (synthesised)
+                                                defining_code matches {[ac9007; at1001]}    -- Position (synthesised)
                                             }
                                         }
                                     }
@@ -500,11 +500,11 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the pulse or heart beat findings not captured in other fields.(en)">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"*Rhythm(en)">
                 description = <"*Specific conclusion about the rhythm of the pulse or heartbeat, drawn from a combination of the heart rate, pattern and other characteristics observed on examination.(en)">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"*Clinical interpretation(en)">
                 description = <"*Generic label to allow for any or all statements about the pulse or heart beat.(en)">
             >
@@ -518,63 +518,63 @@ terminology
                 description = <"*More specific pattern of an irregular pulse or heart beat.(en)">
                 comment = <"*Selection of a value from this value set is only valid if 'Irregular' is selected from the 'Regularity' data element.(en)">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"*Toe(en)">
                 description = <"*An unspecified toe.(en)">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Ear lobe(en)">
                 description = <"*The lobe of an unspecified ear.(en)">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"*Automatic, invasive(en)">
                 description = <"*The findings are observed invasively using a device such as an arterial catheter.(en)">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"*Brachial artery - Right(en)">
                 description = <"*The right brachial artery.(en)">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"*Brachial artery - Left(en)">
                 description = <"*The left brachial artery.(en)">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"*Finger(en)">
                 description = <"*An unspecified finger.(en)">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"*Heart beat presence(en)">
                 description = <"*Presence of a heart beat.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"*Pulse presence(en)">
                 description = <"*Presence of a pulse.(en)">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"*Femoral Artery - Right(en)">
                 description = <"*The right femoral artery.(en)">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"*Femoral Artery - Left(en)">
                 description = <"*The left femoral artery.(en)">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"*Carotid Artery - Right(en)">
                 description = <"*The right carotid artery.(en)">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"*Carotid Artery - Left(en)">
                 description = <"*The left carotid artery.(en)">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"*Heart(en)">
                 description = <"*The region of the heart.(en)">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"*Radial Artery - Right(en)">
                 description = <"*The right radial artery.(en)">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"*Radial Artery - Left(en)">
                 description = <"*The left radial artery.(en)">
             >
@@ -586,15 +586,15 @@ terminology
                 text = <"*Maximum(en)">
                 description = <"*Maximum pulse rate or heart rate observed during a period of exertion.(en)">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"*Automatic, non-invasive(en)">
                 description = <"*The findings are observed non-invasively using a device such as a pulse oximeter or a stethoscope.(en)">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"*Auscultation(en)">
                 description = <"*The findings are observed with the assistance of a device, such as a stethoscope.(en)">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Palpation(en)">
                 description = <"*The findings are observed by physical touch of the observer on the subject.(en)">
             >
@@ -603,23 +603,23 @@ terminology
                 description = <"*Description of the character of the pulse or heart beat.(en)">
                 comment = <"*Coding with a terminology is desired, where possible. For example: full, thready, bounding, slow rising, or collapsing. Multiple terms may be recorded.(en)">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"*Irregular(en)">
                 description = <"*The pattern is irregular.(en)">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"*Heart Rate(en)">
                 description = <"*The heart rate, measured in beats per minute.(en)">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"*Pulse Rate(en)">
                 description = <"*The pulse rate, measured in beats per minute.(en)">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"*Not detected(en)">
                 description = <"*A pulse or heart beat cannot be detected.(en)">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"*Present(en)">
                 description = <"*A pulse or heart beat can be detected.(en)">
             >
@@ -655,19 +655,19 @@ terminology
                 description = <"*Presence of a pulse or heart beat.(en)">
                 comment = <"*It can be implied that the pulse is present if Rate >0 beats/min.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"*Standing/upright(en)">
                 description = <"*The subject was standing, walking or running.(en)">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"*Reclining(en)">
                 description = <"*The subject was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.(en)">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"*Sitting(en)">
                 description = <"*The subject was sitting (for example on bed or chair).(en)">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"*Lying(en)">
                 description = <"*The subject was lying flat.(en)">
             >
@@ -675,15 +675,15 @@ terminology
                 text = <"*Position(en)">
                 description = <"*The body position of the subject during the observation.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Irregularly Irregular(en)">
                 description = <"*The pattern is irregular in a chaotic and unpredictable manner. For example, atrial fibrillation.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Regularly Irregular(en)">
                 description = <"*The pattern is irregular in a regular pattern,. For example, a dropped beat once every 'n' beats.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Regular(en)">
                 description = <"*The pattern is regular.(en)">
             >
@@ -754,11 +754,11 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the pulse or heart beat findings not captured in other fields.(en)">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"*Rhythm(en)">
                 description = <"*Specific conclusion about the rhythm of the pulse or heartbeat, drawn from a combination of the heart rate, pattern and other characteristics observed on examination.(en)">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"*Clinical interpretation(en)">
                 description = <"*Generic label to allow for any or all statements about the pulse or heart beat.(en)">
             >
@@ -772,63 +772,63 @@ terminology
                 description = <"*More specific pattern of an irregular pulse or heart beat.(en)">
                 comment = <"*Selection of a value from this value set is only valid if 'Irregular' is selected from the 'Regularity' data element.(en)">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"*Toe(en)">
                 description = <"*An unspecified toe.(en)">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Ear lobe(en)">
                 description = <"*The lobe of an unspecified ear.(en)">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"*Automatic, invasive(en)">
                 description = <"*The findings are observed invasively using a device such as an arterial catheter.(en)">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"*Brachial artery - Right(en)">
                 description = <"*The right brachial artery.(en)">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"*Brachial artery - Left(en)">
                 description = <"*The left brachial artery.(en)">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"*Finger(en)">
                 description = <"*An unspecified finger.(en)">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"*Heart beat presence(en)">
                 description = <"*Presence of a heart beat.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"*Pulse presence(en)">
                 description = <"*Presence of a pulse.(en)">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"*Femoral Artery - Right(en)">
                 description = <"*The right femoral artery.(en)">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"*Femoral Artery - Left(en)">
                 description = <"*The left femoral artery.(en)">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"*Carotid Artery - Right(en)">
                 description = <"*The right carotid artery.(en)">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"*Carotid Artery - Left(en)">
                 description = <"*The left carotid artery.(en)">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"*Heart(en)">
                 description = <"*The region of the heart.(en)">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"*Radial Artery - Right(en)">
                 description = <"*The right radial artery.(en)">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"*Radial Artery - Left(en)">
                 description = <"*The left radial artery.(en)">
             >
@@ -840,15 +840,15 @@ terminology
                 text = <"*Maximum(en)">
                 description = <"*Maximum pulse rate or heart rate observed during a period of exertion.(en)">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"*Automatic, non-invasive(en)">
                 description = <"*The findings are observed non-invasively using a device such as a pulse oximeter or a stethoscope.(en)">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"*Auscultation(en)">
                 description = <"*The findings are observed with the assistance of a device, such as a stethoscope.(en)">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Palpation(en)">
                 description = <"*The findings are observed by physical touch of the observer on the subject.(en)">
             >
@@ -857,23 +857,23 @@ terminology
                 description = <"*Description of the character of the pulse or heart beat.(en)">
                 comment = <"*Coding with a terminology is desired, where possible. For example: full, thready, bounding, slow rising, or collapsing. Multiple terms may be recorded.(en)">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"*Irregular(en)">
                 description = <"*The pattern is irregular.(en)">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"*Heart Rate(en)">
                 description = <"*The heart rate, measured in beats per minute.(en)">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"*Pulse Rate(en)">
                 description = <"*The pulse rate, measured in beats per minute.(en)">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"*Not detected(en)">
                 description = <"*A pulse or heart beat cannot be detected.(en)">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"*Present(en)">
                 description = <"*A pulse or heart beat can be detected.(en)">
             >
@@ -909,19 +909,19 @@ terminology
                 description = <"*Presence of a pulse or heart beat.(en)">
                 comment = <"*It can be implied that the pulse is present if Rate >0 beats/min.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"*Standing/upright(en)">
                 description = <"*The subject was standing, walking or running.(en)">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"*Reclining(en)">
                 description = <"*The subject was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.(en)">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"*Sitting(en)">
                 description = <"*The subject was sitting (for example on bed or chair).(en)">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"*Lying(en)">
                 description = <"*The subject was lying flat.(en)">
             >
@@ -929,15 +929,15 @@ terminology
                 text = <"*Position(en)">
                 description = <"*The body position of the subject during the observation.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Irregularly Irregular(en)">
                 description = <"*The pattern is irregular in a chaotic and unpredictable manner. For example, atrial fibrillation.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Regularly Irregular(en)">
                 description = <"*The pattern is irregular in a regular pattern,. For example, a dropped beat once every 'n' beats.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Regular(en)">
                 description = <"*The pattern is regular.(en)">
             >
@@ -1008,11 +1008,11 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligare beskrivning av fynden från puls eller hjärtslag som inte beskrivits i andra fält.">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"Rytm">
                 description = <"Specifik slutsats om pulsens eller hjärtslagens rytm, härledd från en kombination av hjärtfrekvens, mönster och andra egenskaper som observerats vid undersökningen.">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"Klinisk tolkning">
                 description = <"Allmänt fält för ett enskilt eller samtliga utlåtanden om pulsen eller hjärtrytmen.">
             >
@@ -1026,63 +1026,63 @@ terminology
                 description = <"Ett mer specifikt mönster av oregelbunden puls eller oregelbundna hjärtslag.">
                 comment = <"Ett val från den här värdemängden är endast giltigt om \"oregelbunden\" väljs från komponenten \"regelbunden\".">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"Tå">
                 description = <"En ospecificerad tå.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Örsnibb">
                 description = <"En ospecificerad örsnibb.">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"Automatisk, invasiv">
                 description = <"Fynden observeras invasivt med hjälp av utrustning såsom en arteriell kateter.">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"Armartär - Höger">
                 description = <"Höger armartär.">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"Armartär - Vänster">
                 description = <"Vänster armartär.">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"Finger">
                 description = <"Ett ospecificerat finger.">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"Närvaro av hjärtslag">
                 description = <"Hjärtslag är identifierade.">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Närvaro av puls">
                 description = <"Puls är identifierad.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Lårbensartär- Höger">
                 description = <"Höger lårbensartär.">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"Lårbensartär - Vänster">
                 description = <"Vänster lårbensartär.">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"Halsartär - Höger">
                 description = <"Höger halsartär.">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"Halsartär - Vänster">
                 description = <"Vänster halsartär.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Hjärt">
                 description = <"Hjärttrakten.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Strålbensartär - Höger">
                 description = <"Höger strålbensartär.">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"Strålbensartär - Vänster">
                 description = <"Vänster strålbensartär.">
             >
@@ -1094,15 +1094,15 @@ terminology
                 text = <"Maximum">
                 description = <"Maxpuls eller maxfrekvens observerad under ansträngning.">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"Automatisk, icke-invasiv">
                 description = <"Fynden observeras icke-invasivt med hjälp av utrustning såsom en pulsoximeter eller ett stetoskop.">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"Auskultation">
                 description = <"Fynden observeras med ett hjälpmedel, exempelvis ett stetoskop.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Palpation">
                 description = <"Läkare eller sjuksköterska observerar fynden genom fysisk beröring av patienten.">
             >
@@ -1111,23 +1111,23 @@ terminology
                 description = <"Beskrivning av pulsens eller hjärtslagets karaktär.">
                 comment = <"Kodning med en terminologi är önskvärd, om det är tillämpligt. Exempelvis: *full, thready, bounding, slow rising, or collapsing.* Flera termer kan registreras.">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"Oregelbunden">
                 description = <"Mönstret är oregelbundet.">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"Hjärtfrekvens">
                 description = <"Hjärtfrekvensen mätt i slag per minut.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Pulsfrekvens">
                 description = <"Pulsfrekvensen mätt i slag per minut.">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"Frånvaro">
                 description = <"Puls eller hjärtslag kan inte identifieras.">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"Närvaro">
                 description = <"Puls eller hjärtslag är identifierade.">
             >
@@ -1163,19 +1163,19 @@ terminology
                 description = <"Närvaro av puls eller hjärtslag.">
                 comment = <"Om frekvensen är större än 0 slag per minut är närvaro av puls underförstådd.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Stående eller upprätt">
                 description = <"Patienten stod, gick eller sprang.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Halvliggande">
                 description = <"Patienten låg i ungefär 45 graders vinkel, med benen upphöjda till bäckennivå.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sittande">
                 description = <"Patienten satt, exempelvis på en säng eller en stol.">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Liggande">
                 description = <"Patienten låg plant.">
             >
@@ -1183,15 +1183,15 @@ terminology
                 text = <"Kroppsställning">
                 description = <"Patientens kroppsställning under observationen.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Oregelbundet oregelbunden">
                 description = <"Mönstret är oregelbundet på ett kaotiskt och oförutsägbart sätt, exempelvis förmaksflimmer.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Regelbundet oregelbunden">
                 description = <"Mönstret är oregelbundet i ett regelbundet mönster, exempelvis ett överhoppat hjärtslag var N:te slag.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regelbunden">
                 description = <"Mönstret är regelbundet.">
             >
@@ -1262,11 +1262,11 @@ terminology
                 text = <"Kommentti">
                 description = <"Pulssi- tai sykelöydösten kertomusmuodossa olevat lisätiedot, joita ei voida ilmoittaa muissa kentissä.">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"Rytmi">
                 description = <"Nimenomainen johtopäätös pulssin tai sykkeen rytmistä, perustuu sykkeeseen, sykkeen ominaisuuksiin ja muihin tutkimuksessa havaittuihin ominaispiirteisiin.">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"Kliininen tulkinta">
                 description = <"Yleinen otsikko, jonka alle voidaan kirjata jokin tai kaikki lausunnot pulssista tai sykkeestä.">
             >
@@ -1280,63 +1280,63 @@ terminology
                 description = <"Epäsäännöllisen pulssin tai sykkeen tarkempi luonnehdinta.">
                 comment = <"Selection of a value from this value set is only valid if 'Irregular' is selected from the 'Regularity' data element.">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"Varvas">
                 description = <"Tarkemmin määrittämätön varvas.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Korvalehti">
                 description = <"Tarkemmin määrittämätön korvalehti.">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"Automaattinen, kajoava">
                 description = <"Löydökset havaitaan kajoavasti jonkin laitteen avulla, kuten valtimokatetrilla.">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"Olkavarsivaltimo - oikea">
                 description = <"Oikea olkavarsivaltimo.">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"Olkavarsivaltimo - vasen">
                 description = <"Vasen olkavarsivaltimo.">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"Sormi">
                 description = <"Tarkemmin määrittämätön sormi.">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"Sykkeen läsnäolo">
                 description = <"Sykkeen läsnäolo.">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Pulssin läsnäolo">
                 description = <"Pulssin läsnäolo.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Reisivaltimo – oikea">
                 description = <"Oikea reisivaltimo.">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"Reisivaltimo – vasen">
                 description = <"Vasen reisivaltimo.">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"Kaulavaltimo – oikea">
                 description = <"Oikea kaulavaltimo.">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"Kaulavaltimo – vasen">
                 description = <"Vasen kaulavaltimo.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Sydän">
                 description = <"Sydämen alue.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Värttinävaltimo – oikea">
                 description = <"Oikea värttinävaltimo.">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"Värttinävaltimo – vasen">
                 description = <"Vasen värttinävaltimo.">
             >
@@ -1348,15 +1348,15 @@ terminology
                 text = <"Korkein">
                 description = <"Korkein rasituksen aikana havaittu syke.">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"Automaattinen, kajoamaton">
                 description = <"Löydökset havaitaan kajoamattomasti jonkin laitteen avulla, esimerkiksi pulssioksimetrilla tai stetoskoopilla.">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"Auskultaatio">
                 description = <"Löydökset havaitaan jonkin laitteen avulla, esimerkiksi stetoskoopilla.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Palpaatio">
                 description = <"Löydökset havaitaan havaitsijan koskettaessa tutkittavaa fyysisesti.">
             >
@@ -1365,23 +1365,23 @@ terminology
                 description = <"Kuvaus pulssin tai sykkeen luonteesta.">
                 comment = <"Coding with a terminology is desired, where possible. For example: full, thready, bounding, slow rising, or collapsing. Multiple terms may be recorded.">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"Epäsäännöllinen">
                 description = <"Syke on epäsäännöllinen.">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"Syke">
                 description = <"Syke mitattuna lyönteinä minuutissa.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Pulssin taajuus">
                 description = <"Pulssin taajuus mitattuna lyönteinä minuutissa.">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"Ei havaittu">
                 description = <"Pulssi tai syke ei ole havaittavissa.">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"Havaittu">
                 description = <"Pulssi tai syke on havaittavissa.">
             >
@@ -1417,19 +1417,19 @@ terminology
                 description = <"Pulssin tai sykkeen läsnäolo.">
                 comment = <"It can be implied that the pulse is present if Rate >0 beats/min.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Seisten/pystyssä">
                 description = <"Tutkittava istui, käveli tai juoksi.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Taaksepäin nojaten">
                 description = <"Tutkittava nojasi taaksepäin noin 45 asteen kulmassa jalat nostettuina lantion tasalle.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Istuen">
                 description = <"Tutkittava istui (esimerkiksi vuoteella tai tuolissa).">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Makuulla">
                 description = <"Tutkittava oli makuulla.">
             >
@@ -1437,15 +1437,15 @@ terminology
                 text = <"Asento">
                 description = <"Tutkittavan kehon asento havainnoinnin aikana.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Epäsäännöllisesti epäsäännöllinen">
                 description = <"Syke on epäsäännöllinen kaoottisella ja ennustamattomalla tavalla. Esimerkiksi eteisvärinä.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Säännöllisesti epäsäännöllinen">
                 description = <"Syke on epäsäännöllinen, mutta säännöllisellä tavalla. Esimerkiksi yksittäinen puuttuva lyönti joka n:nnen lyönnin välein.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Säännöllinen">
                 description = <"Syke on säännöllinen.">
             >
@@ -1516,11 +1516,11 @@ terminology
                 text = <"Comentários">
                 description = <"Narrativa adicional sobre o pulso ou batimento cardíaco achados não capturados em outros campos.">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"Ritmo">
                 description = <"Conclusão específica sobre o ritmo do pulso ou batimento cardíaco, extraído de uma combinação da freqüência cardíaca, padrão e outras características observadas no exame.">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"Interpretação clínica">
                 description = <"Etiqueta genérica para permitir qualquer ou todas as declarações sobre o pulso ou batimento cardíaco.">
             >
@@ -1534,63 +1534,63 @@ terminology
                 description = <"Padrão mais específico de um pulso ou batimento cardíaco irregular.">
                 comment = <"A seleção de um valor a partir deste conjunto de valores só é válida se 'Irregular' for selecionado a partir do elemento de dados 'Regularidade'.">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"Dedo do pé">
                 description = <"Um dedo do pé inespecífico.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Lobo da orelha">
                 description = <"Um lobo da orelha inespecífico.">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"Automática, invasiva">
                 description = <"Os achados são observados de forma invasiva utilizando um dispositivo como um catéter arterial.">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"Artéria Braquial Direita">
                 description = <"A artéria braquial direita.">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"Artéria Braquial Esquerda">
                 description = <"A artéria braquial esquerda.">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"Dedo">
                 description = <"Um dedo inespecífico.">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"Batimento cardíaco presente">
                 description = <"Presença de batimento cardíaco.">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Pulso presente">
                 description = <"Presença do pulso.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Artéria femural Direita">
                 description = <"A artéria femural direita.">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"Artéria Femural Esquerda">
                 description = <"A artéria femural esquerda.">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"Artéria Carótida Direita">
                 description = <"A artéria carótida direita.">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"Artéria Carótida Esquerda">
                 description = <"A artéria carótida esquerda.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Coração">
                 description = <"A região do coração.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Artéria Radial Direita">
                 description = <"A artéria radial direita.">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"Artéria Radial - Esquerda">
                 description = <"A artéria radial esquerda.">
             >
@@ -1602,15 +1602,15 @@ terminology
                 text = <"Máximo">
                 description = <"Frequência de pulso ou frequência cardíaca máximos observados durante o período de esforço.">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"Automática, não invasiva">
                 description = <"Os resultados são observados de forma não invasiva utilizando um dispositivo como um oxímetro de pulso ou um estetoscópio.">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"Ausculta">
                 description = <"Os resultados são observados com a ajuda de um dispositivo, como um estetoscópio.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Palpação">
                 description = <"Os resultados são observados pelo toque físico no sujeito do cuidado pelo observador.">
             >
@@ -1619,23 +1619,23 @@ terminology
                 description = <"Descrição da característica do pulso ou batimento cardíaco.">
                 comment = <"A codificação com uma terminologia é desejada, quando possível. Por exemplo: cheio, filiforme, delimitado, aumento lento ou em colapso. Múltiplos termos podem ser registrados.">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"Irregular">
                 description = <"O padrão é irregular.">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"Frequência cardíaca">
                 description = <"A frequência cardíaca, mensurada em batimentos por minuto.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Frequência do Pulso">
                 description = <"A frequência do pulso, mensurada em batimentos por minuto.">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"Não detectado">
                 description = <"Um pulso ou batimento cardíaco não podem ser detectados.">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"Presente">
                 description = <"Um pulso ou batimento cardíaco podem ser detectados.">
             >
@@ -1671,19 +1671,19 @@ terminology
                 description = <"Presença de pulso ou batimento cardíaco.">
                 comment = <"Pode ser implícito que o pulso está presente se a frequência>0 batimentos/min.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Em pé">
                 description = <"O sujeito estava em pé, andando ou correndo.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Reclinado">
                 description = <"O sujeito estava reclinado em um ângulo aproximado de 45°, com as pernas elevadas ao nível da pelve.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sentado">
                 description = <"O sujeito estava sentado (por exemplo, na cama ou cadeira)">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Deitado">
                 description = <"O sujeito estava deitado.">
             >
@@ -1691,15 +1691,15 @@ terminology
                 text = <"Posição">
                 description = <"A posição do corpo do sujeito da atenção durante a observação.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Irregular irregularmente">
                 description = <"O padrão é irregular de forma caótica e imprevisível. Por exemplo, fibrilação atrial.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Irregular regularmente">
                 description = <"O padrão é irregular em um padrão regular. Por exemplo: a cada \"n\" batimentos existe uma irregularidade.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regular">
                 description = <"O padrão é regular.">
             >
@@ -1770,11 +1770,11 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the pulse or heart beat findings not captured in other fields.(en)">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"*Rhythm(en)">
                 description = <"*Specific conclusion about the rhythm of the pulse or heartbeat, drawn from a combination of the heart rate, pattern and other characteristics observed on examination.(en)">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"*Clinical interpretation(en)">
                 description = <"*Generic label to allow for any or all statements about the pulse or heart beat.(en)">
             >
@@ -1788,63 +1788,63 @@ terminology
                 description = <"*More specific pattern of an irregular pulse or heart beat.(en)">
                 comment = <"*Selection of a value from this value set is only valid if 'Irregular' is selected from the 'Regularity' data element.(en)">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"*Toe(en)">
                 description = <"*An unspecified toe.(en)">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Ear lobe(en)">
                 description = <"*The lobe of an unspecified ear.(en)">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"*Automatic, invasive(en)">
                 description = <"*The findings are observed invasively using a device such as an arterial catheter.(en)">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"*Brachial artery - Right(en)">
                 description = <"*The right brachial artery.(en)">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"*Brachial artery - Left(en)">
                 description = <"*The left brachial artery.(en)">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"*Finger(en)">
                 description = <"*An unspecified finger.(en)">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"*Heart beat presence(en)">
                 description = <"*Presence of a heart beat.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"*Pulse presence(en)">
                 description = <"*Presence of a pulse.(en)">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"*Femoral Artery - Right(en)">
                 description = <"*The right femoral artery.(en)">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"*Femoral Artery - Left(en)">
                 description = <"*The left femoral artery.(en)">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"*Carotid Artery - Right(en)">
                 description = <"*The right carotid artery.(en)">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"*Carotid Artery - Left(en)">
                 description = <"*The left carotid artery.(en)">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"*Heart(en)">
                 description = <"*The region of the heart.(en)">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"*Radial Artery - Right(en)">
                 description = <"*The right radial artery.(en)">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"*Radial Artery - Left(en)">
                 description = <"*The left radial artery.(en)">
             >
@@ -1856,15 +1856,15 @@ terminology
                 text = <"*Maximum(en)">
                 description = <"*Maximum pulse rate or heart rate observed during a period of exertion.(en)">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"*Automatic, non-invasive(en)">
                 description = <"*The findings are observed non-invasively using a device such as a pulse oximeter or a stethoscope.(en)">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"*Auscultation(en)">
                 description = <"*The findings are observed with the assistance of a device, such as a stethoscope.(en)">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Palpation(en)">
                 description = <"*The findings are observed by physical touch of the observer on the subject.(en)">
             >
@@ -1873,23 +1873,23 @@ terminology
                 description = <"*Description of the character of the pulse or heart beat.(en)">
                 comment = <"*Coding with a terminology is desired, where possible. For example: full, thready, bounding, slow rising, or collapsing. Multiple terms may be recorded.(en)">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"*Irregular(en)">
                 description = <"*The pattern is irregular.(en)">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"*Heart Rate(en)">
                 description = <"*The heart rate, measured in beats per minute.(en)">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"*Pulse Rate(en)">
                 description = <"*The pulse rate, measured in beats per minute.(en)">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"*Not detected(en)">
                 description = <"*A pulse or heart beat cannot be detected.(en)">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"*Present(en)">
                 description = <"*A pulse or heart beat can be detected.(en)">
             >
@@ -1925,19 +1925,19 @@ terminology
                 description = <"*Presence of a pulse or heart beat.(en)">
                 comment = <"*It can be implied that the pulse is present if Rate >0 beats/min.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"*Standing/upright(en)">
                 description = <"*The subject was standing, walking or running.(en)">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"*Reclining(en)">
                 description = <"*The subject was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.(en)">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"*Sitting(en)">
                 description = <"*The subject was sitting (for example on bed or chair).(en)">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"*Lying(en)">
                 description = <"*The subject was lying flat.(en)">
             >
@@ -1945,15 +1945,15 @@ terminology
                 text = <"*Position(en)">
                 description = <"*The body position of the subject during the observation.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Irregularly Irregular(en)">
                 description = <"*The pattern is irregular in a chaotic and unpredictable manner. For example, atrial fibrillation.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Regularly Irregular(en)">
                 description = <"*The pattern is irregular in a regular pattern,. For example, a dropped beat once every 'n' beats.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Regular(en)">
                 description = <"*The pattern is regular.(en)">
             >
@@ -2024,11 +2024,11 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about the pulse or heart beat findings not captured in other fields.">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"Rhythm">
                 description = <"Specific conclusion about the rhythm of the pulse or heartbeat, drawn from a combination of the heart rate, pattern and other characteristics observed on examination.">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"Clinical interpretation">
                 description = <"Generic label to allow for any or all statements about the pulse or heart beat.">
             >
@@ -2042,63 +2042,63 @@ terminology
                 description = <"More specific pattern of an irregular pulse or heart beat.">
                 comment = <"Selection of a value from this value set is only valid if 'Irregular' is selected from the 'Regularity' data element.">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"Toe">
                 description = <"An unspecified toe.">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Ear lobe">
                 description = <"The lobe of an unspecified ear.">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"Automatic, invasive">
                 description = <"The findings are observed invasively using a device such as an arterial catheter.">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"Brachial artery - Right">
                 description = <"The right brachial artery.">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"Brachial artery - Left">
                 description = <"The left brachial artery.">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"Finger">
                 description = <"An unspecified finger.">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"Heart beat presence">
                 description = <"Presence of a heart beat.">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Pulse presence">
                 description = <"Presence of a pulse.">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Femoral Artery - Right">
                 description = <"The right femoral artery.">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"Femoral Artery - Left">
                 description = <"The left femoral artery.">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"Carotid Artery - Right">
                 description = <"The right carotid artery.">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"Carotid Artery - Left">
                 description = <"The left carotid artery.">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Heart">
                 description = <"The region of the heart.">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Radial Artery - Right">
                 description = <"The right radial artery.">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"Radial Artery - Left">
                 description = <"The left radial artery.">
             >
@@ -2110,15 +2110,15 @@ terminology
                 text = <"Maximum">
                 description = <"Maximum pulse rate or heart rate observed during a period of exertion.">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"Automatic, non-invasive">
                 description = <"The findings are observed non-invasively using a device such as a pulse oximeter or a stethoscope.">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"Auscultation">
                 description = <"The findings are observed with the assistance of a device, such as a stethoscope.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Palpation">
                 description = <"The findings are observed by physical touch of the observer on the subject.">
             >
@@ -2127,23 +2127,23 @@ terminology
                 description = <"Description of the character of the pulse or heart beat.">
                 comment = <"Coding with a terminology is desired, where possible. For example: full, thready, bounding, slow rising, or collapsing. Multiple terms may be recorded.">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"Irregular">
                 description = <"The pattern is irregular.">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"Heart Rate">
                 description = <"The heart rate, measured in beats per minute.">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Pulse Rate">
                 description = <"The pulse rate, measured in beats per minute.">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"Not detected">
                 description = <"A pulse or heart beat cannot be detected.">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"Present">
                 description = <"A pulse or heart beat can be detected.">
             >
@@ -2179,19 +2179,19 @@ terminology
                 description = <"Presence of a pulse or heart beat.">
                 comment = <"It can be implied that the pulse is present if Rate >0 beats/min.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Standing/upright">
                 description = <"The subject was standing, walking or running.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Reclining">
                 description = <"The subject was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sitting">
                 description = <"The subject was sitting (for example on bed or chair).">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Lying">
                 description = <"The subject was lying flat.">
             >
@@ -2199,15 +2199,15 @@ terminology
                 text = <"Position">
                 description = <"The body position of the subject during the observation.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Irregularly Irregular">
                 description = <"The pattern is irregular in a chaotic and unpredictable manner. For example, atrial fibrillation.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Regularly Irregular">
                 description = <"The pattern is irregular in a regular pattern,. For example, a dropped beat once every 'n' beats.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regular">
                 description = <"The pattern is regular.">
             >
@@ -2278,11 +2278,11 @@ terminology
                 text = <"Comentarios">
                 description = <"Información narrativa adicional sobre hallazgos del pulso o latidos que no fueron registrados en otros campos.">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"Ritmo">
                 description = <"Conclusión específica sobre el ritmo del pulso o latidos, derivado de la combinación de la frecuencia, el patrón, y otras características observadas durante la examinación.">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"Interpretación clínica">
                 description = <"Etiqueta genérica que permite registrar cualquier declaración sobre el pulso o latidos.">
             >
@@ -2296,63 +2296,63 @@ terminology
                 description = <"Patrón más específico de un pulso o latido irregular.">
                 comment = <"La selección de un valor de este conjunto de valores es válida solo si 'irregular' es seleccionado para el elemento 'regularidad'">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"Dedo del pie">
                 description = <"Cualquier dedo del pie">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"Lóbulo de la oreja">
                 description = <"Lóbulo de cualquier oreja">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"Automatico, invasivo">
                 description = <"Los hallazgos fueron observados de forma invasiva, utilizando un dispositivo como un cateter arterial.">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"Arteria braquial derecha">
                 description = <"Arteria braquial derecha.">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"Arteria braquial izquierda">
                 description = <"Arteria braquial izquierda.">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"Dedo">
                 description = <"Cualquier dedo.">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"Presencia latidos">
                 description = <"Presencia latidos">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"Presencia del pulso">
                 description = <"Presencia del pulso">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"Arteria femoral - Derecha">
                 description = <"Arteria femoral derecha">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"Arteria femoral - Izquierda">
                 description = <"Arteria femoral izquierda">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"Arteria carótida - Derecha">
                 description = <"Arteria carótida derecha">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"Arteria carótida - Izquierda">
                 description = <"Arteria carótida izquierda">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"Corazón">
                 description = <"Región del corazón">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"Arteria radial - Derecha">
                 description = <"Arteria radial derecha">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"Arteria radial - Izquierda">
                 description = <"Arteria radial izquierda">
             >
@@ -2364,15 +2364,15 @@ terminology
                 text = <"Máximo">
                 description = <"Frecuencia máxima de pulso o latidos fue observada durante el período del ejecricio.">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"Automático, no invasivo">
                 description = <"Los hallazgos gueron observados mediante un dispositivo como un oxímetro de pulso.">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"Auscultación">
                 description = <"Los hallazgos fueron obserbados mediante la asistencia de un dispositivo, como un estetoscopio.">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"Palpación">
                 description = <"Los hallazgos se realizam mediante contacto físico sobre el sujeto.">
             >
@@ -2381,23 +2381,23 @@ terminology
                 description = <"Descripción del carácter del pulso o latidos del corazón.">
                 comment = <"*Coding with a terminology is desired, where possible. For example: full, thready, bounding, slow rising, or collapsing. Multiple terms may be recorded.(en)">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"Irregular">
                 description = <"El patrón es irregular">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"Frecuencia cardiaca">
                 description = <"Frecuencia cardiaca medida en latidos por minuto">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"Frecuencia del pulso">
                 description = <"Frecuencia del pulso medida en latidos por minut">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"Ausente">
                 description = <"Pulso o latidos no son detectados.">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"Presente">
                 description = <"Pulso o latidos son detectados.">
             >
@@ -2433,19 +2433,19 @@ terminology
                 description = <"Presencia del pulso o latidos del corazón.">
                 comment = <"El pulso > 0 latidos/min impica que el pulso está presente.">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"Parado">
                 description = <"El sujeto está parado, caminando o corriendo.">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"Reclinado">
                 description = <"El sujeto está reclinado en un ángulo aproximado a los 45 grados, con las piernas elevadas al nivel de la pelvis.">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"Sentado">
                 description = <"El sujeto está sentado en una silla o cama">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"Acostado">
                 description = <"El sujeto está acostado de forma horizontal">
             >
@@ -2453,15 +2453,15 @@ terminology
                 text = <"Posición">
                 description = <"Posición del cuerpo del sujeto durante la observación.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Irregularmente irregular">
                 description = <"El patrón es irregular de forma aleatoria. Por ejemplo fibrilación atrial.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Regularmente irregular">
                 description = <"El patrón es irregular en un patrón regular. Por ejemplo baja de un latido cada N latidos.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Regular">
                 description = <"El patrón es regular">
             >
@@ -2532,11 +2532,11 @@ terminology
                 text = <"*Comment(en)">
                 description = <"*Additional narrative about the pulse or heart beat findings not captured in other fields.(en)">
             >
-            ["at1059"] = <
+            ["at1058"] = <
                 text = <"*Rhythm(en)">
                 description = <"*Specific conclusion about the rhythm of the pulse or heartbeat, drawn from a combination of the heart rate, pattern and other characteristics observed on examination.(en)">
             >
-            ["at1058"] = <
+            ["at1057"] = <
                 text = <"*Clinical interpretation(en)">
                 description = <"*Generic label to allow for any or all statements about the pulse or heart beat.(en)">
             >
@@ -2550,63 +2550,63 @@ terminology
                 description = <"*More specific pattern of an irregular pulse or heart beat.(en)">
                 comment = <"*Selection of a value from this value set is only valid if 'Irregular' is selected from the 'Regularity' data element.(en)">
             >
-            ["at1055"] = <
+            ["at1054"] = <
                 text = <"*Toe(en)">
                 description = <"*An unspecified toe.(en)">
             >
-            ["at1052"] = <
+            ["at1051"] = <
                 text = <"*Ear lobe(en)">
                 description = <"*The lobe of an unspecified ear.(en)">
             >
-            ["at1051"] = <
+            ["at1050"] = <
                 text = <"*Automatic, invasive(en)">
                 description = <"*The findings are observed invasively using a device such as an arterial catheter.(en)">
             >
-            ["at1050"] = <
+            ["at1049"] = <
                 text = <"*Brachial artery - Right(en)">
                 description = <"*The right brachial artery.(en)">
             >
-            ["at1049"] = <
+            ["at1048"] = <
                 text = <"*Brachial artery - Left(en)">
                 description = <"*The left brachial artery.(en)">
             >
-            ["at1048"] = <
+            ["at1047"] = <
                 text = <"*Finger(en)">
                 description = <"*An unspecified finger.(en)">
             >
-            ["at1047"] = <
+            ["at1046"] = <
                 text = <"*Heart beat presence(en)">
                 description = <"*Presence of a heart beat.(en)">
             >
-            ["at1046"] = <
+            ["at1045"] = <
                 text = <"*Pulse presence(en)">
                 description = <"*Presence of a pulse.(en)">
             >
-            ["at1045"] = <
+            ["at1044"] = <
                 text = <"*Femoral Artery - Right(en)">
                 description = <"*The right femoral artery.(en)">
             >
-            ["at1044"] = <
+            ["at1043"] = <
                 text = <"*Femoral Artery - Left(en)">
                 description = <"*The left femoral artery.(en)">
             >
-            ["at1043"] = <
+            ["at1042"] = <
                 text = <"*Carotid Artery - Right(en)">
                 description = <"*The right carotid artery.(en)">
             >
-            ["at1042"] = <
+            ["at1041"] = <
                 text = <"*Carotid Artery - Left(en)">
                 description = <"*The left carotid artery.(en)">
             >
-            ["at1041"] = <
+            ["at1040"] = <
                 text = <"*Heart(en)">
                 description = <"*The region of the heart.(en)">
             >
-            ["at1040"] = <
+            ["at1039"] = <
                 text = <"*Radial Artery - Right(en)">
                 description = <"*The right radial artery.(en)">
             >
-            ["at1039"] = <
+            ["at1038"] = <
                 text = <"*Radial Artery - Left(en)">
                 description = <"*The left radial artery.(en)">
             >
@@ -2618,15 +2618,15 @@ terminology
                 text = <"*Maximum(en)">
                 description = <"*Maximum pulse rate or heart rate observed during a period of exertion.(en)">
             >
-            ["at1035"] = <
+            ["at1034"] = <
                 text = <"*Automatic, non-invasive(en)">
                 description = <"*The findings are observed non-invasively using a device such as a pulse oximeter or a stethoscope.(en)">
             >
-            ["at1034"] = <
+            ["at1033"] = <
                 text = <"*Auscultation(en)">
                 description = <"*The findings are observed with the assistance of a device, such as a stethoscope.(en)">
             >
-            ["at1033"] = <
+            ["at1032"] = <
                 text = <"*Palpation(en)">
                 description = <"*The findings are observed by physical touch of the observer on the subject.(en)">
             >
@@ -2634,23 +2634,23 @@ terminology
                 text = <"*Character(en)">
                 description = <"*Description of the character of the pulse or heart beat.(en)">
             >
-            ["at1029"] = <
+            ["at1028"] = <
                 text = <"*Irregular(en)">
                 description = <"*The pattern is irregular.(en)">
             >
-            ["at1028"] = <
+            ["at1027"] = <
                 text = <"*Heart Rate(en)">
                 description = <"*The heart rate, measured in beats per minute.(en)">
             >
-            ["at1027"] = <
+            ["at1026"] = <
                 text = <"*Pulse Rate(en)">
                 description = <"*The pulse rate, measured in beats per minute.(en)">
             >
-            ["at1026"] = <
+            ["at1025"] = <
                 text = <"*Not detected(en)">
                 description = <"*A pulse or heart beat cannot be detected.(en)">
             >
-            ["at1025"] = <
+            ["at1024"] = <
                 text = <"*Present(en)">
                 description = <"*A pulse or heart beat can be detected.(en)">
             >
@@ -2686,19 +2686,19 @@ terminology
                 description = <"*Presence of a pulse or heart beat.(en)">
                 comment = <"*It can be implied that the pulse is present if Rate >0 beats/min.(en)">
             >
-            ["at1004"] = <
+            ["at1003"] = <
                 text = <"*Standing/upright(en)">
                 description = <"*The subject was standing, walking or running.(en)">
             >
-            ["at1003"] = <
+            ["at1002"] = <
                 text = <"*Reclining(en)">
                 description = <"*The subject was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.(en)">
             >
-            ["at1002"] = <
+            ["at1001"] = <
                 text = <"*Sitting(en)">
                 description = <"*The subject was sitting (for example on bed or chair).(en)">
             >
-            ["at1001"] = <
+            ["at1000"] = <
                 text = <"*Lying(en)">
                 description = <"*The subject was lying flat.(en)">
             >
@@ -2706,15 +2706,15 @@ terminology
                 text = <"*Position(en)">
                 description = <"*The body position of the subject during the observation.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Irregularly Irregular(en)">
                 description = <"*The pattern is irregular in a chaotic and unpredictable manner. For example, atrial fibrillation.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Regularly Irregular(en)">
                 description = <"*The pattern is irregular in a regular pattern,. For example, a dropped beat once every 'n' beats.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Regular(en)">
                 description = <"*The pattern is regular.(en)">
             >
@@ -2745,38 +2745,38 @@ terminology
     value_sets = <
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at1033", "at1034", "at1035", "at1051">
+            members = <"at1032", "at1033", "at1034", "at1050">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at1004", "at1002", "at1003", "at1001">
+            members = <"at1003", "at1001", "at1002", "at1000">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at1027", "at1028">
+            members = <"at1026", "at1027">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at1025", "at1026">
+            members = <"at1024", "at1025">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at1046", "at1047">
+            members = <"at1045", "at1046">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at1039", "at1040", "at1041", "at1042", "at1043", "at1044", "at1045", "at1050", "at1049", "at1048", "at1055", "at1052">
+            members = <"at1038", "at1039", "at1040", "at1041", "at1042", "at1043", "at1044", "at1049", "at1048", "at1047", "at1054", "at1051">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at1058", "at1059">
+            members = <"at1057", "at1058">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at8", "at9">
+            members = <"at7", "at8">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at7", "at1029">
+            members = <"at6", "at1028">
         >
     >

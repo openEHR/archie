@@ -43,7 +43,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9009] matches {
-                        defining_code matches {[at3]}    -- Screening planned
+                        defining_code matches {[at2]}    -- Screening planned
                     }
                 }
             }
@@ -55,7 +55,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9011] matches {
-                        defining_code matches {[at9]}    -- Screening postponed
+                        defining_code matches {[at8]}    -- Screening postponed
                     }
                 }
             }
@@ -67,7 +67,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9013] matches {
-                        defining_code matches {[at10]}    -- Screening cancelled
+                        defining_code matches {[at9]}    -- Screening cancelled
                     }
                 }
             }
@@ -79,7 +79,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9015] matches {
-                        defining_code matches {[at31]}    -- Screening declined
+                        defining_code matches {[at30]}    -- Screening declined
                     }
                 }
             }
@@ -91,7 +91,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9017] matches {
-                        defining_code matches {[at24]}    -- Screening expired
+                        defining_code matches {[at23]}    -- Screening expired
                     }
                 }
             }
@@ -103,7 +103,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9019] matches {
-                        defining_code matches {[at4]}    -- Screening scheduled
+                        defining_code matches {[at3]}    -- Screening scheduled
                     }
                 }
             }
@@ -115,7 +115,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9021] matches {
-                        defining_code matches {[at30]}    -- Screening rescheduled
+                        defining_code matches {[at29]}    -- Screening rescheduled
                     }
                 }
             }
@@ -127,7 +127,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9023] matches {
-                        defining_code matches {[at5]}    -- Screening performed
+                        defining_code matches {[at4]}    -- Screening performed
                     }
                 }
             }
@@ -139,7 +139,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9025] matches {
-                        defining_code matches {[at25]}    -- Screening incomplete
+                        defining_code matches {[at24]}    -- Screening incomplete
                     }
                 }
             }
@@ -151,7 +151,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9027] matches {
-                        defining_code matches {[at11]}    -- Screening suspended
+                        defining_code matches {[at10]}    -- Screening suspended
                     }
                 }
             }
@@ -163,7 +163,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9029] matches {
-                        defining_code matches {[at7]}    -- Screening abandoned
+                        defining_code matches {[at6]}    -- Screening abandoned
                     }
                 }
             }
@@ -175,7 +175,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9031] matches {
-                        defining_code matches {[at6]}    -- Screening activities complete
+                        defining_code matches {[at5]}    -- Screening activities complete
                     }
                 }
             }
@@ -285,7 +285,7 @@ terminology
                 text = <"Screening declined">
                 description = <"The planned Screening was offered but was declined prior to commencement.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Screening declined">
                 description = <"The planned Screening was offered but was declined prior to commencement.">
             >
@@ -293,7 +293,7 @@ terminology
                 text = <"Screening rescheduled">
                 description = <"Appointment for a repeat screening service has been made.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Screening rescheduled">
                 description = <"Appointment for a repeat screening service has been made.">
             >
@@ -313,7 +313,7 @@ terminology
                 text = <"Screening incomplete">
                 description = <"The Screening was commenced but unable to be completed.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Screening incomplete">
                 description = <"The Screening was commenced but unable to be completed.">
             >
@@ -321,7 +321,7 @@ terminology
                 text = <"Screening expired">
                 description = <"The Screening has expired before the Screening episode has been completed.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Screening expired">
                 description = <"The Screening has expired before the Screening episode has been completed.">
             >
@@ -353,7 +353,7 @@ terminology
                 text = <"Screening suspended">
                 description = <"The Screening has been suspended without completion.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Screening suspended">
                 description = <"The Screening has been suspended without completion.">
             >
@@ -361,7 +361,7 @@ terminology
                 text = <"Screening cancelled">
                 description = <"The planned Screening has been cancelled prior to commencement.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Screening cancelled">
                 description = <"The planned Screening has been cancelled prior to commencement.">
             >
@@ -369,7 +369,7 @@ terminology
                 text = <"Screening postponed">
                 description = <"The planned Screening has been postponed.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Screening postponed">
                 description = <"The planned Screening has been postponed.">
             >
@@ -377,7 +377,7 @@ terminology
                 text = <"Screening abandoned">
                 description = <"The Screening has been ceased before the activity has been completed.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Screening abandoned">
                 description = <"The Screening has been ceased before the activity has been completed.">
             >
@@ -385,7 +385,7 @@ terminology
                 text = <"Screening activities complete">
                 description = <"All planned screening activities have been completed.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Screening activities complete">
                 description = <"All planned screening activities have been completed.">
             >
@@ -393,7 +393,7 @@ terminology
                 text = <"Screening performed">
                 description = <"The healthcare provider has performed the Screening activity.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Screening performed">
                 description = <"The healthcare provider has performed the Screening activity.">
             >
@@ -401,7 +401,7 @@ terminology
                 text = <"Screening scheduled">
                 description = <"Appointment for a screening service has been made.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Screening scheduled">
                 description = <"Appointment for a screening service has been made.">
             >
@@ -409,7 +409,7 @@ terminology
                 text = <"Screening planned">
                 description = <"Screening is planned.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Screening planned">
                 description = <"Screening is planned.">
             >

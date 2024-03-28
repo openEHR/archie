@@ -88,11 +88,11 @@ terminology
                 text = <"Outbreak">
                 description = <"Text or coded description of the outbreak identified e.g. Salmonella.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Aborted">
                 description = <"The subject was associated with the case identifier in error.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Completed">
                 description = <"The case has been associated with the given case identifier.">
             >
@@ -125,11 +125,11 @@ terminology
                 text = <"الفاشية">
                 description = <"وصف نصي أو مُرمَز للفاشية التي تم التعرف عليها, مثلا: السالمونيلا.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"توقف فجأة">
                 description = <"تم تعلق الشخص مع العنصر التعريفي للحالة (الذي تم فيه خطأ ما)">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"مكتمل">
                 description = <"الحالة متعلقة بالعنصر التعريفي الذي تم إعطاؤه لها">
             >
@@ -156,6 +156,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at5", "at6">
+            members = <"at4", "at5">
         >
     >

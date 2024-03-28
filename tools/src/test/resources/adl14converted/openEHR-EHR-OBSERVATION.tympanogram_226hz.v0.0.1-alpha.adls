@@ -432,11 +432,11 @@ terminology
                 text = <"*Static Compliance (Volume)(en)">
                 description = <"*Static compliance (SC) is the greatest amount of acoustic energy absorbed by the middle ear system (the vertical peak of the tympanogram curve).(en)">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"*Type B - Low Volume(en)">
                 description = <"*Rounded curve with no measurable peak pressure, reduced static compliance; ear canal volume within normal range. Equivalent to the unqualified Type B classification.(en)">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"*Type B - High Volume(en)">
                 description = <"*Rounded curve with no measurable peak pressure; static compliance on lower limits of normal range; ear canal volume within normal range.(en)">
             >
@@ -444,7 +444,7 @@ terminology
                 text = <"*New element(en)">
                 description = <"**(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*Type D(en)">
                 description = <"*Double peak(en)">
             >
@@ -453,15 +453,15 @@ terminology
                 description = <"*The amount of acoustic energy absorbed by the middle ear system at a specified pressure, measured in cc3 or ml.(en)">
                 comment = <"*If the tympanometer records compliance in cc3 or ml, use this data element. If the tympanometer records compliance in mmho, use the 'Compliance (Conductance) data element.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Type C3(en)">
                 description = <"*A negative peak pressure and low-normal static compliance.(en)">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"*Type C2(en)">
                 description = <"*A significant negative peak pressure, for example -200 daPa or greater.(en)">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"*Type C1(en)">
                 description = <"*A slight negative peak pressure, for example in range -100 to -199daPa.(en)">
             >
@@ -470,7 +470,7 @@ terminology
                 description = <"*Subclassification of the tympanograms with negative peak pressure.(en)">
                 comment = <"*If the subtypes are to be used in an implementation, these should be substituted for the global Type C category in the 'Tympanogram Type' data element. Both Type C and Types C1-3 should not be used in the same implementation.(en)">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"*Type B with high ECV(en)">
                 description = <"*Rounded line/no measurable peak pressure; reduced static compliance; ear canal volume above the normal range.(en)">
             >
@@ -503,11 +503,11 @@ terminology
                 text = <"*Pressure Range(en)">
                 description = <"*The range of air pressure used to determine the tympanogram.(en)">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"*Ambient compensated static(en)">
                 description = <"*Admittance was measured using the Ambient compensated static acoustic admittance.(en)">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"*Peak compensated static(en)">
                 description = <"*The peak pressure value of the tympanogram used to compensate for ear canal volume in measurement of static acoustic admittance.(en)">
             >
@@ -519,11 +519,11 @@ terminology
                 text = <"*Rate of Pressure Change(en)">
                 description = <"*The rate of change of pressure used in tympanometry.(en)">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"*Ascending(en)">
                 description = <"*The pressure changes from negative to positive.(en)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"*Descending(en)">
                 description = <"*The pressure changes from positive to negative.(en)">
             >
@@ -553,11 +553,11 @@ terminology
                 description = <"*Overall clinical interpretation of the measurements and related findings using an tympanometer.(en)">
                 comment = <"*Coding with a terminology is preferred, where possible. This data element is effectively an tympanometric diagnosis.(en)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to determine the type of tympanogram Type.(en)">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"*Type Ad(en)">
                 description = <"*A Type A curve but with increased static compliance.(en)">
             >
@@ -624,11 +624,11 @@ terminology
                 text = <"*Result Details(en)">
                 description = <"*The tympanogram test result measurements and interpretations, recorded per ear.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Right Ear(en)">
                 description = <"*The probe tone was presented to the right ear.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Left Ear(en)">
                 description = <"*The probe tone was presented to the left ear.(en)">
             >
@@ -636,19 +636,19 @@ terminology
                 text = <"*Test Ear(en)">
                 description = <"*Identification of the ear being tested.(en)">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"*Type As(en)">
                 description = <"*A Type A curve but with reduced static compliance.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Type C(en)">
                 description = <"*Curve similar to Type A , but with the sharp peak at a negative pressure.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Type B(en)">
                 description = <"*Flat or rounded curve with no measurable peak pressure, reduced static compliance; ear canal volume within normal range.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Type A(en)">
                 description = <"*A distinctive sharp peak, around atmospheric pressure; normal static compliance; normal ear canal volume.(en)">
             >
@@ -735,11 +735,11 @@ terminology
                 text = <"Static compliance (volume)">
                 description = <"Static compliance (SC) is the greatest amount of acoustic energy absorbed by the middle ear system (the vertical peak of the tympanogram curve).">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Type B - low volume">
                 description = <"Rounded curve with no measurable peak pressure, reduced static compliance; ear canal volume within normal range. Equivalent to the unqualified Type B classification.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Type B - high volume">
                 description = <"Rounded curve with no measurable peak pressure; static compliance on lower limits of normal range; ear canal volume within normal range.">
             >
@@ -748,7 +748,7 @@ terminology
                 description = <"Subclassification of the tympanograms with a flat curve.">
                 comment = <"If the subtypes are to be used in an implementation, these should be substituted for the global Type B category in the 'Tympanogram Type' data element. Both 'Type B' and 'Type B - low/high compliance' should not be used in the same implementation. 'Type B - low complicance' is equivalent to the unqualified 'Type B' in the 'Tympanogram Type' data element.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Type D">
                 description = <"A curve with a double peak; normal or reduced static compliance; normal ear canal volume.">
             >
@@ -757,15 +757,15 @@ terminology
                 description = <"The amount of acoustic energy absorbed by the middle ear system at a specified pressure, measured in cc3 or ml.">
                 comment = <"If the tympanometer records compliance in cc3 or ml, use this data element. If the tympanometer records compliance in mmho, use the 'Compliance (Conductance) data element.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Type C3">
                 description = <"A negative peak pressure and low-normal static compliance.">
             >
-            ["at61"] = <
+            ["at60"] = <
                 text = <"Type C2">
                 description = <"A significant negative peak pressure, for example -200 daPa or greater.">
             >
-            ["at60"] = <
+            ["at59"] = <
                 text = <"Type C1">
                 description = <"A slight negative peak pressure, for example in range -100 to -199 daPa.">
             >
@@ -774,7 +774,7 @@ terminology
                 description = <"Subclassification of the tympanograms with negative peak pressure.">
                 comment = <"If the subtypes are to be used in an implementation, these should be substituted for the global Type C category in the 'Tympanogram Type' data element. Both Type C and Types C1-3 should not be used in the same implementation.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Type B with high ECV">
                 description = <"Rounded curve with measurable peak pressure; reduced static compliance; ear canal volume above the normal range.">
             >
@@ -807,11 +807,11 @@ terminology
                 text = <"Pressure range">
                 description = <"The range of air pressure used to determine the tympanogram.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Ambient compensated static">
                 description = <"Admittance was measured using the Ambient compensated static acoustic admittance.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Peak compensated static">
                 description = <"The peak pressure value of the tympanogram used to compensate for ear canal volume in measurement of static acoustic admittance.">
             >
@@ -823,11 +823,11 @@ terminology
                 text = <"Rate of pressure change">
                 description = <"The rate of change of pressure used in tympanometry.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Ascending">
                 description = <"The pressure changes from negative to positive.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Descending">
                 description = <"The pressure changes from positive to negative.">
             >
@@ -857,11 +857,11 @@ terminology
                 description = <"Overall clinical interpretation of the measurements and related findings using an tympanometer.">
                 comment = <"Coding with a terminology is preferred, where possible. This data element is effectively an tympanometric diagnosis.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to determine the type of tympanogram Type.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Type Ad">
                 description = <"A Type A curve but with increased static compliance.">
             >
@@ -928,11 +928,11 @@ terminology
                 text = <"Result details">
                 description = <"The tympanogram test result measurements and interpretations, recorded per ear.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Right ear">
                 description = <"The probe tone was presented to the right ear.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Left ear">
                 description = <"The probe tone was presented to the left ear.">
             >
@@ -940,19 +940,19 @@ terminology
                 text = <"Test ear">
                 description = <"Identification of the ear being tested.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Type As">
                 description = <"A Type A curve but with reduced static compliance.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Type C">
                 description = <"Curve similar to Type A , but with the sharp peak at a negative pressure.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Type B">
                 description = <"Flat or rounded curve with no measurable peak pressure, reduced static compliance; ear canal volume within normal range.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Type A">
                 description = <"Curve with a distinctive sharp peak, around atmospheric pressure; normal static compliance; normal ear canal volume.">
             >
@@ -990,7 +990,7 @@ terminology
     value_sets = <
         ["ac9013"] = <
             id = <"ac9013">
-            members = <"at45", "at46">
+            members = <"at44", "at45">
         >
         ["ac9012"] = <
             id = <"ac9012">
@@ -998,22 +998,22 @@ terminology
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12">
+            members = <"at10", "at11">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at60", "at61", "at62">
+            members = <"at59", "at60", "at61">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at73", "at74">
+            members = <"at72", "at73">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at6", "at7", "at58", "at8", "at71", "at9", "at35", "at36">
+            members = <"at5", "at6", "at57", "at7", "at70", "at8", "at34", "at35">
         >
         ["ac9015"] = <
             id = <"ac9015">
-            members = <"at49", "at50">
+            members = <"at48", "at49">
         >
     >

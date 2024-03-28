@@ -145,11 +145,11 @@ terminology
                 text = <"Kommentar">
                 description = <"Ytterligere fritekstbeskrivelse om individets evne til kommunikasjon på et spesifikt språk, som ikke er fanget opp i andre felt.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Alternativt språk">
                 description = <"Individets alternative språk og/eller kommunikasjonsmetoder.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Foretrukket språk">
                 description = <"Individets foretrukne språk og kommunikasjonsmetode.">
             >
@@ -207,11 +207,11 @@ terminology
                 text = <"Comment">
                 description = <"Additional narrative about the specific language capability not captured in other fields.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Alternative language">
                 description = <"Other language, and/or method of communication that could be used for an individual.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Preferred language">
                 description = <"Preferred language and/or method of communication for an individual.">
             >
@@ -259,6 +259,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at20", "at21">
+            members = <"at19", "at20">
         >
     >

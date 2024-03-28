@@ -141,11 +141,11 @@ terminology
                 description = <"Details of the device that was used to collect the faeces.">
                 comment = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Measured">
                 description = <"The faecal output has been directly measured.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Estimated">
                 description = <"The faecal ourput has been estimated.">
             >
@@ -185,6 +185,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at11", "at12">
+            members = <"at10", "at11">
         >
     >

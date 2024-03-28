@@ -284,7 +284,7 @@ definition
                                     ELEMENT[id29] occurrences matches {0..1} matches {    -- Aided status
                                         value matches {
                                             DV_CODED_TEXT[id9050] matches {
-                                                defining_code matches {[ac9011; at31]}    -- Aided status (synthesised)
+                                                defining_code matches {[ac9011; at30]}    -- Aided status (synthesised)
                                             }
                                         }
                                     }
@@ -586,15 +586,15 @@ terminology
                 text = <"Average">
                 description = <"Record of the average measured results from more than one test. For example, the average of the 3000Hz to 6000Hz measurements in a Hearing Conservation or Industrial Audiometry Assessment. The data elements required in this use case may be quite limited and relevant ones revealed via templating.">
             >
-            ["at161"] = <
+            ["at160"] = <
                 text = <"Pulse tone">
                 description = <"The test stimulus is a pulse tone.">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"Clinically significant">
                 description = <"The background noise may compromise test results.">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"Not clinically significant">
                 description = <"The background noise is not likely to compromise test results.">
             >
@@ -603,11 +603,11 @@ terminology
                 description = <"The amount and nature of noise in the environment that may influence the test results.">
                 comment = <"If testing is conducted in an audiometric booth, this data element is redundant.">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"Non-sound treated room">
                 description = <"Test environment that does not meet audiometric standards for ambient noise.">
             >
-            ["at156"] = <
+            ["at155"] = <
                 text = <"Retrocochlear">
                 description = <"A form of sensorineural hearing loss in which the lesion is proximal to the cochlear.">
             >
@@ -619,15 +619,15 @@ terminology
                 text = <"No response">
                 description = <"No response from subject at identified frequency.">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"Bone conduction aided">
                 description = <"Testing has been aided by a bone conduction device.">
             >
-            ["at152"] = <
+            ["at151"] = <
                 text = <"Bilateral aided">
                 description = <"Testing has been aided by use of bilateral hearing devices, such as a hearing aids or cochlear implants.">
             >
-            ["at151"] = <
+            ["at150"] = <
                 text = <"Right aided">
                 description = <"Right ear testing has been aided by a hearing device, such as a hearing aid or cochlear implant.">
             >
@@ -636,7 +636,7 @@ terminology
                 description = <"Details of the hearing device used.">
                 comment = <"For example: hearing aid or bone conductor aid.">
             >
-            ["at149"] = <
+            ["at148"] = <
                 text = <"Narrow Band Noise">
                 description = <"The test stimulus is a narrow band noise centred on the specified frequency.">
             >
@@ -691,11 +691,11 @@ terminology
                 description = <"Narrative description of the reliability of the test results.">
                 comment = <"If an appropriate value set can be determined, this could be coded. The maximum occurrences of this data element have been set to two to allow for both narrative and a coded value to be selected in a template.">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"Unilateral">
                 description = <"Loss of hearing in one ear.">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"Bilateral">
                 description = <"Loss of hearing in both ears.">
             >
@@ -704,15 +704,15 @@ terminology
                 description = <"An interpretation about the laterality of hearing loss, based on all hearing acuity measurements for both ears.">
                 comment = <"If there is no degree of loss in both ears, then this data element is not applicable.">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"3/6 responses">
                 description = <"The softest level at which the subject responds to three out of six consecutive threshold runs.">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"2/3 responses">
                 description = <"The softest level at which the subject responds to two out of three consecutive threshold runs.">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"Minimum response level">
                 description = <"The softest level at which a subject responds to a stimulus.">
             >
@@ -748,11 +748,11 @@ terminology
                 text = <"Test modifications required">
                 description = <"Narrative description of any modfications to the standard methodology required to enable successful completion of the test.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Forehead">
                 description = <"Area of the head bounded by the normal hairline, eyebrows and the temples on either side.">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Mastoid">
                 description = <"The posterior part of the temporal bone, including the mastoid process.">
             >
@@ -760,15 +760,15 @@ terminology
                 text = <"Bone presentation">
                 description = <"Presentation of the bone conduction test stimulus directly to the inner ear via the cranial bones.">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"Headphones">
                 description = <"The stimulus is presented via external headphones - either circumaural or supraaural.">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"Insert earphone">
                 description = <"The stimulus is presented via insert earphones.">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"Soundfield">
                 description = <"The stimulus is presented via a loudspeaker located at least one metre away from the subject.">
             >
@@ -776,11 +776,11 @@ terminology
                 text = <"Air presentation">
                 description = <"Presentation of the air conduction test stimulus indirectly to the inner ear through the atmosphere, via the auditory canal and middle ear structures.">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"Descending">
                 description = <"Threshold is calculated based on the descending runs where the stimulus moves from above threshold to below threshold.">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"Ascending">
                 description = <"Threshold is calculated based on the ascending runs where the stimulus moves from below threshold to above threshold.">
             >
@@ -788,19 +788,19 @@ terminology
                 text = <"Direction">
                 description = <"The direction of change in the stimulus intensity.">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"20 dB">
                 description = <"Step size of twenty decibels.">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"10 dB">
                 description = <"Step size of ten decibels.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"5 dB">
                 description = <"Step size of five decibels.">
             >
-            ["at96"] = <
+            ["at95"] = <
                 text = <"1 dB">
                 description = <"Step size of one decibel.">
             >
@@ -813,15 +813,15 @@ terminology
                 description = <"Protocol used to measure the hearing threshold for pure tone, play and visual reinforcement orientation audiometry only.">
                 comment = <"Not applicable for ABR testing.">
             >
-            ["at93"] = <
+            ["at92"] = <
                 text = <"dB nHL">
                 description = <"The test stimuli are calibrated using the normal hearing level scale.">
             >
-            ["at92"] = <
+            ["at91"] = <
                 text = <"dB HL">
                 description = <"The test stimuli are calibrated using the hearing level scale.">
             >
-            ["at91"] = <
+            ["at90"] = <
                 text = <"dB SPL">
                 description = <"The test stimuli are calibrated using the sound pressure level scale.">
             >
@@ -845,15 +845,15 @@ terminology
                 text = <"Click stimulus specification">
                 description = <"Identification of parameters specifying a click stimulus.">
             >
-            ["at82"] = <
+            ["at81"] = <
                 text = <"Pure Tone">
                 description = <"The test stimulus is a pure tone.">
             >
-            ["at81"] = <
+            ["at80"] = <
                 text = <"Warble Tone">
                 description = <"The test stimulus is a frequency modulated tone.">
             >
-            ["at77"] = <
+            ["at76"] = <
                 text = <"Audiometric booth">
                 description = <"Sound-treated test environment that meets audiometric standards for ambient noise.">
             >
@@ -862,11 +862,11 @@ terminology
                 description = <"The environment in which the audiometric test is administered.">
                 comment = <"This data element is commonly used in industry hearing programs.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Asymmetrical">
                 description = <"The hearing loss is asymmetrical.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Symmetrical">
                 description = <"The hearing loss is symmetrical.">
             >
@@ -879,19 +879,19 @@ terminology
                 description = <"Clinical interpretation of all measurements for the test ear.">
                 comment = <"Coding with a terminology is preferred, where possible. Not to be used for recording the interpretation for both ears when the ears are tested simultaneously - use the data element 'Overall Interpretation' instead.">
             >
-            ["at70"] = <
+            ["at69"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to determine the pattern of hearing loss.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"Conductive">
                 description = <"A conductive hearing loss pattern has been identified for the Test Ear, based on the presence of an air/bone gap and bone conduction thresholds within normal range.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"Sensorineural">
                 description = <"A sensorineural hearing loss pattern has been identified for the Test Ear, based on no air/bone gap and thresholds outside normal range.">
             >
-            ["at67"] = <
+            ["at66"] = <
                 text = <"Mixed">
                 description = <"A mixed hearing loss pattern has been identified for the Test Ear, based on the presence of an air/bone gap and bone conduction thresholds outside normal range.">
             >
@@ -900,11 +900,11 @@ terminology
                 description = <"Identified type of hearing loss for the test ear, based on all measurements.">
                 comment = <"If there is no degree of loss, then this data element is not applicable.">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"4 frequency average">
                 description = <"The pure tone hearing threshold is calculated using 0.5, 1, 2 and 4 kHz.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"3 frequency average">
                 description = <"The pure tone hearing threshold is calculated using 0.5, 1 and 2 kHz.">
             >
@@ -922,7 +922,7 @@ terminology
                 text = <"Hearing threshold interpretation">
                 description = <"Interpretation of a series of audiometric measurements for purposes of hearing threshold assessment.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Binaural">
                 description = <"The test stimuli were presented to both ears simultaneously in a soundfield.">
             >
@@ -940,11 +940,11 @@ terminology
                 description = <"Identification of the Audiometry test performed.">
                 comment = <"Coding with an external terminology is preferred, where possible. Applicable tests include: Pure Tone Audiometry; Play Audiometry; Auditory Brainstem Response (for threshold determination); and Visual Reinforcement Orientation Audiometry.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Click">
                 description = <"The test stimulus is a click.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Tone burst">
                 description = <"The test stimulus is a tone burst.">
             >
@@ -952,11 +952,11 @@ terminology
                 text = <"Test stimulus">
                 description = <"Identification of the stimulus used in the hearing test to measure the hearing threshold.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Unaided">
                 description = <"Testing has not been aided by a hearing device, such as a hearing aid or cochlear implant.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Left aided">
                 description = <"Left ear testing has been aided by a hearing device, such as a hearing aid or cochlear implant.">
             >
@@ -977,11 +977,11 @@ terminology
                 description = <"The stimulus frequency tested.">
                 comment = <"Frequency is not applicable if a click stimulus is presented.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Right ear">
                 description = <"The test stimuli were presented to the right ear only.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Left ear">
                 description = <"The test stimuli were presented to the left ear only.">
             >
@@ -1018,63 +1018,63 @@ terminology
     value_sets = <
         ["ac9020"] = <
             id = <"ac9020">
-            members = <"at96", "at97", "at98", "at99">
+            members = <"at95", "at96", "at97", "at98">
         >
         ["ac9013"] = <
             id = <"ac9013">
-            members = <"at111", "at112", "at113">
+            members = <"at110", "at111", "at112">
         >
         ["ac9023"] = <
             id = <"ac9023">
-            members = <"at63", "at64">
+            members = <"at62", "at63">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at10", "at9", "at50">
+            members = <"at9", "at8", "at49">
         >
         ["ac9011"] = <
             id = <"ac9011">
-            members = <"at31", "at151", "at30", "at152", "at153">
+            members = <"at30", "at150", "at29", "at151", "at152">
         >
         ["ac9022"] = <
             id = <"ac9022">
-            members = <"at91", "at92", "at93">
+            members = <"at90", "at91", "at92">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at134", "at133">
+            members = <"at133", "at132">
         >
         ["ac9021"] = <
             id = <"ac9021">
-            members = <"at101", "at102">
+            members = <"at100", "at101">
         >
         ["ac9017"] = <
             id = <"ac9017">
-            members = <"at36", "at37", "at81", "at82", "at149", "at161">
+            members = <"at35", "at36", "at80", "at81", "at148", "at160">
         >
         ["ac9016"] = <
             id = <"ac9016">
-            members = <"at160", "at159">
+            members = <"at159", "at158">
         >
         ["ac9015"] = <
             id = <"ac9015">
-            members = <"at77", "at157">
+            members = <"at76", "at156">
         >
         ["ac9014"] = <
             id = <"ac9014">
-            members = <"at115", "at116">
+            members = <"at114", "at115">
         >
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at73", "at74">
+            members = <"at72", "at73">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at69", "at68", "at156", "at67", "at70">
+            members = <"at68", "at67", "at155", "at66", "at69">
         >
         ["ac9019"] = <
             id = <"ac9019">
-            members = <"at129", "at130", "at131">
+            members = <"at128", "at129", "at130">
         >
         ["ac9007"] = <
             id = <"ac9007">

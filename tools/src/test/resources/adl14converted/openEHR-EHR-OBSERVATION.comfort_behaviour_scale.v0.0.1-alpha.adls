@@ -68,11 +68,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at6]}],
-                                                    [{2}, {[at7]}],
-                                                    [{3}, {[at8]}],
-                                                    [{4}, {[at9]}],
-                                                    [{5}, {[at10]}]
+                                                    [{1}, {[at5]}],
+                                                    [{2}, {[at6]}],
+                                                    [{3}, {[at7]}],
+                                                    [{4}, {[at8]}],
+                                                    [{5}, {[at9]}]
                                                 }
                                             }
                                         }
@@ -81,11 +81,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at12]}],
-                                                    [{2}, {[at13]}],
-                                                    [{3}, {[at14]}],
-                                                    [{4}, {[at15]}],
-                                                    [{5}, {[at16]}]
+                                                    [{1}, {[at11]}],
+                                                    [{2}, {[at12]}],
+                                                    [{3}, {[at13]}],
+                                                    [{4}, {[at14]}],
+                                                    [{5}, {[at15]}]
                                                 }
                                             }
                                         }
@@ -94,11 +94,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at18]}],
-                                                    [{2}, {[at19]}],
-                                                    [{3}, {[at20]}],
-                                                    [{4}, {[at21]}],
-                                                    [{5}, {[at22]}]
+                                                    [{1}, {[at17]}],
+                                                    [{2}, {[at18]}],
+                                                    [{3}, {[at19]}],
+                                                    [{4}, {[at20]}],
+                                                    [{5}, {[at21]}]
                                                 }
                                             }
                                         }
@@ -107,11 +107,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at24]}],
-                                                    [{2}, {[at25]}],
-                                                    [{3}, {[at26]}],
-                                                    [{4}, {[at27]}],
-                                                    [{5}, {[at28]}]
+                                                    [{1}, {[at23]}],
+                                                    [{2}, {[at24]}],
+                                                    [{3}, {[at25]}],
+                                                    [{4}, {[at26]}],
+                                                    [{5}, {[at27]}]
                                                 }
                                             }
                                         }
@@ -120,11 +120,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at30]}],
-                                                    [{2}, {[at31]}],
-                                                    [{3}, {[at32]}],
-                                                    [{4}, {[at33]}],
-                                                    [{5}, {[at34]}]
+                                                    [{1}, {[at29]}],
+                                                    [{2}, {[at30]}],
+                                                    [{3}, {[at31]}],
+                                                    [{4}, {[at32]}],
+                                                    [{5}, {[at33]}]
                                                 }
                                             }
                                         }
@@ -133,11 +133,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at36]}],
-                                                    [{2}, {[at37]}],
-                                                    [{3}, {[at38]}],
-                                                    [{4}, {[at39]}],
-                                                    [{5}, {[at40]}]
+                                                    [{1}, {[at35]}],
+                                                    [{2}, {[at36]}],
+                                                    [{3}, {[at37]}],
+                                                    [{4}, {[at38]}],
+                                                    [{5}, {[at39]}]
                                                 }
                                             }
                                         }
@@ -146,11 +146,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9013] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at42]}],
-                                                    [{2}, {[at43]}],
-                                                    [{3}, {[at44]}],
-                                                    [{4}, {[at45]}],
-                                                    [{5}, {[at46]}]
+                                                    [{1}, {[at41]}],
+                                                    [{2}, {[at42]}],
+                                                    [{3}, {[at43]}],
+                                                    [{4}, {[at44]}],
+                                                    [{5}, {[at45]}]
                                                 }
                                             }
                                         }
@@ -206,23 +206,23 @@ terminology
                 text = <"Puntaje total">
                 description = <"Puntaje total">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Músculos faciales contorsionados y muecas">
                 description = <"Músculos faciales contorsionados y muecas.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Tensión muscular evidente sostenida en toda la musculatura facial">
                 description = <"Tensión muscular evidente sostenida en toda la musculatura facial.">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Tensión muscular evidente, pero no sostenida en algunos músculos faciales">
                 description = <"Tensión muscular evidente, pero no sostenida en algunos músculos faciales.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Tono muscular facial normal">
                 description = <"Tono muscular facial normal.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Musculatura facial totalmente relajada">
                 description = <"Musculatura facial totalmente relajada.">
             >
@@ -230,23 +230,23 @@ terminology
                 text = <"Tensión facial">
                 description = <"Nivel de tensión facial.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Rigidez muscular extrema y flexión de dedos de mano y pié">
                 description = <"Rigidez muscular extrema y flexión de dedos de mano y pié.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Tono muscular aumentado y flexión de dedos de mano y pié">
                 description = <"Tono muscular aumentado y flexión de dedos de mano y pié.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Tono muscular normal">
                 description = <"Tono muscular normal.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Tono muscular disminuido; resistencia menor a la normal">
                 description = <"Tono muscular disminuido; resistencia menor a la normal.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Músculos totalmente relajados; sin tono muscular">
                 description = <"Músculos totalmente relajados; sin tono muscular.">
             >
@@ -254,23 +254,23 @@ terminology
                 text = <"Tono muscular">
                 description = <"Nivel del tono muscular.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Movimientos vigorosos que incluyen torso y cabeza">
                 description = <"Movimientos vigorosos que incluyen torso y cabeza.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Movimientos vigorosos limitados a extremidades">
                 description = <"Movimientos vigorosos limitados a extremidades.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Movimientos leves y frecuentes">
                 description = <"Movimientos leves y frecuentes (mas de 3).">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Movimientos leves ocasionales">
                 description = <"Movimientos leves ocasionales (3 o menos).">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Sin movimientos">
                 description = <"Sin movimientos.">
             >
@@ -278,23 +278,23 @@ terminology
                 text = <"Movimientos físicos">
                 description = <"Grado de movimientos físicos.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Gritos o chillidos">
                 description = <"Gritos o chillidos.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Llanto">
                 description = <"Llanto activo.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Lloriqueo (sonido monótono)">
                 description = <"Lloriqueo (como sonido monótono).">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Sollozo o quejidos ocasionales">
                 description = <"Sollozo o quejidos ocasionales.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Respiración tranquila, sin somidos de llanto">
                 description = <"Respiración tranquila, sin somidos de llanto.">
             >
@@ -303,23 +303,23 @@ terminology
                 description = <"Nivel de llanto.">
                 comment = <"*Score only in spontaneously breathing children.(en)">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Lucha con el respirador">
                 description = <"Lucha con el respirador.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Resistencia al respirador o tose con frecuencia">
                 description = <"Resistencia al respirador o tose con frecuencia.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Agitado o con resistencia al respirador">
                 description = <"Agitado o con resistencia al respirador.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Respiración espontanea o asistida por respirador">
                 description = <"Respiración espontanea o asistida por respirador.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Sin respiración espontanea">
                 description = <"Sin respiración espontanea.">
             >
@@ -328,23 +328,23 @@ terminology
                 description = <"Nivel de respuesta respiratoria.">
                 comment = <"*Score only in mechanically ventilated children.(en)">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"En pánico">
                 description = <"En pánico, con pérdida de control.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Muy ansioso (agitado, dificil de calmar)">
                 description = <"Agitado, dificil de calmar.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Ansioso">
                 description = <"Parece agitado pero se calma con cuidados.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Ligeramente ansioso">
                 description = <"Ligeramente ansioso">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Calmado">
                 description = <"Sereno y tranquilo.">
             >
@@ -352,23 +352,23 @@ terminology
                 text = <"Calma/Agitación">
                 description = <"Nivel de calma y/o agitación.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Despierto hiper-alerta (respuesta exagerada al estímulo)">
                 description = <"Respuesta exagerada al estímulo.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Despierto y alerta">
                 description = <"Sensible a los cambios del entorno.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Somnoliento">
                 description = <"Cierra los ojos en forma frecuente.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Ligeramente dormido">
                 description = <"Dirige la cabeza, ojos cerrados.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Profundamente dormido">
                 description = <"Ojos cerrados, ninguna respuesta a los cambios del entorno.">
             >
@@ -418,23 +418,23 @@ terminology
                 text = <"Total score">
                 description = <"Total score">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Facial muscles contorted and grimacing">
                 description = <"Facial muscles contorted and there is grimacing.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Tension evident throughout facial muscles (sustained)">
                 description = <"Tension evident throughout facial muscles (sustained).">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Tension evident in some facial muscles (not sustained)">
                 description = <"Tension evident in some facial muscles (not sustained).">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Normal facial tone">
                 description = <"Normal facial tone.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"Facial muscles totally relaxed
     ">
                 description = <"Facial muscles are totally relaxed.
@@ -444,23 +444,23 @@ terminology
                 text = <"Facial tension">
                 description = <"Degree of facial tension.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Extreme muscle rigidity and flexion of fingers and toes">
                 description = <"Extreme muscle rigidity and flexion of fingers and toes.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Increased muscle tone and flexion of fingers and toes">
                 description = <"Increased muscle tone and flexion of fingers and toes.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"Normal muscle tone">
                 description = <"Normal muscle tone.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"Reduced muscle tone">
                 description = <"Reduced muscle tone; less resistance than normal">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Muscles totally relaxed; no muscle tone">
                 description = <"Muscles totally relaxed or no muscle tone.">
             >
@@ -468,23 +468,23 @@ terminology
                 text = <"Muscle tone">
                 description = <"Degree of muscle tone.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Vigorous movements including torso and head">
                 description = <"Vigorous movements including torso and head.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Vigorous movements limited to extremities">
                 description = <"Vigorous movements limited to extremities.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Frequen slight movements">
                 description = <"Frequent, (more than three) slight movements.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Occasional slight movements">
                 description = <"Occasional, (three or fewer) slight movements.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"No movement">
                 description = <"No movements.">
             >
@@ -492,25 +492,25 @@ terminology
                 text = <"Physical movement">
                 description = <"Degree of physical movement.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Screaming or shrieking">
                 description = <"Screaming and/or shrieking.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Crying
     ">
                 description = <"Actively crying
     .">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Whining (monotonous sound)">
                 description = <"Whining (as monotonous sound).">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Occasional sobbing or moaning">
                 description = <"Occasional sobbing or moaning.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Quiet breathing, no crying sounds">
                 description = <"Quiet breathing, with no crying sounds.">
             >
@@ -519,23 +519,23 @@ terminology
                 description = <"Whether the patient is crying.">
                 comment = <"Score only in spontaneously breathing children.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Fights ventilator">
                 description = <"Fights ventilator.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Actively breathes against ventilator or coughs regularly">
                 description = <"Either actively breathes against ventilator or coughs regularly.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Restlessness or resistance to ventilator">
                 description = <"Either restlessness or resistance to ventilator.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Spontaneous and ventilator respiration">
                 description = <"Both spontaneous and ventilator respiration.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"No spontaneous respiration">
                 description = <"No spontaneous respiration.">
             >
@@ -544,23 +544,23 @@ terminology
                 description = <"Degree of respiratory response.">
                 comment = <"Score only in mechanically ventilated children.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Panicky">
                 description = <"Severe distress with loss of control">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Very anxious">
                 description = <"Child appears very agitated, just able to control.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Anxious">
                 description = <"Child appears agitated but remains in control.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Slightly anxious">
                 description = <"Child shows slight anxiety.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Calm">
                 description = <"Child appears serene and tranquil.">
             >
@@ -568,23 +568,23 @@ terminology
                 text = <"Calmness/Agitation">
                 description = <"Degree of calmness or agitation.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Awake and hyper-alert">
                 description = <"Exaggerated responses to environmental stimuli.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Awake and alert">
                 description = <"Child responsive to the environment.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Drowsy">
                 description = <"Child closes his/her eyes frequently, less responsive to the environment.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Lightly asleep">
                 description = <"Eyes mostly closed, occasional responses.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Deeply asleep">
                 description = <"Eyes closed, no response to changes in the environment.">
             >
@@ -605,30 +605,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at18", "at19", "at20", "at21", "at22">
+            members = <"at17", "at18", "at19", "at20", "at21">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at12", "at13", "at14", "at15", "at16">
+            members = <"at11", "at12", "at13", "at14", "at15">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10">
+            members = <"at5", "at6", "at7", "at8", "at9">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at42", "at43", "at44", "at45", "at46">
+            members = <"at41", "at42", "at43", "at44", "at45">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at36", "at37", "at38", "at39", "at40">
+            members = <"at35", "at36", "at37", "at38", "at39">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at30", "at31", "at32", "at33", "at34">
+            members = <"at29", "at30", "at31", "at32", "at33">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at24", "at25", "at26", "at27", "at28">
+            members = <"at23", "at24", "at25", "at26", "at27">
         >
     >

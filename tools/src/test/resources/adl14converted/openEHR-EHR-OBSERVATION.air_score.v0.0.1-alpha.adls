@@ -96,8 +96,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at9]}],
-                                                    [{1}, {[at10]}]
+                                                    [{0}, {[at8]}],
+                                                    [{1}, {[at9]}]
                                                 }
                                             }
                                         }
@@ -106,8 +106,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at11]}],
-                                                    [{1}, {[at12]}]
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}]
                                                 }
                                             }
                                         }
@@ -116,10 +116,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at13]}],
-                                                    [{1}, {[at14]}],
-                                                    [{2}, {[at15]}],
-                                                    [{3}, {[at16]}]
+                                                    [{0}, {[at12]}],
+                                                    [{1}, {[at13]}],
+                                                    [{2}, {[at14]}],
+                                                    [{3}, {[at15]}]
                                                 }
                                             }
                                         }
@@ -128,8 +128,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9010] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at17]}],
-                                                    [{1}, {[at18]}]
+                                                    [{0}, {[at16]}],
+                                                    [{1}, {[at17]}]
                                                 }
                                             }
                                         }
@@ -138,9 +138,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at29]}],
-                                                    [{1}, {[at30]}],
-                                                    [{2}, {[at31]}]
+                                                    [{0}, {[at28]}],
+                                                    [{1}, {[at29]}],
+                                                    [{2}, {[at30]}]
                                                 }
                                             }
                                         }
@@ -149,9 +149,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at32]}],
-                                                    [{1}, {[at33]}],
-                                                    [{2}, {[at34]}]
+                                                    [{0}, {[at31]}],
+                                                    [{1}, {[at32]}],
+                                                    [{2}, {[at33]}]
                                                 }
                                             }
                                         }
@@ -160,9 +160,9 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9013] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at35]}],
-                                                    [{1}, {[at36]}],
-                                                    [{2}, {[at37]}]
+                                                    [{0}, {[at34]}],
+                                                    [{1}, {[at35]}],
+                                                    [{2}, {[at36]}]
                                                 }
                                             }
                                         }
@@ -214,39 +214,39 @@ terminology
                 text = <"CRP (synthesised)">
                 description = <"Provsvar - C-Reaktivt Protein (synthesised)">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"≥50">
                 description = <"*">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"10-49">
                 description = <"*">
             >
-            ["at35"] = <
-                text = <"<10">
-                description = <"*">
-            >
             ["at34"] = <
-                text = <"≥15">
+                text = <"<10">
                 description = <"*">
             >
             ["at33"] = <
-                text = <"10-14,9">
+                text = <"≥15">
                 description = <"*">
             >
             ["at32"] = <
-                text = <"<10">
+                text = <"10-14,9">
                 description = <"*">
             >
             ["at31"] = <
-                text = <"≥85%">
+                text = <"<10">
                 description = <"*">
             >
             ["at30"] = <
-                text = <"70-84%">
+                text = <"≥85%">
                 description = <"*">
             >
             ["at29"] = <
+                text = <"70-84%">
+                description = <"*">
+            >
+            ["at28"] = <
                 text = <"<70%">
                 description = <"*">
             >
@@ -266,43 +266,43 @@ terminology
                 text = <"Total poäng">
                 description = <"Summan av samtliga faktorer">
             >
-            ["at18"] = <
-                text = <"Ja">
-                description = <"*">
-            >
             ["at17"] = <
-                text = <"Nej">
+                text = <"Ja">
                 description = <"*">
             >
             ["at16"] = <
-                text = <"Kraftig">
+                text = <"Nej">
                 description = <"*">
             >
             ["at15"] = <
-                text = <"Måttlig">
+                text = <"Kraftig">
                 description = <"*">
             >
             ["at14"] = <
-                text = <"Lätt">
+                text = <"Måttlig">
                 description = <"*">
             >
             ["at13"] = <
-                text = <"Nej">
+                text = <"Lätt">
                 description = <"*">
             >
             ["at12"] = <
-                text = <"Ja">
-                description = <"*">
-            >
-            ["at11"] = <
                 text = <"Nej">
                 description = <"*">
             >
-            ["at10"] = <
+            ["at11"] = <
                 text = <"Ja">
                 description = <"*">
             >
+            ["at10"] = <
+                text = <"Nej">
+                description = <"*">
+            >
             ["at9"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at8"] = <
                 text = <"Nej">
                 description = <"*">
             >
@@ -360,39 +360,39 @@ terminology
                 text = <"CRP level, mg/L (synthesised)">
                 description = <" (synthesised)">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"≥50">
                 description = <"*">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"10-49">
                 description = <"*">
             >
-            ["at35"] = <
-                text = <"<10">
-                description = <"*">
-            >
             ["at34"] = <
-                text = <"≥15">
+                text = <"<10">
                 description = <"*">
             >
             ["at33"] = <
-                text = <"10-14,9">
+                text = <"≥15">
                 description = <"*">
             >
             ["at32"] = <
-                text = <"<10">
+                text = <"10-14,9">
                 description = <"*">
             >
             ["at31"] = <
-                text = <"≥85%">
+                text = <"<10">
                 description = <"*">
             >
             ["at30"] = <
-                text = <"70-84%">
+                text = <"≥85%">
                 description = <"*">
             >
             ["at29"] = <
+                text = <"70-84%">
+                description = <"*">
+            >
+            ["at28"] = <
                 text = <"<70%">
                 description = <"*">
             >
@@ -412,43 +412,43 @@ terminology
                 text = <"Total score">
                 description = <"The sum of each ordinal score recorded for each of the seven component responses.">
             >
-            ["at18"] = <
-                text = <"Yes">
-                description = <"*">
-            >
             ["at17"] = <
-                text = <"No">
+                text = <"Yes">
                 description = <"*">
             >
             ["at16"] = <
-                text = <"Strong">
-                description = <"*">
-            >
-            ["at15"] = <
-                text = <"Medium">
-                description = <"*">
-            >
-            ["at14"] = <
-                text = <"Light">
-                description = <"*">
-            >
-            ["at13"] = <
-                text = <"None">
-                description = <"*">
-            >
-            ["at12"] = <
-                text = <"Yes">
-                description = <"*">
-            >
-            ["at11"] = <
                 text = <"No">
                 description = <"*">
             >
-            ["at10"] = <
+            ["at15"] = <
+                text = <"Strong">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Medium">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Light">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"None">
+                description = <"*">
+            >
+            ["at11"] = <
                 text = <"Yes">
                 description = <"*">
             >
+            ["at10"] = <
+                text = <"No">
+                description = <"*">
+            >
             ["at9"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at8"] = <
                 text = <"No">
                 description = <"*">
             >
@@ -481,30 +481,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at13", "at14", "at15", "at16">
+            members = <"at12", "at13", "at14", "at15">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at11", "at12">
+            members = <"at10", "at11">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at9", "at10">
+            members = <"at8", "at9">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at35", "at36", "at37">
+            members = <"at34", "at35", "at36">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at32", "at33", "at34">
+            members = <"at31", "at32", "at33">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at29", "at30", "at31">
+            members = <"at28", "at29", "at30">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at17", "at18">
+            members = <"at16", "at17">
         >
     >

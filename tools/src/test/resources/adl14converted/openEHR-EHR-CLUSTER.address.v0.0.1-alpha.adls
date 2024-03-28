@@ -179,19 +179,19 @@ terminology
                 text = <"Gültigkeitszeitraum">
                 description = <"Der Zeitraum in dem die Adresse gültig ist.  ENV 13606 - 4:2000 7.11.11.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Vorläufig">
                 description = <"*">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Geschäftlich">
                 description = <"*">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Schriftverkehr">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Privat">
                 description = <"*">
             >
@@ -245,19 +245,19 @@ terminology
                 text = <"Período de validez del domicilio">
                 description = <"El período durante el cual el domicilio asociado es aplicable a una persona / organización. ENV 13606 - 4:2000 7.11.11.  Esto describe el período actual.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Temporario">
                 description = <"Domicilio temporario.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Laboral">
                 description = <"Domicilio laboral.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Correspondencia">
                 description = <"Domicilio para correspondencia.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Residencial">
                 description = <"Domicilio del lugar de residencia.">
             >
@@ -311,19 +311,19 @@ terminology
                 text = <"Adresse gyldighets periode">
                 description = <"Det tidsrom der den pågjeldende adresse er gyldig.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Midlertidig">
                 description = <"Midlertidig adresse.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Arbeide">
                 description = <"Arbeidsplass adresse.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Korrespondanse">
                 description = <"Adresse for korrespondanse.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Bopel">
                 description = <"Adressen der personen bor.">
             >
@@ -377,19 +377,19 @@ terminology
                 text = <"Περίοδος εγκυρότητας">
                 description = <"Η περίοδος για την οποία η διέυθυνση είναι έγκυρη για το άτομο ή τον οργανισμό ENV 13606 - 4:2000 7.11.11. Το πεδίο περιγράφει την περίοδο.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Προσωρινή">
                 description = <"Προσωρινή διεύθυνση">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Εργασίας">
                 description = <"Διεύθυνση εργασίας">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Αλληλογραφίας">
                 description = <"Διεύθυνση αλληλογραφίας">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Οικίας">
                 description = <"Διεύθυνση οικίας">
             >
@@ -443,19 +443,19 @@ terminology
                 text = <"AddressValid Period">
                 description = <"The period during which the associated address is applicable to the person / organisation.  ENV 13606 - 4:2000 7.11.11.  This describes the actual period.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Temporary">
                 description = <"Temporary address.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Business">
                 description = <"Address of place of business.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Correspondence">
                 description = <"Address for correspondence.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Residential">
                 description = <"Address of place of residence.">
             >
@@ -511,19 +511,19 @@ terminology
     ENV 13606 - 4:2000 7.11.11. 
     و هذا يصف الفترة الحقيقية.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"مؤقت">
                 description = <"العنوان المؤقت">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"العمل">
                 description = <"عنوان مكان العمل">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"عنوان المراسلة">
                 description = <"عنوان المراسلة">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"مكان الإقامة">
                 description = <"عنوان مكان الإقامة">
             >
@@ -573,6 +573,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at12", "at13", "at14", "at15">
+            members = <"at11", "at12", "at13", "at14">
         >
     >

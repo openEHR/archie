@@ -191,23 +191,23 @@ terminology
                 description = <"Zusätzliche Informationen zur Erfassung lokaler Inhalte oder Anpassung an andere Referenzmodelle/Formalismen.">
                 comment = <"Zum Beispiel: Lokaler Informationsbedarf oder zusätzliche Metadaten zur Anpassung an FHIR-Ressourcen oder CIMI-Modelle.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Allgemeiner Ausschluss von unerwünschten Nebenwirkungen">
                 description = <"Zur Dokumentation einer Gesamterklärung zum Ausschluss aller unerwünschten Nebenwirkungen zum Zeitpunkt der Aufzeichnung.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Allgemeiner Ausschluss von Prozeduren">
                 description = <"Zur Dokumentation einer Gesamterklärung zum Ausschluss aller medizinischer Verfahren/Prozeduren zum Zeitpunkt der Aufnahme.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Allgemeiner Ausschluss von Medikamenteneinnahme">
                 description = <"Zur Dokumentation einer Gesamterklärung zum Ausschluss über die Verwendung aller Medikamente zum Zeitpunkt der Aufnahme.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Allgemeiner Ausschluss von Familienanamnese">
                 description = <"Zur Dokumentation einer Gesamterklärung zum Ausschluss über alle wichtigen gesundheitlichen Problemen bei Verwandten oder Familienmitgliedern des Patienten zum Zeitpunkt der Dokumentation.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Allgemeiner Ausschluss von Problemen/Diagnosen">
                 description = <"Zur Dokumentation einer Gesamterklärung zum Ausschluss über alle Erkrankungen oder Diagnosen zum Zeitpunkt der Dokumentation.">
             >
@@ -235,23 +235,23 @@ terminology
                 description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
                 comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Overordnet eksklusjon av overfølsomhetsreaksjoner">
                 description = <"Overordnet eksklusjonsutsagn om alle overfølsomhetsreaksjoner ved registreringstidspunktet.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Overordnet eksklusjon av prosedyrer">
                 description = <"Overordnet eksklusjonsutsagn om alle prosedyrer ved registreringstidspunktet.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Overordnet eksklusjon av legemiddelbruk">
                 description = <"Overordnet eksklusjonsutsagn om all bruk av legemidler ved registreringstidspunktet.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Overordnet eksklusjon av familiære sykdommer">
                 description = <"Overordnet eksklusjonsutsagn om alle betydningsfulle helserelaterte problemer hos familiemedlemmer eller slektninger av individet ved registreringstidspunktet.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Overordnet eksklusjon av problemer/diagnoser">
                 description = <"Overordnet eksklusjonsutsagn om alle problemer eller diagnoser ved registreringstidspunktet.">
             >
@@ -279,23 +279,23 @@ terminology
                 description = <"Informações adicionais necessárias para capturar conteúdo local ou alinhar com outros modelos / formalismos de referência.">
                 comment = <"Por exemplo: requisitos de informações locais ou metadados adicionais para alinhar a equivalentes do FHIR ou CIMI.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Exclusão global de reações adversas">
                 description = <"Declaração geral de exclusão sobre todas as reações adversas no momento do registro.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Exclusão global de procedimentos">
                 description = <"Declaração geral de exclusão sobre todos os procedimentos no momento da gravação.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Exclusão global do uso de medicamentos">
                 description = <"Declaração geral de exclusão sobre o uso de todos os medicamentos no momento da gravação.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Exclusão global da história familiar">
                 description = <"Declaração geral de exclusão de todos os problemas significativos relacionados à saúde em parentes ou familiares do indivíduo no momento da gravação.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Exclusão global de problemas / diagnósticos">
                 description = <"Declaração geral de exclusão de todos os problemas ou diagnósticos no momento da gravação.">
             >
@@ -323,23 +323,23 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: Local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Global exclusion of adverse reactions">
                 description = <"Overall statement of exclusion about all adverse reactions at the time of recording.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Global exclusion of procedures">
                 description = <"Overall statement of exclusion about all procedures at the time of recording.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Global exclusion of medication use">
                 description = <"Overall statement of exclusion about the use of all medications at the time of recording.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Global exclusion of family history">
                 description = <"Overall statement of exclusion of all significant health-related problems in relatives or family members of the individual at the time of recording.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Global exclusion of problems/diagnoses">
                 description = <"Overall statement of exclusion of all problems or diagnoses at the time of recording.">
             >
@@ -357,6 +357,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at5", "at6", "at7", "at8">
+            members = <"at3", "at4", "at5", "at6", "at7">
         >
     >

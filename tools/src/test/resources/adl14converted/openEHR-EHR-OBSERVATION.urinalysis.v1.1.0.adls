@@ -124,12 +124,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at116]}],
-                                                    [{2}, {[at117]}],
-                                                    [{3}, {[at118]}],
-                                                    [{4}, {[at119]}],
-                                                    [{5}, {[at120]}],
-                                                    [{6}, {[at121]}]
+                                                    [{1}, {[at115]}],
+                                                    [{2}, {[at116]}],
+                                                    [{3}, {[at117]}],
+                                                    [{4}, {[at118]}],
+                                                    [{5}, {[at119]}],
+                                                    [{6}, {[at120]}]
                                                 }
                                             }
                                         }
@@ -138,10 +138,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at122]}],
-                                                    [{2}, {[at123]}],
-                                                    [{3}, {[at124]}],
-                                                    [{4}, {[at125]}]
+                                                    [{1}, {[at121]}],
+                                                    [{2}, {[at122]}],
+                                                    [{3}, {[at123]}],
+                                                    [{4}, {[at124]}]
                                                 }
                                             }
                                         }
@@ -150,12 +150,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9013] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at110]}],
-                                                    [{2}, {[at111]}],
-                                                    [{3}, {[at112]}],
-                                                    [{4}, {[at113]}],
-                                                    [{5}, {[at114]}],
-                                                    [{6}, {[at115]}]
+                                                    [{1}, {[at109]}],
+                                                    [{2}, {[at110]}],
+                                                    [{3}, {[at111]}],
+                                                    [{4}, {[at112]}],
+                                                    [{5}, {[at113]}],
+                                                    [{6}, {[at114]}]
                                                 }
                                             }
                                         }
@@ -164,13 +164,13 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9014] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at153]}],
-                                                    [{2}, {[at154]}],
-                                                    [{3}, {[at155]}],
-                                                    [{4}, {[at156]}],
-                                                    [{5}, {[at157]}],
-                                                    [{6}, {[at158]}],
-                                                    [{7}, {[at159]}]
+                                                    [{1}, {[at152]}],
+                                                    [{2}, {[at153]}],
+                                                    [{3}, {[at154]}],
+                                                    [{4}, {[at155]}],
+                                                    [{5}, {[at156]}],
+                                                    [{6}, {[at157]}],
+                                                    [{7}, {[at158]}]
                                                 }
                                             }
                                         }
@@ -179,13 +179,13 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9015] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at103]}],
-                                                    [{2}, {[at104]}],
-                                                    [{3}, {[at105]}],
-                                                    [{4}, {[at106]}],
-                                                    [{5}, {[at107]}],
-                                                    [{6}, {[at108]}],
-                                                    [{7}, {[at109]}]
+                                                    [{1}, {[at102]}],
+                                                    [{2}, {[at103]}],
+                                                    [{3}, {[at104]}],
+                                                    [{4}, {[at105]}],
+                                                    [{5}, {[at106]}],
+                                                    [{6}, {[at107]}],
+                                                    [{7}, {[at108]}]
                                                 }
                                             }
                                         }
@@ -194,17 +194,17 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9016] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at128]}],
-                                                    [{2}, {[at129]}],
-                                                    [{3}, {[at130]}],
-                                                    [{4}, {[at131]}],
-                                                    [{5}, {[at132]}],
-                                                    [{6}, {[at133]}],
-                                                    [{7}, {[at134]}],
-                                                    [{8}, {[at135]}],
-                                                    [{9}, {[at177]}],
-                                                    [{10}, {[at178]}],
-                                                    [{11}, {[at180]}]
+                                                    [{1}, {[at127]}],
+                                                    [{2}, {[at128]}],
+                                                    [{3}, {[at129]}],
+                                                    [{4}, {[at130]}],
+                                                    [{5}, {[at131]}],
+                                                    [{6}, {[at132]}],
+                                                    [{7}, {[at133]}],
+                                                    [{8}, {[at134]}],
+                                                    [{9}, {[at176]}],
+                                                    [{10}, {[at177]}],
+                                                    [{11}, {[at179]}]
                                                 }
                                             }
                                         }
@@ -213,12 +213,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9017] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at97]}],
-                                                    [{2}, {[at98]}],
-                                                    [{3}, {[at99]}],
-                                                    [{4}, {[at100]}],
-                                                    [{5}, {[at101]}],
-                                                    [{6}, {[at102]}]
+                                                    [{1}, {[at96]}],
+                                                    [{2}, {[at97]}],
+                                                    [{3}, {[at98]}],
+                                                    [{4}, {[at99]}],
+                                                    [{5}, {[at100]}],
+                                                    [{6}, {[at101]}]
                                                 }
                                             }
                                         }
@@ -227,11 +227,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9018] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at162]}],
-                                                    [{2}, {[at163]}],
-                                                    [{3}, {[at164]}],
-                                                    [{4}, {[at165]}],
-                                                    [{5}, {[at166]}]
+                                                    [{1}, {[at161]}],
+                                                    [{2}, {[at162]}],
+                                                    [{3}, {[at163]}],
+                                                    [{4}, {[at164]}],
+                                                    [{5}, {[at165]}]
                                                 }
                                             }
                                         }
@@ -240,8 +240,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9019] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at160]}],
-                                                    [{2}, {[at161]}]
+                                                    [{1}, {[at159]}],
+                                                    [{2}, {[at160]}]
                                                 }
                                             }
                                         }
@@ -250,11 +250,11 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9020] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at136]}],
-                                                    [{2}, {[at137]}],
-                                                    [{3}, {[at138]}],
-                                                    [{4}, {[at139]}],
-                                                    [{5}, {[at140]}]
+                                                    [{1}, {[at135]}],
+                                                    [{2}, {[at136]}],
+                                                    [{3}, {[at137]}],
+                                                    [{4}, {[at138]}],
+                                                    [{5}, {[at139]}]
                                                 }
                                             }
                                         }
@@ -358,11 +358,11 @@ terminology
                 text = <"*Method(en) (synthesised)">
                 description = <"*Method by which the reagent strips were read.(en) (synthesised)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"*Automatic(en)">
                 description = <"*The urinalysis results were detemined by a medical device.(en)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"*Manual(en)">
                 description = <"*The urinalysis results were detemined by a person.(en)">
             >
@@ -397,71 +397,71 @@ terminology
                 text = <"*Reagent Strips(en)">
                 description = <"*Details about the reagent strips used.(en)">
             >
-            ["at180"] = <
+            ["at179"] = <
                 text = <"*10.0(en)">
                 description = <"*pH of urine is equivalent to 10.0.(en)">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"*9.5(en)">
                 description = <"*pH of urine is equivalent to 9.5.(en)">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"*9.0(en)">
                 description = <"*pH of urine is equivalent to 9.0.(en)">
             >
-            ["at166"] = <
+            ["at165"] = <
                 text = <"*8 mg/dL(en)">
                 description = <"*Amount equivalent to 8mg/dL detected.(en)">
             >
-            ["at165"] = <
+            ["at164"] = <
                 text = <"*4 mg/dL(en)">
                 description = <"*Amount equivalent to 4mg/dL detected.(en)">
             >
-            ["at164"] = <
+            ["at163"] = <
                 text = <"*2 mg/dL(en)">
                 description = <"*Amount equivalent to 2mg/dL detected.(en)">
             >
-            ["at163"] = <
+            ["at162"] = <
                 text = <"*Normal (upper)(en)">
                 description = <"*Amount equivalent to 1 mg/dL detected.(en)">
             >
-            ["at162"] = <
+            ["at161"] = <
                 text = <"*Normal (lower)(en)">
                 description = <"*Amount equivalent to 0.2 mg/dL detected.(en)">
             >
-            ["at161"] = <
+            ["at160"] = <
                 text = <"*Positive(en)">
                 description = <"*Nitrites were detected.(en)">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"*Negative(en)">
                 description = <"*No nitrites detected.(en)">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"*1.030(en)">
                 description = <"*Specific gravity is equivalent to 1.030.(en)">
             >
-            ["at158"] = <
+            ["at157"] = <
                 text = <"*1.025(en)">
                 description = <"*Specific gravity is equivalent to 1.025.(en)">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"*1.020(en)">
                 description = <"*Specific gravity is equivalent to 1.020.(en)">
             >
-            ["at156"] = <
+            ["at155"] = <
                 text = <"*1.015(en)">
                 description = <"*Specific gravity is equivalent to 1.015.(en)">
             >
-            ["at155"] = <
+            ["at154"] = <
                 text = <"*1.010(en)">
                 description = <"*Specific gravity is equivalent to 1.010.(en)">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"*1.005(en)">
                 description = <"*Specific gravity is equivalent to 1.005.(en)">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"*1.000(en)">
                 description = <"*Specific gravity is equivalent to 1.000.(en)">
             >
@@ -469,55 +469,55 @@ terminology
                 text = <"*Specific gravity(en)">
                 description = <"*Measurement of the concentration of substances dissolved (solutes) in the urine sample relative to distilled water.(en)">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount detected.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount detected.(en)">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount detected.(en)">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"*Trace(en)">
                 description = <"*Trace detected.(en)">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"*Negative(en)">
                 description = <"*No leukocytes detected.(en)">
             >
-            ["at135"] = <
+            ["at134"] = <
                 text = <"*8.5(en)">
                 description = <"*pH of urine is equivalent to 8.5.(en)">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"*8.0(en)">
                 description = <"*pH of urine is equivalent to 8.0.(en)">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"*7.5(en)">
                 description = <"*pH of urine is equivalent to 7.5.(en)">
             >
-            ["at132"] = <
+            ["at131"] = <
                 text = <"*7.0(en)">
                 description = <"*pH of urine is equivalent to 7.0.(en)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"*6.5(en)">
                 description = <"*pH of urine is equivalent to 6.5.(en)">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"*6.0(en)">
                 description = <"*pH of urine is equivalent to 6.0.(en)">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"*5.5(en)">
                 description = <"*pH of urine is equivalent to 5.5.(en)">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"*5.0(en)">
                 description = <"*pH of urine is equivalent to 5.0.(en)">
             >
@@ -525,119 +525,119 @@ terminology
                 text = <"*pH(en)">
                 description = <"*Measurement of pH in urine sample.(en)">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount detected.(en)">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount detected.(en)">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount detected.(en)">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"*Negative(en)">
                 description = <"*No bilirubin detected.(en)">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"*4+(en)">
                 description = <"*Amount equivalent >2 g/dl (>2000mg/dL or >120 mmol/L) detected.(en)">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"*3+(en)">
                 description = <"*Amount equivalent to 1 g/dl (1000mg/dL or 60 mmol/L) detected.(en)">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"*2+(en)">
                 description = <"*Amount equivalent to 1/2 g/dl (500mg/dL or 30 mmol/L) detected.(en)">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"*1+(en)">
                 description = <"*Amount equivalent to 1/4 g/dL (250 mg/dL or 15 mmol/L) detected.(en)">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"*Trace(en)">
                 description = <"*Amount equivalent to 1/10 g/dl (100mg/dL or 5 mmol/L) detected.(en)">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"*Negative(en)">
                 description = <"*No glucose detected.(en)">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"*Large+(en)">
                 description = <"*Amount equivalent to 160mg/dL (or 16 mmol/L) detected.(en)">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"*Large(en)">
                 description = <"*Amount equivalent to 80mg/dL (or 8.0 mmol/L) detected.(en)">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"*Moderate(en)">
                 description = <"*Amount equivalent to 40mg/dL (or 4.0 mmol/L) detected.(en)">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"*Small(en)">
                 description = <"*Amount equivalent to 15mg/dL (or 1.5 mmlol/L) detected.(en)">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"*Trace(en)">
                 description = <"*Amount equivalent to 5mg/dL (or 0.5 mmol/L) detected.(en)">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"*Negative(en)">
                 description = <"*No ketones detected.(en)">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount of blood detected.(en)">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount of blood detected.(en)">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount of blood detected.(en)">
             >
-            ["at106"] = <
+            ["at105"] = <
                 text = <"*Haemolysed Trace(en)">
                 description = <"*Trace of haemolysed blood detected.(en)">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"*Non-haemolysed Moderate(en)">
                 description = <"*Moderate amount of non-haemolysed blood detected.(en)">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"*Non-haemolysed Trace(en)">
                 description = <"*Trace of non-haemolysed blood detected.(en)">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"*Negative(en)">
                 description = <"*No blood detected.(en)">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"*4+(en)">
                 description = <"*Amount equivalent to >2000mg/dL (or >20 g/L) detected.(en)">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"*3+(en)">
                 description = <"*Amount equivalent to 300mg/dL (or 3.0 g/L) detected.(en)">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"*2+(en)">
                 description = <"*Amount equivalent to 100mg/dL (or 1.0 g/L) detected.(en)">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"*1+(en)">
                 description = <"*Amount equivalent to 30mg/dL (or 0.3 g/L) detected.(en)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"*Trace(en)">
                 description = <"*Trace of protein detected.(en)">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"*Negative(en)">
                 description = <"*No protein detected.(en)">
             >
@@ -732,11 +732,11 @@ terminology
                 text = <"*Method(en) (synthesised)">
                 description = <"*Method by which the reagent strips were read.(en) (synthesised)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"*Automatic(en)">
                 description = <"*The urinalysis results were detemined by a medical device.(en)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"*Manual(en)">
                 description = <"*The urinalysis results were detemined by a person.(en)">
             >
@@ -771,71 +771,71 @@ terminology
                 text = <"*Reagent Strips(en)">
                 description = <"*Details about the reagent strips used.(en)">
             >
-            ["at180"] = <
+            ["at179"] = <
                 text = <"*10.0(en)">
                 description = <"*pH of urine is equivalent to 10.0.(en)">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"*9.5(en)">
                 description = <"*pH of urine is equivalent to 9.5.(en)">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"*9.0(en)">
                 description = <"*pH of urine is equivalent to 9.0.(en)">
             >
-            ["at166"] = <
+            ["at165"] = <
                 text = <"*8 mg/dL(en)">
                 description = <"*Amount equivalent to 8mg/dL detected.(en)">
             >
-            ["at165"] = <
+            ["at164"] = <
                 text = <"*4 mg/dL(en)">
                 description = <"*Amount equivalent to 4mg/dL detected.(en)">
             >
-            ["at164"] = <
+            ["at163"] = <
                 text = <"*2 mg/dL(en)">
                 description = <"*Amount equivalent to 2mg/dL detected.(en)">
             >
-            ["at163"] = <
+            ["at162"] = <
                 text = <"*Normal (upper)(en)">
                 description = <"*Amount equivalent to 1 mg/dL detected.(en)">
             >
-            ["at162"] = <
+            ["at161"] = <
                 text = <"*Normal (lower)(en)">
                 description = <"*Amount equivalent to 0.2 mg/dL detected.(en)">
             >
-            ["at161"] = <
+            ["at160"] = <
                 text = <"*Positive(en)">
                 description = <"*Nitrites were detected.(en)">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"*Negative(en)">
                 description = <"*No nitrites detected.(en)">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"*1.030(en)">
                 description = <"*Specific gravity is equivalent to 1.030.(en)">
             >
-            ["at158"] = <
+            ["at157"] = <
                 text = <"*1.025(en)">
                 description = <"*Specific gravity is equivalent to 1.025.(en)">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"*1.020(en)">
                 description = <"*Specific gravity is equivalent to 1.020.(en)">
             >
-            ["at156"] = <
+            ["at155"] = <
                 text = <"*1.015(en)">
                 description = <"*Specific gravity is equivalent to 1.015.(en)">
             >
-            ["at155"] = <
+            ["at154"] = <
                 text = <"*1.010(en)">
                 description = <"*Specific gravity is equivalent to 1.010.(en)">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"*1.005(en)">
                 description = <"*Specific gravity is equivalent to 1.005.(en)">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"*1.000(en)">
                 description = <"*Specific gravity is equivalent to 1.000.(en)">
             >
@@ -843,55 +843,55 @@ terminology
                 text = <"*Specific gravity(en)">
                 description = <"*Measurement of the concentration of substances dissolved (solutes) in the urine sample relative to distilled water.(en)">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount detected.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount detected.(en)">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount detected.(en)">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"*Trace(en)">
                 description = <"*Trace detected.(en)">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"*Negative(en)">
                 description = <"*No leukocytes detected.(en)">
             >
-            ["at135"] = <
+            ["at134"] = <
                 text = <"*8.5(en)">
                 description = <"*pH of urine is equivalent to 8.5.(en)">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"*8.0(en)">
                 description = <"*pH of urine is equivalent to 8.0.(en)">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"*7.5(en)">
                 description = <"*pH of urine is equivalent to 7.5.(en)">
             >
-            ["at132"] = <
+            ["at131"] = <
                 text = <"*7.0(en)">
                 description = <"*pH of urine is equivalent to 7.0.(en)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"*6.5(en)">
                 description = <"*pH of urine is equivalent to 6.5.(en)">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"*6.0(en)">
                 description = <"*pH of urine is equivalent to 6.0.(en)">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"*5.5(en)">
                 description = <"*pH of urine is equivalent to 5.5.(en)">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"*5.0(en)">
                 description = <"*pH of urine is equivalent to 5.0.(en)">
             >
@@ -899,119 +899,119 @@ terminology
                 text = <"*pH(en)">
                 description = <"*Measurement of pH in urine sample.(en)">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount detected.(en)">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount detected.(en)">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount detected.(en)">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"*Negative(en)">
                 description = <"*No bilirubin detected.(en)">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"*4+(en)">
                 description = <"*Amount equivalent >2 g/dl (>2000mg/dL or >120 mmol/L) detected.(en)">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"*3+(en)">
                 description = <"*Amount equivalent to 1 g/dl (1000mg/dL or 60 mmol/L) detected.(en)">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"*2+(en)">
                 description = <"*Amount equivalent to 1/2 g/dl (500mg/dL or 30 mmol/L) detected.(en)">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"*1+(en)">
                 description = <"*Amount equivalent to 1/4 g/dL (250 mg/dL or 15 mmol/L) detected.(en)">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"*Trace(en)">
                 description = <"*Amount equivalent to 1/10 g/dl (100mg/dL or 5 mmol/L) detected.(en)">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"*Negative(en)">
                 description = <"*No glucose detected.(en)">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"*Large+(en)">
                 description = <"*Amount equivalent to 160mg/dL (or 16 mmol/L) detected.(en)">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"*Large(en)">
                 description = <"*Amount equivalent to 80mg/dL (or 8.0 mmol/L) detected.(en)">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"*Moderate(en)">
                 description = <"*Amount equivalent to 40mg/dL (or 4.0 mmol/L) detected.(en)">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"*Small(en)">
                 description = <"*Amount equivalent to 15mg/dL (or 1.5 mmlol/L) detected.(en)">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"*Trace(en)">
                 description = <"*Amount equivalent to 5mg/dL (or 0.5 mmol/L) detected.(en)">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"*Negative(en)">
                 description = <"*No ketones detected.(en)">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount of blood detected.(en)">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount of blood detected.(en)">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount of blood detected.(en)">
             >
-            ["at106"] = <
+            ["at105"] = <
                 text = <"*Haemolysed Trace(en)">
                 description = <"*Trace of haemolysed blood detected.(en)">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"*Non-haemolysed Moderate(en)">
                 description = <"*Moderate amount of non-haemolysed blood detected.(en)">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"*Non-haemolysed Trace(en)">
                 description = <"*Trace of non-haemolysed blood detected.(en)">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"*Negative(en)">
                 description = <"*No blood detected.(en)">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"*4+(en)">
                 description = <"*Amount equivalent to >2000mg/dL (or >20 g/L) detected.(en)">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"*3+(en)">
                 description = <"*Amount equivalent to 300mg/dL (or 3.0 g/L) detected.(en)">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"*2+(en)">
                 description = <"*Amount equivalent to 100mg/dL (or 1.0 g/L) detected.(en)">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"*1+(en)">
                 description = <"*Amount equivalent to 30mg/dL (or 0.3 g/L) detected.(en)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"*Trace(en)">
                 description = <"*Trace of protein detected.(en)">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"*Negative(en)">
                 description = <"*No protein detected.(en)">
             >
@@ -1106,11 +1106,11 @@ terminology
                 text = <"*Method(en) (synthesised)">
                 description = <"*Method by which the reagent strips were read.(en) (synthesised)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"*Automatic(en)">
                 description = <"*The urinalysis results were detemined by a medical device.(en)">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"*Manual(en)">
                 description = <"*The urinalysis results were detemined by a person.(en)">
             >
@@ -1145,71 +1145,71 @@ terminology
                 text = <"*Reagent Strips(en)">
                 description = <"*Details about the reagent strips used.(en)">
             >
-            ["at180"] = <
+            ["at179"] = <
                 text = <"*10.0(en)">
                 description = <"*pH of urine is equivalent to 10.0.(en)">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"*9.5(en)">
                 description = <"*pH of urine is equivalent to 9.5.(en)">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"*9.0(en)">
                 description = <"*pH of urine is equivalent to 9.0.(en)">
             >
-            ["at166"] = <
+            ["at165"] = <
                 text = <"*8 mg/dL(en)">
                 description = <"*Amount equivalent to 8mg/dL detected.(en)">
             >
-            ["at165"] = <
+            ["at164"] = <
                 text = <"*4 mg/dL(en)">
                 description = <"*Amount equivalent to 4mg/dL detected.(en)">
             >
-            ["at164"] = <
+            ["at163"] = <
                 text = <"*2 mg/dL(en)">
                 description = <"*Amount equivalent to 2mg/dL detected.(en)">
             >
-            ["at163"] = <
+            ["at162"] = <
                 text = <"*Normal (upper)(en)">
                 description = <"*Amount equivalent to 1 mg/dL detected.(en)">
             >
-            ["at162"] = <
+            ["at161"] = <
                 text = <"*Normal (lower)(en)">
                 description = <"*Amount equivalent to 0.2 mg/dL detected.(en)">
             >
-            ["at161"] = <
+            ["at160"] = <
                 text = <"*Positive(en)">
                 description = <"*Nitrites were detected.(en)">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"*Negative(en)">
                 description = <"*No nitrites detected.(en)">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"*1.030(en)">
                 description = <"*Specific gravity is equivalent to 1.030.(en)">
             >
-            ["at158"] = <
+            ["at157"] = <
                 text = <"*1.025(en)">
                 description = <"*Specific gravity is equivalent to 1.025.(en)">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"*1.020(en)">
                 description = <"*Specific gravity is equivalent to 1.020.(en)">
             >
-            ["at156"] = <
+            ["at155"] = <
                 text = <"*1.015(en)">
                 description = <"*Specific gravity is equivalent to 1.015.(en)">
             >
-            ["at155"] = <
+            ["at154"] = <
                 text = <"*1.010(en)">
                 description = <"*Specific gravity is equivalent to 1.010.(en)">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"*1.005(en)">
                 description = <"*Specific gravity is equivalent to 1.005.(en)">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"*1.000(en)">
                 description = <"*Specific gravity is equivalent to 1.000.(en)">
             >
@@ -1217,55 +1217,55 @@ terminology
                 text = <"*Specific gravity(en)">
                 description = <"*Measurement of the concentration of substances dissolved (solutes) in the urine sample relative to distilled water.(en)">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount detected.(en)">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount detected.(en)">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount detected.(en)">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"*Trace(en)">
                 description = <"*Trace detected.(en)">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"*Negative(en)">
                 description = <"*No leukocytes detected.(en)">
             >
-            ["at135"] = <
+            ["at134"] = <
                 text = <"*8.5(en)">
                 description = <"*pH of urine is equivalent to 8.5.(en)">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"*8.0(en)">
                 description = <"*pH of urine is equivalent to 8.0.(en)">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"*7.5(en)">
                 description = <"*pH of urine is equivalent to 7.5.(en)">
             >
-            ["at132"] = <
+            ["at131"] = <
                 text = <"*7.0(en)">
                 description = <"*pH of urine is equivalent to 7.0.(en)">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"*6.5(en)">
                 description = <"*pH of urine is equivalent to 6.5.(en)">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"*6.0(en)">
                 description = <"*pH of urine is equivalent to 6.0.(en)">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"*5.5(en)">
                 description = <"*pH of urine is equivalent to 5.5.(en)">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"*5.0(en)">
                 description = <"*pH of urine is equivalent to 5.0.(en)">
             >
@@ -1273,119 +1273,119 @@ terminology
                 text = <"*pH(en)">
                 description = <"*Measurement of pH in urine sample.(en)">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount detected.(en)">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount detected.(en)">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount detected.(en)">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"*Negative(en)">
                 description = <"*No bilirubin detected.(en)">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"*4+(en)">
                 description = <"*Amount equivalent >2 g/dl (>2000mg/dL or >120 mmol/L) detected.(en)">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"*3+(en)">
                 description = <"*Amount equivalent to 1 g/dl (1000mg/dL or 60 mmol/L) detected.(en)">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"*2+(en)">
                 description = <"*Amount equivalent to 1/2 g/dl (500mg/dL or 30 mmol/L) detected.(en)">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"*1+(en)">
                 description = <"*Amount equivalent to 1/4 g/dL (250 mg/dL or 15 mmol/L) detected.(en)">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"*Trace(en)">
                 description = <"*Amount equivalent to 1/10 g/dl (100mg/dL or 5 mmol/L) detected.(en)">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"*Negative(en)">
                 description = <"*No glucose detected.(en)">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"*Large+(en)">
                 description = <"*Amount equivalent to 160mg/dL (or 16 mmol/L) detected.(en)">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"*Large(en)">
                 description = <"*Amount equivalent to 80mg/dL (or 8.0 mmol/L) detected.(en)">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"*Moderate(en)">
                 description = <"*Amount equivalent to 40mg/dL (or 4.0 mmol/L) detected.(en)">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"*Small(en)">
                 description = <"*Amount equivalent to 15mg/dL (or 1.5 mmlol/L) detected.(en)">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"*Trace(en)">
                 description = <"*Amount equivalent to 5mg/dL (or 0.5 mmol/L) detected.(en)">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"*Negative(en)">
                 description = <"*No ketones detected.(en)">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"*3+(en)">
                 description = <"*Large amount of blood detected.(en)">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"*2+(en)">
                 description = <"*Moderate amount of blood detected.(en)">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"*1+(en)">
                 description = <"*Small amount of blood detected.(en)">
             >
-            ["at106"] = <
+            ["at105"] = <
                 text = <"*Haemolysed Trace(en)">
                 description = <"*Trace of haemolysed blood detected.(en)">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"*Non-haemolysed Moderate(en)">
                 description = <"*Moderate amount of non-haemolysed blood detected.(en)">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"*Non-haemolysed Trace(en)">
                 description = <"*Trace of non-haemolysed blood detected.(en)">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"*Negative(en)">
                 description = <"*No blood detected.(en)">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"*4+(en)">
                 description = <"*Amount equivalent to >2000mg/dL (or >20 g/L) detected.(en)">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"*3+(en)">
                 description = <"*Amount equivalent to 300mg/dL (or 3.0 g/L) detected.(en)">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"*2+(en)">
                 description = <"*Amount equivalent to 100mg/dL (or 1.0 g/L) detected.(en)">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"*1+(en)">
                 description = <"*Amount equivalent to 30mg/dL (or 0.3 g/L) detected.(en)">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"*Trace(en)">
                 description = <"*Trace of protein detected.(en)">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"*Negative(en)">
                 description = <"*No protein detected.(en)">
             >
@@ -1480,11 +1480,11 @@ terminology
                 text = <"Method (synthesised)">
                 description = <"Method by which the reagent strips were read. (synthesised)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"Automatic">
                 description = <"The urinalysis results were detemined by a medical device.">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"Manual">
                 description = <"The urinalysis results were detemined by a person.">
             >
@@ -1519,71 +1519,71 @@ terminology
                 text = <"Reagent Strips">
                 description = <"Details about the reagent strips used.">
             >
-            ["at180"] = <
+            ["at179"] = <
                 text = <"10.0">
                 description = <"pH of urine is equivalent to 10.0.">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"9.5">
                 description = <"pH of urine is equivalent to 9.5.">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"9.0">
                 description = <"pH of urine is equivalent to 9.0.">
             >
-            ["at166"] = <
+            ["at165"] = <
                 text = <"8 mg/dL">
                 description = <"Amount equivalent to 8mg/dL detected.">
             >
-            ["at165"] = <
+            ["at164"] = <
                 text = <"4 mg/dL">
                 description = <"Amount equivalent to 4mg/dL detected.">
             >
-            ["at164"] = <
+            ["at163"] = <
                 text = <"2 mg/dL">
                 description = <"Amount equivalent to 2mg/dL detected.">
             >
-            ["at163"] = <
+            ["at162"] = <
                 text = <"Normal (upper)">
                 description = <"Amount equivalent to 1 mg/dL detected.">
             >
-            ["at162"] = <
+            ["at161"] = <
                 text = <"Normal (lower)">
                 description = <"Amount equivalent to 0.2 mg/dL detected.">
             >
-            ["at161"] = <
+            ["at160"] = <
                 text = <"Positive">
                 description = <"Nitrites were detected.">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"Negative">
                 description = <"No nitrites detected.">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"1.030">
                 description = <"Specific gravity is equivalent to 1.030.">
             >
-            ["at158"] = <
+            ["at157"] = <
                 text = <"1.025">
                 description = <"Specific gravity is equivalent to 1.025.">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"1.020">
                 description = <"Specific gravity is equivalent to 1.020.">
             >
-            ["at156"] = <
+            ["at155"] = <
                 text = <"1.015">
                 description = <"Specific gravity is equivalent to 1.015.">
             >
-            ["at155"] = <
+            ["at154"] = <
                 text = <"1.010">
                 description = <"Specific gravity is equivalent to 1.010.">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"1.005">
                 description = <"Specific gravity is equivalent to 1.005.">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"1.000">
                 description = <"Specific gravity is equivalent to 1.000.">
             >
@@ -1591,55 +1591,55 @@ terminology
                 text = <"Specific gravity">
                 description = <"Measurement of the concentration of substances dissolved (solutes) in the urine sample relative to distilled water.">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"3+">
                 description = <"Large amount detected.">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"2+">
                 description = <"Moderate amount detected.">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"1+">
                 description = <"Small amount detected.">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Trace">
                 description = <"Trace detected.">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"Negative">
                 description = <"No leukocytes detected.">
             >
-            ["at135"] = <
+            ["at134"] = <
                 text = <"8.5">
                 description = <"pH of urine is equivalent to 8.5.">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"8.0">
                 description = <"pH of urine is equivalent to 8.0.">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"7.5">
                 description = <"pH of urine is equivalent to 7.5.">
             >
-            ["at132"] = <
+            ["at131"] = <
                 text = <"7.0">
                 description = <"pH of urine is equivalent to 7.0.">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"6.5">
                 description = <"pH of urine is equivalent to 6.5.">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"6.0">
                 description = <"pH of urine is equivalent to 6.0.">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"5.5">
                 description = <"pH of urine is equivalent to 5.5.">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"5.0">
                 description = <"pH of urine is equivalent to 5.0.">
             >
@@ -1647,119 +1647,119 @@ terminology
                 text = <"pH">
                 description = <"Measurement of pH in urine sample.">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"3+">
                 description = <"Large amount detected.">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"2+">
                 description = <"Moderate amount detected.">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"1+">
                 description = <"Small amount detected.">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"Negative">
                 description = <"No bilirubin detected.">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"4+">
                 description = <"Amount equivalent >2 g/dl (>2000mg/dL or >120 mmol/L) detected.">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"3+">
                 description = <"Amount equivalent to 1 g/dl (1000mg/dL or 60 mmol/L) detected.">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"2+">
                 description = <"Amount equivalent to 1/2 g/dl (500mg/dL or 30 mmol/L) detected.">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"1+">
                 description = <"Amount equivalent to 1/4 g/dL (250 mg/dL or 15 mmol/L) detected.">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"Trace">
                 description = <"Amount equivalent to 1/10 g/dl (100mg/dL or 5 mmol/L) detected.">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"Negative">
                 description = <"No glucose detected.">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"Large+">
                 description = <"Amount equivalent to 160mg/dL (or 16 mmol/L) detected.">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"Large">
                 description = <"Amount equivalent to 80mg/dL (or 8.0 mmol/L) detected.">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"Moderate">
                 description = <"Amount equivalent to 40mg/dL (or 4.0 mmol/L) detected.">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"Small">
                 description = <"Amount equivalent to 15mg/dL (or 1.5 mmlol/L) detected.">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"Trace">
                 description = <"Amount equivalent to 5mg/dL (or 0.5 mmol/L) detected.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Negative">
                 description = <"No ketones detected.">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"3+">
                 description = <"Large amount of blood detected.">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"2+">
                 description = <"Moderate amount of blood detected.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"1+">
                 description = <"Small amount of blood detected.">
             >
-            ["at106"] = <
+            ["at105"] = <
                 text = <"Haemolysed Trace">
                 description = <"Trace of haemolysed blood detected.">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"Non-haemolysed Moderate">
                 description = <"Moderate amount of non-haemolysed blood detected.">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"Non-haemolysed Trace">
                 description = <"Trace of non-haemolysed blood detected.">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"Negative">
                 description = <"No blood detected.">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"4+">
                 description = <"Amount equivalent to >2000mg/dL (or >20 g/L) detected.">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"3+">
                 description = <"Amount equivalent to 300mg/dL (or 3.0 g/L) detected.">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"2+">
                 description = <"Amount equivalent to 100mg/dL (or 1.0 g/L) detected.">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"1+">
                 description = <"Amount equivalent to 30mg/dL (or 0.3 g/L) detected.">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"Trace">
                 description = <"Trace of protein detected.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"Negative">
                 description = <"No protein detected.">
             >
@@ -1854,11 +1854,11 @@ terminology
                 text = <"方法 (synthesised)">
                 description = <"读取试纸条时所采用的方法。 (synthesised)">
             >
-            ["at189"] = <
+            ["at188"] = <
                 text = <"自动">
                 description = <"利用医用装置（仪器设备）来测定尿液分析结果。">
             >
-            ["at188"] = <
+            ["at187"] = <
                 text = <"手工">
                 description = <"采用人工方式来测定尿液分析结果。">
             >
@@ -1893,71 +1893,71 @@ terminology
                 text = <"试纸条">
                 description = <"关于所采用的试纸条的详细信息。">
             >
-            ["at180"] = <
+            ["at179"] = <
                 text = <"10.0">
                 description = <"尿液pH相当于 10.0。">
             >
-            ["at178"] = <
+            ["at177"] = <
                 text = <"9.5">
                 description = <"尿液pH相当于 9.5。">
             >
-            ["at177"] = <
+            ["at176"] = <
                 text = <"9.0">
                 description = <"尿液pH相当于 9.0。">
             >
-            ["at166"] = <
+            ["at165"] = <
                 text = <"8 mg/dL">
                 description = <"检出量相当于 8mg/dL。">
             >
-            ["at165"] = <
+            ["at164"] = <
                 text = <"4 mg/dL">
                 description = <"检出量相当于 4mg/dL。">
             >
-            ["at164"] = <
+            ["at163"] = <
                 text = <"2 mg/dL">
                 description = <"检出量相当于 2mg/dL。">
             >
-            ["at163"] = <
+            ["at162"] = <
                 text = <"正常 (高限)">
                 description = <"检出量相当于 1 mg/dL。">
             >
-            ["at162"] = <
+            ["at161"] = <
                 text = <"正常 (低限)">
                 description = <"检出量相当于 0.2 mg/dL。">
             >
-            ["at161"] = <
+            ["at160"] = <
                 text = <"阳性">
                 description = <"检出亚硝酸盐。">
             >
-            ["at160"] = <
+            ["at159"] = <
                 text = <"阴性">
                 description = <"未检出亚硝酸盐。">
             >
-            ["at159"] = <
+            ["at158"] = <
                 text = <"1.030">
                 description = <"比重相当于 1.030。">
             >
-            ["at158"] = <
+            ["at157"] = <
                 text = <"1.025">
                 description = <"比重相当于 1.025。">
             >
-            ["at157"] = <
+            ["at156"] = <
                 text = <"1.020">
                 description = <"比重相当于 1.020。">
             >
-            ["at156"] = <
+            ["at155"] = <
                 text = <"1.015">
                 description = <"比重相当于 1.015。">
             >
-            ["at155"] = <
+            ["at154"] = <
                 text = <"1.010">
                 description = <"比重相当于 1.010。">
             >
-            ["at154"] = <
+            ["at153"] = <
                 text = <"1.005">
                 description = <"比重相当于 1.005。">
             >
-            ["at153"] = <
+            ["at152"] = <
                 text = <"1.000">
                 description = <"比重相当于 1.000。">
             >
@@ -1965,55 +1965,55 @@ terminology
                 text = <"比重">
                 description = <"相对于蒸馏水，尿液样品之中所溶解物质（溶质）浓度的测量指标。">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"3+">
                 description = <"检出大量白细胞。">
             >
-            ["at139"] = <
+            ["at138"] = <
                 text = <"2+">
                 description = <"检出中等量白细胞。">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"1+">
                 description = <"检出少量白细胞。">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"微量">
                 description = <"检出微量白细胞。">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"阴性">
                 description = <"未检出白细胞。">
             >
-            ["at135"] = <
+            ["at134"] = <
                 text = <"8.5">
                 description = <"尿液pH相当于 8.5。">
             >
-            ["at134"] = <
+            ["at133"] = <
                 text = <"8.0">
                 description = <"尿液pH相当于 8.0。">
             >
-            ["at133"] = <
+            ["at132"] = <
                 text = <"7.5">
                 description = <"尿液pH相当于 7.5。">
             >
-            ["at132"] = <
+            ["at131"] = <
                 text = <"7.0">
                 description = <"尿液pH相当于 7.0。">
             >
-            ["at131"] = <
+            ["at130"] = <
                 text = <"6.5">
                 description = <"尿液pH相当于 6.5。">
             >
-            ["at130"] = <
+            ["at129"] = <
                 text = <"6.0">
                 description = <"尿液pH相当于 6.0。">
             >
-            ["at129"] = <
+            ["at128"] = <
                 text = <"5.5">
                 description = <"尿液pH相当于 5.5。">
             >
-            ["at128"] = <
+            ["at127"] = <
                 text = <"5.0">
                 description = <"尿液pH相当于 5.0。">
             >
@@ -2021,119 +2021,119 @@ terminology
                 text = <"pH">
                 description = <"尿液样品酸碱度（pH）的检测。">
             >
-            ["at125"] = <
+            ["at124"] = <
                 text = <"3+">
                 description = <"检出大量胆红素。">
             >
-            ["at124"] = <
+            ["at123"] = <
                 text = <"2+">
                 description = <"检出中等量胆红素。">
             >
-            ["at123"] = <
+            ["at122"] = <
                 text = <"1+">
                 description = <"检出少量胆红素。">
             >
-            ["at122"] = <
+            ["at121"] = <
                 text = <"阴性">
                 description = <"未检出胆红素。">
             >
-            ["at121"] = <
+            ["at120"] = <
                 text = <"4+">
                 description = <"检出量相当于 >2 g/dl (>2000mg/dL 或 >120 mmol/L) 。">
             >
-            ["at120"] = <
+            ["at119"] = <
                 text = <"3+">
                 description = <"检出量相当于 1 g/dl (1000mg/dL 或 60 mmol/L) 。">
             >
-            ["at119"] = <
+            ["at118"] = <
                 text = <"2+">
                 description = <"检出量相当于 1/2 g/dl (500mg/dL 或 30 mmol/L)。">
             >
-            ["at118"] = <
+            ["at117"] = <
                 text = <"1+">
                 description = <"检出量相当于 1/4 g/dL (250 mg/dL 或 15 mmol/L) 。">
             >
-            ["at117"] = <
+            ["at116"] = <
                 text = <"微量">
                 description = <"检出量相当于 1/10 g/dl (100mg/dL 或 5 mmol/L)。">
             >
-            ["at116"] = <
+            ["at115"] = <
                 text = <"阴性">
                 description = <"为检出葡萄糖。">
             >
-            ["at115"] = <
+            ["at114"] = <
                 text = <"超大量">
                 description = <"检出量相当于 160mg/dL (或 16 mmol/L)。">
             >
-            ["at114"] = <
+            ["at113"] = <
                 text = <"大量">
                 description = <"检出量相当于 80mg/dL (或 8.0 mmol/L)。">
             >
-            ["at113"] = <
+            ["at112"] = <
                 text = <"中等量">
                 description = <"检出量相当于 40mg/dL (或 4.0 mmol/L)。">
             >
-            ["at112"] = <
+            ["at111"] = <
                 text = <"少量">
                 description = <"检出量相当于 15mg/dL (或 1.5 mmlol/L)。">
             >
-            ["at111"] = <
+            ["at110"] = <
                 text = <"微量">
                 description = <"检出量相当于 5mg/dL (或 0.5 mmol/L)。">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"阴性">
                 description = <"未检出酮体。">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"3+">
                 description = <"检出大量血液。">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"2+">
                 description = <"检出中等量血液。">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"1+">
                 description = <"检出少量血液。">
             >
-            ["at106"] = <
+            ["at105"] = <
                 text = <"溶血型微量">
                 description = <"检出微量已溶血的血液。">
             >
-            ["at105"] = <
+            ["at104"] = <
                 text = <"非溶血型中等量">
                 description = <"检出中等量未溶血的血液。">
             >
-            ["at104"] = <
+            ["at103"] = <
                 text = <"非溶血型微量">
                 description = <"检出微量未溶血的血液。">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"阴性">
                 description = <"未检出血液。">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"4+">
                 description = <"检出蛋白质量相当于 >2000mg/dL (或 >20 g/L)。">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"3+">
                 description = <"检出蛋白质量相当于 300mg/dL (或 3.0 g/L)。">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"2+">
                 description = <"检出蛋白质量相当于 100mg/dL (或 1.0 g/L)。">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"1+">
                 description = <"检出蛋白质量相当于 30mg/dL (或 0.3 g/L)。">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"微量">
                 description = <"检出微量蛋白质。">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"阴性">
                 description = <"未检出蛋白质。">
             >
@@ -2187,46 +2187,46 @@ terminology
     value_sets = <
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at136", "at137", "at138", "at139", "at140">
+            members = <"at135", "at136", "at137", "at138", "at139">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at160", "at161">
+            members = <"at159", "at160">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at162", "at163", "at164", "at165", "at166">
+            members = <"at161", "at162", "at163", "at164", "at165">
         >
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at110", "at111", "at112", "at113", "at114", "at115">
+            members = <"at109", "at110", "at111", "at112", "at113", "at114">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at122", "at123", "at124", "at125">
+            members = <"at121", "at122", "at123", "at124">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at116", "at117", "at118", "at119", "at120", "at121">
+            members = <"at115", "at116", "at117", "at118", "at119", "at120">
         >
         ["ac9010"] = <
             id = <"ac9010">
-            members = <"at188", "at189">
+            members = <"at187", "at188">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at97", "at98", "at99", "at100", "at101", "at102">
+            members = <"at96", "at97", "at98", "at99", "at100", "at101">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at128", "at129", "at130", "at131", "at132", "at133", "at134", "at135", "at177", "at178", "at180">
+            members = <"at127", "at128", "at129", "at130", "at131", "at132", "at133", "at134", "at176", "at177", "at179">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at103", "at104", "at105", "at106", "at107", "at108", "at109">
+            members = <"at102", "at103", "at104", "at105", "at106", "at107", "at108">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at153", "at154", "at155", "at156", "at157", "at158", "at159">
+            members = <"at152", "at153", "at154", "at155", "at156", "at157", "at158">
         >
     >

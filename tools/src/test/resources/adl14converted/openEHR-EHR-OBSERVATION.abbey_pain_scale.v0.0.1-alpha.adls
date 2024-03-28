@@ -69,10 +69,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at10]}],
-                                                    [{1}, {[at11]}],
-                                                    [{2}, {[at12]}],
-                                                    [{3}, {[at13]}]
+                                                    [{0}, {[at9]}],
+                                                    [{1}, {[at10]}],
+                                                    [{2}, {[at11]}],
+                                                    [{3}, {[at12]}]
                                                 }
                                             }
                                         }
@@ -81,10 +81,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9008] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at14]}],
-                                                    [{1}, {[at15]}],
-                                                    [{2}, {[at16]}],
-                                                    [{3}, {[at17]}]
+                                                    [{0}, {[at13]}],
+                                                    [{1}, {[at14]}],
+                                                    [{2}, {[at15]}],
+                                                    [{3}, {[at16]}]
                                                 }
                                             }
                                         }
@@ -93,10 +93,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9009] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at18]}],
-                                                    [{1}, {[at19]}],
-                                                    [{2}, {[at20]}],
-                                                    [{3}, {[at21]}]
+                                                    [{0}, {[at17]}],
+                                                    [{1}, {[at18]}],
+                                                    [{2}, {[at19]}],
+                                                    [{3}, {[at20]}]
                                                 }
                                             }
                                         }
@@ -110,10 +110,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9011] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at22]}],
-                                                    [{1}, {[at23]}],
-                                                    [{2}, {[at24]}],
-                                                    [{3}, {[at25]}]
+                                                    [{0}, {[at21]}],
+                                                    [{1}, {[at22]}],
+                                                    [{2}, {[at23]}],
+                                                    [{3}, {[at24]}]
                                                 }
                                             }
                                         }
@@ -122,10 +122,10 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9012] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at26]}],
-                                                    [{1}, {[at27]}],
-                                                    [{2}, {[at28]}],
-                                                    [{3}, {[at29]}]
+                                                    [{0}, {[at25]}],
+                                                    [{1}, {[at26]}],
+                                                    [{2}, {[at27]}],
+                                                    [{3}, {[at28]}]
                                                 }
                                             }
                                         }
@@ -219,15 +219,15 @@ terminology
                 text = <"*Type of pain(en) (synthesised)">
                 description = <"**(en) (synthesised)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"*Acute on chronic(en)">
                 description = <"**(en)">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"*Acute(en)">
                 description = <"**(en)">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"*Chronic(en)">
                 description = <"**(en)">
             >
@@ -235,19 +235,19 @@ terminology
                 text = <"*Type of pain(en)">
                 description = <"**(en)">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"*Severe(en)">
                 description = <"*Total pain score 14+.(en)">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"*Moderate(en)">
                 description = <"*Total pain score 8-13.(en)">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"*Mild pain(en)">
                 description = <"*Total pain score 3-7.(en)">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"*No pain(en)">
                 description = <"*Total pain score 0-2.(en)">
             >
@@ -277,83 +277,83 @@ terminology
                 text = <"*Total pain score(en)">
                 description = <"*Sum of  the 6 individual scores.(en)">
             >
-            ["at29"] = <
-                text = <"Ofta">
-                description = <"*">
-            >
             ["at28"] = <
-                text = <"Ibland">
+                text = <"Ofta">
                 description = <"*">
             >
             ["at27"] = <
-                text = <"Sällan">
+                text = <"Ibland">
                 description = <"*">
             >
             ["at26"] = <
-                text = <"Inte alls">
+                text = <"Sällan">
                 description = <"*">
             >
             ["at25"] = <
-                text = <"Ofta">
+                text = <"Inte alls">
                 description = <"*">
             >
             ["at24"] = <
-                text = <"Ibland">
+                text = <"Ofta">
                 description = <"*">
             >
             ["at23"] = <
-                text = <"Sällan">
+                text = <"Ibland">
                 description = <"*">
             >
             ["at22"] = <
-                text = <"Inte alls">
+                text = <"Sällan">
                 description = <"*">
             >
             ["at21"] = <
-                text = <"Ofta">
+                text = <"Inte alls">
                 description = <"*">
             >
             ["at20"] = <
-                text = <"Ibland">
+                text = <"Ofta">
                 description = <"*">
             >
             ["at19"] = <
-                text = <"Sällan ">
+                text = <"Ibland">
                 description = <"*">
             >
             ["at18"] = <
-                text = <"Inte alls">
+                text = <"Sällan ">
                 description = <"*">
             >
             ["at17"] = <
-                text = <"Ofta">
-                description = <"*">
-            >
-            ["at16"] = <
-                text = <"Ibland">
-                description = <"*">
-            >
-            ["at15"] = <
-                text = <"Sällan">
-                description = <"*">
-            >
-            ["at14"] = <
                 text = <"Inte alls">
                 description = <"*">
             >
-            ["at13"] = <
+            ["at16"] = <
                 text = <"Ofta">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at15"] = <
                 text = <"Ibland">
                 description = <"*">
             >
-            ["at11"] = <
+            ["at14"] = <
                 text = <"Sällan">
                 description = <"*">
             >
+            ["at13"] = <
+                text = <"Inte alls">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Ofta">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Ibland">
+                description = <"*">
+            >
             ["at10"] = <
+                text = <"Sällan">
+                description = <"*">
+            >
+            ["at9"] = <
                 text = <"Inte alls">
                 description = <"*">
             >
@@ -420,15 +420,15 @@ terminology
                 text = <"Type of pain (synthesised)">
                 description = <"* (synthesised)">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"Acute on chronic">
                 description = <"*">
             >
-            ["at44"] = <
+            ["at43"] = <
                 text = <"Acute">
                 description = <"*">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"Chronic">
                 description = <"*">
             >
@@ -436,19 +436,19 @@ terminology
                 text = <"Type of pain">
                 description = <"*">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"Severe">
                 description = <"Total pain score 14+.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"Moderate">
                 description = <"Total pain score 8-13.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"Mild pain">
                 description = <"Total pain score 3-7.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"No pain">
                 description = <"Total pain score 0-2.">
             >
@@ -478,83 +478,83 @@ terminology
                 text = <"Total pain score">
                 description = <"Sum of  the 6 individual scores.">
             >
-            ["at29"] = <
-                text = <"Severe">
-                description = <"*">
-            >
             ["at28"] = <
-                text = <"Moderate">
+                text = <"Severe">
                 description = <"*">
             >
             ["at27"] = <
-                text = <"Mild">
+                text = <"Moderate">
                 description = <"*">
             >
             ["at26"] = <
-                text = <"Absent">
+                text = <"Mild">
                 description = <"*">
             >
             ["at25"] = <
-                text = <"Severe">
+                text = <"Absent">
                 description = <"*">
             >
             ["at24"] = <
-                text = <"Moderate">
+                text = <"Severe">
                 description = <"*">
             >
             ["at23"] = <
-                text = <"Mild">
+                text = <"Moderate">
                 description = <"*">
             >
             ["at22"] = <
-                text = <"Absent">
+                text = <"Mild">
                 description = <"*">
             >
             ["at21"] = <
-                text = <"Severe">
+                text = <"Absent">
                 description = <"*">
             >
             ["at20"] = <
-                text = <"Moderate">
+                text = <"Severe">
                 description = <"*">
             >
             ["at19"] = <
-                text = <"Mild">
+                text = <"Moderate">
                 description = <"*">
             >
             ["at18"] = <
-                text = <"Absent">
+                text = <"Mild">
                 description = <"*">
             >
             ["at17"] = <
-                text = <"Severe">
-                description = <"*">
-            >
-            ["at16"] = <
-                text = <"Moderate">
-                description = <"*">
-            >
-            ["at15"] = <
-                text = <"Mild">
-                description = <"*">
-            >
-            ["at14"] = <
                 text = <"Absent">
                 description = <"*">
             >
-            ["at13"] = <
+            ["at16"] = <
                 text = <"Severe">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at15"] = <
                 text = <"Moderate">
                 description = <"*">
             >
-            ["at11"] = <
+            ["at14"] = <
                 text = <"Mild">
                 description = <"*">
             >
+            ["at13"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Severe">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Moderate">
+                description = <"*">
+            >
             ["at10"] = <
+                text = <"Mild">
+                description = <"*">
+            >
+            ["at9"] = <
                 text = <"Absent">
                 description = <"*">
             >
@@ -596,30 +596,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at18", "at19", "at20", "at21">
+            members = <"at17", "at18", "at19", "at20">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at14", "at15", "at16", "at17">
+            members = <"at13", "at14", "at15", "at16">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at10", "at11", "at12", "at13">
+            members = <"at9", "at10", "at11", "at12">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at43", "at44", "at45">
+            members = <"at42", "at43", "at44">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at38", "at39", "at40", "at41">
+            members = <"at37", "at38", "at39", "at40">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at26", "at27", "at28", "at29">
+            members = <"at25", "at26", "at27", "at28">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at22", "at23", "at24", "at25">
+            members = <"at21", "at22", "at23", "at24">
         >
     >

@@ -223,19 +223,19 @@ terminology
                 text = <"Risk calculation">
                 description = <"The means of calculating the risk">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"Highly significant">
                 description = <"The person is considered to be likely to develop the condition">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Significant">
                 description = <"The person is considered to be more likely to develop the condition than the general population">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Minimal significance">
                 description = <"The person may be of somewhat greater risk of developing the condition ">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Not significant">
                 description = <"The person is not assessed at being at higher risk than the general population">
             >

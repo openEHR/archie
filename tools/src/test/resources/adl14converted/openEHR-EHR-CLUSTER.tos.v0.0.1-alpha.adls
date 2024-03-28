@@ -47,11 +47,11 @@ definition
                 value matches {
                     DV_ORDINAL[id9001] matches {
                         [value, symbol] matches {
-                            [{1}, {[at3]}],
-                            [{2}, {[at4]}],
-                            [{3}, {[at5]}],
-                            [{4}, {[at6]}],
-                            [{5}, {[at7]}]
+                            [{1}, {[at2]}],
+                            [{2}, {[at3]}],
+                            [{3}, {[at4]}],
+                            [{4}, {[at5]}],
+                            [{5}, {[at6]}]
                         }
                     }
                 }
@@ -66,23 +66,23 @@ terminology
                 text = <"Tos Classification (synthesised)">
                 description = <"Grading of the degree of tympanic membrane pars tensa retraction / atelectasis based on the Tos & Poulson Classification. (synthesised)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Grade 5">
                 description = <"Bottom of the retraction pocket can be seen only by using an endoscope.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Grade 4">
                 description = <"Erosion of outer attic wall. Part of the retraction pocket may be hidden.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"Grade 3">
                 description = <"Retraction extends beyond osseous malleus full extent seen.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Grade 2">
                 description = <"Retraction onto neck of malleus - no airspace visible behind membrane.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Grade 1">
                 description = <"Pars flaccida is dimpled and is more retracted than normal. It is not adherent to the malleus (airspace visible).">
             >
@@ -99,6 +99,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at3", "at4", "at5", "at6", "at7">
+            members = <"at2", "at3", "at4", "at5", "at6">
         >
     >

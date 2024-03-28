@@ -166,47 +166,47 @@ terminology
                 text = <"Kommentar">
                 description = <"Kommentar avseende bedömningen av patientens ASA-status.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"5E - En moribund patient, som inte förväntas överleva utan operationen (Akut)">
                 description = <"ASA status 5, i en akut situation.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"4E - En patient med allvarlig och ständigt livshotande systemsjukdom (Akut)">
                 description = <"ASA status 4, i en akut situation.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"3E - En patient med svår systemsjukdom (Akut)">
                 description = <"ASA status 3, i en akut situation.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"2E - En patient med lindrig systemsjukdom (Akut)">
                 description = <"ASA status 2, i en akut situation.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"1E - En för övrigt frisk patient (Akut)">
                 description = <"ASA status 1, i en akut situation.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"En avliden patient där hjärnans funktioner totalt och oåterkalleligt fallit bort och som ska genomgå en donationsoperation.">
                 description = <"En avliden patient där hjärnans funktioner totalt och oåterkalleligt fallit bort och som ska genomgå en donationsoperation.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"5 - En moribund patient, som inte förväntas överleva utan operationen">
                 description = <"Exempel inbegriper (men begränsas inte till) rupturerat abdominellt eller torakalt aortaaneurysm, stort trauma, intrakraniell blödning med masseffekt, ischemisk tarm hos patient med svår hjärtsjukdom eller multiorgansvikt.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"4 - En patient med allvarlig och ständigt livshotande systemsjukdom">
                 description = <"Exempel inbegriper (men begränsas inte till) nyligen genomgången (mindre än 3 månader sedan) hjärtinfarkt eller kranskärlsintervention, transitorisk ischemisk attack (TIA) eller stroke. Pågående hjärtischemi eller allvarlig klaffsjukdom, uttalat nedsatt ejektionsfraktion, sepsis, disseminerad intravasal koagulation (DIC), akut njursvikt eller terminal njursvikt som inte behandlats med regelbunden dialys.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"3 - En patient med svår systemsjukdom">
                 description = <"En eller flera allvarliga systemsjukdomar med påtaglig funktionell begränsning. Exempel inbegriper (men begränsas inte till) otillräckligt reglerad diabetes eller hypertoni, kronisk obstruktiv lungsjukdom (KOL), sjuklig fetma (BMI lika med eller över 40), aktiv hepatit, alkoholberoende eller alkoholmissbruk, pacemaker-beroende, måttligt nedsatt ejektionsfraktion, ischemisk hjärtsjukdom, terminal njursvikt med regelbunden dialysbehandling, prematura barn med gestationsålder över 60 veckor, genomgången hjärtinfarkt eller kranskärlsintervention för mer än 3 månader sedan, transitorisk ischemisk attack (TIA) eller stroke.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"2- En patient med lindrig systemsjukdom">
                 description = <"En patient med lindrig systemsjukdom utan påtaglig funktionell begränsning. Exempel inbegriper (men begränsas inte till) aktiv rökare, regelbunden alkoholkonsumtion utan beroende eller missbruk, graviditet, övervikt (BMI 30 - 39), välkontrollerad diabetes/hypertoni, lindrig lungsjukdom.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"1 - En för övrigt frisk patient">
                 description = <"Frisk, icke-rökare, ingen eller minimal alkoholkonsumtion.">
             >
@@ -237,47 +237,47 @@ terminology
                 text = <"Kommentar">
                 description = <"Fritekstvurdering av individets ASA-status.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"ASA 5E">
                 description = <"ASA status 5, i en akuttsituasjon.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"ASA 4E">
                 description = <"ASA status 4, i en akuttsituasjon.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"ASA 3E">
                 description = <"ASA status 3, i en akuttsituasjon.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"ASA 2E">
                 description = <"ASA status 2, i en akuttsituasjon.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"ASA 1E">
                 description = <"ASA status 1, i en akuttsituasjon.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"ASA VI">
                 description = <"Erklært hjernedød pasient som skal få organer fjernet for donasjon.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"ASA V">
                 description = <"Moribund pasient som ikke forventes å overleve 24 timer, med eller uten kirurgi. Eksempler: Pasient i sjokk med aortaaneurisme. Dypt komatøs pasient med intrakraniell blødning.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"ASA IV">
                 description = <"Livstruende organisk sykdom som ikke behøver å være relatert til den aktuelle kirurgiske lidelsen eller som ikke alltid bedres ved det kirurgiske inngrepet. Eksempler: Malign hypertensjon. Nylig gjennomgått hjerteinfarkt (mindre enn 6 måneder siden). Sterkt framskreden lever-, nyre-, lunge- eller endokrin dysfunksjon. Manifest hjertesvikt. Ustabil angina pectoris. Subaraknoidalblødning, pasienten våken eller somnolent.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"ASA III">
                 description = <"Alvorlig organisk sykdom eller forstyrrelse som gir definerte funksjonelle begrensninger. Eksempler: Diabetes med organkomplikasjoner. Invalidiserende hjertesykdom. Moderat til alvorlig lungesykdom. Angina pectoris. Gjennomgått hjerteinfarkt (mer enn 6 måneder siden).">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"ASA II">
                 description = <"Moderat organisk lidelse eller forstyrrelse som ikke forårsaker funksjonelle begrensninger, men som kan medføre spesielle forholdsregler eller anestesitekniske tiltak. Lidelsen(e) kan enten være forårsaket av den aktuelle sykdommen pasienten skal opereres for, eller av en annen patologisk prosess. Alder over 80 år og nyfødte under 3 måneder. Mer enn 5 sigaretters røyking per dag. Eksempler: Lett organisk hjertesykdom. Ukomplisert diabetes (type 1 og 2). Godartet, ukomplisert hypertensjon. Frisk 20-åring med kjeveleddsperre.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"ASA I">
                 description = <"Frisk pasient. Ingen organisk, fysiologisk, biokjemisk eller psykiatrisk forstyrrelse. Den aktuelle lidelsen er lokalisert og gir ikke generelle systemforstyrrelser. Mindre enn 5 sigaretters røyking per dag. Alder under 80 år. Eksempel: Frisk 50-åring, ikke-røyker, til åreknuteoperasjon.">
             >
@@ -308,47 +308,47 @@ terminology
                 text = <"Comentario">
                 description = <"Comentario narrativo sobre la evaluación ASA del paciente.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"5E - Paciente moribundo del cual no se cree sobreviva sin la cirugía (Emergencia)">
                 description = <"ASA estado 5, en situación de emergencia.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"4E - Paciente con enfermedad sistémica severa que representa una amenaza permente a la vida (Emergencia)">
                 description = <"ASA estado 4, en situación de emergencia.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"3E - Paciente con enfermedad sistémica severa (Emergencia)">
                 description = <"ASA estado 3, en situación de emergencia.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"2E - Paciente con enfermedad sistémica leve (Emergencia)">
                 description = <"ASA estado 2, en situación de emergencia.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"1E - Paciente normal y saludable (Emergencia)">
                 description = <"ASA estado 1, en situación de emergencia.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"6 - Pacoente declarado muerto cuyos órganos deben ser removidos para donación">
                 description = <"Paciente con muerte cerebral declarada cuyos órganos deben ser removidos para donación.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"5 - Paciente moribundo del cual no se cree sobreviva sin la cirugía">
                 description = <"Los ejemplos incluyen (pero no se limitan a) a: ruptura de aneurisma abdominal o torácico, trauma masivo, hemorragia intracraneana con efecto de masa, intestino isquémico asociado a patología cardiológica severa o disfunción multiórgano o sistémica.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"4 - Paciente con enfermedad sistémica severa que representa una amenaza permente a la vida">
                 description = <"Los ejemplos incluyen (pero no se limitan a) antecedentes recientes (<3 meses) de infarto de miocardio, accidente cerebrovascular, isquemia transitoria, enfermeda coronaria o stent colocado isquemia miocárdica o disfunción valvular activas, reducción severa de la fracción de eyección, sepsis, coagulación intravascular diseminada, diálisis de reinfusión de ascitis y/o enfermedad renal terminal no recibiendo diálisis programada.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"3 - Paciente con enfermedad sistémica severa">
                 description = <"Limitaciones funcionales significativas; Una o mas enfermedades severas. Los ejemplos incluyen (pero no se limitan a): diabetes mellitus o hipertensión insuficientemente controladas, enfermedad pulmonar obstructiva crónica, obesidad mórbida ((BMO≥40), hepatitis activa, dependencia o abuso de alcohol, marcapasos implantado, reducción moderada de la fracción de eyección, enfermedad renal terminal con diálisis periódica, niño prematuro con edad post-conceptual < 60 semanas, antecedentes (>3 meses) de infarto de miocardio, accidente cerebrovascular, isquemia transitoria o enfermeda coronaria o stent colocado.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"2 - Paciente con enfermedad sistémica leve">
                 description = <"*Mild diseases only without substantive functional limitations. Examples include (but not limited to): current smoker, social alcohol drinker, pregnancy, obesity (30 < BMI < 40), well-controlled DM/HTN, mild lung disease.(en)">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"1- Paciente normal y saludable">
                 description = <"Saludable, no fumador y no bebedor o bebedor de cantidades mínimas de alcohol.">
             >
@@ -379,47 +379,47 @@ terminology
                 text = <"Comentário">
                 description = <"Comentário narrativo sobre a classificação do estado do paciente ASA.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"5E - Paciente moribundo que não se espera que sobreviva sem a cirurgia (Emergência)">
                 description = <"Estado ASA 5, em uma situação de emergência.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"4E - Paciente com doença sistêmica grave que é uma ameaça constante à vida (Emergência)">
                 description = <"Estado ASA 4, em uma situação de emergência.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"3E - Paciente com doença sistêmica grave (Emergência)">
                 description = <"Estado ASA 3, em uma situação de emergência.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"2E - Paciente com doença sistêmica leve (Emergência)">
                 description = <"Estado ASA 2, em uma situação de emergência.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"1E - Paciente saudável (Emergência)">
                 description = <"Estado ASA 1, em uma situação de emergência.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"6 - Paciente com morte cerebral cujos órgãos serão removidos para fins de doação">
                 description = <"O paciente tem morte cerebral declarada e seus órgãos serão removidos com propósito de doação.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"5 - Paciente moribundo que não se espera que sobreviva sem a cirurgia">
                 description = <"Não se espera que sobreviver por mais de 24 horas sem cirurgia; risco iminente de morte; falência de múltiplos órgãos, sepse com instabilidade hemodinâmica, hipotermia, coagulopatia mal controlada.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"4 - Paciente com doença sistêmica grave que é uma ameaça constante à vida">
                 description = <"Tem pelo menos uma doença grave que é mal controlada ou em estágio final; possível risco de morte; angina instável, DPOC sintomática, ICC sintomática, insuficiência hepato-renal.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"3 - Paciente com doença sistêmica grave">
                 description = <"Alguma limitação funcional; tem uma doença controlada em mais de um sistema do corpo ou em um sistema principal; nenhum perigo imediato de morte; insuficiência cardíaca congestiva (ICC) controlada, angina estável, idade de ataque cardíaco, hipertensão mal controlada, obesidade mórbida, insuficiência renal crônica; doença broncoespástica com sintomas intermitentes.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"2 - Paciente com doença sistêmica leve">
                 description = <"Sem limitações funcionais; tem uma doença bem controlada de um sistema do corpo; hipertensão ou diabetes controlado sem efeitos sistêmicos, o consumo de cigarros sem doença pulmonar obstrutiva crônica (DPOC); obesidade leve, gravidez.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"1 - Paciente saudável">
                 description = <"Não há distúrbios orgânicos, fisiológicos, bioquímicos ou psiquiátricos; exclui os muito jovens e muito idosos; saudável com boa tolerância a exercícios.">
             >
@@ -450,47 +450,47 @@ terminology
                 text = <"Comment">
                 description = <"Narrative comment about the ASA patient status assessment.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"5E - A moribund patient who is not expected to survive without the operation (Emergency)">
                 description = <"ASA status 5, in an emergency situation.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"4E - A patient with severe systemic disease that is a constant threat to life (Emergency)">
                 description = <"ASA status 4, in an emergency situation.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"3E - A patient with severe systemic disease (Emergency)">
                 description = <"ASA status 3, in an emergency situation.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"2E - A patient with mild systemic disease (Emergency)">
                 description = <"ASA status 2, in an emergency situation.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"1E - A normal healthy patient (Emergency)">
                 description = <"ASA status 1, in an emergency situation.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"6 - A declared brain-dead patient whose organs are being removed for donor purposes">
                 description = <"A declared brain-dead patient whose organs are being removed for donor purposes.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"5 - A moribund patient who is not expected to survive without the operation">
                 description = <"Examples include (but not limited to): Ruptured abdominal/thoracic aneurysm, massive trauma, intracranial bleed with mass effect, ischemic bowel in the face of significant cardiac pathology or multiple organ/system dysfunction.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"4 - A patient with severe systemic disease that is a constant threat to life">
                 description = <"Examples include (but not limited to): recent ( < 3 months) MI, CVA, TIA, or CAD/stents, ongoing cardiac ischemia or severe valve dysfunction, severe reduction of ejection fraction, sepsis, DIC, ARD or ESRD not undergoing regularly scheduled dialysis.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"3 - A patient with severe systemic disease">
                 description = <"Substantive functional limitations; One or more moderate to severe diseases. Examples include (but not limited to): poorly controlled DM or HTN, COPD, morbid obesity (BMI ≥40), active hepatitis, alcohol dependence or abuse, implanted pacemaker, moderate reduction of ejection fraction, ESRD undergoing regularly scheduled dialysis, premature infant PCA < 60 weeks, history (>3 months) of MI, CVA, TIA, or CAD/stents.">
             >
-            ["at5"] = <
+            ["at4"] = <
                 text = <"2 - A patient with mild systemic disease">
                 description = <"Mild diseases only without substantive functional limitations. Examples include (but not limited to): current smoker, social alcohol drinker, pregnancy, obesity (30 < BMI < 40), well-controlled DM/HTN, mild lung disease.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"1 - A normal healthy patient">
                 description = <"Healthy, non-smoking, no or minimal alcohol use.">
             >
@@ -507,6 +507,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at4", "at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13", "at14">
+            members = <"at3", "at4", "at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13">
         >
     >

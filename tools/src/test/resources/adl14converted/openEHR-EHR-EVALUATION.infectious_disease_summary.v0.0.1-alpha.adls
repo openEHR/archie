@@ -100,15 +100,15 @@ terminology
                 description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
                 comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"No Evidence">
                 description = <"There is no history or findings to suggest that the subject has had a previous infection.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"Suspected">
                 description = <"Previous infection is suspected from history or findings, but has not been confirmed.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"Confirmed">
                 description = <"Previous infection has been confirmed by history or findings.">
             >
@@ -150,6 +150,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at49", "at50", "at51">
+            members = <"at48", "at49", "at50">
         >
     >

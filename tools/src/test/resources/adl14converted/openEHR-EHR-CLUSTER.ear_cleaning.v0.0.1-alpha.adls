@@ -107,11 +107,11 @@ terminology
                 description = <"Substance used for ear wash.">
                 comment = <"Coding with a terminology is preferred, if possible. For example: water, acetic acid or betadine 5%.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Right Ear">
                 description = <"The right ear was cleaned.">
             >
-            ["at3"] = <
+            ["at2"] = <
                 text = <"Left Ear">
                 description = <"The left ear was cleaned.">
             >
@@ -128,6 +128,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at3", "at4">
+            members = <"at2", "at3">
         >
     >

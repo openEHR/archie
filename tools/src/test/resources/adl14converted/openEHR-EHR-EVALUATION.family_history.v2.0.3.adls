@@ -366,15 +366,15 @@ terminology
                 text = <"Todesursache? (synthesised)">
                 description = <"Zusammenhang des Problems/der Diagnose mit dem Tod dieses Familienmitglieds. (synthesised)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Unbestimmt">
                 description = <"Es ist nicht möglich festzustellen, ob das Problem oder die Diagnose in engem Zusammenhang mit der tatsächlichen Todesursache gestanden hat.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Unabhängig">
                 description = <"Das Problem oder die Diagnose stand mit der Todesursache in keinem Zusammenhang.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Direkte Ursache oder enger Zusammenhang">
                 description = <"Das Problem oder die Diagnose war eine unmittelbare Todesursache oder stand in engem Zusammenhang mit dem Tod.">
             >
@@ -518,15 +518,15 @@ terminology
                 text = <"Dødsårsak? (synthesised)">
                 description = <"Forholdet mellom problemet/diagnosen og familiemedlemmets død. (synthesised)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Ukjent">
                 description = <"Det er ikke mulig å fastslå hvorvidt problemet eller diagnosen var en umiddelbar, underliggende eller medvirkende dødsårsak.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Urelatert">
                 description = <"Problemet eller diagnosen var ikke en umiddelbar, underliggende eller medvirkende dødsårsak.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Relatert">
                 description = <"Problemet eller diagnosen var en umiddelbar, underliggende eller medvirkende dødsårsak.">
             >
@@ -667,15 +667,15 @@ terminology
                 text = <"*Cause of death?(en) (synthesised)">
                 description = <"*Relationship of the problem/diagnosis to the death of this family member.(en) (synthesised)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"*Ubestemmelig(en)">
                 description = <"*Det er ikke mulig å fastslå hvorvidt problemet eller diagnosen var nært relatert til den direkte dødsårsaken.(en)">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"*Urelatert(en)">
                 description = <"*Problemet eller diagnosen var ikke relatert til den direkte dødsårsaken.(en)">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"*Direkte eller nært relatert(en)">
                 description = <"*Problemet eller diagnosen var en direkte årsak eller nært relatert til den direkte dødsårsaken.(en)">
             >
@@ -817,15 +817,15 @@ terminology
                 text = <"Cause of death? (synthesised)">
                 description = <"Relationship of the problem/diagnosis to the death of this family member. (synthesised)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"Indeterminate">
                 description = <"It is impossible to determine whether the problem or diagnosis was closely related to the direct cause of death.">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"Unrelated">
                 description = <"The problem or diagnosis was unrelated to the cause of death.">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"Direct cause or closely related">
                 description = <"The problem or diagnosis was a direct cause or closely related to the direct cause of death.">
             >
@@ -967,15 +967,15 @@ terminology
                 text = <"死亡原因 (synthesised)">
                 description = <"这一问题/诊断与该家族成员死亡的关系。 (synthesised)">
             >
-            ["at64"] = <
+            ["at63"] = <
                 text = <"不确定">
                 description = <"不可能确定出这一问题或诊断是否与直接死亡原因密切相关。">
             >
-            ["at63"] = <
+            ["at62"] = <
                 text = <"无关">
                 description = <"这一问题或诊断是死亡原因无关。">
             >
-            ["at62"] = <
+            ["at61"] = <
                 text = <"直接原因或密切相关">
                 description = <"这一问题或诊断是死亡的直接原因或者是与直接死亡原因密切相关。">
             >
@@ -1122,6 +1122,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at62", "at63", "at64">
+            members = <"at61", "at62", "at63">
         >
     >

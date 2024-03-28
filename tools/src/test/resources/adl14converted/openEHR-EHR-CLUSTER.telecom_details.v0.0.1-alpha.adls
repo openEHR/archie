@@ -140,31 +140,31 @@ terminology
                 text = <"Durchwahl">
                 description = <"Durchwahl. ENV13606-4:2000 7.11.18">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Kontakt">
                 description = <"*">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Pager">
                 description = <"*">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Mobiltelefon">
                 description = <"*">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Telefax">
                 description = <"*">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Telefon">
                 description = <"*">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Arbeit">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Privat">
                 description = <"*">
             >
@@ -222,31 +222,31 @@ terminology
                 text = <"Extension">
                 description = <"Telephone extension number.  ENV13606-4:2000 7.11.18.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Contact">
                 description = <"Contact.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"Pager">
                 description = <"Pager number details.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Mobile phone">
                 description = <"Mobile phone number details.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Fax">
                 description = <"Facsimile number details.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Telephone">
                 description = <"Telephone number details.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Work">
                 description = <"Telecommunication detail for work.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Home">
                 description = <"Telecommunication detail for home.">
             >
@@ -307,31 +307,31 @@ terminology
                 description = <"رقم امتداد الهاتف.
     ENV13606-4:2000 7.11.18.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"جهة الاتصال">
                 description = <"جهة الاتصال">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"جهاز الإخطار">
                 description = <"تفاصيل رقم جهاز الإخطار">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"الهاتف النقال">
                 description = <"تفاصيل رقم الهاتف النقال">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"الفاكس">
                 description = <"تفاصيل رقم الفاكس">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"الهاتف">
                 description = <"تفاصيل رقم الهاتف">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"العمل">
                 description = <"تفاصيل الاتصال للعمل">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"المنزل">
                 description = <"تفاصيل الاتصال للمنزل">
             >
@@ -384,10 +384,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at14", "at15", "at16", "at17">
+            members = <"at13", "at14", "at15", "at16">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at12", "at13", "at19">
+            members = <"at11", "at12", "at18">
         >
     >

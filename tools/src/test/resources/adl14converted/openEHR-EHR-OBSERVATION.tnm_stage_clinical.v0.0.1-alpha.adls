@@ -217,31 +217,31 @@ terminology
                 text = <"Multiple primary tumours (m) (synthesised)">
                 description = <"Presence of multiple primary tumours at a single site. (synthesised)">
             >
-            ["at51"] = <
+            ["at50"] = <
                 text = <"R2">
                 description = <"Macroscopic residual tumour.">
             >
-            ["at50"] = <
+            ["at49"] = <
                 text = <"R1">
                 description = <"Microscopic residual tumour.">
             >
-            ["at49"] = <
+            ["at48"] = <
                 text = <"R0">
                 description = <"No residual tumour.">
             >
-            ["at48"] = <
+            ["at47"] = <
                 text = <"RX">
                 description = <"Presence of residual tumour cannot be assessed.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"Pn1">
                 description = <"Perineural invasion.">
             >
-            ["at46"] = <
+            ["at45"] = <
                 text = <"Pn0">
                 description = <"No perineural invasion.">
             >
-            ["at45"] = <
+            ["at44"] = <
                 text = <"PnX">
                 description = <"Perineural invasion cannot be assessed.">
             >
@@ -250,79 +250,79 @@ terminology
                 description = <"Assessment of invasion into the space surrounding nerves.">
                 comment = <"For example: 'Pn0 (No perineural invasion)'.">
             >
-            ["at43"] = <
+            ["at42"] = <
                 text = <"V2">
                 description = <"Macroscopic venous invasion.">
             >
-            ["at42"] = <
+            ["at41"] = <
                 text = <"V1">
                 description = <"Microscopic venous invasion.">
             >
-            ["at41"] = <
+            ["at40"] = <
                 text = <"V0">
                 description = <"No venous invasion.">
             >
-            ["at40"] = <
+            ["at39"] = <
                 text = <"VX">
                 description = <"Venous invasion cannot be assessed.">
             >
-            ["at39"] = <
+            ["at38"] = <
                 text = <"L1">
                 description = <"Lymphatic invasion.">
             >
-            ["at38"] = <
+            ["at37"] = <
                 text = <"L0">
                 description = <"No lymphatic invasion.">
             >
-            ["at37"] = <
+            ["at36"] = <
                 text = <"LX">
                 description = <"Lymphatic invasion cannot be assessed.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"G4">
                 description = <"Undifferentiated.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"G3">
                 description = <"Poorly differentiated.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"G2">
                 description = <"Moderately differentiated.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"G1">
                 description = <"Well differentiated.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"GX">
                 description = <"Grade of differentiation cannot be assessed.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"is">
                 description = <"Presence of associated carcinoma in situ.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"m">
                 description = <"Multiple simultaneous tumours in one organ.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"C5">
                 description = <"Evidence from autopsy.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"C4">
                 description = <"Evidence of the extent of disease following definitive surgery and pathological examination of the resected specimen.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"C3">
                 description = <"Evidence from surgical exploration, including biopsy and cytology.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"C2">
                 description = <"Evidence obtained by special diagnostic means (e.g., radiographic imaging in special projections, tomography, computerized tomography [CT], ultrasonography, lymphography, angiography; scintigraphy; magnetic resonance imaging [MRI]; endoscopy, biopsy, and cytology).">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"C1">
                 description = <"Evidence from standard diagnostic means (e.g., inspection, palpation, and standard radiography, intraluminal endoscopy for tumours of certain organs).">
             >
@@ -437,30 +437,30 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at48", "at49", "at50", "at51">
+            members = <"at47", "at48", "at49", "at50">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at32", "at33", "at34", "at35", "at36">
+            members = <"at31", "at32", "at33", "at34", "at35">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at25", "at26", "at27", "at28", "at29">
+            members = <"at24", "at25", "at26", "at27", "at28">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at30", "at31">
+            members = <"at29", "at30">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at45", "at46", "at47">
+            members = <"at44", "at45", "at46">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at40", "at41", "at42", "at43">
+            members = <"at39", "at40", "at41", "at42">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at37", "at38", "at39">
+            members = <"at36", "at37", "at38">
         >
     >

@@ -50,12 +50,12 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9001] matches {
                                                 [value, symbol] matches {
-                                                    [{1}, {[at6]}],
-                                                    [{2}, {[at7]}],
-                                                    [{3}, {[at8]}],
-                                                    [{4}, {[at9]}],
-                                                    [{5}, {[at10]}],
-                                                    [{6}, {[at11]}]
+                                                    [{1}, {[at5]}],
+                                                    [{2}, {[at6]}],
+                                                    [{3}, {[at7]}],
+                                                    [{4}, {[at8]}],
+                                                    [{5}, {[at9]}],
+                                                    [{6}, {[at10]}]
                                                 }
                                             }
                                         }
@@ -91,27 +91,27 @@ terminology
                 description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
                 comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"VI">
                 description = <"Black skin, never burns.">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"V">
                 description = <"Brown skin, rarely burns, tans profusely.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"IV">
                 description = <"Rarely burn, tan more than average (with ease).">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"III">
                 description = <"Sometimes mild burn, tan about average.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"II">
                 description = <"Usually burn, tan less than average (with difficulty).">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"I">
                 description = <"Always burn, never tan.">
             >
@@ -132,6 +132,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7", "at8", "at9", "at10", "at11">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10">
         >
     >

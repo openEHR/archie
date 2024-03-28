@@ -90,11 +90,11 @@ terminology
                 text = <"Likelihood (synthesised)">
                 description = <"The likelihood of this diagnosis being present. (synthesised)">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Likely">
                 description = <"Likely to be the working diagnosis, with good supportive evidence.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Suspected">
                 description = <"Possibly the diagnosis, but without a weight of supportive evidence.">
             >
@@ -132,6 +132,6 @@ terminology
     value_sets = <
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at16", "at18">
+            members = <"at15", "at17">
         >
     >

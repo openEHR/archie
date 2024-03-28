@@ -161,11 +161,11 @@ terminology
                 text = <"Distance of tumour from dentate line">
                 description = <"For abdominoperineal resection specimens, distance of tumour from the dentate line.">
             >
-            ["at353"] = <
+            ["at352"] = <
                 text = <"Retro/infra peritoneal">
                 description = <"The perforation is retro/infra peritoneal.">
             >
-            ["at352"] = <
+            ["at351"] = <
                 text = <"Serosal">
                 description = <"The perforation is serosal.">
             >
@@ -177,7 +177,7 @@ terminology
                 text = <"Tumour perforation">
                 description = <"Findings related to tumour perforation.">
             >
-            ["at349"] = <
+            ["at348"] = <
                 text = <"Indeterminate">
                 description = <"Intactness of the mesorectum has not been determined.">
             >
@@ -185,39 +185,39 @@ terminology
                 text = <"Tumour dimensions">
                 description = <"Details of maximum dimensions of the tumour.">
             >
-            ["at347"] = <
+            ["at346"] = <
                 text = <"Indeterminate">
                 description = <"Presence of tumour perforation has not been determined.">
             >
-            ["at346"] = <
+            ["at345"] = <
                 text = <"Absent">
                 description = <"Tumour perforation is absent.">
             >
-            ["at345"] = <
+            ["at344"] = <
                 text = <"Present">
                 description = <"Tumour perforation is present.">
             >
-            ["at344"] = <
+            ["at343"] = <
                 text = <"Entirely below">
                 description = <"The tumour is entirely below the level of the peritoneal reflection anteriorly.">
             >
-            ["at343"] = <
+            ["at342"] = <
                 text = <"Astride">
                 description = <"The tumour is astride (or at)  the level of the peritoneal reflection anteriorly.">
             >
-            ["at342"] = <
+            ["at341"] = <
                 text = <"Entirely above">
                 description = <"The tumour is entirely above the level of the peritoneal reflection anteriorly.">
             >
-            ["at341"] = <
+            ["at340"] = <
                 text = <"Complete">
                 description = <"The mesorectum is completely intact.">
             >
-            ["at340"] = <
+            ["at339"] = <
                 text = <"Nearly complete">
                 description = <"The mesorectum is nearly completely intact.">
             >
-            ["at339"] = <
+            ["at338"] = <
                 text = <"Incomplete">
                 description = <"The mesorectum is incompletely intact.">
             >
@@ -267,18 +267,18 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at352", "at353">
+            members = <"at351", "at352">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at345", "at346", "at347">
+            members = <"at344", "at345", "at346">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at339", "at340", "at341", "at349">
+            members = <"at338", "at339", "at340", "at348">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at342", "at343", "at344">
+            members = <"at341", "at342", "at343">
         >
     >

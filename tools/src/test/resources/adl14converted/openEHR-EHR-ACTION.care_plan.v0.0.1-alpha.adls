@@ -46,7 +46,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9009] matches {
-                        defining_code matches {[at4]}    -- Care plan Need Identified
+                        defining_code matches {[at3]}    -- Care plan Need Identified
                     }
                 }
             }
@@ -58,7 +58,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9011] matches {
-                        defining_code matches {[at9]}    -- Care Plan Developed
+                        defining_code matches {[at8]}    -- Care Plan Developed
                     }
                 }
             }
@@ -70,7 +70,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9013] matches {
-                        defining_code matches {[at35]}    -- Care Plan Postponed
+                        defining_code matches {[at34]}    -- Care Plan Postponed
                     }
                 }
             }
@@ -82,7 +82,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9015] matches {
-                        defining_code matches {[at34]}    -- Care Plan Cancelled
+                        defining_code matches {[at33]}    -- Care Plan Cancelled
                     }
                 }
             }
@@ -94,7 +94,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9017] matches {
-                        defining_code matches {[at19]}    -- Care Plan Scheduled
+                        defining_code matches {[at18]}    -- Care Plan Scheduled
                     }
                 }
             }
@@ -106,7 +106,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9019] matches {
-                        defining_code matches {[at7]}    -- Care Plan Commenced
+                        defining_code matches {[at6]}    -- Care Plan Commenced
                     }
                 }
             }
@@ -118,7 +118,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9021] matches {
-                        defining_code matches {[at21]}    -- Care Plan Reviewed
+                        defining_code matches {[at20]}    -- Care Plan Reviewed
                     }
                 }
             }
@@ -130,7 +130,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9023] matches {
-                        defining_code matches {[at36]}    -- Care Plan Suspended
+                        defining_code matches {[at35]}    -- Care Plan Suspended
                     }
                 }
             }
@@ -142,7 +142,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9025] matches {
-                        defining_code matches {[at33]}    -- Care Plan Aborted
+                        defining_code matches {[at32]}    -- Care Plan Aborted
                     }
                 }
             }
@@ -154,7 +154,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9027] matches {
-                        defining_code matches {[at11]}    -- Care Plan Expired
+                        defining_code matches {[at10]}    -- Care Plan Expired
                     }
                 }
             }
@@ -166,7 +166,7 @@ definition
                 }
                 careflow_step matches {
                     DV_CODED_TEXT[id9029] matches {
-                        defining_code matches {[at14]}    -- Care Plan Completed
+                        defining_code matches {[at13]}    -- Care Plan Completed
                     }
                 }
             }
@@ -249,7 +249,7 @@ terminology
                 text = <"Care Plan Suspended">
                 description = <"Care plan is temporarily suspended but intended to resume at a later date.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Care Plan Suspended">
                 description = <"Care plan is temporarily suspended but intended to resume at a later date.">
             >
@@ -257,7 +257,7 @@ terminology
                 text = <"Care Plan Postponed">
                 description = <"Commencement of care plan has been temporarily postponed to a future date.">
             >
-            ["at35"] = <
+            ["at34"] = <
                 text = <"Care Plan Postponed">
                 description = <"Commencement of care plan has been temporarily postponed to a future date.">
             >
@@ -265,7 +265,7 @@ terminology
                 text = <"Care Plan Cancelled">
                 description = <"Care plan has been cancelled prior to commencement.">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Care Plan Cancelled">
                 description = <"Care plan has been cancelled prior to commencement.">
             >
@@ -273,7 +273,7 @@ terminology
                 text = <"Care Plan Aborted">
                 description = <"Care plan has been aborted.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Care Plan Aborted">
                 description = <"Care plan has been aborted.">
             >
@@ -289,7 +289,7 @@ terminology
                 text = <"Care Plan Reviewed">
                 description = <"Care plan has been reviewed.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Care Plan Reviewed">
                 description = <"Care plan has been reviewed.">
             >
@@ -297,7 +297,7 @@ terminology
                 text = <"Care Plan Scheduled">
                 description = <"Care plan has been scheduled.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Care Plan Scheduled">
                 description = <"Care plan has been scheduled.">
             >
@@ -313,7 +313,7 @@ terminology
                 text = <"Care Plan Completed">
                 description = <"All activities related to the care plan have been reconciled or completed.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Care Plan Completed">
                 description = <"All activities related to the care plan have been reconciled or completed.">
             >
@@ -321,7 +321,7 @@ terminology
                 text = <"Care Plan Expired">
                 description = <"Care plan duration has passed the 'Expiry Date'.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Care Plan Expired">
                 description = <"Care plan duration has passed the 'Expiry Date'.">
             >
@@ -329,7 +329,7 @@ terminology
                 text = <"Care Plan Developed">
                 description = <"Care plan components identified and documented.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <"Care Plan Developed">
                 description = <"Care plan components identified and documented.">
             >
@@ -337,7 +337,7 @@ terminology
                 text = <"Care Plan Commenced">
                 description = <"Care plan activities commenced and in progress.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Care Plan Commenced">
                 description = <"Care plan activities commenced and in progress.">
             >
@@ -345,7 +345,7 @@ terminology
                 text = <"Care plan Need Identified">
                 description = <"Need for a care plan has been identified.">
             >
-            ["at4"] = <
+            ["at3"] = <
                 text = <"Care plan Need Identified">
                 description = <"Need for a care plan has been identified.">
             >

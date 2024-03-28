@@ -68,8 +68,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9004] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at6]}],
-                                                    [{1}, {[at7]}]
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}]
                                                 }
                                             }
                                         }
@@ -78,8 +78,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9005] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at9]}],
-                                                    [{1}, {[at10]}]
+                                                    [{0}, {[at8]}],
+                                                    [{1}, {[at9]}]
                                                 }
                                             }
                                         }
@@ -88,8 +88,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9006] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at12]}],
-                                                    [{1}, {[at13]}]
+                                                    [{0}, {[at11]}],
+                                                    [{1}, {[at12]}]
                                                 }
                                             }
                                         }
@@ -98,8 +98,8 @@ definition
                                         value matches {
                                             DV_ORDINAL[id9007] matches {
                                                 [value, symbol] matches {
-                                                    [{0}, {[at15]}],
-                                                    [{1}, {[at16]}]
+                                                    [{0}, {[at14]}],
+                                                    [{1}, {[at15]}]
                                                 }
                                             }
                                         }
@@ -166,11 +166,11 @@ terminology
                 text = <"Total poäng">
                 description = <"Summan av samtliga faktorer">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Positiv">
                 description = <"*">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Negativ">
                 description = <"*">
             >
@@ -178,11 +178,11 @@ terminology
                 text = <"FAST">
                 description = <"Resultat av Focused Assessment with Sonography for Trauma (FAST)">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"≥120 /min">
                 description = <"*">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"<120 /min">
                 description = <"*">
             >
@@ -190,11 +190,11 @@ terminology
                 text = <"Hjärtfrekvens">
                 description = <"Patientens hjärtfrekvens vid initial bedömning">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"≤90 mmHg">
                 description = <"*">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <">90 mmHg">
                 description = <"*">
             >
@@ -202,11 +202,11 @@ terminology
                 text = <"Systoliskt blodtryck">
                 description = <"Patientens blodtryck vid initial bedömning">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Ja">
                 description = <"Penetrerande trauma">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Nej">
                 description = <"Inget penetrerande trauma">
             >
@@ -254,11 +254,11 @@ terminology
                 text = <"Total score">
                 description = <"Sum of the individual scores assigned for each of the contributing variables.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Positive">
                 description = <"Positive FAST scan.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Negative">
                 description = <"Negative FAST scan.">
             >
@@ -266,11 +266,11 @@ terminology
                 text = <"Focused assessment with sonography for trauma (FAST)">
                 description = <"What was the result of a FAST scan?">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"≥120 /min">
                 description = <"Heart rate at initial assessment greater than or equals 120 /min.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"<120 /min">
                 description = <"Heart rate at initial assessment less than 120 /min.">
             >
@@ -278,11 +278,11 @@ terminology
                 text = <"Heart rate">
                 description = <"What was the heart rate at initial assessment?">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"≤90 mmHg">
                 description = <"SBP at initial assessment less than or equals 90 mmHg.">
             >
-            ["at9"] = <
+            ["at8"] = <
                 text = <">90 mmHg">
                 description = <"SBP at initial assssment greater than 90 mmHg.">
             >
@@ -290,11 +290,11 @@ terminology
                 text = <"Systolic blood pressure (SBP)">
                 description = <"What was the systolic blood pressure at initial assessment?">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Yes">
                 description = <"Penetrating injury present at assessment.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"No">
                 description = <"No penetrating injury at assessment.">
             >
@@ -316,18 +316,18 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at12", "at13">
+            members = <"at11", "at12">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at9", "at10">
+            members = <"at8", "at9">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at6", "at7">
+            members = <"at5", "at6">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at15", "at16">
+            members = <"at14", "at15">
         >
     >

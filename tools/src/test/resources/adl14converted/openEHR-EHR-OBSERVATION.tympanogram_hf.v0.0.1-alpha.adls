@@ -477,11 +477,11 @@ terminology
                 description = <"*The frequency of the probe tone played into the ear canal for tympanometry measurement.(en)">
                 comment = <"*Usually set to 678, 900 or 1000Hz.(en)">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"*5B3G(en)">
                 description = <"*The pattern of results showing 5 susceptance (B) peaks and 3 conductance (G) peaks.(en)">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"*3B3G(en)">
                 description = <"*The pattern of results showing 3 susceptance (B) peaks and 3 conductance (G) peaks.(en)">
             >
@@ -502,15 +502,15 @@ terminology
                 text = <"*Y+200(en)">
                 description = <"*Admittance at +200 daPa.(en)">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"*Type 4u(en)">
                 description = <"*Double-peaked curve with TPP <-150 daPa.(en)">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"*3B1G(en)">
                 description = <"*The pattern of results showing 3 susceptance peaks and 1 conductance peak.(en)">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"*1B1G(en)">
                 description = <"*The pattern of results showing 1 susceptance (B) peak and 1 conductance (G) peak.(en)">
             >
@@ -518,7 +518,7 @@ terminology
                 text = <"*Vanhuyse Classification Type(en)">
                 description = <"*Classification of tympanogram type based on Vanhuyse classification system.(en)">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"*Type 3(en)">
                 description = <"*Curve with a single peak and TPP <-150 daPa.(en)">
             >
@@ -564,7 +564,7 @@ terminology
                 description = <"*Overall clinical interpretation of the measurements and related findings using an tympanometer.(en)">
                 comment = <"*Coding with a terminology is preferred, where possible. This data element is effectively an tympanometric diagnosis.(en)">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"*Indeterminate(en)">
                 description = <"*It is not possible to classify the type of tympanogram.(en)">
             >
@@ -623,11 +623,11 @@ terminology
                 text = <"*Result Details(en)">
                 description = <"*The tympanogram test result details, recorded per ear.(en)">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"*Right Ear(en)">
                 description = <"*The probe was in the right ear.(en)">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"*Left Ear(en)">
                 description = <"*The probe was in the left ear.(en)">
             >
@@ -635,15 +635,15 @@ terminology
                 text = <"*Test Ear(en)">
                 description = <"*Identification of the ear being tested.(en)">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"*Type 4(en)">
                 description = <"*Double-peaked curve with TPP around 0 daPa.(en)">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"*Type 2(en)">
                 description = <"*Flat sloping curve  with no distinct peak, Ypeak < 0.2 mmho and/or TW >= 200 daPa.(en)">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"*Type 1(en)">
                 description = <"*Curve with a single peak and TPP around 0 daPa.(en)">
             >
@@ -753,11 +753,11 @@ terminology
                 description = <"The frequency of the probe tone played into the ear canal for tympanometry measurement.">
                 comment = <"Usually set to 678, 900 or 1000Hz.">
             >
-            ["at80"] = <
+            ["at79"] = <
                 text = <"5B3G">
                 description = <"The pattern of results showing 5 susceptance (B) peaks and 3 conductance (G) peaks.">
             >
-            ["at79"] = <
+            ["at78"] = <
                 text = <"3B3G">
                 description = <"The pattern of results showing 3 susceptance (B) peaks and 3 conductance (G) peaks.">
             >
@@ -778,15 +778,15 @@ terminology
                 text = <"Y+200">
                 description = <"Admittance at +200 daPa.">
             >
-            ["at71"] = <
+            ["at70"] = <
                 text = <"Type 4u">
                 description = <"Double-peaked curve with TPP <-150 daPa.">
             >
-            ["at69"] = <
+            ["at68"] = <
                 text = <"3B1G">
                 description = <"The pattern of results showing 3 susceptance peaks and 1 conductance peak.">
             >
-            ["at68"] = <
+            ["at67"] = <
                 text = <"1B1G">
                 description = <"The pattern of results showing 1 susceptance (B) peak and 1 conductance (G) peak.">
             >
@@ -794,7 +794,7 @@ terminology
                 text = <"Vanhuyse classification type">
                 description = <"Classification of tympanogram type based on Vanhuyse classification system.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Type 3">
                 description = <"Curve with a single peak and TPP <-150 daPa.">
             >
@@ -840,7 +840,7 @@ terminology
                 description = <"Overall clinical interpretation of the measurements and related findings using an tympanometer.">
                 comment = <"Coding with a terminology is preferred, where possible. This data element is effectively an tympanometric diagnosis.">
             >
-            ["at36"] = <
+            ["at35"] = <
                 text = <"Indeterminate">
                 description = <"It is not possible to classify the type of tympanogram.">
             >
@@ -899,11 +899,11 @@ terminology
                 text = <"Result details">
                 description = <"The tympanogram test result details, recorded per ear.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"Right ear">
                 description = <"The probe was in the right ear.">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"Left ear">
                 description = <"The probe was in the left ear.">
             >
@@ -911,15 +911,15 @@ terminology
                 text = <"Test ear">
                 description = <"Identification of the ear being tested.">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"Type 4">
                 description = <"Double-peaked curve with TPP around 0 daPa.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"Type 2">
                 description = <"Flat sloping curve  with no distinct peak, Ypeak < 0.2 mmho and/or TW >= 200 daPa.">
             >
-            ["at6"] = <
+            ["at5"] = <
                 text = <"Type 1">
                 description = <"Curve with a single peak and TPP around 0 daPa.">
             >
@@ -962,14 +962,14 @@ terminology
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at11", "at12">
+            members = <"at10", "at11">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at68", "at69", "at79", "at80", "at36">
+            members = <"at67", "at68", "at78", "at79", "at35">
         >
         ["ac9005"] = <
             id = <"ac9005">
-            members = <"at6", "at7", "at58", "at8", "at71", "at36">
+            members = <"at5", "at6", "at57", "at7", "at70", "at35">
         >
     >

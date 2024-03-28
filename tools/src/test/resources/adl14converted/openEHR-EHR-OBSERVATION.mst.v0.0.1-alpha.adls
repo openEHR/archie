@@ -101,11 +101,11 @@ terminology
                 text = <"MST score">
                 description = <"Score of 2 or more: patient at risk of malnutrition.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"1: Yes">
                 description = <"The patient has eaten poorly recently.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"0: No">
                 description = <"The patient has not eaten poorly recently.">
             >
@@ -113,23 +113,23 @@ terminology
                 text = <"Appetite">
                 description = <"Have you been eating poorly because of a decreased appetite?">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"2: Unsure">
                 description = <"The patient is unsure about kilograms of weight lost.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"4: > 15 kg">
                 description = <"Lost weight recent (> 15 kg).">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"3: 11-15 kg">
                 description = <"Lost weight recent (11-15 kg).">
             >
-            ["at11"] = <
+            ["at10"] = <
                 text = <"2: 6-10 kg">
                 description = <"Lost weight recent (6-10 kg).">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"1: 1-5 kg.">
                 description = <"Lost weight recent (1-5 kg).">
             >
@@ -137,11 +137,11 @@ terminology
                 text = <"Lost weight positive">
                 description = <"If yes, how much weight have you lost?">
             >
-            ["at8"] = <
+            ["at7"] = <
                 text = <"2: Unsure">
                 description = <"The patient is unsure about lost weight.">
             >
-            ["at7"] = <
+            ["at6"] = <
                 text = <"0: No">
                 description = <"The patient no lost weight.">
             >
@@ -166,14 +166,14 @@ terminology
     value_sets = <
         ["ac9002"] = <
             id = <"ac9002">
-            members = <"at18", "at19">
+            members = <"at17", "at18">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at10", "at11", "at12", "at13", "at14">
+            members = <"at9", "at10", "at11", "at12", "at13">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at7", "at8">
+            members = <"at6", "at7">
         >
     >

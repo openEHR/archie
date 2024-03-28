@@ -118,71 +118,71 @@ terminology
                 text = <"Response (synthesised)">
                 description = <"Strength of the reflex response. (synthesised)">
             >
-            ["at34"] = <
+            ["at33"] = <
                 text = <"Right achilles">
                 description = <"Stretch reflex used to test the status of S1.">
             >
-            ["at33"] = <
+            ["at32"] = <
                 text = <"Right patellar">
                 description = <"Stretch reflex used to test the status of L4. Also known as Knee jerk.">
             >
-            ["at32"] = <
+            ["at31"] = <
                 text = <"Right triceps">
                 description = <"Stretch reflex used to test the status of C7.">
             >
-            ["at31"] = <
+            ["at30"] = <
                 text = <"Right brachioradialis">
                 description = <"Stretch reflex used to test the status of C6. Also known as Supinator jerk.">
             >
-            ["at30"] = <
+            ["at29"] = <
                 text = <"Right biceps">
                 description = <"Stretch reflex used to test the status of C5 & C6.">
             >
-            ["at29"] = <
+            ["at28"] = <
                 text = <"Sustained clonus">
                 description = <"Reflex is repeating and sustained. May be recorded as '+++++' or '5+'.">
             >
-            ["at28"] = <
+            ["at27"] = <
                 text = <"Non-sustained clonus">
                 description = <"Reflex is repeating but not sustained. May be recorded as '++++' or '4+'.">
             >
-            ["at27"] = <
+            ["at26"] = <
                 text = <"Brisk">
                 description = <"Reflex present at greater than normal amplitude. May be recorded as '+++' or '3+'.">
             >
-            ["at26"] = <
+            ["at25"] = <
                 text = <"Normal">
                 description = <"Reflex present at normal amplitude. May be recorded as '++' or '2+'.">
             >
-            ["at25"] = <
+            ["at24"] = <
                 text = <"Slight">
                 description = <"Reflex present but less than normal amplitude, or only seen with reinforcement. May be recorded as '+' or '1+'.">
             >
-            ["at24"] = <
+            ["at23"] = <
                 text = <"Equivocal">
                 description = <"Reflex possibly present. May be recorded as '+/-'.">
             >
-            ["at23"] = <
+            ["at22"] = <
                 text = <"Absent">
                 description = <"Reflex not evident. May be recorded as '0'.">
             >
-            ["at22"] = <
+            ["at21"] = <
                 text = <"Left achilles">
                 description = <"Stretch reflex used to test the status of S1.">
             >
-            ["at21"] = <
+            ["at20"] = <
                 text = <"Left patellar">
                 description = <"Stretch reflex used to test the status of L4. Also known as Knee jerk.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"Left triceps">
                 description = <"Stretch reflex used to test the status of C7.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"Left brachioradialis">
                 description = <"Stretch reflex used to test the status of C6. Also known as Supinator jerk.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"Left biceps">
                 description = <"Stretch reflex used to test the status of C5 & C6.">
             >
@@ -236,10 +236,10 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at23", "at24", "at25", "at26", "at27", "at28", "at29">
+            members = <"at22", "at23", "at24", "at25", "at26", "at27", "at28">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at18", "at19", "at20", "at21", "at22", "at30", "at31", "at32", "at33", "at34">
+            members = <"at17", "at18", "at19", "at20", "at21", "at29", "at30", "at31", "at32", "at33">
         >
     >

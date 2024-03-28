@@ -137,10 +137,10 @@ definition
                                                         value matches {
                                                             DV_ORDINAL[id9019] matches {
                                                                 [value, symbol] matches {
-                                                                    [{1}, {[at17]}],
-                                                                    [{2}, {[at18]}],
-                                                                    [{3}, {[at19]}],
-                                                                    [{4}, {[at20]}]
+                                                                    [{1}, {[at16]}],
+                                                                    [{2}, {[at17]}],
+                                                                    [{3}, {[at18]}],
+                                                                    [{4}, {[at19]}]
                                                                 }
                                                             }
                                                         }
@@ -346,7 +346,7 @@ terminology
                 description = <"Reason why no visual acuity test result is available for the test eye.">
                 comment = <"For example, patient was not cooperative; patient was not capable; ran out of time.">
             >
-            ["at140"] = <
+            ["at139"] = <
                 text = <"Unaided visual acuity">
                 description = <"The test was performed without visual aid.">
             >
@@ -355,15 +355,15 @@ terminology
                 description = <"The name of the exact visual acuity test performed. This generally represents a broad category of applied refraction. Specific refraction details can be described using 'Refractive Correction'.">
                 comment = <"Details of the exact correction applied, or where multiple corrections should be captured via 'Refractive Correction'.">
             >
-            ["at138"] = <
+            ["at137"] = <
                 text = <"Best corrected visual acuity">
                 description = <"The test is performed with the patient's optimal refractive correction.">
             >
-            ["at137"] = <
+            ["at136"] = <
                 text = <"Usual corrected visual acuity">
                 description = <"The test is performed with the patient's usual refractive correction i.e spectacles or contact lenses.">
             >
-            ["at136"] = <
+            ["at135"] = <
                 text = <"Pinhole visual acuity">
                 description = <"The test is performed with pinhole refraction applied.">
             >
@@ -384,47 +384,47 @@ terminology
                 description = <"Patient circumstances which affect interpretation of the result. Often termed 'reliability' in opthalmological documentation.">
                 comment = <"Examples: 'Patient was confused', 'Low light conditions'.">
             >
-            ["at110"] = <
+            ["at109"] = <
                 text = <"Picture chart">
                 description = <"A picture chart was used to measure distance visual acuity.">
             >
-            ["at109"] = <
+            ["at108"] = <
                 text = <"Picture">
                 description = <"A picture optotype was used to measure distance visual acuity.">
             >
-            ["at108"] = <
+            ["at107"] = <
                 text = <"Orientation">
                 description = <"An orientation optotype was used to measure distance visual acuity.">
             >
-            ["at107"] = <
+            ["at106"] = <
                 text = <"Letter">
                 description = <"A letter optotype was used to measure distance visual acuity.">
             >
-            ["at103"] = <
+            ["at102"] = <
                 text = <"Last line single letter">
                 description = <"A last line single letter algorithm was used to derive the visual acuity score.">
             >
-            ["at102"] = <
+            ["at101"] = <
                 text = <"Whole line">
                 description = <"A whole line algorithm was used to derive the visual acuity score.">
             >
-            ["at101"] = <
+            ["at100"] = <
                 text = <"Single letter">
                 description = <"A single letter algorithm was used to derive the visual acuity score.">
             >
-            ["at100"] = <
+            ["at99"] = <
                 text = <"Jaeger 'J' Score">
                 description = <"A Jaeger 'J' Score chart was used to measure near visual acuity.">
             >
-            ["at99"] = <
+            ["at98"] = <
                 text = <"Faculty of Ophthalmologists 'N' Score">
                 description = <"Faculty of Ophthalmologists 'N' Score chart was used to measure near visual acuity.">
             >
-            ["at98"] = <
+            ["at97"] = <
                 text = <"Reduced Snellen">
                 description = <"A Reduced Snellen chart was used to measure near visual acuity.">
             >
-            ["at97"] = <
+            ["at96"] = <
                 text = <"Reduced logMar">
                 description = <"A Reduced logMar chart was used to measure near visual acuity.">
             >
@@ -433,15 +433,15 @@ terminology
                 description = <"The original visual acuity result notation from which the Derived Score was calculated.">
                 comment = <"When the visual acuity result is recorded using a Derived Score, this element can be used to record the original notation format, so that it can be displayed using the original notation. ">
             >
-            ["at85"] = <
+            ["at84"] = <
                 text = <"ETDRS chart">
                 description = <"An ETDRS chart was used to measure distance visual acuity.">
             >
-            ["at84"] = <
+            ["at83"] = <
                 text = <"Snellen chart">
                 description = <"A Snellen chart was used to measure distance visual acuity.">
             >
-            ["at83"] = <
+            ["at82"] = <
                 text = <"logMar chart">
                 description = <"A logMar chart was used to measure distance visual acuity.">
             >
@@ -453,23 +453,23 @@ terminology
                 text = <"Refraction Details">
                 description = <"Details of the refraction applied to each eye.">
             >
-            ["at76"] = <
+            ["at75"] = <
                 text = <"Retinoscopy">
                 description = <"The subject's vision was corrected by retinoscopy.">
             >
-            ["at75"] = <
+            ["at74"] = <
                 text = <"Autorefraction">
                 description = <"The subject's vision was corrected by autorefraction.">
             >
-            ["at74"] = <
+            ["at73"] = <
                 text = <"Pinhole">
                 description = <"The subject's vision was corrected by use of a pinhole.">
             >
-            ["at73"] = <
+            ["at72"] = <
                 text = <"Contact lenses">
                 description = <"The subject's vision was corrected by contact lenses.">
             >
-            ["at72"] = <
+            ["at71"] = <
                 text = <"Spectacles">
                 description = <"The subject's vision was corrected by spectacles.">
             >
@@ -488,7 +488,7 @@ terminology
                 text = <"Decimal Snellen">
                 description = <"The distance test result,recorded as Sn ellen visual acuity expressed as a decimal ratio, where 1.0 is regarded as normal.">
             >
-            ["at58"] = <
+            ["at57"] = <
                 text = <"Decimal Snellen">
                 description = <"The distance test result,recorded as Sn ellen visual acuity expressed as a decimal ratio, where 1.0 is regarded as normal.">
             >
@@ -497,7 +497,7 @@ terminology
                 description = <"The distance test result, recorded in Snellen format expressed in metres, where 6/6 is regarded as normal.">
                 comment = <"Examples: '6/6, '6/12', '6/5'">
             >
-            ["at57"] = <
+            ["at56"] = <
                 text = <"Metric Snellen">
                 description = <"The distance test result, recorded in Snellen format expressed in metres, where 6/6 is regarded as normal.">
                 comment = <"Examples: '6/6, '6/12', '6/5'">
@@ -519,7 +519,7 @@ terminology
                 text = <"logMar">
                 description = <"The test result, recorded as logMar visual acuity, where a value of 0 is regarded as normal.">
             >
-            ["at47"] = <
+            ["at46"] = <
                 text = <"logMar">
                 description = <"The test result, recorded as logMar visual acuity, where a value of 0 is regarded as normal.">
             >
@@ -556,19 +556,19 @@ terminology
                 text = <"Chart Optotype">
                 description = <"The style of chart optotype used to assess visual acuity.">
             >
-            ["at20"] = <
+            ["at19"] = <
                 text = <"CF - Count fingers">
                 description = <"The subject can count fingers.">
             >
-            ["at19"] = <
+            ["at18"] = <
                 text = <"HM - Hand movement">
                 description = <"The subject can perceive hand movement.">
             >
-            ["at18"] = <
+            ["at17"] = <
                 text = <"PL -  Perception of light">
                 description = <"The subject can perceive light.">
             >
-            ["at17"] = <
+            ["at16"] = <
                 text = <"NPL - No perception of light">
                 description = <"The subject has no perception of light.">
             >
@@ -576,19 +576,19 @@ terminology
                 text = <"Low Vision Score">
                 description = <"Graded scale used when patient has low levels of visual acuity.">
             >
-            ["at16"] = <
+            ["at15"] = <
                 text = <"Low Vision Score">
                 description = <"Graded scale used when patient has low levels of visual acuity.">
             >
-            ["at15"] = <
+            ["at14"] = <
                 text = <"Both eyes simultaneously">
                 description = <"Both eyes were examined simultaneously.">
             >
-            ["at14"] = <
+            ["at13"] = <
                 text = <"Right eye">
                 description = <"The test result refers to the visual acuity of the right eye only.">
             >
-            ["at13"] = <
+            ["at12"] = <
                 text = <"Left eye">
                 description = <"The test result refers to the visual acuity of the left eye only.">
             >
@@ -596,7 +596,7 @@ terminology
                 text = <"ETDRS Letters">
                 description = <"Visual acuity expressed using ETDRS Letters format, with a value of 100 regarded as normal.">
             >
-            ["at12"] = <
+            ["at11"] = <
                 text = <"ETDRS Letters">
                 description = <"Visual acuity expressed using ETDRS Letters format, with a value of 100 regarded as normal.">
             >
@@ -610,7 +610,7 @@ terminology
                 description = <"The distance test result, recorded as Snellen visual acuity expressed in feet, where 20/20 is regarded as normal.">
                 comment = <"Examples: '20/20' , '20/40', '20/18'">
             >
-            ["at10"] = <
+            ["at9"] = <
                 text = <"US Snellen">
                 description = <"The distance test result, recorded as Snellen visual acuity expressed in feet, where 20/20 is regarded as normal.">
                 comment = <"Examples: '20/20' , '20/40', '20/18'">
@@ -632,58 +632,58 @@ terminology
         >
         ["SNOMED-CT"] = <
             ["id10"] = <http://snomed.info/id/422673001>
-            ["at10"] = <http://snomed.info/id/422673001>
-            ["at13"] = <http://snomed.info/id/362503005>
-            ["at14"] = <http://snomed.info/id/362502000>
-            ["at20"] = <http://snomed.info/id/422256009>
+            ["at9"] = <http://snomed.info/id/422673001>
+            ["at12"] = <http://snomed.info/id/362503005>
+            ["at13"] = <http://snomed.info/id/362502000>
+            ["at19"] = <http://snomed.info/id/422256009>
             ["id40"] = <http://snomed.info/id/117364006>
             ["id41"] = <http://snomed.info/id/117364006>
             ["id55"] = <http://snomed.info/id/271922009>
             ["id57"] = <http://snomed.info/id/422673001>
-            ["at57"] = <http://snomed.info/id/422673001>
+            ["at56"] = <http://snomed.info/id/422673001>
             ["id58"] = <http://snomed.info/id/422673001>
-            ["at58"] = <http://snomed.info/id/422673001>
+            ["at57"] = <http://snomed.info/id/422673001>
             ["id67"] = <http://snomed.info/id/363983007>
-            ["at72"] = <http://snomed.info/id/50121007>
-            ["at73"] = <http://snomed.info/id/57368009>
-            ["at76"] = <http://snomed.info/id/397524001>
+            ["at71"] = <http://snomed.info/id/50121007>
+            ["at72"] = <http://snomed.info/id/57368009>
+            ["at75"] = <http://snomed.info/id/397524001>
             ["id82"] = <http://snomed.info/id/252124009>
-            ["at84"] = <http://snomed.info/id/400913005>
-            ["at85"] = <http://snomed.info/id/400914004>
-            ["at98"] = <http://snomed.info/id/422673001>
+            ["at83"] = <http://snomed.info/id/400913005>
+            ["at84"] = <http://snomed.info/id/400914004>
+            ["at97"] = <http://snomed.info/id/422673001>
         >
     >
     value_sets = <
         ["ac9009"] = <
             id = <"ac9009">
-            members = <"at10", "at57", "at58", "at12", "at16", "at47">
+            members = <"at9", "at56", "at57", "at11", "at15", "at46">
         >
         ["ac9008"] = <
             id = <"ac9008">
-            members = <"at101", "at102", "at103">
+            members = <"at100", "at101", "at102">
         >
         ["ac9007"] = <
             id = <"ac9007">
-            members = <"at107", "at108", "at109">
+            members = <"at106", "at107", "at108">
         >
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at13", "at14", "at15">
+            members = <"at12", "at13", "at14">
         >
         ["ac9000"] = <
             id = <"ac9000">
-            members = <"at136", "at137", "at138", "at140">
+            members = <"at135", "at136", "at137", "at139">
         >
         ["ac9006"] = <
             id = <"ac9006">
-            members = <"at83", "at84", "at85", "at110", "at97", "at98", "at99", "at100">
+            members = <"at82", "at83", "at84", "at109", "at96", "at97", "at98", "at99">
         >
         ["ac9004"] = <
             id = <"ac9004">
-            members = <"at72", "at73", "at74", "at75", "at76">
+            members = <"at71", "at72", "at73", "at74", "at75">
         >
         ["ac9003"] = <
             id = <"ac9003">
-            members = <"at17", "at18", "at19", "at20">
+            members = <"at16", "at17", "at18", "at19">
         >
     >
