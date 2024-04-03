@@ -10,7 +10,7 @@ public class BmmIndexedContainerProperty extends BmmProperty<BmmIndexedContainer
 
     /**
      * We have to replicate cardinality here from BmmContainerProperty since we are inheriting from
-     * BmmProperty<BmmIndexedContainerType> (which creates correct typing of the 'type' property) not BmmContainerProperty
+     * BmmProperty &lt;BmmIndexedContainerType&gt; (which creates correct typing of the 'type' property) not BmmContainerProperty
      */
     private MultiplicityInterval cardinality;
 
