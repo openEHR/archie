@@ -9,8 +9,7 @@ wrapper {
 
 allprojects {
   version = '3.9.1'
-  group =  'io.graphitehealth.archie'
-  
+  group = 'com.nedap.healthcare.archie'
   ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
   //archivesBaseName = 'archie'
 
