@@ -121,6 +121,8 @@ public interface ModelInfoLookup {
      */
     String getArchetypeNodeIdFromRMObject(Object rmObject);
 
+    void setArchetypeNodeId(Object object, String newNodeId);
+
     String getArchetypeIdFromArchetypedRmObject(Object rmObject);
 
     /**

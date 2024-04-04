@@ -138,6 +138,11 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
+    public void setArchetypeNodeId(Object object, String newNodeId) {
+        throw new UnsupportedOperationException("not supported");//TODO: split this to different classes
+    }
+
+    @Override
     public String getNameFromRMObject(Object rmObject) {
         if(rmObject instanceof CObject) {
             return ((CObject) rmObject).getMeaning();
