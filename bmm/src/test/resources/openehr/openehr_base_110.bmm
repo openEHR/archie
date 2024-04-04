@@ -78,7 +78,7 @@ packages = <
 			>
 			["resource"] = <
 				name = <"resource">
-				classes = <"AUTHORED_RESOURCE", "TRANSLATION_DETAILS", "RESOURCE_DESCRIPTION", "RESOURCE_DESCRIPTION_ITEM">
+				classes = <"AUTHORED_RESOURCE", "TRANSLATION_DETAILS", "RESOURCE_DESCRIPTION", "RESOURCE_DESCRIPTION_ITEM", "RESOURCE_ANNOTATIONS">
 			>
 		>
 	>
@@ -782,14 +782,14 @@ class_definitions = <
 				name = <"misuse">
 				type = <"String">
 			>
-            ["original_resource_uri"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+            ["original_resource_uri"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"original_resource_uri">
                 type_def = <
-                    container_type = <"Hash">
-                    index_type = <"String">
-                    type = <"String">
+                    root_type = <"Hash">
+                    generic_parameters = <"String", "String">
                 >
-			>
+                is_mandatory = <True>
+            >
 			["other_details"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
 				name = <"other_details">
                 type_def = <
@@ -801,4 +801,34 @@ class_definitions = <
 		>
 	>
 
+	["RESOURCE_ANNOTATIONS"] = <
+		name = <"RESOURCE_ANNOTATIONS">
+		ancestors = <"Any">
+		properties = <
+			["documentation"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"documentation">
+				type_def = <
+					root_type = <"Hash">
+                    generic_parameter_defs = <
+                        ["K"] = (P_BMM_SIMPLE_TYPE) <
+							type = <"String">
+						>
+                        ["V"] = (P_BMM_GENERIC_TYPE) <
+                            root_type = <"Hash">
+							generic_parameter_defs = <
+								["K"] = (P_BMM_SIMPLE_TYPE) <
+									type = <"String">
+								>
+								["V"] = (P_BMM_GENERIC_TYPE) <
+									root_type = <"Hash">
+									generic_parameters = <"String", "String">
+								>
+							>
+                        >
+                    >
+				>
+				is_mandatory = <True>
+			>
+		>
+	>
 >
