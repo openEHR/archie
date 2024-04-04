@@ -1,9 +1,7 @@
 package org.openehr.bmm.v2.persistence.converters;
 
 import org.junit.Test;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmGenericType;
-import org.openehr.bmm.core.BmmModel;
+import org.openehr.bmm.core.*;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinSerializer;
@@ -58,7 +56,6 @@ public class ConversionTest {
         PBmmSchema converted = BmmOdinParser.convert(serialized);
     }
 
-
     @Test
     public void generateGenericParametersTest() throws Exception {
         BmmRepository repo = new BmmRepository();
@@ -75,6 +72,53 @@ public class ConversionTest {
         BmmGenericType hashContentType = (BmmGenericType) resourceDescriptionItem.getFlatProperties().get("original_resource_uri").getType().getEffectiveType();
         assertEquals(2, hashContentType.getGenericParameters().size());
         assertEquals("Hash<String,String>", hashContentType.toDisplayString());
+    }
+    @Test
+    public void generateGenericParametersTest2() throws Exception {
+        BmmRepository repo = new BmmRepository();
+        repo.addPersistentSchema(parse("/openehr/openehr_primitive_types_102.bmm"));
+        repo.addPersistentSchema(parse("/openehr/openehr_basic_types_102.bmm"));
+        repo.addPersistentSchema(parse("/openehr/openehr_adltest_100.bmm"));
+        BmmSchemaConverter converter = new BmmSchemaConverter(repo);
+        converter.validateAndConvertRepository();
+        for (BmmValidationResult validationResult:repo.getModels()) {
+            System.out.println(validationResult.getLogger());
+            assertTrue("the OpenEHR ADL test 1.0.0 Base file should pass validation", validationResult.passes());
+        }
+        // SOME_TYPE.qty_interval_attr_1 should be a DV_INTERVAL<DV_QUANTITY>
+        BmmModel model = repo.getModel("openehr_adltest_1.0.0").getModel();
+        BmmClass aClass = model.getClassDefinition("SOME_TYPE");
+        BmmGenericType genericType = (BmmGenericType) aClass.getFlatProperties().get("qty_interval_attr_1").getType().getEffectiveType();
+        assertEquals(1, genericType.getGenericParameters().size());
+        assertEquals("DV_INTERVAL<DV_QUANTITY>", genericType.toDisplayString());
+    }
+
+    @Test
+    public void generateIndexedContainerTest() throws Exception {
+        BmmRepository repo = new BmmRepository();
+        repo.addPersistentSchema(parse("/openehr/openehr_primitive_types_102.bmm"));
+        repo.addPersistentSchema(parse("/openehr/openehr_base_110.bmm"));
+        BmmSchemaConverter converter = new BmmSchemaConverter(repo);
+        converter.validateAndConvertRepository();
+        for (BmmValidationResult validationResult:repo.getModels()) {
+            System.out.println(validationResult.getLogger());
+            assertTrue("the OpenEHR RM 1.1.0 Base file should pass validation", validationResult.passes());
+        }
+        // RESOURCE_DESCRIPTION_ITEM.other_details should be a HASH<STRING, STRING>
+        BmmModel baseModel = repo.getModel("openehr_base_1.1.0").getModel();
+        BmmClass resourceDescriptionItem = baseModel.getClassDefinition("RESOURCE_DESCRIPTION_ITEM");
+        BmmIndexedContainerType hashType = (BmmIndexedContainerType) resourceDescriptionItem.getFlatProperties().get("other_details").getType();
+
+        BmmSimpleType hashIndexType = hashType.getIndexType();
+        assertEquals(hashIndexType.getTypeName(), "String");
+
+        BmmUnitaryType hashBaseType = hashType.getBaseType();
+        assertEquals(hashBaseType.getTypeName(), "String");
+
+        BmmGenericClass hashContainerclass = hashType.getContainerType();
+        assertEquals(hashContainerclass.getName(), "Hash");
+
+        assertEquals("Hash<String,String>", hashType.toDisplayString());
     }
 
     @Test
