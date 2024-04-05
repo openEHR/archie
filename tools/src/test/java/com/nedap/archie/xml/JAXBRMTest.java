@@ -2,6 +2,7 @@ package com.nedap.archie.xml;
 
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
@@ -10,7 +11,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.time.Period;
+import java.time.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -41,6 +42,61 @@ public class JAXBRMTest {
         marshaller.marshal(element, writer);
         String xml = writer.toString();
         assertTrue(xml, xml.contains("-P10D"));
+    }
+
+    @Test
+    public void serializeDvDateTime() throws Exception {
+        Element fullDateElement = new Element("id6",
+                new DvText("DvDateTime"),
+                new DvDateTime(LocalDateTime.of(2015, 1, 1, 12, 10, 12, 0)));
+        StringWriter writer = new StringWriter();
+        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(fullDateElement, writer);
+        String xml = writer.toString();
+        assertTrue(xml.contains("2015-01-01T12:10:12"));
+        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
+        assertEquals(fullDateElement, unmarshalled);
+
+        Element yearMonthDayelement = new Element("id6",
+                new DvText("DvDateTime"),
+                new DvDateTime(LocalDate.of(2015, 1, 1)));
+        writer = new StringWriter();
+        marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(yearMonthDayelement, writer);
+        xml = writer.toString();
+        assertTrue(xml.contains("2015-01-01"));
+        unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
+        assertEquals(yearMonthDayelement, unmarshalled);
+
+        Element yearMonthElement = new Element("id6",
+                new DvText("DvDateTime"),
+                new DvDateTime(YearMonth.of(2015, 1)));
+        writer = new StringWriter();
+        marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(yearMonthElement, writer);
+        xml = writer.toString();
+        assertTrue(xml.contains("2015-01"));
+        unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
+        assertEquals(yearMonthElement, unmarshalled);
+
+        Element yearElement = new Element("id6",
+                new DvText("DvDateTime"),
+                new DvDateTime(Year.of(2015)));
+        writer = new StringWriter();
+        marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(yearElement, writer);
+        xml = writer.toString();
+        assertTrue(xml.contains("2015"));
+        unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
+        assertEquals(yearElement, unmarshalled);
     }
 
     @Test
