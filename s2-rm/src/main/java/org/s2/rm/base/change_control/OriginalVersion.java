@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.change_control;
+package org.s2.rm.base.change_control;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -29,7 +29,7 @@ public class OriginalVersion<T> extends Version<T> {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "uid")
-  private @Nonnull ObjectVersionId uid;
+  private ObjectVersionId uid;
 
   /**
   * BMM name: preceding_version_uid | BMM type: Object_version_id
@@ -57,7 +57,7 @@ public class OriginalVersion<T> extends Version<T> {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "lifecycle_state")
-  private @Nonnull TerminologyTerm lifecycleState;
+  private TerminologyTerm lifecycleState;
 
   /**
   * BMM name: data | BMM type: T
@@ -68,7 +68,7 @@ public class OriginalVersion<T> extends Version<T> {
 
   public OriginalVersion() {}
 
-  public OriginalVersion(@Nonnull ObjectVersionId uid, @Nonnull TerminologyTerm lifecycleState, @Nonnull ObjectRef contribution, @Nonnull AuditDetails commitAudit) {
+  public OriginalVersion(ObjectVersionId uid, TerminologyTerm lifecycleState, ObjectRef contribution, AuditDetails commitAudit) {
     super(contribution, commitAudit);
     this.uid = uid;
     this.lifecycleState = lifecycleState;
@@ -98,11 +98,11 @@ public class OriginalVersion<T> extends Version<T> {
     return result;
   }
 
-  public @Nonnull ObjectVersionId getUid() {
+  public ObjectVersionId getUid() {
     return uid;
   }
 
-  public void setUid(@Nonnull ObjectVersionId uid) {
+  public void setUid(ObjectVersionId uid) {
     this.uid = uid;
   }
 
@@ -130,11 +130,11 @@ public class OriginalVersion<T> extends Version<T> {
     this.attestations = attestations;
   }
 
-  public @Nonnull TerminologyTerm getLifecycleState() {
+  public TerminologyTerm getLifecycleState() {
     return lifecycleState;
   }
 
-  public void setLifecycleState(@Nonnull TerminologyTerm lifecycleState) {
+  public void setLifecycleState(TerminologyTerm lifecycleState) {
     this.lifecycleState = lifecycleState;
   }
 

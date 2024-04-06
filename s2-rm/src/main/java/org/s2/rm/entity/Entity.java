@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.entity;
+package org.s2.rm.entity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.model_support.archetyped.Locatable;
@@ -26,7 +26,7 @@ public abstract class Entity extends Locatable {
 
   public Entity() {}
 
-  public Entity(@Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Entity(String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
   }
 

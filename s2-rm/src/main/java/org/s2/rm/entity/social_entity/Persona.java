@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.entity.social_entity;
+package org.s2.rm.entity.social_entity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
@@ -32,7 +32,7 @@ public class Persona extends Party {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "performer")
-  private @Nonnull ObjectRef performer;
+  private ObjectRef performer;
 
   /**
   * BMM name: time_validity | BMM type: Interval<Date>
@@ -60,7 +60,7 @@ public class Persona extends Party {
 
   public Persona() {}
 
-  public Persona(@Nonnull ObjectRef performer, @Nonnull List<PartyIdentity> identities, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Persona(ObjectRef performer, List<PartyIdentity> identities, String archetypeNodeId, String name) {
     super(identities, archetypeNodeId, name);
     this.performer = performer;
   }
@@ -95,11 +95,11 @@ public class Persona extends Party {
     return result;
   }
 
-  public @Nonnull ObjectRef getPerformer() {
+  public ObjectRef getPerformer() {
     return performer;
   }
 
-  public void setPerformer(@Nonnull ObjectRef performer) {
+  public void setPerformer(ObjectRef performer) {
     this.performer = performer;
   }
 

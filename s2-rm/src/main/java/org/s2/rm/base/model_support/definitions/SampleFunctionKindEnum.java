@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.base.model_support.definitions;
+package org.s2.rm.base.model_support.definitions;
 
 import org.s2.util.enumerations.*;
 

@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.base.data_types.quantity;
+package org.s2.rm.base.data_types.quantity;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;
@@ -19,7 +19,7 @@ public abstract class TemporalValue extends OrderedValue {
   */
   // This property is in at least one descendant where it probably has a different type.
   // Skip the property in the parent class (this one).
-  // private @Nonnull Temporal magnitude;
+  // private Temporal magnitude;
 
 
   @Override

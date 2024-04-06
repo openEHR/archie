@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.quantity;
+package org.s2.rm.base.data_types.quantity;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.CodedText;
@@ -28,11 +28,11 @@ public class CodedOrdinal extends OrderedValue {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "concept")
-  private @Nonnull CodedText concept;
+  private CodedText concept;
 
   public CodedOrdinal() {}
 
-  public CodedOrdinal(double magnitude, @Nonnull CodedText concept) {
+  public CodedOrdinal(double magnitude, CodedText concept) {
     this.magnitude = magnitude;
     this.concept = concept;
   }
@@ -60,11 +60,11 @@ public class CodedOrdinal extends OrderedValue {
     this.magnitude = magnitude;
   }
 
-  public @Nonnull CodedText getConcept() {
+  public CodedText getConcept() {
     return concept;
   }
 
-  public void setConcept(@Nonnull CodedText concept) {
+  public void setConcept(CodedText concept) {
     this.concept = concept;
   }
 

@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.patterns.data_structures;
+package org.s2.rm.base.patterns.data_structures;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -31,7 +31,7 @@ public class IntervalEvent extends Event {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "width")
-  private @Nonnull RmDuration width;
+  private RmDuration width;
 
   /**
   * BMM name: sample_count | BMM type: Integer
@@ -59,7 +59,7 @@ public class IntervalEvent extends Event {
 
   public IntervalEvent() {}
 
-  public IntervalEvent(@Nonnull RmDuration width, @Nonnull RmDateTime time, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public IntervalEvent(RmDuration width, RmDateTime time, String archetypeNodeId, String name) {
     super(time, archetypeNodeId, name);
     this.width = width;
   }
@@ -89,11 +89,11 @@ public class IntervalEvent extends Event {
     return Objects.hash(super.hashCode(), uid, width, sampleCount, sampleFunction);
   }
 
-  public @Nonnull RmDuration getWidth() {
+  public RmDuration getWidth() {
     return width;
   }
 
-  public void setWidth(@Nonnull RmDuration width) {
+  public void setWidth(RmDuration width) {
     this.width = width;
   }
 

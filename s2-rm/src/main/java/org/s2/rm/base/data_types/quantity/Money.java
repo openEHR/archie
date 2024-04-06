@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.quantity;
+package org.s2.rm.base.data_types.quantity;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -28,11 +28,11 @@ public class Money extends OrderedValue {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "currency")
-  private @Nonnull TerminologyCode currency;
+  private TerminologyCode currency;
 
   public Money() {}
 
-  public Money(double magnitude, @Nonnull TerminologyCode currency) {
+  public Money(double magnitude, TerminologyCode currency) {
     this.magnitude = magnitude;
     this.currency = currency;
   }
@@ -60,11 +60,11 @@ public class Money extends OrderedValue {
     this.magnitude = magnitude;
   }
 
-  public @Nonnull TerminologyCode getCurrency() {
+  public TerminologyCode getCurrency() {
     return currency;
   }
 
-  public void setCurrency(@Nonnull TerminologyCode currency) {
+  public void setCurrency(TerminologyCode currency) {
     this.currency = currency;
   }
 

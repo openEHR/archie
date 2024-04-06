@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.foundation_types.terminology;
+package org.s2.rm.base.foundation_types.terminology;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -19,18 +19,18 @@ public class TerminologyTerm {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "description")
-  private @Nonnull String description;
+  private String description;
 
   /**
   * BMM name: concept | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "concept")
-  private @Nonnull TerminologyCode concept;
+  private TerminologyCode concept;
 
   public TerminologyTerm() {}
 
-  public TerminologyTerm(@Nonnull String description, @Nonnull TerminologyCode concept) {
+  public TerminologyTerm(String description, TerminologyCode concept) {
     this.description = description;
     this.concept = concept;
   }
@@ -49,19 +49,19 @@ public class TerminologyTerm {
     return Objects.hash(super.hashCode(), description, concept);
   }
 
-  public @Nonnull String getDescription() {
+  public String getDescription() {
     return description;
   }
 
-  public void setDescription(@Nonnull String description) {
+  public void setDescription(String description) {
     this.description = description;
   }
 
-  public @Nonnull TerminologyCode getConcept() {
+  public TerminologyCode getConcept() {
     return concept;
   }
 
-  public void setConcept(@Nonnull TerminologyCode concept) {
+  public void setConcept(TerminologyCode concept) {
     this.concept = concept;
   }
 

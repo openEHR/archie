@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.care.ehr;
+package org.s2.rm.care.ehr;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.change_control.VersionedObject;
@@ -18,7 +18,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 public class VersionedComposition<T extends Folder> extends VersionedObject<Folder> {
   public VersionedComposition() {}
 
-  public VersionedComposition(@Nonnull Uuid uid, @Nonnull ObjectRef ownerId, @Nonnull RmDateTime timeCreated) {
+  public VersionedComposition(Uuid uid, ObjectRef ownerId, RmDateTime timeCreated) {
     super(uid, ownerId, timeCreated);
   }
 

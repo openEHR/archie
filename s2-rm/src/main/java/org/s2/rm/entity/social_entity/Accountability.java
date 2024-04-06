@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.entity.social_entity;
+package org.s2.rm.entity.social_entity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -42,7 +42,7 @@ public class Accountability extends Locatable {
 
   public Accountability() {}
 
-  public Accountability(@Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Accountability(String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
   }
 

@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.text;
+package org.s2.rm.base.data_types.text;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -15,7 +15,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 public class PlainText extends Text {
   public PlainText() {}
 
-  public PlainText(@Nonnull String text) {
+  public PlainText(String text) {
     super(text);
   }
 

@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.uri;
+package org.s2.rm.base.data_types.uri;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.*;
 public class EhrUriRef extends UriRef {
   public EhrUriRef() {}
 
-  public EhrUriRef(@Nonnull String value) {
+  public EhrUriRef(String value) {
     super(value);
   }
 

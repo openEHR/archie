@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.base.model_support.archetyped;
+package org.s2.rm.base.model_support.archetyped;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;

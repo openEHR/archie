@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.resource;
+package org.s2.rm.base.resource;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -24,7 +24,7 @@ public abstract class AuthoredResource {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "original_language")
-  private @Nonnull TerminologyCode originalLanguage;
+  private TerminologyCode originalLanguage;
 
   /**
   * BMM name: is_controlled | BMM type: Boolean
@@ -56,15 +56,15 @@ public abstract class AuthoredResource {
 
   public AuthoredResource() {}
 
-  public AuthoredResource(@Nonnull TerminologyCode originalLanguage) {
+  public AuthoredResource(TerminologyCode originalLanguage) {
     this.originalLanguage = originalLanguage;
   }
 
-  public @Nonnull TerminologyCode getOriginalLanguage() {
+  public TerminologyCode getOriginalLanguage() {
     return originalLanguage;
   }
 
-  public void setOriginalLanguage(@Nonnull TerminologyCode originalLanguage) {
+  public void setOriginalLanguage(TerminologyCode originalLanguage) {
     this.originalLanguage = originalLanguage;
   }
 

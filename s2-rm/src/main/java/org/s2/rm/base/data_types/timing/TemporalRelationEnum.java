@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.base.data_types.timing;
+package org.s2.rm.base.data_types.timing;
 
 import org.s2.util.enumerations.*;
 

@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.model_support.identification;
+package org.s2.rm.base.model_support.identification;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -21,7 +21,7 @@ public class LocatableRef extends ObjectRef {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "id")
-  private @Nonnull ObjectVersionId id;
+  private ObjectVersionId id;
 
   /**
   * BMM name: path | BMM type: String
@@ -32,7 +32,7 @@ public class LocatableRef extends ObjectRef {
 
   public LocatableRef() {}
 
-  public LocatableRef(@Nonnull ObjectVersionId id, @Nonnull String type) {
+  public LocatableRef(ObjectVersionId id, String type) {
     super(type);
     this.id = id;
   }
@@ -53,11 +53,11 @@ public class LocatableRef extends ObjectRef {
     return Objects.hash(super.hashCode(), id, path);
   }
 
-  public @Nonnull ObjectVersionId getId() {
+  public ObjectVersionId getId() {
     return id;
   }
 
-  public void setId(@Nonnull ObjectVersionId id) {
+  public void setId(ObjectVersionId id) {
     this.id = id;
   }
 

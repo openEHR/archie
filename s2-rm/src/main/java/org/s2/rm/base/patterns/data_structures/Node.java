@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.patterns.data_structures;
+package org.s2.rm.base.patterns.data_structures;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
@@ -75,7 +75,7 @@ public class Node extends Locatable {
 
   public Node() {}
 
-  public Node(@Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Node(String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
   }
 

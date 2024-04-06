@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.data_types.encapsulated;
+package org.s2.rm.base.data_types.encapsulated;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
@@ -39,7 +39,7 @@ public class Parsable extends Encapsulated {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "formalism")
-  private @Nonnull String formalism;
+  private String formalism;
 
   /**
   * BMM name: encoding | BMM type: Terminology_code
@@ -50,7 +50,7 @@ public class Parsable extends Encapsulated {
 
   public Parsable() {}
 
-  public Parsable(@Nonnull String formalism) {
+  public Parsable(String formalism) {
     this.formalism = formalism;
   }
 
@@ -88,11 +88,11 @@ public class Parsable extends Encapsulated {
     this.schema = schema;
   }
 
-  public @Nonnull String getFormalism() {
+  public String getFormalism() {
     return formalism;
   }
 
-  public void setFormalism(@Nonnull String formalism) {
+  public void setFormalism(String formalism) {
     this.formalism = formalism;
   }
 

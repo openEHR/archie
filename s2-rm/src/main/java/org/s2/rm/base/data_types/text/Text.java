@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.data_types.text;
+package org.s2.rm.base.data_types.text;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
@@ -25,7 +25,7 @@ public class Text extends DataValue {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "text")
-  private @Nonnull String text;
+  private String text;
 
   /**
   * BMM name: language | BMM type: Terminology_code
@@ -50,7 +50,7 @@ public class Text extends DataValue {
 
   public Text() {}
 
-  public Text(@Nonnull String text) {
+  public Text(String text) {
     this.text = text;
   }
 
@@ -70,11 +70,11 @@ public class Text extends DataValue {
     return Objects.hash(super.hashCode(), text, language, encoding, formatting);
   }
 
-  public @Nonnull String getText() {
+  public String getText() {
     return text;
   }
 
-  public void setText(@Nonnull String text) {
+  public void setText(String text) {
     this.text = text;
   }
 

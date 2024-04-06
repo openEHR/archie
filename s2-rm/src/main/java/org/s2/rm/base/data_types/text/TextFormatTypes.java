@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.base.data_types.text;
+package org.s2.rm.base.data_types.text;
 
 import java.util.*;
 

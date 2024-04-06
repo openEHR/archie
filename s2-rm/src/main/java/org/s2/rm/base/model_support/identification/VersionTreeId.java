@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.model_support.identification;
+package org.s2.rm.base.model_support.identification;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -18,11 +18,11 @@ public class VersionTreeId {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "value")
-  private @Nonnull String value;
+  private String value;
 
   public VersionTreeId() {}
 
-  public VersionTreeId(@Nonnull String value) {
+  public VersionTreeId(String value) {
     this.value = value;
   }
 
@@ -39,11 +39,11 @@ public class VersionTreeId {
     return Objects.hash(super.hashCode(), value);
   }
 
-  public @Nonnull String getValue() {
+  public String getValue() {
     return value;
   }
 
-  public void setValue(@Nonnull String value) {
+  public void setValue(String value) {
     this.value = value;
   }
 

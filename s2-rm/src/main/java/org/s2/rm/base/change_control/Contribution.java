@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.change_control;
+package org.s2.rm.base.change_control;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.model_support.identification.ObjectRef;
@@ -22,25 +22,25 @@ public class Contribution {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "uid")
-  private @Nonnull Uuid uid;
+  private Uuid uid;
 
   /**
   * BMM name: audit | BMM type: Audit_details
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "audit")
-  private @Nonnull AuditDetails audit;
+  private AuditDetails audit;
 
   /**
   * BMM name: versions | BMM type: List<Object_ref>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "versions")
-  private @Nonnull List<ObjectRef> versions;
+  private List<ObjectRef> versions;
 
   public Contribution() {}
 
-  public Contribution(@Nonnull Uuid uid, @Nonnull AuditDetails audit, @Nonnull List<ObjectRef> versions) {
+  public Contribution(Uuid uid, AuditDetails audit, List<ObjectRef> versions) {
     this.uid = uid;
     this.audit = audit;
     this.versions = versions;
@@ -63,27 +63,27 @@ public class Contribution {
     return result;
   }
 
-  public @Nonnull Uuid getUid() {
+  public Uuid getUid() {
     return uid;
   }
 
-  public void setUid(@Nonnull Uuid uid) {
+  public void setUid(Uuid uid) {
     this.uid = uid;
   }
 
-  public @Nonnull AuditDetails getAudit() {
+  public AuditDetails getAudit() {
     return audit;
   }
 
-  public void setAudit(@Nonnull AuditDetails audit) {
+  public void setAudit(AuditDetails audit) {
     this.audit = audit;
   }
 
-  public @Nonnull List<ObjectRef> getVersions() {
+  public List<ObjectRef> getVersions() {
     return versions;
   }
 
-  public void setVersions(@Nonnull List<ObjectRef> versions) {
+  public void setVersions(List<ObjectRef> versions) {
     this.versions = versions;
   }
 

@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.care.ehr;
+package org.s2.rm.care.ehr;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;

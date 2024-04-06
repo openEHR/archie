@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.quantity;
+package org.s2.rm.base.data_types.quantity;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -43,11 +43,11 @@ public class Ratio extends Measurable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "type")
-  private @Nonnull RatioKind type;
+  private RatioKind type;
 
   public Ratio() {}
 
-  public Ratio(double magnitude, double numerator, double denominator, @Nonnull RatioKind type) {
+  public Ratio(double magnitude, double numerator, double denominator, RatioKind type) {
     this.magnitude = magnitude;
     this.numerator = numerator;
     this.denominator = denominator;
@@ -95,11 +95,11 @@ public class Ratio extends Measurable {
     this.denominator = denominator;
   }
 
-  public @Nonnull RatioKind getType() {
+  public RatioKind getType() {
     return type;
   }
 
-  public void setType(@Nonnull RatioKind type) {
+  public void setType(RatioKind type) {
     this.type = type;
   }
 

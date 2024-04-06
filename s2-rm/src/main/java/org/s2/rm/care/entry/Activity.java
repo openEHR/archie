@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.timing.Timing;
@@ -51,7 +51,7 @@ public class Activity extends Locatable {
 
   public Activity() {}
 
-  public Activity(@Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Activity(String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
   }
 

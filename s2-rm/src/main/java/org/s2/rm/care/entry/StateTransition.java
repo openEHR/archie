@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
@@ -31,7 +31,7 @@ public class StateTransition extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "current_state")
-  private @Nonnull OrderExecutionState currentState;
+  private OrderExecutionState currentState;
 
   /**
   * BMM name: transition | BMM type: Order_execution_transition
@@ -66,7 +66,7 @@ public class StateTransition extends Locatable {
 
   public StateTransition() {}
 
-  public StateTransition(@Nonnull OrderExecutionState currentState, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public StateTransition(OrderExecutionState currentState, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.currentState = currentState;
   }
@@ -97,11 +97,11 @@ public class StateTransition extends Locatable {
     return result;
   }
 
-  public @Nonnull OrderExecutionState getCurrentState() {
+  public OrderExecutionState getCurrentState() {
     return currentState;
   }
 
-  public void setCurrentState(@Nonnull OrderExecutionState currentState) {
+  public void setCurrentState(OrderExecutionState currentState) {
     this.currentState = currentState;
   }
 

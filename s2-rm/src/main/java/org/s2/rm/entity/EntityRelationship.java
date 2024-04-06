@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.entity;
+package org.s2.rm.entity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
@@ -30,21 +30,21 @@ public abstract class EntityRelationship extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "type")
-  private @Nonnull TerminologyTerm type;
+  private TerminologyTerm type;
 
   /**
   * BMM name: source | BMM type: Object_ref
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "source")
-  private @Nonnull ObjectRef source;
+  private ObjectRef source;
 
   /**
   * BMM name: target | BMM type: Object_ref
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "target")
-  private @Nonnull ObjectRef target;
+  private ObjectRef target;
 
   /**
   * BMM name: description | BMM type: List<Node>
@@ -62,34 +62,34 @@ public abstract class EntityRelationship extends Locatable {
 
   public EntityRelationship() {}
 
-  public EntityRelationship(@Nonnull TerminologyTerm type, @Nonnull ObjectRef source, @Nonnull ObjectRef target, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public EntityRelationship(TerminologyTerm type, ObjectRef source, ObjectRef target, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.type = type;
     this.source = source;
     this.target = target;
   }
 
-  public @Nonnull TerminologyTerm getType() {
+  public TerminologyTerm getType() {
     return type;
   }
 
-  public void setType(@Nonnull TerminologyTerm type) {
+  public void setType(TerminologyTerm type) {
     this.type = type;
   }
 
-  public @Nonnull ObjectRef getSource() {
+  public ObjectRef getSource() {
     return source;
   }
 
-  public void setSource(@Nonnull ObjectRef source) {
+  public void setSource(ObjectRef source) {
     this.source = source;
   }
 
-  public @Nonnull ObjectRef getTarget() {
+  public ObjectRef getTarget() {
     return target;
   }
 
-  public void setTarget(@Nonnull ObjectRef target) {
+  public void setTarget(ObjectRef target) {
     this.target = target;
   }
 

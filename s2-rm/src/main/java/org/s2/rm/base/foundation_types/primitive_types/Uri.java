@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.base.foundation_types.primitive_types;
+package org.s2.rm.base.foundation_types.primitive_types;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;

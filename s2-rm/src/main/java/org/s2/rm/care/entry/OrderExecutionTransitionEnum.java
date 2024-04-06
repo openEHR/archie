@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
 import org.s2.util.enumerations.*;
 

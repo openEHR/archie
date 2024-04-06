@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
@@ -31,11 +31,11 @@ public class IndirectObservation extends Observation {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "result_time")
-  private @Nonnull RmDateTime resultTime;
+  private RmDateTime resultTime;
 
   public IndirectObservation() {}
 
-  public IndirectObservation(@Nonnull RmDateTime resultTime, @Nonnull Uuid uid, @Nonnull RmDateTime time, @Nonnull TerminologyCode language, @Nonnull PartyProxy subject, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public IndirectObservation(RmDateTime resultTime, Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
     this.resultTime = resultTime;
   }
@@ -74,11 +74,11 @@ public class IndirectObservation extends Observation {
     return Objects.hash(super.hashCode(), resultTime);
   }
 
-  public @Nonnull RmDateTime getResultTime() {
+  public RmDateTime getResultTime() {
     return resultTime;
   }
 
-  public void setResultTime(@Nonnull RmDateTime resultTime) {
+  public void setResultTime(RmDateTime resultTime) {
     this.resultTime = resultTime;
   }
 

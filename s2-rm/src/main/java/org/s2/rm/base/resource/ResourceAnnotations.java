@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.resource;
+package org.s2.rm.base.resource;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -18,11 +18,11 @@ public class ResourceAnnotations {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "documentation")
-  private @Nonnull Map<String, Map<String, Map<String, String>>> documentation;
+  private Map<String, Map<String, Map<String, String>>> documentation;
 
   public ResourceAnnotations() {}
 
-  public ResourceAnnotations(@Nonnull Map<String, Map<String, Map<String, String>>> documentation) {
+  public ResourceAnnotations(Map<String, Map<String, Map<String, String>>> documentation) {
     this.documentation = documentation;
   }
 
@@ -39,11 +39,11 @@ public class ResourceAnnotations {
     return Objects.hash(super.hashCode(), documentation);
   }
 
-  public @Nonnull Map<String, Map<String, Map<String, String>>> getDocumentation() {
+  public Map<String, Map<String, Map<String, String>>> getDocumentation() {
     return documentation;
   }
 
-  public void setDocumentation(@Nonnull Map<String, Map<String, Map<String, String>>> documentation) {
+  public void setDocumentation(Map<String, Map<String, Map<String, String>>> documentation) {
     this.documentation = documentation;
   }
 

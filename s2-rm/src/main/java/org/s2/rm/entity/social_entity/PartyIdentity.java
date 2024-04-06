@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.entity.social_entity;
+package org.s2.rm.entity.social_entity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -28,7 +28,7 @@ public class PartyIdentity extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "description")
-  private @Nonnull List<Node> description;
+  private List<Node> description;
 
 
   // Properties added from the extended class: Locatable
@@ -42,7 +42,7 @@ public class PartyIdentity extends Locatable {
 
   public PartyIdentity() {}
 
-  public PartyIdentity(@Nonnull List<Node> description, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public PartyIdentity(List<Node> description, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.description = description;
   }
@@ -70,11 +70,11 @@ public class PartyIdentity extends Locatable {
     return result;
   }
 
-  public @Nonnull List<Node> getDescription() {
+  public List<Node> getDescription() {
     return description;
   }
 
-  public void setDescription(@Nonnull List<Node> description) {
+  public void setDescription(List<Node> description) {
     this.description = description;
   }
 

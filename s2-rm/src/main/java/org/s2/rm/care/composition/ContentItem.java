@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.care.composition;
+package org.s2.rm.care.composition;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.model_support.archetyped.Locatable;
@@ -15,7 +15,7 @@ import org.s2.rm.base.model_support.archetyped.Locatable;
 public abstract class ContentItem extends Locatable {
   public ContentItem() {}
 
-  public ContentItem(@Nonnull String archetypeNodeId, @Nonnull String name) {
+  public ContentItem(String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
   }
 

@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.patterns.participation;
+package org.s2.rm.base.patterns.participation;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.RweIdRef;
@@ -22,11 +22,11 @@ public class PartyRelated extends PartyIdentified {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "relationship")
-  private @Nonnull TerminologyTerm relationship;
+  private TerminologyTerm relationship;
 
   public PartyRelated() {}
 
-  public PartyRelated(@Nonnull TerminologyTerm relationship) {
+  public PartyRelated(TerminologyTerm relationship) {
     this.relationship = relationship;
   }
 
@@ -46,11 +46,11 @@ public class PartyRelated extends PartyIdentified {
     return Objects.hash(super.hashCode(), relationship);
   }
 
-  public @Nonnull TerminologyTerm getRelationship() {
+  public TerminologyTerm getRelationship() {
     return relationship;
   }
 
-  public void setRelationship(@Nonnull TerminologyTerm relationship) {
+  public void setRelationship(TerminologyTerm relationship) {
     this.relationship = relationship;
   }
 

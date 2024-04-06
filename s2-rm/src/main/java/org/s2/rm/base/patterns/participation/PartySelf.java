@@ -1,4 +1,4 @@
-package main.java.org.s2.rm.base.patterns.participation;
+package org.s2.rm.base.patterns.participation;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;

@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.resource;
+package org.s2.rm.base.resource;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -25,14 +25,14 @@ public class TranslationDetails {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "language")
-  private @Nonnull TerminologyCode language;
+  private TerminologyCode language;
 
   /**
   * BMM name: author | BMM type: Hash<String,String>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "author")
-  private @Nonnull Map<String, String> author;
+  private Map<String, String> author;
 
   /**
   * BMM name: accreditation | BMM type: String
@@ -64,7 +64,7 @@ public class TranslationDetails {
 
   public TranslationDetails() {}
 
-  public TranslationDetails(@Nonnull TerminologyCode language, @Nonnull Map<String, String> author) {
+  public TranslationDetails(TerminologyCode language, Map<String, String> author) {
     this.language = language;
     this.author = author;
   }
@@ -89,19 +89,19 @@ public class TranslationDetails {
     return result;
   }
 
-  public @Nonnull TerminologyCode getLanguage() {
+  public TerminologyCode getLanguage() {
     return language;
   }
 
-  public void setLanguage(@Nonnull TerminologyCode language) {
+  public void setLanguage(TerminologyCode language) {
     this.language = language;
   }
 
-  public @Nonnull Map<String, String> getAuthor() {
+  public Map<String, String> getAuthor() {
     return author;
   }
 
-  public void setAuthor(@Nonnull Map<String, String> author) {
+  public void setAuthor(Map<String, String> author) {
     this.author = author;
   }
 

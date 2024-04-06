@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.model_support.identification;
+package org.s2.rm.base.model_support.identification;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.*;
 public class ArchetypeId extends ArtifactId {
   public ArchetypeId() {}
 
-  public ArchetypeId(@Nonnull String value) {
+  public ArchetypeId(String value) {
     super(value);
   }
 

@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.entity.social_entity;
+package org.s2.rm.entity.social_entity;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.entity.Entity;
@@ -15,7 +15,7 @@ import org.s2.rm.entity.Entity;
 public abstract class SocialEntity extends Entity {
   public SocialEntity() {}
 
-  public SocialEntity(@Nonnull String archetypeNodeId, @Nonnull String name) {
+  public SocialEntity(String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
   }
 

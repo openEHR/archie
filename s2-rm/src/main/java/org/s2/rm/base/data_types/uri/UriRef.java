@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.uri;
+package org.s2.rm.base.data_types.uri;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
@@ -20,11 +20,11 @@ public class UriRef extends DataValue {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "value")
-  private @Nonnull String value;
+  private String value;
 
   public UriRef() {}
 
-  public UriRef(@Nonnull String value) {
+  public UriRef(String value) {
     this.value = value;
   }
 
@@ -41,11 +41,11 @@ public class UriRef extends DataValue {
     return Objects.hash(super.hashCode(), value);
   }
 
-  public @Nonnull String getValue() {
+  public String getValue() {
     return value;
   }
 
-  public void setValue(@Nonnull String value) {
+  public void setValue(String value) {
     this.value = value;
   }
 

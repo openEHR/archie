@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.resource;
+package org.s2.rm.base.resource;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -34,7 +34,7 @@ public class ResourceDescription {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "original_author")
-  private @Nonnull Map<String, String> originalAuthor;
+  private Map<String, String> originalAuthor;
 
   /**
   * BMM name: original_namespace | BMM type: String
@@ -90,7 +90,7 @@ public class ResourceDescription {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "lifecycle_state")
-  private @Nonnull String lifecycleState;
+  private String lifecycleState;
 
   /**
   * BMM name: resource_package_uri | BMM type: String
@@ -132,7 +132,7 @@ public class ResourceDescription {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "parent_resource")
-  private @Nonnull AuthoredResource parentResource;
+  private AuthoredResource parentResource;
 
   /**
   * BMM name: details | BMM type: Hash<String,Resource_description_item>
@@ -143,7 +143,7 @@ public class ResourceDescription {
 
   public ResourceDescription() {}
 
-  public ResourceDescription(@Nonnull Map<String, String> originalAuthor, @Nonnull String lifecycleState, @Nonnull AuthoredResource parentResource) {
+  public ResourceDescription(Map<String, String> originalAuthor, String lifecycleState, AuthoredResource parentResource) {
     this.originalAuthor = originalAuthor;
     this.lifecycleState = lifecycleState;
     this.parentResource = parentResource;
@@ -179,11 +179,11 @@ public class ResourceDescription {
     return result;
   }
 
-  public @Nonnull Map<String, String> getOriginalAuthor() {
+  public Map<String, String> getOriginalAuthor() {
     return originalAuthor;
   }
 
-  public void setOriginalAuthor(@Nonnull Map<String, String> originalAuthor) {
+  public void setOriginalAuthor(Map<String, String> originalAuthor) {
     this.originalAuthor = originalAuthor;
   }
 
@@ -243,11 +243,11 @@ public class ResourceDescription {
     this.licence = licence;
   }
 
-  public @Nonnull String getLifecycleState() {
+  public String getLifecycleState() {
     return lifecycleState;
   }
 
-  public void setLifecycleState(@Nonnull String lifecycleState) {
+  public void setLifecycleState(String lifecycleState) {
     this.lifecycleState = lifecycleState;
   }
 
@@ -291,11 +291,11 @@ public class ResourceDescription {
     this.otherDetails = otherDetails;
   }
 
-  public @Nonnull AuthoredResource getParentResource() {
+  public AuthoredResource getParentResource() {
     return parentResource;
   }
 
-  public void setParentResource(@Nonnull AuthoredResource parentResource) {
+  public void setParentResource(AuthoredResource parentResource) {
     this.parentResource = parentResource;
   }
 

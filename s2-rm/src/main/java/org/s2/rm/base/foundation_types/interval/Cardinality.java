@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.foundation_types.interval;
+package org.s2.rm.base.foundation_types.interval;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -34,11 +34,11 @@ public class Cardinality {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "interval")
-  private @Nonnull MultiplicityInterval interval;
+  private MultiplicityInterval interval;
 
   public Cardinality() {}
 
-  public Cardinality(boolean isOrdered, boolean isUnique, @Nonnull MultiplicityInterval interval) {
+  public Cardinality(boolean isOrdered, boolean isUnique, MultiplicityInterval interval) {
     this.isOrdered = isOrdered;
     this.isUnique = isUnique;
     this.interval = interval;
@@ -75,11 +75,11 @@ public class Cardinality {
     this.isUnique = isUnique;
   }
 
-  public @Nonnull MultiplicityInterval getInterval() {
+  public MultiplicityInterval getInterval() {
     return interval;
   }
 
-  public void setInterval(@Nonnull MultiplicityInterval interval) {
+  public void setInterval(MultiplicityInterval interval) {
     this.interval = interval;
   }
 

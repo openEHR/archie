@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
@@ -36,7 +36,7 @@ public class QuestionnaireResponse extends Observation {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "questionnaire_identifier")
-  private @Nonnull String questionnaireIdentifier;
+  private String questionnaireIdentifier;
 
   /**
   * BMM name: questionnaire_version | BMM type: String
@@ -50,7 +50,7 @@ public class QuestionnaireResponse extends Observation {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "questionnaire_title")
-  private @Nonnull TerminologyTerm questionnaireTitle;
+  private TerminologyTerm questionnaireTitle;
 
   /**
   * BMM name: completion_status | BMM type: Terminology_code
@@ -61,7 +61,7 @@ public class QuestionnaireResponse extends Observation {
 
   public QuestionnaireResponse() {}
 
-  public QuestionnaireResponse(@Nonnull String questionnaireIdentifier, @Nonnull TerminologyTerm questionnaireTitle, @Nonnull Uuid uid, @Nonnull RmDateTime time, @Nonnull TerminologyCode language, @Nonnull PartyProxy subject, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public QuestionnaireResponse(String questionnaireIdentifier, TerminologyTerm questionnaireTitle, Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
     this.questionnaireIdentifier = questionnaireIdentifier;
     this.questionnaireTitle = questionnaireTitle;
@@ -104,11 +104,11 @@ public class QuestionnaireResponse extends Observation {
     return Objects.hash(super.hashCode(), questionnaireIdentifier, questionnaireVersion, questionnaireTitle, completionStatus);
   }
 
-  public @Nonnull String getQuestionnaireIdentifier() {
+  public String getQuestionnaireIdentifier() {
     return questionnaireIdentifier;
   }
 
-  public void setQuestionnaireIdentifier(@Nonnull String questionnaireIdentifier) {
+  public void setQuestionnaireIdentifier(String questionnaireIdentifier) {
     this.questionnaireIdentifier = questionnaireIdentifier;
   }
 
@@ -120,11 +120,11 @@ public class QuestionnaireResponse extends Observation {
     this.questionnaireVersion = questionnaireVersion;
   }
 
-  public @Nonnull TerminologyTerm getQuestionnaireTitle() {
+  public TerminologyTerm getQuestionnaireTitle() {
     return questionnaireTitle;
   }
 
-  public void setQuestionnaireTitle(@Nonnull TerminologyTerm questionnaireTitle) {
+  public void setQuestionnaireTitle(TerminologyTerm questionnaireTitle) {
     this.questionnaireTitle = questionnaireTitle;
   }
 

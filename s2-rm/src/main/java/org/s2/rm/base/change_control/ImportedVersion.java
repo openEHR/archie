@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.change_control;
+package org.s2.rm.base.change_control;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.model_support.identification.ObjectRef;
@@ -21,11 +21,11 @@ public class ImportedVersion<T> extends Version<T> {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "item")
-  private @Nonnull OriginalVersion<T> item;
+  private OriginalVersion<T> item;
 
   public ImportedVersion() {}
 
-  public ImportedVersion(@Nonnull OriginalVersion<T> item, @Nonnull ObjectRef contribution, @Nonnull AuditDetails commitAudit) {
+  public ImportedVersion(OriginalVersion<T> item, ObjectRef contribution, AuditDetails commitAudit) {
     super(contribution, commitAudit);
     this.item = item;
   }
@@ -46,11 +46,11 @@ public class ImportedVersion<T> extends Version<T> {
     return Objects.hash(super.hashCode(), item);
   }
 
-  public @Nonnull OriginalVersion<T> getItem() {
+  public OriginalVersion<T> getItem() {
     return item;
   }
 
-  public void setItem(@Nonnull OriginalVersion<T> item) {
+  public void setItem(OriginalVersion<T> item) {
     this.item = item;
   }
 

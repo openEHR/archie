@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.timing;
+package org.s2.rm.base.data_types.timing;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDuration;
@@ -21,11 +21,11 @@ public class ClockTime extends HourSpecifier {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time")
-  private @Nonnull RmTime time;
+  private RmTime time;
 
   public ClockTime() {}
 
-  public ClockTime(@Nonnull RmTime time) {
+  public ClockTime(RmTime time) {
     this.time = time;
   }
 
@@ -43,11 +43,11 @@ public class ClockTime extends HourSpecifier {
     return Objects.hash(super.hashCode(), time);
   }
 
-  public @Nonnull RmTime getTime() {
+  public RmTime getTime() {
     return time;
   }
 
-  public void setTime(@Nonnull RmTime time) {
+  public void setTime(RmTime time) {
     this.time = time;
   }
 

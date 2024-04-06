@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.ehr;
+package org.s2.rm.care.ehr;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
@@ -31,35 +31,35 @@ public class Ehr {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "system_id")
-  private @Nonnull InternetId systemId;
+  private InternetId systemId;
 
   /**
   * BMM name: ehr_id | BMM type: Uuid
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "ehr_id")
-  private @Nonnull Uuid ehrId;
+  private Uuid ehrId;
 
   /**
   * BMM name: time_created | BMM type: Date_time
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time_created")
-  private @Nonnull RmDateTime timeCreated;
+  private RmDateTime timeCreated;
 
   /**
   * BMM name: ehr_access | BMM type: Object_ref
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "ehr_access")
-  private @Nonnull ObjectRef ehrAccess;
+  private ObjectRef ehrAccess;
 
   /**
   * BMM name: ehr_status | BMM type: Object_ref
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "ehr_status")
-  private @Nonnull ObjectRef ehrStatus;
+  private ObjectRef ehrStatus;
 
   /**
   * BMM name: directory | BMM type: Object_ref
@@ -87,11 +87,11 @@ public class Ehr {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "contributions")
-  private @Nonnull List<ObjectRef> contributions;
+  private List<ObjectRef> contributions;
 
   public Ehr() {}
 
-  public Ehr(@Nonnull InternetId systemId, @Nonnull Uuid ehrId, @Nonnull RmDateTime timeCreated, @Nonnull ObjectRef ehrAccess, @Nonnull ObjectRef ehrStatus, @Nonnull List<ObjectRef> contributions) {
+  public Ehr(InternetId systemId, Uuid ehrId, RmDateTime timeCreated, ObjectRef ehrAccess, ObjectRef ehrStatus, List<ObjectRef> contributions) {
     this.systemId = systemId;
     this.ehrId = ehrId;
     this.timeCreated = timeCreated;
@@ -125,43 +125,43 @@ public class Ehr {
     return result;
   }
 
-  public @Nonnull InternetId getSystemId() {
+  public InternetId getSystemId() {
     return systemId;
   }
 
-  public void setSystemId(@Nonnull InternetId systemId) {
+  public void setSystemId(InternetId systemId) {
     this.systemId = systemId;
   }
 
-  public @Nonnull Uuid getEhrId() {
+  public Uuid getEhrId() {
     return ehrId;
   }
 
-  public void setEhrId(@Nonnull Uuid ehrId) {
+  public void setEhrId(Uuid ehrId) {
     this.ehrId = ehrId;
   }
 
-  public @Nonnull RmDateTime getTimeCreated() {
+  public RmDateTime getTimeCreated() {
     return timeCreated;
   }
 
-  public void setTimeCreated(@Nonnull RmDateTime timeCreated) {
+  public void setTimeCreated(RmDateTime timeCreated) {
     this.timeCreated = timeCreated;
   }
 
-  public @Nonnull ObjectRef getEhrAccess() {
+  public ObjectRef getEhrAccess() {
     return ehrAccess;
   }
 
-  public void setEhrAccess(@Nonnull ObjectRef ehrAccess) {
+  public void setEhrAccess(ObjectRef ehrAccess) {
     this.ehrAccess = ehrAccess;
   }
 
-  public @Nonnull ObjectRef getEhrStatus() {
+  public ObjectRef getEhrStatus() {
     return ehrStatus;
   }
 
-  public void setEhrStatus(@Nonnull ObjectRef ehrStatus) {
+  public void setEhrStatus(ObjectRef ehrStatus) {
     this.ehrStatus = ehrStatus;
   }
 
@@ -189,11 +189,11 @@ public class Ehr {
     this.compositions = compositions;
   }
 
-  public @Nonnull List<ObjectRef> getContributions() {
+  public List<ObjectRef> getContributions() {
     return contributions;
   }
 
-  public void setContributions(@Nonnull List<ObjectRef> contributions) {
+  public void setContributions(List<ObjectRef> contributions) {
     this.contributions = contributions;
   }
 

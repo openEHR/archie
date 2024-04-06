@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.change_control;
+package org.s2.rm.base.change_control;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
@@ -24,25 +24,25 @@ public class VersionedObject<T> {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "uid")
-  private @Nonnull Uuid uid;
+  private Uuid uid;
 
   /**
   * BMM name: owner_id | BMM type: Object_ref
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "owner_id")
-  private @Nonnull ObjectRef ownerId;
+  private ObjectRef ownerId;
 
   /**
   * BMM name: time_created | BMM type: Date_time
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "time_created")
-  private @Nonnull RmDateTime timeCreated;
+  private RmDateTime timeCreated;
 
   public VersionedObject() {}
 
-  public VersionedObject(@Nonnull Uuid uid, @Nonnull ObjectRef ownerId, @Nonnull RmDateTime timeCreated) {
+  public VersionedObject(Uuid uid, ObjectRef ownerId, RmDateTime timeCreated) {
     this.uid = uid;
     this.ownerId = ownerId;
     this.timeCreated = timeCreated;
@@ -63,27 +63,27 @@ public class VersionedObject<T> {
     return Objects.hash(super.hashCode(), uid, ownerId, timeCreated);
   }
 
-  public @Nonnull Uuid getUid() {
+  public Uuid getUid() {
     return uid;
   }
 
-  public void setUid(@Nonnull Uuid uid) {
+  public void setUid(Uuid uid) {
     this.uid = uid;
   }
 
-  public @Nonnull ObjectRef getOwnerId() {
+  public ObjectRef getOwnerId() {
     return ownerId;
   }
 
-  public void setOwnerId(@Nonnull ObjectRef ownerId) {
+  public void setOwnerId(ObjectRef ownerId) {
     this.ownerId = ownerId;
   }
 
-  public @Nonnull RmDateTime getTimeCreated() {
+  public RmDateTime getTimeCreated() {
     return timeCreated;
   }
 
-  public void setTimeCreated(@Nonnull RmDateTime timeCreated) {
+  public void setTimeCreated(RmDateTime timeCreated) {
     this.timeCreated = timeCreated;
   }
 

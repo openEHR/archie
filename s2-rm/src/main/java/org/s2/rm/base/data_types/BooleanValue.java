@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types;
+package org.s2.rm.base.data_types;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -29,18 +29,18 @@ public class BooleanValue extends DataValue {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "true_term")
-  private @Nonnull TerminologyTerm trueTerm;
+  private TerminologyTerm trueTerm;
 
   /**
   * BMM name: false_term | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "false_term")
-  private @Nonnull TerminologyTerm falseTerm;
+  private TerminologyTerm falseTerm;
 
   public BooleanValue() {}
 
-  public BooleanValue(boolean value, @Nonnull TerminologyTerm trueTerm, @Nonnull TerminologyTerm falseTerm) {
+  public BooleanValue(boolean value, TerminologyTerm trueTerm, TerminologyTerm falseTerm) {
     this.value = value;
     this.trueTerm = trueTerm;
     this.falseTerm = falseTerm;
@@ -69,19 +69,19 @@ public class BooleanValue extends DataValue {
     this.value = value;
   }
 
-  public @Nonnull TerminologyTerm getTrueTerm() {
+  public TerminologyTerm getTrueTerm() {
     return trueTerm;
   }
 
-  public void setTrueTerm(@Nonnull TerminologyTerm trueTerm) {
+  public void setTrueTerm(TerminologyTerm trueTerm) {
     this.trueTerm = trueTerm;
   }
 
-  public @Nonnull TerminologyTerm getFalseTerm() {
+  public TerminologyTerm getFalseTerm() {
     return falseTerm;
   }
 
-  public void setFalseTerm(@Nonnull TerminologyTerm falseTerm) {
+  public void setFalseTerm(TerminologyTerm falseTerm) {
     this.falseTerm = falseTerm;
   }
 

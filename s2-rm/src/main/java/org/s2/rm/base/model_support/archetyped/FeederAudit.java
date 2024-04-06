@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.model_support.archetyped;
+package org.s2.rm.base.model_support.archetyped;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.RweIdRef;
@@ -46,7 +46,7 @@ public class FeederAudit {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "originating_system_audit")
-  private @Nonnull FeederAuditDetails originatingSystemAudit;
+  private FeederAuditDetails originatingSystemAudit;
 
   /**
   * BMM name: feeder_system_audit | BMM type: Feeder_audit_details
@@ -57,7 +57,7 @@ public class FeederAudit {
 
   public FeederAudit() {}
 
-  public FeederAudit(@Nonnull FeederAuditDetails originatingSystemAudit) {
+  public FeederAudit(FeederAuditDetails originatingSystemAudit) {
     this.originatingSystemAudit = originatingSystemAudit;
   }
 
@@ -105,11 +105,11 @@ public class FeederAudit {
     this.originalContent = originalContent;
   }
 
-  public @Nonnull FeederAuditDetails getOriginatingSystemAudit() {
+  public FeederAuditDetails getOriginatingSystemAudit() {
     return originatingSystemAudit;
   }
 
-  public void setOriginatingSystemAudit(@Nonnull FeederAuditDetails originatingSystemAudit) {
+  public void setOriginatingSystemAudit(FeederAuditDetails originatingSystemAudit) {
     this.originatingSystemAudit = originatingSystemAudit;
   }
 

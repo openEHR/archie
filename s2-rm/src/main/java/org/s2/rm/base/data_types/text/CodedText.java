@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.text;
+package org.s2.rm.base.data_types.text;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -21,11 +21,11 @@ public class CodedText extends Text {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "term")
-  private @Nonnull TerminologyTerm term;
+  private TerminologyTerm term;
 
   public CodedText() {}
 
-  public CodedText(@Nonnull TerminologyTerm term, @Nonnull String text) {
+  public CodedText(TerminologyTerm term, String text) {
     super(text);
     this.term = term;
   }
@@ -47,11 +47,11 @@ public class CodedText extends Text {
     return Objects.hash(super.hashCode(), term);
   }
 
-  public @Nonnull TerminologyTerm getTerm() {
+  public TerminologyTerm getTerm() {
     return term;
   }
 
-  public void setTerm(@Nonnull TerminologyTerm term) {
+  public void setTerm(TerminologyTerm term) {
     this.term = term;
   }
 

@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.data_types.encapsulated;
+package org.s2.rm.base.data_types.encapsulated;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
@@ -41,7 +41,7 @@ public class Multimedia extends Encapsulated {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "media_type")
-  private @Nonnull TerminologyCode mediaType;
+  private TerminologyCode mediaType;
 
   /**
   * BMM name: hash | BMM type: String
@@ -66,7 +66,7 @@ public class Multimedia extends Encapsulated {
 
   public Multimedia() {}
 
-  public Multimedia(@Nonnull TerminologyCode mediaType) {
+  public Multimedia(TerminologyCode mediaType) {
     this.mediaType = mediaType;
   }
 
@@ -108,11 +108,11 @@ public class Multimedia extends Encapsulated {
     this.data = data;
   }
 
-  public @Nonnull TerminologyCode getMediaType() {
+  public TerminologyCode getMediaType() {
     return mediaType;
   }
 
-  public void setMediaType(@Nonnull TerminologyCode mediaType) {
+  public void setMediaType(TerminologyCode mediaType) {
     this.mediaType = mediaType;
   }
 

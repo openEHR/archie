@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.ehr;
+package org.s2.rm.care.ehr;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -32,7 +32,7 @@ public class EhrStatus extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "subject")
-  private @Nonnull PartySelf subject;
+  private PartySelf subject;
 
   /**
   * BMM name: is_queryable | BMM type: Boolean
@@ -67,7 +67,7 @@ public class EhrStatus extends Locatable {
 
   public EhrStatus() {}
 
-  public EhrStatus(@Nonnull PartySelf subject, boolean isQueryable, boolean isModifiable, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public EhrStatus(PartySelf subject, boolean isQueryable, boolean isModifiable, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.subject = subject;
     this.isQueryable = isQueryable;
@@ -100,11 +100,11 @@ public class EhrStatus extends Locatable {
     return result;
   }
 
-  public @Nonnull PartySelf getSubject() {
+  public PartySelf getSubject() {
     return subject;
   }
 
-  public void setSubject(@Nonnull PartySelf subject) {
+  public void setSubject(PartySelf subject) {
     this.subject = subject;
   }
 

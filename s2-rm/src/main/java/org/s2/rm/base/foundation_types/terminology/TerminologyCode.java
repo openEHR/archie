@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.foundation_types.terminology;
+package org.s2.rm.base.foundation_types.terminology;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
@@ -23,7 +23,7 @@ public class TerminologyCode {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "terminology_id")
-  private @Nonnull String terminologyId;
+  private String terminologyId;
 
   /**
   * BMM name: terminology_version | BMM type: String
@@ -37,7 +37,7 @@ public class TerminologyCode {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "code_string")
-  private @Nonnull String codeString;
+  private String codeString;
 
   /**
   * BMM name: uri | BMM type: Uri
@@ -48,7 +48,7 @@ public class TerminologyCode {
 
   public TerminologyCode() {}
 
-  public TerminologyCode(@Nonnull String terminologyId, @Nonnull String codeString) {
+  public TerminologyCode(String terminologyId, String codeString) {
     this.terminologyId = terminologyId;
     this.codeString = codeString;
   }
@@ -69,11 +69,11 @@ public class TerminologyCode {
     return Objects.hash(super.hashCode(), terminologyId, terminologyVersion, codeString, uri);
   }
 
-  public @Nonnull String getTerminologyId() {
+  public String getTerminologyId() {
     return terminologyId;
   }
 
-  public void setTerminologyId(@Nonnull String terminologyId) {
+  public void setTerminologyId(String terminologyId) {
     this.terminologyId = terminologyId;
   }
 
@@ -85,11 +85,11 @@ public class TerminologyCode {
     this.terminologyVersion = terminologyVersion;
   }
 
-  public @Nonnull String getCodeString() {
+  public String getCodeString() {
     return codeString;
   }
 
-  public void setCodeString(@Nonnull String codeString) {
+  public void setCodeString(String codeString) {
     this.codeString = codeString;
   }
 

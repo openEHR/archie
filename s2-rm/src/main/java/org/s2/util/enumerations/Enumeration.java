@@ -1,4 +1,4 @@
-package main.java.org.s2.util.enumerations;
+package org.s2.util.enumerations;
 
 /// Definition of an enumeration type. In the BMM system, an 'enumeration' type is understood as an underlying basic type
 /// and a set of named constants of that type. It is designed so that the default type is Integer, and the default

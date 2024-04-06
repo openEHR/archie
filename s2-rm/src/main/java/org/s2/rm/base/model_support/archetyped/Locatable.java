@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.model_support.archetyped;
+package org.s2.rm.base.model_support.archetyped;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -35,14 +35,14 @@ public abstract class Locatable extends Pathable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "archetype_node_id")
-  private @Nonnull String archetypeNodeId;
+  private String archetypeNodeId;
 
   /**
   * BMM name: name | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "name")
-  private @Nonnull String name;
+  private String name;
 
   /**
   * BMM name: code | BMM type: Terminology_term
@@ -81,24 +81,24 @@ public abstract class Locatable extends Pathable {
 
   public Locatable() {}
 
-  public Locatable(@Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Locatable(String archetypeNodeId, String name) {
     this.archetypeNodeId = archetypeNodeId;
     this.name = name;
   }
 
-  public @Nonnull String getArchetypeNodeId() {
+  public String getArchetypeNodeId() {
     return archetypeNodeId;
   }
 
-  public void setArchetypeNodeId(@Nonnull String archetypeNodeId) {
+  public void setArchetypeNodeId(String archetypeNodeId) {
     this.archetypeNodeId = archetypeNodeId;
   }
 
-  public @Nonnull String getName() {
+  public String getName() {
     return name;
   }
 
-  public void setName(@Nonnull String name) {
+  public void setName(String name) {
     this.name = name;
   }
 

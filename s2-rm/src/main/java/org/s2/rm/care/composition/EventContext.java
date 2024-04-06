@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.composition;
+package org.s2.rm.care.composition;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -44,7 +44,7 @@ public class EventContext extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "start_time")
-  private @Nonnull RmDateTime startTime;
+  private RmDateTime startTime;
 
   /**
   * BMM name: end_time | BMM type: Date_time
@@ -72,7 +72,7 @@ public class EventContext extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "setting")
-  private @Nonnull TerminologyTerm setting;
+  private TerminologyTerm setting;
 
   /**
   * BMM name: other_context | BMM type: List<Node>
@@ -93,7 +93,7 @@ public class EventContext extends Locatable {
 
   public EventContext() {}
 
-  public EventContext(@Nonnull RmDateTime startTime, @Nonnull TerminologyTerm setting, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public EventContext(RmDateTime startTime, TerminologyTerm setting, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.startTime = startTime;
     this.setting = setting;
@@ -137,11 +137,11 @@ public class EventContext extends Locatable {
     this.healthCareFacility = healthCareFacility;
   }
 
-  public @Nonnull RmDateTime getStartTime() {
+  public RmDateTime getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(@Nonnull RmDateTime startTime) {
+  public void setStartTime(RmDateTime startTime) {
     this.startTime = startTime;
   }
 
@@ -169,11 +169,11 @@ public class EventContext extends Locatable {
     this.location = location;
   }
 
-  public @Nonnull TerminologyTerm getSetting() {
+  public TerminologyTerm getSetting() {
     return setting;
   }
 
-  public void setSetting(@Nonnull TerminologyTerm setting) {
+  public void setSetting(TerminologyTerm setting) {
     this.setting = setting;
   }
 

@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.data_types.timing;
+package org.s2.rm.base.data_types.timing;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
@@ -37,11 +37,11 @@ public class OccurrencePattern {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "bounding_period")
-  private @Nonnull Interval<RmDate> boundingPeriod;
+  private Interval<RmDate> boundingPeriod;
 
   public OccurrencePattern() {}
 
-  public OccurrencePattern(@Nonnull Interval<RmDate> boundingPeriod) {
+  public OccurrencePattern(Interval<RmDate> boundingPeriod) {
     this.boundingPeriod = boundingPeriod;
   }
 
@@ -78,11 +78,11 @@ public class OccurrencePattern {
     this.totalCount = totalCount;
   }
 
-  public @Nonnull Interval<RmDate> getBoundingPeriod() {
+  public Interval<RmDate> getBoundingPeriod() {
     return boundingPeriod;
   }
 
-  public void setBoundingPeriod(@Nonnull Interval<RmDate> boundingPeriod) {
+  public void setBoundingPeriod(Interval<RmDate> boundingPeriod) {
     this.boundingPeriod = boundingPeriod;
   }
 

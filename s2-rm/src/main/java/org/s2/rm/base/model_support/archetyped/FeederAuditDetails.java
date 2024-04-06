@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.model_support.archetyped;
+package org.s2.rm.base.model_support.archetyped;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
@@ -28,7 +28,7 @@ public class FeederAuditDetails {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "system_id")
-  private @Nonnull String systemId;
+  private String systemId;
 
   /**
   * BMM name: location | BMM type: Party_identified
@@ -74,7 +74,7 @@ public class FeederAuditDetails {
 
   public FeederAuditDetails() {}
 
-  public FeederAuditDetails(@Nonnull String systemId) {
+  public FeederAuditDetails(String systemId) {
     this.systemId = systemId;
   }
 
@@ -97,11 +97,11 @@ public class FeederAuditDetails {
     return Objects.hash(super.hashCode(), systemId, location, provider, subject, time, versionId, otherDetails);
   }
 
-  public @Nonnull String getSystemId() {
+  public String getSystemId() {
     return systemId;
   }
 
-  public void setSystemId(@Nonnull String systemId) {
+  public void setSystemId(String systemId) {
     this.systemId = systemId;
   }
 

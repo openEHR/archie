@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -23,7 +23,7 @@ public class OrderTracking {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "order_id")
-  private @Nonnull String orderId;
+  private String orderId;
 
   /**
   * BMM name: requestor_id | BMM type: String
@@ -48,7 +48,7 @@ public class OrderTracking {
 
   public OrderTracking() {}
 
-  public OrderTracking(@Nonnull String orderId) {
+  public OrderTracking(String orderId) {
     this.orderId = orderId;
   }
 
@@ -70,11 +70,11 @@ public class OrderTracking {
     return result;
   }
 
-  public @Nonnull String getOrderId() {
+  public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(@Nonnull String orderId) {
+  public void setOrderId(String orderId) {
     this.orderId = orderId;
   }
 

@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.quantity;
+package org.s2.rm.base.data_types.quantity;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
@@ -20,11 +20,11 @@ public class DateTimeValue extends TemporalValue {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "magnitude")
-  private @Nonnull RmDateTime magnitude;
+  private RmDateTime magnitude;
 
   public DateTimeValue() {}
 
-  public DateTimeValue(@Nonnull RmDateTime magnitude) {
+  public DateTimeValue(RmDateTime magnitude) {
     this.magnitude = magnitude;
   }
 
@@ -42,11 +42,11 @@ public class DateTimeValue extends TemporalValue {
     return Objects.hash(super.hashCode(), magnitude);
   }
 
-  public @Nonnull RmDateTime getMagnitude() {
+  public RmDateTime getMagnitude() {
     return magnitude;
   }
 
-  public void setMagnitude(@Nonnull RmDateTime magnitude) {
+  public void setMagnitude(RmDateTime magnitude) {
     this.magnitude = magnitude;
   }
 

@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.entity.social_entity;
+package org.s2.rm.entity.social_entity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
@@ -52,7 +52,7 @@ public class Capability extends Locatable {
 
   public Capability() {}
 
-  public Capability(@Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Capability(String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
   }
 

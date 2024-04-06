@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.change_control;
+package org.s2.rm.base.change_control;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.model_support.identification.ObjectRef;
@@ -23,14 +23,14 @@ public abstract class Version<T> {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "contribution")
-  private @Nonnull ObjectRef contribution;
+  private ObjectRef contribution;
 
   /**
   * BMM name: commit_audit | BMM type: Audit_details
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "commit_audit")
-  private @Nonnull AuditDetails commitAudit;
+  private AuditDetails commitAudit;
 
   /**
   * BMM name: signature | BMM type: String
@@ -41,24 +41,24 @@ public abstract class Version<T> {
 
   public Version() {}
 
-  public Version(@Nonnull ObjectRef contribution, @Nonnull AuditDetails commitAudit) {
+  public Version(ObjectRef contribution, AuditDetails commitAudit) {
     this.contribution = contribution;
     this.commitAudit = commitAudit;
   }
 
-  public @Nonnull ObjectRef getContribution() {
+  public ObjectRef getContribution() {
     return contribution;
   }
 
-  public void setContribution(@Nonnull ObjectRef contribution) {
+  public void setContribution(ObjectRef contribution) {
     this.contribution = contribution;
   }
 
-  public @Nonnull AuditDetails getCommitAudit() {
+  public AuditDetails getCommitAudit() {
     return commitAudit;
   }
 
-  public void setCommitAudit(@Nonnull AuditDetails commitAudit) {
+  public void setCommitAudit(AuditDetails commitAudit) {
     this.commitAudit = commitAudit;
   }
 

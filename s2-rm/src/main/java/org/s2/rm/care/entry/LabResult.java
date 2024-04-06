@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
@@ -26,7 +26,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 public class LabResult extends IndirectObservation {
   public LabResult() {}
 
-  public LabResult(@Nonnull RmDateTime resultTime, @Nonnull Uuid uid, @Nonnull RmDateTime time, @Nonnull TerminologyCode language, @Nonnull PartyProxy subject, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public LabResult(RmDateTime resultTime, Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(resultTime, uid, time, language, subject, archetypeNodeId, name);
   }
 

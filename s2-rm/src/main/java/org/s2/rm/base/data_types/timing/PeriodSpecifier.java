@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.timing;
+package org.s2.rm.base.data_types.timing;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDuration;
@@ -20,11 +20,11 @@ public class PeriodSpecifier extends TimeSpecifier {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "period")
-  private @Nonnull RmDuration period;
+  private RmDuration period;
 
   public PeriodSpecifier() {}
 
-  public PeriodSpecifier(@Nonnull RmDuration period, int eventCount) {
+  public PeriodSpecifier(RmDuration period, int eventCount) {
     super(eventCount);
     this.period = period;
   }
@@ -43,11 +43,11 @@ public class PeriodSpecifier extends TimeSpecifier {
     return Objects.hash(super.hashCode(), period);
   }
 
-  public @Nonnull RmDuration getPeriod() {
+  public RmDuration getPeriod() {
     return period;
   }
 
-  public void setPeriod(@Nonnull RmDuration period) {
+  public void setPeriod(RmDuration period) {
     this.period = period;
   }
 

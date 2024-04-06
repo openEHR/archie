@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.quantity;
+package org.s2.rm.base.data_types.quantity;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -28,11 +28,11 @@ public class Quantity extends Measurable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "units")
-  private @Nonnull TerminologyTerm units;
+  private TerminologyTerm units;
 
   public Quantity() {}
 
-  public Quantity(double magnitude, @Nonnull TerminologyTerm units) {
+  public Quantity(double magnitude, TerminologyTerm units) {
     this.magnitude = magnitude;
     this.units = units;
   }
@@ -60,11 +60,11 @@ public class Quantity extends Measurable {
     this.magnitude = magnitude;
   }
 
-  public @Nonnull TerminologyTerm getUnits() {
+  public TerminologyTerm getUnits() {
     return units;
   }
 
-  public void setUnits(@Nonnull TerminologyTerm units) {
+  public void setUnits(TerminologyTerm units) {
     this.units = units;
   }
 

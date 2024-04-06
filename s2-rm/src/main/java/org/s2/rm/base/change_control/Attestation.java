@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.change_control;
+package org.s2.rm.base.change_control;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.encapsulated.Multimedia;
@@ -50,7 +50,7 @@ public class Attestation extends AuditDetails {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "reason")
-  private @Nonnull String reason;
+  private String reason;
 
   /**
   * BMM name: is_pending | BMM type: Boolean
@@ -61,7 +61,7 @@ public class Attestation extends AuditDetails {
 
   public Attestation() {}
 
-  public Attestation(@Nonnull String reason, boolean isPending, @Nonnull String systemId, @Nonnull RmDateTime timeCommitted, @Nonnull TerminologyTerm changeType, @Nonnull PartyProxy committer) {
+  public Attestation(String reason, boolean isPending, String systemId, RmDateTime timeCommitted, TerminologyTerm changeType, PartyProxy committer) {
     super(systemId, timeCommitted, changeType, committer);
     this.reason = reason;
     this.isPending = isPending;
@@ -115,11 +115,11 @@ public class Attestation extends AuditDetails {
     this.items = items;
   }
 
-  public @Nonnull String getReason() {
+  public String getReason() {
     return reason;
   }
 
-  public void setReason(@Nonnull String reason) {
+  public void setReason(String reason) {
     this.reason = reason;
   }
 

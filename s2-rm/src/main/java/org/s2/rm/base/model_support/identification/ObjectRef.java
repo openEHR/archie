@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.model_support.identification;
+package org.s2.rm.base.model_support.identification;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -21,7 +21,7 @@ public class ObjectRef {
   */
   // This property is in at least one descendant where it probably has a different type.
   // Skip the property in the parent class (this one).
-  // private @Nonnull ObjectId id;
+  // private ObjectId id;
 
   /**
   * BMM name: namespace | BMM type: String
@@ -35,11 +35,11 @@ public class ObjectRef {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "type")
-  private @Nonnull String type;
+  private String type;
 
   public ObjectRef() {}
 
-  public ObjectRef(@Nonnull String type) {
+  public ObjectRef(String type) {
     this.type = type;
   }
 
@@ -65,11 +65,11 @@ public class ObjectRef {
     this.namespace = namespace;
   }
 
-  public @Nonnull String getType() {
+  public String getType() {
     return type;
   }
 
-  public void setType(@Nonnull String type) {
+  public void setType(String type) {
     this.type = type;
   }
 

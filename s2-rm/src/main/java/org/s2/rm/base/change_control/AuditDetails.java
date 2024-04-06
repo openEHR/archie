@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.change_control;
+package org.s2.rm.base.change_control;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -26,21 +26,21 @@ public class AuditDetails {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "system_id")
-  private @Nonnull String systemId;
+  private String systemId;
 
   /**
   * BMM name: time_committed | BMM type: Date_time
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time_committed")
-  private @Nonnull RmDateTime timeCommitted;
+  private RmDateTime timeCommitted;
 
   /**
   * BMM name: change_type | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "change_type")
-  private @Nonnull TerminologyTerm changeType;
+  private TerminologyTerm changeType;
 
   /**
   * BMM name: description | BMM type: Terminology_term
@@ -54,11 +54,11 @@ public class AuditDetails {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "committer")
-  private @Nonnull PartyProxy committer;
+  private PartyProxy committer;
 
   public AuditDetails() {}
 
-  public AuditDetails(@Nonnull String systemId, @Nonnull RmDateTime timeCommitted, @Nonnull TerminologyTerm changeType, @Nonnull PartyProxy committer) {
+  public AuditDetails(String systemId, RmDateTime timeCommitted, TerminologyTerm changeType, PartyProxy committer) {
     this.systemId = systemId;
     this.timeCommitted = timeCommitted;
     this.changeType = changeType;
@@ -82,27 +82,27 @@ public class AuditDetails {
     return Objects.hash(super.hashCode(), systemId, timeCommitted, changeType, description, committer);
   }
 
-  public @Nonnull String getSystemId() {
+  public String getSystemId() {
     return systemId;
   }
 
-  public void setSystemId(@Nonnull String systemId) {
+  public void setSystemId(String systemId) {
     this.systemId = systemId;
   }
 
-  public @Nonnull RmDateTime getTimeCommitted() {
+  public RmDateTime getTimeCommitted() {
     return timeCommitted;
   }
 
-  public void setTimeCommitted(@Nonnull RmDateTime timeCommitted) {
+  public void setTimeCommitted(RmDateTime timeCommitted) {
     this.timeCommitted = timeCommitted;
   }
 
-  public @Nonnull TerminologyTerm getChangeType() {
+  public TerminologyTerm getChangeType() {
     return changeType;
   }
 
-  public void setChangeType(@Nonnull TerminologyTerm changeType) {
+  public void setChangeType(TerminologyTerm changeType) {
     this.changeType = changeType;
   }
 
@@ -114,11 +114,11 @@ public class AuditDetails {
     this.description = description;
   }
 
-  public @Nonnull PartyProxy getCommitter() {
+  public PartyProxy getCommitter() {
     return committer;
   }
 
-  public void setCommitter(@Nonnull PartyProxy committer) {
+  public void setCommitter(PartyProxy committer) {
     this.committer = committer;
   }
 

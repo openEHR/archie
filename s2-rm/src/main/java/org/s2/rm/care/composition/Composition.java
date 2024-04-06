@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.composition;
+package org.s2.rm.care.composition;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -34,35 +34,35 @@ public class Composition extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "uid")
-  private @Nonnull Uuid uid;
+  private Uuid uid;
 
   /**
   * BMM name: language | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "language")
-  private @Nonnull TerminologyCode language;
+  private TerminologyCode language;
 
   /**
   * BMM name: territory | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "territory")
-  private @Nonnull TerminologyCode territory;
+  private TerminologyCode territory;
 
   /**
   * BMM name: category | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "category")
-  private @Nonnull TerminologyTerm category;
+  private TerminologyTerm category;
 
   /**
   * BMM name: composer | BMM type: Party_proxy
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "composer")
-  private @Nonnull PartyProxy composer;
+  private PartyProxy composer;
 
   /**
   * BMM name: context | BMM type: Event_context
@@ -80,7 +80,7 @@ public class Composition extends Locatable {
 
   public Composition() {}
 
-  public Composition(@Nonnull Uuid uid, @Nonnull TerminologyCode language, @Nonnull TerminologyCode territory, @Nonnull TerminologyTerm category, @Nonnull PartyProxy composer, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Composition(Uuid uid, TerminologyCode language, TerminologyCode territory, TerminologyTerm category, PartyProxy composer, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.uid = uid;
     this.language = language;
@@ -117,43 +117,43 @@ public class Composition extends Locatable {
     return result;
   }
 
-  public @Nonnull Uuid getUid() {
+  public Uuid getUid() {
     return uid;
   }
 
-  public void setUid(@Nonnull Uuid uid) {
+  public void setUid(Uuid uid) {
     this.uid = uid;
   }
 
-  public @Nonnull TerminologyCode getLanguage() {
+  public TerminologyCode getLanguage() {
     return language;
   }
 
-  public void setLanguage(@Nonnull TerminologyCode language) {
+  public void setLanguage(TerminologyCode language) {
     this.language = language;
   }
 
-  public @Nonnull TerminologyCode getTerritory() {
+  public TerminologyCode getTerritory() {
     return territory;
   }
 
-  public void setTerritory(@Nonnull TerminologyCode territory) {
+  public void setTerritory(TerminologyCode territory) {
     this.territory = territory;
   }
 
-  public @Nonnull TerminologyTerm getCategory() {
+  public TerminologyTerm getCategory() {
     return category;
   }
 
-  public void setCategory(@Nonnull TerminologyTerm category) {
+  public void setCategory(TerminologyTerm category) {
     this.category = category;
   }
 
-  public @Nonnull PartyProxy getComposer() {
+  public PartyProxy getComposer() {
     return composer;
   }
 
-  public void setComposer(@Nonnull PartyProxy composer) {
+  public void setComposer(PartyProxy composer) {
     this.composer = composer;
   }
 

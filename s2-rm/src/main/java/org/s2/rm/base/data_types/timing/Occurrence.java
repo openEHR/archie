@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.data_types.timing;
+package org.s2.rm.base.data_types.timing;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDate;
@@ -21,7 +21,7 @@ public class Occurrence {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "date")
-  private @Nonnull RmDate date;
+  private RmDate date;
 
   /**
   * BMM name: time_of_day | BMM type: List<Hour_specifier>
@@ -32,7 +32,7 @@ public class Occurrence {
 
   public Occurrence() {}
 
-  public Occurrence(@Nonnull RmDate date) {
+  public Occurrence(RmDate date) {
     this.date = date;
   }
 
@@ -52,11 +52,11 @@ public class Occurrence {
     return result;
   }
 
-  public @Nonnull RmDate getDate() {
+  public RmDate getDate() {
     return date;
   }
 
-  public void setDate(@Nonnull RmDate date) {
+  public void setDate(RmDate date) {
     this.date = date;
   }
 

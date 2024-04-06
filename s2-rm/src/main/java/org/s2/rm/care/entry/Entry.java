@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
@@ -35,28 +35,28 @@ public abstract class Entry extends ContentItem {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "uid")
-  private @Nonnull Uuid uid;
+  private Uuid uid;
 
   /**
   * BMM name: time | BMM type: Date_time
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time")
-  private @Nonnull RmDateTime time;
+  private RmDateTime time;
 
   /**
   * BMM name: language | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "language")
-  private @Nonnull TerminologyCode language;
+  private TerminologyCode language;
 
   /**
   * BMM name: subject | BMM type: Party_proxy
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "subject")
-  private @Nonnull PartyProxy subject;
+  private PartyProxy subject;
 
   /**
   * BMM name: reporter | BMM type: Party_proxy
@@ -95,7 +95,7 @@ public abstract class Entry extends ContentItem {
 
   public Entry() {}
 
-  public Entry(@Nonnull Uuid uid, @Nonnull RmDateTime time, @Nonnull TerminologyCode language, @Nonnull PartyProxy subject, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Entry(Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.uid = uid;
     this.time = time;
@@ -103,35 +103,35 @@ public abstract class Entry extends ContentItem {
     this.subject = subject;
   }
 
-  public @Nonnull Uuid getUid() {
+  public Uuid getUid() {
     return uid;
   }
 
-  public void setUid(@Nonnull Uuid uid) {
+  public void setUid(Uuid uid) {
     this.uid = uid;
   }
 
-  public @Nonnull RmDateTime getTime() {
+  public RmDateTime getTime() {
     return time;
   }
 
-  public void setTime(@Nonnull RmDateTime time) {
+  public void setTime(RmDateTime time) {
     this.time = time;
   }
 
-  public @Nonnull TerminologyCode getLanguage() {
+  public TerminologyCode getLanguage() {
     return language;
   }
 
-  public void setLanguage(@Nonnull TerminologyCode language) {
+  public void setLanguage(TerminologyCode language) {
     this.language = language;
   }
 
-  public @Nonnull PartyProxy getSubject() {
+  public PartyProxy getSubject() {
     return subject;
   }
 
-  public void setSubject(@Nonnull PartyProxy subject) {
+  public void setSubject(PartyProxy subject) {
     this.subject = subject;
   }
 

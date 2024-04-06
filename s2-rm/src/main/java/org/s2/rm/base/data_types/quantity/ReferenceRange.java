@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.data_types.quantity;
+package org.s2.rm.base.data_types.quantity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
@@ -24,14 +24,14 @@ public class ReferenceRange<V extends Measurable> {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "type")
-  private @Nonnull TerminologyTerm type;
+  private TerminologyTerm type;
 
   /**
   * BMM name: range | BMM type: Range<V>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "range")
-  private @Nonnull Range<V> range;
+  private Range<V> range;
 
   /**
   * BMM name: phenotype | BMM type: Text
@@ -42,7 +42,7 @@ public class ReferenceRange<V extends Measurable> {
 
   public ReferenceRange() {}
 
-  public ReferenceRange(@Nonnull TerminologyTerm type, @Nonnull Range<V> range) {
+  public ReferenceRange(TerminologyTerm type, Range<V> range) {
     this.type = type;
     this.range = range;
   }
@@ -62,19 +62,19 @@ public class ReferenceRange<V extends Measurable> {
     return Objects.hash(super.hashCode(), type, range, phenotype);
   }
 
-  public @Nonnull TerminologyTerm getType() {
+  public TerminologyTerm getType() {
     return type;
   }
 
-  public void setType(@Nonnull TerminologyTerm type) {
+  public void setType(TerminologyTerm type) {
     this.type = type;
   }
 
-  public @Nonnull Range<V> getRange() {
+  public Range<V> getRange() {
     return range;
   }
 
-  public void setRange(@Nonnull Range<V> range) {
+  public void setRange(Range<V> range) {
     this.range = range;
   }
 

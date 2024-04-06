@@ -1,4 +1,4 @@
-package main.java.org.s2.util.enumerations;
+package org.s2.util.enumerations;
 
 /// String-based enumeration type.
 public class EnumerationString extends Enumeration<String> {

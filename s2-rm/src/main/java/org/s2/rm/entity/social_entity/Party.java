@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.entity.social_entity;
+package org.s2.rm.entity.social_entity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -30,7 +30,7 @@ public abstract class Party extends SocialEntity {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "identities")
-  private @Nonnull List<PartyIdentity> identities;
+  private List<PartyIdentity> identities;
 
   /**
   * BMM name: contacts | BMM type: Set<Contact>
@@ -48,7 +48,7 @@ public abstract class Party extends SocialEntity {
 
   public Party() {}
 
-  public Party(@Nonnull List<PartyIdentity> identities, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Party(List<PartyIdentity> identities, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.identities = identities;
   }
@@ -61,11 +61,11 @@ public abstract class Party extends SocialEntity {
     this.legalStatus = legalStatus;
   }
 
-  public @Nonnull List<PartyIdentity> getIdentities() {
+  public List<PartyIdentity> getIdentities() {
     return identities;
   }
 
-  public void setIdentities(@Nonnull List<PartyIdentity> identities) {
+  public void setIdentities(List<PartyIdentity> identities) {
     this.identities = identities;
   }
 

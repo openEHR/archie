@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.foundation_types.time;
+package org.s2.rm.base.foundation_types.time;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -20,19 +20,19 @@ public abstract class Temporal implements Comparable<Temporal> {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "value")
-  private @Nonnull String value;
+  private String value;
 
   public Temporal() {}
 
-  public Temporal(@Nonnull String value) {
+  public Temporal(String value) {
     this.value = value;
   }
 
-  public @Nonnull String getValue() {
+  public String getValue() {
     return value;
   }
 
-  public void setValue(@Nonnull String value) {
+  public void setValue(String value) {
     this.value = value;
   }
 

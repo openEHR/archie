@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.entity.social_entity;
+package org.s2.rm.entity.social_entity;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
@@ -45,7 +45,7 @@ public class PartyRelationship extends EntityRelationship {
 
   public PartyRelationship() {}
 
-  public PartyRelationship(@Nonnull TerminologyTerm type, @Nonnull ObjectRef source, @Nonnull ObjectRef target, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public PartyRelationship(TerminologyTerm type, ObjectRef source, ObjectRef target, String archetypeNodeId, String name) {
     super(type, source, target, archetypeNodeId, name);
   }
 

@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.data_types;
+package org.s2.rm.base.data_types;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -23,7 +23,7 @@ public class RweIdRef extends DataValue {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "id")
-  private @Nonnull String id;
+  private String id;
 
   /**
   * BMM name: issuer | BMM type: String
@@ -48,7 +48,7 @@ public class RweIdRef extends DataValue {
 
   public RweIdRef() {}
 
-  public RweIdRef(@Nonnull String id) {
+  public RweIdRef(String id) {
     this.id = id;
   }
 
@@ -68,11 +68,11 @@ public class RweIdRef extends DataValue {
     return Objects.hash(super.hashCode(), id, issuer, assigner, type);
   }
 
-  public @Nonnull String getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(@Nonnull String id) {
+  public void setId(String id) {
     this.id = id;
   }
 

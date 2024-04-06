@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.foundation_types.time;
+package org.s2.rm.base.foundation_types.time;
 
-import jakarta.annotation.Nonnull;
+
 import java.time.*;
 import java.util.*;
 import javax.xml.bind.annotation.*;
@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.*;
 public class RmDuration extends Temporal {
   public RmDuration() {}
 
-  public RmDuration(@Nonnull String value) {
+  public RmDuration(String value) {
     super(value);
   }
 

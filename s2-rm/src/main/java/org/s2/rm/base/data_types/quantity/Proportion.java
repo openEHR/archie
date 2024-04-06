@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.data_types.quantity;
+package org.s2.rm.base.data_types.quantity;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -28,18 +28,18 @@ public class Proportion extends Measurable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "numerator")
-  private @Nonnull Quantity numerator;
+  private Quantity numerator;
 
   /**
   * BMM name: denominator | BMM type: Quantity
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "denominator")
-  private @Nonnull Quantity denominator;
+  private Quantity denominator;
 
   public Proportion() {}
 
-  public Proportion(double magnitude, @Nonnull Quantity numerator, @Nonnull Quantity denominator) {
+  public Proportion(double magnitude, Quantity numerator, Quantity denominator) {
     this.magnitude = magnitude;
     this.numerator = numerator;
     this.denominator = denominator;
@@ -69,19 +69,19 @@ public class Proportion extends Measurable {
     this.magnitude = magnitude;
   }
 
-  public @Nonnull Quantity getNumerator() {
+  public Quantity getNumerator() {
     return numerator;
   }
 
-  public void setNumerator(@Nonnull Quantity numerator) {
+  public void setNumerator(Quantity numerator) {
     this.numerator = numerator;
   }
 
-  public @Nonnull Quantity getDenominator() {
+  public Quantity getDenominator() {
     return denominator;
   }
 
-  public void setDenominator(@Nonnull Quantity denominator) {
+  public void setDenominator(Quantity denominator) {
     this.denominator = denominator;
   }
 

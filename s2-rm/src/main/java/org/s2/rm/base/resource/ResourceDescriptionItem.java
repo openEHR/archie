@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.resource;
+package org.s2.rm.base.resource;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -26,14 +26,14 @@ public class ResourceDescriptionItem {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "language")
-  private @Nonnull TerminologyCode language;
+  private TerminologyCode language;
 
   /**
   * BMM name: purpose | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "purpose")
-  private @Nonnull String purpose;
+  private String purpose;
 
   /**
   * BMM name: keywords | BMM type: List<String>
@@ -72,7 +72,7 @@ public class ResourceDescriptionItem {
 
   public ResourceDescriptionItem() {}
 
-  public ResourceDescriptionItem(@Nonnull TerminologyCode language, @Nonnull String purpose) {
+  public ResourceDescriptionItem(TerminologyCode language, String purpose) {
     this.language = language;
     this.purpose = purpose;
   }
@@ -99,19 +99,19 @@ public class ResourceDescriptionItem {
     return result;
   }
 
-  public @Nonnull TerminologyCode getLanguage() {
+  public TerminologyCode getLanguage() {
     return language;
   }
 
-  public void setLanguage(@Nonnull TerminologyCode language) {
+  public void setLanguage(TerminologyCode language) {
     this.language = language;
   }
 
-  public @Nonnull String getPurpose() {
+  public String getPurpose() {
     return purpose;
   }
 
-  public void setPurpose(@Nonnull String purpose) {
+  public void setPurpose(String purpose) {
     this.purpose = purpose;
   }
 

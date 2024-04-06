@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.entity.social_entity;
+package org.s2.rm.entity.social_entity;
 
-import jakarta.annotation.Nonnull;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.*;
 public abstract class OrgEntity extends AggregateAgent {
   public OrgEntity() {}
 
-  public OrgEntity(@Nonnull List<PartyIdentity> identities, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public OrgEntity(List<PartyIdentity> identities, String archetypeNodeId, String name) {
     super(identities, archetypeNodeId, name);
   }
 

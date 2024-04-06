@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.model_support.archetyped;
+package org.s2.rm.base.model_support.archetyped;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.model_support.identification.ArchetypeId;
@@ -22,7 +22,7 @@ public class Archetyped {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "archetype_id")
-  private @Nonnull ArchetypeId archetypeId;
+  private ArchetypeId archetypeId;
 
   /**
   * BMM name: template_id | BMM type: Archetype_id
@@ -36,11 +36,11 @@ public class Archetyped {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "rm_version")
-  private @Nonnull String rmVersion;
+  private String rmVersion;
 
   public Archetyped() {}
 
-  public Archetyped(@Nonnull ArchetypeId archetypeId, @Nonnull String rmVersion) {
+  public Archetyped(ArchetypeId archetypeId, String rmVersion) {
     this.archetypeId = archetypeId;
     this.rmVersion = rmVersion;
   }
@@ -60,11 +60,11 @@ public class Archetyped {
     return Objects.hash(super.hashCode(), archetypeId, templateId, rmVersion);
   }
 
-  public @Nonnull ArchetypeId getArchetypeId() {
+  public ArchetypeId getArchetypeId() {
     return archetypeId;
   }
 
-  public void setArchetypeId(@Nonnull ArchetypeId archetypeId) {
+  public void setArchetypeId(ArchetypeId archetypeId) {
     this.archetypeId = archetypeId;
   }
 
@@ -76,11 +76,11 @@ public class Archetyped {
     this.templateId = templateId;
   }
 
-  public @Nonnull String getRmVersion() {
+  public String getRmVersion() {
     return rmVersion;
   }
 
-  public void setRmVersion(@Nonnull String rmVersion) {
+  public void setRmVersion(String rmVersion) {
     this.rmVersion = rmVersion;
   }
 

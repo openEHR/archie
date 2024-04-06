@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.care.entry;
+package org.s2.rm.care.entry;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
@@ -36,7 +36,7 @@ public class Action extends CareActEntry {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "activity_id")
-  private @Nonnull String activityId;
+  private String activityId;
 
   /**
   * BMM name: duration | BMM type: Duration
@@ -61,7 +61,7 @@ public class Action extends CareActEntry {
 
   public Action() {}
 
-  public Action(@Nonnull String activityId, @Nonnull Uuid uid, @Nonnull RmDateTime time, @Nonnull TerminologyCode language, @Nonnull PartyProxy subject, @Nonnull String archetypeNodeId, @Nonnull String name) {
+  public Action(String activityId, Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
     this.activityId = activityId;
   }
@@ -103,11 +103,11 @@ public class Action extends CareActEntry {
     return result;
   }
 
-  public @Nonnull String getActivityId() {
+  public String getActivityId() {
     return activityId;
   }
 
-  public void setActivityId(@Nonnull String activityId) {
+  public void setActivityId(String activityId) {
     this.activityId = activityId;
   }
 

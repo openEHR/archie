@@ -1,7 +1,7 @@
-package main.java.org.s2.rm.base.patterns.participation;
+package org.s2.rm.base.patterns.participation;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
@@ -25,7 +25,7 @@ public class Participation {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "function")
-  private @Nonnull String function;
+  private String function;
 
   /**
   * BMM name: time | BMM type: Interval<Date_time>
@@ -46,11 +46,11 @@ public class Participation {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "performer")
-  private @Nonnull PartyProxy performer;
+  private PartyProxy performer;
 
   public Participation() {}
 
-  public Participation(@Nonnull String function, @Nonnull PartyProxy performer) {
+  public Participation(String function, PartyProxy performer) {
     this.function = function;
     this.performer = performer;
   }
@@ -71,11 +71,11 @@ public class Participation {
     return Objects.hash(super.hashCode(), function, time, mode, performer);
   }
 
-  public @Nonnull String getFunction() {
+  public String getFunction() {
     return function;
   }
 
-  public void setFunction(@Nonnull String function) {
+  public void setFunction(String function) {
     this.function = function;
   }
 
@@ -95,11 +95,11 @@ public class Participation {
     this.mode = mode;
   }
 
-  public @Nonnull PartyProxy getPerformer() {
+  public PartyProxy getPerformer() {
     return performer;
   }
 
-  public void setPerformer(@Nonnull PartyProxy performer) {
+  public void setPerformer(PartyProxy performer) {
     this.performer = performer;
   }
 

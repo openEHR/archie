@@ -1,6 +1,6 @@
-package main.java.org.s2.rm.base.foundation_types.interval;
+package org.s2.rm.base.foundation_types.interval;
 
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
