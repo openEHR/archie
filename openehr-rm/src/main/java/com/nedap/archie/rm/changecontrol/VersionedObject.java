@@ -1,7 +1,7 @@
 package com.nedap.archie.rm.changecontrol;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.base.RMObject;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectId;

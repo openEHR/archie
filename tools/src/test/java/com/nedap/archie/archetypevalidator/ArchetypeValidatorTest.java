@@ -5,7 +5,7 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class ArchetypeValidatorTest {
     public void setup() {
         parser = new ADLParser();
         models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         models.registerModel(TestRMInfoLookup.getInstance());
     }
 

@@ -3,7 +3,7 @@ package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
 import com.nedap.archie.rm.support.identification.TerminologyId;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
@@ -33,7 +33,7 @@ public class DvParsableInvariantTest {
     public void charSetInvalid() {
         DvParsable value = createValid();
         value.setCharset(new CodePhrase(new TerminologyId("IANA_character-sets"), "UTF-13"));
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null);
+        RMObjectValidator validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), (templateId) -> null);
         List<RMObjectValidationMessage> messages = validator.validate(value);
 
         InvariantTestUtil.assertInvariantInvalid(value, "Charset_valid", "/");

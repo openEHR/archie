@@ -1,6 +1,5 @@
 package com.nedap.archie.rminfo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CBoolean;
 import com.nedap.archie.aom.primitives.CDate;
@@ -13,7 +12,7 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.primitives.CTime;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.base.RMObject;
 import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.archetyped.FeederAudit;
 import com.nedap.archie.rm.archetyped.FeederAuditDetails;
@@ -77,13 +76,13 @@ import java.util.Map;
 /**
  * Created by pieter.bos on 02/02/16.
  */
-public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
+public class OpenEhrRmInfoLookup extends ReflectionModelInfoLookup {
 
     public static final String RM_VERSION = "1.1.0";
 
-    private static ArchieRMInfoLookup instance;
+    private static OpenEhrRmInfoLookup instance;
 
-    private ArchieRMInfoLookup() {
+    private OpenEhrRmInfoLookup() {
         super(new ArchieModelNamingStrategy(), RMObject.class);
     }
 
@@ -230,9 +229,9 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         return super.isNullable(clazz, getMethod, field);
     }
 
-    public static ArchieRMInfoLookup getInstance() {
+    public static OpenEhrRmInfoLookup getInstance() {
         if(instance == null) {
-            instance = new ArchieRMInfoLookup();
+            instance = new OpenEhrRmInfoLookup();
         }
         return instance;
     }
@@ -352,7 +351,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
      */
     @Override
     public Map<String, Object> pathHasBeenUpdated(Object rmObject, Archetype archetype, String pathOfParent, Object parent) {
-        return UpdatedValueHandler.pathHasBeenUpdated(rmObject, archetype, pathOfParent, parent);
+        return OpenEhrRmUpdatedValueHandler.pathHasBeenUpdated(rmObject, archetype, pathOfParent, parent);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.nedap.archie.rm.generic;
 
-import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.base.RMObject;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;

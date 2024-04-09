@@ -1,6 +1,6 @@
 package com.nedap.archie.rm.support.identification;
 
-import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.base.RMObject;
 import com.nedap.archie.rminfo.Invariant;
 
 import javax.xml.bind.annotation.XmlAccessType;

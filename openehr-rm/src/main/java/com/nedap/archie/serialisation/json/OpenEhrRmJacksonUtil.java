@@ -1,4 +1,4 @@
-package com.nedap.archie.json;
+package com.nedap.archie.serialisation.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -21,8 +21,10 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.RulesSection;
 import com.nedap.archie.aom.primitives.CTemporal;
+import com.nedap.archie.json.*;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rules.Operator;
 import com.nedap.archie.rules.OperatorKind;
 
@@ -37,7 +39,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * Created by pieter.bos on 30/06/16.
  */
-public class JacksonUtil {
+public class OpenEhrRmJacksonUtil {
 
     //threadsafe, can be cached
     private static final ConcurrentHashMap<ArchieJacksonConfiguration, ObjectMapper> objectMapperByConfiguration = new ConcurrentHashMap<>();
@@ -134,8 +136,8 @@ public class JacksonUtil {
 
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
-        TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder(configuration)
-                .init(JsonTypeInfo.Id.NAME, new OpenEHRTypeNaming(configuration.isStandardsCompliantExpressions()))
+        TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder(OpenEhrRmInfoLookup.getInstance(), configuration)
+                .init(JsonTypeInfo.Id.NAME, new ArchieTypeNameResolver(OpenEhrRmInfoLookup.getInstance(), configuration.isStandardsCompliantExpressions()))
                 .typeProperty(configuration.getTypePropertyName())
                 .typeIdVisibility(true)
                 .inclusion(JsonTypeInfo.As.PROPERTY);

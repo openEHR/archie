@@ -27,14 +27,6 @@ package com.nedap.archie.definitions;
  * Created by cnanjo on 6/2/16.
  */
 public class OpenEhrDefinitions  extends BasicDefinitions {
-    public static final String LOCAL_TERMINOLOGY_ID = "local";
     public static final String EHR_SCHEME = "ehr";
 
-    // Metadata
-    public static final String ADL_VERSION = "adl_version";
-    public static final String BUILD_UID = "build_uid";
-    public static final String CONTROLLED = "controlled";
-    public static final String GENERATED = "generated";
-    public static final String RM_RELEASE = "rm_release";
-    public static final String UID = "uid";
 }
