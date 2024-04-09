@@ -134,7 +134,7 @@ public class BuiltinReferenceModels {
      */
     public static ReferenceModels getAvailableModelInfoLookups() {
         ReferenceModels result = new ReferenceModels();
-        addModelInfoLookupIfExists(result, "com.nedap.archie.rminfo.ArchieRMInfoLookup", "com.nedap.archie.json.ArchieRMObjectMapperProvider");
+        addModelInfoLookupIfExists(result, "com.nedap.archie.rminfo.OpenEhrRmInfoLookup", "com.nedap.archie.serialisation.json.OpenEhrRmObjectMapperProvider");
         addModelInfoLookupIfExists(result, "com.nedap.archie.openehrtestrm.TestRMInfoLookup", null );
         return result;
     }
