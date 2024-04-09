@@ -4,8 +4,8 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.apath.PathSegment;
+import com.nedap.archie.apath.APathQuery;
 
 import java.lang.reflect.Field;
 import java.util.Collection;

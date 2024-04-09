@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.jsontype.impl.ClassNameIdResolver;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
 
@@ -19,14 +18,15 @@ import java.io.IOException;
  * The AOM class CComplexObject will get the type name "C_COMPLEX_OBJECT"
  * The RM class DvDateTime will get the type name "DV_DATE_TIME"
  */
-public class OpenEHRTypeNaming extends ClassNameIdResolver {
+public class ArchieTypeNameResolver extends ClassNameIdResolver {
 
-    private ModelInfoLookup rmInfoLookup = ArchieRMInfoLookup.getInstance();
+    private ModelInfoLookup rmInfoLookup;
     private ModelInfoLookup aomInfoLookup;
 
-    protected OpenEHRTypeNaming(boolean standardsCompliantExpressionClassNames) {
+    public ArchieTypeNameResolver(ModelInfoLookup rmInfoLookup, boolean standardsCompliantExpressionClassNames) {
         super(TypeFactory.defaultInstance().constructType(OpenEHRBase.class), TypeFactory.defaultInstance());
         aomInfoLookup = ArchieAOMInfoLookup.getInstance(standardsCompliantExpressionClassNames);
+        this.rmInfoLookup = rmInfoLookup;
     }
 
     public JsonTypeInfo.Id getMechanism() {

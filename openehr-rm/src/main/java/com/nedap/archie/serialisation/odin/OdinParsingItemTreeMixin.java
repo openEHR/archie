@@ -1,4 +1,4 @@
-package com.nedap.archie.odin;
+package com.nedap.archie.serialisation.odin;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nedap.archie.rm.datastructures.Item;

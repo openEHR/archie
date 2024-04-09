@@ -9,8 +9,7 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.flattener.SimpleArchetypeRepository;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.apache.commons.io.FilenameUtils;
@@ -136,7 +135,7 @@ public class BigArchetypeValidatorTest {
     public void testFullValidityPackageModelInfoLookup() {
 
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
 
 //        access.initializeAll(schemaDirectories);

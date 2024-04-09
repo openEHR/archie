@@ -1,12 +1,12 @@
 package com.nedap.archie.rm.archetyped;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.paths.PathUtil;
+import com.nedap.archie.apath.PathSegment;
+import com.nedap.archie.apath.PathUtil;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
-import com.nedap.archie.rm.RMObject;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.base.RMObject;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.PropertyType;
 import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
@@ -47,15 +47,15 @@ public abstract class Pathable extends RMObject {
     }
 
     public Object itemAtPath(String s) {
-        return new RMPathQuery(s).find(ArchieRMInfoLookup.getInstance(), this);
+        return new RMPathQuery(s).find(OpenEhrRmInfoLookup.getInstance(), this);
     }
 
     public Object itemAtPathMatchSpecialisedNodes(String s) {
-        return new RMPathQuery(s, true).find(ArchieRMInfoLookup.getInstance(), this);
+        return new RMPathQuery(s, true).find(OpenEhrRmInfoLookup.getInstance(), this);
     }
 
     public List<Object> itemsAtPath(String s) {
-        List<RMObjectWithPath> objects = new RMPathQuery(s).findList(ArchieRMInfoLookup.getInstance(), this);
+        List<RMObjectWithPath> objects = new RMPathQuery(s).findList(OpenEhrRmInfoLookup.getInstance(), this);
         List<Object> result = new ArrayList<>();
         for (RMObjectWithPath object : objects) {
             result.add(object.getObject());
@@ -64,7 +64,7 @@ public abstract class Pathable extends RMObject {
     }
 
     public List<Object> itemsAtPathMatchSpecialisedNodes(String s) {
-        List<RMObjectWithPath> objects = new RMPathQuery(s, true).findList(ArchieRMInfoLookup.getInstance(), this);
+        List<RMObjectWithPath> objects = new RMPathQuery(s, true).findList(OpenEhrRmInfoLookup.getInstance(), this);
         List<Object> result = new ArrayList<>();
         for (RMObjectWithPath object : objects) {
             result.add(object.getObject());

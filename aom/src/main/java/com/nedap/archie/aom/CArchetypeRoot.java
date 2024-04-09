@@ -1,6 +1,6 @@
 package com.nedap.archie.aom;
 
-import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.apath.PathSegment;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;

@@ -1,4 +1,4 @@
-package com.nedap.archie.json;
+package com.nedap.archie.serialisation.json;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -8,25 +8,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.nedap.archie.odin.CodePhraseSerializer;
-import com.nedap.archie.odin.OdinParsingClusterMixin;
-import com.nedap.archie.odin.OdinParsingItemTreeMixin;
+import com.nedap.archie.json.ArchieJacksonConfiguration;
+import com.nedap.archie.serialisation.odin.CodePhraseSerializer;
+import com.nedap.archie.serialisation.odin.OdinParsingClusterMixin;
+import com.nedap.archie.serialisation.odin.OdinParsingItemTreeMixin;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
-import org.openehr.bmm.v2.persistence.jackson.BmmJacksonUtil;
 import org.openehr.odin.jackson.ODINMapper;
 
 import java.io.IOException;
 
-public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
+public class OpenEhrRmObjectMapperProvider implements RMObjectMapperProvider {
 
     @Override
     public ObjectMapper getInputOdinObjectMapper() {
         ObjectMapper odinMapper = new ObjectMapper();
-        JacksonUtil.configureObjectMapper(odinMapper);
+        OpenEhrRmJacksonUtil.configureObjectMapper(odinMapper);
         odinMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         //keywords = <"value"> is indistinguishable from keywords = <"value1", "value2">
         odinMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
@@ -63,7 +63,7 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
         ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
         config.setAlwaysIncludeTypeProperty(false);
         config.setSerializeEmptyCollections(false);
-        JacksonUtil.configureObjectMapper(odinMapper, config);
+        OpenEhrRmJacksonUtil.configureObjectMapper(odinMapper, config);
 
         SimpleModule odinRmSupport = new SimpleModule();
         //TODO: check if this covers all native odin types, together with the types already included in the default OdinMapper
@@ -78,6 +78,6 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
         ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
         config.setAlwaysIncludeTypeProperty(false);
         config.setSerializeEmptyCollections(false);
-        return JacksonUtil.getObjectMapper(config);
+        return OpenEhrRmJacksonUtil.getObjectMapper(config);
     }
 }

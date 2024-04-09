@@ -6,7 +6,7 @@ import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,11 +17,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class RMTupleValidationTest {
-    private static ArchieRMInfoLookup lookup;
+    private static OpenEhrRmInfoLookup lookup;
 
     @BeforeClass
     public static void beforeClass() {
-        lookup = ArchieRMInfoLookup.getInstance();
+        lookup = OpenEhrRmInfoLookup.getInstance();
     }
 
     @Test

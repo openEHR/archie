@@ -1,10 +1,10 @@
 package com.nedap.archie.rmutil;
 
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.paths.PathUtil;
+import com.nedap.archie.apath.PathSegment;
+import com.nedap.archie.apath.PathUtil;
 import com.nedap.archie.query.RMObjectAttributes;
 import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class PathableUtil {
         Pathable parent = pathable.getParent();
         String parentAttributeName = unindexedPathSegment.getNodeName();
 
-        ModelInfoLookup modelInfoLookup = ArchieRMInfoLookup.getInstance();
+        ModelInfoLookup modelInfoLookup = OpenEhrRmInfoLookup.getInstance();
         Object attributeValue = RMObjectAttributes.getAttributeValueFromRMObject(parent, parentAttributeName, modelInfoLookup);
         Integer index = null;
 

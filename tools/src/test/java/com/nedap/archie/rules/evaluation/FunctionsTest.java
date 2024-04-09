@@ -9,10 +9,9 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datastructures.Item;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,7 +58,7 @@ public class FunctionsTest {
     }
 
     private <T> RuleEvaluation<T> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
+        return new RuleEvaluation<>(OpenEhrRmInfoLookup.getInstance(), archetype);
     }
 
     @Test
