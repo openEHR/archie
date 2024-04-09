@@ -3,20 +3,18 @@ package com.nedap.archie.rmobjectvalidator;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.nedap.archie.adlparser.ADLParseException;
-import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datastructures.Item;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvProportion;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +39,7 @@ public class RmObjectValidatorTest {
         testUtil = new TestUtil();
 
         emptyRepo = new InMemoryFullArchetypeRepository();
-        validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), emptyRepo);
+        validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), emptyRepo);
     }
 
     @Test

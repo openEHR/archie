@@ -3,10 +3,10 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.paths.PathUtil;
+import com.nedap.archie.apath.PathSegment;
+import com.nedap.archie.apath.PathUtil;
 import com.nedap.archie.query.AOMPathQuery;
-import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.apath.APathQuery;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 
 import java.util.*;

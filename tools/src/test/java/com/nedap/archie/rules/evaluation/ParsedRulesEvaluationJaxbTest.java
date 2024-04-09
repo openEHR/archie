@@ -2,8 +2,8 @@ package com.nedap.archie.rules.evaluation;
 
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.xml.JAXBUtil;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Test;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
 
     @Override
     RuleEvaluation<Pathable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), JAXBUtil.getArchieJAXBContext(), getArchetype());
+        return new RuleEvaluation<>(OpenEhrRmInfoLookup.getInstance(), OpenEhrRmJAXBUtil.getArchieJAXBContext(), getArchetype());
     }
 
     @Override

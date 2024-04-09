@@ -27,9 +27,9 @@ import static org.junit.Assert.*;
 /**
  * Created by stefan.teijgeler on 31/08/16.
  */
-public class ArchieRMInfoLookupTest {
+public class openEhrRMInfoLookupTest {
 
-    private ModelInfoLookup modelInfoLookup = ArchieRMInfoLookup.getInstance();
+    private ModelInfoLookup modelInfoLookup = OpenEhrRmInfoLookup.getInstance();
 
     @Test
     public void classForRMType() {
@@ -106,7 +106,7 @@ public class ArchieRMInfoLookupTest {
 
     @Test
     public void getField() throws Exception {
-        Field items = ArchieRMInfoLookup.getInstance().getField(Cluster.class, "items");
+        Field items = OpenEhrRmInfoLookup.getInstance().getField(Cluster.class, "items");
         assertEquals(Cluster.class.getDeclaredField("items"), items);
     }
 

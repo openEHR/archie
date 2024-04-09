@@ -12,7 +12,7 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datastructures.Item;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DataValue;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
@@ -41,7 +41,7 @@ public class RMObjectAttributesTest {
         root = (Pathable) testUtil.constructEmptyRMObject(archetype.getDefinition());
         Composition composition = (Composition) root;
 
-        ModelInfoLookup modelInfoLookup = ArchieRMInfoLookup.getInstance();
+        ModelInfoLookup modelInfoLookup = OpenEhrRmInfoLookup.getInstance();
 
         EventContext expectedContext = composition.getContext();
         Object actualContext = getAttributeValueFromRMObject(composition, "context", modelInfoLookup);

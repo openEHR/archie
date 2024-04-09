@@ -1,6 +1,6 @@
 package com.nedap.archie.query;
 
-import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.apath.PathSegment;
 import org.w3c.dom.Node;
 
 import java.util.Optional;

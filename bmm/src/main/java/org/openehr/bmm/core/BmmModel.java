@@ -1,7 +1,7 @@
 package org.openehr.bmm.core;
 
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.apath.PathSegment;
+import com.nedap.archie.apath.APathQuery;
 import org.openehr.bmm.persistence.validation.BasicDefinitions;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
