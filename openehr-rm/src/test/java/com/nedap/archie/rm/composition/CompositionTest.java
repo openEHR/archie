@@ -1,9 +1,9 @@
 package com.nedap.archie.rm.composition;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
-import com.nedap.archie.xml.JAXBUtil;
+import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBException;
@@ -17,7 +17,7 @@ public class CompositionTest {
 
     @Test
     public void testEqual() throws JAXBException {
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Composition composition1 = (Composition) unmarshaller.unmarshal(getClass().getResourceAsStream("test_all_types.fixed.v1.xml"));
         Composition composition2 = (Composition) unmarshaller.unmarshal(getClass().getResourceAsStream("test_all_types.fixed.v1.xml"));
         assertEquals(composition1, composition2);
@@ -51,7 +51,7 @@ public class CompositionTest {
     }
 
     private Composition processComposition(Composition original, ArchieJacksonConfiguration configuration) throws IOException {
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(configuration);
 
         StringWriter json = new StringWriter();
         objectMapper.writeValue(json, original);
@@ -59,7 +59,7 @@ public class CompositionTest {
     }
 
     private Composition parseJson(String resourceName) throws IOException {
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         return objectMapper.readValue(getClass().getResourceAsStream(resourceName), Composition.class);
     }
 }

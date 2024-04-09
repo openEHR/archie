@@ -6,6 +6,7 @@ import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
+import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 
@@ -24,12 +25,12 @@ public class RMJacksonTest {
     public void parseEhrBaseJsonExample() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream("pablos_example.json")) {
             ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
-            Composition parsed = JacksonUtil.getObjectMapper(configuration).readValue(stream, Composition.class);
+            Composition parsed = OpenEhrRmJacksonUtil.getObjectMapper(configuration).readValue(stream, Composition.class);
             assertEquals("__THIS_SHOULD_BE_MODIFIED_BY_THE_TEST_::piri.ehrscape.com::1", parsed.getUid().getValue());
             assertEquals("openEHR-EHR-COMPOSITION.report-mnd.v1", parsed.getArchetypeNodeId());
 
 
-            String json = JacksonUtil.getObjectMapper(configuration).writeValueAsString(parsed);
+            String json = OpenEhrRmJacksonUtil.getObjectMapper(configuration).writeValueAsString(parsed);
             ObjectMapper simpleMapper = new ObjectMapper();
             LinkedHashMap mapped = simpleMapper.readValue(json, LinkedHashMap.class);
             assertEquals("openEHR-EHR-COMPOSITION.report-mnd.v1", mapped.get("archetype_node_id"));
@@ -44,7 +45,7 @@ public class RMJacksonTest {
                 "  \"_type\": \"DV_DURATION\",\n" +
                 "  \"value\": \"PT12H20S\"\n" +
                 "}";
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         DvDuration dvDuration = objectMapper.readValue(json, DvDuration.class);
         assertEquals(Duration.parse("PT12H20S"), dvDuration.getValue());
 
@@ -58,7 +59,7 @@ public class RMJacksonTest {
                 "  \"_type\": \"DV_DURATION\",\n" +
                 "  \"value\": \"-PT12H20S\"\n" +
                 "}";
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         DvDuration dvDuration = objectMapper.readValue(json, DvDuration.class);
         assertEquals(Duration.parse("-PT12H20S"), dvDuration.getValue());
 
@@ -72,7 +73,7 @@ public class RMJacksonTest {
                 "  \"_type\": \"DV_DURATION\",\n" +
                 "  \"value\": \"-P10Y10DT12H20S\"\n" +
                 "}";
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         DvDuration dvDuration = objectMapper.readValue(json, DvDuration.class);
         assertEquals(PeriodDuration.parse("-P10Y10DT12H20S"), dvDuration.getValue());
 
@@ -84,7 +85,7 @@ public class RMJacksonTest {
     public void emptyDvTextIsIncluded() throws JsonProcessingException {
         ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
         configuration.setSerializeEmptyCollections(false);
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(configuration);
         DvText dvText = new DvText("");
 
 
@@ -100,7 +101,7 @@ public class RMJacksonTest {
     public void emptyCollectionIsNotIncluded() throws JsonProcessingException {
         ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();;
         configuration.setSerializeEmptyCollections(false);
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(configuration);
         DvText dvText = new DvText("");
         dvText.setMappings(new ArrayList<>());
 
@@ -117,7 +118,7 @@ public class RMJacksonTest {
     public void emptyCollectionInCollection() throws JsonProcessingException {
         ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();;
         configuration.setSerializeEmptyCollections(false);
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(configuration);
         Map<String, Map<String, String>> map = new LinkedHashMap<>();
         map.put("test", new LinkedHashMap<>());
 
@@ -130,7 +131,7 @@ public class RMJacksonTest {
 
     @Test
     public void serializeDvDateTime() throws Exception {
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         DvDateTime dateTime = new DvDateTime(LocalDateTime.of(2015, 1, 1, 12, 10, 12, 0));
         String dateTimeString = objectMapper.writeValueAsString(dateTime);
         assertTrue(dateTimeString.contains("\"2015-01-01T12:10:12\""));

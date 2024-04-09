@@ -7,8 +7,9 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.paths.PathUtil;
+import com.nedap.archie.apath.APathQuery;
+import com.nedap.archie.apath.PathSegment;
+import com.nedap.archie.apath.PathUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;

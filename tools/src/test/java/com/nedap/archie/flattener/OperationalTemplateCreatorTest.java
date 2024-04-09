@@ -7,7 +7,7 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -37,7 +37,7 @@ public class OperationalTemplateCreatorTest {
                 if(cObject instanceof CComplexObject) {
                     assertNotNull(cObject.getOccurrences());
                     CObject objectInOriginal = archetype.itemAtPath(cObject.getPath());
-                    assertEquals(objectInOriginal.effectiveOccurrences(ArchieRMInfoLookup.getInstance()::referenceModelPropMultiplicity), cObject.getOccurrences());
+                    assertEquals(objectInOriginal.effectiveOccurrences(OpenEhrRmInfoLookup.getInstance()::referenceModelPropMultiplicity), cObject.getOccurrences());
                 }
                 for(CAttribute attribute:cObject.getAttributes()) {
                     workList.addAll(attribute.getChildren());
@@ -137,7 +137,7 @@ public class OperationalTemplateCreatorTest {
     private Archetype parseAndCreateOPTWithConfig(String fileName, InMemoryFullArchetypeRepository repository, FlattenerConfiguration config) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
         return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), config).flatten(parse(fileName));

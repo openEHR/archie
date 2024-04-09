@@ -8,7 +8,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.apath.PathSegment;
 import com.nedap.archie.rminfo.RMProperty;
 import org.openehr.utils.message.I18n;
 

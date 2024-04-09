@@ -10,13 +10,13 @@ import com.nedap.archie.creation.ExampleJsonInstanceGenerator;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
-import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.rm.composition.Observation;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
 import org.junit.After;
 import org.junit.Test;
@@ -51,7 +51,7 @@ public class FlatJsonGeneratorTest {
         config.setWritePipesForPrimitiveTypes(false);
         Map<String, Object> stringObjectMap = createExampleInstance(bloodPressureOpt, config);
 
-        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+        System.out.println(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
         //type property
         assertEquals("OBSERVATION", stringObjectMap.get("/_type"));
@@ -82,7 +82,7 @@ public class FlatJsonGeneratorTest {
         config.setFilterTypes(false);
         Map<String, Object> stringObjectMap = createExampleInstance(bloodPressureOpt, config);
 
-        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+        System.out.println(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
         //type property
         assertEquals("OBSERVATION", stringObjectMap.get("/_type"));
@@ -110,7 +110,7 @@ public class FlatJsonGeneratorTest {
         config.setWritePipesForPrimitiveTypes(false);
         Map<String, Object> stringObjectMap = createExampleInstance(bloodPressureOpt, config);
 
-        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+        System.out.println(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
         //type property
         assertEquals("OBSERVATION", stringObjectMap.get("/@type"));
@@ -138,9 +138,9 @@ public class FlatJsonGeneratorTest {
         cluster.addItem(new Element("id3", null, new DvCount(4L)));
 
         FlatJsonFormatConfiguration config = FlatJsonFormatConfiguration.nedapInternalFormat();
-        Map<String, Object> stringObjectMap = new FlatJsonGenerator(ArchieRMInfoLookup.getInstance(), config).buildPathsAndValues(cluster);
+        Map<String, Object> stringObjectMap = new FlatJsonGenerator(OpenEhrRmInfoLookup.getInstance(), config).buildPathsAndValues(cluster);
 
-        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+        System.out.println(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
         Map<String, Object> expected = new LinkedHashMap<>();
         expected.put("/@type", "CLUSTER");
@@ -170,7 +170,7 @@ public class FlatJsonGeneratorTest {
         //config.getIgnoredAttributes().add(new AttributeReference("LOCATABLE", "name"));
         Map<String, Object> stringObjectMap = new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModels(), "en", config);
 
-        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+        System.out.println(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
         //type property
         assertEquals("OBSERVATION", stringObjectMap.get("/@type"));
@@ -214,7 +214,7 @@ public class FlatJsonGeneratorTest {
         Map<String, Object> stringObjectMap = new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), config).buildPathsAndValues(bloodPressure, bloodPressureOpt, "en");
 
 
-        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+        System.out.println(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
         //no type at root
         assertNull(stringObjectMap.get("/@type"));
@@ -276,7 +276,7 @@ public class FlatJsonGeneratorTest {
         //config.getIgnoredAttributes().add(new AttributeReference("LOCATABLE", "name"));
         Map<String, Object> stringObjectMap = new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModels(), "en", config);
 
-        System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
+        System.out.println(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
         //the one data value
         assertEquals("true", stringObjectMap.get("/items[id2,1]/value/value"));

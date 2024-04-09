@@ -18,6 +18,7 @@ import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
 import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.OperatorKind;
+import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Ignore;
@@ -46,7 +47,7 @@ public class AOMJacksonTest {
     @Test
     public void parseDeliriumObservationScreening() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream("delirium_observation_screening.json")) {
-            Archetype archetype = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration()).readValue(stream, Archetype.class);
+            Archetype archetype = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration()).readValue(stream, Archetype.class);
             System.out.println(archetype);
             assertTrue(archetype.getGenerated());
             assertThat(archetype.getArchetypeId().getFullId(), is("openEHR-EHR-GENERIC_ENTRY.delirium_observation_screening.v1.0.0"));
@@ -63,7 +64,7 @@ public class AOMJacksonTest {
     @Test
     public void roundTripDeliriumObservationScreening() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream("delirium_observation_screening.json")) {
-            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+            ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
             Archetype archetype = objectMapper.readValue(stream, Archetype.class);
             String reserialized = objectMapper.writeValueAsString(archetype);
             //System.out.println(reserialized);
@@ -75,7 +76,7 @@ public class AOMJacksonTest {
     public void motricityIndex() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
-            String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
+            String serialized = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
             //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
             assertTrue(serialized.contains("\"operator_def\" : {\n" +
@@ -84,12 +85,12 @@ public class AOMJacksonTest {
                     "        }"));
             assertTrue(serialized.contains("EXPR_ARCHETYPE_REF"));
             assertTrue(serialized.contains("\"rules\" : [ {"));
-            Archetype parsedArchetype = JacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
+            Archetype parsedArchetype = OpenEhrRmJacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
             assertEquals(8, parsedArchetype.getRules().getRules().size());
 
             ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
             newConfig.setStandardsCompliantExpressions(false);
-            Archetype parsedArchetype2 = JacksonUtil.getObjectMapper(newConfig).readValue(serialized, Archetype.class);
+            Archetype parsedArchetype2 = OpenEhrRmJacksonUtil.getObjectMapper(newConfig).readValue(serialized, Archetype.class);
             assertEquals(8, parsedArchetype2.getRules().getRules().size());
         }
     }
@@ -103,7 +104,7 @@ public class AOMJacksonTest {
         try(InputStream stream = getClass().getResourceAsStream("motricity_index_legacy_format_rules_section_as_array.json")) {
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
             config.setStandardsCompliantExpressions(false);
-            Archetype parsedArchetype = JacksonUtil.getObjectMapper(config).readValue(stream, Archetype.class);
+            Archetype parsedArchetype = OpenEhrRmJacksonUtil.getObjectMapper(config).readValue(stream, Archetype.class);
             assertEquals(8, parsedArchetype.getRules().getRules().size());
 
         }
@@ -117,17 +118,17 @@ public class AOMJacksonTest {
     public void motriciyIndexJavascriptFormat() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
-            String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createConfigForJavascriptUsage()).writeValueAsString(archetype);
+            String serialized = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createConfigForJavascriptUsage()).writeValueAsString(archetype);
             //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
             assertTrue(serialized.contains("EXPR_ARCHETYPE_REF"));
             assertTrue(serialized.contains("\"rules\" : [ {"));
-            Archetype parsedArchetype = JacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
+            Archetype parsedArchetype = OpenEhrRmJacksonUtil.getObjectMapper().readValue(serialized, Archetype.class);
             assertEquals(8, parsedArchetype.getRules().getRules().size());
 
             ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
             newConfig.setStandardsCompliantExpressions(false);
-            Archetype parsedArchetype2 = JacksonUtil.getObjectMapper(newConfig).readValue(serialized, Archetype.class);
+            Archetype parsedArchetype2 = OpenEhrRmJacksonUtil.getObjectMapper(newConfig).readValue(serialized, Archetype.class);
             assertEquals(8, parsedArchetype2.getRules().getRules().size());
         }
     }
@@ -139,7 +140,7 @@ public class AOMJacksonTest {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
             config.setStandardsCompliantExpressions(false);
-            String serialized = JacksonUtil.getObjectMapper(config).writeValueAsString(archetype);
+            String serialized = OpenEhrRmJacksonUtil.getObjectMapper(config).writeValueAsString(archetype);
             System.out.println(serialized);
             assertTrue(serialized.contains("\"BINARY_OPERATOR\""));
             assertTrue(serialized.contains("\"operator\" : \"eq\","));
@@ -147,7 +148,7 @@ public class AOMJacksonTest {
             assertTrue(serialized.contains("\"rules\" : {"));
             ArchieJacksonConfiguration newConfig = ArchieJacksonConfiguration.createStandardsCompliant();
             newConfig.setStandardsCompliantExpressions(true);
-            Archetype parsedArchetype = JacksonUtil.getObjectMapper(config).readValue(serialized, Archetype.class);
+            Archetype parsedArchetype = OpenEhrRmJacksonUtil.getObjectMapper(config).readValue(serialized, Archetype.class);
             assertEquals(8, parsedArchetype.getRules().getRules().size());
         }
     }
@@ -157,7 +158,7 @@ public class AOMJacksonTest {
         try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
             ObjectMapper objectMapper = new ObjectMapper();
-            JacksonUtil.configureObjectMapper(objectMapper, ArchieJacksonConfiguration.createStandardsCompliant());
+            OpenEhrRmJacksonUtil.configureObjectMapper(objectMapper, ArchieJacksonConfiguration.createStandardsCompliant());
             objectMapper.disable(SerializationFeature.INDENT_OUTPUT);
             String serialized = objectMapper.writeValueAsString(archetype);
             //System.out.println(serialized);
@@ -184,7 +185,7 @@ public class AOMJacksonTest {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
             config.setStandardsCompliantExpressions(false);
-            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(config);
+            ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(config);
             String serialized = objectMapper.writeValueAsString(archetype);
             System.out.println(serialized);
             assertFalse(serialized.contains("EXPR_BINARY_OPERATOR"));
@@ -194,7 +195,7 @@ public class AOMJacksonTest {
             assertTrue(serialized.contains("\"MODEL_REFERENCE\""));
             assertArchetypeSlot(objectMapper, serialized);
             //and it should be parsable with the new syntax as well
-            assertArchetypeSlot(JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()), serialized);
+            assertArchetypeSlot(OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()), serialized);
 
         }
     }
@@ -204,7 +205,7 @@ public class AOMJacksonTest {
     public void cDuration() throws Exception {
         CDuration cDuration = new CDuration();
         cDuration.addConstraint(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), Duration.of(10, ChronoUnit.SECONDS)));
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String cDurationJson = objectMapper.writeValueAsString(cDuration);
         assertTrue(cDurationJson.contains("-PT10H"));
         assertTrue(cDurationJson.contains("PT10S"));
@@ -219,7 +220,7 @@ public class AOMJacksonTest {
         CDuration cDuration = new CDuration();
         PeriodDuration tenYearsTenSeconds = PeriodDuration.of(Period.of(10, 0, 0), Duration.of(10, ChronoUnit.SECONDS));
         cDuration.addConstraint(new Interval<>(Duration.of(-10, ChronoUnit.HOURS), tenYearsTenSeconds));
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String cDurationJson = objectMapper.writeValueAsString(cDuration);
         assertTrue(cDurationJson.contains("-PT10H"));
         assertTrue(cDurationJson.contains("P10YT10S"));
@@ -234,7 +235,7 @@ public class AOMJacksonTest {
         CTerminologyCode cTermCode = new CTerminologyCode();
         cTermCode.setConstraint(Lists.newArrayList("ac23"));
         cTermCode.setConstraintStatus(ConstraintStatus.PREFERRED);
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String json = objectMapper.writeValueAsString(cTermCode);
 
         assertTrue(json.contains("\"constraint_status\" : \"preferred\""));
@@ -246,9 +247,9 @@ public class AOMJacksonTest {
     @Test
     public void rmOverlay() throws Exception {
         Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
-        String json = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
+        String json = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
 
-        Archetype parsed = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(json, Archetype.class);
+        Archetype parsed = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(json, Archetype.class);
         assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
         assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
 
@@ -277,7 +278,7 @@ public class AOMJacksonTest {
     public void parseS2AomJson() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/S2/json/flat/s2-EHR-Action.medication.v1.2.2.json")) {
 
-            Archetype parsed = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(stream, Archetype.class);
+            Archetype parsed = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(stream, Archetype.class);
             assertNotNull(parsed);
         }
     }
@@ -286,7 +287,7 @@ public class AOMJacksonTest {
     @Test
     public void parseS2AomJsonAll() throws Exception {
 
-        ObjectMapper mapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper mapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
 
         Files.find(new File("../../ADL-exported/S2-S2_demo/json/flat").toPath(),
                         1,

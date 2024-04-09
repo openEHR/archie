@@ -8,7 +8,7 @@ import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
-import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.apath.APathQuery;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rm.archetyped.Archetyped;
@@ -27,9 +27,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UpdatedValueHandler {
+public class OpenEhrRmUpdatedValueHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(UpdatedValueHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(OpenEhrRmUpdatedValueHandler.class);
 
     public static Map<String, Object> pathHasBeenUpdated(Object rmObject, Archetype archetype, String pathOfParent, Object parent) {
         if(parent instanceof CodePhrase) {
@@ -59,7 +59,7 @@ public class UpdatedValueHandler {
         Map<String, Object> result = new HashMap<>();
 
         RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent.replace("/symbol/defining_code", ""));
-        DvOrdered ordered = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+        DvOrdered ordered = rmPathQuery.find(OpenEhrRmInfoLookup.getInstance(), rmObject);
         Number value;
         CAttribute symbolAttribute = archetype.itemAtPath(pathOfParent.replace("/symbol/defining_code", "/symbol"));//TODO: remove all numeric indices from path!
         if (symbolAttribute != null) {
@@ -103,7 +103,7 @@ public class UpdatedValueHandler {
     private static Map<String, Object> fixDvCodedText(Object rmObject, Archetype archetype, String pathOfParent) throws XPathExpressionException {
         String path = pathOfParent.replace("/defining_code", "");
         RMPathQuery rmPathQuery = new RMPathQuery(path);
-        DvCodedText codedText = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+        DvCodedText codedText = rmPathQuery.find(OpenEhrRmInfoLookup.getInstance(), rmObject);
         Archetyped details = findLastArchetypeDetails(rmObject, pathOfParent);
         ArchetypeTerm termDefinition;
         if(details != null && archetype instanceof OperationalTemplate) {
@@ -149,7 +149,7 @@ public class UpdatedValueHandler {
         for(int i = query.getPathSegments().size();i > 0; i--) {
             String subpath = Joiner.on("").join(query.getPathSegments().subList(0, i));
 
-            List<RMObjectWithPath> list = new RMPathQuery(subpath).findList(ArchieRMInfoLookup.getInstance(), rmObject);
+            List<RMObjectWithPath> list = new RMPathQuery(subpath).findList(OpenEhrRmInfoLookup.getInstance(), rmObject);
             for(RMObjectWithPath objectWithPath:list) {
                 Object object = objectWithPath.getObject();
                 if(object instanceof Locatable) {

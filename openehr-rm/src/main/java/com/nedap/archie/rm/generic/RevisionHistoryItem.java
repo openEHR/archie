@@ -1,6 +1,6 @@
 package com.nedap.archie.rm.generic;
 
-import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.base.RMObject;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
 
 import javax.xml.bind.annotation.XmlAccessType;

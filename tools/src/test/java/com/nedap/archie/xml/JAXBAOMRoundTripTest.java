@@ -5,6 +5,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
+import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,11 +36,11 @@ public class JAXBAOMRoundTripTest {
         parser = new ADLParser(); //no constraints imposer in this test!
         writer = new StringWriter();
         marshaller = createMarshaller();
-        unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
     }
 
     private Marshaller createMarshaller() throws JAXBException {
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         return marshaller;
     }

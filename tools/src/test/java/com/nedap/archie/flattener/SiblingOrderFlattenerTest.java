@@ -9,7 +9,7 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
@@ -217,7 +217,7 @@ public class SiblingOrderFlattenerTest {
     private Archetype parseAndFlatten(String fileName) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
@@ -227,7 +227,7 @@ public class SiblingOrderFlattenerTest {
     private Archetype parseAndCreateOPT(String fileName) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
@@ -237,7 +237,7 @@ public class SiblingOrderFlattenerTest {
     private Archetype parseAndFlattenRemoveZeroOccurrences(String fileName) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
         FlattenerConfiguration config = FlattenerConfiguration.forFlattened();
