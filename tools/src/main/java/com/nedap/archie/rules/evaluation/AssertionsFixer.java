@@ -110,7 +110,7 @@ public class AssertionsFixer {
                 Object object = parents.get(0);
 
                 Object newEmptyObject = null;
-                if (constraint instanceof CComplexObject) {
+                if (constraint instanceof CComplexObject || constraint instanceof ArchetypeSlot) {
                     newEmptyObject = rmObjectCreator.create(constraint);
                 } else {
                     newEmptyObject = constructEmptySimpleObject(newLastPathSegment, object, newEmptyObject);
@@ -160,7 +160,7 @@ public class AssertionsFixer {
                 if(!constraintsHasNoComplexObjects(((CAttribute) constraint).getChildren())) {
                     return false;
                 }
-            } else if(constraint instanceof CComplexObject) {
+            } else if(constraint instanceof CComplexObject || constraint instanceof ArchetypeSlot) {
                 return false;
             }
         }
