@@ -1,4 +1,4 @@
-package com.nedap.archie.paths;
+package com.nedap.archie.apath;
 
 
 import com.nedap.archie.definitions.AdlCodeDefinitions;

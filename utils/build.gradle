@@ -1,5 +1,1 @@
 description = "Basic utilities for use in the archie library"
-
-dependencies {
-	api project(':base')
-}

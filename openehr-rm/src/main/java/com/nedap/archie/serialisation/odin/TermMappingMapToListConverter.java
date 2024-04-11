@@ -1,9 +1,10 @@
-package com.nedap.archie.odin;
+package com.nedap.archie.serialisation.odin;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.Converter;
+import com.nedap.archie.odin.BaseMapToListConverter;
 import com.nedap.archie.rm.datavalues.TermMapping;
 
 import java.util.List;

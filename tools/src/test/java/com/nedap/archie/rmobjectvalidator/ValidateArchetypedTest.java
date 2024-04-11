@@ -14,7 +14,7 @@ import com.nedap.archie.rm.datastructures.Item;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.quantity.DvProportion;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +40,7 @@ public class ValidateArchetypedTest {
         testUtil = new TestUtil();
 
         repo = new InMemoryFullArchetypeRepository();
-        validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), repo);
+        validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), repo);
 
         elementArchetype = parse("/adl2-tests/rmobjectvalidity/openEHR-EHR-ELEMENT.element_with_required_attributes.v1.0.0.adls");
         elementOpt = createOpt(elementArchetype);
@@ -69,7 +69,7 @@ public class ValidateArchetypedTest {
 
         Archetyped details = new Archetyped();
         details.setArchetypeId(new ArchetypeID(itemTreeArchetype.getArchetypeId().toString()));
-        details.setRmVersion(ArchieRMInfoLookup.RM_VERSION);
+        details.setRmVersion(OpenEhrRmInfoLookup.RM_VERSION);
         itemTree.setArchetypeDetails(details);
 
         FeederAudit feederAudit = new FeederAudit();

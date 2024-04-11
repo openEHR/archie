@@ -2,7 +2,7 @@ package com.nedap.archie.rm.support.identification;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Strings;
-import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.base.RMObject;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMProperty;
 

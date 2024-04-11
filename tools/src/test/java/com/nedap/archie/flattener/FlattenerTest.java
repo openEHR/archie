@@ -11,8 +11,8 @@ import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
@@ -134,7 +134,7 @@ public class FlattenerTest {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
-        JacksonUtil.configureObjectMapper(objectMapper);
+        OpenEhrRmJacksonUtil.configureObjectMapper(objectMapper);
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         System.out.println(objectMapper.writeValueAsString(flattened));
@@ -271,7 +271,7 @@ data matches {
     @Test
     public void validate() {
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
         ((InMemoryFullArchetypeRepository) repository).compile(models);
         for(ValidationResult result:((InMemoryFullArchetypeRepository) repository).getAllValidationResults()) {

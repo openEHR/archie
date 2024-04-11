@@ -1,6 +1,6 @@
 package com.nedap.archie.rm.datavalues;
 
-import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.base.RMObject;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
