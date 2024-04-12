@@ -107,6 +107,8 @@ public class RMComparedWithBmmTest {
         //BMM changed VERSION_STATUS to an enum. For now this remains a string until some further major release
         knownDifferences.add(new ModelDifference(ModelDifferenceType.CLASS_MISSING_IN_MODEL, "",  "VERSION_STATUS", null));
 
+        // Not needed in BMM since it defines constants / static functions but no data
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.CLASS_MISSING_IN_BMM, "", "TIME_DEFINITIONS", null));
 
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_ABSOLUTE_QUANTITY", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_AMOUNT", "magnitude"));

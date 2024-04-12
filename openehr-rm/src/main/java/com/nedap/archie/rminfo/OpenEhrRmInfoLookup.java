@@ -91,8 +91,10 @@ public class OpenEhrRmInfoLookup extends ReflectionModelInfoLookup {
      * - classes in the supplier closures (classes reachable from via RM supplier relationships)
      *   of all classes in the top-level model packages, which for openEHR is EHR and demographic.
      * - except assumed primitives that are mapped to internal types.
-     * = plus the classes base.RMObject which is the 'Any' class
-     * - plus the class base.Interval
+     * = plus base.RMObject which is the 'Any' class
+     * - plus base.Interval
+     * - plus aom.AuthoredResource // UNCLEAR WHY
+     * - plus aom.TranslationDetails // UNCLEAR WHY
      *
      * The result should correspond to the set of classes in the corresponding BMM, minus those
      * classified as primitive. The BMM class set can be generated per the code in
@@ -103,7 +105,8 @@ public class OpenEhrRmInfoLookup extends ReflectionModelInfoLookup {
     protected void addTypes(Class<?> baseClass) {
         addClass(Interval.class); //extra class from the base package. No RMObject because it is also used in the AOM
         addClass(RMObject.class); // Any class for type system
-        // addClass(TranslationDetails.class);  // was in the original code, but not sure why; removing it breaks no tests
+        addClass(AuthoredResource.class);
+        addClass(TranslationDetails.class);
 
         // TODO: for whatever reason, passing the argument "com.nedap.archie.rm" does not work directly
         Set<Class<?>> classes = findAllClassesInPackage("com.nedap.archie")

@@ -76,7 +76,9 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
         return reflections.getSubTypesOf(Object.class)
                 .stream()
-                .filter(cl -> !cl.getName().endsWith("Test") && !cl.isInterface())
+                .filter(cl -> !cl.getName().endsWith("Test")    // ignore test classes
+                        && !cl.getName().endsWith("$1")         // ignore anonymous inner classes
+                        && !cl.isInterface())                   // ignore interfaces
                 .collect(Collectors.toSet());
     }
 
