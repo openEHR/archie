@@ -1,7 +1,7 @@
 package com.nedap.archie.rm.composition;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
@@ -20,7 +20,7 @@ public class ObservationTest {
 
         expected.setGuidelineId(new ObjectRef<>(new HierObjectId("value"), "namespace", "type"));
         StringWriter sw = new StringWriter();
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         objectMapper.writeValue(sw, expected);
 
         Observation actual = objectMapper.readValue(sw.toString(), Observation.class);

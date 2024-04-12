@@ -1,7 +1,6 @@
-package com.nedap.archie.rm;
+package com.nedap.archie.base;
 
 import com.esotericsoftware.kryo.kryo5.Kryo;
-import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.util.KryoUtil;
 
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.nedap.archie.odin;
+package com.nedap.archie.serialisation.odin;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

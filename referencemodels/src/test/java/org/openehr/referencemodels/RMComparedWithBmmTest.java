@@ -2,7 +2,7 @@ package org.openehr.referencemodels;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import org.junit.Test;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
@@ -45,7 +45,7 @@ public class RMComparedWithBmmTest {
         BmmRepository bmmRepository = BuiltinReferenceModels.getBmmRepository();
         BmmModel model = bmmRepository.getModel("openehr_rm_1.1.0").getModel();
 
-        List<ModelDifference> compared = new BmmComparison(extraParams, typeMap, typeNamesOverride).compare(model, ArchieRMInfoLookup.getInstance());
+        List<ModelDifference> compared = new BmmComparison(extraParams, typeMap, typeNamesOverride).compare(model, OpenEhrRmInfoLookup.getInstance());
 
         compared.sort(Comparator.comparing((a) -> a.getClassName() + "." + a.getType().toString()));
         compared = compared.stream().filter((diff) -> {
@@ -107,6 +107,8 @@ public class RMComparedWithBmmTest {
         //BMM changed VERSION_STATUS to an enum. For now this remains a string until some further major release
         knownDifferences.add(new ModelDifference(ModelDifferenceType.CLASS_MISSING_IN_MODEL, "",  "VERSION_STATUS", null));
 
+        // Not needed in BMM since it defines constants / static functions but no data
+        knownDifferences.add(new ModelDifference(ModelDifferenceType.CLASS_MISSING_IN_BMM, "", "TIME_DEFINITIONS", null));
 
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_ABSOLUTE_QUANTITY", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_AMOUNT", "magnitude"));

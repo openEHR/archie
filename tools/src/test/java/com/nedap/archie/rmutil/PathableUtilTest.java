@@ -11,10 +11,10 @@ import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
+import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,7 +36,7 @@ public class PathableUtilTest {
     }
 
     private RMQueryContext getQueryContext() {
-        return new RMQueryContext(ArchieRMInfoLookup.getInstance(), root, JAXBUtil.getArchieJAXBContext());
+        return new RMQueryContext(OpenEhrRmInfoLookup.getInstance(), root, OpenEhrRmJAXBUtil.getArchieJAXBContext());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class PathableUtilTest {
 
         RMQueryContext queryContext = getQueryContext();
 
-        ModelInfoLookup modelInfoLookup = ArchieRMInfoLookup.getInstance();
+        ModelInfoLookup modelInfoLookup = OpenEhrRmInfoLookup.getInstance();
 
         List<RMObjectWithPath> context = new RMPathQuery("/context").findList(modelInfoLookup, composition);
         assertEquals(1, context.size());

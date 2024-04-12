@@ -1,7 +1,7 @@
 package com.nedap.archie.rm.ehr;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class EhrStatusTest {
     public void testBooleanSerialization() throws IOException {
         EhrStatus status = new EhrStatus();
         StringWriter stringWriter = new StringWriter();
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper();
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper();
         objectMapper.writeValue(stringWriter, status);
 
         Map<?, ?> actual = objectMapper.readValue(stringWriter.toString(), Map.class);
