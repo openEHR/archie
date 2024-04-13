@@ -5,6 +5,7 @@ import com.nedap.archie.aom.CPrimitiveObject;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
+import org.reflections.scanners.SubTypesScanner;
 import org.reflections.util.ClasspathHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,14 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
     private Set<String> forbiddenMethods = new HashSet<>(
         Arrays.asList("getClass", "wait", "notify", "notifyAll", "clone", "finalize")
     );
+
+    public Set<Class<?>> findAllClassesInPackage(String packageName) {
+        Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
+        return reflections.getSubTypesOf(Object.class)
+                .stream()
+                .filter(cl -> !cl.getName().endsWith("Test") && !cl.isInterface())
+                .collect(Collectors.toSet());
+    }
 
     public ReflectionModelInfoLookup(ModelNamingStrategy namingStrategy, Class<?> baseClass) {
         this(namingStrategy, baseClass, ReflectionModelInfoLookup.class.getClassLoader(), true);

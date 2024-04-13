@@ -1,66 +1,16 @@
 package com.nedap.archie.rminfo;
 
 import com.nedap.archie.aom.*;
-import com.nedap.archie.aom.primitives.CBoolean;
-import com.nedap.archie.aom.primitives.CDate;
-import com.nedap.archie.aom.primitives.CDateTime;
-import com.nedap.archie.aom.primitives.CDuration;
-import com.nedap.archie.aom.primitives.CInteger;
-import com.nedap.archie.aom.primitives.CReal;
-import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.primitives.CTime;
+import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.base.RMObject;
 import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.archetyped.FeederAudit;
-import com.nedap.archie.rm.archetyped.FeederAuditDetails;
-import com.nedap.archie.rm.archetyped.Link;
 import com.nedap.archie.rm.archetyped.Locatable;
-import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.archetyped.TemplateId;
-import com.nedap.archie.rm.changecontrol.Contribution;
-import com.nedap.archie.rm.changecontrol.ImportedVersion;
-import com.nedap.archie.rm.changecontrol.OriginalVersion;
-import com.nedap.archie.rm.changecontrol.Version;
-import com.nedap.archie.rm.changecontrol.VersionedObject;
-import com.nedap.archie.rm.composition.*;
 import com.nedap.archie.rm.datastructures.*;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.*;
-import com.nedap.archie.rm.datavalues.encapsulated.DvEncapsulated;
-import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
-import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
-import com.nedap.archie.rm.datavalues.quantity.*;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvTemporal;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
-import com.nedap.archie.rm.datavalues.timespecification.DvGeneralTimeSpecification;
-import com.nedap.archie.rm.datavalues.timespecification.DvPeriodicTimeSpecification;
-import com.nedap.archie.rm.datavalues.timespecification.DvTimeSpecification;
 import com.nedap.archie.rm.demographic.*;
-import com.nedap.archie.rm.directory.Folder;
-import com.nedap.archie.rm.directory.VersionedFolder;
-import com.nedap.archie.rm.ehr.Ehr;
-import com.nedap.archie.rm.ehr.EhrAccess;
-import com.nedap.archie.rm.ehr.EhrStatus;
-import com.nedap.archie.rm.ehr.VersionedComposition;
-import com.nedap.archie.rm.ehr.VersionedEhrAccess;
-import com.nedap.archie.rm.ehr.VersionedEhrStatus;
-import com.nedap.archie.rm.generic.Attestation;
-import com.nedap.archie.rm.generic.AuditDetails;
-import com.nedap.archie.rm.generic.Participation;
-import com.nedap.archie.rm.generic.PartyIdentified;
-import com.nedap.archie.rm.generic.PartyProxy;
-import com.nedap.archie.rm.generic.PartyRelated;
-import com.nedap.archie.rm.generic.PartySelf;
-import com.nedap.archie.rm.generic.RevisionHistory;
-import com.nedap.archie.rm.generic.RevisionHistoryItem;
-import com.nedap.archie.rm.integration.GenericEntry;
-import com.nedap.archie.rm.security.AccessControlSettings;
 import com.nedap.archie.rm.support.identification.*;
 
 import java.lang.reflect.Field;
@@ -68,10 +18,8 @@ import java.lang.reflect.Method;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAmount;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by pieter.bos on 02/02/16.
@@ -86,131 +34,36 @@ public class OpenEhrRmInfoLookup extends ReflectionModelInfoLookup {
         super(new ArchieModelNamingStrategy(), RMObject.class);
     }
 
+    /**
+     * This list of classes generated in this method corresponds to any class that may be mentioned
+     * in an archetype of this RM. Its extension for openEHR RM covers the following classes:
+     * - classes in the supplier closures (classes reachable from via RM supplier relationships)
+     *   of all classes in the top-level model packages, which for openEHR is EHR and demographic.
+     * - except assumed primitives that are mapped to internal types.
+     * = plus the classes base.RMObject which is the 'Any' class
+     * - plus the class base.Interval
+     * - plus aom.AuthoredResource // UNCLEAR WHY
+     * - plus aom.TranslationDetails // UNCLEAR WHY
+     *
+     * The result should correspond to the set of classes in the corresponding BMM, minus those
+     * classified as primitive. The BMM class set can be generated per the code in
+     * RM102ConversionTest.testFindAllNonPrimitiveClasses
+     * @param baseClass
+     */
     @Override
     protected void addTypes(Class<?> baseClass) {
         addClass(Interval.class); //extra class from the base package. No RMObject because it is also used in the AOM
-        addClass(AuditDetails.class);
-        addClass(Ehr.class);
-        addClass(DvTime.class);
-        addClass(RevisionHistoryItem.class);
-        addClass(PartyIdentity.class);
-        addClass(DvParsable.class);
-        addClass(DvDuration.class);
-        addClass(DvDateTime.class);
-        addClass(DvCount.class);
-        addClass(Cluster.class);
-        addClass(IsoOID.class);
-        addClass(PartyRelated.class);
-        addClass(Instruction.class);
-        addClass(Person.class);
-        addClass(GenericId.class);
-        addClass(Evaluation.class);
-        addClass(DvAmount.class);
-        addClass(Capability.class);
-        addClass(UID.class);
-        addClass(Item.class);
-        addClass(Contribution.class);
-        addClass(OriginalVersion.class);
-        addClass(FeederAuditDetails.class);
-        addClass(PartyProxy.class);
-        addClass(PointEvent.class);
-        addClass(CodePhrase.class);
-        addClass(InstructionDetails.class);
-        addClass(DvTimeSpecification.class);
-        addClass(DvAbsoluteQuantity.class);
-        addClass(FeederAudit.class);
-        addClass(Party.class);
-        addClass(ItemSingle.class);
-        addClass(EventContext.class);
-        addClass(DvProportion.class);
-        addClass(DvQuantity.class);
-        addClass(DvOrdered.class);
-        addClass(ContentItem.class);
-        addClass(DataValue.class);
-        addClass(DvOrdinal.class);
-        addClass(DvScale.class);
-        addClass(Agent.class);
-        addClass(InternetId.class);
-        addClass(Role.class);
-        addClass(Group.class);
-        addClass(ObjectId.class);
-        addClass(UIDBasedId.class);
-        addClass(VersionedEhrStatus.class);
-        addClass(PartySelf.class);
-        addClass(DvMultimedia.class);
-        addClass(Actor.class);
-        addClass(VersionTreeId.class);
-        addClass(DvParagraph.class);
-        addClass(ReferenceRange.class);
-        addClass(CareEntry.class);
-        addClass(ItemTree.class);
-        addClass(Element.class);
-        addClass(DvGeneralTimeSpecification.class);
-        addClass(DvDate.class);
-        addClass(Version.class);
-        addClass(DvState.class);
-        addClass(AccessControlSettings.class);
-        addClass(ItemList.class);
-        addClass(DataStructure.class);
-        addClass(History.class);
-        addClass(DvPeriodicTimeSpecification.class);
-        addClass(Contact.class);
-        addClass(TermMapping.class);
-        addClass(Event.class);
-        addClass(Observation.class);
-        addClass(Locatable.class);
-        addClass(UUID.class);
-        addClass(DvTemporal.class);
-        addClass(IsmTransition.class);
-        addClass(Folder.class);
-        addClass(Participation.class);
-        addClass(VersionedComposition.class);
-        addClass(ObjectVersionId.class);
-        addClass(Entry.class);
-        addClass(DvInterval.class);
-        addClass(Organisation.class);
-        addClass(VersionedObject.class);
-        addClass(DvEncapsulated.class);
-        addClass(VersionedFolder.class);
-        addClass(IntervalEvent.class);
-        addClass(ItemTable.class);
-        addClass(Attestation.class);
-        addClass(Address.class);
-        addClass(RevisionHistory.class);
-        addClass(DvIdentifier.class);
-        addClass(DvCodedText.class);
-        addClass(PartyRelationship.class);
-        addClass(LocatableRef.class);
-        addClass(Pathable.class);
-        addClass(EhrAccess.class);
-        addClass(DvEHRURI.class);
-        addClass(ArchetypeID.class);
-        addClass(RMObject.class);
-        addClass(PartyRef.class);
-        addClass(TemplateId.class);
-        addClass(AdminEntry.class);
-        addClass(VersionedEhrAccess.class);
-        addClass(PartyIdentified.class);
-        addClass(Composition.class);
-        addClass(EhrStatus.class);
-        addClass(AccessGroupRef.class);
-        addClass(ObjectRef.class);
-        addClass(GenericEntry.class);
-        addClass(DvQuantified.class);
-        addClass(ImportedVersion.class);
-        addClass(DvBoolean.class);
-        addClass(DvURI.class);
-        addClass(DvText.class);
-        addClass(Action.class);
-        addClass(ItemStructure.class);
-        addClass(HierObjectId.class);
-        addClass(Section.class);
-        addClass(Activity.class);
-        addClass(TerminologyId.class);
-        addClass(Link.class);
-        addClass(Archetyped.class);
+        addClass(RMObject.class); // Any class for type system
         addClass(AuthoredResource.class);
         addClass(TranslationDetails.class);
+
+        // TODO: for whatever reason, passing the argument "com.nedap.archie.rm" does not work directly
+        Set<Class<?>> classes = findAllClassesInPackage("com.nedap.archie")
+                .stream()
+                .filter(cl -> cl.getName().startsWith("com.nedap.archie.rm."))
+                .collect(Collectors.toSet());
+
+        classes.forEach(cl -> addClass(cl));
     }
 
     @Override
