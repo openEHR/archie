@@ -50,4 +50,12 @@ public class EvaluationResult {
         }
         return result;
     }
+
+    public Map<String, String> getPathsConstrainedToValueSets() {
+        Map<String, String> result = new LinkedHashMap<>();
+        for (AssertionResult assertionResult : assertionResults) {
+            result.putAll(assertionResult.getPathsConstrainedToValueSets());
+        }
+        return result;
+    }
 }
