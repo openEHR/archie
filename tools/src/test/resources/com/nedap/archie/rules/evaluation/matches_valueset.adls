@@ -29,11 +29,17 @@ definition
                     DV_CODED_TEXT[id3]
                 }
             }
+            ELEMENT[id6] occurrences matches {1} matches {
+                value matches {
+                    DV_CODED_TEXT[id7]
+                }
+            }
         }
     }
 
 rules
     /items[id2]/value/defining_code matches {[ac3]}
+    /items[id6]/value/defining_code matches {[ac3]}
 
 terminology
     term_definitions = <
@@ -58,7 +64,10 @@ terminology
                  text = <"value 2">
                  description = <"value 2">
             >
-
+            ["id6"] = <
+                 text = <"element 2">
+                 description = <"element 2">
+            >
         >
     >
     value_sets = <
