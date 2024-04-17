@@ -736,6 +736,9 @@ public abstract class ParsedRulesEvaluationTest {
         AssertionResult assertionResult = result.getAssertionResults().get(0);
         assertTrue("The given validation rule should pass", assertionResult.getResult());
         assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
+        assertEquals(2, result.getPathsConstrainedToValueSets().size());
+        assertEquals("ac3", result.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
+        assertEquals("ac3", result.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id6]/value/defining_code"));
 
         //incorrect case next
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at26"));//wrong code!
