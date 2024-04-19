@@ -1,11 +1,12 @@
 package com.nedap.archie.rm.directory;
 
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.ItemStructure;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.support.identification.HierObjectId;
-import com.nedap.archie.rm.support.identification.ObjectRef;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.ItemStructure;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.directory.Folder;
+import org.openehr.rm.support.identification.HierObjectId;
+import org.openehr.rm.support.identification.ObjectRef;
 import org.junit.Test;
 
 import java.util.ArrayList;

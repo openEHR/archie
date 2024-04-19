@@ -1,11 +1,11 @@
 package com.nedap.archie.rmobjectvalidator.invariants.changecontrol;
 
-import com.nedap.archie.rm.changecontrol.OriginalVersion;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.generic.AuditDetails;
-import com.nedap.archie.rm.generic.PartySelf;
-import com.nedap.archie.rm.support.identification.ObjectVersionId;
+import org.openehr.rm.changecontrol.OriginalVersion;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.generic.AuditDetails;
+import org.openehr.rm.generic.PartySelf;
+import org.openehr.rm.support.identification.ObjectVersionId;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 

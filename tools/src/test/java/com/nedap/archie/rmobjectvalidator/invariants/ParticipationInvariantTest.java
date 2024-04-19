@@ -1,9 +1,9 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.generic.Participation;
-import com.nedap.archie.rm.generic.PartySelf;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.generic.Participation;
+import org.openehr.rm.generic.PartySelf;
 import org.junit.Test;
 
 public class ParticipationInvariantTest {

@@ -1,7 +1,7 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
-import com.nedap.archie.rm.datavalues.DvEHRURI;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import org.openehr.rm.datavalues.DvEHRURI;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;

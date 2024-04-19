@@ -6,7 +6,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 
@@ -119,7 +119,7 @@ public class ADLArchetypeSerializerTest {
                 "        >\n" +
                 "    >"));
 
-       Archetype parsed = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(serialized);
+       Archetype parsed = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(serialized);
        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
        assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
    }

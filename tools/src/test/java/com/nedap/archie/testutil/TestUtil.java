@@ -13,7 +13,7 @@ import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.base.RMObject;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;

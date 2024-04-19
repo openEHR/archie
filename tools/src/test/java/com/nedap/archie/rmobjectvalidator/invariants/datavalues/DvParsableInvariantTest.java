@@ -1,9 +1,9 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
-import com.nedap.archie.rm.support.identification.TerminologyId;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.datavalues.encapsulated.DvParsable;
+import org.openehr.rm.support.identification.TerminologyId;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;

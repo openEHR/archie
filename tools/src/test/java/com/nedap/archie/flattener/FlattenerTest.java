@@ -11,12 +11,13 @@ import com.nedap.archie.aom.CComplexObjectProxy;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
+import com.nedap.archie.openehr.rminfo.OpenEhrTestRmInfoLookup;
 
 import java.util.List;
 import java.util.Stack;
@@ -50,7 +51,7 @@ public class FlattenerTest {
     @Before
     public void setup() throws Exception {
 
-        models = BuiltinReferenceModels.getAvailableModelInfoLookups();
+        models = AllMetaModelsInitialiser.getNativeRms();
 
         // reportresult specializes report.
         // blood pressure composition specializes report result.
@@ -272,7 +273,7 @@ data matches {
     public void validate() {
         ReferenceModels models = new ReferenceModels();
         models.registerModel(OpenEhrRmInfoLookup.getInstance());
-        models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrTestRmInfoLookup.getInstance());
         ((InMemoryFullArchetypeRepository) repository).compile(models);
         for(ValidationResult result:((InMemoryFullArchetypeRepository) repository).getAllValidationResults()) {
             assertTrue(result.getArchetypeId() + " had errors or warnings: " + result.getErrors(), result.passes());

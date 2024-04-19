@@ -1,6 +1,6 @@
 package com.nedap.archie.adlparser.modelconstraints;
 
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 
 /**
  * Constraints imposer for the Archie reference model implementation.

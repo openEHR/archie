@@ -1,7 +1,7 @@
 package com.nedap.archie.aom;
 
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -1,6 +1,7 @@
 package com.nedap.archie.aom.profile;
 
 import com.nedap.archie.serializer.odin.OdinObjectParser;
+import org.openehr.bmm.v2.validation.BmmRepository;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,10 +34,14 @@ public class AomProfiles {
      */
     public void add(String profile) {
         profiles.add(OdinObjectParser.convert(profile, AomProfile.class));
-
     }
 
     public List<AomProfile> getProfiles() {
         return profiles;
     }
+
+    public void merge (AomProfiles otherProfiles) {
+        profiles.addAll(otherProfiles.profiles);
+    }
+
 }

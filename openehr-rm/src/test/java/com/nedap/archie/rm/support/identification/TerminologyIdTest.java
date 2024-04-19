@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.support.identification;
 
 import org.junit.Test;
+import org.openehr.rm.support.identification.TerminologyId;
 
 import static org.junit.Assert.*;
 

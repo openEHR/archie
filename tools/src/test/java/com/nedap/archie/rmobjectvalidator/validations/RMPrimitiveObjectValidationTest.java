@@ -4,7 +4,7 @@ import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.query.RMObjectWithPath;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import org.junit.BeforeClass;

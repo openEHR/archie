@@ -1,7 +1,7 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.directory.Folder;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.directory.Folder;
 import org.junit.Test;
 
 

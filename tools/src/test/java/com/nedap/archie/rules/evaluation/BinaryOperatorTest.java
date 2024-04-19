@@ -1,6 +1,6 @@
 package com.nedap.archie.rules.evaluation;
 
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constant;
 import com.nedap.archie.rules.ExpressionType;

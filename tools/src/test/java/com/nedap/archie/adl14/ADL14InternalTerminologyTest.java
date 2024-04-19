@@ -5,7 +5,7 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,11 +19,11 @@ public class ADL14InternalTerminologyTest {
     @Test
     public void internalTerminologyRemoved() throws IOException, ADLParseException {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(AllMetaModelsInitialiser.getMetaModels(), conversionConfiguration);
 
         try(InputStream stream = getClass().getResourceAsStream("/adl14/openEHR-EHR-OBSERVATION.internal_terminology_test.v0.adl")) {
             ADL2ConversionResultList result = converter.convert(
-                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration)));
+                    Lists.newArrayList(new ADL14Parser(AllMetaModelsInitialiser.getMetaModels()).parse(stream, conversionConfiguration)));
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             // A terminology code is unnecessary if:
             //  - The text.length < 19

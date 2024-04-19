@@ -61,10 +61,15 @@ public class BmmRepository {
 
     public void addModelByClosure(String closure,  BmmValidationResult model) {
         this.modelsByClosure.put(closure.toLowerCase(), model);
-
     }
 
     public BmmValidationResult getModelByClosure(String closure) {
         return modelsByClosure.get(closure.toLowerCase());
+    }
+
+    public void merge (BmmRepository otherBmmRepo) {
+        persistentSchemasById.putAll(otherBmmRepo.persistentSchemasById);
+        modelsById.putAll(otherBmmRepo.modelsById);
+        modelsByClosure.putAll(otherBmmRepo.modelsByClosure);
     }
 }

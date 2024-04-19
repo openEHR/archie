@@ -1,12 +1,12 @@
 package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.flattener.FullArchetypeRepository;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,7 +58,7 @@ public class CKMArchetypeValidatorTest {
 
     @Test
     public void fullCKMTestBmm() {
-        MetaModels bmmReferenceModels = new MetaModels(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles());
+        MetaModels bmmReferenceModels = new MetaModels(null, AllMetaModelsInitialiser.getBmmRepository(), AllMetaModelsInitialiser.getAomProfiles());
 
         FullArchetypeRepository repository = TestUtil.parseCKM();
         logger.info("archetypes parsed: " + repository.getAllArchetypes().size());

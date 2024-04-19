@@ -1,10 +1,11 @@
 package com.nedap.archie.rm.composition;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
-import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Test;
+import org.openehr.rm.composition.Composition;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;

@@ -54,4 +54,9 @@ public class ReferenceModels {
     public List<ModelInfoLookup> getAllModels() {
         return new ArrayList<>(referenceModelsById.values());
     }
+
+    public void merge (ReferenceModels otherRms) {
+        referenceModelsById.putAll(otherRms.referenceModelsById);
+        objectMapperProvidersById.putAll(otherRms.objectMapperProvidersById);
+    }
 }

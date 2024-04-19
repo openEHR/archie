@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CodePointCharStream;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -58,14 +58,14 @@ public class LargeSetOfADL14sTest {
     @Test
     public void testRiskFamilyhistory() throws Exception {
 
-        ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+        ADL14Parser parser = new ADL14Parser(AllMetaModelsInitialiser.getMetaModels());
 
         Archetype riskParent = parser.parse(getClass().getResourceAsStream("/adl14/risk_parent.adl"), conversionConfiguration);
         Archetype riskFamilyHistory = parser.parse(getClass().getResourceAsStream("/adl14/risk_history.adl"), conversionConfiguration);
 
         List<Archetype> archetypes = Arrays.asList(riskParent, riskFamilyHistory);
 
-        ADL2ConversionResultList converted = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration)
+        ADL2ConversionResultList converted = new ADL14Converter(AllMetaModelsInitialiser.getMetaModels(), conversionConfiguration)
                 .convert(archetypes);
 
         for(ADL2ConversionResult conversionResult:converted.getConversionResults()) {
@@ -85,7 +85,7 @@ public class LargeSetOfADL14sTest {
                 adl2Repository.addArchetype(conversionResult.getArchetype());
             }
         }
-        adl2Repository.compile(BuiltinReferenceModels.getMetaModels());
+        adl2Repository.compile(AllMetaModelsInitialiser.getMetaModels());
 
         for(ValidationResult validationResult:adl2Repository.getAllValidationResults()) {
             if(!validationResult.passes()) {
@@ -113,7 +113,7 @@ public class LargeSetOfADL14sTest {
             }
 
         }
-        ADL2ConversionResultList converted = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration)
+        ADL2ConversionResultList converted = new ADL14Converter(AllMetaModelsInitialiser.getMetaModels(), conversionConfiguration)
                 .convert(archetypes);
         for(ADL2ConversionResult result:converted.getConversionResults()) {
             if(result.getArchetype() != null) {// && result.getArchetype().getParentArchetypeId() != null) {
@@ -160,7 +160,7 @@ public class LargeSetOfADL14sTest {
                 adl2Repository.addArchetype(conversionResult.getArchetype());
             }
         }
-        adl2Repository.compile(BuiltinReferenceModels.getMetaModels());
+        adl2Repository.compile(AllMetaModelsInitialiser.getMetaModels());
         int passingValidations = 0;
         for(ValidationResult validationResult:adl2Repository.getAllValidationResults()) {
             if(validationResult.passes()) {
@@ -193,7 +193,7 @@ public class LargeSetOfADL14sTest {
     private Archetype parse(Map<String, Exception> exceptions, Map<String, ANTLRParserErrors> parseErrors, String file) {
         try (InputStream stream = getClass().getResourceAsStream("/" + file)) {
             logger.info("trying to parse " + file);
-            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            ADL14Parser parser = new ADL14Parser(AllMetaModelsInitialiser.getMetaModels());
 
             Archetype archetype = parser.parse(stream, conversionConfiguration);
             //logger.info(JacksonUtil.getObjectMapper().writeValueAsString(conversionResult.getConversionLog()));

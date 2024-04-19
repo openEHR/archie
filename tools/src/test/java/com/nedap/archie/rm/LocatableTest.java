@@ -1,14 +1,14 @@
 package com.nedap.archie.rm;
 
 import com.google.common.collect.Lists;
-import com.nedap.archie.rm.composition.Composition;
-import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.History;
-import com.nedap.archie.rm.datastructures.ItemStructure;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datastructures.PointEvent;
-import com.nedap.archie.rm.datavalues.DvText;
+import org.openehr.rm.composition.Composition;
+import org.openehr.rm.composition.Observation;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.History;
+import org.openehr.rm.datastructures.ItemStructure;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datastructures.PointEvent;
+import org.openehr.rm.datavalues.DvText;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

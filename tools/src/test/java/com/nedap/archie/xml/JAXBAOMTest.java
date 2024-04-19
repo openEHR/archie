@@ -19,7 +19,7 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.datetime.DateTimeParsers;
-import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;

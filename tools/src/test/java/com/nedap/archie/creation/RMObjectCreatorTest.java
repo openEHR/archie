@@ -4,12 +4,12 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
-import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datavalues.DvBoolean;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import org.openehr.rm.archetyped.Archetyped;
+import org.openehr.rm.composition.Observation;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datavalues.DvBoolean;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;

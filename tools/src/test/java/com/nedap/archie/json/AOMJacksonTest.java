@@ -18,12 +18,12 @@ import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
 import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.OperatorKind;
-import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 import org.threeten.extra.PeriodDuration;
 
 import java.io.File;
@@ -75,7 +75,7 @@ public class AOMJacksonTest {
     @Test
     public void motricityIndex() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             String serialized = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
             //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
@@ -117,7 +117,7 @@ public class AOMJacksonTest {
     @Test
     public void motriciyIndexJavascriptFormat() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             String serialized = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createConfigForJavascriptUsage()).writeValueAsString(archetype);
             //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
@@ -137,7 +137,7 @@ public class AOMJacksonTest {
     @Test
     public void motricityIndexOldFormat() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
             config.setStandardsCompliantExpressions(false);
             String serialized = OpenEhrRmJacksonUtil.getObjectMapper(config).writeValueAsString(archetype);
@@ -156,7 +156,7 @@ public class AOMJacksonTest {
     @Test
     public void archetypeSlot() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             ObjectMapper objectMapper = new ObjectMapper();
             OpenEhrRmJacksonUtil.configureObjectMapper(objectMapper, ArchieJacksonConfiguration.createStandardsCompliant());
             objectMapper.disable(SerializationFeature.INDENT_OUTPUT);
@@ -182,7 +182,7 @@ public class AOMJacksonTest {
     @Test
     public void archetypeSlotOldExpressionClassNames() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
             config.setStandardsCompliantExpressions(false);
             ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(config);
