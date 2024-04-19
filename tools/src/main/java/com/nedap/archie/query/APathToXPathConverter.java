@@ -3,11 +3,7 @@ package com.nedap.archie.query;
 import com.google.common.collect.ImmutableSet;
 import com.nedap.archie.adlparser.antlr.XPathLexer;
 import com.nedap.archie.adlparser.antlr.XPathParser;
-import com.nedap.archie.adlparser.antlr.XPathParser.AndExprContext;
-import com.nedap.archie.adlparser.antlr.XPathParser.FilterExprContext;
-import com.nedap.archie.adlparser.antlr.XPathParser.MainContext;
-import com.nedap.archie.adlparser.antlr.XPathParser.PredicateContext;
-import com.nedap.archie.adlparser.antlr.XPathParser.RelativeLocationPathContext;
+import com.nedap.archie.adlparser.antlr.XPathParser.*;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -47,8 +43,6 @@ public class APathToXPathConverter {
 
 
     public static String convertWithAntlr(String query) {
-
-
         XPathLexer lexer = new XPathLexer(CharStreams.fromString(query));
         XPathParser parser = new XPathParser(new CommonTokenStream(lexer));
         MainContext mainCtx = parser.main();
@@ -113,31 +107,29 @@ public class APathToXPathConverter {
      */
     private static void writeTree(StringBuilder output, ParseTree tree, boolean inPredicate) {
 
-
-        for(int i = 0; i < tree.getChildCount(); i++) {
+        for (int i = 0; i < tree.getChildCount(); i++) {
             ParseTree child = tree.getChild(i);
-            if(child instanceof TerminalNode) {
+            if (child instanceof TerminalNode) {
                 boolean shouldAppendSpace = literalsThatShouldHaveSpacing.contains(child.getText().toLowerCase());
-                if(shouldAppendSpace) {
+                if (shouldAppendSpace) {
                     output.append(" ");
                 }
                 output.append(child.getText());
-                if(shouldAppendSpace) {
+                if (shouldAppendSpace) {
                     output.append(" ");
                 }
             } else if (child instanceof AndExprContext) {
-                for(int j = 0; j < child.getChildCount(); j++) {
+                for (int j = 0; j < child.getChildCount(); j++) {
                     ParseTree andChild = child.getChild(j);
-                    if(andChild instanceof TerminalNode) {
+                    if (andChild instanceof TerminalNode) {
                         output.append(" and "); //this rewrites the "," syntax that is equivalent to 'and'
                     } else {
-                        writeTree(output, andChild, inPredicate);
+                        writeTree(output, andChild, andChild.getChildCount() < 3);
                     }
                 }
-
             } else if (child instanceof PredicateContext) {
                 writeTree(output, child, true);
-            } else if(inPredicate && child instanceof RelativeLocationPathContext) {
+            } else if (inPredicate && child instanceof RelativeLocationPathContext) {
                 Matcher idCodeMatcher = idCodePattern.matcher(child.getText());
 
                 if (idCodeMatcher.matches()) {
@@ -145,20 +137,20 @@ public class APathToXPathConverter {
                     output.append(child.getText());
                     output.append("'");
                 } else {
-                    writeTree(output, child, inPredicate);
+                    writeTree(output, child, true);
                 }
-            } else if(inPredicate && child instanceof FilterExprContext) {
+            } else if (inPredicate && child instanceof FilterExprContext) {
                 FilterExprContext filterExprContext = (FilterExprContext) child;
                 //not sure if we should support [id5, 1]. This is not standard xpath!
                 Matcher numberMatcher = numberPattern.matcher(child.getText());
-                if(numberMatcher.matches()) {
+                if (numberMatcher.matches()) {
                     output.append("position() = ");
                     output.append(child.getText());
-                } else if(filterExprContext.primaryExpr().Literal() != null) {
+                } else if (filterExprContext.primaryExpr().Literal() != null) {
                     output.append("name/value = ");
                     output.append(child.getText());
                 } else {
-                    writeTree(output, child, inPredicate);
+                    writeTree(output, child, true);
                 }
             } else {
                 writeTree(output, child, inPredicate);
