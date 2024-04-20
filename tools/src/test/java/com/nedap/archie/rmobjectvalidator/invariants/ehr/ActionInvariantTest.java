@@ -1,25 +1,17 @@
 package com.nedap.archie.rmobjectvalidator.invariants.ehr;
 
-import com.nedap.archie.rm.archetyped.Link;
-import com.nedap.archie.rm.composition.Action;
-import com.nedap.archie.rm.composition.InstructionDetails;
-import com.nedap.archie.rm.composition.IsmTransition;
-import com.nedap.archie.rm.datastructures.ItemStructure;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.generic.Participation;
-import com.nedap.archie.rm.generic.PartyProxy;
-import com.nedap.archie.rm.support.identification.HierObjectId;
-import com.nedap.archie.rm.support.identification.LocatableRef;
+import org.openehr.rm.composition.Action;
+import org.openehr.rm.composition.InstructionDetails;
+import org.openehr.rm.composition.IsmTransition;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.support.identification.HierObjectId;
+import org.openehr.rm.support.identification.LocatableRef;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
-import javax.annotation.Nullable;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class ActionInvariantTest {
 

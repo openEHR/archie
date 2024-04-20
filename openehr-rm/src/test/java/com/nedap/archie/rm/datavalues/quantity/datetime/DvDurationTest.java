@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import org.junit.Test;
+import org.openehr.rm.datavalues.quantity.datetime.DvDuration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

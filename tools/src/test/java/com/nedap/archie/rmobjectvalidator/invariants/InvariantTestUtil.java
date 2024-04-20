@@ -1,16 +1,16 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
 import com.nedap.archie.flattener.OperationalTemplateProvider;
-import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.archetyped.Locatable;
-import com.nedap.archie.rm.composition.Entry;
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.generic.PartySelf;
-import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rm.support.identification.LocatableRef;
-import com.nedap.archie.rm.support.identification.ObjectVersionId;
-import com.nedap.archie.rm.support.identification.TerminologyId;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import org.openehr.rm.archetyped.Archetyped;
+import org.openehr.rm.archetyped.Locatable;
+import org.openehr.rm.composition.Entry;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.generic.PartySelf;
+import org.openehr.rm.support.identification.ArchetypeID;
+import org.openehr.rm.support.identification.LocatableRef;
+import org.openehr.rm.support.identification.ObjectVersionId;
+import org.openehr.rm.support.identification.TerminologyId;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.DummyOperationalTemplateProvider;

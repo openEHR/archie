@@ -1,8 +1,9 @@
 package com.nedap.archie.rm.ehr;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import org.junit.Test;
+import org.openehr.rm.ehr.EhrStatus;
 
 import java.io.IOException;
 import java.io.StringWriter;

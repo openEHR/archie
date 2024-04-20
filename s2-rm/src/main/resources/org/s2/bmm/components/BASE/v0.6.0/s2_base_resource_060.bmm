@@ -1,0 +1,315 @@
+-- 
+-- 	component:   Graphite BMMs
+-- 	description: Graphite BASE Component schema. This file format is based on the BMM specification
+--  				http://www.openEHR.org/releases/BASE/latest/docs/bmm/bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphitehealth.atlassian.net/projects/issues
+-- 	copyright:   Copyright (c) 2023 Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+-- 
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"base_resource">
+rm_release = <"0.6.0">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.6.0.1">
+schema_lifecycle_state = <"stable">
+schema_description = <"S2 Release 0.6.0 BASE model resource package"> 
+schema_author = <"Thomas Beale <thomas.beale@graphite.org>">
+
+------------------------------------------------------
+-- includes
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_base_types_0.6.0">
+	>
+>
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.s2.base"] = <
+		name = <"org.s2.base">
+		packages = <
+			["resource"] = <
+				name = <"resource">
+				classes = <"Authored_resource", "Translation_details", "Resource_description", "Resource_description_item", "Resource_annotations"> 
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	--
+	--------------------- base.resource ------------------
+	--
+
+	["Authored_resource"] = <
+		name = <"Authored_resource">
+		ancestors = <"Any", ...>
+		is_abstract = <True>
+		properties = <
+			["original_language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_language">
+				type = <"Terminology_code">
+				is_mandatory = <True>
+			>
+			["is_controlled"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_controlled">
+				type = <"Boolean">
+			>
+			["translations"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"translations">
+					type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "Translation_details">
+				>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"Resource_description">
+			>
+			["annotations"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"annotations">
+				type = <"Resource_annotations">
+			>
+		>
+	>
+
+	["Translation_details"] = <
+		name = <"Translation_details">
+		ancestors = <"Any", ...>
+		properties = <
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"Terminology_code">
+				is_mandatory = <True>
+			>
+			["author"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"author">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_mandatory = <True>
+			>
+			["accreditation"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"accreditation">
+				type = <"String">
+			>
+			["version_last_translated"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version_last_translated">
+				type = <"String">
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+			["other_contributors"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_contributors">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Resource_description"] = <
+		name = <"Resource_description">
+		ancestors = <"Any">
+		properties = <
+			["original_author"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"original_author">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_mandatory = <True>
+			>
+			["original_namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_namespace">
+				type = <"String">
+			>
+			["other_contributors"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_contributors">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["custodian_namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"custodian_namespace">
+				type = <"String">
+			>
+			["custodian_organisation"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"custodian_organisation">
+				type = <"String">
+			>
+			["copyright"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"copyright">
+				type = <"String">
+			>
+			["licence"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"licence">
+				type = <"String">
+			>
+			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lifecycle_state">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["resource_package_uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"resource_package_uri">
+				type = <"String">
+			>
+			["ip_acknowledgements"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"ip_acknowledgements">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+			["references"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"references">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+			["conversion_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"conversion_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+			["parent_resource"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"parent_resource">
+				type = <"Authored_resource">
+				is_mandatory = <True>
+			>
+			["details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "Resource_description_item">
+				>
+			>
+		>
+	>
+
+	["Resource_description_item"] = <
+		name = <"Resource_description_item">
+		ancestors = <"Any", ...>
+		properties = <
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"Terminology_code">
+				is_mandatory = <True>
+			>
+			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"purpose">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["keywords"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"keywords">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type = <"String">
+			>
+			["misuse"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"misuse">
+				type = <"String">
+			>
+			["original_resource_uri"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"original_resource_uri">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Hash">
+						generic_parameters = <"String", "String">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+		>
+	>
+
+	["Resource_annotations"] = <
+		name = <"Resource_annotations">
+		ancestors = <"Any">
+		properties = <
+			["documentation"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"documentation">
+				type_def = <
+				root_type = <"Hash">
+					generic_parameter_defs = <
+						["K"] = (P_BMM_SIMPLE_TYPE) <
+							type = <"String">
+						>
+						["V"] = (P_BMM_GENERIC_TYPE) <
+							root_type = <"Hash">
+							generic_parameter_defs = <
+								["K"] = (P_BMM_SIMPLE_TYPE) <
+									type = <"String">
+								>
+								["V"] = (P_BMM_GENERIC_TYPE) <
+									root_type = <"Hash">
+									generic_parameters = <"String", "String">
+								>
+							>
+						>
+					>
+				>
+				is_mandatory = <True>
+			>
+		>
+	>
+>

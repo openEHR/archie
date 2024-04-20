@@ -1,7 +1,7 @@
 package com.nedap.archie.kryo;
 
-import com.nedap.archie.rm.datavalues.DvURI;
-import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
+import org.openehr.rm.datavalues.DvURI;
+import org.openehr.rm.datavalues.encapsulated.DvMultimedia;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

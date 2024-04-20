@@ -1,0 +1,342 @@
+-- 
+-- 	component:   Graphite BMMs
+-- 	description: Graphite BASE Component schema. This file format is based on the BMM specification
+--  				http://www.openEHR.org/releases/BASE/latest/docs/bmm/bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphitehealth.atlassian.net/projects/issues
+-- 	copyright:   Copyright (c) 2023 Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+-- 
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"base_foundation_types">
+rm_release = <"0.6.0">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.6.0.1">
+schema_lifecycle_state = <"stable">
+schema_description = <"S2 Release 0.6.0 BASE model foundation types packages"> 
+schema_author = <"Thomas Beale <thomas.beale@graphite.org>">
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.s2.base.foundation_types"] = <
+		name = <"org.s2.base.foundation_types">
+		packages = <
+			["primitive_types"] = <
+				name = <"primitive_types">
+				classes = <"Any", "Comparable", "Numeric", "Comparable_numeric", "Octet", "Byte", "Boolean", "Integer", 
+					"Integer64", "Real", "Double", "Character", "String", "Uri", "Terminology_code", "Terminology_term"
+				>
+			>
+			["structures"] = <
+				name = <"structures">
+				classes = <"List", "Array", "Set", "Hash", "Container">
+			>
+			["interval"] = <
+				name = <"interval">
+				classes = <"Interval", "Multiplicity_interval", "Cardinality">
+			>
+			["time"] = <
+				name = <"time">
+				classes = <"Temporal", "Date", "Time", "Date_time", "Duration">
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- primitive types
+------------------------------------------------------
+
+primitive_types = <
+	["Any"] = <
+		name = <"Any">
+		is_abstract = <True>
+	>
+	["Comparable"] = <
+		name = <"Comparable">
+		is_abstract = <True>
+		documentation = <"Ancestor of types with total order relation defined, i.e. '<' and '='.">
+		ancestors = <"Any">
+	>
+	["Numeric"] = <
+		name = <"Numeric">
+		is_abstract = <True>
+		documentation = <"Ancestor of numeric types.">
+		ancestors = <"Any">
+	>
+	["Comparable_numeric"] = <
+		name = <"Comparable_numeric">
+		is_abstract = <True>
+		documentation = <"Ancestor of ordered numeric types.">
+		ancestors = <"Numeric", "Comparable">
+	>
+	["Byte"] = <
+		name = <"Byte">
+		ancestors = <"Comparable">
+	>
+	["Octet"] = <
+		name = <"Octet">
+		ancestors = <"Comparable">
+	>
+	["Boolean"] = <
+		name = <"Boolean">
+		ancestors = <"Any">
+	>
+	["Integer"] = <
+		name = <"Integer">
+		ancestors = <"Comparable_numeric">
+	>
+	["Integer64"] = <
+		name = <"Integer64">
+		ancestors = <"Comparable_numeric">
+	>
+	["Real"] = <
+		name = <"Real">
+		ancestors = <"Comparable_numeric">
+	>
+	["Double"] = <
+		name = <"Double">
+		ancestors = <"Comparable_numeric">
+	>
+	["Character"] = <
+		name = <"Character">
+		ancestors = <"Comparable">
+	>
+	["String"] = <
+		name = <"String">
+		ancestors = <"Comparable">
+	>
+	["Uri"] = <
+		name = <"Uri">
+		ancestors = <"String">
+	>
+
+	["Temporal"] = <
+		name = <"Temporal">
+		ancestors = <"Comparable">
+		is_abstract = <True>
+		documentation = <"Parent of ISO8601 types.">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Date"] = <
+		name = <"Date">
+		documentation = <"Date type based on IS8601 representation.">
+		ancestors = <"Temporal">
+	>
+
+	["Time"] = <
+		name = <"Time">
+		documentation = <"Time type based on IS8601 representation.">
+		ancestors = <"Temporal">
+	>
+
+	["Date_time"] = <
+		name = <"Date_time">
+		documentation = <"Date Time type based on IS8601 representation.">
+		ancestors = <"Temporal">
+	>
+
+	["Duration"] = <
+		name = <"Duration">
+		documentation = <"Duration type based on IS8601 representation.">
+		ancestors = <"Temporal">
+	>
+
+	["Terminology_code"] = <
+		name = <"Terminology_code">
+		ancestors = <"Any">
+		properties = <
+			["terminology_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"terminology_id">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["terminology_version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"terminology_version">
+				type = <"String">
+			>
+			["code_string"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code_string">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uri">
+				type = <"Uri">
+			>
+		>
+	>
+
+	["Container"] = <
+		name = <"Container">
+		ancestors = <"Any">
+		generic_parameter_defs = <
+			["V"] = <
+				name = <"V">
+			>
+		>
+		is_abstract = <True>
+	>
+
+	["List"] = <
+		name = <"List">
+		ancestors = <"Container">
+		generic_parameter_defs = <
+			["V"] = <
+				name = <"V">
+			>
+		>
+	>
+
+	["Array"] = <
+		name = <"Array">
+		ancestors = <"Container">
+		generic_parameter_defs = <
+			["V"] = <
+				name = <"V">
+			>
+		>
+	>
+
+	["Set"] = <
+		name = <"Set">
+		ancestors = <"Container">
+		generic_parameter_defs = <
+			["V"] = <
+				name = <"V">
+			>
+		>
+	>
+
+	["Interval"] = <
+		name = <"Interval">
+		documentation = <"Type defining an interval of any ordered type.">
+		ancestors = <"Any">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Comparable">
+			>
+		>
+		properties = <
+			["lower"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"lower">
+				type = <"T">
+			>
+			["upper"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"upper">
+				type = <"T">
+			>
+			["lower_unbounded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lower_unbounded">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["upper_unbounded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"upper_unbounded">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["lower_included"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lower_included">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["upper_included"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"upper_included">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+    ["Cardinality"] = (P_BMM_CLASS) <
+        name = <"Cardinality">
+        ancestors = <"Any", ...>
+        properties = <
+            ["is_ordered"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"is_ordered">
+				type = <"Boolean">
+                is_mandatory = <True>
+            >
+            ["is_unique"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"is_unique">
+				type = <"Boolean">
+                is_mandatory = <True>
+            >
+            ["interval"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"interval">
+				type = <"Multiplicity_interval">
+                is_mandatory = <True>
+            >
+        >
+    >
+
+    ["Multiplicity_interval"] = (P_BMM_CLASS) <
+        name = <"Multiplicity_interval">
+		ancestor_defs = <
+			["Interval<Integer>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"Interval">
+				generic_parameters = <"Integer">
+			>
+		>
+    >
+
+
+	["Hash"] = <
+		name = <"Hash">
+		documentation = <"Type defining Hash table / hash map structure, whose type parameters V and K represent a value type and an Comparable key type respectively.">
+		ancestors = <"Container">
+		generic_parameter_defs = <
+			["K"] = <
+				name = <"K">
+				conforms_to_type = <"Comparable">
+			>
+			["V"] = <
+				name = <"V">
+			>
+		>
+	>
+>
+
+class_definitions = <
+	["Terminology_term"] = <
+		name = <"Terminology_term">
+		ancestors = <"Any">
+		properties = <
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["concept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"concept">
+				type = <"Terminology_code">
+				is_mandatory = <True>
+			>
+		>
+	>
+>

@@ -1,0 +1,421 @@
+-- 
+-- 	component:   Graphite BMMs
+-- 	description: Graphite BASE Component schema. This file format is based on the BMM specification
+--  				http://www.openEHR.org/releases/BASE/latest/docs/bmm/bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphitehealth.atlassian.net/projects/issues
+-- 	copyright:   Copyright (c) 2023 Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+-- 
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"base_base_types">
+rm_release = <"0.6.0">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.6.0.1">
+schema_lifecycle_state = <"stable">
+schema_description = <"S2 Release 0.6.0 BASE model base types packages">
+schema_author = <"Thomas Beale <thomas.beale@graphite.org>">
+
+------------------------------------------------------
+-- includes
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_data_types_0.6.0">
+	>
+>
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.s2.base.base_types"] = <
+		name = <"org.s2.base.base_types">
+		packages = <
+			["definitions"] = <
+				name = <"definitions">
+				classes = <"Validity_kind", "Version_status", "Sample_function_kind", "Trend_kind">
+			>
+			["identification"] = <
+				name = <"identification">
+				classes = <"Object_ref", "Object_id", "Primitive_id", "Locatable_ref",
+					"Artifact_id", "Terminology_id", "Archetype_id", "Object_version_id", 
+					"Version_tree_id", "Internet_id", "Uuid", "Iso_oid"
+				>
+			>
+			["archetyped"] = <
+				name = <"archetyped">
+				classes = <"Pathable", "Locatable", "Link", "Archetyped", "Feeder_audit", "Feeder_audit_details">
+			>
+
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	------------------------------------------------------------
+	------------------ base.base_types.identification ---------------
+	------------------------------------------------------------
+
+	["Object_ref"] = <
+		name = <"Object_ref">
+		ancestors = <"Any">
+		properties = <
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"id">
+				type = <"Object_id">
+				is_mandatory = <True>
+			>
+			["namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"namespace">
+				type = <"String">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Locatable_ref"] = <
+		name = <"Locatable_ref">
+		ancestors = <"Object_ref">
+		properties = <
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"id">
+				type = <"Object_version_id">
+				is_mandatory = <True>
+			>
+			["path"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"path">
+				type = <"String">
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+	["Object_id"] = <
+		name = <"Object_id">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Artifact_id"] = <
+		name = <"Artifact_id">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Terminology_id"] = <
+		name = <"Terminology_id">
+		ancestors = <"Artifact_id">
+	>
+	
+	
+	["Archetype_id"] = <
+		name = <"Archetype_id">
+		ancestors = <"Artifact_id">
+	>
+	
+	["Object_version_id"] = <
+		name = <"Object_version_id">
+		ancestors = <"Object_id">
+	>
+
+	
+	["Version_tree_id"] = <
+		name = <"Version_tree_id">
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["Primitive_id"] = <
+		name = <"Primitive_id">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["Internet_id"] = <
+		name = <"Internet_id">
+		ancestors = <"Primitive_id">
+	>
+	
+	["Iso_oid"] = <
+		name = <"Iso_oid">
+		ancestors = <"Primitive_id">
+	>
+	
+	["Uuid"] = <
+		name = <"Uuid">
+		ancestors = <"Primitive_id">
+	>
+	
+	--
+	--------------------- base.base_types.definitions ------------------
+	--
+
+	["Validity_kind"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Validity_kind">
+		ancestors = <"String">
+		item_names = <"mandatory", "optional", "prohibited">
+	>
+
+	["Version_status"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Version_status">
+		ancestors = <"String">
+		item_names = <"alpha", "beta", "release_candidate", "released", "build">
+	>
+
+	["Sample_function_kind"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Sample_function_kind">
+		ancestors = <"String">
+		item_names = <"actual", "minimum", "maximum", "mean", "mode", "median">
+	>
+
+	["Trend_kind"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Trend_kind">
+		ancestors = <"String">
+		item_names = <"decrease", "increase", "change">
+	>
+
+	--
+	--------------------- base.base_types.archetyped ------------------
+	--
+	["Pathable"] = <
+		name = <"Pathable">
+		is_abstract = <True>
+		ancestors = <"Any">
+	>
+
+	["Locatable"] = <
+		name = <"Locatable">
+		is_abstract = <True>
+		ancestors = <"Pathable">
+		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"Uuid">
+				is_im_infrastructure = <True>
+			>
+			["archetype_node_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"archetype_node_id">
+				type = <"String">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"Terminology_term">
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["archetype_details"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"archetype_details">
+				type = <"Archetyped">
+				is_im_infrastructure = <True>
+			>
+			["feeder_audit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"feeder_audit">
+				type = <"Feeder_audit">
+				is_im_runtime = <True>
+			>
+			["links"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"links">
+				type_def = <
+					container_type = <"List">
+					type = <"Link">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["Link"] = <
+		name = <"Link">
+		ancestors = <"Any">
+		properties = <
+			["meaning"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"meaning">
+				type = <"Terminology_term">
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"Terminology_term">
+				is_mandatory = <True>
+			>
+			["target"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"target">
+				type = <"Uri">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Archetyped"] = <
+		name = <"Archetyped">
+		ancestors = <"Any">
+		properties = <
+			["archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"archetype_id">
+				type = <"Archetype_id">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["template_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"template_id">
+				type = <"Archetype_id">
+				is_im_infrastructure = <True>
+			>
+			["rm_version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"rm_version">
+				type = <"String">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+	["Feeder_audit"] = <
+		name = <"Feeder_audit">
+		ancestors = <"Any">
+		properties = <
+			["originating_system_item_ids"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"originating_system_item_ids">
+				type_def = <
+					container_type = <"List">
+					type = <"Rwe_id_ref">
+				>
+				cardinality = <|>=0|>
+				is_im_runtime = <True>
+			>
+			["feeder_system_item_ids"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"feeder_system_item_ids">
+				type_def = <
+					container_type = <"List">
+					type = <"Rwe_id_ref">
+				>
+				cardinality = <|>=0|>
+				is_im_runtime = <True>
+			>
+			["original_content"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_content">
+				type = <"Encapsulated">
+				is_im_runtime = <True>
+			>
+			["original_code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_code">
+				type = <"Terminology_code">
+				is_im_runtime = <True>
+			>
+			["originating_system_audit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"originating_system_audit">
+				type = <"Feeder_audit_details">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["feeder_system_audit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"feeder_system_audit">
+				type = <"Feeder_audit_details">
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+	["Feeder_audit_details"] = <
+		name = <"Feeder_audit_details">
+		ancestors = <"Any">
+		properties = <
+			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system_id">
+				type = <"String">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["location"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"location">
+				type = <"Party_identified">
+				is_im_runtime = <True>
+			>
+			["provider"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"provider">
+				type = <"Party_identified">
+				is_im_runtime = <True>
+			>
+			["subject"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"subject">
+				type = <"Party_proxy">
+				is_im_runtime = <True>
+			>
+			["time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time">
+				type = <"Date_time">
+				is_im_runtime = <True>
+			>
+			["version_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["other_details"] = (P_BMM_INDEXED_CONTAINER_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					container_type = <"Hash">
+					index_type = <"String">
+					type = <"String">
+				>
+			>			
+		>
+	>
+
+>

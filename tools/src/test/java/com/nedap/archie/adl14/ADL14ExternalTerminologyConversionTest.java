@@ -6,7 +6,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.utils.AOMUtils;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,11 +22,11 @@ public class ADL14ExternalTerminologyConversionTest {
     @Test
     public void terminologyBindingsConverted() throws IOException, ADLParseException {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(AllMetaModelsInitialiser.getMetaModels(), conversionConfiguration);
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
         try(InputStream stream = getClass().getResourceAsStream("/adl14/openEHR-EHR-CLUSTER.value_binding.v1.0.0.adl")) {
             ADL2ConversionResultList result = converter.convert(
-                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration)));
+                    Lists.newArrayList(new ADL14Parser(AllMetaModelsInitialiser.getMetaModels()).parse(stream, conversionConfiguration)));
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             CTerminologyCode termCodeConstraint = converted.itemAtPath("/items/value/property[1]");
             String atCode = termCodeConstraint.getConstraint().get(0);
@@ -43,10 +43,10 @@ public class ADL14ExternalTerminologyConversionTest {
     @Test
     public void twoTermbindingsInOneConstraint() throws Exception {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(AllMetaModelsInitialiser.getMetaModels(), conversionConfiguration);
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.termbinding.v1.adl")) {
-            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            ADL14Parser parser = new ADL14Parser(AllMetaModelsInitialiser.getMetaModels());
             ADL2ConversionResultList result = converter.convert(
                     Lists.newArrayList(parser.parse(stream, conversionConfiguration)));
             assertFalse(parser.getErrors().hasErrors());

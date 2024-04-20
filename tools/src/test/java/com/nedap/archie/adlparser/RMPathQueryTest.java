@@ -8,17 +8,17 @@ import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
-import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.composition.Composition;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import org.openehr.rm.archetyped.Pathable;
+import org.openehr.rm.composition.Composition;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datavalues.DvText;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.util.List;
 
@@ -121,7 +121,7 @@ public class RMPathQueryTest {
         inMemoryFullArchetypeRepository.addArchetype(archetype);
         Archetype archetype_specialised = TestUtil.parseFailOnErrors("/basic_specialised.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
-        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
@@ -136,7 +136,7 @@ public class RMPathQueryTest {
         inMemoryFullArchetypeRepository.addArchetype(archetype);
         Archetype archetype_specialised = TestUtil.parseFailOnErrors("/basic_specialised.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
-        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
@@ -153,7 +153,7 @@ public class RMPathQueryTest {
         Archetype archetype_specialised_twice = TestUtil.parseFailOnErrors("/basic_specialised2.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised_twice);
-        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised_twice);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 

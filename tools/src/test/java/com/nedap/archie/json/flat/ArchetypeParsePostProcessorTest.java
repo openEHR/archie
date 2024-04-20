@@ -3,7 +3,7 @@ package com.nedap.archie.json.flat;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
-import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import org.junit.Test;
 
 import java.io.InputStream;

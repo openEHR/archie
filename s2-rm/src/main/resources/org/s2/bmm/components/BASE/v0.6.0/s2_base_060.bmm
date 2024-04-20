@@ -1,0 +1,46 @@
+-- 
+-- 	component:   Graphite BMMs
+-- 	description: Graphite BASE Component schema. This file format is based on the BMM specification
+--  				http://www.openEHR.org/releases/BASE/latest/docs/bmm/bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphitehealth.atlassian.net/projects/issues
+-- 	copyright:   Copyright (c) 2023 Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+-- 
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"base">
+rm_release = <"0.6.0">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.6.0.1">
+schema_lifecycle_state = <"trial">
+schema_description = <"S2 Release 0.6.0 BASE model foundation and base types packages"> 
+schema_author = <"Thomas Beale <thomas.beale@graphitehealth.io>">
+
+------------------------------------------------------
+-- includes
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_resource_0.6.0">
+	>
+	["2"] = <
+		id = <"s2_base_change_control_0.6.0">
+	>
+	["3"] = <
+		id = <"s2_base_patterns_0.6.0">
+	>	
+>

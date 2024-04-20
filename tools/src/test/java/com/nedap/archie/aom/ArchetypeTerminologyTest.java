@@ -2,14 +2,13 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParseException;
-import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
 import org.junit.After;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 
@@ -32,11 +31,11 @@ public class ArchetypeTerminologyTest {
         repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.included.v1.0.0.adls"));
 
         //check that they are valid, just to be sure
-        repository.compile(BuiltinReferenceModels.getMetaModels());
+        repository.compile(AllMetaModelsInitialiser.getMetaModels());
         repository.getAllValidationResults().forEach(s -> assertTrue(s.getErrors().toString(), s.getErrors().isEmpty()));
 
         //create operational template
-        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.parent.v1.0.0"));
 
         //and check the getTerm() functionality

@@ -1,0 +1,386 @@
+-- 
+-- 	component:   Graphite Reference Model BMM
+-- 	description: Graphite Reference Model component formal expression. This file is an ODIN serialisation of
+--                   the BMM object meta-model classes found at 
+--                   https://www.openEHR.org/releases/LANG/latest/p_bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphite.atlassian.net/issues/
+-- 	copyright:   Copyright (c) 2023- Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+--
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"care">
+rm_release = <"0.6.5">
+
+model_name = <"EHR">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.6.5.1">
+schema_lifecycle_state = <"trial">
+schema_description = <"S2 Release 0.6.5 CARE schema">
+schema_author = <"Thomas Beale <thomas.beale@graphitehealth.io>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_care_ehr_0.6.5">
+	>
+	["2"] = <
+		id = <"s2_care_entry_0.6.5">
+	>	
+>
+
+------------------------------------------------------
+-- packages - software structure
+------------------------------------------------------
+
+packages = <
+	["org.s2.care"] = <
+		name = <"org.s2.care">
+		packages = <
+			["ehr"] = <
+				name = <"ehr">
+				classes = <"Ehr", "Ehr_access", "Ehr_status", "Access_control_settings", "Folder",
+					"Versioned_composition", "Versioned_folder", "Versioned_ehr_access", "Versioned_ehr_status"
+				>
+			>
+			["composition"] = <
+				name = <"composition">
+				classes = <"Composition", "Event_context", "Content_item", "Section">
+			>
+
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	--
+	--------------------- care.ehr ------------------
+	--
+	["Ehr"] = <
+		name = <"Ehr">
+		properties = <
+			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system_id">
+				type = <"Internet_id">
+				is_mandatory = <True>
+			>
+			["ehr_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"ehr_id">
+				type = <"Uuid">
+				is_mandatory = <True>
+			>
+			["time_created"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time_created">
+				type = <"Date_time">
+				is_mandatory = <True>
+			>
+			["ehr_access"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"ehr_access">
+				type = <"Object_ref">
+				is_mandatory = <True>
+			>
+			["ehr_status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"ehr_status">
+				type = <"Object_ref">
+				is_mandatory = <True>
+			>
+			["directory"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"directory">
+				type = <"Object_ref">
+			>
+			["folders"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"folders">
+				type_def = <
+					container_type = <"List">
+					type = <"Object_ref">
+				>
+				cardinality = <|>=0|>
+			>
+			["compositions"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"compositions">
+				type_def = <
+					container_type = <"List">
+					type = <"Object_ref">
+				>
+				cardinality = <|>=0|>
+			>
+			["contributions"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contributions">
+				type_def = <
+					container_type = <"List">
+					type = <"Object_ref">
+				>
+				cardinality = <|>=0|>
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Ehr_access"] = <
+		name = <"Ehr_access">
+		ancestors = <"Locatable">
+		properties = <
+			["settings"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"settings">
+				type = <"Access_control_settings">
+			>
+		>
+	>
+
+	["Access_control_settings"] = <
+		name = <"Access_control_settings">
+		ancestors = <"Any">
+		is_abstract = <True>
+	>
+
+	["Ehr_status"] = <
+		name = <"Ehr_status">
+		ancestors = <"Locatable">
+		properties = <
+			["subject"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"subject">
+				type = <"Party_self">
+				is_mandatory = <True>
+			>
+			["is_queryable"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_queryable">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["is_modifiable"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_modifiable">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["other_details"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+		>
+	>
+
+	--
+	--------------------- care.composition ------------------
+	--
+
+	["Composition"] = <
+		name = <"Composition">
+		ancestors = <"Locatable">
+		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"Uuid">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"Terminology_code">
+				-- value_constraint = <"ISO::639-2">
+				is_mandatory = <True>
+			>
+			["territory"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"territory">
+				type = <"Terminology_code">
+				-- value_constraint = <"ISO::3166">
+				is_mandatory = <True>
+			>
+			["category"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"category">
+				type = <"Terminology_term">
+				-- value_constraint = <"openehr::Comp-category">
+				is_mandatory = <True>
+			>
+			["composer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"composer">
+				type = <"Party_proxy">
+				is_mandatory = <True>
+			>
+			["context"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"context">
+				type = <"Event_context">
+			>
+			["content"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"content">
+				type_def = <
+					container_type = <"List">
+					type = <"Content_item">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["Event_context"] = <
+		name = <"Event_context">
+		ancestors = <"Locatable">
+		properties = <
+			["health_care_facility"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"health_care_facility">
+				type = <"Party_identified">
+			>
+			["start_time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"start_time">
+				type = <"Date_time">
+				is_mandatory = <True>
+			>
+			["end_time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"end_time">
+				type = <"Date_time">
+			>
+			["participations"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"participations">
+				type_def = <
+					container_type = <"List">
+					type = <"Participation">
+				>
+				cardinality = <|>=1|>
+			>
+			["location"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"location">
+				type = <"String">
+			>
+			["setting"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"setting">
+				type = <"Terminology_term">
+				is_mandatory = <True>
+			>
+			["other_context"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_context">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+		>
+	>
+
+	------------------------------------------------------------
+	---------------------- care.ehr.directory -------------------
+	------------------------------------------------------------
+
+	["Folder"] = <
+		name = <"Folder">
+		ancestors = <"Locatable">
+		properties = <
+			["folders"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"folders">
+				type_def = <
+					container_type = <"List">
+					type = <"Folder">
+				>
+			>
+			["items"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"items">
+				type_def = <
+					container_type = <"List">
+					type = <"Object_ref">
+				>
+			>
+			["details"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"details">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+		>
+	>
+
+ 	["Versioned_ehr_access"] = <
+ 		name = <"Versioned_ehr_access">
+ 		ancestor_defs = <
+			["Versioned_object<Folder>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"Versioned_object">
+				generic_parameters = <"Folder">
+			>
+		>
+ 	>
+ 
+ 	["Versioned_ehr_status"] = <
+ 		name = <"Versioned_ehr_status">
+ 		ancestor_defs = <
+			["Versioned_object<Folder>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"Versioned_object">
+				generic_parameters = <"Folder">
+			>
+		>
+ 	>
+ 
+ 	["Versioned_composition"] = <
+ 		name = <"Versioned_composition">
+ 		ancestor_defs = <
+			["Versioned_object<Folder>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"Versioned_object">
+				generic_parameters = <"Folder">
+			>
+		>
+ 	>
+ 
+ 	["Versioned_folder"] = <
+ 		name = <"Versioned_folder">
+ 		ancestor_defs = <
+			["Versioned_object<Folder>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"Versioned_object">
+				generic_parameters = <"Folder">
+			>
+		>
+ 	>
+ 
+
+
+
+	--
+	--------------------- care.composition.content ------------------
+	--
+
+	["Content_item"] = <
+		name = <"Content_item">
+		ancestors = <"Locatable">
+		is_abstract = <True>
+	>
+
+	--
+	--------------- care.composition.content.navigation -------------
+	--
+
+	["Section"] = <
+		name = <"Section">
+		ancestors = <"Content_item">
+		properties = <
+			["items"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"items">
+				type_def = <
+					container_type = <"List">
+					type = <"Content_item">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+>

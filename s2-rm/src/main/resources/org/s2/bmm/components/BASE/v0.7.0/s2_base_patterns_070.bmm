@@ -1,0 +1,237 @@
+-- 
+-- 	component:   Graphite Reference Model BMM
+-- 	description: Graphite Reference Model component formal expression. This file is an ODIN serialisation of
+--                   the BMM object meta-model classes found at 
+--                   https://www.openEHR.org/releases/LANG/latest/p_bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphite.atlassian.net/issues/
+-- 	copyright:   Copyright (c) 2023- Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+--
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+schema_name = <"base_patterns">
+rm_publisher = <"s2">
+rm_release = <"0.7.0">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.7.0.1">
+schema_lifecycle_state = <"trial">
+schema_description = <"S2 Release 0.7.0 structures schema">
+schema_author = <"Thomas Beale <thomas.beale@graphitehealth.io>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_model_support_0.7.0">
+	>
+>
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+
+packages = <
+	["org.s2.base.patterns"] = <
+		name = <"org.s2.base.patterns">
+        packages = <
+            ["data_structures"] = <
+                name = <"data_structures">
+		        classes = <"Node", "Event", "Point_event", "Interval_event">
+		    >
+			["participation"] = <
+				name = <"participation">
+				classes = <"Participation", "Party_proxy", "Party_identified", "Party_related", "Party_self">
+			>
+		>
+	>
+>
+
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	--
+	--------------------- base.patterns.data_structures ------------------
+	--
+
+	["Node"] = <
+		name = <"Node">
+		ancestors = <"Locatable">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"Data_value">
+			>
+			["original_value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_value">
+				type = <"Data_value">
+			>
+			["null_flavour"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"null_flavour">
+				type = <"Terminology_term">
+			>
+			["null_reason"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"null_reason">
+				type = <"Text">
+			>
+			["items"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"items">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+		>
+	>
+
+	["Event"] = <
+		name = <"Event">
+		ancestors = <"Locatable">
+		is_abstract = <True>
+		properties = <
+			["time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time">
+				type = <"Date_time">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["items"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"items">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["Point_event"] = <
+		name = <"Point_event">
+		ancestors = <"Event">
+	>
+
+	["Interval_event"] = <
+		name = <"Interval_event">
+		ancestors = <"Event">
+		properties = <
+			["width"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"width">
+				type = <"Duration">
+				is_mandatory = <True>
+			>
+			["sample_count"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"sample_count">
+				type = <"Integer">
+				is_im_runtime = <True>
+			>
+			["sample_function"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"sample_function">
+				type = <"Sample_function_kind">
+			>
+		>
+	>
+
+	--
+	--------------------- base.patterns.participation ------------------
+	--
+
+	["Participation"] = <
+		name = <"Participation">
+		ancestors = <"Any">
+		properties = <
+			["function"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"function">
+				type = <"String">
+				-- value_constraint = <"openEHR::participation_function">
+				is_mandatory = <True>
+			>
+			["time"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date_time">
+				>
+				is_im_runtime = <True>
+			>
+			["mode"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"mode">
+				type = <"Terminology_term">
+				-- value_constraint = <"openEHR::participation_mode">
+			>
+			["performer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"performer">
+				type = <"Party_proxy">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Party_proxy"] = <
+		name = <"Party_proxy">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["external_ref"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"external_ref">
+				type = <"Object_ref">
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+	["Party_identified"] = <
+		name = <"Party_identified">
+		ancestors = <"Party_proxy">
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["identifiers"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifiers">
+				type_def = <
+					container_type = <"List">
+					type = <"Rwe_id_ref">
+				>
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+	["Party_related"] = <
+		name = <"Party_related">
+		ancestors = <"Party_identified">
+		properties = <
+			["relationship"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"relationship">
+				type = <"Terminology_term">
+				-- value_constraint = <"openEHR::subject_relationship">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Party_self"] = <
+		name = <"Party_self">
+		ancestors = <"Party_proxy">
+	>
+
+>

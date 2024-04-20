@@ -1,6 +1,6 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
-import com.nedap.archie.rm.datavalues.DvIdentifier;
+import org.openehr.rm.datavalues.DvIdentifier;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 

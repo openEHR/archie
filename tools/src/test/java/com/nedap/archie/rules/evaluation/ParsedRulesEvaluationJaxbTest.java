@@ -1,9 +1,9 @@
 package com.nedap.archie.rules.evaluation;
 
-import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
-import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
+import org.openehr.rm.archetyped.Pathable;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Test;
 
 import java.util.List;

@@ -3,18 +3,18 @@ package com.nedap.archie.xml;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.query.RMQueryContext;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
-import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import org.openehr.rm.datavalues.quantity.datetime.DvDate;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.datavalues.quantity.datetime.DvTime;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import javax.xml.bind.Marshaller;
 import java.io.StringReader;
@@ -41,7 +41,7 @@ public class JAXBRMRoundTripTest {
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        parser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
     }
 
     @Test

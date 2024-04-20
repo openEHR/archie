@@ -1,0 +1,362 @@
+-- 
+-- 	component:   Graphite Reference Model BMM
+-- 	description: Graphite Reference Model component formal expression. This file is an ODIN serialisation of
+--                   the BMM object meta-model classes found at 
+--                   https://www.openEHR.org/releases/LANG/latest/p_bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphite.atlassian.net/issues/
+-- 	copyright:   Copyright (c) 2023- Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+--
+
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"entity">
+rm_release = <"0.6.0">
+
+model_name = <"ENTITY">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.6.0.1">
+schema_lifecycle_state = <"development">
+schema_description = <"S2 Release 0.6.0 Entity model schema"> 
+schema_author = <"Thomas Beale <thomas.beale@graphitehealth.io>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_0.6.0">
+	>
+>
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.s2.entity"] = <
+		name = <"org.s2.entity">
+		classes = <"Entity", "Entity_relationship">
+		packages = <
+			["social_entity"] = <
+				name = <"social_entity">
+				classes = <"Social_entity", "Party", "Persona", "Person", "Organisation", "Org_unit", "Org_entity", 
+							"Agent", "Aggregate_agent", "Individual_agent", "Automaton", "Team", "Party_relationship", "Capability", "Accountability", 
+							"Contact", "Address", "Party_identity">
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	["Entity"] = <
+		name = <"Entity">
+		ancestors = <"Locatable">
+		is_abstract = <True>
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Item">
+				>
+			>
+		>
+	>
+
+	["Entity_relationship"] = <
+		name = <"Entity_relationship">
+		ancestors = <"Locatable">
+		is_abstract = <True>
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"Terminology_term">
+				is_mandatory = <True>
+			>
+			["source"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"source">
+				type = <"Object_ref">
+				is_mandatory = <True>
+			>
+			["target"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"target">
+				type = <"Object_ref">
+				is_mandatory = <True>
+			>
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Item">
+				>
+			>
+			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time_validity">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date">
+				>
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+	["Social_entity"] = <
+		name = <"Social_entity">
+		ancestors = <"Entity">
+		is_abstract = <True>
+	>
+
+	["Party"] = <
+		name = <"Party">
+		is_abstract = <True>
+		ancestors = <"Social_entity">
+		properties = <
+			["legal_status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"legal_status">
+				type = <"String">
+			>
+			["identities"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identities">
+				type_def = <
+					container_type = <"List">
+					type = <"Party_identity">
+				>
+				is_mandatory = <True>
+				cardinality = <|>=1|>
+			>
+			["contacts"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contacts">
+				type_def = <
+					container_type = <"Set">
+					type = <"Contact">
+				>
+				cardinality = <|>=1|>
+			>
+			["accountability_types"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"accountability_types">
+				type_def = <
+					container_type = <"List">
+					type = <"Accountability">
+				>
+			>
+		>
+	>
+    
+	["Party_identity"] = <
+		name = <"Party_identity">
+		ancestors = <"Locatable">
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Item">
+				>
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["Contact"] = <
+		name = <"Contact">
+		ancestors = <"Locatable">
+		properties = <
+			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time_validity">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date">
+				>
+				is_im_runtime = <True>
+			>
+			["addresses"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"addresses">
+				type_def = <
+					container_type = <"List">
+					type = <"Address">
+				>
+			>
+		>
+	>
+	
+	["Address"] = <
+		name = <"Address">
+		ancestors = <"Locatable">
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Item">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+	
+	["Agent"] = <
+		name = <"Agent">
+		is_abstract = <True>
+		ancestors = <"Party">
+		properties = <
+			["personas"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"personas">
+				type_def = <
+					container_type = <"List">
+					type = <"Persona">
+				>
+				cardinality = <|>=1|>
+			>
+			["languages"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"languages">
+				type_def = <
+					container_type = <"List">
+					type = <"Terminology_term">
+				>
+			>
+		>
+	>
+
+	["Aggregate_agent"] = <
+		name = <"Aggregate_agent">
+		ancestors = <"Agent">
+		is_abstract = <True>
+	>
+
+	["Individual_agent"] = <
+		name = <"Individual_agent">
+		ancestors = <"Agent">
+		is_abstract = <True>
+	>
+
+	["Org_entity"] = <
+		name = <"Org_entity">
+		ancestors = <"Aggregate_agent">
+		is_abstract = <True>
+	>
+
+	["Org_unit"] = <
+		name = <"Org_unit">
+		ancestors = <"Org_entity">
+	>
+
+	["Organisation"] = <
+		name = <"Organisation">
+		ancestors = <"Org_entity">
+	>
+
+	["Team"] = <
+		name = <"Team">
+		ancestors = <"Aggregate_agent">
+	>
+
+	["Person"] = <
+		name = <"Person">
+		ancestors = <"Individual_agent">
+	>
+
+	["Automaton"] = <
+		name = <"Automaton">
+		ancestors = <"Individual_agent">
+	>
+
+	["Persona"] = <
+		name = <"Persona">
+		ancestors = <"Party">
+		properties = <
+			["performer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"performer">
+				type = <"Object_ref">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time_validity">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date">
+				>
+				is_im_runtime = <True>
+			>
+			["capabilities"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"capabilities">
+				type_def = <
+					container_type = <"List">
+					type = <"Capability">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["Capability"] = <
+		name = <"Capability">
+		ancestors = <"Locatable">
+		properties = <
+			["credentials"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"credentials">
+				type_def = <
+					container_type = <"List">
+					type = <"Item">
+				>
+				cardinality = <|>=1|>
+			>
+			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time_validity">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date">
+				>
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+	["Party_relationship"] = <
+		name = <"Party_relationship">
+		ancestors = <"Entity_relationship">
+		properties = <
+			["scoper"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"scoper">
+				type = <"Accountability">
+			>
+		>
+	>
+
+	["Accountability"] = <
+		name = <"Accountability">
+		ancestors = <"Locatable">
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Item">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+>
+

@@ -1,6 +1,6 @@
 package com.nedap.archie.adl14;
 
-import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 
 import java.io.IOException;
 import java.io.InputStream;

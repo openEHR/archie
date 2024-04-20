@@ -1,10 +1,10 @@
 package com.nedap.archie.xml;
 
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
-import com.nedap.archie.serialisation.xml.OpenEhrRmJAXBUtil;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.datavalues.quantity.datetime.DvDuration;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 

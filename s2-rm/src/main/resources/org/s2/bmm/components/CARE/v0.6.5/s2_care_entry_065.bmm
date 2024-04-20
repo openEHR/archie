@@ -1,0 +1,464 @@
+-- 
+-- 	component:   Graphite Reference Model BMM
+-- 	description: Graphite Reference Model component formal expression. This file is an ODIN serialisation of
+--                   the BMM object meta-model classes found at 
+--                   https://www.openEHR.org/releases/LANG/latest/p_bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphite.atlassian.net/issues/
+-- 	copyright:   Copyright (c) 2023- Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+--
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"care_entry">
+rm_release = <"0.6.5">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.6.5.1">
+schema_lifecycle_state = <"stable">
+schema_description = <"S2 Release 0.6.5 Entry schema">
+schema_author = <"Thomas Beale <thomas.beale@graphitehealth.io>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_patterns_0.7.0">
+	>
+>
+
+------------------------------------------------------
+-- packages - software structure
+------------------------------------------------------
+
+packages = <
+	["org.s2.care"] = <
+		name = <"org.s2.care">
+		packages = <
+			["entry"] = <
+				name = <"entry">
+				classes = <"Entry", "Care_entry", "Care_act_entry", "Admin_entry",
+					"Observation", "Direct_observation",
+					"Indirect_observation", "Lab_result", "Imaging",
+					"Questionnaire_response", "Score",
+					"Assessment",
+					"Order", "Action", "Activity", "State_transition", "Order_tracking",
+					"Order_execution_state", "Order_execution_transition"
+				>
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	--
+	--------------- care.entry -------------
+	--
+
+	["Entry"] = <
+		name = <"Entry">
+		is_abstract = <True>
+		ancestors = <"Content_item">
+		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"Uuid">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time">
+				type = <"Date_time">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"Terminology_code">
+				-- value_constraint = <"ISO::639-2">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["subject"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"subject">
+				type = <"Party_proxy">
+				is_mandatory = <True>
+			>
+			["reporter"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"reporter">
+				type = <"Party_proxy">
+			>
+			["authorization_actions"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"authorization_actions">
+				type_def = <
+					container_type = <"List">
+					type = <"Participation">
+				>
+				cardinality = <|>=0|>
+			>
+			["other_participations"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_participations">
+				type_def = <
+					container_type = <"List">
+					type = <"Participation">
+				>
+				cardinality = <|>=0|>
+			>
+			["workflow_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"workflow_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["comment"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comment">
+				type = <"Text">
+			>
+		>
+	>
+
+	["Admin_entry"] = <
+		name = <"Admin_entry">
+		ancestors = <"Entry">
+		properties = <
+			["data"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"data">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["Care_entry"] = <
+		name = <"Care_entry">
+		is_abstract = <True>
+		documentation = <"Abstract Entry subtype corresponding to any type of Entry in the clinical care cycle.">
+		ancestors = <"Entry">
+		properties = <
+			["qualifiers"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"qualifiers">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+			["guideline_ids"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"guideline_ids">
+				type_def = <
+					container_type = <"List">
+					type = <"Uri">
+				>
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+	["Care_act_entry"] = <
+		name = <"Care_act_entry">
+		is_abstract = <True>
+		documentation = <"Entry type for billable and/or ordered acts">
+		ancestors = <"Care_entry">
+		properties = <
+			["order_tracking"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"order_tracking">
+				type = <"Order_tracking">
+			>
+		>
+	>
+
+	["Order_tracking"] = <
+		name = <"Order_tracking">
+		ancestors = <"Any">
+		properties = <
+			["order_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"order_id">
+				type = <"String">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["requestor_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"requestor_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["filler_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"filler_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["details"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"details">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+		>
+	>
+
+	["Observation"] = <
+		name = <"Observation">
+		documentation = <"Entry subtype used to represent single sample observation.">
+		ancestors = <"Care_act_entry">
+		properties = <
+			["data"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"data">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+			["state"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"state">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+		>
+	>
+
+	["Direct_observation"] = <
+		name = <"Direct_observation">
+		ancestors = <"Observation">
+		properties = <
+			["trend"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"trend">
+				type = <"Trend_kind">
+			>
+			["total_duration"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"total_duration">
+				type = <"Duration">
+			>
+			["data_series"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"data_series">
+				type_def = <
+					container_type = <"List">
+					type = <"Event">
+				>
+			>
+			["state_series"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"state_series">
+				type_def = <
+					container_type = <"List">
+					type = <"Event">
+				>
+			>
+		>
+	>
+
+	["Indirect_observation"] = <
+		name = <"Indirect_observation">
+		ancestors = <"Observation">
+		properties = <
+			["result_time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"result_time">
+				type = <"Date_time">
+				is_im_runtime = <True>
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Lab_result"] = <
+		name = <"Lab_result">
+		ancestors = <"Indirect_observation">
+	>
+
+	["Imaging"] = <
+		name = <"Imaging">
+		ancestors = <"Indirect_observation">
+	>
+
+	["Score"] = <
+		name = <"Score">
+		ancestors = <"Observation">
+	>
+
+	["Questionnaire_response"] = <
+		name = <"Questionnaire_response">
+		documentation = <"Entry subtype used questionnaire responses">
+		ancestors = <"Observation">
+		properties = <
+			["questionnaire_identifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"questionnaire_identifier">
+				is_mandatory = <True>
+				type = <"String">
+			>
+			["questionnaire_version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"questionnaire_version">
+				type = <"String">
+			>
+			["questionnaire_title"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"questionnaire_title">
+				type = <"Terminology_term">
+				is_mandatory = <True>
+			>
+			["completion_status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"completion_status">
+				type = <"Terminology_code">
+			>
+		>
+	>
+
+	["Assessment"] = <
+		name = <"Assessment">
+		ancestors = <"Care_entry">
+		properties = <
+			["data"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"data">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+			["probability"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"probability">
+				type = <"Real">
+			>
+			["certainty"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"certainty">
+				type = <"Terminology_code">
+			>
+		>
+	>
+
+	["Order"] = <
+		name = <"Order">
+		ancestors = <"Care_act_entry">
+		properties = <
+			["narrative"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"narrative">
+				type = <"Text">
+				is_mandatory = <True>
+			>
+			["expiry_time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"expiry_time">
+				type = <"Date_time">
+			>
+			["activities"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"activities">
+				type_def = <
+					container_type = <"List">
+					type = <"Activity">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["Activity"] = <
+		name = <"Activity">
+		ancestors = <"Locatable">
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+			["timing"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timing">
+				type = <"Timing">
+			>
+		>
+	>
+
+	["Action"] = <
+		name = <"Action">
+		ancestors = <"Care_act_entry">
+		properties = <
+			["activity_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"activity_id">
+				type = <"String">
+				is_im_runtime = <True>
+				is_mandatory = <True>
+			>
+			["duration"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"duration">
+				type = <"Duration">
+				is_im_runtime = <True>
+			>
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+			["state_transition"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"state_transition">
+				type = <"State_transition">
+			>
+		>
+	>
+
+	["State_transition"] = <
+		name = <"State_transition">
+		ancestors = <"Locatable">
+		properties = <
+			["current_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"current_state">
+				type = <"Order_execution_state">
+				is_mandatory = <True>
+			>
+			["transition"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"transition">
+				type = <"Order_execution_transition">
+			>
+			["careflow_step"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"careflow_step">
+				type = <"Terminology_term">
+			>
+			["reason"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reason">
+				type_def = <
+					container_type = <"List">
+					type = <"Text">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Order_execution_state"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Order_execution_state">
+		ancestors = <"String">
+		item_names = <"initial", "planned", "scheduled", "postponed", "cancelled", "active", "suspended", "aborted", "completed", "expired">
+	>
+
+	["Order_execution_transition"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Order_execution_transition">
+		ancestors = <"String">
+		item_names = <"initiate", "start", "schedule", "plan_step", "cancel", "do", "resume", "suspend", "suspended_step",
+				"active_step", "scheduled_step", "postponed_step", "finish", "abort", "restore", "postpone", "time_out", "notify_completed",
+				"notify_cancelled", "notify_aborted">
+	>
+
+
+>

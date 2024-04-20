@@ -2,7 +2,7 @@ package org.openehr.referencemodels;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import org.junit.Test;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
@@ -42,16 +42,16 @@ public class RMComparedWithBmmTest {
         typeNamesOverride.put("Interval.lower", "object");
         typeNamesOverride.put("Interval.upper", "object");
 
-        BmmRepository bmmRepository = BuiltinReferenceModels.getBmmRepository();
+        BmmRepository bmmRepository = AllMetaModelsInitialiser.getBmmRepository();
         BmmModel model = bmmRepository.getModel("openehr_rm_1.1.0").getModel();
 
         List<ModelDifference> compared = new BmmComparison(extraParams, typeMap, typeNamesOverride).compare(model, OpenEhrRmInfoLookup.getInstance());
 
         compared.sort(Comparator.comparing((a) -> a.getClassName() + "." + a.getType().toString()));
         compared = compared.stream().filter((diff) -> {
-                BmmClass classDefinition = model.getClassDefinition(diff.getClassName());
-                return classDefinition == null ? true : !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.1.0");
-            }).collect(Collectors.toList());
+            BmmClass classDefinition = model.getClassDefinition(diff.getClassName());
+            return classDefinition == null ? true : !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.1.0");
+        }).collect(Collectors.toList());
 
         Set<ModelDifference> knownDifferences = new HashSet<>();
 
@@ -106,7 +106,6 @@ public class RMComparedWithBmmTest {
 
         //BMM changed VERSION_STATUS to an enum. For now this remains a string until some further major release
         knownDifferences.add(new ModelDifference(ModelDifferenceType.CLASS_MISSING_IN_MODEL, "",  "VERSION_STATUS", null));
-
 
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_ABSOLUTE_QUANTITY", "magnitude"));
         knownDifferences.add(new ModelDifference(ModelDifferenceType.PROPERTY_MISSING_IN_BMM, "", "DV_AMOUNT", "magnitude"));

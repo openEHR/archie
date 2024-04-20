@@ -2,6 +2,7 @@ package com.nedap.archie.rm.datatypes;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openehr.rm.datatypes.CodePhrase;
 
 import static org.junit.Assert.*;
 

@@ -1,30 +1,7 @@
 package com.nedap.archie.diff;
 
-import com.google.common.collect.Lists;
-import com.nedap.archie.diff.Differentiator;
-import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.SiblingOrder;
-import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.flattener.Flattener;
-import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.flattener.SimpleArchetypeRepository;
-import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.Assert.*;
 
 public class SiblingOrderDiffTest {
 

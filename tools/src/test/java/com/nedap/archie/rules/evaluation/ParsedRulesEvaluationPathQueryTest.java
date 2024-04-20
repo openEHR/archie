@@ -1,10 +1,10 @@
 package com.nedap.archie.rules.evaluation;
 
-import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.archetyped.Pathable;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datavalues.quantity.datetime.DvDate;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
 import org.junit.Test;
 
 import java.time.LocalDate;

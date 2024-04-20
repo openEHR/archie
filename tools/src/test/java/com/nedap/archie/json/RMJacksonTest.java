@@ -2,11 +2,11 @@ package com.nedap.archie.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.rm.composition.Composition;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
-import com.nedap.archie.serialisation.json.OpenEhrRmJacksonUtil;
+import org.openehr.rm.composition.Composition;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.datavalues.quantity.datetime.DvDuration;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 

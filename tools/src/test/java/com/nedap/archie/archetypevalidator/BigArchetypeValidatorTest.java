@@ -9,14 +9,15 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.apache.commons.io.FilenameUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openehr.bmm.v2.validation.BmmRepository;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
+import com.nedap.archie.openehr.rminfo.OpenEhrTestRmInfoLookup;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -127,7 +128,7 @@ public class BigArchetypeValidatorTest {
 
     @Test
     public void testFullValidityPackageBmm() {
-        testInner(new MetaModels(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles()));
+        testInner(new MetaModels(null, AllMetaModelsInitialiser.getBmmRepository(), AllMetaModelsInitialiser.getAomProfiles()));
 
     }
 
@@ -136,7 +137,7 @@ public class BigArchetypeValidatorTest {
 
         ReferenceModels models = new ReferenceModels();
         models.registerModel(OpenEhrRmInfoLookup.getInstance());
-        models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrTestRmInfoLookup.getInstance());
 
 //        access.initializeAll(schemaDirectories);
         testInner(new MetaModels(models, (BmmRepository) null));
