@@ -1,8 +1,6 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
-import com.nedap.archie.rm.archetyped.FeederAuditDetails;
-import com.nedap.archie.rminfo.Invariant;
-import com.nedap.archie.rmutil.InvariantUtil;
+import org.openehr.rm.archetyped.FeederAuditDetails;
 import org.junit.Test;
 
 public class FeederAuditDetailsInvariantTest {

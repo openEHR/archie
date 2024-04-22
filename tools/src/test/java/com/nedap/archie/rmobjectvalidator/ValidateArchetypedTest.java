@@ -6,19 +6,19 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.archetyped.FeederAudit;
-import com.nedap.archie.rm.archetyped.FeederAuditDetails;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.Item;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datavalues.quantity.DvProportion;
-import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.archetyped.Archetyped;
+import org.openehr.rm.archetyped.FeederAudit;
+import org.openehr.rm.archetyped.FeederAuditDetails;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.Item;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datavalues.quantity.DvProportion;
+import org.openehr.rm.support.identification.ArchetypeID;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,7 +40,7 @@ public class ValidateArchetypedTest {
         testUtil = new TestUtil();
 
         repo = new InMemoryFullArchetypeRepository();
-        validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), repo);
+        validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), repo);
 
         elementArchetype = parse("/adl2-tests/rmobjectvalidity/openEHR-EHR-ELEMENT.element_with_required_attributes.v1.0.0.adls");
         elementOpt = createOpt(elementArchetype);
@@ -69,7 +69,7 @@ public class ValidateArchetypedTest {
 
         Archetyped details = new Archetyped();
         details.setArchetypeId(new ArchetypeID(itemTreeArchetype.getArchetypeId().toString()));
-        details.setRmVersion(ArchieRMInfoLookup.RM_VERSION);
+        details.setRmVersion(OpenEhrRmInfoLookup.RM_VERSION);
         itemTree.setArchetypeDetails(details);
 
         FeederAudit feederAudit = new FeederAudit();
@@ -87,7 +87,7 @@ public class ValidateArchetypedTest {
     }
 
     private OperationalTemplate createOpt(Archetype archetype) {
-        return (OperationalTemplate) new Flattener(repo, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(archetype);
+        return (OperationalTemplate) new Flattener(repo, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(archetype);
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {

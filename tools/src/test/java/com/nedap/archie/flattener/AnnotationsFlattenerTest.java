@@ -6,7 +6,7 @@ import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.aom.Archetype;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,7 +25,7 @@ public class AnnotationsFlattenerTest {
 
     @Before
     public void setup() throws Exception {
-        models = BuiltinReferenceModels.getAvailableModelInfoLookups();
+        models = AllMetaModelsInitialiser.getNativeRms();
 
         parent = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.to_flatten_parent_with_annotations.v1.adls"));
         child = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.to_flatten_child_with_annotations.v1.adls"));

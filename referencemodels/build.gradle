@@ -4,6 +4,8 @@ dependencies {
   api project(':bmm')
   api project(':odin')
   api project(':aom')
+    implementation project(path: ':openehr-rm')
+  implementation project(path: ':test-rm')
   testImplementation project(':openehr-rm')
   testImplementation project(':archie-utils')
 }

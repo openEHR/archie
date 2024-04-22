@@ -1,10 +1,10 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datastructures;
 
 import com.google.common.collect.Lists;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.ItemTable;
-import com.nedap.archie.rm.datavalues.DvText;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.ItemTable;
+import org.openehr.rm.datavalues.DvText;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 

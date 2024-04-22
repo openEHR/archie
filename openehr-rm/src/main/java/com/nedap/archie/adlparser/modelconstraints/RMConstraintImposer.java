@@ -1,6 +1,6 @@
 package com.nedap.archie.adlparser.modelconstraints;
 
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 
 /**
  * Constraints imposer for the Archie reference model implementation.
@@ -10,7 +10,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 public class RMConstraintImposer extends ReflectionConstraintImposer {
 
     public RMConstraintImposer() {
-        super(ArchieRMInfoLookup.getInstance());
+        super(OpenEhrRmInfoLookup.getInstance());
     }
 
 }

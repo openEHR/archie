@@ -1,11 +1,11 @@
 package com.nedap.archie.rmobjectvalidator.invariants.ehr;
 
-import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.History;
-import com.nedap.archie.rm.datastructures.ItemStructure;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datastructures.PointEvent;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.composition.Observation;
+import org.openehr.rm.datastructures.History;
+import org.openehr.rm.datastructures.ItemStructure;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datastructures.PointEvent;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 

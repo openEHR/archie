@@ -7,7 +7,7 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.util.Map;
 
@@ -30,7 +30,7 @@ public class TerminologyFlattenerExamplesFromSpec {
 
         Archetype specialized = parse("openEHR-EHR-ELEMENT.interval_value_set_specialized.v1.0.0.adls");
 
-        Archetype flat = new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).flatten(specialized);
+        Archetype flat = new Flattener(repository, AllMetaModelsInitialiser.getNativeRms()).flatten(specialized);
         Map<String, ValueSet> valueSets = flat.getTerminology().getValueSets();
 
         CTerminologyCode code = flat.itemAtPath("/name/defining_code[1]");

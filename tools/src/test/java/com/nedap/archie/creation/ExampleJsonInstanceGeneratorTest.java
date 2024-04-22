@@ -14,11 +14,11 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.flattener.OperationalTemplateProvider;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
-import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.json.JsonSchemaValidator;
-import com.nedap.archie.rm.RMObject;
-import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.base.RMObject;
+import org.openehr.rm.composition.Observation;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
@@ -27,7 +27,7 @@ import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.leadpony.justify.api.Problem;
 import org.openehr.bmm.core.BmmModel;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,8 +79,8 @@ public class ExampleJsonInstanceGeneratorTest {
         assertEquals("POINT_EVENT", ((Map) events.get(1)).get(TYPE_PROPERTY_NAME));
         assertEquals("INTERVAL_EVENT", ((Map) events.get(2)).get(TYPE_PROPERTY_NAME));
 
-        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider)
-                .validate(opt, JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
+        List<RMObjectValidationMessage> validated = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), optProvider)
+                .validate(opt, OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
         assertEquals(new ArrayList<>(), validated);
 
     }
@@ -111,7 +111,7 @@ public class ExampleJsonInstanceGeneratorTest {
         configuration.setAlwaysIncludeTypeProperty(true);
         configuration.setFailOnUnknownProperties(true);
         configuration.setSerializeEmptyCollections(false);
-        return JacksonUtil.getObjectMapper(configuration);
+        return OpenEhrRmJacksonUtil.getObjectMapper(configuration);
     }
 
     @Test
@@ -158,8 +158,8 @@ public class ExampleJsonInstanceGeneratorTest {
         int numberCreated = 0, validationFailed = 0, generatedException = 0, jsonSchemaValidationRan = 0, jsonSchemaValidationFailed = 0;
         int secondJsonSchemaValidationRan = 0, reserializedJsonSchemaValidationFailed = 0;
         int rmObjectValidatorRan = 0, rmObjectValidatorFailed = 0;
-        repository.compile(BuiltinReferenceModels.getMetaModels());
-        BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
+        repository.compile(AllMetaModelsInitialiser.getMetaModels());
+        BmmModel model = AllMetaModelsInitialiser.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         JsonSchemaValidator firstValidator = new JsonSchemaValidator(model, true);
         JsonSchemaValidator secondValidator = new JsonSchemaValidator(model,false);
 
@@ -170,13 +170,13 @@ public class ExampleJsonInstanceGeneratorTest {
             if(result.passes()) {
                 String json = "";
                 try {
-                    Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
+                    Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels()).createOperationalTemplate(true);
                     OperationalTemplate template = (OperationalTemplate) flattener.flatten(result.getSourceArchetype());
                     Map<String, Object> example = structureGenerator.generate(template);
                     json = mapper.writeValueAsString(example);
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
-                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider).validate(template, parsed);
+                    List<RMObjectValidationMessage> validated = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), optProvider).validate(template, parsed);
 
                     // Ignore some validations errors caused by unsupported features in the ExampleJsonInstanceGenerator
                     validated.removeIf(m -> m.getType().equals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH)); // Filling the correct archetype in the slot is not supported
@@ -242,7 +242,7 @@ public class ExampleJsonInstanceGeneratorTest {
     }
 
     private ExampleJsonInstanceGenerator createExampleJsonInstanceGenerator() {
-        ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(AllMetaModelsInitialiser.getMetaModels(), "en");
         structureGenerator.setTypePropertyName(TYPE_PROPERTY_NAME);
         return structureGenerator;
     }
@@ -252,7 +252,7 @@ public class ExampleJsonInstanceGeneratorTest {
         Archetype archetype = parse(s2);
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(archetype);
-        return (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true).flatten(archetype);
+        return (OperationalTemplate) new Flattener(repository, AllMetaModelsInitialiser.getMetaModels()).createOperationalTemplate(true).flatten(archetype);
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {

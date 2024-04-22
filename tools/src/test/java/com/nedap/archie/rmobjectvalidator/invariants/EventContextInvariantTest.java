@@ -1,10 +1,8 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
-import com.nedap.archie.rm.composition.EventContext;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rminfo.Invariant;
-import com.nedap.archie.rmutil.InvariantUtil;
+import org.openehr.rm.composition.EventContext;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
 import org.junit.Test;
 
 import java.time.LocalDateTime;

@@ -6,20 +6,21 @@ import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 
 import com.nedap.archie.query.RMQueryContext;
-import com.nedap.archie.rm.RMObject;
-import com.nedap.archie.rm.composition.Composition;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.DvURI;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
-import com.nedap.archie.rm.support.identification.HierObjectId;
-import com.nedap.archie.rm.support.identification.UIDBasedId;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.base.RMObject;
+import org.openehr.rm.composition.Composition;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.datavalues.DvURI;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import org.openehr.rm.datavalues.quantity.datetime.DvDate;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.datavalues.quantity.datetime.DvTime;
+import org.openehr.rm.support.identification.HierObjectId;
+import org.openehr.rm.support.identification.UIDBasedId;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -76,9 +77,9 @@ public class JacksonRMRoundTripTest {
         DvURI uri = queryContext.find("/items['Uri']/value");
         uri.setValue(URI.create("http://test.example.com"));
 
-        String json = JacksonUtil.getObjectMapper().writeValueAsString(cluster);
+        String json = OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(cluster);
         System.out.println(json);
-        Cluster parsedCluster = (Cluster) JacksonUtil.getObjectMapper().readValue(json, Cluster.class);
+        Cluster parsedCluster = (Cluster) OpenEhrRmJacksonUtil.getObjectMapper().readValue(json, Cluster.class);
         RMQueryContext parsedQueryContext = getQueryContext(parsedCluster);
 
         assertThat(parsedQueryContext.<DvText>find("/items['Text']/value").getValue(), is("test-text"));
@@ -93,7 +94,7 @@ public class JacksonRMRoundTripTest {
     }
 
     private RMQueryContext getQueryContext(Cluster cluster) {
-        return new RMQueryContext(ArchieRMInfoLookup.getInstance(), cluster, JAXBUtil.getArchieJAXBContext());
+        return new RMQueryContext(OpenEhrRmInfoLookup.getInstance(), cluster, OpenEhrRmJAXBUtil.getArchieJAXBContext());
     }
 
     @Test
@@ -106,7 +107,7 @@ public class JacksonRMRoundTripTest {
         //include the type property name so we can parse it as an RmObject here.
         config.setAlwaysIncludeTypeProperty(true);
 
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper();
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper();
         String json = objectMapper.writeValueAsString(composition);
 
         Composition parsedComposition = (Composition) objectMapper.readValue(json, Composition.class);
@@ -126,7 +127,7 @@ public class JacksonRMRoundTripTest {
         //unfortunately, we cannot handle two different type propety names
         //that is sort of possible in jackson, but would require overriding internal jackson classes
         standardsCompliant.setTypePropertyName("@type");
-        JacksonUtil.getObjectMapper(standardsCompliant).readValue(stream, RMObject.class);
+        OpenEhrRmJacksonUtil.getObjectMapper(standardsCompliant).readValue(stream, RMObject.class);
 
     }
 
