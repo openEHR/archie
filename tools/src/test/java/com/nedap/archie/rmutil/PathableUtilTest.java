@@ -4,17 +4,18 @@ import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.openehr.rmutil.PathableUtil;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.query.RMQueryContext;
-import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.composition.Composition;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.archetyped.Pathable;
+import org.openehr.rm.composition.Composition;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datastructures.ItemTree;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,7 +37,7 @@ public class PathableUtilTest {
     }
 
     private RMQueryContext getQueryContext() {
-        return new RMQueryContext(ArchieRMInfoLookup.getInstance(), root, JAXBUtil.getArchieJAXBContext());
+        return new RMQueryContext(OpenEhrRmInfoLookup.getInstance(), root, OpenEhrRmJAXBUtil.getArchieJAXBContext());
     }
 
     @Test
@@ -54,7 +55,7 @@ public class PathableUtilTest {
 
         RMQueryContext queryContext = getQueryContext();
 
-        ModelInfoLookup modelInfoLookup = ArchieRMInfoLookup.getInstance();
+        ModelInfoLookup modelInfoLookup = OpenEhrRmInfoLookup.getInstance();
 
         List<RMObjectWithPath> context = new RMPathQuery("/context").findList(modelInfoLookup, composition);
         assertEquals(1, context.size());

@@ -2,14 +2,22 @@ package com.nedap.archie.rminfo;
 
 import com.google.common.reflect.TypeToken;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.base.RMObject;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
 import org.reflections.scanners.Scanners;
+import org.reflections.scanners.SubTypesScanner;
 import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.util.*;
@@ -55,6 +63,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         this.packageName = packageName;
         this.namingStrategy = namingStrategy;
 
+        // add types
         this.classLoader = classLoader;
         Reflections reflections = new Reflections(packageName, Scanners.SubTypes.filterResultsBy(s -> true));
         Set<String> typeNames = reflections.getAllTypes();
@@ -66,6 +75,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                 logger.error("error loading model info lookup", e);
             }
         });
+
         addSuperAndSubclassInfo();
         addAlternativeTypeNames();
         inConstructor = false;
@@ -76,7 +86,10 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         this.addAttributesWithoutField = addAttributesWithoutField;
 
         this.classLoader = classLoader;
+
+        // add types
         addTypes(baseClass);
+
         addSuperAndSubclassInfo();
         addAlternativeTypeNames();
         inConstructor = false;
@@ -93,6 +106,31 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                 this.rmTypeNamesToRmTypeInfo.put(alternativeName, rmTypeNamesToRmTypeInfo.get(originalName));
             }
         }
+    }
+
+    /**
+     * Get the set of classes in a package (recursively) that are also descendants of a base class.
+     * This may be used to generate an appropriate set of classes for specialisations of the addTYpe()
+     * method below.
+     *
+     * @param packageName e.g. "org.openehr"
+     * @param baseClass 'Any' class for the classes in the package of interest
+     * @return Set of matching classes
+     */
+    public Set<Class<?>> findAllClassesInPackage(String packageName, Class<?> baseClass) {
+        Reflections reflections = new Reflections(
+                new ConfigurationBuilder()
+                        .forPackage(packageName)
+                        .setScanners(Scanners.SubTypes
+                                .filterResultsBy(s -> true)
+                        )
+        );
+
+        return reflections.getSubTypesOf (baseClass)
+                .stream()
+                .filter(cl -> !cl.isInterface()                  // ignore interfaces
+                        && !cl.getName().endsWith("$1"))         // ignore anonymous inner classes
+                .collect(Collectors.toSet());
     }
 
     /**

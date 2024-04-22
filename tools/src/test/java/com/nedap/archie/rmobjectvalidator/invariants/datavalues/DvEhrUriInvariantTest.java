@@ -1,7 +1,7 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
-import com.nedap.archie.rm.datavalues.DvEHRURI;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.datavalues.DvEHRURI;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
@@ -29,7 +29,7 @@ public class DvEhrUriInvariantTest {
 
     @Test
     public void invalid2() {
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null);
+        RMObjectValidator validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), (templateId) -> null);
         List<RMObjectValidationMessage> messages = validator.validate(new DvEHRURI(""));
         assertEquals(messages.toString(), 2, messages.size());
 

@@ -1,16 +1,16 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
 import com.nedap.archie.flattener.OperationalTemplateProvider;
-import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.archetyped.Locatable;
-import com.nedap.archie.rm.composition.Entry;
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.generic.PartySelf;
-import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rm.support.identification.LocatableRef;
-import com.nedap.archie.rm.support.identification.ObjectVersionId;
-import com.nedap.archie.rm.support.identification.TerminologyId;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.archetyped.Archetyped;
+import org.openehr.rm.archetyped.Locatable;
+import org.openehr.rm.composition.Entry;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.generic.PartySelf;
+import org.openehr.rm.support.identification.ArchetypeID;
+import org.openehr.rm.support.identification.LocatableRef;
+import org.openehr.rm.support.identification.ObjectVersionId;
+import org.openehr.rm.support.identification.TerminologyId;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
@@ -24,17 +24,17 @@ public class InvariantTestUtil {
     private static final OperationalTemplateProvider optProvider = new DummyOperationalTemplateProvider("example");
 
     public static void assertValid(Object object) {
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider);
+        RMObjectValidator validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), optProvider);
         List<RMObjectValidationMessage> messages = validator.validate(object);
         assertTrue("object should be valid, was not: " + messages, messages.isEmpty());
     }
 
     public static void assertInvariantInvalid(Object object, String invariantName, String path) {
-        assertInvariantInvalid(object, invariantName, ArchieRMInfoLookup.getInstance().getTypeInfo(object.getClass()).getRmName(), path);
+        assertInvariantInvalid(object, invariantName, OpenEhrRmInfoLookup.getInstance().getTypeInfo(object.getClass()).getRmName(), path);
     }
 
     public static void assertInvariantInvalid(Object object, String invariantName, String rmTypeName, String path) {
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider);
+        RMObjectValidator validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), optProvider);
         List<RMObjectValidationMessage> messages = validator.validate(object);
         assertEquals(messages.toString(), 1, messages.size());
         assertEquals("Invariant " + invariantName + " failed on type " + rmTypeName, messages.get(0).getMessage());
@@ -48,7 +48,7 @@ public class InvariantTestUtil {
 
     public static void setArchetypeRootBasics(Locatable locatable) {
         setLocatableBasics(locatable);
-        locatable.setArchetypeDetails(new Archetyped(new ArchetypeID("OpenEHR-EHR-" + ArchieRMInfoLookup.getInstance().getTypeInfo(locatable.getClass()).getRmName() + ".example.v1.0.0"), "1.1.0"));
+        locatable.setArchetypeDetails(new Archetyped(new ArchetypeID("OpenEHR-EHR-" + OpenEhrRmInfoLookup.getInstance().getTypeInfo(locatable.getClass()).getRmName() + ".example.v1.0.0"), "1.1.0"));
     }
 
     public static void setEntryBasics(Entry entry) {

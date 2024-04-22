@@ -19,12 +19,12 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.datetime.DateTimeParsers;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -65,7 +65,7 @@ public class JAXBAOMTest {
                 )));
         valueAttribute.addChild(cDuration);
         StringWriter writer = new StringWriter();
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(archetype, writer);
         String xml = writer.toString();
@@ -81,14 +81,14 @@ public class JAXBAOMTest {
         cTerminologyCode.setConstraintStatus(ConstraintStatus.PREFERRED);
         valueAttribute.addChild(cTerminologyCode);
         StringWriter writer = new StringWriter();
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(archetype, writer);
         String xml = writer.toString();
 
         assertTrue(xml, xml.contains("<constraintStatus>preferred</constraintStatus>"));
 
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(xml));
         CTerminologyCode parsedTerm = (CTerminologyCode) unmarshalled.getDefinition().getAttribute("value").getChildren().get(0);
         assertEquals(cTerminologyCode.getConstraint(), parsedTerm.getConstraint());
@@ -119,7 +119,7 @@ public class JAXBAOMTest {
                 "    <terminology/>\n" +
                 "    <otherMetaData/>\n" +
                 "</archetype>";
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         AuthoredArchetype unmarshalled = (AuthoredArchetype) unmarshaller.unmarshal(new StringReader(xml));
         CDuration parsedDuration = unmarshalled.itemAtPath("/value[1]");
         Interval<TemporalAmount> constraint = parsedDuration.getConstraint().get(0);
@@ -133,7 +133,7 @@ public class JAXBAOMTest {
     public void rmOverlay() throws Exception {
         Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
 
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         StringWriter writer = new StringWriter();
 
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -158,7 +158,7 @@ public class JAXBAOMTest {
                 "        </rm_visibility>\n" +
                 "    </rm_overlay>"));
 
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
 
         assertEquals(VisibilityType.HIDE, unmarshalled.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
@@ -172,7 +172,7 @@ public class JAXBAOMTest {
         archetype.getOtherMetaData().put("test key", "test value");
         archetype.getOtherMetaData().put("second test key", "second test value");
 
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         StringWriter writer = new StringWriter();
 
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -181,7 +181,7 @@ public class JAXBAOMTest {
         assertTrue(writer.toString().contains("<other_meta_data id=\"test key\">test value</other_meta_data>"));
         assertTrue(writer.toString().contains("<other_meta_data id=\"second test key\">second test value</other_meta_data>"));
 
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
         assertEquals("test value", unmarshalled.getOtherMetaData().get("test key"));
         assertEquals("second test value", unmarshalled.getOtherMetaData().get("second test key"));
@@ -214,7 +214,7 @@ public class JAXBAOMTest {
         opt2.setTerminologyExtracts(new LinkedHashMap<>());
         opt2.getTerminologyExtracts().put("openEHR-EHR-CLUSTER.non_existing_test-archetype_2.v1.0.0", terminology);
 
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         StringWriter writer = new StringWriter();
 
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -229,7 +229,7 @@ public class JAXBAOMTest {
                 "        </term_definitions>\n" +
                 "    </component_terminologies>"));
 
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         OperationalTemplate unmarshalled = (OperationalTemplate) unmarshaller.unmarshal(new StringReader(writer.toString()));
         assertEquals(terms.get("id2").getText(), unmarshalled.getComponentTerminologies().get("openEHR-EHR-CLUSTER.non_existing_test-archetype.v1.0.0").getTermDefinition("en", "id2").getText());
         assertEquals(terms.get("id2").getText(), unmarshalled.getTerminologyExtracts().get("openEHR-EHR-CLUSTER.non_existing_test-archetype_2.v1.0.0").getTermDefinition("en", "id2").getText());
@@ -269,7 +269,7 @@ public class JAXBAOMTest {
 
         template.addTemplateOverlay(overlay);
 
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         StringWriter writer = new StringWriter();
 
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -286,7 +286,7 @@ public class JAXBAOMTest {
                 "        <definition node_id=\"id1.1\"/>\n" +
                 "    </template_overlay>"));
 
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Template unmarshalled = (Template) unmarshaller.unmarshal(new StringReader(writer.toString()));
         assertEquals("one template overlay should have been unmarshalled", 1, unmarshalled.getTemplateOverlays().size());
         assertEquals("openEHR-EHR-ELEMENT.test.v0.0.1", unmarshalled.getTemplateOverlays().get(0).getArchetypeId().getFullId());

@@ -1,7 +1,7 @@
 package com.nedap.archie.aom;
 
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,8 +34,8 @@ public class AttributeTupleConstraintsTest {
         lbValid.put("units", "lb");
         lbValid.put("magnitude", 10d);
 
-        assertTrue(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), kgValid));
-        assertTrue(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), lbValid));
+        assertTrue(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), kgValid));
+        assertTrue(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), lbValid));
 
     }
 
@@ -53,9 +53,9 @@ public class AttributeTupleConstraintsTest {
         invalidUnit.put("units", "stone");
         invalidUnit.put("magnitude", 5d);
 
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), lbInvalid));
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), kgInvalid));
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), invalidUnit));
+        assertFalse(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), lbInvalid));
+        assertFalse(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), kgInvalid));
+        assertFalse(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), invalidUnit));
 
     }
 
@@ -67,7 +67,7 @@ public class AttributeTupleConstraintsTest {
         extraAttribute.put("precison", 0.1d);
 
         //any extra attributes can be valid, because they are not constrained by this tuple
-        assertTrue(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), extraAttribute));
+        assertTrue(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), extraAttribute));
 
     }
 
@@ -76,7 +76,7 @@ public class AttributeTupleConstraintsTest {
         HashMap<String, Object> missingAttribute = new HashMap<>();
         missingAttribute.put("units", "lb");
 
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), missingAttribute));
+        assertFalse(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), missingAttribute));
 
     }
 
@@ -85,7 +85,7 @@ public class AttributeTupleConstraintsTest {
         DvQuantity valid = new DvQuantity();
         valid.setUnits("lb");
         valid.setMagnitude(150d);
-        assertTrue(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), valid));
+        assertTrue(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), valid));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class AttributeTupleConstraintsTest {
         DvQuantity valid = new DvQuantity();
         valid.setUnits("kg");
         valid.setMagnitude(600d);
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), valid));
+        assertFalse(attributeTuple.isValid(OpenEhrRmInfoLookup.getInstance(), valid));
     }
 
     @Test

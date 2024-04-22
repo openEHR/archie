@@ -1,6 +1,8 @@
 package com.nedap.archie.definitions;
 
 public class AdlCodeDefinitions {
+    public static final String LOCAL_TERMINOLOGY_ID = "local";
+
     /**
      * String leader of ‘identifier’ codes, i.e. codes used to identify archetype nodes.
      */

@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import org.junit.Test;
+import org.openehr.rm.datavalues.quantity.datetime.TimeDefinitions;
 import org.threeten.extra.PeriodDuration;
 
 import java.time.Duration;

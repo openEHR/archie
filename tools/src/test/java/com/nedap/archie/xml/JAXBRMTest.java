@@ -1,9 +1,10 @@
 package com.nedap.archie.xml;
 
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.datavalues.quantity.datetime.DvDuration;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import org.junit.Test;
 import org.threeten.extra.PeriodDuration;
 
@@ -24,7 +25,7 @@ public class JAXBRMTest {
                 new DvText("duration"),
                 new DvDuration(Period.parse("P10D")));
         StringWriter writer = new StringWriter();
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(element, writer);
         String xml = writer.toString();
@@ -37,7 +38,7 @@ public class JAXBRMTest {
                 new DvText("duration"),
                 new DvDuration(Period.parse("-P10D")));
         StringWriter writer = new StringWriter();
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(element, writer);
         String xml = writer.toString();
@@ -50,12 +51,12 @@ public class JAXBRMTest {
                 new DvText("DvDateTime"),
                 new DvDateTime(LocalDateTime.of(2015, 1, 1, 12, 10, 12, 0)));
         StringWriter writer = new StringWriter();
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(fullDateElement, writer);
         String xml = writer.toString();
         assertTrue(xml.contains("2015-01-01T12:10:12"));
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
         assertEquals(fullDateElement, unmarshalled);
 
@@ -63,12 +64,12 @@ public class JAXBRMTest {
                 new DvText("DvDateTime"),
                 new DvDateTime(LocalDate.of(2015, 1, 1)));
         writer = new StringWriter();
-        marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(yearMonthDayelement, writer);
         xml = writer.toString();
         assertTrue(xml.contains("2015-01-01"));
-        unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
         assertEquals(yearMonthDayelement, unmarshalled);
 
@@ -76,12 +77,12 @@ public class JAXBRMTest {
                 new DvText("DvDateTime"),
                 new DvDateTime(YearMonth.of(2015, 1)));
         writer = new StringWriter();
-        marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(yearMonthElement, writer);
         xml = writer.toString();
         assertTrue(xml.contains("2015-01"));
-        unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
         assertEquals(yearMonthElement, unmarshalled);
 
@@ -89,12 +90,12 @@ public class JAXBRMTest {
                 new DvText("DvDateTime"),
                 new DvDateTime(Year.of(2015)));
         writer = new StringWriter();
-        marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(yearElement, writer);
         xml = writer.toString();
         assertTrue(xml.contains("2015"));
-        unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
         assertEquals(yearElement, unmarshalled);
     }
@@ -110,7 +111,7 @@ public class JAXBRMTest {
                 "        <value>P10D</value>\n" +
                 "    </value>\n" +
                 "</element>";
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
         assertEquals(Period.parse("P10D"), ((DvDuration)unmarshalled.getValue()).getValue());
     }
@@ -126,7 +127,7 @@ public class JAXBRMTest {
                 "        <value>-P10D</value>\n" +
                 "    </value>\n" +
                 "</element>";
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
         assertEquals(Period.parse("-P10D"), ((DvDuration)unmarshalled.getValue()).getValue());
     }
@@ -142,7 +143,7 @@ public class JAXBRMTest {
                 "        <value>-P10YT12H</value>\n" +
                 "    </value>\n" +
                 "</element>";
-        Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        Unmarshaller unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Element unmarshalled = (Element) unmarshaller.unmarshal(new StringReader(xml));
         assertEquals(PeriodDuration.parse("-P10YT12H"), ((DvDuration)unmarshalled.getValue()).getValue());
     }

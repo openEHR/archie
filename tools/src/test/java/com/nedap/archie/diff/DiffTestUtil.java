@@ -8,7 +8,7 @@ import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
 import org.openehr.bmm.v2.validation.BmmRepository;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,7 +26,7 @@ public class DiffTestUtil {
         this.archetypesResourceLocation = archetypesResourceLocation;
         this.expectationsResourceLocation = expectationsResourceLocation;
         repository = new InMemoryFullArchetypeRepository();
-        models = new MetaModels(BuiltinReferenceModels.getAvailableModelInfoLookups(), (BmmRepository) null);
+        models = new MetaModels(AllMetaModelsInitialiser.getNativeRms(), (BmmRepository) null);
     }
 
     public void test(String parentFileName, String childFileName) throws Exception {
@@ -36,7 +36,7 @@ public class DiffTestUtil {
         Archetype flattened = new Flattener(repository, models).flatten(child);
         assertEquals(child.getParentArchetypeId(), flattened.getParentArchetypeId());
 
-        Archetype diffed = new Differentiator(BuiltinReferenceModels.getMetaModels()).differentiate(flattened, parent);
+        Archetype diffed = new Differentiator(AllMetaModelsInitialiser.getMetaModels()).differentiate(flattened, parent);
         child.setGenerated(true);//this is set by the diff tool :)
         String originalSerialized = ADLArchetypeSerializer.serialize(child);
         String diffedSerialized = ADLArchetypeSerializer.serialize(diffed);
@@ -56,7 +56,7 @@ public class DiffTestUtil {
         Archetype flattened = new Flattener(repository, models).flatten(child);
         assertEquals(child.getParentArchetypeId(), flattened.getParentArchetypeId());
 
-        Archetype diffed = new Differentiator(BuiltinReferenceModels.getMetaModels()).differentiate(flattened, parent);
+        Archetype diffed = new Differentiator(AllMetaModelsInitialiser.getMetaModels()).differentiate(flattened, parent);
         expectedDiff.setGenerated(true);//this is set by the diff tool :)
         String expectedSerialized = ADLArchetypeSerializer.serialize(expectedDiff);
         String diffedSerialized = ADLArchetypeSerializer.serialize(diffed);

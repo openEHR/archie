@@ -1,8 +1,8 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.TermMapping;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.datavalues.TermMapping;
 import org.junit.Test;
 
 public class TermMappingInvariantTest {

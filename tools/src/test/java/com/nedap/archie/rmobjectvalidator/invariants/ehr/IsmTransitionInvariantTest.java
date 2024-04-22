@@ -1,7 +1,7 @@
 package com.nedap.archie.rmobjectvalidator.invariants.ehr;
 
-import com.nedap.archie.rm.composition.IsmTransition;
-import com.nedap.archie.rm.datavalues.DvCodedText;
+import org.openehr.rm.composition.IsmTransition;
+import org.openehr.rm.datavalues.DvCodedText;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 

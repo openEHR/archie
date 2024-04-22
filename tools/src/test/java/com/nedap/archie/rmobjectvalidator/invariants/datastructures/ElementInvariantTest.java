@@ -1,8 +1,8 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datastructures;
 
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.DvText;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.datavalues.DvText;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 

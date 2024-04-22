@@ -12,13 +12,13 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.datavalues.DvCodedText;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rules.evaluation.DummyRulesPrimitiveObjectParent;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.net.URI;
 import java.util.*;
@@ -101,14 +101,14 @@ public class TerminologyCodeConstraintsTest {
         DvCodedText text = new DvCodedText();
         text.setValue("does not matter for this validation");
         text.setDefiningCode(new CodePhrase("[openehr::532]"));
-        assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertTrue(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
         text.setDefiningCode(new CodePhrase("[openehr::999]"));
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
         text.setDefiningCode(new CodePhrase());
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
         text.setDefiningCode(null);
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), null));
+        assertFalse(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), null));
     }
 
     @Test
@@ -152,13 +152,13 @@ public class TerminologyCodeConstraintsTest {
             DvCodedText text = new DvCodedText();
             text.setValue("does not matter for this validation");
             text.setDefiningCode(new CodePhrase("[local::at23]"));
-            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            assertTrue(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
             text.setDefiningCode(new CodePhrase("[local::at24]"));
-            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            assertTrue(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
             text.setDefiningCode(new CodePhrase("[local:at0.3.25]"));
-            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            assertTrue(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
             text.setDefiningCode(new CodePhrase("[snomed:123657]"));
-            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            assertTrue(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
         }
     }
 
@@ -166,14 +166,14 @@ public class TerminologyCodeConstraintsTest {
         DvCodedText text = new DvCodedText();
         text.setValue("does not matter for this validation");
         text.setDefiningCode(new CodePhrase("[local::at23]"));
-        assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertTrue(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
         text.setDefiningCode(new CodePhrase("[local::at24]"));
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
         text.setDefiningCode(new CodePhrase());
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
         text.setDefiningCode(null);
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), null));
+        assertFalse(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), text));
+        assertFalse(code.isValidValue(OpenEhrRmInfoLookup.getInstance(), null));
     }
 
     @Test
@@ -185,7 +185,7 @@ public class TerminologyCodeConstraintsTest {
         repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.included.v1.0.0.adls"));
 
         //create operational template
-        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.parent.v1.0.0"));
         CTerminologyCode code = opt.itemAtPath("/content/data/items/value/defining_code[1]");
         assertEquals(Lists.newArrayList("at4", "at5", "at6"), code.getValueSetExpanded());

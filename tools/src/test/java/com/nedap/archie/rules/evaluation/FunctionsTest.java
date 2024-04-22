@@ -3,16 +3,15 @@ package com.nedap.archie.rules.evaluation;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.rm.archetyped.Locatable;
-import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.Item;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.archetyped.Locatable;
+import org.openehr.rm.composition.Observation;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.Item;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,7 +58,7 @@ public class FunctionsTest {
     }
 
     private <T> RuleEvaluation<T> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
+        return new RuleEvaluation<>(OpenEhrRmInfoLookup.getInstance(), archetype);
     }
 
     @Test
