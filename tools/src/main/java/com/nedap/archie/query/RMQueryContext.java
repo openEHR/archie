@@ -132,11 +132,10 @@ public class RMQueryContext {
             RMAttributeInfo attributeInfo = modelInfoLooup.getAttributeInfo(parent.getClass(), nodeName);
             try {
                 return (T) attributeInfo.getGetMethod().invoke(parent);
-            } catch (IllegalAccessException e) {
-            } catch (InvocationTargetException e) {
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                throw new RuntimeException(e);
             }
         }
-        return null;
     }
 
     public Node getNode(Object object) {
