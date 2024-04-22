@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class APathToXPathConverterTest {
 
     @Test
-    public void rootPath() throws Exception {
+    public void rootPath() {
         assertConvertedQuery("/composition", "/");
         assertConvertedQuery("//", "//");
     }
