@@ -1,7 +1,7 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
-import com.nedap.archie.rm.datavalues.quantity.DvProportion;
-import com.nedap.archie.rm.datavalues.quantity.ProportionKind;
+import org.openehr.rm.datavalues.quantity.DvProportion;
+import org.openehr.rm.datavalues.quantity.ProportionKind;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 

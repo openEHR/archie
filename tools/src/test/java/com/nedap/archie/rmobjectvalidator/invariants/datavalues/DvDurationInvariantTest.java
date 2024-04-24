@@ -1,9 +1,9 @@
 package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.quantity.DvInterval;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
-import com.nedap.archie.rm.support.identification.TerminologyId;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.datavalues.quantity.DvInterval;
+import org.openehr.rm.datavalues.quantity.datetime.DvDuration;
+import org.openehr.rm.support.identification.TerminologyId;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 

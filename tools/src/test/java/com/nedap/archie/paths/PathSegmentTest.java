@@ -1,5 +1,6 @@
 package com.nedap.archie.paths;
 
+import com.nedap.archie.apath.PathSegment;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

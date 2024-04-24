@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
-import static com.nedap.archie.definitions.OpenEhrDefinitions.*;
+import static com.nedap.archie.definitions.AdlDefinitions.*;
 
 /**
  * ANTLR listener for an ADLS file. Uses the listener construction for the topmost elements, switches to custom treewalker

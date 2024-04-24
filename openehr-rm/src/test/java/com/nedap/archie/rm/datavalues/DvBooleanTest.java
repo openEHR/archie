@@ -1,6 +1,7 @@
 package com.nedap.archie.rm.datavalues;
 
 import org.junit.Test;
+import org.openehr.rm.datavalues.DvBoolean;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

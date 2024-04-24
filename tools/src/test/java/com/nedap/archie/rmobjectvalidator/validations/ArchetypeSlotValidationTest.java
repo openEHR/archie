@@ -7,21 +7,21 @@ import com.nedap.archie.creation.ExampleJsonInstanceGenerator;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.composition.Section;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
+import org.openehr.rm.archetyped.Archetyped;
+import org.openehr.rm.composition.Observation;
+import org.openehr.rm.composition.Section;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.support.identification.ArchetypeID;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.util.List;
@@ -61,14 +61,14 @@ public class ArchetypeSlotValidationTest {
         repository.setOperationalTemplate(includedOpt);
         repository.setOperationalTemplate(parentOfIncludedOpt);
 
-        generator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        generator = new ExampleJsonInstanceGenerator(AllMetaModelsInitialiser.getMetaModels(), "en");
         Map<String, Object> generated = generator.generate(parentOpt);
-        example = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(generated), Section.class);
-        rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), repository);
+        example = OpenEhrRmJacksonUtil.getObjectMapper().readValue(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(generated), Section.class);
+        rmObjectValidator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), repository);
     }
 
     private Flattener createFlattener() {
-        return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ArchetypeSlotValidationTest {
         example.getItems().remove(0);
 
         //generate a valid content, and validate
-        Observation exampleIncluded = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(generator.generate(includedOpt)), Observation.class);
+        Observation exampleIncluded = OpenEhrRmJacksonUtil.getObjectMapper().readValue(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(generator.generate(includedOpt)), Observation.class);
         example.addItem(exampleIncluded);
         exampleIncluded.setArchetypeNodeId("id2");
 
@@ -104,7 +104,7 @@ public class ArchetypeSlotValidationTest {
         example.getItems().remove(0);
 
         //generate content with a wrong archetype, and validate
-        Observation exampleIncluded = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(generator.generate(parentOfIncludedOpt)), Observation.class);
+        Observation exampleIncluded = OpenEhrRmJacksonUtil.getObjectMapper().readValue(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(generator.generate(parentOfIncludedOpt)), Observation.class);
         example.addItem(exampleIncluded);
         exampleIncluded.setArchetypeNodeId("id2");
 
@@ -122,7 +122,7 @@ public class ArchetypeSlotValidationTest {
         example.getItems().remove(0);
 
         //generate a valid content, and validate
-        Observation exampleIncluded = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(generator.generate(includedOpt)), Observation.class);
+        Observation exampleIncluded = OpenEhrRmJacksonUtil.getObjectMapper().readValue(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(generator.generate(includedOpt)), Observation.class);
         exampleIncluded.setArchetypeDetails(new Archetyped(new ArchetypeID("openEHR-EHR-OBSERVATION.redefine_notfound.v1.0.0.adls"), "1.1.0"));
         example.addItem(exampleIncluded);
         exampleIncluded.setArchetypeNodeId("id2");
@@ -140,7 +140,7 @@ public class ArchetypeSlotValidationTest {
         example.getItems().remove(0);
 
         //generate a valid content, and validate
-        Observation exampleIncluded = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(generator.generate(includedOpt)), Observation.class);
+        Observation exampleIncluded = OpenEhrRmJacksonUtil.getObjectMapper().readValue(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(generator.generate(includedOpt)), Observation.class);
         example.addItem(exampleIncluded);
         exampleIncluded.setArchetypeNodeId("id2");
         exampleIncluded.setArchetypeDetails(null);

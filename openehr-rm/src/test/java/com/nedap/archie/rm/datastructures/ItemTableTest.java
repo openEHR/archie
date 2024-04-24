@@ -1,6 +1,9 @@
 package com.nedap.archie.rm.datastructures;
 
-import com.nedap.archie.rm.datavalues.DvText;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.ItemTable;
+import org.openehr.rm.datavalues.DvText;
 import org.junit.Test;
 
 import java.util.Arrays;

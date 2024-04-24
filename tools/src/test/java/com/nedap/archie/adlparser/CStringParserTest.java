@@ -33,7 +33,4 @@ public class CStringParserTest {
         assertEquals(Lists.newArrayList("something with a \\-mark"), cStringWithBlackslash.getConstraint());
     }
 
-
-
-
 }

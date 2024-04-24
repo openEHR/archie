@@ -1,19 +1,8 @@
 package com.nedap.archie.diff.specexamples;
 
-import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.diff.DiffTestUtil;
-import com.nedap.archie.diff.Differentiator;
-import com.nedap.archie.flattener.Flattener;
-import com.nedap.archie.flattener.SimpleArchetypeRepository;
-import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
-
-import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 

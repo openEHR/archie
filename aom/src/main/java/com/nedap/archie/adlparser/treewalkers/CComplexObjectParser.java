@@ -29,7 +29,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
 
     public CComplexObjectParser(ANTLRParserErrors errors, MetaModels metaModels) {
         super(errors);
-        primitivesConstraintParser = new PrimitivesConstraintParser(errors);
+        primitivesConstraintParser = new PrimitivesConstraintParser(errors, metaModels);
         this.metaModels = metaModels;
     }
 
@@ -37,7 +37,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
         RulesSection result = new RulesSection();
 
         result.setContent(context.getText());
-        RulesParser rulesParser = new RulesParser(getErrors());
+        RulesParser rulesParser = new RulesParser(getErrors(), metaModels);
         for(AssertionContext assertion:context.assertion_list().assertion()) {
             result.addRule(rulesParser.parse(assertion));
         }
@@ -315,7 +315,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
         if (slotContext.c_occurrences() != null) {
             slot.setOccurrences(parseMultiplicityInterval(slotContext.c_occurrences()));
         }
-        RulesParser assertionParser = new RulesParser(getErrors());
+        RulesParser assertionParser = new RulesParser(getErrors(), metaModels);
         if (slotContext.c_excludes() != null) {
             for (AssertionContext assertionContext : slotContext.c_excludes().assertion()) {
                 slot.getExcludes().add((Assertion) assertionParser.parse(assertionContext));

@@ -9,7 +9,7 @@ import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -26,12 +26,12 @@ public class TermCodeSpecializationTest {
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
         repo.compile(archetypeValidator);
         for(ValidationResult validationResult:repo.getAllValidationResults()) {
             assertTrue(validationResult.toString(), validationResult.passes());
         }
-        Flattener flattener = new Flattener(repo, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(repo, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(child);
         ValueSet valueSet = opt.getTerminology().getValueSets().get("ac0.2");
         assertEquals(new LinkedHashSet<>(Arrays.asList("at1", "at2", "at3", "at0.1")), valueSet.getMembers());
@@ -44,7 +44,7 @@ public class TermCodeSpecializationTest {
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_child.v1.0.0");
         assertFalse(validationResult.toString(), validationResult.passes());
@@ -58,7 +58,7 @@ public class TermCodeSpecializationTest {
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_redefinition.v1.0.0");
         assertFalse(validationResult.toString(), validationResult.passes());
@@ -72,7 +72,7 @@ public class TermCodeSpecializationTest {
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_change_valueset_code.v1.0.0");
         assertFalse(validationResult.toString(), validationResult.passes());
@@ -96,7 +96,7 @@ public class TermCodeSpecializationTest {
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0");
         assertFalse(validationResult.toString(), validationResult.passes());
@@ -110,7 +110,7 @@ public class TermCodeSpecializationTest {
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.incorrect_parent_valueset_code.v1.0.0");
         assertFalse(validationResult.toString(), validationResult.passes());

@@ -5,7 +5,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class ArchetypeValidatorVersionsTest {
         repo.addArchetype(parentv1);
         repo.addArchetype(parentv11);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
         //the order of validation is important for this test!
         //first validate the first parent, which is valid
         assertTrue(archetypeValidator.validate(parentv1, repo).passes());
@@ -47,7 +47,7 @@ public class ArchetypeValidatorVersionsTest {
         repo.addArchetype(parentv1);
         repo.addArchetype(parentv11);
         repo.addArchetype(child);
-        repo.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModels()));
+        repo.compile(new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels()));
         for(ValidationResult result:repo.getAllValidationResults()) {
             assertTrue(result.getErrors().toString(), result.passes());
         }

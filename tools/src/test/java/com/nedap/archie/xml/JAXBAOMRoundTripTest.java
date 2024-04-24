@@ -5,10 +5,11 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -35,11 +36,11 @@ public class JAXBAOMRoundTripTest {
         parser = new ADLParser(); //no constraints imposer in this test!
         writer = new StringWriter();
         marshaller = createMarshaller();
-        unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+        unmarshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller();
     }
 
     private Marshaller createMarshaller() throws JAXBException {
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         return marshaller;
     }
@@ -93,7 +94,7 @@ public class JAXBAOMRoundTripTest {
         repository.addArchetype(height);
         repository.addArchetype(heightTemplate);
 
-        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).createOperationalTemplate(true);
+        Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getNativeRms()).createOperationalTemplate(true);
         Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
         operationalTemplate.getOtherMetaData().put("test", "something");
         String xml = marshal(operationalTemplate);

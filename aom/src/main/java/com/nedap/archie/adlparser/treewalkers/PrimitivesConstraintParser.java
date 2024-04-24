@@ -19,6 +19,8 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.primitives.CTime;
 import com.nedap.archie.aom.primitives.ConstraintStatus;
 import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.OdinValueParser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -41,11 +43,13 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
 
     private final NumberConstraintParser numberConstraintParser;
     private final TemporalConstraintParser temporalConstraintParser;
+    private MetaModels metaModels;
 
-    public PrimitivesConstraintParser(ANTLRParserErrors errors) {
+    public PrimitivesConstraintParser(ANTLRParserErrors errors, MetaModels metaModels) {
         super(errors);
         numberConstraintParser = new NumberConstraintParser(errors);
         temporalConstraintParser = new TemporalConstraintParser(errors);
+        this.metaModels = metaModels;
     }
 
     public CPrimitiveObject<?, ?> parsePrimitiveObject(AdlParser.C_primitive_objectContext objectContext) {
@@ -58,39 +62,47 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
                 | c_string
                 | c_terminology_code
                 | c_boolean*/
-        if(objectContext.c_integer() != null) {
-            return numberConstraintParser.parseCInteger(objectContext.c_integer());
+        CPrimitiveObject<?, ?> result = null;
+        if (objectContext.c_integer() != null) {
+            result = numberConstraintParser.parseCInteger(objectContext.c_integer());
         } else if (objectContext.c_real() != null) {
-            return numberConstraintParser.parseCReal(objectContext.c_real());
+            result = numberConstraintParser.parseCReal(objectContext.c_real());
         } else if (objectContext.c_date() != null) {
-            return parseCDate(objectContext.c_date());
+            result = parseCDate(objectContext.c_date());
         } else if (objectContext.c_time() != null) {
-            return parseCTime(objectContext.c_time());
+            result = parseCTime(objectContext.c_time());
         } else if (objectContext.c_date_time() != null) {
-            return parseCDateTime(objectContext.c_date_time());
+            result = parseCDateTime(objectContext.c_date_time());
         } else if (objectContext.c_duration() != null) {
-            return parseCDuration(objectContext.c_duration());
+            result = parseCDuration(objectContext.c_duration());
         } else if (objectContext.c_string() != null) {
-            return parseCString(objectContext.c_string());
+            result = parseCString(objectContext.c_string());
         } else if (objectContext.c_terminology_code() != null) {
-            return parseCTerminologyCode(objectContext.c_terminology_code());
+            result = parseCTerminologyCode(objectContext.c_terminology_code());
         } else if (objectContext.c_boolean() != null) {
-            return parseCBoolean(objectContext.c_boolean());
+            result = parseCBoolean(objectContext.c_boolean());
         }
-        return null;
+
+        if (result != null) {
+            // set the RmTypeName in the object
+            setCPrimitiveTypeRmTypeName(result);
+        }
+
+        return result;
     }
 
     public CBoolean parseCBoolean(AdlParser.C_booleanContext booleanContext) {
         CBoolean result = new CBoolean();
-        if(booleanContext.assumed_boolean_value() != null) {
+
+        if (booleanContext.assumed_boolean_value() != null) {
             result.setAssumedValue(parseBoolean(booleanContext.assumed_boolean_value().boolean_value()));
         }
         Boolean_list_valueContext booleanListValue = booleanContext.boolean_list_value();
-        if(booleanListValue != null) {
+        if (booleanListValue != null) {
             parseBooleanValues(result, booleanListValue.boolean_value());
         }
         Boolean_valueContext booleanValueContext = booleanContext.boolean_value();
-        if(booleanValueContext != null) {
+        if (booleanValueContext != null) {
             result.addConstraint(parseBoolean(booleanValueContext));
         }
         return result;
@@ -101,16 +113,17 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
     }
 
     private void parseBooleanValues(CBoolean result, List<Boolean_valueContext> booleanValues) {
-        for(Boolean_valueContext booleanValue:booleanValues) {
+        for (Boolean_valueContext booleanValue : booleanValues) {
             result.addConstraint(parseBoolean(booleanValue));
         }
     }
 
     public CTerminologyCode parseCTerminologyCode(AdlParser.C_terminology_codeContext terminologyCodeContext) {
         CTerminologyCode result = new CTerminologyCode();
+
         boolean containsAssumedValue = !terminologyCodeContext.getTokens(AdlLexer.SYM_SEMICOLON).isEmpty();
 
-        if(containsAssumedValue) {
+        if (containsAssumedValue) {
             String terminologyId = terminologyCodeContext.AC_CODE().getText();
             TerminologyCode assumedValue = new TerminologyCode();
             assumedValue.setTerminologyId(terminologyId);
@@ -119,14 +132,14 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
             result.setAssumedValue(assumedValue);
             result.addConstraint(assumedValue.getTerminologyIdString());
         } else {
-            if(terminologyCodeContext.AC_CODE() != null) {
+            if (terminologyCodeContext.AC_CODE() != null) {
                 result.addConstraint(terminologyCodeContext.AC_CODE().getText());
             } else {
                 result.addConstraint(terminologyCodeContext.AT_CODE().getText());
             }
         }
 
-        if(terminologyCodeContext.identifier() != null) {
+        if (terminologyCodeContext.identifier() != null) {
             String constraintStatusText = terminologyCodeContext.identifier().getText();
             switch (constraintStatusText.toLowerCase()) {
                 case "required":
@@ -148,7 +161,7 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
                             terminologyCodeContext.getStart().getCharPositionInLine(),
                             constraintStatusText.length(),
                             constraintStatusText
-                            );
+                    );
             }
         }
 
@@ -158,19 +171,19 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
     public CString parseCString(AdlParser.C_stringContext stringContext) {
 
         CString result = new CString();
-        if(stringContext.assumed_string_value() != null) {
+        if (stringContext.assumed_string_value() != null) {
             result.setAssumedValue(OdinValueParser.parseOdinStringValue(stringContext.assumed_string_value().string_value()));
         }
 
         String_valueContext stringValueContext = stringContext.string_value();
         String_list_valueContext stringListValueContext = stringContext.string_list_value();
 
-        if(stringListValueContext != null) {
-            for(String_valueContext string:stringListValueContext.string_value()) {
+        if (stringListValueContext != null) {
+            for (String_valueContext string : stringListValueContext.string_value()) {
                 result.addConstraint(OdinValueParser.parseOdinStringValue(string));
             }
         }
-        if(stringValueContext != null) {
+        if (stringValueContext != null) {
             result.addConstraint(OdinValueParser.parseOdinStringValue(stringValueContext));
         }
 
@@ -181,7 +194,7 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
         return temporalConstraintParser.parseCDuration(context);
     }
 
-    public  CDateTime parseCDateTime(AdlParser.C_date_timeContext context) {
+    public CDateTime parseCDateTime(AdlParser.C_date_timeContext context) {
         return temporalConstraintParser.parseCDateTime(context);
     }
 
@@ -199,10 +212,21 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
         ContainedRegexParser.RegexContext regex = parser.regex();
         CString result = new CString();
         result.addConstraint(regex.REGEX().getText());
-        if(regex.STRING() != null) {
+        if (regex.STRING() != null) {
             String assumedValue = regex.STRING().getText();
-            result.setAssumedValue(assumedValue.substring(1, assumedValue.length()-1));
+            result.setAssumedValue(assumedValue.substring(1, assumedValue.length() - 1));
         }
         return result;
+    }
+
+    // set the RmTypeName in the object, if the ModelNamingStrategy has been supplied within the MetaModel,
+    // if indeed that has been supplied to the AOMParser
+    private void setCPrimitiveTypeRmTypeName(CPrimitiveObject<?,?> cPrimObj) {
+        if(metaModels !=null) {
+            MetaModel metaModel = metaModels.getSelectedModel();
+            if (metaModel != null) {
+                cPrimObj.setRmTypeName(metaModel.getSelectedModel().getNamingStrategy().getTypeNameForCPrimitiveType(CTerminologyCode.class));
+            }
+        }
     }
 }

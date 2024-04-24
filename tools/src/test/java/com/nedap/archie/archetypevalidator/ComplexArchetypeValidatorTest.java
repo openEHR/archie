@@ -6,7 +6,7 @@ import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class ComplexArchetypeValidatorTest {
 
     @Before
     public void setup() throws Exception {
-        models = BuiltinReferenceModels.getAvailableModelInfoLookups();
+        models = AllMetaModelsInitialiser.getNativeRms();
 
         simpleTestCluster = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.simple_test_cluster.v1.0.0.adls"));
         simpleTestObservation = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.simple_test_observation.v1.0.0.adls"));

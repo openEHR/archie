@@ -3,5 +3,4 @@ description = "Utils for the Archie OpenEHR library"
 dependencies {
 	api project(':base')
 	api project(':aom')
-  	api project(':openehr-rm')
 }

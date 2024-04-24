@@ -3,17 +3,18 @@ package com.nedap.archie.xml;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.query.RMQueryContext;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import org.openehr.rm.datavalues.quantity.datetime.DvDate;
+import org.openehr.rm.datavalues.quantity.datetime.DvDateTime;
+import org.openehr.rm.datavalues.quantity.datetime.DvTime;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import javax.xml.bind.Marshaller;
 import java.io.StringReader;
@@ -40,7 +41,7 @@ public class JAXBRMRoundTripTest {
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        parser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
     }
 
     @Test
@@ -62,7 +63,7 @@ public class JAXBRMRoundTripTest {
         time.setValue(LocalTime.of(12, 0));
 
         StringWriter writer = new StringWriter();
-        Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
+        Marshaller marshaller = OpenEhrRmJAXBUtil.getArchieJAXBContext().createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(cluster, writer);
         String xml = writer.toString();
@@ -73,7 +74,7 @@ public class JAXBRMRoundTripTest {
         System.out.println(xml);
 
         //now parse again
-        Cluster parsedCluster = (Cluster) JAXBUtil.getArchieJAXBContext().createUnmarshaller().unmarshal(new StringReader(writer.toString()));
+        Cluster parsedCluster = (Cluster) OpenEhrRmJAXBUtil.getArchieJAXBContext().createUnmarshaller().unmarshal(new StringReader(writer.toString()));
         RMQueryContext parsedQueryContext = getQueryContext(parsedCluster);
         
         assertThat(parsedQueryContext.<DvText>find("/items['Text']/value").getValue(), is("test-text"));
@@ -84,7 +85,7 @@ public class JAXBRMRoundTripTest {
     }
 
     private RMQueryContext getQueryContext(Cluster cluster) {
-        return new RMQueryContext(ArchieRMInfoLookup.getInstance(), cluster, JAXBUtil.getArchieJAXBContext());
+        return new RMQueryContext(OpenEhrRmInfoLookup.getInstance(), cluster, OpenEhrRmJAXBUtil.getArchieJAXBContext());
     }
 
 }

@@ -4,7 +4,7 @@ import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.query.RMObjectWithPath;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import org.junit.BeforeClass;
@@ -17,11 +17,11 @@ import static org.junit.Assert.*;
 
 public class RMPrimitiveObjectValidationTest {
 
-    private static ArchieRMInfoLookup lookup;
+    private static OpenEhrRmInfoLookup lookup;
 
     @BeforeClass
     public static void beforeClass() {
-        lookup = ArchieRMInfoLookup.getInstance();
+        lookup = OpenEhrRmInfoLookup.getInstance();
     }
 
     public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
