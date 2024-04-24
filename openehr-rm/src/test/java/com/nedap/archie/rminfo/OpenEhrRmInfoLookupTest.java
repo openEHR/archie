@@ -30,12 +30,12 @@ public class OpenEhrRmInfoLookupTest {
         }
         Collections.sort(classNames);
 
+        // generate source code
         StringBuilder sb = new StringBuilder();
         sb.append ("// \n");
         sb.append ("// include the following in OpenEhrRmInfoLookup.addTypes()\n");
         sb.append ("// \n");
 
-        // generate source code
         for (String cName: classNames) {
             sb.append("addClass(" + cName + ".class);\n");
         }

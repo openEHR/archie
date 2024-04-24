@@ -2,6 +2,8 @@ package com.nedap.archie.rminfo;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.google.common.collect.Lists;
+import com.nedap.archie.aom.ArchetypeConstraint;
+import com.nedap.archie.aom.CPrimitiveObject;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -13,17 +15,17 @@ import java.util.List;
  * Created by pieter.bos on 29/03/16.
  * A naming helper for both Archie RM and AOM objects
  */
-public class ArchieModelNamingStrategy implements ModelNamingStrategy {
+public class OpenEhrModelNamingStrategy implements ModelNamingStrategy {
 
     public static final PropertyNamingStrategies.SnakeCaseStrategy snakeCaseStrategy = new PropertyNamingStrategies.SnakeCaseStrategy();
 
     private final boolean standardsCompliantExpressionNames;
 
-    public ArchieModelNamingStrategy() {
+    public OpenEhrModelNamingStrategy() {
         standardsCompliantExpressionNames = true;
     }
 
-    public ArchieModelNamingStrategy(boolean standardCompliantExpressionNames) {
+    public OpenEhrModelNamingStrategy(boolean standardCompliantExpressionNames) {
         this.standardsCompliantExpressionNames = standardCompliantExpressionNames;
     }
 
@@ -44,8 +46,10 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
 
     @Override
     public String getTypeName(Class<?> clazz) {
-        // For some RM objects the name is an exception on the snakecase -> uppercase strategy
+
         String name = clazz.getSimpleName();
+
+        // For some RM objects the name is an exception on the snakecase -> uppercase strategy
         switch(name) {
             case "DvEHRURI":
                 return "DV_EHR_URI";
@@ -72,7 +76,6 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
         }
         return result;
     }
-
 
     @Override
     public List<String> getAlternativeTypeNames(Class<?> clazz) {
@@ -123,4 +126,17 @@ public class ArchieModelNamingStrategy implements ModelNamingStrategy {
         }
         return method.getName();
     }
+
+    @Override
+    public String getTypeNameForCPrimitiveType(Class<?> clazz) {
+
+        // If it is a CPrimitiveObject, get rid of the leading 'C'
+        String result = clazz.getSimpleName();
+        if (CPrimitiveObject.class.isAssignableFrom(clazz)) {
+            result = result.substring(1);
+        }
+
+        return result;
+    }
+
 }

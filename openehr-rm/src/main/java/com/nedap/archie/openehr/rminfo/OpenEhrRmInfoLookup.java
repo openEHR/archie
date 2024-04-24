@@ -5,7 +5,7 @@ import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.base.RMObject;
-import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
+import com.nedap.archie.rminfo.OpenEhrModelNamingStrategy;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMPackageId;
 import com.nedap.archie.rminfo.ReflectionModelInfoLookup;
@@ -46,7 +46,7 @@ public class OpenEhrRmInfoLookup extends ReflectionModelInfoLookup {
     private static OpenEhrRmInfoLookup instance;
 
     private OpenEhrRmInfoLookup() {
-        super(new ArchieModelNamingStrategy(), RMObject.class);
+        super(new OpenEhrModelNamingStrategy(), RMObject.class);
     }
 
     /**

@@ -1,10 +1,9 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
-import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
+import com.nedap.archie.rminfo.OpenEhrModelNamingStrategy;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMProperty;
 import org.openehr.utils.message.I18n;
@@ -138,18 +137,27 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
         return ConformanceCheckResult.conforms();
     }
 
+    public boolean hasAssumedValue() {
+        return getAssumedValue() != null;
+    }
+
     public String constrainedTypename () {
         //TODO: this works usually, but probably needs RM access
         //TODO: add to parserPostProcessor that rmTypeName will be set
-        return ArchieModelNamingStrategy.snakeCaseStrategy.translate(this.getClass().getSimpleName().substring(1));
+        return OpenEhrModelNamingStrategy.snakeCaseStrategy.translate(this.getClass().getSimpleName().substring(1));
     }
 
+    /**
+     * TODO: this function is not reliable for archetypes from any RM other than openEHR
+     * Can be deleted when MetaModels are supplied to all instantiations of ADLParser()
+     * @return
+     */
+    @Override
     public String getRmTypeName() {
-        return constrainedTypename();
-    }
-
-    public boolean hasAssumedValue() {
-        return getAssumedValue() != null;
+        if (rmTypeName == null)
+            return constrainedTypename();
+        else
+            return rmTypeName;
     }
 
     @Override

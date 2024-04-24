@@ -7,7 +7,7 @@ import com.nedap.archie.aom.primitives.*;
 import org.openehr.rm.datatypes.CodePhrase;
 import org.openehr.rm.datavalues.DataValue;
 import org.openehr.rm.datavalues.DvCodedText;
-import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
+import com.nedap.archie.rminfo.OpenEhrModelNamingStrategy;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMPackageId;
 import com.nedap.archie.rminfo.ReflectionModelInfoLookup;
@@ -25,7 +25,7 @@ public class OpenEhrTestRmInfoLookup extends ReflectionModelInfoLookup {
     private static OpenEhrTestRmInfoLookup instance;
 
     private OpenEhrTestRmInfoLookup() {
-        super(new ArchieModelNamingStrategy(), TestRMBase.class);
+        super(new OpenEhrModelNamingStrategy(), TestRMBase.class);
         addSubtypesOf(DataValue.class); //extra class from the base package. No RMObject because it is also used in the AOM
         addSubtypesOf(CodePhrase.class);
     }
