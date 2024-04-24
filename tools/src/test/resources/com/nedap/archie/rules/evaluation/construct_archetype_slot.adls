@@ -27,13 +27,6 @@ definition
                                 items matches {
                                     CLUSTER[id14] occurrences matches {0..1} matches {    -- Item tree
                                         items matches {
-                                            ELEMENT[id17] occurrences matches {0..1} matches {    -- Option selection
-                                                value matches {
-                                                    DV_CODED_TEXT[id18] matches {
-                                                        defining_code matches {[ac1]}    -- Valueset for options
-                                                    }
-                                                }
-                                            }
                                             allow_archetype CLUSTER[id19] occurrences matches {0..1} matches {     -- Cluster
                                                 include
                                                     archetype_id/value matches {/openEHR-EHR-CLUSTER\.some_archetype_([a-zA-Z0-9])+\.v([\d+\.\d+\.\d+])*/}
@@ -59,10 +52,6 @@ rules
 terminology
     term_definitions = <
         ["en"] = <
-            ["ac1"] = <
-                text = <"Value set of different available options">
-                description = <"Value set of different available options">
-            >
             ["at1"] = <
                 text = <"Option A">
                 description = <"Option A">
