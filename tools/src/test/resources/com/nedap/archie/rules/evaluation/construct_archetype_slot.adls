@@ -62,10 +62,3 @@ terminology
             >
         >
     >
-
-    value_sets = <
-        ["ac1"] = <
-            id = <"ac1">
-            members = <"at1", "at14">
-        >
-    >
