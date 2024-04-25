@@ -4,6 +4,8 @@ package org.s2.rm.base.patterns.participation;
 import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.interval.Interval;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
@@ -19,7 +21,7 @@ import org.s2.rm.base.foundation_types.time.RmDateTime;
   "mode",
   "performer"
 })
-public class Participation {
+public class Participation extends RMObject {
   /**
   * BMM name: function | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

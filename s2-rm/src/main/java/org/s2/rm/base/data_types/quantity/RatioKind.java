@@ -1,12 +1,14 @@
 package org.s2.rm.base.data_types.quantity;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 
 /**
 * BMM name: Ratio_kind
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 */
-public class RatioKind {
+public class RatioKind extends RMObject {
   /**
   * Enumeration value.
   */

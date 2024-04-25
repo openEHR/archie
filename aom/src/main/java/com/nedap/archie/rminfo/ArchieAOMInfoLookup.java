@@ -23,11 +23,11 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     public static final boolean STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING = true;
 
     public ArchieAOMInfoLookup() {
-        super(new ArchieModelNamingStrategy(STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
+        super(new OpenEhrModelNamingStrategy(STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
     }
 
     public ArchieAOMInfoLookup(boolean standardCompliantExpressionNames) {
-        super(new ArchieModelNamingStrategy(standardCompliantExpressionNames), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
+        super(new OpenEhrModelNamingStrategy(standardCompliantExpressionNames), ArchetypeModelObject.class, ArchieAOMInfoLookup.class.getClassLoader(), false /* no attributes without field */);
     }
 
     public static ArchieAOMInfoLookup getInstance() {

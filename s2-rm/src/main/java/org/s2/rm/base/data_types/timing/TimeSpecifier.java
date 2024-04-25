@@ -1,5 +1,7 @@
 package org.s2.rm.base.data_types.timing;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -11,7 +13,7 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "Time_specifier", propOrder = {
   "eventCount"
 })
-public abstract class TimeSpecifier {
+public abstract class TimeSpecifier extends RMObject {
   /**
   * BMM name: event_count | BMM type: Integer
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

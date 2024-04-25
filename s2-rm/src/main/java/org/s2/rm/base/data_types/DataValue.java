@@ -1,5 +1,7 @@
 package org.s2.rm.base.data_types;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -9,7 +11,7 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Data_value")
-public abstract class DataValue {
+public abstract class DataValue extends RMObject {
 
   public String bmmClassName() {
     return "Data_value";

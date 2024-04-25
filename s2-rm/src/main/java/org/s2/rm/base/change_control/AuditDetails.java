@@ -4,6 +4,8 @@ package org.s2.rm.base.change_control;
 import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.patterns.participation.PartyProxy;
@@ -20,7 +22,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
   "description",
   "committer"
 })
-public class AuditDetails {
+public class AuditDetails extends RMObject {
   /**
   * BMM name: system_id | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

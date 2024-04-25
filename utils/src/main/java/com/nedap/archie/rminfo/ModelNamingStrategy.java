@@ -25,16 +25,24 @@ public interface ModelNamingStrategy {
     String getAttributeName(Field field, Method method);
 
     /**
-     * Returns the OpenEHR standards compliant name of the given class.
+     * Returns the Model-standard compliant name of the given class.
      * @param clazz the class to name
      * @return the name
      */
     String getTypeName(Class<?> clazz);
+
     /**
      * Return any alternative names for a given class, used for backwards compatibility with renamed classes
      * @param clazz the class to name
      * @return the list of alternative names, empty if no alternatives are present
      */
     List<String> getAlternativeTypeNames(Class<?> clazz);
+
+    /**
+     * Returns the Model-standard compliant name of an AOM CPrimitiveType class.
+     * @param clazz the class to name
+     * @return the name
+     */
+    String getTypeNameForCPrimitiveType(Class<?> clazz);
 
 }

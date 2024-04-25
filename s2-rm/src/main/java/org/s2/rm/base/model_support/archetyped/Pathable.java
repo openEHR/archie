@@ -1,5 +1,7 @@
 package org.s2.rm.base.model_support.archetyped;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -9,7 +11,7 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Pathable")
-public abstract class Pathable {
+public abstract class Pathable extends RMObject {
 
   public String bmmClassName() {
     return "Pathable";

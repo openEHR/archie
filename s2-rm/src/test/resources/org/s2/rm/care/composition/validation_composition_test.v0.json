@@ -1,0 +1,242 @@
+{
+  "_type": "Composition",
+  "archetype_node_id": "s2-EHR-Composition.t_encounter-vital_signs.v1.0.0",
+  "uid": {
+    "_type": "Uuid",
+    "value": "00000000-0000-0000-0000-000000000000"
+  },
+  "name": "some string",
+  "code": {
+    "_type": "Terminology_term",
+    "concept": {
+      "_type": "Terminology_code",
+      "terminology_id": "loinc",
+      "code_string": "22222"
+    },
+    "text": "serum sodium"
+  },
+  "original_code": {
+    "_type": "Terminology_term",
+    "concept": {
+      "_type": "Terminology_code",
+      "terminology_id": "loinc",
+      "code_string": "22222"
+    },
+    "text": "serum sodium"
+  },
+  "language": {
+    "_type": "Terminology_code",
+    "terminology_id": "snomed",
+    "code_string": "11111111"
+  },
+  "territory": {
+    "_type": "Terminology_code",
+    "terminology_id": "snomed",
+    "code_string": "11111111"
+  },
+  "category": {
+    "_type": "Terminology_term",
+    "concept": {
+      "_type": "Terminology_code",
+      "terminology_id": "loinc",
+      "code_string": "22222"
+    },
+    "text": "serum sodium"
+  },
+  "context": {
+    "_type": "Event_context",
+    "archetype_node_id": "id2",
+    "other_context": [
+      {
+        "_type": "Node",
+        "archetype_node_id": "id3",
+        "name": "Encounter Id",
+        "value": {
+          "_type": "Rwe_id_ref",
+          "id": "some string",
+          "issuer": "some string",
+          "assigner": "some string",
+          "type": "some string"
+        },
+        "uid": {
+          "_type": "Uuid",
+          "value": "00000000-0000-0000-0000-000000000000"
+        },
+        "code": {
+          "_type": "Terminology_term",
+          "concept": {
+            "_type": "Terminology_code",
+            "terminology_id": "loinc",
+            "code_string": "22222"
+          },
+          "text": "serum sodium"
+        },
+        "original_code": {
+          "_type": "Terminology_term",
+          "concept": {
+            "_type": "Terminology_code",
+            "terminology_id": "loinc",
+            "code_string": "22222"
+          },
+          "text": "serum sodium"
+        },
+        "null_flavour": {
+          "_type": "Terminology_term",
+          "concept": {
+            "_type": "Terminology_code",
+            "terminology_id": "loinc",
+            "code_string": "22222"
+          },
+          "text": "serum sodium"
+        }
+      }
+    ],
+    "name": "some string",
+    "code": {
+      "_type": "Terminology_term",
+      "concept": {
+        "_type": "Terminology_code",
+        "terminology_id": "loinc",
+        "code_string": "22222"
+      },
+      "text": "serum sodium"
+    },
+    "original_code": {
+      "_type": "Terminology_term",
+      "concept": {
+        "_type": "Terminology_code",
+        "terminology_id": "loinc",
+        "code_string": "22222"
+      },
+      "text": "serum sodium"
+    },
+    "start_time": "2024-04-21T13:12:48",
+    "end_time": "2024-04-21T13:12:48",
+    "location": "some string",
+    "setting": {
+      "_type": "Terminology_term",
+      "concept": {
+        "_type": "Terminology_code",
+        "terminology_id": "loinc",
+        "code_string": "22222"
+      },
+      "text": "serum sodium"
+    }
+  },
+  "content": [
+    {
+      "_type": "Direct_observation",
+      "archetype_node_id": "id0.1",
+      "data": [
+        {
+          "_type": "Node",
+          "archetype_node_id": "id5",
+          "name": "Systolic",
+          "value": {
+            "_type": "Measured<Quantity>",
+            "value": {
+              "_type": "Quantity",
+              "magnitude": 500.0,
+              "precision": 0,
+              "units": {
+                "_type": "Coded_text",
+                "term": {
+                  "_type": "Terminology_term",
+                  "concept": {
+                    "_type": "Terminology_code",
+                    "terminology_id": "local",
+                    "code_string": "at1060"
+                  },
+                  "description": "some string"
+                },
+                "text": "some string"
+              }
+            }
+          },
+          "uid": {
+            "_type": "Uuid",
+            "value": "00000000-0000-0000-0000-000000000000"
+          },
+          "code": {
+            "_type": "Terminology_term",
+            "concept": {
+              "_type": "Terminology_code",
+              "terminology_id": "loinc",
+              "code_string": "22222"
+            },
+            "text": "serum sodium"
+          },
+          "original_code": {
+            "_type": "Terminology_term",
+            "concept": {
+              "_type": "Terminology_code",
+              "terminology_id": "loinc",
+              "code_string": "22222"
+            },
+            "text": "serum sodium"
+          },
+          "null_flavour": {
+            "_type": "Terminology_term",
+            "concept": {
+              "_type": "Terminology_code",
+              "terminology_id": "loinc",
+              "code_string": "22222"
+            },
+            "text": "serum sodium"
+          }
+        }
+      ],
+      "state": [
+        {
+          "_type": "Node",
+          "archetype_node_id": "id9",
+          "name": "Position",
+          "value": {
+            "_type": "Coded_text",
+            "term": {
+              "_type": "Terminology_term",
+              "concept": {
+                "_type": "Terminology_code",
+                "terminology_id": "local",
+                "code_string": "at1000"
+              },
+              "description": "some string"
+            },
+            "text": "some string"
+          },
+          "uid": {
+            "_type": "Uuid",
+            "value": "00000000-0000-0000-0000-000000000000"
+          },
+          "code": {
+            "_type": "Terminology_term",
+            "concept": {
+              "_type": "Terminology_code",
+              "terminology_id": "loinc",
+              "code_string": "22222"
+            },
+            "text": "serum sodium"
+          },
+          "original_code": {
+            "_type": "Terminology_term",
+            "concept": {
+              "_type": "Terminology_code",
+              "terminology_id": "loinc",
+              "code_string": "22222"
+            },
+            "text": "serum sodium"
+          },
+          "null_flavour": {
+            "_type": "Terminology_term",
+            "concept": {
+              "_type": "Terminology_code",
+              "terminology_id": "loinc",
+              "code_string": "22222"
+            },
+            "text": "serum sodium"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,8 @@ package org.s2.rm.base.model_support.archetyped;
 import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.model_support.identification.ArchetypeId;
 
 /**
@@ -16,7 +18,7 @@ import org.s2.rm.base.model_support.identification.ArchetypeId;
   "templateId",
   "rmVersion"
 })
-public class Archetyped {
+public class Archetyped extends RMObject {
   /**
   * BMM name: archetype_id | BMM type: Archetype_id
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1

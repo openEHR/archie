@@ -4,6 +4,8 @@ package org.s2.rm.base.data_types.timing;
 import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.time.RmDate;
 
 /**
@@ -15,7 +17,7 @@ import org.s2.rm.base.foundation_types.time.RmDate;
   "date",
   "timeOfDay"
 })
-public class Occurrence {
+public class Occurrence extends RMObject {
   /**
   * BMM name: date | BMM type: Date
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

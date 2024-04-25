@@ -13,17 +13,17 @@ import java.util.List;
  * Created by pieter.bos on 29/03/16.
  * A naming helper for both Archie RM and AOM objects
  */
-public class ArchieModelNamingStrategy implements ModelNamingStrategy {
+public class OpenEhrModelNamingStrategy implements ModelNamingStrategy {
 
     public static final PropertyNamingStrategies.SnakeCaseStrategy snakeCaseStrategy = new PropertyNamingStrategies.SnakeCaseStrategy();
 
     private final boolean standardsCompliantExpressionNames;
 
-    public ArchieModelNamingStrategy() {
+    public OpenEhrModelNamingStrategy() {
         standardsCompliantExpressionNames = true;
     }
 
-    public ArchieModelNamingStrategy(boolean standardCompliantExpressionNames) {
+    public OpenEhrModelNamingStrategy(boolean standardCompliantExpressionNames) {
         this.standardsCompliantExpressionNames = standardCompliantExpressionNames;
     }
 

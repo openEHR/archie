@@ -36,7 +36,7 @@ import java.util.function.BiFunction;
 public abstract class CObject extends ArchetypeConstraint {
 
     @XmlAttribute(name="rm_type_name")
-    private String rmTypeName;
+    protected String rmTypeName;
     @XmlElement(name="occurrences")
     @Nullable
     private MultiplicityInterval occurrences;

@@ -3,6 +3,8 @@ package org.s2.rm.base.data_types.timing;
 import javax.annotation.Nullable;;
 import java.util.*;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.time.RmDuration;
 
 /**
@@ -13,7 +15,7 @@ import org.s2.rm.base.foundation_types.time.RmDuration;
 @XmlType(name = "Hour_specifier", propOrder = {
   "duration"
 })
-public abstract class HourSpecifier {
+public abstract class HourSpecifier extends RMObject {
   /**
   * BMM name: duration | BMM type: Duration
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1

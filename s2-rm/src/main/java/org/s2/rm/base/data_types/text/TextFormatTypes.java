@@ -1,12 +1,14 @@
 package org.s2.rm.base.data_types.text;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 
 /**
 * BMM name: Text_format_types
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 */
-public class TextFormatTypes {
+public class TextFormatTypes extends RMObject {
   /**
   * Enumeration value.
   */

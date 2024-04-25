@@ -1,12 +1,14 @@
 package org.s2.rm.base.data_types.timing;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 
 /**
 * BMM name: Temporal_relation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 */
-public class TemporalRelation {
+public class TemporalRelation extends RMObject {
   /**
   * Enumeration value.
   */
