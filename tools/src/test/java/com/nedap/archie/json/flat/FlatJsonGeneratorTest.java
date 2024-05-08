@@ -1,6 +1,7 @@
 package com.nedap.archie.json.flat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
@@ -15,6 +16,7 @@ import com.nedap.archie.rm.composition.Observation;
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
@@ -158,6 +160,17 @@ public class FlatJsonGeneratorTest {
         expected.put("/items[id3,4]/value/magnitude", 4L);
 
         assertEquals(expected, stringObjectMap);
+    }
+
+    @Test
+    public void serializeBytes() throws Exception {
+        DvMultimedia dvMultimedia = new DvMultimedia();
+        dvMultimedia.setData(new byte[]{42, 83, 120, -128, 127, 30, -80, 15});
+
+        FlatJsonGenerator flatJsonGenerator = new FlatJsonGenerator(ArchieRMInfoLookup.getInstance(), FlatJsonFormatConfiguration.nedapInternalFormat());
+
+        Map<String, Object> pathsAndValues = flatJsonGenerator.buildPathsAndValues(dvMultimedia);
+        assertEquals("{\"/@type\":\"DV_MULTIMEDIA\",\"/data\":\"KlN4gH8esA8=\"}", new JsonMapper().writeValueAsString(pathsAndValues));
     }
 
     @Test
@@ -307,5 +320,4 @@ public class FlatJsonGeneratorTest {
     private Map<String, Object> createExampleInstance(OperationalTemplate bloodPressureOpt, FlatJsonFormatConfiguration config) throws IOException, DuplicateKeyException {
         return new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModels(), "en", config);
     }
-
 }
