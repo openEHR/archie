@@ -119,8 +119,9 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
+    @Deprecated
     public void processCreatedObject(Object createdObject, CObject constraint) {
-        throw new UnsupportedOperationException("not supported");//TODO: split this to different classes
+        throw new UnsupportedOperationException("not supported");
     }
 
     @Override
@@ -155,8 +156,9 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
+    @Deprecated
     public Map<String, Object> pathHasBeenUpdated(Object rmObject, Archetype archetype, String pathOfParent, Object parent) {
-        throw new UnsupportedOperationException("not supported");//TODO: split this to different classes
+        throw new UnsupportedOperationException("not supported");
     }
 
     @Override

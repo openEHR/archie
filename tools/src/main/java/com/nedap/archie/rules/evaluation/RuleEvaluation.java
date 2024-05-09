@@ -2,10 +2,11 @@ package com.nedap.archie.rules.evaluation;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMQueryContext;
+import com.nedap.archie.rminfo.BackwardsCompatibleRmObjectProcessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rminfo.RmObjectProcessor;
 import com.nedap.archie.rmobjectvalidator.APathQueryCache;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rmobjectvalidator.ValidationHelper;
@@ -47,25 +48,45 @@ public class RuleEvaluation<T> {
 
     private ModelInfoLookup modelInfoLookup;
 
-    private RMObjectCreator creator;
-
     private final JAXBContext jaxbContext;
     private RMQueryContext rmQueryContext;
     private APathQueryCache queryCache = new APathQueryCache();
 
     private final AssertionsFixer assertionsFixer;
 
-    public RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, Archetype archetype) {
-        this(modelInfoLookup, validationConfiguration, null, archetype);
+    public RuleEvaluation(
+            ModelInfoLookup modelInfoLookup,
+            RmObjectProcessor rmObjectProcessor,
+            ValidationConfiguration validationConfiguration,
+            Archetype archetype
+    ) {
+        this(modelInfoLookup, rmObjectProcessor, validationConfiguration, null, archetype);
     }
 
     /**
-     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, ValidationConfiguration, Archetype)} instead.
+     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, RmObjectProcessor, ValidationConfiguration, Archetype)}
+     * instead.
+     */
+    @Deprecated
+    public RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, Archetype archetype) {
+        this(
+                modelInfoLookup,
+                new BackwardsCompatibleRmObjectProcessor(modelInfoLookup),
+                validationConfiguration,
+                null,
+                archetype
+        );
+    }
+
+    /**
+     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, RmObjectProcessor, ValidationConfiguration, Archetype)}
+     * instead.
      */
     @Deprecated
     public RuleEvaluation(ModelInfoLookup modelInfoLookup, Archetype archetype) {
         this(
                 modelInfoLookup,
+                new BackwardsCompatibleRmObjectProcessor(modelInfoLookup),
                 new ValidationConfiguration.Builder()
                         .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
                         .build(),
@@ -79,12 +100,14 @@ public class RuleEvaluation<T> {
      * @param modelInfoLookup the model info lookup to make this rule evaluator for
      * @param jaxbContext the jaxb context, use for queries. If null, will use RMPahtQuery instead
      * @param archetype the archetype to evaluate rules for
-     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, ValidationConfiguration, Archetype)} instead.
+     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, RmObjectProcessor, ValidationConfiguration, Archetype)}
+     * instead.
      */
     @Deprecated
     public RuleEvaluation(ModelInfoLookup modelInfoLookup, JAXBContext jaxbContext, Archetype archetype) {
         this(
                 modelInfoLookup,
+                new BackwardsCompatibleRmObjectProcessor(modelInfoLookup),
                 new ValidationConfiguration.Builder()
                         .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
                         .build(),
@@ -93,11 +116,16 @@ public class RuleEvaluation<T> {
         );
     }
 
-    private RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, JAXBContext jaxbContext, Archetype archetype) {
+    private RuleEvaluation(
+            ModelInfoLookup modelInfoLookup,
+            RmObjectProcessor rmObjectProcessor,
+            ValidationConfiguration validationConfiguration,
+            JAXBContext jaxbContext,
+            Archetype archetype
+    ) {
         this.jaxbContext = jaxbContext;
         this.modelInfoLookup = modelInfoLookup;
-        this.creator = new RMObjectCreator(modelInfoLookup);
-        this.assertionsFixer = new AssertionsFixer(this, creator);
+        this.assertionsFixer = new AssertionsFixer(this, rmObjectProcessor);
         this.archetype = archetype;
         this.functionEvaluator = new FunctionEvaluator();
         add(new VariableDeclarationEvaluator());

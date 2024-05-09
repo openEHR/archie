@@ -5,8 +5,9 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
-import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rminfo.BackwardsCompatibleRmObjectProcessor;
 import com.nedap.archie.rminfo.RMAttributeInfo;
+import com.nedap.archie.rminfo.RmObjectProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,13 +29,24 @@ public class AssertionsFixer {
     private final RuleEvaluation<?> ruleEvaluation;
     private final RMObjectCreator rmObjectCreator;
 
-    private ModelInfoLookup modelInfoLookup;
+    private final RmObjectProcessor rmObjectProcessor;
 
+    /**
+     * @deprecated Not intended for direct usage. Use RuleEvaluation instead.
+     */
+    @Deprecated
     public AssertionsFixer(RuleEvaluation<?> evaluation, RMObjectCreator creator) {
         this.creator = creator;
         this.ruleEvaluation = evaluation;
-        this.modelInfoLookup = ruleEvaluation.getModelInfoLookup();
-        rmObjectCreator = new RMObjectCreator(evaluation.getModelInfoLookup());
+        this.rmObjectProcessor = new BackwardsCompatibleRmObjectProcessor(evaluation.getModelInfoLookup());
+        rmObjectCreator = new RMObjectCreator(evaluation.getModelInfoLookup(), rmObjectProcessor);
+    }
+
+    AssertionsFixer(RuleEvaluation<?> evaluation, RmObjectProcessor rmObjectProcessor) {
+        this.creator = new RMObjectCreator(evaluation.getModelInfoLookup(), rmObjectProcessor);
+        this.ruleEvaluation = evaluation;
+        this.rmObjectProcessor = rmObjectProcessor;
+        rmObjectCreator = creator;
     }
 
     public Map<String, Object> fixSetPathAssertions(Archetype archetype, AssertionResult assertionResult) {
@@ -74,7 +86,7 @@ public class AssertionsFixer {
                     creator.set(parent, lastPathSegment, Lists.newArrayList(value.getValue()));
                 }
 
-                result.putAll(modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent));
+                result.putAll(rmObjectProcessor.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent));
                 ruleEvaluation.refreshQueryContext();
             }
         }
@@ -192,7 +204,7 @@ public class AssertionsFixer {
         List<ObjectToRemove> result = new ArrayList<>();
         ruleEvaluation.findList(pathOfParent).forEach(parent -> {
             String attributeName = getAttributeName(lastPathSegment);
-            List<RMObjectWithPath> objectsWithPath = new RMPathQuery(lastPathSegment).findList(modelInfoLookup, parent);
+            List<RMObjectWithPath> objectsWithPath = new RMPathQuery(lastPathSegment).findList(ruleEvaluation.getModelInfoLookup(), parent);
             objectsWithPath.forEach(rmObjectWithPath -> result.add(new ObjectToRemove(parent, attributeName, rmObjectWithPath.getObject())));
         });
         return result;
@@ -202,7 +214,7 @@ public class AssertionsFixer {
         Object parent = objectToRemove.getParent();
         Object object = objectToRemove.getObject();
 
-        RMAttributeInfo attributeInfo = modelInfoLookup.getAttributeInfo(parent.getClass(), objectToRemove.getAttributeName());
+        RMAttributeInfo attributeInfo = ruleEvaluation.getModelInfoLookup().getAttributeInfo(parent.getClass(), objectToRemove.getAttributeName());
         try {
             Object attributeValue = attributeInfo.getGetMethod().invoke(parent);
             if (attributeValue instanceof List) {

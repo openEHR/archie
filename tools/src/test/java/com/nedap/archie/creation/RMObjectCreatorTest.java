@@ -10,6 +10,7 @@ import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvBoolean;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmObjectProcessor;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertNotNull;
  */
 public class RMObjectCreatorTest {
 
-    RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
+    RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance(), new OpenEhrRmObjectProcessor());
 
     @Test
     public void createElement() {

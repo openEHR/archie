@@ -11,6 +11,7 @@ import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.DvBoolean;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmObjectProcessor;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.After;
@@ -37,7 +38,7 @@ public class FixableAssertionsCheckerTest {
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        rmObjectCreator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
+        rmObjectCreator = new RMObjectCreator(ArchieRMInfoLookup.getInstance(), new OpenEhrRmObjectProcessor());
         parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
@@ -210,7 +211,12 @@ public class FixableAssertionsCheckerTest {
     }
 
     private RuleEvaluation<Locatable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), archetype);
+        return new RuleEvaluation<>(
+                ArchieRMInfoLookup.getInstance(),
+                new OpenEhrRmObjectProcessor(),
+                new ValidationConfiguration.Builder().build(),
+                archetype
+        );
     }
 
 }
