@@ -47,7 +47,7 @@ public abstract class ParsedRulesEvaluationTest {
 
     @Before
     public void setup() {
-        testUtil = new TestUtil();
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
         parser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
     }
 

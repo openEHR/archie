@@ -68,7 +68,7 @@ public class FunctionsTest {
         System.out.println(archetype);
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
 
@@ -99,7 +99,7 @@ public class FunctionsTest {
         System.out.println(archetype);
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
 
@@ -119,7 +119,7 @@ public class FunctionsTest {
         System.out.println(archetype);
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
 
@@ -150,7 +150,7 @@ public class FunctionsTest {
         assertTrue(parser.getErrors().hasNoErrors());
 
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
 
@@ -184,7 +184,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
 
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         ItemTree itemTree = (ItemTree) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]");
         Item item = (Item) itemTree.itemAtPath("/items[id5]");
         itemTree.addItem( (Item) item.clone() );
@@ -209,7 +209,7 @@ public class FunctionsTest {
         assertTrue(parser.getErrors().hasNoErrors());
 
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(26.1);
 
@@ -225,7 +225,7 @@ public class FunctionsTest {
         assertTrue(parser.getErrors().hasNoErrors());
 
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(27.9);
 

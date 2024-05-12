@@ -37,7 +37,7 @@ public class ValidateArchetypedTest {
 
     @Before
     public void setup() throws Exception {
-        testUtil = new TestUtil();
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
 
         repo = new InMemoryFullArchetypeRepository();
         validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), repo);

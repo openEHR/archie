@@ -14,6 +14,7 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.base.RMObject;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.rminfo.ReflectionModelInfoLookup;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -35,9 +36,12 @@ import static org.junit.Assert.*;
  */
 public class TestUtil {
 
+    public TestUtil (ReflectionModelInfoLookup metaModel) {
+        creator = new RMObjectCreator(metaModel);
+    }
     private static final Logger logger = LoggerFactory.getLogger(TestUtil.class);
 
-    private RMObjectCreator creator = new RMObjectCreator(OpenEhrRmInfoLookup.getInstance());
+    private RMObjectCreator creator;
 
     /**
      * Creates an empty RM Object, fully nested, one object per CObject found.

@@ -36,7 +36,7 @@ public class RmObjectValidatorTest {
     @Before
     public void setup() {
 
-        testUtil = new TestUtil();
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
 
         emptyRepo = new InMemoryFullArchetypeRepository();
         validator = new RMObjectValidator(OpenEhrRmInfoLookup.getInstance(), emptyRepo);

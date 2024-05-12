@@ -35,7 +35,7 @@ public class FixableAssertionsCheckerTest {
 
     @Before
     public void setup() {
-        testUtil = new TestUtil();
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
         rmObjectCreator = new RMObjectCreator(OpenEhrRmInfoLookup.getInstance());
         parser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");

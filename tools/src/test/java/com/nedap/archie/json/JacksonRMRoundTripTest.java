@@ -49,7 +49,7 @@ public class JacksonRMRoundTripTest {
 
     @Before
     public void setup() {
-        testUtil = new TestUtil();
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
         parser = new ADLParser(new RMConstraintImposer());
     }
 
