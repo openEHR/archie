@@ -1,0 +1,374 @@
+template (adl_version=2.0.5; rm_release=1.0.2; generated)
+    openEHR-EHR-COMPOSITION.blood_pressure.v1.0.0
+
+specialize
+    openEHR-EHR-COMPOSITION.report-result.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["ar-sy"] = <
+            author = <
+                ["name"] = <"Mona Saleh">
+            >
+            language = <[ISO_639-1::ar-sy]>
+        >
+    >
+    
+description
+    copyright = <"© openEHR Foundation">
+    details = <
+        ["ar-sy"] = <
+            keywords = <"تقرير">
+            language = <[ISO_639-1::ar-sy]>
+            misuse = <"">
+            purpose = <"نموذج جنيس (غير محدود الملكية) يحتوي على معلومات من أجل مشاركتها مع الجميع.">
+            use = <"يستخدم كنموذج جنيس (غير محدود الملكية) ليحتوي على المعلومات التي ينبغي مشاركتها مع الآخرين. و من الأمثلة المشهورة, توثيق الاستجابة لطلب معلومات, ناتج اختبار, الأنشطة التي تم إجراؤها أو الوقائع التي حدثت بالفعل.
+و هو يمثل إحدى المكونات التي تتناسب مع السياق و يمكن استخدامه كشرفة في:
+- إضافة محتوى اختياري أثناء إعداد القالب لدعم متطلبات محددة متعلقة بحالة الاستخدام.
+- إضافة نماذج ديموغرافية على نمط السجل الطبي الإلكتروني, يمثل الأطراف المساهِمة. و في حين أن ذلك قد لا يكون مرغوبا فيه عند التشغيل, فإنه قد يكون من المفيد عرض كيف يمكن تمثيل المعلومات الديموغرافية في وقت التشغيل, بمعنى استخدامها كدعم لتجميع متطلبات المحتوى السريري أو مراجعة القالب.
+و قد تم تعمد جعل مُكَوِّن المقاطع غير مقيد للوصول إلى الحد الأقصى لإعادة استخدام هذا النموذج.">
+        >
+        ["en"] = <
+            keywords = <"report", "test", "result", "diagnostic", "audiogram", "tympanogram", "audiometry", "tympanography">
+            language = <[ISO_639-1::en]>
+            misuse = <"">
+            purpose = <"Generic container archetype to carry information about the result of a test or assessment.">
+            use = <"Use as a generic archetype to carry information about the result of a test or assessment.  Common result examples are: a pathology/laboratory test; an imaging examination test; or an audiogram hearing assessement.
+The Context component contains an optional unnamed slot that can be used to:
+- add optional content during templating to support a use-case specific requirements;
+- add EHR model demographic archetypes representing participating parties. While this may not be desired at implementation, this can be useful to demonstrate how demographics may be represented in an implementation ie as a support to clinical content requirements gathering or template review.
+The Sections component has been deliberately left unconstrained to maximise re-use of this archetype.">
+        >
+    >
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2012-12-11">
+    >
+    other_contributors = <"Heath Frankel, Ocean Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Hugh Leslie, Ocean Informatics, Australia", "Ian McNicoll, Ocean Informatics, Australia">
+
+definition
+    COMPOSITION[id1.1.1] matches {    -- Blood pressure result
+        content matches {
+            use_archetype OBSERVATION[id0.0.5, openEHR-EHR-OBSERVATION.ovl-blood_pressure-blood_pressure-001.v1.0.0]
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["ar-sy"] = <
+            ["id1.1.1"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+            ["id0.0.5"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+        >
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+            ["id0.0.5"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+        >
+        ["sl"] = <
+            ["id1.1.1"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+            ["id0.0.5"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+        >
+        ["es-ar"] = <
+            ["id1.1.1"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+            ["id0.0.5"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-OBSERVATION.ovl-blood_pressure-blood_pressure-001.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.blood_pressure.v1.0.0
+
+definition
+    OBSERVATION[id1.1] matches {    -- Blood Pressure
+        /data[id2]/events[id7]/data[id4]/items matches {
+            ELEMENT[id5.1] occurrences matches {1} matches {    -- Systolic
+                value matches {
+                    DV_QUANTITY[id1054.1] matches {
+                        magnitude matches {|0.0..<500.0|}
+                    }
+                }
+            }
+            ELEMENT[id34] occurrences matches {0} -- no comment
+        }
+        /protocol[id12]/items matches {
+            CLUSTER[id1034.1] occurrences matches {0..1}     -- Measurement location
+            use_archetype CLUSTER[id1026.1, openEHR-EHR-CLUSTER.ovl-blood_pressure-device-001.v1.0.0]
+            allow_archetype CLUSTER[id1026] occurrences matches {0}
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Blood Pressure">
+                description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
+            >
+            ["id1034.1"] = <
+                text = <"Measurement location">
+                description = <"Body location where blood pressure is measured.  Use 'Location of measurement' to select from common sites.  Use 'Specific location' to record more specific details or a site that is not in the common set or to refer to an external terminology.">
+            >
+            ["id5.1"] = <
+                text = <"Systolic">
+                description = <"Peak systemic arterial blood pressure  - measured in systolic or contraction phase of the heart cycle.">
+            >
+            ["id1026.1"] = <
+                text = <"Systolic">
+                description = <"Peak systemic arterial blood pressure  - measured in systolic or contraction phase of the heart cycle.">
+            >
+        >
+        ["ja"] = <
+            ["id1.1"] = <
+                text = <"血圧">
+                description = <"全身に循環する動脈圧を示すものとして，局所で測定される血圧。一般的には「血圧」とは上腕で上腕動脈を測定したものをさすことが多い。">
+            >
+            ["id1034.1"] = <
+                text = <"部位">
+                description = <"血圧測定を行った体の部位。「測定部位」を一般的な場所では利用する。「特定部位」はより詳細に部位を特定したり、外部のターミノロジーや一般的な用語にはない部位を指すために用いる。">
+            >
+            ["id5.1"] = <
+                text = <"収縮期">
+                description = <"1つ以上の脈の間で最高値を示す全身の動脈圧 - 心機図の収縮期で測定される">
+            >
+            ["id1026.1"] = <
+                text = <"Systolic">
+                description = <"Peak systemic arterial blood pressure  - measured in systolic or contraction phase of the heart cycle.">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-CLUSTER.ovl-blood_pressure-device-001.v1.0.0
+
+specialize
+    openEHR-EHR-CLUSTER.device.v1.0.0
+
+definition
+    CLUSTER[id1.1] matches {    -- Medical Device
+        items matches {
+            ELEMENT[id2.1] matches {    -- Scale name
+                value matches {
+                    DV_TEXT[id29.1] 
+                }
+            }
+            ELEMENT[id4.1] occurrences matches {0..1} matches {    -- Type
+                value matches {
+                    DV_CODED_TEXT[id30.1] matches {
+                        defining_code matches {[ac0.1; at0.6]}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["ar-sy"] = <
+            ["id1.1"] = <
+                text = <"*Medical Device(en)">
+                description = <"*An instrument, apparatus, implant, material or similar, used in the provision of healthcare. In this context, a medical device includes a broad range of devices which act through a variety of physical, mechanical, thermal or similar means but specifically excludes devices which act through medicinal means such as pharmacological, metabolic or immunological methods.  The scope is inclusive of disposable devices as well as durable or persisting devices that require tracking, maintenance activities or regular calibration, recognising that each type of device has specific data recording requirements.(en)">
+            >
+            ["id2.1"] = <
+                text = <"*Device name(en)">
+                description = <"*Identification of the medical device, preferably by a common name, a formal fully descriptive name or, if required, by class or category of device.(en)">
+            >
+            ["id4.1"] = <
+                text = <"*Type(en)">
+                description = <"*Type of medical device.(en)">
+            >
+            ["at0.1"] = <
+                text = <"Balance (en)">
+                description = <"Probably not the best choice (en)">
+            >
+            ["at0.2"] = <
+                text = <"Kitchen scale (en)">
+                description = <"For very small people (en)">
+            >
+            ["at0.3"] = <
+                text = <"Household scale (en)">
+                description = <"Hmm right (en)">
+            >
+            ["at0.4"] = <
+                text = <"Optimistic scale (en)">
+                description = <"Always shows optimal weight for your length (en)">
+            >
+            ["at0.5"] = <
+                text = <"Pessimistic scale (en)">
+                description = <"Garfield's scale (en)">
+            >
+            ["ac0.1"] = <
+                text = <"Scale types (en)">
+                description = <"Scale types description (en)">
+            >
+            ["at0.6"] = <
+                text = <"Postal scale (en)">
+                description = <"in case you want to mail the patient (en)">
+            >
+        >
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Medical Device">
+                description = <"An instrument, apparatus, implant, material or similar, used in the provision of healthcare. In this context, a medical device includes a broad range of devices which act through a variety of physical, mechanical, thermal or similar means but specifically excludes devices which act through medicinal means such as pharmacological, metabolic or immunological methods.  The scope is inclusive of disposable devices as well as durable or persisting devices that require tracking, maintenance activities or regular calibration, recognising that each type of device has specific data recording requirements.">
+            >
+            ["id2.1"] = <
+                text = <"Scale name">
+                description = <"Identification of the medical device, preferably by a common name, a formal fully descriptive name or, if required, by class or category of device.">
+            >
+            ["id4.1"] = <
+                text = <"Type">
+                description = <"The category or kind of device.">
+            >
+            ["at0.1"] = <
+                text = <"Balance">
+                description = <"Probably not the best choice">
+            >
+            ["at0.2"] = <
+                text = <"Kitchen scale">
+                description = <"For very small people">
+            >
+            ["at0.3"] = <
+                text = <"Household scale">
+                description = <"Hmm right">
+            >
+            ["at0.4"] = <
+                text = <"Optimistic scale">
+                description = <"Always shows optimal weight for your length">
+            >
+            ["at0.5"] = <
+                text = <"Pessimistic scale">
+                description = <"Garfield's scale">
+            >
+            ["ac0.1"] = <
+                text = <"Scale types">
+                description = <"Scale types description">
+            >
+            ["at0.6"] = <
+                text = <"Postal scale">
+                description = <"in case you want to mail the patient">
+            >
+        >
+        ["nb"] = <
+            ["id1.1"] = <
+                text = <"*Medical Device(en)">
+                description = <"*An instrument, apparatus, implant, material or similar, used in the provision of healthcare. In this context, a medical device includes a broad range of devices which act through a variety of physical, mechanical, thermal or similar means but specifically excludes devices which act through medicinal means such as pharmacological, metabolic or immunological methods.  The scope is inclusive of disposable devices as well as durable or persisting devices that require tracking, maintenance activities or regular calibration, recognising that each type of device has specific data recording requirements.(en)">
+            >
+            ["id2.1"] = <
+                text = <"Enhets navn">
+                description = <"*Identification of the medical device, preferably by a common name, a formal fully descriptive name or, if required, by class or category of device.(en)">
+            >
+            ["id4.1"] = <
+                text = <"Type">
+                description = <"*The category or kind of device.(en)">
+            >
+            ["at0.1"] = <
+                text = <"Balance (en)">
+                description = <"Probably not the best choice (en)">
+            >
+            ["at0.2"] = <
+                text = <"Kitchen scale (en)">
+                description = <"For very small people (en)">
+            >
+            ["at0.3"] = <
+                text = <"Household scale (en)">
+                description = <"Hmm right (en)">
+            >
+            ["at0.4"] = <
+                text = <"Optimistic scale (en)">
+                description = <"Always shows optimal weight for your length (en)">
+            >
+            ["at0.5"] = <
+                text = <"Pessimistic scale (en)">
+                description = <"Garfield's scale (en)">
+            >
+            ["ac0.1"] = <
+                text = <"Scale types (en)">
+                description = <"Scale types description (en)">
+            >
+            ["at0.6"] = <
+                text = <"Postal scale (en)">
+                description = <"in case you want to mail the patient (en)">
+            >
+        >
+        ["es-ar"] = <
+            ["id1.1"] = <
+                text = <"*Medical Device(en)">
+                description = <"*An instrument, apparatus, implant, material or similar, used in the provision of healthcare. In this context, a medical device includes a broad range of devices which act through a variety of physical, mechanical, thermal or similar means but specifically excludes devices which act through medicinal means such as pharmacological, metabolic or immunological methods.  The scope is inclusive of disposable devices as well as durable or persisting devices that require tracking, maintenance activities or regular calibration, recognising that each type of device has specific data recording requirements.(en)">
+            >
+            ["id2.1"] = <
+                text = <"*Device name(en)">
+                description = <"*Identification of the medical device, preferably by a common name, a formal fully descriptive name or, if required, by class or category of device.(en)">
+            >
+            ["id4.1"] = <
+                text = <"*Type(en)">
+                description = <"*Type of medical device.(en)">
+            >
+            ["at0.1"] = <
+                text = <"Balance (en)">
+                description = <"Probably not the best choice (en)">
+            >
+            ["at0.2"] = <
+                text = <"Kitchen scale (en)">
+                description = <"For very small people (en)">
+            >
+            ["at0.3"] = <
+                text = <"Household scale (en)">
+                description = <"Hmm right (en)">
+            >
+            ["at0.4"] = <
+                text = <"Optimistic scale (en)">
+                description = <"Always shows optimal weight for your length (en)">
+            >
+            ["at0.5"] = <
+                text = <"Pessimistic scale (en)">
+                description = <"Garfield's scale (en)">
+            >
+            ["ac0.1"] = <
+                text = <"Scale types (en)">
+                description = <"Scale types description (en)">
+            >
+            ["at0.6"] = <
+                text = <"Postal scale (en)">
+                description = <"in case you want to mail the patient (en)">
+            >
+        >
+    >
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.1", "at0.2", "at0.3", "at0.4", "at0.5", "at0.6">
+        >
+    >
+
