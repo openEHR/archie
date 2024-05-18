@@ -3,9 +3,6 @@ package com.nedap.archie.rminfo;
 import com.nedap.archie.base.RMObject;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import org.junit.Test;
-import org.reflections.Reflections;
-import org.reflections.scanners.Scanners;
-import org.reflections.util.ConfigurationBuilder;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,9 +11,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-public class OpenEhrRmInfoLookupTest {
+public class OpenEhrRmInfoLookupPopulate {
     @Test
     public void testFindAllClassesInRm() throws IOException {
         OpenEhrRmInfoLookup infoLookup = OpenEhrRmInfoLookup.getInstance();
