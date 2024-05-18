@@ -17,13 +17,13 @@ import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.json.JsonSchemaValidator;
 import com.nedap.archie.base.RMObject;
+import com.nedap.archie.test.CkmRepositoryBuilder;
 import org.openehr.rm.composition.Observation;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
-import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.leadpony.justify.api.Problem;
 import org.openehr.bmm.core.BmmModel;
@@ -152,7 +152,7 @@ public class ExampleJsonInstanceGeneratorTest {
     @Test
     public void generateAllCKMExamples() throws Exception {
         ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
-        FullArchetypeRepository repository = TestUtil.parseCKM();//add string regex filename fiter param here to filter files
+        FullArchetypeRepository repository = CkmRepositoryBuilder.parseCKM();//add string regex filename fiter param here to filter files
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         int numberCreated = 0, validationFailed = 0, generatedException = 0, jsonSchemaValidationRan = 0, jsonSchemaValidationFailed = 0;
