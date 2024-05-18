@@ -5,7 +5,7 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
+import com.nedap.archie.testutil.ParseValidArchetypeTestUtil;
 import org.junit.After;
 import org.junit.Test;
 import org.openehr.referencemodels.AllMetaModelsInitialiser;
@@ -27,8 +27,8 @@ public class ArchetypeTerminologyTest {
         //getting the term for a use archetype is a bit of a tricky situation - it's not for the 'id1' code,
         //it's for the code in the parent. So do some specific test here
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-COMPOSITION.parent.v1.0.0.adls"));
-        repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.included.v1.0.0.adls"));
+        repository.addArchetype(ParseValidArchetypeTestUtil.parse(this.getClass(), "/com/nedap/archie/aom/openEHR-EHR-COMPOSITION.parent.v1.0.0.adls"));
+        repository.addArchetype(ParseValidArchetypeTestUtil.parse(this.getClass(), "/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.included.v1.0.0.adls"));
 
         //check that they are valid, just to be sure
         repository.compile(AllMetaModelsInitialiser.getMetaModels());

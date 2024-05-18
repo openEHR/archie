@@ -6,7 +6,7 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
+import com.nedap.archie.testutil.ParseValidArchetypeTestUtil;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Test;
@@ -144,6 +144,6 @@ public class OperationalTemplateCreatorTest {
     }
 
     private Archetype parse(String filePath) throws IOException, ADLParseException {
-        return FlattenerTestUtil.parse(filePath);
+        return ParseValidArchetypeTestUtil.parse(this.getClass(), filePath);
     }
 }

@@ -8,7 +8,7 @@ import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
+import com.nedap.archie.testutil.ParseValidArchetypeTestUtil;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
@@ -211,7 +211,7 @@ public class SiblingOrderFlattenerTest {
     }
 
     private Archetype parse(String fileName) throws IOException, ADLParseException {
-        return FlattenerTestUtil.parse("/com/nedap/archie/flattener/siblingorder/" + fileName);
+        return ParseValidArchetypeTestUtil.parse(this.getClass(), "/com/nedap/archie/flattener/siblingorder/" + fileName);
     }
 
     private Archetype parseAndFlatten(String fileName) throws IOException, ADLParseException {
