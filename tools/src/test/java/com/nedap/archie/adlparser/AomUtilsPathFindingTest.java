@@ -14,7 +14,7 @@ public class AomUtilsPathFindingTest {
 
     @Test
     public void isPathInArchetypeOrRm() throws Exception{
-        Archetype archetype = TestUtil.parseFailOnErrors("/basic.adl");
+        Archetype archetype = TestUtil.parseFailOnErrors(this.getClass(),"/basic.adl");
         MetaModels metaModels = AllMetaModelsInitialiser.getMetaModels();
         metaModels.selectModel(archetype);
         //AOM path

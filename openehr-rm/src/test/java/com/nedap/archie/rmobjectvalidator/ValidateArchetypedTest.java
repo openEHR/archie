@@ -91,6 +91,6 @@ public class ValidateArchetypedTest {
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {
-        return TestUtil.parseFailOnErrors(filename);
+        return TestUtil.parseFailOnErrors(this.getClass(), filename);
     }
 }

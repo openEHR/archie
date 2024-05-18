@@ -147,9 +147,9 @@ public class TestUtil {
         return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject<?, ?>) o2).getConstraint(), o1.getConstraint());
     }
 
-    public static Archetype parseFailOnErrors(String resourceName) throws IOException, ADLParseException {
+    public static Archetype parseFailOnErrors(Class<?> caller, String resourceName) throws IOException, ADLParseException {
         ADLParser parser = new ADLParser();
-        try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
+        try(InputStream stream = caller.getResourceAsStream(resourceName)) {
             if(stream == null) {
                 throw new RuntimeException("Resource does not exist: " + resourceName);
             }
@@ -161,9 +161,9 @@ public class TestUtil {
         }
     }
 
-    public static void parseExpectErrorCode(String resourceName, String errorCode) throws IOException {
+    public static void parseExpectErrorCode(Class<?> caller, String resourceName, String errorCode) throws IOException {
         ADLParser parser = new ADLParser();
-        try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
+        try(InputStream stream = caller.getResourceAsStream(resourceName)) {
             if(stream == null) {
                 throw new RuntimeException("Resource does not exist: " + resourceName);
             }

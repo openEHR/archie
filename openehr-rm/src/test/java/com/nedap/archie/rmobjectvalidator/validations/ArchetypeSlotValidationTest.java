@@ -44,10 +44,10 @@ public class ArchetypeSlotValidationTest {
 
     @Before
     public void setup() throws IOException, ADLParseException {
-        Archetype parent = TestUtil.parseFailOnErrors("/adl2-tests/validity/slots/openEHR-EHR-SECTION.slot_parent.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/adl2-tests/validity/slots/openEHR-EHR-SECTION.slot_parent.v1.0.0.adls");
 
-        included = TestUtil.parseFailOnErrors("/com/nedap/archie/rmobjectvalidation/openEHR-EHR-OBSERVATION.redefine_child.v1.0.0.adls");
-        parentOfIncluded = TestUtil.parseFailOnErrors("/com/nedap/archie/rmobjectvalidation/openEHR-EHR-OBSERVATION.spec_test_parent_2.v1.0.0.adls");
+        included = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/rmobjectvalidation/openEHR-EHR-OBSERVATION.redefine_child.v1.0.0.adls");
+        parentOfIncluded = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/rmobjectvalidation/openEHR-EHR-OBSERVATION.spec_test_parent_2.v1.0.0.adls");
         repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(parent);
         repository.addArchetype(included);

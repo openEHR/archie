@@ -20,7 +20,7 @@ public class PathTest {
 
     @Before
     public void setup() throws Exception {
-        archetype = TestUtil.parseFailOnErrors("/basic.adl");
+        archetype = TestUtil.parseFailOnErrors(this.getClass(),"/basic.adl");
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
     }
 
