@@ -1,0 +1,98 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-COMPOSITION.report.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2010-04-14">
+	>
+	copyright = <"© openEHR">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Generic container archetype to carry information that needs to be shared with others.">
+			use = <"Use as a generic archetype to carry information that needs to be shared with others.  Common examples are: documenting a response to a request for information; the outcome of testing; activities that have been performed; or events that have occurred.
+The Context component contains an optional unnamed slot that can be used to:
+- add optional content during templating to support a use-case specific requirements;
+- add EHR model demographic archetypes representing participating parties. While this may not be desired at implementation, this can be useful to demonstrate how demographics may be represented in an implementation ie as a support to clinical content requirements gathering or template review.
+The Sections component has been deliberately left unconstrained to maximise re-use of this archetype.">
+			keywords = <"report", ...>
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Heath Frankel, Ocean Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Hugh Leslie, Ocean Informatics, Australia", "Ian McNicoll, Ocean Informatics, Australia">
+	other_details = <
+		["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+		["references"] = <"Report, draft archetype, openEHR Foundation. “www.openEHR.org/knowledge.” openEHR Clinical Knowledge Manager. Authored: 14 Apr 2010. http://www.openehr.org/knowledge/OKM.html#showarchetype_1013.1.677 (accessed Dec 10, 2012).">
+		["MD5-CAM-1.0.1"] = <"C4DF25AE97563196F340F6BD8D8D05F7">
+	>
+
+definition
+	COMPOSITION[id1] matches {	-- Report
+		category matches {
+			DV_CODED_TEXT[id7] matches {
+				defining_code matches {[at1]}
+			}
+		}
+		context matches {
+			EVENT_CONTEXT[id8] matches {
+				other_context matches {
+					ITEM_TREE[id2] matches {
+						items matches {
+							ELEMENT[id3] occurrences matches {0..1} matches {	-- Report ID
+								value matches {
+									DV_TEXT[id9]
+								}
+							}
+							ELEMENT[id6] occurrences matches {0..1} matches {	-- Status
+								value matches {
+									DV_TEXT[id10]
+								}
+							}
+							allow_archetype CLUSTER[id11] matches {	-- (added by post-parse processor)
+								include
+									archetype_id/value matches {/.*/}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Report">
+				description = <"Document to communicate information to others, commonly in response to a request from another party.">
+			>
+			["id3"] = <
+				text = <"Report ID">
+				description = <"Identification information about the report.">
+			>
+			["id6"] = <
+				text = <"Status">
+				description = <"The status of the entire report. Note: This is not the status of any of the report components.">
+			>
+			["at1"] = <
+				text = <"event">
+				description = <"event">
+			>
+			["id11"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/433>
+		>
+	>

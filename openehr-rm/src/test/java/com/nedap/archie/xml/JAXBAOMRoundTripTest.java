@@ -3,7 +3,6 @@ package com.nedap.archie.xml;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.Flattener;
-import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.openehr.serialisation.xml.OpenEhrRmJAXBUtil;
 import com.nedap.archie.testutil.TestUtil;
@@ -74,16 +73,16 @@ public class JAXBAOMRoundTripTest {
         // it adds a blood pressure observation
         // it also adds a device
         // it contains specific template overlays for both blood pressure observation and device
-        Archetype report = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.report.v1.adls"));
-        Archetype reportResult = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.report-result.v1.adls"));
-        Archetype device = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-CLUSTER.device.v1.adls"));
+        Archetype report = new ADLParser().parse(getClass().getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.report.v1.adls"));
+        Archetype reportResult = new ADLParser().parse(getClass().getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.report-result.v1.adls"));
+        Archetype device = new ADLParser().parse(getClass().getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-CLUSTER.device.v1.adls"));
 
-        Archetype bloodPressureObservation = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.blood_pressure.v1.adls"));
-        Archetype bloodPressureComposition = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.blood_pressure.v1.0.0.adlt"));
+        Archetype bloodPressureObservation = new ADLParser().parse(getClass().getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.blood_pressure.v1.adls"));
+        Archetype bloodPressureComposition = new ADLParser().parse(getClass().getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.blood_pressure.v1.0.0.adlt"));
 
 
-        Archetype height = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.height.v1.adls"));
-        Archetype heightTemplate = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.length.v1.0.0.adlt"));
+        Archetype height = new ADLParser().parse(getClass().getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.height.v1.adls"));
+        Archetype heightTemplate = new ADLParser().parse(getClass().getResourceAsStream("/com/nedap/archie/flattener/openEHR-EHR-COMPOSITION.length.v1.0.0.adlt"));
 
         SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
         repository.addArchetype(report);

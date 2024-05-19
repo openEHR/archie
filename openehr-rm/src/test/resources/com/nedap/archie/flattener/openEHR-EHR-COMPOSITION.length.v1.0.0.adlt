@@ -1,0 +1,153 @@
+template (adl_version=2.0.5; rm_release=1.0.2; generated)
+    openEHR-EHR-COMPOSITION.length.v1.0.0
+
+specialize
+    openEHR-EHR-COMPOSITION.report-result.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["ar-sy"] = <
+            author = <
+                ["name"] = <"Mona Saleh">
+            >
+            language = <[ISO_639-1::ar-sy]>
+        >
+    >
+
+description
+    copyright = <"© openEHR Foundation">
+    details = <
+        ["ar-sy"] = <
+            keywords = <"تقرير">
+            language = <[ISO_639-1::ar-sy]>
+            misuse = <"">
+            purpose = <"نموذج جنيس (غير محدود الملكية) يحتوي على معلومات من أجل مشاركتها مع الجميع.">
+            use = <"يستخدم كنموذج جنيس (غير محدود الملكية) ليحتوي على المعلومات التي ينبغي مشاركتها مع الآخرين. و من الأمثلة المشهورة, توثيق الاستجابة لطلب معلومات, ناتج اختبار, الأنشطة التي تم إجراؤها أو الوقائع التي حدثت بالفعل.
+و هو يمثل إحدى المكونات التي تتناسب مع السياق و يمكن استخدامه كشرفة في:
+- إضافة محتوى اختياري أثناء إعداد القالب لدعم متطلبات محددة متعلقة بحالة الاستخدام.
+- إضافة نماذج ديموغرافية على نمط السجل الطبي الإلكتروني, يمثل الأطراف المساهِمة. و في حين أن ذلك قد لا يكون مرغوبا فيه عند التشغيل, فإنه قد يكون من المفيد عرض كيف يمكن تمثيل المعلومات الديموغرافية في وقت التشغيل, بمعنى استخدامها كدعم لتجميع متطلبات المحتوى السريري أو مراجعة القالب.
+و قد تم تعمد جعل مُكَوِّن المقاطع غير مقيد للوصول إلى الحد الأقصى لإعادة استخدام هذا النموذج.">
+        >
+        ["en"] = <
+            keywords = <"report", "test", "result", "diagnostic", "audiogram", "tympanogram", "audiometry", "tympanography">
+            language = <[ISO_639-1::en]>
+            misuse = <"">
+            purpose = <"Generic container archetype to carry information about the result of a test or assessment.">
+            use = <"Use as a generic archetype to carry information about the result of a test or assessment.  Common result examples are: a pathology/laboratory test; an imaging examination test; or an audiogram hearing assessement.
+The Context component contains an optional unnamed slot that can be used to:
+- add optional content during templating to support a use-case specific requirements;
+- add EHR model demographic archetypes representing participating parties. While this may not be desired at implementation, this can be useful to demonstrate how demographics may be represented in an implementation ie as a support to clinical content requirements gathering or template review.
+The Sections component has been deliberately left unconstrained to maximise re-use of this archetype.">
+        >
+    >
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2012-12-11">
+    >
+    other_contributors = <"Heath Frankel, Ocean Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Hugh Leslie, Ocean Informatics, Australia", "Ian McNicoll, Ocean Informatics, Australia">
+
+definition
+    COMPOSITION[id1.1.1] matches {    -- Length Report
+        content matches {
+            use_archetype OBSERVATION[id0.0.2, openEHR-EHR-OBSERVATION.ovl-length-height-001.v1.0.0]
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["ar-sy"] = <
+            ["id1.1.1"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+            ["id0.0.2"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+        >
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"Length Report">
+                description = <"Document to record the length of a client">
+            >
+            ["id0.0.2"] = <
+                text = <"*Result Report(en)">
+                description = <"*Document to communicate information to others about the result of a test  or assessment.(en)">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-OBSERVATION.ovl-length-height-001.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.height.v1.0.0
+
+definition
+    OBSERVATION[id1.1]     -- Lengte
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1.1"] = <
+                text = <"Lengte">
+                description = <"De lichaamslengte wordt gemeten vanaf de kruin van het hoofd tot en met de voetzool. In het engelse taaldomein wordt er verschil gemaakt tussen hoogte (height) en lengte (length), waarbij hoogte staande gemeten wordt en lengte liggend.">
+            >
+        >
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Height/Length">
+                description = <"Height, or body length, is measured from crown of head to sole of foot.  Height is measured with the individual in a standing position and body length in a recumbent position.">
+            >
+        >
+        ["de"] = <
+            ["id1.1"] = <
+                text = <"Größe/Länge">
+                description = <"Größe bzw. Körperlänge wird vom Scheitel bis zur Fußsohle gemessen. Größe wird in einer stehenden Position gemessen, Körperlänge in einer liegenden Position.">
+            >
+        >
+        ["pt-br"] = <
+            ["id1.1"] = <
+                text = <"Altura / comprimento">
+                description = <"Altura ou comprimento do corpo, é medida a partir da coroa da cabeça a sola do pé.
+A altura é medida com o indivíduo na posição de pé e comprimento do corpo na posição decúbito dorsal.">
+            >
+        >
+        ["fa"] = <
+            ["id1.1"] = <
+                text = <"قد و یا طول">
+                description = <"قد یا طول بدن از نوک سر تا کف پا اندازه گیری می شود.بلندی در حالت ایستاده و طول بدن فرد در حالت خوابیده اندازه گیری می شود ">
+            >
+        >
+        ["ar-sy"] = <
+            ["id1.1"] = <
+                text = <"الارتفاع / الطول">
+                description = <"الارتفاع أو طول الجسم, يتم قياسه من تاج الرأس إلى أخمص القدم. يتم قياس الارتفاع عندما يكون الفرد واقفا, و طول الجسم عندما يكون الفرد مستلقيا.">
+            >
+        >
+        ["es-ar"] = <
+            ["id1.1"] = <
+                text = <"Altura/Longitud corporal">
+                description = <"La altura o longitud corporal es medida desde la coronilla de la cabeza hasta la planta de los pies. La altura es medida con el individuo en posición erguida y la longitud corporal, en posición recostada.">
+            >
+        >
+        ["ru"] = <
+            ["id1.1"] = <
+                text = <"Рост/длина тела">
+                description = <"Рост или длина тела. Измеряется от макушки до пяток, стоя, или в вытянутом положении.">
+            >
+        >
+        ["zh-cn"] = <
+            ["id1.1"] = <
+                text = <"身高/身长">
+                description = <"从头顶至脚底（足底）所测得的身高（高度）/身长（长度）。身高测量采用直立位，而身长测量则采用的是卧位（平卧位）。">
+            >
+        >
+    >
+
