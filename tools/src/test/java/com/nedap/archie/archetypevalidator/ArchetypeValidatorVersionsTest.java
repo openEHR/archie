@@ -16,9 +16,9 @@ public class ArchetypeValidatorVersionsTest {
     @Test
     public void testMultipleVersions() throws IOException, ADLParseException {
 
-        Archetype parentv1 = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.0.0.adls");
-        Archetype parentv11 = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.1.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.child.v0.0.1.adls");
+        Archetype parentv1 = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.0.0.adls");
+        Archetype parentv11 = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.1.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.child.v0.0.1.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parentv1);
         repo.addArchetype(parentv11);
@@ -40,9 +40,9 @@ public class ArchetypeValidatorVersionsTest {
     @Test
     public void testMultipleVersionsFullyCompile() throws Exception {
         //same test as above, but with the 'compile this repo at once' method
-        Archetype parentv1 = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.0.0.adls");
-        Archetype parentv11 = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.1.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.child.v0.0.1.adls");
+        Archetype parentv1 = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.0.0.adls");
+        Archetype parentv11 = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.parent.v1.1.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.child.v0.0.1.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parentv1);
         repo.addArchetype(parentv11);

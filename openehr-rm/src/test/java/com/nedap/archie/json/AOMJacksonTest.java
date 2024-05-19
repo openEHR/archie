@@ -246,7 +246,7 @@ public class AOMJacksonTest {
 
     @Test
     public void rmOverlay() throws Exception {
-        Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
+        Archetype archetype = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
         String json = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
 
         Archetype parsed = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(json, Archetype.class);

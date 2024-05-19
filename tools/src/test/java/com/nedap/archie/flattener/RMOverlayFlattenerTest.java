@@ -14,8 +14,8 @@ public class RMOverlayFlattenerTest {
 
     @Test
     public void flattenParentChild() throws Exception{
-        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_child_with_overlay.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_child_with_overlay.v1.0.0.adls");
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(parent);
         repository.addArchetype(child);
@@ -34,8 +34,8 @@ public class RMOverlayFlattenerTest {
 
     @Test
     public void flattenIncludedArchetype() throws Exception {
-        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
-        Archetype composition = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-COMPOSITION.including_overlay.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
+        Archetype composition = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/flattener/openEHR-COMPOSITION.including_overlay.v1.0.0.adls");
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(parent);
         repository.addArchetype(composition);

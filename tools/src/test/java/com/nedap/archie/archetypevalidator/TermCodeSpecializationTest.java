@@ -21,8 +21,8 @@ public class TermCodeSpecializationTest {
 
     @Test
     public void validRequiredBindingStrength() throws Exception {
-        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_valid_child.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_valid_child.v1.0.0.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
@@ -39,8 +39,8 @@ public class TermCodeSpecializationTest {
 
     @Test
     public void invalidRequiredBindingStrength() throws Exception {
-        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_invalid_child.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_invalid_child.v1.0.0.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
@@ -53,8 +53,8 @@ public class TermCodeSpecializationTest {
 
     @Test
     public void invalidConstraintStrengthRedefinition() throws Exception {
-        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_invalid_redefinition.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_invalid_redefinition.v1.0.0.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
@@ -67,8 +67,8 @@ public class TermCodeSpecializationTest {
 
     @Test
     public void valueSetCodeChanges() throws IOException, ADLParseException {
-        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_change_valueset_code.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_change_valueset_code.v1.0.0.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
@@ -86,13 +86,13 @@ public class TermCodeSpecializationTest {
 
     @Test
     public void invalidConstraintStrenghKeyword() throws IOException {
-        TestUtil.parseExpectErrorCode("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_wrong_name.v1.0.0.adls", "Constraint status incorrect");
+        TestUtil.parseExpectErrorCode(this.getClass(), "/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_wrong_name.v1.0.0.adls", "Constraint status incorrect");
     }
 
     @Test
     public void invalidValueSetRedefinition() throws IOException, ADLParseException {
-        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
@@ -105,8 +105,8 @@ public class TermCodeSpecializationTest {
 
     @Test
     public void nonExistingParentValueSet() throws IOException, ADLParseException {
-        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
-        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.incorrect_parent_valueset_code.v1.0.0.adls");
+        Archetype parent = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.incorrect_parent_valueset_code.v1.0.0.adls");
         InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
         repo.addArchetype(parent);
         repo.addArchetype(child);
