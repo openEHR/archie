@@ -1,6 +1,7 @@
 package com.nedap.archie.json.flat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
@@ -15,6 +16,7 @@ import org.openehr.rm.composition.Observation;
 import org.openehr.rm.datastructures.Cluster;
 import org.openehr.rm.datastructures.Element;
 import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.datavalues.encapsulated.DvMultimedia;
 import org.openehr.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
@@ -158,6 +160,17 @@ public class FlatJsonGeneratorTest {
         expected.put("/items[id3,4]/value/magnitude", 4L);
 
         assertEquals(expected, stringObjectMap);
+    }
+
+    @Test
+    public void serializeBytes() throws Exception {
+        DvMultimedia dvMultimedia = new DvMultimedia();
+        dvMultimedia.setData(new byte[]{42, 83, 120, -128, 127, 30, -80, 15});
+
+        FlatJsonGenerator flatJsonGenerator = new FlatJsonGenerator(OpenEhrRmInfoLookup.getInstance(), FlatJsonFormatConfiguration.nedapInternalFormat());
+
+        Map<String, Object> pathsAndValues = flatJsonGenerator.buildPathsAndValues(dvMultimedia);
+        assertEquals("{\"/@type\":\"DV_MULTIMEDIA\",\"/data\":\"KlN4gH8esA8=\"}", new JsonMapper().writeValueAsString(pathsAndValues));
     }
 
     @Test
@@ -307,5 +320,4 @@ public class FlatJsonGeneratorTest {
     private Map<String, Object> createExampleInstance(OperationalTemplate bloodPressureOpt, FlatJsonFormatConfiguration config) throws IOException, DuplicateKeyException {
         return new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, AllMetaModelsInitialiser.getMetaModels(), "en", config);
     }
-
 }

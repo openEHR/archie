@@ -17,12 +17,7 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAmount;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -301,6 +296,8 @@ public class FlatJsonGenerator {
             } else if (child instanceof TemporalAmount) {
                 //duration or period. now just a toString, should this be a specific formatter?
                 storeValue(result, newPath, child);
+            } else if(child instanceof byte[]) {
+                storeValue(result, newPath, Base64.getEncoder().encodeToString((byte[]) child));
             } else {
                 storeValue(result, newPath, child.toString());
             }

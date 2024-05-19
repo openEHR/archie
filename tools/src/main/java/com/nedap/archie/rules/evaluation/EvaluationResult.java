@@ -28,7 +28,7 @@ public class EvaluationResult {
 
     public List<String> getPathsThatMustExist() {
         List<String> result = new ArrayList<>();
-        for(AssertionResult assertionResult:assertionResults) {
+        for (AssertionResult assertionResult : assertionResults) {
             result.addAll(assertionResult.getPathsThatMustExist());
         }
         return result;
@@ -36,7 +36,7 @@ public class EvaluationResult {
 
     public List<String> getPathsThatMustNotExist() {
         List<String> result = new ArrayList<>();
-        for(AssertionResult assertionResult:assertionResults) {
+        for (AssertionResult assertionResult : assertionResults) {
             result.addAll(assertionResult.getPathsThatMustNotExist());
 
         }
@@ -45,8 +45,16 @@ public class EvaluationResult {
 
     public Map<String, Value<?>> getSetPathValues() {
         Map<String, Value<?>> result = new LinkedHashMap<>();
-        for(AssertionResult assertionResult:assertionResults) {
+        for (AssertionResult assertionResult : assertionResults) {
             result.putAll(assertionResult.getSetPathValues());
+        }
+        return result;
+    }
+
+    public Map<String, String> getPathsConstrainedToValueSets() {
+        Map<String, String> result = new LinkedHashMap<>();
+        for (AssertionResult assertionResult : assertionResults) {
+            result.putAll(assertionResult.getPathsConstrainedToValueSets());
         }
         return result;
     }
