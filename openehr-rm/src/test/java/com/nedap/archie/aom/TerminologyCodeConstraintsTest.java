@@ -11,14 +11,14 @@ import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import org.openehr.rm.datatypes.CodePhrase;
-import org.openehr.rm.datavalues.DvCodedText;
+import com.nedap.archie.testutil.ParseValidArchetypeTestUtil;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rules.evaluation.DummyRulesPrimitiveObjectParent;
 import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.AllMetaModelsInitialiser;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.datavalues.DvCodedText;
 
 import java.net.URI;
 import java.util.*;
@@ -181,8 +181,8 @@ public class TerminologyCodeConstraintsTest {
         //getting the term for a use archetype is a bit of a tricky situation - it's not for the 'id1' code,
         //it's for the code in the parent. So do some specific test here
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-COMPOSITION.parent.v1.0.0.adls"));
-        repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.included.v1.0.0.adls"));
+        repository.addArchetype(ParseValidArchetypeTestUtil.parse(this.getClass(), "/com/nedap/archie/aom/openEHR-EHR-COMPOSITION.parent.v1.0.0.adls"));
+        repository.addArchetype(ParseValidArchetypeTestUtil.parse(this.getClass(), "/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.included.v1.0.0.adls"));
 
         //create operational template
         Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
