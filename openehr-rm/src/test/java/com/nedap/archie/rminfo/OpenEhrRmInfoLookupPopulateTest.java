@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 
-public class OpenEhrRmInfoLookupPopulate {
+public class OpenEhrRmInfoLookupPopulateTest {
     @Test
-    public void testFindAllClassesInRm() throws IOException {
+    public void findAllClassesInRm() throws IOException {
         OpenEhrRmInfoLookup infoLookup = OpenEhrRmInfoLookup.getInstance();
 
         Set<Class<?>> classes = infoLookup.findAllClassesInPackage ("org.openehr.rm", RMObject.class);
