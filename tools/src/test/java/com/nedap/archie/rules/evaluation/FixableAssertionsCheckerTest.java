@@ -5,18 +5,18 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.creation.RMObjectCreator;
-import com.nedap.archie.rm.archetyped.Locatable;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datavalues.DvBoolean;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.archetyped.Locatable;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datavalues.DvBoolean;
+import org.openehr.rm.datavalues.DvText;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,9 +37,9 @@ public class FixableAssertionsCheckerTest {
 
     @Before
     public void setup() {
-        testUtil = new TestUtil();
-        rmObjectCreator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
-        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
+        rmObjectCreator = new RMObjectCreator(OpenEhrRmInfoLookup.getInstance());
+        parser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
     }
@@ -211,7 +211,7 @@ public class FixableAssertionsCheckerTest {
     }
 
     private RuleEvaluation<Locatable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
+        return new RuleEvaluation<>(OpenEhrRmInfoLookup.getInstance(), archetype);
     }
 
 }

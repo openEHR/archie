@@ -4,15 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.json.ArchieRMObjectMapperProvider;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.support.identification.TerminologyId;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmObjectMapperProvider;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.datavalues.DvText;
+import org.openehr.rm.support.identification.TerminologyId;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.InputStream;
 
@@ -24,7 +24,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvTextOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -48,14 +48,14 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvTextJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
             DvText dvText = new DvText();
             dvText.setValue("some default value");
             cComplexObject.setDefaultValue(dvText);
-            String serialized = ADLArchetypeSerializer.serialize(archetype, null, new ArchieRMObjectMapperProvider());
+            String serialized = ADLArchetypeSerializer.serialize(archetype, null, new OpenEhrRmObjectMapperProvider());
             System.out.println(serialized);
             assertTrue(serialized.contains("_default = (json) <#"));
             assertTrue(serialized.contains("\"some default value\""));
@@ -74,14 +74,14 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvCodedTextJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
             DvCodedText dvCodedText = new DvCodedText("some default value", new CodePhrase(new TerminologyId("local"), "at5"));
 
             cComplexObject.setDefaultValue(dvCodedText);
-            String serialized = ADLArchetypeSerializer.serialize(archetype, null, new ArchieRMObjectMapperProvider());
+            String serialized = ADLArchetypeSerializer.serialize(archetype, null, new OpenEhrRmObjectMapperProvider());
             System.out.println(serialized);
             assertTrue(serialized.contains("_default = (json) <#"));
             assertTrue(serialized.contains("\"some default value\""));
@@ -101,7 +101,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvCodedTextOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -128,7 +128,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeClusterJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.getDefinition();
@@ -140,7 +140,7 @@ public class DefaultValueSerializerTest {
                     new DvCodedText("some default value", new CodePhrase(new TerminologyId("local"), "at5"))));
 
             cComplexObject.setDefaultValue(cluster);
-            String serialized = ADLArchetypeSerializer.serialize(archetype, null, new ArchieRMObjectMapperProvider());
+            String serialized = ADLArchetypeSerializer.serialize(archetype, null, new OpenEhrRmObjectMapperProvider());
             System.out.println(serialized);
             assertTrue(serialized.contains("_default = (json) <#"));
             assertTrue(serialized.contains("\"some default value\""));
@@ -157,7 +157,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeClusterOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.getDefinition();
@@ -189,8 +189,8 @@ public class DefaultValueSerializerTest {
     }
 
 
-    private ArchieRMObjectMapperProvider getOdinProvider() {
-        return new ArchieRMObjectMapperProvider() {
+    private OpenEhrRmObjectMapperProvider getOdinProvider() {
+        return new OpenEhrRmObjectMapperProvider() {
             @Override
             public ObjectMapper getJsonObjectMapper() {
                 return null;

@@ -1,10 +1,8 @@
 package com.nedap.archie.rules.evaluation;
 
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeConstraint;
 import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.apath.PathSegment;
 
 import java.util.ArrayList;
 import java.util.List;

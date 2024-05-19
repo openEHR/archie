@@ -21,7 +21,7 @@ public class CObjectTest {
 
     @Before
     public void setup() throws Exception {
-        archetype = TestUtil.parseFailOnErrors("/basic.adl");
+        archetype = TestUtil.parseFailOnErrors(this.getClass(),"/basic.adl");
     }
 
     @Test

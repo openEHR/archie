@@ -1,8 +1,8 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nedap.archie.paths.PathSegment;
-import com.nedap.archie.paths.PathUtil;
+import com.nedap.archie.apath.PathSegment;
+import com.nedap.archie.apath.PathUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlTransient;

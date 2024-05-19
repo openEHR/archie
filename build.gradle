@@ -29,6 +29,7 @@ apply from: "${gradleScriptDir}/publish-maven.gradle"
 
 subprojects {
   apply plugin: 'java-library'
+  apply plugin: 'java-test-fixtures'
 
  // plugins {
    //   id 'com.github.ben-manes.versions' version '0.13.0'
@@ -85,7 +86,6 @@ subprojects {
     testImplementation 'org.slf4j:slf4j-simple:1.7.36'
 
     api 'com.github.zafarkhaja:java-semver:0.10.2'
-
 
   }
 

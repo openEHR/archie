@@ -8,12 +8,12 @@ import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.testutil.ParseValidArchetypeTestUtil;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +32,7 @@ public class SiblingOrderFlattenerTest {
     public void setup() throws Exception {
         repository = new InMemoryFullArchetypeRepository();
         parentArchetype = parse("openEHR-EHR-CLUSTER.order-parent.v1.0.0.adls");
-        ReferenceModels models = BuiltinReferenceModels.getAvailableModelInfoLookups();
+        ReferenceModels models = AllMetaModelsInitialiser.getNativeRms();
         ValidationResult validationResult = new ArchetypeValidator(models).validate(parentArchetype, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
         repository.addArchetype(parentArchetype);
@@ -211,37 +211,37 @@ public class SiblingOrderFlattenerTest {
     }
 
     private Archetype parse(String fileName) throws IOException, ADLParseException {
-        return FlattenerTestUtil.parse("/com/nedap/archie/flattener/siblingorder/" + fileName);
+        return ParseValidArchetypeTestUtil.parse(this.getClass(), "/com/nedap/archie/flattener/siblingorder/" + fileName);
     }
 
     private Archetype parseAndFlatten(String fileName) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
-        return new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).flatten(parse(fileName));
+        return new Flattener(repository, AllMetaModelsInitialiser.getNativeRms()).flatten(parse(fileName));
     }
 
     private Archetype parseAndCreateOPT(String fileName) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
-        return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(parse(fileName));
+        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(parse(fileName));
     }
 
     private Archetype parseAndFlattenRemoveZeroOccurrences(String fileName) throws IOException, ADLParseException {
         Archetype result = parse(fileName);
         ReferenceModels models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
         FlattenerConfiguration config = FlattenerConfiguration.forFlattened();
         config.setRemoveZeroOccurrencesObjects(true);
-        return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), config).flatten(parse(fileName));
+        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), config).flatten(parse(fileName));
     }
 }
