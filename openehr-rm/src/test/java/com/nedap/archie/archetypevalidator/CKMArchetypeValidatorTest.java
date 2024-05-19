@@ -4,6 +4,7 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.test.CkmRepositoryBuilder;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.openehr.referencemodels.AllMetaModelsInitialiser;
@@ -46,7 +47,7 @@ public class CKMArchetypeValidatorTest {
     @Test
     public void fullCKMTest() {
 
-        FullArchetypeRepository repository = TestUtil.parseCKM();
+        FullArchetypeRepository repository = CkmRepositoryBuilder.parseCKM();
         ReferenceModels models = new ReferenceModels();
         models.registerModel(OpenEhrRmInfoLookup.getInstance());
         logger.info("archetypes parsed: " + repository.getAllArchetypes().size());
@@ -60,7 +61,7 @@ public class CKMArchetypeValidatorTest {
     public void fullCKMTestBmm() {
         MetaModels bmmReferenceModels = new MetaModels(null, AllMetaModelsInitialiser.getBmmRepository(), AllMetaModelsInitialiser.getAomProfiles());
 
-        FullArchetypeRepository repository = TestUtil.parseCKM();
+        FullArchetypeRepository repository = CkmRepositoryBuilder.parseCKM();
         logger.info("archetypes parsed: " + repository.getAllArchetypes().size());
         repository.compile(bmmReferenceModels);
 
