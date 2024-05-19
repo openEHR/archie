@@ -3,19 +3,16 @@ package com.nedap.archie.testutil;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.creation.RMObjectCreator;
-import com.nedap.archie.flattener.FullArchetypeRepository;
-import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.base.RMObject;
 import com.nedap.archie.rminfo.ReflectionModelInfoLookup;
-import org.reflections.Reflections;
-import org.reflections.scanners.Scanners;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,11 +21,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 /**
  * Created by pieter.bos on 06/04/16.
@@ -87,11 +80,11 @@ public class TestUtil {
      * @throws Exception
      */
     public static void assertCObjectEquals(CObject cobject1, CObject cobject2) throws Exception {
-        assertThat(cobject1.getClass(), is(equalTo(cobject2.getClass())));
-        assertThat(cobject1.getRmTypeName(), is(cobject2.getRmTypeName()));
-        assertThat(cobject1.getNodeId(), is(cobject2.getNodeId()));
-        assertThat(cobject1.getAttributes().size(), is(cobject2.getAttributes().size()));
-        assertThat(cobject1.getOccurrences(), is(cobject2.getOccurrences()));
+        Assert.assertThat(cobject1.getClass(), CoreMatchers.is(CoreMatchers.equalTo(cobject2.getClass())));
+        Assert.assertThat(cobject1.getRmTypeName(), CoreMatchers.is(cobject2.getRmTypeName()));
+        Assert.assertThat(cobject1.getNodeId(), CoreMatchers.is(cobject2.getNodeId()));
+        Assert.assertThat(cobject1.getAttributes().size(), CoreMatchers.is(cobject2.getAttributes().size()));
+        Assert.assertThat(cobject1.getOccurrences(), CoreMatchers.is(cobject2.getOccurrences()));
         for(CAttribute attribute1:cobject1.getAttributes()) {
             String path = attribute1.getPath();
             CAttribute attribute2;
@@ -100,9 +93,9 @@ public class TestUtil {
             } else {
                 attribute2 = cobject2.getAttribute(attribute1.getRmAttributeName());
             }
-            assertThat(path, attribute2, is(notNullValue()));
-            assertThat(path, attribute1.getCardinality(), is(attribute2.getCardinality()));
-            assertThat(path, attribute1.getExistence(), is(attribute2.getExistence()));
+            Assert.assertThat(path, attribute2, CoreMatchers.is(CoreMatchers.notNullValue()));
+            Assert.assertThat(path, attribute1.getCardinality(), CoreMatchers.is(attribute2.getCardinality()));
+            Assert.assertThat(path, attribute1.getExistence(), CoreMatchers.is(attribute2.getExistence()));
             for(CObject childObject1:attribute1.getChildren()) {
                 if(childObject1 instanceof  CComplexObject) {
                     List<CObject> childObjects2 = attribute2.getChildren().stream()
@@ -123,7 +116,7 @@ public class TestUtil {
                         if(lastException != null) {
                             throw lastException;
                         } else {
-                            fail("no objects for cobject: " + childObject1);
+                            Assert.fail("no objects for cobject: " + childObject1);
                         }
                     }
 
@@ -134,7 +127,7 @@ public class TestUtil {
                         .filter(
                             o -> primitiveObjectMatches(primitiveChild, o)
                         ).collect(Collectors.toList());
-                    assertFalse("a primitive object should have a matching primitive object", childObjects2.isEmpty());
+                    Assert.assertFalse("a primitive object should have a matching primitive object", childObjects2.isEmpty());
                 }
 
             }
@@ -155,8 +148,8 @@ public class TestUtil {
             }
             Archetype archetype = parser.parse(stream);
             parser.getErrors().logToLogger();
-            assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
-            assertNotNull(archetype);
+            Assert.assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
+            Assert.assertNotNull(archetype);
             return archetype;
         }
     }
@@ -169,11 +162,11 @@ public class TestUtil {
             }
             try {
                 Archetype archetype = parser.parse(stream);
-                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                Assert.assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
             } catch (ADLParseException ex) {
                 parser.getErrors().logToLogger();
-                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
-                assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().anyMatch(e -> e.getShortMessage().equalsIgnoreCase(errorCode)));
+                Assert.assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                Assert.assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().anyMatch(e -> e.getShortMessage().equalsIgnoreCase(errorCode)));
             }
         }
     }
