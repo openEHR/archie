@@ -1,8 +1,7 @@
-package com.nedap.archie.flattener.specexamples;
+package com.nedap.archie.testutil;
 
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 
 import java.io.IOException;

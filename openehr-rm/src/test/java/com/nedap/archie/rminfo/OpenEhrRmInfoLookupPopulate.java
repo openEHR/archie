@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 
-public class OpenEhrRmInfoLookupTest {
+public class OpenEhrRmInfoLookupPopulate {
     @Test
     public void testFindAllClassesInRm() throws IOException {
         OpenEhrRmInfoLookup infoLookup = OpenEhrRmInfoLookup.getInstance();

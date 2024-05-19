@@ -38,7 +38,7 @@ public class RMPathQueryTest {
 
     @Before
     public void setup() throws Exception {
-        testUtil = new TestUtil();
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
         archetype = TestUtil.parseFailOnErrors("/basic.adl");
         new RMConstraintImposer().imposeConstraints(archetype.getDefinition());
 

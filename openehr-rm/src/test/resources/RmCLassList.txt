@@ -1,3 +1,6 @@
+// 
+// include the following in OpenEhrRmInfoLookup.addTypes()
+// 
 addClass(AccessControlSettings.class);
 addClass(AccessGroupRef.class);
 addClass(Action.class);

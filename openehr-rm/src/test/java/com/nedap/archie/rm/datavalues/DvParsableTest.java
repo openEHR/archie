@@ -22,7 +22,5 @@ public class DvParsableTest {
         DvParsable utf16DvParsable = new DvParsable(new CodePhrase(new TerminologyId("IANA_character-sets"), "UTF-16"), null, "something", "markdown");
         assertEquals(20, utf16DvParsable.size()); //two bytes BOM, plus 9 characters * 2 bytes = 20
 
-
-
     }
 }

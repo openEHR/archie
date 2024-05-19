@@ -13,7 +13,7 @@ import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.base.RMObject;
-import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
+import com.nedap.archie.rminfo.ReflectionModelInfoLookup;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -35,9 +35,12 @@ import static org.junit.Assert.*;
  */
 public class TestUtil {
 
+    public TestUtil (ReflectionModelInfoLookup metaModel) {
+        creator = new RMObjectCreator(metaModel);
+    }
     private static final Logger logger = LoggerFactory.getLogger(TestUtil.class);
 
-    private RMObjectCreator creator = new RMObjectCreator(OpenEhrRmInfoLookup.getInstance());
+    private RMObjectCreator creator;
 
     /**
      * Creates an empty RM Object, fully nested, one object per CObject found.
@@ -170,7 +173,7 @@ public class TestUtil {
             } catch (ADLParseException ex) {
                 parser.getErrors().logToLogger();
                 assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
-                assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
+                assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().anyMatch(e -> e.getShortMessage().equalsIgnoreCase(errorCode)));
             }
         }
     }

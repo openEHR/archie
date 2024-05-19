@@ -40,7 +40,7 @@ public class JAXBRMRoundTripTest {
 
     @Before
     public void setup() {
-        testUtil = new TestUtil();
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
         parser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
     }
 

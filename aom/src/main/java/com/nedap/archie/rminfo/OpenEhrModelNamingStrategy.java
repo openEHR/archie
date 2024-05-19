@@ -2,6 +2,7 @@ package com.nedap.archie.rminfo;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.google.common.collect.Lists;
+import com.nedap.archie.aom.CPrimitiveObject;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -123,4 +124,17 @@ public class OpenEhrModelNamingStrategy implements ModelNamingStrategy {
         }
         return method.getName();
     }
+
+    @Override
+    public String getTypeNameForCPrimitiveType(Class<?> clazz) {
+
+        // If it is a CPrimitiveObject, get rid of the leading 'C'
+        String result = clazz.getSimpleName();
+        if (CPrimitiveObject.class.isAssignableFrom(clazz)) {
+            result = result.substring(1);
+        }
+
+        return snakeCaseStrategy.translate (result).toUpperCase();
+    }
+
 }
