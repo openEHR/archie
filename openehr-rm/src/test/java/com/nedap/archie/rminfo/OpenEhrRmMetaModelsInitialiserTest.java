@@ -29,9 +29,9 @@ public class OpenEhrRmMetaModelsInitialiserTest {
             System.out.println(validation.getLogger().toString());
 
         }
-        assertEquals(38, bmmRepository.getPersistentSchemas().size());
-        assertEquals(38, bmmRepository.getModels().size());
-        assertEquals(36, bmmRepository.getValidModels().size());
+        assertEquals(39, bmmRepository.getPersistentSchemas().size());
+        assertEquals(39, bmmRepository.getModels().size());
+        assertEquals(37, bmmRepository.getValidModels().size());
         assertEquals(2, bmmRepository.getInvalidModels().size());
     }
 
