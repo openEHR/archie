@@ -1,0 +1,64 @@
+archetype (adl_version=2.0.5; rm_release=1.0.4)
+    openEHR-EHR-OBSERVATION.construct_archetype_slot.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Mathijs Hudepohl">
+    >
+    lifecycle_state = <"published">
+    details = <
+        ["en"] = <
+            language = <[ISO-639_1::en]>
+            purpose = <"Test for rules including an archetype slot">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches { -- Archetype slot
+        data matches {
+            HISTORY[id2] matches {    -- Observation
+                events matches {
+                    POINT_EVENT[id3] matches {    -- Point event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items matches {
+                                    CLUSTER[id14] occurrences matches {0..1} matches {    -- Item tree
+                                        items matches {
+                                            allow_archetype CLUSTER[id19] occurrences matches {0..1} matches {     -- Cluster
+                                                include
+                                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.some_archetype_([a-zA-Z0-9])+\.v([\d+\.\d+\.\d+])*/}
+                                                exclude
+                                                    archetype_id/value matches {/.*/}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+rules
+    /data[id2]/events[id3]/data[id4]/items[id14]/items[id19]/archetype_details/archetype_id/value matches
+        {/openEHR-EHR-CLUSTER\.some_archetype_option_a.v(\d+\.\d+\.\d+)/}
+
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at1"] = <
+                text = <"Option A">
+                description = <"Option A">
+            >
+            ["at14"] = <
+                text = <"Option B">
+                description = <"option B">
+            >
+        >
+    >

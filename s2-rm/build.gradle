@@ -7,4 +7,5 @@ dependencies {
 	api project(':utils')
 	implementation project(path: ':archie-utils')
 	testImplementation project(':archie-utils')
+    testImplementation project(path: ':tools')
 }
