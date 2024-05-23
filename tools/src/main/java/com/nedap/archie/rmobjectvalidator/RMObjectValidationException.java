@@ -4,7 +4,10 @@ package com.nedap.archie.rmobjectvalidator;
  * Exception to indicate RM Object validation has failed
  * <p>
  * Created by pieter.bos on 01/09/15.
+ *
+ * @deprecated This exception is unused and will be removed.
  */
+@Deprecated
 public class RMObjectValidationException extends Exception {
 
     private String path;
