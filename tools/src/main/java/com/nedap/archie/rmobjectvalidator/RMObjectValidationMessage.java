@@ -43,6 +43,10 @@ public class RMObjectValidationMessage {
         this.type = type;
     }
 
+    /**
+     * @deprecated The RMObjectValidationException class will be removed.
+     */
+    @Deprecated
     public RMObjectValidationMessage(RMObjectValidationException e) {
         this.path = e.getPath();
         this.humanReadableArchetypePath = e.getHumanPath();
