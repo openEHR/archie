@@ -612,9 +612,9 @@ public abstract class ParsedRulesEvaluationTest {
         assertEquals(0, evaluationResultHide.getPathsThatMustExist().size());
         List<String> pathsThatMustNotExist = evaluationResultHide.getPathsThatMustNotExist();
         assertEquals(3, pathsThatMustNotExist.size());
-        assertTrue(pathsThatMustNotExist.get(0).matches("^/content\\[id3(, 1)?]/items\\[id4,\\s?1]/data\\[id5]/items\\[id8,\\s?2]$"));
-        assertTrue(pathsThatMustNotExist.get(1).matches("^/content\\[id3(, 1)?]/items\\[id10,\\s?2]$"));
-        assertTrue(pathsThatMustNotExist.get(2).matches("^/content\\[id3(, 1)?]/items\\[id15,\\s?2]$"));
+        assertTrue(pathsThatMustNotExist.get(0).matches("^/content\\[id3(,\\s1)?]/items\\[id4,\\s?1]/data\\[id5]/items\\[id8,\\s?2]$"));
+        assertTrue(pathsThatMustNotExist.get(1).matches("^/content\\[id3(,\\s1)?]/items\\[id10,\\s?2]$"));
+        assertTrue(pathsThatMustNotExist.get(2).matches("^/content\\[id3(,\\s1)?]/items\\[id15,\\s?2]$"));
         assertEquals(0, evaluationResultHide.getSetPathValues().size());
     }
 

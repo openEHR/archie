@@ -163,8 +163,8 @@ public class RuleEvaluation<T> {
             Object value = valuesToUpdate.get(path);
             assertionResult.setSetPathValue(path, new ValueList(value));
         }
-        // If assertion has paths that must not exist, remove referred object if 1) instanceof Pathable and 2) item in parent list
-        // Ensures next rules take this into consideration
+        // If assertion has paths that must not exist, remove referred object if 1) instanceof Pathable and 2) item in parent list.
+        // Ensures this is taken into consideration for upcoming evaluated rules
         pathsThatMustNotExistFixer.fixPathsThatMustNotExist(assertionResult);
 
         //before re-evaluation, reset any overridden existence from evaluation?
