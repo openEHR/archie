@@ -579,6 +579,46 @@ public abstract class ParsedRulesEvaluationTest {
     }
 
     @Test
+    public void dependentPathsThatMustNotExist() throws Exception {
+        parse("not_exists_implies.adls");
+        RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();
+
+        Pathable root = (Pathable) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        // Set paths and values so rules evaluate to exist
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id6]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at1"));
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id8]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at1"));
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id10]/items[id11]/data[id12]/item[id13]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at1"));
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id15]/items[id16]/data[id17]/item[id18]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at1"));
+
+        EvaluationResult evaluationResultShow = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(3, evaluationResultShow.getAssertionResults().size());
+        for(AssertionResult assertionResult:evaluationResultShow.getAssertionResults()) {
+            assertTrue(assertionResult.getResult());
+        }
+
+        assertEquals(0, evaluationResultShow.getPathsThatMustExist().size());
+        assertEquals(0, evaluationResultShow.getPathsThatMustNotExist().size());
+        assertEquals(0, evaluationResultShow.getSetPathValues().size());
+
+        // Change value so rules evaluate to not exist
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id6]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at2"));
+
+        EvaluationResult evaluationResultHide = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(3, evaluationResultHide.getAssertionResults().size());
+        for(AssertionResult assertionResult:evaluationResultHide.getAssertionResults()) {
+            assertFalse(assertionResult.getResult());
+        }
+
+        assertEquals(0, evaluationResultHide.getPathsThatMustExist().size());
+        List<String> pathsThatMustNotExist = evaluationResultHide.getPathsThatMustNotExist();
+        assertEquals(3, pathsThatMustNotExist.size());
+        assertTrue(pathsThatMustNotExist.get(0).matches("^/content\\[id3(,\\s1)?]/items\\[id4,\\s?1]/data\\[id5]/items\\[id8,\\s?2]$"));
+        assertTrue(pathsThatMustNotExist.get(1).matches("^/content\\[id3(,\\s1)?]/items\\[id10,\\s?2]$"));
+        assertTrue(pathsThatMustNotExist.get(2).matches("^/content\\[id3(,\\s1)?]/items\\[id15,\\s?2]$"));
+        assertEquals(0, evaluationResultHide.getSetPathValues().size());
+    }
+
+    @Test
     public void implies() throws Exception {
         parse("implies.adls");
         RuleEvaluation<Pathable> ruleEvaluation = getRuleEvaluation();

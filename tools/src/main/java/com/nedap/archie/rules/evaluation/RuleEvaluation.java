@@ -52,6 +52,7 @@ public class RuleEvaluation<T> {
     private APathQueryCache queryCache = new APathQueryCache();
 
     private final AssertionsFixer assertionsFixer;
+    private final PathsThatMustNotExistFixer pathsThatMustNotExistFixer;
 
     public RuleEvaluation(ModelInfoLookup modelInfoLookup, Archetype archetype) {
         this(modelInfoLookup, null, archetype);
@@ -69,7 +70,8 @@ public class RuleEvaluation<T> {
         this.jaxbContext = jaxbContext;
         this.modelInfoLookup = modelInfoLookup;
         this.creator = new RMObjectCreator(modelInfoLookup);
-        assertionsFixer = new AssertionsFixer(this, creator);
+        this.assertionsFixer = new AssertionsFixer(this, creator);
+        this.pathsThatMustNotExistFixer = new PathsThatMustNotExistFixer(this);
         this.archetype = archetype;
         this.functionEvaluator = new FunctionEvaluator();
         add(new VariableDeclarationEvaluator());
@@ -161,6 +163,9 @@ public class RuleEvaluation<T> {
             Object value = valuesToUpdate.get(path);
             assertionResult.setSetPathValue(path, new ValueList(value));
         }
+        // If assertion has paths that must not exist, remove referred object if 1) instanceof Pathable and 2) item in parent list.
+        // Ensures this is taken into consideration for upcoming evaluated rules
+        pathsThatMustNotExistFixer.fixPathsThatMustNotExist(assertionResult);
 
         //before re-evaluation, reset any overridden existence from evaluation?
     }
