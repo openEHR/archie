@@ -13,7 +13,6 @@ description
 definition
     CLUSTER[id1.1] ∈ {
         items ∈ {
-            --resulting order: id2, id3, id0.1, id0.2, id4, id0.3, id0.4, id5
             ELEMENT[id2.1]
         }
 }
