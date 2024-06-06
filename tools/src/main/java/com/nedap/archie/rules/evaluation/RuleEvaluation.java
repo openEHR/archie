@@ -52,7 +52,6 @@ public class RuleEvaluation<T> {
     private APathQueryCache queryCache = new APathQueryCache();
 
     private final AssertionsFixer assertionsFixer;
-    private final PathsThatMustNotExistFixer pathsThatMustNotExistFixer;
 
     public RuleEvaluation(ModelInfoLookup modelInfoLookup, Archetype archetype) {
         this(modelInfoLookup, null, archetype);
@@ -71,7 +70,6 @@ public class RuleEvaluation<T> {
         this.modelInfoLookup = modelInfoLookup;
         this.creator = new RMObjectCreator(modelInfoLookup);
         this.assertionsFixer = new AssertionsFixer(this, creator);
-        this.pathsThatMustNotExistFixer = new PathsThatMustNotExistFixer(this);
         this.archetype = archetype;
         this.functionEvaluator = new FunctionEvaluator();
         add(new VariableDeclarationEvaluator());
@@ -158,14 +156,14 @@ public class RuleEvaluation<T> {
         //Fix any assertions that should be fixed before processing the next rule
         //this means we can calculate a score, then use that score in the next rule
         //otherwise this would mean several passes through the evaluator
-        Map<String, Object> valuesToUpdate = assertionsFixer.fixAssertions(archetype, assertionResult);
+        Map<String, Object> valuesToUpdate = assertionsFixer.fixSetPathAssertions(archetype, assertionResult);
         for (String path : valuesToUpdate.keySet()) {
             Object value = valuesToUpdate.get(path);
             assertionResult.setSetPathValue(path, new ValueList(value));
         }
-        // If assertion has paths that must not exist, remove referred object if 1) instanceof Pathable and 2) item in parent list.
+        // If assertion has paths that must not exist, remove referred object.
         // Ensures this is taken into consideration for upcoming evaluated rules
-        pathsThatMustNotExistFixer.fixPathsThatMustNotExist(assertionResult);
+        assertionsFixer.fixNotExistAssertions(assertionResult);
 
         //before re-evaluation, reset any overridden existence from evaluation?
     }
