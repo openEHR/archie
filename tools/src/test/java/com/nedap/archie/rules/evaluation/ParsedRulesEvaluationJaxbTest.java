@@ -4,6 +4,7 @@ import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.xml.JAXBUtil;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 
 import java.util.List;
@@ -31,10 +32,12 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         Pathable root = constructTwoBloodPressureObservationsOneEmptySystolic();
 
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, getArchetype().getRules().getRules());
-        assertEquals(3, evaluationResult.getAssertionResults().size());
-        for(AssertionResult assertionResult:evaluationResult.getAssertionResults()) {
-            assertFalse(assertionResult.getResult());
-        }
+        List<AssertionResult> assertionResults = evaluationResult.getAssertionResults();
+        assertEquals(3, assertionResults.size());
+        assertFalse(assertionResults.get(0).getResult());
+        assertFalse(assertionResults.get(1).getResult());
+        // Forall rule true as AssertionFixer takes into account earlier not exist rules
+        assertTrue(assertionResults.get(2).getResult());
 
         assertEquals(0, evaluationResult.getPathsThatMustExist().size());
         assertEquals(5, evaluationResult.getPathsThatMustNotExist().size());

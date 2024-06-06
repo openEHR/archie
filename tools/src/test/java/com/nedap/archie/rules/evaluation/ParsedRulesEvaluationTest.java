@@ -519,10 +519,12 @@ public abstract class ParsedRulesEvaluationTest {
         Pathable root = constructTwoBloodPressureObservations();
 
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(3, evaluationResult.getAssertionResults().size());
-        for(AssertionResult assertionResult:evaluationResult.getAssertionResults()) {
-            assertFalse(assertionResult.getResult());
-        }
+        List<AssertionResult> assertionResults = evaluationResult.getAssertionResults();
+        assertEquals(3, assertionResults.size());
+        assertFalse(assertionResults.get(0).getResult());
+        assertFalse(assertionResults.get(1).getResult());
+        // Forall rule true as AssertionFixer takes into account earlier not exist rules
+        assertTrue(assertionResults.get(2).getResult());
 
         assertEquals(0, evaluationResult.getPathsThatMustExist().size());
         assertEquals(6, evaluationResult.getPathsThatMustNotExist().size());
@@ -565,10 +567,12 @@ public abstract class ParsedRulesEvaluationTest {
         Pathable root = constructTwoBloodPressureObservationsOneEmptySystolic();
 
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(3, evaluationResult.getAssertionResults().size());
-        for(AssertionResult assertionResult:evaluationResult.getAssertionResults()) {
-            assertFalse(assertionResult.getResult());
-        }
+        List<AssertionResult> assertionResults = evaluationResult.getAssertionResults();
+        assertEquals(3, assertionResults.size());
+        assertFalse(assertionResults.get(0).getResult());
+        assertFalse(assertionResults.get(1).getResult());
+        // Forall rule true as AssertionFixer takes into account earlier not exist rules
+        assertTrue(assertionResults.get(2).getResult());
 
         assertEquals(0, evaluationResult.getPathsThatMustExist().size());
         assertEquals(5, evaluationResult.getPathsThatMustNotExist().size());
