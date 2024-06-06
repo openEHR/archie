@@ -44,19 +44,33 @@ definition
                                             }
                                         }
                                     }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {
+                                        value matches {
+                                            DV_CODED_TEXT[id11] matches {
+                                                defining_code matches {[ac1]}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id12] occurrences matches {0..1} matches {
+                                        value matches {
+                                            DV_CODED_TEXT[id13] matches {
+                                                defining_code matches {[ac1]}
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
-                    SECTION[id10] matches {
+                    SECTION[id14] matches {
                         items matches {
-                            EVALUATION[id11] matches {
+                            EVALUATION[id15] matches {
                                 data matches {
-                                    ITEM_SINGLE[id12] matches {
+                                    ITEM_SINGLE[id16] matches {
                                         item matches {
-                                            ELEMENT[id13] occurrences matches {0..1} matches {
+                                            ELEMENT[id17] occurrences matches {0..1} matches {
                                                 value matches {
-                                                    DV_CODED_TEXT[id14] matches {
+                                                    DV_CODED_TEXT[id18] matches {
                                                         defining_code matches {[ac1]}
                                                     }
                                                 }
@@ -67,15 +81,15 @@ definition
                             }
                         }
                     }
-                    SECTION[id15] matches {
+                    SECTION[id19] matches {
                         items matches {
-                            EVALUATION[id16] matches {
+                            EVALUATION[id20] matches {
                                 data matches {
-                                    ITEM_SINGLE[id17] matches {
+                                    ITEM_SINGLE[id21] matches {
                                         item matches {
-                                            ELEMENT[id18] occurrences matches {0..1} matches {
+                                            ELEMENT[id22] occurrences matches {0..1} matches {
                                                 value matches {
-                                                    DV_CODED_TEXT[id19] matches {
+                                                    DV_CODED_TEXT[id23] matches {
                                                         defining_code matches {[ac1]}
                                                     }
                                                 }
@@ -96,13 +110,24 @@ rules
         not exists /content[id3]/items[id4]/data[id5]/items[id6]/value/defining_code or not
         /content[id3]/items[id4]/data[id5]/items[id6]/value/defining_code matches {[at1]} implies
            not exists /content[id3]/items[id4]/data[id5]/items[id8]
+    not_exists_item_value:
+        not exists /content[id3]/items[id4]/data[id5]/items[id6]/value/defining_code or not
+        /content[id3]/items[id4]/data[id5]/items[id6]/value/defining_code matches {[at1]} implies
+           not exists /content[id3]/items[id4]/data[id5]/items[id10]/value/defining_code
+    not_exists_value_value:
+        not exists /content[id3]/items[id4]/data[id5]/items[id10]/value/defining_code implies
+           not exists /content[id3]/items[id4]/data[id5]/items[id12]/value/defining_code
     not_exists_item_section:
         not exists /content[id3]/items[id4]/data[id5]/items[id8]/value/defining_code or not
         /content[id3]/items[id4]/data[id5]/items[id8]/value/defining_code matches {[at1]} implies
-            not exists /content[id3]/items[id10]
+            not exists /content[id3]/items[id14]
+    not_exists_item_section_duplicate:
+        not exists /content[id3]/items[id4]/data[id5]/items[id8]/value/defining_code or not
+        /content[id3]/items[id4]/data[id5]/items[id8]/value/defining_code matches {[at1]} implies
+            not exists /content[id3]/items[id14]
     not_exists_section_section:
-        not exists /content[id3]/items[id10] implies
-            not exists /content[id3]/items[id15]
+        not exists /content[id3]/items[id14] implies
+            not exists /content[id3]/items[id19]
 
 terminology
     term_definitions = <

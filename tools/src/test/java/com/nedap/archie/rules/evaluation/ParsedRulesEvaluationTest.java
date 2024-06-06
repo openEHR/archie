@@ -585,13 +585,17 @@ public abstract class ParsedRulesEvaluationTest {
 
         Pathable root = (Pathable) testUtil.constructEmptyRMObject(archetype.getDefinition());
         // Set paths and values so rules evaluate to exist
-        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id6]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at1"));
-        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id8]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at1"));
-        ((DvCodedText) root.itemAtPath("/content[id3]/items[id10]/items[id11]/data[id12]/item[id13]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at1"));
-        ((DvCodedText) root.itemAtPath("/content[id3]/items[id15]/items[id16]/data[id17]/item[id18]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at1"));
+        CodePhrase codeOptionYes = new CodePhrase(new TerminologyId("local"), "at1");
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id6]/value")).setDefiningCode(codeOptionYes);
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id8]/value")).setDefiningCode(codeOptionYes);
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id10]/value")).setDefiningCode(codeOptionYes);
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id12]/value")).setDefiningCode(codeOptionYes);
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id14]/items[id15]/data[id16]/item[id17]/value")).setDefiningCode(codeOptionYes);
+        ((DvCodedText) root.itemAtPath("/content[id3]/items[id19]/items[id20]/data[id21]/item[id22]/value")).setDefiningCode(codeOptionYes);
 
-        EvaluationResult evaluationResultShow = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(3, evaluationResultShow.getAssertionResults().size());
+        List<RuleStatement> archetypeRules = archetype.getRules().getRules();
+        EvaluationResult evaluationResultShow = ruleEvaluation.evaluate(root, archetypeRules);
+        assertEquals(6, evaluationResultShow.getAssertionResults().size());
         for(AssertionResult assertionResult:evaluationResultShow.getAssertionResults()) {
             assertTrue(assertionResult.getResult());
         }
@@ -603,18 +607,27 @@ public abstract class ParsedRulesEvaluationTest {
         // Change value so rules evaluate to not exist
         ((DvCodedText) root.itemAtPath("/content[id3]/items[id4]/data[id5]/items[id6]/value")).setDefiningCode(new CodePhrase(new TerminologyId("local"), "at2"));
 
-        EvaluationResult evaluationResultHide = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(3, evaluationResultHide.getAssertionResults().size());
-        for(AssertionResult assertionResult:evaluationResultHide.getAssertionResults()) {
-            assertFalse(assertionResult.getResult());
-        }
+        EvaluationResult evaluationResultHide = ruleEvaluation.evaluate(root, archetypeRules);
+        List<AssertionResult> assertionResults = evaluationResultHide.getAssertionResults();
+        assertEquals(6, assertionResults.size());
+        assertFalse(assertionResults.get(0).getResult());
+        assertFalse(assertionResults.get(1).getResult());
+        assertFalse(assertionResults.get(2).getResult());
+        assertFalse(assertionResults.get(3).getResult());
+        // Only duplicate rule should be true
+        assertTrue(assertionResults.get(4).getResult());
+        assertFalse(assertionResults.get(5).getResult());
 
         assertEquals(0, evaluationResultHide.getPathsThatMustExist().size());
         List<String> pathsThatMustNotExist = evaluationResultHide.getPathsThatMustNotExist();
-        assertEquals(3, pathsThatMustNotExist.size());
+        assertEquals(6, pathsThatMustNotExist.size());
         assertTrue(pathsThatMustNotExist.get(0).matches("^/content\\[id3(,\\s1)?]/items\\[id4,\\s?1]/data\\[id5]/items\\[id8,\\s?2]$"));
-        assertTrue(pathsThatMustNotExist.get(1).matches("^/content\\[id3(,\\s1)?]/items\\[id10,\\s?2]$"));
-        assertTrue(pathsThatMustNotExist.get(2).matches("^/content\\[id3(,\\s1)?]/items\\[id15,\\s?2]$"));
+        assertTrue(pathsThatMustNotExist.get(1).matches("^/content\\[id3(,\\s1)?]/items\\[id4,\\s?1]/data\\[id5]/items\\[id10,\\s?2]/value/defining_code$"));
+        assertTrue(pathsThatMustNotExist.get(2).matches("^/content\\[id3(,\\s1)?]/items\\[id4,\\s?1]/data\\[id5]/items\\[id12,\\s?3]/value/defining_code$"));
+        assertTrue(pathsThatMustNotExist.get(3).matches("^/content\\[id3(,\\s1)?]/items\\[id14,\\s?2]$"));
+        // Duplicate rule
+        assertTrue(pathsThatMustNotExist.get(4).matches("^/content\\[id3(,\\s1)?]/items\\[id14]$"));
+        assertTrue(pathsThatMustNotExist.get(5).matches("^/content\\[id3(,\\s1)?]/items\\[id19,\\s?2]$"));
         assertEquals(0, evaluationResultHide.getSetPathValues().size());
     }
 
