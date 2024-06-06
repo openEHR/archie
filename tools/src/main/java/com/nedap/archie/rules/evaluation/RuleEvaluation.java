@@ -69,7 +69,7 @@ public class RuleEvaluation<T> {
         this.jaxbContext = jaxbContext;
         this.modelInfoLookup = modelInfoLookup;
         this.creator = new RMObjectCreator(modelInfoLookup);
-        assertionsFixer = new AssertionsFixer(this, creator);
+        this.assertionsFixer = new AssertionsFixer(this, creator);
         this.archetype = archetype;
         this.functionEvaluator = new FunctionEvaluator();
         add(new VariableDeclarationEvaluator());
@@ -156,11 +156,14 @@ public class RuleEvaluation<T> {
         //Fix any assertions that should be fixed before processing the next rule
         //this means we can calculate a score, then use that score in the next rule
         //otherwise this would mean several passes through the evaluator
-        Map<String, Object> valuesToUpdate = assertionsFixer.fixAssertions(archetype, assertionResult);
+        Map<String, Object> valuesToUpdate = assertionsFixer.fixSetPathAssertions(archetype, assertionResult);
         for (String path : valuesToUpdate.keySet()) {
             Object value = valuesToUpdate.get(path);
             assertionResult.setSetPathValue(path, new ValueList(value));
         }
+        // If assertion has paths that must not exist, remove referred object
+        // Ensures this is taken into consideration for upcoming evaluated rules
+        assertionsFixer.fixNotExistAssertions(assertionResult);
 
         //before re-evaluation, reset any overridden existence from evaluation?
     }
