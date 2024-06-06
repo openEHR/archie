@@ -8,7 +8,7 @@ dependencies {
   api project(':path-queries')
   api project(':utils')
   api project(':openehr-terminology')
-  api project(':openehr-rm')
+  testImplementation project(':openehr-rm')
   testImplementation project(':archie-utils')
   testImplementation project(':i18n')
   testImplementation project(':test-rm')
