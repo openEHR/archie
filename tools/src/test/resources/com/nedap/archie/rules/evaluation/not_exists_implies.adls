@@ -1,0 +1,199 @@
+archetype (adl_version=2.0.5; rm_release=1.1.0)
+    openEHR-EHR-COMPOSITION.paths_that_must_not_exist_rules.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Eline Brader">
+    >
+    lifecycle_state = <"DRAFT">
+    details = <
+        ["en"] = <
+            language = <[ISO-639_1::en]>
+            purpose = <"Test dependent rules with paths that must not exist.">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {
+        category matches {
+            DV_CODED_TEXT[id2] matches {
+                defining_code matches {[at9000]}
+            }
+        }
+        content matches {
+            SECTION[id3] matches {
+                items matches {
+                    EVALUATION[id4] matches {
+                        data matches {
+                            ITEM_TREE[id5] matches {
+                                items matches {
+                                    ELEMENT[id6] occurrences matches {0..1} matches {
+                                        value matches {
+                                            DV_CODED_TEXT[id7] matches {
+                                                defining_code matches {[ac1]}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {
+                                        value matches {
+                                            DV_CODED_TEXT[id9] matches {
+                                                defining_code matches {[ac1]}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {
+                                        value matches {
+                                            DV_CODED_TEXT[id11] matches {
+                                                defining_code matches {[ac1]}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id12] occurrences matches {0..1} matches {
+                                        value matches {
+                                            DV_CODED_TEXT[id13] matches {
+                                                defining_code matches {[ac1]}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    SECTION[id14] matches {
+                        items matches {
+                            EVALUATION[id15] matches {
+                                data matches {
+                                    ITEM_SINGLE[id16] matches {
+                                        item matches {
+                                            ELEMENT[id17] occurrences matches {0..1} matches {
+                                                value matches {
+                                                    DV_CODED_TEXT[id18] matches {
+                                                        defining_code matches {[ac1]}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    SECTION[id19] matches {
+                        items matches {
+                            EVALUATION[id20] matches {
+                                data matches {
+                                    ITEM_SINGLE[id21] matches {
+                                        item matches {
+                                            ELEMENT[id22] occurrences matches {0..1} matches {
+                                                value matches {
+                                                    DV_CODED_TEXT[id23] matches {
+                                                        defining_code matches {[ac1]}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+rules
+    not_exists_item_item:
+        not exists /content[id3]/items[id4]/data[id5]/items[id6]/value/defining_code or not
+        /content[id3]/items[id4]/data[id5]/items[id6]/value/defining_code matches {[at1]} implies
+           not exists /content[id3]/items[id4]/data[id5]/items[id8]
+    not_exists_item_value:
+        not exists /content[id3]/items[id4]/data[id5]/items[id6]/value/defining_code or not
+        /content[id3]/items[id4]/data[id5]/items[id6]/value/defining_code matches {[at1]} implies
+           not exists /content[id3]/items[id4]/data[id5]/items[id10]/value/defining_code
+    not_exists_value_value:
+        not exists /content[id3]/items[id4]/data[id5]/items[id10]/value/defining_code implies
+           not exists /content[id3]/items[id4]/data[id5]/items[id12]/value/defining_code
+    not_exists_item_section:
+        not exists /content[id3]/items[id4]/data[id5]/items[id8]/value/defining_code or not
+        /content[id3]/items[id4]/data[id5]/items[id8]/value/defining_code matches {[at1]} implies
+            not exists /content[id3]/items[id14]
+    not_exists_item_section_duplicate:
+        not exists /content[id3]/items[id4]/data[id5]/items[id8]/value/defining_code or not
+        /content[id3]/items[id4]/data[id5]/items[id8]/value/defining_code matches {[at1]} implies
+            not exists /content[id3]/items[id14]
+    not_exists_section_section:
+        not exists /content[id3]/items[id14] implies
+            not exists /content[id3]/items[id19]
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Composition">
+                description = <"Composition">
+            >
+            ["at9000"] = <
+                text = <"Event">
+                description = <"Event">
+            >
+            ["ac1"] = <
+                text = <"Yes/No">
+                description = <"Yes/No">
+            >
+            ["at1"] = <
+                text = <"Yes">
+                description = <"Option yes">
+            >
+            ["at2"] = <
+                text = <"No">
+                description = <"Option No">
+            >
+            ["id3"] = <
+                text = <"Section">
+                description = <"Section">
+            >
+            ["id4"] = <
+                text = <"Evaluation">
+                description = <"Evaluation">
+            >
+            ["id6"] = <
+                text = <"Element">
+                description = <"Element with dependent rules.">
+            >
+            ["id8"] = <
+                text = <"Element">
+                description = <"Element to hide if 'id6' is not 'Yes'.">
+            >
+            ["id10"] = <
+                text = <"Section">
+                description = <"Section to hide if 'id8' is not 'Yes'.">
+            >
+            ["id11"] = <
+                text = <"Evaluation">
+                description = <"Evaluation">
+            >
+            ["id15"] = <
+                text = <"Section">
+                description = <"Section to hide if 'id10' does not exist.">
+            >
+            ["id16"] = <
+                text = <"Evaluation">
+                description = <"Evaluation">
+            >
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at1", "at2">
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/433>
+        >
+    >
