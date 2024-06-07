@@ -1,0 +1,118 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-CLUSTER.datavalues.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Pieter Bos">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Test for rules, simple constant arithmetics">
+			keywords = <"ADL", "test">
+		>
+	>
+	lifecycle_state = <"published">
+	other_details = <
+		["regression"] = <"PASS">
+	>
+	copyright = <"copyright © 2016 Nedap <http://www.nedap.com>">
+
+definition
+    CLUSTER[id1] occurrences matches {1} matches {	-- Qualification
+        items matches {
+            ELEMENT[id2] occurrences matches {1} matches {
+                value matches {
+                    DV_TEXT[id21]
+                }
+            }
+            ELEMENT[id3] occurrences matches {1} matches {
+                value matches {
+                    DV_COUNT[id31]
+                }
+            }
+            ELEMENT[id4] occurrences matches {1} matches {
+                value matches {
+                    DV_QUANTITY[id41]
+                }
+            }
+            ELEMENT[id5] occurrences matches {1} matches {
+                value matches {
+                    DV_PROPORTION[id51]
+                }
+            }
+            ELEMENT[id6] occurrences matches {1} matches {
+                value matches {
+                    DV_DATE[id61]
+                }
+            }
+            ELEMENT[id7] occurrences matches {1} matches {
+                value matches {
+                    DV_TIME[id71]
+                }
+            }
+            ELEMENT[id8] occurrences matches {1} matches {
+                value matches {
+                    DV_DATE_TIME[id81]
+                }
+            }
+            ELEMENT[id9] occurrences matches {1} matches {
+                value matches {
+                    DV_ORDINAL[id91]
+                }
+            }
+            ELEMENT[id10] occurrences matches {1} matches {
+                value matches {
+                    DV_URI[id101]
+                }
+            }
+        }
+    }
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Datavalues Test">
+				description = <"A test with different types of data values, to more easily construct RM Objects">
+			>
+			["id2"] = <
+                text = <"Text">
+                description = <"Text">
+            >
+            ["id3"] = <
+                text = <"Count">
+                description = <"Count">
+            >
+            ["id4"] = <
+                text = <"Quantity">
+                description = <"Quantity">
+            >
+            ["id5"] = <
+                text = <"Proportion">
+                description = <"Proportion">
+            >
+            ["id6"] = <
+                text = <"Date">
+                description = <"Date">
+            >
+            ["id7"] = <
+                text = <"Time">
+                description = <"Time">
+            >
+            ["id8"] = <
+                text = <"Datetime">
+                description = <"Datetime">
+            >
+            ["id9"] = <
+                text = <"Ordinal">
+                description = <"Ordinal">
+            >
+            ["id10"] = <
+                text = <"Uri">
+                description = <"Uri">
+            >
+		>
+    >

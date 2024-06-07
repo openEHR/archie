@@ -6,7 +6,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 
@@ -102,7 +102,7 @@ public class ADLArchetypeSerializerTest {
 
    @Test
    public void rmOverlay() throws Exception {
-        Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
+        Archetype archetype = TestUtil.parseFailOnErrors(this.getClass(),"/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
         String serialized = ADLArchetypeSerializer.serialize(archetype);
 
         assertTrue(serialized.contains("rm_overlay\n" +
@@ -119,7 +119,7 @@ public class ADLArchetypeSerializerTest {
                 "        >\n" +
                 "    >"));
 
-       Archetype parsed = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(serialized);
+       Archetype parsed = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(serialized);
        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
        assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
    }

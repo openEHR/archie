@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CComplexObject;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.InputStream;
 
@@ -18,11 +18,11 @@ public class DvScaleConversionTest {
     public void testDvScale() throws Exception {
 
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(AllMetaModelsInitialiser.getMetaModels(), conversionConfiguration);
 
 
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.ordinalandscale.v0.adl")) {
-            ADL14Parser adl14Parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            ADL14Parser adl14Parser = new ADL14Parser(AllMetaModelsInitialiser.getMetaModels());
             Archetype adl14 = adl14Parser.parse(stream, conversionConfiguration);
             assertFalse(adl14Parser.getErrors().hasErrors());
             ADL2ConversionResultList result = converter.convert(Lists.newArrayList(adl14));

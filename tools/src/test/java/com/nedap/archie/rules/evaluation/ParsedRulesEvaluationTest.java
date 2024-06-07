@@ -8,16 +8,16 @@ import com.nedap.archie.creation.ExampleJsonInstanceGenerator;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.json.JacksonUtil;
-import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rm.support.identification.TerminologyId;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
+import org.openehr.rm.archetyped.Pathable;
+import org.openehr.rm.composition.Observation;
+import org.openehr.rm.datastructures.Cluster;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.datavalues.DvCodedText;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import org.openehr.rm.support.identification.TerminologyId;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.ExpressionVariable;
 import com.nedap.archie.rules.RuleStatement;
@@ -25,7 +25,7 @@ import com.nedap.archie.rules.VariableDeclaration;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -47,8 +47,8 @@ public abstract class ParsedRulesEvaluationTest {
 
     @Before
     public void setup() {
-        testUtil = new TestUtil();
-        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        testUtil = new TestUtil(OpenEhrRmInfoLookup.getInstance());
+        parser = new ADLParser(AllMetaModelsInitialiser.getMetaModels());
     }
 
     public Archetype getArchetype() {
@@ -697,7 +697,7 @@ public abstract class ParsedRulesEvaluationTest {
     }
 
     RuleEvaluation<Pathable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
+        return new RuleEvaluation<>(OpenEhrRmInfoLookup.getInstance(), archetype);
     }
 
     @Test
@@ -722,13 +722,13 @@ public abstract class ParsedRulesEvaluationTest {
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(parent);
         repository.addArchetype(valueSet);
-        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(parent);
-        ExampleJsonInstanceGenerator generator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        ExampleJsonInstanceGenerator generator = new ExampleJsonInstanceGenerator(AllMetaModelsInitialiser.getMetaModels(), "en");
         Map<String, Object> exampleInstance = generator.generate(opt);
-        Cluster cluster = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);
+        Cluster cluster = OpenEhrRmJacksonUtil.getObjectMapper().readValue(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);
         //correct case first
-        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), opt);
+        RuleEvaluation ruleEvaluation = new RuleEvaluation(OpenEhrRmInfoLookup.getInstance(), opt);
         DvCodedText codedText = (DvCodedText) cluster.itemAtPath("/items[1]/items[1]/value[1]");
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at4"));
         codedText.setValue("value 1");

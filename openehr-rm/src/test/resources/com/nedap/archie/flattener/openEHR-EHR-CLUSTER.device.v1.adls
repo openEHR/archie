@@ -1,0 +1,550 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-CLUSTER.device.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			author = <
+				["name"] = <"Lars Bitsch-Larsen">
+				["organisation"] = <"Haukeland University Hospital">
+				["email"] = <"lbla@helse-bergen.no">
+			>
+		>
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			author = <
+				["name"] = <"Mona Saleh">
+			>
+		>
+		["es-ar"] = <
+			language = <[ISO_639-1::es-ar]>
+			author = <
+				["name"] = <"Alan March">
+				["organisation"] = <"Hospital Universitario Austral, Buenos Aires, Argentina">
+				["email"] = <"amarch@cas.austral.edu.ar">
+			>
+			accreditation = <"MD">
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2010-06-29">
+	>
+	copyright = <"© openEHR Foundation">
+	details = <
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			purpose = <"لتسجيل التفاصيل حول شيئ محسوس, مُنتَج أو جهيزة يتم استخدامها في أوسع وصف لتقديم الخدمة الصحية, و لكن دون طريقة أيضية أو علاجية مباشِرة.">
+			use = <"يستخدم لتسجيل التفاصيل حول أي جهيزة جنيسة (غير محدودة الملكية) و التي يمكن أن تستخدم إما مباشرةً بطريقة علاجية أو تشخيصية أو تستخدم بشكل غير مباشر لدعم تقديم الخدمة الصحية.
+و يختلف استخدام اللفظ (جهيزة) على حسب السياق. 
+و في داخل عالم المعايير, فإن اللفظ (جهيزة) يميل إلى الإشارة إلى الجهائز الإلكترونية أو الميكانيكية/الحركية و التي تدعم الرعاية الصحية, و تتطلب توثيق مكثف فيما يتعلق بالمواصفات و الصيانة... إلى آخره.
+و في سياق عالم المصطلحات فإن استخدام (جهيزة) واسع جدا, بما في ذلك أي شيئ محسوس يمكن استخدامه في تقديم الرعاية الصحية إما بشكل مباشر أو غير مباشر. 
+و تتضمن الأمثلة: دوائر أجهزة التنفس الصناعي, مقاييس الجريان القِمِّي, مقاييس التنفس, نظارات العين, العدسات اللاصقة, القثطار داخل الوريد, طُعوم الثدي, البِدْلات, أنابيب المَنْزَح, و الحلقات المسمارية.
+
+و تم تصميم هذا النموذج ليمثل الأساس لعرض مركب لأي جهيزة, من مثال بسيط لنوع من غميسة البول مع تاريخ الاستخدام, إلى طعم أذن من كائن حيّ و الذي يتطلب توثيق مركب مثل البرنامج الإلكتروني, و الأجزاء الصلبة, و الصيانة و التعيير, إلى آخره.
+
+و بالنسبة لحالات الاستخدام المعتادة, فقد يكون من المناسب تخصيص هذا النموذج خاصة في القثطار داخل الوريد أو القثطار البولي.">
+			keywords = <"الجهيزة", "الآلة", "الطُّعم", "جهاز مساعد", "القثطار", "البِدْلة", "مساعدة", "طبي بيولوجي", "أداة", "المعدات", "مقياس", "مِرْقب", "بدني/محسوس", "شيئ">
+			misuse = <"لا يستخدم لتسجيل المنتجات, مثل الأدوية أو التطعيمات أو ما شابه, و التي تستخدم لأغراض علاجية أو أيضية">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the details of a medical device used in the provision of healthcare.">
+			use = <"Use to record the details of a medical device used in the provision of healthcare.
+
+Use of the term 'medical device' varies depending on context. Within the Standards world, the term device tends to refer to mechanical or electronic devices that support healthcare and require rigorous documentation regarding location tracking, maintenance, calibration, software versions etc.  Within the terminology context the use of device is very broad, including any medical device that can be used in direct or indirect provision of clinical care, as long as it does not act in a way that exerts a direct pharmacological, metabolic or  immunological effect.
+
+Examples of medical devices range from simple devices such as urinary catheters, tongue depressors, contact lenses, artificial joint implants, breast implants and plain dressings through to advanced devices such as artificial hearts, syringe drivers, spirometers, mobile phone applications and computerised devices that capture point-of-care medical measurements. 
+
+In the complex situation where a surgically implanted device is used as the means to deliver therapeutic agents such as chemotherapy directly into the body, this archetype will be used to record only the details about the medical device itself and the order for medication and details about the actual administration of the therapeutic agent will be recorded using specific medication-related INSTRUCTION and ACTION archetypes.
+
+This archetype is designed to provide the framework for structured representation of any medical device and the data elements that are contained here are not specific for any one type of device. Single use devices will commonly require data elements such as Lot Number and Date of Expiry. In contrast these are usually not relevant for durable devices which will often have a set of identifiers, including a UID, Serial Number, Model etc.
+
+Further, different types of devices will require specific information relevant to their purpose. This data can be recorded using specific CLUSTER archetypes inserted into the 'Specific properties' SLOT. For example: use of a urinary catheter may require additional details about the diameter and length of catheter, material composition, number of lumens etc.
+
+If the medical device has a number of components that require recording of details, each individual component should be recorded explicitly by using an additional CLUSTER.device archetype inserted into the 'Components' SLOT.
+
+The data field 'Software Version' allows for only a single version to be recorded. This is primarily applicable for a device which is a software application. If the device has multiple software or hardware components that need to be specified, this should be done by using an addition CLUSTER.device inserted into the 'Components' SLOT.
+
+To record additional details for durable or persistent devices that relate to ownership, physical location tracking, maintenance schedules etc, use CLUSTER.device_details archetype inserted into the 'Asset management' SLOT in this archetype.
+
+This archetype has been designed for generic use within other archetypes that need to describe a device. Examples include: OBSERVATION.blood_pressure for the sphygmomanometer; OBSERVATION.ecg for the ECG machine; OBSERVATION.urinalysis for the reactent strips and the device used for testing; ACTION.procedure; and CLUSTER.exam_tympanic_membrane to detail the otoscope used.">
+			keywords = <"device", "machine", "implant", "appliance", "catheter", "prosthesis", "aid", "biomedical", "instrument", "equipment", "meter", "monitor", "software">
+			misuse = <"Not to be used to record data about medicinal products that exert a direct pharmacological, metabolic or immunologic effect. For example: a medicine impregnated dressing that requires a prescription should be recorded using the  INSTRUCTION.medication_order archetype, focused on the active ingredients, dosage etc.">
+		>
+		["es-ar"] = <
+			language = <[ISO_639-1::es-ar]>
+			purpose = <"Registrar los detalles de un objeto físico, producto o dispositivo utilizado en el sentido mas amplio de la provisión de cuidados de la salud, pero no como medio terapéutico o metabólico.">
+			use = <"Utilizado para registrar los detalles de cualquier dispositivo genérico que puede ser utilizado directamente de un modo terapéutico o diagnóstico, o indirectamente como apoyo a la provisión de cuidados de la salud. El uso del término dispositivo varía dependiendo del contexto. En el mundo de los estándares, el término dispositivo tiende a referirse a dispositivos mecánicos o electrónicos que actuan como apoyo del cuidado de la salud y que requiren documentación rigurosa en cuanto a especificaciones, mantenimiento, etc. En el contexto de las terminologías, el uso de dispositivo es muy amplio, incluyendo a cualquier objeto físico que pueda ser utilizado directa o indirectamente en la provisión de cuidados clínicos. Los ejemplos incluyen ventiladores, medidores de flujo expiratorio máximo, espirómetros, lentes oculares y de contacto, catéteres endovasculares, implantes mamarios, prótesis, tubos de drenaje y anillos para callos. 
+Este arquetipo esta diseñado para proveer la base de una representación estructurada de cualquier dispositivo, desde el simple ejemplo de una marca de tira reactiva urinaria con una fecha de vencimiento hasta un oído biónico implantable que puede requerir documentación compleja, software, hardware, mantenimiento, calibración, etc.
+Para los casos de uso habituales podría ser apropiada la especialización de este arquetipo para formas específicas (ej.: cateter endovascular o cateter urinario).">
+			keywords = <"dispositivo", "máquina", "implante", "cateter", "prótesis", "auxiliar", "biomédico", "instrumento", "equipamiento", "medidor", "monitor", "físico", "objeto">
+			misuse = <"No debe ser utilizado para el registro de medicamentos, vacunas o similares, que se utizan como medios terapéuticos o metabólicos.">
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"*To record the details of a medical device used in the provision of healthcare.(en)">
+			use = <"*Use to record the details of a medical device used in the provision of healthcare.
+
+Use of the term 'medical device' varies depending on context. Within the Standards world, the term device tends to refer to mechanical or electronic devices that support healthcare and require rigorous documentation regarding location tracking, maintenance, calibration, software versions etc.  Within the terminology context the use of device is very broad, including any medical device that can be used in direct or indirect provision of clinical care, as long as it is does not act in a way that exerts a direct pharmacological, metabolic or  immunological effect.
+
+Examples of medical devices range from simple devices such as urinary catheters, tongue depressors, contact lenses, breast implants, plain dressings, joint prostheses, syringe drivers and spirometers through to advanced devices such as artificial hearts, mobile phone applications and computerised devices that capture point-of-care medical measurements. 
+
+In the complex situation where a surgically implanted device is used as the means to deliver therapeutic agents such as chemotherapy directly into the body, this archetype will be used to record only the details about the medical device itself and the order for medication and details about the actual administration of the therapeutic agent will be recorded using specific medication-related INSTRUCTION and ACTION archetypes.
+
+This archetype is designed to provide the framework for structured representation of any medical device and the data elements that are contained here are not specific for any one type of device. Single use devices will commonly require data elements such as Lot Number and Date of Expiry. In contrast these are usually not relevant for durable devices which will often have a set of identifiers, including a UID, Serial Number, Model etc.
+
+Further, different types of devices will require specific information relevant to their purpose. This data can be recorded using specific CLUSTER archetypes inserted into the 'Specific propserties' SLOT. For example: use of a urinary catheter may require additional details about the diameter and length of catheter, material composition, number of lumens etc.
+
+If the medical device has a number of components that require recording of details, each individual component should be recorded explicitly by using an additional CLUSTER.device archetype inserted into the 'Components' SLOT.
+
+The data field 'Software Version' allows for only a single version to be recorded. This is primarily applicable for a device which is a software application. If the device has multiple software or hardware components that need to be specified, this should be done by using an addition CLUSTER.device inserted into the 'Components' SLOT.
+
+To record additional details for durable or persistent devices that relate to ownership, physical location tracking, maintenance schedules etc, use CLUSTER.device_details archetype inserted into the 'Asset management' SLOT in this archetype.(en)">
+			keywords = <"*device(en)", "*machine(en)", "*implant(en)", "*appliance(en)", "*catheter(en)", "*prosthesis(en)", "*aid(en)", "*biomedical(en)", "*instrument(en)", "*equipment(en)", "*meter(en)", "*monitor(en)", "*software(en)">
+			misuse = <"*Not to be used to record data about medicinal products that exert a direct pharmacological, metabolic or immunologic direct effect. For example: a medicine impregnated dressing should be recorded using the  INSTRUCTION.medication_order archetype, focused on the active ingredients, dosage etc.(en)">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Bergen Hospital Trust, Norway", "Mate Bestek, Ministry of Health of the Republic of Slovenia, Slovenia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Diego Bosca, IBIME group, Spain", "Margaret Campbell, Queensland Health, Australia", "Rong Chen, Cambio Healthcare Systems, Sweden", "Stephen Chu, Queensland Health, Australia", "Samo Drnovsek, Marand ltd, Slovenia", "Ivan Drvaric, NIJZ- National institute for public health of Slovenia, Slovenia", "Shahla Foozonkhah, Ocean Informatics, Australia", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Grahame Grieve, Australia", "Sam Heard, Ocean Informatics, Australia", "Gorazd Kalan, University Medical Centre Ljubljana, Slovenia", "Lars Karlsen, DIPS ASA, Norway", "Daniel Karlsson, Linköping University, Sweden", "Russell Leftwich, Russell B Leftwich MD, United States", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Vesna Levasic, Orthopaedic Hospital Valdoltra, Slovenia", "Luis Marco Ruiz, Norwegian Center for Integrated Care and Telemedicine, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (Editor)", "Bjoern Naess, DIPS ASA, Norway", "Dave Nurse, Allocate Software, United Kingdom", "Živa Rant, National Instittute of Public Health, Slovenia", "Anoop Shah, University College London, United Kingdom", "Micaela Thierley, Helse Bergen, Norway">
+	other_details = <
+		["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+		["references"] = <"Resource Device [Internet]. HL7 International, FHIR Specification first DSTU version (v 0.0.82) [cited: 2015-02-25]. Available from: http://www.hl7.org/implement/standards/fhir/device.html.
+
+Guidelines for 64-bit Global Identifier (EUI-64) [Internet]. IEEE Standards Association [cited: 2015-02-25]. Available from: http://standards.ieee.org/regauth/oui/tutorials/EUI64.html.">
+		["MD5-CAM-1.0.1"] = <"F09649C839F331ADA3FA32CD0F42B5A5">
+	>
+
+definition
+	CLUSTER[id1] matches {	-- Medical Device
+		items matches {
+			ELEMENT[id2] matches {	-- Device name
+				value matches {
+					DV_TEXT[id29] 
+				}
+			}
+			ELEMENT[id4] occurrences matches {0..1} matches {	-- Type
+				value matches {
+					DV_TEXT[id30] 
+				}
+			}
+			ELEMENT[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					DV_TEXT[id31] 
+				}
+			}
+			allow_archetype CLUSTER[id10] occurrences matches {0..*} matches {	-- Properties
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.dimensions(-a-zA-Z0-9_]+)*\.v1|openEHR-EHR-CLUSTER\.catheter(-a-zA-Z0-9_]+)*\.v1/}
+			}
+			ELEMENT[id22] occurrences matches {0..1} matches {	-- Unique device identifier (UDI)
+				value matches {
+					DV_IDENTIFIER[id32] 
+				}
+			}
+			ELEMENT[id5] occurrences matches {0..1} matches {	-- Manufacturer
+				value matches {
+					DV_TEXT[id33] 
+				}
+			}
+			ELEMENT[id6] occurrences matches {0..1} matches {	-- Date of manufacture
+				value matches {
+					DV_DATE_TIME[id34] 
+				}
+			}
+			ELEMENT[id21] occurrences matches {0..1} matches {	-- Serial number
+				value matches {
+					DV_TEXT[id35] 
+				}
+			}
+			ELEMENT[id23] occurrences matches {0..1} matches {	-- Catalogue number
+				value matches {
+					DV_TEXT[id36] 
+				}
+			}
+			ELEMENT[id24] occurrences matches {0..1} matches {	-- Model number
+				value matches {
+					DV_TEXT[id37] 
+				}
+			}
+			ELEMENT[id7] occurrences matches {0..1} matches {	-- Batch/Lot number
+				value matches {
+					DV_TEXT[id38] 
+				}
+			}
+			ELEMENT[id26] occurrences matches {0..1} matches {	-- Software version
+				value matches {
+					DV_TEXT[id39] 
+				}
+			}
+			ELEMENT[id8] occurrences matches {0..1} matches {	-- Date of expiry
+				value matches {
+					DV_DATE_TIME[id40] 
+				}
+			}
+			ELEMENT[id25] occurrences matches {0..*} matches {	-- Other identifier
+				value matches {
+					DV_IDENTIFIER[id41] 
+				}
+			}
+			allow_archetype CLUSTER[id20] occurrences matches {0..*} matches {	-- Asset management
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.device_details(-a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype CLUSTER[id19] occurrences matches {0..*} matches {	-- Components
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype CLUSTER[id27] occurrences matches {0..*} matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype CLUSTER[id28] occurrences matches {0..*} matches {	-- Multimedia
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-a-zA-Z0-9_]+)*\.v1/}
+			}
+			ELEMENT[id9] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					DV_TEXT[id42] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["ar-sy"] = <
+			["id1"] = <
+				text = <"*Medical Device(en)">
+				description = <"*An instrument, apparatus, implant, material or similar, used in the provision of healthcare. In this context, a medical device includes a broad range of devices which act through a variety of physical, mechanical, thermal or similar means but specifically excludes devices which act through medicinal means such as pharmacological, metabolic or immunological methods.  The scope is inclusive of disposable devices as well as durable or persisting devices that require tracking, maintenance activities or regular calibration, recognising that each type of device has specific data recording requirements.(en)">
+			>
+			["id2"] = <
+				text = <"*Device name(en)">
+				description = <"*Identification of the medical device, preferably by a common name, a formal fully descriptive name or, if required, by class or category of device.(en)">
+			>
+			["id3"] = <
+				text = <"الوصف">
+				description = <"وصف الجهيزة">
+			>
+			["id4"] = <
+				text = <"*Type(en)">
+				description = <"*Type of medical device.(en)">
+			>
+			["id5"] = <
+				text = <"المُصَنِّع">
+				description = <"اسم المُصَنِّع">
+			>
+			["id6"] = <
+				text = <"تاريخ التصنيع">
+				description = <"تاريخ تصنيع الجهيزة">
+			>
+			["id7"] = <
+				text = <"رقم التشغيلة">
+				description = <"رقم التشغيلة من المُصَنِّع">
+			>
+			["id8"] = <
+				text = <"تاريخ انتهاء الصلاحية">
+				description = <"التاريخ الذي يكون عنجه الجهيزة/المنتج غير مناسبا للاستخدام">
+			>
+			["id9"] = <
+				text = <"تعليق">
+				description = <"تعليق نصي إضافي حولالجهيزة, لم يتم التطرق لها في الحقول الأخرى">
+			>
+			["id10"] = <
+				text = <"التفاصيل الإضافية">
+				description = <"المزيد من التفاصيل حول الجهيزة">
+			>
+			["id19"] = <
+				text = <"*Components(en)">
+				description = <"*Additional structured informations about identified components of the device.(en)">
+			>
+			["id20"] = <
+				text = <"*Cluster(en)">
+				description = <"**(en)">
+			>
+			["id21"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["id22"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["id23"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["id24"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["id25"] = <
+				text = <"*Other identifier(en)">
+				description = <"*Unspecified identifier, which can be further specified in a template or at run time.(en)">
+			>
+			["id26"] = <
+				text = <"*Software version(en)">
+				description = <"*Identification of the version of software being used in the medical device.(en)">
+			>
+			["id27"] = <
+				text = <"*Cluster(en)">
+				description = <"**(en)">
+			>
+			["id28"] = <
+				text = <"*Multimedia(en)">
+				description = <"*Digital representation of the device.(en)">
+			>
+		>
+		["en"] = <
+			["id1"] = <
+				text = <"Medical Device">
+				description = <"An instrument, apparatus, implant, material or similar, used in the provision of healthcare. In this context, a medical device includes a broad range of devices which act through a variety of physical, mechanical, thermal or similar means but specifically excludes devices which act through medicinal means such as pharmacological, metabolic or immunological methods.  The scope is inclusive of disposable devices as well as durable or persisting devices that require tracking, maintenance activities or regular calibration, recognising that each type of device has specific data recording requirements.">
+			>
+			["id2"] = <
+				text = <"Device name">
+				description = <"Identification of the medical device, preferably by a common name, a formal fully descriptive name or, if required, by class or category of device.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description of the medical device.">
+			>
+			["id4"] = <
+				text = <"Type">
+				description = <"The category or kind of device.">
+			>
+			["id5"] = <
+				text = <"Manufacturer">
+				description = <"Name of manufacturer.">
+			>
+			["id6"] = <
+				text = <"Date of manufacture">
+				description = <"Date the device was manufactured.">
+			>
+			["id7"] = <
+				text = <"Batch/Lot number">
+				description = <"The number assigned by the manufacturer which identifies a group of items manufactured at the same time, usually found on the label or packaging material.">
+			>
+			["id8"] = <
+				text = <"Date of expiry">
+				description = <"Date after which the device/product is no longer fit for use, usually found on the device itself or printed on the accompanying packaging.">
+			>
+			["id9"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the device not captured in other fields.">
+			>
+			["id10"] = <
+				text = <"Properties">
+				description = <"Further details about specific properties about the medical device.">
+			>
+			["id19"] = <
+				text = <"Components">
+				description = <"Additional structured informations about identified components of the device.">
+			>
+			["id20"] = <
+				text = <"Asset management">
+				description = <"Further details about management and maintenance of the device.">
+			>
+			["id21"] = <
+				text = <"Serial number">
+				description = <"Number assigned by the manufacturer which can be found on the device, and should be specific to each device., its label, or accompanying packaging.">
+			>
+			["id22"] = <
+				text = <"Unique device identifier (UDI)">
+				description = <"A numeric or alphanumeric string that is associated with this device within a given system.">
+			>
+			["id23"] = <
+				text = <"Catalogue number">
+				description = <"The exact number assigned by the manufacturer, as it appears in the manufacturer's catalogue, device labeling, or accompanying packaging.">
+			>
+			["id24"] = <
+				text = <"Model number">
+				description = <"The exact model number assigned by the manufacturer and found on the device label or accompanying packaging.">
+			>
+			["id25"] = <
+				text = <"Other identifier">
+				description = <"Unspecified identifier, which can be further specified in a template or at run time.">
+			>
+			["id26"] = <
+				text = <"Software version">
+				description = <"Identification of the version of software being used in the medical device.">
+			>
+			["id27"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id28"] = <
+				text = <"Multimedia">
+				description = <"Digital representation of the device.">
+			>
+		>
+		["nb"] = <
+			["id1"] = <
+				text = <"*Medical Device(en)">
+				description = <"*An instrument, apparatus, implant, material or similar, used in the provision of healthcare. In this context, a medical device includes a broad range of devices which act through a variety of physical, mechanical, thermal or similar means but specifically excludes devices which act through medicinal means such as pharmacological, metabolic or immunological methods.  The scope is inclusive of disposable devices as well as durable or persisting devices that require tracking, maintenance activities or regular calibration, recognising that each type of device has specific data recording requirements.(en)">
+			>
+			["id2"] = <
+				text = <"Enhets navn">
+				description = <"*Identification of the medical device, preferably by a common name, a formal fully descriptive name or, if required, by class or category of device.(en)">
+			>
+			["id3"] = <
+				text = <"Beskrivelse">
+				description = <"*Narrative description of the medical device.(en)">
+			>
+			["id4"] = <
+				text = <"Type">
+				description = <"*The category or kind of device.(en)">
+			>
+			["id5"] = <
+				text = <"Produsent">
+				description = <"Navnet til produsenten.">
+			>
+			["id6"] = <
+				text = <"Produksjonsdato">
+				description = <"Dato for produksjon av enheten.">
+			>
+			["id7"] = <
+				text = <"*Batch/Lot number(en)">
+				description = <"*The number assigned by the manufacturer which identifies a group of items manufactured at the same time, usually found on the label or packaging material.(en)">
+			>
+			["id8"] = <
+				text = <"Utløpsdato">
+				description = <"*Date after which the device/product is no longer fit for use, usually found on the device itself or printed on the accompanying packaging.(en)">
+			>
+			["id9"] = <
+				text = <"Kommentar">
+				description = <"Ytterligere narrativ opplysninger om enheten som ikke er inneholdt i andre felter.">
+			>
+			["id10"] = <
+				text = <"*Properties(en)">
+				description = <"*Further details about specific properties about the medical device.(en)">
+			>
+			["id19"] = <
+				text = <"*Components(en)">
+				description = <"*Additional structured informations about identified components of the device.(en)">
+			>
+			["id20"] = <
+				text = <"*Asset management(en)">
+				description = <"*Further details about management and maintenance of the device.(en)">
+			>
+			["id21"] = <
+				text = <"*Serial number(en)">
+				description = <"*Number assigned by the manufacturer which can be found on the device, and should be specific to each device., its label, or accompanying packaging.(en)">
+			>
+			["id22"] = <
+				text = <"*Unique device identifier (UDI)(en)">
+				description = <"*A numeric or alphanumeric string that is associated with this device within a given system.(en)">
+			>
+			["id23"] = <
+				text = <"*Catalog number(en)">
+				description = <"*The exact number assigned by the manufacturer, as it appears in the manufacturer's catalog, device labeling, or accompanying packaging.(en)">
+			>
+			["id24"] = <
+				text = <"*Model number(en)">
+				description = <"*The exact model number assigned by the manufacturer and found on the device label or accompanying packaging.(en)">
+			>
+			["id25"] = <
+				text = <"*Other identifier(en)">
+				description = <"*Unspecified identifier, which can be further specified in a template or at run time.(en)">
+			>
+			["id26"] = <
+				text = <"*Software version(en)">
+				description = <"*Identification of the version of software being used in the medical device.(en)">
+			>
+			["id27"] = <
+				text = <"*Extension(en)">
+				description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
+			>
+			["id28"] = <
+				text = <"*Multimedia(en)">
+				description = <"*Digital representation of the device.(en)">
+			>
+		>
+		["es-ar"] = <
+			["id1"] = <
+				text = <"*Medical Device(en)">
+				description = <"*An instrument, apparatus, implant, material or similar, used in the provision of healthcare. In this context, a medical device includes a broad range of devices which act through a variety of physical, mechanical, thermal or similar means but specifically excludes devices which act through medicinal means such as pharmacological, metabolic or immunological methods.  The scope is inclusive of disposable devices as well as durable or persisting devices that require tracking, maintenance activities or regular calibration, recognising that each type of device has specific data recording requirements.(en)">
+			>
+			["id2"] = <
+				text = <"*Device name(en)">
+				description = <"*Identification of the medical device, preferably by a common name, a formal fully descriptive name or, if required, by class or category of device.(en)">
+			>
+			["id3"] = <
+				text = <"Descripción">
+				description = <"Descripción del dispositivo.">
+			>
+			["id4"] = <
+				text = <"*Type(en)">
+				description = <"*Type of medical device.(en)">
+			>
+			["id5"] = <
+				text = <"Fabricante">
+				description = <"Fabricante del dispositivo.">
+			>
+			["id6"] = <
+				text = <"Fecha de fabricación">
+				description = <"Fecha de fabricación del dispositivo.">
+			>
+			["id7"] = <
+				text = <"Número de lote">
+				description = <"Número de lote del fabricante.">
+			>
+			["id8"] = <
+				text = <"Fecha de vencimiento">
+				description = <"Fecha para la cual el dispositivo o producto deja de ser adecuado para su uso.">
+			>
+			["id9"] = <
+				text = <"Comentario">
+				description = <"Narrativa adicional sobre el dispositivo que no fué cubierta en los otros campos.">
+			>
+			["id10"] = <
+				text = <"Detalles adicionales">
+				description = <"Detalles adicionales acerca del dispositivo.">
+			>
+			["id19"] = <
+				text = <"*Components(en)">
+				description = <"*Additional structured informations about identified components of the device.(en)">
+			>
+			["id20"] = <
+				text = <"*Cluster(en)">
+				description = <"**(en)">
+			>
+			["id21"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["id22"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["id23"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["id24"] = <
+				text = <"*New element(en)">
+				description = <"**(en)">
+			>
+			["id25"] = <
+				text = <"*Other identifier(en)">
+				description = <"*Unspecified identifier, which can be further specified in a template or at run time.(en)">
+			>
+			["id26"] = <
+				text = <"*Software version(en)">
+				description = <"*Identification of the version of software being used in the medical device.(en)">
+			>
+			["id27"] = <
+				text = <"*Cluster(en)">
+				description = <"**(en)">
+			>
+			["id28"] = <
+				text = <"*Multimedia(en)">
+				description = <"*Digital representation of the device.(en)">
+			>
+		>
+	>

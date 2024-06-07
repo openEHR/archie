@@ -1,7 +1,8 @@
 package com.nedap.archie.rm.datavalues;
 
-import com.nedap.archie.rm.datatypes.CodePhrase;
+import org.openehr.rm.datatypes.CodePhrase;
 import org.junit.Test;
+import org.openehr.rm.datavalues.DvCodedText;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

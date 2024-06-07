@@ -1,7 +1,7 @@
 package com.nedap.archie.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.apath.PathSegment;
 
 import java.util.List;
 

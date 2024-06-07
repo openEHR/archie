@@ -5,7 +5,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -14,8 +14,8 @@ public class AomUtilsPathFindingTest {
 
     @Test
     public void isPathInArchetypeOrRm() throws Exception{
-        Archetype archetype = TestUtil.parseFailOnErrors("/basic.adl");
-        MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
+        Archetype archetype = TestUtil.parseFailOnErrors(this.getClass(),"/basic.adl");
+        MetaModels metaModels = AllMetaModelsInitialiser.getMetaModels();
         metaModels.selectModel(archetype);
         //AOM path
         assertTrue(AOMUtils.isPathInArchetypeOrRm(metaModels.getSelectedModel(), "/context[id11]", archetype));

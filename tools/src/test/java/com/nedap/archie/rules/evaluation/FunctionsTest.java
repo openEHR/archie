@@ -3,16 +3,15 @@ package com.nedap.archie.rules.evaluation;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.rm.archetyped.Locatable;
-import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.Item;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import org.openehr.rm.archetyped.Locatable;
+import org.openehr.rm.composition.Observation;
+import org.openehr.rm.datastructures.Element;
+import org.openehr.rm.datastructures.Item;
+import org.openehr.rm.datastructures.ItemTree;
+import org.openehr.rm.datavalues.quantity.DvQuantity;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.testutil.TestUtil;
-import com.nedap.archie.xml.JAXBUtil;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,7 +58,7 @@ public class FunctionsTest {
     }
 
     private <T> RuleEvaluation<T> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
+        return new RuleEvaluation<>(OpenEhrRmInfoLookup.getInstance(), archetype);
     }
 
     @Test
@@ -69,7 +68,7 @@ public class FunctionsTest {
         System.out.println(archetype);
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
 
@@ -100,7 +99,7 @@ public class FunctionsTest {
         System.out.println(archetype);
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
 
@@ -120,7 +119,7 @@ public class FunctionsTest {
         System.out.println(archetype);
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
 
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
 
@@ -151,7 +150,7 @@ public class FunctionsTest {
         assertTrue(parser.getErrors().hasNoErrors());
 
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(65d);
 
@@ -185,7 +184,7 @@ public class FunctionsTest {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("functions.adls"));
         assertTrue(parser.getErrors().hasNoErrors());
 
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         ItemTree itemTree = (ItemTree) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]");
         Item item = (Item) itemTree.itemAtPath("/items[id5]");
         itemTree.addItem( (Item) item.clone() );
@@ -210,7 +209,7 @@ public class FunctionsTest {
         assertTrue(parser.getErrors().hasNoErrors());
 
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(26.1);
 
@@ -226,7 +225,7 @@ public class FunctionsTest {
         assertTrue(parser.getErrors().hasNoErrors());
 
         RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
-        Locatable rmObject = (Locatable) new TestUtil().constructEmptyRMObject(archetype.getDefinition());
+        Locatable rmObject = (Locatable) new TestUtil(OpenEhrRmInfoLookup.getInstance()).constructEmptyRMObject(archetype.getDefinition());
         DvQuantity quantity = (DvQuantity) rmObject.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id5]/value");
         quantity.setMagnitude(27.9);
 

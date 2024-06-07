@@ -8,7 +8,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.apath.PathSegment;
 import com.nedap.archie.rminfo.RMProperty;
 import org.openehr.utils.message.I18n;
 
@@ -36,7 +36,7 @@ import java.util.function.BiFunction;
 public abstract class CObject extends ArchetypeConstraint {
 
     @XmlAttribute(name="rm_type_name")
-    private String rmTypeName;
+    protected String rmTypeName;
     @XmlElement(name="occurrences")
     @Nullable
     private MultiplicityInterval occurrences;

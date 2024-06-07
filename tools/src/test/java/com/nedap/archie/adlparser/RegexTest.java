@@ -32,7 +32,7 @@ public class RegexTest extends PrimitivesConstraintParserTest {
 
     @Test
     public void extended_regexp() throws Exception {
-        archetype = TestUtil.parseFailOnErrors("/regexps.adls");
+        archetype = TestUtil.parseFailOnErrors(this.getClass(),"/regexps.adls");
         CString regexpSlashEscape = getAttribute("slash_escaped");
         CString regexpUTF8 = getAttribute("utf8");
         CString regexpAssumedValue = getAttribute("utf8_assumed_value");
@@ -70,8 +70,5 @@ public class RegexTest extends PrimitivesConstraintParserTest {
             assertEquals("/regexp/", regex.getConstraint().get(0));
         }
     }
-
-
-
 
 }

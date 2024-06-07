@@ -3,6 +3,7 @@ package com.nedap.archie.adlparser.treewalkers;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rules.*;
 import com.nedap.archie.serializer.odin.OdinValueParser;
 
@@ -20,9 +21,12 @@ public class RulesParser extends BaseTreeWalker {
     private PrimitivesConstraintParser primitivesConstraintParser;
     public static final Pattern VARIABLE_ASSIGNMENT_PATTERN = Pattern.compile("\\$(?<name>.*)\\:(?<type>.*)");
 
-    public RulesParser(ANTLRParserErrors errors) {
+    private final MetaModels metaModels;
+
+    public RulesParser(ANTLRParserErrors errors, MetaModels metaModels) {
         super(errors);
-        primitivesConstraintParser = new PrimitivesConstraintParser(errors);
+        primitivesConstraintParser = new PrimitivesConstraintParser(errors, metaModels);
+        this.metaModels = metaModels;
     }
 
     public RuleStatement parse(AssertionContext assertionContext) {

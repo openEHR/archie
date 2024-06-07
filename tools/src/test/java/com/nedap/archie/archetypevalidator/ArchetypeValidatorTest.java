@@ -4,12 +4,12 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrTestRmInfoLookup;
+import com.nedap.archie.openehr.rminfo.OpenEhrRmInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.Before;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,8 +30,8 @@ public class ArchetypeValidatorTest {
     public void setup() {
         parser = new ADLParser();
         models = new ReferenceModels();
-        models.registerModel(ArchieRMInfoLookup.getInstance());
-        models.registerModel(TestRMInfoLookup.getInstance());
+        models.registerModel(OpenEhrRmInfoLookup.getInstance());
+        models.registerModel(OpenEhrTestRmInfoLookup.getInstance());
     }
 
     @Test
@@ -212,7 +212,7 @@ public class ArchetypeValidatorTest {
             repository.addArchetype(child);
             repository.addArchetype(parent);
 
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
             ValidationResult validatedChild = archetypeValidator.validate(child, repository);
             ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
 
@@ -224,7 +224,7 @@ public class ArchetypeValidatorTest {
             repository.addArchetype(child);
             repository.addArchetype(parent);
             
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
             ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
             ValidationResult validatedChild = archetypeValidator.validate(child, repository);
 
@@ -295,7 +295,7 @@ public class ArchetypeValidatorTest {
             repository.addArchetype(child1);
             repository.addArchetype(child2);
 
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
             ValidationResult result = archetypeValidator.validate(child1, repository);
             assertFalse(result.passes());
             assertEquals("Infinite loop caused by specialising: openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1 in openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1", result.getErrors().get(0).getMessage());
@@ -312,7 +312,7 @@ public class ArchetypeValidatorTest {
             repository.addArchetype(parent);
             repository.addArchetype(childWithSpecializationAfterExclusion);
 
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
             ValidationResult result = archetypeValidator.validate(childWithSpecializationAfterExclusion, repository);
             assertTrue(result.passes());
             assertEquals(2, result.getErrors().size());
@@ -327,7 +327,7 @@ public class ArchetypeValidatorTest {
         {
             InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
             repository.addArchetype(archetypeWithIncompatibleNodeId);
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels());
             ValidationResult result = archetypeValidator.validate(archetypeWithIncompatibleNodeId, repository);
             assertTrue(result.passes());
             assertEquals(6, result.getErrors().size());

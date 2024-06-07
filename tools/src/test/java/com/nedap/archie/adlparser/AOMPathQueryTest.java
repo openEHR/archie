@@ -26,7 +26,7 @@ public class AOMPathQueryTest {
 
     @Before
     public void setup() throws Exception {
-        archetype = TestUtil.parseFailOnErrors("/basic.adl");
+        archetype = TestUtil.parseFailOnErrors(this.getClass(),"/basic.adl");
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
     }
@@ -57,7 +57,7 @@ public class AOMPathQueryTest {
 
     @Test
     public void differentialPaths() throws Exception {
-        Archetype archetype = TestUtil.parseFailOnErrors("/adl2-tests/features/specialisation/openEHR-EHR-OBSERVATION.redefine_1_value.v1.0.0.adls");
+        Archetype archetype = TestUtil.parseFailOnErrors(this.getClass(),"/adl2-tests/features/specialisation/openEHR-EHR-OBSERVATION.redefine_1_value.v1.0.0.adls");
 
         //query with a differential path halfway
         AOMPathQuery query = new AOMPathQuery("/data/events[id3]/data/items[id4.1]/value[id0.6]");

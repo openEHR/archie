@@ -1,8 +1,8 @@
 package com.nedap.archie.rm.datavalues;
 
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
-import com.nedap.archie.rm.support.identification.TerminologyId;
+import org.openehr.rm.datatypes.CodePhrase;
+import org.openehr.rm.datavalues.encapsulated.DvParsable;
+import org.openehr.rm.support.identification.TerminologyId;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -7,7 +7,7 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.openehr.referencemodels.AllMetaModelsInitialiser;
 
 import java.io.InputStream;
 
@@ -18,11 +18,11 @@ public class AssumedValueConversionTest {
     @Test
     public void testAssumedValueConversion() throws Exception {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(AllMetaModelsInitialiser.getMetaModels(), conversionConfiguration);
 
         Archetype adl14archetype;
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.height.v2.adl")) {
-            adl14archetype = new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration);
+            adl14archetype = new ADL14Parser(AllMetaModelsInitialiser.getMetaModels()).parse(stream, conversionConfiguration);
         }
 
         ADL2ConversionResultList result = converter.convert(
@@ -35,7 +35,7 @@ public class AssumedValueConversionTest {
         assertNull(cTerminologyCode.getAssumedValue().getTerminologyId());
         assertEquals("at17", cTerminologyCode.getAssumedValue().getCodeString());
 
-        ValidationResult validationResult = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels()).validate(archetype);
+        ValidationResult validationResult = new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels()).validate(archetype);
 
         assertTrue(validationResult.toString(), validationResult.passes());
     }

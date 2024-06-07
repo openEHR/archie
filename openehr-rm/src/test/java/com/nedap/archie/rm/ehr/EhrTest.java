@@ -1,10 +1,11 @@
 package com.nedap.archie.rm.ehr;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.json.JacksonUtil;
+import com.nedap.archie.openehr.serialisation.json.OpenEhrRmJacksonUtil;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
-import com.nedap.archie.rm.support.identification.HierObjectId;
-import com.nedap.archie.rm.support.identification.ObjectRef;
+import org.openehr.rm.ehr.Ehr;
+import org.openehr.rm.support.identification.HierObjectId;
+import org.openehr.rm.support.identification.ObjectRef;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class EhrTest {
         expected.setFolders(folders);
 
         StringWriter sw = new StringWriter();
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        ObjectMapper objectMapper = OpenEhrRmJacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         objectMapper.writeValue(sw, expected);
 
         Ehr actual = objectMapper.readValue(sw.toString(), Ehr.class);
