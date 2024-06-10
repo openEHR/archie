@@ -29,6 +29,7 @@ public class DummyRulesPrimitiveObjectParent extends CAttribute {
     }
 
     @Override
+    @Deprecated
     public String getLogicalPath() {
         return getPath();
     }

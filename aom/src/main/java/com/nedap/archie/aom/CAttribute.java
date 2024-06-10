@@ -330,6 +330,7 @@ public class CAttribute extends ArchetypeConstraint {
         return (CObject) super.getParent();
     }
 
+    @Deprecated
     public String getLogicalPath() {
         String path = "/" + rmAttributeName;
         if(getParent() != null) {
