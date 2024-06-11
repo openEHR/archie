@@ -61,5 +61,10 @@ public class SiblingOrderDiffTest {
         diffTestUtil.test("openEHR-EHR-CLUSTER.order-parent.v1.0.0.adls","openEHR-EHR-CLUSTER.redefinition_at_same_place.v1.0.0.adls");
     }
 
+    @Test
+    public void specialiseFirstElement() throws Exception {
+        diffTestUtil.test("openEHR-EHR-CLUSTER.order-parent.v1.0.0.adls","openEHR-EHR-CLUSTER.specialise_first_element.v1.0.0.adls");
+    }
+
     //The two tricky edge cases in the flattener test are really not interesting here, as the Differentiator will never create such hard to do code
 }
