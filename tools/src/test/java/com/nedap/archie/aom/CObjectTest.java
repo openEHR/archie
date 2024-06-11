@@ -25,21 +25,24 @@ public class CObjectTest {
     }
 
     @Test
-    public void definitionMeaningAndLogicalPath() {
+    public void definitionMeaning() {
         assertEquals("Prescription", archetype.getDefinition().getMeaning());
         assertEquals("A document authorising supply and administration of one or more medicines, vaccines or other therapeutic goods (as a collection of medication instrations) to be communicated to a dispensing or administration provider.", archetype.getDefinition().getDescription());
 
         CObject qualitification = archetype.getDefinition().itemAtPath("/context[id11]/other_context[id2]/items[id3]");
 
-        assertEquals("/context[id11]/other_context[id2]/items[Qualification]", qualitification.getLogicalPath());
-
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("nl");
 
         assertEquals("Recept", archetype.getDefinition().getMeaning());
         assertEquals("Een document waarmee uitgifte van een of meerdere medicijnen of hulpmiddel wordt geautoriseerd.", archetype.getDefinition().getDescription());
+    }
+
+    @Test
+    @Deprecated
+    public void logicalPath() {
+        CObject qualitification = archetype.getDefinition().itemAtPath("/context[id11]/other_context[id2]/items[id3]");
 
         assertEquals("/context[id11]/other_context[id2]/items[Qualification]", qualitification.getLogicalPath());
-
 
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("nl");
 
