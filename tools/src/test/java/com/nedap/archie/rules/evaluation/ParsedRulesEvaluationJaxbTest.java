@@ -4,7 +4,6 @@ import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.xml.JAXBUtil;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 
 import java.util.List;
@@ -44,8 +43,6 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3,1]/data[id4]/items[id5,1]/value/magnitude"));
         assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3,2]/data[id4]/items[id6,2]/value/magnitude"));
         assertEquals(0, evaluationResult.getSetPathValues().size());
-
-
     }
 
     @Override
@@ -70,7 +67,6 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
         assertEquals(1, result.getRawResult().getPaths(0).size());
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", result.getRawResult().getPaths(0).get(0));
-
     }
 
     @Override
@@ -126,7 +122,6 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
         assertEquals(true, variableMatches.getObject(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
-
     }
 
     @Test
@@ -148,6 +143,5 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(2));
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals(0, evaluationResult.getSetPathValues().size());
-
     }
 }
