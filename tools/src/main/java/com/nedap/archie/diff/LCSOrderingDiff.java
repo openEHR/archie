@@ -196,7 +196,7 @@ public class LCSOrderingDiff {
             String otherNodeId = childNodeIds.get(j);
             if (AOMUtils.getSpecializationDepthFromCode(nodeId) == childSpecializationDepth &&
                     AOMUtils.codeExistsAtLevel(nodeId, childSpecializationDepth-1) &&
-                    AOMUtils.codeAtLevel(otherNodeId, childSpecializationDepth-1).equals(AOMUtils.codeAtLevel(nodeId, childSpecializationDepth-1))) { //
+                    AOMUtils.codeAtLevel(otherNodeId, childSpecializationDepth-1).equals(AOMUtils.codeAtLevel(nodeId, childSpecializationDepth-1))) {
                 onlyTheSameParentNodeId = true;
                 firstNodeIdWithSameParent = otherNodeId;
             } else {
