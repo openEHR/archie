@@ -194,8 +194,8 @@ public class LCSOrderingDiff {
 
         for(int j = i - 1; j >= 0; j--) {
             String otherNodeId = childNodeIds.get(j);
-            if (AOMUtils.getSpecializationDepthFromCode(nodeId) == childSpecializationDepth && // nodeId specialisationDepth (id3.0.0.1 - 3) == specialisationDepth of archetype (rootnode depth), so if parent of specialised nodeId existed in the root archetype
-                    AOMUtils.codeExistsAtLevel(nodeId, childSpecializationDepth-1) && // nodeId was specialised or existed in the direct parent
+            if (AOMUtils.getSpecializationDepthFromCode(nodeId) == childSpecializationDepth &&
+                    AOMUtils.codeExistsAtLevel(nodeId, childSpecializationDepth-1) &&
                     AOMUtils.codeAtLevel(otherNodeId, childSpecializationDepth-1).equals(AOMUtils.codeAtLevel(nodeId, childSpecializationDepth-1))) { //
                 onlyTheSameParentNodeId = true;
                 firstNodeIdWithSameParent = otherNodeId;
