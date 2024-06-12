@@ -1,0 +1,77 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=7f7cb1eb-b6d0-4712-b244-4bbf9f2fcc64; build_uid=c0563ceb-a4ef-4f8b-b78f-6d37640c028e)
+    openEHR-EHR-OBSERVATION.container.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2015-07-13">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Informatics<heather.leslie@oceaninformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"B05F27B4D72854EB22443E238E726399">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To enable the clinical content held within existing CLUSTER archetypes to be represented as standalone data in the health record.">
+            keywords = <"generic", "container", "slot">
+            use = <"Use to enable the clinical content held within existing CLUSTER archetypes, and usually represented within the context of other archetypes, to be represented as standalone data in the health record when clinically appropriate. 
+    
+    This archetype is intended only to act as a container archetype that supports flexible expression of existing CLUSTER archetypes. It is not intended to hold any content other than the unconstrained SLOT.
+    
+    For example, the CLUSTER.nyha_heart_failure archetype is most commonly used to provide a standardised assessment of heart failure with EVALUATION.problem_diagnosis archetypes, but by inserting it within this OBSERVATION allows it to be recorded as data outside the context of a Diagnosis, if clinically appropriate. Similarly CLUSTER.tos is usually recorded by ENT specialists in the context of an examination using CLUSTER.exam_tympanic_membrane, but by inserting it into this archetype, it allows it to be recorded outside the context of examination findings, if clinically appropriate.">
+            misuse = <"Not to be used to represent specific clinical content defined within this archetype.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Container
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {0..1} matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    allow_archetype CLUSTER[id5] matches {     -- Detail
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.asa_status(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-CLUSTER\.nyha_heart_failure(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-CLUSTER\.sade_classification(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-CLUSTER\.tos_classification(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id5"] = <
+                text = <"Detail">
+                description = <"Clinical details held within CLUSTER archetypes.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Container">
+                description = <"Generic archetype to contain existing CLUSTER archetypes which need to be represented as standalone data.">
+            >
+        >
+    >

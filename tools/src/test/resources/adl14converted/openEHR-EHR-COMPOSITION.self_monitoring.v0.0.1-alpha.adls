@@ -1,0 +1,80 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=1d6fde17-c20f-4296-be5b-5bee9b805694; build_uid=f3213704-4847-4656-bebc-fa561f5a4f42)
+    openEHR-EHR-COMPOSITION.self_monitoring.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2013-01-19">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Informatics<heather.leslie@oceaninformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"7266FD81BB789DCF8A90C79D855DBFB1">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To hold measurements and observations made by the person who is subject of the record, or their carers.">
+            keywords = <"home monitoring", "patient entered", "self reporting">
+            use = <"For use by the clients of the health service to commit information they have collected to the health record.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {    -- Self monitoring
+        category matches {
+            DV_CODED_TEXT[id9001] matches {
+                defining_code matches {[at9000]}    -- event
+            }
+        }
+        context matches {
+            EVENT_CONTEXT[id9002] matches {
+                other_context matches {
+                    ITEM_TREE[id2] matches {
+                        items cardinality matches {0..*; unordered} matches {
+                            allow_archetype CLUSTER[id3] matches {     -- Extension
+                                include
+                                    archetype_id/value matches {/.*/}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"event">
+                description = <"event">
+            >
+            ["id3"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id1"] = <
+                text = <"Self monitoring">
+                description = <"A composition to record a person self-monitoring particular parameters.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/433>
+        >
+    >

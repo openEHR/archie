@@ -1,0 +1,94 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=4105cc95-2bff-4534-9668-516be413d7e4; build_uid=d68bc8e7-ef68-4d75-a531-d8096e9bf8dc)
+    openEHR-EHR-COMPOSITION.transfer_summary.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Sistine Barretto-Daniels">
+        ["organisation"] = <"Ocean Informatics Pty Ltd">
+        ["email"] = <"Sistine.Barretto-Daniels@oceaninformatics.com">
+        ["date"] = <"2012-01-30">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjoern Arntzen, Oslo university hospital, Norway", "Silje Ljosland Bakke, Bergen Hospital Trust, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Lars Karlsen, DIPS ASA, Norway", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, UNB, Brazil", "Micaela Thierley, Helse Bergen, Norway">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Informatics<heather.leslie@oceaninformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"49AE5C51C76F9F0A864E5D56A2E489BE">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To share critical clinical information recorded by the sending healthcare organisation/provider to the healthcare organisation/provider who is taking over responsbility for provision of health care for the subject.">
+            keywords = <"discharge summary", "community", "transfer", "continuity", "discharge", "summary", "care">
+            use = <"Use to provide a summary clinical report about about an episode, or period, of care provided by a healthcare organisation or provider, to support continuity of care as the subject moves under the care or another healthcare organisation or provider, including a return to their original community. This document will typically convey information about events that occurred during the period of care, diagnoses, investigation results, management at discharge and plans for follow-up.
+    
+    Typical senders of this report will be healthcare providers located within a clinical facility including, but not limited to:
+    - clinicians providing care during a hospital inpatient admission; and
+    - clinicians providing acute treatment or assessment as part of an emergency department visit.
+    
+    Typical recipients of this report will be healthcare providers including, but not limited to: 
+    - the subject's usual primary healthcare provider or health service;
+    - specialists, residential aged care or rehabilitation facility, welfare or community service provider; and 
+    - all health professionals who need to participate in post-transfer care of the subject.
+    
+    A discharge summary can be considered as a specific type of transfer of care summary.
+    
+    Multiple transfer of care summaries may be required to accompany the subject in any single transfer, to ensure that the full breadth of medical, nursing and other care information is shared with the appropriate receiving healthcare providers.">
+            misuse = <"Not to be used to represent the notes recorded as part of a single clinical encounters or visits. Use COMPOSITION.encounter for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {    -- Transfer of care summary
+        category matches {
+            DV_CODED_TEXT[id9001] matches {
+                defining_code matches {[at9000]}    -- event
+            }
+        }
+        context matches {
+            EVENT_CONTEXT[id9002] matches {
+                other_context matches {
+                    ITEM_TREE[id2] matches {
+                        items cardinality matches {0..*; unordered} matches {
+                            allow_archetype CLUSTER[id3] matches {     -- Extension
+                                include
+                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.document_entry_metadata(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"event">
+                description = <"event">
+            >
+            ["id3"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id1"] = <
+                text = <"Transfer of care summary">
+                description = <"Summary document to support transfer of critical clinical information from the sending healthcare organisation/provider to the receiving healthcare organisation/provider.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/433>
+        >
+    >

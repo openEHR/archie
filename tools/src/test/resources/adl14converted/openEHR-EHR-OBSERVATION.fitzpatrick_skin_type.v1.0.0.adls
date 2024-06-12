@@ -1,0 +1,117 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated)
+    openEHR-EHR-OBSERVATION.fitzpatrick_skin_type.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Dmitri Wall">
+        ["email"] = <"dmitri.wall@gmail.com">
+        ["date"] = <"2015-02-18">
+    >
+    other_contributors = <"Ian McNicoll, freshEHR, UK", ...>
+    lifecycle_state = <"AuthorDraft">
+    references = <
+        ["1"] = <"1. Fitzpatrick TB. The validity and practicality of sun-reactive skin types I through VI. Archives of dermatology 1988; 124: 869-71.">
+        ["2"] = <"2. Fitzpatrick TB. Soleil et peau. J Med Esthet 1975; 2: 33-4.">
+        ["3"] = <"3. Pathak MA, Jimbow K, Szabo G et al. Sunlight and melanin pigmentation. In: Photochemical and photobiological reviews: Springer. 1976; 211-39.">
+        ["4"] = <"4. Fitzpatrick T. Ultraviolet-induced pigmentary changes: benefits and hazards. Current problems in dermatology 1985; 15: 25-38.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"F29A2B9C493C05498471AA0D7E48423E">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"The concept of skin typing was developed in 1975 in order to select correct ultraviolet A dosage for treatment of psoriasis with oral methoxsalen, known as photochemotherapy (PUVA) (1,2).  It was further developed in subsequent years to include 6 types, ranging from white to black skin, characterised based on skin tolerance of ultraviolet radiation exposure (1,3,4).">
+            keywords = <"Dermatology", "Skin colour">
+            use = <"Classification of skin colour type based on skin tolerance of ultraviolet radiation exposure.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Fitzpatrick skin type
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {0..1} matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Skin type
+                                        value matches {
+                                            DV_ORDINAL[id9001] matches {
+                                                [value, symbol] matches {
+                                                    [{1}, {[at5]}],
+                                                    [{2}, {[at6]}],
+                                                    [{3}, {[at7]}],
+                                                    [{4}, {[at8]}],
+                                                    [{5}, {[at9]}],
+                                                    [{6}, {[at10]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Skin type (synthesised)">
+                description = <"The Fitzpatrick Skin type. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"VI">
+                description = <"Black skin, never burns">
+            >
+            ["at9"] = <
+                text = <"V">
+                description = <"Brown skin, rarely burns, tans profusely">
+            >
+            ["at8"] = <
+                text = <"IV">
+                description = <"Rarely burn, tan more than average (with ease)">
+            >
+            ["at7"] = <
+                text = <"III">
+                description = <"Sometimes mild burn, tan about average">
+            >
+            ["at6"] = <
+                text = <"II">
+                description = <"Usually burn, tan less than average (with difficulty)">
+            >
+            ["at5"] = <
+                text = <"I">
+                description = <"Always burn, never tan">
+            >
+            ["id5"] = <
+                text = <"Skin type">
+                description = <"The Fitzpatrick Skin type.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Fitzpatrick skin type">
+                description = <"Numerical schema for classifying skin colour type based on reaction to ultraviolet radiation exposure. ">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10">
+        >
+    >

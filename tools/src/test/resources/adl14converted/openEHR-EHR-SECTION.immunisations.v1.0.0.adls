@@ -1,0 +1,76 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated)
+    openEHR-EHR-SECTION.immunisations.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"">
+        ["organisation"] = <"National E-Health Transition Authority">
+        ["email"] = <"clinicalinfo@nehta.gov.au">
+        ["date"] = <"11-Oct-2011">
+    >
+    lifecycle_state = <"ApprovedCandidate">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"90EF88683030810354F77E3D10B9146D">
+        ["oid"] = <"1.2.36.1.2001.1001.100.137.1.0">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"
+    A section that groups together information about the immunisation history of the subject of care.
+    ">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    SECTION[id1] matches {    -- Immunisations
+        items cardinality matches {1..*; unordered} matches {
+            allow_archetype ACTION[id2] matches {     -- Immunisation
+                include
+                    archetype_id/value matches {/openEHR-EHR-ACTION\.medication(-[a-zA-Z0-9_]+)*\.v3\..*/}
+                exclude
+                    archetype_id/value matches {/.*/}
+            }
+            allow_archetype EVALUATION[id3] matches {     -- Exclusion Statement - Immunisation
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.exclusion-medication(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                exclude
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id3"] = <
+                text = <"Exclusion Statement - Immunisation">
+                description = <"Statements that positively assert that the patient has not received immunisations.">
+                detail_docref = <"data_groups/NEHTA-16136-Exclusion_Statement_Immunisation-Data_Group.xml">
+                dc_id = <"16136.137.1">
+                spec_id = <"105">
+                comment = <"To make a positive assertion that the patient is not given certain vaccines.">
+            >
+            ["id2"] = <
+                text = <"Immunisation">
+                description = <"The act of administering a dose of a vaccine to a person for the purpose of preventing or minimising the effects of a disease by producing immunity and/or to counter the effects of an infectious organism or insult.">
+                detail_docref = <"data_groups/NEHTA-16210-Immunisation-Data_Group.xml">
+                dc_id = <"16210.137.1">
+                spec_id = <"97">
+                comment = <"It is specifically used for the vaccine administration record and is intended to enable recording of the vaccine administered to the subject of care.">
+            >
+            ["id1"] = <
+                text = <"Immunisations">
+                description = <"A section that groups together information about the immunisation history of the subject of care.">
+                detail_docref = <"sections/NEHTA-16638-Immunisations-Section.xml">
+                dc_id = <"16638">
+                spec_id = <"137">
+            >
+        >
+    >

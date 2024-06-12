@@ -18,6 +18,7 @@ import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.base.Cardinality;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.MetaModels;
@@ -471,7 +472,22 @@ public class ADL14NodeIDConverter {
             return oldCode;
         }
         nodeIdUtil.setPrefix(newCodePrefix); //will automatically strip the leading zeroes due to integer-parsing
-        if(!oldCode.startsWith("at0.") && !oldCode.startsWith("ac0.")) {
+
+        /**
+         * Conversion rules:
+         *  ADL1.4 code                                                   ADL2 code
+         *  non-specialised node-identifying code at000N                  idN+1
+         *  non-specialised value code at000N                             atN
+         *  non-specialised value-set code ac000N                         acN+1
+         *  any redefined code in specialised archetype at000N.x.y.z      modify root part as above
+         *  any new code in a specialised archetype at0.x, ac0.1.x etc.   don't modify
+         *
+         *  This preserves the value codes from ADL1.4 to ADL2, with the only difference being zero-filling of the
+         *  top-level codes, i.e. codes like at0015 -> at15
+         *  id-code and ac-codes are incremented by one, because in the old system they (unfortunately) started
+         *  from 0, which clashes with the ADL2 system where '0' in a code means no code defined at this level.
+         */
+        if(!oldCode.startsWith("at0.") && !oldCode.startsWith("ac0.") && !newCodePrefix.equals(AdlCodeDefinitions.VALUE_CODE_LEADER)) {
             //a bit tricky, since the root of an archetype starts with at0000.0, but that's different from this I guess
             nodeIdUtil.getCodes().set(0, nodeIdUtil.getCodes().get(0) + 1); //increment with 1, old is 0-based
         }

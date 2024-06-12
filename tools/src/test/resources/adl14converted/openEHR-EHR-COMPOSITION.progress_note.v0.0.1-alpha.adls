@@ -1,0 +1,65 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=e5243e9c-8e98-4877-af93-eeee308a2c37; build_uid=dc2721f6-3b42-4994-b7af-252d6e5ad24d)
+    openEHR-EHR-COMPOSITION.progress_note.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics, Australia">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2013-04-11">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    references = <
+        ["1"] = <"Derived from: Progress note, Draft archetype [Internet]. Australian Digital Health Agency (NEHTA), ADHA Clinical Knowledge Manager. Authored: 2013 Apr 11. Available at: http://dcm.nehta.org.au/ckm#showArchetype_1013.1.1278_1 (discontinued)">
+    >
+    other_details = <
+        ["current_contact"] = <"Dr Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"39E8BC92B5A362F1CB48E5CD0CB75774">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details of health-related events that have occurred as part of the subject's care, and/or the subject's health status, findings, opinions and plans that are current at the time of recording.">
+            keywords = <"progress note", ...>
+            use = <"Use to record details of health-related events that have occurred as part of the subject's care, and/or the subject's health status, findings, opinions and plans that are current at the time of recording. Progress notes are more typically used to record ongoing care notes by various providers participating in aspects of care during some kind of healthcare episode, as distinct from a one-off face-to-face meeting in a clinic which is typically recorded as a COMPOSITION.encounter. A progress note may not include a face-to-face meeting between a clinician and the subject, but may be used to record health information remotely from the patient or report on a follow-up telephone conversation or liaison between healthcare providers without the subject present.
+    
+    A typical nursing progress note during a hospital episode might include EVALUATION.reason_for_encounter, EVALUATION.progress_note to record the narrative summary of the nursing shift, a combination of OBSERVATIONS for recording vital signs measurements and/or ACTIONS to record the tasks or procedures carried out.">
+            misuse = <"">
+            copyright = <"© Australian Digital Health Agency, openEHR Foundation">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {    -- Progress Note
+        category matches {
+            DV_CODED_TEXT[id9001] matches {
+                defining_code matches {[at9000]}    -- event
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"event">
+                description = <"event">
+            >
+            ["id1"] = <
+                text = <"Progress Note">
+                description = <"Document used to record details of health-related events that have occurred as part of the subject's care, and/or the subject's health status, findings, opinions and plans that are current at the time of recording.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/433>
+        >
+    >

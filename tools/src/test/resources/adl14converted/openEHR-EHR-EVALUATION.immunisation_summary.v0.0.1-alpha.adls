@@ -1,0 +1,362 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=cfcdbba0-3c31-40f7-b240-190c35189ef3; build_uid=e7ccedeb-bfca-463f-80aa-55202c869164)
+    openEHR-EHR-EVALUATION.immunisation_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            author = <
+                ["name"] = <"Alan March">
+                ["organisation"] = <"Hospital Universitario Austral, Pilar, Buenos Aires, Argentina.">
+                ["email"] = <"alandmarch@gmail.com">
+            >
+            accreditation = <"MD">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Adriana Kitajima, Débora Farage, Fernanda Maia, Laíse Figueiredo, Marivan Abrahão">
+                ["organisation"] = <"Core Consulting">
+                ["email"] = <"contato@coreconsulting.com.br">
+            >
+            accreditation = <"Hospital Alemão Oswaldo Cruz (HAOC)">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2012-11-23">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Merrilyn Curtis, AnalyzeIT, Australia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+        ["MD5-CAM-1.0.1"] = <"69DD2F50366E8F6A7BF23552181915D4">
+    >
+    details = <
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            purpose = <"Para el registro de un resumen del estado de vacunación para una enfermedad o agente infeccioso conocido.">
+            keywords = <"vacunación", "inmunización", "resumen", "primario", "ciclo", "refuerzo">
+            use = <"Utilizar para registrar el resumen de un clínico acerca del estado de vacunación para una enfermedad o agente infeccioso. 
+    El arquetipo no presupone calendario particular alguno ni un protocolo de vacunación.">
+            misuse = <"No utilizar para el registro del estado inmune posible de una persona. El estado inmune y la necesidad de un ciclo de vacunación o refuerzo partirá de una decisión clínica determinada por un conjunto de factores: evidencia clínica de infección previa, estado de vacunación, historia de vacunación, resultados de serología, contraindicaciones, reacciones adversas, o un disparador clínico (pinchazo por aguja o exposición a una enfermedad o agente infeccioso).">
+            copyright = <"© openEHR Foundation">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para gravar um sumário do estado de vacinação de uma doença infecciosa identificada ou agente.">
+            keywords = <"vacinação", "imunização", "sumário", "primário", "etapa", "reforço">
+            use = <"Utilizada para gravar uma declaração resumida de um clínico sobre o estado de vacinação de uma doença infecciosa identificada ou agente. 
+    
+    Este arquétipo não presume qualquer esquema particular ou protocolo de vacinação.">
+            misuse = <"Não deve ser usado para gravar o possível estado imune do indivíduo. O estado imune e a necessidade de vacinação ou reforço será uma decisão clínica determinada por um número de fatores - evidência clínica de infecção prévia; estado de vacinação; histórico de vacinação; resultados serológicos; contraindicações; reações adversas; e um gatilho clínico p.e. um ferimento por picada de agulha ou exposição a doenças infecciosas/agente.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a summary of the immunisation status for an identified infectious disease or agent.">
+            keywords = <"immunisation", "immunisation", "immunization", "summary", "primary", "course", "booster">
+            use = <"Use to record a summary statement by a clinician about the immunisation status for an identified infectious disease or agent.
+    
+    This archetype does not presume any particular schedule or protocol for immunisation.">
+            misuse = <"Not to be used to record a status of the subject's possible immune status. Immune status and need for ongoing immunisation or booster will be a clinical decision determined by a number of factors - clinical evidence of previous infection; immunisation status; immunisation history; serology results; contraindications; adverse reactions; and the clinical trigger eg a needle stab injury or exposure to an infectious disease/agent.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Immunisation summary
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {1..*} matches {    -- Infectious disease or agent
+                        value matches {
+                            DV_TEXT[id9002] 
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Primary course status
+                        value matches {
+                            DV_CODED_TEXT[id9003] matches {
+                                defining_code matches {[ac9000]}    -- Primary course status (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Date primary course completed
+                        value matches {
+                            DV_DATE_TIME[id9004] 
+                        }
+                    }
+                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Date of last booster
+                        value matches {
+                            DV_DATE_TIME[id9005] 
+                        }
+                    }
+                    ELEMENT[id11] occurrences matches {0..1} matches {    -- Immunisation status
+                        value matches {
+                            DV_CODED_TEXT[id9006] matches {
+                                defining_code matches {[ac9001]}    -- Immunisation status (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            DV_TEXT[id9007] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id14] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Next review due
+                        value matches {
+                            DV_DATE_TIME[id9008] 
+                        }
+                    }
+                    ELEMENT[id16] occurrences matches {0..1} matches {    -- Last updated
+                        value matches {
+                            DV_DATE_TIME[id9009] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["es-ar"] = <
+            ["ac9000"] = <
+                text = <"Estado del ciclo primario (synthesised)">
+                description = <"Estado del ciclo primario de una vacunación. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Estado de vacunación (synthesised)">
+                description = <"Afirmación acerca de si la vacunación se encuentra al día. (synthesised)">
+            >
+            ["id17"] = <
+                text = <"*New element(en)">
+                description = <"**(en)">
+            >
+            ["id16"] = <
+                text = <"Última actualización">
+                description = <"La fecha en la cual el resumen de inmunización fué actualizado por última vez.">
+            >
+            ["id15"] = <
+                text = <"Próxima Revisión Prevista">
+                description = <"La fecha para la cual el resumen de inmunización debe ser revisado y posiblemente actualizado.">
+            >
+            ["at12"] = <
+                text = <"Vacunación no al día">
+                description = <"La vacunación no se encuentra al día.">
+            >
+            ["at11"] = <
+                text = <"Vacunación al día">
+                description = <"La vacunación se encuentra al día.">
+            >
+            ["id11"] = <
+                text = <"Estado de vacunación">
+                description = <"Afirmación acerca de si la vacunación se encuentra al día.">
+            >
+            ["id10"] = <
+                text = <"Fecha del Último Refuerzo">
+                description = <"La fecha en la cual se administró el último refuerzo.">
+            >
+            ["id9"] = <
+                text = <"Fecha de completamiento del ciclo primario">
+                description = <"La fecha en la cual el ciclo primario (o de recuperación) fué completado.">
+            >
+            ["at7"] = <
+                text = <"Indeterminado">
+                description = <"La información disponible resulta inadecuada para determinar el estatus del ciclo primario.">
+            >
+            ["at6"] = <
+                text = <"Completo">
+                description = <"Ciclo primario completo.">
+            >
+            ["at5"] = <
+                text = <"Incompleto">
+                description = <"Ciclo primario iniciado pero incompleto.">
+            >
+            ["at4"] = <
+                text = <"No iniciado">
+                description = <"Ciclo primario no iniciado.">
+            >
+            ["id4"] = <
+                text = <"Estado del ciclo primario">
+                description = <"Estado del ciclo primario de una vacunación.">
+            >
+            ["id3"] = <
+                text = <"Enfermedad o agente infeccioso">
+                description = <"Identificación de la enfermedad o agente infeccioso">
+                comment = <"Existen muchas enfermedades o agentes infecciosos que pueden vacunarse en forma conjunta. Por ejemplo: difteria, tétanos y pertussis, o sarampión, parotiditis y rubeola.">
+            >
+            ["id1"] = <
+                text = <"Resumen de vacunación">
+                description = <"Resumen del estado de vacunación para una enfermedad o agente infecciosos conocido.">
+            >
+        >
+        ["pt-br"] = <
+            ["ac9000"] = <
+                text = <"Estado da primeira etapa (synthesised)">
+                description = <"Estado da primeira etapa de vacinações. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Estado da vacinação (synthesised)">
+                description = <"Uma assertiva sobre se o curso de vacinação está atualizado. (synthesised)">
+            >
+            ["id17"] = <
+                text = <"*New element(en)">
+                description = <"**(en)">
+            >
+            ["id16"] = <
+                text = <"Última atualização">
+                description = <"A data na qual o sumário de imunização foi atualizado pela última vez.">
+            >
+            ["id15"] = <
+                text = <"Próxima revisão">
+                description = <"A data na qual o sumário de imunização deve ser revisado e possivelmente atualizado.">
+            >
+            ["at12"] = <
+                text = <"Vacinação não atualizada">
+                description = <"O curso de vacinação não está atualizado.">
+            >
+            ["at11"] = <
+                text = <"Vacinação atualizada">
+                description = <"O curso de vacinação está atualizado.">
+            >
+            ["id11"] = <
+                text = <"Estado da vacinação">
+                description = <"Uma assertiva sobre se o curso de vacinação está atualizado.">
+            >
+            ["id10"] = <
+                text = <"Data do último reforço">
+                description = <"A data na qual o último reforço de vacina foi administrado.">
+            >
+            ["id9"] = <
+                text = <"Data da conclusão da primeira etapa">
+                description = <"A data na qual a primeira etapa (ou alcance) de vacinas foi completada.">
+            >
+            ["at7"] = <
+                text = <"Indeterminado">
+                description = <"A informação disponível é inadequada para determinar o estado da primeira etapa.">
+            >
+            ["at6"] = <
+                text = <"Completo">
+                description = <"Primeira etapa foi completada.">
+            >
+            ["at5"] = <
+                text = <"Incompleto">
+                description = <"Primeira etapa foi iniciada mas não completada.">
+            >
+            ["at4"] = <
+                text = <"Não iniciado">
+                description = <"Primeira etapa não foi iniciada.">
+            >
+            ["id4"] = <
+                text = <"Estado da primeira etapa">
+                description = <"Estado da primeira etapa de vacinações.">
+            >
+            ["id3"] = <
+                text = <"Doença infecciosa ou agente">
+                description = <"Identificação da doença infecciosa ou agente.">
+                comment = <"Pode haver vacinação conjunta de múltiplas doenças ou agentes - por exemplo: difteria, tétano e coqueluche ou sarampo, caxumba e rubéola.">
+            >
+            ["id1"] = <
+                text = <"Sumário de vacinação">
+                description = <"Sumário do estado de vacinação para uma doença infecciosa identificada ou agente.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Primary course status (synthesised)">
+                description = <"Status of the primary course of immunisations. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Immunisation status (synthesised)">
+                description = <"An assertion about whether the immunisation course is up-to-date. (synthesised)">
+            >
+            ["id17"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the immunisation summary for the identified disease or agent, not captured in other fields.">
+            >
+            ["id16"] = <
+                text = <"Last updated">
+                description = <"The date on which the immunisation summary was last updated.">
+            >
+            ["id15"] = <
+                text = <"Next review due">
+                description = <"The date at which the immunisation summary should be reviewed and possibly updated.">
+            >
+            ["at12"] = <
+                text = <"Immunisation not up-to-date">
+                description = <"The immunisation course is not up-to-date.">
+            >
+            ["at11"] = <
+                text = <"Immunisation up-to-date">
+                description = <"The immunisation course is up-to-date.">
+            >
+            ["id11"] = <
+                text = <"Immunisation status">
+                description = <"An assertion about whether the immunisation course is up-to-date.">
+            >
+            ["id10"] = <
+                text = <"Date of last booster">
+                description = <"The date of which the last vaccine booster was administered.">
+            >
+            ["id9"] = <
+                text = <"Date primary course completed">
+                description = <"The date on which the primary  (or catch-up) course of vaccines was completed.">
+            >
+            ["at7"] = <
+                text = <"Indeterminate">
+                description = <"The available information is inadequate to determin the status of the primary course.">
+            >
+            ["at6"] = <
+                text = <"Complete">
+                description = <"Primary course was completed.">
+            >
+            ["at5"] = <
+                text = <"Incomplete">
+                description = <"Primary course was commenced but not completed.">
+            >
+            ["at4"] = <
+                text = <"Not commenced">
+                description = <"Primary course was not commenced.">
+            >
+            ["id4"] = <
+                text = <"Primary course status">
+                description = <"Status of the primary course of immunisations.">
+            >
+            ["id3"] = <
+                text = <"Infectious disease or agent">
+                description = <"Identification of the infectious disease or agent.">
+                comment = <"There may be multiple diseases or agents that are vaccinated together - for example: diptheria, tetanus and pertussis or measles, mumps and rubella.">
+            >
+            ["id1"] = <
+                text = <"Immunisation summary">
+                description = <"Summary of the immunisation status for an identified infectious disease or agent.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at11", "at12">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at4", "at5", "at6", "at7">
+        >
+    >

@@ -1,0 +1,95 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=ec6d35e9-e25d-4a30-85d4-b7129ea83f4a; build_uid=a2e87e43-4073-4de8-8776-d8db1d0a2f0d)
+    openEHR-EHR-COMPOSITION.pregnancy_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Dr Heather Leslie">
+        ["organisation"] = <"Atomica Informatics, Australia">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2013-06-14">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heath Frankel, Ocean Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    references = <
+        ["1"] = <"Derived from: Pregnancy Summary, Draft archetype [Internet]. Australian Digital Health Agency (NEHTA), ADHA Clinical Knowledge Manager. Authored: 2013 Jun 14. Available at: http://dcm.nehta.org.au/ckm#showArchetype_1013.1.1317_1 (discontinued)">
+    >
+    other_details = <
+        ["current_contact"] = <"Dr Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"E4F5E320E2ACC07E235CB038B296768E">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a summary of all significant details for a single pregnancy.">
+            use = <"Use to record a summary of all significant details for a single pregnancy.
+    
+    Multiple Pregnancy Summary COMPOSITIONS may co-exist in a woman's health record - one per pregnancy.
+    
+    The intent of this COMPOSITION is for use as a persistent summary, however it has been identified that for implementation the archetype also needs additional attributes related to the context of the event. As a result, the COMPOSITION has been temporarily modified as an EVENT COMPOSITION which allows addition of an Items SLOT into which additional context-related archetypes can be included. This new requirement for context-related attributes in the Persistent COMPOSITION has been requested as a future openEHR Reference Model update.">
+            misuse = <"">
+            copyright = <"© Australian Digital Health Agency, openEHR Foundation">
+        >
+    >
+
+definition
+    COMPOSITION[id1] matches {    -- Pregnancy Summary
+        category matches {
+            DV_CODED_TEXT[id9001] matches {
+                defining_code matches {[at9000]}    -- event
+            }
+        }
+        context matches {
+            EVENT_CONTEXT[id9002] matches {
+                other_context matches {
+                    ITEM_TREE[id5] matches {
+                        items cardinality matches {0..*; unordered} matches {
+                            allow_archetype ITEM[id7] matches {     -- Items
+                                include
+                                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.document_entry_metadata(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        content cardinality matches {1..*; unordered} matches {
+            allow_archetype EVALUATION[id4] occurrences matches {0..1} matches {     -- Pregnancy
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.pregnancy_summary(-[a-zA-Z0-9_]+)*\.v0\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"event">
+                description = <"event">
+            >
+            ["id7"] = <
+                text = <"Items">
+                description = <"Additional COMPOSITION related data.">
+            >
+            ["id4"] = <
+                text = <"Pregnancy">
+                description = <"Cumulative overview of a single pregnancy.">
+            >
+            ["id1"] = <
+                text = <"Pregnancy Summary">
+                description = <"A summary of all significant details for a specific pregnancy.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/433>
+        >
+    >

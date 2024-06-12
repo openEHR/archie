@@ -1,0 +1,207 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=98de9f9d-3eab-4735-8563-720f0c371176; build_uid=1d99c12a-c919-4923-af75-92211ae81919)
+    openEHR-EHR-CLUSTER.service_direction.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Nasjonal IKT HF">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"freshEHR Clinical Informatics">
+        ["email"] = <"ian@freshehr.com">
+        ["date"] = <"2017-03-22">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "John Bennett, NEHTA, Australia", "SBhusan Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sarah Gaunt, NEHTA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Trina Gregory, cpc, Australia", "Robert Hausam, Hausam Consulting LLC, United States", "Sam Heard, Ocean Informatics, Australia (Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Mary Kelaher, NEHTA, Australia", "Robert L'egan, NEHTA, Australia", "Russell Leftwich, Russell B Leftwich MD, United States", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Colin Macfarlane, Elsevier, United Kingdom", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Chris Pearce, Melbourne East GP Network, Australia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Anoop Shah, University College London, United Kingdom", "Iztok Stotl, UKCLJ, Slovenia", "John Taylor, NEHTA, Australia", "Nyree Taylor, Ocean Informatics, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal", "Kylie Young, The Royal Australian College of General Practitioners, Australia", "Ed Schwab,RD, CPHIMS-CA, Foundational Knowledge - Provincial CMIO, Alberta Health Services, Canada", "Katrina Simpson-Pineda, RN, BN, Clinical Knowledge Topics - Provincial CMIO, Alberta Health Services, Canada", "Marlene Mann, BN, MCE, CPHIMS-CA, Prosci Certified, Foundation Knowledge Provincial CMIO, Alberta Health Services, Canada">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Derived from: Therapeutic direction, Published archetype [Internet]. openEHR Foundation, openEHR Clinical Knowledge Manager [cited: 2017-12-05]. Available from: http://openehr.org/ckm/#showArchetype_1013.1.2753">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"8A4E0F319E24033A7A097B2E5D95BE3B">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"Brukes for å registrere strukturerte detaljer om en enkelt timinganvisning for en rekvirert tjeneste. Hver anvisning er generelt gyldig i et gitt tidsintervall eller antall ganger en tjeneste utføres.">
+            keywords = <"rekvirering", "rekvirere", "tjeneste", "prosedyre", "undersøkelse", "behandling", "timing">
+            use = <"Brukes for å registrere strukturerte detaljer om en enkelt timinganvisning for en rekvirert tjeneste. En anvisning beskriver en eller flere sekvensielle timingmønstre, koblet med en overordnet anvisningsvarighet og detaljer om repetisjon utover én dag.
+    
+    For eksempen: Dialyseblodprøvepakke 1 på: Onsdager i den andre uken av Januar, Februar, April, Mai, Juli, August, Oktober, November. Denne CLUSTER-arketypen kan repeteres slik at man kan representere det komplettet settet av timinganvisninger for én tjenesteforespørsel. For eksempel \"INR daglig i 1 uke, ukentlig i 1 måned, månedlig i 6 måneder\" eller \"Observasjoner av vitale tegn hver time i 4 timer, deretter hver 2. time i 12 timer\". Arketypen kan gis nye navn i templaten eller applikasjoner for å representere en spesifikk hendelse som f.eks. \"første fire timer eller operasjon\" eller \"baselineundersøkelse\".
+    
+    Arketypen vil generelt bli brukt innenfor en overordnet INSTRUCTION-arketype, primært Helsetjenesteforespørsel.">
+            misuse = <"Skal ikke brukes for å registrere timinginformasjon om en rekvirering eller ordinering der det er behov for en doseangivelse, som legemiddel- eller transfusjonsordinasjoner. Bruk arketypen Terapeutisk anvisning for dette formålet.">
+            copyright = <"© openEHR Foundation, Alberta Health Services (Canada)">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record structured details of a single timing direction for an ordered service. Each direction generally applies for a given duration, or fixed number of services.">
+            keywords = <"request", "service", "procedure", "examination", "treatment", "timing">
+            use = <"Use to record structured details of a single timing direction for an ordered service. A direction describes one or more sequential timing patterns, coupled with an overall direction duration and details of any repetitive pattern outside a single day.
+    
+    For example: 'Dialysis blood test package 1 on: Wednesdays of the second week of January, February, April, May, July, August, October, November'. This cluster allows multiple occurrences to enable representation of a complete set of timing directions for a single service request. For example 'INR daily for one week, weekly for one month, monthly for six months' or 'Vital signs observations every hour for four hours, then every two hours for 12 hours'. The cluster can be renamed in template or at run-time to represent a specific dosing event such as 'first four hours after surgery', 'baseline test'.
+    
+    This archetype will generally be used in the context of a parent INSTRUCTION archetype, primarily Service request.">
+            misuse = <"Not to be used to record timing information about any request or order where a dosage is required, such as medication or transfusion orders. Use the Therapeutic direction archetype for this purpose.">
+            copyright = <"© openEHR Foundation, Alberta Health Services (Canada)">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Service direction
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id58] occurrences matches {0..1} matches {    -- Direction sequence
+                value matches {
+                    DV_COUNT[id9001] matches {
+                        magnitude matches {|>=1|}
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id177] matches {     -- Daily timing
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.timing_daily\.v1\..*/}
+            }
+            ELEMENT[id67] occurrences matches {0..1} matches {    -- Direction duration
+                value matches {
+                    DV_CODED_TEXT[id9002] matches {
+                        defining_code matches {[ac9000]}    -- Direction duration (synthesised)
+                    }
+                    DV_DURATION[id9003] matches {
+                        value matches {|>=PT0S|}
+                    }
+                    DV_TEXT[id9004] 
+                }
+            }
+            ELEMENT[id173] occurrences matches {0..1} matches {    -- Maximum number of services provided
+                value matches {
+                    DV_COUNT[id9005] matches {
+                        magnitude matches {|>=1|}
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id91] occurrences matches {0..1} matches {     -- Repetition timing
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.timing_nondaily\.v1\..*/}
+            }
+            allow_archetype CLUSTER[id157] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"Anvisningsvarighet (synthesised)">
+                description = <"Varigheten av denne anvisningen. (synthesised)">
+            >
+            ["id177"] = <
+                text = <"Timing innenfor en dag">
+                description = <"Strukturerte detaljer om timing av tjenesten innenfor en dag.">
+            >
+            ["id173"] = <
+                text = <"Maksimalt antall tjenesteutførelser">
+                description = <"Maksimalt antall ganger tjenesten skal utføres innenfor denne anvisningen.">
+                comment = <"For eksempel \"kun én gang\" = 1, eller \"3 ganger\" = 3.">
+            >
+            ["id157"] = <
+                text = <"Ytterligere detaljer">
+                description = <"Ytterligere detaljer om anvisningen.">
+            >
+            ["id91"] = <
+                text = <"Repetering av anvisning">
+                description = <"Strukturerte detaljer om repeteringsmønsteret for hvert sett av daglige anvisninger.">
+                comment = <"For eksempel \"hver 3. dag\", \"på tirsdager og søndager\", \"3 dager etter menstruasjonsblødningens 1. dag\". Dette SLOTet er ikke for timing innenfor et 24-timersintervall.">
+            >
+            ["at68"] = <
+                text = <"Ubestemt - ikke avslutt">
+                description = <"Anvisningen skal videreføres på ubestemt tid, med en sterk anbefaling om ikke å avslutte den.">
+            >
+            ["at67"] = <
+                text = <"Ubestemt">
+                description = <"Anvisningen skal videreføres på ubestemt tid.">
+            >
+            ["id67"] = <
+                text = <"Anvisningsvarighet">
+                description = <"Varigheten av denne anvisningen.">
+                comment = <"For eksempel \"i 7 dager\" eller \"på ubestemt tid\". Et eksempel som er sammensatt av flere ulike varigheter kan være: \"1 gang daglig i 3 dager\", \"2 ganger daglig i 4 dager\", \"3 ganger daglig på ubestemt tid\".">
+            >
+            ["id58"] = <
+                text = <"Anvisningsrekkefølge">
+                description = <"Tilsiktet rekkefølge for denne anvisningen i den overordnede anvisningssekvensen.">
+                comment = <"For eksempel \"1\", \"2\", \"3\". I tilfeller der ordineringen består av flere doseringsanvisninger, spesifiserer anvisningsrekkefølgen i hvilken rekkefølge anvisningene skal utføres. For eksempel \"(1) 4 ganger daglig i 3 dager, (2) to ganger daglig i 4 dager, (3) 1 gang daglig i 7 dager.\"">
+            >
+            ["id1"] = <
+                text = <"Tjenesteanvisning">
+                description = <"Detaljer om en enkelt timinganvisning for en rekvirert tjeneste, for eksempel en prosedyre, laboratorieanalyse eller bildediagnostisk undersøkelse.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Direction duration (synthesised)">
+                description = <"The length of time for which this direction should be applied. (synthesised)">
+            >
+            ["id177"] = <
+                text = <"Daily timing">
+                description = <"Structured details about the timing of the service within a single day.">
+            >
+            ["id173"] = <
+                text = <"Maximum number of services provided">
+                description = <"The maximum number of services to be given for this direction.">
+                comment = <"Example: 'Perform once only' = 1 or 'do three times' = 3.">
+            >
+            ["id157"] = <
+                text = <"Additional details">
+                description = <"Further details about an ordered item direction.">
+            >
+            ["id91"] = <
+                text = <"Repetition timing">
+                description = <"Structured details about pattern of repetition for each set of daily directions.">
+                comment = <"For example: 'every 3 days', 'on Thursdays and Sundays', '3 days after onset of menstruation'. This SLOT is not for timings within a 24 hour interval.">
+            >
+            ["at68"] = <
+                text = <"Indefinite - not to be discontinued">
+                description = <"The direction should be continued indefinitely with a strong recommendation that it never be discontinued.">
+            >
+            ["at67"] = <
+                text = <"Indefinite">
+                description = <"The direction should be continued indefinitely.">
+            >
+            ["id67"] = <
+                text = <"Direction duration">
+                description = <"The length of time for which this direction should be applied.">
+                comment = <"For example: 'for 7 days','Indefinite'. An example of a set of multiple directions, with varying durations might be '1 time daily for 3 days, 2 times daily for 4 days, then 3 times Indefinite'.">
+            >
+            ["id58"] = <
+                text = <"Direction sequence">
+                description = <"The intended position of this direction within the overall sequence of directions.">
+                comment = <"For example: ''1' '2', '3'.
+    Where multiple directions are expressed, the 'Direction sequence' makes the order in which they should be executed explicit. For example: (1) 4 times daily for 3 days, (2) 2 times daily for 4 days, (3) 1 time daily for 7 days.">
+            >
+            ["id1"] = <
+                text = <"Service direction">
+                description = <"Structured details of a single timing direction for an ordered service, for example a procedure, laboratory test or diagnostic imaging.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at67", "at68">
+        >
+    >

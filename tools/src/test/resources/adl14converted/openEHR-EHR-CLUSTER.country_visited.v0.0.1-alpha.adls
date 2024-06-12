@@ -1,0 +1,91 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=912eddb4-6575-49ce-89b4-672e57cc0f6c; build_uid=01029e0c-a77e-45e8-8eb9-ad291f6aed38)
+    openEHR-EHR-CLUSTER.country_visited.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Trainee modeller">
+        ["organisation"] = <"openEHR clinical modelling training">
+        ["date"] = <"2019-08-21">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"6976EC8E5BC0F378D47216896ECCB777">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Country visited
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Country name
+                value matches {
+                    DV_TEXT[id9000] 
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Province/State
+                value matches {
+                    DV_TEXT[id9001] 
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Date of Entry
+                value matches {
+                    DV_DATE[id9002] 
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Date of Exit
+                value matches {
+                    DV_DATE[id9003] 
+                }
+            }
+            ELEMENT[id5] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id6"] = <
+                text = <"Date of Exit">
+                description = <"The date when the individual entered the country visited.">
+            >
+            ["id5"] = <
+                text = <"Description">
+                description = <"Narrative description about the visit.">
+            >
+            ["id4"] = <
+                text = <"Date of Entry">
+                description = <"The date when the individual entered the country visited.">
+            >
+            ["id3"] = <
+                text = <"Province/State">
+                description = <"Name of the province, region or state visited.">
+            >
+            ["id2"] = <
+                text = <"Country name">
+                description = <"Name of the country visited.">
+            >
+            ["id1"] = <
+                text = <"Country visited">
+                description = <"Details about a single country visited by the individual.">
+            >
+        >
+    >

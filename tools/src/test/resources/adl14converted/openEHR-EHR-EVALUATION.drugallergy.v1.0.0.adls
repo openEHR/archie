@@ -1,0 +1,237 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated)
+    openEHR-EHR-EVALUATION.drugallergy.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Ian McNicoll">
+        ["organisation"] = <"Ocean Informatics, UK">
+        ["email"] = <"ian.mcnicoll@oceaninformatics.com">
+        ["date"] = <"2012-09-12">
+    >
+    other_contributors = <"Leo Fogarty, GP2GP project, NHS England", "John Williams, GP2GP project, NHS England">
+    lifecycle_state = <"Initial">
+    references = <
+        ["1"] = <"NHS Scotland SCI-XML schema http://www.sci.scot.nhs.uk/products/gateway/gate_down_xml.htm">
+        ["2"] = <"DoH, UK  NHS Message Implementation Guidance, http://www.uktcregistration.nss.cfh.nhs.uk/trud3/user/guest/group/0/pack/23;jsessionid=D52317DAD88F60096DFF3113BA604F1A">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"FBD57278DBCC612BF8FF04A47B972710">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details of a known or suspected allergy or other adverse reaction, intolerance to a drug or medicinal substance, drug group or trade family group of drugs.">
+            keywords = <"allergy", "adverse", "intolerance">
+            use = <"This archetype is very closely aligned to the CfH GP2GP Drug allergy archetype and should be used to record allergies, intolerances and adverse reactions to drugs and other medicinal substances.  It is designed primarily for use with in a UK primary care context but may be suitable for use within secondary care, particularly where the prime requirement is to record propensity to drug allergy for decision support purposes.">
+            misuse = <"This archetype should not be used to record adverse reactions or allergies to non-medicinal substances such as foodstuffs, pollens or animals.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Drug allergy
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {1} matches {    -- Causative agent
+                        value matches {
+                            DV_CODED_TEXT[id9002] matches {
+                                defining_code matches {[ac3]}    -- CausativeAgent
+                            }
+                        }
+                    }
+                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Reaction
+                        value matches {
+                            DV_CODED_TEXT[id9003] matches {
+                                defining_code matches {[ac2]}    -- Clinical Finding
+                            }
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Certainty
+                        value matches {
+                            DV_CODED_TEXT[id9004] matches {
+                                defining_code matches {[ac9000]}    -- Certainty (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Severity
+                        value matches {
+                            DV_CODED_TEXT[id9005] matches {
+                                defining_code matches {[ac9001]}    -- Severity (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Date of onset
+                        value matches {
+                            DV_DATE_TIME[id9006] 
+                        }
+                    }
+                    ELEMENT[id23] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            DV_TEXT[id9007] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id24] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id25] occurrences matches {0..1} matches {     -- Record provenance
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.record_provenance(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Certainty (synthesised)">
+                description = <"The certainty with which the reaction is deemed to be be due to allergy to the agent. This item has a Translation Set= Read Code (V2 or CTV3) and Snomed Code to ensure forwards and backwards compatability. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Severity (synthesised)">
+                description = <"The severity of the reaction. (synthesised)">
+            >
+            ["id25"] = <
+                text = <"Record provenance">
+                description = <"Details of the provenance of the record e.g. source, name and role of author, care setting.">
+            >
+            ["id23"] = <
+                text = <"Comment">
+                description = <"Any additional comment about the allergy.">
+                comment = <"From Welsh IHR model">
+            >
+            ["id22"] = <
+                text = <"Date of onset">
+                description = <"The date of onset of the reaction.">
+                comment = <"From Welsh IHR model">
+            >
+            ["at20"] = <
+                text = <"Certain">
+                description = <"The agent was thought to have been certain to have caused the reaction but has not been confirmed by testing.">
+            >
+            ["at18"] = <
+                text = <"Confirmed">
+                description = <"The rection to the agent has been confirmed by testing.">
+            >
+            ["at17"] = <
+                text = <"Likely">
+                description = <"The reaction was likely to have been caused by the agent.">
+            >
+            ["at15"] = <
+                text = <"Unlikely">
+                description = <"The reaction was unlikely to have been caused by the agent.">
+            >
+            ["at14"] = <
+                text = <"Life-threatening">
+                description = <"The reaction was life-threatening.">
+            >
+            ["at13"] = <
+                text = <"Moderate to severe">
+                description = <"The reaction was moderate to severe.">
+            >
+            ["at12"] = <
+                text = <"Mild to moderate">
+                description = <"The reaction was mild to moderate.">
+            >
+            ["at11"] = <
+                text = <"Severe">
+                description = <"The reaction was severe.">
+            >
+            ["at10"] = <
+                text = <"Moderate">
+                description = <"The reaction was moderate.">
+            >
+            ["at9"] = <
+                text = <"Mild">
+                description = <"The reaction was mild.">
+            >
+            ["id6"] = <
+                text = <"Severity">
+                description = <"The severity of the reaction.">
+                comment = <"This item has a Translation Set = Read Code (V2 or CTV3) and Snomed Code to ensure forwards and backwards compatability.">
+            >
+            ["id5"] = <
+                text = <"Reaction">
+                description = <"An optional pre-coodinated unqualified SNOMED-CT code for the nature of the reaction produced by the  drug allergy.">
+            >
+            ["id4"] = <
+                text = <"Certainty">
+                description = <"The certainty with which the reaction is deemed to be be due to allergy to the agent. This item has a Translation Set= Read Code (V2 or CTV3) and Snomed Code to ensure forwards and backwards compatability.">
+            >
+            ["id3"] = <
+                text = <"Causative agent">
+                description = <"Details of the agent or medicinal substance believed to be the cause of the adverse reaction or allergy.">
+                comment = <"For GP2GP V2 use, there are 4 permissible ways to express a Causative agent:
+    Drug Group (SNOMED-CT),
+    dm+d VMP/AMP (dm+d),
+    Ingredient (SNOMED-CT),
+     TradeFamily/TradeFamilyGroup (SNOMED-CT).
+    It is MANDATORY that one and only one of these must always be selected. Optionally, in addition a SNOMED AllergyCode may be sent as a mapping, but can never be sent on its own.
+    For legacy use other codes are permissible such as FDB Agent codes, EMIS Drug codes and READ codes.">
+            >
+            ["id1"] = <
+                text = <"Drug allergy">
+                description = <"Details of an an allergy or other adverse reaction to a drug or other medicinal substance.">
+            >
+            ["ac3"] = <
+                text = <"CausativeAgent">
+                description = <"A causative agent term from one of the approved terminology subsets.">
+            >
+            ["ac2"] = <
+                text = <"Clinical Finding">
+                description = <"Any SNOMED-CT term in the Clinical Finding hierarchy.">
+            >
+        >
+    >
+    term_bindings = <
+        ["READ"] = <
+            ["ac3"] = <terminology:READ?subset=Allergy%20code>
+        >
+        ["DM+D"] = <
+            ["ac3"] = <terminology:DM%2BD?subset=VMP%2FAMP>
+        >
+        ["FDB"] = <
+            ["ac3"] = <terminology:FDB?subset=Agent>
+        >
+        ["EMIS_DRUGS"] = <
+            ["ac3"] = <terminology:EMIS_DRUGS?subset=Agent>
+        >
+        ["SNOMED-CT"] = <
+            ["id1"] = <http://snomed.info/id/419511003>
+            ["id3"] = <http://snomed.info/id/246075003>
+            ["id4"] = <http://snomed.info/id/255544004>
+            ["id5"] = <http://snomed.info/id/282100009>
+            ["id6"] = <http://snomed.info/id/272141005>
+            ["at9"] = <http://snomed.info/id/255604002>
+            ["at10"] = <http://snomed.info/id/6736007>
+            ["at11"] = <http://snomed.info/id/24484000>
+            ["at12"] = <http://snomed.info/id/255604002>
+            ["at13"] = <http://snomed.info/id/371924009>
+            ["at14"] = <http://snomed.info/id/442452003>
+            ["at15"] = <http://snomed.info/id/1491118016>
+            ["at17"] = <http://snomed.info/id/5961011>
+            ["at18"] = <http://snomed.info/id/410605003>
+            ["at20"] = <http://snomed.info/id/255545003>
+            ["ac2"] = <terminology:SNOMED-CT?subset=ClinicalFinding>
+            ["ac3"] = <terminology:SNOMED-CT?subset=Allergy%20code%3B%20dm%2Bd%20Ingredient%3B%20Trade%20family%20%3B%20Trade%20Family%20Group>
+        >
+    >
+    value_sets = <
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at9", "at12", "at10", "at13", "at11", "at14">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at15", "at17", "at20", "at18">
+        >
+    >

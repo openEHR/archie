@@ -1,0 +1,512 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=03ea2556-57e3-467c-884f-e0172489f1b4; build_uid=541044b7-accd-4dcd-95f5-7374cc8d7755)
+    openEHR-EHR-OBSERVATION.asa_status.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Lisa Axelsson">
+                ["organisation"] = <"Region Östergötland">
+                ["email"] = <"lisa.axelsson@regionostergotland.se">
+            >
+            accreditation = <"Svensk Förening för Anestesi och Intensivvård (SFAI), Daniel Hall, Åsa Skagerhult">
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            author = <
+                ["name"] = <"Alan March">
+                ["organisation"] = <"Hospital Universitario Austral, Pilar, Buenos Aires, Argentina">
+                ["email"] = <"alandmarch@gmail.com">
+            >
+            accreditation = <"MD">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Lars Bitsch-Larsen; Einar Fosse">
+                ["organisation"] = <"Helse Vest; Helse Nord">
+            >
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Daniele Bacelar">
+                ["organisation"] = <"Healthcare Designs">
+                ["email"] = <"danielembacelar@gmail.com">
+                ["danielembacelar@gmail.com"] = <"danielembacelar@gmail.com">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2010-06-25">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Torsten Eken, Oslo universitetssykehus HF, Ullevål, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Terje Meling, Stavanger University Hospital, Norway", "Mette Monsen, Helse Bergen HF, Norway", "Bjørn Næss, DIPS ASA, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Ørjan Vermeer, Haukeland Universitetssjukehus, Kvinneklinikken, Norway", "Nils Widnes, Helse-Bergen, Norway">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"American Society for Anesthesiologists: ASA Physical Status Classification System [retrieved 2016-06-29]. Available from: http://www.asahq.org/resources/clinical-information/asa-physical-status-classification-system.">
+        ["2"] = <"Norwegian Association of Anaesthesiologists: ASA-klassifikasjonen [cited 2016-06-29]. Available from: http://nafweb.no/standarder/asa-klassifikasjon/ .">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"9CF9FC0B7433BE66B6906D523033DEFD">
+    >
+    details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Att registrera graden av sjuklighet eller fysisk status inför val av anestesimedel eller inför operation.">
+            keywords = <"ASA", "preoperativ", "kirurgi", "klassificering">
+            use = <"Används för journaldokumentation, för att kommunicera mellan kollegor och för att skapa ett enhetligt system för statistisk analys.">
+            misuse = <"Ska inte användas som enda mått för att bedöma risk vid operation.">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For registrering av graden av sykelighet eller fysisk status før valg av anestesi eller oppstart av operasjon.">
+            keywords = <"ASA", "preoperativ", "kirurgi", "klassifisering">
+            use = <"Brukes for journaldokumentasjon, for kommunikasjon mellom kolleger og for å skape en enhetlig system for statistisk analyse.">
+            misuse = <"Ikke beregnet for bruk som eneste mål for å forutsi operasjonsrisiko.">
+            copyright = <"© openEHR Foundation, Nasjonal IKT HF, openEHR Foundation">
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            purpose = <"Para registrar el grado de 'enfermedad' o 'estado físico' previo a la selección del anestésico o a la realización de una cirugía.">
+            keywords = <"ASA", "prequirúrgico", "preoperatorio", "cirugía">
+            use = <"Utilizado para el manteimiento de registros, para la comunicación entre colegas o para la creación de un sistema uniforme para el análisis estadístico.">
+            misuse = <"No diseñado para su uso aislado como única medida de predicción de riesgo operatorio.">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para registrar o grau da 'doença' ou do 'estado físico' antes de escolher o anestésico ou antes de realizar a cirurgia.">
+            keywords = <"ASA", "Pré-operatório", "Cirurgia">
+            use = <"Usado para a manutenção de registros, para a comunicação entre colegas, e para criar um sistema uniforme para a análise estatística.">
+            misuse = <"Não se destina como uma medida para predizer o risco operatório.">
+            copyright = <"© openEHR Foundation, Nasjonal IKT HF, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the degree of 'sickness' or 'physical state' prior to selecting the anaesthetic or prior to performing surgery.">
+            keywords = <"ASA", "pre-operative", "surgery">
+            use = <"Used for recordkeeping, for communicating between colleagues, and to create a uniform system for statistical analysis.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation, Nasjonal IKT HF">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- ASA physical status classification
+        data matches {
+            HISTORY[id16] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    POINT_EVENT[id17] matches {    -- Any point in time event
+                        data matches {
+                            ITEM_TREE[id18] matches {
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id2] occurrences matches {0..1} matches {    -- ASA patient status
+                                        value matches {
+                                            DV_CODED_TEXT[id9001] matches {
+                                                defining_code matches {[ac9000]}    -- ASA patient status (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9002] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id3] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id19] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id20] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sv"] = <
+            ["ac9000"] = <
+                text = <"Patientens ASA-status (synthesised)">
+                description = <"Patientens preoperativa ASA-status. (synthesised)">
+            >
+            ["id20"] = <
+                text = <"Tilläggsinformation">
+                description = <"Plats för att infoga tilläggsinformation som krävs för lokala anpassningar eller anpassning till andra referensmodeller eller formella krav.">
+                comment = <"Exempelvis lokala informationskrav eller metadata för anpassning till FHIR- eller CIMI-motsvarigheter.">
+            >
+            ["id17"] = <
+                text = <"Tidsobestämd händelse">
+                description = <"Händelse vid ospecificerad tidpunkt, där tiden kan anges explicit i en template, eller genereras automatiskt av vissa IT-system.">
+            >
+            ["id15"] = <
+                text = <"Kommentar">
+                description = <"Kommentar avseende bedömningen av patientens ASA-status.">
+            >
+            ["at13"] = <
+                text = <"5E - En moribund patient, som inte förväntas överleva utan operationen (Akut)">
+                description = <"ASA status 5, i en akut situation.">
+            >
+            ["at12"] = <
+                text = <"4E - En patient med allvarlig och ständigt livshotande systemsjukdom (Akut)">
+                description = <"ASA status 4, i en akut situation.">
+            >
+            ["at11"] = <
+                text = <"3E - En patient med svår systemsjukdom (Akut)">
+                description = <"ASA status 3, i en akut situation.">
+            >
+            ["at10"] = <
+                text = <"2E - En patient med lindrig systemsjukdom (Akut)">
+                description = <"ASA status 2, i en akut situation.">
+            >
+            ["at9"] = <
+                text = <"1E - En för övrigt frisk patient (Akut)">
+                description = <"ASA status 1, i en akut situation.">
+            >
+            ["at8"] = <
+                text = <"En avliden patient där hjärnans funktioner totalt och oåterkalleligt fallit bort och som ska genomgå en donationsoperation.">
+                description = <"En avliden patient där hjärnans funktioner totalt och oåterkalleligt fallit bort och som ska genomgå en donationsoperation.">
+            >
+            ["at7"] = <
+                text = <"5 - En moribund patient, som inte förväntas överleva utan operationen">
+                description = <"Exempel inbegriper (men begränsas inte till) rupturerat abdominellt eller torakalt aortaaneurysm, stort trauma, intrakraniell blödning med masseffekt, ischemisk tarm hos patient med svår hjärtsjukdom eller multiorgansvikt.">
+            >
+            ["at6"] = <
+                text = <"4 - En patient med allvarlig och ständigt livshotande systemsjukdom">
+                description = <"Exempel inbegriper (men begränsas inte till) nyligen genomgången (mindre än 3 månader sedan) hjärtinfarkt eller kranskärlsintervention, transitorisk ischemisk attack (TIA) eller stroke. Pågående hjärtischemi eller allvarlig klaffsjukdom, uttalat nedsatt ejektionsfraktion, sepsis, disseminerad intravasal koagulation (DIC), akut njursvikt eller terminal njursvikt som inte behandlats med regelbunden dialys.">
+            >
+            ["at5"] = <
+                text = <"3 - En patient med svår systemsjukdom">
+                description = <"En eller flera allvarliga systemsjukdomar med påtaglig funktionell begränsning. Exempel inbegriper (men begränsas inte till) otillräckligt reglerad diabetes eller hypertoni, kronisk obstruktiv lungsjukdom (KOL), sjuklig fetma (BMI lika med eller över 40), aktiv hepatit, alkoholberoende eller alkoholmissbruk, pacemaker-beroende, måttligt nedsatt ejektionsfraktion, ischemisk hjärtsjukdom, terminal njursvikt med regelbunden dialysbehandling, prematura barn med gestationsålder över 60 veckor, genomgången hjärtinfarkt eller kranskärlsintervention för mer än 3 månader sedan, transitorisk ischemisk attack (TIA) eller stroke.">
+            >
+            ["at4"] = <
+                text = <"2- En patient med lindrig systemsjukdom">
+                description = <"En patient med lindrig systemsjukdom utan påtaglig funktionell begränsning. Exempel inbegriper (men begränsas inte till) aktiv rökare, regelbunden alkoholkonsumtion utan beroende eller missbruk, graviditet, övervikt (BMI 30 - 39), välkontrollerad diabetes/hypertoni, lindrig lungsjukdom.">
+            >
+            ["at3"] = <
+                text = <"1 - En för övrigt frisk patient">
+                description = <"Frisk, icke-rökare, ingen eller minimal alkoholkonsumtion.">
+            >
+            ["id2"] = <
+                text = <"Patientens ASA-status">
+                description = <"Patientens preoperativa ASA-status.">
+            >
+            ["id1"] = <
+                text = <"ASA - klassifikation av fysisk status">
+                description = <"Klassificeringssystem definierat av American Society of Anesthesiologists för värdering av preoperativ fysisk status.">
+            >
+        >
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"ASA-status (synthesised)">
+                description = <"Et individs vurderte preoperative status. (synthesised)">
+            >
+            ["id20"] = <
+                text = <"Tilleggsinformasjon">
+                description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+                comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
+            >
+            ["id17"] = <
+                text = <"Uspesifisert tidspunkthendelse">
+                description = <"Uspesifisert tidspunkt som kan defineres mer eksplisitt i en templat eller i en applikasjon.">
+            >
+            ["id15"] = <
+                text = <"Kommentar">
+                description = <"Fritekstvurdering av individets ASA-status.">
+            >
+            ["at13"] = <
+                text = <"ASA 5E">
+                description = <"ASA status 5, i en akuttsituasjon.">
+            >
+            ["at12"] = <
+                text = <"ASA 4E">
+                description = <"ASA status 4, i en akuttsituasjon.">
+            >
+            ["at11"] = <
+                text = <"ASA 3E">
+                description = <"ASA status 3, i en akuttsituasjon.">
+            >
+            ["at10"] = <
+                text = <"ASA 2E">
+                description = <"ASA status 2, i en akuttsituasjon.">
+            >
+            ["at9"] = <
+                text = <"ASA 1E">
+                description = <"ASA status 1, i en akuttsituasjon.">
+            >
+            ["at8"] = <
+                text = <"ASA VI">
+                description = <"Erklært hjernedød pasient som skal få organer fjernet for donasjon.">
+            >
+            ["at7"] = <
+                text = <"ASA V">
+                description = <"Moribund pasient som ikke forventes å overleve 24 timer, med eller uten kirurgi. Eksempler: Pasient i sjokk med aortaaneurisme. Dypt komatøs pasient med intrakraniell blødning.">
+            >
+            ["at6"] = <
+                text = <"ASA IV">
+                description = <"Livstruende organisk sykdom som ikke behøver å være relatert til den aktuelle kirurgiske lidelsen eller som ikke alltid bedres ved det kirurgiske inngrepet. Eksempler: Malign hypertensjon. Nylig gjennomgått hjerteinfarkt (mindre enn 6 måneder siden). Sterkt framskreden lever-, nyre-, lunge- eller endokrin dysfunksjon. Manifest hjertesvikt. Ustabil angina pectoris. Subaraknoidalblødning, pasienten våken eller somnolent.">
+            >
+            ["at5"] = <
+                text = <"ASA III">
+                description = <"Alvorlig organisk sykdom eller forstyrrelse som gir definerte funksjonelle begrensninger. Eksempler: Diabetes med organkomplikasjoner. Invalidiserende hjertesykdom. Moderat til alvorlig lungesykdom. Angina pectoris. Gjennomgått hjerteinfarkt (mer enn 6 måneder siden).">
+            >
+            ["at4"] = <
+                text = <"ASA II">
+                description = <"Moderat organisk lidelse eller forstyrrelse som ikke forårsaker funksjonelle begrensninger, men som kan medføre spesielle forholdsregler eller anestesitekniske tiltak. Lidelsen(e) kan enten være forårsaket av den aktuelle sykdommen pasienten skal opereres for, eller av en annen patologisk prosess. Alder over 80 år og nyfødte under 3 måneder. Mer enn 5 sigaretters røyking per dag. Eksempler: Lett organisk hjertesykdom. Ukomplisert diabetes (type 1 og 2). Godartet, ukomplisert hypertensjon. Frisk 20-åring med kjeveleddsperre.">
+            >
+            ["at3"] = <
+                text = <"ASA I">
+                description = <"Frisk pasient. Ingen organisk, fysiologisk, biokjemisk eller psykiatrisk forstyrrelse. Den aktuelle lidelsen er lokalisert og gir ikke generelle systemforstyrrelser. Mindre enn 5 sigaretters røyking per dag. Alder under 80 år. Eksempel: Frisk 50-åring, ikke-røyker, til åreknuteoperasjon.">
+            >
+            ["id2"] = <
+                text = <"ASA-status">
+                description = <"Et individs vurderte preoperative status.">
+            >
+            ["id1"] = <
+                text = <"ASA-klassifikasjon">
+                description = <"Klassifikasjonssystem definert av American Society of Anesthesiologists for vurdering av preoperativ fysisk status.">
+            >
+        >
+        ["es-ar"] = <
+            ["ac9000"] = <
+                text = <"Estado ASA del paciente (synthesised)">
+                description = <"Evaluación del estado preoperatorio de un paciente. (synthesised)">
+            >
+            ["id20"] = <
+                text = <"Extensión">
+                description = <"Información adicional requerida para contemplar contenidos locales o para alinear con otros modelos o formalismos de referencia">
+                comment = <"ejemplo: requerimientos locales de información o metadatos adicionales necesarios para el alineamiento con FHIR o equivalentes de CIMI.">
+            >
+            ["id17"] = <
+                text = <"Point in time">
+                description = <"Fecha y/o hora que puede ser explícitamente definida en una plantilla o en tiempo de ejecución.">
+            >
+            ["id15"] = <
+                text = <"Comentario">
+                description = <"Comentario narrativo sobre la evaluación ASA del paciente.">
+            >
+            ["at13"] = <
+                text = <"5E - Paciente moribundo del cual no se cree sobreviva sin la cirugía (Emergencia)">
+                description = <"ASA estado 5, en situación de emergencia.">
+            >
+            ["at12"] = <
+                text = <"4E - Paciente con enfermedad sistémica severa que representa una amenaza permente a la vida (Emergencia)">
+                description = <"ASA estado 4, en situación de emergencia.">
+            >
+            ["at11"] = <
+                text = <"3E - Paciente con enfermedad sistémica severa (Emergencia)">
+                description = <"ASA estado 3, en situación de emergencia.">
+            >
+            ["at10"] = <
+                text = <"2E - Paciente con enfermedad sistémica leve (Emergencia)">
+                description = <"ASA estado 2, en situación de emergencia.">
+            >
+            ["at9"] = <
+                text = <"1E - Paciente normal y saludable (Emergencia)">
+                description = <"ASA estado 1, en situación de emergencia.">
+            >
+            ["at8"] = <
+                text = <"6 - Pacoente declarado muerto cuyos órganos deben ser removidos para donación">
+                description = <"Paciente con muerte cerebral declarada cuyos órganos deben ser removidos para donación.">
+            >
+            ["at7"] = <
+                text = <"5 - Paciente moribundo del cual no se cree sobreviva sin la cirugía">
+                description = <"Los ejemplos incluyen (pero no se limitan a) a: ruptura de aneurisma abdominal o torácico, trauma masivo, hemorragia intracraneana con efecto de masa, intestino isquémico asociado a patología cardiológica severa o disfunción multiórgano o sistémica.">
+            >
+            ["at6"] = <
+                text = <"4 - Paciente con enfermedad sistémica severa que representa una amenaza permente a la vida">
+                description = <"Los ejemplos incluyen (pero no se limitan a) antecedentes recientes (<3 meses) de infarto de miocardio, accidente cerebrovascular, isquemia transitoria, enfermeda coronaria o stent colocado isquemia miocárdica o disfunción valvular activas, reducción severa de la fracción de eyección, sepsis, coagulación intravascular diseminada, diálisis de reinfusión de ascitis y/o enfermedad renal terminal no recibiendo diálisis programada.">
+            >
+            ["at5"] = <
+                text = <"3 - Paciente con enfermedad sistémica severa">
+                description = <"Limitaciones funcionales significativas; Una o mas enfermedades severas. Los ejemplos incluyen (pero no se limitan a): diabetes mellitus o hipertensión insuficientemente controladas, enfermedad pulmonar obstructiva crónica, obesidad mórbida ((BMO≥40), hepatitis activa, dependencia o abuso de alcohol, marcapasos implantado, reducción moderada de la fracción de eyección, enfermedad renal terminal con diálisis periódica, niño prematuro con edad post-conceptual < 60 semanas, antecedentes (>3 meses) de infarto de miocardio, accidente cerebrovascular, isquemia transitoria o enfermeda coronaria o stent colocado.">
+            >
+            ["at4"] = <
+                text = <"2 - Paciente con enfermedad sistémica leve">
+                description = <"*Mild diseases only without substantive functional limitations. Examples include (but not limited to): current smoker, social alcohol drinker, pregnancy, obesity (30 < BMI < 40), well-controlled DM/HTN, mild lung disease.(en)">
+            >
+            ["at3"] = <
+                text = <"1- Paciente normal y saludable">
+                description = <"Saludable, no fumador y no bebedor o bebedor de cantidades mínimas de alcohol.">
+            >
+            ["id2"] = <
+                text = <"Estado ASA del paciente">
+                description = <"Evaluación del estado preoperatorio de un paciente.">
+            >
+            ["id1"] = <
+                text = <"Clasificación ASA de Estado Físico">
+                description = <"Sistema de clasificación adoptado por la American Society of Anesthesiologists para la evaluación del estado fício preoperatorio.">
+            >
+        >
+        ["pt-br"] = <
+            ["ac9000"] = <
+                text = <"Estado do paciente ASA (synthesised)">
+                description = <"Avaliação do estado pré-operatório do paciente. (synthesised)">
+            >
+            ["id20"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["id17"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id15"] = <
+                text = <"Comentário">
+                description = <"Comentário narrativo sobre a classificação do estado do paciente ASA.">
+            >
+            ["at13"] = <
+                text = <"5E - Paciente moribundo que não se espera que sobreviva sem a cirurgia (Emergência)">
+                description = <"Estado ASA 5, em uma situação de emergência.">
+            >
+            ["at12"] = <
+                text = <"4E - Paciente com doença sistêmica grave que é uma ameaça constante à vida (Emergência)">
+                description = <"Estado ASA 4, em uma situação de emergência.">
+            >
+            ["at11"] = <
+                text = <"3E - Paciente com doença sistêmica grave (Emergência)">
+                description = <"Estado ASA 3, em uma situação de emergência.">
+            >
+            ["at10"] = <
+                text = <"2E - Paciente com doença sistêmica leve (Emergência)">
+                description = <"Estado ASA 2, em uma situação de emergência.">
+            >
+            ["at9"] = <
+                text = <"1E - Paciente saudável (Emergência)">
+                description = <"Estado ASA 1, em uma situação de emergência.">
+            >
+            ["at8"] = <
+                text = <"6 - Paciente com morte cerebral cujos órgãos serão removidos para fins de doação">
+                description = <"O paciente tem morte cerebral declarada e seus órgãos serão removidos com propósito de doação.">
+            >
+            ["at7"] = <
+                text = <"5 - Paciente moribundo que não se espera que sobreviva sem a cirurgia">
+                description = <"Não se espera que sobreviver por mais de 24 horas sem cirurgia; risco iminente de morte; falência de múltiplos órgãos, sepse com instabilidade hemodinâmica, hipotermia, coagulopatia mal controlada.">
+            >
+            ["at6"] = <
+                text = <"4 - Paciente com doença sistêmica grave que é uma ameaça constante à vida">
+                description = <"Tem pelo menos uma doença grave que é mal controlada ou em estágio final; possível risco de morte; angina instável, DPOC sintomática, ICC sintomática, insuficiência hepato-renal.">
+            >
+            ["at5"] = <
+                text = <"3 - Paciente com doença sistêmica grave">
+                description = <"Alguma limitação funcional; tem uma doença controlada em mais de um sistema do corpo ou em um sistema principal; nenhum perigo imediato de morte; insuficiência cardíaca congestiva (ICC) controlada, angina estável, idade de ataque cardíaco, hipertensão mal controlada, obesidade mórbida, insuficiência renal crônica; doença broncoespástica com sintomas intermitentes.">
+            >
+            ["at4"] = <
+                text = <"2 - Paciente com doença sistêmica leve">
+                description = <"Sem limitações funcionais; tem uma doença bem controlada de um sistema do corpo; hipertensão ou diabetes controlado sem efeitos sistêmicos, o consumo de cigarros sem doença pulmonar obstrutiva crônica (DPOC); obesidade leve, gravidez.">
+            >
+            ["at3"] = <
+                text = <"1 - Paciente saudável">
+                description = <"Não há distúrbios orgânicos, fisiológicos, bioquímicos ou psiquiátricos; exclui os muito jovens e muito idosos; saudável com boa tolerância a exercícios.">
+            >
+            ["id2"] = <
+                text = <"Estado do paciente ASA">
+                description = <"Avaliação do estado pré-operatório do paciente.">
+            >
+            ["id1"] = <
+                text = <"Classificação do Estado Físico ASA">
+                description = <"Sistema de classificação adotado pela Sociedade Americana de Anestesiologistas (ASA) para avaliação do estado físico pré-operatório.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"ASA patient status (synthesised)">
+                description = <"Assessed pre-operative status of a patient. (synthesised)">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id17"] = <
+                text = <"Any point in time event">
+                description = <"Unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id15"] = <
+                text = <"Comment">
+                description = <"Narrative comment about the ASA patient status assessment.">
+            >
+            ["at13"] = <
+                text = <"5E - A moribund patient who is not expected to survive without the operation (Emergency)">
+                description = <"ASA status 5, in an emergency situation.">
+            >
+            ["at12"] = <
+                text = <"4E - A patient with severe systemic disease that is a constant threat to life (Emergency)">
+                description = <"ASA status 4, in an emergency situation.">
+            >
+            ["at11"] = <
+                text = <"3E - A patient with severe systemic disease (Emergency)">
+                description = <"ASA status 3, in an emergency situation.">
+            >
+            ["at10"] = <
+                text = <"2E - A patient with mild systemic disease (Emergency)">
+                description = <"ASA status 2, in an emergency situation.">
+            >
+            ["at9"] = <
+                text = <"1E - A normal healthy patient (Emergency)">
+                description = <"ASA status 1, in an emergency situation.">
+            >
+            ["at8"] = <
+                text = <"6 - A declared brain-dead patient whose organs are being removed for donor purposes">
+                description = <"A declared brain-dead patient whose organs are being removed for donor purposes.">
+            >
+            ["at7"] = <
+                text = <"5 - A moribund patient who is not expected to survive without the operation">
+                description = <"Examples include (but not limited to): Ruptured abdominal/thoracic aneurysm, massive trauma, intracranial bleed with mass effect, ischemic bowel in the face of significant cardiac pathology or multiple organ/system dysfunction.">
+            >
+            ["at6"] = <
+                text = <"4 - A patient with severe systemic disease that is a constant threat to life">
+                description = <"Examples include (but not limited to): recent ( < 3 months) MI, CVA, TIA, or CAD/stents, ongoing cardiac ischemia or severe valve dysfunction, severe reduction of ejection fraction, sepsis, DIC, ARD or ESRD not undergoing regularly scheduled dialysis.">
+            >
+            ["at5"] = <
+                text = <"3 - A patient with severe systemic disease">
+                description = <"Substantive functional limitations; One or more moderate to severe diseases. Examples include (but not limited to): poorly controlled DM or HTN, COPD, morbid obesity (BMI ≥40), active hepatitis, alcohol dependence or abuse, implanted pacemaker, moderate reduction of ejection fraction, ESRD undergoing regularly scheduled dialysis, premature infant PCA < 60 weeks, history (>3 months) of MI, CVA, TIA, or CAD/stents.">
+            >
+            ["at4"] = <
+                text = <"2 - A patient with mild systemic disease">
+                description = <"Mild diseases only without substantive functional limitations. Examples include (but not limited to): current smoker, social alcohol drinker, pregnancy, obesity (30 < BMI < 40), well-controlled DM/HTN, mild lung disease.">
+            >
+            ["at3"] = <
+                text = <"1 - A normal healthy patient">
+                description = <"Healthy, non-smoking, no or minimal alcohol use.">
+            >
+            ["id2"] = <
+                text = <"ASA patient status">
+                description = <"Assessed pre-operative status of a patient.">
+            >
+            ["id1"] = <
+                text = <"ASA physical status classification">
+                description = <"Classification system adopted by the American Society of Anesthesiologists for assessing preoperative physical status.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at3", "at4", "at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13">
+        >
+    >

@@ -1,0 +1,587 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=9549ea5c-a543-4258-a626-46d677eed01b; build_uid=6efaea71-b943-43fa-8cdc-a910c7bc8b2a)
+    openEHR-EHR-CLUSTER.exam-pupil.v0.0.1-alpha
+
+specialize
+    openEHR-EHR-CLUSTER.exam.v1
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Nasjonal IKT HF">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2015-07-09">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom (openEHR Editor)", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, DIPS ASA, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Jussara Rotzsch, UNB, Brazil", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia (openEHR Editor)", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    ip_acknowledgements = <
+        ["1"] = <"This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyrighted material of the International Health Terminology Standards Development Organisation (IHTSDO). Where an implementation of this artefact makes use of SNOMED CT content, the implementer must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomedct or info@snomed.org.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"9B0118397CA26B21A180B9656B622853">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere en fritekstbeskrivelse og klinisk tolkning av observerte funn ved fysisk undersøkelse av et organsystem eller anatomisk struktur.">
+            use = <"Brukes til å registrere en fritekstbeskrivelse og klinisk tolkning av observerte funn ved fysisk undersøkelse av et spesifisert organsystem eller anatomisk struktur. Denne arketypen består kun av kjerneelementene av mønsteret for undersøkelser, og kan utvides ved hjelp av andre CLUSTER-arketyper eller brukes som grunnlag for undersøkelsesarketyper for spesifikke kroppssystemer eller anatomiske strukturer. 
+    
+    Eksempler på detaljer som kan beskrives ved hjelp av dette CLUSTER er inspeksjon, palpasjon, auskultasjon, perkusjon og bevegelser i kroppssystemer eller anatomiske strukturer. Undersøkelsen kan støttes av enkle hjelpemidler som stetoskop, otoskop eller reflekshammer. Også funn ved mer avanserte undersøkelser kan registreres her, som ved endoskopi. I de tilfellene vil informasjon om hvilket hjelpemiddel eller utstyr brukt bli registrert i OBSERVATION.exam, elementet \"Detaljer om medisinsk utstyr\", i ACTION.procedure \"Prosedyredetaljer\" eller tilsvarende i egnet ENTRY- eller ACTION-arketype.
+    
+    Arketypen er laget spesifikt for å brukes i \"Undersøkelsesdetaljer\"-SLOTet i arketypen OBSERVATION.exam, men kan også brukes innen andre ENTRY- og CLUSTER-arketyper der det er klinisk passende.
+    
+    Denne arketypen kan benyttes for alle typer undersøkelser, alt fra enkle undersøkelser som undersøkelse av et hudområde, inspeksjon av ører og til artroskopi av et kne.
+    
+    Kan for eksempel nøstes i SLOTet \"Undersøkelsesdetaljer\" i arketypen OBSERVATION.exam (Norsk Funn ved fysisk undersøkelse) for å registrere ytterligere strukturerte funn ved fysiske undersøkelser.
+    
+    Arketypen CLUSTER.exclusion_exam kan nøstes i SLOTet \"Undersøkelse ikke utført\" der en har behov for å registrere informasjon om at en undersøkelse ikke ble utført.
+    
+    Brukes for å videreføre fritekstbeskrivelser av kliniske funn fra tidligere systemer inn i et arketypeformat, ved å bruke elementet \"Klinisk beskrivelse\".">
+            misuse = <"Skal ikke brukes til å ta opp frittstående klinisk observasjoner eller testresultater - bruk spesifikke OBSERVATION arketyper, for eksempel OBSERVATION.head_circumference eller OBSERVATION.glasgow_coma_scale.
+    
+    Skal ikke brukes til å ta opp anamnese - bruk da spesifikke OBSERVATION og CLUSTER arketyper. For eksempel OBSERVATION.story og CLUSTER.symptom_sign.">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a narrative description and clinical interpretation of the findings observed during the physical examination of a pupil.">
+            use = <"Use to record a narrative description and clinical interpretation of the findings observed during the physical examination of a pupil.
+    
+    This archetype has been specifically designed to be used in the 'Examination detail' SLOT within the OBSERVATION.exam, CLUSTER.exam-eye or CLUSTER.exam-cranial_nerves archetypes, but can also be used within other ENTRY or CLUSTER archetypes, where clinically appropriate.
+    
+    Use to provide a framework in which CLUSTER archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings.
+    
+    The CLUSTER.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+    
+    Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data element.">
+            misuse = <"Not to be used for recording the clinical history - use specific OBSERVATION and CLUSTER archetypes. For example OBSERVATION.story and CLUSTER.symptom_sign.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1.1] matches {    -- Examination of a pupil
+        items matches {
+            ELEMENT[id2.1] matches {    -- System or structure examined
+                value matches {
+                    DV_CODED_TEXT[id9000.1] matches {
+                        defining_code matches {[ac0.9000]}    -- System or structure examined (synthesised)
+                    }
+                }
+            }
+            after [id4]
+            ELEMENT[id0.3] occurrences matches {0..1} matches {    -- Shape
+                value matches {
+                    DV_CODED_TEXT[id0.9010] matches {
+                        defining_code matches {[ac0.9001]}    -- Shape (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id0.9] occurrences matches {0..1} matches {    -- Size
+                value matches {
+                    DV_QUANTITY[id0.9011] matches {
+                        property matches {[at0.9002]}    -- Length
+                        magnitude matches {|0.0..20.0|}
+                        units matches {"mm"}
+                        precision matches {0}
+                    }
+                    DV_CODED_TEXT[id0.9012] matches {
+                        defining_code matches {[ac0.9003]}    -- Size (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id0.14] occurrences matches {0..1} matches {    -- Direct reflex (DLR)
+                value matches {
+                    DV_CODED_TEXT[id0.9013] matches {
+                        defining_code matches {[ac0.9004]}    -- Direct reflex (DLR) (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id0.17] occurrences matches {0..1} matches {    -- DLR speed
+                value matches {
+                    DV_CODED_TEXT[id0.9014] matches {
+                        defining_code matches {[ac0.9005]}    -- DLR speed (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id0.22] occurrences matches {0..1} matches {    -- Consensual reflex (CLR)
+                value matches {
+                    DV_CODED_TEXT[id0.9015] matches {
+                        defining_code matches {[ac0.9006]}    -- Consensual reflex (CLR) (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id0.25] occurrences matches {0..1} matches {    -- CLR speed
+                value matches {
+                    DV_CODED_TEXT[id0.9016] matches {
+                        defining_code matches {[ac0.9007]}    -- CLR speed (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id0.29] occurrences matches {0..1} matches {    -- Accommodation reflex (AR)
+                value matches {
+                    DV_CODED_TEXT[id0.9017] matches {
+                        defining_code matches {[ac0.9008]}    -- Accommodation reflex (AR) (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id0.32] occurrences matches {0..1} matches {    -- AR speed
+                value matches {
+                    DV_CODED_TEXT[id0.9018] matches {
+                        defining_code matches {[ac0.9009]}    -- AR speed (synthesised)
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["ac0.9000"] = <
+                text = <"Undersøkt organsystem eller struktur (synthesised)">
+                description = <"Identifisering av det undersøkte organsystemet eller anatomiske strukturen. (synthesised)">
+            >
+            ["ac0.9001"] = <
+                text = <"*Shape (en) (synthesised)">
+                description = <"*The shape of the pupil. (en) (synthesised)">
+            >
+            ["at0.9002"] = <
+                text = <"* Length (en)">
+                description = <"* Length (en)">
+            >
+            ["ac0.9003"] = <
+                text = <"*Size (en) (synthesised)">
+                description = <"*The size of the pupil. (en) (synthesised)">
+            >
+            ["ac0.9004"] = <
+                text = <"*Direct reflex (DLR) (en) (synthesised)">
+                description = <"*Presence of a reflex constriction of the same pupil when light is shone into the identified eye. (en) (synthesised)">
+            >
+            ["ac0.9005"] = <
+                text = <"*DLR speed (en) (synthesised)">
+                description = <"*Subjective estimate of the reactivity of the direct light reflex on stimulus by a light. (en) (synthesised)">
+            >
+            ["ac0.9006"] = <
+                text = <"*Consensual reflex (CLR) (en) (synthesised)">
+                description = <"*Presence of a reflex constriction of the opposite pupil when light is shone into the identified eye. (en) (synthesised)">
+            >
+            ["ac0.9007"] = <
+                text = <"*CLR speed (en) (synthesised)">
+                description = <"*Subjective estimate of the reactivity of the consensual light reflex on stimulus by a light. (en) (synthesised)">
+            >
+            ["ac0.9008"] = <
+                text = <"*Accommodation reflex (AR) (en) (synthesised)">
+                description = <"*Presence of a reflex constriction of the pupil, in response to changing focusing on a near or far objects. (en) (synthesised)">
+            >
+            ["ac0.9009"] = <
+                text = <"*AR speed (en) (synthesised)">
+                description = <"*Subjective estimate of the reactivity of the accommodation reflex on stimulus by a light. (en) (synthesised)">
+            >
+            ["id2.1"] = <
+                text = <"Undersøkt organsystem eller struktur">
+                description = <"Identifisering av det undersøkte organsystemet eller anatomiske strukturen.">
+                comment = <"*Coding of the system or structure examined with a terminology is preferred, where possible. (en)">
+            >
+            ["id1.1"] = <
+                text = <"*Examination of a pupil (en)">
+                description = <"Funn ved fysisk undersøkelse av et organsystem eller anatomisk struktur.">
+            >
+            ["id0.9"] = <
+                text = <"*Size (en)">
+                description = <"*The size of the pupil. (en)">
+            >
+            ["at0.8"] = <
+                text = <"*Keyhole (en)">
+                description = <"*The pupil is an abnormal, keyhole shape. (en)">
+            >
+            ["at0.7"] = <
+                text = <"*Teardrop (en)">
+                description = <"*The pupil is an abnormal, teardrop shape. (en)">
+            >
+            ["at0.6"] = <
+                text = <"*Sectoral abnormality (en)">
+                description = <"*The pupil is an abnormal, irregular shape. (en)">
+            >
+            ["at0.5"] = <
+                text = <"*Oval (en)">
+                description = <"*The pupil is an oval shape. (en)">
+            >
+            ["at0.4"] = <
+                text = <"*Circular (en)">
+                description = <"*The pupil is a normal, circular shape. (en)">
+            >
+            ["at0.35"] = <
+                text = <"*Brisk (+) (en)">
+                description = <"*The reflex is observed to be faster than normal. (en)">
+            >
+            ["at0.34"] = <
+                text = <"*Normal (en)">
+                description = <"*The reflex is observed to be at or about the expected normal speed. (en)">
+            >
+            ["at0.33"] = <
+                text = <"*Sluggish (-) (en)">
+                description = <"*The reflex is observed to be slower than normal. (en)">
+            >
+            ["id0.32"] = <
+                text = <"*AR speed (en)">
+                description = <"*Subjective estimate of the reactivity of the accommodation reflex on stimulus by a light. (en)">
+            >
+            ["at0.31"] = <
+                text = <"*Absent (en)">
+                description = <"*The accommodation reflex is absent. (en)">
+            >
+            ["at0.30"] = <
+                text = <"*Present (en)">
+                description = <"*The accommodation reflex is present. (en)">
+            >
+            ["id0.3"] = <
+                text = <"*Shape (en)">
+                description = <"*The shape of the pupil. (en)">
+            >
+            ["id0.29"] = <
+                text = <"*Accommodation reflex (AR) (en)">
+                description = <"*Presence of a reflex constriction of the pupil, in response to changing focusing on a near or far objects. (en)">
+            >
+            ["at0.28"] = <
+                text = <"*Brisk (+) (en)">
+                description = <"*The reflex is observed to be faster than normal. (en)">
+            >
+            ["at0.27"] = <
+                text = <"*Normal (en)">
+                description = <"*The reflex is observed to be at or about the expected normal speed. (en)">
+            >
+            ["at0.26"] = <
+                text = <"*Sluggish (-) (en)">
+                description = <"*The reflex is observed to be slower than normal. (en)">
+            >
+            ["id0.25"] = <
+                text = <"*CLR speed (en)">
+                description = <"*Subjective estimate of the reactivity of the consensual light reflex on stimulus by a light. (en)">
+            >
+            ["at0.24"] = <
+                text = <"*Absent (en)">
+                description = <"*The consensual light reflex is absent. (en)">
+            >
+            ["at0.23"] = <
+                text = <"*Present (en)">
+                description = <"*The consensual light reflex is present. (en)">
+            >
+            ["id0.22"] = <
+                text = <"*Consensual reflex (CLR) (en)">
+                description = <"*Presence of a reflex constriction of the opposite pupil when light is shone into the identified eye. (en)">
+            >
+            ["at0.21"] = <
+                text = <"*Very brisk (++) (en)">
+                description = <"*The reflex is observed to be much faster than normal. (en)">
+            >
+            ["at0.20"] = <
+                text = <"*Brisk (+) (en)">
+                description = <"*">
+            >
+            ["at0.2"] = <
+                text = <"*Right pupil (en)">
+                description = <"*The right pupil was examined. (en)">
+            >
+            ["at0.19"] = <
+                text = <"*Normal (en)">
+                description = <"*The reflex is observed to be at or about the expected normal speed. (en)">
+            >
+            ["at0.18"] = <
+                text = <"*Sluggish (-) (en)">
+                description = <"*The reflex is observed to be slower than normal. (en)">
+            >
+            ["id0.17"] = <
+                text = <"*DLR speed (en)">
+                description = <"*Subjective estimate of the reactivity of the direct light reflex on stimulus by a light. (en)">
+            >
+            ["at0.16"] = <
+                text = <"*Absent (en)">
+                description = <"*The direct light reflex is not present. (en)">
+            >
+            ["at0.15"] = <
+                text = <"*Present (en)">
+                description = <"*The direct light reflex is present. (en)">
+            >
+            ["id0.14"] = <
+                text = <"*Direct reflex (DLR) (en)">
+                description = <"*Presence of a reflex constriction of the same pupil when light is shone into the identified eye. (en)">
+                comment = <"*Also known as 'Direct light reflex' (DLR). (en)">
+            >
+            ["at0.13"] = <
+                text = <"*DIlated(en)">
+                description = <"**(en)">
+            >
+            ["at0.12"] = <
+                text = <"*Normal(en)">
+                description = <"**(en)">
+            >
+            ["at0.11"] = <
+                text = <"*Constricted(en)">
+                description = <"**(en)">
+            >
+            ["at0.10"] = <
+                text = <"*Pinpoint(en)">
+                description = <"**(en)">
+            >
+            ["at0.1"] = <
+                text = <"*Left pupil (en)">
+                description = <"*The left pupil was examined. (en)">
+            >
+        >
+        ["en"] = <
+            ["ac0.9000"] = <
+                text = <"System or structure examined (synthesised)">
+                description = <"Identification of the examined body system or anatomical structure. (synthesised)">
+            >
+            ["ac0.9001"] = <
+                text = <"Shape (synthesised)">
+                description = <"The shape of the pupil. (synthesised)">
+            >
+            ["at0.9002"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["ac0.9003"] = <
+                text = <"Size (synthesised)">
+                description = <"The size of the pupil. (synthesised)">
+            >
+            ["ac0.9004"] = <
+                text = <"Direct reflex (DLR) (synthesised)">
+                description = <"Presence of a reflex constriction of the same pupil when light is shone into the identified eye. (synthesised)">
+            >
+            ["ac0.9005"] = <
+                text = <"DLR speed (synthesised)">
+                description = <"Subjective estimate of the reactivity of the direct light reflex on stimulus by a light. (synthesised)">
+            >
+            ["ac0.9006"] = <
+                text = <"Consensual reflex (CLR) (synthesised)">
+                description = <"Presence of a reflex constriction of the opposite pupil when light is shone into the identified eye. (synthesised)">
+            >
+            ["ac0.9007"] = <
+                text = <"CLR speed (synthesised)">
+                description = <"Subjective estimate of the reactivity of the consensual light reflex on stimulus by a light. (synthesised)">
+            >
+            ["ac0.9008"] = <
+                text = <"Accommodation reflex (AR) (synthesised)">
+                description = <"Presence of a reflex constriction of the pupil, in response to changing focusing on a near or far objects. (synthesised)">
+            >
+            ["ac0.9009"] = <
+                text = <"AR speed (synthesised)">
+                description = <"Subjective estimate of the reactivity of the accommodation reflex on stimulus by a light. (synthesised)">
+            >
+            ["id2.1"] = <
+                text = <"System or structure examined">
+                description = <"Identification of the examined body system or anatomical structure.">
+                comment = <"Coding of the system or structure examined with a terminology is preferred, where possible.">
+            >
+            ["id1.1"] = <
+                text = <"Examination of a pupil">
+                description = <"Findings observed during the physical examination of a pupil in a single eye.">
+            >
+            ["id0.9"] = <
+                text = <"Size">
+                description = <"The size of the pupil.">
+            >
+            ["at0.8"] = <
+                text = <"Keyhole">
+                description = <"The pupil is an abnormal, keyhole shape.">
+            >
+            ["at0.7"] = <
+                text = <"Teardrop">
+                description = <"The pupil is an abnormal, teardrop shape.">
+            >
+            ["at0.6"] = <
+                text = <"Sectoral abnormality">
+                description = <"The pupil is an abnormal, irregular shape.">
+            >
+            ["at0.5"] = <
+                text = <"Oval">
+                description = <"The pupil is an oval shape.">
+            >
+            ["at0.4"] = <
+                text = <"Circular">
+                description = <"The pupil is a normal, circular shape.">
+            >
+            ["at0.35"] = <
+                text = <"Brisk (+)">
+                description = <"The reflex is observed to be faster than normal.">
+            >
+            ["at0.34"] = <
+                text = <"Normal">
+                description = <"The reflex is observed to be at or about the expected normal speed.">
+            >
+            ["at0.33"] = <
+                text = <"Sluggish (-)">
+                description = <"The reflex is observed to be slower than normal.">
+            >
+            ["id0.32"] = <
+                text = <"AR speed">
+                description = <"Subjective estimate of the reactivity of the accommodation reflex on stimulus by a light.">
+            >
+            ["at0.31"] = <
+                text = <"Absent">
+                description = <"The accommodation reflex is absent.">
+            >
+            ["at0.30"] = <
+                text = <"Present">
+                description = <"The accommodation reflex is present.">
+            >
+            ["id0.3"] = <
+                text = <"Shape">
+                description = <"The shape of the pupil.">
+            >
+            ["id0.29"] = <
+                text = <"Accommodation reflex (AR)">
+                description = <"Presence of a reflex constriction of the pupil, in response to changing focusing on a near or far objects.">
+            >
+            ["at0.28"] = <
+                text = <"Brisk (+)">
+                description = <"The reflex is observed to be faster than normal.">
+            >
+            ["at0.27"] = <
+                text = <"Normal">
+                description = <"The reflex is observed to be at or about the expected normal speed.">
+            >
+            ["at0.26"] = <
+                text = <"Sluggish (-)">
+                description = <"The reflex is observed to be slower than normal.">
+            >
+            ["id0.25"] = <
+                text = <"CLR speed">
+                description = <"Subjective estimate of the reactivity of the consensual light reflex on stimulus by a light.">
+            >
+            ["at0.24"] = <
+                text = <"Absent">
+                description = <"The consensual light reflex is absent.">
+            >
+            ["at0.23"] = <
+                text = <"Present">
+                description = <"The consensual light reflex is present.">
+            >
+            ["id0.22"] = <
+                text = <"Consensual reflex (CLR)">
+                description = <"Presence of a reflex constriction of the opposite pupil when light is shone into the identified eye.">
+            >
+            ["at0.21"] = <
+                text = <"Very brisk (++)">
+                description = <"The reflex is observed to be much faster than normal.">
+            >
+            ["at0.20"] = <
+                text = <"Brisk (+)">
+                description = <"The reflex is observed to be faster than normal.">
+            >
+            ["at0.2"] = <
+                text = <"Right pupil">
+                description = <"The right pupil was examined.">
+            >
+            ["at0.19"] = <
+                text = <"Normal">
+                description = <"The reflex is observed to be at or about the expected normal speed.">
+            >
+            ["at0.18"] = <
+                text = <"Sluggish (-)">
+                description = <"The reflex is observed to be slower than normal.">
+            >
+            ["id0.17"] = <
+                text = <"DLR speed">
+                description = <"Subjective estimate of the reactivity of the direct light reflex on stimulus by a light.">
+            >
+            ["at0.16"] = <
+                text = <"Absent">
+                description = <"The direct light reflex is not present.">
+            >
+            ["at0.15"] = <
+                text = <"Present">
+                description = <"The direct light reflex is present.">
+            >
+            ["id0.14"] = <
+                text = <"Direct reflex (DLR)">
+                description = <"Presence of a reflex constriction of the same pupil when light is shone into the identified eye.">
+                comment = <"Also known as 'Direct light reflex' (DLR).">
+            >
+            ["at0.13"] = <
+                text = <"DIlated">
+                description = <"The pupil is dilated, relative to normal (>= 5.5mm).">
+            >
+            ["at0.12"] = <
+                text = <"Normal">
+                description = <"The pupil size is normal (3 - 5mm).">
+            >
+            ["at0.11"] = <
+                text = <"Constricted">
+                description = <"The pupil is constricted, relative to normal (1.5 - 2.5mm).">
+            >
+            ["at0.10"] = <
+                text = <"Pinpoint">
+                description = <"The pupil is heavily constricted (<= 1mm).">
+            >
+            ["at0.1"] = <
+                text = <"Left pupil">
+                description = <"The left pupil was examined.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at0.9002"] = <http://openehr.org/id/122>
+        >
+        ["SNOMED-CT"] = <
+            ["at0.1"] = <http://snomed.info/id/16089004>
+            ["at0.2"] = <http://snomed.info/id/52378001>
+        >
+    >
+    value_sets = <
+        ["ac0.9000"] = <
+            id = <"ac0.9000">
+            members = <"at0.1", "at0.2">
+        >
+        ["ac0.9009"] = <
+            id = <"ac0.9009">
+            members = <"at0.33", "at0.34", "at0.35">
+        >
+        ["ac0.9007"] = <
+            id = <"ac0.9007">
+            members = <"at0.26", "at0.27", "at0.28">
+        >
+        ["ac0.9008"] = <
+            id = <"ac0.9008">
+            members = <"at0.30", "at0.31">
+        >
+        ["ac0.9005"] = <
+            id = <"ac0.9005">
+            members = <"at0.18", "at0.19", "at0.20", "at0.21">
+        >
+        ["ac0.9006"] = <
+            id = <"ac0.9006">
+            members = <"at0.23", "at0.24">
+        >
+        ["ac0.9003"] = <
+            id = <"ac0.9003">
+            members = <"at0.10", "at0.11", "at0.12", "at0.13">
+        >
+        ["ac0.9004"] = <
+            id = <"ac0.9004">
+            members = <"at0.15", "at0.16">
+        >
+        ["ac0.9001"] = <
+            id = <"ac0.9001">
+            members = <"at0.4", "at0.5", "at0.6", "at0.7", "at0.8">
+        >
+    >

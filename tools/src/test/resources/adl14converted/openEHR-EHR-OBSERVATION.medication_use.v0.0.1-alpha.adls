@@ -1,0 +1,228 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=85df04c8-2409-4385-8eee-89d495769dff; build_uid=ea6c10a8-86c8-49fc-9cfa-55c4f252f3dc)
+    openEHR-EHR-OBSERVATION.medication_use.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Nasjonal IKT HF">
+                ["email"] = <"silje.ljosland.bakke@nasjonalikt.no">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Silje Ljosland Bakke">
+        ["organisation"] = <"Nasjonal IKT HF">
+        ["email"] = <"silje.ljosland.bakke@nasjonalikt.no">
+        ["date"] = <"2018-11-07">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway", "Heather Leslie, Atomica Informatics, Australia", "Ian McNicoll, FreshEHR Clinical Informatics, United Kingdom">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"837F2AF66FA2EE8F1490DE07EE7A5CEB">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere informasjon om administrering og inntak av et spesifikt legemiddel eller en type eller klasse legemiddel ved eller i løpet av en hendelse, f.eks. et tidspunkt eller et tidsintervall.">
+            use = <"Brukes for å registrere informasjon om administrering og inntak av et spesifikt legemiddel eller en type eller klasse legemiddel ved eller i løpet av en hendelse, f.eks. et tidspunkt eller et tidsintervall.">
+            misuse = <"Skal ikke brukes for å registrere en legemiddelordinering - bruk INSTRUCTION.medication_order for dette formålet.
+    
+    Skal ikke brukes for å dokumentere administrering eller inntak av et legemiddel - bruk ACTION.medication for dette formålet.
+    
+    Skal ikke brukes for å dokumentere et sammendrag av legemiddelinntak for individets levetid - bruk EVALUATION.medication_summary for dette formålet.">
+            copyright = <"© openEHR Foundation, Nasjonal IKT HF, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For recording information about the administration or consumption of a specified medication or type/class of medication at or during an event such as a specific point in time or duration of time.">
+            use = <"Use for recording information about the administration or consumption of a specified medication or type/class of medication at or during an event such as a specific point in time or duration of time.
+    
+    This archetype is specifically designed to be used for aggregated information such as one may find in medication diaries and reporting data sets.">
+            misuse = <"Not to be used for recordning an order for a medication to be administered or consumed - use INSTRUCTION.medication_order for this purpose.
+    
+    Not to be used for documenting the administration or consumption of a medication - use ACTION.medication for this purpose.
+    
+    Not to be used for documenting a summary of administration or consumption of a medication over the lifetime of the individual - use EVALUATION.medication_summary for this purpose.">
+            copyright = <"© openEHR Foundation, Nasjonal IKT HF, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Medication use
+        data matches {
+            HISTORY[id23] matches {
+                events cardinality matches {0..*; unordered} matches {
+                    EVENT[id24] matches {    -- Defined event
+                        data matches {
+                            ITEM_TREE[id2] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Medication name
+                                        value matches {
+                                            DV_TEXT[id9000] 
+                                        }
+                                    }
+                                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Used in event?
+                                        value matches {
+                                            DV_BOOLEAN[id9001] 
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Description
+                                        value matches {
+                                            DV_TEXT[id9002] 
+                                        }
+                                    }
+                                    CLUSTER[id9] matches {    -- Specific/subclass medication
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id22] occurrences matches {0..1} matches {    -- Medication name
+                                                value matches {
+                                                    DV_TEXT[id9003] 
+                                                }
+                                            }
+                                            ELEMENT[id25] occurrences matches {0..1} matches {    -- Used in event?
+                                                value matches {
+                                                    DV_BOOLEAN[id9004] 
+                                                }
+                                            }
+                                            ELEMENT[id15] occurrences matches {0..1} matches {    -- Description
+                                                value matches {
+                                                    DV_TEXT[id9005] 
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id26] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9006] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id6] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id20] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["id26"] = <
+                text = <"Kommentar">
+                description = <"*">
+            >
+            ["id25"] = <
+                text = <"Brukes i hendelse?">
+                description = <"*Is the individual using the medication or class of medication at or during the event? (en)">
+            >
+            ["id24"] = <
+                text = <"Definert hendelse">
+                description = <"Denne hendelsesattributten må defineres eksplisitt og begrenses til et spesifikt tidspunkt eller tidsintervall i et templat eller applikasjon.">
+            >
+            ["id22"] = <
+                text = <"Legemiddelnavn">
+                description = <"*Name of the specific medication or subclass of medication.">
+                comment = <"Use to identify the specific medication used if a class is identified in 'Medication name'. Redundant if the name is identified using the 'Medication name' data element.">
+            >
+            ["id20"] = <
+                text = <"Ytterligere informasjon">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms. (en)">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id15"] = <
+                text = <"Beskrivelse">
+                description = <"*Description of use at or during the event. (en)">
+            >
+            ["id9"] = <
+                text = <"Spesifikk/undergruppe legemiddel">
+                description = <"*Details about specific medications if a medication class is specified in the 'Medication name'. (en)">
+            >
+            ["id8"] = <
+                text = <"Beskrivelse">
+                description = <"*Narrative description about the medication use. (en)">
+            >
+            ["id4"] = <
+                text = <"Brukes i hendelse?">
+                description = <"*Is the individual using the medication or class of medication at or during the event? (en)">
+            >
+            ["id3"] = <
+                text = <"Legemiddelnavn">
+                description = <"*Name of medication or class of medication. (en)">
+            >
+            ["id1"] = <
+                text = <"Legemiddelbruk">
+                description = <"Informasjon om administrering og inntak av et spesifikt legemiddel eller en type eller klasse legemiddel ved eller i løpet av en hendelse, f.eks. et tidspunkt eller et tidsintervall.">
+            >
+        >
+        ["en"] = <
+            ["id26"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the medication use during an identified event, not captured in other fields.">
+            >
+            ["id25"] = <
+                text = <"Used in event?">
+                description = <"Is the individual using the medication or subclass of medication at or during the identified event?">
+            >
+            ["id24"] = <
+                text = <"Defined event">
+                description = <"This event attribute of the reference model needs to be explicitly defined and constrained as a specific point-in-time or interval of time in a template or at run-time.">
+            >
+            ["id22"] = <
+                text = <"Medication name">
+                description = <"Name of medication or subclass of medication.">
+                comment = <"For example: Oxycode; or opioid if analgesic is identified as the class in the top level 'Medication name'.">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id15"] = <
+                text = <"Description">
+                description = <"Narrative description about the use of the medication or subclass of medication at, or during, the identified event.">
+            >
+            ["id9"] = <
+                text = <"Specific/subclass medication">
+                description = <"Details about a specific medication or subclass of medication, if a medication type or class is specified in the 'Medication name'.">
+                comment = <"This cluster is redundant if the specific medication name is identified using the top level 'Medication name' data element.">
+            >
+            ["id8"] = <
+                text = <"Description">
+                description = <"Narrative description about the use of the medication, class or type of medication at, or during, the identified event.">
+            >
+            ["id4"] = <
+                text = <"Used in event?">
+                description = <"Is the individual using the medication, class or type of medication at or during the identified event?">
+            >
+            ["id3"] = <
+                text = <"Medication name">
+                description = <"Name of medication, class or type of medication.">
+                comment = <"For example: Oxycodone; opioid; or analgesic.">
+            >
+            ["id1"] = <
+                text = <"Medication use">
+                description = <"Aggregated information about the administration or consumption of a specified medication or type/class of medication at or during an event such as a specific point in time or duration of time.">
+            >
+        >
+    >
