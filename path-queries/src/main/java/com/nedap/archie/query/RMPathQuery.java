@@ -7,6 +7,8 @@ import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,6 +28,7 @@ import java.util.List;
  * Created by pieter.bos on 19/10/15.
  */
 public class RMPathQuery {
+    private static final Logger logger = LoggerFactory.getLogger(RMPathQuery.class);
 
     private List<PathSegment> pathSegments = new ArrayList<>();
     private final boolean matchSpecialisedNodes;
@@ -280,6 +283,7 @@ public class RMPathQuery {
                 }
             } else {
                 if(equalsName(lookup.getNameFromRMObject(object), segment.getNodeId())) {
+                    logger.warn("Deprecation: Matching on object name is deprecated and will be removed. Use node id instead.");
                     result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
                 }
             }
@@ -320,6 +324,7 @@ public class RMPathQuery {
                 }
             } else {
                 if(equalsName(lookup.getNameFromRMObject(o), segment.getNodeId())) {
+                    logger.warn("Deprecation: Matching on object name is deprecated and will be removed. Use node id instead.");
                     return o;
                 }
             }
