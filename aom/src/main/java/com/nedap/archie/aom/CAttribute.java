@@ -146,6 +146,10 @@ public class CAttribute extends ArchetypeConstraint {
         return null;
     }
 
+    /**
+     * @deprecated This functionality will be removed.
+     */
+    @Deprecated
     public CObject getChildByMeaning(String meaning) {
         meaning = meaning.toLowerCase();
         for(CObject child:children) {
