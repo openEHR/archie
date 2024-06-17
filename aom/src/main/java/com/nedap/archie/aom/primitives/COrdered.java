@@ -16,6 +16,7 @@ import java.util.function.BiFunction;
 public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
 
     @Override
+    @Deprecated
     public boolean isValidValue(T value) {
         if(getConstraint().isEmpty()) {
             return true;

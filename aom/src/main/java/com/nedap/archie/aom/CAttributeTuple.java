@@ -47,7 +47,10 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
     /**
      * Given a hashmap of attribute names mapping to its values, check the validity of this set of values
      * return true if and only if the given values are valid.
+     *
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
      */
+    @Deprecated
     public boolean isValid(ModelInfoLookup lookup, HashMap<String, Object> values) {
         for(CAttribute attribute:getMembers()) {
             if(!values.containsKey(attribute.getRmAttributeName())) {
@@ -63,7 +66,7 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
         return false;
     }
 
-
+    @Deprecated
     private boolean isValid(ModelInfoLookup lookup, CPrimitiveTuple tuple, HashMap<String, Object> values) {
 
         int index = 0;
@@ -88,7 +91,10 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
     /**
      * Given a reference model object, check if it is valid
      * return true if and only if the given values are valid.
+     *
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
      */
+    @Deprecated
     public boolean isValid(ModelInfoLookup lookup, Object value) {
 
         HashMap<String, Object> members = new HashMap<>();

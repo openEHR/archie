@@ -18,6 +18,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,7 +65,7 @@ public class ArchetypeSlotValidationTest {
         generator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
         Map<String, Object> generated = generator.generate(parentOpt);
         example = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(generated), Section.class);
-        rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), repository);
+        rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), repository, new ValidationConfiguration.Builder().build());
     }
 
     private Flattener createFlattener() {

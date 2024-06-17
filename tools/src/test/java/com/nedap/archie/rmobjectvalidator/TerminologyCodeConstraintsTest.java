@@ -1,8 +1,10 @@
-package com.nedap.archie.aom;
+package com.nedap.archie.rmobjectvalidator;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.nedap.archie.ValidationConfiguration;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
+import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.primitives.ConstraintStatus;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
@@ -30,10 +32,12 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by pieter.bos on 23/02/16.
  */
-@Deprecated
 public class TerminologyCodeConstraintsTest {
 
     private Archetype archetype;
+    private final ValidationConfiguration validationConfiguration = new ValidationConfiguration.Builder().build();
+    private final PrimitiveObjectConstraintHelper primitiveObjectConstraintHelper = new PrimitiveObjectConstraintHelper(validationConfiguration);
+    private final ValidationHelper validationHelper = new ValidationHelper(ArchieRMInfoLookup.getInstance(), validationConfiguration);
 
     @Before
     public void setupArchetype() {
@@ -63,7 +67,7 @@ public class TerminologyCodeConstraintsTest {
     @Test
     public void noConstraint() {
         CTerminologyCode code = new CTerminologyCode();
-        assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac12::at23]")));
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at23]")));
     }
 
     @Test
@@ -71,10 +75,10 @@ public class TerminologyCodeConstraintsTest {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
         code.addConstraint("ac12");
-        assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac12::at23]")));
-        assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac12::at24]")));
-        assertFalse(code.isValidValue(TerminologyCode.createFromString("[ac12::at25]")));
-        assertTrue(code.isValidValue(TerminologyCode.createFromString("[local::at23]")));
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at23]")));
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at24]")));
+        assertFalse(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at25]")));
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[local::at23]")));
     }
 
     @Test
@@ -83,13 +87,12 @@ public class TerminologyCodeConstraintsTest {
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
         code.addConstraint("ac12");
 
-        ValidationConfiguration.setFailOnUnknownTerminologyId(false);
-        assertTrue(code.isValidValue(TerminologyCode.createFromString("[snomedct::72489423]")));
-        assertTrue(code.isValidValue(TerminologyCode.createFromString("[anything::atall]")));
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[snomedct::72489423]")));
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[anything::atall]")));
 
-        ValidationConfiguration.setFailOnUnknownTerminologyId(true);
-        assertFalse(code.isValidValue(TerminologyCode.createFromString("[snomedct::72489423]")));
-        assertFalse(code.isValidValue(TerminologyCode.createFromString("[anything::atall]")));
+        PrimitiveObjectConstraintHelper failingHelper = new PrimitiveObjectConstraintHelper(new ValidationConfiguration.Builder().failOnUnknownTerminologyId(true).build());
+        assertFalse(failingHelper.isValidValue(code, TerminologyCode.createFromString("[snomedct::72489423]")));
+        assertFalse(failingHelper.isValidValue(code, TerminologyCode.createFromString("[anything::atall]")));
     }
 
     @Test
@@ -102,14 +105,14 @@ public class TerminologyCodeConstraintsTest {
         DvCodedText text = new DvCodedText();
         text.setValue("does not matter for this validation");
         text.setDefiningCode(new CodePhrase("[openehr::532]"));
-        assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertTrue(validationHelper.isValidValue(code, text));
         text.setDefiningCode(new CodePhrase("[openehr::999]"));
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(validationHelper.isValidValue(code, text));
         text.setDefiningCode(new CodePhrase());
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(validationHelper.isValidValue(code, text));
         text.setDefiningCode(null);
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), null));
+        assertFalse(validationHelper.isValidValue(code, text));
+        assertFalse(validationHelper.isValidValue(code, null));
     }
 
     @Test
@@ -117,9 +120,9 @@ public class TerminologyCodeConstraintsTest {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
         code.addConstraint("at23");
-        assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac12::at23]")));
-        assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac13::at23]")));
-        assertFalse(code.isValidValue(TerminologyCode.createFromString("[ac13::at24]")));
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at23]")));
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac13::at23]")));
+        assertFalse(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac13::at24]")));
     }
 
     @Test
@@ -153,13 +156,13 @@ public class TerminologyCodeConstraintsTest {
             DvCodedText text = new DvCodedText();
             text.setValue("does not matter for this validation");
             text.setDefiningCode(new CodePhrase("[local::at23]"));
-            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            assertTrue(validationHelper.isValidValue(code, text));
             text.setDefiningCode(new CodePhrase("[local::at24]"));
-            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            assertTrue(validationHelper.isValidValue(code, text));
             text.setDefiningCode(new CodePhrase("[local:at0.3.25]"));
-            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            assertTrue(validationHelper.isValidValue(code, text));
             text.setDefiningCode(new CodePhrase("[snomed:123657]"));
-            assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+            assertTrue(validationHelper.isValidValue(code, text));
         }
     }
 
@@ -167,14 +170,14 @@ public class TerminologyCodeConstraintsTest {
         DvCodedText text = new DvCodedText();
         text.setValue("does not matter for this validation");
         text.setDefiningCode(new CodePhrase("[local::at23]"));
-        assertTrue(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertTrue(validationHelper.isValidValue(code, text));
         text.setDefiningCode(new CodePhrase("[local::at24]"));
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(validationHelper.isValidValue(code, text));
         text.setDefiningCode(new CodePhrase());
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
+        assertFalse(validationHelper.isValidValue(code, text));
         text.setDefiningCode(null);
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), text));
-        assertFalse(code.isValidValue(ArchieRMInfoLookup.getInstance(), null));
+        assertFalse(validationHelper.isValidValue(code, text));
+        assertFalse(validationHelper.isValidValue(code, null));
     }
 
     @Test

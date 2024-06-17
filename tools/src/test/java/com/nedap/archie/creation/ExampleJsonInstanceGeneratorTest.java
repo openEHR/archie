@@ -22,6 +22,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
@@ -79,7 +80,7 @@ public class ExampleJsonInstanceGeneratorTest {
         assertEquals("POINT_EVENT", ((Map) events.get(1)).get(TYPE_PROPERTY_NAME));
         assertEquals("INTERVAL_EVENT", ((Map) events.get(2)).get(TYPE_PROPERTY_NAME));
 
-        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider)
+        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider, new ValidationConfiguration.Builder().build())
                 .validate(opt, JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
         assertEquals(new ArrayList<>(), validated);
 
@@ -176,7 +177,7 @@ public class ExampleJsonInstanceGeneratorTest {
                     json = mapper.writeValueAsString(example);
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
-                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider).validate(template, parsed);
+                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider, new ValidationConfiguration.Builder().build()).validate(template, parsed);
 
                     // Ignore some validations errors caused by unsupported features in the ExampleJsonInstanceGenerator
                     validated.removeIf(m -> m.getType().equals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH)); // Filling the correct archetype in the slot is not supported

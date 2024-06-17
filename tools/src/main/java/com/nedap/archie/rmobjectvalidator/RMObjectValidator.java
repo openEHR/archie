@@ -14,8 +14,6 @@ import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
 import com.nedap.archie.rmobjectvalidator.validations.RMMultiplicityValidation;
 import com.nedap.archie.rmobjectvalidator.validations.RMOccurrenceValidation;
-import com.nedap.archie.rmobjectvalidator.validations.RMPrimitiveObjectValidation;
-import com.nedap.archie.rmobjectvalidator.validations.RMTupleValidation;
 import org.openehr.utils.message.I18n;
 
 import java.lang.reflect.InvocationTargetException;
@@ -36,7 +34,10 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private APathQueryCache queryCache = new APathQueryCache();
     private ModelInfoLookup lookup;
     private ReflectionConstraintImposer constraintImposer;
+    private final ValidationConfiguration validationConfiguration;
     private boolean validateInvariants = true;
+    private final RmPrimitiveObjectValidator rmPrimitiveObjectValidator;
+    private final RmTupleValidator rmTupleValidator;
 
     /**
      * Creates an RM Object Validator with the given ModelInfoLook class, and the given OperationalTemplateProvider
@@ -44,15 +45,50 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
      * The OperationalTemplateProvider is used to retrieve other referenced archetypes in case of ArchetypeSlots.
      * @param lookup
      * @param provider
+     * @deprecated Use {@link #RMObjectValidator(ModelInfoLookup, OperationalTemplateProvider, ValidationConfiguration)} instead.
      */
+    @Deprecated
     public RMObjectValidator(ModelInfoLookup lookup, OperationalTemplateProvider provider) {
         this.lookup = lookup;
         this.metaModel = new MetaModel(lookup, null);
         constraintImposer = new ReflectionConstraintImposer(lookup);
         this.operationalTemplateProvider = provider;
+
+        this.validationConfiguration = null; // Leave this null to indicate that no ValidationConfiguration was provided
+        ValidationConfiguration dummyValidationConfiguration = new ValidationConfiguration.Builder()
+                .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
+                .build();
+        ValidationHelper validationHelper = new ValidationHelper(this.lookup, dummyValidationConfiguration);
+        rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
+        rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
     }
 
+    /**
+     * Creates an RM Object Validator with the given ModelInfoLook class, and the given OperationalTemplateProvider
+     * The ModelInfoLookup is used for model access, and model specific constructions.
+     * The OperationalTemplateProvider is used to retrieve other referenced archetypes in case of ArchetypeSlots.
+     */
+    public RMObjectValidator(ModelInfoLookup lookup, OperationalTemplateProvider provider, ValidationConfiguration validationConfiguration) {
+        this.lookup = lookup;
+        this.metaModel = new MetaModel(lookup, null);
+        constraintImposer = new ReflectionConstraintImposer(lookup);
+        this.operationalTemplateProvider = provider;
+
+        this.validationConfiguration = validationConfiguration;
+        ValidationHelper validationHelper = new ValidationHelper(this.lookup, validationConfiguration);
+        validateInvariants = validationConfiguration.isValidateInvariants();
+        rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
+        rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
+    }
+
+    /**
+     * @deprecated Use {@link ValidationConfiguration.Builder#validateInvariants(boolean)} instead.
+     */
+    @Deprecated
     public void setRunInvariantChecks(boolean validateInvariants) {
+        if(this.validationConfiguration != null) {
+            throw new IllegalStateException("validateInvariants is already set via validationConfiguration, cannot set it again via setRunInvariantChecks");
+        }
         this.validateInvariants = validateInvariants;
     }
 
@@ -87,14 +123,14 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             }
         }
         else if (cobject instanceof CPrimitiveObject) {
-            result.addAll(RMPrimitiveObjectValidation.validate(lookup, rmObjects, path, (CPrimitiveObject<?, ?>) cobject));
+            result.addAll(rmPrimitiveObjectValidator.validate(rmObjects, path, (CPrimitiveObject<?, ?>) cobject));
         } else if (cobject instanceof ArchetypeSlot) {
             validateArchetypeSlot(rmObjects, path, cobject, result);
         } else {
             if (cobject instanceof CComplexObject) {
                 CComplexObject cComplexObject = (CComplexObject) cobject;
                 for (CAttributeTuple tuple : cComplexObject.getAttributeTuples()) {
-                    result.addAll(RMTupleValidation.validate(lookup, cobject, path, rmObjects, tuple));
+                    result.addAll(rmTupleValidator.validate(cobject, path, rmObjects, tuple));
                 }
             }
             for (RMObjectWithPath objectWithPath : rmObjects) {
