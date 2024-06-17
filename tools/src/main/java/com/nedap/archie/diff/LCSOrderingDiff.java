@@ -128,7 +128,7 @@ public class LCSOrderingDiff {
 
         if(lcs.size() == 0) {
             //If there's no empty LCS, it's not possible to add sibling markers
-        }  else {
+        } else {
             for (int i = 0; i < childNodeIds.size(); i++) {
                 String nodeId = childNodeIds.get(i);
                 if (!nodeIdLCS.contains(nodeId)) {
@@ -192,26 +192,25 @@ public class LCSOrderingDiff {
         boolean onlyTheSameParentNodeId = false;
         String firstNodeIdWithSameParent = null;
 
-        for(int j = i - 1; j>= 0; j--) {
-
+        for(int j = i - 1; j >= 0; j--) {
             String otherNodeId = childNodeIds.get(j);
-            if(AOMUtils.getSpecializationDepthFromCode(nodeId) == childSpecializationDepth &&
+            if (AOMUtils.getSpecializationDepthFromCode(nodeId) == childSpecializationDepth &&
                     AOMUtils.codeExistsAtLevel(nodeId, childSpecializationDepth-1) &&
                     AOMUtils.codeAtLevel(otherNodeId, childSpecializationDepth-1).equals(AOMUtils.codeAtLevel(nodeId, childSpecializationDepth-1))) {
                 onlyTheSameParentNodeId = true;
                 firstNodeIdWithSameParent = otherNodeId;
             } else {
-                if (onlyTheSameParentNodeId) {
-                    CObject cObjectInResult = resultAttribute.getChild(nodeId);
-                    SiblingOrder order = DiffUtil.findSiblingOrder(siblingOrders, firstNodeIdWithSameParent);
-                    if(order != null) {
-                        DiffUtil.addSiblingOrder(siblingOrders, order, cObjectInResult);
-                    }
-                    return true;
-                }
-                return false;
+                break;
             }
+        }
 
+        if (onlyTheSameParentNodeId) {
+            CObject cObjectInResult = resultAttribute.getChild(nodeId);
+            SiblingOrder order = DiffUtil.findSiblingOrder(siblingOrders, firstNodeIdWithSameParent);
+            if(order != null) {
+                DiffUtil.addSiblingOrder(siblingOrders, order, cObjectInResult);
+            }
+            return true;
         }
         return false;
     }
