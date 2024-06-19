@@ -1,25 +1,25 @@
-package com.nedap.archie.rmobjectvalidator.validations;
+package com.nedap.archie.rmobjectvalidator;
 
 import com.nedap.archie.aom.*;
 import com.nedap.archie.query.RMObjectAttributes;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageIds;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @deprecated This class will be removed. Use the RMObjectValidator instead.
- */
-@Deprecated
-public class RMTupleValidation {
-    /**
-     * @deprecated This method will be removed. Use the RMObjectValidator instead.
-     */
-    @Deprecated
-    public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, CObject cobject, String pathSoFar, List<RMObjectWithPath> rmObjects, CAttributeTuple tuple) {
+class RmTupleValidator {
+    private final ModelInfoLookup lookup;
+    private final ValidationHelper validationHelper;
+    private final RmPrimitiveObjectValidator rmPrimitiveObjectValidator;
+
+    RmTupleValidator(ModelInfoLookup lookup, ValidationHelper validationHelper, RmPrimitiveObjectValidator rmPrimitiveObjectValidator) {
+        this.lookup = lookup;
+        this.validationHelper = validationHelper;
+        this.rmPrimitiveObjectValidator = rmPrimitiveObjectValidator;
+    }
+
+    List<RMObjectValidationMessage> validate(CObject cobject, String pathSoFar, List<RMObjectWithPath> rmObjects, CAttributeTuple tuple) {
         List<RMObjectValidationMessage> result = new ArrayList<>();
         if (rmObjects.size() != 1) {
             String message = RMObjectValidationMessageIds.rm_TUPLE_CONSTRAINT.getMessage(cobject.toString(), rmObjects.toString());
@@ -27,10 +27,10 @@ public class RMTupleValidation {
             return result;
         }
         Object rmObject = rmObjects.get(0).getObject();
-        if (!tuple.isValid(lookup, rmObject)) {
+        if (!validationHelper.isValid(tuple, rmObject)) {
             if(tuple.getTuples().size() == 1) {
                 // Try to make useful validation messages
-                result.addAll(validateSingleTuple(lookup, pathSoFar, rmObject, tuple));
+                result.addAll(validateSingleTuple(pathSoFar, rmObject, tuple));
             }
 
             if(result.isEmpty()) {
@@ -47,7 +47,7 @@ public class RMTupleValidation {
      *
      * This will check each attribute in the tuple individually to get more specific validation messages.
      */
-    private static List<RMObjectValidationMessage> validateSingleTuple(ModelInfoLookup lookup, String pathSoFar, Object rmObject, CAttributeTuple attributeTuple) {
+    private List<RMObjectValidationMessage> validateSingleTuple(String pathSoFar, Object rmObject, CAttributeTuple attributeTuple) {
         List<RMObjectValidationMessage> result = new ArrayList<>();
 
         CPrimitiveTuple tuple = attributeTuple.getTuples().get(0);
@@ -59,7 +59,7 @@ public class RMTupleValidation {
             Object value = RMObjectAttributes.getAttributeValueFromRMObject(rmObject, attributeName, lookup);
             String path = pathSoFar + "/" + attributeName + "[" + cPrimitiveObject.getNodeId() + "]";
 
-            result.addAll(RMPrimitiveObjectValidation.validate_inner(lookup, value, path, cPrimitiveObject));
+            result.addAll(rmPrimitiveObjectValidator.validate_inner(value, path, cPrimitiveObject));
 
             index++;
         }

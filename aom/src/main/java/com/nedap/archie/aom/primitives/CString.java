@@ -62,6 +62,8 @@ public class CString extends CPrimitiveObject<String, String> {
         this.constraint.add(constraint);
     }
 
+    @Override
+    @Deprecated
     public boolean isValidValue(String value) {
         if(getConstraint().isEmpty()) {
             return true;

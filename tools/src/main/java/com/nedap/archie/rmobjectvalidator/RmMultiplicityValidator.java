@@ -1,27 +1,16 @@
-package com.nedap.archie.rmobjectvalidator.validations;
+package com.nedap.archie.rmobjectvalidator;
 
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageIds;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @deprecated This class will be removed. Use the RMObjectValidator instead.
- */
-@Deprecated
-public class RMMultiplicityValidation {
-    /**
-     * @deprecated This method will be removed. Use the RMObjectValidator instead.
-     */
-    @Deprecated
-    public static List<RMObjectValidationMessage> validate(CAttribute attribute, String pathSoFar, Object attributeValue) {
+class RmMultiplicityValidator {
+    List<RMObjectValidationMessage> validate(CAttribute attribute, String pathSoFar, Object attributeValue) {
         if (attributeValue instanceof Collection) {
             Collection<?> collectionValue = (Collection<?>) attributeValue;
             //validate multiplicity

@@ -2,11 +2,13 @@ package com.nedap.archie.rules.evaluation;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.rmobjectvalidator.ValidationHelper;
 import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.APathQueryCache;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.RuleElement;
 import com.nedap.archie.rules.RuleStatement;
@@ -53,8 +55,22 @@ public class RuleEvaluation<T> {
 
     private final AssertionsFixer assertionsFixer;
 
+    public RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, Archetype archetype) {
+        this(modelInfoLookup, validationConfiguration, null, archetype);
+    }
+
+    /**
+     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, ValidationConfiguration, Archetype)} instead.
+     */
+    @Deprecated
     public RuleEvaluation(ModelInfoLookup modelInfoLookup, Archetype archetype) {
-        this(modelInfoLookup, null, archetype);
+        this(
+                modelInfoLookup,
+                new ValidationConfiguration.Builder()
+                        .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
+                        .build(),
+                archetype
+        );
     }
 
     /**
@@ -63,9 +79,21 @@ public class RuleEvaluation<T> {
      * @param modelInfoLookup the model info lookup to make this rule evaluator for
      * @param jaxbContext the jaxb context, use for queries. If null, will use RMPahtQuery instead
      * @param archetype the archetype to evaluate rules for
+     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, ValidationConfiguration, Archetype)} instead.
      */
     @Deprecated
     public RuleEvaluation(ModelInfoLookup modelInfoLookup, JAXBContext jaxbContext, Archetype archetype) {
+        this(
+                modelInfoLookup,
+                new ValidationConfiguration.Builder()
+                        .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
+                        .build(),
+                jaxbContext,
+                archetype
+        );
+    }
+
+    private RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, JAXBContext jaxbContext, Archetype archetype) {
         this.jaxbContext = jaxbContext;
         this.modelInfoLookup = modelInfoLookup;
         this.creator = new RMObjectCreator(modelInfoLookup);
@@ -75,7 +103,7 @@ public class RuleEvaluation<T> {
         add(new VariableDeclarationEvaluator());
         add(new ConstantEvaluator());
         add(new AssertionEvaluator());
-        add(new BinaryOperatorEvaluator(modelInfoLookup, archetype));
+        add(new BinaryOperatorEvaluator(new ValidationHelper(modelInfoLookup, validationConfiguration), archetype));
         add(new UnaryOperatorEvaluator());
         add(new VariableReferenceEvaluator());
         add(new ModelReferenceEvaluator());

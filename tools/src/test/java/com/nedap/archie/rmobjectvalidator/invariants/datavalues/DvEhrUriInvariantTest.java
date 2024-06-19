@@ -4,6 +4,7 @@ import com.nedap.archie.rm.datavalues.DvEHRURI;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
@@ -29,7 +30,7 @@ public class DvEhrUriInvariantTest {
 
     @Test
     public void invalid2() {
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null);
+        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null, new ValidationConfiguration.Builder().build());
         List<RMObjectValidationMessage> messages = validator.validate(new DvEHRURI(""));
         assertEquals(messages.toString(), 2, messages.size());
 

@@ -12,6 +12,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by pieter.bos on 23/02/16.
  */
+@Deprecated
 public class TimeConstraintsTest {
 
     @Test

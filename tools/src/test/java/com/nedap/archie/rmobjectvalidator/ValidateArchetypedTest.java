@@ -40,7 +40,8 @@ public class ValidateArchetypedTest {
         testUtil = new TestUtil();
 
         repo = new InMemoryFullArchetypeRepository();
-        validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), repo);
+        ValidationConfiguration configuration = new ValidationConfiguration.Builder().validateInvariants(false).build();
+        validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), repo, configuration);
 
         elementArchetype = parse("/adl2-tests/rmobjectvalidity/openEHR-EHR-ELEMENT.element_with_required_attributes.v1.0.0.adls");
         elementOpt = createOpt(elementArchetype);
@@ -78,7 +79,6 @@ public class ValidateArchetypedTest {
         feederAudit.setOriginatingSystemAudit(feederAuditDetails);
         element.setFeederAudit(feederAudit);
 
-        validator.setRunInvariantChecks(false);
         List<RMObjectValidationMessage> validationMessages = validator.validate(elementOpt, element);
         assertEquals("There should be 1 error", 1, validationMessages.size());
         assertEquals("Attribute does not match cardinality 1..2", validationMessages.get(0).getMessage());
