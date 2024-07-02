@@ -79,6 +79,22 @@ public class AnnotationDifferentiatorTest {
     }
 
     @Test
+    public void changeValueAtLvl3() {
+        // Setup
+        child.getAnnotations().getDocumentation().get("nl").get("/data[id2]/events[id3]/data[id4]/items[id7]/value[id8]").put("hideHeader", "updated");
+
+        // Test
+        new AnnotationDifferentiator().differentiate(child, flatParent);
+
+        assertNotNull(child.getAnnotations());
+        Map<String, Map<String, Map<String, String>>> annotations = child.getAnnotations().getDocumentation();
+        assertEquals(1, annotations.size());
+        assertEquals(1, annotations.get("nl").size());
+        assertEquals(1, annotations.get("nl").get("/data[id2]/events[id3]/data[id4]/items[id7]/value[id8]").size());
+        assertEquals("updated", annotations.get("nl").get("/data[id2]/events[id3]/data[id4]/items[id7]/value[id8]").get("hideHeader"));
+    }
+
+    @Test
     public void extraAnnotationsAtAllLevelsTest() {
         // Setup
         Map<String, String> pathMap = Map.of("newKey", "newValue");
@@ -98,5 +114,45 @@ public class AnnotationDifferentiatorTest {
         assertEquals(1, annotations.get("nl").get("/data[id2]/events[id3]/data[id4]/items[id5]").size());
         assertEquals(1, annotations.get("en").size());
         assertEquals(1, annotations.get("en").get("/data[id2]/events[id3]/data[id4]/items[id5]").size());
+    }
+
+    @Test
+    public void childHasNoAnnotationsTest() {
+        // Setup
+        child.setAnnotations(null);
+
+        new AnnotationDifferentiator().differentiate(child, flatParent);
+
+        assertNull(child.getAnnotations());
+    }
+
+    @Test
+    public void childHasNoDocumentationTest() {
+        // Setup
+        child.getAnnotations().setDocumentation(null);
+
+        new AnnotationDifferentiator().differentiate(child, flatParent);
+
+        assertNull(child.getAnnotations());
+    }
+
+    @Test
+    public void parentHasNoAnnotationsTest() {
+        // Setup
+        flatParent.setAnnotations(null);
+
+        new AnnotationDifferentiator().differentiate(child, flatParent);
+
+        assertNotNull(child.getAnnotations());
+    }
+
+    @Test
+    public void parentHasNoDocumentationTest() {
+        // Setup
+        flatParent.getAnnotations().setDocumentation(null);
+
+        new AnnotationDifferentiator().differentiate(child, flatParent);
+
+        assertNotNull(child.getAnnotations());
     }
 }
