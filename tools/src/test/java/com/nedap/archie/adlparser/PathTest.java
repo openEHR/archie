@@ -60,6 +60,7 @@ public class PathTest {
 
 
     @Test
+    @Deprecated
     public void logicalPath() {
         CObject object = archetype.getDefinition()
                 .getAttribute("context").getChild("id11")

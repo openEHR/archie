@@ -31,18 +31,18 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         Pathable root = constructTwoBloodPressureObservationsOneEmptySystolic();
 
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, getArchetype().getRules().getRules());
-        assertEquals(3, evaluationResult.getAssertionResults().size());
-        for(AssertionResult assertionResult:evaluationResult.getAssertionResults()) {
-            assertFalse(assertionResult.getResult());
-        }
+        List<AssertionResult> assertionResults = evaluationResult.getAssertionResults();
+        assertEquals(3, assertionResults.size());
+        assertFalse(assertionResults.get(0).getResult());
+        assertFalse(assertionResults.get(1).getResult());
+        // Forall rule true as AssertionFixer takes into account earlier not exist rules
+        assertTrue(assertionResults.get(2).getResult());
 
         assertEquals(0, evaluationResult.getPathsThatMustExist().size());
         assertEquals(5, evaluationResult.getPathsThatMustNotExist().size());
         assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3,1]/data[id4]/items[id5,1]/value/magnitude"));
         assertTrue(evaluationResult.getPathsThatMustNotExist().contains("/data[id2]/events[id3,2]/data[id4]/items[id6,2]/value/magnitude"));
         assertEquals(0, evaluationResult.getSetPathValues().size());
-
-
     }
 
     @Override
@@ -67,7 +67,6 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
         assertEquals(1, result.getRawResult().getPaths(0).size());
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", result.getRawResult().getPaths(0).get(0));
-
     }
 
     @Override
@@ -123,7 +122,6 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         variableMatches = ruleEvaluation.getVariableMap().get("variable_matches");
         assertEquals(true, variableMatches.getObject(0));
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", variableMatches.getPaths(0).get(0));
-
     }
 
     @Test
@@ -145,6 +143,5 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", evaluationResult.getPathsThatMustExist().get(2));
         assertEquals(0, evaluationResult.getPathsThatMustNotExist().size());
         assertEquals(0, evaluationResult.getSetPathValues().size());
-
     }
 }

@@ -12,6 +12,7 @@ public class RMObjectValidationMessage {
 
     private String archetypePath;
     private String path;
+    @Deprecated
     private String humanReadableArchetypePath;
     private String message;
     private String archetypeId;
@@ -34,6 +35,15 @@ public class RMObjectValidationMessage {
 
 
     // Constructors with attribute assignment
+    public RMObjectValidationMessage(String path, String archetypeId, String archetypePath, String message, RMObjectValidationMessageType type) {
+        this(path, archetypeId, archetypePath, null, message, type);
+    }
+
+    /**
+     * @deprecated humanPath will be removed. Use {@link #RMObjectValidationMessage(String, String, String, String,
+     * RMObjectValidationMessageType)} instead.
+     */
+    @Deprecated
     public RMObjectValidationMessage(String path, String archetypeId, String archetypePath, String humanPath, String message, RMObjectValidationMessageType type) {
         this.path = path;
         this.archetypeId = archetypeId;
@@ -43,6 +53,10 @@ public class RMObjectValidationMessage {
         this.type = type;
     }
 
+    /**
+     * @deprecated The RMObjectValidationException class will be removed.
+     */
+    @Deprecated
     public RMObjectValidationMessage(RMObjectValidationException e) {
         this.path = e.getPath();
         this.humanReadableArchetypePath = e.getHumanPath();
@@ -91,7 +105,9 @@ public class RMObjectValidationMessage {
     /**
      * Get the human readable path in the archetype that this validation refers to - used to retrieve the constraint that was used to generate this error
      * @return the human readablepath of the constraint that was used to generate this error in the archetype
+     * @deprecated This functionality will be removed.
      */
+    @Deprecated
     public String getHumanReadableArchetypePath() {
         return humanReadableArchetypePath;
     }

@@ -160,6 +160,7 @@ public abstract class CObject extends ArchetypeConstraint {
         return null;
     }
 
+    @Deprecated
     private String getLogicalPathMeaning() {
         if(nodeId == null) {
             return null;
@@ -176,7 +177,7 @@ public abstract class CObject extends ArchetypeConstraint {
         return meaning;
     }
 
-
+    @Deprecated
     public String getLogicalPath() {
         //TODO: this can cause name clashes. Solve them!
         //TODO: the text can contain []-characters. Replace them?
