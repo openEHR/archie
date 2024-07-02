@@ -1,7 +1,6 @@
 package com.nedap.archie.diff;
 
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ResourceAnnotations;
 
 import java.util.Iterator;
 import java.util.Map;
