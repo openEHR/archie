@@ -2,7 +2,6 @@ package com.nedap.archie.rules.evaluation.evaluators;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
-import com.nedap.archie.rules.evaluation.DummyRulesPrimitiveObjectParent;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeConstraint;
 import com.nedap.archie.aom.ArchetypeModelObject;
@@ -11,14 +10,13 @@ import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
+import com.nedap.archie.rmobjectvalidator.ValidationHelper;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
 import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.rules.PrimitiveType;
-import com.nedap.archie.rules.evaluation.Evaluator;
-import com.nedap.archie.rules.evaluation.RuleEvaluation;
-import com.nedap.archie.rules.evaluation.Value;
-import com.nedap.archie.rules.evaluation.ValueList;
+import com.nedap.archie.rules.evaluation.*;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -42,10 +40,22 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     private BinaryTemporalOperandEvaluator temporalOperandEvaluator = new BinaryTemporalOperandEvaluator(this);
     private BinaryTemporalAmountOperandEvaluator temporalAmountOperandEvaluator = new BinaryTemporalAmountOperandEvaluator(this);
 
-    private final ModelInfoLookup lookup; //for now only the archie rm model for rule evaluation
+    private final ValidationHelper validationHelper;
 
+    public BinaryOperatorEvaluator(ValidationHelper validationHelper, Archetype archetype) {
+        this.validationHelper = validationHelper;
+        this.archetype = archetype;
+    }
+
+    /**
+     * @deprecated Use {@link #BinaryOperatorEvaluator(ValidationHelper, Archetype)} instead.
+     */
+    @Deprecated
     public BinaryOperatorEvaluator(ModelInfoLookup lookup, Archetype archetype) {
-        this.lookup = lookup;
+        ValidationConfiguration configuration = new ValidationConfiguration.Builder()
+                .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
+                .build();
+        this.validationHelper = new ValidationHelper(lookup, configuration);
         this.archetype = archetype;
     }
 
@@ -114,7 +124,8 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
                 //and to evaluate those. That is a later improvement than this fix
                 dummyParent.setPathSegments(convertToArchetypePath((String) value.getPaths().get(0)));
             }
-            result.addValue(constraint.getItem().isValidValue(lookup, value.getValue()), value.getPaths());
+            boolean validValue = validationHelper.isValidValue(constraint.getItem(), value.getValue());
+            result.addValue(validValue, value.getPaths());
         }
         return result;
 

@@ -72,7 +72,9 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
      *
      * @param value
      * @return
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
      */
+    @Deprecated
     public boolean isValidValue(ValueType value) {
         if(getConstraint().isEmpty()) {
             return true;
@@ -92,7 +94,9 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
      *
      * @param value
      * @return
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
      */
+    @Deprecated
     public boolean isValidValue(ModelInfoLookup lookup, Object value) {
         Object convertedValue = lookup.convertToConstraintObject(value, this);
         return isValidValue((ValueType) convertedValue);

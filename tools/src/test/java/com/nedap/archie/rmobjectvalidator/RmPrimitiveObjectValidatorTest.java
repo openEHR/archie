@@ -1,4 +1,4 @@
-package com.nedap.archie.rmobjectvalidator.validations;
+package com.nedap.archie.rmobjectvalidator;
 
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.primitives.CInteger;
@@ -6,24 +6,18 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-@Deprecated
-public class RMPrimitiveObjectValidationTest {
+public class RmPrimitiveObjectValidatorTest {
 
-    private static ArchieRMInfoLookup lookup;
-
-    @BeforeClass
-    public static void beforeClass() {
-        lookup = ArchieRMInfoLookup.getInstance();
-    }
+    private final RmPrimitiveObjectValidator validator = new RmPrimitiveObjectValidator(
+            new ValidationHelper(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build())
+    );
 
     public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
         return null;
@@ -37,7 +31,7 @@ public class RMPrimitiveObjectValidationTest {
         List<RMObjectWithPath> rmObjects = new ArrayList<>();
         rmObjects.add(new RMObjectWithPath(-4L, null));
 
-        List<RMObjectValidationMessage> result = RMPrimitiveObjectValidation.validate(lookup, rmObjects, "/path/so/far", cInteger);
+        List<RMObjectValidationMessage> result = validator.validate(rmObjects, "/path/so/far", cInteger);
 
         assertEquals(1, result.size());
 
@@ -54,7 +48,7 @@ public class RMPrimitiveObjectValidationTest {
         cInteger.addConstraint(Interval.lowerUnbounded(-10L, false));
         cInteger.addConstraint(Interval.upperUnbounded(0L, true));
 
-        List<RMObjectValidationMessage> result = RMPrimitiveObjectValidation.validate_inner(lookup, -4L, "/path/so/far", cInteger);
+        List<RMObjectValidationMessage> result = validator.validate_inner(-4L, "/path/so/far", cInteger);
 
         assertEquals(1, result.size());
 

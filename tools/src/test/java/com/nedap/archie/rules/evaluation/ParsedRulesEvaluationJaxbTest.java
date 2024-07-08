@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
  * contains some overridden tests because the generated paths are slightly different in JAXB and RM, but they are
  * functionally equivalent
  */
+@Deprecated
 public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
 
     @Override

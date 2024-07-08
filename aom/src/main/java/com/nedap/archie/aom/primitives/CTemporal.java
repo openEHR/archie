@@ -19,6 +19,8 @@ public abstract class CTemporal<T> extends COrdered<T>{
         this.patternConstraint = patternConstraint;
     }
 
+    @Override
+    @Deprecated
     public boolean isValidValue(T value) {
         if(getConstraint().isEmpty() && patternConstraint == null) {
             return true;

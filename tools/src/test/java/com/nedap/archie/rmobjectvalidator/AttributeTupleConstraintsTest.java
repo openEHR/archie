@@ -1,5 +1,8 @@
-package com.nedap.archie.aom;
+package com.nedap.archie.rmobjectvalidator;
 
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.CAttributeTuple;
+import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
@@ -13,10 +16,11 @@ import static org.junit.Assert.*;
 /**
  * Created by pieter.bos on 21/03/16.
  */
-@Deprecated
 public class AttributeTupleConstraintsTest {
 
     private static CAttributeTuple attributeTuple;
+    
+    private final ValidationHelper helper = new ValidationHelper(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build());
 
     @BeforeClass
     public static void setup() throws Exception {
@@ -35,8 +39,8 @@ public class AttributeTupleConstraintsTest {
         lbValid.put("units", "lb");
         lbValid.put("magnitude", 10d);
 
-        assertTrue(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), kgValid));
-        assertTrue(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), lbValid));
+        assertTrue(helper.isValid(attributeTuple, kgValid));
+        assertTrue(helper.isValid(attributeTuple, lbValid));
 
     }
 
@@ -54,9 +58,9 @@ public class AttributeTupleConstraintsTest {
         invalidUnit.put("units", "stone");
         invalidUnit.put("magnitude", 5d);
 
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), lbInvalid));
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), kgInvalid));
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), invalidUnit));
+        assertFalse(helper.isValid(attributeTuple, lbInvalid));
+        assertFalse(helper.isValid(attributeTuple, kgInvalid));
+        assertFalse(helper.isValid(attributeTuple, invalidUnit));
 
     }
 
@@ -68,7 +72,7 @@ public class AttributeTupleConstraintsTest {
         extraAttribute.put("precison", 0.1d);
 
         //any extra attributes can be valid, because they are not constrained by this tuple
-        assertTrue(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), extraAttribute));
+        assertTrue(helper.isValid(attributeTuple, extraAttribute));
 
     }
 
@@ -77,7 +81,7 @@ public class AttributeTupleConstraintsTest {
         HashMap<String, Object> missingAttribute = new HashMap<>();
         missingAttribute.put("units", "lb");
 
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), missingAttribute));
+        assertFalse(helper.isValid(attributeTuple, missingAttribute));
 
     }
 
@@ -86,7 +90,7 @@ public class AttributeTupleConstraintsTest {
         DvQuantity valid = new DvQuantity();
         valid.setUnits("lb");
         valid.setMagnitude(150d);
-        assertTrue(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), valid));
+        assertTrue(helper.isValid(attributeTuple, valid));
     }
 
     @Test
@@ -94,7 +98,7 @@ public class AttributeTupleConstraintsTest {
         DvQuantity valid = new DvQuantity();
         valid.setUnits("kg");
         valid.setMagnitude(600d);
-        assertFalse(attributeTuple.isValid(ArchieRMInfoLookup.getInstance(), valid));
+        assertFalse(helper.isValid(attributeTuple, valid));
     }
 
     @Test

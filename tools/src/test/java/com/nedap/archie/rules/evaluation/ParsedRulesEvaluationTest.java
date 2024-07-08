@@ -18,6 +18,7 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.ExpressionVariable;
 import com.nedap.archie.rules.RuleStatement;
@@ -754,7 +755,7 @@ public abstract class ParsedRulesEvaluationTest {
     }
 
     RuleEvaluation<Pathable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), archetype);
     }
 
     @Test
@@ -785,7 +786,7 @@ public abstract class ParsedRulesEvaluationTest {
         Map<String, Object> exampleInstance = generator.generate(opt);
         Cluster cluster = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);
         //correct case first
-        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), opt);
+        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), opt);
         DvCodedText codedText = (DvCodedText) cluster.itemAtPath("/items[1]/items[1]/value[1]");
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at4"));
         codedText.setValue("value 1");
