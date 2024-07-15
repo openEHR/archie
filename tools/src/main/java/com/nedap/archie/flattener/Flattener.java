@@ -269,6 +269,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                             workList.push(child);
                         }
                     }
+                    FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, objectsToRemove);
                     attribute.getChildren().removeAll(objectsToRemove);
                 }
 
