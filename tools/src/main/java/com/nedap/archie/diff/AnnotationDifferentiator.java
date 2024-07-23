@@ -24,7 +24,7 @@ public class AnnotationDifferentiator {
         }
 
         // Remove common entries in the annotations map
-        removeCommonEntriesLvl1(result.getAnnotations().getDocumentation(), flatParent.getAnnotations().getDocumentation());
+        removeCommonEntries(result.getAnnotations().getDocumentation(), flatParent.getAnnotations().getDocumentation());
 
         // If after removing common entries the documentation is empty, just set the annotations to null
         if (result.getAnnotations().getDocumentation().isEmpty()) {
@@ -32,62 +32,21 @@ public class AnnotationDifferentiator {
         }
     }
 
-    private void removeCommonEntriesLvl1(Map<String, Map<String, Map<String, String>>> A,
-                                            Map<String, Map<String, Map<String, String>>> B) {
-        Iterator<Map.Entry<String, Map<String, Map<String, String>>>> iterator = A.entrySet().iterator();
+    private <V> void removeCommonEntries(Map<String, V> subValueA, Map<String, V> subValueB) {
+        Iterator<Map.Entry<String, V>> iterator = subValueA.entrySet().iterator();
 
         while (iterator.hasNext()) {
-            Map.Entry<String, Map<String, Map<String, String>>> entryA = iterator.next();
+            Map.Entry<String, V> entryA = iterator.next();
             String keyA = entryA.getKey();
-            Map<String, Map<String, String>> valueA = entryA.getValue();
-
-            if (B.containsKey(keyA)) {
-                Map<String, Map<String, String>> valueB = B.get(keyA);
-
-                if (valueA.equals(valueB)) {
-                    iterator.remove();
-                } else {
-                    removeCommonEntriesLvl2(valueA, valueB);
-                }
-            }
-        }
-    }
-
-    private void removeCommonEntriesLvl2(Map<String, Map<String, String>> valueA,
-                                            Map<String, Map<String, String>> valueB) {
-        Iterator<Map.Entry<String, Map<String, String>>> iterator = valueA.entrySet().iterator();
-
-        while (iterator.hasNext()) {
-            Map.Entry<String, Map<String, String>> entryA = iterator.next();
-            String keyA = entryA.getKey();
-            Map<String, String> subValueA = entryA.getValue();
-
-            if (valueB.containsKey(keyA)) {
-                Map<String, String> subValueB = valueB.get(keyA);
-
-                if (subValueA.equals(subValueB)) {
-                    iterator.remove();
-                } else {
-                    removeCommonEntriesLvl3(subValueA, subValueB);
-                }
-            }
-        }
-    }
-
-    private void removeCommonEntriesLvl3(Map<String, String> subValueA,
-                                            Map<String, String> subValueB) {
-        Iterator<Map.Entry<String, String>> iterator = subValueA.entrySet().iterator();
-
-        while (iterator.hasNext()) {
-            Map.Entry<String, String> entryA = iterator.next();
-            String keyA = entryA.getKey();
-            String valueA = entryA.getValue();
+            V valueA = entryA.getValue();
 
             if (subValueB.containsKey(keyA)) {
-                String valueB = subValueB.get(keyA);
+                V valueB = subValueB.get(keyA);
 
                 if (valueA.equals(valueB)) {
                     iterator.remove();
+                } else if (valueA instanceof Map && valueB instanceof Map) {
+                    removeCommonEntries((Map<String, V>) valueA, (Map<String, V>) valueB);
                 }
             }
         }
