@@ -35,6 +35,7 @@ public class Differentiator {
             new LCSOrderingDiff(metaModels).addSiblingOrder(result, flatChild, flatParent);
         }
         new ConstraintDifferentiator(constraintImposer, flatParent).removeUnspecializedConstraints(result, flatParent);
+        new AnnotationDifferentiator().differentiate(result, flatParent);
 
         new DifferentialPathGenerator().replace(result);
         new TerminologyDifferentiator().differentiate(result);
