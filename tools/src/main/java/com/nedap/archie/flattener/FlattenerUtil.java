@@ -43,7 +43,8 @@ public class FlattenerUtil {
         for (String pathToRemove : pathsToRemove) {
             for (String languageKeys : annotations.keySet()) {
                 Map<String, Map<String, String>> languageAnnotations = annotations.get(languageKeys);
-                languageAnnotations.keySet().stream().filter(path -> path.startsWith(pathToRemove)).forEach(languageAnnotations::remove);
+                List<String> toRemove = languageAnnotations.keySet().stream().filter(path -> path.startsWith(pathToRemove)).collect(Collectors.toList());
+                toRemove.forEach(languageAnnotations::remove);
             }
 
         }
