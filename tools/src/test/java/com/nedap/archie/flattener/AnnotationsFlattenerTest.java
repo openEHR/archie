@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -127,5 +129,47 @@ public class AnnotationsFlattenerTest {
 
         Archetype flattened = flattener.flatten(childWithExcluded);
         assertNull(flattened.getAnnotations().getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id6]"));
+    }
+
+    @Test
+    public void flattenArchetypeWithNoAnnotations() throws Exception {
+        parent.setAnnotations(null);
+        repository.addArchetype(parent);
+        Archetype childWithExcluded = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.to_flatten_child_with_annotations_exclude_object.v1.adls"));
+        childWithExcluded.setAnnotations(null);
+        repository.addArchetype(childWithExcluded);
+
+        flattener = new Flattener(repository, models).createOperationalTemplate(true);
+
+        Archetype flattened = flattener.flatten(childWithExcluded);
+        assertNull(flattened.getAnnotations());
+    }
+
+    @Test
+    public void flattenArchetypeWithNoDocumentation() throws Exception {
+        parent.setAnnotations(new ResourceAnnotations());
+        repository.addArchetype(parent);
+        Archetype childWithExcluded = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.to_flatten_child_with_annotations_exclude_object.v1.adls"));
+        childWithExcluded.setAnnotations(new ResourceAnnotations());
+        repository.addArchetype(childWithExcluded);
+
+        flattener = new Flattener(repository, models).createOperationalTemplate(true);
+
+        Archetype flattened = flattener.flatten(childWithExcluded);
+        assertNull(flattened.getAnnotations().getDocumentation());
+    }
+
+    @Test
+    public void flattenArchetypeWithEmptyDocumentation() throws Exception {
+        parent.getAnnotations().setDocumentation(new HashMap<>());
+        repository.addArchetype(parent);
+        Archetype childWithExcluded = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.to_flatten_child_with_annotations_exclude_object.v1.adls"));
+        childWithExcluded.getAnnotations().setDocumentation(new HashMap<>());
+        repository.addArchetype(childWithExcluded);
+
+        flattener = new Flattener(repository, models).createOperationalTemplate(true);
+
+        Archetype flattened = flattener.flatten(childWithExcluded);
+        assertEquals(0, flattened.getAnnotations().getDocumentation().size());
     }
 }
