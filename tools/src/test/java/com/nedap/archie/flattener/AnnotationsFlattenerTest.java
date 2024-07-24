@@ -1,14 +1,15 @@
 package com.nedap.archie.flattener;
 
 import com.nedap.archie.adlparser.ADLParser;
+import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ResourceAnnotations;
 import com.nedap.archie.rminfo.ReferenceModels;
-import com.nedap.archie.aom.Archetype;
 import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class AnnotationsFlattenerTest {
 
@@ -104,5 +105,16 @@ public class AnnotationsFlattenerTest {
         assertEquals("this is a design note on allergic reaction", annotations.getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id5]").get("design note"));
         assertEquals("this is a design note on intelerance", annotations.getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id6]").get("design note"));
         assertEquals("this is a design note for a cluster", annotations.getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id8]/items[id3]/value[id4]").get("design note"));
+    }
+
+    @Test
+    public void flattenArchetypeWithZeroOccurrencesObject() throws Exception {
+        Archetype childWithExcluded = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.to_flatten_child_with_annotations_exclude_object.v1.adls"));
+        repository.addArchetype(childWithExcluded);
+
+        flattener = new Flattener(repository, models).createOperationalTemplate(true);
+
+        Archetype flattened = flattener.flatten(childWithExcluded);
+        assertNull(flattened.getAnnotations().getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id6]"));
     }
 }
