@@ -35,7 +35,7 @@ class MultiLanguageTerm {
         if(termCode != null) {
             //sometimes terms occur twice. They mean the same, but are in two groups.
             //todo: properly implement groups
-            termCode.getGroupIds().add(code.getGroupName());
+            termCode.getGroupIds().addAll(code.getGroupIds());
         } else {
             termCodesByLanguage.put(code.getLanguage(), code);
         }
