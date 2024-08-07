@@ -670,7 +670,7 @@
               "codeString" : "523",
               "description" : "remoção",
               "groupName" : "tipo de auditoria de modificação",
-              "groupIds" : [ "audit change type", "estado de ciclo de vida de versão" ]
+              "groupIds" : [ "audit change type", "version lifecycle state" ]
             }
           }
         },
@@ -722,7 +722,7 @@
               "codeString" : "253",
               "description" : "不明",
               "groupName" : "監査変更種別",
-              "groupIds" : [ "audit change type", "participation function", "subject relationship", "null flavours" ]
+              "groupIds" : [ "audit change type", "participation function", "subject relationships", "null flavours" ]
             },
             "pt" : {
               "terminologyId" : "openehr",
@@ -730,7 +730,7 @@
               "codeString" : "253",
               "description" : "desconhecido",
               "groupName" : "tipo de auditoria de modificação",
-              "groupIds" : [ "audit change type", "função de participação", "relacionamento de sujeito", "null flavours" ]
+              "groupIds" : [ "audit change type", "participation function", "subject relationship", "null flavours" ]
             }
           }
         },
@@ -4600,7 +4600,7 @@
               "codeString" : "532",
               "description" : "completo",
               "groupName" : "estado de ciclo de vida de versão",
-              "groupIds" : [ "estados de instrução", "version lifecycle state" ]
+              "groupIds" : [ "instruction states", "version lifecycle state" ]
             }
           }
         },
@@ -15416,7 +15416,7 @@
               "codeString" : "523",
               "description" : "remoção",
               "groupName" : "tipo de auditoria de modificação",
-              "groupIds" : [ "audit change type", "estado de ciclo de vida de versão" ]
+              "groupIds" : [ "audit change type", "version lifecycle state" ]
             }
           }
         },
@@ -15468,7 +15468,7 @@
               "codeString" : "253",
               "description" : "不明",
               "groupName" : "監査変更種別",
-              "groupIds" : [ "audit change type", "participation function", "subject relationship", "null flavours" ]
+              "groupIds" : [ "audit change type", "participation function", "subject relationships", "null flavours" ]
             },
             "pt" : {
               "terminologyId" : "openehr",
@@ -15476,7 +15476,7 @@
               "codeString" : "253",
               "description" : "desconhecido",
               "groupName" : "tipo de auditoria de modificação",
-              "groupIds" : [ "audit change type", "função de participação", "relacionamento de sujeito", "null flavours" ]
+              "groupIds" : [ "audit change type", "participation function", "subject relationship", "null flavours" ]
             }
           }
         },
@@ -19346,7 +19346,7 @@
               "codeString" : "532",
               "description" : "completo",
               "groupName" : "estado de ciclo de vida de versão",
-              "groupIds" : [ "estados de instrução", "version lifecycle state" ]
+              "groupIds" : [ "instruction states", "version lifecycle state" ]
             }
           }
         },
