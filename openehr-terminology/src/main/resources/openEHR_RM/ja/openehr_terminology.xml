@@ -233,7 +233,7 @@
 		<concept id="532" rubric="完了"/>
 		<concept id="533" rubric="期限切れ"/>
 	</group>
-	<group name="instruction transitions" id="instruction transitionss">
+	<group name="instruction transitions" id="instruction transitions">
 		<concept id="535" rubric="新しく始める"/>
 		<concept id="536" rubric="ステップを計画する"/>
 		<concept id="537" rubric="延期する"/>
@@ -255,7 +255,7 @@
 		<concept id="551" rubric="完了を知らせる"/>
 		<concept id="552" rubric="キャンセルを知らせる"/>
 	</group>
-	<group name="subject relationship" id="subject relationships">
+	<group name="subject relationship" id="subject relationship">
 		<concept id="0" rubric="自己"/>
 		<concept id="3" rubric="胎児"/>
 		<concept id="10" rubric="母"/>
