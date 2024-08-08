@@ -24,11 +24,11 @@
 		<code value="LL"/> 
 		<code value="LLL"/>
 	</codeset>
-	<group name="razão de atestação">
+	<group name="razão de atestação" id="attestation reason">
 		<concept id="240" rubric="assinou"/>
 		<concept id="648" rubric="testemunhou"/>
 	</group>
-	<group name="tipo de auditoria de modificação">
+	<group name="tipo de auditoria de modificação" id="audit change type">
 		<concept id="249" rubric="criação"/>
 		<concept id="250" rubric="emenda"/>
 		<concept id="251" rubric="modificação"/>
@@ -37,13 +37,12 @@
 		<concept id="666" rubric="atestação"/>
 		<concept id="253" rubric="desconhecido"/>
 	</group>
-	<group name="categoria de composição">
+	<group name="categoria de composição" id="composition category">
 		<concept id="431" rubric="persistente"/>
 		<concept id="433" rubric="evento"/>
 		<concept id="451" rubric="*episodic(en)"/>
 	</group>
-	<!--
-	<group name="multimídia">
+	<group name="multimídia" id="MultiMedia">
 		<concept id="387" rubric="audio/DVI4" />
 		<concept id="388" rubric="audio/G722" />
 		<concept id="389" rubric="audio/G723" />
@@ -94,8 +93,7 @@
 		<concept id="682" rubric="application/vnd.oasis.opendocument.text" />
 		<concept id="683" rubric="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
 	</group>
-	-->
-	<group name="propriedade">
+	<group name="propriedade" id="property">
 		<concept id="339" rubric="aceleração"/>
 		<concept id="342" rubric="aceleração, angular"/>
 		<concept id="381" rubric="quantidade (Eq)"/>
@@ -111,7 +109,7 @@
 		<concept id="502" rubric="condutância elétrica"/>
 		<concept id="334" rubric="corrente elétrica"/>
 		<concept id="377" rubric="força de campo elétrico"/>
-		<concept id="655" rubric="potencial elétrico"/>
+		<concept id="655" rubric="tempo de potencial elétrico"/>
 		<concept id="121" rubric="energia"/>
 		<concept id="366" rubric="densidade de energia"/>
 		<concept id="508" rubric="dose de energia"/>
@@ -173,23 +171,23 @@
 		<concept id="130" rubric="trabalho"/>
 		<concept id="685" rubric="potência dióptrica"/>
 	</group>
-	<group name="estado de ciclo de vida de versão">
+	<group name="estado de ciclo de vida de versão" id="version lifecycle state">
 		<concept id="532" rubric="completo"/><!-- warning: the rubric for this concept is 'completed' in the 'instruction states' group (known issue, see SPECPR-51) -->
 		<concept id="553" rubric="incompleto"/>
 		<concept id="523" rubric="removido"/>
 		<concept id="800" rubric="*inactive(en)"/>
 		<concept id="801" rubric="*abandoned(en)"/>
 	</group>
-	<group name="função de participação">
+	<group name="função de participação" id="participation function">
 		<concept id="253" rubric="desconhecido"/>
 	</group>
-	<group name="null flavours">
+	<group name="null flavours" id="null flavours">
 		<concept id="271" rubric="sem informação"/>
 		<concept id="253" rubric="desconhecido"/>
 		<concept id="272" rubric="mascarado"/>
 		<concept id="273" rubric="não aplicável"/>
 	</group>
-	<group name="modo de participação">
+	<group name="modo de participação" id="participation mode">
 		<concept id="193" rubric="não especificado"/>
 		<concept id="216" rubric="comunicação cara-a-cara"/>
 		<concept id="223" rubric="comuicação interpretada cara-a-cara"/>
@@ -223,7 +221,7 @@
 		<concept id="219" rubric="fisicamente presente"/>
 		<concept id="220" rubric="fisicamente remoto"/>
 	</group>
-	<group name="estados de instrução">
+	<group name="estados de instrução" id="instruction states">
 		<concept id="524" rubric="inicial"/>
 		<concept id="526" rubric="planejado"/>
 		<concept id="527" rubric="adiado"/>
@@ -235,7 +233,7 @@
 		<concept id="532" rubric="concluído"/><!-- warning: the rubric for this concept is 'complete' in the 'version lifecycle state' group (known issue, see SPECPR-51) -->
 		<concept id="533" rubric="expirado"/>
 	</group>
-	<group name="transições de instrução">
+	<group name="transições de instrução" id="instruction transitions">
 		<concept id="535" rubric="iniciar"/>
 		<concept id="536" rubric="planejar etapa"/>
 		<concept id="537" rubric="adiar"/>
@@ -257,7 +255,7 @@
 		<concept id="551" rubric="notificar conclusão"/>
 		<concept id="552" rubric="notificar cancelamento"/>
 	</group>
-	<group name="relacionamento de sujeito">
+	<group name="relacionamento de sujeito" id="subject relationship">
 		<concept id="0" rubric="próprio"/>
 		<concept id="3" rubric="feto"/>
 		<concept id="10" rubric="mãe"/>
@@ -295,12 +293,12 @@
 		<concept id="25" rubric="meio-irmão"/>
 		<concept id="26" rubric="meia-irmã"/>
 	</group>
-	<group name="propósito de mapeamento de termo">
+	<group name="propósito de mapeamento de termo" id="term mapping purpose">
 		<concept id="669" rubric="saúde pública"/>
 		<concept id="670" rubric="reembolso"/>
 		<concept id="671" rubric="pesquisa"/>
 	</group>
-	<group name="função matemática de evento">
+	<group name="função matemática de evento" id="event math function">
 		<concept id="145" rubric="mínimo"/>
 		<concept id="144" rubric="máximo"/>
 		<concept id="267" rubric="moda"/>
@@ -313,7 +311,7 @@
 		<concept id="522" rubric="acréscimo"/>
 		<concept id="640" rubric="real"/>
 	</group>
-	<group name="configuração">
+	<group name="configuração" id="setting">>
 		<concept id="225" rubric="domiciliar"/>
 		<concept id="227" rubric="cuidado emergencial"/>
 		<concept id="228" rubric="medicina primária"/>
@@ -329,7 +327,7 @@
 		<concept id="802" rubric="*mental healthcare(en)"/>
 		<concept id="238" rubric="outro cuidado"/>
 	</group>
-	<group name="extract content type">
+	<group name="extract content type" id="extract content type">
 		<concept id="803" rubric="*openEHR EHR(en)"/>
 		<concept id="804" rubric="*openEHR Demographic(en)"/>
 		<concept id="805" rubric="*openEHR synchronisation(en)"/>
@@ -337,12 +335,12 @@
 		<concept id="807" rubric="*generic EMR(en)"/>
 		<concept id="808" rubric="*other(en)"/>
 	</group>
-	<group name="extract action type">
+	<group name="extract action type" id="extract action type">
 		<concept id="809" rubric="*cancel(en)"/>
 		<concept id="810" rubric="*resend(en)"/>
 		<concept id="811" rubric="*send new(en)"/>
 	</group>
-	<group name="extract update trigger event type">
+	<group name="extract update trigger event type" id="extract update trigger event type">
 		<concept id="812" rubric="*any change(en)"/>
 		<concept id="813" rubric="*correction(en)"/>
 		<concept id="814" rubric="*update(en)"/>
