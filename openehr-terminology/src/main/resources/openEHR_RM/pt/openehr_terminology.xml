@@ -8,8 +8,13 @@
 	</codeset>
 	<codeset issuer="openehr" openehr_id="integrity check algorithms" external_id="openehr_integrity_check_algorithms">
 		<code value="SHA-1"/>
+		<code value="SHA-224"/>
 		<code value="SHA-256"/>
-	</codeset>	
+		<code value="SHA-384"/>
+		<code value="SHA-512"/>
+		<code value="SHA-512/224"/>
+		<code value="SHA-512/256"/>
+	</codeset>
 	<codeset issuer="openehr" openehr_id="normal statuses" external_id="openehr_normal_statuses">
 		<code value="HHH"/>
 		<code value="HH"/>
@@ -35,8 +40,7 @@
 	<group name="categoria de composição" id="composition category">
 		<concept id="431" rubric="persistente"/>
 		<concept id="433" rubric="evento"/>
-		<concept id="435" rubric="*episodic(en)"/>
-
+		<concept id="451" rubric="*episodic(en)"/>
 	</group>
 	<group name="multimídia" id="MultiMedia">
 		<concept id="387" rubric="audio/DVI4" />
@@ -168,9 +172,11 @@
 		<concept id="685" rubric="potência dióptrica"/>
 	</group>
 	<group name="estado de ciclo de vida de versão" id="version lifecycle state">
-		<concept id="532" rubric="completo"/>
+		<concept id="532" rubric="completo"/><!-- warning: the rubric for this concept is 'completed' in the 'instruction states' group (known issue, see SPECPR-51) -->
 		<concept id="553" rubric="incompleto"/>
 		<concept id="523" rubric="removido"/>
+		<concept id="800" rubric="*inactive(en)"/>
+		<concept id="801" rubric="*abandoned(en)"/>
 	</group>
 	<group name="função de participação" id="participation function">
 		<concept id="253" rubric="desconhecido"/>
@@ -224,7 +230,7 @@
 		<concept id="245" rubric="ativo"/>
 		<concept id="530" rubric="suspenso"/>
 		<concept id="531" rubric="abortado"/>
-		<concept id="532" rubric="concluído"/>
+		<concept id="532" rubric="concluído"/><!-- warning: the rubric for this concept is 'complete' in the 'version lifecycle state' group (known issue, see SPECPR-51) -->
 		<concept id="533" rubric="expirado"/>
 	</group>
 	<group name="transições de instrução" id="instruction transitions">
@@ -318,6 +324,25 @@
 		<concept id="235" rubric="cuidado complementar"/>
 		<concept id="236" rubric="cuidado odontológico"/>
 		<concept id="237" rubric="enfermagem domiciliar"/>
+		<concept id="802" rubric="*mental healthcare(en)"/>
 		<concept id="238" rubric="outro cuidado"/>
+	</group>
+	<group name="extract content type" id="extract content type">
+		<concept id="803" rubric="*openEHR EHR(en)"/>
+		<concept id="804" rubric="*openEHR Demographic(en)"/>
+		<concept id="805" rubric="*openEHR synchronisation(en)"/>
+		<concept id="806" rubric="*openEHR generic(en)"/>
+		<concept id="807" rubric="*generic EMR(en)"/>
+		<concept id="808" rubric="*other(en)"/>
+	</group>
+	<group name="extract action type" id="extract action type">
+		<concept id="809" rubric="*cancel(en)"/>
+		<concept id="810" rubric="*resend(en)"/>
+		<concept id="811" rubric="*send new(en)"/>
+	</group>
+	<group name="extract update trigger event type" id="extract update trigger event type">
+		<concept id="812" rubric="*any change(en)"/>
+		<concept id="813" rubric="*correction(en)"/>
+		<concept id="814" rubric="*update(en)"/>
 	</group>
 </terminology>

@@ -30,6 +30,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
     private static final String[] resourceNames = {
             "/openEHR_RM/en/openehr_terminology.xml",
+            "/openEHR_RM/es/openehr_terminology.xml",
             "/openEHR_RM/ja/openehr_terminology.xml",
             "/openEHR_RM/pt/openehr_terminology.xml",
             "/openEHR_RM/openehr_external_terminologies.xml",
