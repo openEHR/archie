@@ -60,7 +60,7 @@ public class OpenEHRTerminologyAccessTest {
         TermCode episodic = compositionCategories.get(1);
         TermCode event = compositionCategories.get(2);
         assertEquals("431", persistent.getCodeString());
-        assertEquals("435", episodic.getCodeString());
+        assertEquals("451", episodic.getCodeString());
         assertEquals("433", event.getCodeString());
         assertEquals("persistent", persistent.getDescription());
         assertEquals("episodic", episodic.getDescription());
@@ -103,7 +103,7 @@ public class OpenEHRTerminologyAccessTest {
 
         assertEquals("431", groupContent.get(0).getCodeString());
         assertEquals("persistent", groupContent.get(0).getDescription());
-        assertEquals("435", groupContent.get(1).getCodeString());
+        assertEquals("451", groupContent.get(1).getCodeString());
         assertEquals("episodic", groupContent.get(1).getDescription());
         assertEquals("433", groupContent.get(2).getCodeString());
         assertEquals("event", groupContent.get(2).getDescription());
