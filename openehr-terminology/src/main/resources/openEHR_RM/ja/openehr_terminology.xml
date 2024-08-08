@@ -1,4 +1,4 @@
-<terminology name="openehr" language="ja">
+<terminology name="openehr" language="ja">	
 	<codeset issuer="openehr" openehr_id="compression algorithms" external_id="openehr_compression_algorithms">
 		<code value="圧縮"/>
 		<code value="展開"/>
@@ -8,8 +8,13 @@
 	</codeset>
 	<codeset issuer="openehr" openehr_id="integrity check algorithms" external_id="openehr_integrity_check_algorithms">
 		<code value="SHA-1"/>
+		<code value="SHA-224"/>
 		<code value="SHA-256"/>
-	</codeset>	
+		<code value="SHA-384"/>
+		<code value="SHA-512"/>
+		<code value="SHA-512/224"/>
+		<code value="SHA-512/256"/>
+	</codeset>
 	<codeset issuer="openehr" openehr_id="normal statuses" external_id="openehr_normal_statuses">
 		<code value="HHH"/>
 		<code value="HH"/>
@@ -35,7 +40,7 @@
 	<group name="コンポジションカテゴリ" id="composition category">
 		<concept id="431" rubric="永続"/>
 		<concept id="433" rubric="イベント"/>
-		<concept id="435" rubric="*episodic(en)"/>
+		<concept id="451" rubric="*episodic(en)"/>
 	</group>
 	<group name="MultiMedia" id="MultiMedia">
 		<concept id="387" rubric="audio/DVI4" />
@@ -170,6 +175,8 @@
 		<concept id="532" rubric="完了"/>
 		<concept id="553" rubric="未完"/>
 		<concept id="523" rubric="削除済み"/>
+		<concept id="800" rubric="*inactive(en)"/>
+		<concept id="801" rubric="*abandoned(en)"/>
 	</group>
 	<group name="participation function" id="participation function">
 		<concept id="253" rubric="未知"/>
@@ -226,7 +233,7 @@
 		<concept id="532" rubric="完了"/>
 		<concept id="533" rubric="期限切れ"/>
 	</group>
-	<group name="instruction transitions" id="instruction transitionss">
+	<group name="instruction transitions" id="instruction transitions">
 		<concept id="535" rubric="新しく始める"/>
 		<concept id="536" rubric="ステップを計画する"/>
 		<concept id="537" rubric="延期する"/>
@@ -248,7 +255,7 @@
 		<concept id="551" rubric="完了を知らせる"/>
 		<concept id="552" rubric="キャンセルを知らせる"/>
 	</group>
-	<group name="subject relationship" id="subject relationships">
+	<group name="subject relationship" id="subject relationship">
 		<concept id="0" rubric="自己"/>
 		<concept id="3" rubric="胎児"/>
 		<concept id="10" rubric="母"/>
@@ -317,6 +324,25 @@
 		<concept id="235" rubric="代替医療 "/>
 		<concept id="236" rubric="歯科治療"/>
 		<concept id="237" rubric="在宅介護"/>
+		<concept id="802" rubric="*mental healthcare(en)"/>
 		<concept id="238" rubric="その他のケア"/>
+	</group>
+	<group name="extract content type" id="extract content type">
+		<concept id="803" rubric="*openEHR EHR(en)"/>
+		<concept id="804" rubric="*openEHR Demographic(en)"/>
+		<concept id="805" rubric="*openEHR synchronisation(en)"/>
+		<concept id="806" rubric="*openEHR generic(en)"/>
+		<concept id="807" rubric="*generic EMR(en)"/>
+		<concept id="808" rubric="*other(en)"/>
+	</group>
+	<group name="extract action type" id="extract action type">
+		<concept id="809" rubric="*cancel(en)"/>
+		<concept id="810" rubric="*resend(en)"/>
+		<concept id="811" rubric="*send new(en)"/>
+	</group>
+	<group name="extract update trigger event type" id="extract update trigger event type">
+		<concept id="812" rubric="*any change(en)"/>
+		<concept id="813" rubric="*correction(en)"/>
+		<concept id="814" rubric="*update(en)"/>
 	</group>
 </terminology>
