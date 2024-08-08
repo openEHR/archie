@@ -8,7 +8,12 @@
 	</codeset>
 	<codeset issuer="openehr" openehr_id="integrity check algorithms" external_id="openehr_integrity_check_algorithms">
 		<code value="SHA-1"/>
+		<code value="SHA-224"/>
 		<code value="SHA-256"/>
+		<code value="SHA-384"/>
+		<code value="SHA-512"/>
+		<code value="SHA-512/224"/>
+		<code value="SHA-512/256"/>
 	</codeset>
 	<codeset issuer="openehr" openehr_id="normal statuses" external_id="openehr_normal_statuses">
 		<code value="HHH"/>
@@ -19,11 +24,11 @@
 		<code value="LL"/>
 		<code value="LLL"/>
 	</codeset>
-	<group name="attestation reason" id="attestation reason">
+	<group name="attestation reason">
 		<concept id="240" rubric="signed"/>
 		<concept id="648" rubric="witnessed"/>
 	</group>
-	<group name="audit change type" id="audit change type">
+	<group name="audit change type">
 		<concept id="249" rubric="creation"/>
 		<concept id="250" rubric="amendment"/>
 		<concept id="251" rubric="modification"/>
@@ -32,12 +37,13 @@
 		<concept id="666" rubric="attestation"/>
 		<concept id="253" rubric="unknown"/>
 	</group>
-	<group name="composition category" id="composition category">
+	<group name="composition category">
 		<concept id="431" rubric="persistent"/>
-		<concept id="435" rubric="episodic"/>
+		<concept id="451" rubric="episodic"/>
 		<concept id="433" rubric="event"/>
 	</group>
-	<group name="MultiMedia" id="MultiMedia">
+	<!--
+	<group name="MultiMedia">
 		<concept id="387" rubric="audio/DVI4" />
 		<concept id="388" rubric="audio/G722" />
 		<concept id="389" rubric="audio/G723" />
@@ -88,7 +94,8 @@
 		<concept id="682" rubric="application/vnd.oasis.opendocument.text" />
 		<concept id="683" rubric="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
 	</group>
-	<group name="property" id="property">
+	-->
+	<group name="property">
 		<concept id="339" rubric="Acceleration"/>
 		<concept id="342" rubric="Acceleration, angular"/>
 		<concept id="381" rubric="Amount (Eq)"/>
@@ -99,12 +106,12 @@
 		<concept id="119" rubric="Concentration"/>
 		<concept id="350" rubric="Density"/>
 		<concept id="362" rubric="Diffusion coefficient"/>
-		<concept id="501" rubric="Electrical capacitance"/>
-		<concept id="498" rubric="Electrical charge"/>
-		<concept id="502" rubric="Electrical conductance"/>
-		<concept id="334" rubric="Electrical current"/>
-		<concept id="377" rubric="Electrical field strength"/>
-		<concept id="655" rubric="Electrical potential time"/>
+		<concept id="501" rubric="Electric capacitance"/>
+		<concept id="498" rubric="Electric charge"/>
+		<concept id="502" rubric="Electric conductance"/>
+		<concept id="334" rubric="Electric current"/>
+		<concept id="377" rubric="Electric field strength"/>
+		<concept id="655" rubric="Electric potential"/>
 		<concept id="121" rubric="Energy"/>
 		<concept id="366" rubric="Energy density"/>
 		<concept id="508" rubric="Energy dose"/>
@@ -166,21 +173,23 @@
 		<concept id="130" rubric="Work"/>
 		<concept id="685" rubric="Refractive power"/>
 	</group>
-	<group name="version lifecycle state" id="version lifecycle state">
-		<concept id="532" rubric="complete"/>
+	<group name="version lifecycle state">
+		<concept id="532" rubric="complete"/><!-- warning: the rubric for this concept is 'completed' in the 'instruction states' group (known issue, see SPECPR-51) -->
 		<concept id="553" rubric="incomplete"/>
 		<concept id="523" rubric="deleted"/>
+		<concept id="800" rubric="inactive"/>
+		<concept id="801" rubric="abandoned"/>
 	</group>
-	<group name="participation function" id="participation function">
+	<group name="participation function">
 		<concept id="253" rubric="unknown"/>
 	</group>
-	<group name="null flavours" id="null flavours">
+	<group name="null flavours">
 		<concept id="271" rubric="no information"/>
 		<concept id="253" rubric="unknown"/>
 		<concept id="272" rubric="masked"/>
 		<concept id="273" rubric="not applicable"/>
 	</group>
-	<group name="participation mode" id="participation mode">
+	<group name="participation mode">
 		<concept id="193" rubric="not specified"/>
 		<concept id="216" rubric="face-to-face communication"/>
 		<concept id="223" rubric="interpreted face-to-face communication"/>
@@ -214,7 +223,7 @@
 		<concept id="219" rubric="physically present"/>
 		<concept id="220" rubric="physically remote"/>
 	</group>
-	<group name="instruction states" id="instruction states">
+	<group name="instruction states">
 		<concept id="524" rubric="initial"/>
 		<concept id="526" rubric="planned"/>
 		<concept id="527" rubric="postponed"/>
@@ -223,10 +232,10 @@
 		<concept id="245" rubric="active"/>
 		<concept id="530" rubric="suspended"/>
 		<concept id="531" rubric="aborted"/>
-		<concept id="532" rubric="completed"/>
+		<concept id="532" rubric="completed"/><!-- warning: the rubric for this concept is 'complete' in the 'version lifecycle state' group (known issue, see SPECPR-51) -->
 		<concept id="533" rubric="expired"/>
 	</group>
-	<group name="instruction transitions" id="instruction transitions">
+	<group name="instruction transitions">
 		<concept id="535" rubric="initiate"/>
 		<concept id="536" rubric="plan step"/>
 		<concept id="537" rubric="postpone"/>
@@ -248,7 +257,7 @@
 		<concept id="551" rubric="notify completed"/>
 		<concept id="552" rubric="notify cancelled"/>
 	</group>
-	<group name="subject relationship" id="subject relationship">
+	<group name="subject relationship">
 		<concept id="0" rubric="self"/>
 		<concept id="3" rubric="foetus"/>
 		<concept id="10" rubric="mother"/>
@@ -286,12 +295,12 @@
 		<concept id="25" rubric="step or half brother"/>
 		<concept id="26" rubric="step or half sister"/>
 	</group>
-	<group name="term mapping purpose" id="term mapping purpose">
+	<group name="term mapping purpose">
 		<concept id="669" rubric="public health"/>
 		<concept id="670" rubric="reimbursement"/>
 		<concept id="671" rubric="research study"/>
 	</group>
-	<group name="event math function" id="event math function">
+	<group name="event math function">
 		<concept id="145" rubric="minimum"/>
 		<concept id="144" rubric="maximum"/>
 		<concept id="267" rubric="mode"/>
@@ -304,7 +313,7 @@
 		<concept id="522" rubric="increase"/>
 		<concept id="640" rubric="actual"/>
 	</group>
-	<group name="setting" id="setting">
+	<group name="setting">
 		<concept id="225" rubric="home"/>
 		<concept id="227" rubric="emergency care"/>
 		<concept id="228" rubric="primary medical care"/>
@@ -317,6 +326,25 @@
 		<concept id="235" rubric="complementary health care"/>
 		<concept id="236" rubric="dental care"/>
 		<concept id="237" rubric="nursing home care"/>
+		<concept id="802" rubric="mental healthcare"/>
 		<concept id="238" rubric="other care"/>
+	</group>
+	<group name="extract content type">
+		<concept id="803" rubric="openEHR EHR"/>
+		<concept id="804" rubric="openEHR Demographic"/>
+		<concept id="805" rubric="openEHR synchronisation"/>
+		<concept id="806" rubric="openEHR generic"/>
+		<concept id="807" rubric="generic EMR"/>
+		<concept id="808" rubric="other"/>
+	</group>
+	<group name="extract action type">
+		<concept id="809" rubric="cancel"/>
+		<concept id="810" rubric="resend"/>
+		<concept id="811" rubric="send new"/>
+	</group>
+	<group name="extract update trigger event type">
+		<concept id="812" rubric="any change"/>
+		<concept id="813" rubric="correction"/>
+		<concept id="814" rubric="update"/>
 	</group>
 </terminology>
