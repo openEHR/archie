@@ -1,0 +1,833 @@
+archetype (adl_version=2.1.0; rm_release=0.7.0; generated; uid=7dd1af1f-22c6-47bd-97bc-152f642a5bb6)
+	s2-EHR-Direct_observation.fetal_biometry.v1.0.2
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Graphite Health">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+		["email"] = <"models@s2.org">
+		["date"] = <"$today (date is disabled during testing)">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"io.graphitehealth">
+	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-12-14">
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-OBSERVATION.fetal_biometry.v1.0.2">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fetal_biometry.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"graphite_openehr_to_s2_adl">
+		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record ultrasound and doppler measurements of an embryo or foetus in utero.">
+			use = <"Use to record ultrasound and doppler measurements of an embryo or foetus in utero.
+            
+            This archetype has been designed as one component of an imaging examination and will need to be added in a template alongside the OBSERVATION.imaging_exam_result and the imaging family of Nodes..">
+			keywords = <"fetus, embryo, femur, humerus, crown-rump, head, abdomen, ultrasound, antenatal, obstetric, foetus", ...>
+			misuse = <"Not to be used to record direct measurements of an infant. Use OBSERVATION.height, OBSERVATION.head_circumference, OBSERVATION.body_segment_length and OBSERVATION.body_weight for equivalent measurements.
+            
+            Not to be used to record information about the gestational sac, use openEHR-EHR-Node.imaging_exam-gestational_sac.">
+		>
+	>
+	other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Helbig, MD PhD, Oslo University Hospital, Norway", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Tina Tellum, Oslo Universitetssykehus, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Ina Wille, Helse-Vest RHF, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- Foetal biometry
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Crown-rump length (CRL)
+				value matches {
+					Measured<Quantity>[id44] matches {
+						value matches {
+							Quantity[id35] matches {	-- Crown-rump length (CRL) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id37] matches {
+										term matches {
+											Terminology_term[id36] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id45] matches {
+						value matches {
+							Quantity[id38] matches {	-- Crown-rump length (CRL) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id40] matches {
+										term matches {
+											Terminology_term[id39] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id46] matches {
+						value matches {
+							Quantity[id41] matches {	-- Crown-rump length (CRL) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id43] matches {
+										term matches {
+											Terminology_term[id42] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Biparietal diameter (BPD)
+				value matches {
+					Measured<Quantity>[id56] matches {
+						value matches {
+							Quantity[id47] matches {	-- Biparietal diameter (BPD) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id49] matches {
+										term matches {
+											Terminology_term[id48] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id57] matches {
+						value matches {
+							Quantity[id50] matches {	-- Biparietal diameter (BPD) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id52] matches {
+										term matches {
+											Terminology_term[id51] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id58] matches {
+						value matches {
+							Quantity[id53] matches {	-- Biparietal diameter (BPD) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id55] matches {
+										term matches {
+											Terminology_term[id54] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Occipito-frontal diameter (OFD)
+				value matches {
+					Measured<Quantity>[id68] matches {
+						value matches {
+							Quantity[id59] matches {	-- Occipito-frontal diameter (OFD) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id61] matches {
+										term matches {
+											Terminology_term[id60] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id69] matches {
+						value matches {
+							Quantity[id62] matches {	-- Occipito-frontal diameter (OFD) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id64] matches {
+										term matches {
+											Terminology_term[id63] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id70] matches {
+						value matches {
+							Quantity[id65] matches {	-- Occipito-frontal diameter (OFD) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id67] matches {
+										term matches {
+											Terminology_term[id66] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Head circumference (HC)
+				value matches {
+					Measured<Quantity>[id80] matches {
+						value matches {
+							Quantity[id71] matches {	-- Head circumference (HC) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id73] matches {
+										term matches {
+											Terminology_term[id72] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id81] matches {
+						value matches {
+							Quantity[id74] matches {	-- Head circumference (HC) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id76] matches {
+										term matches {
+											Terminology_term[id75] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id82] matches {
+						value matches {
+							Quantity[id77] matches {	-- Head circumference (HC) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id79] matches {
+										term matches {
+											Terminology_term[id78] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Trans-cerebellar diameter (TCD)
+				value matches {
+					Measured<Quantity>[id92] matches {
+						value matches {
+							Quantity[id83] matches {	-- Trans-cerebellar diameter (TCD) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id85] matches {
+										term matches {
+											Terminology_term[id84] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id93] matches {
+						value matches {
+							Quantity[id86] matches {	-- Trans-cerebellar diameter (TCD) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id88] matches {
+										term matches {
+											Terminology_term[id87] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id94] matches {
+						value matches {
+							Quantity[id89] matches {	-- Trans-cerebellar diameter (TCD) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id91] matches {
+										term matches {
+											Terminology_term[id90] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Interocular distance (IOD)
+				value matches {
+					Measured<Quantity>[id104] matches {
+						value matches {
+							Quantity[id95] matches {	-- Interocular distance (IOD) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id97] matches {
+										term matches {
+											Terminology_term[id96] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id105] matches {
+						value matches {
+							Quantity[id98] matches {	-- Interocular distance (IOD) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id100] matches {
+										term matches {
+											Terminology_term[id99] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id106] matches {
+						value matches {
+							Quantity[id101] matches {	-- Interocular distance (IOD) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id103] matches {
+										term matches {
+											Terminology_term[id102] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Binocular distance (BOD)
+				value matches {
+					Measured<Quantity>[id116] matches {
+						value matches {
+							Quantity[id107] matches {	-- Binocular distance (BOD) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id109] matches {
+										term matches {
+											Terminology_term[id108] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id117] matches {
+						value matches {
+							Quantity[id110] matches {	-- Binocular distance (BOD) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id112] matches {
+										term matches {
+											Terminology_term[id111] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id118] matches {
+						value matches {
+							Quantity[id113] matches {	-- Binocular distance (BOD) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id115] matches {
+										term matches {
+											Terminology_term[id114] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Abdominal circumference (AC)
+				value matches {
+					Measured<Quantity>[id128] matches {
+						value matches {
+							Quantity[id119] matches {	-- Abdominal circumference (AC) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id121] matches {
+										term matches {
+											Terminology_term[id120] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id129] matches {
+						value matches {
+							Quantity[id122] matches {	-- Abdominal circumference (AC) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id124] matches {
+										term matches {
+											Terminology_term[id123] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id130] matches {
+						value matches {
+							Quantity[id125] matches {	-- Abdominal circumference (AC) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id127] matches {
+										term matches {
+											Terminology_term[id126] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Femur length (FL)
+				value matches {
+					Measured<Quantity>[id140] matches {
+						value matches {
+							Quantity[id131] matches {	-- Femur length (FL) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id133] matches {
+										term matches {
+											Terminology_term[id132] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id141] matches {
+						value matches {
+							Quantity[id134] matches {	-- Femur length (FL) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id136] matches {
+										term matches {
+											Terminology_term[id135] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id142] matches {
+						value matches {
+							Quantity[id137] matches {	-- Femur length (FL) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id139] matches {
+										term matches {
+											Terminology_term[id138] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Humeral length (HL)
+				value matches {
+					Measured<Quantity>[id152] matches {
+						value matches {
+							Quantity[id143] matches {	-- Humeral length (HL) (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id145] matches {
+										term matches {
+											Terminology_term[id144] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id153] matches {
+						value matches {
+							Quantity[id146] matches {	-- Humeral length (HL) (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id148] matches {
+										term matches {
+											Terminology_term[id147] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id154] matches {
+						value matches {
+							Quantity[id149] matches {	-- Humeral length (HL) ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id151] matches {
+										term matches {
+											Terminology_term[id150] matches {
+												concept matches {[at24]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id33] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id18] occurrences matches {0..1} matches {	-- BPD method
+				value matches {
+					Coded_text[id34] matches {
+						term matches {
+							Terminology_term[id155] matches {
+								concept matches {[ac1]}		-- BPD method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id22] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"BPD method (synthesised)">
+				description = <"The method of measuring the biparietal diameter. (synthesised)">
+			>
+			["at19"] = <
+				text = <"Outer-to-outer">
+				description = <"From the leading edge of the near‐field parietal bone to the far edge of the far‐sided parietal bone.">
+			>
+			["at20"] = <
+				text = <"Outer-to-inner">
+				description = <"From the leading edge of the near‐field parietal bone to the leading edge of the far‐sided parietal bone.">
+			>
+			["at21"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at22"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["at23"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at24"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["id1"] = <
+				text = <"Foetal biometry">
+				description = <"Ultrasound and Doppler measurements of the dimensions of an embryo or foetus.">
+			>
+			["id10"] = <
+				text = <"Trans-cerebellar diameter (TCD)">
+				description = <"The maximum transverse diameter of the foetal cerebellum.">
+			>
+			["id101"] = <
+				text = <"Interocular distance (IOD) ([in_i])">
+				description = <"Interocular distance (IOD) ([in_i])">
+			>
+			["id107"] = <
+				text = <"Binocular distance (BOD) (mm)">
+				description = <"Binocular distance (BOD) (mm)">
+			>
+			["id11"] = <
+				text = <"Interocular distance (IOD)">
+				description = <"The distance between medial osseous structures of the two orbitae.">
+			>
+			["id110"] = <
+				text = <"Binocular distance (BOD) (cm)">
+				description = <"Binocular distance (BOD) (cm)">
+			>
+			["id113"] = <
+				text = <"Binocular distance (BOD) ([in_i])">
+				description = <"Binocular distance (BOD) ([in_i])">
+			>
+			["id119"] = <
+				text = <"Abdominal circumference (AC) (mm)">
+				description = <"Abdominal circumference (AC) (mm)">
+			>
+			["id12"] = <
+				text = <"Binocular distance (BOD)">
+				description = <"The distance between lateral osseous structures of the two orbitae.">
+			>
+			["id122"] = <
+				text = <"Abdominal circumference (AC) (cm)">
+				description = <"Abdominal circumference (AC) (cm)">
+			>
+			["id125"] = <
+				text = <"Abdominal circumference (AC) ([in_i])">
+				description = <"Abdominal circumference (AC) ([in_i])">
+			>
+			["id13"] = <
+				text = <"Abdominal circumference (AC)">
+				description = <"The distance around the foetal abdomen.">
+			>
+			["id131"] = <
+				text = <"Femur length (FL) (mm)">
+				description = <"Femur length (FL) (mm)">
+			>
+			["id134"] = <
+				text = <"Femur length (FL) (cm)">
+				description = <"Femur length (FL) (cm)">
+			>
+			["id137"] = <
+				text = <"Femur length (FL) ([in_i])">
+				description = <"Femur length (FL) ([in_i])">
+			>
+			["id14"] = <
+				text = <"Femur length (FL)">
+				description = <"The length of the diaphysis of the femur.">
+			>
+			["id143"] = <
+				text = <"Humeral length (HL) (mm)">
+				description = <"Humeral length (HL) (mm)">
+			>
+			["id146"] = <
+				text = <"Humeral length (HL) (cm)">
+				description = <"Humeral length (HL) (cm)">
+			>
+			["id149"] = <
+				text = <"Humeral length (HL) ([in_i])">
+				description = <"Humeral length (HL) ([in_i])">
+			>
+			["id15"] = <
+				text = <"Humeral length (HL)">
+				description = <"The length of the diaphysis of the humerus.">
+			>
+			["id16"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the foetal biometry, not captured in other fields.">
+			>
+			["id18"] = <
+				text = <"BPD method">
+				description = <"The method of measuring the biparietal diameter.">
+			>
+			["id22"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"">
+			>
+			["id35"] = <
+				text = <"Crown-rump length (CRL) (mm)">
+				description = <"Crown-rump length (CRL) (mm)">
+			>
+			["id38"] = <
+				text = <"Crown-rump length (CRL) (cm)">
+				description = <"Crown-rump length (CRL) (cm)">
+			>
+			["id41"] = <
+				text = <"Crown-rump length (CRL) ([in_i])">
+				description = <"Crown-rump length (CRL) ([in_i])">
+			>
+			["id47"] = <
+				text = <"Biparietal diameter (BPD) (mm)">
+				description = <"Biparietal diameter (BPD) (mm)">
+			>
+			["id5"] = <
+				text = <"Crown-rump length (CRL)">
+				description = <"The length of the embryo or foetus from the top of its head to bottom of its rump.">
+			>
+			["id50"] = <
+				text = <"Biparietal diameter (BPD) (cm)">
+				description = <"Biparietal diameter (BPD) (cm)">
+			>
+			["id53"] = <
+				text = <"Biparietal diameter (BPD) ([in_i])">
+				description = <"Biparietal diameter (BPD) ([in_i])">
+			>
+			["id59"] = <
+				text = <"Occipito-frontal diameter (OFD) (mm)">
+				description = <"Occipito-frontal diameter (OFD) (mm)">
+			>
+			["id62"] = <
+				text = <"Occipito-frontal diameter (OFD) (cm)">
+				description = <"Occipito-frontal diameter (OFD) (cm)">
+			>
+			["id65"] = <
+				text = <"Occipito-frontal diameter (OFD) ([in_i])">
+				description = <"Occipito-frontal diameter (OFD) ([in_i])">
+			>
+			["id7"] = <
+				text = <"Biparietal diameter (BPD)">
+				description = <"The maximum diameter of a transverse section of the foetal skull.">
+			>
+			["id71"] = <
+				text = <"Head circumference (HC) (mm)">
+				description = <"Head circumference (HC) (mm)">
+			>
+			["id74"] = <
+				text = <"Head circumference (HC) (cm)">
+				description = <"Head circumference (HC) (cm)">
+			>
+			["id77"] = <
+				text = <"Head circumference (HC) ([in_i])">
+				description = <"Head circumference (HC) ([in_i])">
+			>
+			["id8"] = <
+				text = <"Occipito-frontal diameter (OFD)">
+				description = <"The maximal diameter from the occiput to the frontal bone in the midline of the foetal skull.">
+			>
+			["id83"] = <
+				text = <"Trans-cerebellar diameter (TCD) (mm)">
+				description = <"Trans-cerebellar diameter (TCD) (mm)">
+			>
+			["id86"] = <
+				text = <"Trans-cerebellar diameter (TCD) (cm)">
+				description = <"Trans-cerebellar diameter (TCD) (cm)">
+			>
+			["id89"] = <
+				text = <"Trans-cerebellar diameter (TCD) ([in_i])">
+				description = <"Trans-cerebellar diameter (TCD) ([in_i])">
+			>
+			["id9"] = <
+				text = <"Head circumference (HC)">
+				description = <"The distance around the foetal head.">
+			>
+			["id95"] = <
+				text = <"Interocular distance (IOD) (mm)">
+				description = <"Interocular distance (IOD) (mm)">
+			>
+			["id98"] = <
+				text = <"Interocular distance (IOD) (cm)">
+				description = <"Interocular distance (IOD) (cm)">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["id5"] = <http://snomed.info/id/276352009>
+			["id8"] = <http://snomed.info/id/1156893001>
+			["id7"] = <http://snomed.info/id/281688001>
+			["id9"] = <http://snomed.info/id/363812007>
+			["id13"] = <http://snomed.info/id/396552003>
+			["id14"] = <http://snomed.info/id/396551005>
+			["at23"] = <http://snomed.info/id/258672001>
+			["at24"] = <http://snomed.info/id/258677007>
+		>
+		["loinc"] = <
+			["id5"] = <http://loinc.org/11957-8>
+			["id7"] = <http://loinc.org/11820-8>
+			["id15"] = <http://loinc.org/11966-9>
+		>
+		["openehr"] = <
+			["at21"] = <http://openehr.org/id/122>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at19", "at20">
+		>
+	>
+

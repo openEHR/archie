@@ -1,0 +1,55 @@
+archetype (adl_version=2.1.0; rm_release=0.7.0)
+	s2-EHR-Composition.encounter.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Nathan Davis<nathan.davis@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Generic encounter note">
+		>
+	>
+
+definition
+	Composition[id1] matches {	-- Encounter
+		context matches {
+			Event_context[id2] occurrences matches {1} matches {
+				other_context matches {
+					Node[id3] occurrences matches {0..1} matches {	-- Encounter Id
+						value matches {
+							Rwe_id_ref[id4] 
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Encounter">
+				description = <"Encounter">
+			>
+			["id3"] = <
+				text = <"Encounter Id">
+				description = <"-">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/75519-9>
+		>
+	>
+

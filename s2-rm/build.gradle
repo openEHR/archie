@@ -8,4 +8,8 @@ dependencies {
 	implementation project(path: ':archie-utils')
 	testImplementation project(':archie-utils')
     testImplementation project(path: ':tools')
+	testImplementation project(path: ':referencemodels')
+
+	testImplementation (testFixtures(project(':tools')))
+
 }

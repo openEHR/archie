@@ -141,7 +141,6 @@ public class RmObjectValidatorTest {
         element.setArchetypeNodeId("id5");
         element.setName(new DvText("name"));
 
-
         List<RMObjectValidationMessage> messages = validator.validate(element);
         assertEquals(messages.toString(), 1, messages.size());
 

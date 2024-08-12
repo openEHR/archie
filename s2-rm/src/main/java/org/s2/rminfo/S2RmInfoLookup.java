@@ -30,9 +30,6 @@ import org.s2.rm.entity.social_entity.*;
 import java.time.temporal.*;
 import java.util.*;
 
-/**
- * Created by pieter.bos on 02/02/16.
- */
 public class S2RmInfoLookup extends ReflectionModelInfoLookup {
 
     public static final String RM_VERSION = "0.6.5";
@@ -40,7 +37,7 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
     private static S2RmInfoLookup instance;
 
     private S2RmInfoLookup() {
-        super(new OpenEhrModelNamingStrategy(), RMObject.class);
+        super(new S2ModelNamingStrategy(), RMObject.class);
     }
 
     /**

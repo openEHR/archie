@@ -1,0 +1,390 @@
+archetype (adl_version=2.1.0; rm_release=0.7.0)
+	s2-EHR-Direct_observation.heart_rate.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Nathan Davis<nathan.davis@graphitehealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"io.graphitehealth">
+	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use">
+		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+	>
+	conversion_details = <
+		["source_model"] = <"">
+		["tool"] = <"cem2adl v6.3.0">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the speed at which an individual's heart is beating.">
+			use = <"Use to record all representations of heart rate.
+					The archetype is intended to capture heart rate measurements in all clinical scenarios - for example:
+    				- self-measurement with a home blood pressure machine; 
+    				- a heart rate captured while using a pulse oximeter:   
+    				There is a rich state model that supports interpretation of measurements through identifying patient position, exercise, confounding factors and angle of a tilt table in research.">
+			keywords = <"observations", "measurement", "hr", "vital signs", "pulse", "heart rate">
+		>
+	>
+
+definition
+	Direct_observation[id1] matches {	-- Heart Rate
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Heart Rate
+				value matches {
+					Quantity[id1061] matches {
+						magnitude matches {|0.0..<1000.0|}
+						units matches {
+							Coded_text[id1300] matches {
+								term matches {
+									Terminology_term[id1200] matches {
+										concept matches {[at2001]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id1060] occurrences matches {0..1} matches {	-- Clinical interpretation
+				value matches {
+					Text[id1065] 
+				}
+			}
+		}
+		state matches {
+			Node[id9] occurrences matches {0..1} matches {	-- Body Position
+				value matches {
+					Coded_text[id1067] matches {
+						term matches {
+							Terminology_term[id131] matches {
+								concept matches {[ac1]}		-- Position (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id1053] occurrences matches {0..1} matches {	-- Associated Situation
+				value matches {
+					Coded_text[id1068] matches {
+						term matches {
+							Terminology_term[id132] matches {
+								concept matches {[ac6]}		-- Associated Situation
+							}
+						}
+					}
+					Text[id1069] 
+				}
+			}
+			allow_archetype Node[id1031] occurrences matches {0..1} matches {	-- Exertion
+				include
+					archetype_id/value matches {/openEHR-EHR-Node\.level_of_exertion(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			Node[id1006] occurrences matches {0..1} matches {	-- Sleep Status
+				value matches {
+					Coded_text[id1068] matches {
+						term matches {
+							Terminology_term[id133] matches {
+								concept matches {[ac2]}		-- Sleep status (synthesised)
+							}
+						}
+					}
+					Text[id1069] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id15] occurrences matches {0..1} matches {	-- Location of measurement
+				value matches {
+					Coded_text[id1068] matches {
+						term matches {
+							Terminology_term[id134] matches {
+								concept matches {[ac4]}		-- Location of measurement (synthesised)
+							}
+						}
+					}
+					Text[id1069] 
+				}
+			}
+			Node[id1036] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id1078] matches {
+						term matches {
+							Terminology_term[id135] matches {
+								concept matches {[ac5]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id1026] occurrences matches {0..1} matches {	-- Device
+				include
+					archetype_id/value matches {/s2-EHR-Node\.device(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype Node[id1059] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		data_series matches {
+			Interval_event[id1043] matches {	-- Data series
+				width matches {PT24H}
+				items matches {
+					use_node Node[id5] /data[id5]	-- /data[Heart Rate]
+					use_node Node[id1060] /data[id1060]	-- /data[Clinical interpretation]
+				}
+			}
+		}
+		state_series matches {
+			Interval_event[id1144] matches {	-- State series
+				width matches {PT24H}
+				items matches {
+					use_node Node[id9] /state[id9]	-- /state[Body Position]
+					use_node Node[id1053] /state[id1053]	-- /state[Associated Situation]
+					use_node Node[id1031] /state[id1031]	-- /state[Exertion]
+					use_node Node[id1006] /state[id1006]	-- /state[Sleep Status]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Heart Rate">
+				description = <"The measurement of the rate at which an individual's heart is beating.">
+			>
+			["id2"] = <
+				text = <"History">
+				description = <"History Structural node.">
+			>
+			["id5"] = <
+				text = <"Heart Rate">
+				description = <"The measurement of the rate at which an individual's heart is beating.">
+			>
+			["id7"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id9"] = <
+				text = <"Body Position">
+				description = <"The position of the individual at the time of measurement.">
+			>
+			["id12"] = <
+				text = <"Tree">
+				description = <"List structure.">
+			>
+			["id15"] = <
+				text = <"Location of measurement">
+				description = <"Simple body site where blood pressure was measured.">
+			>
+			["at26"] = <
+				text = <"Right arm">
+				description = <"The right arm of the person.">
+			>
+			["at27"] = <
+				text = <"Left arm">
+				description = <"The left arm of the person.">
+			>
+			["at28"] = <
+				text = <"Right thigh">
+				description = <"The right thigh of the person.">
+			>
+			["at29"] = <
+				text = <"Left thigh">
+				description = <"The left thigh of the person.">
+			>
+			["id34"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the measurement, not captured in other fields.">
+			>
+			["at1001"] = <
+				text = <"Standing">
+				description = <"Standing at the time of blood pressure measurement.">
+			>
+			["at1002"] = <
+				text = <"Sitting">
+				description = <"Sitting (for example on bed or chair) at the time of blood pressure measurement.">
+			>
+			["at1003"] = <
+				text = <"Reclining">
+				description = <"Reclining at the time of blood pressure measurement.">
+			>
+			["at1004"] = <
+				text = <"Lying">
+				description = <"Lying flat at the time of blood pressure measurement.">
+			>
+			["at1012"] = <
+				text = <"Phase IV">
+				description = <"The fourth Korotkoff sound is identified as an abrupt muffling of sounds.">
+			>
+			["at1013"] = <
+				text = <"Phase V">
+				description = <"The fifth Korotkoff sound is identified by absence of sounds as the cuff pressure drops below the diastolic blood pressure.">
+			>
+			["at1015"] = <
+				text = <"Lying with tilt to left">
+				description = <"Lying flat with some lateral tilt, usually angled towards the left side.   Commonly required in the last trimester of pregnancy to relieve aortocaval compression.">
+			>
+			["at1021"] = <
+				text = <"Right wrist">
+				description = <"The right wrist of the individual.">
+			>
+			["at1022"] = <
+				text = <"Left wrist">
+				description = <"The left wrist of the individual.">
+			>
+			["id1026"] = <
+				text = <"Device">
+				description = <"Details about sphygmomanometer or other device used to measure the blood pressure.">
+			>
+			["at1027"] = <
+				text = <"Right ankle">
+				description = <"The right ankle of the individual.">
+			>
+			["id1053"] = <
+				text = <"Associated Situation">
+				description = <"TODO.">
+			>
+			["id1006"] = <
+				text = <"Sleep Status">
+				description = <"TODO.">
+			>
+			["id1031"] = <
+				text = <"Exertion">
+				description = <"Details about physical activity undertaken at the time of blood pressure measurement.">
+			>
+			["at1032"] = <
+				text = <"Left ankle">
+				description = <"The left ankle of the individual.">
+			>
+			["at1033"] = <
+				text = <"Finger">
+				description = <"A finger of the individual.">
+			>
+			["id1036"] = <
+				text = <"Method">
+				description = <"Method of measurement of blood pressure.">
+			>
+			["at1037"] = <
+				text = <"Auscultation">
+				description = <"Method of measuring blood pressure externally, using a stethoscope and Korotkoff sounds.">
+			>
+			["at1038"] = <
+				text = <"Palpation">
+				description = <"Method of measuring blood pressure externally, using palpation (usually of the brachial or radial arteries).">
+			>
+			["at1040"] = <
+				text = <"Machine">
+				description = <"Method of measuring blood pressure externally, using a blood pressure machine.">
+			>
+			["at1041"] = <
+				text = <"Invasive">
+				description = <"Method of measuring blood pressure internally ie involving penetration of the skin and measuring inside blood vessels.">
+			>
+			["id1044"] = <
+				text = <"Sleep status">
+				description = <"Sleep status - supports interpretation of 24 hour ambulatory blood pressure records.">
+			>
+			["at1045"] = <
+				text = <"Awake">
+				description = <"The individual is fully conscious.">
+			>
+			["at1046"] = <
+				text = <"Sleeping">
+				description = <"The individual is in the natural state of bodily rest.">
+			>
+			["at1052"] = <
+				text = <"Toe">
+				description = <"A toe of the individual.">
+			>
+			["id1059"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id1060"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the blood pressure measurement.">
+			>
+			["at1057"] = <
+				text = <"Dorsum of foot">
+				description = <"The individual's dorsum of the foot.">
+			>
+			["at2001"] = <
+				text = <"beats/min">
+				description = <"beats per minute for heart rate">
+			>
+			["ac1"] = <
+				text = <"Position (synthesised)">
+				description = <"The position of the individual at the time of measurement. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Sleep status (synthesised)">
+				description = <"Sleep status - supports interpretation of 24 hour ambulatory blood pressure records. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Location of measurement (synthesised)">
+				description = <"Simple body site where blood pressure was measured. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Method (synthesised)">
+				description = <"Method of measurement of blood pressure. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Associated Situation">
+				description = <"Patient states other than exercise, sleep, and body position.">
+			>
+			["id1043"] = <
+				text = <"Data series">
+				description = <"Data series">
+			>
+			["id1144"] = <
+				text = <"State series">
+				description = <"State series">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1060"] = <http://loinc.org/64110-0>
+			["id5"] = <http://loinc.org/8867-4>
+			["id9"] = <http://loinc.org/8361-8>
+			["id1"] = <http://loinc.org/8867-4>
+			["id15"] = <http://loinc.org/39111-0>
+		>
+		["snomed"] = <
+			["at2001"] = <http://snomed.info/id/258983007>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at1001", "at1002", "at1003", "at1004", "at1015">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at1045", "at1046">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at26", "at27", "at28", "at29", "at1021", "at1022", "at1027", "at1032", "at1033", "at1052", "at1057">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at1037", "at1038", "at1040", "at1041">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at1012", "at1013">
+		>
+	>
+

@@ -5,6 +5,7 @@ import com.nedap.archie.rminfo.*;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import com.nedap.archie.openehr.rminfo.OpenEhrRmMetaModelsInitialiser;
 import com.nedap.archie.openehr.rminfo.OpenEhrTestRmMetaModelsInitialiser;
+import org.s2.rminfo.S2RmMetaModelsInitialiser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +37,7 @@ public class AllMetaModelsInitialiser {
         mmInitializers = new ArrayList<>();
         mmInitializers.add(new OpenEhrRmMetaModelsInitialiser());
         mmInitializers.add(new OpenEhrTestRmMetaModelsInitialiser());
+        mmInitializers.add(new S2RmMetaModelsInitialiser());
         return mmInitializers;
     }
 

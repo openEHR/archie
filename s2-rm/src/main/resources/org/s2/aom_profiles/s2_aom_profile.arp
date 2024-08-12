@@ -21,8 +21,8 @@ rm_schema_pattern = <"s2_.*">
 -- id of terminologies and code sets to use
 --
 terminology_profile = <
-	terminology_issuer = <"openehr">
-	code_sets_issuer = <"openehr">
+	terminology_issuer = <"s2">
+	code_sets_issuer = <"s2">
 >
 
 ----------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ terminology_profile = <
 --
 archetype_parent_class = <"Locatable">
 archetype_data_value_parent_class = <"Data_value">
-archetype_visualise_descendants_of = <"Item">
+archetype_visualise_descendants_of = <"Node">
 
 ----------------------------------------------------------------------------------------
 -- mappings from AOM built-in types used for RM types
@@ -60,6 +60,7 @@ aom_rm_type_mappings = <
 rm_primitive_type_equivalences = <
 	["Byte"] = <"Integer">
 	["Double"] = <"Real">
+	["Decimal"] = <"Real">
 	["Uri"] = <"String">
 	["Integer64"] = <"Integer">
 >
@@ -67,7 +68,7 @@ rm_primitive_type_equivalences = <
 ----------------------------------------------------------------------------------------
 -- Allowed substitutions from AOM built-in types to RM types. AOM type on the left can be used
 -- as a constrainer type for the RM type on the right, even though they are not equivalents.
--- Useful to deal with two problems: stringified values and numeric type promotions, e.g. 
+-- Useful to deal with two problems: stringified values and numeric type promotions, e.g.
 -- Integer => Real or Double.
 --
 
@@ -78,8 +79,8 @@ aom_rm_type_substitutions = <
 	["DURATION"] = <"String">
 	["TERMINOLOGY_CODE"] = <"Terminology_term">
 	["INTEGER"] = <"Real">
-	["REAL"] = <"Double">
-	["Real"] = <"Double">
+	["REAL"] = <"Decimal">
+	["Real"] = <"Decimal">
 >
 
 ----------------------------------------------------------------------------------------
@@ -110,4 +111,3 @@ aom_lifecycle_mappings = <
 	["Published"] = <"published">
 	["Rejected"] = <"rejected">
 >
-

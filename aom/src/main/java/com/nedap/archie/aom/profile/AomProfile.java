@@ -21,6 +21,10 @@ public class AomProfile {
 
     private String archetypeVisualiseDescendantsOf;
 
+    private String archetypeParentClass;
+
+    private String archetypeDataValueParentClass;
+
     /**
      * Allowed type substitutions: Actual RM type names keyed by AOM built-in types which can substitute
      * for them in an archetype. E.g. &lt;value = "String", key = "ISO8601_DATE"&gt; means that if RM property
@@ -130,12 +134,28 @@ public class AomProfile {
         this.rmSchemaPattern = rmSchemaPattern;
     }
 
+    public String getArchetypeParentClass() {
+        return archetypeParentClass;
+    }
+
+    public void setArchetypeParentClass(String archetypeVisualiseDescendantsOf) {
+        this.archetypeParentClass = archetypeParentClass;
+    }
+
     public String getArchetypeVisualiseDescendantsOf() {
         return archetypeVisualiseDescendantsOf;
     }
 
     public void setArchetypeVisualiseDescendantsOf(String archetypeVisualiseDescendantsOf) {
         this.archetypeVisualiseDescendantsOf = archetypeVisualiseDescendantsOf;
+    }
+
+    public String getArchetypeDataValueParentClass() {
+        return archetypeDataValueParentClass;
+    }
+
+    public void setArchetypeDataValueParentClass(String archetypeDataValueParentClass) {
+        this.archetypeDataValueParentClass = archetypeDataValueParentClass;
     }
 
     public AomTerminologyProfile getTerminologyProfile() {
