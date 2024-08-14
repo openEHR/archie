@@ -21,9 +21,9 @@ public class AllMetaModelsInitialiserTest {
             System.out.println(validation.getLogger().toString());
 
         }
-        assertEquals(39, bmmRepository.getPersistentSchemas().size());
-        assertEquals(39, bmmRepository.getModels().size());
-        assertEquals(37, bmmRepository.getValidModels().size());
+        assertEquals(50, bmmRepository.getPersistentSchemas().size());
+        assertEquals(50, bmmRepository.getModels().size());
+        assertEquals(48, bmmRepository.getValidModels().size());
         assertEquals(2, bmmRepository.getInvalidModels().size());
     }
 
