@@ -1,21 +1,28 @@
 package org.s2.rm.base.model_support.definitions;
 
 import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Version_status
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Version_status", propOrder = {"value"})
 public class VersionStatus {
   /**
   * Enumeration value.
   */
+  @XmlElement(name = "value")
   String value;
 
   /**
   * Enumeration type.
   */
   static final VersionStatusEnum enumeration = new VersionStatusEnum();
+
+  public VersionStatus() {}
 
   // Enumeration value constructor.
   public VersionStatus(String value) {
@@ -33,6 +40,14 @@ public class VersionStatus {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), value);
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
   public String bmmClassName() {

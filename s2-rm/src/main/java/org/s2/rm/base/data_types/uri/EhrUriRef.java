@@ -1,6 +1,5 @@
 package org.s2.rm.base.data_types.uri;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -8,6 +7,7 @@ import javax.xml.bind.annotation.*;
 * BMM name: Ehr_uri_ref
 * BMM ancestors: Uri_ref
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ehr_uri_ref")

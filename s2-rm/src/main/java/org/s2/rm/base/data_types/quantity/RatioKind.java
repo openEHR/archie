@@ -1,23 +1,28 @@
 package org.s2.rm.base.data_types.quantity;
 
-import com.nedap.archie.base.RMObject;
-
 import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Ratio_kind
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
-public class RatioKind extends RMObject {
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Ratio_kind", propOrder = {"value"})
+public class RatioKind {
   /**
   * Enumeration value.
   */
+  @XmlElement(name = "value")
   int value;
 
   /**
   * Enumeration type.
   */
   static final RatioKindEnum enumeration = new RatioKindEnum();
+
+  public RatioKind() {}
 
   // Enumeration value constructor.
   public RatioKind(int value) {
@@ -35,6 +40,14 @@ public class RatioKind extends RMObject {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), value);
+  }
+
+  public int getValue() {
+    return value;
+  }
+
+  public void setValue(int value) {
+    this.value = value;
   }
 
   public String bmmClassName() {

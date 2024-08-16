@@ -1,13 +1,9 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
 
@@ -15,6 +11,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 * BMM name: Automaton
 * BMM ancestors: Individual_agent
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Automaton", propOrder = {
@@ -52,11 +49,8 @@ public class Automaton extends IndividualAgent {
       Objects.equals(uid, otherAsAutomaton.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsAutomaton.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsAutomaton.getName()) &&
-      Objects.equals(getCode(), otherAsAutomaton.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsAutomaton.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsAutomaton.getArchetypeDetails()) &&
-      Objects.equals(getFeederAudit(), otherAsAutomaton.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsAutomaton.getLinks());
+      Objects.equals(getFeederAudit(), otherAsAutomaton.getFeederAudit());
   }
 
   @Override

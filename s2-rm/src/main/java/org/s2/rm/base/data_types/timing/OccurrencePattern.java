@@ -1,41 +1,39 @@
 package org.s2.rm.base.data_types.timing;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.interval.Interval;
 import org.s2.rm.base.foundation_types.time.RmDate;
 
 /**
 * BMM name: Occurrence_pattern
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Occurrence_pattern", propOrder = {
-  "times",
-  "totalCount",
+  "occurrenceTimes",
+  "totalEventCount",
   "boundingPeriod"
 })
-public class OccurrencePattern extends RMObject {
+public class OccurrencePattern {
   /**
-  * BMM name: times | BMM type: List<Time_specifier>
+  * BMM name: occurrence_times | BMM type: List<{@literal Occurrence_times_specifier}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
-  @XmlElement(name = "times")
-  private @Nullable List<TimeSpecifier> times;
+  @XmlElement(name = "occurrence_times")
+  private @Nullable List<OccurrenceTimesSpecifier> occurrenceTimes;
 
   /**
-  * BMM name: total_count | BMM type: Integer
+  * BMM name: total_event_count | BMM type: Integer
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
-  @XmlElement(name = "total_count")
-  private int totalCount;
+  @XmlElement(name = "total_event_count")
+  private int totalEventCount;
 
   /**
-  * BMM name: bounding_period | BMM type: Interval<Date>
+  * BMM name: bounding_period | BMM type: Interval<{@literal Date}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "bounding_period")
@@ -52,32 +50,32 @@ public class OccurrencePattern extends RMObject {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
     OccurrencePattern otherAsOccurrencePattern = (OccurrencePattern) other;
-    return Objects.equals(times, otherAsOccurrencePattern.times) &&
-      Objects.equals(totalCount, otherAsOccurrencePattern.totalCount) &&
+    return Objects.equals(occurrenceTimes, otherAsOccurrencePattern.occurrenceTimes) &&
+      Objects.equals(totalEventCount, otherAsOccurrencePattern.totalEventCount) &&
       Objects.equals(boundingPeriod, otherAsOccurrencePattern.boundingPeriod);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(super.hashCode(), totalCount, boundingPeriod);
-    result = times == null ? 0 : 31 * result + times.hashCode();
+    int result = Objects.hash(super.hashCode(), totalEventCount, boundingPeriod);
+    result = occurrenceTimes == null ? 0 : 31 * result + occurrenceTimes.hashCode();
     return result;
   }
 
-  public @Nullable List<TimeSpecifier> getTimes() {
-    return times;
+  public @Nullable List<OccurrenceTimesSpecifier> getOccurrenceTimes() {
+    return occurrenceTimes;
   }
 
-  public void setTimes(@Nullable List<TimeSpecifier> times) {
-    this.times = times;
+  public void setOccurrenceTimes(@Nullable List<OccurrenceTimesSpecifier> occurrenceTimes) {
+    this.occurrenceTimes = occurrenceTimes;
   }
 
-  public int getTotalCount() {
-    return totalCount;
+  public int getTotalEventCount() {
+    return totalEventCount;
   }
 
-  public void setTotalCount(int totalCount) {
-    this.totalCount = totalCount;
+  public void setTotalEventCount(int totalEventCount) {
+    this.totalEventCount = totalEventCount;
   }
 
   public Interval<RmDate> getBoundingPeriod() {

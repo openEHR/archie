@@ -1,15 +1,15 @@
 package org.s2.rm.base.patterns.participation;
 
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.RweIdRef;
-import org.s2.rm.base.model_support.identification.ObjectRef;
 
 /**
 * BMM name: Party_identified
 * BMM ancestors: Party_proxy
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Party_identified", propOrder = {
@@ -25,11 +25,13 @@ public class PartyIdentified extends PartyProxy {
   private @Nullable String name;
 
   /**
-  * BMM name: identifiers | BMM type: List<Rwe_id_ref>
+  * BMM name: identifiers | BMM type: List<{@literal Rwe_id_ref}>
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "identifiers")
   private @Nullable List<RweIdRef> identifiers;
+
+  public PartyIdentified() {}
 
 
   @Override

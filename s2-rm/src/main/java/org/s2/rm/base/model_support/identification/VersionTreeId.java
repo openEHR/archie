@@ -1,20 +1,18 @@
 package org.s2.rm.base.model_support.identification;
 
-
-import com.nedap.archie.base.RMObject;
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Version_tree_id
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Version_tree_id", propOrder = {
   "value"
 })
-public class VersionTreeId extends RMObject {
+public class VersionTreeId {
   /**
   * BMM name: value | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

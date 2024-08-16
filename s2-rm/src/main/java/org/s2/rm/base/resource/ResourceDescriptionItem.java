@@ -1,14 +1,14 @@
 package org.s2.rm.base.resource;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 
 /**
 * BMM name: Resource_description_item
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Resource_description_item", propOrder = {
@@ -36,7 +36,7 @@ public class ResourceDescriptionItem {
   private String purpose;
 
   /**
-  * BMM name: keywords | BMM type: List<String>
+  * BMM name: keywords | BMM type: List<{@literal String}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "keywords")
@@ -57,14 +57,14 @@ public class ResourceDescriptionItem {
   private @Nullable String misuse;
 
   /**
-  * BMM name: original_resource_uri | BMM type: List<Hash<String,String>>
+  * BMM name: original_resource_uri | BMM type: List<{@literal Hash<{@literal String,String}>}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "original_resource_uri")
   private @Nullable List<Map<String, String>> originalResourceUri;
 
   /**
-  * BMM name: other_details | BMM type: Hash<String,String>
+  * BMM name: other_details | BMM type: Hash<{@literal String,String}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_details")

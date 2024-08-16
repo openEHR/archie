@@ -1,14 +1,10 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.timing.Timing;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -17,6 +13,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 * BMM name: Activity
 * BMM ancestors: Locatable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Activity", propOrder = {
@@ -26,7 +23,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class Activity extends Locatable {
   /**
-  * BMM name: description | BMM type: List<Node>
+  * BMM name: description | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "description")
@@ -63,11 +60,8 @@ public class Activity extends Locatable {
     return Objects.equals(uid, otherAsActivity.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsActivity.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsActivity.getName()) &&
-      Objects.equals(getCode(), otherAsActivity.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsActivity.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsActivity.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsActivity.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsActivity.getLinks()) &&
       Objects.equals(description, otherAsActivity.description) &&
       Objects.equals(timing, otherAsActivity.timing);
   }

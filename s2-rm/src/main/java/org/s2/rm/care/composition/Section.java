@@ -1,11 +1,8 @@
 package org.s2.rm.care.composition;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -14,6 +11,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 * BMM name: Section
 * BMM ancestors: Content_item
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Section", propOrder = {
@@ -22,7 +20,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 })
 public class Section extends ContentItem {
   /**
-  * BMM name: items | BMM type: List<Content_item>
+  * BMM name: items | BMM type: List<{@literal Content_item}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")
@@ -49,14 +47,14 @@ public class Section extends ContentItem {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
     Section otherAsSection = (Section) other;
-    return Objects.equals(uid, otherAsSection.uid) &&
+    return Objects.equals(getCode(), otherAsSection.getCode()) &&
+      Objects.equals(getOriginalCode(), otherAsSection.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsSection.getLinks()) &&
+      Objects.equals(uid, otherAsSection.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsSection.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsSection.getName()) &&
-      Objects.equals(getCode(), otherAsSection.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsSection.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsSection.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsSection.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsSection.getLinks()) &&
       Objects.equals(items, otherAsSection.items);
   }
 

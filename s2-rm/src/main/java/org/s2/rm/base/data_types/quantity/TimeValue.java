@@ -1,6 +1,5 @@
 package org.s2.rm.base.data_types.quantity;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmTime;
@@ -9,6 +8,7 @@ import org.s2.rm.base.foundation_types.time.RmTime;
 * BMM name: Time_value
 * BMM ancestors: Temporal_value
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Time_value", propOrder = {

@@ -1,14 +1,13 @@
 package org.s2.rm.base.data_types.text;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 
 /**
 * BMM name: Plain_text
 * BMM ancestors: Text
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Plain_text")

@@ -1,11 +1,8 @@
 package org.s2.rm.base.change_control;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.patterns.participation.PartyProxy;
@@ -13,6 +10,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 /**
 * BMM name: Audit_details
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Audit_details", propOrder = {
@@ -22,7 +20,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
   "description",
   "committer"
 })
-public class AuditDetails extends RMObject {
+public class AuditDetails {
   /**
   * BMM name: system_id | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
@@ -38,11 +36,11 @@ public class AuditDetails extends RMObject {
   private RmDateTime timeCommitted;
 
   /**
-  * BMM name: change_type | BMM type: Terminology_term
+  * BMM name: change_type | BMM type: Audit_change_type
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "change_type")
-  private TerminologyTerm changeType;
+  private AuditChangeType changeType;
 
   /**
   * BMM name: description | BMM type: Terminology_term
@@ -60,7 +58,7 @@ public class AuditDetails extends RMObject {
 
   public AuditDetails() {}
 
-  public AuditDetails(String systemId, RmDateTime timeCommitted, TerminologyTerm changeType, PartyProxy committer) {
+  public AuditDetails(String systemId, RmDateTime timeCommitted, AuditChangeType changeType, PartyProxy committer) {
     this.systemId = systemId;
     this.timeCommitted = timeCommitted;
     this.changeType = changeType;
@@ -100,11 +98,11 @@ public class AuditDetails extends RMObject {
     this.timeCommitted = timeCommitted;
   }
 
-  public TerminologyTerm getChangeType() {
+  public AuditChangeType getChangeType() {
     return changeType;
   }
 
-  public void setChangeType(TerminologyTerm changeType) {
+  public void setChangeType(AuditChangeType changeType) {
     this.changeType = changeType;
   }
 

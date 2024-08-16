@@ -1,13 +1,13 @@
 package org.s2.rm.base.model_support.identification;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Object_ref
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Object_ref", propOrder = {

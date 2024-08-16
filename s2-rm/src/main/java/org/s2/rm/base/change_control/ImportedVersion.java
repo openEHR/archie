@@ -1,15 +1,15 @@
 package org.s2.rm.base.change_control;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 
 /**
 * BMM name: Imported_version
-* BMM generic parameters: Imported_version<T Any>
-* BMM ancestors: Version<T>
+* BMM generic parameters: Imported_version<{@literal T Any}>
+* BMM ancestors: Version<{@literal T}>
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Imported_version", propOrder = {
@@ -17,7 +17,7 @@ import org.s2.rm.base.model_support.identification.ObjectRef;
 })
 public class ImportedVersion<T> extends Version<T> {
   /**
-  * BMM name: item | BMM type: Original_version<T>
+  * BMM name: item | BMM type: Original_version<{@literal T}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "item")

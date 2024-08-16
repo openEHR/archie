@@ -1,8 +1,7 @@
 package org.s2.rm.care.ehr;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.identification.InternetId;
@@ -12,6 +11,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 /**
 * BMM name: Ehr
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ehr", propOrder = {
@@ -69,21 +69,21 @@ public class Ehr {
   private @Nullable ObjectRef directory;
 
   /**
-  * BMM name: folders | BMM type: List<Object_ref>
+  * BMM name: folders | BMM type: List<{@literal Object_ref}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "folders")
   private @Nullable List<ObjectRef> folders;
 
   /**
-  * BMM name: compositions | BMM type: List<Object_ref>
+  * BMM name: compositions | BMM type: List<{@literal Object_ref}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "compositions")
   private @Nullable List<ObjectRef> compositions;
 
   /**
-  * BMM name: contributions | BMM type: List<Object_ref>
+  * BMM name: contributions | BMM type: List<{@literal Object_ref}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "contributions")

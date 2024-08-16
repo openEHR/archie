@@ -1,23 +1,28 @@
 package org.s2.rm.base.data_types.timing;
 
-import com.nedap.archie.base.RMObject;
-
 import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Temporal_relation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
-public class TemporalRelation extends RMObject {
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Temporal_relation", propOrder = {"value"})
+public class TemporalRelation {
   /**
   * Enumeration value.
   */
+  @XmlElement(name = "value")
   int value;
 
   /**
   * Enumeration type.
   */
   static final TemporalRelationEnum enumeration = new TemporalRelationEnum();
+
+  public TemporalRelation() {}
 
   // Enumeration value constructor.
   public TemporalRelation(int value) {
@@ -35,6 +40,14 @@ public class TemporalRelation extends RMObject {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), value);
+  }
+
+  public int getValue() {
+    return value;
+  }
+
+  public void setValue(int value) {
+    this.value = value;
   }
 
   public String bmmClassName() {

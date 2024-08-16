@@ -1,12 +1,12 @@
 package org.s2.rm.base.foundation_types.terminology;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Terminology_term
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Terminology_term", propOrder = {

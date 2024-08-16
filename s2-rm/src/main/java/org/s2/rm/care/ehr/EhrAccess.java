@@ -1,13 +1,9 @@
 package org.s2.rm.care.ehr;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 
@@ -15,6 +11,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 * BMM name: Ehr_access
 * BMM ancestors: Locatable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ehr_access", propOrder = {
@@ -53,11 +50,8 @@ public class EhrAccess extends Locatable {
     return Objects.equals(uid, otherAsEhrAccess.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsEhrAccess.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsEhrAccess.getName()) &&
-      Objects.equals(getCode(), otherAsEhrAccess.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsEhrAccess.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsEhrAccess.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsEhrAccess.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsEhrAccess.getLinks()) &&
       Objects.equals(settings, otherAsEhrAccess.settings);
   }
 

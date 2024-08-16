@@ -1,13 +1,9 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -16,6 +12,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 * BMM name: Accountability
 * BMM ancestors: Locatable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Accountability", propOrder = {
@@ -24,7 +21,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class Accountability extends Locatable {
   /**
-  * BMM name: description | BMM type: List<Node>
+  * BMM name: description | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "description")
@@ -54,11 +51,8 @@ public class Accountability extends Locatable {
     return Objects.equals(uid, otherAsAccountability.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsAccountability.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsAccountability.getName()) &&
-      Objects.equals(getCode(), otherAsAccountability.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsAccountability.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsAccountability.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsAccountability.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsAccountability.getLinks()) &&
       Objects.equals(description, otherAsAccountability.description);
   }
 

@@ -1,8 +1,6 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
-import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
@@ -14,6 +12,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Care_act_entry
 * BMM ancestors: Care_entry
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Care_act_entry", propOrder = {

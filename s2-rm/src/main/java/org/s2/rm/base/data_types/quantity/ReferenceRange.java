@@ -1,18 +1,16 @@
 package org.s2.rm.base.data_types.quantity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 
 /**
 * BMM name: Reference_range
-* BMM generic parameters: Reference_range<V Measurable>
+* BMM generic parameters: Reference_range<{@literal V Measurable}>
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Reference_range", propOrder = {
@@ -20,16 +18,17 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
   "range",
   "phenotype"
 })
-public class ReferenceRange<V extends Measurable> extends RMObject {
+public class ReferenceRange<V extends Measurable> {
   /**
   * BMM name: type | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
+  * valueConstraint: s2.ReferenceRangeMeaning
   */
   @XmlElement(name = "type")
   private TerminologyTerm type;
 
   /**
-  * BMM name: range | BMM type: Range<V>
+  * BMM name: range | BMM type: Range<{@literal V}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "range")

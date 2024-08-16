@@ -1,14 +1,11 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 
@@ -16,6 +13,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 * BMM name: State_transition
 * BMM ancestors: Locatable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "State_transition", propOrder = {
@@ -48,7 +46,7 @@ public class StateTransition extends Locatable {
   private @Nullable TerminologyTerm careflowStep;
 
   /**
-  * BMM name: reason | BMM type: List<Text>
+  * BMM name: reason | BMM type: List<{@literal Text}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "reason")
@@ -79,11 +77,8 @@ public class StateTransition extends Locatable {
     return Objects.equals(uid, otherAsStateTransition.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsStateTransition.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsStateTransition.getName()) &&
-      Objects.equals(getCode(), otherAsStateTransition.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsStateTransition.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsStateTransition.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsStateTransition.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsStateTransition.getLinks()) &&
       Objects.equals(currentState, otherAsStateTransition.currentState) &&
       Objects.equals(transition, otherAsStateTransition.transition) &&
       Objects.equals(careflowStep, otherAsStateTransition.careflowStep) &&

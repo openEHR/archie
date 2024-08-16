@@ -1,6 +1,5 @@
 package org.s2.rm.entity.social_entity;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -8,6 +7,7 @@ import javax.xml.bind.annotation.*;
 * BMM name: Aggregate_agent
 * BMM ancestors: Agent
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Aggregate_agent")

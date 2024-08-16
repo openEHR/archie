@@ -1,14 +1,14 @@
 package org.s2.rm.base.foundation_types.terminology;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
 
 /**
 * BMM name: Terminology_code
 * isAbstract: false | isPrimitiveType: true | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Terminology_code", propOrder = {

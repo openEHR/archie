@@ -1,16 +1,11 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.foundation_types.time.RmDuration;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -22,6 +17,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Action
 * BMM ancestors: Care_act_entry
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Action", propOrder = {
@@ -46,7 +42,7 @@ public class Action extends CareActEntry {
   private @Nullable RmDuration duration;
 
   /**
-  * BMM name: description | BMM type: List<Node>
+  * BMM name: description | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "description")
@@ -83,13 +79,13 @@ public class Action extends CareActEntry {
       Objects.equals(getOtherParticipations(), otherAsAction.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsAction.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsAction.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsAction.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsAction.getName()) &&
       Objects.equals(getCode(), otherAsAction.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsAction.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsAction.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsAction.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsAction.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsAction.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsAction.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsAction.getLinks()) &&
       Objects.equals(activityId, otherAsAction.activityId) &&
       Objects.equals(duration, otherAsAction.duration) &&
       Objects.equals(description, otherAsAction.description) &&

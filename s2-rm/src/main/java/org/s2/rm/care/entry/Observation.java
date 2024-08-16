@@ -1,15 +1,10 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -22,6 +17,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Observation
 * BMM ancestors: Care_act_entry
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Observation", propOrder = {
@@ -30,14 +26,14 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 })
 public class Observation extends CareActEntry {
   /**
-  * BMM name: data | BMM type: List<Node>
+  * BMM name: data | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "data")
   private @Nullable List<Node> data;
 
   /**
-  * BMM name: state | BMM type: List<Node>
+  * BMM name: state | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "state")
@@ -66,13 +62,13 @@ public class Observation extends CareActEntry {
       Objects.equals(getOtherParticipations(), otherAsObservation.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsObservation.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsObservation.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsObservation.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsObservation.getName()) &&
       Objects.equals(getCode(), otherAsObservation.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsObservation.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsObservation.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsObservation.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsObservation.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsObservation.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsObservation.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsObservation.getLinks()) &&
       Objects.equals(data, otherAsObservation.data) &&
       Objects.equals(state, otherAsObservation.state);
   }

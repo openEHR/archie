@@ -1,6 +1,5 @@
 package org.s2.rm.base.data_types.quantity;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.CodedText;
@@ -9,6 +8,7 @@ import org.s2.rm.base.data_types.text.CodedText;
 * BMM name: Coded_ordinal
 * BMM ancestors: Ordered_value
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Coded_ordinal", propOrder = {
@@ -17,11 +17,11 @@ import org.s2.rm.base.data_types.text.CodedText;
 })
 public class CodedOrdinal extends OrderedValue {
   /**
-  * BMM name: magnitude | BMM type: Real
+  * BMM name: magnitude | BMM type: Integer
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "magnitude")
-  private double magnitude;
+  private int magnitude;
 
   /**
   * BMM name: concept | BMM type: Coded_text
@@ -32,7 +32,7 @@ public class CodedOrdinal extends OrderedValue {
 
   public CodedOrdinal() {}
 
-  public CodedOrdinal(double magnitude, CodedText concept) {
+  public CodedOrdinal(int magnitude, CodedText concept) {
     this.magnitude = magnitude;
     this.concept = concept;
   }
@@ -52,11 +52,11 @@ public class CodedOrdinal extends OrderedValue {
     return Objects.hash(super.hashCode(), magnitude, concept);
   }
 
-  public double getMagnitude() {
+  public int getMagnitude() {
     return magnitude;
   }
 
-  public void setMagnitude(double magnitude) {
+  public void setMagnitude(int magnitude) {
     this.magnitude = magnitude;
   }
 

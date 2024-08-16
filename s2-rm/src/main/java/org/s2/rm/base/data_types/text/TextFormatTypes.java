@@ -1,23 +1,28 @@
 package org.s2.rm.base.data_types.text;
 
-import com.nedap.archie.base.RMObject;
-
 import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Text_format_types
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
-public class TextFormatTypes extends RMObject {
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Text_format_types", propOrder = {"value"})
+public class TextFormatTypes {
   /**
   * Enumeration value.
   */
+  @XmlElement(name = "value")
   int value;
 
   /**
   * Enumeration type.
   */
   static final TextFormatTypesEnum enumeration = new TextFormatTypesEnum();
+
+  public TextFormatTypes() {}
 
   // Enumeration value constructor.
   public TextFormatTypes(int value) {
@@ -35,6 +40,14 @@ public class TextFormatTypes extends RMObject {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), value);
+  }
+
+  public int getValue() {
+    return value;
+  }
+
+  public void setValue(int value) {
+    this.value = value;
   }
 
   public String bmmClassName() {

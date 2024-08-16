@@ -1,6 +1,6 @@
 package org.s2.rm.base.data_types.quantity;
 
-
+import java.math.BigDecimal;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.*;
 * BMM name: Ratio
 * BMM ancestors: Measurable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ratio", propOrder = {
@@ -18,25 +19,25 @@ import javax.xml.bind.annotation.*;
 })
 public class Ratio extends Measurable {
   /**
-  * BMM name: magnitude | BMM type: Real
+  * BMM name: magnitude | BMM type: Decimal
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "magnitude")
-  private double magnitude;
+  private BigDecimal magnitude;
 
   /**
-  * BMM name: numerator | BMM type: Real
+  * BMM name: numerator | BMM type: Decimal
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "numerator")
-  private double numerator;
+  private BigDecimal numerator;
 
   /**
-  * BMM name: denominator | BMM type: Real
+  * BMM name: denominator | BMM type: Decimal
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "denominator")
-  private double denominator;
+  private BigDecimal denominator;
 
   /**
   * BMM name: type | BMM type: Ratio_kind
@@ -47,7 +48,7 @@ public class Ratio extends Measurable {
 
   public Ratio() {}
 
-  public Ratio(double magnitude, double numerator, double denominator, RatioKind type) {
+  public Ratio(BigDecimal magnitude, BigDecimal numerator, BigDecimal denominator, RatioKind type) {
     this.magnitude = magnitude;
     this.numerator = numerator;
     this.denominator = denominator;
@@ -71,27 +72,27 @@ public class Ratio extends Measurable {
     return Objects.hash(super.hashCode(), magnitude, numerator, denominator, type);
   }
 
-  public double getMagnitude() {
+  public BigDecimal getMagnitude() {
     return magnitude;
   }
 
-  public void setMagnitude(double magnitude) {
+  public void setMagnitude(BigDecimal magnitude) {
     this.magnitude = magnitude;
   }
 
-  public double getNumerator() {
+  public BigDecimal getNumerator() {
     return numerator;
   }
 
-  public void setNumerator(double numerator) {
+  public void setNumerator(BigDecimal numerator) {
     this.numerator = numerator;
   }
 
-  public double getDenominator() {
+  public BigDecimal getDenominator() {
     return denominator;
   }
 
-  public void setDenominator(double denominator) {
+  public void setDenominator(BigDecimal denominator) {
     this.denominator = denominator;
   }
 

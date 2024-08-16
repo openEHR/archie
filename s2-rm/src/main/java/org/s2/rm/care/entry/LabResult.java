@@ -1,14 +1,9 @@
 package org.s2.rm.care.entry;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -20,6 +15,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Lab_result
 * BMM ancestors: Indirect_observation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Lab_result")
@@ -50,13 +46,13 @@ public class LabResult extends IndirectObservation {
       Objects.equals(getOtherParticipations(), otherAsLabResult.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsLabResult.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsLabResult.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsLabResult.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsLabResult.getName()) &&
       Objects.equals(getCode(), otherAsLabResult.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsLabResult.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsLabResult.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsLabResult.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsLabResult.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsLabResult.getArchetypeDetails()) &&
-      Objects.equals(getFeederAudit(), otherAsLabResult.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsLabResult.getLinks());
+      Objects.equals(getFeederAudit(), otherAsLabResult.getFeederAudit());
   }
 
   @Override

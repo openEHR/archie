@@ -1,16 +1,11 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.foundation_types.time.RmDuration;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.definitions.TrendKind;
@@ -24,6 +19,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Direct_observation
 * BMM ancestors: Observation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Direct_observation", propOrder = {
@@ -48,14 +44,14 @@ public class DirectObservation extends Observation {
   private @Nullable RmDuration totalDuration;
 
   /**
-  * BMM name: data_series | BMM type: List<Event>
+  * BMM name: data_series | BMM type: List<{@literal Event}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "data_series")
   private @Nullable List<Event> dataSeries;
 
   /**
-  * BMM name: state_series | BMM type: List<Event>
+  * BMM name: state_series | BMM type: List<{@literal Event}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "state_series")
@@ -86,13 +82,13 @@ public class DirectObservation extends Observation {
       Objects.equals(getOtherParticipations(), otherAsDirectObservation.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsDirectObservation.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsDirectObservation.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsDirectObservation.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsDirectObservation.getName()) &&
       Objects.equals(getCode(), otherAsDirectObservation.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsDirectObservation.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsDirectObservation.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsDirectObservation.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsDirectObservation.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsDirectObservation.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsDirectObservation.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsDirectObservation.getLinks()) &&
       Objects.equals(trend, otherAsDirectObservation.trend) &&
       Objects.equals(totalDuration, otherAsDirectObservation.totalDuration) &&
       Objects.equals(dataSeries, otherAsDirectObservation.dataSeries) &&

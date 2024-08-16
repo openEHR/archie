@@ -1,14 +1,15 @@
 package org.s2.rm.base.data_types.quantity;
 
-
+import java.math.BigDecimal;
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
+import org.s2.rm.base.data_types.text.CodedText;
 
 /**
 * BMM name: Quantity
 * BMM ancestors: Measurable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Quantity", propOrder = {
@@ -17,22 +18,22 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 })
 public class Quantity extends Measurable {
   /**
-  * BMM name: magnitude | BMM type: Real
+  * BMM name: magnitude | BMM type: Decimal
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "magnitude")
-  private double magnitude;
+  private BigDecimal magnitude;
 
   /**
-  * BMM name: units | BMM type: Terminology_term
+  * BMM name: units | BMM type: Coded_text
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "units")
-  private TerminologyTerm units;
+  private CodedText units;
 
   public Quantity() {}
 
-  public Quantity(double magnitude, TerminologyTerm units) {
+  public Quantity(BigDecimal magnitude, CodedText units) {
     this.magnitude = magnitude;
     this.units = units;
   }
@@ -52,19 +53,19 @@ public class Quantity extends Measurable {
     return Objects.hash(super.hashCode(), magnitude, units);
   }
 
-  public double getMagnitude() {
+  public BigDecimal getMagnitude() {
     return magnitude;
   }
 
-  public void setMagnitude(double magnitude) {
+  public void setMagnitude(BigDecimal magnitude) {
     this.magnitude = magnitude;
   }
 
-  public TerminologyTerm getUnits() {
+  public CodedText getUnits() {
     return units;
   }
 
-  public void setUnits(TerminologyTerm units) {
+  public void setUnits(CodedText units) {
     this.units = units;
   }
 

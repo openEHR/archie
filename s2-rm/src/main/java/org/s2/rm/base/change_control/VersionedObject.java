@@ -1,18 +1,16 @@
 package org.s2.rm.base.change_control;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
 
 /**
 * BMM name: Versioned_object
-* BMM generic parameters: Versioned_object<T Any>
+* BMM generic parameters: Versioned_object<{@literal T Any}>
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Versioned_object", propOrder = {
@@ -20,7 +18,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
   "ownerId",
   "timeCreated"
 })
-public class VersionedObject<T> extends RMObject {
+public class VersionedObject<T> {
   /**
   * BMM name: uid | BMM type: Uuid
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1

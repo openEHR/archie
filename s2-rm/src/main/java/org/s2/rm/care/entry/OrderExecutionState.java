@@ -1,21 +1,28 @@
 package org.s2.rm.care.entry;
 
 import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Order_execution_state
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Order_execution_state", propOrder = {"value"})
 public class OrderExecutionState {
   /**
   * Enumeration value.
   */
+  @XmlElement(name = "value")
   String value;
 
   /**
   * Enumeration type.
   */
   static final OrderExecutionStateEnum enumeration = new OrderExecutionStateEnum();
+
+  public OrderExecutionState() {}
 
   // Enumeration value constructor.
   public OrderExecutionState(String value) {
@@ -33,6 +40,14 @@ public class OrderExecutionState {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), value);
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
   public String bmmClassName() {

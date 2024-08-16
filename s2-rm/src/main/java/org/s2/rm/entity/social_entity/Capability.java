@@ -1,15 +1,11 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDate;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -18,6 +14,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 * BMM name: Capability
 * BMM ancestors: Locatable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Capability", propOrder = {
@@ -27,14 +24,14 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class Capability extends Locatable {
   /**
-  * BMM name: credentials | BMM type: List<Node>
+  * BMM name: credentials | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "credentials")
   private @Nullable List<Node> credentials;
 
   /**
-  * BMM name: time_validity | BMM type: Interval<Date>
+  * BMM name: time_validity | BMM type: Interval<{@literal Date}>
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time_validity")
@@ -64,11 +61,8 @@ public class Capability extends Locatable {
     return Objects.equals(uid, otherAsCapability.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsCapability.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsCapability.getName()) &&
-      Objects.equals(getCode(), otherAsCapability.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsCapability.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsCapability.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsCapability.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsCapability.getLinks()) &&
       Objects.equals(credentials, otherAsCapability.credentials) &&
       Objects.equals(timeValidity, otherAsCapability.timeValidity);
   }

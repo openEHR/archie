@@ -1,8 +1,7 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -16,6 +15,7 @@ import org.s2.rm.care.composition.ContentItem;
 * BMM name: Entry
 * BMM ancestors: Content_item
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Entry", propOrder = {
@@ -47,6 +47,7 @@ public abstract class Entry extends ContentItem {
   /**
   * BMM name: language | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
+  * valueConstraint: iso_639-1
   */
   @XmlElement(name = "language")
   private TerminologyCode language;
@@ -59,21 +60,21 @@ public abstract class Entry extends ContentItem {
   private PartyProxy subject;
 
   /**
-  * BMM name: reporter | BMM type: Party_proxy
+  * BMM name: reporter | BMM type: Participation
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "reporter")
-  private @Nullable PartyProxy reporter;
+  private @Nullable Participation reporter;
 
   /**
-  * BMM name: authorization_actions | BMM type: List<Participation>
+  * BMM name: authorization_actions | BMM type: List<{@literal Participation}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "authorization_actions")
   private @Nullable List<Participation> authorizationActions;
 
   /**
-  * BMM name: other_participations | BMM type: List<Participation>
+  * BMM name: other_participations | BMM type: List<{@literal Participation}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_participations")
@@ -135,11 +136,11 @@ public abstract class Entry extends ContentItem {
     this.subject = subject;
   }
 
-  public @Nullable PartyProxy getReporter() {
+  public @Nullable Participation getReporter() {
     return reporter;
   }
 
-  public void setReporter(@Nullable PartyProxy reporter) {
+  public void setReporter(@Nullable Participation reporter) {
     this.reporter = reporter;
   }
 

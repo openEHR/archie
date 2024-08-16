@@ -1,15 +1,16 @@
 package org.s2.rm.base.data_types.quantity;
 
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
 
 /**
 * BMM name: Range
-* BMM generic parameters: Range<V Ordered_datum>
+* BMM generic parameters: Range<{@literal V Ordered_datum}>
 * BMM ancestors: Data_value
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Range", propOrder = {
@@ -30,6 +31,8 @@ public class Range<V extends OrderedDatum> extends DataValue {
   */
   @XmlElement(name = "upper")
   private @Nullable V upper;
+
+  public Range() {}
 
 
   @Override

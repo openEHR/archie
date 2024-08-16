@@ -1,17 +1,17 @@
 package org.s2.rm.base.foundation_types.interval;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Multiplicity_interval
-* BMM ancestors: Interval<Integer>
+* BMM ancestors: Interval<{@literal Integer}>
 * isAbstract: false | isPrimitiveType: true | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Multiplicity_interval")
-public class MultiplicityInterval<T extends Integer> extends Interval<Integer> {
+public class MultiplicityInterval extends Interval<Integer> {
   public MultiplicityInterval() {}
 
   public MultiplicityInterval(boolean lowerUnbounded, boolean upperUnbounded, boolean lowerIncluded, boolean upperIncluded) {
@@ -22,7 +22,7 @@ public class MultiplicityInterval<T extends Integer> extends Interval<Integer> {
   public boolean equals(Object other) {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
-    MultiplicityInterval<T> otherAsMultiplicityInterval = (MultiplicityInterval<T>) other;
+    MultiplicityInterval otherAsMultiplicityInterval = (MultiplicityInterval) other;
     return Objects.equals(getLower(), otherAsMultiplicityInterval.getLower()) &&
       Objects.equals(getUpper(), otherAsMultiplicityInterval.getUpper()) &&
       Objects.equals(getLowerUnbounded(), otherAsMultiplicityInterval.getLowerUnbounded()) &&

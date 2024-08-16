@@ -1,12 +1,12 @@
 package org.s2.rm.base.data_types.quantity;
 
-import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Ordered_value
 * BMM ancestors: Ordered_datum
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ordered_value", propOrder = {
@@ -27,6 +27,8 @@ public abstract class OrderedValue extends OrderedDatum {
   */
   @XmlElement(name = "precision")
   private int precision;
+
+  public OrderedValue() {}
 
 
   public int getPrecision() {

@@ -1,8 +1,7 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -16,6 +15,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Care_entry
 * BMM ancestors: Entry
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Care_entry", propOrder = {
@@ -24,14 +24,14 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 })
 public abstract class CareEntry extends Entry {
   /**
-  * BMM name: qualifiers | BMM type: List<Node>
+  * BMM name: qualifiers | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "qualifiers")
   private @Nullable List<Node> qualifiers;
 
   /**
-  * BMM name: guideline_ids | BMM type: List<Uri>
+  * BMM name: guideline_ids | BMM type: List<{@literal Uri}>
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "guideline_ids")

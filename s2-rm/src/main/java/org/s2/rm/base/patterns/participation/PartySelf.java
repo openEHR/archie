@@ -2,16 +2,18 @@ package org.s2.rm.base.patterns.participation;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.model_support.identification.ObjectRef;
 
 /**
 * BMM name: Party_self
 * BMM ancestors: Party_proxy
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Party_self")
 public class PartySelf extends PartyProxy {
+  public PartySelf() {}
+
 
   @Override
   public boolean equals(Object other) {

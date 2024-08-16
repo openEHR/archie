@@ -1,12 +1,10 @@
 package org.s2.rm.base.change_control;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.encapsulated.Multimedia;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
@@ -14,6 +12,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Attestation
 * BMM ancestors: Audit_details
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Attestation", propOrder = {
@@ -39,18 +38,18 @@ public class Attestation extends AuditDetails {
   private @Nullable String proof;
 
   /**
-  * BMM name: items | BMM type: List<Uri>
+  * BMM name: items | BMM type: List<{@literal Uri}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")
   private @Nullable List<Uri> items;
 
   /**
-  * BMM name: reason | BMM type: String
+  * BMM name: reason | BMM type: Attestation_reason
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "reason")
-  private String reason;
+  private AttestationReason reason;
 
   /**
   * BMM name: is_pending | BMM type: Boolean
@@ -61,7 +60,7 @@ public class Attestation extends AuditDetails {
 
   public Attestation() {}
 
-  public Attestation(String reason, boolean isPending, String systemId, RmDateTime timeCommitted, TerminologyTerm changeType, PartyProxy committer) {
+  public Attestation(AttestationReason reason, boolean isPending, String systemId, RmDateTime timeCommitted, AuditChangeType changeType, PartyProxy committer) {
     super(systemId, timeCommitted, changeType, committer);
     this.reason = reason;
     this.isPending = isPending;
@@ -115,11 +114,11 @@ public class Attestation extends AuditDetails {
     this.items = items;
   }
 
-  public String getReason() {
+  public AttestationReason getReason() {
     return reason;
   }
 
-  public void setReason(String reason) {
+  public void setReason(AttestationReason reason) {
     this.reason = reason;
   }
 

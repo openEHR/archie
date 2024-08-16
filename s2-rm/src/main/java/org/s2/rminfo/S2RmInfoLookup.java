@@ -96,7 +96,6 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         addClass(DataValue.class);
         addClass(DateTimeValue.class);
         addClass(DateValue.class);
-        addClass(DaySpecifier.class);
         addClass(DirectObservation.class);
         addClass(DurationValue.class);
         addClass(EhrAccess.class);
@@ -171,7 +170,6 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         addClass(TerminologyId.class);
         addClass(Text.class);
         addClass(TextFormatTypes.class);
-        addClass(TimeSpecifier.class);
         addClass(TimeValue.class);
         addClass(Timing.class);
         addClass(UriRef.class);

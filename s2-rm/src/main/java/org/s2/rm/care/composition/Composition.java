@@ -1,22 +1,21 @@
 package org.s2.rm.care.composition;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
+import org.s2.rm.base.model_support.archetyped.InfoItem;
 import org.s2.rm.base.model_support.archetyped.Link;
-import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
 /**
 * BMM name: Composition
-* BMM ancestors: Locatable
+* BMM ancestors: Info_item
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Composition", propOrder = {
@@ -24,11 +23,11 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
   "language",
   "territory",
   "category",
-  "composer",
+  "author",
   "context",
   "content"
 })
-public class Composition extends Locatable {
+public class Composition extends InfoItem {
   /**
   * BMM name: uid | BMM type: Uuid
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
@@ -39,6 +38,7 @@ public class Composition extends Locatable {
   /**
   * BMM name: language | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
+  * valueConstraint: iso_639-1
   */
   @XmlElement(name = "language")
   private TerminologyCode language;
@@ -46,6 +46,7 @@ public class Composition extends Locatable {
   /**
   * BMM name: territory | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
+  * valueConstraint: iso_3166-1-alpha2
   */
   @XmlElement(name = "territory")
   private TerminologyCode territory;
@@ -53,16 +54,17 @@ public class Composition extends Locatable {
   /**
   * BMM name: category | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
+  * valueConstraint: s2.CompositionCategory
   */
   @XmlElement(name = "category")
   private TerminologyTerm category;
 
   /**
-  * BMM name: composer | BMM type: Party_proxy
+  * BMM name: author | BMM type: Party_proxy
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
-  @XmlElement(name = "composer")
-  private PartyProxy composer;
+  @XmlElement(name = "author")
+  private PartyProxy author;
 
   /**
   * BMM name: context | BMM type: Event_context
@@ -72,7 +74,7 @@ public class Composition extends Locatable {
   private @Nullable EventContext context;
 
   /**
-  * BMM name: content | BMM type: List<Content_item>
+  * BMM name: content | BMM type: List<{@literal Content_item}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "content")
@@ -80,13 +82,13 @@ public class Composition extends Locatable {
 
   public Composition() {}
 
-  public Composition(Uuid uid, TerminologyCode language, TerminologyCode territory, TerminologyTerm category, PartyProxy composer, String archetypeNodeId, String name) {
+  public Composition(Uuid uid, TerminologyCode language, TerminologyCode territory, TerminologyTerm category, PartyProxy author, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.uid = uid;
     this.language = language;
     this.territory = territory;
     this.category = category;
-    this.composer = composer;
+    this.author = author;
   }
 
   @Override
@@ -94,25 +96,25 @@ public class Composition extends Locatable {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
     Composition otherAsComposition = (Composition) other;
-    return Objects.equals(uid, otherAsComposition.uid) &&
+    return Objects.equals(getCode(), otherAsComposition.getCode()) &&
+      Objects.equals(getOriginalCode(), otherAsComposition.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsComposition.getLinks()) &&
+      Objects.equals(uid, otherAsComposition.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsComposition.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsComposition.getName()) &&
-      Objects.equals(getCode(), otherAsComposition.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsComposition.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsComposition.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsComposition.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsComposition.getLinks()) &&
       Objects.equals(language, otherAsComposition.language) &&
       Objects.equals(territory, otherAsComposition.territory) &&
       Objects.equals(category, otherAsComposition.category) &&
-      Objects.equals(composer, otherAsComposition.composer) &&
+      Objects.equals(author, otherAsComposition.author) &&
       Objects.equals(context, otherAsComposition.context) &&
       Objects.equals(content, otherAsComposition.content);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(super.hashCode(), uid, language, territory, category, composer, context);
+    int result = Objects.hash(super.hashCode(), uid, language, territory, category, author, context);
     result = content == null ? 0 : 31 * result + content.hashCode();
     return result;
   }
@@ -149,12 +151,12 @@ public class Composition extends Locatable {
     this.category = category;
   }
 
-  public PartyProxy getComposer() {
-    return composer;
+  public PartyProxy getAuthor() {
+    return author;
   }
 
-  public void setComposer(PartyProxy composer) {
-    this.composer = composer;
+  public void setAuthor(PartyProxy author) {
+    this.author = author;
   }
 
   public @Nullable EventContext getContext() {

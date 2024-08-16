@@ -1,15 +1,14 @@
 package org.s2.rm.base.data_types.text;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 
 /**
 * BMM name: Coded_text
 * BMM ancestors: Text
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Coded_text", propOrder = {

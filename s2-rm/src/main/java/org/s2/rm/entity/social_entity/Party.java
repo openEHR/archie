@@ -1,14 +1,14 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Party
 * BMM ancestors: Social_entity
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Party", propOrder = {
@@ -26,21 +26,21 @@ public abstract class Party extends SocialEntity {
   private @Nullable String legalStatus;
 
   /**
-  * BMM name: identities | BMM type: List<Party_identity>
+  * BMM name: identities | BMM type: List<{@literal Party_identity}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "identities")
   private List<PartyIdentity> identities;
 
   /**
-  * BMM name: contacts | BMM type: Set<Contact>
+  * BMM name: contacts | BMM type: Set<{@literal Contact}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "contacts")
   private @Nullable Set<Contact> contacts;
 
   /**
-  * BMM name: accountability_types | BMM type: List<Accountability>
+  * BMM name: accountability_types | BMM type: List<{@literal Accountability}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "accountability_types")

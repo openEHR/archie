@@ -1,16 +1,14 @@
 package org.s2.rm.base.change_control;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
 
 /**
 * BMM name: Contribution
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Contribution", propOrder = {
@@ -18,7 +16,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
   "audit",
   "versions"
 })
-public class Contribution extends RMObject {
+public class Contribution {
   /**
   * BMM name: uid | BMM type: Uuid
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
@@ -34,7 +32,7 @@ public class Contribution extends RMObject {
   private AuditDetails audit;
 
   /**
-  * BMM name: versions | BMM type: List<Object_ref>
+  * BMM name: versions | BMM type: List<{@literal Object_ref}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "versions")

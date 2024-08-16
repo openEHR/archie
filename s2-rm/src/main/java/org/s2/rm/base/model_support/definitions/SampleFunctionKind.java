@@ -1,21 +1,28 @@
 package org.s2.rm.base.model_support.definitions;
 
 import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Sample_function_kind
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Sample_function_kind", propOrder = {"value"})
 public class SampleFunctionKind {
   /**
   * Enumeration value.
   */
+  @XmlElement(name = "value")
   String value;
 
   /**
   * Enumeration type.
   */
   static final SampleFunctionKindEnum enumeration = new SampleFunctionKindEnum();
+
+  public SampleFunctionKind() {}
 
   // Enumeration value constructor.
   public SampleFunctionKind(String value) {
@@ -33,6 +40,14 @@ public class SampleFunctionKind {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), value);
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
   public String bmmClassName() {

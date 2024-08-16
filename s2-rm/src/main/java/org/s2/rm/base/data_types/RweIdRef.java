@@ -1,14 +1,14 @@
 package org.s2.rm.base.data_types;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Rwe_id_ref
 * BMM ancestors: Data_value
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Rwe_id_ref", propOrder = {

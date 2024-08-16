@@ -1,13 +1,9 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -16,6 +12,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 * BMM name: Party_identity
 * BMM ancestors: Locatable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Party_identity", propOrder = {
@@ -24,7 +21,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class PartyIdentity extends Locatable {
   /**
-  * BMM name: description | BMM type: List<Node>
+  * BMM name: description | BMM type: List<{@literal Node}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "description")
@@ -55,11 +52,8 @@ public class PartyIdentity extends Locatable {
     return Objects.equals(uid, otherAsPartyIdentity.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsPartyIdentity.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsPartyIdentity.getName()) &&
-      Objects.equals(getCode(), otherAsPartyIdentity.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsPartyIdentity.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsPartyIdentity.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsPartyIdentity.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsPartyIdentity.getLinks()) &&
       Objects.equals(description, otherAsPartyIdentity.description);
   }
 

@@ -1,21 +1,28 @@
 package org.s2.rm.base.data_types.quantity;
 
 import java.util.*;
+import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Comparison_operator
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Comparison_operator", propOrder = {"value"})
 public class ComparisonOperator {
   /**
   * Enumeration value.
   */
+  @XmlElement(name = "value")
   String value;
 
   /**
   * Enumeration type.
   */
   static final ComparisonOperatorEnum enumeration = new ComparisonOperatorEnum();
+
+  public ComparisonOperator() {}
 
   // Enumeration value constructor.
   public ComparisonOperator(String value) {
@@ -33,6 +40,14 @@ public class ComparisonOperator {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), value);
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
   public String bmmClassName() {

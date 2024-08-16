@@ -1,23 +1,21 @@
 package org.s2.rm.base.data_types.timing;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.time.RmDate;
 
 /**
 * BMM name: Occurrence
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Occurrence", propOrder = {
   "date",
-  "timeOfDay"
+  "timesOfDay"
 })
-public class Occurrence extends RMObject {
+public class Occurrence {
   /**
   * BMM name: date | BMM type: Date
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
@@ -26,11 +24,11 @@ public class Occurrence extends RMObject {
   private RmDate date;
 
   /**
-  * BMM name: time_of_day | BMM type: List<Hour_specifier>
+  * BMM name: times_of_day | BMM type: List<{@literal Hour_specifier}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
-  @XmlElement(name = "time_of_day")
-  private @Nullable List<HourSpecifier> timeOfDay;
+  @XmlElement(name = "times_of_day")
+  private @Nullable List<HourSpecifier> timesOfDay;
 
   public Occurrence() {}
 
@@ -44,13 +42,13 @@ public class Occurrence extends RMObject {
     if (other == null || getClass() != other.getClass()) return false;
     Occurrence otherAsOccurrence = (Occurrence) other;
     return Objects.equals(date, otherAsOccurrence.date) &&
-      Objects.equals(timeOfDay, otherAsOccurrence.timeOfDay);
+      Objects.equals(timesOfDay, otherAsOccurrence.timesOfDay);
   }
 
   @Override
   public int hashCode() {
     int result = Objects.hash(super.hashCode(), date);
-    result = timeOfDay == null ? 0 : 31 * result + timeOfDay.hashCode();
+    result = timesOfDay == null ? 0 : 31 * result + timesOfDay.hashCode();
     return result;
   }
 
@@ -62,12 +60,12 @@ public class Occurrence extends RMObject {
     this.date = date;
   }
 
-  public @Nullable List<HourSpecifier> getTimeOfDay() {
-    return timeOfDay;
+  public @Nullable List<HourSpecifier> getTimesOfDay() {
+    return timesOfDay;
   }
 
-  public void setTimeOfDay(@Nullable List<HourSpecifier> timeOfDay) {
-    this.timeOfDay = timeOfDay;
+  public void setTimesOfDay(@Nullable List<HourSpecifier> timesOfDay) {
+    this.timesOfDay = timesOfDay;
   }
 
   public String bmmClassName() {

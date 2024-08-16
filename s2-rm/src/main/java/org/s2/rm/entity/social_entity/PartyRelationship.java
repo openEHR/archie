@@ -1,24 +1,20 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.interval.Interval;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.foundation_types.time.RmDate;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
-import org.s2.rm.entity.EntityRelationship;
+import org.s2.rm.entity.entity.EntityRelationship;
 
 /**
 * BMM name: Party_relationship
 * BMM ancestors: Entity_relationship
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Party_relationship", propOrder = {
@@ -62,11 +58,8 @@ public class PartyRelationship extends EntityRelationship {
       Objects.equals(uid, otherAsPartyRelationship.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsPartyRelationship.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsPartyRelationship.getName()) &&
-      Objects.equals(getCode(), otherAsPartyRelationship.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsPartyRelationship.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsPartyRelationship.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsPartyRelationship.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsPartyRelationship.getLinks()) &&
       Objects.equals(scoper, otherAsPartyRelationship.scoper);
   }
 

@@ -1,14 +1,9 @@
 package org.s2.rm.care.entry;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -20,6 +15,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Score
 * BMM ancestors: Observation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Score")
@@ -49,13 +45,13 @@ public class Score extends Observation {
       Objects.equals(getOtherParticipations(), otherAsScore.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsScore.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsScore.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsScore.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsScore.getName()) &&
       Objects.equals(getCode(), otherAsScore.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsScore.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsScore.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsScore.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsScore.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsScore.getArchetypeDetails()) &&
-      Objects.equals(getFeederAudit(), otherAsScore.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsScore.getLinks());
+      Objects.equals(getFeederAudit(), otherAsScore.getFeederAudit());
   }
 
   @Override

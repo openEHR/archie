@@ -1,18 +1,17 @@
 package org.s2.rm.base.change_control;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.ObjectVersionId;
 
 /**
 * BMM name: Original_version
-* BMM generic parameters: Original_version<T Any>
-* BMM ancestors: Version<T>
+* BMM generic parameters: Original_version<{@literal T Any}>
+* BMM ancestors: Version<{@literal T}>
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Original_version", propOrder = {
@@ -39,25 +38,25 @@ public class OriginalVersion<T> extends Version<T> {
   private @Nullable ObjectVersionId precedingVersionUid;
 
   /**
-  * BMM name: other_input_version_uids | BMM type: List<Object_version_id>
+  * BMM name: other_input_version_uids | BMM type: List<{@literal Object_version_id}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 0..1
   */
   @XmlElement(name = "other_input_version_uids")
   private @Nullable List<ObjectVersionId> otherInputVersionUids;
 
   /**
-  * BMM name: attestations | BMM type: List<Attestation>
+  * BMM name: attestations | BMM type: List<{@literal Attestation}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "attestations")
   private @Nullable List<Attestation> attestations;
 
   /**
-  * BMM name: lifecycle_state | BMM type: Terminology_term
+  * BMM name: lifecycle_state | BMM type: Version_lifecycle_state
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "lifecycle_state")
-  private TerminologyTerm lifecycleState;
+  private VersionLifecycleState lifecycleState;
 
   /**
   * BMM name: data | BMM type: T
@@ -68,7 +67,7 @@ public class OriginalVersion<T> extends Version<T> {
 
   public OriginalVersion() {}
 
-  public OriginalVersion(ObjectVersionId uid, TerminologyTerm lifecycleState, ObjectRef contribution, AuditDetails commitAudit) {
+  public OriginalVersion(ObjectVersionId uid, VersionLifecycleState lifecycleState, ObjectRef contribution, AuditDetails commitAudit) {
     super(contribution, commitAudit);
     this.uid = uid;
     this.lifecycleState = lifecycleState;
@@ -130,11 +129,11 @@ public class OriginalVersion<T> extends Version<T> {
     this.attestations = attestations;
   }
 
-  public TerminologyTerm getLifecycleState() {
+  public VersionLifecycleState getLifecycleState() {
     return lifecycleState;
   }
 
-  public void setLifecycleState(TerminologyTerm lifecycleState) {
+  public void setLifecycleState(VersionLifecycleState lifecycleState) {
     this.lifecycleState = lifecycleState;
   }
 

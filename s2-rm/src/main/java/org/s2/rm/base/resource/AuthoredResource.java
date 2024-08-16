@@ -1,14 +1,14 @@
 package org.s2.rm.base.resource;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 
 /**
 * BMM name: Authored_resource
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Authored_resource", propOrder = {
@@ -34,7 +34,7 @@ public abstract class AuthoredResource {
   private boolean isControlled;
 
   /**
-  * BMM name: translations | BMM type: Hash<String,Translation_details>
+  * BMM name: translations | BMM type: Hash<{@literal String,Translation_details}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "translations")

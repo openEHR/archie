@@ -1,16 +1,14 @@
 package org.s2.rm.base.model_support.archetyped;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 
 /**
 * BMM name: Link
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Link", propOrder = {
@@ -18,7 +16,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
   "type",
   "target"
 })
-public class Link extends RMObject {
+public class Link {
   /**
   * BMM name: meaning | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

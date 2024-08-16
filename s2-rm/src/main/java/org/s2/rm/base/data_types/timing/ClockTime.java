@@ -1,15 +1,14 @@
 package org.s2.rm.base.data_types.timing;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.RmDuration;
 import org.s2.rm.base.foundation_types.time.RmTime;
 
 /**
 * BMM name: Clock_time
 * BMM ancestors: Hour_specifier
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Clock_time", propOrder = {
@@ -34,8 +33,7 @@ public class ClockTime extends HourSpecifier {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
     ClockTime otherAsClockTime = (ClockTime) other;
-    return Objects.equals(getDuration(), otherAsClockTime.getDuration()) &&
-      Objects.equals(time, otherAsClockTime.time);
+    return Objects.equals(time, otherAsClockTime.time);
   }
 
   @Override

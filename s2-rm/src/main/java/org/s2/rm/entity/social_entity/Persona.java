@@ -1,15 +1,11 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDate;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -18,6 +14,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 * BMM name: Persona
 * BMM ancestors: Party
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Persona", propOrder = {
@@ -35,14 +32,14 @@ public class Persona extends Party {
   private ObjectRef performer;
 
   /**
-  * BMM name: time_validity | BMM type: Interval<Date>
+  * BMM name: time_validity | BMM type: Interval<{@literal Date}>
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time_validity")
   private @Nullable Interval<RmDate> timeValidity;
 
   /**
-  * BMM name: capabilities | BMM type: List<Capability>
+  * BMM name: capabilities | BMM type: List<{@literal Capability}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "capabilities")
@@ -78,11 +75,8 @@ public class Persona extends Party {
       Objects.equals(uid, otherAsPersona.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsPersona.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsPersona.getName()) &&
-      Objects.equals(getCode(), otherAsPersona.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsPersona.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsPersona.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsPersona.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsPersona.getLinks()) &&
       Objects.equals(performer, otherAsPersona.performer) &&
       Objects.equals(timeValidity, otherAsPersona.timeValidity) &&
       Objects.equals(capabilities, otherAsPersona.capabilities);

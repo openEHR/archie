@@ -1,17 +1,15 @@
 package org.s2.rm.base.model_support.archetyped;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.data_types.RweIdRef;
 import org.s2.rm.base.data_types.encapsulated.Encapsulated;
 
 /**
 * BMM name: Feeder_audit
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Feeder_audit", propOrder = {
@@ -21,16 +19,16 @@ import org.s2.rm.base.data_types.encapsulated.Encapsulated;
   "originatingSystemAudit",
   "feederSystemAudit"
 })
-public class FeederAudit extends RMObject {
+public class FeederAudit {
   /**
-  * BMM name: originating_system_item_ids | BMM type: List<Rwe_id_ref>
+  * BMM name: originating_system_item_ids | BMM type: List<{@literal Rwe_id_ref}>
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "originating_system_item_ids")
   private @Nullable List<RweIdRef> originatingSystemItemIds;
 
   /**
-  * BMM name: feeder_system_item_ids | BMM type: List<Rwe_id_ref>
+  * BMM name: feeder_system_item_ids | BMM type: List<{@literal Rwe_id_ref}>
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "feeder_system_item_ids")

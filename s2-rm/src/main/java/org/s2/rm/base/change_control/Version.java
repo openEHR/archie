@@ -1,17 +1,14 @@
 package org.s2.rm.base.change_control;
 
-
-import javax.annotation.Nullable;;
-import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 
 /**
 * BMM name: Version
-* BMM generic parameters: Version<T Any>
+* BMM generic parameters: Version<{@literal T Any}>
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Version", propOrder = {
@@ -19,7 +16,7 @@ import org.s2.rm.base.model_support.identification.ObjectRef;
   "commitAudit",
   "signature"
 })
-public abstract class Version<T> extends RMObject {
+public abstract class Version<T> {
   /**
   * BMM name: contribution | BMM type: Object_ref
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1

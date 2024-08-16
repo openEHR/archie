@@ -1,20 +1,17 @@
 package org.s2.rm.base.patterns.data_structures;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
 
 /**
 * BMM name: Point_event
 * BMM ancestors: Event
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Point_event", propOrder = {
@@ -47,11 +44,8 @@ public class PointEvent extends Event {
       Objects.equals(uid, otherAsPointEvent.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsPointEvent.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsPointEvent.getName()) &&
-      Objects.equals(getCode(), otherAsPointEvent.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsPointEvent.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsPointEvent.getArchetypeDetails()) &&
-      Objects.equals(getFeederAudit(), otherAsPointEvent.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsPointEvent.getLinks());
+      Objects.equals(getFeederAudit(), otherAsPointEvent.getFeederAudit());
   }
 
   @Override

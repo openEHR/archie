@@ -1,12 +1,12 @@
 package org.s2.rm.base.resource;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Resource_annotations
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Resource_annotations", propOrder = {
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.*;
 })
 public class ResourceAnnotations {
   /**
-  * BMM name: documentation | BMM type: Hash<String,Hash<String,Hash<String,String>>>
+  * BMM name: documentation | BMM type: Hash<{@literal String,Hash<{@literal String,Hash<{@literal String,String}>}>}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "documentation")

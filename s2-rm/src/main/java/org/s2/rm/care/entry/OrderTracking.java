@@ -1,14 +1,14 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.patterns.data_structures.Node;
 
 /**
 * BMM name: Order_tracking
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Order_tracking", propOrder = {
@@ -40,7 +40,7 @@ public class OrderTracking {
   private @Nullable String fillerId;
 
   /**
-  * BMM name: details | BMM type: List<Node>
+  * BMM name: details | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "details")

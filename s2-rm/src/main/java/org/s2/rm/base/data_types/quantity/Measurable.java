@@ -1,12 +1,12 @@
 package org.s2.rm.base.data_types.quantity;
 
-import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Measurable
 * BMM ancestors: Ordered_value
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Measurable", propOrder = {
@@ -20,6 +20,8 @@ public abstract class Measurable extends OrderedValue {
   // This property is in at least one descendant where it probably has a different type.
   // Skip the property in the parent class (this one).
   // private @Nullable Numeric magnitude;
+
+  public Measurable() {}
 
 
   @Override

@@ -1,12 +1,11 @@
 package org.s2.rm.base.model_support.identification;
 
-
-import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Object_id
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Object_id", propOrder = {

@@ -1,6 +1,6 @@
 package org.s2.rm.base.data_types.quantity;
 
-
+import java.math.BigDecimal;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -9,6 +9,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 * BMM name: Money
 * BMM ancestors: Ordered_value
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Money", propOrder = {
@@ -17,11 +18,11 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 })
 public class Money extends OrderedValue {
   /**
-  * BMM name: magnitude | BMM type: Real
+  * BMM name: magnitude | BMM type: Decimal
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "magnitude")
-  private double magnitude;
+  private BigDecimal magnitude;
 
   /**
   * BMM name: currency | BMM type: Terminology_code
@@ -32,7 +33,7 @@ public class Money extends OrderedValue {
 
   public Money() {}
 
-  public Money(double magnitude, TerminologyCode currency) {
+  public Money(BigDecimal magnitude, TerminologyCode currency) {
     this.magnitude = magnitude;
     this.currency = currency;
   }
@@ -52,11 +53,11 @@ public class Money extends OrderedValue {
     return Objects.hash(super.hashCode(), magnitude, currency);
   }
 
-  public double getMagnitude() {
+  public BigDecimal getMagnitude() {
     return magnitude;
   }
 
-  public void setMagnitude(double magnitude) {
+  public void setMagnitude(BigDecimal magnitude) {
     this.magnitude = magnitude;
   }
 

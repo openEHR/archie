@@ -1,8 +1,7 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 
@@ -10,6 +9,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 * BMM name: Agent
 * BMM ancestors: Party
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Agent", propOrder = {
@@ -18,14 +18,14 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 })
 public abstract class Agent extends Party {
   /**
-  * BMM name: personas | BMM type: List<Persona>
+  * BMM name: personas | BMM type: List<{@literal Persona}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "personas")
   private @Nullable List<Persona> personas;
 
   /**
-  * BMM name: languages | BMM type: List<Terminology_term>
+  * BMM name: languages | BMM type: List<{@literal Terminology_term}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "languages")

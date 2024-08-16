@@ -1,13 +1,9 @@
 package org.s2.rm.care.ehr;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -17,6 +13,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 * BMM name: Folder
 * BMM ancestors: Locatable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Folder", propOrder = {
@@ -27,21 +24,21 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class Folder extends Locatable {
   /**
-  * BMM name: folders | BMM type: List<Folder>
+  * BMM name: folders | BMM type: List<{@literal Folder}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "folders")
   private @Nullable List<Folder> folders;
 
   /**
-  * BMM name: items | BMM type: List<Object_ref>
+  * BMM name: items | BMM type: List<{@literal Object_ref}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")
   private @Nullable List<ObjectRef> items;
 
   /**
-  * BMM name: details | BMM type: List<Node>
+  * BMM name: details | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "details")
@@ -71,11 +68,8 @@ public class Folder extends Locatable {
     return Objects.equals(uid, otherAsFolder.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsFolder.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsFolder.getName()) &&
-      Objects.equals(getCode(), otherAsFolder.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsFolder.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsFolder.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsFolder.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsFolder.getLinks()) &&
       Objects.equals(folders, otherAsFolder.folders) &&
       Objects.equals(items, otherAsFolder.items) &&
       Objects.equals(details, otherAsFolder.details);

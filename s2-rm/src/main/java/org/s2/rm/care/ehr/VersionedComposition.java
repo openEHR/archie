@@ -1,6 +1,5 @@
 package org.s2.rm.care.ehr;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.change_control.VersionedObject;
@@ -10,8 +9,9 @@ import org.s2.rm.base.model_support.identification.Uuid;
 
 /**
 * BMM name: Versioned_composition
-* BMM ancestors: Versioned_object<Folder>
+* BMM ancestors: Versioned_object<{@literal Folder}>
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Versioned_composition")

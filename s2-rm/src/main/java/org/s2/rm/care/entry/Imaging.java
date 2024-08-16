@@ -1,14 +1,9 @@
 package org.s2.rm.care.entry;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -20,6 +15,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Imaging
 * BMM ancestors: Indirect_observation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Imaging")
@@ -50,13 +46,13 @@ public class Imaging extends IndirectObservation {
       Objects.equals(getOtherParticipations(), otherAsImaging.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsImaging.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsImaging.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsImaging.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsImaging.getName()) &&
       Objects.equals(getCode(), otherAsImaging.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsImaging.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsImaging.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsImaging.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsImaging.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsImaging.getArchetypeDetails()) &&
-      Objects.equals(getFeederAudit(), otherAsImaging.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsImaging.getLinks());
+      Objects.equals(getFeederAudit(), otherAsImaging.getFeederAudit());
   }
 
   @Override

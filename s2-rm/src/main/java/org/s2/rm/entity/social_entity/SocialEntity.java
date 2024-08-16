@@ -1,14 +1,13 @@
 package org.s2.rm.entity.social_entity;
 
-
-import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.entity.Entity;
+import org.s2.rm.entity.entity.Entity;
 
 /**
 * BMM name: Social_entity
 * BMM ancestors: Entity
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Social_entity")

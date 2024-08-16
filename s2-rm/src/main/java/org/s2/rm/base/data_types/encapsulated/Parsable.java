@@ -1,8 +1,7 @@
 package org.s2.rm.base.data_types.encapsulated;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -11,6 +10,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 * BMM name: Parsable
 * BMM ancestors: Encapsulated
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Parsable", propOrder = {
@@ -44,6 +44,7 @@ public class Parsable extends Encapsulated {
   /**
   * BMM name: encoding | BMM type: Terminology_code
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
+  * valueConstraint: iana_character-sets
   */
   @XmlElement(name = "encoding")
   private @Nullable TerminologyCode encoding;

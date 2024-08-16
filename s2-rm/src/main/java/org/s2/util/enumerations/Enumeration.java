@@ -1,5 +1,7 @@
 package org.s2.util.enumerations;
 
+import java.util.Arrays;
+
 /// Definition of an enumeration type. In the BMM system, an 'enumeration' type is understood as an underlying basic type
 /// and a set of named constants of that type. It is designed so that the default type is Integer, and the default
 /// constants are numbered 0, 1, …
@@ -26,5 +28,9 @@ public class Enumeration<T> {
 
   public String getItemName(int itemValue) {
     return itemNames[itemValue];
+  }
+
+  public boolean isValidItemName(String itemName) {
+    return Arrays.asList(itemNames).contains(itemName);
   }
 }

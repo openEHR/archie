@@ -1,6 +1,6 @@
 package org.s2.rm.base.data_types.quantity;
 
-
+import java.math.BigDecimal;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.*;
 * BMM name: Proportion
 * BMM ancestors: Measurable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Proportion", propOrder = {
@@ -17,11 +18,11 @@ import javax.xml.bind.annotation.*;
 })
 public class Proportion extends Measurable {
   /**
-  * BMM name: magnitude | BMM type: Real
+  * BMM name: magnitude | BMM type: Decimal
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "magnitude")
-  private double magnitude;
+  private BigDecimal magnitude;
 
   /**
   * BMM name: numerator | BMM type: Quantity
@@ -39,7 +40,7 @@ public class Proportion extends Measurable {
 
   public Proportion() {}
 
-  public Proportion(double magnitude, Quantity numerator, Quantity denominator) {
+  public Proportion(BigDecimal magnitude, Quantity numerator, Quantity denominator) {
     this.magnitude = magnitude;
     this.numerator = numerator;
     this.denominator = denominator;
@@ -61,11 +62,11 @@ public class Proportion extends Measurable {
     return Objects.hash(super.hashCode(), magnitude, numerator, denominator);
   }
 
-  public double getMagnitude() {
+  public BigDecimal getMagnitude() {
     return magnitude;
   }
 
-  public void setMagnitude(double magnitude) {
+  public void setMagnitude(BigDecimal magnitude) {
     this.magnitude = magnitude;
   }
 

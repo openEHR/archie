@@ -1,16 +1,17 @@
 package org.s2.rm.base.data_types.quantity;
 
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.CodedText;
 import org.s2.rm.base.data_types.text.Text;
 
 /**
 * BMM name: Measured
-* BMM generic parameters: Measured<V Measurable>
+* BMM generic parameters: Measured<{@literal V Measurable}>
 * BMM ancestors: Ordered_datum
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Measured", propOrder = {
@@ -44,7 +45,7 @@ public class Measured<V extends Measurable> extends OrderedDatum {
   private @Nullable ComparisonOperator valueStatus;
 
   /**
-  * BMM name: reference_ranges | BMM type: List<Reference_range<V>>
+  * BMM name: reference_ranges | BMM type: List<{@literal Reference_range<{@literal V}>}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "reference_ranges")
@@ -53,6 +54,7 @@ public class Measured<V extends Measurable> extends OrderedDatum {
   /**
   * BMM name: interpretation | BMM type: Coded_text
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
+  * valueConstraint: s2.MeasuredInterpretation
   */
   @XmlElement(name = "interpretation")
   private @Nullable CodedText interpretation;
@@ -63,6 +65,8 @@ public class Measured<V extends Measurable> extends OrderedDatum {
   */
   @XmlElement(name = "interpretation_guide")
   private @Nullable Text interpretationGuide;
+
+  public Measured() {}
 
 
   @Override

@@ -1,11 +1,8 @@
 package org.s2.rm.base.patterns.participation;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.interval.Interval;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
@@ -13,6 +10,7 @@ import org.s2.rm.base.foundation_types.time.RmDateTime;
 /**
 * BMM name: Participation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Participation", propOrder = {
@@ -21,16 +19,17 @@ import org.s2.rm.base.foundation_types.time.RmDateTime;
   "mode",
   "performer"
 })
-public class Participation extends RMObject {
+public class Participation {
   /**
-  * BMM name: function | BMM type: String
+  * BMM name: function | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
+  * valueConstraint: s2.ParticipationFunction
   */
   @XmlElement(name = "function")
-  private String function;
+  private TerminologyTerm function;
 
   /**
-  * BMM name: time | BMM type: Interval<Date_time>
+  * BMM name: time | BMM type: Interval<{@literal Date_time}>
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time")
@@ -39,6 +38,7 @@ public class Participation extends RMObject {
   /**
   * BMM name: mode | BMM type: Terminology_term
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
+  * valueConstraint: s2.ParticipationMode
   */
   @XmlElement(name = "mode")
   private @Nullable TerminologyTerm mode;
@@ -52,7 +52,7 @@ public class Participation extends RMObject {
 
   public Participation() {}
 
-  public Participation(String function, PartyProxy performer) {
+  public Participation(TerminologyTerm function, PartyProxy performer) {
     this.function = function;
     this.performer = performer;
   }
@@ -73,11 +73,11 @@ public class Participation extends RMObject {
     return Objects.hash(super.hashCode(), function, time, mode, performer);
   }
 
-  public String getFunction() {
+  public TerminologyTerm getFunction() {
     return function;
   }
 
-  public void setFunction(String function) {
+  public void setFunction(TerminologyTerm function) {
     this.function = function;
   }
 

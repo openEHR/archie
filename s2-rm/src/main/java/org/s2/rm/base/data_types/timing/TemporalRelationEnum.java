@@ -5,6 +5,7 @@ import org.s2.util.enumerations.*;
 /**
 * BMM name: Temporal_relation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 public class TemporalRelationEnum extends EnumerationInteger {
   static String[] _itemNames = {"after", "before", "with"};

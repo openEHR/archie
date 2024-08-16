@@ -1,16 +1,14 @@
 package org.s2.rm.base.model_support.archetyped;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.model_support.identification.ArchetypeId;
 
 /**
 * BMM name: Archetyped
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Archetyped", propOrder = {
@@ -18,7 +16,7 @@ import org.s2.rm.base.model_support.identification.ArchetypeId;
   "templateId",
   "rmVersion"
 })
-public class Archetyped extends RMObject {
+public class Archetyped {
   /**
   * BMM name: archetype_id | BMM type: Archetype_id
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1

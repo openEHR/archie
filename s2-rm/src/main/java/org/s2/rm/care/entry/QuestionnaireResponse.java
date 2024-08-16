@@ -1,15 +1,11 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -22,6 +18,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Questionnaire_response
 * BMM ancestors: Observation
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Questionnaire_response", propOrder = {
@@ -86,13 +83,13 @@ public class QuestionnaireResponse extends Observation {
       Objects.equals(getOtherParticipations(), otherAsQuestionnaireResponse.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsQuestionnaireResponse.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsQuestionnaireResponse.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsQuestionnaireResponse.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsQuestionnaireResponse.getName()) &&
       Objects.equals(getCode(), otherAsQuestionnaireResponse.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsQuestionnaireResponse.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsQuestionnaireResponse.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsQuestionnaireResponse.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsQuestionnaireResponse.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsQuestionnaireResponse.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsQuestionnaireResponse.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsQuestionnaireResponse.getLinks()) &&
       Objects.equals(questionnaireIdentifier, otherAsQuestionnaireResponse.questionnaireIdentifier) &&
       Objects.equals(questionnaireVersion, otherAsQuestionnaireResponse.questionnaireVersion) &&
       Objects.equals(questionnaireTitle, otherAsQuestionnaireResponse.questionnaireTitle) &&

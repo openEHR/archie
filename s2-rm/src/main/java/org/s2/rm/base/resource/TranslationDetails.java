@@ -1,14 +1,14 @@
 package org.s2.rm.base.resource;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 
 /**
 * BMM name: Translation_details
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Translation_details", propOrder = {
@@ -28,7 +28,7 @@ public class TranslationDetails {
   private TerminologyCode language;
 
   /**
-  * BMM name: author | BMM type: Hash<String,String>
+  * BMM name: author | BMM type: Hash<{@literal String,String}>
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "author")
@@ -49,14 +49,14 @@ public class TranslationDetails {
   private @Nullable String versionLastTranslated;
 
   /**
-  * BMM name: other_details | BMM type: Hash<String,String>
+  * BMM name: other_details | BMM type: Hash<{@literal String,String}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_details")
   private @Nullable Map<String, String> otherDetails;
 
   /**
-  * BMM name: other_contributors | BMM type: List<String>
+  * BMM name: other_contributors | BMM type: List<{@literal String}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_contributors")

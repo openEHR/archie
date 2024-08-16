@@ -1,15 +1,11 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -21,6 +17,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Order
 * BMM ancestors: Care_act_entry
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Order", propOrder = {
@@ -44,7 +41,7 @@ public class Order extends CareActEntry {
   private @Nullable RmDateTime expiryTime;
 
   /**
-  * BMM name: activities | BMM type: List<Activity>
+  * BMM name: activities | BMM type: List<{@literal Activity}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "activities")
@@ -74,13 +71,13 @@ public class Order extends CareActEntry {
       Objects.equals(getOtherParticipations(), otherAsOrder.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsOrder.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsOrder.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsOrder.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsOrder.getName()) &&
       Objects.equals(getCode(), otherAsOrder.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsOrder.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsOrder.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsOrder.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsOrder.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsOrder.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsOrder.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsOrder.getLinks()) &&
       Objects.equals(narrative, otherAsOrder.narrative) &&
       Objects.equals(expiryTime, otherAsOrder.expiryTime) &&
       Objects.equals(activities, otherAsOrder.activities);

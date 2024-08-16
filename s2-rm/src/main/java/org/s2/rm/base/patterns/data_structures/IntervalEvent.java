@@ -1,15 +1,11 @@
 package org.s2.rm.base.patterns.data_structures;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.foundation_types.time.RmDuration;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.definitions.SampleFunctionKind;
 import org.s2.rm.base.model_support.identification.Uuid;
 
@@ -17,6 +13,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 * BMM name: Interval_event
 * BMM ancestors: Event
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Interval_event", propOrder = {
@@ -74,11 +71,8 @@ public class IntervalEvent extends Event {
       Objects.equals(uid, otherAsIntervalEvent.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsIntervalEvent.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsIntervalEvent.getName()) &&
-      Objects.equals(getCode(), otherAsIntervalEvent.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsIntervalEvent.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsIntervalEvent.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsIntervalEvent.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsIntervalEvent.getLinks()) &&
       Objects.equals(width, otherAsIntervalEvent.width) &&
       Objects.equals(sampleCount, otherAsIntervalEvent.sampleCount) &&
       Objects.equals(sampleFunction, otherAsIntervalEvent.sampleFunction);

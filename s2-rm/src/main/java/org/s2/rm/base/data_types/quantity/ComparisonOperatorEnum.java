@@ -5,6 +5,7 @@ import org.s2.util.enumerations.*;
 /**
 * BMM name: Comparison_operator
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 public class ComparisonOperatorEnum extends EnumerationString {
   static String[] _itemNames = {"<", "<=", ">", ">=", "="};

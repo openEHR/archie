@@ -1,20 +1,17 @@
 package org.s2.rm.base.model_support.identification;
 
-
-import com.nedap.archie.base.RMObject;
-
-import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Primitive_id
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Primitive_id", propOrder = {
   "value"
 })
-public abstract class PrimitiveId extends RMObject {
+public abstract class PrimitiveId {
   /**
   * BMM name: value | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

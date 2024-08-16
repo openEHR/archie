@@ -1,11 +1,8 @@
 package org.s2.rm.base.model_support.archetyped;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.patterns.participation.PartyIdentified;
 import org.s2.rm.base.patterns.participation.PartyProxy;
@@ -13,6 +10,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 /**
 * BMM name: Feeder_audit_details
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Feeder_audit_details", propOrder = {
@@ -24,7 +22,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
   "versionId",
   "otherDetails"
 })
-public class FeederAuditDetails extends RMObject {
+public class FeederAuditDetails {
   /**
   * BMM name: system_id | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
@@ -68,7 +66,7 @@ public class FeederAuditDetails extends RMObject {
   private @Nullable String versionId;
 
   /**
-  * BMM name: other_details | BMM type: Hash<String,String>
+  * BMM name: other_details | BMM type: Hash<{@literal String,String}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_details")

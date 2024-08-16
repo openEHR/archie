@@ -1,8 +1,6 @@
 package org.s2.rm.base.data_types.text;
 
-
-import javax.annotation.Nullable;;
-import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -10,7 +8,8 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 /**
 * BMM name: Text
 * BMM ancestors: Data_value
-* isAbstract: false | isPrimitiveType: false | isOverride: false
+* isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Text", propOrder = {
@@ -19,7 +18,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
   "encoding",
   "formatting"
 })
-public class Text extends DataValue {
+public abstract class Text extends DataValue {
   /**
   * BMM name: text | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
@@ -52,22 +51,6 @@ public class Text extends DataValue {
 
   public Text(String text) {
     this.text = text;
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null || getClass() != other.getClass()) return false;
-    Text otherAsText = (Text) other;
-    return Objects.equals(text, otherAsText.text) &&
-      Objects.equals(language, otherAsText.language) &&
-      Objects.equals(encoding, otherAsText.encoding) &&
-      Objects.equals(formatting, otherAsText.formatting);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), text, language, encoding, formatting);
   }
 
   public String getText() {

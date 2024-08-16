@@ -1,13 +1,9 @@
 package org.s2.rm.entity.social_entity;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
 
@@ -15,6 +11,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 * BMM name: Organization
 * BMM ancestors: Org_entity
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Organization", propOrder = {
@@ -52,11 +49,8 @@ public class Organization extends OrgEntity {
       Objects.equals(uid, otherAsOrganization.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsOrganization.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsOrganization.getName()) &&
-      Objects.equals(getCode(), otherAsOrganization.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsOrganization.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsOrganization.getArchetypeDetails()) &&
-      Objects.equals(getFeederAudit(), otherAsOrganization.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsOrganization.getLinks());
+      Objects.equals(getFeederAudit(), otherAsOrganization.getFeederAudit());
   }
 
   @Override

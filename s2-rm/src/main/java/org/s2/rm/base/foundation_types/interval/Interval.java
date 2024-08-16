@@ -1,14 +1,15 @@
 package org.s2.rm.base.foundation_types.interval;
 
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 
 /**
 * Type defining an interval of any ordered type.
 * BMM name: Interval
-* BMM generic parameters: Interval<T Comparable>
+* BMM generic parameters: Interval<{@literal T Comparable}>
 * isAbstract: false | isPrimitiveType: true | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Interval", propOrder = {

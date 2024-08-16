@@ -1,18 +1,17 @@
 package org.s2.rm.care.composition;
 
-
-import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.model_support.archetyped.Locatable;
+import org.s2.rm.base.model_support.archetyped.InfoItem;
 
 /**
 * BMM name: Content_item
-* BMM ancestors: Locatable
+* BMM ancestors: Info_item
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Content_item")
-public abstract class ContentItem extends Locatable {
+public abstract class ContentItem extends InfoItem {
   public ContentItem() {}
 
   public ContentItem(String archetypeNodeId, String name) {

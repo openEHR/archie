@@ -1,6 +1,5 @@
 package org.s2.rm.base.foundation_types.time;
 
-
 import java.time.*;
 import java.util.*;
 import javax.xml.bind.annotation.*;
@@ -10,6 +9,7 @@ import javax.xml.bind.annotation.*;
 * BMM name: Date_time
 * BMM ancestors: Temporal
 * isAbstract: false | isPrimitiveType: true | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Date_time")
@@ -35,7 +35,7 @@ public class RmDateTime extends Temporal {
 
   @Override
   public int compareTo(Temporal other) {
-    return getDateTimeValue().compareTo(LocalDateTime.parse(other.getValue()));
+    return getDateTimeValue().compareTo(LocalDateTime.parse(((RmDateTime)other).getValue()));
   }
 
   LocalDateTime getDateTimeValue() { return LocalDateTime.parse(getValue()); }

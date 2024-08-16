@@ -1,8 +1,7 @@
 package org.s2.rm.base.data_types.encapsulated;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
@@ -11,6 +10,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 * BMM name: Multimedia
 * BMM ancestors: Encapsulated
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Multimedia", propOrder = {
@@ -30,7 +30,7 @@ public class Multimedia extends Encapsulated {
   private @Nullable String alternateText;
 
   /**
-  * BMM name: data | BMM type: Array<Byte>
+  * BMM name: data | BMM type: Array<{@literal Byte}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "data")
@@ -39,6 +39,7 @@ public class Multimedia extends Encapsulated {
   /**
   * BMM name: media_type | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
+  * valueConstraint: iana_media-types
   */
   @XmlElement(name = "media_type")
   private TerminologyCode mediaType;

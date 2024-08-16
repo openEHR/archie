@@ -1,14 +1,11 @@
 package org.s2.rm.care.composition;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -19,6 +16,7 @@ import org.s2.rm.base.patterns.participation.PartyIdentified;
 * BMM name: Event_context
 * BMM ancestors: Locatable
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Event_context", propOrder = {
@@ -54,7 +52,7 @@ public class EventContext extends Locatable {
   private @Nullable RmDateTime endTime;
 
   /**
-  * BMM name: participations | BMM type: List<Participation>
+  * BMM name: participations | BMM type: List<{@literal Participation}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "participations")
@@ -69,13 +67,14 @@ public class EventContext extends Locatable {
 
   /**
   * BMM name: setting | BMM type: Terminology_term
-  * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
+  * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
+  * valueConstraint: s2.Setting
   */
   @XmlElement(name = "setting")
-  private TerminologyTerm setting;
+  private @Nullable TerminologyTerm setting;
 
   /**
-  * BMM name: other_context | BMM type: List<Node>
+  * BMM name: other_context | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_context")
@@ -93,10 +92,9 @@ public class EventContext extends Locatable {
 
   public EventContext() {}
 
-  public EventContext(RmDateTime startTime, TerminologyTerm setting, String archetypeNodeId, String name) {
+  public EventContext(RmDateTime startTime, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.startTime = startTime;
-    this.setting = setting;
   }
 
   @Override
@@ -107,11 +105,8 @@ public class EventContext extends Locatable {
     return Objects.equals(uid, otherAsEventContext.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsEventContext.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsEventContext.getName()) &&
-      Objects.equals(getCode(), otherAsEventContext.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsEventContext.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsEventContext.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsEventContext.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsEventContext.getLinks()) &&
       Objects.equals(healthCareFacility, otherAsEventContext.healthCareFacility) &&
       Objects.equals(startTime, otherAsEventContext.startTime) &&
       Objects.equals(endTime, otherAsEventContext.endTime) &&
@@ -169,11 +164,11 @@ public class EventContext extends Locatable {
     this.location = location;
   }
 
-  public TerminologyTerm getSetting() {
+  public @Nullable TerminologyTerm getSetting() {
     return setting;
   }
 
-  public void setSetting(TerminologyTerm setting) {
+  public void setSetting(@Nullable TerminologyTerm setting) {
     this.setting = setting;
   }
 

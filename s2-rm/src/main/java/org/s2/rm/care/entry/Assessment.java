@@ -1,15 +1,12 @@
 package org.s2.rm.care.entry;
 
-
-import javax.annotation.Nullable;;
+import java.math.BigDecimal;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.data_types.text.Text;
-import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -21,6 +18,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 * BMM name: Assessment
 * BMM ancestors: Care_entry
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Assessment", propOrder = {
@@ -30,25 +28,26 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 })
 public class Assessment extends CareEntry {
   /**
-  * BMM name: data | BMM type: List<Node>
+  * BMM name: data | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "data")
   private @Nullable List<Node> data;
 
   /**
-  * BMM name: probability | BMM type: Real
+  * BMM name: probability | BMM type: Decimal
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "probability")
-  private double probability;
+  private BigDecimal probability;
 
   /**
-  * BMM name: certainty | BMM type: Terminology_code
+  * BMM name: certainty | BMM type: Terminology_term
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
+  * valueConstraint: s2.Certainty
   */
   @XmlElement(name = "certainty")
-  private @Nullable TerminologyCode certainty;
+  private @Nullable TerminologyTerm certainty;
 
   public Assessment() {}
 
@@ -72,13 +71,13 @@ public class Assessment extends CareEntry {
       Objects.equals(getOtherParticipations(), otherAsAssessment.getOtherParticipations()) &&
       Objects.equals(getWorkflowId(), otherAsAssessment.getWorkflowId()) &&
       Objects.equals(getComment(), otherAsAssessment.getComment()) &&
-      Objects.equals(getArchetypeNodeId(), otherAsAssessment.getArchetypeNodeId()) &&
-      Objects.equals(getName(), otherAsAssessment.getName()) &&
       Objects.equals(getCode(), otherAsAssessment.getCode()) &&
       Objects.equals(getOriginalCode(), otherAsAssessment.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsAssessment.getLinks()) &&
+      Objects.equals(getArchetypeNodeId(), otherAsAssessment.getArchetypeNodeId()) &&
+      Objects.equals(getName(), otherAsAssessment.getName()) &&
       Objects.equals(getArchetypeDetails(), otherAsAssessment.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsAssessment.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsAssessment.getLinks()) &&
       Objects.equals(data, otherAsAssessment.data) &&
       Objects.equals(probability, otherAsAssessment.probability) &&
       Objects.equals(certainty, otherAsAssessment.certainty);
@@ -99,19 +98,19 @@ public class Assessment extends CareEntry {
     this.data = data;
   }
 
-  public double getProbability() {
+  public BigDecimal getProbability() {
     return probability;
   }
 
-  public void setProbability(double probability) {
+  public void setProbability(BigDecimal probability) {
     this.probability = probability;
   }
 
-  public @Nullable TerminologyCode getCertainty() {
+  public @Nullable TerminologyTerm getCertainty() {
     return certainty;
   }
 
-  public void setCertainty(@Nullable TerminologyCode certainty) {
+  public void setCertainty(@Nullable TerminologyTerm certainty) {
     this.certainty = certainty;
   }
 

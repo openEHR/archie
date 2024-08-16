@@ -5,6 +5,7 @@ import org.s2.util.enumerations.*;
 /**
 * BMM name: Sample_function_kind
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 public class SampleFunctionKindEnum extends EnumerationString {
   static String[] _itemNames = {"actual", "minimum", "maximum", "mean", "mode", "median", "increase", "decrease", "change", "total"};

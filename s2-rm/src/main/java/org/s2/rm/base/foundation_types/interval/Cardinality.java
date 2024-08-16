@@ -1,12 +1,12 @@
 package org.s2.rm.base.foundation_types.interval;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Cardinality
 * isAbstract: false | isPrimitiveType: true | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Cardinality", propOrder = {

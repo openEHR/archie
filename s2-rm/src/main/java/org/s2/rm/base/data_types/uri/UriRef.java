@@ -1,6 +1,5 @@
 package org.s2.rm.base.data_types.uri;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
@@ -9,6 +8,7 @@ import org.s2.rm.base.data_types.DataValue;
 * BMM name: Uri_ref
 * BMM ancestors: Data_value
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Uri_ref", propOrder = {

@@ -1,8 +1,7 @@
 package org.s2.rm.base.patterns.data_structures;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.archetyped.Locatable;
@@ -11,6 +10,7 @@ import org.s2.rm.base.model_support.archetyped.Locatable;
 * BMM name: Event
 * BMM ancestors: Locatable
 * isAbstract: true | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Event", propOrder = {
@@ -26,7 +26,7 @@ public abstract class Event extends Locatable {
   private RmDateTime time;
 
   /**
-  * BMM name: items | BMM type: List<Node>
+  * BMM name: items | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")

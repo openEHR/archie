@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.*;
 * BMM name: Uri
 * BMM ancestors: String
 * isAbstract: false | isPrimitiveType: true | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Uri")

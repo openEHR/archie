@@ -1,33 +1,32 @@
 package org.s2.rm.base.patterns.data_structures;
 
-
-import javax.annotation.Nullable;;
 import java.util.*;
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.model_support.archetyped.Archetyped;
 import org.s2.rm.base.model_support.archetyped.FeederAudit;
+import org.s2.rm.base.model_support.archetyped.InfoItem;
 import org.s2.rm.base.model_support.archetyped.Link;
-import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 
 /**
 * BMM name: Node
-* BMM ancestors: Locatable
+* BMM ancestors: Info_item
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Node", propOrder = {
   "uid",
   "value",
   "originalValue",
-  "nullFlavour",
+  "nullFlavor",
   "nullReason",
   "items"
 })
-public class Node extends Locatable {
+public class Node extends InfoItem {
   /**
   * BMM name: value | BMM type: Data_value
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
@@ -43,11 +42,12 @@ public class Node extends Locatable {
   private @Nullable DataValue originalValue;
 
   /**
-  * BMM name: null_flavour | BMM type: Terminology_term
+  * BMM name: null_flavor | BMM type: Terminology_term
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
+  * valueConstraint: s2.NullFlavor
   */
-  @XmlElement(name = "null_flavour")
-  private @Nullable TerminologyTerm nullFlavour;
+  @XmlElement(name = "null_flavor")
+  private @Nullable TerminologyTerm nullFlavor;
 
   /**
   * BMM name: null_reason | BMM type: Text
@@ -57,7 +57,7 @@ public class Node extends Locatable {
   private @Nullable Text nullReason;
 
   /**
-  * BMM name: items | BMM type: List<Node>
+  * BMM name: items | BMM type: List<{@literal Node}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")
@@ -84,24 +84,24 @@ public class Node extends Locatable {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
     Node otherAsNode = (Node) other;
-    return Objects.equals(uid, otherAsNode.uid) &&
+    return Objects.equals(getCode(), otherAsNode.getCode()) &&
+      Objects.equals(getOriginalCode(), otherAsNode.getOriginalCode()) &&
+      Objects.equals(getLinks(), otherAsNode.getLinks()) &&
+      Objects.equals(uid, otherAsNode.uid) &&
       Objects.equals(getArchetypeNodeId(), otherAsNode.getArchetypeNodeId()) &&
       Objects.equals(getName(), otherAsNode.getName()) &&
-      Objects.equals(getCode(), otherAsNode.getCode()) &&
-      Objects.equals(getOriginalCode(), otherAsNode.getOriginalCode()) &&
       Objects.equals(getArchetypeDetails(), otherAsNode.getArchetypeDetails()) &&
       Objects.equals(getFeederAudit(), otherAsNode.getFeederAudit()) &&
-      Objects.equals(getLinks(), otherAsNode.getLinks()) &&
       Objects.equals(value, otherAsNode.value) &&
       Objects.equals(originalValue, otherAsNode.originalValue) &&
-      Objects.equals(nullFlavour, otherAsNode.nullFlavour) &&
+      Objects.equals(nullFlavor, otherAsNode.nullFlavor) &&
       Objects.equals(nullReason, otherAsNode.nullReason) &&
       Objects.equals(items, otherAsNode.items);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(super.hashCode(), uid, value, originalValue, nullFlavour, nullReason);
+    int result = Objects.hash(super.hashCode(), uid, value, originalValue, nullFlavor, nullReason);
     result = items == null ? 0 : 31 * result + items.hashCode();
     return result;
   }
@@ -122,12 +122,12 @@ public class Node extends Locatable {
     this.originalValue = originalValue;
   }
 
-  public @Nullable TerminologyTerm getNullFlavour() {
-    return nullFlavour;
+  public @Nullable TerminologyTerm getNullFlavor() {
+    return nullFlavor;
   }
 
-  public void setNullFlavour(@Nullable TerminologyTerm nullFlavour) {
-    this.nullFlavour = nullFlavour;
+  public void setNullFlavor(@Nullable TerminologyTerm nullFlavor) {
+    this.nullFlavor = nullFlavor;
   }
 
   public @Nullable Text getNullReason() {

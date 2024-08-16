@@ -1,6 +1,5 @@
 package org.s2.rm.base.model_support.identification;
 
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -8,6 +7,7 @@ import javax.xml.bind.annotation.*;
 * BMM name: Object_version_id
 * BMM ancestors: Object_id
 * isAbstract: false | isPrimitiveType: false | isOverride: false
+* BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Object_version_id")
