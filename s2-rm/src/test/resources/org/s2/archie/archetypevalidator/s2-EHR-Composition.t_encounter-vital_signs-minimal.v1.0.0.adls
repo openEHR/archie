@@ -1,0 +1,364 @@
+template (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.t_encounter-vital_signs-minimal.v1.0.0
+
+specialize
+	s2-EHR-Composition.encounter.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Nathan Davis<nathan.davis@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Simplified vital Signs Panel">
+		>
+	>
+
+definition
+	Composition[id1.1] matches {
+		content matches {
+			use_archetype Direct_observation[id0.1, s2-EHR-Direct_observation.t_vital_signs-minimal-bp.v1] occurrences matches {0..1}
+			use_archetype Direct_observation[id0.2, s2-EHR-Direct_observation.t_vital_signs-minimal-hr.v1] occurrences matches {0..1}
+			use_archetype Direct_observation[id0.3, s2-EHR-Direct_observation.t_vital_signs-minimal-weight.v1] occurrences matches {0..1}
+			use_archetype Direct_observation[id0.4, s2-EHR-Direct_observation.t_vital_signs-minimal-height.v1] occurrences matches {0..1}
+			use_archetype Direct_observation[id0.5, s2-EHR-Direct_observation.t_vital_signs-minimal-bmi.v1] occurrences matches {0..1}
+			use_archetype Direct_observation[id0.6, s2-EHR-Direct_observation.t_vital_signs-minimal-pulse_ox.v1.0.0] occurrences matches {0..1}
+			use_archetype Direct_observation[id0.7, s2-EHR-Direct_observation.t_vital_signs-minimal-body_temp.v1] occurrences matches {0..1}
+			use_archetype Direct_observation[id0.8, s2-EHR-Direct_observation.t_vital_signs-minimal-resp_rate.v1] occurrences matches {0..1}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Vital signs panel">
+				description = <"Set of vital signs and other basic observations">
+			>
+			["id0.1"] = <
+				text = <"Blood pressure">
+				description = <"Vital signs BP observation">
+			>
+			["id0.2"] = <
+				text = <"Heart rate">
+				description = <"Vital signs heart rate observation">
+			>
+			["id0.3"] = <
+				text = <"Body weight">
+				description = <"Vital signs body weight observation">
+			>
+			["id0.4"] = <
+				text = <"Height">
+				description = <"Vital signs height observation">
+			>
+			["id0.5"] = <
+				text = <"BMI">
+				description = <"Vital signs BMI observation">
+			>
+			["id0.6"] = <
+				text = <"Pulse oximetry">
+				description = <"Vital signs pulse oximetry observation">
+			>
+			["id0.7"] = <
+				text = <"Body Temperature">
+				description = <"Vital signs body temperature observation">
+			>
+			["id0.8"] = <
+				text = <"Respiratory Rate">
+				description = <"Vital signs respiratory rate observation">
+			>
+		>
+	>
+
+	term_bindings = <
+		["loinc"] = <
+			["id1.1"] = <http://loinc.org/85353-1>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Direct_observation.t_vital_signs-minimal-bp.v1.0.0
+
+specialize
+	s2-EHR-Direct_observation.blood_pressure.v2
+
+definition
+	Direct_observation[id1.1] matches {
+		/data matches {
+			Node[id1008] occurrences matches {0} 
+			Node[id34] occurrences matches {0} 
+		}
+		/state matches {
+			Node[id1044] occurrences matches {0} 
+			Node[id1053] occurrences matches {0} 
+			Node[id1006] occurrences matches {0} 
+			use_archetype Node[id1031, s2-EHR-Node.level_of_exertion.v0] occurrences matches {0} 
+		}
+		qualifiers existence matches {0}
+		data_series existence matches {0}
+		state_series existence matches {0}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"BP as used in vital signs panel">
+				description = <"BP as used in vital signs panel">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Direct_observation.t_vital_signs-minimal-hr.v1.0.0
+
+specialize
+	s2-EHR-Direct_observation.heart_rate.v1
+
+definition
+	Direct_observation[id1.1] matches {	-- BP as used in vital signs panel
+		/data matches {
+			Node[id1060] occurrences matches {0} 
+		}
+		state existence matches {0} 
+		qualifiers existence matches {0} 
+		data_series existence matches {0} 
+		state_series existence matches {0} 
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Heart rate as used in vital signs panel">
+				description = <"Heart rate as used in vital signs panel">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Direct_observation.t_vital_signs-minimal-weight.v1.0.0
+
+specialize
+	s2-EHR-Direct_observation.body_weight.v2
+
+definition
+	Direct_observation[id1.1] matches {
+		/data matches {
+			Node[id25] occurrences matches {0} 
+		}
+		/state matches {
+			Node[id26] occurrences matches {0} 
+		}
+		qualifiers existence matches {0} 
+		data_series existence matches {0}
+		state_series existence matches {0}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Body weight as used in vital signs panel">
+				description = <"Body weight as used in vital signs panel">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Direct_observation.t_vital_signs-minimal-height.v1.0.0
+
+specialize
+	s2-EHR-Direct_observation.height.v2
+
+definition
+	Direct_observation[id1.1] matches {
+		/data matches {
+			Node[id19] occurrences matches {0} 
+		}
+		state existence matches {0} 
+		/qualifiers matches {
+			use_archetype Node[id12, s2-EHR-Node.device.v1] occurrences matches {0} 
+		} 
+		data_series existence matches {0}
+		state_series existence matches {0}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Body height in vital signs panel">
+				description = <"Body height as used in vital signs panel">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Direct_observation.t_vital_signs-minimal-bmi.v1.0.0
+
+specialize
+	s2-EHR-Direct_observation.body_mass_index.v2
+
+
+definition
+	Direct_observation[id1.1] matches {	-- Body mass index
+		/data matches {
+			Node[id13] occurrences matches {0} 
+			Node[id14] occurrences matches {0} 
+		}
+		state existence matches {0} 
+		qualifiers existence matches {0} 
+		data_series existence matches {0} 
+		state_series existence matches {0} 
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Body mass indexin vital signs panel">
+				description = <"Body mass indexas used in vital signs panel">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Direct_observation.t_vital_signs-minimal-pulse_ox.v1.0.0
+
+specialize
+	s2-EHR-Direct_observation.pulse_oximetry.v1
+
+definition
+	Direct_observation[id1.1] matches {	
+		/data matches {
+			Node[id45] occurrences matches {0} 
+			Node[id46] occurrences matches {0} 
+			Node[id47] occurrences matches {0} 
+			Node[id59] occurrences matches {0} 
+			Node[id37] occurrences matches {0} 
+			use_archetype Node[id55, s2-EHR-Node.waveform.v0] occurrences matches {0} 
+			use_archetype Node[id61, s2-EHR-Node.media_file.v1] occurrences matches {0} 
+		}
+		state existence matches {0} 
+		/qualifiers matches {
+			Node[id62] occurrences matches {0} 
+			use_archetype Node[id19, s2-EHR-Node.device.v1] occurrences matches {0} 
+			allow_archetype Node[id60] occurrences matches {0}
+
+			Node[id10] matches {
+				value matches {
+					Coded_text[id70.1] matches {
+						term matches {
+							Terminology_term[id0.2] matches {
+								concept matches {[ac0.1]}
+							}
+						}
+					}
+				}
+			}
+		} 
+		data_series existence matches {0} 
+		state_series existence matches {0} 
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Pulse oximetry in vital signs panel">
+				description = <"Pulse oximetry as used in vital signs panel">
+			>
+			["ac0.1"] = <
+				text = <"Sensor site">
+				description = <"Pulse oximetry sensor site">
+			>
+		>
+	>
+	term_bindings = <
+		["s2"] = <
+			["ac0.1"] = <http://s2health.org/id/s2.OxygenSaturationBodyLocation>
+		>
+	>
+
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Direct_observation.t_vital_signs-minimal-body_temp.v1.0.0
+
+specialize
+	s2-EHR-Direct_observation.body_temperature.v2
+
+definition
+	Direct_observation[id1.1] matches {	
+		/data matches {
+			Node[id64] occurrences matches {0} 
+		}
+		/qualifiers matches {
+			use_archetype Node[id60, s2-EHR-Node.device.v1] occurrences matches {0} 
+			allow_archetype Node[id65] occurrences matches {0} 
+			allow_archetype Node[id63] occurrences matches {0} 
+		}
+		state existence matches {0} 
+		data_series existence matches {0} 
+		state_series existence matches {0} 
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Body temperature in vital signs panel">
+				description = <"Body temperature as used in vital signs panel">
+			>
+		>
+	>
+
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Direct_observation.t_vital_signs-minimal-resp_rate.v1.0.0
+
+specialize
+	s2-EHR-Direct_observation.respiratory_rate.v1
+
+definition
+	Direct_observation[id1.1] matches {	
+		/data matches {
+			Node[id1060] occurrences matches {0} 
+		}
+		/qualifiers matches {
+			use_archetype Node[id1026, s2-EHR-Node.device.v1] occurrences matches {0} 
+		}
+		state existence matches {0} 
+		data_series existence matches {0} 
+		state_series existence matches {0} 
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Respiratory reate in vital signs panel">
+				description = <"Respiratory reate as used in vital signs panel">
+			>
+		>
+	>
+
+

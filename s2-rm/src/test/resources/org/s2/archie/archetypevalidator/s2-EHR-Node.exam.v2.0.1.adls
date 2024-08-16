@@ -1,50 +1,51 @@
-archetype (adl_version=2.1.0; rm_release=0.7.0; generated; uid=7bed0e4b-3603-4a0a-8f20-75b80d81be9b)
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=658063bd-d354-407c-8336-4c912f78293a)
 	s2-EHR-Node.exam.v2.0.1
 
 language
-	original_language = <[ISO_639-1::en]>
+	original_language = <[iso_639-1::en]>
 
 description
 	lifecycle_state = <"unmanaged">
 	original_author = <
-		["name"] = <"Graphite Health">
-		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
-		["email"] = <"models@s2.org">
-		["date"] = <"$today (date is disabled during testing)">
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
 	>
 	original_namespace = <"org.openehr">
-	custodian_namespace = <"io.graphitehealth">
-	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
-	copyright = <"Copyright (c) 2023 Graphite Health">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
 	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
 	ip_acknowledgements = <
 		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2015-06-23">
-		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
-		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
-		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-CLUSTER.exam.v2.0.1">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.exam.v2.0.1, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
 	>
 	conversion_details = <
 		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.exam.v2.0.1 from <https://ckm.openehr.org>">
-		["tool"] = <"graphite_openehr_to_s2_adl">
-		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
 	>
 	details = <
 		["en"] = <
-			language = <[ISO_639-1::en]>
+			language = <[iso_639-1::en]>
 			purpose = <"To record the findings observed during the physical examination of a body system or anatomical structure.">
 			use = <"Use to record the observed findings during the physical examination of a body system or anatomical structure.
-            
+
             This archetype has been specifically designed to be used in the 'Examination detail' SLOT within the OBSERVATION.exam or the \\\"Procedure detail\\\" SLOT within the ACTION.procedure archetype, but can also be used within other ENTRY or Node archetypes, where clinically appropriate. Specialisations of this archetype can be used to record examination findings for identified body systems or anatomical structures. If there is no appropriate specialisation available, use this archetype and identify the system or structure being examined using the 'System or structure examined' data Node and the location on the body using the 'Body site' data Node or the 'Structured body site' SLOT.
-            
+
             Interpretation of the findings, for example 'No abnormality detected' or 'Moderate inflammation present', can be recorded using the 'Clinical interpretation' data Node.
-            
+
             Use to provide a framework in which Node archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings.
-            
+
             The Node.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
-            
+
             Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data Node.">
 			misuse = <"Not to be used for recording the clinical history - use specific OBSERVATION and Node archetypes. For example OBSERVATION.story and Node.symptom_sign.
-            
+
             Not to be used for recording the results of an imaging examination - use the Node.imaging_exam family of archetypes for this purpose.">
 		>
 	>
@@ -55,12 +56,12 @@ definition
 		items matches {
 			Node[id2] matches {	-- System or structure examined
 				value matches {
-					Text[id14] 
+					Text[id14]
 				}
 			}
 			Node[id13] occurrences matches {0..1} matches {	-- Body site
 				value matches {
-					Text[id15] 
+					Text[id15]
 				}
 			}
 			allow_archetype Node[id12] matches {	-- Structured body site
@@ -69,25 +70,25 @@ definition
 			}
 			Node[id4] occurrences matches {0..1} matches {	-- Clinical description
 				value matches {
-					Text[id16] 
+					Text[id16]
 				}
 			}
 			allow_archetype Node[id5] matches {	-- Examination findings
 				include
 					archetype_id/value matches {/.*/}
 			}
-			use_archetype Node[id6, s2-EHR-Node.media_file.v1] 
+			use_archetype Node[id6, s2-EHR-Node.media_file.v1]
 			Node[id7] matches {	-- Clinical interpretation
 				value matches {
-					Text[id17] 
+					Text[id17]
 				}
 			}
 			Node[id8] occurrences matches {0..1} matches {	-- Comment
 				value matches {
-					Text[id18] 
+					Text[id18]
 				}
 			}
-			use_archetype Node[id9, s2-EHR-Node.exclusion_exam.v1] 
+			use_archetype Node[id9, s2-EHR-Node.exclusion_exam.v1]
 		}
 	}
 
@@ -144,6 +145,7 @@ terminology
 			["id13"] = <http://loinc.org/39111-0>
 			["id4"] = <http://loinc.org/61133-5>
 			["id7"] = <http://loinc.org/64110-0>
+			["id8"] = <http://loinc.org/106173-8>
 		>
 	>
 

@@ -1,0 +1,196 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f41ed540-0d05-4828-9a11-9f6b32363a53)
+	s2-EHR-Node.level_of_exertion.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2008-10-27">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.level_of_exertion.v0.0.1-alpha, copyright 2008 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.level_of_exertion.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Record information about the amount of energy expenditure that has been, or is being, experienced by the patient.">
+			use = <"Record information about phase and levels of exertion - to provide state/context information within OBSERVATIONS such as Blood Pressure.">
+			keywords = <"exercise", "work", "exertion", "activity", "energy">
+			misuse = <"Not to be used to record actual exercise activities and measurements which should be recorded as OBSERVATIONS in their own right.">
+		>
+	>
+	other_contributors = <"Ian McNicoll, Ocean Informatics,UK", ...>
+
+definition
+	Node[id1] matches {	-- Level of exertion
+		items matches {
+			Node[id11] occurrences matches {0..1} matches {	-- Exercise intensity
+				items matches {
+					Node[id17] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id18] 
+						}
+					}
+					Node[id12] occurrences matches {0..1} matches {	-- Intensity
+						value matches {
+							Coded_text[id19] matches {
+								term matches {
+									Terminology_term[id22] matches {
+										concept matches {[ac1]}		-- Intensity (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id6] occurrences matches {0..1} matches {	-- Measured
+						value matches {
+							Quantity[id20] matches {
+								magnitude matches {|0.0..1000.0|}
+								units matches {
+									Coded_text[id24] matches {
+										term matches {
+											Terminology_term[id23] matches {
+												concept matches {[at17]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Phase
+				value matches {
+					Coded_text[id21] matches {
+						term matches {
+							Terminology_term[id25] matches {
+								concept matches {[ac2]}		-- Phase (synthesised)
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Intensity (synthesised)">
+				description = <"Semiquantitative description of the intensity of exercise undertaken. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Phase (synthesised)">
+				description = <"The phase or context of exercise. (synthesised)">
+			>
+			["at12"] = <
+				text = <"Low Intensity">
+				description = <"Up to 80% Maximal Heart Rate.">
+			>
+			["at13"] = <
+				text = <"Medium Intensity">
+				description = <"80-85% of Maximal Heart Rate.">
+			>
+			["at14"] = <
+				text = <"High Intensity">
+				description = <"85-90% Maximal Heart Rate.">
+			>
+			["at15"] = <
+				text = <"Flat Out">
+				description = <"90-100% Maximal Heart Rate.">
+			>
+			["at16"] = <
+				text = <"Work">
+				description = <"Work">
+			>
+			["at17"] = <
+				text = <"J/min">
+				description = <"J/min unit.">
+			>
+			["at6"] = <
+				text = <"At rest">
+				description = <"The person is at rest, prior to undertaking exercise.">
+			>
+			["at7"] = <
+				text = <"During exertion">
+				description = <"The person is exerting themselves at the time.">
+			>
+			["at8"] = <
+				text = <"Post-exertion">
+				description = <"Measurement is taken after exertion has ceased.">
+			>
+			["id1"] = <
+				text = <"Level of exertion">
+				description = <"Record information about level of exertion.">
+			>
+			["id10"] = <
+				text = <"Phase">
+				description = <"The phase or context of exercise.">
+			>
+			["id11"] = <
+				text = <"Exercise intensity">
+				description = <"Amount of work being done during exercise.">
+			>
+			["id12"] = <
+				text = <"Intensity">
+				description = <"Semiquantitative description of the intensity of exercise undertaken.">
+			>
+			["id17"] = <
+				text = <"Description">
+				description = <"Description of the exertion.">
+			>
+			["id6"] = <
+				text = <"Measured">
+				description = <"The measured level of exertion.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at6"] = <http://snomed.info/id/128975004>
+			["at7"] = <http://snomed.info/id/128976003>
+			["at8"] = <http://snomed.info/id/128978002>
+			["id11"] = <http://snomed.info/id/251894003>
+		>
+		["openehr"] = <
+			["at16"] = <http://openehr.org/id/130>
+		>
+		["ucum"] = <
+			["at17"] = <http://ucum.org/id/J%2Fmin>
+		>
+		["loinc"] = <
+			["id11"] = <http://loinc.org/74008-4>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at12", "at13", "at14", "at15">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at6", "at7", "at8">
+		>
+	>
+

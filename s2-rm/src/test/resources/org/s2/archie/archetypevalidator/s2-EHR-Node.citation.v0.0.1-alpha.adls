@@ -1,0 +1,104 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=55ef6ece-07b3-4567-a69c-b421b05ae45d)
+	s2-EHR-Node.citation.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 18/06/2010">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.citation.v0.0.1-alpha, copyright 18/0 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.citation.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To enable specific sections of health information that are stored elsewhere to be included within the current clinical record.">
+			use = <"Use to reference information that is stored elsewhere in the same EHR or external to the active EHR, so that it can be included in the current document or message that is being created.  For example, a discharge summary may include the summary report of a laboratory test through the use of this citation archetype, rather than duplicating the whole laboratory report.
+            This archetype is deliberately designed as a Node class archetype so that the citation can be made via insertion into a slot within the context of other archetypes, or as a standalone instance within the specific EVALUATION.citation archetype.">
+			keywords = <"citation", "reference">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Heather Leslie, Ocean Informatics, Australia", "Ian McNicoll, Ocean Informatics, Australia">
+
+definition
+	Node[id1] matches {	-- Citation
+		items matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id6] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Citation
+				value matches {
+					Parsable[id7] 
+					Multimedia[id8] matches {
+						media_type 
+					}
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- URI to original data
+				value matches {
+					Uri_ref[id9] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id10] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Citation">
+				description = <"Reference to information held elsewhere, in the same EHR or external to the EHR.">
+			>
+			["id2"] = <
+				text = <"Citation">
+				description = <"Representation of the citation.">
+			>
+			["id3"] = <
+				text = <"URI to original data">
+				description = <"Link to the original data.">
+			>
+			["id4"] = <
+				text = <"Comment">
+				description = <"Comment about the citation.">
+			>
+			["id5"] = <
+				text = <"Description">
+				description = <"Description about the citation.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/106173-8>
+			["id5"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

@@ -1,0 +1,333 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Direct_observation.respiratory_rate.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Nathan Davis<nathan.davis@graphitehealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"io.graphitehealth">
+	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use">
+		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+	>
+	conversion_details = <
+		["source_model"] = <"">
+		["tool"] = <"cem2adl v6.3.0">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the speed at which an individual is breathing.">
+			use = <"Use to record all representations of respiratory rate.
+					The archetype is intended to capture respiratory rate measurements in all clinical scenarios;    
+    				There is a rich state model that supports interpretation of measurements through identifying patient position, exercise, confounding factors and angle of a tilt table in research.">
+			keywords = <"observations", "measurement", "rr", "vital signs", "breath rate", "respiratory rate">
+		>
+	>
+
+definition
+	Direct_observation[id1] matches {	-- Respiratory Rate
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Respiratory Rate
+				value matches {
+					Measured<Quantity>[id82] matches {
+						value matches {
+							Quantity[id1061] matches {
+								magnitude matches {|0.0..<1000.0|}
+								units matches {
+									Coded_text[id1300] matches {
+										term matches {
+											Terminology_term[id1200] matches {
+												concept matches {[at2001]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id1060] occurrences matches {0..1} matches {	-- Clinical interpretation
+				value matches {
+					Text[id1065] 
+				}
+			}
+		}
+		state matches {
+			Node[id9] occurrences matches {0..1} matches {	-- Body Position
+				value matches {
+					Coded_text[id1067] matches {
+						term matches {
+							Terminology_term[id131] matches {
+								concept matches {[ac1]}		-- Position (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id1031, s2-EHR-Node.level_of_exertion.v0] 
+		}
+		qualifiers matches {
+			Node[id1036] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id1078] matches {
+						term matches {
+							Terminology_term[id131] matches {
+								concept matches {[ac5]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id1026, s2-EHR-Node.device.v1] 
+		}
+		data_series matches {
+			Interval_event[id1043] matches {	-- Data series
+				width matches {PT24H}
+				items matches {
+					use_node Node[id5] /data[id5]	-- /data[Respiratory Rate]
+					use_node Node[id1060] /data[id1060]	-- /data[Clinical interpretation]
+				}
+			}
+		}
+		state_series matches {
+			Interval_event[id1144] matches {	-- State series
+				width matches {PT24H}
+				items matches {
+					use_node Node[id9] /state[id9]	-- /state[Body Position]
+					use_node Node[id1031] /state[id1031]	-- /state[Exertion]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Respiratory Rate">
+				description = <"The measurement of the rate at which an individual is breathing.">
+			>
+			["id2"] = <
+				text = <"History">
+				description = <"History Structural node.">
+			>
+			["id5"] = <
+				text = <"Respiratory Rate">
+				description = <"The measurement of the rate at which an individual is breathing.">
+			>
+			["id7"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id9"] = <
+				text = <"Body Position">
+				description = <"The position of the individual at the time of measurement.">
+			>
+			["id12"] = <
+				text = <"Tree">
+				description = <"List structure.">
+			>
+			["id34"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the measurement, not captured in other fields.">
+			>
+			["at1001"] = <
+				text = <"Standing">
+				description = <"Standing at the time of respiratory rate measurement.">
+			>
+			["at1002"] = <
+				text = <"Sitting">
+				description = <"Sitting (for example on bed or chair) at the time of respiratory rate measurement.">
+			>
+			["at1003"] = <
+				text = <"Lying position">
+				description = <"Reclining at the time of respiratory rate measurement.">
+			>
+			["id1026"] = <
+				text = <"Device">
+				description = <"Details about sphygmomanometer or other device used to measure the blood pressure.">
+			>
+			["at1020"] = <
+				text = <"Capnograph sensor device">
+				description = <"Respiratory rate measured using a capnograph.">
+			>
+			["at1021"] = <
+				text = <"Impedence pneumography device">
+				description = <"Respiratory rate measured using an impedence pneumography device.">
+			>
+			["at1022"] = <
+				text = <"Peak flow meter">
+				description = <"Respiratory rate measured using a peak flow meter.">
+			>
+			["at1023"] = <
+				text = <"Respiration strain gauge">
+				description = <"Respiratory rate measured using a respiration strain gauge.">
+			>
+			["id1031"] = <
+				text = <"Exertion">
+				description = <"Details about physical activity undertaken at the time of blood pressure measurement.">
+			>
+			["at1040"] = <
+				text = <"At rest">
+				description = <"Respiratory rate taken while at rest.">
+			>
+			["at1041"] = <
+				text = <"Before exercise">
+				description = <"Respiratory rate taken before exercise.">
+			>
+			["at1042"] = <
+				text = <"After exercise">
+				description = <"Respiratory rate taken after exercise.">
+			>
+			["at1043"] = <
+				text = <"During exercise">
+				description = <"Respiratory rate taken during exercise.">
+			>
+			["id1036"] = <
+				text = <"Method">
+				description = <"Method of measurement of blood pressure.">
+			>
+			["at1037"] = <
+				text = <"Auscultation">
+				description = <"Method of measuring respiratory raet externally, using a stethoscope.">
+			>
+			["at1038"] = <
+				text = <"Inspection">
+				description = <"Method of measuring respiratory rate by visual inspection.">
+			>
+			["id1059"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id1060"] = <
+				text = <"Clinical interpretation">
+				description = <"An indicator that the measurement value is within or outside the reference range of the identified observation.">
+			>
+			["at1050"] = <
+				text = <"Normal">
+				description = <"In indicator that the result value is within the reference range.">
+			>
+			["at1051"] = <
+				text = <"Abnormal">
+				description = <"In indicator that the result value is not within reference range.">
+			>
+			["at1052"] = <
+				text = <"Abnormally high">
+				description = <"In indicator that the result value is outside the reference range on the high end.">
+			>
+			["at1053"] = <
+				text = <"Abnormally low">
+				description = <"In indicator that the result value is outside the reference range on the low end.">
+			>
+			["at1054"] = <
+				text = <"Very abnormal">
+				description = <"In indicator that the result value is significantly outside the reference range.">
+			>
+			["at1055"] = <
+				text = <"Very high">
+				description = <"In indicator that the result value is very far outside the reference range on the high end.">
+			>
+			["at1056"] = <
+				text = <"Very low">
+				description = <"In indicator that the result value is very far outside the reference range on the low end.">
+			>
+			["at1060"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at2001"] = <
+				text = <"/min">
+				description = <"beats per minute for Respiratory rate">
+			>
+			["ac1"] = <
+				text = <"Position (synthesised)">
+				description = <"The position of the individual at the time of measurement. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Device (synthesised)">
+				description = <"The type of device used to measure the respiratory rate. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Method (synthesised)">
+				description = <"Method of measurement of blood pressure. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Clinical interpretation">
+				description = <"Indicators of value within or outside reference range.">
+			>
+			["id1043"] = <
+				text = <"Data series">
+				description = <"Data series">
+			>
+			["id1144"] = <
+				text = <"State series">
+				description = <"State series">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1060"] = <http://loinc.org/64110-0>
+			["id5"] = <http://loinc.org/9279-1>
+			["id9"] = <http://loinc.org/8361-8>
+			["id1"] = <http://loinc.org/9279-1>
+		>
+		["snomed"] = <
+			["at1001"] = <http://snomed.info/id/10904000>
+			["at1002"] = <http://snomed.info/id/33586001>
+			["at1003"] = <http://snomed.info/id/102538003>
+			["at1020"] = <http://snomed.info/id/23861000205107>
+			["at1021"] = <http://snomed.info/id/717730001>
+			["at1022"] = <http://snomed.info/id/334990001>
+			["at1023"] = <http://snomed.info/id/23921000205109>
+			["at1037"] = <http://snomed.info/id/37931006>
+			["at1038"] = <http://snomed.info/id/32750006>
+			["at1040"] = <http://snomed.info/id/263678003>
+			["at1041"] = <http://snomed.info/id/307166007>
+			["at1042"] = <http://snomed.info/id/255214003>
+			["at1043"] = <http://snomed.info/id/309604004>
+			["at1050"] = <http://snomed.info/id/17621005>
+			["at1051"] = <http://snomed.info/id/263654008>
+			["at1052"] = <http://snomed.info/id/371879000>
+			["at1053"] = <http://snomed.info/id/371880002>
+			["at1054"] = <http://snomed.info/id/24651000205108>
+			["at1055"] = <http://snomed.info/id/260360000>
+			["at1056"] = <http://snomed.info/id/260362008>
+			["at2001"] = <http://snomed.info/id/286549009>
+		>
+		["openehr"] = <
+			["at1060"] = <http://openehr.org/id/146>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.BodyPosition>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at1001", "at1002", "at1003">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at1020", "at1021", "at1022", "at1023">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at1037", "at1038">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at1050", "at1051", "at1052", "at1053", "at1054", "at1055", "at1056">
+		>
+	>
+

@@ -1,55 +1,56 @@
-archetype (adl_version=2.1.0; rm_release=0.7.0; generated; uid=dbd6f4b3-a3e6-41b1-a21e-3530ac1ca212)
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9b8a7428-5658-44bc-bf39-4dff87931702)
 	s2-EHR-Node.device.v1.1.2
 
 language
-	original_language = <[ISO_639-1::en]>
+	original_language = <[iso_639-1::en]>
 
 description
 	lifecycle_state = <"unmanaged">
 	original_author = <
-		["name"] = <"Graphite Health">
-		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
-		["email"] = <"models@s2.org">
-		["date"] = <"$today (date is disabled during testing)">
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
 	>
 	original_namespace = <"org.openehr">
-	custodian_namespace = <"io.graphitehealth">
-	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
-	copyright = <"Copyright (c) 2023 Graphite Health">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
 	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
 	ip_acknowledgements = <
 		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2010-06-29">
-		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
-		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
-		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-CLUSTER.device.v1.1.2">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.device.v1.1.2, copyright 2010 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
 	>
 	conversion_details = <
 		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.device.v1.1.2 from <https://ckm.openehr.org>">
-		["tool"] = <"graphite_openehr_to_s2_adl">
-		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
 	>
 	details = <
 		["en"] = <
-			language = <[ISO_639-1::en]>
+			language = <[iso_639-1::en]>
 			purpose = <"To record the details of a medical device used in the provision of healthcare.">
 			use = <"Use to record the details of a medical device used in the provision of healthcare.
-            
+
             Use of the term 'medical device' varies depending on context. Within the Standards world, the term device tends to refer to mechanical or electronic devices that support healthcare and require rigorous documentation regarding location tracking, maintenance, calibration, software versions etc.  Within the terminology context the use of device is very broad, including any medical device that can be used in direct or indirect provision of clinical care, as long as it does not act in a way that exerts a direct pharmacological, metabolic or  immunological effect.
-            
-            Examples of medical devices range from simple devices such as urinary catheters, tongue depressors, contact lenses, artificial joint implants, breast implants and plain dressings through to advanced devices such as artificial hearts, syringe drivers, spirometers, mobile phone applications and computerised devices that capture point-of-care medical measurements. 
-            
+
+            Examples of medical devices range from simple devices such as urinary catheters, tongue depressors, contact lenses, artificial joint implants, breast implants and plain dressings through to advanced devices such as artificial hearts, syringe drivers, spirometers, mobile phone applications and computerised devices that capture point-of-care medical measurements.
+
             In the complex situation where a surgically implanted device is used as the means to deliver therapeutic agents such as chemotherapy directly into the body, this archetype will be used to record only the details about the medical device itself and the order for medication and details about the actual administration of the therapeutic agent will be recorded using specific medication-related INSTRUCTION and ACTION archetypes.
-            
+
             This archetype is designed to provide the framework for structured representation of any medical device and the data Nodes that are contained here are not specific for any one type of device. Single use devices will commonly require data Nodes such as Lot Number and Date of Expiry. In contrast these are usually not relevant for durable devices which will often have a set of identifiers, including a UID, Serial Number, Model etc.
-            
+
             Further, different types of devices will require specific information relevant to their purpose. This data can be recorded using specific Node archetypes inserted into the 'Specific properties' SLOT. For example: use of a urinary catheter may require additional details about the diameter and length of catheter, material composition, number of lumens etc.
-            
+
             If the medical device has a number of components that require recording of details, each individual component should be recorded explicitly by using an additional Node.device archetype inserted into the 'Components' SLOT.
-            
+
             The data field 'Software Version' allows for only a single version to be recorded. This is primarily applicable for a device which is a software application. If the device has multiple software or hardware components that need to be specified, this should be done by using an addition Node.device inserted into the 'Components' SLOT.
-            
+
             To record additional details for durable or persistent devices that relate to ownership, physical location tracking, maintenance schedules etc, use Node.device_details archetype inserted into the 'Asset management' SLOT in this archetype.
-            
+
             This archetype has been designed for generic use within other archetypes that need to describe a device. Examples include: OBSERVATION.blood_pressure for the sphygmomanometer; OBSERVATION.ecg for the ECG machine; OBSERVATION.urinalysis for the reactent strips and the device used for testing; ACTION.procedure; and Node.exam_tympanic_membrane to detail the otoscope used.">
 			keywords = <"device", "machine", "implant", "appliance", "catheter", "prosthesis", "aid", "biomedical", "instrument", "equipment", "meter", "monitor", "software">
 			misuse = <"Not to be used to record data about medicinal products that exert a direct pharmacological, metabolic or immunologic effect. For example: a medicine impregnated dressing that requires a prescription should be recorded using the  INSTRUCTION.medication_order archetype, focused on the active ingredients, dosage etc.">
@@ -62,17 +63,17 @@ definition
 		items matches {
 			Node[id2] matches {	-- Device name
 				value matches {
-					Text[id29] 
+					Text[id29]
 				}
 			}
 			Node[id4] occurrences matches {0..1} matches {	-- Type
 				value matches {
-					Text[id30] 
+					Text[id30]
 				}
 			}
 			Node[id3] occurrences matches {0..1} matches {	-- Description
 				value matches {
-					Text[id31] 
+					Text[id31]
 				}
 			}
 			allow_archetype Node[id10] matches {	-- Properties
@@ -81,67 +82,64 @@ definition
 			}
 			Node[id22] occurrences matches {0..1} matches {	-- Unique device identifier (UDI)
 				value matches {
-					Rwe_id_ref[id32] 
+					Rwe_id_ref[id32]
 				}
 			}
 			Node[id5] occurrences matches {0..1} matches {	-- Manufacturer
 				value matches {
-					Text[id33] 
+					Text[id33]
 				}
 			}
 			Node[id6] occurrences matches {0..1} matches {	-- Date of manufacture
 				value matches {
-					Date_time_value[id34] 
+					Date_time_value[id34]
 				}
 			}
 			Node[id21] occurrences matches {0..1} matches {	-- Serial number
 				value matches {
-					Text[id35] 
+					Text[id35]
 				}
 			}
 			Node[id23] occurrences matches {0..1} matches {	-- Catalogue number
 				value matches {
-					Text[id36] 
+					Text[id36]
 				}
 			}
 			Node[id24] occurrences matches {0..1} matches {	-- Model number
 				value matches {
-					Text[id37] 
+					Text[id37]
 				}
 			}
 			Node[id7] occurrences matches {0..1} matches {	-- Batch/Lot number
 				value matches {
-					Text[id38] 
+					Text[id38]
 				}
 			}
 			Node[id26] occurrences matches {0..1} matches {	-- Software version
 				value matches {
-					Text[id39] 
+					Text[id39]
 				}
 			}
 			Node[id8] occurrences matches {0..1} matches {	-- Date of expiry
 				value matches {
-					Date_time_value[id40] 
+					Date_time_value[id40]
 				}
 			}
 			Node[id25] matches {	-- Other identifier
 				value matches {
-					Rwe_id_ref[id41] 
+					Rwe_id_ref[id41]
 				}
 			}
-			allow_archetype Node[id20] matches {	-- Asset management
-				include
-					archetype_id/value matches {/s2-EHR-Node\.device_details(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.device_details(-[a-zA-Z0-9_]+)*\.v0/}
-			}
-			use_archetype Node[id19, s2-EHR-Node.device.v1] 
+			use_archetype Node[id20, s2-EHR-Node.device_details.v0]
+			use_archetype Node[id19, s2-EHR-Node.device.v1]
 			allow_archetype Node[id27] matches {	-- Extension
 				include
 					archetype_id/value matches {/.*/}
 			}
-			use_archetype Node[id28, s2-EHR-Node.media_file.v1] 
+			use_archetype Node[id28, s2-EHR-Node.media_file.v1]
 			Node[id9] occurrences matches {0..1} matches {	-- Comment
 				value matches {
-					Text[id42] 
+					Text[id42]
 				}
 			}
 		}
@@ -240,6 +238,15 @@ terminology
 			["id24"] = <http://loinc.org/74717-0>
 			["id5"] = <http://loinc.org/74719-6>
 			["id7"] = <http://loinc.org/74714-7>
+			["id1"] = <http://loinc.org/82307-0>
+			["id26"] = <http://loinc.org/55081-4>
+			["id4"] = <http://loinc.org/66464-9>
+			["id8"] = <http://loinc.org/74712-1>
+			["id23"] = <http://loinc.org/104927-9>
+			["id25"] = <http://loinc.org/104960-0>
+			["id3"] = <http://loinc.org/104961-8>
+			["id6"] = <http://loinc.org/104926-1>
+			["id9"] = <http://loinc.org/106173-8>
 		>
 	>
 

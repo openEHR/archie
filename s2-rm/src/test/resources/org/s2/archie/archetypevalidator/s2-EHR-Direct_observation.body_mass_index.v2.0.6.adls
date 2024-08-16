@@ -1,0 +1,237 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0bead8c2-089c-477a-b1bc-8199c72a2763)
+	s2-EHR-Direct_observation.body_mass_index.v2.0.6
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-03-26">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.body_mass_index.v2.0.6, copyright 2006 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.body_mass_index.v2.0.6 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the Body Mass Index (BMI) of an individual.">
+			use = <"Use to record the Body Mass Index of both adults and children.
+            
+            Use to enter the Body Mass Index either manually (ie calculated and directly entered by the clinician), or automatically (ie calculation and entry is done automatically by a software application, based on separate height and weight measurements).
+            
+            Formulas: Body Mass Index is commonly calculated as weight (kg) / [height (m) squared]. This is the assumed formula unless otherwise specified in the Formula Node within Protocol. Alternatively estimate Body Mass Index using pounds and inches: weight (lb) / [height (in) squared] x 703 (with ounces (oz) and fractions changed to decimal values).
+            
+            In some situations the Body Mass Index formula is corrected eg for use in amputees - this specific formula can be recorded as part of the protocol.  Alternatively the common Body Mass Index calculation can be used with amputees and similar injuries or disabilities if using adjusted height and/or adjusted weight, as appropriate, rather than actual height and weight.   See openEHR-EHR-OBSERVATION.height-adjusted and openEHR-EHR-OBSERVATION.body_weight-adjusted.
+            
+            See WHO reference re adjusting height/length for Body Mass Index in paediatrics. 
+            
+            In children and teens, BMI needs to be assessed using age-related reference charts.">
+			keywords = <"obesity", "index", "body mass", "BMI", "anorexia", "Quetelet", "malnutrition", "failure to thrive", "bulimia">
+			misuse = <"Not intended to record information regarding Body Mass Index percentiles - use the OBSERVATION.child_growth archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Grethe Almenning, Bergen kommune, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Marja Buur, Medisch Centrum Alkmaar/ Code24, Netherlands", "Rong Chen, Cambio Healthcare Systems, Sweden", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Angela de Zwart, Orion Health, New Zealand", "Paul Donaldson, Nursing Informatics Australia, Australia", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Samuel Frade, Marand, Portugal", "Sebastian Garde, Ocean Informatics, Germany", "Soon Ghee Yap, Singapore General Hospital, Singapore", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Harbison, CPCER, Australia", "Sam Heard, Ocean Informatics, Australia", "Andrew James, University of Toronto, Canada", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Jeroen Meintjens, Medisch Centrum Alkmaar, Netherlands", "Lars Morgan Karlsen, DIPS ASA, Norway", "Hugo Nilssen, UNN HF K3K/Tromsø, Norway", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Arturo Romero, SESCAM, Spain", "Kari Sygnestveit, Helse Bergen, Norway", "Micaela Thierley, Helse Bergen, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Body mass index
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] matches {	-- Body mass index
+				value matches {
+					Measured<Quantity>[id29] matches {
+						value matches {
+							Quantity[id23] matches {	-- Body mass index (kg/m2)
+								magnitude matches {|0.0..<1000.0|}
+								units matches {
+									Coded_text[id25] matches {
+										term matches {
+											Terminology_term[id24] matches {
+												concept matches {[at10]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+					Measured<Quantity>[id30] matches {
+						value matches {
+							Quantity[id26] matches {	-- Body mass index ([lb_av]/[in_i]2)
+								magnitude matches {|0.0..<1000.0|}
+								units matches {
+									Coded_text[id28] matches {
+										term matches {
+											Terminology_term[id27] matches {
+												concept matches {[at11]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Clinical interpretation
+				value matches {
+					Text[id18] 
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id19] 
+				}
+			}
+		}
+		state matches {
+			Node[id12] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id20] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id7] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id21] matches {
+						term matches {
+							Terminology_term[id31] matches {
+								concept matches {[ac1]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Formula
+				value matches {
+					Text[id22] 
+				}
+			}
+			allow_archetype Node[id16] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Method (synthesised)">
+				description = <"The method of entering the body mass index. (synthesised)">
+			>
+			["at10"] = <
+				text = <"kg/m2">
+				description = <"Kg per square meters unit.">
+			>
+			["at11"] = <
+				text = <"[lb_av]/[in_i]2">
+				description = <"Pounds per sq inch unit">
+			>
+			["at7"] = <
+				text = <"Automatic entry">
+				description = <"Body Mass Index calculated and entered automatically without user intervention.">
+			>
+			["at8"] = <
+				text = <"Direct entry">
+				description = <"Body Mass Index calculated and entered directly by user.">
+			>
+			["at9"] = <
+				text = <"Mass per area">
+				description = <"Mass per area">
+			>
+			["id1"] = <
+				text = <"Body mass index">
+				description = <"Calculated measurement which compares a person's weight and height.">
+			>
+			["id11"] = <
+				text = <"Formula">
+				description = <"Formula used to derive the body mass index.">
+			>
+			["id12"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description of any issues or factors that may impact on the calculation.">
+			>
+			["id13"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the calculation, not captured in other fields.">
+			>
+			["id14"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the body mass index.">
+			>
+			["id16"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id23"] = <
+				text = <"Body mass index (kg/m2)">
+				description = <"Body mass index (kg/m2)">
+			>
+			["id26"] = <
+				text = <"Body mass index ([lb_av]/[in_i]2)">
+				description = <"Body mass index ([lb_av]/[in_i]2)">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Body mass index">
+				description = <"Index describing ratio of weight to height.">
+			>
+			["id7"] = <
+				text = <"Method">
+				description = <"The method of entering the body mass index.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["id5"] = <http://snomed.info/id/60621009>
+			["at10"] = <http://snomed.info/id/258896009>
+			["at11"] = <http://snomed.info/id/259015003>
+		>
+		["loinc"] = <
+			["id5"] = <http://loinc.org/39156-5>
+			["id14"] = <http://loinc.org/64110-0>
+			["id1"] = <http://loinc.org/59574-4>
+			["id12"] = <http://loinc.org/106176-1>
+			["id13"] = <http://loinc.org/106173-8>
+			["id7"] = <http://loinc.org/106191-0>
+		>
+		["openehr"] = <
+			["at9"] = <http://openehr.org/id/349>
+		>
+		["ucum"] = <
+			["at10"] = <http://ucum.org/id/kg%2Fm2>
+			["at11"] = <http://ucum.org/id/%5Blb_av%5D%2F%5Bin_i%5D2>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at7", "at8">
+		>
+	>
+

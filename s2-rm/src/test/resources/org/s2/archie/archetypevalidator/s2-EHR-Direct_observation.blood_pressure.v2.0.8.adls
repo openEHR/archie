@@ -1,51 +1,52 @@
-archetype (adl_version=2.0.6; rm_release=0.7.0; uid=1811b084-29c0-4bec-bde3-c70b7a5bc28e)
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f0f23490-a66d-4e36-a5c5-c5cb2bcb0711)
 	s2-EHR-Direct_observation.blood_pressure.v2.0.8
 
 language
-	original_language = <[ISO_639-1::en]>
+	original_language = <[iso_639-1::en]>
 
 description
 	lifecycle_state = <"unmanaged">
 	original_author = <
-		["name"] = <"Graphite Health">
-		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
-		["email"] = <"models@s2.org">
-		["date"] = <"$today (date is disabled during testing)">
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
 	>
 	original_namespace = <"org.openehr">
-	custodian_namespace = <"io.graphitehealth">
-	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
-	copyright = <"Copyright (c) 2023 Graphite Health">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
 	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
 	ip_acknowledgements = <
 		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-03-22">
-		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
-		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
-		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-OBSERVATION.blood_pressure.v2.0.8">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.blood_pressure.v2.0.8, copyright 2006 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
 	>
 	conversion_details = <
 		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.blood_pressure.v2.0.8 from <https://ckm.openehr.org>">
-		["tool"] = <"graphite_openehr_to_s2_adl">
-		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
 	>
 	details = <
 		["en"] = <
-			language = <[ISO_639-1::en]>
+			language = <[iso_639-1::en]>
 			purpose = <"To record the systemic arterial blood pressure of an individual.">
-			use = <"Use to record all representations of systemic arterial blood pressure measurement, no matter which method or body location is used to record it. 
-            
+			use = <"Use to record all representations of systemic arterial blood pressure measurement, no matter which method or body location is used to record it.
+
             The archetype is intended to capture blood pressure measurements in all clinical scenarios - for example:
-            - self-measurement with a home blood pressure machine; 
-            - an emergency assessment of systolic using palpation and a sphygmomanometer; 
-            - measurements taken in clinical consultations or during exercise stress testing; and 
-            - a series of measurements made by a machine in Intensive Care.   
-            
-            There is a rich state model that supports interpretation of measurements through identifying patient position, exercise, confounding factors and angle of a tilt table in research. 
-            
+            - self-measurement with a home blood pressure machine;
+            - an emergency assessment of systolic using palpation and a sphygmomanometer;
+            - measurements taken in clinical consultations or during exercise stress testing; and
+            - a series of measurements made by a machine in Intensive Care.
+
+            There is a rich state model that supports interpretation of measurements through identifying patient position, exercise, confounding factors and angle of a tilt table in research.
+
             Named events have been limited to average over a 24 hour period, however templates can further constrain the default 'any event' to cater for specific requirements for blood pressure measurements such as recording Blood Pressure against specific points in time, or over a range of intervals (+/- mathematical functions).">
 			keywords = <"observations", "measurement", "bp", "vital signs", "mean arterial pressure", "pulse pressure", "systolic", "diastolic", "RR", "NIBP">
-			misuse = <"Not to be used to record the measurement of arterial blood pressure which is NOT a surrogate for arterial pressure in the systemic circulation eg specific measurement of right pulmonary artery pressure. Use OBSERVATION.intravascular_pressure in this situation.  
-            
+			misuse = <"Not to be used to record the measurement of arterial blood pressure which is NOT a surrogate for arterial pressure in the systemic circulation eg specific measurement of right pulmonary artery pressure. Use OBSERVATION.intravascular_pressure in this situation.
+
             Not to be used to record measurements of intravenous pressure. Use the appropriate specialisations of OBSERVATION.intravascular_pressure in this situation.">
 		>
 	>
@@ -140,12 +141,12 @@ definition
 			}
 			Node[id1060] occurrences matches {0..1} matches {	-- Clinical interpretation
 				value matches {
-					Text[id1065] 
+					Text[id1065]
 				}
 			}
 			Node[id34] occurrences matches {0..1} matches {	-- Comment
 				value matches {
-					Text[id1066] 
+					Text[id1066]
 				}
 			}
 		}
@@ -163,10 +164,10 @@ definition
 			}
 			Node[id1053] occurrences matches {0..1} matches {	-- Confounding factors
 				value matches {
-					Text[id1068] 
+					Text[id1068]
 				}
 			}
-			use_archetype Node[id1031, s2-EHR-Node.level_of_exertion.v0] occurrences matches {0..1} 
+			use_archetype Node[id1031, s2-EHR-Node.level_of_exertion.v0] occurrences matches {0..1}
 			Node[id1044] occurrences matches {0..1} matches {	-- Sleep status
 				value matches {
 					Coded_text[id1069] matches {
@@ -221,10 +222,10 @@ definition
 							}
 						}
 					}
-					Plain_text[id1077] 
+					Plain_text[id1077]
 				}
 			}
-			use_archetype Node[id1058, s2-EHR-Node.anatomical_location.v1] 
+			use_archetype Node[id1058, s2-EHR-Node.anatomical_location.v1]
 			Node[id1036] occurrences matches {0..1} matches {	-- Method
 				value matches {
 					Coded_text[id1078] matches {
@@ -238,17 +239,17 @@ definition
 			}
 			Node[id1039] occurrences matches {0..1} matches {	-- Mean arterial pressure formula
 				value matches {
-					Text[id1079] 
+					Text[id1079]
 				}
 			}
 			Node[id1055] occurrences matches {0..1} matches {	-- Systolic pressure formula
 				value matches {
-					Text[id1080] 
+					Text[id1080]
 				}
 			}
 			Node[id1056] occurrences matches {0..1} matches {	-- Diastolic pressure formula
 				value matches {
-					Text[id1081] 
+					Text[id1081]
 				}
 			}
 			Node[id1011] occurrences matches {0..1} matches {	-- Diastolic endpoint
@@ -262,7 +263,7 @@ definition
 					}
 				}
 			}
-			use_archetype Node[id1026, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			use_archetype Node[id1026, s2-EHR-Node.device.v1] occurrences matches {0..1}
 			allow_archetype Node[id1059] matches {	-- Extension
 				include
 					archetype_id/value matches {/.*/}
@@ -425,12 +426,12 @@ terminology
 				description = <"The individual's dorsum of the foot.">
 			>
 			["at1057"] = <
-				text = <"(added by post-parse processor)">
-				description = <"(added by post-parse processor)">
+				text = <"Pressure">
+				description = <"Pressure">
 			>
 			["at1058"] = <
-				text = <"(added by post-parse processor)">
-				description = <"(added by post-parse processor)">
+				text = <"Angle, plane">
+				description = <"Angle, plane">
 			>
 			["at1060"] = <
 				text = <"mm[Hg]">
@@ -438,7 +439,7 @@ terminology
 			>
 			["at1061"] = <
 				text = <"deg">
-				description = <"Degrees unit.">
+				description = <"Angular degrees">
 			>
 			["at15"] = <
 				text = <"Adult Thigh">
@@ -577,23 +578,35 @@ terminology
 			["id6"] = <http://snomed.info/id/271650006>
 			["id14"] = <http://snomed.info/id/246153002>
 			["at1060"] = <http://snomed.info/id/259018001>
+			["at1061"] = <http://snomed.info/id/277255000>
 		>
 		["openehr"] = <
 			["at1057"] = <http://openehr.org/id/125>
 			["at1058"] = <http://openehr.org/id/497>
 		>
+		["ucum"] = <
+			["at1060"] = <http://ucum.org/id/mm%5BHg%5D>
+			["at1061"] = <http://ucum.org/id/deg>
+		>
 		["loinc"] = <
 			["id1"] = <http://loinc.org/35094-2>
-			["id6"] = <http://loinc.org/8462-4>
-			["id5"] = <http://loinc.org/8480-6>
-			["id1007"] = <http://loinc.org/8478-0>
-			["id1060"] = <http://loinc.org/64110-0>
-			["id34"] = <http://loinc.org/48767-8>
-			["id9"] = <http://loinc.org/8361-8>
 			["id1006"] = <http://loinc.org/8360-0>
+			["id1007"] = <http://loinc.org/8478-0>
+			["id1036"] = <http://loinc.org/8357-6>
+			["id1060"] = <http://loinc.org/64110-0>
 			["id14"] = <http://loinc.org/8358-4>
 			["id15"] = <http://loinc.org/39111-0>
-			["id1036"] = <http://loinc.org/8357-6>
+			["id34"] = <http://loinc.org/48767-8>
+			["id5"] = <http://loinc.org/8480-6>
+			["id6"] = <http://loinc.org/8462-4>
+			["id9"] = <http://loinc.org/8361-8>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.BodyPosition>
+			["ac2"] = <http://s2health.org/id/s2.SleepStatus>
+			["ac3"] = <http://s2health.org/id/s2.BloodPressureCuffSize>
+			["ac4"] = <http://s2health.org/id/s2.BloodPressureMeasBodyLocationPrecoord>
+			["ac5"] = <http://s2health.org/id/s2.BloodPressureMeasMethod>
 		>
 	>
 	value_sets = <
@@ -611,7 +624,7 @@ terminology
 		>
 		["ac4"] = <
 			id = <"ac4">
-			members = <"at25", "at26", "at27", "at28", "at1020", "at1021", "at1026", "at1037", "at1032", "at1051", "at1056", "at1053">
+			members = <"at25", "at26", "at27", "at28", "at1020", "at1021", "at1026", "at1031", "at1032", "at1051", "at1056", "at1053">
 		>
 		["ac5"] = <
 			id = <"ac5">
@@ -622,3 +635,4 @@ terminology
 			members = <"at1011", "at1012">
 		>
 	>
+

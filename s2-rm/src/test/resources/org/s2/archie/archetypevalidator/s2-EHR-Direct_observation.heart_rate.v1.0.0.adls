@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.7.0)
+archetype (adl_version=2.1.0; rm_release=0.8.0)
 	s2-EHR-Direct_observation.heart_rate.v1.0.0
 
 language
@@ -28,8 +28,8 @@ description
 			purpose = <"To record the speed at which an individual's heart is beating.">
 			use = <"Use to record all representations of heart rate.
 					The archetype is intended to capture heart rate measurements in all clinical scenarios - for example:
-    				- self-measurement with a home blood pressure machine; 
-    				- a heart rate captured while using a pulse oximeter:   
+    				- self-measurement with a home blood pressure machine;
+    				- a heart rate captured while using a pulse oximeter:
     				There is a rich state model that supports interpretation of measurements through identifying patient position, exercise, confounding factors and angle of a tilt table in research.">
 			keywords = <"observations", "measurement", "hr", "vital signs", "pulse", "heart rate">
 		>
@@ -40,13 +40,17 @@ definition
 		data matches {
 			Node[id5] occurrences matches {0..1} matches {	-- Heart Rate
 				value matches {
-					Quantity[id1061] matches {
-						magnitude matches {|0.0..<1000.0|}
-						units matches {
-							Coded_text[id1300] matches {
-								term matches {
-									Terminology_term[id1200] matches {
-										concept matches {[at2001]}
+					Measured<Quantity>[id1136] matches {
+						value matches {
+							Quantity[id1061] matches {
+								magnitude matches {|0.0..<1000.0|}
+								units matches {
+									Coded_text[id1300] matches {
+										term matches {
+											Terminology_term[id1200] matches {
+												concept matches {[at2001]}
+											}
+										}
 									}
 								}
 							}
@@ -56,7 +60,7 @@ definition
 			}
 			Node[id1060] occurrences matches {0..1} matches {	-- Clinical interpretation
 				value matches {
-					Text[id1065] 
+					Text[id1065]
 				}
 			}
 		}
@@ -81,7 +85,7 @@ definition
 							}
 						}
 					}
-					Text[id1069] 
+					Text[id1069]
 				}
 			}
 			allow_archetype Node[id1031] occurrences matches {0..1} matches {	-- Exertion
@@ -97,7 +101,7 @@ definition
 							}
 						}
 					}
-					Text[id1069] 
+					Text[id1069]
 				}
 			}
 		}
@@ -111,7 +115,7 @@ definition
 							}
 						}
 					}
-					Text[id1069] 
+					Text[id1069]
 				}
 			}
 			Node[id1036] occurrences matches {0..1} matches {	-- Method
@@ -360,9 +364,17 @@ terminology
 			["id9"] = <http://loinc.org/8361-8>
 			["id1"] = <http://loinc.org/8867-4>
 			["id15"] = <http://loinc.org/39111-0>
+			["id1036"] = <http://loinc.org/106191-0>
+			["id1053"] = <http://loinc.org/106168-8>
 		>
 		["snomed"] = <
 			["at2001"] = <http://snomed.info/id/258983007>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.BodyPosition>
+			["ac2"] = <http://s2health.org/id/s2.SleepStatus>
+			["ac4"] = <http://s2health.org/id/s2.BloodPressureMeasBodyLocationPrecoord>
+			["ac5"] = <http://s2health.org/id/s2.BloodPressureMeasMethod>
 		>
 	>
 	value_sets = <
@@ -387,4 +399,3 @@ terminology
 			members = <"at1012", "at1013">
 		>
 	>
-

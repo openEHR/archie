@@ -1,41 +1,42 @@
-archetype (adl_version=2.1.0; rm_release=0.7.0; generated; uid=6b7ebf69-5b6d-4582-9036-e56f940f0a69)
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6e66df9c-8aeb-4a36-ab12-2cc45f941800)
 	s2-EHR-Node.adverse_reaction_event.v1.0.0
 
 language
-	original_language = <[ISO_639-1::en]>
+	original_language = <[iso_639-1::en]>
 
 description
 	lifecycle_state = <"unmanaged">
 	original_author = <
-		["name"] = <"Graphite Health">
-		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
-		["email"] = <"models@s2.org">
-		["date"] = <"$today (date is disabled during testing)">
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
 	>
 	original_namespace = <"org.openehr">
-	custodian_namespace = <"io.graphitehealth">
-	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
-	copyright = <"Copyright (c) 2023 Graphite Health">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
 	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
 	ip_acknowledgements = <
 		["original_author"] = <"Silje Ljosland Bakke, Helse Vest IKT AS, <silje.ljosland.bakke@helse-vest-ikt.no>, 2021-09-17">
-		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
-		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
-		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-CLUSTER.adverse_reaction_event.v1.0.0">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.adverse_reaction_event.v1.0.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
 	>
 	conversion_details = <
 		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.adverse_reaction_event.v1.0.0 from <https://ckm.openehr.org>">
-		["tool"] = <"graphite_openehr_to_s2_adl">
-		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
 	>
 	details = <
 		["en"] = <
-			language = <[ISO_639-1::en]>
+			language = <[iso_639-1::en]>
 			purpose = <"To record information about a specific adverse reaction event caused by exposure to a specific substance.">
 			use = <"Use to record information about a specific adverse reaction event caused by exposure to a specific substance. The substance may be recorded in the 'Specific substance' Node in this archetype, or in an appropriate Node in the parent archetype in which this archetype is nested.
-            
+
             This archetype is designed to be nested within the EVALUATION.adverse_reaction_risk or the OBSERVATION.adverse_reaction_monitoring archetypes, to record details about a specific reaction event, but it could also be nested within other archetypes where clinically appropriate.
-            
+
             The scope of this archetype has deliberately focused on identifying a pragmatic data set that are used in most clinical systems or will be suitable for most common clinical scenarios; however, it permits extension of the model when additional detail is required, using the 'Reaction details', 'Exposure details', and 'Reporting details' slots. An extension may be required if a specialist allergist or immunologist needed to record a more detailed assessment as part of a report to regulatory bodies or within the context of a clinical trial.">
 			misuse = <"Not to be used to record adverse events, including failures of clinical process, interventions or products. For example: abnormal use or mistakes/errors made in maladministration of an agent or substance; incorrect dosage; mislabelling; harm or injury caused by an intervention or procedure; overdose/poisoning etc. Use a specific archetype for this purpose.">
 		>
@@ -47,7 +48,7 @@ definition
 		items matches {
 			Node[id2] occurrences matches {0..1} matches {	-- Specific substance
 				value matches {
-					Text[id27] 
+					Text[id27]
 				}
 			}
 			Node[id3] occurrences matches {0..1} matches {	-- Certainty
@@ -59,27 +60,27 @@ definition
 							}
 						}
 					}
-					Plain_text[id29] 
+					Plain_text[id29]
 				}
 			}
 			Node[id7] matches {	-- Manifestation
 				value matches {
-					Text[id30] 
+					Text[id30]
 				}
 			}
 			Node[id8] occurrences matches {0..1} matches {	-- Reaction description
 				value matches {
-					Text[id31] 
+					Text[id31]
 				}
 			}
 			Node[id9] occurrences matches {0..1} matches {	-- Onset of reaction
 				value matches {
-					Date_time_value[id32] 
+					Date_time_value[id32]
 				}
 			}
 			Node[id10] occurrences matches {0..1} matches {	-- Duration of reaction
 				value matches {
-					Duration_value[id33] 
+					Duration_value[id33]
 				}
 			}
 			Node[id11] occurrences matches {0..1} matches {	-- Severity of reaction
@@ -91,7 +92,7 @@ definition
 							}
 						}
 					}
-					Plain_text[id35] 
+					Plain_text[id35]
 				}
 			}
 			allow_archetype Node[id15] matches {	-- Reaction details
@@ -100,31 +101,28 @@ definition
 			}
 			Node[id16] occurrences matches {0..1} matches {	-- Initial exposure
 				value matches {
-					Date_time_value[id36] 
+					Date_time_value[id36]
 				}
 			}
 			Node[id17] occurrences matches {0..1} matches {	-- Duration of exposure
 				value matches {
-					Duration_value[id37] 
+					Duration_value[id37]
 				}
 			}
 			Node[id18] occurrences matches {0..1} matches {	-- Route of exposure
 				value matches {
-					Text[id38] 
+					Text[id38]
 				}
 			}
 			Node[id19] occurrences matches {0..1} matches {	-- Exposure description
 				value matches {
-					Text[id39] 
+					Text[id39]
 				}
 			}
-			allow_archetype Node[id20] matches {	-- Exposure details
-				include
-					archetype_id/value matches {/s2-EHR-Node\.citation(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.citation(-[a-zA-Z0-9_]+)*\.v0/}
-			}
+			use_archetype Node[id20, s2-EHR-Node.citation.v0]
 			Node[id21] occurrences matches {0..1} matches {	-- Clinical management description
 				value matches {
-					Text[id40] 
+					Text[id40]
 				}
 			}
 			allow_archetype Node[id22] matches {	-- Clinical management details
@@ -141,12 +139,12 @@ definition
 			}
 			Node[id26] matches {	-- Supporting clinical record information
 				value matches {
-					Ehr_uri_ref[id41] 
+					Ehr_uri_ref[id41]
 				}
 			}
 			Node[id25] occurrences matches {0..1} matches {	-- Comment
 				value matches {
-					Text[id42] 
+					Text[id42]
 				}
 			}
 		}
@@ -273,6 +271,16 @@ terminology
 		["loinc"] = <
 			["id2"] = <http://loinc.org/88636-6>
 			["id9"] = <http://loinc.org/76425-8>
+			["id16"] = <http://loinc.org/94652-5>
+			["id10"] = <http://loinc.org/104888-3>
+			["id11"] = <http://loinc.org/106196-9>
+			["id17"] = <http://loinc.org/104905-5>
+			["id18"] = <http://loinc.org/104965-9>
+			["id19"] = <http://loinc.org/104964-2>
+			["id21"] = <http://loinc.org/104928-7>
+			["id25"] = <http://loinc.org/106173-8>
+			["id3"] = <http://loinc.org/104955-0>
+			["id7"] = <http://loinc.org/104950-1>
 		>
 	>
 	value_sets = <

@@ -1,49 +1,50 @@
-archetype (adl_version=2.1.0; rm_release=0.7.0; generated; uid=2fe9e9f8-adfd-4406-878a-82b38ef498a9)
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2723747d-2b8c-4fa2-82cb-69abfb13e3e1)
 	s2-EHR-Node.anatomical_location.v1.2.2
 
 language
-	original_language = <[ISO_639-1::en]>
+	original_language = <[iso_639-1::en]>
 
 description
 	lifecycle_state = <"unmanaged">
 	original_author = <
-		["name"] = <"Graphite Health">
-		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
-		["email"] = <"models@s2.org">
-		["date"] = <"$today (date is disabled during testing)">
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
 	>
 	original_namespace = <"org.openehr">
-	custodian_namespace = <"io.graphitehealth">
-	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
-	copyright = <"Copyright (c) 2023 Graphite Health">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
 	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
 	ip_acknowledgements = <
 		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2008-11-10">
-		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
-		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
-		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-CLUSTER.anatomical_location.v1.2.2">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.anatomical_location.v1.2.2, copyright 2008 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
 	>
 	conversion_details = <
 		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.anatomical_location.v1.2.2 from <https://ckm.openehr.org>">
-		["tool"] = <"graphite_openehr_to_s2_adl">
-		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
 	>
 	details = <
 		["en"] = <
-			language = <[ISO_639-1::en]>
+			language = <[iso_639-1::en]>
 			purpose = <"To identify and record structured details about a single physical site on, or within, the human body using macroscopic anatomical terms.">
-			use = <"Use to record structured and consistent details about a single identified physical site on, or within, the human body. 
-            
-            This archetype is specifically designed to be used within the context of any appropriate ENTRY or Node archetypes which supply the context of the anatomical location. 
-            
+			use = <"Use to record structured and consistent details about a single identified physical site on, or within, the human body.
+
+            This archetype is specifically designed to be used within the context of any appropriate ENTRY or Node archetypes which supply the context of the anatomical location.
+
             As a fundamental part of clinical practice, clinicians can describe anatomical locations in a myriad of complex and variable ways. In practice, some archetypes carry a single data Node for carrying a simple description of body site - for example, OBSERVATION.blood_pressure and Node.symptom when describing ear pain. In this situation, where the value set is predictable and simple to define, this single data Node is a very accurate and pragmatic way to record the site in the body and to query at a later date. However in the situation where the anatomical location is not well defined or needs to be determined at run-time, it may be more flexible to use this structured archetype. For example, in the situation where any symptom can be recorded without any predefined scope of the type of symptom, then allowing the use of this archetype to specifically define an anatomical location in the body may be useful. In this case the Node.symptom archetype also carries a SLOT for 'Detailed anatomical location' which can include this archetype to support maximal flexibility in recording anatomical location data.
-            
+
             This archetype supports recording complex structured anatomical sites. For example, the apex beat of the heart is typically found at the fifth left intercostal space in the mid-clavicular line, tenderness at McBurney's point on the abdominal wall or a laceration on the palmar aspect of the proximal right thumb.
-            
+
             A combination of the data Nodes in this archetype can be used to individually record each component of a postcoordinated terminology expression that represents the anatomical site.
-            
+
             The 'Alternative structure' SLOT allows inclusion of additional archetypes that provide an alternative structure for describing the same body site, such as Node.anatomical_location_relative or Node.anatomical_location_clock, should this be required. In the situation where this archetype can only be used to name a large and/or non-specific body part, the additional use of the Node.anatomical_location_relative archetype will support recording of a more precise location - for example, 2 cm anterior to the cubital fossa of the left forearm or 4 cm below R costal margin on the chest wall in the mid-clavicular line.
-            
+
             If this archetype is used within other archetypes where the specified subject of care is not the individual for whom the record is being created, for example a fetus in-utero, then the anatomical location will be identifying a body site on or within the fetus.">
 			keywords = <"location", "site", "anatomical", "anatomic region", "topographic anatomy", "macroscopic", "anatomic", "anatomy">
 			misuse = <"Not to be used for specifiying unilateral/bilateral occurrences of an anatomical feature.">
@@ -56,12 +57,12 @@ definition
 		items matches {
 			Node[id2] matches {	-- Body site name
 				value matches {
-					Text[id67] 
+					Text[id67]
 				}
 			}
 			Node[id66] occurrences matches {0..1} matches {	-- Specific site
 				value matches {
-					Text[id68] 
+					Text[id68]
 				}
 			}
 			Node[id3] occurrences matches {0..1} matches {	-- Laterality
@@ -84,7 +85,7 @@ definition
 							}
 						}
 					}
-					Plain_text[id71] 
+					Plain_text[id71]
 				}
 			}
 			Node[id56] occurrences matches {0..1} matches {	-- Anatomical Line
@@ -96,19 +97,19 @@ definition
 							}
 						}
 					}
-					Plain_text[id73] 
+					Plain_text[id73]
 				}
 			}
 			Node[id24] occurrences matches {0..1} matches {	-- Description
 				value matches {
-					Text[id74] 
+					Text[id74]
 				}
 			}
 			allow_archetype Node[id54] matches {	-- Alternative structure
 				include
 					archetype_id/value matches {/s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1/}
 			}
-			use_archetype Node[id55, s2-EHR-Node.media_file.v1] 
+			use_archetype Node[id55, s2-EHR-Node.media_file.v1]
 		}
 	}
 
@@ -273,8 +274,9 @@ terminology
 		>
 		["loinc"] = <
 			["id2"] = <http://loinc.org/39111-0>
-			["id3"] = <http://loinc.org/63930-2>
 			["id66"] = <http://loinc.org/39111-0>
+			["id3"] = <http://loinc.org/63930-2>
+			["id24"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
 		>
 	>
 	value_sets = <
