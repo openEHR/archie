@@ -18,6 +18,8 @@ import org.junit.Test;
 import org.openehr.referencemodels.AllMetaModelsInitialiser;
 import org.s2.rm.base.data_types.quantity.Proportion;
 import org.s2.rm.base.data_types.quantity.Quantity;
+import org.s2.rm.base.data_types.text.CodedText;
+import org.s2.rm.base.data_types.text.PlainText;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
@@ -25,6 +27,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 import org.s2.rminfo.S2RmInfoLookup;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -54,7 +57,7 @@ public class S2RmObjectValidatorTest {
         Node node = (Node) testUtil.constructEmptyRMObject(archetype.getDefinition());
         Proportion proportion = (Proportion) node.getValue();
         assert proportion != null;
-        proportion.setDenominator(new Quantity(4D, new TerminologyTerm("ml", new TerminologyCode("snomed", "258773002"))));
+        proportion.setDenominator(new Quantity(new BigDecimal("4.0"), new CodedText(new TerminologyTerm("ml", new TerminologyCode("snomed", "258773002")), "mL")));
 
         validator.setRunInvariantChecks(false);
         List<RMObjectValidationMessage> validationMessages = validator.validate(opt, node);
@@ -63,7 +66,7 @@ public class S2RmObjectValidatorTest {
         assertEquals("The path should be correct", "/value/numerator", validationMessages.get(0).getPath());
         assertEquals("The archetype path should be correct", "/value[id2]/numerator", validationMessages.get(0).getArchetypePath());
 
-        proportion.setNumerator(new Quantity(2D, new TerminologyTerm("ml", new TerminologyCode("snomed", "258773002"))));
+        proportion.setNumerator(new Quantity(new BigDecimal("2.0"), new CodedText(new TerminologyTerm("ml", new TerminologyCode("snomed", "258773002")), "mL")));
 
         validationMessages = validator.validate(opt, node);
         assertEquals("There should be 0 errors", 0, validationMessages.size());
@@ -78,7 +81,7 @@ public class S2RmObjectValidatorTest {
     public void testEmptyNodeWithoutArchetype() {
         Node node = new Node();
 
-        node.setValue(new Text("something"));
+        node.setValue(new PlainText("something"));
 
         List<RMObjectValidationMessage> messages = validator.validate(node);
         assertEquals(2, messages.size());
@@ -94,7 +97,7 @@ public class S2RmObjectValidatorTest {
         node.setName("test cluster");
         node.setArchetypeNodeId("id12");
         Node element = new Node();
-        element.setValue(new Text("hi!"));
+        element.setValue(new PlainText("hi!"));
         node.setItems(Lists.newArrayList(element));
 
         List<RMObjectValidationMessage> messages = validator.validate(node);
@@ -112,7 +115,7 @@ public class S2RmObjectValidatorTest {
         node1.setArchetypeNodeId("id12");
         Node node2 = new Node();
         node2.setName("test element");
-        node2.setValue(new Text("value"));
+        node2.setValue(new PlainText("value"));
         node2.setArchetypeNodeId("id15");
         node1.setItems(Lists.newArrayList(node2));
 
