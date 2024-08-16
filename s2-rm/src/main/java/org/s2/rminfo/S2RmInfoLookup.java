@@ -18,6 +18,7 @@ import org.s2.rm.base.data_types.timing.*;
 import org.s2.rm.base.data_types.uri.*;
 import org.s2.rm.base.foundation_types.terminology.*;
 import org.s2.rm.base.model_support.archetyped.*;
+import org.s2.rm.base.model_support.definitions.*;
 import org.s2.rm.base.model_support.identification.*;
 import org.s2.rm.base.patterns.data_structures.*;
 import org.s2.rm.base.patterns.participation.*;
@@ -26,13 +27,15 @@ import org.s2.rm.care.ehr.*;
 import org.s2.rm.care.entry.*;
 import org.s2.rm.entity.*;
 import org.s2.rm.entity.social_entity.*;
+import org.s2.rm.entity.physical_entity.*;
+import org.s2.rm.entity.resource.*;
 
 import java.time.temporal.*;
 import java.util.*;
 
 public class S2RmInfoLookup extends ReflectionModelInfoLookup {
 
-    public static final String RM_VERSION = "0.6.5";
+    public static final String RM_VERSION = "0.8.0";
 
     private static S2RmInfoLookup instance;
 
@@ -75,11 +78,13 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         addClass(AggregateAgent.class);
         addClass(ArchetypeId.class);
         addClass(Archetyped.class);
+        addClass(Artefact.class);
         addClass(ArtifactId.class);
         addClass(Assessment.class);
         addClass(Attestation.class);
         addClass(AuditDetails.class);
         addClass(Automaton.class);
+        addClass(BiologicalEntity.class);
         addClass(BooleanValue.class);
         addClass(Capability.class);
         addClass(CareActEntry.class);
@@ -88,6 +93,7 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         addClass(CodedOrdinal.class);
         addClass(CodedText.class);
         addClass(Composition.class);
+        addClass(ConsumableUse.class);
         addClass(Contact.class);
         addClass(ContentItem.class);
         addClass(Contribution.class);
@@ -103,29 +109,43 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         addClass(EhrUriRef.class);
         addClass(Encapsulated.class);
         addClass(Entity.class);
+        addClass(Entity.class);
+        addClass(EntityRelationship.class);
         addClass(EntityRelationship.class);
         addClass(Entry.class);
         addClass(Event.class);
         addClass(EventContext.class);
+        addClass(Facility.class);
         addClass(FeederAudit.class);
         addClass(FeederAuditDetails.class);
+        addClass(FiatLine.class);
+        addClass(FiatPoint.class);
+        addClass(FiatSurface.class);
         addClass(Folder.class);
+        addClass(GeographicalSite.class);
         addClass(HourSpecifier.class);
         addClass(Imaging.class);
         addClass(ImportedVersion.class);
+        addClass(IndependentObject.class);
         addClass(IndirectObservation.class);
         addClass(IndividualAgent.class);
+        addClass(InfoItem.class);
         addClass(InternetId.class);
         addClass(IntervalEvent.class);
         addClass(IsoOid.class);
         addClass(LabResult.class);
         addClass(Link.class);
         addClass(Locatable.class);
+        addClass(MaterialEntity.class);
+        addClass(MaterialLocation.class);
+        addClass(MateriallyDependentEntity.class);
         addClass(Measurable.class);
         addClass(Measured.class);
         addClass(Money.class);
         addClass(Multimedia.class);
         addClass(Node.class);
+        addClass(ObjectAggregate.class);
+        addClass(ObjectExtensionPart.class);
         addClass(Observation.class);
         addClass(Occurrence.class);
         addClass(OccurrencePattern.class);
@@ -146,9 +166,9 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         addClass(PartyRelationship.class);
         addClass(PartySelf.class);
         addClass(Pathable.class);
-        addClass(PeriodSpecifier.class);
         addClass(Person.class);
         addClass(Persona.class);
+        addClass(PhysicalEntity.class);
         addClass(PlainText.class);
         addClass(PointEvent.class);
         addClass(PrimitiveId.class);
@@ -159,19 +179,26 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         addClass(Ratio.class);
         addClass(RatioKind.class);
         addClass(ReferenceRange.class);
+        addClass(ResourceUse.class);
         addClass(RweIdRef.class);
         addClass(Score.class);
         addClass(Section.class);
+        addClass(ServiceUse.class);
         addClass(SocialEntity.class);
+        addClass(Space.class);
+        addClass(SpatialRegion.class);
         addClass(StateTransition.class);
+        addClass(Substance.class);
         addClass(Team.class);
         addClass(TemporalRelation.class);
         addClass(TemporalValue.class);
         addClass(TerminologyId.class);
+        addClass(TerminologyTerm.class);
         addClass(Text.class);
         addClass(TextFormatTypes.class);
         addClass(TimeValue.class);
         addClass(Timing.class);
+        addClass(TrendKind.class);
         addClass(UriRef.class);
         addClass(Uuid.class);
         addClass(Version.class);
@@ -181,7 +208,6 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         addClass(VersionedEhrStatus.class);
         addClass(VersionedFolder.class);
         addClass(VersionedObject.class);
-
     }
 
     public static S2RmInfoLookup getInstance() {
