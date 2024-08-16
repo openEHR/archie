@@ -1,5 +1,7 @@
 package org.s2.rm.base.foundation_types.terminology;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -13,7 +15,7 @@ import javax.xml.bind.annotation.*;
   "description",
   "concept"
 })
-public class TerminologyTerm {
+public class TerminologyTerm extends RMObject {
   /**
   * BMM name: description | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

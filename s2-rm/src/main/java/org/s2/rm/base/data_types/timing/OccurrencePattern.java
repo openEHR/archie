@@ -3,6 +3,8 @@ package org.s2.rm.base.data_types.timing;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.interval.Interval;
 import org.s2.rm.base.foundation_types.time.RmDate;
 
@@ -17,7 +19,7 @@ import org.s2.rm.base.foundation_types.time.RmDate;
   "totalEventCount",
   "boundingPeriod"
 })
-public class OccurrencePattern {
+public class OccurrencePattern extends RMObject {
   /**
   * BMM name: occurrence_times | BMM type: List<{@literal Occurrence_times_specifier}>
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1

@@ -3,6 +3,8 @@ package org.s2.rm.base.model_support.archetyped;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.patterns.participation.PartyIdentified;
 import org.s2.rm.base.patterns.participation.PartyProxy;
@@ -22,7 +24,7 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
   "versionId",
   "otherDetails"
 })
-public class FeederAuditDetails {
+public class FeederAuditDetails extends RMObject {
   /**
   * BMM name: system_id | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1

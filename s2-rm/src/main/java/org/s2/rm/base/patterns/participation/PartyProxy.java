@@ -2,6 +2,8 @@ package org.s2.rm.base.patterns.participation;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 
 /**
@@ -13,7 +15,7 @@ import org.s2.rm.base.model_support.identification.ObjectRef;
 @XmlType(name = "Party_proxy", propOrder = {
   "externalRef"
 })
-public abstract class PartyProxy {
+public abstract class PartyProxy extends RMObject {
   /**
   * BMM name: external_ref | BMM type: Object_ref
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 0..1

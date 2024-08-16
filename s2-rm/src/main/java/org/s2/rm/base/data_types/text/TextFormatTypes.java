@@ -1,5 +1,7 @@
 package org.s2.rm.base.data_types.text;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -10,7 +12,7 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Text_format_types", propOrder = {"value"})
-public class TextFormatTypes {
+public class TextFormatTypes extends RMObject {
   /**
   * Enumeration value.
   */

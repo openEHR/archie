@@ -3,6 +3,8 @@ package org.s2.rm.base.data_types.quantity;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 
@@ -18,7 +20,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
   "range",
   "phenotype"
 })
-public class ReferenceRange<V extends Measurable> {
+public class ReferenceRange<V extends Measurable> extends RMObject {
   /**
   * BMM name: type | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

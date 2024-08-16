@@ -2,6 +2,8 @@ package org.s2.rm.base.model_support.archetyped;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;
+
+import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 
@@ -16,7 +18,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
   "type",
   "target"
 })
-public class Link {
+public class Link extends RMObject {
   /**
   * BMM name: meaning | BMM type: Terminology_term
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
