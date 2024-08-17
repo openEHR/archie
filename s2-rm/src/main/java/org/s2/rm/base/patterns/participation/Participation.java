@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.*;
 import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.interval.Interval;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.foundation_types.time.DateTime;
 
 /**
 * BMM name: Participation
@@ -35,7 +35,7 @@ public class Participation extends RMObject {
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time")
-  private @Nullable Interval<RmDateTime> time;
+  private @Nullable Interval<DateTime> time;
 
   /**
   * BMM name: mode | BMM type: Terminology_term
@@ -83,11 +83,11 @@ public class Participation extends RMObject {
     this.function = function;
   }
 
-  public @Nullable Interval<RmDateTime> getTime() {
+  public @Nullable Interval<DateTime> getTime() {
     return time;
   }
 
-  public void setTime(@Nullable Interval<RmDateTime> time) {
+  public void setTime(@Nullable Interval<DateTime> time) {
     this.time = time;
   }
 

@@ -17,6 +17,10 @@ import org.s2.rm.base.data_types.text.*;
 import org.s2.rm.base.data_types.timing.*;
 import org.s2.rm.base.data_types.uri.*;
 import org.s2.rm.base.foundation_types.terminology.*;
+import org.s2.rm.base.foundation_types.time.Date;
+import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.Duration;
+import org.s2.rm.base.foundation_types.time.Time;
 import org.s2.rm.base.model_support.archetyped.*;
 import org.s2.rm.base.model_support.definitions.*;
 import org.s2.rm.base.model_support.identification.*;
@@ -30,6 +34,7 @@ import org.s2.rm.entity.social_entity.*;
 import org.s2.rm.entity.physical_entity.*;
 import org.s2.rm.entity.resource.*;
 
+import java.math.BigDecimal;
 import java.time.temporal.*;
 import java.util.*;
 
@@ -313,24 +318,25 @@ public class S2RmInfoLookup extends ReflectionModelInfoLookup {
         }
         Class<?> typeInCollection = attributeInfo.getTypeInCollection();
         if(cObject instanceof CInteger) {
-            return typeInCollection.equals(Long.class) || typeInCollection.getName().equals("long");
+            return typeInCollection.equals(Long.class) || typeInCollection.getName().equals("long") ||
+                    typeInCollection.getName().equals("int");
         } else if(cObject instanceof CReal) {
-            return typeInCollection.equals(Double.class) || typeInCollection.getName().equals("double");
+            return typeInCollection.equals(BigDecimal.class) || typeInCollection.getName().contains("ecimal") ||
+                    typeInCollection.equals(Double.class) || typeInCollection.getName().equals("double");
         } else if(cObject instanceof CString) {
             return typeInCollection.equals(String.class);
         } else if(cObject instanceof CDate) {
             return typeInCollection.equals(String.class) ||
-                    typeInCollection.isAssignableFrom(Temporal.class);
+                    typeInCollection.equals(Date.class);
         } else if(cObject instanceof CDateTime) {
             return typeInCollection.equals(String.class) ||
-                    typeInCollection.isAssignableFrom(Temporal.class);
+                    typeInCollection.equals(DateTime.class);
         } else if(cObject instanceof CDuration) {
             return typeInCollection.equals(String.class) ||
-                    typeInCollection.isAssignableFrom(TemporalAccessor.class) ||
-                    typeInCollection.isAssignableFrom(TemporalAmount.class);
+                    typeInCollection.equals(Duration.class);
         } else if(cObject instanceof CTime) {
             return typeInCollection.equals(String.class) ||
-                    typeInCollection.isAssignableFrom(TemporalAccessor.class);
+                    typeInCollection.equals(Time.class);
         } else if(cObject instanceof CTerminologyCode) {
             return typeInCollection.equals(TerminologyCode.class);
         } else if(cObject instanceof CBoolean) {

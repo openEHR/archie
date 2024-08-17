@@ -3,7 +3,7 @@ package org.s2.rm.base.data_types.timing;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.RmDuration;
+import org.s2.rm.base.foundation_types.time.Duration;
 
 /**
 * BMM name: Period_specifier
@@ -22,18 +22,18 @@ public class PeriodSpecifier extends OccurrenceTimesSpecifier {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "period")
-  private RmDuration period;
+  private Duration period;
 
   /**
   * BMM name: period_upper | BMM type: Duration
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "period_upper")
-  private @Nullable RmDuration periodUpper;
+  private @Nullable Duration periodUpper;
 
   public PeriodSpecifier() {}
 
-  public PeriodSpecifier(RmDuration period) {
+  public PeriodSpecifier(Duration period) {
     this.period = period;
   }
 
@@ -53,19 +53,19 @@ public class PeriodSpecifier extends OccurrenceTimesSpecifier {
     return Objects.hash(super.hashCode(), period, periodUpper);
   }
 
-  public RmDuration getPeriod() {
+  public Duration getPeriod() {
     return period;
   }
 
-  public void setPeriod(RmDuration period) {
+  public void setPeriod(Duration period) {
     this.period = period;
   }
 
-  public @Nullable RmDuration getPeriodUpper() {
+  public @Nullable Duration getPeriodUpper() {
     return periodUpper;
   }
 
-  public void setPeriodUpper(@Nullable RmDuration periodUpper) {
+  public void setPeriodUpper(@Nullable Duration periodUpper) {
     this.periodUpper = periodUpper;
   }
 

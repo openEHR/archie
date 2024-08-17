@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 
 import com.nedap.archie.base.RMObject;
-import org.s2.rm.base.foundation_types.time.RmDate;
+import org.s2.rm.base.foundation_types.time.Date;
 
 /**
 * BMM name: Occurrence
@@ -23,7 +23,7 @@ public class Occurrence extends RMObject {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "date")
-  private RmDate date;
+  private Date date;
 
   /**
   * BMM name: times_of_day | BMM type: List<{@literal Hour_specifier}>
@@ -34,7 +34,7 @@ public class Occurrence extends RMObject {
 
   public Occurrence() {}
 
-  public Occurrence(RmDate date) {
+  public Occurrence(Date date) {
     this.date = date;
   }
 
@@ -54,11 +54,11 @@ public class Occurrence extends RMObject {
     return result;
   }
 
-  public RmDate getDate() {
+  public Date getDate() {
     return date;
   }
 
-  public void setDate(RmDate date) {
+  public void setDate(Date date) {
     this.date = date;
   }
 

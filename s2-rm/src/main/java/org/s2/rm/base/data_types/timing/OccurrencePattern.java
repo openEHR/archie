@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.*;
 
 import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.interval.Interval;
-import org.s2.rm.base.foundation_types.time.RmDate;
+import org.s2.rm.base.foundation_types.time.Date;
 
 /**
 * BMM name: Occurrence_pattern
@@ -39,11 +39,11 @@ public class OccurrencePattern extends RMObject {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "bounding_period")
-  private Interval<RmDate> boundingPeriod;
+  private Interval<Date> boundingPeriod;
 
   public OccurrencePattern() {}
 
-  public OccurrencePattern(Interval<RmDate> boundingPeriod) {
+  public OccurrencePattern(Interval<Date> boundingPeriod) {
     this.boundingPeriod = boundingPeriod;
   }
 
@@ -80,11 +80,11 @@ public class OccurrencePattern extends RMObject {
     this.totalEventCount = totalEventCount;
   }
 
-  public Interval<RmDate> getBoundingPeriod() {
+  public Interval<Date> getBoundingPeriod() {
     return boundingPeriod;
   }
 
-  public void setBoundingPeriod(Interval<RmDate> boundingPeriod) {
+  public void setBoundingPeriod(Interval<Date> boundingPeriod) {
     this.boundingPeriod = boundingPeriod;
   }
 

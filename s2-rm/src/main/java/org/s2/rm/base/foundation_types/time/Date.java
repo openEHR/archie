@@ -5,18 +5,18 @@ import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
-* Duration type based on IS8601 representation.
-* BMM name: Duration
+* Date type based on IS8601 representation.
+* BMM name: Date
 * BMM ancestors: Temporal
 * isAbstract: false | isPrimitiveType: true | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Duration")
-public class RmDuration extends Temporal {
-  public RmDuration() {}
+@XmlType(name = "Date")
+public class Date extends Temporal {
+  public Date() {}
 
-  public RmDuration(String value) {
+  public Date(String value) {
     super(value);
   }
 
@@ -24,8 +24,8 @@ public class RmDuration extends Temporal {
   public boolean equals(Object other) {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
-    RmDuration otherAsRmDuration = (RmDuration) other;
-    return Objects.equals(getValue(), otherAsRmDuration.getValue());
+    Date otherAsDate = (Date) other;
+    return Objects.equals(getValue(), otherAsDate.getValue());
   }
 
   @Override
@@ -35,19 +35,19 @@ public class RmDuration extends Temporal {
 
   @Override
   public int compareTo(Temporal other) {
-    return getDurationValue().compareTo(Duration.parse(((RmDuration)other).getValue()));
+    return getDateValue().compareTo(LocalDate.parse(((Date)other).getValue()));
   }
 
-  Duration getDurationValue() { return Duration.parse(getValue()); }
+  LocalDate getDateValue() { return LocalDate.parse(getValue()); }
 
 
   @Override
   public String bmmClassName() {
-    return "Duration";
+    return "Date";
   }
 
   @Override
   public String toString() {
-    return "Duration";
+    return "Date";
   }
 }

@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.foundation_types.time.DateTime;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.participation.Participation;
 import org.s2.rm.base.patterns.participation.PartyProxy;
@@ -42,7 +42,7 @@ public abstract class Entry extends ContentItem {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time")
-  private RmDateTime time;
+  private DateTime time;
 
   /**
   * BMM name: language | BMM type: Terminology_code
@@ -96,7 +96,7 @@ public abstract class Entry extends ContentItem {
 
   public Entry() {}
 
-  public Entry(Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
+  public Entry(Uuid uid, DateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.uid = uid;
     this.time = time;
@@ -112,11 +112,11 @@ public abstract class Entry extends ContentItem {
     this.uid = uid;
   }
 
-  public RmDateTime getTime() {
+  public DateTime getTime() {
     return time;
   }
 
-  public void setTime(RmDateTime time) {
+  public void setTime(DateTime time) {
     this.time = time;
   }
 

@@ -1,22 +1,21 @@
 package org.s2.rm.base.foundation_types.time;
 
-import java.time.*;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
-* Date Time type based on IS8601 representation.
-* BMM name: Date_time
+* Duration type based on IS8601 representation.
+* BMM name: Duration
 * BMM ancestors: Temporal
 * isAbstract: false | isPrimitiveType: true | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Date_time")
-public class RmDateTime extends Temporal {
-  public RmDateTime() {}
+@XmlType(name = "Duration")
+public class Duration extends Temporal {
+  public Duration() {}
 
-  public RmDateTime(String value) {
+  public Duration(String value) {
     super(value);
   }
 
@@ -24,8 +23,8 @@ public class RmDateTime extends Temporal {
   public boolean equals(Object other) {
     if (this == other) return true;
     if (other == null || getClass() != other.getClass()) return false;
-    RmDateTime otherAsRmDateTime = (RmDateTime) other;
-    return Objects.equals(getValue(), otherAsRmDateTime.getValue());
+    Duration otherAsDuration = (Duration) other;
+    return Objects.equals(getValue(), otherAsDuration.getValue());
   }
 
   @Override
@@ -35,19 +34,19 @@ public class RmDateTime extends Temporal {
 
   @Override
   public int compareTo(Temporal other) {
-    return getDateTimeValue().compareTo(LocalDateTime.parse(((RmDateTime)other).getValue()));
+    return getDurationValue().compareTo(java.time.Duration.parse(((Duration)other).getValue()));
   }
 
-  LocalDateTime getDateTimeValue() { return LocalDateTime.parse(getValue()); }
+  java.time.Duration getDurationValue() { return java.time.Duration.parse(getValue()); }
 
 
   @Override
   public String bmmClassName() {
-    return "Date_time";
+    return "Duration";
   }
 
   @Override
   public String toString() {
-    return "Date_time";
+    return "Duration";
   }
 }

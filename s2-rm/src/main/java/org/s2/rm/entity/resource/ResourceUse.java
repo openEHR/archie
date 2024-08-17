@@ -2,8 +2,8 @@ package org.s2.rm.entity.resource;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.foundation_types.time.RmDuration;
+import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.Duration;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.patterns.data_structures.Node;
 
@@ -26,14 +26,14 @@ public abstract class ResourceUse extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "start_time")
-  private RmDateTime startTime;
+  private DateTime startTime;
 
   /**
   * BMM name: duration | BMM type: Duration
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "duration")
-  private @Nullable RmDuration duration;
+  private @Nullable Duration duration;
 
   /**
   * BMM name: cost_data | BMM type: Node
@@ -51,24 +51,24 @@ public abstract class ResourceUse extends Locatable {
 
   public ResourceUse() {}
 
-  public ResourceUse(RmDateTime startTime, String archetypeNodeId, String name) {
+  public ResourceUse(DateTime startTime, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.startTime = startTime;
   }
 
-  public RmDateTime getStartTime() {
+  public DateTime getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(RmDateTime startTime) {
+  public void setStartTime(DateTime startTime) {
     this.startTime = startTime;
   }
 
-  public @Nullable RmDuration getDuration() {
+  public @Nullable Duration getDuration() {
     return duration;
   }
 
-  public void setDuration(@Nullable RmDuration duration) {
+  public void setDuration(@Nullable Duration duration) {
     this.duration = duration;
   }
 

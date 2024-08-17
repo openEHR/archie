@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 
 import com.nedap.archie.base.RMObject;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.foundation_types.time.DateTime;
 import org.s2.rm.base.patterns.participation.PartyIdentified;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
@@ -58,7 +58,7 @@ public class FeederAuditDetails extends RMObject {
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time")
-  private @Nullable RmDateTime time;
+  private @Nullable DateTime time;
 
   /**
   * BMM name: version_id | BMM type: String
@@ -131,11 +131,11 @@ public class FeederAuditDetails extends RMObject {
     this.subject = subject;
   }
 
-  public @Nullable RmDateTime getTime() {
+  public @Nullable DateTime getTime() {
     return time;
   }
 
-  public void setTime(@Nullable RmDateTime time) {
+  public void setTime(@Nullable DateTime time) {
     this.time = time;
   }
 

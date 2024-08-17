@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.encapsulated.Multimedia;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.foundation_types.time.DateTime;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
 /**
@@ -60,7 +60,7 @@ public class Attestation extends AuditDetails {
 
   public Attestation() {}
 
-  public Attestation(AttestationReason reason, boolean isPending, String systemId, RmDateTime timeCommitted, AuditChangeType changeType, PartyProxy committer) {
+  public Attestation(AttestationReason reason, boolean isPending, String systemId, DateTime timeCommitted, AuditChangeType changeType, PartyProxy committer) {
     super(systemId, timeCommitted, changeType, committer);
     this.reason = reason;
     this.isPending = isPending;

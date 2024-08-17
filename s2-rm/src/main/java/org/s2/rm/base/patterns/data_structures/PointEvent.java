@@ -3,8 +3,7 @@ package org.s2.rm.base.patterns.data_structures;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.FeederAudit;
+import org.s2.rm.base.foundation_types.time.DateTime;
 import org.s2.rm.base.model_support.identification.Uuid;
 
 /**
@@ -30,7 +29,7 @@ public class PointEvent extends Event {
 
   public PointEvent() {}
 
-  public PointEvent(RmDateTime time, String archetypeNodeId, String name) {
+  public PointEvent(DateTime time, String archetypeNodeId, String name) {
     super(time, archetypeNodeId, name);
   }
 

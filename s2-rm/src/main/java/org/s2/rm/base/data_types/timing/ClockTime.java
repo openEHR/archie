@@ -2,7 +2,7 @@ package org.s2.rm.base.data_types.timing;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.RmTime;
+import org.s2.rm.base.foundation_types.time.Time;
 
 /**
 * BMM name: Clock_time
@@ -20,11 +20,11 @@ public class ClockTime extends HourSpecifier {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time")
-  private RmTime time;
+  private Time time;
 
   public ClockTime() {}
 
-  public ClockTime(RmTime time) {
+  public ClockTime(Time time) {
     this.time = time;
   }
 
@@ -41,11 +41,11 @@ public class ClockTime extends HourSpecifier {
     return Objects.hash(super.hashCode(), time);
   }
 
-  public RmTime getTime() {
+  public Time getTime() {
     return time;
   }
 
-  public void setTime(RmTime time) {
+  public void setTime(Time time) {
     this.time = time;
   }
 

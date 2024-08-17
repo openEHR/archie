@@ -3,7 +3,7 @@ package org.s2.rm.care.ehr;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.foundation_types.time.DateTime;
 import org.s2.rm.base.model_support.identification.InternetId;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
@@ -45,7 +45,7 @@ public class Ehr {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time_created")
-  private RmDateTime timeCreated;
+  private DateTime timeCreated;
 
   /**
   * BMM name: ehr_access | BMM type: Object_ref
@@ -91,7 +91,7 @@ public class Ehr {
 
   public Ehr() {}
 
-  public Ehr(InternetId systemId, Uuid ehrId, RmDateTime timeCreated, ObjectRef ehrAccess, ObjectRef ehrStatus, List<ObjectRef> contributions) {
+  public Ehr(InternetId systemId, Uuid ehrId, DateTime timeCreated, ObjectRef ehrAccess, ObjectRef ehrStatus, List<ObjectRef> contributions) {
     this.systemId = systemId;
     this.ehrId = ehrId;
     this.timeCreated = timeCreated;
@@ -141,11 +141,11 @@ public class Ehr {
     this.ehrId = ehrId;
   }
 
-  public RmDateTime getTimeCreated() {
+  public DateTime getTimeCreated() {
     return timeCreated;
   }
 
-  public void setTimeCreated(RmDateTime timeCreated) {
+  public void setTimeCreated(DateTime timeCreated) {
     this.timeCreated = timeCreated;
   }
 

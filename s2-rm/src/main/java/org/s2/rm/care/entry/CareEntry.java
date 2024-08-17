@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.foundation_types.time.DateTime;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
 import org.s2.rm.base.patterns.participation.PartyProxy;
@@ -39,7 +39,7 @@ public abstract class CareEntry extends Entry {
 
   public CareEntry() {}
 
-  public CareEntry(Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
+  public CareEntry(Uuid uid, DateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
   }
 

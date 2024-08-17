@@ -4,7 +4,7 @@ import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
-import org.s2.rm.base.foundation_types.time.RmDuration;
+import org.s2.rm.base.foundation_types.time.Duration;
 
 /**
 * BMM name: Timing
@@ -39,14 +39,14 @@ public class Timing extends DataValue {
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "event_duration")
-  private @Nullable RmDuration eventDuration;
+  private @Nullable Duration eventDuration;
 
   /**
   * BMM name: event_duration_upper | BMM type: Duration
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "event_duration_upper")
-  private @Nullable RmDuration eventDurationUpper;
+  private @Nullable Duration eventDurationUpper;
 
   public Timing() {}
 
@@ -85,19 +85,19 @@ public class Timing extends DataValue {
     this.pattern = pattern;
   }
 
-  public @Nullable RmDuration getEventDuration() {
+  public @Nullable Duration getEventDuration() {
     return eventDuration;
   }
 
-  public void setEventDuration(@Nullable RmDuration eventDuration) {
+  public void setEventDuration(@Nullable Duration eventDuration) {
     this.eventDuration = eventDuration;
   }
 
-  public @Nullable RmDuration getEventDurationUpper() {
+  public @Nullable Duration getEventDurationUpper() {
     return eventDurationUpper;
   }
 
-  public void setEventDurationUpper(@Nullable RmDuration eventDurationUpper) {
+  public void setEventDurationUpper(@Nullable Duration eventDurationUpper) {
     this.eventDurationUpper = eventDurationUpper;
   }
 

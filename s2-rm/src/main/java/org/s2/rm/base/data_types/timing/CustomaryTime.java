@@ -4,7 +4,7 @@ import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.foundation_types.time.RmDuration;
+import org.s2.rm.base.foundation_types.time.Duration;
 
 /**
 * BMM name: Customary_time
@@ -32,7 +32,7 @@ public class CustomaryTime extends HourSpecifier {
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "offset")
-  private @Nullable RmDuration offset;
+  private @Nullable Duration offset;
 
   /**
   * BMM name: temporal_relation | BMM type: Temporal_relation
@@ -70,11 +70,11 @@ public class CustomaryTime extends HourSpecifier {
     this.referenceEvent = referenceEvent;
   }
 
-  public @Nullable RmDuration getOffset() {
+  public @Nullable Duration getOffset() {
     return offset;
   }
 
-  public void setOffset(@Nullable RmDuration offset) {
+  public void setOffset(@Nullable Duration offset) {
     this.offset = offset;
   }
 

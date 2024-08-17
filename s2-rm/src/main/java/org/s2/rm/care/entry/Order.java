@@ -5,12 +5,8 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.time.RmDateTime;
-import org.s2.rm.base.model_support.archetyped.FeederAudit;
-import org.s2.rm.base.model_support.archetyped.Link;
+import org.s2.rm.base.foundation_types.time.DateTime;
 import org.s2.rm.base.model_support.identification.Uuid;
-import org.s2.rm.base.patterns.data_structures.Node;
-import org.s2.rm.base.patterns.participation.Participation;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
 /**
@@ -38,7 +34,7 @@ public class Order extends CareActEntry {
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "expiry_time")
-  private @Nullable RmDateTime expiryTime;
+  private @Nullable DateTime expiryTime;
 
   /**
   * BMM name: activities | BMM type: List<{@literal Activity}>
@@ -49,7 +45,7 @@ public class Order extends CareActEntry {
 
   public Order() {}
 
-  public Order(Text narrative, Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
+  public Order(Text narrative, Uuid uid, DateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
     this.narrative = narrative;
   }
@@ -98,11 +94,11 @@ public class Order extends CareActEntry {
     this.narrative = narrative;
   }
 
-  public @Nullable RmDateTime getExpiryTime() {
+  public @Nullable DateTime getExpiryTime() {
     return expiryTime;
   }
 
-  public void setExpiryTime(@Nullable RmDateTime expiryTime) {
+  public void setExpiryTime(@Nullable DateTime expiryTime) {
     this.expiryTime = expiryTime;
   }
 
