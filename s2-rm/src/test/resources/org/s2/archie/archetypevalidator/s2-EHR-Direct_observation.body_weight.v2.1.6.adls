@@ -1,0 +1,279 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f3fbec37-c2e9-4acf-bdba-2c7b534e28d8)
+	s2-EHR-Direct_observation.body_weight.v2.1.6
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-03-09">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.body_weight.v2.1.6, copyright 2006 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.body_weight.v2.1.6 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the body weight of an individual - both actual and approximate.">
+			use = <"To be used for recording the actual measurement of body weight, including when the individual is missing a body part due to a congenital cause or after surgical removal.   A statement identifying the physical incompleteness of the body can be recorded in the 'Confounding factors' data Node, if required. This is the usual archetype to be used for a typical measurement of weight, for example self-measured by the individual at home, a clinician measurement in a clinic/hospital, or a fitness instructor in a gymnasium.  
+            
+            Can also be used for recording an approximation of body weight measurement in a clinical scenario where it is not possible to measure accurately body weight - for example, weighing an uncooperative child, or estimating the weight of an unborn fetus (where the 'subject of data' is the Fetus and recording occurs within the mother's health record).  This is not modelled explicitly in the archetype as the openEHR Reference model allows approximations  for any Quantity data type by setting the attribute Magnitude_status to the value '~'.  At implementation, for example, an application user interface could allow clinicians to select an appropriately labelled check box adjacent to the Weight data field to indicate that the recorded weight is an approximation, rather than actual.
+            
+            To be used for recording weight change, that is, either weight loss or weight gain.  This can currently be modelled by constraining the 'any event' to an interval with associated mathematical function of increase or decrease, as appropriate.">
+			keywords = <"weight", "gain", "loss", "increase", "decrease", "mass", "estimate", "actual">
+			misuse = <"Not to be used to record a calculated body weight, such as an estimation of the body weight of a person with one or more limbs missing. A calculated body weight may be based on, some or all of, the measured body weight, other body measurements and an algorithm. Use other OBSERVATION archetypes for this purpose.
+            
+            Not to be used to record the weight of a body part or other object.">
+		>
+	>
+	other_contributors = <"Karin Aarsheim, Helse Førde, Norway", "Grethe Almenning, Bergen kommune, Norway", "Magnus Alvestad, Helse Bergen HF, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Einar Bugge, UNN HF, Fag- og forskningssenteret, Norway", "Marja Buur-Krom, Medisch Centrum Alkmaar, Netherlands", "Rong Chen, Cambio Healthcare Systems, Sweden", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Hans Demski, Helmholtz Zentrum München, Germany", "Paul Donaldson, Nursing Informatics Australia, Australia", "Torsten Eken, Oslo universitetssykehus HF, Ullevål, Norway", "Bjørg Eli Hollund, helse-bergen, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Soon Ghee Yap, Singapore Health Services Pte Ltd, Singapore", "Heather Grain, Llewelyn Grain Informatics, Australia", "Morten Granum, DIPS ASA, Norway", "Bjørn Grøva, Diretoratet for e-helse, Norway", "Anne Harbison, CPCER, Australia", "Knut Harboe, Stavanger Universitetssjukehus, Norway", "Sam Heard, Ocean Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Terje Hellemo, Helse Nord FIKS, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Jan Inge Sørheim, Helse Bergen, Haukeland uniersitetssjukehus, Norway", "Andrew James, University of Toronto, Canada", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Nils Jonsson, Landstinget i Östergötland, Sweden", "Konstantinos Kalliamvakos, Cambio Healthcare Systems, Sweden", "Sabine Leh, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Camilla Lund, Institute for Cancer Genetics and Informatics, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Arne Løberg Sæter, DIPS ASA, Norway", "Tinna Magnusdottir, Helse Bergen, Norway", "Jone Marius Vignes, Senter for medisinsk genetikk og molekylærmedisin, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Jeroen Meintjens, Medisch Centrum Alkmaar, Netherlands", "Hugo Nilssen, UNN HF K3K/Tromsø, Norway", "Anne-Berit Norman Paulsen, Universitetssykehuset Nord-Norge, Norway", "Bjørn Næss, DIPS ASA, Norway", "Tilde Ostborg, SUS, Norway", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Lars Retterstøl, OUS, Norway", "Thomas Schopf, University Hospital of North-Norway, Norway", "Kari Sygnestveit, Helse Bergen, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Line Sørensen, Helse Bergen, Norway", "Eli Taranger Ljønes, Bodø kommune, Norway", "Micaela Thierley, Helse Bergen/Haraldsplass sykehus, Norway", "Kevin Thon, SKDE, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway", "Thomas Wilson, Finnmarkssykehuset HF Klinikk Hammerfest, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- Body weight
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] matches {	-- Weight
+				value matches {
+					Measured<Quantity>[id44] matches {
+						value matches {
+							Quantity[id35] matches {	-- Weight (kg)
+								magnitude matches {|0.0..1000.0|}
+								units matches {
+									Coded_text[id37] matches {
+										term matches {
+											Terminology_term[id36] matches {
+												concept matches {[at30]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id45] matches {
+						value matches {
+							Quantity[id38] matches {	-- Weight ([lb_av])
+								magnitude matches {|0.0..2000.0|}
+								units matches {
+									Coded_text[id40] matches {
+										term matches {
+											Terminology_term[id39] matches {
+												concept matches {[at31]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id46] matches {
+						value matches {
+							Quantity[id41] matches {	-- Weight (g)
+								magnitude matches {|0.0..1000000.0|}
+								units matches {
+									Coded_text[id43] matches {
+										term matches {
+											Terminology_term[id42] matches {
+												concept matches {[at32]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id30] 
+				}
+			}
+		}
+		state matches {
+			Node[id10] occurrences matches {0..1} matches {	-- State of dress
+				value matches {
+					Coded_text[id31] matches {
+						term matches {
+							Terminology_term[id47] matches {
+								concept matches {[ac1]}		-- State of dress (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id26] matches {	-- Confounding factors
+				value matches {
+					Text[id32] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id21, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id28] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		data_series matches {
+			Point_event[id27] occurrences matches {0..1} matches {	-- Birth
+				items matches {
+					use_node Node[id5] /data[id5]	-- /data[Weight]
+					use_node Node[id25] /data[id25]	-- /data[Comment]
+				}
+			}
+		}
+		state_series matches {
+			Point_event[id27] occurrences matches {0..1} matches {	-- Birth
+				items matches {
+					use_node Node[id10] /state[id10]	-- /state[State of dress]
+					use_node Node[id26] /state[id26]	-- /state[Confounding factors]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"State of dress (synthesised)">
+				description = <"Description of the state of dress of the person at the time of weighing. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Fully clothed, including shoes">
+				description = <"Clothing which may add significantly to weight, including shoes.">
+			>
+			["at11"] = <
+				text = <"Lightly clothed/underwear">
+				description = <"Clothing which will not add to weight significantly.">
+			>
+			["at13"] = <
+				text = <"Naked">
+				description = <"Without any clothes.">
+			>
+			["at17"] = <
+				text = <"Nappy/diaper">
+				description = <"Wearing only a nappy - which may add significantly to weight.">
+			>
+			["at28"] = <
+				text = <"Fully clothed, without shoes">
+				description = <"Clothing which may add significantly to weight.">
+			>
+			["at29"] = <
+				text = <"Mass">
+				description = <"Mass">
+			>
+			["at30"] = <
+				text = <"kg">
+				description = <"Kg unit.">
+			>
+			["at31"] = <
+				text = <"[lb_av]">
+				description = <"Pounds unit">
+			>
+			["at32"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["id1"] = <
+				text = <"Body weight">
+				description = <"Measurement of the body weight of an individual.">
+			>
+			["id10"] = <
+				text = <"State of dress">
+				description = <"Description of the state of dress of the person at the time of weighing.">
+			>
+			["id21"] = <
+				text = <"Device">
+				description = <"Details about the weighing device.">
+			>
+			["id25"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the measurement of Body weight, not captured in other fields.">
+			>
+			["id26"] = <
+				text = <"Confounding factors">
+				description = <"Record any issues or factors that may impact on the measurement of body weight eg timing in menstrual cycle, timing of recent bowel motion or noting of amputation.">
+			>
+			["id27"] = <
+				text = <"Birth">
+				description = <"Usually the first weight, measured soon after birth. This event will only be used once per health record
+                .">
+			>
+			["id28"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id35"] = <
+				text = <"Weight (kg)">
+				description = <"Weight (kg)">
+			>
+			["id38"] = <
+				text = <"Weight ([lb_av])">
+				description = <"Weight ([lb_av])">
+			>
+			["id4"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id41"] = <
+				text = <"Weight (g)">
+				description = <"Weight (g)">
+			>
+			["id5"] = <
+				text = <"Weight">
+				description = <"The weight of the individual.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/29463-7>
+			["id1"] = <http://loinc.org/29463-7>
+			["id10"] = <http://loinc.org/8352-7>
+			["id21"] = <http://loinc.org/74720-4>
+			["id25"] = <http://loinc.org/106173-8>
+			["id26"] = <http://loinc.org/106176-1>
+		>
+		["openehr"] = <
+			["at29"] = <http://openehr.org/id/124>
+		>
+		["ucum"] = <
+			["at30"] = <http://ucum.org/id/kg>
+			["at31"] = <http://ucum.org/id/%5Blb_av%5D>
+			["at32"] = <http://ucum.org/id/g>
+		>
+		["snomed"] = <
+			["at30"] = <http://snomed.info/id/258683005>
+			["at31"] = <http://snomed.info/id/258693003>
+			["at32"] = <http://snomed.info/id/258682000>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.StateOfDress>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at13", "at17", "at11", "at28", "at10">
+		>
+	>
+
