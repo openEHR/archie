@@ -39,7 +39,7 @@ public class NodeIdValidation extends ValidatingVisitor {
         }
         else if(!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(cObject.getNodeId()) && archetypeSpecialisationDepth == AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) && nodeIds.containsKey(cObject.getNodeId())) {
             //every node id in a single archetype must be unique or a primitive object, or a occurrences matches {0} because sometimes that's the only way
-            addMessageWithPath(ErrorType.VCOSU, cObject.getPath(), I18n.t("Node id {0} already used in path {1}", cObject.getNodeId(), nodeIds.get(cObject.getNodeId())));
+            addWarningWithPath(ErrorType.VCOSU, cObject.getPath(), I18n.t("Node id {0} already used in path {1}", cObject.getNodeId(), nodeIds.get(cObject.getNodeId())));
         }
         nodeIds.put(cObject.getNodeId(), cObject.getPath());
     }
